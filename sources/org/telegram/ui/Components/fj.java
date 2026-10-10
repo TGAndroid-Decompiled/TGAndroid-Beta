@@ -15,12 +15,12 @@ public final class fj extends FragmentContextView {
     @Override
     public final void setVisibility(int i10) {
         boolean z10;
-        at atVar = this.S0.f28040x;
+        bt btVar = this.S0.f28048x;
         if (i10 == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        atVar.i(this.R0, z10, true);
+        btVar.i(this.R0, z10, true);
     }
 }

@@ -7,20 +7,20 @@ import p7.j;
 import w7.d0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(24);
-    public final PointF[] f48873a;
-    public final int f48874b;
+    public final PointF[] f48917a;
+    public final int f48918b;
 
     public a(PointF[] pointFArr, int i10) {
-        this.f48873a = pointFArr;
-        this.f48874b = i10;
+        this.f48917a = pointFArr;
+        this.f48918b = i10;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = d0.q(parcel, 20293);
-        d0.o(parcel, 2, this.f48873a, i10);
+        d0.o(parcel, 2, this.f48917a, i10);
         d0.s(parcel, 3, 4);
-        parcel.writeInt(this.f48874b);
+        parcel.writeInt(this.f48918b);
         d0.r(parcel, q6);
     }
 }

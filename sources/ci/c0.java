@@ -35,7 +35,7 @@ public final class c0 extends VideoPlayerHolderBase {
                 TextureView textureView = a2Var.J;
                 if (textureView != null && !a2Var.F) {
                     textureView.setAlpha(0.0f);
-                    textureView.animate().alpha(1.0f).setListener(new org.telegram.ui.Wallet.x4(this, 11)).setDuration(200L);
+                    textureView.animate().alpha(1.0f).setListener(new org.telegram.ui.Wallet.y4(this, 11)).setDuration(200L);
                     return;
                 }
                 return;

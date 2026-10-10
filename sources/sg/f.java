@@ -16,7 +16,7 @@ import android.view.animation.OvershootInterpolator;
 import ci.ya;
 import java.util.ArrayList;
 import org.telegram.ui.Components.voip.r0;
-import org.telegram.ui.Wallet.x4;
+import org.telegram.ui.Wallet.y4;
 import rg.w1;
 public abstract class f extends GLSurfaceView implements Choreographer.FrameCallback {
     public static final int K = 0;
@@ -26,25 +26,25 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
     public final ArrayList H;
     public float I;
     public float J;
-    public final g f48029a;
-    public final GestureDetector f48030b;
-    public w1 f48031c;
+    public final g f48073a;
+    public final GestureDetector f48074b;
+    public w1 f48075c;
     public ValueAnimator d;
-    public boolean f48032e;
-    public boolean f48033f;
+    public boolean f48076e;
+    public boolean f48077f;
     public boolean h;
-    public boolean f48034n;
-    public volatile boolean f48035r;
-    public boolean f48036s;
+    public boolean f48078n;
+    public volatile boolean f48079r;
+    public boolean f48080s;
     public Runnable v;
-    public volatile float f48037w;
-    public volatile boolean f48038x;
-    public volatile boolean f48039y;
+    public volatile float f48081w;
+    public volatile boolean f48082x;
+    public volatile boolean f48083y;
 
     public f(Context context) {
         super(context);
-        this.f48033f = true;
-        this.f48037w = 1.0f;
+        this.f48077f = true;
+        this.f48081w = 1.0f;
         this.H = new ArrayList();
         this.I = 1.0f;
         this.J = 1.0f;
@@ -52,14 +52,14 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
         setEGLConfigChooser(8, 8, 8, 8, 16, 0);
         getHolder().setFormat(-3);
         setZOrderOnTop(true);
-        this.f48029a = new g(context, 1, 4);
+        this.f48073a = new g(context, 1, 4);
         setRenderer(new d(this));
         setRenderMode(0);
-        this.f48030b = new GestureDetector(context, new e(0, this));
+        this.f48074b = new GestureDetector(context, new e(0, this));
     }
 
     public static void a(f fVar, int i10) {
-        if (fVar.f48032e && i10 == fVar.E) {
+        if (fVar.f48076e && i10 == fVar.E) {
             b bVar = new b(fVar, i10, 0);
             if (Build.VERSION.SDK_INT >= 29 && fVar.isHardwareAccelerated()) {
                 fVar.getViewTreeObserver().registerFrameCommitCallback(bVar);
@@ -110,17 +110,17 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
 
     public final void d() {
         b();
-        g gVar = this.f48029a;
+        g gVar = this.f48073a;
         float f7 = gVar.d;
-        float f10 = gVar.f48046i;
+        float f10 = gVar.f48090i;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
         this.d = ofFloat;
         ofFloat.setDuration(600L);
         this.d.setInterpolator(new OvershootInterpolator());
         this.d.addUpdateListener(new ya(this, f7, f10, 8));
-        this.d.addListener(new x4(this, 13));
+        this.d.addListener(new y4(this, 13));
         this.d.start();
-        w1 w1Var = this.f48031c;
+        w1 w1Var = this.f48075c;
         if (w1Var != null) {
             w1Var.b(Math.abs(f7 + f10));
         }
@@ -129,7 +129,7 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
     @Override
     public final void doFrame(long j3) {
         float f7;
-        if (this.f48032e && !this.f48033f && !this.f48035r) {
+        if (this.f48076e && !this.f48077f && !this.f48079r) {
             if (Build.VERSION.SDK_INT < 34) {
                 f7 = getAlpha();
             } else {
@@ -138,7 +138,7 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
             for (ViewParent parent = getParent(); parent instanceof View; parent = parent.getParent()) {
                 f7 *= ((View) parent).getAlpha();
             }
-            this.f48037w = f7;
+            this.f48081w = f7;
             long j10 = this.F;
             int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
             if (i10 == 0 || j3 >= j10) {
@@ -153,8 +153,8 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
     }
 
     public final void e() {
-        if (this.f48032e && !this.f48033f && this.h && !this.f48034n && this.d == null) {
-            float f7 = this.f48029a.d;
+        if (this.f48076e && !this.f48077f && this.h && !this.f48078n && this.d == null) {
+            float f7 = this.f48073a.d;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 360.0f + f7);
             this.d = ofFloat;
             ofFloat.setDuration(Math.round(10540.18445322793d));
@@ -176,15 +176,15 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f48032e = true;
-        setPaused(this.f48033f);
+        this.f48076e = true;
+        setPaused(this.f48077f);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         ArrayList arrayList;
-        this.f48032e = false;
-        this.f48036s = false;
+        this.f48076e = false;
+        this.f48080s = false;
         this.G++;
         Choreographer.getInstance().removeFrameCallback(this);
         this.F = 0L;
@@ -211,13 +211,13 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
         } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
-            this.f48034n = false;
+            this.f48078n = false;
             d();
             if (getParent() != null) {
                 getParent().requestDisallowInterceptTouchEvent(false);
             }
         }
-        return this.f48030b.onTouchEvent(motionEvent);
+        return this.f48074b.onTouchEvent(motionEvent);
     }
 
     public void setIdleAnimationEnabled(boolean z10) {
@@ -230,12 +230,12 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
     }
 
     public void setPaused(boolean z10) {
-        this.f48033f = z10;
+        this.f48077f = z10;
         Choreographer.getInstance().removeFrameCallback(this);
         this.F = 0L;
         if (z10) {
             b();
-        } else if (this.f48032e && !this.f48035r) {
+        } else if (this.f48076e && !this.f48079r) {
             e();
             Choreographer.getInstance().postFrameCallback(this);
         }
@@ -247,19 +247,19 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
             return;
         }
         this.I = max;
-        this.f48029a.h = max / this.J;
+        this.f48073a.h = max / this.J;
     }
 
     public void setStarParticlesView(w1 w1Var) {
-        this.f48031c = w1Var;
+        this.f48075c = w1Var;
     }
 
     @Override
     public final void surfaceCreated(SurfaceHolder surfaceHolder) {
         this.E++;
-        this.f48039y = false;
-        this.f48038x = false;
-        this.f48036s = false;
+        this.f48083y = false;
+        this.f48082x = false;
+        this.f48080s = false;
         super.surfaceCreated(surfaceHolder);
     }
 
@@ -267,9 +267,9 @@ public abstract class f extends GLSurfaceView implements Choreographer.FrameCall
     public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ArrayList arrayList;
         this.E++;
-        this.f48039y = false;
-        this.f48038x = false;
-        this.f48036s = false;
+        this.f48083y = false;
+        this.f48082x = false;
+        this.f48080s = false;
         super.surfaceDestroyed(surfaceHolder);
         synchronized (this.H) {
             arrayList = new ArrayList(this.H);

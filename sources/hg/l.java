@@ -9,7 +9,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.zu;
+import org.telegram.ui.Components.av;
 public final class l extends ImageView {
     public final int f11302a;
 
@@ -108,7 +108,7 @@ public final class l extends ImageView {
         }
     }
 
-    public l(zu zuVar, Context context) {
+    public l(av avVar, Context context) {
         super(context);
         this.f11302a = 2;
     }

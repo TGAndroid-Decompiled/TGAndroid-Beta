@@ -16,29 +16,29 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.jj1;
 public final class rp implements wi {
-    public final yi f30473a;
-    public final TL_stories.TL_premium_boostsStatus f30474b;
-    public final org.telegram.ui.ActionBar.e6 f30475c;
+    public final yi f30542a;
+    public final TL_stories.TL_premium_boostsStatus f30543b;
+    public final org.telegram.ui.ActionBar.e6 f30544c;
     public final org.telegram.ui.g d;
-    public final long f30476e;
-    public final org.telegram.ui.fc f30477f;
+    public final long f30545e;
+    public final org.telegram.ui.fc f30546f;
     public final org.telegram.ui.bd h;
 
     public rp(yi yiVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.g gVar, long j3, org.telegram.ui.fc fcVar, org.telegram.ui.bd bdVar) {
-        this.f30473a = yiVar;
-        this.f30474b = tL_premium_boostsStatus;
-        this.f30475c = e6Var;
+        this.f30542a = yiVar;
+        this.f30543b = tL_premium_boostsStatus;
+        this.f30544c = e6Var;
         this.d = gVar;
-        this.f30476e = j3;
-        this.f30477f = fcVar;
+        this.f30545e = j3;
+        this.f30546f = fcVar;
         this.h = bdVar;
     }
 
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        yi yiVar = this.f30473a;
+        yi yiVar = this.f30542a;
         try {
-            HashMap<Object, Object> selectedPhotos = yiVar.f33240j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = yiVar.f33247j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -52,17 +52,17 @@ public final class rp implements wi {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     qp qpVar = new qp(new jj1(file, file, ""), loadBitmap, false, 0);
-                    qpVar.V1 = this.f30474b;
-                    qpVar.f43937a.f43922a = this.f30475c;
-                    qpVar.f43981p1 = this.d;
+                    qpVar.V1 = this.f30543b;
+                    qpVar.f43981a.f43966a = this.f30544c;
+                    qpVar.f44025p1 = this.d;
                     qpVar.F1 = false;
                     qpVar.E1 = false;
-                    qpVar.f43977n1 = 0.2f;
-                    qpVar.c1(this.f30476e);
-                    qpVar.I1 = new pp(yiVar, this.f30477f, 0);
+                    qpVar.f44021n1 = 0.2f;
+                    qpVar.c1(this.f30545e);
+                    qpVar.I1 = new pp(yiVar, this.f30546f, 0);
                     ?? obj = new Object();
-                    obj.f21357a = true;
-                    obj.f21360e = true;
+                    obj.f21361a = true;
+                    obj.f21364e = true;
                     this.h.showAsSheet(qpVar, obj);
                     yiVar.dismiss();
                 }
@@ -81,14 +81,14 @@ public final class rp implements wi {
     @Override
     public final void a1(Object obj) {
         qp qpVar = new qp(obj, null, true, 1);
-        qpVar.V1 = this.f30474b;
-        qpVar.f43937a.f43922a = this.f30475c;
-        qpVar.f43981p1 = this.d;
-        qpVar.c1(this.f30476e);
-        qpVar.I1 = new pp(this.f30473a, this.f30477f, 1);
+        qpVar.V1 = this.f30543b;
+        qpVar.f43981a.f43966a = this.f30544c;
+        qpVar.f44025p1 = this.d;
+        qpVar.c1(this.f30545e);
+        qpVar.I1 = new pp(this.f30542a, this.f30546f, 1);
         ?? obj2 = new Object();
-        obj2.f21357a = true;
-        obj2.f21360e = true;
+        obj2.f21361a = true;
+        obj2.f21364e = true;
         this.h.showAsSheet(qpVar, obj2);
     }
 

@@ -1,45 +1,293 @@
 package org.telegram.ui.Components;
-public final class sf0 extends t6 {
-    public final int f30777b;
-    public final vf0 f30778c;
 
-    public sf0(vf0 vf0Var, int i10) {
-        super("thumbAnimationProgress", 0);
-        this.f30777b = i10;
-        switch (i10) {
-            case 1:
-                this.f30778c = vf0Var;
-                super("thumbImageVisibleProgress", 0);
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.graphics.Paint;
+import android.util.Property;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class sf0 extends org.telegram.ui.ActionBar.f3 {
+    public static final int O = 0;
+    public final int E;
+    public final int F;
+    public final int G;
+    public final int H;
+    public final int I;
+    public final boolean J;
+    public tj K;
+    public final ArrayList L;
+    public final ArrayList M;
+    public final TLRPC.TL_userContact_old2 N;
+    public final pf0 f30769b;
+    public final kf0 f30770c;
+    public final LinearLayout d;
+    public final lf0 f30771e;
+    public final View f30772f;
+    public final View h;
+    public final TextView f30773n;
+    public final org.telegram.ui.ActionBar.n2 f30774r;
+    public boolean f30775s;
+    public final Paint v;
+    public int f30776w;
+    public AnimatorSet f30777x;
+    public AnimatorSet f30778y;
+
+    public sf0(org.telegram.ui.ActionBar.n2 r14, org.telegram.messenger.ContactsController.Contact r15, org.telegram.tgnet.TLRPC.User r16, android.net.Uri r17, java.io.File r18, java.lang.String r19, java.lang.String r20, java.lang.String r21, final org.telegram.ui.ActionBar.e6 r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sf0.<init>(org.telegram.ui.ActionBar.n2, org.telegram.messenger.ContactsController$Contact, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, org.telegram.ui.ActionBar.e6):void");
+    }
+
+    public static void o(sf0 sf0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        StringBuilder sb2;
+        long j3;
+        ArrayList arrayList = sf0Var.L;
+        ArrayList arrayList2 = sf0Var.M;
+        org.telegram.ui.ActionBar.n2 n2Var = sf0Var.f30774r;
+        TLRPC.TL_userContact_old2 tL_userContact_old2 = sf0Var.N;
+        if (sf0Var.J) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(sf0Var.getContext());
+            alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.AddContactTitle);
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.CreateNewContact), LocaleController.getString(R.string.AddToExistingContact)}, new nf0(sf0Var));
+            alertDialog$Builder.o();
+            return;
+        }
+        if (!tL_userContact_old2.restriction_reason.isEmpty()) {
+            sb2 = new StringBuilder(tL_userContact_old2.restriction_reason.get(0).text);
+        } else {
+            sb2 = new StringBuilder(String.format(Locale.US, "BEGIN:VCARD\nVERSION:3.0\nFN:%1$s\nEND:VCARD", ContactsController.formatName(tL_userContact_old2.first_name, tL_userContact_old2.last_name)));
+        }
+        int lastIndexOf = sb2.lastIndexOf("END:VCARD");
+        if (lastIndexOf >= 0) {
+            tL_userContact_old2.phone = null;
+            for (int size = arrayList2.size() - 1; size >= 0; size--) {
+                AndroidUtilities.VcardItem vcardItem = (AndroidUtilities.VcardItem) arrayList2.get(size);
+                if (vcardItem.checked) {
+                    if (tL_userContact_old2.phone == null) {
+                        tL_userContact_old2.phone = vcardItem.getValue(false);
+                    }
+                    for (int i10 = 0; i10 < vcardItem.vcardData.size(); i10++) {
+                        sb2.insert(lastIndexOf, vcardItem.vcardData.get(i10) + "\n");
+                    }
+                }
+            }
+            for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
+                AndroidUtilities.VcardItem vcardItem2 = (AndroidUtilities.VcardItem) arrayList.get(size2);
+                if (vcardItem2.checked) {
+                    for (int size3 = vcardItem2.vcardData.size() - 1; size3 >= 0; size3 += -1) {
+                        sb2.insert(lastIndexOf, vcardItem2.vcardData.get(size3) + "\n");
+                    }
+                }
+            }
+            tL_userContact_old2.restriction_reason.clear();
+            TLRPC.RestrictionReason restrictionReason = new TLRPC.RestrictionReason();
+            restrictionReason.text = sb2.toString();
+            restrictionReason.reason = "";
+            restrictionReason.platform = "";
+            tL_userContact_old2.restriction_reason.add(restrictionReason);
+        }
+        boolean z10 = n2Var instanceof org.telegram.ui.zn;
+        if (z10) {
+            org.telegram.ui.zn znVar = (org.telegram.ui.zn) n2Var;
+            if (znVar.c()) {
+                g5.L(sf0Var.getContext(), znVar.a(), new hf0(sf0Var), e6Var);
                 return;
-            default:
-                this.f30778c = vf0Var;
+            }
+        }
+        if (z10) {
+            j3 = ((org.telegram.ui.zn) n2Var).a();
+        } else {
+            j3 = 0;
+        }
+        g5.Z(sf0Var.currentAccount, 1, j3, new a3(sf0Var, 10));
+    }
+
+    public static boolean p(sf0 sf0Var, int i10, org.telegram.ui.ActionBar.e6 e6Var, Context context) {
+        AndroidUtilities.VcardItem vcardItem;
+        int i11 = sf0Var.F;
+        if (i10 >= i11 && i10 < sf0Var.G) {
+            vcardItem = (AndroidUtilities.VcardItem) sf0Var.M.get(i10 - i11);
+        } else {
+            int i12 = sf0Var.H;
+            if (i10 >= i12 && i10 < sf0Var.I) {
+                vcardItem = (AndroidUtilities.VcardItem) sf0Var.L.get(i10 - i12);
+            } else {
+                vcardItem = null;
+            }
+        }
+        if (vcardItem == null) {
+            return false;
+        }
+        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", vcardItem.getValue(false)));
+        if (ad.a(sf0Var.f30774r)) {
+            if (vcardItem.type == 3) {
+                new ad((FrameLayout) sf0Var.containerView, e6Var).k(false).j();
+                return true;
+            }
+            lc lcVar = new lc(context, e6Var);
+            int i13 = vcardItem.type;
+            if (i13 == 0) {
+                lcVar.f28301b.setText(LocaleController.getString(R.string.PhoneCopied));
+                lcVar.f28300a.setImageResource(R.drawable.msg_calls);
+            } else if (i13 == 1) {
+                lcVar.f28301b.setText(LocaleController.getString(R.string.EmailCopied));
+                lcVar.f28300a.setImageResource(R.drawable.msg_mention);
+            } else {
+                lcVar.f28301b.setText(LocaleController.getString(R.string.TextCopied));
+                lcVar.f28300a.setImageResource(R.drawable.msg_info);
+            }
+            if (AndroidUtilities.shouldShowClipboardToast()) {
+                tc.f((FrameLayout) sf0Var.containerView, lcVar, 1500).j();
+            }
+        }
+        return true;
+    }
+
+    public final void I(boolean z10) {
+        boolean z11;
+        boolean z12;
+        float f7;
+        float f10;
+        Integer num;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        Integer num2 = 1;
+        kf0 kf0Var = this.f30770c;
+        View childAt = kf0Var.getChildAt(0);
+        int top = childAt.getTop() - kf0Var.getScrollY();
+        if (top < 0) {
+            top = 0;
+        }
+        if (top <= 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        lf0 lf0Var = this.f30771e;
+        if ((z11 && lf0Var.getTag() == null) || (!z11 && lf0Var.getTag() != null)) {
+            if (z11) {
+                num = num2;
+            } else {
+                num = null;
+            }
+            lf0Var.setTag(num);
+            AnimatorSet animatorSet = this.f30777x;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+                this.f30777x = null;
+            }
+            View view = this.f30772f;
+            if (z10) {
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.f30777x = animatorSet2;
+                animatorSet2.setDuration(180L);
+                AnimatorSet animatorSet3 = this.f30777x;
+                Property property = View.ALPHA;
+                if (z11) {
+                    f13 = 1.0f;
+                } else {
+                    f13 = 0.0f;
+                }
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(lf0Var, property, f13);
+                if (z11) {
+                    f14 = 1.0f;
+                } else {
+                    f14 = 0.0f;
+                }
+                animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property, f14));
+                this.f30777x.addListener(new of0(this, 0));
+                this.f30777x.start();
+            } else {
+                if (z11) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                lf0Var.setAlpha(f11);
+                if (z11) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.0f;
+                }
+                view.setAlpha(f12);
+            }
+        }
+        if (this.f30776w != top) {
+            this.f30776w = top;
+            this.containerView.invalidate();
+        }
+        childAt.getBottom();
+        kf0Var.getMeasuredHeight();
+        if (childAt.getBottom() - kf0Var.getScrollY() > kf0Var.getMeasuredHeight()) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        View view2 = this.h;
+        if ((z12 && view2.getTag() == null) || (!z12 && view2.getTag() != null)) {
+            if (!z12) {
+                num2 = null;
+            }
+            view2.setTag(num2);
+            AnimatorSet animatorSet4 = this.f30778y;
+            if (animatorSet4 != null) {
+                animatorSet4.cancel();
+                this.f30778y = null;
+            }
+            if (z10) {
+                AnimatorSet animatorSet5 = new AnimatorSet();
+                this.f30778y = animatorSet5;
+                animatorSet5.setDuration(180L);
+                AnimatorSet animatorSet6 = this.f30778y;
+                Property property2 = View.ALPHA;
+                if (z12) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                animatorSet6.playTogether(ObjectAnimator.ofFloat(view2, property2, f10));
+                this.f30778y.addListener(new of0(this, 1));
+                this.f30778y.start();
                 return;
+            }
+            if (z12) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            view2.setAlpha(f7);
         }
     }
 
     @Override
-    public final void c(Object obj, float f7) {
-        switch (this.f30777b) {
-            case 0:
-                this.f30778c.f31773r = f7;
-                ((vf0) obj).invalidate();
-                return;
-            default:
-                this.f30778c.f31772n = f7;
-                ((vf0) obj).invalidate();
-                return;
-        }
+    public final boolean canDismissWithSwipe() {
+        return false;
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f30777b) {
-            case 0:
-                vf0 vf0Var = (vf0) obj;
-                return Float.valueOf(this.f30778c.f31773r);
-            default:
-                vf0 vf0Var2 = (vf0) obj;
-                return Float.valueOf(this.f30778c.f31772n);
-        }
+    public final void onStart() {
+        super.onStart();
+        tc.a((FrameLayout) this.containerView, new ci.a9(8));
+    }
+
+    @Override
+    public final void onStop() {
+        super.onStop();
+        tc.h((FrameLayout) this.containerView);
     }
 }

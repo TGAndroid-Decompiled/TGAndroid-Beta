@@ -14,7 +14,7 @@ import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public abstract class p0 extends LinearLayout implements ph.a, me.k {
     public final e6 f9271a;
     public final FrameLayout f9272b;
@@ -34,7 +34,7 @@ public abstract class p0 extends LinearLayout implements ph.a, me.k {
         super(context);
         this.f9276n = new ArrayList();
         this.v = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
-        this.f9280x = new me.l(this, hs.h, 320L);
+        this.f9280x = new me.l(this, is.h, 320L);
         this.f9271a = e6Var;
         setOrientation(1);
         ScrollView scrollView = new ScrollView(context);
@@ -66,7 +66,7 @@ public abstract class p0 extends LinearLayout implements ph.a, me.k {
         while (it.hasNext()) {
             me.g gVar = (me.g) it.next();
             float c10 = gVar.c();
-            Object obj = gVar.f16348a;
+            Object obj = gVar.f16352a;
             float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c10);
             ((o0) obj).setAlpha(c10);
             ((o0) obj).setScaleX(lerp);
@@ -140,9 +140,9 @@ public abstract class p0 extends LinearLayout implements ph.a, me.k {
             Iterator it = this.f9280x.iterator();
             while (it.hasNext()) {
                 me.g gVar = (me.g) it.next();
-                int childCount = ((o0) gVar.f16348a).getChildCount();
+                int childCount = ((o0) gVar.f16352a).getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = ((o0) gVar.f16348a).getChildAt(i11);
+                    View childAt = ((o0) gVar.f16352a).getChildAt(i11);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
                     if (layoutParams.height != dp) {
                         layoutParams.height = dp;

@@ -8,30 +8,30 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.dc1;
 import w7.x5;
 public final class q1 extends FrameLayout {
-    public final dc1 f51464a;
-    public int f51465b;
-    public final g6 f51466c;
+    public final dc1 f51508a;
+    public int f51509b;
+    public final g6 f51510c;
     public final ArrayList d;
-    public final RectF f51467e;
-    public final RectF f51468f;
+    public final RectF f51511e;
+    public final RectF f51512f;
     public final RectF h;
-    public final Paint f51469n;
-    public int f51470r;
+    public final Paint f51513n;
+    public int f51514r;
 
     public q1(Context context) {
         super(context);
         this.d = new ArrayList();
-        this.f51467e = new RectF();
-        this.f51468f = new RectF();
+        this.f51511e = new RectF();
+        this.f51512f = new RectF();
         this.h = new RectF();
-        this.f51469n = new Paint(1);
-        this.f51470r = Integer.MIN_VALUE;
+        this.f51513n = new Paint(1);
+        this.f51514r = Integer.MIN_VALUE;
         dc1 dc1Var = new dc1(this, context, 18);
-        this.f51464a = dc1Var;
+        this.f51508a = dc1Var;
         dc1Var.setClipToPadding(false);
         dc1Var.setClipChildren(false);
         dc1Var.setOrientation(0);
@@ -40,7 +40,7 @@ public final class q1 extends FrameLayout {
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f51466c = new g6(dc1Var, 0L, 320L, hs.h);
+        this.f51510c = new g6(dc1Var, 0L, 320L, is.h);
     }
 
     @Override

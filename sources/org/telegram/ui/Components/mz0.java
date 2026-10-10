@@ -1,18 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-public interface mz0 {
-    void a(ci.h2 h2Var);
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+public final class mz0 extends qm0 {
+    public final pz0 f28936c;
+    public final pz0 d;
 
-    EditTextBoldCursor getEditField();
+    public mz0(pz0 pz0Var, pz0 pz0Var2) {
+        this.d = pz0Var;
+        this.f28936c = pz0Var2;
+    }
 
-    Editable getEditText();
+    @Override
+    public final boolean D(s4.d1 d1Var) {
+        return true;
+    }
 
-    CharSequence getFieldText();
+    @Override
+    public final int h() {
+        ArrayList arrayList = this.f28936c.f29900w;
+        if (arrayList == null) {
+            return 0;
+        }
+        return arrayList.size();
+    }
 
-    org.telegram.ui.ActionBar.n2 getParentFragment();
+    @Override
+    public final long i(int i10) {
+        ArrayList arrayList = this.f28936c.f29900w;
+        if (arrayList == null) {
+            return 0L;
+        }
+        return ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.hashCode();
+    }
 
-    int getVisibility();
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        String str;
+        oz0 oz0Var = (oz0) d1Var.f47702a;
+        pz0 pz0Var = this.f28936c;
+        ArrayList arrayList = pz0Var.f29900w;
+        if (arrayList == null) {
+            str = null;
+        } else {
+            str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
+        }
+        int direction = pz0Var.getDirection();
+        oz0Var.f29626a = str;
+        if (str != null && str.startsWith("animated_")) {
+            try {
+                long parseLong = Long.parseLong(str.substring(9));
+                Drawable drawable = oz0Var.f29627b;
+                if (!(drawable instanceof s5) || ((s5) drawable).i() != parseLong) {
+                    oz0Var.setImageDrawable(s5.n(UserConfig.selectedAccount, parseLong, null, oz0Var.f29630f.d()));
+                }
+            } catch (Exception unused) {
+                oz0Var.setImageDrawable(null);
+            }
+        } else {
+            oz0Var.setImageDrawable(Emoji.getEmojiBigDrawable(str));
+        }
+        if (oz0Var.d != direction) {
+            oz0Var.d = direction;
+            oz0Var.requestLayout();
+        }
+    }
 
-    void setFieldText(CharSequence charSequence);
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        return new s4.d1(new oz0(this.d, this.f28936c.getContext()));
+    }
 }

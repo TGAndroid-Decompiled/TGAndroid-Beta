@@ -1,175 +1,129 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import ci.ya;
-import org.telegram.messenger.bi;
-public final class p5 extends sg.n {
-    public final k5 f35384f0;
-    public final q5 f35385g0;
-    public final int f35386h0;
-    public final m f35387i0;
-    public float f35388j0;
-    public float f35389k0;
-    public float f35390l0;
-    public float m0;
-    public boolean f35391n0;
-    public ValueAnimator f35392o0;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.view.View;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class p5 extends FrameLayout {
+    public final Matrix f35443a;
+    public final float[] f35444b;
+    public final FrameLayout f35445c;
+    public final ai.j2 d;
+    public boolean f35446e;
+    public boolean f35447f;
 
-    public p5(Context context, q5 q5Var, int i10, int i11) {
-        super(context, 0, 0);
-        this.f35385g0 = q5Var;
-        this.f35387i0 = new m(q5Var, 9);
-        k5 k5Var = new k5(context, i10, i11);
-        this.f35384f0 = k5Var;
-        setRenderer(k5Var);
-        setOpaque(false);
-        this.f35386h0 = ViewConfiguration.get(context).getScaledTouchSlop();
+    public p5(Context context) {
+        super(context);
+        this.f35443a = new Matrix();
+        this.f35444b = new float[8];
+        this.f35446e = true;
+        this.f35447f = true;
+        setClipChildren(false);
+        setClipToPadding(false);
+        ai.j2 j2Var = new ai.j2(context, 1);
+        this.d = j2Var;
+        j2Var.setLayerType(2, null);
+        addView(j2Var, new FrameLayout.LayoutParams(-1, -1));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f35445c = frameLayout;
+        frameLayout.setPivotX(0.0f);
+        frameLayout.setPivotY(0.0f);
+        j2Var.addView(frameLayout, new FrameLayout.LayoutParams(AndroidUtilities.dp(336.0f), AndroidUtilities.dp(205.0f)));
     }
 
-    @Override
-    public final int getMaxFrameRate() {
-        return 60;
-    }
-
-    @Override
-    public final boolean j() {
-        return true;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        removeCallbacks(this.f35387i0);
-        this.f35385g0.setPressed(false);
-        ValueAnimator valueAnimator = this.f35392o0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f35392o0.cancel();
-            this.f35392o0 = null;
-        }
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        this.f35384f0.getClass();
-        this.f35385g0.d();
-        super.onSurfaceTextureAvailable(surfaceTexture, i10, i11);
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.f35385g0.d();
-        super.onSurfaceTextureDestroyed(surfaceTexture);
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(android.graphics.SurfaceTexture r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.p5.onSurfaceTextureUpdated(android.graphics.SurfaceTexture):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        k5 k5Var = this.f35384f0;
-        q5 q5Var = this.f35385g0;
-        if (actionMasked != 0) {
-            if (actionMasked != 1) {
-                if (actionMasked != 2) {
-                    if (actionMasked == 3) {
-                        getParent().requestDisallowInterceptTouchEvent(false);
-                        q5Var.setPressed(false);
-                        if (this.f35391n0) {
-                            p();
+    public final void a(l5 l5Var) {
+        Bitmap bitmap;
+        if (this.f35446e && getWidth() != 0 && getHeight() != 0) {
+            this.f35446e = false;
+            int width = getWidth();
+            int height = getHeight();
+            synchronized (l5Var) {
+                try {
+                    bitmap = l5Var.S;
+                    l5Var.S = null;
+                    if (bitmap != null) {
+                        if (bitmap.getWidth() == width) {
+                            if (bitmap.getHeight() != height) {
+                            }
                         }
-                        this.f35391n0 = true;
-                        return true;
+                        bitmap.recycle();
+                        bitmap = null;
                     }
-                } else {
-                    float abs = Math.abs(motionEvent.getX() - this.f35388j0);
-                    float f7 = this.f35386h0;
-                    if (abs > f7 || Math.abs(motionEvent.getY() - this.f35389k0) > f7) {
-                        this.f35391n0 = true;
-                        q5Var.setPressed(false);
+                    if (bitmap == null) {
+                        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                     }
-                    if (this.f35391n0) {
-                        float b10 = com.google.android.gms.internal.vision.e2.b(motionEvent.getX(), this.f35388j0, 0.03f, this.f35390l0);
-                        float f10 = this.f35390l0;
-                        k5Var.d = q5.b(b10, f10 - 32.0f, f10 + 32.0f);
-                        float b11 = com.google.android.gms.internal.vision.e2.b(motionEvent.getY(), this.f35389k0, 0.03f, this.m0);
-                        float f11 = this.m0;
-                        k5Var.f48046i = q5.b(b11, f11 - 22.0f, f11 + 22.0f);
-                    }
+                } finally {
                 }
-                return true;
             }
-            getParent().requestDisallowInterceptTouchEvent(false);
-            q5Var.setPressed(false);
-            if (this.f35391n0) {
-                p();
-                return true;
-            }
-            postDelayed(this.f35387i0, Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
-            return true;
+            bitmap.eraseColor(0);
+            Canvas canvas = new Canvas(bitmap);
+            this.d.draw(canvas);
+            canvas.setBitmap(null);
+            l5Var.f(bitmap);
         }
-        ValueAnimator valueAnimator = this.f35392o0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f35392o0.cancel();
-            this.f35392o0 = null;
-        }
-        getParent().requestDisallowInterceptTouchEvent(true);
-        this.f35388j0 = motionEvent.getX();
-        this.f35389k0 = motionEvent.getY();
-        this.f35390l0 = k5Var.d;
-        this.m0 = k5Var.f48046i;
-        this.f35391n0 = false;
-        q5Var.setPressed(true);
-        return true;
     }
 
-    public final void p() {
-        ValueAnimator valueAnimator = this.f35392o0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f35392o0.cancel();
-            this.f35392o0 = null;
+    public final void b(float[] fArr) {
+        int width = getWidth();
+        int height = getHeight();
+        if (width != 0 && height != 0) {
+            float[] fArr2 = this.f35444b;
+            fArr2[0] = 0.0f;
+            fArr2[1] = 0.0f;
+            float f7 = width;
+            fArr2[2] = f7;
+            fArr2[3] = 0.0f;
+            fArr2[4] = f7;
+            float f10 = height;
+            fArr2[5] = f10;
+            fArr2[6] = 0.0f;
+            fArr2[7] = f10;
+            this.f35443a.setPolyToPoly(fArr2, 0, fArr, 0, 4);
+            invalidate();
         }
-        k5 k5Var = this.f35384f0;
-        float f7 = k5Var.d;
-        float f10 = k5Var.f48046i;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f35392o0 = ofFloat;
-        ofFloat.setDuration(600L);
-        bi.l(1.2f, this.f35392o0);
-        this.f35392o0.addUpdateListener(new ya(this, f7, f10, 7));
-        this.f35392o0.addListener(new x4(this, 2));
-        this.f35392o0.start();
     }
 
     @Override
-    public final boolean performClick() {
-        super.performClick();
-        return true;
-    }
-
-    @Override
-    public final void setPaused(boolean z10) {
-        k5 k5Var = this.f35384f0;
-        synchronized (k5Var) {
-            if (k5Var.f35157e0 != z10) {
-                k5Var.f35157e0 = z10;
-                k5Var.f35159g0 = 0L;
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        if (!this.f35447f) {
+            return;
         }
-        super.setPaused(z10);
+        int save = canvas.save();
+        canvas.concat(this.f35443a);
+        super.dispatchDraw(canvas);
+        canvas.restoreToCount(save);
     }
 
     @Override
-    public final void n() {
+    public final ViewParent invalidateChildInParent(int[] iArr, Rect rect) {
+        this.f35446e = true;
+        return super.invalidateChildInParent(iArr, rect);
+    }
+
+    @Override
+    public final void onDescendantInvalidated(View view, View view2) {
+        this.f35446e = true;
+        super.onDescendantInvalidated(view, view2);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f35446e = true;
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        this.f35446e = true;
+        float dp = i10 / AndroidUtilities.dp(336.0f);
+        FrameLayout frameLayout = this.f35445c;
+        frameLayout.setScaleX(dp);
+        frameLayout.setScaleY(i11 / AndroidUtilities.dp(205.0f));
     }
 }

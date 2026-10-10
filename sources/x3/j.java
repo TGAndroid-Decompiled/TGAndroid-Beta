@@ -15,28 +15,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import n6.t;
 public final class j extends i {
-    public g0 f50587n;
-    public int f50588o;
-    public boolean f50589p;
-    public z f50590q;
-    public l f50591r;
+    public g0 f50631n;
+    public int f50632o;
+    public boolean f50633p;
+    public z f50634q;
+    public l f50635r;
 
     @Override
     public final void a(long j3) {
         boolean z10;
-        this.f50581g = j3;
+        this.f50625g = j3;
         int i10 = 0;
         if (j3 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f50589p = z10;
-        z zVar = this.f50590q;
+        this.f50633p = z10;
+        z zVar = this.f50634q;
         if (zVar != null) {
             i10 = zVar.f4187e;
         }
-        this.f50588o = i10;
+        this.f50632o = i10;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class j extends i {
         if ((b10 & 1) == 1) {
             return -1L;
         }
-        g0 g0Var = this.f50587n;
+        g0 g0Var = this.f50631n;
         e2.d.h(g0Var);
         int i12 = g0Var.f8412a;
         z zVar = (z) g0Var.f8413b;
@@ -56,8 +56,8 @@ public final class j extends i {
         } else {
             i10 = zVar.f4188f;
         }
-        if (this.f50589p) {
-            i11 = (this.f50588o + i10) / 4;
+        if (this.f50633p) {
+            i11 = (this.f50632o + i10) / 4;
         }
         long j3 = i11;
         byte[] bArr = vVar.f8584a;
@@ -75,8 +75,8 @@ public final class j extends i {
         bArr2[i14 - 3] = (byte) ((j3 >>> 8) & 255);
         bArr2[i14 - 2] = (byte) ((j3 >>> 16) & 255);
         bArr2[i14 - 1] = (byte) ((j3 >>> 24) & 255);
-        this.f50589p = true;
-        this.f50588o = i10;
+        this.f50633p = true;
+        this.f50632o = i10;
         return j3;
     }
 
@@ -86,11 +86,11 @@ public final class j extends i {
         int i10;
         int i11;
         long j10;
-        if (this.f50587n != null) {
-            ((s) tVar.f16717b).getClass();
+        if (this.f50631n != null) {
+            ((s) tVar.f16721b).getClass();
             return false;
         }
-        z zVar = this.f50590q;
+        z zVar = this.f50634q;
         int i12 = 4;
         int i13 = -1;
         if (zVar == null) {
@@ -119,11 +119,11 @@ public final class j extends i {
             obj.f4187e = (int) Math.pow(2.0d, x11 & 15);
             obj.f4188f = pow;
             obj.f4189g = copyOf;
-            this.f50590q = obj;
+            this.f50634q = obj;
         } else {
-            l lVar = this.f50591r;
+            l lVar = this.f50635r;
             if (lVar == null) {
-                this.f50591r = c3.b.v(vVar, true, true);
+                this.f50635r = c3.b.v(vVar, true, true);
             } else {
                 int i14 = vVar.f8586c;
                 byte[] bArr = new byte[i14];
@@ -389,7 +389,7 @@ public final class j extends i {
             }
         }
         g0Var = null;
-        this.f50587n = g0Var;
+        this.f50631n = g0Var;
         if (g0Var == null) {
             return true;
         }
@@ -407,7 +407,7 @@ public final class j extends i {
         rVar.J = zVar2.f4185b;
         rVar.f3588t = arrayList;
         rVar.f3579k = r10;
-        tVar.f16717b = new s(rVar);
+        tVar.f16721b = new s(rVar);
         return true;
     }
 
@@ -415,11 +415,11 @@ public final class j extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f50587n = null;
-            this.f50590q = null;
-            this.f50591r = null;
+            this.f50631n = null;
+            this.f50634q = null;
+            this.f50635r = null;
         }
-        this.f50588o = 0;
-        this.f50589p = false;
+        this.f50632o = 0;
+        this.f50633p = false;
     }
 }

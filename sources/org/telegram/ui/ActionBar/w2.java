@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.NotificationCenter;
 public final class w2 extends AnimatorListenerAdapter {
-    public final int f21645a;
-    public final f3 f21646b;
+    public final int f21649a;
+    public final f3 f21650b;
 
     public w2(f3 f3Var, int i10) {
-        this.f21645a = i10;
-        this.f21646b = f3Var;
+        this.f21649a = i10;
+        this.f21650b = f3Var;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f21645a) {
+        switch (this.f21649a) {
             case 0:
-                f3 f3Var = this.f21646b;
+                f3 f3Var = this.f21650b;
                 AnimatorSet animatorSet = f3Var.currentSheetAnimation;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     f3Var.currentSheetAnimation = null;
@@ -29,7 +29,7 @@ public final class w2 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                f3 f3Var2 = this.f21646b;
+                f3 f3Var2 = this.f21650b;
                 AnimatorSet animatorSet2 = f3Var2.currentSheetAnimation;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     f3Var2.currentSheetAnimation = null;
@@ -43,8 +43,8 @@ public final class w2 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         AnimationNotificationsLocker animationNotificationsLocker;
-        int i10 = this.f21645a;
-        f3 f3Var = this.f21646b;
+        int i10 = this.f21649a;
+        f3 f3Var = this.f21650b;
         switch (i10) {
             case 0:
                 AnimatorSet animatorSet = f3Var.currentSheetAnimation;

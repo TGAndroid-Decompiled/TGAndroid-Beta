@@ -12,8 +12,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.ea0;
-import org.telegram.ui.Components.j10;
+import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.k10;
 public abstract class c1 {
     public static boolean a(MessageObject messageObject) {
         if (messageObject != null && messageObject.getDialogId() == 1271266957) {
@@ -35,8 +35,8 @@ public abstract class c1 {
         return Math.abs(random.nextInt() % i10);
     }
 
-    public static int e(j10 j10Var, int i10) {
-        return j10Var.c(j10Var.getMeasuredWidth()) + i10;
+    public static int e(k10 k10Var, int i10) {
+        return k10Var.c(k10Var.getMeasuredWidth()) + i10;
     }
 
     public static Bundle f(int i10, String str) {
@@ -86,8 +86,8 @@ public abstract class c1 {
         textView.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void o(int i10, ea0 ea0Var) {
-        ea0Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void o(int i10, fa0 fa0Var) {
+        fa0Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
     public static void p(FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.TL_error tL_error, boolean z10) {

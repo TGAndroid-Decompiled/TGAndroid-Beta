@@ -15,7 +15,7 @@ import me.e;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.jq;
 import w7.x5;
 public final class a extends FrameLayout implements d {
@@ -30,9 +30,9 @@ public final class a extends FrameLayout implements d {
 
     public a(Context context) {
         super(context);
-        hs hsVar = hs.h;
-        this.f12223a = new me.b(0, this, hsVar, 320L, false);
-        this.f12224b = new me.b(1, this, hsVar, 320L, true);
+        is isVar = is.h;
+        this.f12223a = new me.b(0, this, isVar, 320L, false);
+        this.f12224b = new me.b(1, this, isVar, 320L, true);
         this.h = 1.0f;
     }
 
@@ -65,8 +65,8 @@ public final class a extends FrameLayout implements d {
 
     public final void a() {
         int i10;
-        float f7 = 1.0f - this.f12223a.f16337e;
-        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f12224b.f16337e);
+        float f7 = 1.0f - this.f12223a.f16341e;
+        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f12224b.f16341e);
         ImageView imageView = this.f12225c;
         if (imageView != null) {
             imageView.setAlpha(lerp);
@@ -84,8 +84,8 @@ public final class a extends FrameLayout implements d {
 
     public final void b() {
         int i10;
-        float f7 = this.f12223a.f16337e;
-        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f12224b.f16337e);
+        float f7 = this.f12223a.f16341e;
+        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f12224b.f16341e);
         ImageView imageView = this.d;
         if (imageView != null) {
             imageView.setAlpha(lerp);
@@ -98,7 +98,7 @@ public final class a extends FrameLayout implements d {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.f12226e.f27757c = -1L;
+                this.f12226e.f27750c = -1L;
             }
         }
     }

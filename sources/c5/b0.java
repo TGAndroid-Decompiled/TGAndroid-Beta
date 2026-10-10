@@ -28,7 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocketFactory;
-import org.telegram.ui.Wallet.f5;
+import org.telegram.ui.Wallet.g5;
 public final class b0 implements r2.v {
     public final int f4202a;
     public int f4203b;
@@ -193,7 +193,7 @@ public final class b0 implements r2.v {
                     if (i11 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = sc.k.f47914a;
+                        SecureRandom secureRandom = sc.k.f47958a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -244,8 +244,8 @@ public final class b0 implements r2.v {
                                             }
                                             sc.s sVar = new sc.s(socketFactory, new sc.a(str2, i10), i11, null, null);
                                             sVar.d = 1;
-                                            sVar.f47931e = 250;
-                                            sVar.f47932f = true;
+                                            sVar.f47975e = 250;
+                                            sVar.f47976f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }
@@ -547,8 +547,8 @@ public final class b0 implements r2.v {
         j6.l lVar = new j6.l(context, str);
         this.f4203b = lVar.f14061a;
         GLES20.glGenBuffers(2, iArr, 0);
-        f5.a((float[]) lVar.d, iArr[0]);
-        f5.a((float[]) lVar.f14062b, iArr[1]);
+        g5.a((float[]) lVar.d, iArr[0]);
+        g5.a((float[]) lVar.f14062b, iArr[1]);
     }
 
     public b0(boolean z10, boolean z11, boolean z12) {

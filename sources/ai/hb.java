@@ -25,7 +25,7 @@ public final class hb extends FrameLayout {
         this.f1101a = paint;
         Paint paint2 = new Paint(1);
         this.f1102b = paint2;
-        paint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21037q7, e6Var));
+        paint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21041q7, e6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);

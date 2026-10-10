@@ -23,9 +23,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.o80;
-public abstract class e0 extends FrameLayout implements o80 {
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.p80;
+public abstract class e0 extends FrameLayout implements p80 {
     public static final int f4988x0 = 0;
     public final LinearGradient E;
     public final Matrix F;
@@ -96,10 +96,10 @@ public abstract class e0 extends FrameLayout implements o80 {
         this.f5018w = new Path();
         this.f5020x = new float[8];
         this.H = new a0(this, 2);
-        hs hsVar = hs.h;
-        this.I = new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar);
-        this.J = new org.telegram.ui.Components.g6[]{new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar), new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar), new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar), new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar), new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar)};
-        this.K = new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar);
+        is isVar = is.h;
+        this.I = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
+        this.J = new org.telegram.ui.Components.g6[]{new org.telegram.ui.Components.g6(this, 0L, 320L, isVar), new org.telegram.ui.Components.g6(this, 0L, 320L, isVar), new org.telegram.ui.Components.g6(this, 0L, 320L, isVar), new org.telegram.ui.Components.g6(this, 0L, 320L, isVar), new org.telegram.ui.Components.g6(this, 0L, 320L, isVar)};
+        this.K = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
         this.L = new float[5];
         this.M = new float[5];
         this.P = new RectF();
@@ -288,11 +288,11 @@ public abstract class e0 extends FrameLayout implements o80 {
         org.telegram.ui.Components.g6[] g6VarArr = this.J;
         float f18 = 0.0f;
         if (!j3 && !this.f4999f0 && !this.f4997e0) {
-            float f19 = g6Var.f26599c;
+            float f19 = g6Var.f26616c;
             t tVar = this.f4998f;
-            if (f19 == tVar.f5976c && g6VarArr[0].f26599c == tVar.d[0]) {
+            if (f19 == tVar.f5976c && g6VarArr[0].f26616c == tVar.d[0]) {
                 e7 e7Var = this.f4993c;
-                if (!e7Var.f5030a && ((org.telegram.ui.Components.g6) e7Var.d).f26599c <= 0.0f) {
+                if (!e7Var.f5030a && ((org.telegram.ui.Components.g6) e7Var.d).f26616c <= 0.0f) {
                     setCameraNeedsBlur(false);
                     i(canvas);
                     return;

@@ -38,12 +38,12 @@ public final class w {
                 o0 o0Var = o0VarArr[i10];
                 if (o0Var instanceof q3.e) {
                     q3.e eVar = (q3.e) o0Var;
-                    if ("iTunSMPB".equals(eVar.f45944c) && a(eVar.d)) {
+                    if ("iTunSMPB".equals(eVar.f45988c) && a(eVar.d)) {
                         return;
                     }
                 } else if (o0Var instanceof q3.l) {
                     q3.l lVar = (q3.l) o0Var;
-                    if ("com.apple.iTunes".equals(lVar.f45955b) && "iTunSMPB".equals(lVar.f45956c) && a(lVar.d)) {
+                    if ("com.apple.iTunes".equals(lVar.f45999b) && "iTunSMPB".equals(lVar.f46000c) && a(lVar.d)) {
                         return;
                     }
                 } else {

@@ -1,19 +1,36 @@
 package org.telegram.ui.Components;
+public class d01 {
+    public int f25507a;
+    public int f25508b;
+    public int f25509c;
 
-import android.graphics.Canvas;
-import android.view.View;
-public interface d01 extends org.telegram.ui.Cells.z9 {
-    void attach(View view);
+    public d01() {
+        c();
+    }
 
-    void detach(View view);
+    public int a(m01 m01Var, f01 f01Var, yz0 yz0Var, int i10, boolean z10) {
+        return this.f25507a - yz0Var.a(f01Var, i10);
+    }
 
-    void draw(Canvas canvas, View view);
+    public void b(int i10, int i11) {
+        this.f25507a = Math.max(this.f25507a, i10);
+        this.f25508b = Math.max(this.f25508b, i11);
+    }
 
-    int getEmojiOnlyCount();
+    public void c() {
+        this.f25507a = Integer.MIN_VALUE;
+        this.f25508b = Integer.MIN_VALUE;
+        this.f25509c = 2;
+    }
 
-    void setRow(int i10);
-
-    void setX(int i10);
-
-    void setY(int i10);
+    public int d(boolean z10) {
+        if (!z10) {
+            int i10 = this.f25509c;
+            yz0 yz0Var = m01.R;
+            if ((i10 & 2) != 0) {
+                return 100000;
+            }
+        }
+        return this.f25507a + this.f25508b;
+    }
 }

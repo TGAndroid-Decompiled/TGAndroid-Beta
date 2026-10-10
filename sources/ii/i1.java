@@ -18,13 +18,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.ru;
-import org.telegram.ui.Components.u11;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.Components.y90;
-public final class i1 extends ru {
+import org.telegram.ui.Components.su;
+import org.telegram.ui.Components.v11;
+import org.telegram.ui.Components.w61;
+import org.telegram.ui.Components.z90;
+public final class i1 extends su {
     public boolean E;
-    public y90 F;
+    public z90 F;
     public Paint G;
     public Layout H;
     public int I;
@@ -105,7 +105,7 @@ public final class i1 extends ru {
     }
 
     @Override
-    public final v61 createUrlSpan(String str) {
+    public final w61 createUrlSpan(String str) {
         return h6.k(str);
     }
 
@@ -236,12 +236,12 @@ public final class i1 extends ru {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        u11[] u11VarArr;
+        v11[] v11VarArr;
         int i10;
         int i11;
         float f7;
         Layout layout = getLayout();
-        y90 y90Var = null;
+        z90 z90Var = null;
         if (layout == null) {
             this.F = null;
             this.H = null;
@@ -255,17 +255,17 @@ public final class i1 extends ru {
                 this.F = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (u11 u11Var : (u11[]) spanned.getSpans(0, spanned.length(), u11.class)) {
-                        int i12 = u11Var.f31339b.f30974a;
+                    for (v11 v11Var : (v11[]) spanned.getSpans(0, spanned.length(), v11.class)) {
+                        int i12 = v11Var.f31704b.f31299a;
                         if ((65536 & i12) != 0) {
-                            int spanStart = spanned.getSpanStart(u11Var);
-                            int spanEnd = spanned.getSpanEnd(u11Var);
+                            int spanStart = spanned.getSpanStart(v11Var);
+                            int spanEnd = spanned.getSpanEnd(v11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
-                                if (y90Var == null) {
-                                    y90Var = new y90(0);
-                                    y90Var.f33174n = false;
+                                if (z90Var == null) {
+                                    z90Var = new z90(0);
+                                    z90Var.f33552n = false;
                                 }
-                                y90Var.d(layout, spanStart, 0.0f);
+                                z90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
                                     i10 = -AndroidUtilities.dp(6.0f);
                                 } else if ((i12 & 16384) != 0) {
@@ -283,15 +283,15 @@ public final class i1 extends ru {
                                 } else {
                                     i11 = 0;
                                 }
-                                y90Var.f33175o = i11;
-                                layout.getSelectionPath(spanStart, spanEnd, y90Var);
+                                z90Var.f33553o = i11;
+                                layout.getSelectionPath(spanStart, spanEnd, z90Var);
                             }
                         }
                     }
-                    if (y90Var != null) {
-                        y90Var.f33174n = true;
+                    if (z90Var != null) {
+                        z90Var.f33552n = true;
                     }
-                    this.F = y90Var;
+                    this.F = z90Var;
                 }
             }
         }
@@ -299,7 +299,7 @@ public final class i1 extends ru {
             if (this.G == null) {
                 Paint paint = new Paint(1);
                 this.G = paint;
-                paint.setPathEffect(y90.c());
+                paint.setPathEffect(z90.c());
             }
             this.G.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.K6, this.f12474e) & 872415231);
             canvas.save();
@@ -656,7 +656,7 @@ public final class i1 extends ru {
         }
         setHintTextColor(w02);
         setCursorColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
-        setHandlesColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20943l6, e6Var));
+        setHandlesColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20947l6, e6Var));
         m();
     }
 

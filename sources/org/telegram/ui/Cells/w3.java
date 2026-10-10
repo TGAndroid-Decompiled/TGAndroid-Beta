@@ -11,21 +11,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public abstract class w3 extends FrameLayout {
-    public org.telegram.ui.Components.y9 f23659a;
-    public org.telegram.ui.ActionBar.j5 f23660b;
-    public org.telegram.ui.ActionBar.j5 f23661c;
+    public org.telegram.ui.Components.y9 f23663a;
+    public org.telegram.ui.ActionBar.j5 f23664b;
+    public org.telegram.ui.ActionBar.j5 f23665c;
     public ImageView d;
-    public org.telegram.ui.Components.j9 f23662e;
-    public TLRPC.User f23663f;
+    public org.telegram.ui.Components.j9 f23666e;
+    public TLRPC.User f23667f;
     public Paint h;
-    public int f23664n;
-    public boolean f23665r;
+    public int f23668n;
+    public boolean f23669r;
 
     public final void a(int i10, int i11) {
-        this.f23664n = i10;
+        this.f23668n = i10;
         ImageView imageView = this.d;
         imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f23661c.setTextColor(i11);
+        this.f23665c.setTextColor(i11);
         org.telegram.ui.ActionBar.i6.C1(imageView.getDrawable(), i11 & 620756991, true);
     }
 
@@ -34,7 +34,7 @@ public abstract class w3 extends FrameLayout {
         Canvas canvas2;
         float dp;
         int i10;
-        if (this.f23665r) {
+        if (this.f23669r) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -57,11 +57,11 @@ public abstract class w3 extends FrameLayout {
     }
 
     public CharSequence getName() {
-        return this.f23660b.getText();
+        return this.f23664b.getText();
     }
 
     public TLRPC.User getUser() {
-        return this.f23663f;
+        return this.f23667f;
     }
 
     @Override
@@ -75,7 +75,7 @@ public abstract class w3 extends FrameLayout {
     }
 
     public void setDrawDivider(boolean z10) {
-        this.f23665r = z10;
+        this.f23669r = z10;
         invalidate();
     }
 }

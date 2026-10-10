@@ -36,13 +36,13 @@ import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.j5;
 import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.a31;
+import org.telegram.ui.Components.ae0;
 import org.telegram.ui.Components.bq;
-import org.telegram.ui.Components.cd0;
+import org.telegram.ui.Components.dd0;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.s5;
 import org.telegram.ui.Components.y9;
-import org.telegram.ui.Components.z21;
-import org.telegram.ui.Components.zd0;
 import org.telegram.ui.fg1;
 import org.telegram.ui.ny;
 import org.telegram.ui.ty;
@@ -153,22 +153,22 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
     @Override
     public void onComplete(Object obj) {
         int i10;
-        z21 z21Var = (z21) this.d;
+        a31 a31Var = (a31) this.d;
         bq bqVar = (bq) this.f9392e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f9391c) {
-            Drawable drawable = bqVar.f25083b;
-            if (drawable instanceof cd0) {
-                cd0 cd0Var = (cd0) drawable;
+            Drawable drawable = bqVar.f25020b;
+            if (drawable instanceof dd0) {
+                dd0 dd0Var = (dd0) drawable;
                 if (this.f9390b >= 0) {
                     i10 = 100;
                 } else {
                     i10 = -100;
                 }
-                cd0Var.t(z21.e((Bitmap) pair.second), i10);
-                cd0Var.u(z21Var.L);
+                dd0Var.t(a31.e((Bitmap) pair.second), i10);
+                dd0Var.u(a31Var.L);
             }
-            z21Var.invalidate();
+            a31Var.invalidate();
         }
     }
 
@@ -247,7 +247,7 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         e7.setClipChildren(false);
         e7.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(parentActivity);
-        frameLayout.setBackground(i6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), i6.x0(null, i6.f20790ci, false)));
+        frameLayout.setBackground(i6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), i6.x0(null, i6.f20794ci, false)));
         y9 y9Var = new y9(parentActivity);
         y9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         j9 j9Var = new j9((e6) null);
@@ -255,12 +255,12 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         y9Var.e(user2, j9Var);
         frameLayout.addView(y9Var, x5.e(28, 28, 51));
         y9 y9Var2 = new y9(parentActivity);
-        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(i6.x0(null, i6.f21202z9, false), PorterDuff.Mode.SRC_IN));
+        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(i6.x0(null, i6.f21206z9, false), PorterDuff.Mode.SRC_IN));
         final v1 v1Var2 = v1Var;
         y9Var2.setAnimatedEmojiDrawable(s5.n(i16, botverifiersettings.icon, null, 3));
         frameLayout.addView(y9Var2, x5.a(20.0f, 34.0f, 0.0f, 0.0f, 0.0f, 20, 19));
         j5 j5Var = new j5(parentActivity);
-        j5Var.setTextColor(i6.x0(null, i6.f20905j5, false));
+        j5Var.setTextColor(i6.x0(null, i6.f20909j5, false));
         j5Var.setTextSize(13);
         j5Var.setEllipsizeByGradient(true);
         j5Var.l(str2, false);
@@ -292,10 +292,10 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         e7.addView(textView2, x5.k(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
         final int i19 = MessagesController.getInstance(i16).botVerificationDescriptionLengthLimit;
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(parentActivity);
-        final zd0 zd0Var = new zd0(parentActivity, null);
-        zd0Var.setForceForceUseCenter(true);
-        zd0Var.setText(LocaleController.getString(R.string.BotVerifyDescription));
-        zd0Var.setLeftPadding(AndroidUtilities.dp(2.0f));
+        final ae0 ae0Var = new ae0(parentActivity, null);
+        ae0Var.setForceForceUseCenter(true);
+        ae0Var.setText(LocaleController.getString(R.string.BotVerifyDescription));
+        ae0Var.setLeftPadding(AndroidUtilities.dp(2.0f));
         editTextBoldCursor.setTextColor(i6.x0(null, i18, false));
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
@@ -305,20 +305,20 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(i6.x0(null, i6.f21119uf, false));
-        editTextBoldCursor.setHandlesColor(i6.x0(null, i6.f21136vf, false));
+        editTextBoldCursor.setHighlightColor(i6.x0(null, i6.f21123uf, false));
+        editTextBoldCursor.setHandlesColor(i6.x0(null, i6.f21140vf, false));
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
             i13 = 3;
         }
         editTextBoldCursor.setGravity(i13);
-        editTextBoldCursor.setOnFocusChangeListener(new w1(zd0Var, editTextBoldCursor, 0));
-        zd0Var.e(editTextBoldCursor);
-        zd0Var.addView(editTextBoldCursor, x5.a(-2.0f, 12.0f, 4.0f, 12.0f, 4.0f, -1, 48));
-        e7.addView(zd0Var, x5.n(-1, -2));
+        editTextBoldCursor.setOnFocusChangeListener(new w1(ae0Var, editTextBoldCursor, 0));
+        ae0Var.e(editTextBoldCursor);
+        ae0Var.addView(editTextBoldCursor, x5.a(-2.0f, 12.0f, 4.0f, 12.0f, 4.0f, -1, 48));
+        e7.addView(ae0Var, x5.n(-1, -2));
         editTextBoldCursor.addTextChangedListener(new org.telegram.ui.Cells.i3());
-        editTextBoldCursor.addTextChangedListener(new z1(editTextBoldCursor, i19, zd0Var));
+        editTextBoldCursor.addTextChangedListener(new z1(editTextBoldCursor, i19, ae0Var));
         if (!TextUtils.isEmpty(botverifiersettings.custom_description)) {
             editTextBoldCursor.setText(botverifiersettings.custom_description);
             if (!botverifiersettings.can_modify_custom_description) {
@@ -327,7 +327,7 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
                 editTextBoldCursor.setFocusableInTouchMode(false);
             }
         } else if (!botverifiersettings.can_modify_custom_description) {
-            zd0Var.setVisibility(8);
+            ae0Var.setVisibility(8);
         }
         if (botverifiersettings.can_modify_custom_description) {
             TextView textView3 = new TextView(parentActivity);
@@ -360,9 +360,9 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
                 boolean z14 = botverifiersettings2.can_modify_custom_description;
                 EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
                 if (z14 && editTextBoldCursor2.getText().length() > i19) {
-                    zd0 zd0Var2 = zd0Var;
-                    zd0Var2.a(1.0f);
-                    AndroidUtilities.shakeViewSpring(zd0Var2, -6.0f);
+                    ae0 ae0Var2 = ae0Var;
+                    ae0Var2.a(1.0f);
+                    AndroidUtilities.shakeViewSpring(ae0Var2, -6.0f);
                     return;
                 }
                 dVar2.setLoading(true);
@@ -401,8 +401,8 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         org.telegram.tgnet.l.b(this, tL_error);
     }
 
-    public u1(z21 z21Var, long j3, bq bqVar, int i10) {
-        this.d = z21Var;
+    public u1(a31 a31Var, long j3, bq bqVar, int i10) {
+        this.d = a31Var;
         this.f9391c = j3;
         this.f9392e = bqVar;
         this.f9390b = i10;

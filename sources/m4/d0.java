@@ -1,23 +1,23 @@
 package m4;
 public final class d0 implements k0 {
-    public final int f16013a;
-    public final l0 f16014b;
-    public final long f16015c;
+    public final int f16017a;
+    public final l0 f16018b;
+    public final long f16019c;
 
     public d0(l0 l0Var, long j3, int i10) {
-        this.f16013a = i10;
-        this.f16014b = l0Var;
-        this.f16015c = j3;
+        this.f16017a = i10;
+        this.f16018b = l0Var;
+        this.f16019c = j3;
     }
 
     @Override
     public final void g(r rVar) {
-        switch (this.f16013a) {
+        switch (this.f16017a) {
             case 0:
-                this.f16014b.f16156g.f15997t.Y((int) this.f16015c);
+                this.f16018b.f16160g.f16001t.Y((int) this.f16019c);
                 return;
             default:
-                this.f16014b.f16156g.f15997t.g(this.f16015c);
+                this.f16018b.f16160g.f16001t.g(this.f16019c);
                 return;
         }
     }

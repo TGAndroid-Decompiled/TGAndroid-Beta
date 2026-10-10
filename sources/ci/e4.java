@@ -25,7 +25,7 @@ public final class e4 implements View.OnLayoutChangeListener {
                 textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
             default:
-                ((ki.j) this.f5026b).Q();
+                ((ki.j) this.f5026b).W();
                 return;
         }
     }

@@ -4,8 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import ii.u0;
 import org.telegram.ui.Components.hd;
-import org.telegram.ui.Components.i41;
-import org.telegram.ui.Components.pp0;
+import org.telegram.ui.Components.j41;
+import org.telegram.ui.Components.qp0;
 import org.telegram.ui.Components.uq;
 import yh.h3;
 import zg.l0;
@@ -25,19 +25,19 @@ public final class f implements Drawable.Callback {
                 ((uq) this.f11573b).invalidateSelf();
                 return;
             case 3:
-                ((pp0) this.f11573b).f29902b.run();
+                ((qp0) this.f11573b).f30243b.run();
                 return;
             case 4:
                 ((hd) this.f11573b).invalidateSelf();
                 return;
             case 5:
-                ((i41) this.f11573b).invalidateSelf();
+                ((j41) this.f11573b).invalidateSelf();
                 return;
             case 6:
-                ((wg.a) this.f11573b).f50342c.invalidate();
+                ((wg.a) this.f11573b).f50386c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11573b).f50368c.invalidate();
+                ((wg.c) this.f11573b).f50412c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11573b).invalidateSelf();
@@ -83,10 +83,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11573b).f50342c.invalidate();
+                ((wg.a) this.f11573b).f50386c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11573b).f50368c.invalidate();
+                ((wg.c) this.f11573b).f50412c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11573b).scheduleSelf(runnable, j3);
@@ -126,10 +126,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11573b).f50342c.invalidate();
+                ((wg.a) this.f11573b).f50386c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11573b).f50368c.invalidate();
+                ((wg.c) this.f11573b).f50412c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11573b).unscheduleSelf(runnable);

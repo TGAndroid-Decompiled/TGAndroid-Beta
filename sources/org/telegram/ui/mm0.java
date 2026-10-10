@@ -8,29 +8,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SecureDocument;
 import org.telegram.tgnet.TLRPC;
 public final class mm0 extends uu0 {
-    public final nn0 f39945a;
+    public final nn0 f39989a;
 
     public mm0(nn0 nn0Var) {
-        this.f39945a = nn0Var;
+        this.f39989a = nn0Var;
     }
 
     @Override
     public final void B(int i10) {
         SecureDocument secureDocument;
-        nn0 nn0Var = this.f39945a;
+        nn0 nn0Var = this.f39989a;
         int i11 = nn0Var.S0;
         if (i11 == 1) {
-            secureDocument = nn0Var.f40264j1;
+            secureDocument = nn0Var.f40308j1;
         } else if (i11 == 4) {
-            secureDocument = (SecureDocument) nn0Var.f40266k1.get(i10);
+            secureDocument = (SecureDocument) nn0Var.f40310k1.get(i10);
         } else if (i11 == 2) {
             secureDocument = nn0Var.l1;
         } else if (i11 == 3) {
-            secureDocument = nn0Var.f40268m1;
+            secureDocument = nn0Var.f40312m1;
         } else {
-            secureDocument = (SecureDocument) nn0Var.f40262i1.get(i10);
+            secureDocument = (SecureDocument) nn0Var.f40306i1.get(i10);
         }
-        ln0 ln0Var = (ln0) nn0Var.f40271n1.remove(secureDocument);
+        ln0 ln0Var = (ln0) nn0Var.f40315n1.remove(secureDocument);
         if (ln0Var == null) {
             return;
         }
@@ -38,7 +38,7 @@ public final class mm0 extends uu0 {
         int i12 = nn0Var.S0;
         String str = null;
         if (i12 == 1) {
-            nn0Var.f40264j1 = null;
+            nn0Var.f40308j1 = null;
             str = sc.v.i("selfie", m12);
         } else if (i12 == 4) {
             str = sc.v.i("translation", m12);
@@ -46,40 +46,40 @@ public final class mm0 extends uu0 {
             nn0Var.l1 = null;
             str = sc.v.i("front", m12);
         } else if (i12 == 3) {
-            nn0Var.f40268m1 = null;
+            nn0Var.f40312m1 = null;
             str = sc.v.i("reverse", m12);
         } else if (i12 == 0) {
             str = sc.v.i("files", m12);
         }
         if (str != null) {
-            HashMap hashMap = nn0Var.f40295x1;
+            HashMap hashMap = nn0Var.f40339x1;
             if (hashMap != null) {
                 hashMap.remove(str);
             }
-            HashMap hashMap2 = nn0Var.f40298y1;
+            HashMap hashMap2 = nn0Var.f40342y1;
             if (hashMap2 != null) {
                 hashMap2.remove(str);
             }
         }
         nn0Var.R1(nn0Var.S0);
-        nn0Var.f40261i0.removeView(ln0Var);
+        nn0Var.f40305i0.removeView(ln0Var);
     }
 
     @Override
     public final ev0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         if (i10 >= 0) {
-            nn0 nn0Var = this.f39945a;
-            if (i10 < nn0Var.f40261i0.getChildCount()) {
-                ln0 ln0Var = (ln0) nn0Var.f40261i0.getChildAt(i10);
+            nn0 nn0Var = this.f39989a;
+            if (i10 < nn0Var.f40305i0.getChildCount()) {
+                ln0 ln0Var = (ln0) nn0Var.f40305i0.getChildAt(i10);
                 int[] iArr = new int[2];
-                ln0Var.f39639c.getLocationInWindow(iArr);
+                ln0Var.f39683c.getLocationInWindow(iArr);
                 ev0 ev0Var = new ev0();
-                ev0Var.f37357b = iArr[0];
-                ev0Var.f37358c = iArr[1];
-                ev0Var.d = nn0Var.f40261i0;
-                ImageReceiver imageReceiver = ln0Var.f39639c.getImageReceiver();
-                ev0Var.f37356a = imageReceiver;
-                ev0Var.f37359e = imageReceiver.getBitmapSafe();
+                ev0Var.f37401b = iArr[0];
+                ev0Var.f37402c = iArr[1];
+                ev0Var.d = nn0Var.f40305i0;
+                ImageReceiver imageReceiver = ln0Var.f39683c.getImageReceiver();
+                ev0Var.f37400a = imageReceiver;
+                ev0Var.f37403e = imageReceiver.getBitmapSafe();
                 return ev0Var;
             }
             return null;
@@ -89,7 +89,7 @@ public final class mm0 extends uu0 {
 
     @Override
     public final String a0() {
-        if (this.f39945a.S0 == 1) {
+        if (this.f39989a.S0 == 1) {
             return LocaleController.formatString("PassportDeleteSelfieAlert", R.string.PassportDeleteSelfieAlert, new Object[0]);
         }
         return LocaleController.formatString("PassportDeleteScanAlert", R.string.PassportDeleteScanAlert, new Object[0]);

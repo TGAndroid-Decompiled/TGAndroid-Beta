@@ -9,19 +9,19 @@ import m9.c;
 import q9.d;
 import q9.r;
 public final class a implements d {
-    public static final a f49511b = new a(0);
-    public static final a f49512c = new a(1);
+    public static final a f49555b = new a(0);
+    public static final a f49556c = new a(1);
     public static final a d = new a(2);
-    public static final a f49513e = new a(3);
-    public final int f49514a;
+    public static final a f49557e = new a(3);
+    public final int f49558a;
 
     public a(int i10) {
-        this.f49514a = i10;
+        this.f49558a = i10;
     }
 
     @Override
     public final Object y0(u5 u5Var) {
-        switch (this.f49514a) {
+        switch (this.f49558a) {
             case 0:
                 Object g10 = u5Var.g(new r(m9.a.class, Executor.class));
                 i.d(g10, "c.get(Qualified.qualifie…a, Executor::class.java))");

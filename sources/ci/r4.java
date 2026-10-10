@@ -19,7 +19,7 @@ import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class r4 extends View {
     public final org.telegram.ui.Components.g6 E;
     public final ImageReceiver f5894a;
@@ -49,16 +49,16 @@ public final class r4 extends View {
         this.d = q6Var;
         this.f5899n = new org.telegram.ui.Components.bd(this);
         this.f5900r = -1;
-        hs hsVar = hs.h;
-        this.f5904y = new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar);
-        this.E = new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar);
+        is isVar = is.h;
+        this.f5904y = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
+        this.E = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
         q6Var.setCallback(this);
         q6Var.u(-1);
-        q6Var.f30065b = 17;
+        q6Var.f30031b = 17;
         q6Var.w(AndroidUtilities.dp(16.0f));
         q6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         q6Var.M = AndroidUtilities.displaySize.x;
-        q6Var.n(0.65f, 480L, hsVar);
+        q6Var.n(0.65f, 480L, isVar);
         q6Var.A = 0.35f;
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(-1);
@@ -335,14 +335,14 @@ public final class r4 extends View {
         if (action == 0) {
             bdVar.c(z10);
         } else if (motionEvent.getAction() == 1) {
-            if (bdVar.f24977i && z10 && (onClickListener = this.h) != null) {
+            if (bdVar.f24928i && z10 && (onClickListener = this.h) != null) {
                 onClickListener.onClick(this);
             }
             bdVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             bdVar.c(false);
         }
-        if (bdVar.f24977i || super.onTouchEvent(motionEvent)) {
+        if (bdVar.f24928i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

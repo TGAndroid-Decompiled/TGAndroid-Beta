@@ -4,7 +4,7 @@ import android.animation.ValueAnimator;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.sw;
+import org.telegram.ui.Components.tw;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.pi1;
 public final class ya implements ValueAnimator.AnimatorUpdateListener {
@@ -37,79 +37,79 @@ public final class ya implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 me.e eVar = (me.e) obj;
-                if (eVar.f16347g) {
-                    DecelerateInterpolator decelerateInterpolator = le.a.f15501a;
+                if (eVar.f16351g) {
+                    DecelerateInterpolator decelerateInterpolator = le.a.f15505a;
                     float animatedFraction = valueAnimator.getAnimatedFraction();
                     eVar.d((f7 * animatedFraction) + f10, animatedFraction);
                     return;
                 }
                 return;
             case 2:
-                sw swVar = (sw) obj;
-                swVar.getClass();
+                tw twVar = (tw) obj;
+                twVar.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                swVar.L = floatValue2;
-                swVar.K = AndroidUtilities.lerp(f10, f7, floatValue2);
-                swVar.f30856b.invalidate();
+                twVar.L = floatValue2;
+                twVar.K = AndroidUtilities.lerp(f10, f7, floatValue2);
+                twVar.f31187b.invalidate();
                 return;
             case 3:
                 pi1 pi1Var = (pi1) obj;
-                pi1Var.f31899y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pi1Var.f31964y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float dp = f10 + AndroidUtilities.dp(28.0f);
                 float dp2 = f7 + AndroidUtilities.dp(52.0f);
-                float f11 = pi1Var.f31899y;
+                float f11 = pi1Var.f31964y;
                 pi1Var.G = dp - (dp * f11);
                 pi1Var.H = dp2 - (f11 * dp2);
                 pi1Var.invalidate();
                 return;
             case 4:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.C1.f31768b.f15572a;
+                CropAreaView cropAreaView = photoViewer.C1.f32908b.f15576a;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f10;
-                float f12 = photoViewer.f33871a6;
-                cropAreaView.f24149n0 = floatValue3;
-                cropAreaView.f24150o0 = ((photoViewer.f33910e6 - f12) * photoViewer.f33969l6) + f12;
-                cropAreaView.f24151p0 = 0.0f;
-                cropAreaView.f24152q0 = 0.0f;
+                float f12 = photoViewer.f33909a6;
+                cropAreaView.f24153n0 = floatValue3;
+                cropAreaView.f24154o0 = ((photoViewer.f33948e6 - f12) * photoViewer.f34007l6) + f12;
+                cropAreaView.f24155p0 = 0.0f;
+                cropAreaView.f24156q0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.C1.f31769c.b(AndroidUtilities.lerp(f7, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                photoViewer.C1.f32909c.b(AndroidUtilities.lerp(f7, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
             case 5:
-                org.telegram.ui.Wallet.d3 d3Var = (org.telegram.ui.Wallet.d3) obj;
+                org.telegram.ui.Wallet.e3 e3Var = (org.telegram.ui.Wallet.e3) obj;
                 float floatValue4 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d3Var.A = (f10 * floatValue4) + d3Var.g();
-                d3Var.B = (f7 * floatValue4) + (d3Var.f34791k.E * 0.14f);
+                e3Var.A = (f10 * floatValue4) + e3Var.g();
+                e3Var.B = (f7 * floatValue4) + (e3Var.f34882k.E * 0.14f);
                 if (floatValue4 > 0.0f) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                d3Var.D = z10;
-                d3Var.f34773a.invalidate();
+                e3Var.D = z10;
+                e3Var.f34864a.invalidate();
                 return;
             case 6:
-                org.telegram.ui.Wallet.d5 d5Var = (org.telegram.ui.Wallet.d5) obj;
-                d5Var.getClass();
+                org.telegram.ui.Wallet.e5 e5Var = (org.telegram.ui.Wallet.e5) obj;
+                e5Var.getClass();
                 float floatValue5 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                d5Var.J = f10 * floatValue5;
-                d5Var.K = f7 * floatValue5;
+                e5Var.J = f10 * floatValue5;
+                e5Var.K = f7 * floatValue5;
                 return;
             case 7:
-                org.telegram.ui.Wallet.p5 p5Var = (org.telegram.ui.Wallet.p5) obj;
-                p5Var.getClass();
+                org.telegram.ui.Wallet.q5 q5Var = (org.telegram.ui.Wallet.q5) obj;
+                q5Var.getClass();
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                org.telegram.ui.Wallet.k5 k5Var = p5Var.f35384f0;
+                org.telegram.ui.Wallet.l5 l5Var = q5Var.f35474f0;
                 float f13 = 1.0f - floatValue6;
-                k5Var.d = f10 * f13;
-                k5Var.f48046i = f7 * f13;
+                l5Var.d = f10 * f13;
+                l5Var.f48090i = f7 * f13;
                 return;
             default:
                 sg.f fVar = (sg.f) obj;
                 fVar.getClass();
                 float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sg.g gVar = fVar.f48029a;
+                sg.g gVar = fVar.f48073a;
                 gVar.d = f10 * floatValue7;
-                gVar.f48046i = f7 * floatValue7;
+                gVar.f48090i = f7 * floatValue7;
                 return;
         }
     }

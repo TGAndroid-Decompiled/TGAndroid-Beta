@@ -51,14 +51,14 @@ public final class g5 implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 7:
-                org.telegram.ui.web.b1 b1Var = ((org.telegram.ui.web.m0) this.f1054b).f43395e.Q;
-                if (b1Var != null && (g0Var = b1Var.f43241c) != null) {
+                org.telegram.ui.web.b1 b1Var = ((org.telegram.ui.web.m0) this.f1054b).f43439e.Q;
+                if (b1Var != null && (g0Var = b1Var.f43285c) != null) {
                     g0Var.y();
                     return;
                 }
                 return;
             case 8:
-                org.telegram.ui.web.g0 g0Var2 = ((org.telegram.ui.web.u0) this.f1054b).f43475b.f43520e.Q.f43241c;
+                org.telegram.ui.web.g0 g0Var2 = ((org.telegram.ui.web.u0) this.f1054b).f43519b.f43564e.Q.f43285c;
                 if (g0Var2 != null) {
                     g0Var2.y();
                     return;
@@ -66,21 +66,21 @@ public final class g5 implements DialogInterface.OnDismissListener {
                 return;
             case 9:
                 rg.j0 j0Var = (rg.j0) this.f1054b;
-                j0Var.f47279f0 = false;
-                j0Var.f47296x0.f24241d0 = true;
+                j0Var.f47323f0 = false;
+                j0Var.f47340x0.f24245d0 = true;
                 j0Var.E0.invalidate();
-                j0Var.f47296x0.invalidate();
+                j0Var.f47340x0.invalidate();
                 return;
             case 10:
                 rg.l1 l1Var = (rg.l1) this.f1054b;
-                eg0 eg0Var = l1Var.f47337r0;
+                eg0 eg0Var = l1Var.f47381r0;
                 if (eg0Var != null) {
                     eg0Var.setDialogVisible(false);
                 }
-                l1Var.f47336q0.setPaused(false);
+                l1Var.f47380q0.setPaused(false);
                 return;
             case 11:
-                ((wh.l) this.f1054b).f50444s = null;
+                ((wh.l) this.f1054b).f50488s = null;
                 return;
             case 12:
                 ((m31) this.f1054b).run();

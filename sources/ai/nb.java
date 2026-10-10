@@ -20,7 +20,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.fz;
 public abstract class nb extends FrameLayout implements View.OnClickListener {
     public final Path E;
@@ -59,7 +59,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
         this.h = view;
         this.f1496n = e6Var;
         this.f1500x = new org.telegram.ui.Components.g6(view, 0L, 120L, new LinearInterpolator());
-        this.f1501y = new org.telegram.ui.Components.g6(view, 0L, 360L, hs.h);
+        this.f1501y = new org.telegram.ui.Components.g6(view, 0L, 360L, is.h);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
@@ -142,7 +142,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                     }
                     qbVar.setOnClickListener(this);
                     addView(qbVar);
-                    double d = mediaArea.coordinates.f20271w;
+                    double d = mediaArea.coordinates.f20275w;
                 }
             }
             frameLayout.bringToFront();
@@ -329,8 +329,8 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                 int measuredWidth = lbVar.getMeasuredWidth();
                 int measuredHeight = lbVar.getMeasuredHeight();
                 lbVar.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
-                lbVar.setTranslationX((float) ((mediaArea.coordinates.f20272x / 100.0d) * getMeasuredWidth()));
-                lbVar.setTranslationY((float) ((mediaArea.coordinates.f20273y / 100.0d) * getMeasuredHeight()));
+                lbVar.setTranslationX((float) ((mediaArea.coordinates.f20276x / 100.0d) * getMeasuredWidth()));
+                lbVar.setTranslationY((float) ((mediaArea.coordinates.f20277y / 100.0d) * getMeasuredHeight()));
                 lbVar.setRotation((float) mediaArea.coordinates.rotation);
             } else if (childAt instanceof mb) {
                 mb mbVar = (mb) childAt;
@@ -338,8 +338,8 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                 int measuredWidth2 = mbVar.getMeasuredWidth();
                 int measuredHeight2 = mbVar.getMeasuredHeight();
                 mbVar.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
-                mbVar.setTranslationX((float) ((mediaArea2.coordinates.f20272x / 100.0d) * getMeasuredWidth()));
-                mbVar.setTranslationY((float) ((mediaArea2.coordinates.f20273y / 100.0d) * getMeasuredHeight()));
+                mbVar.setTranslationX((float) ((mediaArea2.coordinates.f20276x / 100.0d) * getMeasuredWidth()));
+                mbVar.setTranslationY((float) ((mediaArea2.coordinates.f20277y / 100.0d) * getMeasuredHeight()));
                 mbVar.setRotation((float) mediaArea2.coordinates.rotation);
             }
         }
@@ -356,10 +356,10 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof lb) {
                 lb lbVar = (lb) getChildAt(i12);
-                lbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1365b.coordinates.f20271w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1365b.coordinates.h / 100.0d) * size2), 1073741824));
+                lbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1365b.coordinates.f20275w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1365b.coordinates.h / 100.0d) * size2), 1073741824));
             } else if (childAt instanceof mb) {
                 mb mbVar = (mb) getChildAt(i12);
-                mbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((mbVar.f1431a.coordinates.f20271w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((mbVar.f1431a.coordinates.h / 100.0d) * size2), 1073741824));
+                mbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((mbVar.f1431a.coordinates.f20275w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((mbVar.f1431a.coordinates.h / 100.0d) * size2), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);

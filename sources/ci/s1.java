@@ -6,7 +6,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hz;
+import org.telegram.ui.Components.iz;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.bu;
 import org.telegram.ui.df;
@@ -44,7 +44,7 @@ public final class s1 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new i2.c1((fp) this.f5933c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.f5934e, this.f5932b, tL_error, 9));
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new t1((hz) this.f5933c, (String) this.f5934e, this.f5932b, (String) this.d, tLObject));
+                AndroidUtilities.runOnUIThread(new t1((iz) this.f5933c, (String) this.f5934e, this.f5932b, (String) this.d, tLObject));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new i2.c1((bu) this.f5933c, tLObject, (d) this.d, this.f5932b, (HashSet) this.f5934e, tL_error, 11));
@@ -60,9 +60,9 @@ public final class s1 implements RequestDelegate {
         this.f5932b = z10;
     }
 
-    public s1(hz hzVar, String str, boolean z10, String str2) {
+    public s1(iz izVar, String str, boolean z10, String str2) {
         this.f5931a = 4;
-        this.f5933c = hzVar;
+        this.f5933c = izVar;
         this.f5934e = str;
         this.f5932b = z10;
         this.d = str2;

@@ -42,22 +42,22 @@ import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.ae0;
+import org.telegram.ui.Components.be0;
 import org.telegram.ui.Components.ei;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.l8;
 import org.telegram.ui.Components.lo;
-import org.telegram.ui.Components.o01;
-import org.telegram.ui.Components.r01;
-import org.telegram.ui.Components.sd0;
-import org.telegram.ui.Components.ud0;
-import org.telegram.ui.Components.yd0;
+import org.telegram.ui.Components.p01;
+import org.telegram.ui.Components.s01;
+import org.telegram.ui.Components.td0;
+import org.telegram.ui.Components.vd0;
 import org.telegram.ui.Components.yi;
+import org.telegram.ui.Components.zd0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.Wallet.q6;
+import org.telegram.ui.Wallet.r6;
 import org.telegram.ui.df1;
 import org.telegram.ui.dk0;
 import org.telegram.ui.fg1;
@@ -79,7 +79,7 @@ import w7.x5;
 import x2.m;
 import yh.m5;
 import zg.n0;
-public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback, Utilities.Callback2Return, m, BillingController.ProductDetailsResponseListenerLegacy {
+public final class d implements OnFailureListener, ny, a2, f5, td0, MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback, Utilities.Callback2Return, m, BillingController.ProductDetailsResponseListenerLegacy {
     public final int f42a;
     public final Object f43b;
     public final Object f44c;
@@ -115,8 +115,8 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
                 return;
             case 8:
                 lo loVar = (lo) this.f45e;
-                loVar.f28513j0.e((TLRPC.TL_messageMediaPoll) this.f43b, loVar.O, loVar.l1, (ArrayList) this.f44c, z10, i10, ((Long) this.d).longValue());
-                loVar.f30173b.dismiss(true);
+                loVar.f28452j0.e((TLRPC.TL_messageMediaPoll) this.f43b, loVar.O, loVar.l1, (ArrayList) this.f44c, z10, i10, ((Long) this.d).longValue());
+                loVar.f30211b.dismiss(true);
                 return;
             case 9:
                 pt ptVar = (pt) this.f45e;
@@ -180,15 +180,15 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
                     } else {
                         str = null;
                     }
-                    yd0 yd0Var = dk0Var.d;
-                    if (yd0Var != null) {
-                        yd0Var.getEditText().setText(str3);
+                    zd0 zd0Var = dk0Var.d;
+                    if (zd0Var != null) {
+                        zd0Var.getEditText().setText(str3);
                     } else {
                         dk0Var.K = str3;
                     }
-                    yd0 yd0Var2 = dk0Var.f37036e;
-                    if (yd0Var2 != null) {
-                        yd0Var2.getEditText().setText(str);
+                    zd0 zd0Var2 = dk0Var.f37080e;
+                    if (zd0Var2 != null) {
+                        zd0Var2.getEditText().setText(str);
                     } else {
                         dk0Var.L = str;
                     }
@@ -205,7 +205,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33834s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33872s);
                 return;
             default:
                 fg1 fg1Var = (fg1) obj4;
@@ -243,7 +243,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
     public void onProductDetailsResponse(c5.h hVar, List list) {
         switch (this.f42a) {
             case 21:
-                AndroidUtilities.runOnUIThread(new q6(list, (Utilities.Callback2) this.f45e, (TLRPC.TL_inputStorePaymentStarsTopup) this.f43b, (TL_stars.TL_starsTopupOption) this.f44c, (Activity) this.d, 13));
+                AndroidUtilities.runOnUIThread(new r6(list, (Utilities.Callback2) this.f45e, (TLRPC.TL_inputStorePaymentStarsTopup) this.f43b, (TL_stars.TL_starsTopupOption) this.f44c, (Activity) this.d, 13));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new a9((m5) this.f45e, list, (r) this.f43b, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f44c, hVar, (Activity) this.d, 23));
@@ -252,16 +252,16 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
     }
 
     @Override
-    public void r(ud0 ud0Var, int i10) {
+    public void r(vd0 vd0Var, int i10) {
         g60 g60Var = (g60) this.f45e;
-        ud0 ud0Var2 = (ud0) this.f43b;
+        vd0 vd0Var2 = (vd0) this.f43b;
         l40 l40Var = (l40) this.f44c;
         m40 m40Var = (m40) this.d;
         try {
             g60Var.container.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        g5.f(g60Var.T, g60Var.S, 0L, 604800L, 2, ud0Var2, l40Var, m40Var);
+        g5.f(g60Var.T, g60Var.S, 0L, 604800L, 2, vd0Var2, l40Var, m40Var);
     }
 
     @Override
@@ -275,7 +275,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
             case 2:
                 TLRPC.User user = (TLRPC.User) this.f43b;
                 String str = (String) this.f44c;
-                ae0 ae0Var = (ae0) this.d;
+                be0 be0Var = (be0) this.d;
                 k3 k3Var = ((f3) this.f45e).d;
                 long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle i12 = g.i("scrollToTopOnResume", true);
@@ -291,7 +291,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
                 if (activity instanceof LaunchActivity) {
                     n2 lastFragment = ((LaunchActivity) activity).O().getLastFragment();
                     if (MessagesController.getInstance(k3Var.G).checkCanOpenChat(i12, lastFragment)) {
-                        ae0Var.dismiss();
+                        be0Var.dismiss();
                         k3Var.f9157c0 = true;
                         AndroidUtilities.cancelRunOnUIThread(k3Var.f9178t0);
                         k3Var.f9183x.h();
@@ -302,7 +302,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
                             k3Var.M0 = true;
                         }
                         a5 a5Var = new a5(new zn(i12));
-                        a5Var.f20386b = true;
+                        a5Var.f20390b = true;
                         lastFragment.presentFragment(a5Var);
                     }
                 }
@@ -313,8 +313,8 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
             default:
                 TLRPC.User user2 = (TLRPC.User) this.f43b;
                 String str2 = (String) this.f44c;
-                ae0 ae0Var2 = (ae0) this.d;
-                yi yiVar = ((ei) this.f45e).f26093e;
+                be0 be0Var2 = (be0) this.d;
+                yi yiVar = ((ei) this.f45e).f26053e;
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle i13 = g.i("scrollToTopOnResume", true);
                 if (DialogObject.isEncryptedDialog(j10)) {
@@ -325,12 +325,12 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
                     i13.putLong("chat_id", -j10);
                 }
                 i13.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                n2 n2Var = yiVar.f33228f0;
+                n2 n2Var = yiVar.f33235f0;
                 if (MessagesController.getInstance(yiVar.M1).checkCanOpenChat(i13, n2Var)) {
-                    ae0Var2.dismiss();
+                    be0Var2.dismiss();
                     yiVar.dismiss(true);
                     a5 a5Var2 = new a5(new zn(i13));
-                    a5Var2.f20386b = true;
+                    a5Var2.f20390b = true;
                     n2Var.presentFragment(a5Var2);
                 }
                 return true;
@@ -350,7 +350,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
         Context context = (Context) this.f45e;
         int[] iArr = (int[]) this.f43b;
         e6 e6Var = (e6) this.f44c;
-        r01 r01Var = (r01) this.d;
+        s01 s01Var = (s01) this.d;
         Integer num = (Integer) obj;
         Float f7 = (Float) obj2;
         LinearLayout e7 = bi.e(context, 1);
@@ -370,7 +370,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        textView.setTextColor(i6.w0(i6.f20905j5, e6Var));
+        textView.setTextColor(i6.w0(i6.f20909j5, e6Var));
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;
@@ -382,7 +382,7 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
         textView.setTextSize(1, 13.0f);
         textView.setGravity(17);
         e7.addView(textView, x5.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
-        return new o01(r01Var, e7, false);
+        return new p01(s01Var, e7, false);
     }
 
     @Override
@@ -401,9 +401,9 @@ public final class d implements OnFailureListener, ny, a2, f5, sd0, MediaDataCon
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20069id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20073id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
                                         (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(n0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f20069id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f20073id));
                                     }
                                 }
                             }

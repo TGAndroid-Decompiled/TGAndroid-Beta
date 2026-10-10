@@ -98,11 +98,11 @@ public final class q4 extends a0 implements org.telegram.ui.ActionBar.z5, n9, m0
 
     @Override
     public final void e() {
-        int i10 = org.telegram.ui.ActionBar.i6.f21025pe;
+        int i10 = org.telegram.ui.ActionBar.i6.f21029pe;
         org.telegram.ui.ActionBar.e6 e6Var = this.f12638r;
         this.f12639s.setColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
         this.v.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Gd, e6Var));
-        this.f12640w.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21119uf, e6Var));
+        this.f12640w.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21123uf, e6Var));
         int i11 = org.telegram.ui.ActionBar.i6.G6;
         this.f12641x.setColor(org.telegram.ui.ActionBar.i6.m1(0.5f, org.telegram.ui.ActionBar.i6.w0(i11, e6Var)));
         this.E.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.m1(0.5f, org.telegram.ui.ActionBar.i6.w0(i11, e6Var)), PorterDuff.Mode.SRC_IN));
@@ -227,7 +227,7 @@ public final class q4 extends a0 implements org.telegram.ui.ActionBar.z5, n9, m0
         if (o4Var != null && (textSelectionHelper = ((t3) o4Var).f12705a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f22609p0 && R <= textSelectionHelper.f22612s0) {
+            if (R >= 0 && R > textSelectionHelper.f22613p0 && R <= textSelectionHelper.f22616s0) {
                 canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f12640w);
             }
         }
@@ -253,8 +253,8 @@ public final class q4 extends a0 implements org.telegram.ui.ActionBar.z5, n9, m0
         int paddingRight = getPaddingRight();
         int max = Math.max(0, (size - paddingLeft) - paddingRight);
         TL_iv.pageBlockMap map = getMap();
-        if (map != null && map.f20261w > 0 && map.h > 0) {
-            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f20261w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
+        if (map != null && map.f20265w > 0 && map.h > 0) {
+            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f20265w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
         } else {
             this.K = (AndroidUtilities.dp(200.0f) - getPaddingTop()) - getPaddingBottom();
         }

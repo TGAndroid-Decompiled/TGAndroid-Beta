@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class ki extends uu0 {
-    public final zn f39300a;
+    public final zn f39344a;
 
     public ki(zn znVar) {
-        this.f39300a = znVar;
+        this.f39344a = znVar;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class ki extends uu0 {
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
         if (i10 >= 0) {
-            zn znVar = this.f39300a;
+            zn znVar = this.f39344a;
             if (i10 < znVar.Ia.size()) {
                 znVar.gb((TLRPC.BotInlineResult) znVar.Ia.get(i10), z10, i11, 0L);
             }

@@ -1,87 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.R;
-public class ht extends c71 {
-    public final int N;
-    public final int O;
-    public final boolean P;
-    public final gt Q;
-    public final ArrayList R;
-    public final ArrayList S;
-    public final ArrayList T;
-    public boolean U;
-    public boolean V;
-    public final CharSequence W;
-    public int X;
-    public int Y;
-    public boolean Z;
-    public boolean f27131a0;
-    public boolean f27132b0;
-    public int f27133c0;
-    public int f27134d0;
-    public String f27135e0;
-    public final ct f27136f0;
-    public boolean f27137g0;
-    public final a3 f27138h0;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_bots;
+public final class ht {
+    public final int f27140a;
+    public final dt f27141b;
+    public boolean f27142c;
+    public boolean d;
+    public boolean f27143e;
+    public long f27144f;
+    public String f27145g;
+    public final ArrayList h = new ArrayList();
+    public boolean f27146i = false;
 
-    public ht(qm0 qm0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(qm0Var, context, i10, 0, true, null, e6Var);
-        this.R = new ArrayList();
-        this.S = new ArrayList();
-        this.T = new ArrayList();
-        this.f27136f0 = new ct(this, 0);
-        this.f27137g0 = true;
-        this.f27138h0 = new a3(this, 3);
-        this.f25281s = new d(this, 8);
-        this.N = i10;
-        this.O = i11;
-        this.P = z10;
-        this.Q = new gt(i10, new ct(this, 1));
-        this.W = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new dt(this, e6Var, context)), true);
-        N(false);
-        MediaDataController.getInstance(i10).loadHints(true);
+    public ht(int i10, dt dtVar) {
+        this.f27140a = i10;
+        this.f27141b = dtVar;
     }
 
-    public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f27135e0);
-        qm0 qm0Var = this.d;
-        if (!isEmpty) {
-            if (this.f27132b0 && !this.Z && qm0Var != null) {
-                int i10 = 0;
-                while (true) {
-                    if (i10 >= qm0Var.getChildCount()) {
-                        break;
-                    } else if (qm0Var.getChildAt(i10) instanceof j10) {
-                        if (this.f27132b0 && !this.Z && !TextUtils.isEmpty(this.f27135e0)) {
-                            W(true);
-                        }
-                    } else {
-                        i10++;
-                    }
-                }
+    public final void a() {
+        if (!this.f27142c && !this.f27143e) {
+            this.f27142c = true;
+            boolean z10 = this.d;
+            int i10 = this.f27140a;
+            if (!z10) {
+                gt gtVar = new gt(this, 0);
+                MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
+                messagesStorage.getStorageQueue().postRunnable(new org.telegram.messenger.video.f(this, messagesStorage, gtVar, 20));
+                return;
             }
-        } else {
-            if (!this.f27137g0) {
-                if (qm0Var != null) {
-                    for (int i11 = 0; i11 < qm0Var.getChildCount(); i11++) {
-                        if (!(qm0Var.getChildAt(i11) instanceof j10)) {
-                        }
-                    }
-                }
+            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
+            getpopularappbots.limit = 20;
+            String str = this.f27145g;
+            if (str == null) {
+                str = "";
             }
-            this.Q.a();
-            break;
+            getpopularappbots.offset = str;
+            ConnectionsManager.getInstance(i10).sendRequest(getpopularappbots, new y1(this, 3));
         }
-        this.f27137g0 = false;
-    }
-
-    public final void W(boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ht.W(boolean):void");
     }
 }

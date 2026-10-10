@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_account;
 public final class tg1 extends ih1 {
-    public final TwoStepVerificationActivity f42008k0;
+    public final TwoStepVerificationActivity f42052k0;
 
     public tg1(TwoStepVerificationActivity twoStepVerificationActivity, int i10, TL_account.Password password) {
         super(i10, 4, password);
-        this.f42008k0 = twoStepVerificationActivity;
+        this.f42052k0 = twoStepVerificationActivity;
     }
 
     @Override
     public final void B0() {
-        this.f42008k0.N = true;
+        this.f42052k0.N = true;
     }
 }

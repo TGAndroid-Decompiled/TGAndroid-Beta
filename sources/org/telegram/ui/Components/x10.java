@@ -1,92 +1,156 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-public final class x10 extends URLSpan {
-    public static final int f32713e = 0;
-    public final String f32714a;
-    public final TLRPC.TL_messageEntityFormattedDate f32715b;
-    public final t11 f32716c;
-    public final boolean d;
+import android.app.Activity;
+import android.app.Application;
+import android.os.Bundle;
+import android.os.SystemClock;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public abstract class x10 implements Application.ActivityLifecycleCallbacks {
+    private static x10 Instance;
+    private int refs;
+    private boolean wasInBackground = true;
+    private long enterBackgroundTime = 0;
+    private CopyOnWriteArrayList<w10> listeners = new CopyOnWriteArrayList<>();
+    private final ArrayList<WeakReference<Activity>> resumedActivities = new ArrayList<>();
 
-    public x10(String str, t11 t11Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
-        super(str);
-        this.f32714a = str;
-        this.f32715b = tL_messageEntityFormattedDate;
-        this.f32716c = t11Var;
-        this.d = false;
+    public x10(Application application) {
+        Instance = this;
+        application.registerActivityLifecycleCallbacks(this);
     }
 
-    public static CharSequence a(CharSequence charSequence, boolean z10) {
-        String str;
-        if (charSequence instanceof Spanned) {
-            Spanned spanned = (Spanned) charSequence;
-            int i10 = 0;
-            x10[] x10VarArr = (x10[]) spanned.getSpans(0, spanned.length(), x10.class);
-            int length = x10VarArr.length;
-            ?? r42 = 0;
-            while (i10 < length) {
-                x10 x10Var = x10VarArr[i10];
-                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = x10Var.f32715b;
-                if (tL_messageEntityFormattedDate.flags != 0 && (x10Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
-                    if (r42 == 0) {
-                        charSequence = new SpannableStringBuilder(spanned);
-                        r42 = charSequence;
-                    }
-                    int spanStart = r42.getSpanStart(x10Var);
-                    int spanEnd = r42.getSpanEnd(x10Var);
-                    if (z10) {
-                        str = LocaleController.formatEntityFormattedDate(x10Var.f32715b);
-                    } else {
-                        str = x10Var.f32714a;
-                    }
-                    r42.removeSpan(x10Var);
-                    r42.replace(spanStart, spanEnd, str);
-                    r42.setSpan(new x10(x10Var, z10), spanStart, str.length() + spanStart, 33);
-                }
-                i10++;
-                r42 = r42;
+    public static x10 getInstance() {
+        return Instance;
+    }
+
+    public final void a(Activity activity) {
+        for (int size = this.resumedActivities.size() - 1; size >= 0; size--) {
+            Activity activity2 = this.resumedActivities.get(size).get();
+            if (activity2 == null || activity2 == activity) {
+                this.resumedActivities.remove(size);
             }
         }
-        return charSequence;
     }
 
-    public static CharSequence b(SpannableStringBuilder spannableStringBuilder) {
-        return a(spannableStringBuilder, false);
+    public void addListener(w10 w10Var) {
+        this.listeners.add(w10Var);
+    }
+
+    public Activity getForegroundActivity() {
+        Activity activity = null;
+        for (int size = this.resumedActivities.size() - 1; size >= 0; size--) {
+            Activity activity2 = this.resumedActivities.get(size).get();
+            if (activity2 != null && !activity2.isFinishing() && !activity2.isDestroyed()) {
+                if (activity2.hasWindowFocus()) {
+                    return activity2;
+                }
+                if (activity == null) {
+                    activity = activity2;
+                }
+            } else {
+                this.resumedActivities.remove(size);
+            }
+        }
+        return activity;
+    }
+
+    public boolean isBackground() {
+        if (this.refs == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isForeground() {
+        if (this.refs > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isWasInBackground(boolean z10) {
+        if (z10 && SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
+            this.wasInBackground = false;
+        }
+        return this.wasInBackground;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i10 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        t11 t11Var = this.f32716c;
-        if (t11Var != null) {
-            t11Var.a(textPaint);
-        }
-        if (i10 == color) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        textPaint.setUnderlineText(z10);
-    }
-
-    public x10(x10 x10Var, boolean z10) {
-        super(x10Var.f32714a);
-        this.f32714a = x10Var.f32714a;
-        this.f32715b = x10Var.f32715b;
-        this.f32716c = x10Var.f32716c;
-        this.d = z10;
+    public void onActivityDestroyed(Activity activity) {
+        a(activity);
     }
 
     @Override
-    public final void onClick(View view) {
+    public void onActivityPaused(Activity activity) {
+        a(activity);
+    }
+
+    @Override
+    public void onActivityResumed(Activity activity) {
+        a(activity);
+        this.resumedActivities.add(new WeakReference<>(activity));
+    }
+
+    @Override
+    public void onActivityStarted(Activity activity) {
+        int i10 = this.refs + 1;
+        this.refs = i10;
+        if (i10 == 1) {
+            if (SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
+                this.wasInBackground = false;
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("switch to foreground");
+            }
+            Iterator<w10> it = this.listeners.iterator();
+            while (it.hasNext()) {
+                try {
+                    it.next().onBecameForeground();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onActivityStopped(Activity activity) {
+        int i10 = this.refs - 1;
+        this.refs = i10;
+        if (i10 == 0) {
+            this.enterBackgroundTime = SystemClock.elapsedRealtime();
+            this.wasInBackground = true;
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("switch to background");
+            }
+            Iterator<w10> it = this.listeners.iterator();
+            while (it.hasNext()) {
+                try {
+                    it.next().onBecameBackground();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+            }
+        }
+    }
+
+    public void removeListener(w10 w10Var) {
+        this.listeners.remove(w10Var);
+    }
+
+    public void resetBackgroundVar() {
+        this.wasInBackground = false;
+    }
+
+    @Override
+    public void onActivityCreated(Activity activity, Bundle bundle) {
+    }
+
+    @Override
+    public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
     }
 }

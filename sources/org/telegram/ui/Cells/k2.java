@@ -46,7 +46,7 @@ public final class k2 extends ai.da {
     @Override
     public final void e() {
         s2 s2Var = this.S;
-        o2 o2Var = s2Var.f22780d0;
+        o2 o2Var = s2Var.f22784d0;
         if (o2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class k2 extends ai.da {
     @Override
     public final void f(long j3) {
         s2 s2Var = this.S;
-        o2 o2Var = s2Var.f22780d0;
+        o2 o2Var = s2Var.f22784d0;
         if (o2Var == null) {
             return;
         }

@@ -84,11 +84,11 @@ public final class pa extends View {
             f7 = 0.0f;
         }
         g6Var2.d(f7, false);
-        if (g6Var2.f26599c != 0.0f) {
+        if (g6Var2.f26616c != 0.0f) {
             float measuredHeight = getMeasuredHeight() / 2.0f;
-            paint.setAlpha((int) (g6Var2.f26599c * 255.0f));
+            paint.setAlpha((int) (g6Var2.f26616c * 255.0f));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * g6Var.f26599c, getMeasuredHeight());
+            rectF.set(0.0f, 0.0f, getMeasuredWidth() * g6Var.f26616c, getMeasuredHeight());
             canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
     }

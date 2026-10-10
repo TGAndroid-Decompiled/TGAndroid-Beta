@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.ContactsController;
 public final class uj implements ak {
-    public final int f31512a;
-    public final ContactsController.Contact f31513b;
+    public final int f31535a;
+    public final ContactsController.Contact f31536b;
 
     public uj(ContactsController.Contact contact, int i10) {
-        this.f31512a = i10;
-        this.f31513b = contact;
+        this.f31535a = i10;
+        this.f31536b = contact;
     }
 
     @Override
     public final String run() {
-        switch (this.f31512a) {
+        switch (this.f31535a) {
             case 0:
-                ContactsController.Contact contact = this.f31513b;
+                ContactsController.Contact contact = this.f31536b;
                 if (contact.phones.isEmpty()) {
                     return "";
                 }
                 return hf.b.c().b(contact.phones.get(0));
             default:
-                ContactsController.Contact contact2 = this.f31513b;
+                ContactsController.Contact contact2 = this.f31536b;
                 if (contact2.phones.isEmpty()) {
                     return "";
                 }

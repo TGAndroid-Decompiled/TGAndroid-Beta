@@ -1,10 +1,10 @@
 package ci;
 
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.em0;
 import org.telegram.ui.Components.fm0;
 import org.telegram.ui.Components.gm0;
 import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.im0;
 public final class m3 implements Runnable {
     public final int f5590a;
     public final n3 f5591b;
@@ -25,14 +25,14 @@ public final class m3 implements Runnable {
                 q3 q3Var = this.f5592c;
                 int R = RecyclerView.R(q3Var);
                 if (R != -1) {
-                    em0 em0Var = d3Var.T0;
-                    if (em0Var != null) {
-                        em0Var.d(R, q3Var);
+                    fm0 fm0Var = d3Var.T0;
+                    if (fm0Var != null) {
+                        fm0Var.d(R, q3Var);
                         return;
                     }
-                    fm0 fm0Var = d3Var.U0;
-                    if (fm0Var != null) {
-                        fm0Var.c(0.0f, 0.0f, R, q3Var);
+                    gm0 gm0Var = d3Var.U0;
+                    if (gm0Var != null) {
+                        gm0Var.c(0.0f, 0.0f, R, q3Var);
                         return;
                     }
                     return;
@@ -44,14 +44,14 @@ public final class m3 implements Runnable {
                 q3 q3Var2 = this.f5592c;
                 int R2 = RecyclerView.R(q3Var2);
                 if (R2 != -1) {
-                    gm0 gm0Var = d3Var2.V0;
-                    if (gm0Var != null) {
-                        gm0Var.d(R2, q3Var2);
+                    hm0 hm0Var = d3Var2.V0;
+                    if (hm0Var != null) {
+                        hm0Var.d(R2, q3Var2);
                         return;
                     }
-                    hm0 hm0Var = d3Var2.W0;
-                    if (hm0Var != null) {
-                        hm0Var.mo17c(0.0f, 0.0f, R2, q3Var2);
+                    im0 im0Var = d3Var2.W0;
+                    if (im0Var != null) {
+                        im0Var.mo17c(0.0f, 0.0f, R2, q3Var2);
                         return;
                     }
                     return;

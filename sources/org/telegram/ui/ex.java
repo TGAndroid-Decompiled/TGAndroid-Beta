@@ -7,10 +7,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ex implements org.telegram.ui.Components.qg {
-    public final ty f37379a;
+    public final ty f37423a;
 
     public ex(ty tyVar) {
-        this.f37379a = tyVar;
+        this.f37423a = tyVar;
     }
 
     @Override
@@ -25,13 +25,13 @@ public final class ex implements org.telegram.ui.Components.qg {
 
     @Override
     public final void K(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        ty tyVar = this.f37379a;
+        ty tyVar = this.f37423a;
         if (tyVar.C2 != null && !tyVar.I2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i12 = 0; i12 < tyVar.I2.size(); i12++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) tyVar.I2.get(i12)).longValue(), 0L));
             }
-            ty tyVar2 = this.f37379a;
+            ty tyVar2 = this.f37423a;
             tyVar2.C2.w(tyVar2, arrayList, charSequence, false, z10, i10, i11, null);
         }
     }
@@ -68,24 +68,24 @@ public final class ex implements org.telegram.ui.Components.qg {
 
     @Override
     public final void r1(CharSequence charSequence, boolean z10, boolean z11) {
-        ty tyVar = this.f37379a;
+        ty tyVar = this.f37423a;
         AndroidUtilities.runOnUIThread(new hw(tyVar, 13), 100L);
-        org.telegram.ui.Components.rr0 rr0Var = tyVar.G2;
-        if (rr0Var != null) {
+        org.telegram.ui.Components.sr0 sr0Var = tyVar.G2;
+        if (sr0Var != null) {
             if (z10) {
-                if (rr0Var.h) {
-                    rr0Var.e(charSequence, true);
+                if (sr0Var.h) {
+                    sr0Var.e(charSequence, true);
                     return;
                 }
                 return;
             }
-            org.telegram.ui.Components.ea1 ea1Var = tyVar.H2;
-            if (ea1Var != null) {
-                AndroidUtilities.cancelRunOnUIThread(ea1Var);
+            org.telegram.ui.Components.fa1 fa1Var = tyVar.H2;
+            if (fa1Var != null) {
+                AndroidUtilities.cancelRunOnUIThread(fa1Var);
             }
-            org.telegram.ui.Components.ea1 ea1Var2 = new org.telegram.ui.Components.ea1(15, this, charSequence);
-            tyVar.H2 = ea1Var2;
-            AndroidUtilities.runOnUIThread(ea1Var2, 1000L);
+            org.telegram.ui.Components.fa1 fa1Var2 = new org.telegram.ui.Components.fa1(15, this, charSequence);
+            tyVar.H2 = fa1Var2;
+            AndroidUtilities.runOnUIThread(fa1Var2, 1000L);
         }
     }
 

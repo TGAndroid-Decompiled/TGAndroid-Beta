@@ -21,8 +21,8 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.m11;
 public final class t7 extends View {
     public s7 E;
     public View F;
@@ -40,8 +40,8 @@ public final class t7 extends View {
     public final RectF f6014f;
     public final ImageReceiver h;
     public boolean f6015n;
-    public l11 f6016r;
-    public l11 f6017s;
+    public m11 f6016r;
+    public m11 f6017s;
     public final Path v;
     public final Paint f6018w;
     public final org.telegram.ui.Components.bd f6019x;
@@ -49,7 +49,7 @@ public final class t7 extends View {
 
     public t7(Activity activity, int i10, ha haVar) {
         super(activity);
-        this.d = new org.telegram.ui.Components.g6(this, 0L, 320L, hs.h);
+        this.d = new org.telegram.ui.Components.g6(this, 0L, 320L, is.h);
         this.f6013e = new RectF();
         this.f6014f = new RectF();
         this.h = new ImageReceiver(this);
@@ -67,7 +67,7 @@ public final class t7 extends View {
         if (s7Var == null) {
             return;
         }
-        this.f6016r = new l11(s7Var.b(), 16.0f, AndroidUtilities.bold());
+        this.f6016r = new m11(s7Var.b(), 16.0f, AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.E.a());
         if (spannableStringBuilder.toString().contains(">")) {
             spannableStringBuilder.clear();
@@ -79,7 +79,7 @@ public final class t7 extends View {
             erVar.setScale(1.25f, 1.25f);
             spannableStringBuilder.setSpan(erVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         }
-        this.f6017s = new l11(spannableStringBuilder, 14.0f, null);
+        this.f6017s = new m11(spannableStringBuilder, 14.0f, null);
         this.E.d(this.h);
         this.f6015n = true;
     }
@@ -95,10 +95,10 @@ public final class t7 extends View {
         int[] iArr;
         int[] iArr2;
         float e7 = this.d.e(this.f6020y);
-        l11 l11Var = this.f6016r;
-        if (l11Var != null && this.f6017s != null && e7 > 0.0f) {
-            l11Var.f28233p = getWidth() * 0.7f;
-            this.f6017s.f28233p = getWidth() * 0.7f;
+        m11 m11Var = this.f6016r;
+        if (m11Var != null && this.f6017s != null && e7 > 0.0f) {
+            m11Var.f28613p = getWidth() * 0.7f;
+            this.f6017s.f28613p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -110,7 +110,7 @@ public final class t7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f6016r.f28222c, this.f6017s.f28222c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f6016r.f28602c, this.f6017s.f28602c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f6015n) {
                 f10 = dp3;
             } else {
@@ -164,20 +164,20 @@ public final class t7 extends View {
                 imageReceiver.draw(canvas);
             }
             float centerY = rectF.centerY() - ((this.f6017s.j() + (this.f6016r.j() + dp4)) / f12);
-            l11 l11Var2 = this.f6016r;
+            m11 m11Var2 = this.f6016r;
             float f16 = rectF.left;
             if (this.f6015n) {
                 f13 = dp5 + dp3 + dp5;
             } else {
                 f13 = 0.0f;
             }
-            l11Var2.c(f16 + f13 + f11, (l11Var2.j() / f12) + centerY, e7, -1, canvas);
-            l11 l11Var3 = this.f6017s;
+            m11Var2.c(f16 + f13 + f11, (m11Var2.j() / f12) + centerY, e7, -1, canvas);
+            m11 m11Var3 = this.f6017s;
             float f17 = rectF.left;
             if (this.f6015n) {
                 f14 = dp3 + dp5 + dp5;
             }
-            l11Var3.c(f17 + f14 + f11, this.f6016r.j() + centerY + dp4 + (this.f6017s.j() / f12), e7, org.telegram.ui.ActionBar.i6.v(-16777216, -1610612737), canvas);
+            m11Var3.c(f17 + f14 + f11, this.f6016r.j() + centerY + dp4 + (this.f6017s.j() / f12), e7, org.telegram.ui.ActionBar.i6.v(-16777216, -1610612737), canvas);
             canvas.restore();
         }
     }
@@ -196,11 +196,11 @@ public final class t7 extends View {
                     bdVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (bdVar.f24977i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (bdVar.f24928i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     bdVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (bdVar.f24977i && (iaVar = this.f6012c) != null && this.E != null) {
+                if (bdVar.f24928i && (iaVar = this.f6012c) != null && this.E != null) {
                     iaVar.run(new p7(this, 1));
                 }
                 bdVar.c(false);
@@ -209,7 +209,7 @@ public final class t7 extends View {
                 bdVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !bdVar.f24977i) {
+            if (!this.L && !bdVar.f24928i) {
                 return false;
             }
             return true;

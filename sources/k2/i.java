@@ -22,12 +22,12 @@ public final class i implements Runnable {
         switch (i10) {
             case 0:
                 String str = e2.d0.f8532a;
-                j2.f fVar = ((i2.c0) ((j) ((n4.x) obj).f16613c)).f11620a.f11683s;
+                j2.f fVar = ((i2.c0) ((j) ((n4.x) obj).f16617c)).f11620a.f11683s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1011, new j2.c(p5, this.f14486b, this.f14487c, this.d));
                 return;
             default:
-                j2.f fVar2 = ((y2.b) obj).f51659b;
+                j2.f fVar2 = ((y2.b) obj).f51703b;
                 com.google.firebase.messaging.n nVar = fVar2.d;
                 if (((e9.i0) nVar.f7955b).isEmpty()) {
                     f0Var = null;

@@ -13,10 +13,10 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.jw0;
 import org.telegram.ui.Components.kw0;
 import org.telegram.ui.Components.lw0;
-public final class c implements d9.e, dh.d, jw0, kw0, GenericProvider, q9.d, a2 {
+import org.telegram.ui.Components.mw0;
+public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, a2 {
     public final int f8087a;
 
     public c(int i10) {
@@ -83,7 +83,7 @@ public final class c implements d9.e, dh.d, jw0, kw0, GenericProvider, q9.d, a2 
                 } else {
                     f7 = 0.76f;
                 }
-                return eh.b.m(f7, i6.w0(i6.f20797d6, e6Var), i6.w0(i6.Sd, e6Var));
+                return eh.b.m(f7, i6.w0(i6.f20801d6, e6Var), i6.w0(i6.Sd, e6Var));
             case 2:
                 if (!LiteMode.isEnabled(256)) {
                     return i6.x0(null, i6.G8, false);
@@ -101,7 +101,7 @@ public final class c implements d9.e, dh.d, jw0, kw0, GenericProvider, q9.d, a2 
                 } else {
                     f11 = 0.76f;
                 }
-                return eh.b.m(f11, i6.w0(i6.f20797d6, e6Var), i6.w0(i6.Zk, e6Var));
+                return eh.b.m(f11, i6.w0(i6.f20801d6, e6Var), i6.w0(i6.Zk, e6Var));
             case 4:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
@@ -116,7 +116,7 @@ public final class c implements d9.e, dh.d, jw0, kw0, GenericProvider, q9.d, a2 
             case 7:
                 return i6.m1(0.075f, -16777216);
             case 8:
-                return i6.m1(0.88f, i6.w0(i6.f20797d6, e6Var));
+                return i6.m1(0.88f, i6.w0(i6.f20801d6, e6Var));
             case 9:
                 int x03 = i6.x0(null, i6.G8, false);
                 if (z10) {
@@ -131,18 +131,18 @@ public final class c implements d9.e, dh.d, jw0, kw0, GenericProvider, q9.d, a2 
                 } else {
                     f14 = 0.76f;
                 }
-                return eh.b.m(f14, i6.w0(i6.f20797d6, e6Var), i6.w0(i6.Yk, e6Var));
+                return eh.b.m(f14, i6.w0(i6.f20801d6, e6Var), i6.w0(i6.Yk, e6Var));
             case 11:
                 if (LiteMode.isEnabled(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.76f;
                 }
-                return i6.m1(f15, i6.w0(i6.f20797d6, e6Var));
+                return i6.m1(f15, i6.w0(i6.f20801d6, e6Var));
             case 12:
-                return i6.m1(0.78f, i6.w0(i6.f20868h5, e6Var));
+                return i6.m1(0.78f, i6.w0(i6.f20872h5, e6Var));
             case 13:
-                return i6.m1(0.7f, i6.w0(i6.f20797d6, e6Var));
+                return i6.m1(0.7f, i6.w0(i6.f20801d6, e6Var));
             case 14:
                 LiteMode.isEnabled(262144);
                 return 0;
@@ -152,7 +152,7 @@ public final class c implements d9.e, dh.d, jw0, kw0, GenericProvider, q9.d, a2 
                 } else {
                     f16 = 0.76f;
                 }
-                return i6.m1(f16, i6.w0(i6.f20797d6, e6Var));
+                return i6.m1(f16, i6.w0(i6.f20801d6, e6Var));
         }
     }
 
@@ -172,7 +172,7 @@ public final class c implements d9.e, dh.d, jw0, kw0, GenericProvider, q9.d, a2 
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        lw0 lw0Var = o4.f9257b0;
+        mw0 mw0Var = o4.f9257b0;
         return Boolean.FALSE;
     }
 

@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.yi;
 import org.telegram.ui.j20;
 public final class k extends FrameLayout {
@@ -25,7 +25,7 @@ public final class k extends FrameLayout {
         this.f11294e = nVar;
         this.f11292b = -1;
         this.f11293c = new Rect();
-        this.d = new g6(this, 220L, hs.h);
+        this.d = new g6(this, 220L, is.h);
     }
 
     @Override
@@ -89,12 +89,12 @@ public final class k extends FrameLayout {
             case 1:
                 int i14 = this.f11292b;
                 yi yiVar = (yi) this.f11294e;
-                int top = i14 - yiVar.f33280w.getTop();
+                int top = i14 - yiVar.f33287w.getTop();
                 super.onLayout(z10, i10, i11, i12, i13);
                 this.f11292b = getHeight();
-                if (yiVar.f33280w.getVisibility() == 0 && getHeight() - yiVar.f33280w.getTop() != top) {
-                    yiVar.f33280w.setTranslationY(yiVar.f33280w.getTranslationY() + ((getHeight() - yiVar.f33280w.getTop()) - top));
-                    yiVar.f33280w.animate().translationY(0.0f).setDuration(320L).setInterpolator(hs.h).start();
+                if (yiVar.f33287w.getVisibility() == 0 && getHeight() - yiVar.f33287w.getTop() != top) {
+                    yiVar.f33287w.setTranslationY(yiVar.f33287w.getTranslationY() + ((getHeight() - yiVar.f33287w.getTop()) - top));
+                    yiVar.f33287w.animate().translationY(0.0f).setDuration(320L).setInterpolator(is.h).start();
                     return;
                 }
                 return;

@@ -41,43 +41,43 @@ public final class ug extends FrameLayout {
     public boolean T;
     public boolean U;
     public final ChatActivityEnterView V;
-    public ci.d4 f31485a;
-    public ci.d4 f31486b;
-    public ShapeDrawable f31487c;
+    public ci.d4 f31493a;
+    public ci.d4 f31494b;
+    public ShapeDrawable f31495c;
     public final Drawable d;
-    public final String f31488e;
-    public StaticLayout f31489f;
+    public final String f31496e;
+    public StaticLayout f31497f;
     public float h;
-    public final TextPaint f31490n;
-    public final Paint f31491r;
-    public final Paint f31492s;
+    public final TextPaint f31498n;
+    public final Paint f31499r;
+    public final Paint f31500s;
     public final Paint v;
-    public final Path f31493w;
-    public final Paint f31494x;
-    public final ci.l f31495y;
+    public final Path f31501w;
+    public final Paint f31502x;
+    public final ci.l f31503y;
 
     public ug(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
         this.V = chatActivityEnterView;
         TextPaint textPaint = new TextPaint(1);
-        this.f31490n = textPaint;
-        this.f31491r = new Paint(1);
-        this.f31492s = new Paint(1);
+        this.f31498n = textPaint;
+        this.f31499r = new Paint(1);
+        this.f31500s = new Paint(1);
         Paint paint = new Paint(1);
         this.v = paint;
-        this.f31493w = new Path();
-        this.f31494x = new Paint(1);
+        this.f31501w = new Path();
+        this.f31502x = new Paint(1);
         this.I = new RectF();
         this.J = new RectF();
         this.L = new Path();
         this.M = r4;
         this.N = r3;
-        this.O = new g6(this, 0L, 350L, hs.h);
+        this.O = new g6(this, 0L, 350L, is.h);
         tg tgVar = new tg(this, this);
         this.G = tgVar;
         r0.i0.j(this, tgVar);
         ci.l lVar = new ci.l(5);
-        this.f31495y = lVar;
+        this.f31503y = lVar;
         lVar.setCallback(this);
         lVar.d(1, chatActivityEnterView.O, false);
         paint.setStyle(Paint.Style.STROKE);
@@ -85,11 +85,11 @@ public final class ug extends FrameLayout {
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
         Drawable drawable = getResources().getDrawable(R.drawable.lock_round_shadow);
         chatActivityEnterView.V3 = drawable;
-        drawable.setColorFilter(new PorterDuffColorFilter(chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f20768be), PorterDuff.Mode.MULTIPLY));
-        this.f31487c = org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(5.0f), chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f21045qf));
+        drawable.setColorFilter(new PorterDuffColorFilter(chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f20772be), PorterDuff.Mode.MULTIPLY));
+        this.f31495c = org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(5.0f), chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f21049qf));
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         this.d = context.getDrawable(R.drawable.tooltip_arrow);
-        this.f31488e = LocaleController.getString("SlideUpToLock", R.string.SlideUpToLock);
+        this.f31496e = LocaleController.getString("SlideUpToLock", R.string.SlideUpToLock);
         float dp = AndroidUtilities.dp(3.0f);
         float[] fArr = {dp, dp, 0.0f, 0.0f, 0.0f, 0.0f, dp, dp};
         float[] fArr2 = {0.0f, 0.0f, r13, r13, r13, r13, 0.0f, 0.0f};
@@ -101,17 +101,17 @@ public final class ug extends FrameLayout {
     }
 
     public final void a() {
-        ci.d4 d4Var = this.f31485a;
+        ci.d4 d4Var = this.f31493a;
         if (d4Var != null) {
             d4Var.f4918l0 = new sg(this, d4Var, 1);
             d4Var.e(true);
-            this.f31485a = null;
+            this.f31493a = null;
         }
-        ci.d4 d4Var2 = this.f31486b;
+        ci.d4 d4Var2 = this.f31494b;
         if (d4Var2 != null) {
             d4Var2.f4918l0 = new sg(this, d4Var2, 2);
             d4Var2.e(true);
-            this.f31486b = null;
+            this.f31494b = null;
         }
     }
 
@@ -119,11 +119,11 @@ public final class ug extends FrameLayout {
         int i10;
         a();
         ci.d4 d4Var = new ci.d4(getContext(), 2);
-        this.f31486b = d4Var;
+        this.f31494b = d4Var;
         d4Var.l(1.0f, 0.0f);
-        this.f31486b.p(true);
+        this.f31494b.p(true);
         ChatActivityEnterView chatActivityEnterView = this.V;
-        if (chatActivityEnterView.f23866c1) {
+        if (chatActivityEnterView.f23870c1) {
             if (chatActivityEnterView.O) {
                 i10 = R.string.VideoSetOnceHintEnabled;
             } else {
@@ -134,21 +134,21 @@ public final class ug extends FrameLayout {
         } else {
             i10 = R.string.VoiceSetOnceHint;
         }
-        this.f31486b.s(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
-        ci.d4 d4Var2 = this.f31486b;
-        d4Var2.h = ci.d4.a(d4Var2.getText(), this.f31486b.getTextPaint());
+        this.f31494b.s(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+        ci.d4 d4Var2 = this.f31494b;
+        d4Var2.h = ci.d4.a(d4Var2.getText(), this.f31494b.getTextPaint());
         if (chatActivityEnterView.O) {
-            ci.d4 d4Var3 = this.f31486b;
+            ci.d4 d4Var3 = this.f31494b;
             int i11 = R.raw.fire_on;
             d4Var3.getClass();
-            ck0 ck0Var = new ck0(i11, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
-            ck0Var.start();
-            d4Var3.j(ck0Var);
+            dk0 dk0Var = new dk0(i11, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+            dk0Var.start();
+            d4Var3.j(dk0Var);
         } else {
             MessagesController.getGlobalMainSettings().edit().putInt("voiceoncehint", MessagesController.getGlobalMainSettings().getInt("voiceoncehint", 0) + 1).apply();
         }
-        addView(this.f31486b, w7.x5.a(-1.0f, 0.0f, 0.0f, 54.0f, 58.0f, -1, 119));
-        ci.d4 d4Var4 = this.f31486b;
+        addView(this.f31494b, w7.x5.a(-1.0f, 0.0f, 0.0f, 54.0f, 58.0f, -1, 119));
+        ci.d4 d4Var4 = this.f31494b;
         d4Var4.f4918l0 = new sg(this, d4Var4, 0);
         d4Var4.u();
     }
@@ -177,21 +177,21 @@ public final class ug extends FrameLayout {
             i10 = org.telegram.ui.ActionBar.i6.Zd;
         }
         ChatActivityEnterView chatActivityEnterView = this.V;
-        this.f31495y.e(chatActivityEnterView.g0(i10), chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f20787cf), -1);
-        this.f31490n.setColor(chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f21026pf));
+        this.f31503y.e(chatActivityEnterView.g0(i10), chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f20791cf), -1);
+        this.f31498n.setColor(chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f21030pf));
         int dp = AndroidUtilities.dp(5.0f);
-        int i15 = org.telegram.ui.ActionBar.i6.f21045qf;
-        this.f31487c = org.telegram.ui.ActionBar.i6.c0(dp, chatActivityEnterView.g0(i15));
+        int i15 = org.telegram.ui.ActionBar.i6.f21049qf;
+        this.f31495c = org.telegram.ui.ActionBar.i6.c0(dp, chatActivityEnterView.g0(i15));
         int g02 = chatActivityEnterView.g0(i15);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         this.d.setColorFilter(new PorterDuffColorFilter(g02, mode));
-        this.f31491r.setColor(chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f20748ae));
+        this.f31499r.setColor(chatActivityEnterView.g0(org.telegram.ui.ActionBar.i6.f20752ae));
         if (this.Q) {
             i11 = org.telegram.ui.ActionBar.i6.Wk;
         } else {
             i11 = org.telegram.ui.ActionBar.i6.Zd;
         }
-        this.f31492s.setColor(chatActivityEnterView.g0(i11));
+        this.f31500s.setColor(chatActivityEnterView.g0(i11));
         if (this.Q) {
             i12 = org.telegram.ui.ActionBar.i6.Wk;
         } else {
@@ -231,12 +231,12 @@ public final class ug extends FrameLayout {
         int dp = AndroidUtilities.dp(250.0f);
         if (this.H != size) {
             this.H = size;
-            StaticLayout staticLayout = new StaticLayout(this.f31488e, this.f31490n, AndroidUtilities.dp(220.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
-            this.f31489f = staticLayout;
+            StaticLayout staticLayout = new StaticLayout(this.f31496e, this.f31498n, AndroidUtilities.dp(220.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+            this.f31497f = staticLayout;
             int lineCount = staticLayout.getLineCount();
             this.h = 0.0f;
             for (int i12 = 0; i12 < lineCount; i12++) {
-                float lineWidth = this.f31489f.getLineWidth(i12);
+                float lineWidth = this.f31497f.getLineWidth(i12);
                 if (lineWidth > this.h) {
                     this.h = lineWidth;
                 }
@@ -260,36 +260,36 @@ public final class ug extends FrameLayout {
         int action = motionEvent.getAction();
         RectF rectF2 = this.J;
         if (action == 0) {
-            if (chatActivityEnterView.f23961s4) {
+            if (chatActivityEnterView.f23965s4) {
                 this.U = rectF.contains(x10, y3);
             }
-            if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f23934n4 > 0.1f) {
+            if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f23938n4 > 0.1f) {
                 this.T = rectF2.contains(x10, y3);
             }
         } else if (motionEvent.getAction() == 1) {
             if (this.U && rectF.contains(x10, y3)) {
-                if (chatActivityEnterView.f23866c1) {
-                    ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23915k1;
+                if (chatActivityEnterView.f23870c1) {
+                    ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23919k1;
                     if (slideTextView != null) {
                         slideTextView.setEnabled(false);
                     }
                     chatActivityEnterView.Z2.t1();
                 } else {
                     rg rgVar = new rg(this, 0);
-                    ci.d4 d4Var = this.f31485a;
+                    ci.d4 d4Var = this.f31493a;
                     if (d4Var != null && d4Var.V) {
                         a();
                     }
-                    ll0 ll0Var = chatActivityEnterView.f23898h1;
-                    if (ll0Var != null) {
-                        ll0Var.setPlaying(false);
+                    ml0 ml0Var = chatActivityEnterView.f23902h1;
+                    if (ml0Var != null) {
+                        ml0Var.setPlaying(false);
                     }
-                    if (MediaController.getInstance().isRecordingPaused() && (chatActivityEnterView.f23898h1.getAudioLeft() > 0.01f || chatActivityEnterView.f23898h1.getAudioRight() < 0.99f)) {
+                    if (MediaController.getInstance().isRecordingPaused() && (chatActivityEnterView.f23902h1.getAudioLeft() > 0.01f || chatActivityEnterView.f23902h1.getAudioRight() < 0.99f)) {
                         ea eaVar = new ea(7, this, rgVar);
                         if (MessagesController.getGlobalMainSettings().getBoolean("trimvoicehint", true)) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, chatActivityEnterView.W3);
-                            alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.RecordingTrimTitle);
-                            alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.RecordingTrimText);
+                            alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.RecordingTrimTitle);
+                            alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.RecordingTrimText);
                             alertDialog$Builder.k(LocaleController.getString(R.string.OK), new s(eaVar, 19));
                             hg.c.p(R.string.Cancel, alertDialog$Builder, null);
                         } else {
@@ -305,11 +305,11 @@ public final class ug extends FrameLayout {
             } else if (this.T && rectF2.contains(x10, y3)) {
                 boolean z10 = !chatActivityEnterView.O;
                 chatActivityEnterView.O = z10;
-                this.f31495y.d(1, z10, true);
+                this.f31503y.d(1, z10, true);
                 MediaDataController mediaDataController = MediaDataController.getInstance(chatActivityEnterView.Q);
                 long j10 = chatActivityEnterView.Q2;
                 org.telegram.ui.zn znVar = chatActivityEnterView.P2;
-                if (znVar != null && znVar.f44793h4) {
+                if (znVar != null && znVar.f44837h4) {
                     j3 = znVar.d();
                 } else {
                     j3 = 0;
@@ -346,7 +346,7 @@ public final class ug extends FrameLayout {
     public void setBlurredBackgroundFactory(ah.c cVar) {
         this.Q = true;
         if (this.P == null) {
-            this.P = new dh.b(org.telegram.ui.ActionBar.i6.f20748ae, this.V.W3);
+            this.P = new dh.b(org.telegram.ui.ActionBar.i6.f20752ae, this.V.W3);
         }
         ch.d c10 = cVar.c(this, this.P, false);
         this.R = c10;
@@ -361,7 +361,7 @@ public final class ug extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f31495y && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f31503y && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

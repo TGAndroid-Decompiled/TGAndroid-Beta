@@ -7,18 +7,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class h31 extends org.telegram.ui.Components.pm0 {
-    public final Context f38209c;
+public final class h31 extends org.telegram.ui.Components.qm0 {
+    public final Context f38253c;
     public final l31 d;
 
     public h31(l31 l31Var, Context context) {
         this.d = l31Var;
-        this.f38209c = context;
+        this.f38253c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47662f;
+        int i10 = d1Var.f47706f;
         if (i10 != 3 && i10 != 2) {
             return false;
         }
@@ -30,7 +30,7 @@ public final class h31 extends org.telegram.ui.Components.pm0 {
         int i10;
         l31 l31Var = this.d;
         int i11 = l31Var.h;
-        if (l31Var.f39418f < 0) {
+        if (l31Var.f39462f < 0) {
             i10 = l31Var.getMediaDataController().getReactionsList().size();
         } else {
             i10 = 0;
@@ -47,7 +47,7 @@ public final class h31 extends org.telegram.ui.Components.pm0 {
         if (i10 == l31Var.d) {
             return 2;
         }
-        if (i10 == l31Var.f39418f) {
+        if (i10 == l31Var.f39462f) {
             return 3;
         }
         if (i10 != h() - 1) {
@@ -64,12 +64,12 @@ public final class h31 extends org.telegram.ui.Components.pm0 {
             return;
         }
         l31 l31Var = this.d;
-        TLRPC.TL_availableReaction tL_availableReaction = l31Var.getMediaDataController().getReactionsList().get(i10 - l31Var.f39417e);
+        TLRPC.TL_availableReaction tL_availableReaction = l31Var.getMediaDataController().getReactionsList().get(i10 - l31Var.f39461e);
         String str = tL_availableReaction.reaction;
         i11 = ((org.telegram.ui.ActionBar.n2) l31Var).currentAccount;
         boolean contains = str.contains(MediaDataController.getInstance(i11).getDoubleTapReaction());
         i12 = ((org.telegram.ui.ActionBar.n2) l31Var).currentAccount;
-        ((org.telegram.ui.Cells.y) d1Var.f47658a).a(tL_availableReaction, contains, i12);
+        ((org.telegram.ui.Cells.y) d1Var.f47702a).a(tL_availableReaction, contains, i12);
     }
 
     @Override
@@ -77,12 +77,12 @@ public final class h31 extends org.telegram.ui.Components.pm0 {
         org.telegram.ui.ActionBar.d5 d5Var;
         k31 k31Var;
         l31 l31Var = this.d;
-        Context context = this.f38209c;
+        Context context = this.f38253c;
         if (i10 == 0) {
             d5Var = ((org.telegram.ui.ActionBar.n2) l31Var).parentLayout;
             org.telegram.ui.Cells.ga gaVar = new org.telegram.ui.Cells.ga(context, d5Var, 2);
             gaVar.setImportantForAccessibility(4);
-            gaVar.f22170r = l31Var;
+            gaVar.f22174r = l31Var;
             k31Var = gaVar;
         } else if (i10 != 2) {
             if (i10 != 3) {

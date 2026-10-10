@@ -36,7 +36,7 @@ public final class h4 extends yi {
             case 2:
                 zn znVar = (zn) notificationCenterDelegate;
                 h4 h4Var2 = znVar.J1;
-                if (h4Var2 != null && (h4Var2.isShowing() || this.f33285x0)) {
+                if (h4Var2 != null && (h4Var2.isShowing() || this.f33292x0)) {
                     Activity parentActivity = znVar.getParentActivity();
                     i10 = ((org.telegram.ui.ActionBar.n2) znVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
@@ -45,7 +45,7 @@ public final class h4 extends yi {
                 znVar.Y9(false, true);
                 sm smVar = znVar.X0;
                 if (smVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f46766a;
+                    WeakHashMap weakHashMap = r0.i0.f46810a;
                     r0.y.c(smVar);
                     return;
                 }
@@ -87,7 +87,7 @@ public final class h4 extends yi {
                 return;
             default:
                 zn znVar = (zn) this.T2;
-                boolean z10 = this.f33285x0;
+                boolean z10 = this.f33292x0;
                 boolean M = this.B0.M();
                 if (!M) {
                     znVar.D3 = false;

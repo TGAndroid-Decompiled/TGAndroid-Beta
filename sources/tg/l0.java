@@ -9,19 +9,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.rm0;
 public final class l0 extends CountDownTimer {
-    public final s0 f48349a;
+    public final s0 f48393a;
 
     public l0(s0 s0Var) {
         super(Long.MAX_VALUE, 1000L);
-        this.f48349a = s0Var;
+        this.f48393a = s0Var;
     }
 
     @Override
     public final void onTick(long j3) {
-        s0 s0Var = this.f48349a;
-        qm0 qm0Var = s0Var.d;
+        s0 s0Var = this.f48393a;
+        rm0 rm0Var = s0Var.d;
         ArrayList arrayList = s0Var.Y;
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         int size = arrayList.size();
@@ -38,12 +38,12 @@ public final class l0 extends CountDownTimer {
             }
         }
         if (!arrayList2.isEmpty()) {
-            for (int i11 = 0; i11 < qm0Var.getChildCount(); i11++) {
-                View childAt = qm0Var.getChildAt(i11);
+            for (int i11 = 0; i11 < rm0Var.getChildCount(); i11++) {
+                View childAt = rm0Var.getChildAt(i11);
                 if (childAt instanceof xg.l) {
                     xg.l lVar = (xg.l) childAt;
                     if (arrayList2.contains(lVar.getBoost())) {
-                        j5 j5Var = lVar.f49577e;
+                        j5 j5Var = lVar.f49621e;
                         a6 a6Var = lVar.d;
                         int i12 = lVar.J.cooldown_until_date;
                         if (i12 > 0) {

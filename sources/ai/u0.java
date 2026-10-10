@@ -8,10 +8,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.em0;
-import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.fm0;
+import org.telegram.ui.Components.q80;
 import org.telegram.ui.jb0;
-public final class u0 implements em0 {
+public final class u0 implements fm0 {
     public final int f1782a;
     public final Object f1783b;
     public final Object f1784c;
@@ -36,7 +36,7 @@ public final class u0 implements em0 {
                 s3 s3Var = (s3) obj3;
                 h1 h1Var = (h1) view;
                 m1 m1Var = h1Var.K;
-                p80 F = p80.F((ViewGroup) obj2, new d(), view);
+                q80 F = q80.F((ViewGroup) obj2, new d(), view);
                 F.p(15, -1, LocaleController.formatString(R.string.LiveStoryMessageSent, LocaleController.formatDateTime(m1Var.d, true)));
                 F.k();
                 F.c(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new a1.f(5, (kc) obj, m1Var), false);
@@ -59,15 +59,15 @@ public final class u0 implements em0 {
                 Context context = (Context) obj;
                 org.telegram.ui.Cells.s sVar = (org.telegram.ui.Cells.s) view;
                 jb0 jb0Var = (jb0) tVar.V2.get(i10);
-                if (jb0Var.f38902e && !UserConfig.hasPremiumOnAccounts()) {
+                if (jb0Var.f38946e && !UserConfig.hasPremiumOnAccounts()) {
                     n2Var.showDialog(new rg.y0(n2Var, 10, true));
                     return;
                 } else if (!w7.e6.a(jb0Var)) {
                     s4.e0 e0Var = new s4.e0(context);
-                    e0Var.f47827a = i10;
+                    e0Var.f47871a = i10;
                     tVar.W2.w0(e0Var);
                     w7.e6.b(jb0Var);
-                    int i12 = org.telegram.ui.Cells.s.f22736f;
+                    int i12 = org.telegram.ui.Cells.s.f22740f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);

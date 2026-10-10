@@ -18,11 +18,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-public final class a80 implements GenericProvider, FlagSecureReason.FlagSecureCondition, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.qd0, Utilities.Callback2Return, org.telegram.ui.Components.vw0, g2.g, pg.i0 {
-    public final int f35872a;
+public final class a80 implements GenericProvider, FlagSecureReason.FlagSecureCondition, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.rd0, Utilities.Callback2Return, org.telegram.ui.Components.ww0, g2.g, pg.i0 {
+    public final int f35916a;
 
     public a80(int i10) {
-        this.f35872a = i10;
+        this.f35916a = i10;
     }
 
     public static AudioRecordingConfiguration b(Object obj) {
@@ -35,7 +35,7 @@ public final class a80 implements GenericProvider, FlagSecureReason.FlagSecureCo
 
     @Override
     public Typeface a() {
-        switch (this.f35872a) {
+        switch (this.f35916a) {
             case 27:
                 return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 28:
@@ -52,7 +52,7 @@ public final class a80 implements GenericProvider, FlagSecureReason.FlagSecureCo
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f35872a) {
+        switch (this.f35916a) {
             case 4:
                 b2Var.dismiss();
                 return;
@@ -125,12 +125,12 @@ public final class a80 implements GenericProvider, FlagSecureReason.FlagSecureCo
     @Override
     public Object provide(Object obj) {
         Void r82 = (Void) obj;
-        switch (this.f35872a) {
+        switch (this.f35916a) {
             case 0:
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20797d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20801d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);

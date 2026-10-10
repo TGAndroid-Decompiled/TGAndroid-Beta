@@ -2,19 +2,19 @@ package q7;
 
 import k6.c;
 public abstract class b {
-    public static final c f46001a;
-    public static final c f46002b;
-    public static final c[] f46003c;
+    public static final c f46045a;
+    public static final c f46046b;
+    public static final c[] f46047c;
 
     static {
         c cVar = new c("GET_CREDENTIAL", 1L);
-        f46001a = cVar;
+        f46045a = cVar;
         c cVar2 = new c("CREDENTIAL_REGISTRY", 1L);
         c cVar3 = new c("CLEAR_REGISTRY", 2L);
         c cVar4 = new c("CLEAR_CREATION_OPTIONS", 1L);
         c cVar5 = new c("CLEAR_CREDENTIAL_STATE", 1L);
         c cVar6 = new c("CREATE_CREDENTIAL", 3L);
-        f46002b = cVar6;
-        f46003c = new c[]{cVar, cVar2, cVar3, cVar4, cVar5, cVar6, new c("REGISTER_CREATION_OPTIONS", 1L), new c("REGISTER_EXPORT", 1L), new c("IMPORT_CREDENTIALS", 1L), new c("SIGNAL_CREDENTIAL_STATE", 1L), new c("CLEAR_EXPORT", 1L), new c("IMPORT_CREDENTIALS_FOR_DEVICE_SETUP", 3L), new c("EXPORT_CREDENTIALS_TO_DEVICE_SETUP", 3L), new c("GET_CREDENTIAL_TRANSFER_CAPABILITIES", 3L)};
+        f46046b = cVar6;
+        f46047c = new c[]{cVar, cVar2, cVar3, cVar4, cVar5, cVar6, new c("REGISTER_CREATION_OPTIONS", 1L), new c("REGISTER_EXPORT", 1L), new c("IMPORT_CREDENTIALS", 1L), new c("SIGNAL_CREDENTIAL_STATE", 1L), new c("CLEAR_EXPORT", 1L), new c("IMPORT_CREDENTIALS_FOR_DEVICE_SETUP", 3L), new c("EXPORT_CREDENTIALS_TO_DEVICE_SETUP", 3L), new c("GET_CREDENTIAL_TRANSFER_CAPABILITIES", 3L)};
     }
 }

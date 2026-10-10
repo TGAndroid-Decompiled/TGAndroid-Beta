@@ -18,16 +18,16 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.f90;
-import org.telegram.ui.Components.oo0;
-import org.telegram.ui.Components.sd0;
-import org.telegram.ui.Components.ud0;
+import org.telegram.ui.Components.g90;
+import org.telegram.ui.Components.po0;
+import org.telegram.ui.Components.td0;
+import org.telegram.ui.Components.vd0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.fg0;
 import org.telegram.ui.k71;
 import org.telegram.ui.rz0;
 import org.telegram.ui.ze;
-public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBar.a2, sd0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
+public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBar.a2, td0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
     public final Object f1087a;
     public final Object f1088b;
     public final Object f1089c;
@@ -44,14 +44,14 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void a(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ze((Object) ((fg0) this.f1087a), (Object) hVar, (Object) list, (String) this.f1088b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f1089c), (Object) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((oo0) this.f1090e), 4));
+        AndroidUtilities.runOnUIThread(new ze((Object) ((fg0) this.f1087a), (Object) hVar, (Object) list, (String) this.f1088b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f1089c), (Object) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((po0) this.f1090e), 4));
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         org.telegram.ui.ActionBar.n3 n3Var = (org.telegram.ui.ActionBar.n3) this.f1087a;
         ((boolean[]) this.f1088b)[0] = true;
-        n3Var.h(n3Var.f21428w, (org.telegram.ui.ActionBar.m3) this.f1089c, true);
+        n3Var.h(n3Var.f21432w, (org.telegram.ui.ActionBar.m3) this.f1089c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
         ((org.telegram.ui.ActionBar.b2[]) this.f1090e)[0].dismiss();
     }
@@ -77,7 +77,7 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f34497s0;
+        int i10 = ProfileStoriesView.f34535s0;
         ((rz0) iVar.f326b).a(canvas, i6Var, i6Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
@@ -93,7 +93,7 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
         kotlin.jvm.internal.i.e(e7, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.i.e(request, "request");
-        for (v0.p pVar : request.f49023a) {
+        for (v0.p pVar : request.f49067a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.f9554e).g(request, cancellationSignal, executor, iVar);
@@ -101,12 +101,12 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ze((yh.m5) this.f1087a, list, (f90) this.f1088b, (TLRPC.TL_inputStorePaymentStarsGift) this.f1089c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.f1090e, 15));
+        AndroidUtilities.runOnUIThread(new ze((yh.m5) this.f1087a, list, (g90) this.f1088b, (TLRPC.TL_inputStorePaymentStarsGift) this.f1089c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.f1090e, 15));
     }
 
     @Override
-    public void r(ud0 ud0Var, int i10) {
-        org.telegram.ui.Components.g5.b((ci.d) this.f1087a, (ud0) this.f1088b, (ud0) this.f1089c, (ud0) this.d, (ud0) this.f1090e);
+    public void r(vd0 vd0Var, int i10) {
+        org.telegram.ui.Components.g5.b((ci.d) this.f1087a, (vd0) this.f1088b, (vd0) this.f1089c, (vd0) this.d, (vd0) this.f1090e);
     }
 
     @Override

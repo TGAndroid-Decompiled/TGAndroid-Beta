@@ -8,33 +8,33 @@ import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.tc;
 import org.telegram.ui.zn;
 public final class q1 implements Runnable {
-    public final int f53057a;
-    public final s3 f53058b;
-    public final zn f53059c;
+    public final int f53101a;
+    public final s3 f53102b;
+    public final zn f53103c;
     public final long d;
 
     public q1(s3 s3Var, zn znVar, long j3, int i10) {
-        this.f53057a = i10;
-        this.f53058b = s3Var;
-        this.f53059c = znVar;
+        this.f53101a = i10;
+        this.f53102b = s3Var;
+        this.f53103c = znVar;
         this.d = j3;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f53057a;
+        int i10 = this.f53101a;
         long j3 = this.d;
-        zn znVar = this.f53059c;
-        s3 s3Var = this.f53058b;
+        zn znVar = this.f53103c;
+        s3 s3Var = this.f53102b;
         switch (i10) {
             case 0:
                 tc M = ad.a0(znVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, s3Var.D1(), DialogObject.getShortName(j3))), R.raw.forward);
-                M.f31140t = true;
+                M.f31106t = true;
                 M.j();
                 return;
             default:
                 tc M2 = ad.a0(znVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, s3Var.D1(), DialogObject.getShortName(j3))), R.raw.forward);
-                M2.f31140t = true;
+                M2.f31106t = true;
                 M2.j();
                 return;
         }

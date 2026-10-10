@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.nw0;
 import org.telegram.ui.ProfileActivity;
 public final class za implements Utilities.Callback2 {
     public final int f6430a;
@@ -30,7 +30,7 @@ public final class za implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         boolean z10;
         float f7;
-        mw0 mw0Var;
+        nw0 nw0Var;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         String str;
         switch (this.f6430a) {
@@ -53,18 +53,18 @@ public final class za implements Utilities.Callback2 {
                                 nbVar2.f5811l2 = true;
                                 j6 j6Var = nbVar2.R0;
                                 if ((tLObject instanceof TLRPC.Photo) && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000)) != null) {
-                                    f7 = closestPhotoSizeWithSize.f20063w / closestPhotoSizeWithSize.h;
+                                    f7 = closestPhotoSizeWithSize.f20067w / closestPhotoSizeWithSize.h;
                                 } else {
                                     f7 = 1.0f;
                                 }
                                 if (f7 > 1.0f) {
                                     float floor = (float) Math.floor(Math.max(nbVar2.R1, j6Var.getMeasuredWidth()) * 0.5d);
-                                    mw0Var = new mw0(floor, floor / f7);
+                                    nw0Var = new nw0(floor, floor / f7);
                                 } else {
                                     float floor2 = (float) Math.floor(Math.max(nbVar2.S1, j6Var.getMeasuredHeight()) * 0.5d);
-                                    mw0Var = new mw0(f7 * floor2, floor2);
+                                    nw0Var = new nw0(f7 * floor2, floor2);
                                 }
-                                qg.y1 y1Var = new qg.y1(nbVar2.getContext(), nbVar2.e0(), mw0Var, tLObject);
+                                qg.y1 y1Var = new qg.y1(nbVar2.getContext(), nbVar2.e0(), nw0Var, tLObject);
                                 y1Var.setDelegate(nbVar2);
                                 j6Var.addView(y1Var);
                                 nbVar2.f0();
@@ -161,7 +161,7 @@ public final class za implements Utilities.Callback2 {
                         if (intValue == 1) {
                             org.telegram.ui.Components.ad.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            org.telegram.ui.Components.ad.l(DialogObject.getShortName(profileActivity.f34243e1), profileActivity, z12).j();
+                            org.telegram.ui.Components.ad.l(DialogObject.getShortName(profileActivity.f34281e1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             org.telegram.ui.Components.ad.d0(tL_error);
                         }
@@ -178,11 +178,11 @@ public final class za implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.c0 c0Var = (org.telegram.ui.Wallet.c0) this.f6432c;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = c0Var.f34704b;
-                ArrayList arrayList2 = c0Var.f34705c;
-                c0Var.f34712l = -1;
-                c0Var.f34710j = false;
-                c0Var.f34709i = false;
+                ArrayList arrayList = c0Var.f34759b;
+                ArrayList arrayList2 = c0Var.f34760c;
+                c0Var.f34767l = -1;
+                c0Var.f34765j = false;
+                c0Var.f34764i = false;
                 boolean z13 = this.f6431b;
                 if (nftitems != null) {
                     if (z13) {
@@ -209,9 +209,9 @@ public final class za implements Utilities.Callback2 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    c0Var.f34707f = str2;
+                    c0Var.f34762f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    c0Var.f34708g = isEmpty;
+                    c0Var.f34763g = isEmpty;
                     c0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
@@ -237,7 +237,7 @@ public final class za implements Utilities.Callback2 {
                     c0Var.g();
                 } else {
                     if (z13) {
-                        c0Var.f34708g = false;
+                        c0Var.f34763g = false;
                         c0Var.h = false;
                     }
                     if (tL_error2 == null) {
@@ -245,7 +245,7 @@ public final class za implements Utilities.Callback2 {
                     } else {
                         str = tL_error2.text;
                     }
-                    c0Var.f34711k = str;
+                    c0Var.f34766k = str;
                 }
                 c0Var.f();
                 return;

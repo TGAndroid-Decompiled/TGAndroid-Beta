@@ -20,27 +20,27 @@ import org.telegram.ui.Components.er;
 import org.telegram.ui.ty;
 import org.telegram.ui.zn;
 public final class ra implements View.OnClickListener {
-    public final int f22732a = 0;
-    public final boolean f22733b;
-    public final int f22734c;
+    public final int f22736a = 0;
+    public final boolean f22737b;
+    public final int f22738c;
     public final org.telegram.ui.ActionBar.n2 d;
-    public final Serializable f22735e;
+    public final Serializable f22739e;
 
     public ra(zn znVar, TLRPC.User user, String str, boolean z10, int i10) {
         this.d = znVar;
-        this.f22735e = str;
-        this.f22733b = z10;
-        this.f22734c = i10;
+        this.f22739e = str;
+        this.f22737b = z10;
+        this.f22738c = i10;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
         int i11;
-        int i12 = this.f22732a;
-        int i13 = this.f22734c;
-        boolean z10 = this.f22733b;
-        Serializable serializable = this.f22735e;
+        int i12 = this.f22736a;
+        int i13 = this.f22738c;
+        boolean z10 = this.f22737b;
+        Serializable serializable = this.f22739e;
         org.telegram.ui.ActionBar.n2 n2Var = this.d;
         switch (i12) {
             case 0:
@@ -70,7 +70,7 @@ public final class ra implements View.OnClickListener {
             default:
                 zn znVar = (zn) n2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.g5.f26593a;
+                Pattern pattern = org.telegram.ui.Components.g5.f26609a;
                 if (znVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) znVar.getParentActivity(), (org.telegram.ui.ActionBar.e6) null, false);
                     f3Var.fixNavigationBar();
@@ -111,8 +111,8 @@ public final class ra implements View.OnClickListener {
 
     public ra(ty tyVar, boolean z10, int i10, ArrayList arrayList) {
         this.d = tyVar;
-        this.f22733b = z10;
-        this.f22734c = i10;
-        this.f22735e = arrayList;
+        this.f22737b = z10;
+        this.f22738c = i10;
+        this.f22739e = arrayList;
     }
 }

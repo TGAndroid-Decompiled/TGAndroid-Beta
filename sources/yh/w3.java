@@ -15,9 +15,9 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.p31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.zn;
 public final class w3 extends View {
@@ -28,36 +28,36 @@ public final class w3 extends View {
     public boolean I;
     public final ArrayList J;
     public final int[] K;
-    public final zn f53331a;
-    public org.telegram.ui.Cells.a0 f53332b;
-    public int f53333c;
+    public final zn f53375a;
+    public org.telegram.ui.Cells.a0 f53376b;
+    public int f53377c;
     public final int[] d;
-    public final int[] f53334e;
-    public final RectF f53335f;
+    public final int[] f53378e;
+    public final RectF f53379f;
     public final RectF h;
-    public final Paint f53336n;
-    public boolean f53337r;
-    public final org.telegram.ui.Components.g6 f53338s;
+    public final Paint f53380n;
+    public boolean f53381r;
+    public final org.telegram.ui.Components.g6 f53382s;
     public final org.telegram.ui.Components.q6 v;
-    public boolean f53339w;
-    public final u2.p0 f53340x;
-    public float f53341y;
+    public boolean f53383w;
+    public final u2.p0 f53384x;
+    public float f53385y;
 
     public w3(zn znVar) {
         super(znVar.getParentActivity());
         this.d = new int[2];
-        this.f53334e = new int[2];
-        this.f53335f = new RectF();
+        this.f53378e = new int[2];
+        this.f53379f = new RectF();
         this.h = new RectF();
-        this.f53336n = new Paint();
+        this.f53380n = new Paint();
         new Paint();
-        this.f53338s = new org.telegram.ui.Components.g6(this, 0L, 420L, hs.h);
+        this.f53382s = new org.telegram.ui.Components.g6(this, 0L, 420L, is.h);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(false, false, false);
         this.v = q6Var;
         new Matrix();
         this.J = new ArrayList();
         this.K = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
-        this.f53331a = znVar;
+        this.f53375a = znVar;
         q6Var.setCallback(this);
         q6Var.r(false, true);
         q6Var.w(AndroidUtilities.dp(40.0f));
@@ -65,13 +65,13 @@ public final class w3 extends View {
         q6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         q6Var.M = AndroidUtilities.displaySize.x;
         q6Var.u(-1);
-        q6Var.f30065b = 17;
+        q6Var.f30031b = 17;
         this.H = new v3(this, 0);
-        this.f53340x = new u2.p0(25, this, znVar);
+        this.f53384x = new u2.p0(25, this, znVar);
     }
 
     private MessageObject getMessageObject() {
-        org.telegram.ui.Cells.a0 a0Var = this.f53332b;
+        org.telegram.ui.Cells.a0 a0Var = this.f53376b;
         if (a0Var instanceof org.telegram.ui.Cells.u1) {
             return ((org.telegram.ui.Cells.u1) a0Var).getPrimaryMessageObject();
         }
@@ -85,10 +85,10 @@ public final class w3 extends View {
         String str;
         if (getMessageObject() != null) {
             MessageObject messageObject = getMessageObject();
-            zn znVar = this.f53331a;
+            zn znVar = this.f53375a;
             m5 y3 = m5.y(znVar.getCurrentAccount(), false);
             long E = y3.E(messageObject);
-            if (y3.f52883e && y3.q(false, false, null).amount < E) {
+            if (y3.f52927e && y3.q(false, false, null).amount < E) {
                 l5 l5Var = m5.y(znVar.getCurrentAccount(), false).B;
                 if (l5Var != null) {
                     l5Var.a();
@@ -104,7 +104,7 @@ public final class w3 extends View {
                         str = chat.title;
                     }
                 }
-                new e7(znVar.getParentActivity(), znVar.getResourceProvider(), E, 5, str, new o31(this, y3, messageObject, E, 12), 0L).show();
+                new e7(znVar.getParentActivity(), znVar.getResourceProvider(), E, 5, str, new p31(this, y3, messageObject, E, 12), 0L).show();
             }
         }
     }
@@ -115,11 +115,11 @@ public final class w3 extends View {
             this.E = null;
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f53341y, f7);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f53385y, f7);
         this.E = ofFloat;
         ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.r0(this, 24));
         this.E.addListener(new ai.u2(this, f7, v3Var, 4));
-        this.E.setInterpolator(hs.h);
+        this.E.setInterpolator(is.h);
         this.E.setDuration(320L);
         this.E.start();
     }
@@ -128,34 +128,34 @@ public final class w3 extends View {
         this.I = true;
         AndroidUtilities.cancelRunOnUIThread(this.H);
         this.v.t("", true, true);
-        this.f53337r = false;
+        this.f53381r = false;
         invalidate();
         b(0.0f, new v3(this, 2));
     }
 
     public final void d(float f7, float f10, boolean z10) {
         ArrayList arrayList;
-        if (this.f53332b != null && !this.I) {
+        if (this.f53376b != null && !this.I) {
             MessageObject messageObject = getMessageObject();
             zg.o0 reactionsLayoutInBubble = getReactionsLayoutInBubble();
             if (messageObject != null && reactionsLayoutInBubble != null) {
-                zn znVar = this.f53331a;
+                zn znVar = this.f53375a;
                 m5 y3 = m5.y(znVar.getCurrentAccount(), false);
                 while (true) {
                     arrayList = this.J;
                     if (arrayList.size() <= 4) {
                         break;
                     }
-                    ((ck0) arrayList.remove(0)).C(true);
+                    ((dk0) arrayList.remove(0)).C(true);
                 }
                 Random random = Utilities.fastRandom;
                 int[] iArr = this.K;
-                ck0 ck0Var = new ck0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
-                ck0Var.R(this);
-                ck0Var.J(true);
-                ck0Var.K(0);
-                ck0Var.start();
-                arrayList.add(ck0Var);
+                dk0 dk0Var = new dk0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+                dk0Var.R(this);
+                dk0Var.J(true);
+                dk0Var.K(0);
+                dk0Var.start();
+                arrayList.add(dk0Var);
                 invalidate();
                 zg.l0 l4 = reactionsLayoutInBubble.l("stars");
                 if (l4 != null) {
@@ -166,12 +166,12 @@ public final class w3 extends View {
                         performHapticFeedback(3, 1);
                     } catch (Exception unused) {
                     }
-                    m5.y(znVar.getCurrentAccount(), false).d0(messageObject, this.f53331a, 1L, true, false, null);
+                    m5.y(znVar.getCurrentAccount(), false).d0(messageObject, this.f53375a, 1L, true, false, null);
                 }
                 org.telegram.ui.Components.q6 q6Var = this.v;
                 q6Var.a();
                 q6Var.t("+" + y3.E(messageObject), true, true);
-                this.f53337r = true;
+                this.f53381r = true;
                 v3 v3Var = this.H;
                 AndroidUtilities.cancelRunOnUIThread(v3Var);
                 AndroidUtilities.runOnUIThread(v3Var, 1500L);
@@ -183,7 +183,7 @@ public final class w3 extends View {
                 }
                 this.G = Utilities.clamp(1.0f - (((float) (j3 - 100)) / 200.0f), 1.0f, 0.0f) * this.G;
                 int measuredWidth = getMeasuredWidth();
-                int[] iArr2 = this.f53334e;
+                int[] iArr2 = this.f53378e;
                 if (measuredWidth == 0 && znVar.getLayoutContainer() != null) {
                     znVar.getLayoutContainer().getLocationInWindow(iArr2);
                 } else {
@@ -202,7 +202,7 @@ public final class w3 extends View {
     }
 
     public zg.o0 getReactionsLayoutInBubble() {
-        org.telegram.ui.Cells.a0 a0Var = this.f53332b;
+        org.telegram.ui.Cells.a0 a0Var = this.f53376b;
         if (a0Var instanceof org.telegram.ui.Cells.u1) {
             return ((org.telegram.ui.Cells.u1) a0Var).N;
         }
@@ -215,14 +215,14 @@ public final class w3 extends View {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         zg.o0 reactionsLayoutInBubble;
-        if (this.f53332b == null || this.I || (reactionsLayoutInBubble = getReactionsLayoutInBubble()) == null) {
+        if (this.f53376b == null || this.I || (reactionsLayoutInBubble = getReactionsLayoutInBubble()) == null) {
             return false;
         }
         int action = motionEvent.getAction();
-        u2.p0 p0Var = this.f53340x;
+        u2.p0 p0Var = this.f53384x;
         if (action == 0) {
             if (this.h.contains(motionEvent.getX(), motionEvent.getY())) {
-                this.f53339w = true;
+                this.f53383w = true;
                 zg.l0 l4 = reactionsLayoutInBubble.l("stars");
                 if (l4 != null) {
                     l4.Y.c(true);
@@ -238,41 +238,41 @@ public final class w3 extends View {
             if (l10 != null) {
                 l10.Y.c(false);
             }
-            this.f53339w = false;
+            this.f53383w = false;
             AndroidUtilities.cancelRunOnUIThread(p0Var);
         }
-        return this.f53339w;
+        return this.f53383w;
     }
 
     public void setMessageCell(org.telegram.ui.Cells.a0 a0Var) {
         int id2;
-        org.telegram.ui.Cells.a0 a0Var2 = this.f53332b;
+        org.telegram.ui.Cells.a0 a0Var2 = this.f53376b;
         if (a0Var2 == a0Var) {
             return;
         }
         if (a0Var2 instanceof org.telegram.ui.Cells.u1) {
             ((org.telegram.ui.Cells.u1) a0Var2).setScrimReaction(null);
-            ((org.telegram.ui.Cells.u1) this.f53332b).setInvalidateListener(null);
-            this.f53332b.invalidate();
+            ((org.telegram.ui.Cells.u1) this.f53376b).setInvalidateListener(null);
+            this.f53376b.invalidate();
         } else if (a0Var2 instanceof org.telegram.ui.Cells.w0) {
             ((org.telegram.ui.Cells.w0) a0Var2).setScrimReaction(null);
-            ((org.telegram.ui.Cells.w0) this.f53332b).setInvalidateListener(null);
-            this.f53332b.invalidate();
+            ((org.telegram.ui.Cells.w0) this.f53376b).setInvalidateListener(null);
+            this.f53376b.invalidate();
         }
-        this.f53332b = a0Var;
+        this.f53376b = a0Var;
         if (getMessageObject() == null) {
             id2 = 0;
         } else {
             id2 = getMessageObject().getId();
         }
-        this.f53333c = id2;
-        org.telegram.ui.Cells.a0 a0Var3 = this.f53332b;
+        this.f53377c = id2;
+        org.telegram.ui.Cells.a0 a0Var3 = this.f53376b;
         if (a0Var3 instanceof org.telegram.ui.Cells.u1) {
             a0Var3.invalidate();
-            ((org.telegram.ui.Cells.u1) this.f53332b).setInvalidateListener(new v3(this, 1));
+            ((org.telegram.ui.Cells.u1) this.f53376b).setInvalidateListener(new v3(this, 1));
         } else if (a0Var3 instanceof org.telegram.ui.Cells.w0) {
             a0Var3.invalidate();
-            ((org.telegram.ui.Cells.w0) this.f53332b).setInvalidateListener(new v3(this, 1));
+            ((org.telegram.ui.Cells.w0) this.f53376b).setInvalidateListener(new v3(this, 1));
         }
         invalidate();
     }

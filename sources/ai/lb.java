@@ -15,7 +15,7 @@ import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.dv;
+import org.telegram.ui.Components.ev;
 public class lb extends View {
     public boolean E;
     public long F;
@@ -107,7 +107,7 @@ public class lb extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                bdVar.f24975f = new dv(1, view);
+                bdVar.f24926f = new ev(1, view);
             }
             bdVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());

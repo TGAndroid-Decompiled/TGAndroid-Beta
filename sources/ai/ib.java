@@ -6,7 +6,7 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class ib {
     public final c6 f1162a;
     public final org.telegram.ui.Components.g6 f1163b;
@@ -21,7 +21,7 @@ public final class ib {
     public ib(f6 f6Var, c6 c6Var) {
         float f7;
         this.f1162a = c6Var;
-        this.f1163b = new org.telegram.ui.Components.g6(f6Var, 0L, 360L, hs.h);
+        this.f1163b = new org.telegram.ui.Components.g6(f6Var, 0L, 360L, is.h);
         TextPaint textPaint = new TextPaint(1);
         this.f1164c = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));

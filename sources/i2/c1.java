@@ -32,8 +32,8 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.a00;
 import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.b00;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.bu;
 import org.telegram.ui.fp;
@@ -103,7 +103,7 @@ public final class c1 implements Runnable {
                 if (tL_error != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                            ConnectionsManager.getInstance(keVar.f39257y0).sendRequest(new TL_account.getPassword(), new u1(keVar, twoStepVerificationActivity, z10, 2), 8);
+                            ConnectionsManager.getInstance(keVar.f39301y0).sendRequest(new TL_account.getPassword(), new u1(keVar, twoStepVerificationActivity, z10, 2), 8);
                             return;
                         }
                         if (twoStepVerificationActivity != null) {
@@ -117,13 +117,13 @@ public final class c1 implements Runnable {
                         twoStepVerificationActivity.o0();
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-                    alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
+                    alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
                     LinearLayout linearLayout = new LinearLayout(activity);
                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                     linearLayout.setOrientation(1);
                     alertDialog$Builder.n(linearLayout);
                     TextView textView = new TextView(activity);
-                    int i17 = i6.f20905j5;
+                    int i17 = i6.f20909j5;
                     textView.setTextColor(i6.x0(null, i17, false));
                     textView.setTextSize(1, 16.0f);
                     if (LocaleController.isRTL) {
@@ -225,10 +225,10 @@ public final class c1 implements Runnable {
                         alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
                     }
                     if (twoStepVerificationActivity != null) {
-                        twoStepVerificationActivity.showDialog(alertDialog$Builder.f20374a);
+                        twoStepVerificationActivity.showDialog(alertDialog$Builder.f20378a);
                         return;
                     } else {
-                        keVar.f39254w0.showDialog(alertDialog$Builder.f20374a);
+                        keVar.f39298w0.showDialog(alertDialog$Builder.f20378a);
                         return;
                     }
                 }
@@ -261,7 +261,7 @@ public final class c1 implements Runnable {
                         return;
                     }
                     try {
-                        AndroidUtilities.openForView(messageObject, znVar.getParentActivity(), znVar.f44763ea, false);
+                        AndroidUtilities.openForView(messageObject, znVar.getParentActivity(), znVar.f44807ea, false);
                         return;
                     } catch (Exception e10) {
                         FileLog.e(e10);
@@ -274,7 +274,7 @@ public final class c1 implements Runnable {
                 fp fpVar = (fp) this.f11623c;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f11625f;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.h;
-                hp hpVar = fpVar.f37655a;
+                hp hpVar = fpVar.f37699a;
                 ip ipVar = hpVar.Y2;
                 ipVar.P.remove(((TLRPC.TL_channels_toggleUsername) this.d).username);
                 boolean z11 = ((TLObject) this.f11624e) instanceof TLRPC.TL_boolTrue;
@@ -290,7 +290,7 @@ public final class c1 implements Runnable {
                 ipVar.getMessagesController().updateUsernameActiveness(ipVar.X, tL_username.username, tL_username.active);
                 return;
             case 10:
-                ((a00) this.f11623c).J((nh.b) this.d, (TLObject) this.f11624e, (TLRPC.StickerSet) this.f11625f, (TLRPC.Document) this.h, this.f11622b, true);
+                ((b00) this.f11623c).J((nh.b) this.d, (TLObject) this.f11624e, (TLRPC.StickerSet) this.f11625f, (TLRPC.Document) this.h, this.f11622b, true);
                 return;
             default:
                 bu.R((bu) this.f11623c, (TLObject) this.d, (ci.d) this.f11624e, this.f11622b, (HashSet) this.f11625f, (TLRPC.TL_error) this.h);

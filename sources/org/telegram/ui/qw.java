@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class qw extends org.telegram.ui.Components.a10 {
+public final class qw extends org.telegram.ui.Components.b10 {
     public final ty B0;
 
     public qw(ty tyVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
@@ -13,7 +13,7 @@ public final class qw extends org.telegram.ui.Components.a10 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         getParent().requestDisallowInterceptTouchEvent(true);
-        this.B0.f42214m3 = false;
+        this.B0.f42258m3 = false;
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

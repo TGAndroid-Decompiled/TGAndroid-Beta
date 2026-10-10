@@ -13,7 +13,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class e8 extends FrameLayout {
     public final int f5038a;
     public final org.telegram.ui.Components.j9 f5039b;
@@ -60,7 +60,7 @@ public final class e8 extends FrameLayout {
             if (z10) {
                 f7 = 1.0f;
             }
-            ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(hs.h).withEndAction(new bi.f(4, this, z10)).setDuration(320L);
+            ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(is.h).withEndAction(new bi.f(4, this, z10)).setDuration(320L);
             this.f5041e = duration;
             duration.start();
             return;

@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.qo;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.LaunchActivity;
 public final class m6 extends ai.da {
     public final int S = 0;
@@ -24,7 +24,7 @@ public final class m6 extends ai.da {
                 org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(xaVar.getContext(), j3, ai.v9.a((qm0) xaVar.getParent()));
+                    R.getOrCreateStoryViewer().D(xaVar.getContext(), j3, ai.v9.a((rm0) xaVar.getParent()));
                     return;
                 }
                 return;

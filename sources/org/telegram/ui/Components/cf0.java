@@ -1,64 +1,212 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import org.telegram.messenger.Utilities;
-public final class cf0 implements Utilities.Callback {
-    public final int f25361a;
-    public final String[] f25362b;
-    public final Activity f25363c;
-    public final Utilities.Callback d;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.text.TextUtils;
+import android.util.Pair;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.web.BotWebViewContainer$WebViewProxy;
+public final class cf0 implements Runnable {
+    public final int f25286a;
+    public final Object f25287b;
+    public final Object f25288c;
+    public final Object d;
 
-    public cf0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
-        this.f25361a = i10;
-        this.f25362b = strArr;
-        this.f25363c = activity;
-        this.d = callback;
+    public cf0(Object obj, Object obj2, Object obj3, int i10) {
+        this.f25286a = i10;
+        this.f25287b = obj;
+        this.f25288c = obj2;
+        this.d = obj3;
+    }
+
+    private final void a() {
+        boolean z10;
+        String str = (String) this.f25288c;
+        String str2 = (String) this.d;
+        org.telegram.ui.web.b1 b1Var = ((BotWebViewContainer$WebViewProxy) this.f25287b).f43258a;
+        if (b1Var != null && !b1Var.f43300o0 && b1Var.f43285c != null) {
+            if (b1Var.F0 != null && !TextUtils.equals(b1Var.getOriginHost(), b1Var.F0)) {
+                b1Var.g("onWebEventReceived ignore " + str);
+                return;
+            }
+            b1Var.g("onWebEventReceived " + str + " " + str2);
+            str.getClass();
+            boolean z11 = true;
+            char c10 = 65535;
+            switch (str.hashCode()) {
+                case -1695046810:
+                    if (str.equals("actionBarColor")) {
+                        c10 = 0;
+                        break;
+                    }
+                    break;
+                case -462720700:
+                    if (str.equals("navigationBarColor")) {
+                        c10 = 1;
+                        break;
+                    }
+                    break;
+                case 479731943:
+                    if (str.equals("oauth_request")) {
+                        c10 = 2;
+                        break;
+                    }
+                    break;
+                case 675009138:
+                    if (str.equals("siteName")) {
+                        c10 = 3;
+                        break;
+                    }
+                    break;
+                case 997530486:
+                    if (str.equals("allowScroll")) {
+                        c10 = 4;
+                        break;
+                    }
+                    break;
+            }
+            switch (c10) {
+                case 0:
+                case 1:
+                    try {
+                        JSONArray jSONArray = new JSONArray(str2);
+                        boolean equals = TextUtils.equals(str, "actionBarColor");
+                        int argb = Color.argb((int) Math.round(jSONArray.optDouble(3, 1.0d) * 255.0d), (int) Math.round(jSONArray.optDouble(0)), (int) Math.round(jSONArray.optDouble(1)), (int) Math.round(jSONArray.optDouble(2)));
+                        org.telegram.ui.web.y0 y0Var = b1Var.f43281a;
+                        if (y0Var != null) {
+                            if (equals) {
+                                y0Var.f43590s = true;
+                                y0Var.f43591w = argb;
+                            } else {
+                                y0Var.v = true;
+                                y0Var.f43592x = argb;
+                            }
+                            org.telegram.ui.web.y0.a(y0Var);
+                        }
+                        b1Var.f43285c.o(argb, equals);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                case 2:
+                    b1Var.g("oauth_request " + str2);
+                    if (b1Var.f43281a != null) {
+                        String originHost = b1Var.getOriginHost();
+                        if (!TextUtils.isEmpty(originHost)) {
+                            try {
+                                String optString = new JSONObject(str2).optString("url");
+                                b1Var.y("oauth_supported", org.telegram.ui.web.b1.A(1, "version"));
+                                if (!TextUtils.isEmpty(optString)) {
+                                    TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
+                                    tL_messages_requestUrlAuth.url = optString;
+                                    int i10 = tL_messages_requestUrlAuth.flags;
+                                    tL_messages_requestUrlAuth.in_app_origin = originHost;
+                                    tL_messages_requestUrlAuth.flags = i10 | 12;
+                                    ConnectionsManager.getInstance(b1Var.M).sendRequest(tL_messages_requestUrlAuth, new ai.q3(b1Var, tL_messages_requestUrlAuth, optString, originHost, 14), 2);
+                                    return;
+                                }
+                                return;
+                            } catch (Exception e7) {
+                                FileLog.e(e7);
+                                return;
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                case 3:
+                    b1Var.g("siteName " + str2);
+                    org.telegram.ui.web.y0 y0Var2 = b1Var.f43281a;
+                    if (y0Var2 != null) {
+                        y0Var2.f43589r = str2;
+                        org.telegram.ui.web.y0.a(y0Var2);
+                        return;
+                    }
+                    return;
+                case 4:
+                    try {
+                        JSONArray jSONArray2 = new JSONArray(str2);
+                        z10 = jSONArray2.optBoolean(0, true);
+                        try {
+                            z11 = jSONArray2.optBoolean(1, true);
+                        } catch (Exception unused2) {
+                        }
+                    } catch (Exception unused3) {
+                        z10 = true;
+                    }
+                    if (b1Var.getParent() instanceof ei.o4) {
+                        ei.o4 o4Var = (ei.o4) b1Var.getParent();
+                        o4Var.O = z10;
+                        o4Var.P = z11;
+                        return;
+                    }
+                    return;
+                default:
+                    return;
+            }
+        }
+    }
+
+    private final void b() {
+        boolean z10;
+        Object obj;
+        org.telegram.ui.web.i2 i2Var = (org.telegram.ui.web.i2) this.f25287b;
+        org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f25288c;
+        Bitmap bitmap = (Bitmap) this.d;
+        i2Var.getClass();
+        if (org.telegram.ui.web.i2.f43397f != null) {
+            int i10 = 0;
+            if ((h2Var.d <= 0 || h2Var.f43383e <= 0) && bitmap != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (bitmap != null) {
+                i2Var.d.put(h2Var.f43381b, bitmap);
+                if (z10) {
+                    int i11 = h2Var.d;
+                    if (i11 == 0 && h2Var.f43383e == 0) {
+                        h2Var.d = bitmap.getWidth();
+                        h2Var.f43383e = bitmap.getHeight();
+                    } else if (i11 == 0) {
+                        h2Var.d = (int) ((bitmap.getWidth() / bitmap.getHeight()) * h2Var.f43383e);
+                    } else if (h2Var.f43383e == 0) {
+                        h2Var.f43383e = (int) ((bitmap.getHeight() / bitmap.getWidth()) * h2Var.d);
+                    }
+                }
+            }
+            ArrayList arrayList = (ArrayList) org.telegram.ui.web.i2.f43397f.remove(h2Var.f43381b);
+            if (arrayList != null) {
+                int size = arrayList.size();
+                while (i10 < size) {
+                    Object obj2 = arrayList.get(i10);
+                    i10++;
+                    Pair pair = (Pair) obj2;
+                    ((ImageReceiver) pair.first).setImageBitmap(bitmap);
+                    if (z10 && (obj = pair.second) != null) {
+                        ((Runnable) obj).run();
+                    }
+                }
+            }
+        }
     }
 
     @Override
-    public final void run(Object obj) {
-        int[] iArr = (int[]) obj;
-        switch (this.f25361a) {
-            case 0:
-                String[] strArr = this.f25362b;
-                int length = strArr.length;
-                boolean z10 = false;
-                int i10 = 0;
-                while (true) {
-                    if (i10 < length) {
-                        if (this.f25363c.checkSelfPermission(strArr[i10]) == 0) {
-                            z10 = true;
-                        } else {
-                            i10++;
-                        }
-                    }
-                }
-                Utilities.Callback callback = this.d;
-                if (callback != null) {
-                    callback.run(Boolean.valueOf(z10));
-                    return;
-                }
-                return;
-            default:
-                String[] strArr2 = this.f25362b;
-                int length2 = strArr2.length;
-                boolean z11 = false;
-                int i11 = 0;
-                while (true) {
-                    if (i11 < length2) {
-                        if (this.f25363c.checkSelfPermission(strArr2[i11]) == 0) {
-                            i11++;
-                        }
-                    } else {
-                        z11 = true;
-                    }
-                }
-                Utilities.Callback callback2 = this.d;
-                if (callback2 != null) {
-                    callback2.run(Boolean.valueOf(z11));
-                    return;
-                }
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cf0.run():void");
+    }
+
+    public cf0(df0 df0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
+        this.f25286a = 0;
+        this.f25287b = df0Var;
+        this.f25288c = tL_error;
+        this.d = tLObject;
     }
 }

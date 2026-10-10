@@ -14,28 +14,28 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.zn;
 public final class h7 implements Runnable {
-    public final int f18025a;
-    public final Object f18026b;
-    public final long f18027c;
+    public final int f18029a;
+    public final Object f18030b;
+    public final long f18031c;
     public final int d;
-    public final Object f18028e;
+    public final Object f18032e;
 
     public h7(Object obj, long j3, int i10, Object obj2, int i11) {
-        this.f18025a = i11;
-        this.f18026b = obj;
-        this.f18027c = j3;
+        this.f18029a = i11;
+        this.f18030b = obj;
+        this.f18031c = j3;
         this.d = i10;
-        this.f18028e = obj2;
+        this.f18032e = obj2;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f18025a;
+        int i10 = this.f18029a;
         boolean z10 = true;
-        long j3 = this.f18027c;
+        long j3 = this.f18031c;
         int i11 = this.d;
-        Object obj = this.f18028e;
-        Object obj2 = this.f18026b;
+        Object obj = this.f18032e;
+        Object obj2 = this.f18030b;
         switch (i10) {
             case 0:
                 ((MediaDataController) obj2).lambda$putMenuBotsToCache$6((TLRPC.TL_attachMenuBots) obj, j3, i11);
@@ -106,22 +106,22 @@ public final class h7 implements Runnable {
                 return;
             case 15:
                 sc.u uVar = (sc.u) obj;
-                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f35682c;
+                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f35737c;
                 if (!z0Var.c(uVar, i11)) {
                     z0Var.d("closing stale connected websocket; attempt=" + i11);
                     uVar.c();
                     return;
                 }
                 z0Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j3) + " ms");
-                org.telegram.ui.Wallet.w0 w0Var = z0Var.f35718o;
+                org.telegram.ui.Wallet.w0 w0Var = z0Var.f35783o;
                 try {
-                    JSONArray put = new JSONArray().put(z0Var.f35707b);
+                    JSONArray put = new JSONArray().put(z0Var.f35772b);
                     StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i12 = z0Var.f35711g + 1;
-                    z0Var.f35711g = i12;
+                    int i12 = z0Var.f35776g + 1;
+                    z0Var.f35776g = i12;
                     sb2.append(i12);
-                    z0Var.f35710f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f35710f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    z0Var.f35775f = sb2.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f35775f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
                     AndroidUtilities.cancelRunOnUIThread(w0Var);
                     AndroidUtilities.runOnUIThread(w0Var, 30000L);
                     z0Var.g(put2.toString());
@@ -131,18 +131,18 @@ public final class h7 implements Runnable {
                     return;
                 }
             case 16:
-                org.telegram.ui.Wallet.d2 d2Var = (org.telegram.ui.Wallet.d2) obj2;
+                org.telegram.ui.Wallet.e2 e2Var = (org.telegram.ui.Wallet.e2) obj2;
                 jh jhVar = (jh) obj;
-                d2Var.getClass();
+                e2Var.getClass();
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
-                long j10 = this.f18027c;
+                long j10 = this.f18031c;
                 tonconnectgetpending.session_id = Long.valueOf(j10);
-                d2Var.f34771f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.q1(d2Var, jhVar, j10, this.d, 0));
+                e2Var.f34862f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.r1(e2Var, jhVar, j10, this.d, 0));
                 return;
             case 17:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj2, 0, (org.telegram.ui.ActionBar.e6) obj);
                 String string = LocaleController.getString(R.string.WalletNetworkFee);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
                 b2Var.R = string;
                 b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.WalletNetworkFeeInfo, org.telegram.ui.Wallet.k0.v(i11).l(j3, true)));
                 q.p(R.string.WalletOK, alertDialog$Builder, null);
@@ -164,34 +164,34 @@ public final class h7 implements Runnable {
     }
 
     public h7(Object obj, long j3, Object obj2, int i10, int i11) {
-        this.f18025a = i11;
-        this.f18026b = obj;
-        this.f18027c = j3;
-        this.f18028e = obj2;
+        this.f18029a = i11;
+        this.f18030b = obj;
+        this.f18031c = j3;
+        this.f18032e = obj2;
         this.d = i10;
     }
 
     public h7(Object obj, Object obj2, int i10, long j3, int i11) {
-        this.f18025a = i11;
-        this.f18026b = obj;
-        this.f18028e = obj2;
+        this.f18029a = i11;
+        this.f18030b = obj;
+        this.f18032e = obj2;
         this.d = i10;
-        this.f18027c = j3;
+        this.f18031c = j3;
     }
 
     public h7(Object obj, Object obj2, long j3, int i10, int i11) {
-        this.f18025a = i11;
-        this.f18026b = obj;
-        this.f18028e = obj2;
-        this.f18027c = j3;
+        this.f18029a = i11;
+        this.f18030b = obj;
+        this.f18032e = obj2;
+        this.f18031c = j3;
         this.d = i10;
     }
 
     public h7(MessagesStorage messagesStorage, int i10, long j3, TLObject tLObject, int i11) {
-        this.f18025a = i11;
-        this.f18026b = messagesStorage;
+        this.f18029a = i11;
+        this.f18030b = messagesStorage;
         this.d = i10;
-        this.f18027c = j3;
-        this.f18028e = tLObject;
+        this.f18031c = j3;
+        this.f18032e = tLObject;
     }
 }

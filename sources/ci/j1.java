@@ -17,7 +17,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class j1 extends FrameLayout {
     public final Paint f5221a;
     public final Paint f5222b;
@@ -36,7 +36,7 @@ public final class j1 extends FrameLayout {
         this.f5221a = new Paint(1);
         this.f5222b = new Paint(3);
         this.f5223c = new Paint(1);
-        this.h = new org.telegram.ui.Components.g6(this, 0L, 250L, hs.h);
+        this.h = new org.telegram.ui.Components.g6(this, 0L, 250L, is.h);
         this.f5226n = new RectF();
     }
 
@@ -48,7 +48,7 @@ public final class j1 extends FrameLayout {
         int i10;
         int i11;
         boolean z10;
-        int i12 = org.telegram.ui.ActionBar.i6.f20868h5;
+        int i12 = org.telegram.ui.ActionBar.i6.f20872h5;
         r2 r2Var = this.f5228s;
         h1 h1Var = r2Var.f5885f;
         e6Var = ((org.telegram.ui.ActionBar.f3) r2Var).resourcesProvider;

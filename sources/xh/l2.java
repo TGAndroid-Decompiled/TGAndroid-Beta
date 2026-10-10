@@ -5,29 +5,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.rs0;
+import org.telegram.ui.Components.ss0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import yh.e5;
 public final class l2 extends s4.w {
-    public final rs0 d;
-    public final o2 f51343e;
+    public final ss0 d;
+    public final o2 f51387e;
 
-    public l2(o2 o2Var, rs0 rs0Var) {
-        this.f51343e = o2Var;
-        this.d = rs0Var;
+    public l2(o2 o2Var, ss0 ss0Var) {
+        this.f51387e = o2Var;
+        this.d = ss0Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        d1Var.f47658a.setPressed(false);
+        d1Var.f47702a.setPressed(false);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
         TL_stars.SavedStarGift savedStarGift;
-        View view = d1Var.f47658a;
+        View view = d1Var.f47702a;
         if (view instanceof j1) {
             savedStarGift = ((j1) view).getSavedGift();
         } else {
@@ -41,22 +41,22 @@ public final class l2 extends s4.w {
 
     @Override
     public final boolean j() {
-        return this.f51343e.f51440n;
+        return this.f51387e.f51484n;
     }
 
     @Override
     public final boolean k() {
-        return this.f51343e.f51440n;
+        return this.f51387e.f51484n;
     }
 
     @Override
     public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
         TL_stars.SavedStarGift savedStarGift;
         yh.e0 e0Var;
-        o2 o2Var = this.f51343e;
-        j2 j2Var = o2Var.f51439f;
-        if (o2Var.f51438e != null && o2Var.f51440n) {
-            View view = d1Var.f47658a;
+        o2 o2Var = this.f51387e;
+        j2 j2Var = o2Var.f51483f;
+        if (o2Var.f51482e != null && o2Var.f51484n) {
+            View view = d1Var.f47702a;
             TL_stars.SavedStarGift savedStarGift2 = null;
             if (view instanceof j1) {
                 savedStarGift = ((j1) view).getSavedGift();
@@ -64,7 +64,7 @@ public final class l2 extends s4.w {
                 savedStarGift = null;
             }
             if (r(savedStarGift)) {
-                View view2 = d1Var2.f47658a;
+                View view2 = d1Var2.f47702a;
                 if (view2 instanceof j1) {
                     savedStarGift2 = ((j1) view2).getSavedGift();
                 }
@@ -72,14 +72,14 @@ public final class l2 extends s4.w {
                     int b10 = d1Var.b();
                     int b11 = d1Var2.b();
                     boolean z10 = o2Var.d;
-                    rs0 rs0Var = this.d;
+                    ss0 ss0Var = this.d;
                     if (z10) {
-                        o2Var.f51438e.k(b10, b11);
-                        rs0Var.f51514e.n(o2Var.f51438e.d);
+                        o2Var.f51482e.k(b10, b11);
+                        ss0Var.f51558e.n(o2Var.f51482e.d);
                     } else {
-                        e5 e5Var = o2Var.f51438e;
-                        if (e5Var.f52447q == null) {
-                            e5Var.f52447q = e5Var.h();
+                        e5 e5Var = o2Var.f51482e;
+                        if (e5Var.f52491q == null) {
+                            e5Var.f52491q = e5Var.h();
                         }
                         e5Var.k(b10, b11);
                     }
@@ -87,10 +87,10 @@ public final class l2 extends s4.w {
                     j2Var.W2.S();
                     if (o2Var.d) {
                         HashMap hashMap = s2.T;
-                        rs0Var.f(true);
+                        ss0Var.f(true);
                     }
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                    if ((U instanceof ProfileActivity) && (e0Var = ((ProfileActivity) U).f34359v0) != null) {
+                    if ((U instanceof ProfileActivity) && (e0Var = ((ProfileActivity) U).f34397v0) != null) {
                         e0Var.a();
                     }
                     return true;
@@ -104,11 +104,11 @@ public final class l2 extends s4.w {
 
     @Override
     public final void p(s4.d1 d1Var, int i10) {
-        o2 o2Var = this.f51343e;
+        o2 o2Var = this.f51387e;
         if (i10 == 0) {
-            e5 e5Var = o2Var.f51438e;
+            e5 e5Var = o2Var.f51482e;
             if (e5Var != null) {
-                ArrayList arrayList = e5Var.f52447q;
+                ArrayList arrayList = e5Var.f52491q;
                 if (arrayList != null) {
                     ArrayList h = e5Var.h();
                     if (arrayList.size() == h.size()) {
@@ -118,27 +118,27 @@ public final class l2 extends s4.w {
                         }
                     }
                     e5Var.l();
-                    e5Var.f52447q = null;
+                    e5Var.f52491q = null;
                     return;
                 }
-                e5Var.f52447q = null;
+                e5Var.f52491q = null;
                 return;
             }
             return;
         }
-        j2 j2Var = o2Var.f51439f;
+        j2 j2Var = o2Var.f51483f;
         if (j2Var != null) {
             j2Var.I0(false);
         }
         if (d1Var != null) {
-            d1Var.f47658a.setPressed(true);
+            d1Var.f47702a.setPressed(true);
         }
     }
 
     public final boolean r(TL_stars.SavedStarGift savedStarGift) {
-        o2 o2Var = this.f51343e;
-        if (o2Var.f51440n) {
-            if (o2Var.f51438e == this.d.d) {
+        o2 o2Var = this.f51387e;
+        if (o2Var.f51484n) {
+            if (o2Var.f51482e == this.d.d) {
                 if (savedStarGift == null || !savedStarGift.pinned_to_top) {
                     return false;
                 }

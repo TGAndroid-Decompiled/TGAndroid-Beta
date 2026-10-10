@@ -5,7 +5,7 @@ import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
 public abstract class b implements wd.b, Serializable {
-    public static final Object NO_RECEIVER = a.f15170a;
+    public static final Object NO_RECEIVER = a.f15174a;
     private final boolean isTopLevel;
     private final String name;
     private final Class owner;
@@ -62,7 +62,7 @@ public abstract class b implements wd.b, Serializable {
             return null;
         }
         if (this.isTopLevel) {
-            q.f15181a.getClass();
+            q.f15185a.getClass();
             return new k(cls);
         }
         return q.a(cls);

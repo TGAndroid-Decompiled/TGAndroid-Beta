@@ -33,10 +33,10 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.jl0;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.kl0;
 import org.telegram.ui.nj1;
-public final class u5 implements jl0, z3.d, me.d, n5.b, q9.b {
+public final class u5 implements kl0, z3.d, me.d, n5.b, q9.b {
     public Object f6065a;
     public Object f6066b;
     public Object f6067c;
@@ -887,8 +887,8 @@ public final class u5 implements jl0, z3.d, me.d, n5.b, q9.b {
         byte[] bArr2 = (byte[]) this.f6065a;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = nj1.f40228b;
-        BigInteger bigInteger3 = nj1.f40227a;
+        BigInteger bigInteger2 = nj1.f40272b;
+        BigInteger bigInteger3 = nj1.f40271a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -997,7 +997,7 @@ public final class u5 implements jl0, z3.d, me.d, n5.b, q9.b {
 
     @Override
     public void n(int i10, float f7, float f10, me.e eVar) {
-        ((TextView) this.f6066b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((me.b) this.d).f16337e));
+        ((TextView) this.f6066b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((me.b) this.d).f16341e));
         ((jh.c) this.f6068e).b(this);
     }
 
@@ -1127,7 +1127,7 @@ public final class u5 implements jl0, z3.d, me.d, n5.b, q9.b {
         }
         if (z10) {
             if (((org.telegram.ui.Components.qa) this.f6065a) == null) {
-                this.f6065a = new org.telegram.ui.Components.qa(q6Var.f5798e2, q6Var.Z1.getReactionsWindow().f54451c, 0, false);
+                this.f6065a = new org.telegram.ui.Components.qa(q6Var.f5798e2, q6Var.Z1.getReactionsWindow().f54495c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;
@@ -1237,9 +1237,9 @@ public final class u5 implements jl0, z3.d, me.d, n5.b, q9.b {
 
     public u5(jh.c cVar) {
         this.f6068e = cVar;
-        hs hsVar = hs.h;
-        this.f6067c = new me.b(0, this, hsVar, 320L, true);
-        this.d = new me.b(1, this, hsVar, 320L, true);
+        is isVar = is.h;
+        this.f6067c = new me.b(0, this, isVar, 320L, true);
+        this.d = new me.b(1, this, isVar, 320L, true);
     }
 
     public u5(org.telegram.ui.ActionBar.n3 n3Var) {

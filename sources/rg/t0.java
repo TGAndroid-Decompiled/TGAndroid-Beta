@@ -11,20 +11,20 @@ import yh.f2;
 import yh.p7;
 import yh.s3;
 public final class t0 extends FrameLayout {
-    public final int f47441a;
-    public final Object f47442b;
+    public final int f47485a;
+    public final Object f47486b;
 
     public t0(Object obj, Context context, int i10) {
         super(context);
-        this.f47441a = i10;
-        this.f47442b = obj;
+        this.f47485a = i10;
+        this.f47486b = obj;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f47441a) {
+        switch (this.f47485a) {
             case 4:
-                if (((p7) this.f47442b).f53051f0) {
+                if (((p7) this.f47486b).f53095f0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -35,16 +35,16 @@ public final class t0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f47441a) {
+        switch (this.f47485a) {
             case 5:
                 super.onLayout(z10, i10, i11, i12, i13);
-                zg.q qVar = (zg.q) this.f47442b;
+                zg.q qVar = (zg.q) this.f47486b;
                 if (qVar.K && z10) {
-                    qVar.f54655w.setTranslationY(-qVar.f54649c.getMeasuredHeight());
-                    int measuredHeight = qVar.f54649c.getMeasuredHeight();
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f54657y.getLayoutParams();
+                    qVar.f54699w.setTranslationY(-qVar.f54693c.getMeasuredHeight());
+                    int measuredHeight = qVar.f54693c.getMeasuredHeight();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f54701y.getLayoutParams();
                     marginLayoutParams.bottomMargin = measuredHeight;
-                    qVar.f54657y.setLayoutParams(marginLayoutParams);
+                    qVar.f54701y.setLayoutParams(marginLayoutParams);
                     return;
                 }
                 return;
@@ -61,24 +61,24 @@ public final class t0 extends FrameLayout {
         float top;
         int measuredHeight;
         ei.f fVar;
-        switch (this.f47441a) {
+        switch (this.f47485a) {
             case 0:
-                y0 y0Var = (y0) this.f47442b;
+                y0 y0Var = (y0) this.f47486b;
                 z10 = ((f3) y0Var).isPortrait;
                 if (z10) {
-                    y0Var.f47527s = View.MeasureSpec.getSize(i10);
+                    y0Var.f47571s = View.MeasureSpec.getSize(i10);
                 } else {
-                    y0Var.f47527s = (int) (Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11)) * 0.8f);
+                    y0Var.f47571s = (int) (Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11)) * 0.8f);
                 }
                 super.onMeasure(i10, i11);
                 return;
             case 1:
                 super.onMeasure(i10, i11);
-                l1 l1Var = ((k1) this.f47442b).f47309c;
-                eg0 eg0Var = l1Var.f47337r0;
+                l1 l1Var = ((k1) this.f47486b).f47353c;
+                eg0 eg0Var = l1Var.f47381r0;
                 if (eg0Var != null) {
                     top = eg0Var.getTop();
-                    measuredHeight = l1Var.f47337r0.getMeasuredHeight();
+                    measuredHeight = l1Var.f47381r0.getMeasuredHeight();
                 } else {
                     View view = l1Var.B0;
                     if (view != null) {
@@ -86,16 +86,16 @@ public final class t0 extends FrameLayout {
                         measuredHeight = l1Var.B0.getMeasuredHeight();
                     } else {
                         f7 = 0.0f;
-                        l1Var.f47336q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
+                        l1Var.f47380q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
                         return;
                     }
                 }
                 f7 = (measuredHeight / 2.0f) + top;
-                l1Var.f47336q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
+                l1Var.f47380q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
                 return;
             case 2:
                 super.onMeasure(i10, i11);
-                ((xh.j1) this.f47442b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+                ((xh.j1) this.f47486b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -105,13 +105,13 @@ public final class t0 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f47441a) {
+        switch (this.f47485a) {
             case 3:
                 super.setTranslationY(f7);
-                s3 s3Var = (s3) this.f47442b;
-                f2 f2Var = s3Var.f53167e0;
+                s3 s3Var = (s3) this.f47486b;
+                f2 f2Var = s3Var.f53211e0;
                 if (f2Var != null && f2Var.getVisibility() == 0) {
-                    s3Var.f53167e0.invalidate();
+                    s3Var.f53211e0.invalidate();
                     return;
                 }
                 return;

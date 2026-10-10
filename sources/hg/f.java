@@ -13,7 +13,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.r6;
 import org.telegram.ui.Components.tq;
@@ -55,7 +55,7 @@ public final class f extends FrameLayout {
         linearLayout.setOrientation(1);
         r6 r6Var = new r6(activity, false, false, false);
         this.f11220e = r6Var;
-        r6Var.f30367n = false;
+        r6Var.f30399n = false;
         r6Var.getDrawable().r(true, false);
         r6Var.setTypeface(AndroidUtilities.bold());
         r6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -65,7 +65,7 @@ public final class f extends FrameLayout {
         linearLayout.addView(r6Var, x5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         r6 r6Var2 = new r6(activity, false, false, false);
         this.f11221f = r6Var2;
-        r6Var2.f30367n = false;
+        r6Var2.f30399n = false;
         r6Var2.getDrawable().r(true, false);
         r6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         r6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));
@@ -76,7 +76,7 @@ public final class f extends FrameLayout {
         tq tqVar = new tq(activity);
         this.h = tqVar;
         tqVar.getDrawable().r(true, true);
-        tqVar.b(0.75f, 350L, hs.h);
+        tqVar.b(0.75f, 350L, is.h);
         tqVar.setScaleProperty(0.6f);
         tqVar.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(14.0f);
@@ -101,8 +101,8 @@ public final class f extends FrameLayout {
         this.f11222n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_mini_customize);
-        imageView.setBackground(i6.N(i6.w0(i6.f20888i6, e6Var), 0, 0));
-        imageView.setColorFilter(new PorterDuffColorFilter(i6.w0(i6.f20805de, e6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setBackground(i6.N(i6.w0(i6.f20892i6, e6Var), 0, 0));
+        imageView.setColorFilter(new PorterDuffColorFilter(i6.w0(i6.f20809de, e6Var), PorterDuff.Mode.MULTIPLY));
         imageView.setOnClickListener(new ai.d0(this, znVar, e6Var, 7));
         addView(imageView, x5.a(32.0f, 8.0f, 0.0f, 6.0f, 0.0f, 32, 21));
     }

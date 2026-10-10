@@ -20,32 +20,32 @@ public class v1 {
     public e6 O;
     public long Q;
     public long R;
-    public boolean f47481g;
+    public boolean f47525g;
     public boolean h;
-    public Utilities.CallbackReturn f47485l;
-    public boolean f47486m;
-    public final int f47489p;
-    public boolean f47490q;
-    public int f47498z;
-    public final RectF f47476a = new RectF();
-    public final RectF f47477b = new RectF();
-    public final RectF f47478c = new RectF();
+    public Utilities.CallbackReturn f47529l;
+    public boolean f47530m;
+    public final int f47533p;
+    public boolean f47534q;
+    public int f47542z;
+    public final RectF f47520a = new RectF();
+    public final RectF f47521b = new RectF();
+    public final RectF f47522c = new RectF();
     public Bitmap[] d = new Bitmap[3];
-    public boolean[] f47479e = new boolean[3];
-    public boolean[] f47480f = new boolean[3];
-    public final Paint f47482i = new Paint();
-    public float f47483j = 0.0f;
-    public float f47484k = 0.0f;
-    public final ArrayList f47487n = new ArrayList();
-    public float f47488o = 1.0f;
-    public int f47491r = 14;
-    public int f47492s = 12;
-    public int f47493t = 10;
-    public float f47494u = 0.85f;
+    public boolean[] f47523e = new boolean[3];
+    public boolean[] f47524f = new boolean[3];
+    public final Paint f47526i = new Paint();
+    public float f47527j = 0.0f;
+    public float f47528k = 0.0f;
+    public final ArrayList f47531n = new ArrayList();
+    public float f47532o = 1.0f;
+    public int f47535r = 14;
+    public int f47536s = 12;
+    public int f47537t = 10;
+    public float f47538u = 0.85f;
     public float v = 0.85f;
-    public float f47495w = 0.9f;
-    public long f47496x = 2000;
-    public int f47497y = 1000;
+    public float f47539w = 0.9f;
+    public long f47540x = 2000;
+    public int f47541y = 1000;
     public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
     public boolean H = false;
     public boolean I = true;
@@ -58,7 +58,7 @@ public class v1 {
     public int S = 0;
 
     public v1(int i10) {
-        this.f47489p = i10;
+        this.f47533p = i10;
         this.B = i10 < 50;
     }
 
@@ -76,7 +76,7 @@ public class v1 {
     public final void c() {
         a();
         boolean z10 = this.G;
-        int i10 = this.f47489p;
+        int i10 = this.f47533p;
         if (z10) {
             int length = this.d.length;
             this.C = new Matrix[length];
@@ -88,7 +88,7 @@ public class v1 {
                 this.D[i11] = new float[i10 * 2];
             }
         }
-        ArrayList arrayList = this.f47487n;
+        ArrayList arrayList = this.f47531n;
         if (arrayList.isEmpty()) {
             for (int i12 = 0; i12 < i10; i12++) {
                 arrayList.add(new u1(this));
@@ -108,7 +108,7 @@ public class v1 {
         long currentTimeMillis = System.currentTimeMillis();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f47487n;
+            ArrayList arrayList = this.f47531n;
             if (i10 < arrayList.size()) {
                 ((u1) arrayList.get(i10)).b(currentTimeMillis);
                 i10++;
@@ -120,8 +120,8 @@ public class v1 {
 
     public final void g() {
         int w02 = i6.w0(this.P, this.O);
-        if (this.f47498z != w02) {
-            this.f47498z = w02;
+        if (this.f47542z != w02) {
+            this.f47542z = w02;
             a();
         }
     }

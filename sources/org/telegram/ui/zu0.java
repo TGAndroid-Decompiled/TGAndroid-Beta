@@ -14,32 +14,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class zu0 extends View {
-    public final Paint f45072a;
-    public final org.telegram.ui.Components.q6 f45073b;
-    public final TextPaint f45074c;
+    public final Paint f45116a;
+    public final org.telegram.ui.Components.q6 f45117b;
+    public final TextPaint f45118c;
     public StaticLayout d;
-    public float f45075e;
-    public float f45076f;
+    public float f45119e;
+    public float f45120f;
     public final org.telegram.ui.Components.q6 h;
-    public String f45077n;
-    public boolean f45078r;
-    public final org.telegram.ui.Components.g6 f45079s;
+    public String f45121n;
+    public boolean f45122r;
+    public final org.telegram.ui.Components.g6 f45123s;
     public boolean v;
-    public int f45080w;
+    public int f45124w;
 
     public zu0(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f45072a = paint;
+        this.f45116a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f45074c = textPaint;
-        this.f45078r = false;
-        org.telegram.ui.Components.hs hsVar = org.telegram.ui.Components.hs.h;
-        this.f45079s = new org.telegram.ui.Components.g6(this, 0L, 350L, hsVar);
+        this.f45118c = textPaint;
+        this.f45122r = false;
+        org.telegram.ui.Components.is isVar = org.telegram.ui.Components.is.h;
+        this.f45123s = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
         paint.setColor(2130706432);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(false, true, true);
-        this.f45073b = q6Var;
-        q6Var.n(0.3f, 320L, hsVar);
+        this.f45117b = q6Var;
+        q6Var.n(0.3f, 320L, isVar);
         q6Var.u(-1);
         q6Var.w(AndroidUtilities.dp(14.0f));
         q6Var.x(AndroidUtilities.bold());
@@ -52,7 +52,7 @@ public final class zu0 extends View {
         c();
         org.telegram.ui.Components.q6 q6Var2 = new org.telegram.ui.Components.q6(false, true, true);
         this.h = q6Var2;
-        q6Var2.n(0.3f, 320L, hsVar);
+        q6Var2.n(0.3f, 320L, isVar);
         q6Var2.u(-1);
         q6Var2.w(AndroidUtilities.dp(14.0f));
         q6Var2.x(AndroidUtilities.bold());
@@ -71,7 +71,7 @@ public final class zu0 extends View {
         boolean z12 = false;
         int max = Math.max(0, i10);
         int max2 = Math.max(max, i11);
-        if (LocaleController.getInstance().getCurrentLocaleInfo() != null && !TextUtils.equals(this.f45077n, LocaleController.getInstance().getCurrentLocaleInfo().shortName)) {
+        if (LocaleController.getInstance().getCurrentLocaleInfo() != null && !TextUtils.equals(this.f45121n, LocaleController.getInstance().getCurrentLocaleInfo().shortName)) {
             c();
         }
         if (LocaleController.isRTL) {
@@ -85,7 +85,7 @@ public final class zu0 extends View {
         } else {
             z11 = false;
         }
-        this.f45073b.t(format, z11, true);
+        this.f45117b.t(format, z11, true);
         if (!LocaleController.isRTL) {
             max = max2;
         }
@@ -98,22 +98,22 @@ public final class zu0 extends View {
     }
 
     public final void c() {
-        this.f45077n = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
-        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Of).replace("%1$d", "").replace("%2$d", ""), this.f45074c, AndroidUtilities.dp(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.f45121n = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
+        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Of).replace("%1$d", "").replace("%2$d", ""), this.f45118c, AndroidUtilities.dp(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         this.d = staticLayout;
         if (staticLayout.getLineCount() >= 1) {
-            this.f45075e = this.d.getLineWidth(0);
-            this.f45076f = this.d.getLineDescent(0);
+            this.f45119e = this.d.getLineWidth(0);
+            this.f45120f = this.d.getLineDescent(0);
             return;
         }
-        this.f45075e = 0.0f;
-        this.f45076f = 0.0f;
+        this.f45119e = 0.0f;
+        this.f45120f = 0.0f;
     }
 
     public final void d(boolean z10, boolean z11) {
         float f7;
-        if (this.f45078r != z10) {
-            this.f45078r = z10;
+        if (this.f45122r != z10) {
+            this.f45122r = z10;
             if (!z10) {
                 this.v = true;
             }
@@ -123,7 +123,7 @@ public final class zu0 extends View {
                 } else {
                     f7 = 0.0f;
                 }
-                this.f45079s.d(f7, true);
+                this.f45123s.d(f7, true);
             }
             invalidate();
         }
@@ -131,30 +131,30 @@ public final class zu0 extends View {
 
     @Override
     public final boolean isShown() {
-        return this.f45078r;
+        return this.f45122r;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
         super.onDraw(canvas);
-        if (this.f45078r) {
+        if (this.f45122r) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = this.f45079s.d(f7, false);
+        float d = this.f45123s.d(f7, false);
         if (d <= 0.0f) {
             return;
         }
-        org.telegram.ui.Components.q6 q6Var = this.f45073b;
-        float c10 = q6Var.c() + this.f45075e;
+        org.telegram.ui.Components.q6 q6Var = this.f45117b;
+        float c10 = q6Var.c() + this.f45119e;
         org.telegram.ui.Components.q6 q6Var2 = this.h;
         float c11 = q6Var2.c() + c10 + AndroidUtilities.dp(18.0f);
-        float f10 = ((1.0f - d) * (-AndroidUtilities.dp(8.0f))) + this.f45080w;
+        float f10 = ((1.0f - d) * (-AndroidUtilities.dp(8.0f))) + this.f45124w;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getWidth() - c11) / 2.0f, AndroidUtilities.dpf2(10.0f) + f10, (getWidth() + c11) / 2.0f, AndroidUtilities.dpf2(33.0f) + f10);
-        Paint paint = this.f45072a;
+        Paint paint = this.f45116a;
         int alpha = paint.getAlpha();
         paint.setAlpha((int) (alpha * d));
         canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), paint);
@@ -167,11 +167,11 @@ public final class zu0 extends View {
         q6Var.draw(canvas);
         canvas.translate(q6Var.c(), 0.0f);
         canvas.save();
-        canvas.translate((-(this.d.getWidth() - this.f45075e)) / 2.0f, ((this.f45076f / 2.0f) + (AndroidUtilities.dp(23.0f) - this.d.getHeight())) / 2.0f);
-        this.f45074c.setAlpha(i10);
+        canvas.translate((-(this.d.getWidth() - this.f45119e)) / 2.0f, ((this.f45120f / 2.0f) + (AndroidUtilities.dp(23.0f) - this.d.getHeight())) / 2.0f);
+        this.f45118c.setAlpha(i10);
         this.d.draw(canvas);
         canvas.restore();
-        canvas.translate(this.f45075e, 0.0f);
+        canvas.translate(this.f45119e, 0.0f);
         q6Var2.setBounds(0, 0, (int) q6Var2.c(), AndroidUtilities.dp(23.0f));
         q6Var2.B = i10;
         q6Var2.draw(canvas);
@@ -181,15 +181,15 @@ public final class zu0 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f45080w = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
-        this.f45073b.M = size;
+        this.f45124w = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
+        this.f45117b.M = size;
         this.h.M = size;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), org.telegram.messenger.bi.C(43.0f, this.f45080w, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), org.telegram.messenger.bi.C(43.0f, this.f45124w, 1073741824));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f45073b != drawable && this.h != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f45117b != drawable && this.h != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -6,9 +6,9 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.jb0;
-public final class t extends qm0 implements NotificationCenter.NotificationCenterDelegate {
+public final class t extends rm0 implements NotificationCenter.NotificationCenterDelegate {
     public ArrayList V2;
     public s4.d0 W2;
     public int X2;
@@ -50,7 +50,7 @@ public final class t extends qm0 implements NotificationCenter.NotificationCente
         if (MessagesController.getInstance(this.X2).premiumFeaturesBlocked()) {
             int i10 = 0;
             while (i10 < arrayList.size()) {
-                if (((jb0) arrayList.get(i10)).f38902e) {
+                if (((jb0) arrayList.get(i10)).f38946e) {
                     arrayList.remove(i10);
                     i10--;
                 }

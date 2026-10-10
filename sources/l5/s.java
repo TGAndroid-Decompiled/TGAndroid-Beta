@@ -9,37 +9,37 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import org.telegram.ui.web.q0;
 public final class s {
-    public static volatile j f15434e;
-    public final u5.a f15435a;
-    public final u5.a f15436b;
-    public final q5.b f15437c;
+    public static volatile j f15438e;
+    public final u5.a f15439a;
+    public final u5.a f15440b;
+    public final q5.b f15441c;
     public final da.c d;
 
     public s(u5.a aVar, u5.a aVar2, q5.b bVar, da.c cVar, com.google.firebase.messaging.s sVar) {
-        this.f15435a = aVar;
-        this.f15436b = aVar2;
-        this.f15437c = bVar;
+        this.f15439a = aVar;
+        this.f15440b = aVar2;
+        this.f15441c = bVar;
         this.d = cVar;
         ((Executor) sVar.f7971b).execute(new q0(sVar, 24));
     }
 
     public static s a() {
-        j jVar = f15434e;
+        j jVar = f15438e;
         if (jVar != null) {
-            return (s) jVar.f15418f.mo27get();
+            return (s) jVar.f15422f.mo27get();
         }
         throw new IllegalStateException("Not initialized!");
     }
 
     public static void b(Context context) {
-        if (f15434e == null) {
+        if (f15438e == null) {
             synchronized (s.class) {
                 try {
-                    if (f15434e == null) {
+                    if (f15438e == null) {
                         l2.f fVar = new l2.f(1, false);
                         context.getClass();
-                        fVar.f15331b = context;
-                        f15434e = fVar.n();
+                        fVar.f15335b = context;
+                        f15438e = fVar.n();
                     }
                 } catch (Throwable th2) {
                     throw th2;

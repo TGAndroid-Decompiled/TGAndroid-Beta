@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.f30;
+import org.telegram.ui.Components.g30;
 import org.telegram.ui.LaunchActivity;
 public final class aa implements Runnable {
     public final int f653a;
@@ -20,14 +20,14 @@ public final class aa implements Runnable {
         switch (this.f653a) {
             case 0:
                 Math.abs(Utilities.random.nextInt() % 3);
-                f30[] f30VarArr = ja.f1195a;
+                g30[] g30VarArr = ja.f1195a;
                 NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
                 AndroidUtilities.runOnUIThread(ja.f1207o, 1000L);
                 LaunchActivity.R().getFragmentView();
                 return;
             case 1:
                 try {
-                    int i10 = n0.g.f16464a;
+                    int i10 = n0.g.f16468a;
                     Trace.beginSection("EmojiCompat.EmojiCompatInitializer.run");
                     if (androidx.emoji2.text.l.f2604j == null) {
                         z10 = false;
@@ -38,18 +38,18 @@ public final class aa implements Runnable {
                     Trace.endSection();
                     return;
                 } catch (Throwable th2) {
-                    int i11 = n0.g.f16464a;
+                    int i11 = n0.g.f16468a;
                     Trace.endSection();
                     throw th2;
                 }
             case 2:
                 return;
             case 3:
-                org.telegram.ui.ActionBar.i6.f20900j = false;
+                org.telegram.ui.ActionBar.i6.f20904j = false;
                 org.telegram.ui.ActionBar.i6.l(false);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.i6.f20918k = false;
+                org.telegram.ui.ActionBar.i6.f20922k = false;
                 org.telegram.ui.ActionBar.i6.l(true);
                 return;
             case 5:
@@ -57,7 +57,7 @@ public final class aa implements Runnable {
             case 6:
                 org.telegram.ui.Components.voip.m2 m2Var = org.telegram.ui.Components.voip.m2.V;
                 if (m2Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(m2Var.f32090b.f32050f.N);
+                    AndroidUtilities.cancelRunOnUIThread(m2Var.f32155b.f32115f.N);
                     return;
                 }
                 return;

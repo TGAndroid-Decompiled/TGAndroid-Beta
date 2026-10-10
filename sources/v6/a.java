@@ -5,15 +5,15 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 import l5.o;
 public final class a implements ThreadFactory {
-    public final AtomicInteger f49120b = new AtomicInteger();
-    public final ThreadFactory f49121c = Executors.defaultThreadFactory();
-    public final String f49119a = "GAC_Executor";
+    public final AtomicInteger f49164b = new AtomicInteger();
+    public final ThreadFactory f49165c = Executors.defaultThreadFactory();
+    public final String f49163a = "GAC_Executor";
 
     @Override
     public final Thread newThread(Runnable runnable) {
-        Thread newThread = this.f49121c.newThread(new o(2, runnable));
-        int andIncrement = this.f49120b.getAndIncrement();
-        newThread.setName(this.f49119a + "[" + andIncrement + "]");
+        Thread newThread = this.f49165c.newThread(new o(2, runnable));
+        int andIncrement = this.f49164b.getAndIncrement();
+        newThread.setName(this.f49163a + "[" + andIncrement + "]");
         return newThread;
     }
 }

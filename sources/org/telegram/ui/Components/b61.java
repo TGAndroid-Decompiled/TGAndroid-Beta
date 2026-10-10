@@ -1,53 +1,41 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-public final class b61 extends qm0 {
-    public final i61 V2;
-    public final l61 W2;
+import org.telegram.tgnet.ConnectionsManager;
+public final class b61 extends do0 {
+    public final m61 h;
 
-    public b61(l61 l61Var, Context context, i61 i61Var) {
-        super(context, null);
-        this.W2 = l61Var;
-        this.V2 = i61Var;
+    public b61(m61 m61Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, 14.0f, e6Var);
+        this.h = m61Var;
     }
 
     @Override
-    public final boolean E0(float f7) {
-        if (f7 >= AndroidUtilities.dp(58.0f) + this.W2.E) {
-            return true;
+    public final void a(String str) {
+        gg.f2 f2Var = this.h.v;
+        gg.d2 d2Var = f2Var.S;
+        int i10 = f2Var.f10598c;
+        if (f2Var.N != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(f2Var.N, true);
+            f2Var.N = 0;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        this.W2.F = true;
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean d = this.V2.d(this, motionEvent);
-        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
-            return false;
+        if (f2Var.O != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(f2Var.O, true);
+            f2Var.O = 0;
         }
-        return true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.W2.L != null) {
-            return false;
+        if (TextUtils.isEmpty(str)) {
+            f2Var.R = null;
+            f2Var.F.clear();
+            f2Var.I.clear();
+            f2Var.E.clear();
+            f2Var.f10599e.b(false);
+            f2Var.l();
+        } else {
+            f2Var.R = str.toLowerCase();
         }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (!this.W2.H) {
-            super.requestLayout();
-        }
+        AndroidUtilities.cancelRunOnUIThread(d2Var);
+        AndroidUtilities.runOnUIThread(d2Var, 300L);
     }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class u6 extends FrameLayout {
     public View f6069a;
     public ArrayList f6070b;
@@ -51,7 +51,7 @@ public final class u6 extends FrameLayout {
                 this.f6076s.setInterpolator(new LinearInterpolator());
             } else {
                 this.f6076s.setDuration(350L);
-                this.f6076s.setInterpolator(hs.h);
+                this.f6076s.setInterpolator(is.h);
             }
             this.f6076s.start();
             return;
@@ -106,7 +106,7 @@ public final class u6 extends FrameLayout {
             View childAt = getChildAt(i10);
             float f7 = this.f6074n;
             if (this.f6075r) {
-                f7 = hs.h.getInterpolation(AndroidUtilities.cascade(f7, i10 - 1, getChildCount() - 1, 3.0f));
+                f7 = is.h.getInterpolation(AndroidUtilities.cascade(f7, i10 - 1, getChildCount() - 1, 3.0f));
             }
             childAt.setAlpha(f7);
             childAt.setTranslationY((1.0f - f7) * AndroidUtilities.dp(24.0f));

@@ -4,30 +4,30 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.NotificationCenter;
 public final class k41 extends AnimatorListenerAdapter {
-    public final int f39077a;
-    public final l41 f39078b;
+    public final int f39121a;
+    public final l41 f39122b;
 
     public k41(l41 l41Var, int i10) {
-        this.f39077a = i10;
-        this.f39078b = l41Var;
+        this.f39121a = i10;
+        this.f39122b = l41Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f39077a) {
+        switch (this.f39121a) {
             case 0:
-                l41 l41Var = this.f39078b;
+                l41 l41Var = this.f39122b;
                 if (l41Var.h != null) {
                     l41Var.h = null;
-                    l41Var.f39428e = 0.0f;
+                    l41Var.f39472e = 0.0f;
                     l41Var.g();
-                    l41Var.f39430n.unlock();
-                    ux uxVar = l41Var.f39425a;
+                    l41Var.f39474n.unlock();
+                    ux uxVar = l41Var.f39469a;
                     if (uxVar != null) {
                         uxVar.onPause();
-                        l41Var.f39425a.onFragmentDestroy();
+                        l41Var.f39469a.onFragmentDestroy();
                         l41Var.removeAllViews();
-                        l41Var.f39425a = null;
+                        l41Var.f39469a = null;
                         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
                     }
                     l41Var.d(false);
@@ -35,7 +35,7 @@ public final class k41 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                l41 l41Var2 = this.f39078b;
+                l41 l41Var2 = this.f39122b;
                 if (l41Var2.h != null) {
                     l41Var2.h = null;
                     l41Var2.d(true);

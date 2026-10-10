@@ -231,8 +231,8 @@ public class SharedConfig {
             if (readString == null) {
                 readString = "";
             }
-            a2.f17155b = readString;
-            a2.f17156c = inputSerializedData.readInt32(false);
+            a2.f17159b = readString;
+            a2.f17160c = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -242,12 +242,12 @@ public class SharedConfig {
             if (readString3 == null) {
                 readString3 = "";
             }
-            a2.f17157e = readString3;
+            a2.f17161e = readString3;
             String readString4 = inputSerializedData.readString(false);
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f17158f = str;
+            a2.f17162f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j3 = inputSerializedData.readInt64(false);
@@ -261,12 +261,12 @@ public class SharedConfig {
                 if (e7 == 0) {
                     e7 = 1;
                 }
-                a2.f17154a = e7;
+                a2.f17158a = e7;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f17154a = i11;
+                a2.f17158a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.a());
             proxyInfo.availableCheckTime = j10;
@@ -279,14 +279,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f17162b);
-            outputSerializedData.writeInt32(this.settings.f17163c);
+            outputSerializedData.writeString(this.settings.f17166b);
+            outputSerializedData.writeInt32(this.settings.f17167c);
             outputSerializedData.writeString(this.settings.d);
-            outputSerializedData.writeString(this.settings.f17164e);
-            outputSerializedData.writeString(this.settings.f17165f);
+            outputSerializedData.writeString(this.settings.f17168e);
+            outputSerializedData.writeString(this.settings.f17169f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f17161a);
+            int c10 = m1.j.c(this.settings.f17165a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -911,10 +911,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new w1(21));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f20374a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f20378a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
             b2Var.setCanceledOnTouchOutside(false);
             b2Var.show();
         }

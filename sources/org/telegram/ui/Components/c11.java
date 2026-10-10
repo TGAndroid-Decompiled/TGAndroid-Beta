@@ -1,69 +1,59 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.text.style.ReplacementSpan;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class c11 extends ReplacementSpan {
-    public final int f25205a;
-    public int f25206b;
-    public final Object f25207c;
+public final class c11 extends tw0 {
+    public final org.telegram.ui.j20 f25130w0;
+    public final org.telegram.ui.ActionBar.e6 f25131x0;
+    public final a11 f25132y0;
 
-    public c11(int i10) {
-        this.f25205a = 0;
-        Paint paint = new Paint(1);
-        this.f25207c = paint;
-        this.f25206b = i10;
-        paint.setColor(org.telegram.ui.ActionBar.i6.m1(0.3f, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20987nd, false)));
-    }
-
-    public void a(int i10) {
-        org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f25207c;
-        if (vp0Var != null) {
-            vp0Var.f42959a = i10 / 2.0f;
-            vp0Var.d();
-            this.f25206b = i10;
-        }
+    public c11(Context context, org.telegram.ui.ActionBar.e6 e6Var, a11 a11Var) {
+        super(context, null);
+        this.f25131x0 = e6Var;
+        this.f25132y0 = a11Var;
+        this.f25130w0 = new org.telegram.ui.j20();
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        switch (this.f25205a) {
-            case 0:
-                float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.33f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                float dp2 = AndroidUtilities.dp(6.66f) / 2.0f;
-                rectF.set(f7, dp - dp2, this.f25206b + f7, dp + dp2);
-                canvas.drawRoundRect(rectF, dp2, dp2, (Paint) this.f25207c);
-                return;
-            default:
-                org.telegram.ui.vp0 vp0Var = (org.telegram.ui.vp0) this.f25207c;
-                if (vp0Var != null) {
-                    int i15 = (i12 + i14) / 2;
-                    float dp3 = f7 + AndroidUtilities.dp(5.0f);
-                    int i16 = this.f25206b;
-                    vp0Var.setBounds((int) (AndroidUtilities.dp(3.0f) + f7), i15 - this.f25206b, (int) (dp3 + i16), i15 + i16);
-                    vp0Var.draw(canvas);
-                    return;
-                }
-                return;
-        }
+    public final boolean P() {
+        return false;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f25205a) {
-            case 0:
-                return this.f25206b;
-            default:
-                return AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(3.0f) + this.f25206b;
-        }
+    public final boolean Q() {
+        return false;
     }
 
-    public c11(boolean z10, int i10, int i11) {
-        this.f25205a = 1;
-        this.f25206b = AndroidUtilities.dp(21.0f);
-        this.f25207c = z10 ? org.telegram.ui.vp0.c(i10, i11) : org.telegram.ui.vp0.a(i10, i11);
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.f25132y0) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.save();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, AndroidUtilities.dp(45.0f), getHeight());
+            this.f25130w0.b(canvas, rectF, 0, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.e6 getResourceProvider() {
+        return this.f25131x0;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.x, 1073741824);
+        a11 a11Var = this.f25132y0;
+        a11Var.measure(makeMeasureSpec, i11);
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), a11Var.getMeasuredHeight() + AndroidUtilities.dp(24.0f));
     }
 }

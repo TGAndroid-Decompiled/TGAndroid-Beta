@@ -1,18 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class ev implements DialogInterface.OnShowListener {
-    public final lv f26171a;
+import android.view.View;
+public final class ev implements Runnable {
+    public final int f26176a;
+    public final View f26177b;
 
-    public ev(lv lvVar) {
-        this.f26171a = lvVar;
+    public ev(int i10, View view) {
+        this.f26176a = i10;
+        this.f26177b = view;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        ha1 ha1Var = this.f26171a.f28599c;
-        if (gh0.f26700p0.P && ha1Var.f()) {
-            ha1Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.da(this, 1));
+    public final void run() {
+        switch (this.f26176a) {
+            case 0:
+                this.f26177b.callOnClick();
+                return;
+            default:
+                this.f26177b.invalidate();
+                return;
         }
     }
 }

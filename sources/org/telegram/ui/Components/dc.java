@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class dc implements jl0 {
-    public final ec f25688a;
+public final class dc implements kl0 {
+    public final ec f25641a;
 
     public dc(ec ecVar) {
-        this.f25688a = ecVar;
+        this.f25641a = ecVar;
     }
 
     @Override
     public final void m(View view, zg.n0 n0Var, boolean z10, boolean z11) {
         boolean z12;
-        ec ecVar = this.f25688a;
-        org.telegram.ui.ActionBar.n2 n2Var = ecVar.f26032f;
-        if (ecVar.f26031e == null) {
+        ec ecVar = this.f25641a;
+        org.telegram.ui.ActionBar.n2 n2Var = ecVar.f26005f;
+        if (ecVar.f26004e == null) {
             return;
         }
         long clientUserId = UserConfig.getInstance(n2Var.getCurrentAccount()).getClientUserId();
@@ -30,16 +30,16 @@ public final class dc implements jl0 {
             z12 = false;
         }
         int i10 = 0;
-        for (int i11 = 0; i11 < ecVar.f26031e.size(); i11++) {
-            int keyAt = ecVar.f26031e.keyAt(i11);
+        for (int i11 = 0; i11 < ecVar.f26004e.size(); i11++) {
+            int keyAt = ecVar.f26004e.keyAt(i11);
             TLRPC.Message message = new TLRPC.Message();
             message.dialog_id = n2Var.getUserConfig().getClientUserId();
-            message.f20059id = keyAt;
+            message.f20063id = keyAt;
             MessageObject messageObject = new MessageObject(n2Var.getCurrentAccount(), message, false, false);
             ArrayList<zg.n0> arrayList = new ArrayList<>();
             arrayList.add(n0Var);
-            n2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, n0Var, false, false, ecVar.f26032f, null);
-            i10 = message.f20059id;
+            n2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, n0Var, false, false, ecVar.f26005f, null);
+            i10 = message.f20063id;
         }
         ecVar.f();
         tc.e();

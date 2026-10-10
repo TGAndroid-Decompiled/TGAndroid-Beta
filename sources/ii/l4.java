@@ -13,13 +13,13 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.q80;
 import org.telegram.ui.ty;
 public abstract class l4 {
     public static EditTextBoldCursor a(Context context, org.telegram.ui.ActionBar.e6 e6Var, String str, String str2) {
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20905j5, e6Var));
+        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20909j5, e6Var));
         editTextBoldCursor.setHintText(str);
         editTextBoldCursor.setHintColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.H6, e6Var));
         editTextBoldCursor.setHeaderHintColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.L6, e6Var));
@@ -31,16 +31,16 @@ public abstract class l4 {
             str2 = "";
         }
         editTextBoldCursor.setText(str2);
-        editTextBoldCursor.setLineColors(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20925k6, e6Var), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20943l6, e6Var), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21018p7, e6Var));
+        editTextBoldCursor.setLineColors(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20929k6, e6Var), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20947l6, e6Var), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21022p7, e6Var));
         editTextBoldCursor.setImeOptions(5);
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
-        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21119uf, e6Var));
-        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21136vf, e6Var));
+        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21123uf, e6Var));
+        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21140vf, e6Var));
         return editTextBoldCursor;
     }
 
-    public static p80 b(p80 p80Var, org.telegram.ui.ActionBar.n2 n2Var, final w3 w3Var, final boolean z10) {
+    public static q80 b(q80 q80Var, org.telegram.ui.ActionBar.n2 n2Var, final w3 w3Var, final boolean z10) {
         TL_keyboard.InlineButtonType inlineButtonType;
         TL_iv.textButton textbutton;
         m4 m4Var = w3Var.d;
@@ -60,7 +60,7 @@ public abstract class l4 {
             }
             return null;
         }
-        p80Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
+        q80Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
             @Override
             public final void run() {
                 switch (r3) {
@@ -73,7 +73,7 @@ public abstract class l4 {
                 }
             }
         }, false);
-        p80Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+        q80Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
                 switch (r3) {
@@ -86,12 +86,12 @@ public abstract class l4 {
                 }
             }
         }, false);
-        p80Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.x0(n2Var, w3Var, z10, 6), false);
-        p80Var.Z();
-        return p80Var;
+        q80Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.x0(n2Var, w3Var, z10, 6), false);
+        q80Var.Z();
+        return q80Var;
     }
 
-    public static p80 c(p80 p80Var, org.telegram.ui.ActionBar.n2 n2Var, final Context context, final org.telegram.ui.ActionBar.e6 e6Var, final u3 u3Var, final boolean z10) {
+    public static q80 c(q80 q80Var, org.telegram.ui.ActionBar.n2 n2Var, final Context context, final org.telegram.ui.ActionBar.e6 e6Var, final u3 u3Var, final boolean z10) {
         TL_keyboard.PageButton pageButton;
         TL_keyboard.InlineButtonType inlineButtonType;
         int i10 = u3Var.f12732b;
@@ -116,7 +116,7 @@ public abstract class l4 {
             }
             return null;
         }
-        p80Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
+        q80Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
             @Override
             public final void run() {
                 switch (r5) {
@@ -129,7 +129,7 @@ public abstract class l4 {
                 }
             }
         }, false);
-        p80Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+        q80Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
                 switch (r5) {
@@ -142,9 +142,9 @@ public abstract class l4 {
                 }
             }
         }, false);
-        p80Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.t1(n2Var, context, e6Var, u3Var, z10, 3), false);
-        p80Var.Z();
-        return p80Var;
+        q80Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.t1(n2Var, context, e6Var, u3Var, z10, 3), false);
+        q80Var.Z();
+        return q80Var;
     }
 
     public static void d(Context context, org.telegram.ui.ActionBar.e6 e6Var, u3 u3Var, boolean z10) {
@@ -243,7 +243,7 @@ public abstract class l4 {
             i10 = R.string.RichEditorCreateProfileButton;
         }
         String string2 = LocaleController.getString(i10);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
         b2Var.R = string2;
         alertDialog$Builder.n(e7);
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new ca.b(c10, t4Var, a2, u3Var, 2));
@@ -251,8 +251,8 @@ public abstract class l4 {
             alertDialog$Builder.i(LocaleController.getString(R.string.RichEditorChangeUser), new ei.c5(t4Var, 17));
             String string3 = LocaleController.getString(R.string.Delete);
             g4 g4Var = new g4(u3Var, 2);
-            b2Var.f20429p0 = string3;
-            b2Var.f20430q0 = g4Var;
+            b2Var.f20433p0 = string3;
+            b2Var.f20434q0 = g4Var;
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             b2Var.J0 = true;
             i11 = -4;
@@ -291,7 +291,7 @@ public abstract class l4 {
         } else {
             alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
         }
-        alertDialog$Builder.f20374a.R = str;
+        alertDialog$Builder.f20378a.R = str;
         alertDialog$Builder.n(e7);
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new ai.r5(a2, a10, g4Var, 12));
         if (u3Var.c()) {
@@ -364,11 +364,11 @@ public abstract class l4 {
     }
 
     public static void j(AlertDialog$Builder alertDialog$Builder, EditTextBoldCursor editTextBoldCursor, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
         b2Var.setOnShowListener(new hg.s(1, editTextBoldCursor));
         b2Var.q(250L);
         if (i10 != 0 && (b2Var.d(i10) instanceof TextView)) {
-            ((TextView) b2Var.d(i10)).setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21037q7, e6Var));
+            ((TextView) b2Var.d(i10)).setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21041q7, e6Var));
         }
     }
 
@@ -384,7 +384,7 @@ public abstract class l4 {
         tyVar.C2 = new ei.c5(k4Var, 18);
         if (z10) {
             ?? obj = new Object();
-            obj.f21357a = true;
+            obj.f21361a = true;
             n2Var.showAsSheet(tyVar, obj);
             return;
         }

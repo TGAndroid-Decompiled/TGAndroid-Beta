@@ -13,31 +13,31 @@ import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.y9;
 import w7.x5;
 public final class i0 extends FrameLayout {
-    public static final int f48331f = 0;
-    public final y9 f48332a;
-    public final h0 f48333b;
-    public final Paint f48334c;
+    public static final int f48375f = 0;
+    public final y9 f48376a;
+    public final h0 f48377b;
+    public final Paint f48378c;
     public boolean d;
-    public final j9 f48335e;
+    public final j9 f48379e;
 
     public i0(Context context, float f7) {
         super(context);
         Paint paint = new Paint(1);
-        this.f48334c = paint;
+        this.f48378c = paint;
         this.d = true;
-        this.f48335e = new j9((e6) null);
+        this.f48379e = new j9((e6) null);
         y9 y9Var = new y9(getContext());
-        this.f48332a = y9Var;
+        this.f48376a = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(f7));
         ?? view = new View(context);
         TextPaint textPaint = new TextPaint(1);
-        view.f48329a = textPaint;
+        view.f48373a = textPaint;
         textPaint.setTextAlign(Paint.Align.CENTER);
-        int i10 = i6.f20741a7;
+        int i10 = i6.f20745a7;
         textPaint.setColor(i6.x0(null, i10, false));
         textPaint.setTextSize(AndroidUtilities.dp(11.5f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        this.f48333b = view;
+        this.f48377b = view;
         view.setAlpha(0.0f);
         addView(y9Var, x5.a(-1.0f, 5.0f, 5.0f, 5.0f, 5.0f, -1, 0));
         addView((View) view, x5.a(26.0f, 0.0f, 0.0f, 1.0f, 3.0f, 26, 85));
@@ -47,7 +47,7 @@ public final class i0 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         if (this.d) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f48334c);
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f48378c);
         }
         super.dispatchDraw(canvas);
     }

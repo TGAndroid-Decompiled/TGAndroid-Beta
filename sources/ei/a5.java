@@ -21,11 +21,11 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.fk0;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.gk0;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.s5;
 import org.telegram.ui.Components.z6;
 public final class a5 extends Drawable implements z6, NotificationCenter.NotificationCenterDelegate {
@@ -35,7 +35,7 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
     public final ImageReceiver d;
     public int f8946e;
     public final s5[] f8947f;
-    public final l11 h;
+    public final m11 h;
     public final RectF f8948n;
     public final boolean f8949r;
     public final g6 f8950s;
@@ -54,9 +54,9 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         this.f8946e = 1;
         this.f8947f = new s5[2];
         this.f8948n = new RectF();
-        this.f8950s = new g6(new z4(this, 1), 320L, hs.h, 0);
+        this.f8950s = new g6(new z4(this, 1), 320L, is.h, 0);
         this.f8949r = false;
-        int i10 = i6.f20797d6;
+        int i10 = i6.f20801d6;
         paint.setColor(i6.x0(null, i10, false));
         paint2.setColor(i6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), i6.m1(0.18f, -16777216));
@@ -65,14 +65,14 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, j9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         d();
-        this.h = new l11(UserObject.getUserName(user), 14.0f, null);
+        this.h = new m11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override
-    public final void a(fk0 fk0Var) {
-        this.f8952x = fk0Var;
-        this.d.setParentView(fk0Var);
-        this.f8945c.setParentView(fk0Var);
+    public final void a(gk0 gk0Var) {
+        this.f8952x = gk0Var;
+        this.d.setParentView(gk0Var);
+        this.f8945c.setParentView(gk0Var);
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f28222c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f28602c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
         RectF rectF = this.f8948n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
@@ -238,9 +238,9 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         this.f8946e = 1;
         this.f8947f = new s5[2];
         this.f8948n = new RectF();
-        this.f8950s = new g6(new z4(this, 1), 320L, hs.h, 0);
+        this.f8950s = new g6(new z4(this, 1), 320L, is.h, 0);
         this.f8949r = true;
-        int i10 = i6.f20797d6;
+        int i10 = i6.f20801d6;
         paint.setColor(i6.x0(null, i10, false));
         paint2.setColor(i6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), i6.m1(0.18f, -16777216));
@@ -249,8 +249,8 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, j9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
-        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, i6.f20741a7, 0.35f), 0L, null, null, 0);
-        this.h = new l11(UserObject.getUserName(user), 14.0f, null);
+        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, i6.f20745a7, 0.35f), 0L, null, null, 0);
+        this.h = new m11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override

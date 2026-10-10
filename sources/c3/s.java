@@ -1,7 +1,7 @@
 package c3;
 
 import android.animation.ObjectAnimator;
-import org.telegram.ui.Components.au;
+import org.telegram.ui.Components.bu;
 import org.telegram.ui.Components.dm;
 import org.telegram.ui.Components.gb;
 import org.telegram.ui.Components.ib;
@@ -23,7 +23,7 @@ public final class s implements wb {
     public void d(xb xbVar, ib ibVar, gb gbVar, jb jbVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(xbVar, xb.IN_OUT_OFFSET_Y2, xbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(au.f24774c);
+        ofFloat.setInterpolator(bu.f25058c);
         ofFloat.addListener(new ai.z(ibVar, gbVar, 17));
         ofFloat.addUpdateListener(new ai.x(12, jbVar, xbVar));
         ofFloat.start();
@@ -35,7 +35,7 @@ public final class s implements wb {
         dmVar.accept(Float.valueOf(xbVar.getTranslationY()));
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(xbVar, xb.IN_OUT_OFFSET_Y2, 0.0f);
         ofFloat.setDuration(this.f4150a);
-        ofFloat.setInterpolator(au.d);
+        ofFloat.setInterpolator(bu.d);
         ofFloat.addListener(new ai.z(ibVar, rgVar, 16));
         ofFloat.addUpdateListener(new ai.x(13, dmVar, xbVar));
         ofFloat.start();

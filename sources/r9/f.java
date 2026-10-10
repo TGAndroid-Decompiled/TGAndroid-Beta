@@ -11,17 +11,17 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 public final class f implements ScheduledExecutorService, AutoCloseable {
-    public final ExecutorService f47116a;
-    public final ScheduledExecutorService f47117b;
+    public final ExecutorService f47160a;
+    public final ScheduledExecutorService f47161b;
 
     public f(ExecutorService executorService, ScheduledExecutorService scheduledExecutorService) {
-        this.f47116a = executorService;
-        this.f47117b = scheduledExecutorService;
+        this.f47160a = executorService;
+        this.f47161b = scheduledExecutorService;
     }
 
     @Override
     public final boolean awaitTermination(long j3, TimeUnit timeUnit) {
-        return this.f47116a.awaitTermination(j3, timeUnit);
+        return this.f47160a.awaitTermination(j3, timeUnit);
     }
 
     @Override
@@ -31,27 +31,27 @@ public final class f implements ScheduledExecutorService, AutoCloseable {
 
     @Override
     public final void execute(Runnable runnable) {
-        this.f47116a.execute(runnable);
+        this.f47160a.execute(runnable);
     }
 
     @Override
     public final List invokeAll(Collection collection) {
-        return this.f47116a.invokeAll(collection);
+        return this.f47160a.invokeAll(collection);
     }
 
     @Override
     public final Object invokeAny(Collection collection) {
-        return this.f47116a.invokeAny(collection);
+        return this.f47160a.invokeAny(collection);
     }
 
     @Override
     public final boolean isShutdown() {
-        return this.f47116a.isShutdown();
+        return this.f47160a.isShutdown();
     }
 
     @Override
     public final boolean isTerminated() {
-        return this.f47116a.isTerminated();
+        return this.f47160a.isTerminated();
     }
 
     @Override
@@ -81,17 +81,17 @@ public final class f implements ScheduledExecutorService, AutoCloseable {
 
     @Override
     public final Future submit(Callable callable) {
-        return this.f47116a.submit(callable);
+        return this.f47160a.submit(callable);
     }
 
     @Override
     public final List invokeAll(Collection collection, long j3, TimeUnit timeUnit) {
-        return this.f47116a.invokeAll(collection, j3, timeUnit);
+        return this.f47160a.invokeAll(collection, j3, timeUnit);
     }
 
     @Override
     public final Object invokeAny(Collection collection, long j3, TimeUnit timeUnit) {
-        return this.f47116a.invokeAny(collection, j3, timeUnit);
+        return this.f47160a.invokeAny(collection, j3, timeUnit);
     }
 
     @Override
@@ -101,11 +101,11 @@ public final class f implements ScheduledExecutorService, AutoCloseable {
 
     @Override
     public final Future submit(Runnable runnable, Object obj) {
-        return this.f47116a.submit(runnable, obj);
+        return this.f47160a.submit(runnable, obj);
     }
 
     @Override
     public final Future submit(Runnable runnable) {
-        return this.f47116a.submit(runnable);
+        return this.f47160a.submit(runnable);
     }
 }

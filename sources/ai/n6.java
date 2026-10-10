@@ -14,7 +14,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public abstract class n6 extends View {
     public ArrayList E;
     public ArrayList F;
@@ -98,7 +98,7 @@ public abstract class n6 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new l6(this, 0));
             this.M.addListener(new b(this, 7));
-            this.M.setInterpolator(hs.f27118f);
+            this.M.setInterpolator(is.f27443f);
             this.M.setDuration(200L);
             this.M.start();
         }

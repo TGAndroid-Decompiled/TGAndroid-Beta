@@ -9,48 +9,48 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class n implements r0.n, l1, a2 {
-    public final int f21405a;
-    public final Object f21406b;
+    public final int f21409a;
+    public final Object f21410b;
 
     public n(Object obj, int i10) {
-        this.f21405a = i10;
-        this.f21406b = obj;
+        this.f21409a = i10;
+        this.f21410b = obj;
     }
 
     @Override
     public r0.k1 M0(View view, r0.k1 k1Var) {
-        int i10 = this.f21405a;
+        int i10 = this.f21409a;
         int i11 = 0;
-        Object obj = this.f21406b;
+        Object obj = this.f21410b;
         switch (i10) {
             case 0:
                 return ((n2) obj).onInsetsInternal(view, k1Var);
             case 1:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                Drawable drawable = ActionBarLayout.f20310p1;
+                Drawable drawable = ActionBarLayout.f20314p1;
                 i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
                 i0.b defaultWindowInsets2 = AndroidUtilities.getDefaultWindowInsets(k1Var, true);
-                actionBarLayout.f20344n1 = defaultWindowInsets;
-                actionBarLayout.f20346o1 = defaultWindowInsets2;
-                actionBarLayout.f20341m1 = k1Var;
+                actionBarLayout.f20348n1 = defaultWindowInsets;
+                actionBarLayout.f20350o1 = defaultWindowInsets2;
+                actionBarLayout.f20345m1 = k1Var;
                 int childCount = actionBarLayout.getChildCount();
                 while (i11 < childCount) {
                     actionBarLayout.o(actionBarLayout.getChildAt(i11), k1Var);
                     i11++;
                 }
-                return r0.k1.f46776b;
+                return r0.k1.f46820b;
             case 2:
             case 3:
             case 5:
             default:
                 y3 y3Var = (y3) obj;
-                y3Var.f21726e = k1Var;
+                y3Var.f21730e = k1Var;
                 i0.b defaultWindowInsets3 = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
                 i0.b defaultWindowInsets4 = AndroidUtilities.getDefaultWindowInsets(k1Var, true);
-                if (!y3Var.f21727f.equals(defaultWindowInsets3) || !y3Var.h.equals(defaultWindowInsets4)) {
+                if (!y3Var.f21731f.equals(defaultWindowInsets3) || !y3Var.h.equals(defaultWindowInsets4)) {
                     AndroidUtilities.statusBarHeight = defaultWindowInsets3.f11577b;
                     AndroidUtilities.navigationBarHeight = defaultWindowInsets3.d;
-                    y3Var.f21727f = defaultWindowInsets3;
+                    y3Var.f21731f = defaultWindowInsets3;
                     y3Var.h = defaultWindowInsets4;
                     y3Var.requestLayout();
                 }
@@ -63,9 +63,9 @@ public final class n implements r0.n, l1, a2 {
                     i11++;
                 }
                 y3Var.invalidate();
-                return r0.k1.f46776b;
+                return r0.k1.f46820b;
             case 4:
-                r0.h1 h1Var = k1Var.f46777a;
+                r0.h1 h1Var = k1Var.f46821a;
                 FrameLayout frameLayout = (FrameLayout) obj;
                 Rect rect = new Rect();
                 if (Build.VERSION.SDK_INT >= 30) {
@@ -81,15 +81,15 @@ public final class n implements r0.n, l1, a2 {
                 return ((f3) obj).onApplyWindowInsetsToRoot(view, k1Var);
             case 7:
                 w3 w3Var = (w3) obj;
-                w3Var.f21664s = k1Var.f46777a.f(2).d;
+                w3Var.f21668s = k1Var.f46821a.f(2).d;
                 w3Var.invalidate();
-                return r0.k1.f46776b;
+                return r0.k1.f46820b;
         }
     }
 
     @Override
     public void f(b2 b2Var, int i10) {
-        b2 b2Var2 = (b2) this.f21406b;
+        b2 b2Var2 = (b2) this.f21410b;
         DialogInterface.OnCancelListener onCancelListener = b2Var2.J;
         if (onCancelListener != null) {
             onCancelListener.onCancel(b2Var2);
@@ -100,7 +100,7 @@ public final class n implements r0.n, l1, a2 {
     @Override
     public void o(KeyEvent keyEvent) {
         n1 n1Var;
-        v0 v0Var = (v0) this.f21406b;
+        v0 v0Var = (v0) this.f21410b;
         v0Var.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = v0Var.d) != null && n1Var.isShowing()) {
             v0Var.d.d(true);

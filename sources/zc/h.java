@@ -2,19 +2,19 @@ package zc;
 
 import java.io.IOException;
 public final class h extends Exception {
-    public final f f54355a;
+    public final f f54399a;
 
     public h(String str) {
         super(str);
-        this.f54355a = f.BAD_REQUEST;
+        this.f54399a = f.BAD_REQUEST;
     }
 
     public final f a() {
-        return this.f54355a;
+        return this.f54399a;
     }
 
     public h(String str, IOException iOException) {
         super(str, iOException);
-        this.f54355a = f.INTERNAL_ERROR;
+        this.f54399a = f.INTERNAL_ERROR;
     }
 }

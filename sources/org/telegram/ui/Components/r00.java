@@ -1,30 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class r00 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f30323a;
-    public final y00 f30324b;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class r00 implements gm0, hm0 {
+    public final b10 f30324a;
 
-    public r00(y00 y00Var, int i10) {
-        this.f30323a = i10;
-        this.f30324b = y00Var;
+    public r00(b10 b10Var) {
+        this.f30324a = b10Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f30323a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y00 y00Var = this.f30324b;
-                y00Var.f33086x = floatValue;
-                y00Var.invalidate();
-                return;
-            default:
-                y00 y00Var2 = this.f30324b;
-                y00Var2.getClass();
-                y00Var2.f33087y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y00Var2.invalidate();
-                return;
+    public boolean Y0(View view) {
+        return false;
+    }
+
+    @Override
+    public void c(float f7, float f10, int i10, View view) {
+        b10 b10Var = this.f30324a;
+        v00 v00Var = b10Var.J;
+        if (!((org.telegram.ui.sw) v00Var).f41824b.f42246j2) {
+            z00 z00Var = (z00) view;
+            if (b10Var.f24787n) {
+                if (i10 != 0) {
+                    int dp = AndroidUtilities.dp(6.0f);
+                    RectF rectF = z00Var.f33461f;
+                    float f11 = dp;
+                    if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
+                        org.telegram.ui.sw swVar = (org.telegram.ui.sw) b10Var.J;
+                        swVar.d(swVar.f41824b.getMessagesController().getDialogFilters().get(z00Var.f33454b.f32794a));
+                    }
+                }
+            } else if (i10 == b10Var.K && v00Var != null) {
+                ((org.telegram.ui.sw) v00Var).f41824b.u4(true, false);
+            } else {
+                b10Var.f(z00Var.f33454b, i10);
+            }
         }
+    }
+
+    @Override
+    public boolean d(int r24, android.view.View r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r00.d(int, android.view.View):boolean");
+    }
+
+    @Override
+    public void n0(View view, float f7, float f10) {
     }
 }

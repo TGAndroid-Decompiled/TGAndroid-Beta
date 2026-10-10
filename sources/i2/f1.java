@@ -19,6 +19,6 @@ public final class f1 implements x0 {
 
     @Override
     public final b2.k1 b() {
-        return this.f11690a.f48518o;
+        return this.f11690a.f48562o;
     }
 }

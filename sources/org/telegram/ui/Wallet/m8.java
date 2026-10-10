@@ -1,65 +1,131 @@
 package org.telegram.ui.Wallet;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.text.TextUtils;
-import android.view.View;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.os.SystemClock;
+import java.util.ArrayList;
+import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
-public final class m8 implements View.OnClickListener {
-    public final int f35262a;
-    public final s8 f35263b;
+public final class m8 {
+    public static final int[] f35307f = {-16106272, -16754689, -14779393, -13326081, -10235137, -6559233};
+    public final ArrayList f35308a = new ArrayList();
+    public final Random f35309b = new Random();
+    public final Paint f35310c = new Paint(1);
+    public final Path d;
+    public long f35311e;
 
-    public m8(s8 s8Var, int i10) {
-        this.f35262a = i10;
-        this.f35263b = s8Var;
+    public m8() {
+        Path path = new Path();
+        this.d = path;
+        path.moveTo(0.0f, -1.0f);
+        path.quadTo(0.12f, -0.12f, 1.0f, 0.0f);
+        path.quadTo(0.12f, 0.12f, 0.0f, 1.0f);
+        path.quadTo(-0.12f, 0.12f, -1.0f, 0.0f);
+        path.quadTo(-0.12f, -0.12f, 0.0f, -1.0f);
+        path.close();
     }
 
-    @Override
-    public final void onClick(View view) {
-        switch (this.f35262a) {
-            case 0:
-                s8 s8Var = this.f35263b;
-                if (s8Var.f35495w != null) {
-                    AndroidUtilities.hideKeyboard(s8Var.M);
-                    s8Var.f0(s8Var.f35495w, null);
-                    return;
-                }
-                return;
-            case 1:
-                s8 s8Var2 = this.f35263b;
-                if (s8Var2.f35495w != null) {
-                    AndroidUtilities.hideKeyboard(s8Var2.M);
-                    s8Var2.f0(s8Var2.f35495w, null);
-                    return;
-                }
-                return;
-            case 2:
-                s8 s8Var3 = this.f35263b;
-                ClipboardManager clipboardManager = (ClipboardManager) s8Var3.getParentActivity().getSystemService("clipboard");
-                if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
-                    ClipData primaryClip = clipboardManager.getPrimaryClip();
-                    if (primaryClip != null && primaryClip.getItemCount() != 0) {
-                        CharSequence coerceToText = primaryClip.getItemAt(0).coerceToText(s8Var3.getParentActivity());
-                        if (!TextUtils.isEmpty(coerceToText)) {
-                            s8Var3.M.setText(coerceToText.toString().trim());
-                            ci.g2 g2Var = s8Var3.M;
-                            g2Var.setSelection(g2Var.length());
-                            return;
-                        }
-                        s8Var3.R = false;
-                        s8Var3.i0(true);
-                        return;
-                    }
-                    s8Var3.R = false;
-                    s8Var3.i0(true);
-                    return;
-                }
-                s8Var3.R = false;
-                s8Var3.i0(true);
-                return;
-            default:
-                this.f35263b.c0();
-                return;
+    public final l8 a(float f7, float f10, float f11, float f12, float f13, float f14, float f15) {
+        ArrayList arrayList = this.f35308a;
+        if (arrayList.isEmpty()) {
+            this.f35311e = SystemClock.uptimeMillis();
         }
+        ?? obj = new Object();
+        obj.f35266l = 1.0f;
+        obj.f35257a = f7;
+        obj.f35258b = f10;
+        double d = f11;
+        obj.f35259c = ((float) Math.cos(d)) * f12;
+        obj.d = ((float) Math.sin(d)) * f12;
+        obj.f35260e = f13;
+        obj.f35261f = f14;
+        obj.f35262g = f15;
+        obj.f35265k = f35307f[this.f35309b.nextInt(6)];
+        obj.h = e(0.0f, 90.0f);
+        obj.f35263i = e(-180.0f, 180.0f);
+        arrayList.add(obj);
+        return obj;
+    }
+
+    public final void b(float f7, float f10) {
+        float f11 = AndroidUtilities.density;
+        for (int i10 = 0; i10 < 28; i10++) {
+            a(f7, f10, e(0.0f, 6.2831855f), e(60.0f, 300.0f) * f11, e(2.5f, 6.0f) * f11, e(0.5f, 0.9f), 3.0f);
+        }
+    }
+
+    public final void c(Canvas canvas) {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        float min = Math.min(0.033f, ((float) (uptimeMillis - this.f35311e)) / 1000.0f);
+        this.f35311e = uptimeMillis;
+        ArrayList arrayList = this.f35308a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            l8 l8Var = (l8) arrayList.get(size);
+            float f7 = l8Var.f35264j + min;
+            l8Var.f35264j = f7;
+            if (f7 >= 0.0f) {
+                if (f7 >= l8Var.f35261f) {
+                    arrayList.remove(size);
+                } else {
+                    float exp = (float) Math.exp((-l8Var.f35262g) * min);
+                    float f10 = l8Var.f35259c * exp;
+                    l8Var.f35259c = f10;
+                    float f11 = l8Var.d * exp;
+                    l8Var.d = f11;
+                    l8Var.f35257a = (f10 * min) + l8Var.f35257a;
+                    l8Var.f35258b = (f11 * min) + l8Var.f35258b;
+                    l8Var.h = (l8Var.f35263i * min) + l8Var.h;
+                    float f12 = l8Var.f35264j / l8Var.f35261f;
+                    float max = Math.max(0.0f, Math.min(1.0f, (f12 - 0.35f) / 0.65f));
+                    float min2 = (1.0f - ((3.0f - (max * 2.0f)) * (max * max))) * Math.min(1.0f, 8.0f * f12) * l8Var.f35266l;
+                    float B = com.google.android.gms.internal.vision.e2.B(f12, 0.5f, 1.0f, l8Var.f35260e);
+                    int save = canvas.save();
+                    canvas.translate(l8Var.f35257a, l8Var.f35258b);
+                    canvas.rotate(l8Var.h);
+                    canvas.scale(B, B);
+                    int i10 = l8Var.f35265k;
+                    Paint paint = this.f35310c;
+                    paint.setColor(i10);
+                    paint.setAlpha(Math.round(20.4f * min2));
+                    canvas.drawCircle(0.0f, 0.0f, 1.4f, paint);
+                    paint.setAlpha(Math.round(min2 * 255.0f));
+                    canvas.drawPath(this.d, paint);
+                    canvas.restoreToCount(save);
+                }
+            }
+        }
+    }
+
+    public final boolean d() {
+        return !this.f35308a.isEmpty();
+    }
+
+    public final float e(float f7, float f10) {
+        return com.google.android.gms.internal.vision.e2.y(f10, f7, this.f35309b.nextFloat(), f7);
+    }
+
+    public final void f() {
+        float f7;
+        this.f35308a.clear();
+        float f10 = AndroidUtilities.density;
+        for (int i10 = 0; i10 < 48; i10++) {
+            for (int i11 = -1; i11 <= 1; i11 += 2) {
+                if (i11 < 0) {
+                    f7 = 3.1415927f;
+                } else {
+                    f7 = 0.0f;
+                }
+                l8 a2 = a(0.0f, (e(-3.0f, 3.0f) * f10) + 0.0f, e(-0.6f, 0.6f) + f7, e(150.0f, 310.0f) * f10, e(1.3f, 3.2f) * f10, e(0.65f, 1.05f), 1.8f);
+                a2.f35265k = -6562049;
+                a2.f35266l = e(0.3f, 1.0f);
+                a2.f35264j = (-i10) * 0.006f;
+            }
+        }
+    }
+
+    public final void g(float f7, float f10) {
+        float f11 = AndroidUtilities.density;
+        a(f7, f10, e(0.0f, 6.2831855f), e(0.0f, 28.0f) * f11, e(1.5f, 3.5f) * f11, e(0.35f, 0.6f), 2.0f);
     }
 }

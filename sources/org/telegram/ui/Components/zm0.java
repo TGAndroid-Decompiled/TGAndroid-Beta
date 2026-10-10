@@ -1,5 +1,19 @@
 package org.telegram.ui.Components;
-public abstract class zm0 extends org.telegram.ui.ActionBar.f3 {
-    public ym0 f33602b;
-    public EditTextBoldCursor f33603c;
+
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class zm0 extends FrameLayout {
+    public View f33631a;
+    public TextView f33632b;
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f33632b.setText(charSequence);
+    }
 }

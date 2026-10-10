@@ -7,48 +7,48 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.n91;
-import org.telegram.ui.Components.rs0;
+import org.telegram.ui.Components.o91;
+import org.telegram.ui.Components.ss0;
 import org.telegram.ui.ProfileActivity;
 import yh.d5;
 public final class g2 implements Utilities.Callback {
-    public final int f51251a;
-    public final o2 f51252b;
-    public final TL_stars.SavedStarGift f51253c;
+    public final int f51295a;
+    public final o2 f51296b;
+    public final TL_stars.SavedStarGift f51297c;
 
     public g2(o2 o2Var, TL_stars.SavedStarGift savedStarGift, int i10) {
-        this.f51251a = i10;
-        this.f51252b = o2Var;
-        this.f51253c = savedStarGift;
+        this.f51295a = i10;
+        this.f51296b = o2Var;
+        this.f51297c = savedStarGift;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f51251a;
-        TL_stars.SavedStarGift savedStarGift = this.f51253c;
-        o2 o2Var = this.f51252b;
+        int i10 = this.f51295a;
+        TL_stars.SavedStarGift savedStarGift = this.f51297c;
+        o2 o2Var = this.f51296b;
         switch (i10) {
             case 0:
-                o2Var.f51435a.f51514e.b((String) obj, new g2(o2Var, savedStarGift, 1));
+                o2Var.f51479a.f51558e.b((String) obj, new g2(o2Var, savedStarGift, 1));
                 return;
             default:
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                rs0 rs0Var = o2Var.f51435a;
-                d5 d5Var = rs0Var.f51514e;
+                ss0 ss0Var = o2Var.f51479a;
+                d5 d5Var = ss0Var.f51558e;
                 int i11 = tL_starGiftCollection.collection_id;
                 d5Var.getClass();
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(savedStarGift);
                 d5Var.a(i11, arrayList);
-                rs0Var.f(true);
-                n91 n91Var = rs0Var.f51516n;
+                ss0Var.f(true);
+                o91 o91Var = ss0Var.f51560n;
                 int i12 = tL_starGiftCollection.collection_id;
-                n91Var.d(i12, rs0Var.f51514e.f(i12) + 1);
-                org.telegram.ui.ActionBar.n2 n2Var = rs0Var.f51511a;
+                o91Var.d(i12, ss0Var.f51558e.f(i12) + 1);
+                org.telegram.ui.ActionBar.n2 n2Var = ss0Var.f51555a;
                 if (n2Var instanceof ProfileActivity) {
                     ((ProfileActivity) n2Var).G4(true);
                 }
-                rs0Var.n();
+                ss0Var.n();
                 ad.a0(n2Var).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.s3.E1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 return;
         }

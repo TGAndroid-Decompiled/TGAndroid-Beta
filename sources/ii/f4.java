@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.u11;
+import org.telegram.ui.Components.v11;
 public abstract class f4 {
     public static void A(java.util.ArrayList r31, java.util.ArrayList r32, java.util.Map r33) {
         throw new UnsupportedOperationException("Method not decompiled: ii.f4.A(java.util.ArrayList, java.util.ArrayList, java.util.Map):void");
@@ -374,9 +374,9 @@ public abstract class f4 {
                                         sb3.append(pageblockmap.zoom);
                                         sb3.append('\"');
                                     }
-                                    if (pageblockmap.f20261w != 0) {
+                                    if (pageblockmap.f20265w != 0) {
                                         sb3.append(" w=\"");
-                                        sb3.append(pageblockmap.f20261w);
+                                        sb3.append(pageblockmap.f20265w);
                                         sb3.append('\"');
                                     }
                                     if (pageblockmap.h != 0) {
@@ -1034,8 +1034,8 @@ public abstract class f4 {
             }
             if (i10 != 0) {
                 ?? obj = new Object();
-                obj.f30974a = i10 & 114975;
-                spannableStringBuilder.setSpan(new u11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
+                obj.f31299a = i10 & 114975;
+                spannableStringBuilder.setSpan(new v11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
             }
             if (str2 != null) {
                 spannableStringBuilder.setSpan(h6.k(str2), length, length2, 33);

@@ -6,15 +6,15 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class sa0 implements Utilities.Callback {
-    public final int f41652a;
-    public final LaunchActivity f41653b;
-    public final m70 f41654c;
+    public final int f41696a;
+    public final LaunchActivity f41697b;
+    public final m70 f41698c;
     public final Long d;
 
     public sa0(LaunchActivity launchActivity, m70 m70Var, Long l4, int i10) {
-        this.f41652a = i10;
-        this.f41653b = launchActivity;
-        this.f41654c = m70Var;
+        this.f41696a = i10;
+        this.f41697b = launchActivity;
+        this.f41698c = m70Var;
         this.d = l4;
     }
 
@@ -26,10 +26,10 @@ public final class sa0 implements Utilities.Callback {
         org.telegram.ui.Components.ad X2;
         int i12;
         int i13;
-        int i14 = this.f41652a;
+        int i14 = this.f41696a;
         Long l4 = this.d;
-        m70 m70Var = this.f41654c;
-        LaunchActivity launchActivity = this.f41653b;
+        m70 m70Var = this.f41698c;
+        LaunchActivity launchActivity = this.f41697b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i14) {
             case 0:

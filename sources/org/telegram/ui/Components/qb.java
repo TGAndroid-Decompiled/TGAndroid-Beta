@@ -60,7 +60,7 @@ public abstract class qb extends xb {
     public void setTimer() {
         mc mcVar = new mc(getContext(), this.resourcesProvider);
         this.timerView = mcVar;
-        mcVar.f28806b = 5000L;
+        mcVar.f28759b = 5000L;
         addView(mcVar, w7.x5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

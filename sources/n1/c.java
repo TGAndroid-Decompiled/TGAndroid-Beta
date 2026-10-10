@@ -8,14 +8,14 @@ import ld.j;
 import sd.p;
 import v7.a8;
 public final class c extends j implements p {
-    public final int f16468a;
-    public int f16469b;
-    public Object f16470c;
+    public final int f16472a;
+    public int f16473b;
+    public Object f16474c;
     public final j d;
 
     public c(p pVar, jd.c cVar, int i10) {
         super(2, cVar);
-        this.f16468a = i10;
+        this.f16472a = i10;
         switch (i10) {
             case 1:
                 this.d = (j) pVar;
@@ -29,14 +29,14 @@ public final class c extends j implements p {
 
     @Override
     public final jd.c create(Object obj, jd.c cVar) {
-        switch (this.f16468a) {
+        switch (this.f16472a) {
             case 0:
                 c cVar2 = new c(this.d, cVar, 0);
-                cVar2.f16470c = obj;
+                cVar2.f16474c = obj;
                 return cVar2;
             default:
                 c cVar3 = new c(this.d, cVar, 1);
-                cVar3.f16470c = obj;
+                cVar3.f16474c = obj;
                 return cVar3;
         }
     }
@@ -45,7 +45,7 @@ public final class c extends j implements p {
     public final Object invoke(Object obj, Object obj2) {
         b bVar = (b) obj;
         jd.c cVar = (jd.c) obj2;
-        switch (this.f16468a) {
+        switch (this.f16472a) {
             case 0:
                 return ((c) create(bVar, cVar)).invokeSuspend(i.f11092a);
             default:
@@ -55,10 +55,10 @@ public final class c extends j implements p {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        switch (this.f16468a) {
+        switch (this.f16472a) {
             case 0:
                 kd.a aVar = kd.a.f14784a;
-                int i10 = this.f16469b;
+                int i10 = this.f16473b;
                 if (i10 != 0) {
                     if (i10 == 1) {
                         a8.b(obj);
@@ -67,32 +67,32 @@ public final class c extends j implements p {
                     }
                 } else {
                     a8.b(obj);
-                    this.f16469b = 1;
-                    obj = this.d.invoke((b) this.f16470c, this);
+                    this.f16473b = 1;
+                    obj = this.d.invoke((b) this.f16474c, this);
                     if (obj == aVar) {
                         return aVar;
                     }
                 }
                 b bVar = (b) obj;
-                bVar.f16467b.set(true);
+                bVar.f16471b.set(true);
                 return bVar;
             default:
                 kd.a aVar2 = kd.a.f14784a;
-                int i11 = this.f16469b;
+                int i11 = this.f16473b;
                 if (i11 != 0) {
                     if (i11 == 1) {
-                        b bVar2 = (b) this.f16470c;
+                        b bVar2 = (b) this.f16474c;
                         a8.b(obj);
                         return bVar2;
                     }
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                 }
                 a8.b(obj);
-                Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) this.f16470c).f16466a);
+                Map unmodifiableMap = DesugarCollections.unmodifiableMap(((b) this.f16474c).f16470a);
                 kotlin.jvm.internal.i.d(unmodifiableMap, "unmodifiableMap(preferencesMap)");
                 b bVar3 = new b(new LinkedHashMap(unmodifiableMap), false);
-                this.f16470c = bVar3;
-                this.f16469b = 1;
+                this.f16474c = bVar3;
+                this.f16473b = 1;
                 if (this.d.invoke(bVar3, this) != aVar2) {
                     return bVar3;
                 }

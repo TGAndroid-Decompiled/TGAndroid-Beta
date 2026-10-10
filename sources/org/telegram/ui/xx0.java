@@ -9,28 +9,28 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class xx0 extends ClickableSpan {
-    public final String f44160a;
-    public final yx0 f44161b;
+    public final String f44204a;
+    public final yx0 f44205b;
 
     public xx0(yx0 yx0Var, String str) {
-        this.f44161b = yx0Var;
-        this.f44160a = str;
+        this.f44205b = yx0Var;
+        this.f44204a = str;
     }
 
     @Override
     public final void onClick(View view) {
         org.telegram.ui.Components.tc b10;
-        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.f44160a));
-        org.telegram.ui.Components.ad a02 = org.telegram.ui.Components.ad.a0(this.f44161b.d);
+        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.f44204a));
+        org.telegram.ui.Components.ad a02 = org.telegram.ui.Components.ad.a0(this.f44205b.d);
         String string = LocaleController.getString(R.string.LinkCopied);
-        org.telegram.ui.ActionBar.e6 resourceProvider = this.f44161b.d.getResourceProvider();
+        org.telegram.ui.ActionBar.e6 resourceProvider = this.f44205b.d.getResourceProvider();
         a02.getClass();
         if (!AndroidUtilities.shouldShowClipboardToast()) {
             b10 = new org.telegram.ui.Components.tc();
         } else {
             org.telegram.ui.Components.bc bcVar = new org.telegram.ui.Components.bc(a02.W(), resourceProvider);
             bcVar.c(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-            bcVar.f24967b.setText(string);
+            bcVar.f24917b.setText(string);
             b10 = a02.b(bcVar, 1500);
         }
         b10.j();

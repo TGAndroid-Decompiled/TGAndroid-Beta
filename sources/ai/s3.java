@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class s3 extends o1 {
     public final kc f1698h0;
     public final f6 f1699i0;
@@ -94,7 +94,7 @@ public final class s3 extends o1 {
                 ofFloat.addUpdateListener(new a(this, 3));
                 this.f1513e0.addListener(new n(1, this, z10));
                 this.f1513e0.setDuration(420L);
-                this.f1513e0.setInterpolator(hs.h);
+                this.f1513e0.setInterpolator(is.h);
                 this.f1513e0.start();
             } else {
                 if (z10) {

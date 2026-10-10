@@ -12,50 +12,50 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.Components.ad;
 public final class la implements Runnable {
-    public final int f22431a;
-    public final Object f22432b;
-    public final Object f22433c;
+    public final int f22435a;
+    public final Object f22436b;
+    public final Object f22437c;
 
     public la(int i10, Object obj, Object obj2) {
-        this.f22431a = i10;
-        this.f22432b = obj;
-        this.f22433c = obj2;
+        this.f22435a = i10;
+        this.f22436b = obj;
+        this.f22437c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f22431a) {
+        switch (this.f22435a) {
             case 0:
-                ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) this.f22432b;
-                TLObject tLObject = (TLObject) this.f22433c;
-                na naVar = themesHorizontalListCell$InnerThemeView.f21762a0;
+                ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) this.f22436b;
+                TLObject tLObject = (TLObject) this.f22437c;
+                na naVar = themesHorizontalListCell$InnerThemeView.f21766a0;
                 if (tLObject instanceof TLRPC.TL_wallPaper) {
                     TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) tLObject;
                     String attachFileName = FileLoader.getAttachFileName(wallPaper.document);
                     if (!naVar.X2.containsKey(attachFileName)) {
-                        naVar.X2.put(attachFileName, themesHorizontalListCell$InnerThemeView.f21763b);
-                        FileLoader.getInstance(themesHorizontalListCell$InnerThemeView.f21763b.E).loadFile(wallPaper.document, wallPaper, 1, 1);
+                        naVar.X2.put(attachFileName, themesHorizontalListCell$InnerThemeView.f21767b);
+                        FileLoader.getInstance(themesHorizontalListCell$InnerThemeView.f21767b.E).loadFile(wallPaper.document, wallPaper, 1, 1);
                         return;
                     }
                     return;
                 }
-                themesHorizontalListCell$InnerThemeView.f21763b.f20712f = true;
+                themesHorizontalListCell$InnerThemeView.f21767b.f20716f = true;
                 return;
             case 1:
-                o0 o0Var = (o0) this.f22432b;
-                n0 n0Var = (n0) this.f22433c;
-                u1 u1Var = o0Var.f22562a;
+                o0 o0Var = (o0) this.f22436b;
+                n0 n0Var = (n0) this.f22437c;
+                u1 u1Var = o0Var.f22566a;
                 n0 n0Var2 = o0Var.F;
                 if (n0Var == n0Var2) {
-                    n0Var2.f22496n.c(false);
+                    n0Var2.f22500n.c(false);
                     n0 n0Var3 = o0Var.F;
-                    if (n0Var3.f22490g) {
+                    if (n0Var3.f22494g) {
                         if (u1Var.getDelegate() != null) {
                             u1Var.getDelegate().C2();
                         }
                     } else {
-                        TLObject tLObject2 = n0Var3.f22497o;
-                        u1 u1Var2 = o0Var.f22562a;
+                        TLObject tLObject2 = n0Var3.f22501o;
+                        u1 u1Var2 = o0Var.f22566a;
                         if (u1Var2.getDelegate() != null) {
                             u1Var2.getDelegate().G0(u1Var2, tLObject2, true);
                         }
@@ -65,7 +65,7 @@ public final class la implements Runnable {
                 o0Var.G = null;
                 o0Var.B = false;
                 o0Var.A = false;
-                o0Var.f22583y.c(false);
+                o0Var.f22587y.c(false);
                 VelocityTracker velocityTracker = o0Var.D;
                 if (velocityTracker != null) {
                     velocityTracker.recycle();
@@ -74,12 +74,12 @@ public final class la implements Runnable {
                 }
                 return;
             case 2:
-                w0 w0Var = (w0) this.f22432b;
-                w0Var.f23596f1.n2(w0Var, ((TLRPC.TL_messageActionGiftCode) this.f22433c).slug);
+                w0 w0Var = (w0) this.f22436b;
+                w0Var.f23600f1.n2(w0Var, ((TLRPC.TL_messageActionGiftCode) this.f22437c).slug);
                 return;
             case 3:
-                final w0 w0Var2 = (w0) this.f22432b;
-                final org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f22433c;
+                final w0 w0Var2 = (w0) this.f22436b;
+                final org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f22437c;
                 TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
                 tL_resolveStarGiftOffer.offer_msg_id = w0Var2.getMessageObject().getId();
                 tL_resolveStarGiftOffer.decline = true;
@@ -98,29 +98,29 @@ public final class la implements Runnable {
                 });
                 return;
             case 4:
-                ad.a0((org.telegram.ui.ActionBar.n2) this.f22432b).f0((TLRPC.TL_error) this.f22433c, false);
+                ad.a0((org.telegram.ui.ActionBar.n2) this.f22436b).f0((TLRPC.TL_error) this.f22437c, false);
                 return;
             case 5:
-                ((u1) this.f22432b).O0.draw((Canvas) this.f22433c);
+                ((u1) this.f22436b).O0.draw((Canvas) this.f22437c);
                 return;
             case 6:
-                ((u1) this.f22432b).post(new b1(8, (u1) this.f22433c));
+                ((u1) this.f22436b).post(new b1(8, (u1) this.f22437c));
                 return;
             case 7:
-                m8 m8Var = (m8) this.f22432b;
-                TLRPC.Document document = (TLRPC.Document) this.f22433c;
-                if (m8Var.f22469r.documents.isEmpty()) {
-                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = m8Var.f22469r;
-                    if (tL_messages_stickerSet.set.thumb_document_id == document.f20044id) {
+                m8 m8Var = (m8) this.f22436b;
+                TLRPC.Document document = (TLRPC.Document) this.f22437c;
+                if (m8Var.f22473r.documents.isEmpty()) {
+                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = m8Var.f22473r;
+                    if (tL_messages_stickerSet.set.thumb_document_id == document.f20048id) {
                         tL_messages_stickerSet.documents.add(document);
-                        m8Var.d(m8Var.f22469r, m8Var.f22467f, m8Var.f22470s);
+                        m8Var.d(m8Var.f22473r, m8Var.f22471f, m8Var.f22474s);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                ((na) this.f22432b).x1((org.telegram.ui.ActionBar.h6) this.f22433c);
+                ((na) this.f22436b).x1((org.telegram.ui.ActionBar.h6) this.f22437c);
                 return;
         }
     }

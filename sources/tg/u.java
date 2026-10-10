@@ -6,17 +6,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.Components.vw0;
-public final class u implements f5, vw0, vg.f, vg.k {
-    public final a0 f48414a;
+import org.telegram.ui.Components.ww0;
+public final class u implements f5, ww0, vg.f, vg.k {
+    public final a0 f48458a;
 
     public u(a0 a0Var) {
-        this.f48414a = a0Var;
+        this.f48458a = a0Var;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        a0 a0Var = this.f48414a;
+        a0 a0Var = this.f48458a;
         a0Var.m0 = i10 * 1000;
         a0Var.b0(false, true);
     }
@@ -28,26 +28,26 @@ public final class u implements f5, vw0, vg.f, vg.k {
         String string;
         String str2;
         String formatPluralString;
-        a0 a0Var = this.f48414a;
-        int i12 = a0Var.f48273h0;
+        a0 a0Var = this.f48458a;
+        int i12 = a0Var.f48317h0;
         int i13 = vg.d.v;
         if (i12 == 2) {
-            a0Var.f48278n0 = i10;
+            a0Var.f48322n0 = i10;
         } else {
-            a0Var.f48279o0 = i10;
+            a0Var.f48323o0 = i10;
         }
-        a0Var.f48281q0.f49563a.b(a0Var.W(), true);
-        if (a0Var.f48273h0 == 3) {
+        a0Var.f48325q0.f49607a.b(a0Var.W(), true);
+        if (a0Var.f48317h0 == 3) {
             a0Var.b0(true, true);
         } else {
             a0Var.b0(false, false);
         }
-        ug.b bVar = a0Var.f48272g0;
+        ug.b bVar = a0Var.f48316g0;
         int W = a0Var.W();
-        for (int i14 = 0; i14 < bVar.f48912f.getChildCount(); i14++) {
-            View childAt = bVar.f48912f.getChildAt(i14);
+        for (int i14 = 0; i14 < bVar.f48956f.getChildCount(); i14++) {
+            View childAt = bVar.f48956f.getChildAt(i14);
             if (childAt instanceof vg.x) {
-                r6 r6Var = ((vg.x) childAt).f49638r;
+                r6 r6Var = ((vg.x) childAt).f49682r;
                 if (W <= 0) {
                     formatPluralString = "";
                 } else {
@@ -59,8 +59,8 @@ public final class u implements f5, vw0, vg.f, vg.k {
             if (childAt instanceof vg.g) {
                 vg.g gVar = (vg.g) childAt;
                 int F = bVar.F(gVar.getChat());
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49594w);
-                if (gVar.f49595x) {
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49638w);
+                if (gVar.f49639x) {
                     if (F >= 1) {
                         if (isChannelAndNotMegaGroup) {
                             str2 = "Subscribers";
@@ -88,7 +88,7 @@ public final class u implements f5, vw0, vg.f, vg.k {
             }
         }
         bVar.m(8);
-        bVar.q(bVar.f48911e.size() - 12, 12);
+        bVar.q(bVar.f48955e.size() - 12, 12);
     }
 
     @Override

@@ -3,13 +3,13 @@ package org.telegram.ui;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 public final class h11 {
-    public final String f38190a;
-    public final Runnable f38191b;
-    public final String f38192c;
+    public final String f38234a;
+    public final Runnable f38235b;
+    public final String f38236c;
     public final String[] d;
-    public final int f38193e;
-    public final int f38194f;
-    public int f38195g;
+    public final int f38237e;
+    public final int f38238f;
+    public int f38239g;
     public String h;
 
     public h11(String str, int i10, int i11, Runnable runnable) {
@@ -21,7 +21,7 @@ public final class h11 {
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof h11) && this.f38194f == ((h11) obj).f38194f) {
+        if ((obj instanceof h11) && this.f38238f == ((h11) obj).f38238f) {
             return true;
         }
         return false;
@@ -29,9 +29,9 @@ public final class h11 {
 
     public final String toString() {
         SerializedData serializedData = new SerializedData();
-        serializedData.writeInt32(this.f38195g);
+        serializedData.writeInt32(this.f38239g);
         serializedData.writeInt32(1);
-        serializedData.writeInt32(this.f38194f);
+        serializedData.writeInt32(this.f38238f);
         return Utilities.bytesToHex(serializedData.toByteArray());
     }
 
@@ -44,11 +44,11 @@ public final class h11 {
     }
 
     public h11(int i10, String str, String str2, String str3, String str4, int i11, Runnable runnable) {
-        this.f38194f = i10;
-        this.f38190a = str;
-        this.f38192c = str2;
-        this.f38191b = runnable;
-        this.f38193e = i11;
+        this.f38238f = i10;
+        this.f38234a = str;
+        this.f38236c = str2;
+        this.f38235b = runnable;
+        this.f38237e = i11;
         if (str3 != null && str4 != null) {
             this.d = new String[]{str3, str4};
         } else if (str3 != null) {

@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class zd extends org.telegram.ui.Components.zd0 {
+public final class zd extends org.telegram.ui.Components.ae0 {
     public final int L;
     public final Object M;
 
@@ -17,15 +17,15 @@ public final class zd extends org.telegram.ui.Components.zd0 {
         switch (this.L) {
             case 0:
                 ke keVar = (ke) this.M;
-                org.telegram.ui.Components.k71 k71Var = keVar.f39233a1;
+                org.telegram.ui.Components.l71 l71Var = keVar.f39277a1;
                 fi.o oVar = keVar.Y0;
                 if (oVar != null && !oVar.isFocusable()) {
                     oVar.setFocusable(true);
                     oVar.setFocusableInTouchMode(true);
-                    int y12 = k71Var.y1(3);
-                    if (y12 >= 0 && y12 < k71Var.W2.f25283x.size()) {
-                        k71Var.B0();
-                        k71Var.x0(y12);
+                    int y12 = l71Var.y1(3);
+                    if (y12 >= 0 && y12 < l71Var.W2.f25590x.size()) {
+                        l71Var.B0();
+                        l71Var.x0(y12);
                     }
                     oVar.requestFocus();
                 }
@@ -36,10 +36,10 @@ public final class zd extends org.telegram.ui.Components.zd0 {
                 if (oVar2 != null && !oVar2.isFocusable()) {
                     gVar.Q.setFocusable(true);
                     gVar.Q.setFocusableInTouchMode(true);
-                    int y13 = gVar.f52557e.y1(1);
-                    if (y13 >= 0 && y13 < gVar.f52557e.W2.f25283x.size()) {
-                        gVar.f52557e.B0();
-                        gVar.f52557e.x0(y13);
+                    int y13 = gVar.f52601e.y1(1);
+                    if (y13 >= 0 && y13 < gVar.f52601e.W2.f25590x.size()) {
+                        gVar.f52601e.B0();
+                        gVar.f52601e.x0(y13);
                     }
                     gVar.Q.requestFocus();
                 }

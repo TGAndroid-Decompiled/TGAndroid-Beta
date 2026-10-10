@@ -13,8 +13,8 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.is;
 public final class s0 extends View {
     public boolean E;
     public final org.telegram.ui.Components.g6 F;
@@ -36,7 +36,7 @@ public final class s0 extends View {
     public final Paint f5923e;
     public final Paint f5924f;
     public final org.telegram.ui.Components.bd h;
-    public ck0 f5925n;
+    public dk0 f5925n;
     public final StaticLayout f5926r;
     public final float f5927s;
     public final float v;
@@ -60,14 +60,14 @@ public final class s0 extends View {
 
     public final void b(int i10, int i11, CharSequence charSequence) {
         float f7;
-        ck0 ck0Var = this.f5925n;
-        if (ck0Var != null) {
-            ck0Var.setCallback(null);
+        dk0 dk0Var = this.f5925n;
+        if (dk0Var != null) {
+            dk0Var.setCallback(null);
             this.f5925n.C(true);
         }
-        ck0 ck0Var2 = new ck0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
-        this.f5925n = ck0Var2;
-        ck0Var2.setCallback(this);
+        dk0 dk0Var2 = new dk0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
+        this.f5925n = dk0Var2;
+        dk0Var2.setCallback(this);
         this.f5925n.start();
         StaticLayout staticLayout = new StaticLayout(charSequence, this.f5922c, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f5928w = staticLayout;
@@ -184,9 +184,9 @@ public final class s0 extends View {
         }
         if (d10 > 0.0f) {
             float f15 = d10 * d;
-            ck0 ck0Var = this.f5925n;
-            if (ck0Var != null) {
-                ck0Var.setAlpha((int) (f15 * f12));
+            dk0 dk0Var = this.f5925n;
+            if (dk0Var != null) {
+                dk0Var.setAlpha((int) (f15 * f12));
                 this.f5925n.setBounds((int) (rectF.left + AndroidUtilities.dp(9.0f)), (int) (rectF.top + AndroidUtilities.dp(6.0f)), (int) (rectF.left + AndroidUtilities.dp(45.0f)), (int) (rectF.top + AndroidUtilities.dp(f11)));
                 this.f5925n.draw(canvas2);
             }
@@ -215,7 +215,7 @@ public final class s0 extends View {
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (bdVar.f24977i) {
+            if (bdVar.f24928i) {
                 if (contains) {
                     if (this.G) {
                         Runnable runnable = this.Q;
@@ -269,7 +269,7 @@ public final class s0 extends View {
         this.f5924f = paint4;
         this.h = new org.telegram.ui.Components.bd(this);
         this.E = false;
-        this.F = new org.telegram.ui.Components.g6(0.0f, this, 0L, 350L, hs.h);
+        this.F = new org.telegram.ui.Components.g6(0.0f, this, 0L, 350L, is.h);
         this.G = true;
         this.H = 0.0f;
         this.I = new org.telegram.ui.Components.g6(this);

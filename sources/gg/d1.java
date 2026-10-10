@@ -181,10 +181,10 @@ public final class d1 implements Runnable {
         this.f10574n = str2;
     }
 
-    public d1(org.telegram.ui.Wallet.d2 d2Var, org.telegram.ui.Wallet.z1 z1Var, int i10, Object obj, String str, org.telegram.ui.Wallet.h0 h0Var, Utilities.Callback callback) {
+    public d1(org.telegram.ui.Wallet.e2 e2Var, org.telegram.ui.Wallet.a2 a2Var, int i10, Object obj, String str, org.telegram.ui.Wallet.h0 h0Var, Utilities.Callback callback) {
         this.f10569a = 14;
-        this.d = d2Var;
-        this.f10571c = z1Var;
+        this.d = e2Var;
+        this.f10571c = a2Var;
         this.f10570b = i10;
         this.f10572e = obj;
         this.f10573f = str;

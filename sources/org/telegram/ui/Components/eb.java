@@ -27,26 +27,26 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
     public g6 N;
     public boolean O;
     public boolean P;
-    public zu Q;
+    public av Q;
     public boolean R;
     public boolean S;
     public float T;
     public int U;
     public int V;
     public int W;
-    public final Drawable f26021b;
-    public final gg.a0 f26022c;
-    public final qm0 d;
-    public final ab f26023e;
-    public boolean f26024f;
+    public final Drawable f25981b;
+    public final gg.a0 f25982c;
+    public final rm0 d;
+    public final ab f25983e;
+    public boolean f25984f;
     public int h;
-    public final org.telegram.ui.ActionBar.n2 f26025n;
-    public final boolean f26026r;
-    public final ya f26027s;
+    public final org.telegram.ui.ActionBar.n2 f25985n;
+    public final boolean f25986r;
+    public final ya f25987s;
     public float v;
-    public boolean f26028w;
-    public float f26029x;
-    public boolean f26030y;
+    public boolean f25988w;
+    public float f25989x;
+    public boolean f25990y;
 
     public eb(org.telegram.ui.ActionBar.n2 r4, boolean r5) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.eb.<init>(org.telegram.ui.ActionBar.n2, boolean):void");
@@ -59,7 +59,7 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
     public abstract CharSequence B();
 
     public final boolean C() {
-        if (i0.a.f(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20868h5, this.resourcesProvider)) > 0.699999988079071d) {
+        if (i0.a.f(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20872h5, this.resourcesProvider)) > 0.699999988079071d) {
             return true;
         }
         return false;
@@ -77,16 +77,16 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
         float f10;
         int i11;
         this.S = false;
-        if (!this.f26026r) {
+        if (!this.f25986r) {
             boolean z10 = this.P;
             boolean z11 = true;
-            qm0 qm0Var = this.d;
+            rm0 rm0Var = this.d;
             if (z10) {
-                int height = qm0Var.getHeight();
-                for (int i12 = 0; i12 < qm0Var.getChildCount(); i12++) {
-                    View childAt = qm0Var.getChildAt(i12);
+                int height = rm0Var.getHeight();
+                for (int i12 = 0; i12 < rm0Var.getChildCount(); i12++) {
+                    View childAt = rm0Var.getChildAt(i12);
                     int R = RecyclerView.R(childAt);
-                    if (R != -1 && R != qm0Var.getAdapter().h() - 1) {
+                    if (R != -1 && R != rm0Var.getAdapter().h() - 1) {
                         int top = childAt.getTop();
                         if (this.O) {
                             i11 = (int) childAt.getTranslationY();
@@ -98,10 +98,10 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
                 }
                 i10 = height - AndroidUtilities.dp(16.0f);
             } else {
-                s4.d1 K = qm0Var.K(0);
+                s4.d1 K = rm0Var.K(0);
                 int i13 = -AndroidUtilities.dp(16.0f);
                 if (K != null) {
-                    View view2 = K.f47658a;
+                    View view2 = K.f47702a;
                     i13 = view2.getBottom() - AndroidUtilities.dp(16.0f);
                     if (this.O) {
                         i10 = ((int) view2.getTranslationY()) + i13;
@@ -110,7 +110,7 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
                 i10 = i13;
             }
             int i14 = (i10 - ((this.H + this.I) + this.J)) + this.K;
-            if (this.f26030y && this.E) {
+            if (this.f25990y && this.E) {
                 if (this.W == 2) {
                     f10 = 8.0f;
                 } else {
@@ -123,7 +123,7 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
             G(f11);
             int i15 = this.W;
             float f12 = 1.0f;
-            ab abVar = this.f26023e;
+            ab abVar = this.f25983e;
             if (i15 == 1) {
                 float dp = 1.0f - ((AndroidUtilities.dp(16.0f) + i14) / z());
                 if (dp < 0.0f) {
@@ -132,7 +132,7 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
                 if (dp == 0.0f) {
                     z11 = false;
                 }
-                AndroidUtilities.updateViewVisibilityAnimated(abVar, z11, 1.0f, this.f26024f);
+                AndroidUtilities.updateViewVisibilityAnimated(abVar, z11, 1.0f, this.f25984f);
             } else if (i15 == 2) {
                 float max = Math.max(((AndroidUtilities.dp(8.0f) + (i14 - this.K)) + this.I) - AndroidUtilities.statusBarHeight, 0.0f);
                 g6 g6Var = this.N;
@@ -147,13 +147,13 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
                     canvas.clipRect(0.0f, max, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
                     this.S = true;
                 }
-                this.f26029x = d;
+                this.f25989x = d;
                 f12 = AndroidUtilities.lerp(1.0f, 0.5f, d);
-                abVar.f21266e.setAlpha(d);
+                abVar.f21270e.setAlpha(d);
                 D(d);
-                abVar.f21266e.setScaleX(d);
-                abVar.f21266e.setPivotY(imageView.getMeasuredHeight() / 2.0f);
-                abVar.f21266e.setScaleY(d);
+                abVar.f21270e.setScaleX(d);
+                abVar.f21270e.setPivotY(imageView.getMeasuredHeight() / 2.0f);
+                abVar.f21270e.setScaleY(d);
                 org.telegram.ui.ActionBar.j5 titleTextView = abVar.getTitleTextView();
                 titleTextView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - titleTextView.getLeft(), 0.0f, d) + 0);
                 if (this.R) {
@@ -180,14 +180,14 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
                 }
                 w();
                 this.shadowDrawable.draw(canvas);
-                if (this.f26030y && f12 > 0.0f) {
+                if (this.f25990y && f12 > 0.0f) {
                     int dp2 = AndroidUtilities.dp(36.0f);
                     int dp3 = AndroidUtilities.dp(20.0f) + i14;
                     RectF rectF = this.F;
                     rectF.set((view.getMeasuredWidth() - dp2) / 2.0f, dp3, (view.getMeasuredWidth() + dp2) / 2.0f, AndroidUtilities.dp(4.0f) + dp3);
-                    org.telegram.ui.ActionBar.i6.f21086t0.setColor(getThemedColor(org.telegram.ui.ActionBar.i6.Ii));
-                    org.telegram.ui.ActionBar.i6.f21086t0.setAlpha((int) (paint.getAlpha() * f12));
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.i6.f21086t0);
+                    org.telegram.ui.ActionBar.i6.f21090t0.setColor(getThemedColor(org.telegram.ui.ActionBar.i6.Ii));
+                    org.telegram.ui.ActionBar.i6.f21090t0.setAlpha((int) (paint.getAlpha() * f12));
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.i6.f21090t0);
                 }
             }
             E(canvas, i14);
@@ -195,13 +195,13 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
     }
 
     public final void K() {
-        qm0 qm0Var = this.d;
-        if (qm0Var != null && this.f26022c != null && qm0Var.getChildCount() > 0) {
+        rm0 rm0Var = this.d;
+        if (rm0Var != null && this.f25982c != null && rm0Var.getChildCount() > 0) {
             View view = null;
             int i10 = -1;
             int i11 = Integer.MAX_VALUE;
-            for (int i12 = 0; i12 < qm0Var.getChildCount(); i12++) {
-                View childAt = qm0Var.getChildAt(i12);
+            for (int i12 = 0; i12 < rm0Var.getChildCount(); i12++) {
+                View childAt = rm0Var.getChildAt(i12);
                 int R = RecyclerView.R(childAt);
                 if (R >= 0 && childAt.getTop() < i11) {
                     i11 = childAt.getTop();
@@ -218,7 +218,7 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
     }
 
     public final void L() {
-        if (this.f26026r) {
+        if (this.f25986r) {
             return;
         }
         this.W = 2;
@@ -227,8 +227,8 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
         this.G = currentActionBarHeight + AndroidUtilities.statusBarHeight;
         this.I = AndroidUtilities.dp(16.0f);
         this.J = AndroidUtilities.dp(-20.0f);
-        this.N = new g6(this.containerView, 0L, 350L, hs.h);
-        this.f26023e.f21266e.setPivotX(0.0f);
+        this.N = new g6(this.containerView, 0L, 350L, is.h);
+        this.f25983e.f21270e.setPivotX(0.0f);
         this.d.setClipToPadding(true);
     }
 
@@ -241,28 +241,28 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
             LaunchActivity.G1.H(true, true, true);
             return;
         }
-        ab abVar = this.f26023e;
+        ab abVar = this.f25983e;
         if (abVar != null && abVar.getTag() != null) {
             AndroidUtilities.setLightStatusBar(this, C());
             return;
         }
-        org.telegram.ui.ActionBar.n2 n2Var = this.f26025n;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f25985n;
         if (n2Var != null) {
             AndroidUtilities.setLightStatusBar(this, n2Var.isLightStatusBar());
         }
     }
 
     public final void O() {
-        ab abVar = this.f26023e;
+        ab abVar = this.f25983e;
         if (abVar != null) {
             abVar.setTitle(B());
         }
     }
 
     public final void P() {
-        ab abVar = this.f26023e;
+        ab abVar = this.f25983e;
         if (abVar != null && !TextUtils.equals(B(), abVar.getTitle())) {
-            abVar.J(B(), false, 350L, hs.h);
+            abVar.J(B(), false, 350L, is.h);
         }
     }
 
@@ -273,11 +273,11 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
 
     @Override
     public final boolean isAttachedLightStatusBar() {
-        ab abVar = this.f26023e;
+        ab abVar = this.f25983e;
         if (abVar != null && abVar.getTag() != null) {
             return C();
         }
-        org.telegram.ui.ActionBar.n2 n2Var = this.f26025n;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f25985n;
         if (n2Var != null) {
             return n2Var.isLightStatusBar();
         }
@@ -291,11 +291,11 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
     }
 
     public final void u() {
-        qm0 qm0Var = this.d;
-        if (qm0Var != null && qm0Var.getLayoutManager() != null && this.U >= 0) {
-            int top = (this.V - this.containerView.getTop()) - qm0Var.getPaddingTop();
-            if (qm0Var.getLayoutManager() instanceof s4.d0) {
-                ((s4.d0) qm0Var.getLayoutManager()).h1(this.U, top);
+        rm0 rm0Var = this.d;
+        if (rm0Var != null && rm0Var.getLayoutManager() != null && this.U >= 0) {
+            int top = (this.V - this.containerView.getTop()) - rm0Var.getPaddingTop();
+            if (rm0Var.getLayoutManager() instanceof s4.d0) {
+                ((s4.d0) rm0Var.getLayoutManager()).h1(this.U, top);
             }
             this.U = -1;
         }
@@ -306,7 +306,7 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
     }
 
     public final void w() {
-        if (this.backDrawable != null && this.containerView != null && this.shadowDrawable != null && M() && !this.f26026r) {
+        if (this.backDrawable != null && this.containerView != null && this.shadowDrawable != null && M() && !this.f25986r) {
             Rect bounds = this.shadowDrawable.getBounds();
             if (this.containerView.getMeasuredWidth() >= this.container.getMeasuredWidth()) {
                 this.backDrawable.a(((this.containerView.getMeasuredHeight() - bounds.top) - AndroidUtilities.dp(30.0f)) - ((int) this.containerView.getTranslationY()));
@@ -316,9 +316,9 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
         }
     }
 
-    public abstract pm0 x(qm0 qm0Var);
+    public abstract qm0 x(rm0 rm0Var);
 
-    public qm0 y(Context context) {
+    public rm0 y(Context context) {
         return new ai.w0(this, context, this.resourcesProvider, 10);
     }
 
@@ -344,7 +344,7 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
     public void G(float f7) {
     }
 
-    public void H(sw0 sw0Var) {
+    public void H(tw0 tw0Var) {
     }
 
     public eb(android.content.Context r2, org.telegram.ui.ActionBar.n2 r3, boolean r4, boolean r5, int r6, org.telegram.ui.ActionBar.e6 r7) {
@@ -362,12 +362,12 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
     }
 
     public eb(Context context, org.telegram.ui.ActionBar.n2 n2Var, db dbVar) {
-        super(dbVar.f25670b, context, dbVar.f25674g, dbVar.f25669a);
+        super(dbVar.f25636b, context, dbVar.f25640g, dbVar.f25635a);
         ya yaVar;
         this.v = 0.4f;
-        this.f26028w = true;
-        this.f26029x = 1.0f;
-        this.f26030y = false;
+        this.f25988w = true;
+        this.f25989x = 1.0f;
+        this.f25990y = false;
         this.F = new RectF();
         this.W = 1;
         this.G = 0;
@@ -379,32 +379,32 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
         this.M = false;
         this.O = false;
         this.U = -1;
-        boolean z10 = dbVar.f25671c;
+        boolean z10 = dbVar.f25637c;
         boolean z11 = dbVar.d;
-        boolean z12 = dbVar.f25672e;
-        int i10 = dbVar.f25673f;
-        this.f26025n = n2Var;
-        this.f26026r = z10;
-        this.f26021b = context.getDrawable(R.drawable.header_shadow).mutate();
+        boolean z12 = dbVar.f25638e;
+        int i10 = dbVar.f25639f;
+        this.f25985n = n2Var;
+        this.f25986r = z10;
+        this.f25981b = context.getDrawable(R.drawable.header_shadow).mutate();
         if (z11) {
             ya yaVar2 = new ya(this, context, z12, z10);
-            this.f26027s = yaVar2;
+            this.f25987s = yaVar2;
             yaVar = yaVar2;
         } else {
             yaVar = new za(this, context, z12, z10);
         }
-        qm0 y3 = y(context);
+        rm0 y3 = y(context);
         this.d = y3;
         gg.a0 a0Var = new gg.a0(6);
-        this.f26022c = a0Var;
+        this.f25982c = a0Var;
         if (z12) {
             a0Var.l1(true);
         }
         y3.setLayoutManager(a0Var);
-        ya yaVar3 = this.f26027s;
+        ya yaVar3 = this.f25987s;
         if (yaVar3 != null) {
             yaVar3.setBottomSheetContainerView(getContainer());
-            this.f26027s.setTargetListView(y3);
+            this.f25987s.setTargetListView(y3);
         }
         if (z10) {
             y3.setHasFixedSize(true);
@@ -415,12 +415,12 @@ public abstract class eb extends org.telegram.ui.ActionBar.f3 {
             y3.setAdapter(new cb(this, x(y3), context));
             this.containerView = yaVar;
             ab abVar = new ab(this, context, yaVar);
-            this.f26023e = abVar;
-            abVar.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20868h5));
+            this.f25983e = abVar;
+            abVar.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.i6.f20872h5));
             abVar.setTitleColor(getThemedColor(org.telegram.ui.ActionBar.i6.G6));
-            abVar.C(getThemedColor(org.telegram.ui.ActionBar.i6.f21201z8), false);
+            abVar.C(getThemedColor(org.telegram.ui.ActionBar.i6.f21205z8), false);
             abVar.setBackButtonImage(R.drawable.ic_ab_back);
-            abVar.D(getThemedColor(org.telegram.ui.ActionBar.i6.f21183y8), false);
+            abVar.D(getThemedColor(org.telegram.ui.ActionBar.i6.f21187y8), false);
             abVar.setCastShadows(true);
             abVar.setTitle(B());
             abVar.setActionBarMenuOnItemClick(new org.telegram.ui.ro(this, 7));

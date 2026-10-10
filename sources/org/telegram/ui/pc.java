@@ -28,14 +28,14 @@ import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class pc implements Utilities.Callback {
-    public final int f40764a;
-    public final Object f40765b;
-    public final Object f40766c;
+    public final int f40808a;
+    public final Object f40809b;
+    public final Object f40810c;
 
     public pc(int i10, Object obj, Object obj2) {
-        this.f40764a = i10;
-        this.f40765b = obj;
-        this.f40766c = obj2;
+        this.f40808a = i10;
+        this.f40809b = obj;
+        this.f40810c = obj2;
     }
 
     @Override
@@ -49,13 +49,13 @@ public final class pc implements Utilities.Callback {
         float f10;
         float f11;
         int[] iArr;
-        int i11 = this.f40764a;
+        int i11 = this.f40808a;
         SendMessageChatArguments sendMessageChatArguments = null;
         TLRPC.User user = null;
         int i12 = 0;
         boolean z11 = false;
-        Object obj2 = this.f40766c;
-        Object obj3 = this.f40765b;
+        Object obj2 = this.f40810c;
+        Object obj3 = this.f40809b;
         switch (i11) {
             case 0:
                 sc scVar = (sc) obj3;
@@ -64,8 +64,8 @@ public final class pc implements Utilities.Callback {
                 scVar.getClass();
                 if (view instanceof rc) {
                     rc rcVar = (rc) view;
-                    rcVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20797d6, scVar.f41665a));
-                    scVar.f41666b.getClass();
+                    rcVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20801d6, scVar.f41709a));
+                    scVar.f41710b.getClass();
                     int R = RecyclerView.R(view);
                     if (peerColors != null && R >= 0 && R < peerColors.colors.size()) {
                         rcVar.a(peerColors.colors.get(R));
@@ -77,7 +77,7 @@ public final class pc implements Utilities.Callback {
             case 1:
                 rg.j0 j0Var = (rg.j0) obj2;
                 j0Var.H1((ChannelBoostsController.CanApplyBoost) obj);
-                ((ke) obj3).f39254w0.showDialog(j0Var);
+                ((ke) obj3).f39298w0.showDialog(j0Var);
                 return;
             case 2:
                 zn znVar = (zn) obj3;
@@ -94,11 +94,11 @@ public final class pc implements Utilities.Callback {
                 return;
             case 3:
                 zn znVar2 = (zn) obj3;
-                SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of((String) obj2, znVar2.T5, znVar2.f44868n5, znVar2.X3, null, false, null, null, null, true, 0, 0, null, false);
+                SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of((String) obj2, znVar2.T5, znVar2.f44912n5, znVar2.X3, null, false, null, null, null, true, 0, 0, null, false);
                 of2.sendMessageChatArguments = znVar2.H8();
                 of2.payStars = ((Long) obj).longValue();
                 of2.monoForumPeer = znVar2.S8();
-                of2.suggestionParams = znVar2.f44783g5;
+                of2.suggestionParams = znVar2.f44827g5;
                 znVar2.getSendMessagesHelper().sendMessage(of2);
                 znVar2.Y.setFieldText("");
                 znVar2.j9(false);
@@ -108,18 +108,18 @@ public final class pc implements Utilities.Callback {
                 TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) obj2;
                 Long l10 = (Long) obj;
                 if (znVar3.R3 == 1) {
-                    org.telegram.ui.Components.g5.L(znVar3.getParentActivity(), znVar3.T5, new a7(znVar3, botInlineResult, l10, 2), znVar3.f44763ea);
+                    org.telegram.ui.Components.g5.L(znVar3.getParentActivity(), znVar3.T5, new a7(znVar3, botInlineResult, l10, 2), znVar3.f44807ea);
                     return;
                 } else {
                     znVar3.gb(botInlineResult, true, 0, l10.longValue());
                     return;
                 }
             case 5:
-                zn.k1((zn) obj3, (h41[]) obj2, (org.telegram.ui.Components.p80) obj);
+                zn.k1((zn) obj3, (h41[]) obj2, (org.telegram.ui.Components.q80) obj);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
-                ((zn) obj3).f44824jb = true;
+                ((zn) obj3).f44868jb = true;
                 ((org.telegram.ui.ActionBar.p) obj2).run();
                 return;
             case 7:
@@ -136,7 +136,7 @@ public final class pc implements Utilities.Callback {
                         org.telegram.messenger.q.q(R.string.PollStatsWillLater, org.telegram.ui.Components.ad.a0(znVar4), R.raw.timer_toast, 24);
                         return;
                     } else {
-                        new th.g(znVar4.getParentActivity(), znVar4.f44763ea, tL_statsPollStats).show();
+                        new th.g(znVar4.getParentActivity(), znVar4.f44807ea, tL_statsPollStats).show();
                         return;
                     }
                 }
@@ -154,20 +154,20 @@ public final class pc implements Utilities.Callback {
             case 9:
                 hg.b2 b2Var = (hg.b2) obj2;
                 String str = (String) obj;
-                zn znVar6 = ((oj) obj3).f40545b;
+                zn znVar6 = ((oj) obj3).f40589b;
                 if (b2Var != null) {
                     i10 = ((org.telegram.ui.ActionBar.n2) znVar6).currentAccount;
                     hg.c2.f(i10).k(b2Var.f11174a, str);
                 }
                 znVar6.Q3 = str;
-                znVar6.f44702a1.setTitle(str);
+                znVar6.f44746a1.setTitle(str);
                 return;
             case 10:
                 MessageObject messageObject2 = (MessageObject) obj2;
                 Long l11 = (Long) obj;
-                zn znVar7 = ((ln) obj3).f39636a;
+                zn znVar7 = ((ln) obj3).f39680a;
                 if (znVar7.i7()) {
-                    SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(messageObject2.getDiceEmoji(), znVar7.T5, znVar7.f44868n5, znVar7.X3, null, false, null, null, null, true, 0, 0, null, false);
+                    SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(messageObject2.getDiceEmoji(), znVar7.T5, znVar7.f44912n5, znVar7.X3, null, false, null, null, null, true, 0, 0, null, false);
                     of3.sendMessageChatArguments = znVar7.H8();
                     of3.dice_stake = l11.longValue();
                     znVar7.getSendMessagesHelper().sendMessage(of3);
@@ -176,10 +176,10 @@ public final class pc implements Utilities.Callback {
                 return;
             case 11:
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj2;
-                zn znVar8 = ((ln) obj3).f39636a;
+                zn znVar8 = ((ln) obj3).f39680a;
                 if (((Boolean) obj).booleanValue()) {
-                    for (int i13 = 0; i13 < znVar8.f44990x0.getChildCount(); i13++) {
-                        View childAt = znVar8.f44990x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < znVar8.f45034x0.getChildCount(); i13++) {
+                        View childAt = znVar8.f45034x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.u1) {
                             org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) childAt;
                             if (u1Var2.getMessageObject() != null && u1Var2.getMessageObject().isSensitive()) {
@@ -197,7 +197,7 @@ public final class pc implements Utilities.Callback {
             case 12:
                 ln lnVar = (ln) obj3;
                 pc pcVar = (pc) obj2;
-                zn znVar9 = lnVar.f39636a;
+                zn znVar9 = lnVar.f39680a;
                 if (!((Boolean) obj).booleanValue()) {
                     org.telegram.ui.Components.ad.a0(znVar9).M(LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText), R.raw.error).j();
                     return;
@@ -208,12 +208,12 @@ public final class pc implements Utilities.Callback {
                 return;
             case 13:
                 TLRPC.Message message = (TLRPC.Message) obj2;
-                ((ln) obj3).f39636a.getMessagesController().rejectSuggestedMessage(DialogObject.getPeerDialogId(message.peer_id), message.f20059id, (String) obj);
+                ((ln) obj3).f39680a.getMessagesController().rejectSuggestedMessage(DialogObject.getPeerDialogId(message.peer_id), message.f20063id, (String) obj);
                 return;
             case 14:
                 co coVar = (co) obj3;
-                coVar.f36714f.t(((dg.a) obj).f8350b, ((TLRPC.WallPaper) obj2).settings.intensity);
-                View view2 = coVar.f36711b;
+                coVar.f36758f.t(((dg.a) obj).f8350b, ((TLRPC.WallPaper) obj2).settings.intensity);
+                View view2 = coVar.f36755b;
                 if (view2 != null) {
                     view2.invalidate();
                     return;
@@ -221,7 +221,7 @@ public final class pc implements Utilities.Callback {
                 return;
             case 15:
                 Long l12 = (Long) obj;
-                ChatActivityEnterView chatActivityEnterView = ((org.telegram.ui.Components.rf) obj3).f30434a;
+                ChatActivityEnterView chatActivityEnterView = ((org.telegram.ui.Components.rf) obj3).f30459a;
                 long j3 = chatActivityEnterView.Q2;
                 MessageObject messageObject3 = chatActivityEnterView.T2;
                 threadMessage = chatActivityEnterView.getThreadMessage();
@@ -248,19 +248,19 @@ public final class pc implements Utilities.Callback {
                 Boolean bool2 = (Boolean) obj;
                 TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
                 int i14 = yiVar.M1;
-                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i14).getInputUser(riVar.f30450c.bot_id);
+                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i14).getInputUser(riVar.f30471c.bot_id);
                 tL_messages_toggleBotInAttachMenu.enabled = true;
                 tL_messages_toggleBotInAttachMenu.write_allowed = true;
                 ConnectionsManager.getInstance(i14).sendRequest(tL_messages_toggleBotInAttachMenu, new oo(5, yiVar, riVar), 66);
                 return;
             case 17:
                 org.telegram.ui.Components.yi yiVar2 = (org.telegram.ui.Components.yi) obj3;
-                ((zn) obj2).f44783g5 = (MessageSuggestionParams) obj;
+                ((zn) obj2).f44827g5 = (MessageSuggestionParams) obj;
                 boolean J1 = yiVar2.J1(0, true, 0, yiVar2.u1(), yiVar2.Q0);
-                org.telegram.ui.Components.pf pfVar = yiVar2.f33234h0;
+                org.telegram.ui.Components.pf pfVar = yiVar2.f33241h0;
                 if (pfVar != null) {
                     pfVar.h(!J1);
-                    yiVar2.f33234h0 = null;
+                    yiVar2.f33241h0 = null;
                     return;
                 }
                 return;
@@ -271,52 +271,52 @@ public final class pc implements Utilities.Callback {
                 org.telegram.ui.Components.kj kjVar = (org.telegram.ui.Components.kj) obj3;
                 MessagesController messagesController = (MessagesController) obj2;
                 Long l13 = (Long) obj;
-                kjVar.f28032i0 = false;
+                kjVar.f28040i0 = false;
                 if (l13 != null) {
                     user = messagesController.getUser(l13);
                 }
-                kjVar.f28031h0 = user;
+                kjVar.f28039h0 = user;
                 if (user == null) {
                     z11 = true;
                 }
-                kjVar.f28033j0 = z11;
+                kjVar.f28041j0 = z11;
                 if (user != null) {
                     kjVar.R();
                     return;
                 }
                 return;
             case 20:
-                org.telegram.ui.Components.xl xlVar = ((org.telegram.ui.Components.ul) obj3).f31533b;
-                xlVar.f32931x0.b(((org.telegram.ui.Components.wl) obj2).f32632c, xlVar.f32933y0, true, 0, ((Long) obj).longValue());
-                xlVar.f30173b.dismiss(true);
+                org.telegram.ui.Components.xl xlVar = ((org.telegram.ui.Components.ul) obj3).f31546b;
+                xlVar.f32985x0.b(((org.telegram.ui.Components.wl) obj2).f32698c, xlVar.f32987y0, true, 0, ((Long) obj).longValue());
+                xlVar.f30211b.dismiss(true);
                 return;
             case 21:
-                org.telegram.ui.Components.fw fwVar = (org.telegram.ui.Components.fw) obj3;
+                org.telegram.ui.Components.gw gwVar = (org.telegram.ui.Components.gw) obj3;
                 boolean[] zArr = (boolean[]) obj2;
                 if (((TLRPC.TL_messages_stickerSet) obj) == null && !zArr[0]) {
                     zArr[0] = true;
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ew(fwVar, 1));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.fw(gwVar, 1));
                     return;
                 }
                 return;
             case 22:
                 LinkedHashSet linkedHashSet = (LinkedHashSet) obj3;
-                org.telegram.ui.Components.zr zrVar = (org.telegram.ui.Components.zr) obj2;
+                org.telegram.ui.Components.as asVar = (org.telegram.ui.Components.as) obj2;
                 TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) obj;
                 if (tL_emojiList != null) {
                     linkedHashSet.addAll(tL_emojiList.document_id);
                 }
-                zrVar.run();
+                asVar.run();
                 return;
             case 23:
-                org.telegram.ui.Components.yy yyVar = (org.telegram.ui.Components.yy) obj3;
-                org.telegram.ui.Components.zy zyVar = yyVar.f33403a;
-                org.telegram.ui.Components.a00 a00Var = zyVar.F;
-                MediaDataController mediaDataController = MediaDataController.getInstance(a00Var.f24401c1);
-                String[] strArr = a00Var.W0;
-                String str2 = zyVar.v;
-                ai.r5 r5Var = new ai.r5(yyVar, (String) obj2, (Runnable) obj, 29);
-                if (!SharedConfig.suggestAnimatedEmoji && !UserConfig.getInstance(a00Var.f24401c1).isPremium()) {
+                org.telegram.ui.Components.zy zyVar = (org.telegram.ui.Components.zy) obj3;
+                org.telegram.ui.Components.az azVar = zyVar.f33726a;
+                org.telegram.ui.Components.b00 b00Var = azVar.F;
+                MediaDataController mediaDataController = MediaDataController.getInstance(b00Var.f24689c1);
+                String[] strArr = b00Var.W0;
+                String str2 = azVar.v;
+                ai.r5 r5Var = new ai.r5(zyVar, (String) obj2, (Runnable) obj, 29);
+                if (!SharedConfig.suggestAnimatedEmoji && !UserConfig.getInstance(b00Var.f24689c1).isPremium()) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -326,16 +326,16 @@ public final class pc implements Utilities.Callback {
             case 24:
                 ArrayList arrayList2 = (ArrayList) obj2;
                 Runnable runnable = (Runnable) obj;
-                org.telegram.ui.Components.zy zyVar2 = ((org.telegram.ui.Components.yy) obj3).f33403a;
-                if (ConnectionsManager.getInstance(zyVar2.F.f24401c1).getConnectionState() != 3) {
+                org.telegram.ui.Components.az azVar2 = ((org.telegram.ui.Components.zy) obj3).f33726a;
+                if (ConnectionsManager.getInstance(azVar2.F.f24689c1).getConnectionState() != 3) {
                     runnable.run();
                     return;
                 } else {
-                    org.telegram.ui.Components.zy.E(zyVar2, runnable, arrayList2, false);
+                    org.telegram.ui.Components.az.E(azVar2, runnable, arrayList2, false);
                     return;
                 }
             case 25:
-                org.telegram.ui.Components.tz tzVar = (org.telegram.ui.Components.tz) obj3;
+                org.telegram.ui.Components.uz uzVar = (org.telegram.ui.Components.uz) obj3;
                 Runnable runnable2 = (Runnable) obj2;
                 ArrayList arrayList3 = (ArrayList) obj;
                 int size = arrayList3.size();
@@ -346,7 +346,7 @@ public final class pc implements Utilities.Callback {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(tzVar.f31318w.Q.f24401c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
+                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(uzVar.f31677w.Q.f24689c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
                         if (stickerSet != null) {
                             arrayList = stickerSet.documents;
                         } else {
@@ -356,31 +356,31 @@ public final class pc implements Utilities.Callback {
                         arrayList = stickerSetCovered.covers;
                     }
                     if (arrayList != null && !arrayList.isEmpty()) {
-                        tzVar.f31315n.add(new org.telegram.ui.Components.sy(stickerSetCovered, arrayList));
+                        uzVar.f31674n.add(new org.telegram.ui.Components.ty(stickerSetCovered, arrayList));
                     }
                 }
                 runnable2.run();
                 return;
             case 26:
-                org.telegram.ui.Components.s10 s10Var = (org.telegram.ui.Components.s10) obj3;
+                org.telegram.ui.Components.t10 t10Var = (org.telegram.ui.Components.t10) obj3;
                 ArrayList arrayList4 = (ArrayList) obj2;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
-                if (s10Var.f30570a0 == null && !(s10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready)) {
-                    org.telegram.ui.Components.tc M = org.telegram.ui.Components.ad.a0(n2Var).M(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FolderLinkAddedTitle, s10Var.f30575f0)), LocaleController.formatPluralString("FolderLinkAddedSubtitle", arrayList4.size(), new Object[0]), R.raw.contact_check);
-                    M.f31130j = 5000;
+                if (t10Var.f30915a0 == null && !(t10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready)) {
+                    org.telegram.ui.Components.tc M = org.telegram.ui.Components.ad.a0(n2Var).M(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FolderLinkAddedTitle, t10Var.f30920f0)), LocaleController.formatPluralString("FolderLinkAddedSubtitle", arrayList4.size(), new Object[0]), R.raw.contact_check);
+                    M.f31096j = 5000;
                     M.j();
                     return;
                 }
                 org.telegram.ui.Components.ad a02 = org.telegram.ui.Components.ad.a0(n2Var);
                 int i15 = R.raw.folder_in;
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FolderLinkUpdatedTitle, s10Var.f30575f0));
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.FolderLinkUpdatedTitle, t10Var.f30920f0));
                 if (arrayList4.size() <= 0) {
-                    formatPluralString = LocaleController.formatPluralString("FolderLinkUpdatedSubtitle", s10Var.f30577h0.size(), new Object[0]);
+                    formatPluralString = LocaleController.formatPluralString("FolderLinkUpdatedSubtitle", t10Var.f30922h0.size(), new Object[0]);
                 } else {
                     formatPluralString = LocaleController.formatPluralString("FolderLinkUpdatedJoinedSubtitle", arrayList4.size(), new Object[0]);
                 }
                 org.telegram.ui.Components.tc M2 = a02.M(replaceTags, formatPluralString, i15);
-                M2.f31130j = 5000;
+                M2.f31096j = 5000;
                 M2.j();
                 return;
             case 27:
@@ -431,14 +431,14 @@ public final class pc implements Utilities.Callback {
                 return;
             case 28:
                 MessagesController messagesController2 = (MessagesController) obj3;
-                org.telegram.ui.Components.ks0 ks0Var = (org.telegram.ui.Components.ks0) obj2;
+                org.telegram.ui.Components.ls0 ls0Var = (org.telegram.ui.Components.ls0) obj2;
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (((Boolean) obj).booleanValue()) {
                     messagesController2.setContentSettings(true);
                     if (U != null) {
                         org.telegram.ui.Components.ad.a0(U).P(R.raw.chats_infotip, AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.SensitiveContentSettingsToast), new org.telegram.ui.Components.wd(2, U)), true)).k(true);
                     }
-                    ks0Var.run(Boolean.TRUE);
+                    ls0Var.run(Boolean.TRUE);
                     return;
                 } else if (U != null) {
                     org.telegram.ui.Components.ad.a0(U).M(LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText), R.raw.error).j();
@@ -447,7 +447,7 @@ public final class pc implements Utilities.Callback {
                     return;
                 }
             default:
-                org.telegram.ui.Components.bw0.j((org.telegram.ui.Components.bw0) obj3, (TL_stories.StoryItem) obj2, (ai.f9) obj);
+                org.telegram.ui.Components.cw0.j((org.telegram.ui.Components.cw0) obj3, (TL_stories.StoryItem) obj2, (ai.f9) obj);
                 return;
         }
     }

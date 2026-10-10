@@ -9,28 +9,28 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 public final class v21 implements Runnable {
-    public final int f42622a;
-    public final y21 f42623b;
+    public final int f42666a;
+    public final y21 f42667b;
 
     public v21(y21 y21Var, int i10) {
-        this.f42622a = i10;
-        this.f42623b = y21Var;
+        this.f42666a = i10;
+        this.f42667b = y21Var;
     }
 
     @Override
     public final void run() {
         long j3;
         String str;
-        switch (this.f42622a) {
+        switch (this.f42666a) {
             case 0:
-                y21 y21Var = this.f42623b;
+                y21 y21Var = this.f42667b;
                 AndroidUtilities.cancelRunOnUIThread(y21Var.N);
-                boolean z10 = y21Var.f44227r;
+                boolean z10 = y21Var.f44271r;
                 if (z10) {
                     if (z10 && y21Var.F == null) {
-                        org.telegram.ui.Components.ck0 ck0Var = new org.telegram.ui.Components.ck0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), AndroidUtilities.dp(200.0f));
-                        y21Var.F = ck0Var;
-                        ck0Var.R(y21Var);
+                        org.telegram.ui.Components.dk0 dk0Var = new org.telegram.ui.Components.dk0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), AndroidUtilities.dp(200.0f));
+                        y21Var.F = dk0Var;
+                        dk0Var.R(y21Var);
                         y21Var.F.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                         y21Var.F.K(1);
                         y21Var.F.start();
@@ -40,7 +40,7 @@ public final class v21 implements Runnable {
                         if (y21Var.J != 0) {
                             y21Var.I = null;
                             Utilities.themeQueue.postRunnable(new w21(y21Var, y21Var.getWidth(), y21Var.getHeight(), 2));
-                            y21Var.f44228s.t("", true, true);
+                            y21Var.f44272s.t("", true, true);
                         }
                         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                         if (y21Var.J == 0) {
@@ -55,7 +55,7 @@ public final class v21 implements Runnable {
                         long max = Math.max(0L, (i10 - (System.currentTimeMillis() / 1000)) - 1);
                         int i11 = (int) (max % 60);
                         int min = Math.min(99, (int) (max / 60));
-                        org.telegram.ui.Components.op0 op0Var = y21Var.f44228s;
+                        org.telegram.ui.Components.pp0 pp0Var = y21Var.f44272s;
                         StringBuilder sb2 = new StringBuilder();
                         if (min >= 10) {
                             str = "";
@@ -70,7 +70,7 @@ public final class v21 implements Runnable {
                         }
                         sb2.append(str2);
                         sb2.append(i11);
-                        op0Var.t(sb2.toString(), true, false);
+                        pp0Var.t(sb2.toString(), true, false);
                     }
                     if (y21Var.isAttachedToWindow()) {
                         AndroidUtilities.runOnUIThread(y21Var.N, 1000L);
@@ -80,17 +80,17 @@ public final class v21 implements Runnable {
                 }
                 return;
             default:
-                y21 y21Var2 = this.f42623b;
+                y21 y21Var2 = this.f42667b;
                 y21Var2.S = false;
                 Bitmap bitmap = y21Var2.h;
                 if (bitmap != null) {
                     y21Var2.h = null;
-                    y21Var2.f44230x.d(0.0f, true);
-                    Bitmap bitmap2 = y21Var2.f44226n;
+                    y21Var2.f44274x.d(0.0f, true);
+                    Bitmap bitmap2 = y21Var2.f44270n;
                     if (bitmap2 != null) {
                         bitmap2.recycle();
                     }
-                    y21Var2.f44226n = bitmap;
+                    y21Var2.f44270n = bitmap;
                     y21Var2.invalidate();
                     return;
                 }

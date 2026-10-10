@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class iv0 {
-    public final float f38768a;
+    public final float f38812a;
 
     public iv0(float f7) {
-        this.f38768a = f7;
+        this.f38812a = f7;
     }
 }

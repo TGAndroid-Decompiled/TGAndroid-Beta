@@ -40,24 +40,24 @@ public final class h extends u2.a {
     public int O;
     public k0 P;
     public final boolean h;
-    public final g2.g f15333i;
-    public final a5.a f15334j;
-    public final t f15335k;
-    public final n2.m f15336l;
-    public final rb.a f15337m;
-    public final s f15338n;
-    public final long f15339o;
-    public final long f15340p;
-    public final a5.a f15341q;
-    public final y2.n f15342r;
-    public final g0 f15343s;
-    public final Object f15344t;
-    public final SparseArray f15345u;
+    public final g2.g f15337i;
+    public final a5.a f15338j;
+    public final t f15339k;
+    public final n2.m f15340l;
+    public final rb.a f15341m;
+    public final s f15342n;
+    public final long f15343o;
+    public final long f15344p;
+    public final a5.a f15345q;
+    public final y2.n f15346r;
+    public final g0 f15347s;
+    public final Object f15348t;
+    public final SparseArray f15349u;
     public final c v;
-    public final c f15346w;
-    public final f f15347x;
-    public final y2.m f15348y;
-    public g2.h f15349z;
+    public final c f15350w;
+    public final f f15351x;
+    public final y2.m f15352y;
+    public g2.h f15353z;
 
     static {
         l0.a("media3.exoplayer.dash");
@@ -72,58 +72,58 @@ public final class h extends u2.a {
         this.F = uri;
         this.G = uri;
         this.H = null;
-        this.f15333i = gVar;
-        this.f15342r = nVar;
-        this.f15334j = aVar;
-        this.f15336l = mVar;
-        this.f15337m = aVar2;
-        this.f15339o = j3;
-        this.f15340p = j10;
-        this.f15335k = tVar;
-        this.f15338n = new s(6);
+        this.f15337i = gVar;
+        this.f15346r = nVar;
+        this.f15338j = aVar;
+        this.f15340l = mVar;
+        this.f15341m = aVar2;
+        this.f15343o = j3;
+        this.f15344p = j10;
+        this.f15339k = tVar;
+        this.f15342n = new s(6);
         this.h = false;
-        this.f15341q = b(null);
-        this.f15344t = new Object();
-        this.f15345u = new SparseArray();
-        this.f15347x = new f(this, 0);
+        this.f15345q = b(null);
+        this.f15348t = new Object();
+        this.f15349u = new SparseArray();
+        this.f15351x = new f(this, 0);
         this.N = -9223372036854775807L;
         this.L = -9223372036854775807L;
-        this.f15343s = new g0(this, 2);
-        this.f15348y = new a4.l(this, 28);
+        this.f15347s = new g0(this, 2);
+        this.f15352y = new a4.l(this, 28);
         this.v = new Runnable(this) {
-            public final h f15319b;
+            public final h f15323b;
 
             {
-                this.f15319b = this;
+                this.f15323b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f15319b.A();
+                        this.f15323b.A();
                         return;
                     default:
-                        this.f15319b.y(false);
+                        this.f15323b.y(false);
                         return;
                 }
             }
         };
-        this.f15346w = new Runnable(this) {
-            public final h f15319b;
+        this.f15350w = new Runnable(this) {
+            public final h f15323b;
 
             {
-                this.f15319b = this;
+                this.f15323b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f15319b.A();
+                        this.f15323b.A();
                         return;
                     default:
-                        this.f15319b.y(false);
+                        this.f15323b.y(false);
                         return;
                 }
             }
@@ -131,9 +131,9 @@ public final class h extends u2.a {
     }
 
     public static boolean u(m2.h hVar) {
-        List list = hVar.f15941c;
+        List list = hVar.f15945c;
         for (int i10 = 0; i10 < list.size(); i10++) {
-            int i11 = ((m2.a) list.get(i10)).f15904b;
+            int i11 = ((m2.a) list.get(i10)).f15908b;
             if (i11 == 1 || i11 == 2) {
                 return true;
             }
@@ -151,15 +151,15 @@ public final class h extends u2.a {
             this.I = true;
             return;
         }
-        synchronized (this.f15344t) {
+        synchronized (this.f15348t) {
             uri = this.F;
         }
         this.I = false;
         Map map = Collections.EMPTY_MAP;
         e2.d.i(uri, "The uri must be set.");
-        y2.o oVar = new y2.o(this.f15349z, new g2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, this.f15342r);
-        g0 g0Var = this.f15343s;
-        this.f15337m.getClass();
+        y2.o oVar = new y2.o(this.f15353z, new g2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, this.f15346r);
+        g0 g0Var = this.f15347s;
+        this.f15341m.getClass();
         this.A.f(oVar, g0Var, 3);
     }
 
@@ -177,17 +177,17 @@ public final class h extends u2.a {
 
     @Override
     public final d0 c(u2.f0 f0Var, y2.d dVar, long j3) {
-        int intValue = ((Integer) f0Var.f48572a).intValue() - this.O;
+        int intValue = ((Integer) f0Var.f48616a).intValue() - this.O;
         a5.a b10 = b(f0Var);
-        n2.j jVar = new n2.j(this.d.f16520c, 0, f0Var);
+        n2.j jVar = new n2.j(this.d.f16524c, 0, f0Var);
         int i10 = this.O + intValue;
         m2.c cVar = this.H;
         c0 c0Var = this.B;
         long j10 = this.L;
-        j2.k kVar = this.f48514g;
+        j2.k kVar = this.f48558g;
         e2.d.h(kVar);
-        b bVar = new b(i10, cVar, this.f15338n, intValue, this.f15334j, c0Var, this.f15336l, jVar, this.f15337m, b10, j10, this.f15348y, dVar, this.f15335k, this.f15347x, kVar);
-        this.f15345u.put(i10, bVar);
+        b bVar = new b(i10, cVar, this.f15342n, intValue, this.f15338j, c0Var, this.f15340l, jVar, this.f15341m, b10, j10, this.f15352y, dVar, this.f15339k, this.f15351x, kVar);
+        this.f15349u.put(i10, bVar);
         return bVar;
     }
 
@@ -198,23 +198,23 @@ public final class h extends u2.a {
 
     @Override
     public final void k() {
-        this.f15348y.a();
+        this.f15352y.a();
     }
 
     @Override
     public final void m(c0 c0Var) {
         this.B = c0Var;
         Looper myLooper = Looper.myLooper();
-        j2.k kVar = this.f48514g;
+        j2.k kVar = this.f48558g;
         e2.d.h(kVar);
-        n2.m mVar = this.f15336l;
+        n2.m mVar = this.f15340l;
         mVar.F(myLooper, kVar);
         mVar.b();
         if (this.h) {
             y(false);
             return;
         }
-        this.f15349z = this.f15333i.createDataSource();
+        this.f15353z = this.f15337i.createDataSource();
         this.A = new y2.l("DashMediaSource");
         this.D = e2.d0.o(null);
         A();
@@ -223,20 +223,20 @@ public final class h extends u2.a {
     @Override
     public final void o(d0 d0Var) {
         b bVar = (b) d0Var;
-        p pVar = bVar.f15316x;
-        pVar.f15385r = true;
+        p pVar = bVar.f15320x;
+        pVar.f15389r = true;
         pVar.d.removeCallbacksAndMessages(null);
         for (v2.h hVar : bVar.H) {
             hVar.z(bVar);
         }
         bVar.G = null;
-        this.f15345u.remove(bVar.f15307a);
+        this.f15349u.remove(bVar.f15311a);
     }
 
     @Override
     public final void q() {
         this.I = false;
-        this.f15349z = null;
+        this.f15353z = null;
         y2.l lVar = this.A;
         if (lVar != null) {
             lVar.e(null);
@@ -254,12 +254,12 @@ public final class h extends u2.a {
         this.L = -9223372036854775807L;
         this.M = 0;
         this.N = -9223372036854775807L;
-        this.f15345u.clear();
-        s sVar = this.f15338n;
+        this.f15349u.clear();
+        s sVar = this.f15342n;
         ((HashMap) sVar.f7971b).clear();
         ((HashMap) sVar.f7972c).clear();
         ((HashMap) sVar.d).clear();
-        this.f15336l.release();
+        this.f15340l.release();
     }
 
     @Override
@@ -271,8 +271,8 @@ public final class h extends u2.a {
         boolean z10;
         y2.l lVar = this.A;
         d dVar = new d(this);
-        synchronized (z2.b.f53486b) {
-            z10 = z2.b.f53487c;
+        synchronized (z2.b.f53530b) {
+            z10 = z2.b.f53531c;
         }
         if (z10) {
             dVar.a();
@@ -285,11 +285,11 @@ public final class h extends u2.a {
     }
 
     public final void w(y2.o oVar, long j3) {
-        long j10 = oVar.f51699a;
+        long j10 = oVar.f51743a;
         Uri uri = oVar.d.f10235c;
         u2.t tVar = new u2.t(j3);
-        this.f15337m.getClass();
-        this.f15341q.p(tVar, oVar.f51701c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        this.f15341m.getClass();
+        this.f15345q.p(tVar, oVar.f51745c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 
     public final void x(IOException iOException) {
@@ -303,7 +303,7 @@ public final class h extends u2.a {
     }
 
     public final void z(c5.a aVar, y2.n nVar) {
-        g2.h hVar = this.f15349z;
+        g2.h hVar = this.f15353z;
         Uri parse = Uri.parse(aVar.f4199c);
         Map map = Collections.EMPTY_MAP;
         e2.d.i(parse, "The uri must be set.");

@@ -20,8 +20,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ap;
 import org.telegram.ui.Components.ep;
-import org.telegram.ui.Components.ic0;
-import org.telegram.ui.Components.pc0;
+import org.telegram.ui.Components.jc0;
+import org.telegram.ui.Components.qc0;
 import org.telegram.ui.zn;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.SurfaceViewRenderer;
@@ -96,7 +96,7 @@ public final class n implements Runnable {
                         ArrayList<TLRPC.EncryptedChat> arrayList6 = new ArrayList<>();
                         MessagesStorage.getInstance(i10).getEncryptedChatsInternal(TextUtils.join(",", arrayList3), arrayList6, arrayList);
                         for (int i12 = 0; i12 < arrayList6.size(); i12++) {
-                            g0 g0Var = (g0) iVar.f(DialogObject.makeEncryptedDialogId(arrayList6.get(i12).f20046id));
+                            g0 g0Var = (g0) iVar.f(DialogObject.makeEncryptedDialogId(arrayList6.get(i12).f20050id));
                             if (g0Var != null) {
                                 g0Var.f10609a = arrayList6.get(i12);
                             }
@@ -107,7 +107,7 @@ public final class n implements Runnable {
                         MessagesStorage.getInstance(i10).getChatsInternal(TextUtils.join(",", arrayList2), arrayList7);
                         for (int i13 = 0; i13 < arrayList7.size(); i13++) {
                             TLRPC.Chat chat = arrayList7.get(i13);
-                            long j10 = -chat.f20038id;
+                            long j10 = -chat.f20042id;
                             if (chat.migrated_to != null) {
                                 g0 g0Var2 = (g0) iVar.f(j10);
                                 iVar.l(j10);
@@ -126,7 +126,7 @@ public final class n implements Runnable {
                         MessagesStorage.getInstance(i10).getUsersInternal(arrayList, arrayList5);
                         for (int i14 = 0; i14 < arrayList5.size(); i14++) {
                             TLRPC.User user = arrayList5.get(i14);
-                            g0 g0Var4 = (g0) iVar.f(user.f20185id);
+                            g0 g0Var4 = (g0) iVar.f(user.f20189id);
                             if (g0Var4 != null) {
                                 g0Var4.f10609a = user;
                             }
@@ -187,29 +187,29 @@ public final class n implements Runnable {
                 apVar.run(Integer.valueOf(i19));
                 return;
             case 9:
-                pc0 pc0Var = ((ic0) this.d).V2;
-                View d = pc0Var.d();
-                ic0 ic0Var = pc0Var.f29847f;
+                qc0 qc0Var = ((jc0) this.d).V2;
+                View d = qc0Var.d();
+                jc0 jc0Var = qc0Var.f30185f;
                 if (d != null) {
                     int top = d.getTop() + this.f10734b;
                     int top2 = d.getTop() + this.f10735c;
                     int i20 = top2 - top;
-                    int paddingTop = ic0Var.getPaddingTop();
-                    int height = ic0Var.getHeight() - ic0Var.getPaddingBottom();
+                    int paddingTop = jc0Var.getPaddingTop();
+                    int height = jc0Var.getHeight() - jc0Var.getPaddingBottom();
                     if (i20 <= height - paddingTop) {
                         top = (top + top2) / 2;
                         paddingTop = (paddingTop + height) / 2;
                     }
                     int i21 = top - paddingTop;
                     if (i21 < 0) {
-                        ic0Var.scrollBy(0, i21);
+                        jc0Var.scrollBy(0, i21);
                         return;
                     }
                     return;
                 }
                 return;
             case 10:
-                org.telegram.ui.Components.voip.j1 j1Var = ((org.telegram.ui.Components.voip.i1) this.d).f31982a;
+                org.telegram.ui.Components.voip.j1 j1Var = ((org.telegram.ui.Components.voip.i1) this.d).f32047a;
                 qf.e eVar = j1Var.O;
                 if (eVar != null) {
                     eVar.d(this.f10734b, this.f10735c);

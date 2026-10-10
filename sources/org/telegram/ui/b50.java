@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class b50 extends org.telegram.ui.Components.mr0 {
-    public final g60 f36141b1;
+public final class b50 extends org.telegram.ui.Components.nr0 {
+    public final g60 f36185b1;
 
     public b50(g60 g60Var, Context context, String str, String str2, String str3, String str4) {
         super(context, null, str, str2, false, str3, str4, true);
-        this.f36141b1 = g60Var;
+        this.f36185b1 = g60Var;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class b50 extends org.telegram.ui.Components.mr0 {
             return;
         }
         int m10 = iVar.m();
-        g60 g60Var = this.f36141b1;
+        g60 g60Var = this.f36185b1;
         if (m10 == 1) {
-            g60Var.l1().m(((TLRPC.Dialog) iVar.n(0)).f20042id, Integer.valueOf(i10), 41);
+            g60Var.l1().m(((TLRPC.Dialog) iVar.n(0)).f20046id, Integer.valueOf(i10), 41);
         } else {
             g60Var.l1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
         }

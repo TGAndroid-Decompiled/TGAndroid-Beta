@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class n6 extends LinearLayout {
     public final TextView f5637a;
     public final m6 f5638b;
@@ -25,7 +25,7 @@ public final class n6 extends LinearLayout {
         super(context);
         this.f5643r = q6Var;
         setOrientation(0);
-        int i10 = org.telegram.ui.ActionBar.i6.f20888i6;
+        int i10 = org.telegram.ui.ActionBar.i6.f20892i6;
         d6 d6Var = q6Var.G1;
         setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.w0(i10, d6Var), 2, -1));
         m6 m6Var = new m6(this, context);
@@ -54,7 +54,7 @@ public final class n6 extends LinearLayout {
         this.f5642n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
-        imageView4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20870h7, d6Var), PorterDuff.Mode.MULTIPLY));
+        imageView4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20874h7, d6Var), PorterDuff.Mode.MULTIPLY));
         imageView4.setVisibility(8);
         addView(imageView4, w7.x5.n(50, -1));
     }
@@ -76,7 +76,7 @@ public final class n6 extends LinearLayout {
             this.h = ofFloat;
             ofFloat.addUpdateListener(new ai.cb(1, this, z10));
             this.h.addListener(new ai.b(this, 15));
-            this.h.setInterpolator(hs.h);
+            this.h.setInterpolator(is.h);
             this.h.setDuration(420L);
             this.h.start();
             return;

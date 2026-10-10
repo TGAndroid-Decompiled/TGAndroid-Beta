@@ -44,7 +44,7 @@ public final class o implements jk {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f12593b.f30173b.f33228f0.startActivityForResult(intent, 21);
+            this.f12593b.f30211b.f33235f0.startActivityForResult(intent, 21);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

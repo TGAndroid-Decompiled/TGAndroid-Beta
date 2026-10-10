@@ -12,7 +12,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class e7 {
     public boolean f5030a;
     public final Object f5031b;
@@ -137,11 +137,11 @@ public final class e7 {
         paint.setShadowLayer(1.0804527E9f, 0.0f, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
         this.f5037j = new Path();
         this.f5031b = a0Var;
-        hs hsVar = hs.f27119g;
-        this.d = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 320L, hsVar);
-        this.f5033e = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar);
-        this.f5034f = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar);
-        this.f5035g = new org.telegram.ui.Components.g6[]{new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar)};
-        this.h = new org.telegram.ui.Components.g6[]{new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, hsVar)};
+        is isVar = is.f27444g;
+        this.d = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 320L, isVar);
+        this.f5033e = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar);
+        this.f5034f = new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar);
+        this.f5035g = new org.telegram.ui.Components.g6[]{new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar)};
+        this.h = new org.telegram.ui.Components.g6[]{new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar), new org.telegram.ui.Components.g6(0.0f, a0Var, 0L, 160L, isVar)};
     }
 }

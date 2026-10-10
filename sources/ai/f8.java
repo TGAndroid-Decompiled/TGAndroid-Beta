@@ -109,11 +109,11 @@ public final class f8 implements Comparator {
                 return wVar.b(obj2) - wVar.b(obj);
             case 4:
                 SparseIntArray sparseIntArray = (SparseIntArray) this.f1032b;
-                return sparseIntArray.get(((rg.h) obj).f47262e, Integer.MAX_VALUE) - sparseIntArray.get(((rg.h) obj2).f47262e, Integer.MAX_VALUE);
+                return sparseIntArray.get(((rg.h) obj).f47306e, Integer.MAX_VALUE) - sparseIntArray.get(((rg.h) obj2).f47306e, Integer.MAX_VALUE);
             case 5:
                 return ((Collator) this.f1032b).compare((String) obj, (String) obj2);
             default:
-                float[] fArr = ((yh.m2) this.f1032b).f52870r;
+                float[] fArr = ((yh.m2) this.f1032b).f52914r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
         }
     }

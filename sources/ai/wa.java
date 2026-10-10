@@ -13,15 +13,15 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ba0;
-import org.telegram.ui.Components.fa0;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.ia0;
-import org.telegram.ui.Components.xm0;
+import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.ga0;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.ja0;
+import org.telegram.ui.Components.ym0;
 public final class wa {
-    public fa0 f1868a;
+    public ga0 f1868a;
     public org.telegram.ui.Components.b6 f1869b;
-    public final ba0 f1870c;
+    public final ca0 f1870c;
     public org.telegram.ui.Components.x5 d;
     public StaticLayout f1871e;
     public org.telegram.ui.Components.x5 f1872f;
@@ -37,29 +37,29 @@ public final class wa {
     public ta f1881p;
     public boolean f1882q;
     public final org.telegram.ui.Components.g6 f1883r;
-    public final ia0 f1884s;
+    public final ja0 f1884s;
     public final Path f1885t;
     public final AtomicReference f1886u;
     public final xa v;
 
     public wa(xa xaVar) {
         this.v = xaVar;
-        this.f1870c = new ba0(xaVar);
+        this.f1870c = new ca0(xaVar);
         ArrayList arrayList = new ArrayList();
         this.f1874i = arrayList;
         this.f1875j = new Stack();
         this.f1879n = "";
-        this.f1883r = new org.telegram.ui.Components.g6(xaVar.J, 0L, 400L, hs.h);
+        this.f1883r = new org.telegram.ui.Components.g6(xaVar.J, 0L, 400L, is.h);
         Path path = new Path();
         this.f1885t = path;
         this.f1886u = new AtomicReference();
         this.f1876k = new vh.l(xaVar, arrayList, new a1.c(this, 9));
-        ia0 ia0Var = new ia0();
-        this.f1884s = ia0Var;
-        ia0Var.f27341y = path;
-        ia0Var.k(4.0f);
-        ia0Var.g(org.telegram.ui.ActionBar.i6.m1(0.3f, -1), org.telegram.ui.ActionBar.i6.m1(0.1f, -1), org.telegram.ui.ActionBar.i6.m1(0.2f, -1), org.telegram.ui.ActionBar.i6.m1(0.7f, -1));
-        ia0Var.setCallback(xaVar);
+        ja0 ja0Var = new ja0();
+        this.f1884s = ja0Var;
+        ja0Var.f27652y = path;
+        ja0Var.k(4.0f);
+        ja0Var.g(org.telegram.ui.ActionBar.i6.m1(0.3f, -1), org.telegram.ui.ActionBar.i6.m1(0.1f, -1), org.telegram.ui.ActionBar.i6.m1(0.2f, -1), org.telegram.ui.ActionBar.i6.m1(0.7f, -1));
+        ja0Var.setCallback(xaVar);
     }
 
     public final int a(int i10) {
@@ -107,9 +107,9 @@ public final class wa {
             if (e7 <= 0.0f && !this.f1882q) {
                 return;
             }
-            ia0 ia0Var = this.f1884s;
-            ia0Var.setAlpha((int) (e7 * 255.0f * lerp));
-            ia0Var.draw(canvas2);
+            ja0 ja0Var = this.f1884s;
+            ja0Var.setAlpha((int) (e7 * 255.0f * lerp));
+            ja0Var.draw(canvas2);
             xaVar.invalidate();
         }
     }
@@ -204,7 +204,7 @@ public final class wa {
                             arrayList2 = arrayList;
                             i11 = i13;
                             float lerp = AndroidUtilities.lerp(f11, f12, xaVar.f1925w);
-                            float lerp2 = AndroidUtilities.lerp(uaVar.d, uaVar.f1811f, hs.f27119g.getInterpolation(xaVar.f1925w));
+                            float lerp2 = AndroidUtilities.lerp(uaVar.d, uaVar.f1811f, is.f27444g.getInterpolation(xaVar.f1925w));
                             canvas.translate(xaVar.E + lerp, xaVar.F + i10 + lerp2);
                             if (z10) {
                                 f(uaVar.f1808b, xaVar.E + lerp, xaVar.F + i10 + lerp2);
@@ -415,7 +415,7 @@ public final class wa {
         int i18 = xaVar.E;
         int i19 = xaVar.F;
         vh.l lVar = this.f1876k;
-        lVar.f49726c = i18;
+        lVar.f49770c = i18;
         lVar.d = i19;
     }
 
@@ -452,10 +452,10 @@ public final class wa {
             va vaVar = new va(this, 0);
             taVar.f1768r = xaVar;
             taVar.f1769s = vaVar;
-            new xm0(xaVar);
+            new ym0(xaVar);
             taVar.f1760j.setCallback(xaVar);
-            taVar.h.f26597a = xaVar;
-            taVar.f1759i.f24971a = xaVar;
+            taVar.h.f26614a = xaVar;
+            taVar.f1759i.f24922a = xaVar;
             taVar.c();
         }
         ta taVar3 = this.f1881p;
@@ -463,10 +463,10 @@ public final class wa {
             va vaVar2 = new va(this, 1);
             taVar3.f1768r = xaVar;
             taVar3.f1769s = vaVar2;
-            new xm0(xaVar);
+            new ym0(xaVar);
             taVar3.f1760j.setCallback(xaVar);
-            taVar3.h.f26597a = xaVar;
-            taVar3.f1759i.f24971a = xaVar;
+            taVar3.h.f26614a = xaVar;
+            taVar3.f1759i.f24922a = xaVar;
             taVar3.c();
         }
         xaVar.f1924s = 0;

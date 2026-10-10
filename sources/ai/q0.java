@@ -16,7 +16,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.p31;
 public final class q0 implements Utilities.Callback3 {
     public final int f1603a;
     public final Object f1604b;
@@ -168,7 +168,7 @@ public final class q0 implements Utilities.Callback3 {
                 return;
             case 3:
                 org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) this.f1604b;
-                org.telegram.ui.Wallet.h7 h7Var = (org.telegram.ui.Wallet.h7) this.f1605c;
+                org.telegram.ui.Wallet.i7 i7Var = (org.telegram.ui.Wallet.i7) this.f1605c;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
@@ -183,11 +183,11 @@ public final class q0 implements Utilities.Callback3 {
                     if (str6 != null) {
                         str5 = str6;
                     }
-                    h7Var.run(str5);
+                    i7Var.run(str5);
                     return;
                 }
                 k0Var.g0(walletState);
-                h7Var.run(null);
+                i7Var.run(null);
                 return;
             case 4:
                 final org.telegram.ui.Wallet.k0 k0Var2 = (org.telegram.ui.Wallet.k0) this.f1604b;
@@ -224,7 +224,7 @@ public final class q0 implements Utilities.Callback3 {
                     TL_wallet.fetchEncryptedSecretPhrasePart fetchencryptedsecretphrasepart = new TL_wallet.fetchEncryptedSecretPhrasePart();
                     fetchencryptedsecretphrasepart.token = secretphraseparts.token;
                     fetchencryptedsecretphrasepart.public_key = key_to_public_key;
-                    ConnectionsManager.getInstance(k0Var2.f35117a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
+                    ConnectionsManager.getInstance(k0Var2.f35155a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj4, Object obj5) {
                             k0 k0Var3 = k0.this;
@@ -250,7 +250,7 @@ public final class q0 implements Utilities.Callback3 {
                                 return;
                             }
                             k0.E("getSecretPhrase: received all parts");
-                            i iVar = new i((Object) k0Var3, (Object) b2Var2, (Object) dVar2, 6);
+                            j jVar = new j((Object) k0Var3, (Object) b2Var2, (Object) dVar2, 6);
                             for (int i17 = 0; i17 < encryptedsecretphrasepartArr2.length; i17++) {
                                 TL_wallet.encryptedSecretPhrasePart encryptedsecretphrasepart = encryptedsecretphrasepartArr2[i17];
                                 if (encryptedsecretphrasepart == null) {
@@ -267,25 +267,25 @@ public final class q0 implements Utilities.Callback3 {
                                     if (str10 != null) {
                                         str9 = str10;
                                     }
-                                    iVar.run(null, str9);
+                                    jVar.run(null, str9);
                                     return;
                                 } else if (encryptedsecretphrasepart.data.length < 33) {
                                     StringBuilder j12 = hg.c.j(i17, "getSecretPhrase: part ", " length < 33 (len=");
                                     j12.append(encryptedsecretphrasepartArr2[i17].data.length);
                                     j12.append(")");
                                     k0.i(j12.toString());
-                                    iVar.run(null, "WALLET_PART_" + i17 + "_INVALID");
+                                    jVar.run(null, "WALLET_PART_" + i17 + "_INVALID");
                                     return;
                                 }
                             }
-                            Utilities.stageQueue.postRunnable(new o31(k0Var3, encryptedsecretphrasepartArr2, j10, iVar, 6));
+                            Utilities.stageQueue.postRunnable(new p31(k0Var3, encryptedsecretphrasepartArr2, j10, jVar, 6));
                         }
                     }, intValue, 0);
                 }
                 return;
             default:
                 org.telegram.ui.Wallet.k0 k0Var3 = (org.telegram.ui.Wallet.k0) this.f1604b;
-                org.telegram.ui.Wallet.z6 z6Var = (org.telegram.ui.Wallet.z6) this.f1605c;
+                org.telegram.ui.Wallet.a7 a7Var = (org.telegram.ui.Wallet.a7) this.f1605c;
                 TL_wallet.WalletState walletState2 = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP3 = (TLRPC.InputCheckPasswordSRP) obj3;
@@ -294,12 +294,12 @@ public final class q0 implements Utilities.Callback3 {
                     if (str8 == null) {
                         str8 = "NULL_ERROR";
                     }
-                    z6Var.run(str8);
+                    a7Var.run(str8);
                     return;
                 }
                 k0Var3.g0(walletState2);
                 k0Var3.O();
-                z6Var.run(null);
+                a7Var.run(null);
                 return;
         }
     }

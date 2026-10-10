@@ -1,41 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class js extends ImageView {
-    public final int f27773a = 1;
-    public Object f27774b;
-    public final ViewGroup f27775c;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.EditText;
+public final class js implements Runnable {
+    public final int f27772a;
+    public final ms f27773b;
 
-    public js(ls lsVar, Context context, m.f3 f3Var) {
-        super(context);
-        this.f27775c = lsVar;
-        this.f27774b = f3Var;
+    public js(ms msVar, int i10) {
+        this.f27772a = i10;
+        this.f27773b = msVar;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f27773a) {
+    public final void run() {
+        View view;
+        switch (this.f27772a) {
             case 0:
-                ls lsVar = (ls) this.f27775c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (lsVar.f28585n || lsVar.f28584f)) {
-                    lsVar.f28585n = false;
-                    lsVar.f28584f = false;
-                    removeCallbacks(lsVar.f28586r);
-                    removeCallbacks(lsVar.h);
+                ms msVar = this.f27773b;
+                if (msVar.f28885b == null && (view = msVar.d) != null) {
+                    View findFocus = view.findFocus();
+                    if (findFocus instanceof EditText) {
+                        msVar.f28885b = (EditText) findFocus;
+                    }
                 }
-                super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((m.f3) this.f27774b).f15668b).onTouchEvent(motionEvent);
+                EditText editText = msVar.f28885b;
+                if (editText != null) {
+                    if (editText.length() != 0 || msVar.f28887e) {
+                        try {
+                            msVar.performHapticFeedback(3, 2);
+                            msVar.playSoundEffect(0);
+                        } catch (Exception unused) {
+                        }
+                        msVar.f28885b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        msVar.f28885b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (msVar.f28888f) {
+                            msVar.postDelayed(msVar.h, 50L);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
             default:
-                return super.onTouchEvent(motionEvent);
+                ms msVar2 = this.f27773b;
+                msVar2.f28889n = false;
+                msVar2.f28888f = true;
+                msVar2.h.run();
+                return;
         }
-    }
-
-    public js(kl0 kl0Var, Context context) {
-        super(context);
-        this.f27775c = kl0Var;
     }
 }

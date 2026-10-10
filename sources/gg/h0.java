@@ -29,18 +29,18 @@ import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.qa;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.j10;
-import org.telegram.ui.Components.pm0;
-import org.telegram.ui.Components.wo0;
+import org.telegram.ui.Components.k10;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.xo0;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.fc1;
 import org.telegram.ui.fy;
 import org.telegram.ui.n10;
 import org.telegram.ui.ty;
 import w7.x5;
-public abstract class h0 extends pm0 {
+public abstract class h0 extends qm0 {
     public n10 A0;
     public int B0;
     public int C0;
@@ -124,10 +124,10 @@ public abstract class h0 extends pm0 {
         this.H0 = true;
         this.f10626i0 = jVar;
         this.f10636r0 = tyVar;
-        wo0 wo0Var = (wo0) this;
-        y yVar = new y(wo0Var);
+        xo0 xo0Var = (xo0) this;
+        y yVar = new y(xo0Var);
         this.f10627j0 = yVar;
-        yVar.f10532a = new xa.d(wo0Var, 20);
+        yVar.f10532a = new xa.d(xo0Var, 20);
         yVar.f10545p = z10;
         this.f10620e = context;
         this.V = i10;
@@ -154,7 +154,7 @@ public abstract class h0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47662f;
+        int i10 = d1Var.f47706f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -205,7 +205,7 @@ public abstract class h0 extends pm0 {
         if (!z11) {
             MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new r2(i10, 1));
         } else {
-            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new y8(28, (wo0) this, sb2));
+            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new y8(28, (xo0) this, sb2));
         }
     }
 
@@ -219,20 +219,20 @@ public abstract class h0 extends pm0 {
             if (((TLRPC.User) obj).bot) {
                 return tyVar.A2;
             }
-            return tyVar.f42280z2;
+            return tyVar.f42324z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return tyVar.f42277y2;
+                return tyVar.f42321y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (tyVar.f42261v2 || tyVar.f42267w2) {
+                if (tyVar.f42305v2 || tyVar.f42311w2) {
                     return true;
                 }
                 return false;
-            } else if (tyVar.f42261v2 || tyVar.f42272x2) {
+            } else if (tyVar.f42305v2 || tyVar.f42316x2) {
                 return true;
             } else {
                 return false;
@@ -338,12 +338,12 @@ public abstract class h0 extends pm0 {
                 boolean z10 = tLObject instanceof TLRPC.User;
                 int i14 = this.f10638s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20185id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20189id));
                     if (user != null) {
                         return user;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20038id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20042id))) != null) {
                     return chat;
                 } else {
                     return tLObject;
@@ -499,7 +499,7 @@ public abstract class h0 extends pm0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f10638s0).hints.isEmpty()) {
-            if (this.f10625h0 != 14 || this.f10636r0.f42280z2) {
+            if (this.f10625h0 != 14 || this.f10636r0.f42324z2) {
                 return true;
             }
             return false;
@@ -695,7 +695,7 @@ public abstract class h0 extends pm0 {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f20147q = str;
+                    tL_messages_search.f20151q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -760,7 +760,7 @@ public abstract class h0 extends pm0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f20149q = str;
+                    tL_messages_searchGlobal.f20153q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -927,7 +927,7 @@ public abstract class h0 extends pm0 {
                 if (i11 != 3) {
                     z11 = false;
                 }
-                i6Var.f22255l0 = z11;
+                i6Var.f22259l0 = z11;
                 fc1Var = i6Var;
                 textView = fc1Var;
                 break;
@@ -942,10 +942,10 @@ public abstract class h0 extends pm0 {
                 textView = new qa(context);
                 break;
             case 4:
-                j10 j10Var = new j10(context, null);
-                j10Var.setViewType(1);
-                j10Var.setIsSingleCell(true);
-                textView = j10Var;
+                k10 k10Var = new k10(context, null);
+                k10Var.setViewType(1);
+                k10Var.setIsSingleCell(true);
+                textView = k10Var;
                 break;
             case 5:
                 TextView textView2 = new TextView(context);
@@ -957,7 +957,7 @@ public abstract class h0 extends pm0 {
                 break;
             case 6:
                 fc1 fc1Var2 = new fc1(context, 2, null);
-                fc1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20888i6, false));
+                fc1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20892i6, false));
                 fc1Var2.setTag(9);
                 fc1Var2.setItemAnimator(null);
                 fc1Var2.setLayoutAnimation(null);
@@ -988,7 +988,7 @@ public abstract class h0 extends pm0 {
                 ?? linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
                 y9 y9Var = new y9(context);
-                y9Var.setImageDrawable(new ck0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+                y9Var.setImageDrawable(new dk0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
                 linearLayout.addView(y9Var, x5.t(120, 120, 1, 0, 27, 0, 0));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 17.0f);

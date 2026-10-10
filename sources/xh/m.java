@@ -12,36 +12,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.bi;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.r6;
 import org.telegram.ui.Components.tc;
 import w7.x5;
 public final class m extends FrameLayout {
-    public final int f51346a = 1;
-    public Object f51347b;
-    public Object f51348c;
+    public final int f51390a = 1;
+    public Object f51391b;
+    public Object f51392c;
 
     public m(Context context) {
         super(context);
     }
 
     public void b(int i10, CharSequence charSequence, boolean z10) {
-        ImageView imageView = (ImageView) this.f51348c;
+        ImageView imageView = (ImageView) this.f51392c;
         if (z10) {
             AndroidUtilities.updateImageViewImageAnimated(imageView, i10);
         } else {
             imageView.setImageResource(i10);
         }
-        ((TextView) this.f51347b).setText(charSequence);
+        ((TextView) this.f51391b).setText(charSequence);
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        switch (this.f51346a) {
+        switch (this.f51390a) {
             case 3:
                 if (keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 4) {
-                    zg.a0 a0Var = (zg.a0) this.f51347b;
-                    if (!a0Var.f54457k) {
+                    zg.a0 a0Var = (zg.a0) this.f51391b;
+                    if (!a0Var.f54501k) {
                         return true;
                     }
                     a0Var.d();
@@ -55,7 +55,7 @@ public final class m extends FrameLayout {
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f51346a) {
+        switch (this.f51390a) {
             case 3:
                 return;
             default:
@@ -66,30 +66,30 @@ public final class m extends FrameLayout {
 
     @Override
     public boolean fitSystemWindows(Rect rect) {
-        switch (this.f51346a) {
+        switch (this.f51390a) {
             case 3:
-                zg.a0 a0Var = (zg.a0) this.f51347b;
-                float f7 = a0Var.f54467u;
+                zg.a0 a0Var = (zg.a0) this.f51391b;
+                float f7 = a0Var.f54511u;
                 float f10 = rect.bottom;
                 if (f7 != f10 && a0Var.v) {
-                    a0Var.f54467u = f10;
-                    m mVar = a0Var.f54451c;
-                    zg.z zVar = a0Var.f54449a;
-                    if (!a0Var.f54463q) {
-                        float f11 = a0Var.f54466t;
+                    a0Var.f54511u = f10;
+                    m mVar = a0Var.f54495c;
+                    zg.z zVar = a0Var.f54493a;
+                    if (!a0Var.f54507q) {
+                        float f11 = a0Var.f54510t;
                         int dp = AndroidUtilities.dp(32.0f);
-                        int i10 = a0Var.f54470y;
+                        int i10 = a0Var.f54514y;
                         if (i10 == 1 || i10 == 2) {
                             dp = AndroidUtilities.dp(24.0f);
                         }
                         float f12 = dp;
-                        if (zVar.getMeasuredHeight() + f11 > (mVar.getMeasuredHeight() - a0Var.f54467u) - f12) {
-                            f11 = ((mVar.getMeasuredHeight() - a0Var.f54467u) - zVar.getMeasuredHeight()) - f12;
+                        if (zVar.getMeasuredHeight() + f11 > (mVar.getMeasuredHeight() - a0Var.f54511u) - f12) {
+                            f11 = ((mVar.getMeasuredHeight() - a0Var.f54511u) - zVar.getMeasuredHeight()) - f12;
                         }
                         if (f11 < 0.0f) {
                             f11 = 0.0f;
                         }
-                        zVar.animate().translationY(f11).setDuration(250L).setUpdateListener(new zg.v(a0Var, 1)).setInterpolator(hs.f27118f).start();
+                        zVar.animate().translationY(f11).setDuration(250L).setUpdateListener(new zg.v(a0Var, 1)).setInterpolator(is.f27443f).start();
                     }
                 }
                 return super.fitSystemWindows(rect);
@@ -100,14 +100,14 @@ public final class m extends FrameLayout {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f51346a) {
+        switch (this.f51390a) {
             case 2:
                 super.onAttachedToWindow();
-                ((zg.n) this.f51348c).c();
+                ((zg.n) this.f51392c).c();
                 return;
             case 3:
                 super.onAttachedToWindow();
-                tc.a(this, (ai.x4) this.f51348c);
+                tc.a(this, (ai.x4) this.f51392c);
                 return;
             default:
                 super.onAttachedToWindow();
@@ -117,10 +117,10 @@ public final class m extends FrameLayout {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f51346a) {
+        switch (this.f51390a) {
             case 2:
                 super.onDetachedFromWindow();
-                ((zg.n) this.f51348c).d();
+                ((zg.n) this.f51392c).d();
                 return;
             case 3:
                 super.onDetachedFromWindow();
@@ -134,28 +134,28 @@ public final class m extends FrameLayout {
 
     public m(zg.a0 a0Var, Context context) {
         super(context);
-        this.f51347b = a0Var;
-        this.f51348c = new ai.x4(this, 11);
+        this.f51391b = a0Var;
+        this.f51392c = new ai.x4(this, 11);
     }
 
     public m(zg.q qVar, Context context) {
         super(context);
-        this.f51347b = qVar;
-        this.f51348c = new zg.n(this, this);
+        this.f51391b = qVar;
+        this.f51392c = new zg.n(this, this);
     }
 
     public m(Context context, e6 e6Var) {
         super(context);
         LinearLayout e7 = bi.e(context, 1);
         r6 r6Var = new r6(context, false, false, false);
-        this.f51348c = r6Var;
+        this.f51392c = r6Var;
         int i10 = i6.G6;
         r6Var.setTextColor(i6.w0(i10, e6Var));
         r6Var.setTextSize(AndroidUtilities.dp(17.0f));
         r6Var.setTypeface(AndroidUtilities.bold());
         e7.addView(r6Var, x5.q(-2, 23, 1));
         TextView textView = new TextView(context);
-        this.f51347b = textView;
+        this.f51391b = textView;
         textView.setTextSize(1, 11.0f);
         textView.setTextColor(i6.w0(i10, e6Var));
         textView.setSingleLine();

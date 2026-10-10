@@ -1,33 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import org.telegram.ui.ProfileActivity;
-public final class x50 extends Paint {
-    public final int f32751a;
-    public final Object f32752b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class x50 extends AnimatorListenerAdapter {
+    public final int f32841a;
+    public final u60 f32842b;
 
-    public x50(Object obj, int i10) {
-        super(1);
-        this.f32751a = i10;
-        this.f32752b = obj;
+    public x50(u60 u60Var, int i10) {
+        this.f32841a = i10;
+        this.f32842b = u60Var;
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        switch (this.f32751a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32841a) {
             case 0:
-                super.setAlpha(i10);
-                ((t60) this.f32752b).invalidate();
+                u60 u60Var = this.f32842b;
+                if (animator.equals(u60Var.L)) {
+                    u60Var.L = null;
+                    return;
+                }
                 return;
             case 1:
-                super.setAlpha(i10);
-                cn0 cn0Var = (cn0) this.f32752b;
-                cn0Var.f25442a.setAlpha(Math.round(i10 * 0.2f));
-                cn0Var.invalidate();
+                u60 u60Var2 = this.f32842b;
+                if (u60Var2.l1 != null) {
+                    u60Var2.l1 = null;
+                    return;
+                }
                 return;
             default:
-                super.setAlpha(i10);
-                ((ProfileActivity) this.f32752b).fragmentView.invalidate();
+                u60 u60Var3 = this.f32842b;
+                if (animator.equals(u60Var3.f31344e0)) {
+                    u60Var3.c(true);
+                    u60Var3.f31350g1 = false;
+                    u60Var3.setVisibility(4);
+                    return;
+                }
                 return;
         }
     }

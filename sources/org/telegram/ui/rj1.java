@@ -23,26 +23,26 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 public final class rj1 extends org.telegram.ui.ActionBar.n2 {
-    public WebView f41440a;
-    public org.telegram.ui.ActionBar.v0 f41441b;
-    public org.telegram.ui.Components.jr f41442c;
+    public WebView f41484a;
+    public org.telegram.ui.ActionBar.v0 f41485b;
+    public org.telegram.ui.Components.jr f41486c;
     public final String d;
-    public final String f41443e;
-    public final String f41444f;
+    public final String f41487e;
+    public final String f41488f;
     public final String h;
-    public final MessageObject f41445n;
-    public final String f41446r;
-    public w5 f41447s;
+    public final MessageObject f41489n;
+    public final String f41490r;
+    public w5 f41491s;
 
     public rj1(String str, String str2, String str3, String str4, MessageObject messageObject) {
         super(null);
         String i10;
-        this.f41447s = new w5(this, 15);
+        this.f41491s = new w5(this, 15);
         this.d = str;
-        this.f41443e = str2;
-        this.f41444f = str3;
-        this.f41445n = messageObject;
-        this.f41446r = str4;
+        this.f41487e = str2;
+        this.f41488f = str3;
+        this.f41489n = messageObject;
+        this.f41490r = str4;
         StringBuilder sb2 = new StringBuilder("https://");
         sb2.append(MessagesController.getInstance(this.currentAccount).linkPrefix);
         sb2.append("/");
@@ -125,49 +125,49 @@ public final class rj1 extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new pj1(this));
         org.telegram.ui.ActionBar.z o9 = this.actionBar.o();
-        this.f41441b = o9.g(1, R.drawable.share, AndroidUtilities.dp(54.0f));
+        this.f41485b = o9.g(1, R.drawable.share, AndroidUtilities.dp(54.0f));
         o9.a(0, R.drawable.ic_ab_other).e(2, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp));
-        this.actionBar.setTitle(this.f41444f);
+        this.actionBar.setTitle(this.f41488f);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        kVar.setSubtitle("@" + this.f41443e);
+        kVar.setSubtitle("@" + this.f41487e);
         org.telegram.ui.Components.jr jrVar = new org.telegram.ui.Components.jr(context, 1);
-        this.f41442c = jrVar;
-        this.f41441b.addView(jrVar, w7.x5.d(-1.0f, -1));
-        this.f41442c.setAlpha(0.0f);
-        this.f41442c.setScaleX(0.1f);
-        this.f41442c.setScaleY(0.1f);
-        this.f41442c.setVisibility(4);
+        this.f41486c = jrVar;
+        this.f41485b.addView(jrVar, w7.x5.d(-1.0f, -1));
+        this.f41486c.setAlpha(0.0f);
+        this.f41486c.setScaleX(0.1f);
+        this.f41486c.setScaleY(0.1f);
+        this.f41486c.setVisibility(4);
         AndroidUtilities.checkAndroidTheme(context, true);
         WebView webView = new WebView(context);
-        this.f41440a = webView;
+        this.f41484a = webView;
         webView.getSettings().setJavaScriptEnabled(true);
-        this.f41440a.getSettings().setDomStorageEnabled(true);
+        this.f41484a.getSettings().setDomStorageEnabled(true);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        this.f41440a.setLayerType(2, null);
-        this.f41440a.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
-        this.f41440a.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        this.f41440a.getSettings().setMixedContentMode(0);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(this.f41440a, true);
-        this.f41440a.addJavascriptInterface(new qj1(this), "TelegramWebviewProxy");
-        this.f41440a.setWebViewClient(new oi.i(this, 2));
-        frameLayout.addView(this.f41440a, w7.x5.d(-1.0f, -1));
+        this.f41484a.setLayerType(2, null);
+        this.f41484a.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        this.f41484a.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        this.f41484a.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(this.f41484a, true);
+        this.f41484a.addJavascriptInterface(new qj1(this), "TelegramWebviewProxy");
+        this.f41484a.setWebViewClient(new oi.i(this, 2));
+        frameLayout.addView(this.f41484a, w7.x5.d(-1.0f, -1));
         return this.fragmentView;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.i6.f20797d6));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 1, null, null, null, null, org.telegram.ui.ActionBar.i6.f21075s8));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.i6.f21130v8));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.i6.f20801d6));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 1, null, null, null, null, org.telegram.ui.ActionBar.i6.f21079s8));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.i6.f21134v8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.i6.A8));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.i6.f21094t8));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.i6.f21098t8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, Integer.MIN_VALUE, null, null, null, null, org.telegram.ui.ActionBar.i6.G8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 1073741824, null, null, null, null, org.telegram.ui.ActionBar.i6.E8));
         arrayList.add(new org.telegram.ui.ActionBar.k6(this.actionBar, 1073741832, null, null, null, null, org.telegram.ui.ActionBar.i6.F8));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f41442c, 0, null, null, null, null, org.telegram.ui.ActionBar.i6.D7));
-        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f41442c, 0, null, null, null, null, org.telegram.ui.ActionBar.i6.E7));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f41486c, 0, null, null, null, null, org.telegram.ui.ActionBar.i6.D7));
+        arrayList.add(new org.telegram.ui.ActionBar.k6(this.f41486c, 0, null, null, null, null, org.telegram.ui.ActionBar.i6.E7));
         return arrayList;
     }
 
@@ -180,18 +180,18 @@ public final class rj1 extends org.telegram.ui.ActionBar.n2 {
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         AndroidUtilities.checkAndroidTheme(getParentActivity(), false);
-        AndroidUtilities.cancelRunOnUIThread(this.f41447s);
-        this.f41440a.setLayerType(0, null);
-        this.f41447s = null;
+        AndroidUtilities.cancelRunOnUIThread(this.f41491s);
+        this.f41484a.setLayerType(0, null);
+        this.f41491s = null;
         try {
-            ViewParent parent = this.f41440a.getParent();
+            ViewParent parent = this.f41484a.getParent();
             if (parent != null) {
-                ((FrameLayout) parent).removeView(this.f41440a);
+                ((FrameLayout) parent).removeView(this.f41484a);
             }
-            this.f41440a.stopLoading();
-            this.f41440a.loadUrl("about:blank");
-            this.f41440a.destroy();
-            this.f41440a = null;
+            this.f41484a.stopLoading();
+            this.f41484a.loadUrl("about:blank");
+            this.f41484a.destroy();
+            this.f41484a = null;
         } catch (Exception e7) {
             FileLog.e(e7);
         }
@@ -200,14 +200,14 @@ public final class rj1 extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final void onResume() {
         super.onResume();
-        AndroidUtilities.cancelRunOnUIThread(this.f41447s);
-        this.f41447s.run();
+        AndroidUtilities.cancelRunOnUIThread(this.f41491s);
+        this.f41491s.run();
     }
 
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
         WebView webView;
-        if (z10 && !z11 && (webView = this.f41440a) != null) {
+        if (z10 && !z11 && (webView = this.f41484a) != null) {
             webView.loadUrl(this.d);
         }
     }

@@ -3,50 +3,50 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class dw0 implements Runnable {
-    public final int f37099a = 1;
-    public final mw0 f37100b;
-    public final boolean f37101c;
+    public final int f37143a = 1;
+    public final mw0 f37144b;
+    public final boolean f37145c;
     public final TLRPC.PollAnswer d;
-    public final org.telegram.ui.ActionBar.n2 f37102e;
-    public final ArrayList f37103f;
+    public final org.telegram.ui.ActionBar.n2 f37146e;
+    public final ArrayList f37147f;
 
     public dw0(mw0 mw0Var, boolean z10, TLRPC.PollAnswer pollAnswer, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList) {
-        this.f37100b = mw0Var;
-        this.f37101c = z10;
+        this.f37144b = mw0Var;
+        this.f37145c = z10;
         this.d = pollAnswer;
-        this.f37102e = n2Var;
-        this.f37103f = arrayList;
+        this.f37146e = n2Var;
+        this.f37147f = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f37099a) {
+        switch (this.f37143a) {
             case 0:
-                mw0 mw0Var = this.f37100b;
+                mw0 mw0Var = this.f37144b;
                 mw0Var.getClass();
-                boolean z10 = this.f37101c;
-                org.telegram.ui.ActionBar.n2 n2Var = this.f37102e;
+                boolean z10 = this.f37145c;
+                org.telegram.ui.ActionBar.n2 n2Var = this.f37146e;
                 if (!z10) {
                     n2Var.getSendMessagesHelper().sendVote(mw0Var.H, null, null);
                 } else {
-                    ArrayList<TLRPC.PollAnswer> arrayList = this.f37103f;
+                    ArrayList<TLRPC.PollAnswer> arrayList = this.f37147f;
                     arrayList.remove(this.d);
                     n2Var.getSendMessagesHelper().sendVote(mw0Var.H, arrayList, null);
                 }
                 mw0Var.c(true);
                 return;
             default:
-                mw0 mw0Var2 = this.f37100b;
+                mw0 mw0Var2 = this.f37144b;
                 mw0Var2.getClass();
-                boolean z11 = this.f37101c;
+                boolean z11 = this.f37145c;
                 TLRPC.PollAnswer pollAnswer = this.d;
-                org.telegram.ui.ActionBar.n2 n2Var2 = this.f37102e;
+                org.telegram.ui.ActionBar.n2 n2Var2 = this.f37146e;
                 if (!z11) {
                     ArrayList<TLRPC.PollAnswer> arrayList2 = new ArrayList<>(1);
                     arrayList2.add(pollAnswer);
                     n2Var2.getSendMessagesHelper().sendVote(mw0Var2.H, arrayList2, null);
                 } else {
-                    ArrayList<TLRPC.PollAnswer> arrayList3 = this.f37103f;
+                    ArrayList<TLRPC.PollAnswer> arrayList3 = this.f37147f;
                     arrayList3.add(pollAnswer);
                     n2Var2.getSendMessagesHelper().sendVote(mw0Var2.H, arrayList3, null);
                 }
@@ -56,10 +56,10 @@ public final class dw0 implements Runnable {
     }
 
     public dw0(mw0 mw0Var, boolean z10, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, TLRPC.PollAnswer pollAnswer) {
-        this.f37100b = mw0Var;
-        this.f37101c = z10;
-        this.f37102e = n2Var;
-        this.f37103f = arrayList;
+        this.f37144b = mw0Var;
+        this.f37145c = z10;
+        this.f37146e = n2Var;
+        this.f37147f = arrayList;
         this.d = pollAnswer;
     }
 }

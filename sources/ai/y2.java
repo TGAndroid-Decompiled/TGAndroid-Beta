@@ -13,7 +13,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class y2 extends View {
     public float E;
     public final int[] F;
@@ -37,9 +37,9 @@ public final class y2 extends View {
         super(context);
         this.f1935b = new RectF();
         this.f1936c = new Path();
-        hs hsVar = hs.h;
-        this.f1937e = new org.telegram.ui.Components.g6(this, 320L, hsVar);
-        this.f1938f = new org.telegram.ui.Components.g6(this, 320L, hsVar);
+        is isVar = is.h;
+        this.f1937e = new org.telegram.ui.Components.g6(this, 320L, isVar);
+        this.f1938f = new org.telegram.ui.Components.g6(this, 320L, isVar);
         Paint paint = new Paint(1);
         this.f1939n = paint;
         Paint paint2 = new Paint(1);

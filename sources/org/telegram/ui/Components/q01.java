@@ -3,71 +3,98 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class q01 extends TextView {
-    public final r01 f29982a;
-    public boolean f29983b;
-    public boolean f29984c;
+public final class q01 extends FrameLayout {
+    public final s01 f29971a;
+    public boolean f29972b;
+    public boolean f29973c;
+    public boolean d;
 
-    public q01(r01 r01Var, CharSequence charSequence) {
-        super(r01Var.getContext());
-        this.f29982a = r01Var;
-        org.telegram.ui.ActionBar.e6 e6Var = r01Var.f30325a;
-        setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-        setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
-        setTypeface(AndroidUtilities.bold());
-        setTextSize(1, 14.0f);
-        setText(charSequence);
+    public q01(s01 s01Var, View view, boolean z10) {
+        super(s01Var.getContext());
+        this.f29971a = s01Var;
+        setWillNotDraw(false);
+        if (!z10) {
+            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
+        }
+        addView(view, w7.x5.d(-1.0f, -1));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
         float f7;
-        boolean z10 = this.f29983b;
-        r01 r01Var = this.f29982a;
-        if (z10 || this.f29984c) {
+        float f10;
+        float f11;
+        float f12;
+        boolean z10 = this.f29973c;
+        s01 s01Var = this.f29971a;
+        if (z10 || this.d) {
             canvas2 = canvas;
             float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = r01Var.f30327c;
-            if (this.f29983b) {
+            float[] fArr = s01Var.f30628c;
+            boolean z11 = this.f29973c;
+            if (z11) {
                 f7 = dp;
             } else {
                 f7 = 0.0f;
             }
-            int i10 = 1;
             fArr[1] = f7;
             fArr[0] = f7;
-            fArr[3] = 0.0f;
-            fArr[2] = 0.0f;
-            fArr[5] = 0.0f;
-            fArr[4] = 0.0f;
-            if (!this.f29984c) {
+            if (z11) {
+                f10 = dp;
+            } else {
+                f10 = 0.0f;
+            }
+            fArr[3] = f10;
+            fArr[2] = f10;
+            boolean z12 = this.d;
+            if (z12) {
+                f11 = dp;
+            } else {
+                f11 = 0.0f;
+            }
+            fArr[5] = f11;
+            fArr[4] = f11;
+            if (!z12) {
                 dp = 0.0f;
             }
             fArr[7] = dp;
             fArr[6] = dp;
-            r01Var.f30326b.rewind();
+            s01Var.f30627b.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
-            float f10 = r01Var.h;
-            float width = getWidth() + r01Var.h;
+            float f13 = s01Var.h;
+            float width = getWidth() - s01Var.h;
             float height = getHeight();
-            float f11 = r01Var.h;
-            if (this.f29984c) {
-                i10 = -1;
+            float f14 = s01Var.h;
+            if (this.d) {
+                f12 = -1.0f;
+            } else {
+                f12 = 1.0f;
             }
-            rectF.set(f10, f10, width, (f11 * i10) + height);
-            r01Var.f30326b.addRoundRect(rectF, r01Var.f30327c, Path.Direction.CW);
-            canvas2.drawPath(r01Var.f30326b, r01Var.d);
-            canvas2.drawPath(r01Var.f30326b, r01Var.f30328e);
+            rectF.set(f13, f13, width, (f14 * f12) + height);
+            s01Var.f30627b.addRoundRect(rectF, s01Var.f30628c, Path.Direction.CW);
+            if (this.f29972b) {
+                canvas2.drawPath(s01Var.f30627b, s01Var.d);
+            }
+            canvas2.drawPath(s01Var.f30627b, s01Var.f30629e);
         } else {
-            float f12 = r01Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f12, f12, getWidth() + r01Var.h, getHeight() + r01Var.h, r01Var.d);
-            float f13 = r01Var.h;
-            canvas2.drawRect(f13, f13, getWidth() + r01Var.h, getHeight() + r01Var.h, r01Var.f30328e);
+            if (this.f29972b) {
+                float f15 = s01Var.h;
+                canvas2 = canvas;
+                canvas2.drawRect(f15, f15, getWidth() + s01Var.h, getHeight() + s01Var.h, s01Var.d);
+            } else {
+                canvas2 = canvas;
+            }
+            float f16 = s01Var.h;
+            canvas2.drawRect(f16, f16, getWidth() - s01Var.h, getHeight() + s01Var.h, s01Var.f30629e);
         }
         super.onDraw(canvas2);
+    }
+
+    public void setFilled(boolean z10) {
+        this.f29972b = z10;
     }
 }

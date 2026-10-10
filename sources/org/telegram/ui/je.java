@@ -13,36 +13,36 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class je extends FrameLayout {
-    public final org.telegram.ui.ActionBar.e6 f38919a;
-    public final org.telegram.ui.Components.a6 f38920b;
-    public final TextView f38921c;
+    public final org.telegram.ui.ActionBar.e6 f38963a;
+    public final org.telegram.ui.Components.a6 f38964b;
+    public final TextView f38965c;
     public final TextView d;
-    public final DecimalFormat f38922e;
-    public boolean f38923f;
+    public final DecimalFormat f38966e;
+    public boolean f38967f;
 
     public je(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f38919a = e6Var;
+        this.f38963a = e6Var;
         LinearLayout e7 = org.telegram.messenger.bi.e(context, 1);
         addView(e7, w7.x5.a(-2.0f, 17.0f, 9.0f, 130.0f, 9.0f, -1, 119));
         TextView textView = new TextView(context);
-        this.f38921c = textView;
+        this.f38965c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
         TextView h = com.google.android.gms.internal.vision.e2.h(e7, textView, w7.x5.n(-1, -2), context);
         this.d = h;
         h.setTextSize(1, 13.0f);
-        h.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21181y6, e6Var));
+        h.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21185y6, e6Var));
         e7.addView(h, w7.x5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
         org.telegram.ui.Components.a6 a6Var = new org.telegram.ui.Components.a6(context);
-        this.f38920b = a6Var;
+        this.f38964b = a6Var;
         a6Var.setTypeface(AndroidUtilities.bold());
         a6Var.setTextSize(1, 13.0f);
         addView(a6Var, w7.x5.a(-2.0f, 0.0f, 0.0f, 18.0f, 0.0f, -2, 21));
         DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
         decimalFormatSymbols.setDecimalSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
-        this.f38922e = decimalFormat;
+        this.f38966e = decimalFormat;
         decimalFormat.setMinimumFractionDigits(2);
         decimalFormat.setMaximumFractionDigits(12);
         decimalFormat.setGroupingUsed(false);
@@ -54,12 +54,12 @@ public final class je extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f38923f) {
-            org.telegram.ui.ActionBar.e6 e6Var = this.f38919a;
+        if (this.f38967f) {
+            org.telegram.ui.ActionBar.e6 e6Var = this.f38963a;
             if (e6Var != null) {
                 paint = e6Var.F("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.i6.f20919k0;
+                paint = org.telegram.ui.ActionBar.i6.f20923k0;
             }
             Paint paint2 = paint;
             if (paint2 != null) {

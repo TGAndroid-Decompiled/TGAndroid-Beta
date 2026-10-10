@@ -14,6 +14,7 @@ public class AppGlobalConfig {
     public final ConfigInt aicomposeToneSavedLimitDefault;
     public final ConfigInt aicomposeToneSavedLimitPremium;
     public final ConfigInt aicomposeToneTitleLengthMax;
+    public final ConfigInt botAdditionalUsernamesLimit;
     public final ConfigStringSet botAllowedSuffixes;
     public final ConfigInt botsCreateLimitDefault;
     public final ConfigInt botsCreateLimitPremium;
@@ -408,6 +409,7 @@ public class AppGlobalConfig {
         this.pollAnswerDeletePeriod = ofTime("poll_answer_delete_period", 300L, timeUnit);
         this.botsCreateLimitDefault = ofInt("bots_create_limit_default", 20);
         this.botsCreateLimitPremium = ofInt("bots_create_limit_premium", 40);
+        this.botAdditionalUsernamesLimit = ofInt("bot_additional_usernames_limit", 2);
         this.phoneCountryIso2 = ofString("phone_country_iso2", "en");
         this.aicomposeToneExamplesNum = ofInt("aicompose_tone_examples_num", 3);
         this.aicomposeToneTitleLengthMax = ofInt("aicompose_tone_title_length_max", 12);

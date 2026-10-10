@@ -1,34 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.yi;
-public final class v8 extends AnimatorListenerAdapter {
-    public final yi f35598a;
-    public final c6 f35599b;
-    public final w8 f35600c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class v8 extends FrameLayout {
+    public final x8 f35643a;
 
-    public v8(w8 w8Var, yi yiVar, c6 c6Var) {
-        this.f35600c = w8Var;
-        this.f35598a = yiVar;
-        this.f35599b = c6Var;
+    public v8(x8 x8Var, Context context) {
+        super(context);
+        this.f35643a = x8Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        this.f35600c.b();
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f35600c.b();
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        if (this.f35598a != null) {
-            AndroidUtilities.hideKeyboard(this.f35599b);
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(-getLeft(), -getTop());
+        x8 x8Var = this.f35643a;
+        x8Var.f35717j.c(canvas);
+        canvas.restore();
+        super.dispatchDraw(canvas);
+        if (x8Var.f35717j.d()) {
+            postInvalidateOnAnimation();
         }
     }
 }

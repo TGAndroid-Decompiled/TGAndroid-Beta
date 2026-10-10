@@ -24,7 +24,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.bi;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.TextureViewRenderer;
@@ -113,7 +113,7 @@ public final class j4 extends FrameLayout implements RendererCommon.RendererEven
         } else {
             f7 = 0.0f;
         }
-        animate.alpha(f7).setInterpolator(hs.h).setDuration(320L).withEndAction(new bi.f(2, this, z10)).start();
+        animate.alpha(f7).setInterpolator(is.h).setDuration(320L).withEndAction(new bi.f(2, this, z10)).start();
         dVar.setVisibility((!z10 || runnable == null) ? 8 : 8);
         if (runnable == null) {
             pVar = null;
@@ -172,7 +172,7 @@ public final class j4 extends FrameLayout implements RendererCommon.RendererEven
                     TLRPC.User user = MessagesController.getInstance(this.f5231a).getUser(Long.valueOf(j3));
                     ImageLocation forUser = ImageLocation.getForUser(this.f5231a, user, 1);
                     if (user != null) {
-                        d10 = org.telegram.ui.Components.j9.d(user.f20185id);
+                        d10 = org.telegram.ui.Components.j9.d(user.f20189id);
                     } else {
                         d10 = i0.a.d(0.2f, -16777216, -1);
                     }
@@ -181,7 +181,7 @@ public final class j4 extends FrameLayout implements RendererCommon.RendererEven
                     TLRPC.Chat chat = MessagesController.getInstance(this.f5231a).getChat(Long.valueOf(-j3));
                     ImageLocation forChat = ImageLocation.getForChat(this.f5231a, chat, 1);
                     if (chat != null) {
-                        d = org.telegram.ui.Components.j9.d(chat.f20038id);
+                        d = org.telegram.ui.Components.j9.d(chat.f20042id);
                     } else {
                         d = i0.a.d(0.2f, -16777216, -1);
                     }
@@ -291,7 +291,7 @@ public final class j4 extends FrameLayout implements RendererCommon.RendererEven
             if (z10) {
                 f7 = 1.0f;
             }
-            bi.t(animate.alpha(f7), hs.h, 320L);
+            bi.t(animate.alpha(f7), is.h, 320L);
             return;
         }
         getTextureView().animate().cancel();

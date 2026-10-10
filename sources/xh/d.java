@@ -13,19 +13,19 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.eb;
 import org.telegram.ui.Components.o7;
-import org.telegram.ui.Components.pm0;
 import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.x5;
 public final class d extends eb {
-    public static final int f51199a0 = 0;
+    public static final int f51243a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public c71 Z;
+    public d71 Z;
 
     public d(Context context, e6 e6Var, GiftAuctionController.Auction auction, List list) {
         super(context, null, false, false, 2, e6Var);
@@ -34,7 +34,7 @@ public final class d extends eb {
         this.v = 0.2f;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.f26023e.setTitle(B());
+        this.f25983e.setTitle(B());
         fixNavigationBar();
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new o7(3));
@@ -80,10 +80,10 @@ public final class d extends eb {
     }
 
     @Override
-    public final pm0 x(qm0 qm0Var) {
-        c71 c71Var = new c71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
-        this.Z = c71Var;
-        c71Var.f25280r = false;
-        return c71Var;
+    public final qm0 x(rm0 rm0Var) {
+        d71 d71Var = new d71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
+        this.Z = d71Var;
+        d71Var.f25587r = false;
+        return d71Var;
     }
 }

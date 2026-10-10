@@ -19,9 +19,9 @@ import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.tc;
-import org.telegram.ui.Components.ud0;
-import org.telegram.ui.Wallet.e4;
-import org.telegram.ui.Wallet.i2;
+import org.telegram.ui.Components.vd0;
+import org.telegram.ui.Wallet.f4;
+import org.telegram.ui.Wallet.j2;
 import org.telegram.ui.ba;
 import org.telegram.ui.c3;
 import org.telegram.ui.g60;
@@ -30,49 +30,49 @@ import org.telegram.ui.m40;
 import org.telegram.ui.o40;
 import org.telegram.ui.q30;
 public final class g implements View.OnClickListener {
-    public final int f19469a;
-    public final Object f19470b;
-    public final Object f19471c;
+    public final int f19473a;
+    public final Object f19474b;
+    public final Object f19475c;
     public final Object d;
-    public final Object f19472e;
-    public final Object f19473f;
+    public final Object f19476e;
+    public final Object f19477f;
     public final Object h;
-    public final Object f19474n;
+    public final Object f19478n;
 
-    public g(ci.d dVar, e4 e4Var, Utilities.Callback3 callback3, String[] strArr, boolean[] zArr, i2[] i2VarArr, e6 e6Var) {
-        this.f19469a = 2;
-        this.f19470b = dVar;
-        this.f19471c = e4Var;
+    public g(ci.d dVar, f4 f4Var, Utilities.Callback3 callback3, String[] strArr, boolean[] zArr, j2[] j2VarArr, e6 e6Var) {
+        this.f19473a = 2;
+        this.f19474b = dVar;
+        this.f19475c = f4Var;
         this.d = callback3;
-        this.f19472e = strArr;
+        this.f19476e = strArr;
         this.h = zArr;
-        this.f19474n = i2VarArr;
-        this.f19473f = e6Var;
+        this.f19478n = j2VarArr;
+        this.f19477f = e6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f19469a;
-        Object obj = this.f19473f;
-        Object obj2 = this.f19474n;
+        int i10 = this.f19473a;
+        Object obj = this.f19477f;
+        Object obj2 = this.f19478n;
         Object obj3 = this.h;
-        Object obj4 = this.f19472e;
+        Object obj4 = this.f19476e;
         Object obj5 = this.d;
-        Object obj6 = this.f19471c;
-        Object obj7 = this.f19470b;
+        Object obj6 = this.f19475c;
+        Object obj7 = this.f19474b;
         switch (i10) {
             case 0:
                 ((VideoAds) obj7).lambda$show$17((tc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (e6) obj, (VideoAds.AdLayout) obj3, (e) obj2, view);
                 return;
             case 1:
                 g60 g60Var = (g60) obj7;
-                ud0 ud0Var = (ud0) obj6;
+                vd0 vd0Var = (vd0) obj6;
                 l40 l40Var = (l40) obj5;
                 m40 m40Var = (m40) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
                 AccountInstance accountInstance = (AccountInstance) obj3;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj2;
-                q30 q30Var = g60Var.f37807e1;
+                q30 q30Var = g60Var.f37851e1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 g60Var.X0 = ofFloat;
                 ofFloat.setDuration(600L);
@@ -85,19 +85,19 @@ public final class g implements View.OnClickListener {
                     q30Var.b(LocaleController.getString(R.string.VoipGroupVoiceChat), true);
                 }
                 Calendar calendar = Calendar.getInstance();
-                boolean f7 = g5.f(null, null, 0L, 604800L, 3, ud0Var, l40Var, m40Var);
-                calendar.setTimeInMillis((ud0Var.getValue() * 86400000) + System.currentTimeMillis());
+                boolean f7 = g5.f(null, null, 0L, 604800L, 3, vd0Var, l40Var, m40Var);
+                calendar.setTimeInMillis((vd0Var.getValue() * 86400000) + System.currentTimeMillis());
                 calendar.set(11, l40Var.getValue());
                 calendar.set(12, m40Var.getValue());
                 if (f7) {
                     calendar.set(13, 0);
                 }
-                g60Var.f37832k2 = (int) (calendar.getTimeInMillis() / 1000);
+                g60Var.f37876k2 = (int) (calendar.getTimeInMillis() / 1000);
                 g60Var.M1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = g60Var.f37832k2;
+                creategroupcall.schedule_date = g60Var.f37876k2;
                 creategroupcall.flags |= 2;
                 accountInstance.getConnectionsManager().sendRequest(creategroupcall, new ba(g60Var, chat, inputPeer, 11), 2);
                 return;
@@ -107,7 +107,7 @@ public final class g implements View.OnClickListener {
                 Utilities.Callback3 callback3 = (Utilities.Callback3) obj5;
                 String[] strArr = (String[]) obj4;
                 boolean[] zArr = (boolean[]) obj3;
-                i2[] i2VarArr = (i2[]) obj2;
+                j2[] j2VarArr = (j2[]) obj2;
                 e6 e6Var = (e6) obj;
                 if (!dVar.N) {
                     if (editTextBoldCursor != null && editTextBoldCursor.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
@@ -115,7 +115,7 @@ public final class g implements View.OnClickListener {
                         return;
                     }
                     dVar.setLoading(true);
-                    callback3.run(strArr[0], Boolean.valueOf(zArr[0]), new org.telegram.ui.Wallet.o(dVar, i2VarArr, e6Var, 5));
+                    callback3.run(strArr[0], Boolean.valueOf(zArr[0]), new org.telegram.ui.Wallet.p(dVar, j2VarArr, e6Var, 5));
                     return;
                 }
                 return;
@@ -123,13 +123,13 @@ public final class g implements View.OnClickListener {
     }
 
     public g(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f19469a = i10;
-        this.f19470b = obj;
-        this.f19471c = obj2;
+        this.f19473a = i10;
+        this.f19474b = obj;
+        this.f19475c = obj2;
         this.d = obj3;
-        this.f19472e = obj4;
-        this.f19473f = obj5;
+        this.f19476e = obj4;
+        this.f19477f = obj5;
         this.h = obj6;
-        this.f19474n = obj7;
+        this.f19478n = obj7;
     }
 }

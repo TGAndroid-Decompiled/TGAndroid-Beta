@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.t11;
+import org.telegram.ui.Components.u11;
 public class CodeHighlighting {
     public static final int MATCH_COMMENT = 6;
     public static final int MATCH_CONSTANT = 3;
@@ -325,9 +325,9 @@ public class CodeHighlighting {
         public final float decrementSize;
         public final String lng;
         public final boolean smallerSize;
-        public final t11 style;
+        public final u11 style;
 
-        public Span(boolean z10, int i10, t11 t11Var, String str, String str2) {
+        public Span(boolean z10, int i10, u11 u11Var, String str, String str2) {
             int length;
             this.smallerSize = z10;
             this.lng = str;
@@ -339,7 +339,7 @@ public class CodeHighlighting {
             }
             this.decrementSize = CodeHighlighting.getTextSizeDecrement(length);
             this.currentType = i10;
-            this.style = t11Var;
+            this.style = u11Var;
         }
 
         @Override
@@ -351,13 +351,13 @@ public class CodeHighlighting {
             if (i10 == 2) {
                 textPaint.setColor(-1);
             } else if (i10 == 1) {
-                textPaint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20839fc, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20843fc, false));
             } else {
                 textPaint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.ec, false));
             }
-            t11 t11Var = this.style;
-            if (t11Var != null) {
-                t11Var.a(textPaint);
+            u11 u11Var = this.style;
+            if (u11Var != null) {
+                u11Var.a(textPaint);
                 return;
             }
             textPaint.setTypeface(Typeface.MONOSPACE);
@@ -509,7 +509,7 @@ public class CodeHighlighting {
         return 2;
     }
 
-    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, t11 t11Var, boolean z10) {
+    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, u11 u11Var, boolean z10) {
         if (spannable == null) {
             return;
         }

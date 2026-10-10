@@ -11,7 +11,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.q5;
 public final class z2 extends View {
     public boolean E;
@@ -21,20 +21,20 @@ public final class z2 extends View {
     public final Paint I;
     public final Rect J;
     public final boolean K;
-    public final o3[] f32403a;
-    public final o3[] f32404b;
-    public ValueAnimator f32405c;
+    public final o3[] f32468a;
+    public final o3[] f32469b;
+    public ValueAnimator f32470c;
     public int d;
-    public int f32406e;
-    public int f32407f;
+    public int f32471e;
+    public int f32472f;
     public int h;
-    public int f32408n;
-    public int f32409r;
-    public int f32410s;
+    public int f32473n;
+    public int f32474r;
+    public int f32475s;
     public int v;
-    public int f32411w;
-    public int f32412x;
-    public boolean f32413y;
+    public int f32476w;
+    public int f32477x;
+    public boolean f32478y;
 
     public z2(Activity activity, TLRPC.User user, q1 q1Var) {
         super(activity);
@@ -47,26 +47,26 @@ public final class z2 extends View {
         if (!isEnabled) {
             return;
         }
-        this.f32403a = new o3[]{new o3(user, this, AndroidUtilities.dp(32.0f)), new o3(user, this, AndroidUtilities.dp(28.0f)), new o3(user, this, AndroidUtilities.dp(35.0f)), new o3(user, this, AndroidUtilities.dp(28.0f)), new o3(user, this, AndroidUtilities.dp(26.0f))};
-        this.f32404b = new o3[]{new o3(user, this, AndroidUtilities.dp(32.0f)), new o3(user, this, AndroidUtilities.dp(28.0f)), new o3(user, this, AndroidUtilities.dp(35.0f)), new o3(user, this, AndroidUtilities.dp(28.0f)), new o3(user, this, AndroidUtilities.dp(26.0f))};
+        this.f32468a = new o3[]{new o3(user, this, AndroidUtilities.dp(32.0f)), new o3(user, this, AndroidUtilities.dp(28.0f)), new o3(user, this, AndroidUtilities.dp(35.0f)), new o3(user, this, AndroidUtilities.dp(28.0f)), new o3(user, this, AndroidUtilities.dp(26.0f))};
+        this.f32469b = new o3[]{new o3(user, this, AndroidUtilities.dp(32.0f)), new o3(user, this, AndroidUtilities.dp(28.0f)), new o3(user, this, AndroidUtilities.dp(35.0f)), new o3(user, this, AndroidUtilities.dp(28.0f)), new o3(user, this, AndroidUtilities.dp(26.0f))};
         q1Var.a(this);
         setLayerType(2, null);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
 
     public final void a() {
-        if (!this.K || this.f32413y) {
+        if (!this.K || this.f32478y) {
             return;
         }
-        this.f32413y = true;
+        this.f32478y = true;
         int dp = AndroidUtilities.dp(12.0f);
         this.F = dp;
         ValueAnimator ofInt = ValueAnimator.ofInt(0, dp);
-        this.f32405c = ofInt;
+        this.f32470c = ofInt;
         ofInt.addUpdateListener(new y2(this, 0));
-        this.f32405c.setInterpolator(hs.f27119g);
-        this.f32405c.setDuration(200L);
-        this.f32405c.start();
+        this.f32470c.setInterpolator(is.f27444g);
+        this.f32470c.setDuration(200L);
+        this.f32470c.start();
     }
 
     @Override
@@ -75,21 +75,21 @@ public final class z2 extends View {
         o3[] o3VarArr2;
         super.onAttachedToWindow();
         if (this.K) {
-            for (o3 o3Var : this.f32403a) {
-                q5 q5Var = o3Var.f32122a;
+            for (o3 o3Var : this.f32468a) {
+                q5 q5Var = o3Var.f32187a;
                 if (q5Var != null) {
                     q5Var.a();
-                    ValueAnimator valueAnimator = o3Var.f32123b;
+                    ValueAnimator valueAnimator = o3Var.f32188b;
                     if (valueAnimator != null) {
                         valueAnimator.start();
                     }
                 }
             }
-            for (o3 o3Var2 : this.f32404b) {
-                q5 q5Var2 = o3Var2.f32122a;
+            for (o3 o3Var2 : this.f32469b) {
+                q5 q5Var2 = o3Var2.f32187a;
                 if (q5Var2 != null) {
                     q5Var2.a();
-                    ValueAnimator valueAnimator2 = o3Var2.f32123b;
+                    ValueAnimator valueAnimator2 = o3Var2.f32188b;
                     if (valueAnimator2 != null) {
                         valueAnimator2.start();
                     }
@@ -104,29 +104,29 @@ public final class z2 extends View {
         o3[] o3VarArr2;
         super.onDetachedFromWindow();
         if (this.K) {
-            for (o3 o3Var : this.f32403a) {
-                q5 q5Var = o3Var.f32122a;
+            for (o3 o3Var : this.f32468a) {
+                q5 q5Var = o3Var.f32187a;
                 if (q5Var != null) {
-                    ValueAnimator valueAnimator = o3Var.f32123b;
+                    ValueAnimator valueAnimator = o3Var.f32188b;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        o3Var.f32123b = null;
+                        o3Var.f32188b = null;
                     }
                     q5Var.b();
                 }
             }
-            for (o3 o3Var2 : this.f32404b) {
-                q5 q5Var2 = o3Var2.f32122a;
+            for (o3 o3Var2 : this.f32469b) {
+                q5 q5Var2 = o3Var2.f32187a;
                 if (q5Var2 != null) {
-                    ValueAnimator valueAnimator2 = o3Var2.f32123b;
+                    ValueAnimator valueAnimator2 = o3Var2.f32188b;
                     if (valueAnimator2 != null) {
                         valueAnimator2.cancel();
-                        o3Var2.f32123b = null;
+                        o3Var2.f32188b = null;
                     }
                     q5Var2.b();
                 }
             }
-            ValueAnimator valueAnimator3 = this.f32405c;
+            ValueAnimator valueAnimator3 = this.f32470c;
             if (valueAnimator3 != null) {
                 valueAnimator3.cancel();
             }
@@ -147,21 +147,21 @@ public final class z2 extends View {
         q1 q1Var = this.H;
         q1Var.d(x10, y3);
         int measuredWidth = getMeasuredWidth() / 2;
-        o3[] o3VarArr = this.f32403a;
-        o3VarArr[0].b((measuredWidth - AndroidUtilities.dp(120.0f)) - this.d, AndroidUtilities.dp(120.0f) - this.f32409r);
-        o3VarArr[1].b((measuredWidth - AndroidUtilities.dp(180.0f)) - this.f32406e, AndroidUtilities.dp(150.0f) - this.f32410s);
-        o3VarArr[2].b((measuredWidth - AndroidUtilities.dp(150.0f)) - this.f32407f, AndroidUtilities.dp(185.0f) - this.v);
-        o3VarArr[3].b((measuredWidth - AndroidUtilities.dp(176.0f)) - this.h, AndroidUtilities.dp(240.0f) - this.f32411w);
-        o3VarArr[4].b((measuredWidth - AndroidUtilities.dp(130.0f)) - this.f32408n, AndroidUtilities.dp(265.0f) - this.f32412x);
+        o3[] o3VarArr = this.f32468a;
+        o3VarArr[0].b((measuredWidth - AndroidUtilities.dp(120.0f)) - this.d, AndroidUtilities.dp(120.0f) - this.f32474r);
+        o3VarArr[1].b((measuredWidth - AndroidUtilities.dp(180.0f)) - this.f32471e, AndroidUtilities.dp(150.0f) - this.f32475s);
+        o3VarArr[2].b((measuredWidth - AndroidUtilities.dp(150.0f)) - this.f32472f, AndroidUtilities.dp(185.0f) - this.v);
+        o3VarArr[3].b((measuredWidth - AndroidUtilities.dp(176.0f)) - this.h, AndroidUtilities.dp(240.0f) - this.f32476w);
+        o3VarArr[4].b((measuredWidth - AndroidUtilities.dp(130.0f)) - this.f32473n, AndroidUtilities.dp(265.0f) - this.f32477x);
         for (o3 o3Var : o3VarArr) {
             o3Var.a(canvas);
         }
-        o3[] o3VarArr2 = this.f32404b;
-        o3VarArr2[0].b(AndroidUtilities.dp(50.0f) + measuredWidth + this.d, AndroidUtilities.dp(120.0f) - this.f32409r);
-        o3VarArr2[1].b(AndroidUtilities.dp(110.0f) + measuredWidth + this.f32406e, AndroidUtilities.dp(150.0f) - this.f32410s);
-        o3VarArr2[2].b(AndroidUtilities.dp(80.0f) + measuredWidth + this.f32407f, AndroidUtilities.dp(185.0f) - this.v);
-        o3VarArr2[3].b(AndroidUtilities.dp(106.0f) + measuredWidth + this.h, AndroidUtilities.dp(240.0f) - this.f32411w);
-        o3VarArr2[4].b(AndroidUtilities.dp(60.0f) + measuredWidth + this.f32408n, AndroidUtilities.dp(265.0f) - this.f32412x);
+        o3[] o3VarArr2 = this.f32469b;
+        o3VarArr2[0].b(AndroidUtilities.dp(50.0f) + measuredWidth + this.d, AndroidUtilities.dp(120.0f) - this.f32474r);
+        o3VarArr2[1].b(AndroidUtilities.dp(110.0f) + measuredWidth + this.f32471e, AndroidUtilities.dp(150.0f) - this.f32475s);
+        o3VarArr2[2].b(AndroidUtilities.dp(80.0f) + measuredWidth + this.f32472f, AndroidUtilities.dp(185.0f) - this.v);
+        o3VarArr2[3].b(AndroidUtilities.dp(106.0f) + measuredWidth + this.h, AndroidUtilities.dp(240.0f) - this.f32476w);
+        o3VarArr2[4].b(AndroidUtilities.dp(60.0f) + measuredWidth + this.f32473n, AndroidUtilities.dp(265.0f) - this.f32477x);
         for (o3 o3Var2 : o3VarArr2) {
             o3Var2.a(canvas);
         }
@@ -172,7 +172,7 @@ public final class z2 extends View {
         q1Var.b().setAlpha(255);
         canvas.drawRect(rect, q1Var.b());
         q1Var.b().setAlpha(alpha);
-        if (q1Var.f32175e) {
+        if (q1Var.f32240e) {
             int alpha2 = ((Paint) q1Var.d.f7954a).getAlpha();
             ((Paint) q1Var.d.f7954a).setAlpha(255);
             canvas.drawRect(rect, (Paint) q1Var.d.f7954a);
@@ -187,17 +187,17 @@ public final class z2 extends View {
         o3[] o3VarArr2;
         super.onLayout(z10, i10, i11, i12, i13);
         if (this.K) {
-            for (o3 o3Var : this.f32403a) {
+            for (o3 o3Var : this.f32468a) {
                 int measuredWidth = getMeasuredWidth();
                 getMeasuredHeight();
-                o3Var.f32134o = measuredWidth;
-                o3Var.f32130k.invalidate();
+                o3Var.f32199o = measuredWidth;
+                o3Var.f32195k.invalidate();
             }
-            for (o3 o3Var2 : this.f32404b) {
+            for (o3 o3Var2 : this.f32469b) {
                 int measuredWidth2 = getMeasuredWidth();
                 getMeasuredHeight();
-                o3Var2.f32134o = measuredWidth2;
-                o3Var2.f32130k.invalidate();
+                o3Var2.f32199o = measuredWidth2;
+                o3Var2.f32195k.invalidate();
             }
         }
     }

@@ -26,13 +26,13 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.d5;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.k;
-import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.h10;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.i10;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.Wallet.c6;
+import org.telegram.ui.Wallet.d6;
 import org.telegram.ui.dc1;
 import org.telegram.ui.o20;
 import org.telegram.ui.p20;
@@ -47,7 +47,7 @@ import yh.o7;
 import yh.p7;
 public final class i extends p20 implements NotificationCenter.NotificationCenterDelegate {
     public FrameLayout P;
-    public c6 Q;
+    public d6 Q;
     public o7 R;
     public bb S;
     public final boolean T = C0();
@@ -76,7 +76,7 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
     }
 
     public static void y0(i iVar, int i10) {
-        p61 G;
+        q61 G;
         e eVar = iVar.f8389f0;
         if (eVar != null && (G = eVar.G(i10)) != null) {
             int i11 = G.d;
@@ -98,15 +98,15 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
         }
     }
 
-    public final void D0(ArrayList arrayList, c71 c71Var) {
+    public final void D0(ArrayList arrayList, d71 d71Var) {
         if (getParentActivity() == null) {
             return;
         }
         m5 y3 = m5.y(this.currentAccount, true);
-        p61 p61Var = new p61(-2);
-        p61Var.f29727c = (bb) super.r0(getParentActivity());
-        arrayList.add(p61Var);
-        arrayList.add(p61.k(this.U));
+        q61 q61Var = new q61(-2);
+        q61Var.f30056c = (bb) super.r0(getParentActivity());
+        arrayList.add(q61Var);
+        arrayList.add(q61.k(this.U));
         boolean z10 = this.T;
         if (z10) {
             hg.c.n(R.string.GramEarningsHint, arrayList);
@@ -115,12 +115,12 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
         this.f8387d0 = O;
         if (O) {
             if (!z10) {
-                arrayList.add(p61.B(null));
+                arrayList.add(q61.B(null));
             }
-            arrayList.add(p61.p(this.R, AndroidUtilities.dp(24.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
+            arrayList.add(q61.p(this.R, AndroidUtilities.dp(24.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
             return;
         }
-        arrayList.add(p61.l(this.S));
+        arrayList.add(q61.l(this.S));
     }
 
     public final void E0() {
@@ -229,20 +229,20 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
         FrameLayout frameLayout = new FrameLayout(context);
         this.P = frameLayout;
         frameLayout.setClickable(true);
-        c6 c6Var = new c6(170, context, false);
-        this.Q = c6Var;
-        c6Var.setStarParticlesView(this.f40641e);
+        d6 d6Var = new d6(170, context, false);
+        this.Q = d6Var;
+        d6Var.setStarParticlesView(this.f40685e);
         this.P.addView(this.Q, x5.a(170.0f, 0.0f, 32.0f, 0.0f, 12.0f, 170, 17));
         m0(LocaleController.getString(R.string.GramEarningsTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GramEarningsText), new a(context, 0)), true), this.P, null);
-        this.f40640c.setOverScrollMode(2);
+        this.f40684c.setOverScrollMode(2);
         j jVar = new j();
-        jVar.f47698m = false;
+        jVar.f47742m = false;
         jVar.C = false;
-        jVar.o(hs.h);
+        jVar.o(is.h);
         jVar.n(350L);
-        this.f40640c.setItemAnimator(jVar);
-        this.f40640c.setOnItemClickListener(new ai.g(this, 6));
-        this.f40645s.addView(new h10(getParentActivity()), x5.d(-1.0f, -1));
+        this.f40684c.setItemAnimator(jVar);
+        this.f40684c.setOnItemClickListener(new ai.g(this, 6));
+        this.f40689s.addView(new i10(getParentActivity()), x5.d(-1.0f, -1));
         m5.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.U = linearLayout;
@@ -267,7 +267,7 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
         r6Var2.setTextSize(AndroidUtilities.dp(14.0f));
         this.X.setGravity(17);
         this.X.setText(LocaleController.getString(R.string.YourTonBalance));
-        this.X.setTextColor(i6.w0(i6.f21199z6, this.resourceProvider));
+        this.X.setTextColor(i6.w0(i6.f21203z6, this.resourceProvider));
         this.U.addView(this.X, x5.a(20.0f, 24.0f, 0.0f, 24.0f, 8.0f, -1, 17));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
         f0 f0Var = new f0(this, getParentActivity(), 2);
@@ -448,14 +448,14 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
 
     @Override
     public final int getNavigationBarColor() {
-        return i6.x0(null, i6.f20887i5, false);
+        return i6.x0(null, i6.f20891i5, false);
     }
 
     @Override
     public final i0 n0() {
-        e eVar = new e(this, this.f40640c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
+        e eVar = new e(this, this.f40684c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
         this.f8389f0 = eVar;
-        eVar.f25280r = false;
+        eVar.f25587r = false;
         return eVar;
     }
 
@@ -490,18 +490,18 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
     @Override
     public final void onPause() {
         super.onPause();
-        c6 c6Var = this.Q;
-        if (c6Var != null) {
-            c6Var.setPaused(true);
+        d6 d6Var = this.Q;
+        if (d6Var != null) {
+            d6Var.setPaused(true);
         }
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        c6 c6Var = this.Q;
-        if (c6Var != null) {
-            c6Var.setPaused(false);
+        d6 d6Var = this.Q;
+        if (d6Var != null) {
+            d6Var.setPaused(false);
         }
     }
 
@@ -515,7 +515,7 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
         o7 o7Var = this.R;
         boolean z10 = false;
         if (o7Var != null && (o7Var.getParent() instanceof View)) {
-            if (this.f40640c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
+            if (this.f40684c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
                 z10 = true;
             }
         }
@@ -529,9 +529,9 @@ public final class i extends p20 implements NotificationCenter.NotificationCente
 
     @Override
     public final void s0(float f7) {
-        c6 c6Var = this.Q;
-        if (c6Var != null) {
-            c6Var.setHeaderTilt(f7 * 70.0f);
+        d6 d6Var = this.Q;
+        if (d6Var != null) {
+            d6Var.setHeaderTilt(f7 * 70.0f);
         }
     }
 }

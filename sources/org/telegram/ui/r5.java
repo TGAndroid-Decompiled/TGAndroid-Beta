@@ -5,25 +5,25 @@ import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.NotificationCenter;
 public final class r5 implements DialogInterface.OnDismissListener {
-    public final int f41265a;
-    public final Object f41266b;
+    public final int f41309a;
+    public final Object f41310b;
 
     public r5(Object obj, int i10) {
-        this.f41265a = i10;
-        this.f41266b = obj;
+        this.f41309a = i10;
+        this.f41310b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        org.telegram.ui.Components.ck0 ck0Var;
-        int i10 = this.f41265a;
-        Object obj = this.f41266b;
+        org.telegram.ui.Components.dk0 dk0Var;
+        int i10 = this.f41309a;
+        Object obj = this.f41310b;
         switch (i10) {
             case 0:
-                ((s5) obj).f41580a.x0(false);
+                ((s5) obj).f41624a.x0(false);
                 return;
             case 1:
-                ((q9) obj).f41046b.onFragmentDestroy();
+                ((q9) obj).f41090b.onFragmentDestroy();
                 return;
             case 2:
                 md mdVar = (md) obj;
@@ -50,16 +50,16 @@ public final class r5 implements DialogInterface.OnDismissListener {
                 return;
             case 5:
                 uo uoVar = (uo) obj;
-                if (!uoVar.f42488s.g()) {
+                if (!uoVar.f42532s.g()) {
                     uoVar.R0.P(86);
-                    uoVar.f42467b0.f22720e.d();
+                    uoVar.f42511b0.f22724e.d();
                     return;
                 }
                 uoVar.R0.N(0, false, false);
                 return;
             case 6:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj;
-                ArrayList arrayList = ExternalActionActivity.f33749x;
+                ArrayList arrayList = ExternalActionActivity.f33787x;
                 externalActionActivity.setResult(0);
                 externalActionActivity.finish();
                 return;
@@ -67,24 +67,24 @@ public final class r5 implements DialogInterface.OnDismissListener {
                 j70 j70Var = (j70) obj;
                 if (!j70Var.N.g()) {
                     j70Var.R.P(86);
-                    j70Var.f38849f.d();
+                    j70Var.f38893f.d();
                     return;
                 }
                 j70Var.R.N(0, false, false);
                 return;
             case 8:
                 gf0 gf0Var = (gf0) obj;
-                org.telegram.ui.Components.ck0 ck0Var2 = gf0Var.I;
-                jd jdVar = gf0Var.f38005n;
+                org.telegram.ui.Components.dk0 dk0Var2 = gf0Var.I;
+                jd jdVar = gf0Var.f38049n;
                 if (!gf0Var.L.g()) {
-                    jdVar.setAnimation(ck0Var2);
-                    ck0Var2.P(86);
+                    jdVar.setAnimation(dk0Var2);
+                    dk0Var2.P(86);
                     jdVar.setOnAnimationEndListener(new td0(gf0Var, 2));
                     jdVar.d();
                     return;
                 }
-                jdVar.setAnimation(ck0Var2);
-                ck0Var2.N(0, false, false);
+                jdVar.setAnimation(dk0Var2);
+                dk0Var2.N(0, false, false);
                 gf0Var.K = true;
                 return;
             case 9:
@@ -99,23 +99,23 @@ public final class r5 implements DialogInterface.OnDismissListener {
                 return;
             case 12:
                 PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) obj;
-                if (!privacyControlActivity.f34186s0.g()) {
-                    privacyControlActivity.f34187t0.P(86);
-                    privacyControlActivity.f34188u0.f22720e.d();
+                if (!privacyControlActivity.f34224s0.g()) {
+                    privacyControlActivity.f34225t0.P(86);
+                    privacyControlActivity.f34226u0.f22724e.d();
                     return;
                 }
-                privacyControlActivity.f34187t0.N(0, false, false);
+                privacyControlActivity.f34225t0.N(0, false, false);
                 return;
             case 13:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                if (!profileActivity.f34323q0.g()) {
+                if (!profileActivity.f34361q0.g()) {
                     profileActivity.V.P(86);
                     profileActivity.W.P(86);
-                    org.telegram.ui.Components.ii0 ii0Var = profileActivity.f34212a0;
-                    if (ii0Var != null) {
-                        org.telegram.ui.Components.fi0 j3 = org.telegram.ui.Components.ii0.j(14, ii0Var.f27394a);
-                        if (j3 != null && (ck0Var = j3.f26381k) != null) {
-                            ck0Var.start();
+                    org.telegram.ui.Components.ji0 ji0Var = profileActivity.f34250a0;
+                    if (ji0Var != null) {
+                        org.telegram.ui.Components.gi0 j3 = org.telegram.ui.Components.ji0.j(14, ji0Var.f27690a);
+                        if (j3 != null && (dk0Var = j3.f26729k) != null) {
+                            dk0Var.start();
                         }
                     } else {
                         profileActivity.v.d();
@@ -135,17 +135,17 @@ public final class r5 implements DialogInterface.OnDismissListener {
                 return;
             case 15:
                 ShareActivity shareActivity = (ShareActivity) obj;
-                int i11 = ShareActivity.f34484b;
+                int i11 = ShareActivity.f34522b;
                 if (!shareActivity.isFinishing()) {
                     shareActivity.finish();
                 }
-                shareActivity.f34485a = null;
+                shareActivity.f34523a = null;
                 return;
             case 16:
                 ThemeActivity themeActivity = (ThemeActivity) obj;
-                themeActivity.f34551r = null;
+                themeActivity.f34589r = null;
                 themeActivity.h = null;
-                themeActivity.f34546n = null;
+                themeActivity.f34584n = null;
                 return;
             case 17:
                 TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj;
@@ -153,7 +153,7 @@ public final class r5 implements DialogInterface.OnDismissListener {
                 twoStepVerificationActivity.finishFragment();
                 return;
             default:
-                ((wi1) obj).f43665u0.b();
+                ((wi1) obj).f43709u0.b();
                 return;
         }
     }

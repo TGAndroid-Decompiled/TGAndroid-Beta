@@ -36,7 +36,7 @@ public final class c implements wi {
         z zVar = this.f3895c;
         long j11 = zVar.d;
         yi yiVar = this.f3893a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33240j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33247j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();

@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class eb0 extends org.telegram.ui.Components.h10 {
+public final class eb0 extends org.telegram.ui.Components.i10 {
     @Override
     public final void b() {
         setVisibility(8);

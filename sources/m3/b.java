@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import w7.l;
 public final class b extends l {
-    public final int f15975a;
+    public final int f15979a;
 
     public static n3.a c(v vVar) {
         String s10 = vVar.s();
@@ -22,7 +22,7 @@ public final class b extends l {
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
-        switch (this.f15975a) {
+        switch (this.f15979a) {
             case 0:
                 if (byteBuffer.get() != 116) {
                     return null;

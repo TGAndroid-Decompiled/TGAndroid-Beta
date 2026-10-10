@@ -2,8 +2,8 @@ package ei;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.rw0;
-public final class g2 implements rw0 {
+import org.telegram.ui.Components.sw0;
+public final class g2 implements sw0 {
     public final int f9081a;
     public final NotificationCenter.NotificationCenterDelegate f9082b;
 

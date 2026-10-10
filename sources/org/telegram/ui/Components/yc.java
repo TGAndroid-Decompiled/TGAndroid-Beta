@@ -7,13 +7,13 @@ public enum yc {
     SAVED_TO_MUSIC(R.raw.ic_save_to_music, 2, "Box", "Arrow"),
     SAVED_TO_GIFS(R.raw.ic_save_to_gifs, 0, "gif");
     
-    public final int f33189a;
-    public final String[] f33190b;
-    public final int f33191c;
+    public final int f33165a;
+    public final String[] f33166b;
+    public final int f33167c;
 
     yc(int i10, int i11, String... strArr) {
-        this.f33189a = i10;
-        this.f33191c = i11;
-        this.f33190b = strArr;
+        this.f33165a = i10;
+        this.f33167c = i11;
+        this.f33166b = strArr;
     }
 }

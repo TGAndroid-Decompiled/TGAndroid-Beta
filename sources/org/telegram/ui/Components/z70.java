@@ -1,111 +1,152 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class z70 extends pm0 {
-    public ArrayList f33486c = new ArrayList();
-    public ArrayList d = new ArrayList();
-    public final gg.b2 f33487e;
-    public int f33488f;
-    public Runnable h;
-    public final d80 f33489n;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class z70 implements Runnable {
+    public final int f33518a;
+    public final a80 f33519b;
+    public final String f33520c;
 
-    public z70(d80 d80Var) {
-        this.f33489n = d80Var;
-        gg.b2 b2Var = new gg.b2(false);
-        this.f33487e = b2Var;
-        b2Var.f10532a = new bw(this, 8);
+    public z70(a80 a80Var, String str, int i10) {
+        this.f33518a = i10;
+        this.f33519b = a80Var;
+        this.f33520c = str;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47662f == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        int size = this.f33486c.size();
-        gg.b2 b2Var = this.f33487e;
-        int size2 = b2Var.d.size();
-        int size3 = b2Var.f10535e.size();
-        int i10 = size + size2;
-        if (size3 != 0) {
-            i10 += size3 + 1;
-        }
-        int i11 = i10 + 2;
-        this.f33488f = i11;
-        return i11;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 2;
-        }
-        if (i10 == this.f33488f - 1) {
-            return 4;
-        }
-        if (i10 - 1 != this.f33487e.d.size() + this.f33486c.size()) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.d1 r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z70.v(s4.d1, int):void");
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View view;
+    public final void run() {
+        int i10;
+        String str;
+        String publicUsername;
+        ArrayList arrayList;
+        boolean z10;
         int i11;
-        Context context = viewGroup.getContext();
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 4) {
-                    ?? frameLayout = new FrameLayout(context);
-                    frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.e7, false));
-                    Drawable drawable = frameLayout.getResources().getDrawable(R.drawable.shadowdown);
-                    frameLayout.f22078a = drawable;
-                    drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Zh, false), PorterDuff.Mode.MULTIPLY));
-                    TextView textView = new TextView(frameLayout.getContext());
-                    frameLayout.f22079b = textView;
-                    com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
-                    textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20752ai, false));
-                    int i12 = 3;
-                    if (LocaleController.isRTL) {
-                        i11 = 5;
-                    } else {
-                        i11 = 3;
-                    }
-                    textView.setGravity(i11 | 16);
-                    if (LocaleController.isRTL) {
-                        i12 = 5;
-                    }
-                    frameLayout.addView(textView, w7.x5.a(-1.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, i12 | 48));
-                    view = frameLayout;
-                } else {
-                    view = new View(context);
+        Object obj;
+        switch (this.f33518a) {
+            case 0:
+                a80 a80Var = this.f33519b;
+                String str2 = this.f33520c;
+                a80Var.getClass();
+                AndroidUtilities.runOnUIThread(new z70(a80Var, str2, 1));
+                return;
+            case 1:
+                a80 a80Var2 = this.f33519b;
+                String str3 = this.f33520c;
+                gg.b2 b2Var = a80Var2.f24505e;
+                org.telegram.ui.gu guVar = a80Var2.f24507n.m0;
+                boolean z11 = false;
+                boolean z12 = false;
+                if (guVar != null) {
+                    z11 = true;
                 }
-            } else {
-                view = new ci.bb(this, context, 19);
-            }
-        } else {
-            view = new org.telegram.ui.Cells.g4(1, 0, context, false);
+                if (guVar != null) {
+                    z12 = true;
+                }
+                b2Var.g(str3, true, z11, true, z12, 0L, false, 0, 0);
+                DispatchQueue dispatchQueue = Utilities.searchQueue;
+                z70 z70Var = new z70(a80Var2, str3, 2);
+                a80Var2.h = z70Var;
+                dispatchQueue.postRunnable(z70Var);
+                return;
+            default:
+                a80 a80Var3 = this.f33519b;
+                String str4 = this.f33520c;
+                ArrayList arrayList2 = a80Var3.f24507n.f25944e0;
+                String lowerCase = str4.trim().toLowerCase();
+                if (lowerCase.length() == 0) {
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f(a80Var3, new ArrayList(), new ArrayList(), 27));
+                    return;
+                }
+                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+                translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
+                int i12 = 0;
+                boolean z13 = true;
+                if (translitString != null) {
+                    i10 = 1;
+                } else {
+                    i10 = 0;
+                }
+                int i13 = i10 + 1;
+                String[] strArr = new String[i13];
+                strArr[0] = lowerCase;
+                if (translitString != null) {
+                    strArr[1] = translitString;
+                }
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                int i14 = 0;
+                while (i14 < arrayList2.size()) {
+                    TLObject tLObject = (TLObject) arrayList2.get(i14);
+                    boolean z14 = tLObject instanceof TLRPC.User;
+                    if (z14) {
+                        TLRPC.User user = (TLRPC.User) tLObject;
+                        str = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
+                        publicUsername = UserObject.getPublicUsername(user);
+                    } else {
+                        TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+                        str = chat.title;
+                        publicUsername = ChatObject.getPublicUsername(chat);
+                    }
+                    String translitString2 = LocaleController.getInstance().getTranslitString(str);
+                    if (str.equals(translitString2)) {
+                        translitString2 = null;
+                    }
+                    int i15 = i12;
+                    while (true) {
+                        if (i12 < i13) {
+                            String str5 = strArr[i12];
+                            if (!str.startsWith(str5) && !org.telegram.messenger.bi.w(" ", str5, str) && (translitString2 == null || (!translitString2.startsWith(str5) && !org.telegram.messenger.bi.w(" ", str5, translitString2)))) {
+                                if (publicUsername != null && publicUsername.startsWith(str5)) {
+                                    i15 = 2;
+                                }
+                                i11 = i15;
+                            } else {
+                                i11 = 1;
+                            }
+                            if (i11 != 0) {
+                                arrayList = arrayList2;
+                                z10 = true;
+                                if (i11 == 1) {
+                                    if (z14) {
+                                        TLRPC.User user2 = (TLRPC.User) tLObject;
+                                        arrayList4.add(AndroidUtilities.generateSearchName(user2.first_name, user2.last_name, str5));
+                                        obj = null;
+                                    } else {
+                                        obj = null;
+                                        arrayList4.add(AndroidUtilities.generateSearchName(((TLRPC.Chat) tLObject).title, null, str5));
+                                    }
+                                } else {
+                                    obj = null;
+                                    arrayList4.add(AndroidUtilities.generateSearchName(sc.v.i("@", publicUsername), null, "@" + str5));
+                                }
+                                arrayList3.add(tLObject);
+                            } else {
+                                i12++;
+                                int i16 = i11;
+                                z13 = true;
+                                arrayList2 = arrayList2;
+                                i15 = i16;
+                            }
+                        } else {
+                            arrayList = arrayList2;
+                            z10 = z13;
+                        }
+                    }
+                    i14++;
+                    z13 = z10;
+                    arrayList2 = arrayList;
+                    i12 = 0;
+                }
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f(a80Var3, arrayList3, arrayList4, 27));
+                return;
         }
-        return new s4.d1(view);
     }
 }

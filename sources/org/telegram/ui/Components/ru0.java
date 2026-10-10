@@ -1,52 +1,79 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Utilities;
-public final class ru0 implements Runnable {
-    public final int f30513a;
-    public final su0 f30514b;
-    public final String f30515c;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ru0 implements gg.a2, org.telegram.ui.Cells.a5 {
+    public final tu0 f30571a;
 
-    public ru0(su0 su0Var, String str, int i10) {
-        this.f30513a = i10;
-        this.f30514b = su0Var;
-        this.f30515c = str;
+    public ru0(tu0 tu0Var) {
+        this.f30571a = tu0Var;
     }
 
     @Override
-    public final void run() {
-        long j3;
-        switch (this.f30513a) {
-            case 0:
-                su0 su0Var = this.f30514b;
-                String str = this.f30515c;
-                su0Var.getClass();
-                AndroidUtilities.runOnUIThread(new ru0(su0Var, str, 1));
-                return;
-            default:
-                su0 su0Var2 = this.f30514b;
-                String str2 = this.f30515c;
-                ArrayList arrayList = null;
-                su0Var2.f30896f = null;
-                if (!ChatObject.isChannel(su0Var2.f30897n) && su0Var2.f30899s.f25127d1 != null) {
-                    arrayList = new ArrayList(su0Var2.f30899s.f25127d1.participants.participants);
-                }
-                su0Var2.f30898r = 2;
-                if (arrayList != null) {
-                    Utilities.searchQueue.postRunnable(new og0(su0Var2, str2, arrayList, 8));
-                } else {
-                    su0Var2.f30898r = 1;
-                }
-                gg.b2 b2Var = su0Var2.f30895e;
-                if (ChatObject.isChannel(su0Var2.f30897n)) {
-                    j3 = su0Var2.f30897n.f20038id;
-                } else {
-                    j3 = 0;
-                }
-                b2Var.g(str2, false, false, true, false, j3, false, 2, 1);
-                return;
+    public a0.i V() {
+        return null;
+    }
+
+    @Override
+    public boolean c(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
+        int intValue = ((Integer) b5Var.getTag()).intValue();
+        tu0 tu0Var = this.f30571a;
+        TLObject E = tu0Var.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
+            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+            tL_chatChannelParticipant.channelParticipant = channelParticipant;
+            tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
+            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+            tL_chatChannelParticipant.date = channelParticipant.date;
+            return tu0Var.f31225s.D1.h(tL_chatChannelParticipant, true, !z10, b5Var);
         }
+        return false;
+    }
+
+    @Override
+    public a0.i d0() {
+        return null;
+    }
+
+    @Override
+    public void h(int i10) {
+        tu0 tu0Var = this.f30571a;
+        tu0Var.l();
+        if (i10 == 1) {
+            int i11 = tu0Var.f31224r - 1;
+            tu0Var.f31224r = i11;
+            if (i11 == 0) {
+                int i12 = 0;
+                while (true) {
+                    cw0 cw0Var = tu0Var.f31225s;
+                    vu0[] vu0VarArr = cw0Var.f25450k0;
+                    if (i12 < vu0VarArr.length) {
+                        vu0 vu0Var = vu0VarArr[i12];
+                        if (vu0Var.F == 7) {
+                            if (tu0Var.h == 0) {
+                                vu0Var.f32521w.e(false, true);
+                            } else {
+                                cw0Var.z(vu0Var.h, 0, null);
+                            }
+                        }
+                        i12++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean s0(int i10) {
+        return true;
+    }
+
+    @Override
+    public void x0(ArrayList arrayList) {
     }
 }

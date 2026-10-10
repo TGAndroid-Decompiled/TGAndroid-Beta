@@ -234,9 +234,9 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
         bundle.putLong("dialog_id", this.f8689b);
         ?? n2Var = new n2(bundle);
         n2Var.d = new ArrayList();
-        n2Var.f39577e = new HashSet();
+        n2Var.f39621e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
-        n2Var.f39577e = profileActivity.f34269h5;
+        n2Var.f39621e = profileActivity.f34307h5;
         profileActivity.presentFragment((n2) n2Var);
     }
 
@@ -248,8 +248,8 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
     @Override
     public void o() {
         ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
-        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f8689b, profileActivity.f34258g1);
-        profileActivity.getNotificationsController().muteDialog(this.f8689b, profileActivity.f34258g1, z10);
+        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f8689b, profileActivity.f34296g1);
+        profileActivity.getNotificationsController().muteDialog(this.f8689b, profileActivity.f34296g1, z10);
         if (profileActivity.fragmentView != null) {
             ad.A(profileActivity, z10, null).j();
         }
@@ -273,13 +273,13 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
                 }
                 return;
             case 7:
-                ((AtomicLong) ((t) this.f8690c).f16718c).set(this.f8689b);
+                ((AtomicLong) ((t) this.f8690c).f16722c).set(this.f8689b);
                 return;
             case 8:
-                ((ga) this.f8690c).f50786b.set(this.f8689b);
+                ((ga) this.f8690c).f50830b.set(this.f8689b);
                 return;
             default:
-                ((ga) this.f8690c).f50786b.set(this.f8689b);
+                ((ga) this.f8690c).f50830b.set(this.f8689b);
                 return;
         }
     }
@@ -291,8 +291,8 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
         if (j3 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j3);
-            bundle.putLong("topic_id", profileActivity.f34258g1);
-            profileActivity.presentFragment(new v11(bundle, profileActivity.f34386z0));
+            bundle.putLong("topic_id", profileActivity.f34296g1);
+            profileActivity.presentFragment(new v11(bundle, profileActivity.f34424z0));
         }
     }
 
@@ -322,11 +322,11 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.c1(profileActivity));
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j3 = this.f8689b;
-        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.q.i(j3, profileActivity.f34258g1, sb2), true);
+        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.q.i(j3, profileActivity.f34296g1, sb2), true);
         boolean z11 = !z10 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(org.telegram.messenger.q.i(j3, profileActivity.f34258g1, new StringBuilder("sound_enabled_")), z11).apply();
+        notificationsSettings.edit().putBoolean(org.telegram.messenger.q.i(j3, profileActivity.f34296g1, new StringBuilder("sound_enabled_")), z11).apply();
         if (ad.a(profileActivity)) {
-            ad.S(z10 ? 1 : 0, profileActivity, profileActivity.f34386z0).j();
+            ad.S(z10 ? 1 : 0, profileActivity, profileActivity.f34424z0).j();
         }
     }
 
@@ -371,18 +371,18 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.i, ep {
     public void x(int i10) {
         ProfileActivity profileActivity = (ProfileActivity) this.f8690c;
         if (i10 == 0) {
-            if (profileActivity.getMessagesController().isDialogMuted(this.f8689b, profileActivity.f34258g1)) {
+            if (profileActivity.getMessagesController().isDialogMuted(this.f8689b, profileActivity.f34296g1)) {
                 o();
             }
             if (ad.a(profileActivity)) {
-                ad.z(profileActivity, 4, i10, profileActivity.f34386z0).j();
+                ad.z(profileActivity, 4, i10, profileActivity.f34424z0).j();
                 return;
             }
             return;
         }
-        profileActivity.getNotificationsController().muteUntil(this.f8689b, profileActivity.f34258g1, i10);
+        profileActivity.getNotificationsController().muteUntil(this.f8689b, profileActivity.f34296g1, i10);
         if (ad.a(profileActivity)) {
-            ad.z(profileActivity, 5, i10, profileActivity.f34386z0).j();
+            ad.z(profileActivity, 5, i10, profileActivity.f34424z0).j();
         }
         profileActivity.a5();
         profileActivity.g5(true);

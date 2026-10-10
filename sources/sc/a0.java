@@ -3,18 +3,18 @@ package sc;
 import java.util.ArrayList;
 import org.telegram.ui.Wallet.y0;
 public abstract class a0 extends Thread {
-    public final u f47891a;
+    public final u f47935a;
 
     public a0(String str, u uVar, int i10) {
         super(str);
-        this.f47891a = uVar;
+        this.f47935a = uVar;
     }
 
     public abstract void a();
 
     @Override
     public final void run() {
-        com.google.firebase.messaging.m mVar = this.f47891a.d;
+        com.google.firebase.messaging.m mVar = this.f47935a.d;
         int i10 = 0;
         if (mVar != null) {
             ArrayList arrayList = (ArrayList) mVar.n();

@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class gw implements Runnable {
-    public final int f38126a;
-    public final ty f38127b;
-    public final long f38128c;
+    public final int f38170a;
+    public final ty f38171b;
+    public final long f38172c;
     public final boolean d;
 
     public gw(ty tyVar, long j3, boolean z10, int i10) {
-        this.f38126a = i10;
-        this.f38127b = tyVar;
-        this.f38128c = j3;
+        this.f38170a = i10;
+        this.f38171b = tyVar;
+        this.f38172c = j3;
         this.d = z10;
     }
 
@@ -25,20 +25,20 @@ public final class gw implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder replaceTags;
-        int i10 = this.f38126a;
+        int i10 = this.f38170a;
         boolean z10 = this.d;
-        long j3 = this.f38128c;
-        ty tyVar = this.f38127b;
+        long j3 = this.f38172c;
+        ty tyVar = this.f38171b;
         switch (i10) {
             case 0:
-                ty tyVar2 = this.f38127b;
+                ty tyVar2 = this.f38171b;
                 ai.m9 storiesController = tyVar2.getMessagesController().getStoriesController();
-                long j10 = this.f38128c;
+                long j10 = this.f38172c;
                 boolean z11 = this.d;
                 storiesController.i0(j10, z11, false);
                 n6.t tVar = new n6.t(4);
-                tVar.f16717b = new gw(tyVar2, j10, z11, 1);
-                tVar.f16718c = new gw(tyVar2, j10, z11, 2);
+                tVar.f16721b = new gw(tyVar2, j10, z11, 1);
+                tVar.f16722c = new gw(tyVar2, j10, z11, 2);
                 if (j10 >= 0) {
                     TLRPC.User user = tyVar2.getMessagesController().getUser(Long.valueOf(j10));
                     str = ContactsController.formatName(user.first_name, null, 15);

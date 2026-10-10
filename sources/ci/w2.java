@@ -18,7 +18,7 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.LaunchActivity;
 public final class w2 {
     public final Context f6183a;
@@ -111,7 +111,7 @@ public final class w2 {
         ofFloat.addUpdateListener(new ai.a(this, 17));
         this.f6189i.addListener(new ai.u2(this, f7, runnable, 1));
         this.f6189i.setDuration(j3);
-        this.f6189i.setInterpolator(hs.f27120i);
+        this.f6189i.setInterpolator(is.f27445i);
         this.f6189i.start();
     }
 

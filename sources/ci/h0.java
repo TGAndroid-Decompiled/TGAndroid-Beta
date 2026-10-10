@@ -42,7 +42,7 @@ public final class h0 extends View {
         } else {
             f7 = 0.0f;
         }
-        return ((getHeight() - f7) - this.f5154s.f5184f.f15582y) - AndroidUtilities.dp(32.0f);
+        return ((getHeight() - f7) - this.f5154s.f5184f.f15586y) - AndroidUtilities.dp(32.0f);
     }
 
     private float getContainerWidth() {

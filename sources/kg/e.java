@@ -88,7 +88,7 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = i6.f20905j5;
+        int i10 = i6.f20909j5;
         e6 e6Var = this.J;
         this.d.setTextColor(i6.w0(i10, e6Var));
         this.f14833e.setTextColor(i6.w0(i10, e6Var));
@@ -97,9 +97,9 @@ public class e extends FrameLayout {
         this.h.setProgressColor(i6.w0(i11, e6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = i6.j0(dp, dp, dp, dp, i6.w0(i6.f20868h5, e6Var), i6.w0(i6.f20888i6, e6Var), -16777216);
+        this.I = i6.j0(dp, dp, dp, dp, i6.w0(i6.f20872h5, e6Var), i6.w0(i6.f20892i6, e6Var), -16777216);
         fr frVar = new fr(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        frVar.f26471w = true;
+        frVar.f26503w = true;
         setBackground(frVar);
     }
 
@@ -137,7 +137,7 @@ public class e extends FrameLayout {
             linearLayout2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
             if (this.E) {
                 TextView textView = new TextView(getContext());
-                obj.f17177c = textView;
+                obj.f17181c = textView;
                 linearLayout2.addView(textView);
                 textView.getLayoutParams().width = AndroidUtilities.dp(36.0f);
                 textView.setVisibility(8);
@@ -145,10 +145,10 @@ public class e extends FrameLayout {
                 textView.setTextSize(1, 13.0f);
             }
             TextView textView2 = new TextView(getContext());
-            obj.f17176b = textView2;
+            obj.f17180b = textView2;
             linearLayout2.addView(textView2, x5.k(0.0f, 0.0f, 20.0f, 0.0f, -2, -2));
             a6 a6Var = new a6(getContext());
-            obj.f17175a = a6Var;
+            obj.f17179a = a6Var;
             linearLayout2.addView(a6Var, x5.n(-1, -2));
             textView2.setGravity(8388611);
             a6Var.setGravity(8388613);

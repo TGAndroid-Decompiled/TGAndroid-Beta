@@ -12,12 +12,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 public final class t3 implements Utilities.Callback {
-    public final int f41832a;
-    public final Object f41833b;
+    public final int f41876a;
+    public final Object f41877b;
 
     public t3(Object obj, int i10) {
-        this.f41832a = i10;
-        this.f41833b = obj;
+        this.f41876a = i10;
+        this.f41877b = obj;
     }
 
     @Override
@@ -27,16 +27,16 @@ public final class t3 implements Utilities.Callback {
         float f11;
         float f12;
         float f13;
-        int i10 = this.f41832a;
+        int i10 = this.f41876a;
         boolean z10 = false;
-        Object obj2 = this.f41833b;
+        Object obj2 = this.f41877b;
         switch (i10) {
             case 0:
                 i4 i4Var = ((v3) obj2).K;
                 if (((Integer) obj).intValue() - AndroidUtilities.navigationBarHeight > AndroidUtilities.dp(20.0f)) {
                     z10 = true;
                 }
-                i4Var.f38509o0 = z10;
+                i4Var.f38553o0 = z10;
                 return;
             case 1:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(19, (cc) obj2, (TL_stories.TL_premium_boostsStatus) obj));
@@ -45,19 +45,19 @@ public final class t3 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(25, (ke) obj2, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
             case 3:
-                ((mq) obj2).f39964e.S = (String) obj;
+                ((mq) obj2).f40008e.S = (String) obj;
                 return;
             case 4:
                 tr trVar = ((pr) obj2).d;
                 trVar.A1 = ((Integer) obj).intValue();
-                AndroidUtilities.updateVisibleRow(trVar.f42058c, trVar.f42091r0);
+                AndroidUtilities.updateVisibleRow(trVar.f42102c, trVar.f42135r0);
                 return;
             case 5:
                 qs.U((qs) obj2, (TL_account.TL_birthday) obj);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
-                ((c20) obj2).f36501e.Z(true);
+                ((c20) obj2).f36545e.Z(true);
                 return;
             case 7:
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
@@ -78,7 +78,7 @@ public final class t3 implements Utilities.Callback {
                 fg0Var.getClass();
                 FileLog.d("LoginBilling purchased done " + str);
                 if ("CANCELLED".equalsIgnoreCase(str)) {
-                    fg0Var.f37550b.setLoading(false);
+                    fg0Var.f37594b.setLoading(false);
                     return;
                 }
                 return;
@@ -86,21 +86,21 @@ public final class t3 implements Utilities.Callback {
                 dj0 dj0Var = (dj0) obj2;
                 Integer num = (Integer) obj;
                 dj0Var.getClass();
-                if (num.intValue() - dj0Var.f36997e.d > AndroidUtilities.dp(20.0f)) {
+                if (num.intValue() - dj0Var.f37041e.d > AndroidUtilities.dp(20.0f)) {
                     z10 = true;
                 }
-                dj0Var.f36993b0 = z10;
+                dj0Var.f37037b0 = z10;
                 if (z10) {
-                    f7 = Math.min(dj0Var.f36995c0, (dj0Var.F.getHeight() - num.intValue()) - dj0Var.f36996d0.getMeasuredHeight());
+                    f7 = Math.min(dj0Var.f37039c0, (dj0Var.F.getHeight() - num.intValue()) - dj0Var.f37040d0.getMeasuredHeight());
                 } else {
-                    f7 = dj0Var.f36995c0;
+                    f7 = dj0Var.f37039c0;
                 }
-                dj0Var.f36996d0.animate().translationY(f7 - dj0Var.f36996d0.getTop()).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21455w).start();
+                dj0Var.f37040d0.animate().translationY(f7 - dj0Var.f37040d0.getTop()).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21459w).start();
                 return;
             case 12:
                 sj0 sj0Var = (sj0) obj2;
-                sj0Var.f41718j0 = (String) obj;
-                w5 w5Var = sj0Var.f41727t0;
+                sj0Var.f41762j0 = (String) obj;
+                w5 w5Var = sj0Var.f41771t0;
                 AndroidUtilities.cancelRunOnUIThread(w5Var);
                 AndroidUtilities.runOnUIThread(w5Var, 100L);
                 return;
@@ -115,25 +115,25 @@ public final class t3 implements Utilities.Callback {
             case 14:
                 up0 up0Var = (up0) obj2;
                 View view = (View) obj;
-                aq0 aq0Var = up0Var.f42532p0;
+                aq0 aq0Var = up0Var.f42576p0;
                 if (view instanceof xp0) {
-                    view.setBackgroundColor(aq0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6));
+                    view.setBackgroundColor(aq0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20801d6));
                     ((xp0) view).b();
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.r8) {
-                    view.setBackgroundColor(aq0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6));
+                    view.setBackgroundColor(aq0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20801d6));
                     ((org.telegram.ui.Cells.r8) view).v();
                     return;
                 } else if (view instanceof tp0) {
-                    int i11 = org.telegram.ui.ActionBar.i6.f20797d6;
+                    int i11 = org.telegram.ui.ActionBar.i6.f20801d6;
                     view.setBackgroundColor(aq0Var.getThemedColor(i11));
                     tp0 tp0Var = (tp0) view;
-                    aq0 aq0Var2 = tp0Var.d.f42532p0;
+                    aq0 aq0Var2 = tp0Var.d.f42576p0;
                     tp0Var.setBackgroundColor(aq0Var2.getThemedColor(i11));
-                    tp0Var.f42040a.setTextColor(aq0Var2.getThemedColor(org.telegram.ui.ActionBar.i6.G6));
+                    tp0Var.f42084a.setTextColor(aq0Var2.getThemedColor(org.telegram.ui.ActionBar.i6.G6));
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.m4) {
-                    view.setBackgroundColor(aq0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6));
+                    view.setBackgroundColor(aq0Var.getThemedColor(org.telegram.ui.ActionBar.i6.f20801d6));
                     return;
                 } else if (view instanceof ip0) {
                     ((ip0) view).d.invalidate();
@@ -152,18 +152,18 @@ public final class t3 implements Utilities.Callback {
                 return;
             case 16:
                 Boolean bool4 = (Boolean) obj;
-                ((sp0) obj2).f41746c.e();
+                ((sp0) obj2).f41790c.e();
                 return;
             case 17:
                 ((ci.h1) obj2).D(((Integer) obj).intValue());
                 return;
             case 18:
                 tw0 tw0Var = (tw0) obj2;
-                tw0Var.f42142s = ((Integer) obj).intValue();
+                tw0Var.f42186s = ((Integer) obj).intValue();
                 View z12 = tw0Var.d.z1(4);
                 if (z12 instanceof org.telegram.ui.Cells.e9) {
                     org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) z12;
-                    if (e9Var.getFixedSize() <= 0 && tw0Var.f42142s > 0) {
+                    if (e9Var.getFixedSize() <= 0 && tw0Var.f42186s > 0) {
                         e9Var.setText(tw0Var.W());
                         tw0Var.V(true);
                         return;
@@ -180,9 +180,9 @@ public final class t3 implements Utilities.Callback {
                 privacySettingsActivity.A0(true);
                 return;
             case 20:
-                org.telegram.ui.Components.ea0[] ea0VarArr = (org.telegram.ui.Components.ea0[]) obj2;
+                org.telegram.ui.Components.fa0[] fa0VarArr = (org.telegram.ui.Components.fa0[]) obj2;
                 Boolean bool5 = (Boolean) obj;
-                ViewPropertyAnimator animate = ea0VarArr[0].animate();
+                ViewPropertyAnimator animate = fa0VarArr[0].animate();
                 float f14 = 0.0f;
                 float f15 = 1.0f;
                 if (bool5.booleanValue()) {
@@ -203,9 +203,9 @@ public final class t3 implements Utilities.Callback {
                     f12 = 1.0f;
                 }
                 ViewPropertyAnimator scaleY = scaleX.scaleY(f12);
-                org.telegram.ui.Components.hs hsVar = org.telegram.ui.Components.hs.h;
-                org.telegram.messenger.bi.t(scaleY, hsVar, 600L);
-                ViewPropertyAnimator animate2 = ea0VarArr[1].animate();
+                org.telegram.ui.Components.is isVar = org.telegram.ui.Components.is.h;
+                org.telegram.messenger.bi.t(scaleY, isVar, 600L);
+                ViewPropertyAnimator animate2 = fa0VarArr[1].animate();
                 if (bool5.booleanValue()) {
                     f14 = 1.0f;
                 }
@@ -219,7 +219,7 @@ public final class t3 implements Utilities.Callback {
                 if (!bool5.booleanValue()) {
                     f15 = 0.8f;
                 }
-                scaleX2.scaleY(f15).setInterpolator(hsVar).setDuration(600L).start();
+                scaleX2.scaleY(f15).setInterpolator(isVar).setDuration(600L).start();
                 return;
             case 21:
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj2;

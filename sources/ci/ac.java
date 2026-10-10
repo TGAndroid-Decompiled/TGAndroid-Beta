@@ -38,7 +38,7 @@ public final class ac extends ClickableSpan {
             case 2:
                 org.telegram.ui.Cells.y1 y1Var = (org.telegram.ui.Cells.y1) this.f4736b;
                 Context context = y1Var.getContext();
-                of.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.qa) y1Var.M).f41063e.f41324r);
+                of.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.qa) y1Var.M).f41107e.f41368r);
                 return;
             case 3:
                 ((org.telegram.ui.vb) this.f4736b).finishFragment();
@@ -47,11 +47,11 @@ public final class ac extends ClickableSpan {
                 ((org.telegram.ui.r1) this.f4736b).run();
                 return;
             case 5:
-                ((org.telegram.ui.Components.ad) this.f4736b).f24662a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((org.telegram.ui.Components.ad) this.f4736b).f24534a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
                 gl glVar = (gl) this.f4736b;
-                org.telegram.ui.Wallet.a5.u0(glVar.getContext(), glVar.f26780n, glVar.f30172a);
+                org.telegram.ui.Wallet.b5.u0(glVar.getContext(), glVar.f26769n, glVar.f30210a);
                 return;
             case 7:
                 ((ActionBarLayout) ((LaunchActivity) this.f4736b).O()).P(new PremiumPreviewFragment(0, "gift"));
@@ -60,12 +60,12 @@ public final class ac extends ClickableSpan {
                 ((gf0) this.f4736b).q(false);
                 return;
             case 9:
-                org.telegram.ui.Wallet.j8 j8Var = (org.telegram.ui.Wallet.j8) this.f4736b;
-                org.telegram.ui.Wallet.a5.u0(j8Var.getParentActivity(), org.telegram.ui.Wallet.j8.d0(j8Var), j8Var.getResourceProvider());
+                org.telegram.ui.Wallet.k8 k8Var = (org.telegram.ui.Wallet.k8) this.f4736b;
+                org.telegram.ui.Wallet.b5.u0(k8Var.getParentActivity(), org.telegram.ui.Wallet.k8.d0(k8Var), k8Var.getResourceProvider());
                 return;
             case 10:
-                rg.j0 j0Var = ((rg.c0) this.f4736b).f47213c;
-                tg.m.o(j0Var.f26025n, rg.j0.j1(j0Var), j0Var.f47274a0, null);
+                rg.j0 j0Var = ((rg.c0) this.f4736b).f47257c;
+                tg.m.o(j0Var.f25985n, rg.j0.j1(j0Var), j0Var.f47318a0, null);
                 return;
             default:
                 return;
@@ -97,7 +97,7 @@ public final class ac extends ClickableSpan {
                 textPaint.setUnderlineText(false);
                 return;
             case 6:
-                textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, ((gl) this.f4736b).f30172a));
+                textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, ((gl) this.f4736b).f30210a));
                 textPaint.setUnderlineText(false);
                 return;
             case 7:
@@ -109,18 +109,18 @@ public final class ac extends ClickableSpan {
                 textPaint.setUnderlineText(false);
                 return;
             case 9:
-                textPaint.setColor(((org.telegram.ui.Wallet.j8) this.f4736b).getThemedColor(org.telegram.ui.ActionBar.i6.Oh));
+                textPaint.setColor(((org.telegram.ui.Wallet.k8) this.f4736b).getThemedColor(org.telegram.ui.ActionBar.i6.Oh));
                 textPaint.setUnderlineText(false);
                 return;
             case 10:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, rg.j0.S0(((rg.c0) this.f4736b).f47213c)));
+                textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, rg.j0.S0(((rg.c0) this.f4736b).f47257c)));
                 return;
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                Integer num = ((rg.l1) this.f4736b).f47340u0;
+                Integer num = ((rg.l1) this.f4736b).f47384u0;
                 if (num != null) {
                     textPaint.setColor(num.intValue());
                     return;

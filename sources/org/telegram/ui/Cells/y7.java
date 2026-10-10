@@ -2,25 +2,25 @@ package org.telegram.ui.Cells;
 
 import org.telegram.messenger.Utilities;
 public final class y7 {
-    public int f23779a;
-    public int f23780b;
-    public int[] f23781c = null;
+    public int f23783a;
+    public int f23784b;
+    public int[] f23785c = null;
     public int d = 1;
-    public Utilities.Callback2Return f23782e;
+    public Utilities.Callback2Return f23786e;
 
     public final int a() {
-        int[] iArr = this.f23781c;
+        int[] iArr = this.f23785c;
         if (iArr != null) {
             return iArr[iArr.length - 1];
         }
-        return this.f23780b;
+        return this.f23784b;
     }
 
     public final int b() {
-        int[] iArr = this.f23781c;
+        int[] iArr = this.f23785c;
         if (iArr != null) {
             return iArr[0];
         }
-        return this.f23779a;
+        return this.f23783a;
     }
 }

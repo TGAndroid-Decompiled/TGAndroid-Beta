@@ -10,10 +10,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.ea1;
-import org.telegram.ui.Components.i10;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.fa1;
+import org.telegram.ui.Components.j10;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.q80;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
@@ -46,17 +46,17 @@ public final class r3 implements View.OnLongClickListener {
                 if (d4Var != null) {
                     d4Var.e(true);
                 }
-                kl0 kl0Var = f6Var.f1002r3;
-                if (kl0Var == null) {
-                    kl0 kl0Var2 = new kl0(2, f6Var.C2, f6Var.getContext(), LaunchActivity.R(), new y3(4, f6Var.B0));
-                    f6Var.f1002r3 = kl0Var2;
-                    kl0Var2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
+                ll0 ll0Var = f6Var.f1002r3;
+                if (ll0Var == null) {
+                    ll0 ll0Var2 = new ll0(2, f6Var.C2, f6Var.getContext(), LaunchActivity.R(), new y3(4, f6Var.B0));
+                    f6Var.f1002r3 = ll0Var2;
+                    ll0Var2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
                     f6Var.addView(f6Var.f1002r3, f6Var.getChildCount() - 1, w7.x5.a(74.0f, 0.0f, 0.0f, 12.0f, 64.0f, -2, 53));
                     f6Var.f1002r3.setVisibility(8);
                     f6Var.f1002r3.setDelegate(new a5(f6Var));
                     f6Var.f1002r3.p(null, null, true);
                 } else {
-                    f6Var.bringChildToFront(kl0Var);
+                    f6Var.bringChildToFront(ll0Var);
                     f6Var.f1002r3.n();
                 }
                 f6Var.f1002r3.setFragment(LaunchActivity.R());
@@ -65,7 +65,7 @@ public final class r3 implements View.OnLongClickListener {
                 return true;
             case 1:
                 org.telegram.ui.Components.c0 c0Var = (org.telegram.ui.Components.c0) this.f1652c;
-                ci.n5 n5Var = ((org.telegram.ui.Components.d0) this.f1651b).f25538n;
+                ci.n5 n5Var = ((org.telegram.ui.Components.d0) this.f1651b).f25501n;
                 if (n5Var != null) {
                     return ((Boolean) n5Var.run(c0Var)).booleanValue();
                 }
@@ -83,10 +83,10 @@ public final class r3 implements View.OnLongClickListener {
                 MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
                 return true;
             case 3:
-                p80 p80Var = (p80) this.f1651b;
-                ((ea1) this.f1652c).run();
-                if (p80Var.J) {
-                    p80Var.u();
+                q80 q80Var = (q80) this.f1651b;
+                ((fa1) this.f1652c).run();
+                if (q80Var.J) {
+                    q80Var.u();
                     return true;
                 }
                 return true;
@@ -104,10 +104,10 @@ public final class r3 implements View.OnLongClickListener {
             case 5:
                 ProfileActivity profileActivity = (ProfileActivity) this.f1651b;
                 ImageView imageView = (ImageView) this.f1652c;
-                org.telegram.ui.ActionBar.n1 b10 = org.telegram.ui.Components.q9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f34258g1, profileActivity.f34386z0);
+                org.telegram.ui.ActionBar.n1 b10 = org.telegram.ui.Components.q9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f34296g1, profileActivity.f34424z0);
                 if (b10 != null) {
                     b10.setOnDismissListener(new org.telegram.ui.f0(profileActivity, 3));
-                    profileActivity.f34367w0 = imageView;
+                    profileActivity.f34405w0 = imageView;
                     profileActivity.H3(0.3f);
                     UndoView undoView = profileActivity.M;
                     if (undoView == null) {
@@ -121,26 +121,26 @@ public final class r3 implements View.OnLongClickListener {
                 ka1 ka1Var = (ka1) this.f1651b;
                 kg.f fVar = (kg.f) this.f1652c;
                 la1 la1Var = ka1Var.d;
-                i10 i10Var = ka1Var.f39200a;
+                j10 j10Var = ka1Var.f39244a;
                 boolean z10 = false;
-                if (i10Var.f27183c) {
+                if (j10Var.f27499c) {
                     la1Var.f();
-                    ArrayList arrayList = la1Var.f39493n;
-                    ig.g gVar = la1Var.f39490c;
+                    ArrayList arrayList = la1Var.f39537n;
+                    ig.g gVar = la1Var.f39534c;
                     int size = arrayList.size();
                     for (int i10 = 0; i10 < size; i10++) {
-                        ((ka1) arrayList.get(i10)).f39200a.setChecked(false);
-                        ((ka1) arrayList.get(i10)).f39201b.f14852n = false;
-                        if (la1Var.f39494r.f40150c > 0 && i10 < gVar.d.size()) {
+                        ((ka1) arrayList.get(i10)).f39244a.setChecked(false);
+                        ((ka1) arrayList.get(i10)).f39245b.f14852n = false;
+                        if (la1Var.f39538r.f40194c > 0 && i10 < gVar.d.size()) {
                             ((kg.f) gVar.d.get(i10)).f14852n = false;
                         }
                     }
                     z10 = true;
-                    i10Var.setChecked(true);
+                    j10Var.setChecked(true);
                     fVar.f14852n = true;
-                    la1Var.f39489b.z();
-                    if (la1Var.f39494r.f40150c > 0) {
-                        ((kg.f) gVar.d.get(ka1Var.f39202c)).f14852n = true;
+                    la1Var.f39533b.z();
+                    if (la1Var.f39538r.f40194c > 0) {
+                        ((kg.f) gVar.d.get(ka1Var.f39246c)).f14852n = true;
                         gVar.z();
                     }
                 }

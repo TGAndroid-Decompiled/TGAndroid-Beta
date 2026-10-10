@@ -1,27 +1,27 @@
 package vh;
 public final class m implements Runnable {
-    public final int f49727a;
-    public final n f49728b;
-    public final int f49729c;
+    public final int f49771a;
+    public final n f49772b;
+    public final int f49773c;
 
     public m(n nVar, int i10, int i11) {
-        this.f49727a = i11;
-        this.f49728b = nVar;
-        this.f49729c = i10;
+        this.f49771a = i11;
+        this.f49772b = nVar;
+        this.f49773c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f49727a) {
+        switch (this.f49771a) {
             case 0:
-                n nVar = this.f49728b;
-                nVar.post(new m(nVar, this.f49729c, 1));
+                n nVar = this.f49772b;
+                nVar.post(new m(nVar, this.f49773c, 1));
                 return;
             default:
-                int i10 = this.f49729c;
-                n nVar2 = this.f49728b;
+                int i10 = this.f49773c;
+                n nVar2 = this.f49772b;
                 if (i10 == nVar2.h) {
-                    nVar2.f49734f = false;
+                    nVar2.f49778f = false;
                     nVar2.d = true;
                     nVar2.b();
                     return;

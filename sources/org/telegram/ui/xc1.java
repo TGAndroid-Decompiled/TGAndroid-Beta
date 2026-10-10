@@ -16,31 +16,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 public final class xc1 implements org.telegram.ui.ActionBar.e6 {
-    public org.telegram.ui.ActionBar.e6 f43922a;
-    public final SparseIntArray f43923b = new SparseIntArray();
-    public final Paint f43924c = new Paint(3);
+    public org.telegram.ui.ActionBar.e6 f43966a;
+    public final SparseIntArray f43967b = new SparseIntArray();
+    public final Paint f43968c = new Paint(3);
     public final Paint d = new Paint(3);
-    public final Paint f43925e;
-    public final TextPaint f43926f;
+    public final Paint f43969e;
+    public final TextPaint f43970f;
     public final TextPaint h;
-    public final TextPaint f43927n;
-    public Bitmap f43928r;
-    public BitmapShader f43929s;
+    public final TextPaint f43971n;
+    public Bitmap f43972r;
+    public BitmapShader f43973s;
     public Matrix v;
-    public final xd1 f43930w;
-    public final xd1 f43931x;
+    public final xd1 f43974w;
+    public final xd1 f43975x;
 
     public xc1(xd1 xd1Var) {
-        this.f43931x = xd1Var;
-        this.f43930w = xd1Var;
+        this.f43975x = xd1Var;
+        this.f43974w = xd1Var;
         Paint paint = new Paint(3);
-        this.f43925e = paint;
+        this.f43969e = paint;
         TextPaint textPaint = new TextPaint();
-        this.f43926f = textPaint;
+        this.f43970f = textPaint;
         TextPaint textPaint2 = new TextPaint();
         this.h = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        this.f43927n = textPaint3;
+        this.f43971n = textPaint3;
         textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
@@ -94,17 +94,17 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
             case 0:
                 return this.h;
             case 1:
-                return this.f43924c;
+                return this.f43968c;
             case 2:
-                return this.f43927n;
+                return this.f43971n;
             case 3:
-                return this.f43925e;
+                return this.f43969e;
             case 4:
                 return this.d;
             case 5:
-                return this.f43926f;
+                return this.f43970f;
             default:
-                org.telegram.ui.ActionBar.e6 e6Var = this.f43922a;
+                org.telegram.ui.ActionBar.e6 e6Var = this.f43966a;
                 if (e6Var != null) {
                     return e6Var.F(str);
                 }
@@ -114,15 +114,15 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
 
     @Override
     public final boolean a() {
-        od1 od1Var = this.f43931x.f43981p1;
+        od1 od1Var = this.f43975x.f44025p1;
         if (od1Var != null) {
             return od1Var.a();
         }
-        od1 od1Var2 = this.f43930w.f43981p1;
+        od1 od1Var2 = this.f43974w.f44025p1;
         if (od1Var2 != null) {
             return od1Var2.a();
         }
-        org.telegram.ui.ActionBar.e6 e6Var = this.f43922a;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f43966a;
         if (e6Var != null) {
             return e6Var.a();
         }
@@ -131,7 +131,7 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
 
     @Override
     public final int a1(int i10) {
-        org.telegram.ui.ActionBar.e6 e6Var = this.f43922a;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f43966a;
         if (e6Var != null) {
             return e6Var.a1(i10);
         }
@@ -144,28 +144,28 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
         float f11;
         float f12;
         float f13;
-        int i10 = org.telegram.ui.ActionBar.i6.f20949lc;
+        int i10 = org.telegram.ui.ActionBar.i6.f20953lc;
         int x02 = x0(i10);
-        int x03 = x0(org.telegram.ui.ActionBar.i6.f20968mc);
+        int x03 = x0(org.telegram.ui.ActionBar.i6.f20972mc);
         if (drawable == null) {
             drawable = drawable2;
         }
-        boolean z10 = drawable instanceof org.telegram.ui.Components.cd0;
+        boolean z10 = drawable instanceof org.telegram.ui.Components.dd0;
         TextPaint textPaint = this.h;
-        TextPaint textPaint2 = this.f43926f;
+        TextPaint textPaint2 = this.f43970f;
         if ((z10 || (drawable instanceof BitmapDrawable)) && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(32)) {
             if (z10) {
-                bitmap = ((org.telegram.ui.Components.cd0) drawable).f25341k;
+                bitmap = ((org.telegram.ui.Components.dd0) drawable).f25666k;
             } else if (drawable instanceof BitmapDrawable) {
                 bitmap = ((BitmapDrawable) drawable).getBitmap();
             } else {
                 bitmap = null;
             }
-            if (this.f43928r != bitmap) {
-                this.f43928r = bitmap;
-                Bitmap bitmap2 = this.f43928r;
+            if (this.f43972r != bitmap) {
+                this.f43972r = bitmap;
+                Bitmap bitmap2 = this.f43972r;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                this.f43929s = new BitmapShader(bitmap2, tileMode, tileMode);
+                this.f43973s = new BitmapShader(bitmap2, tileMode, tileMode);
                 if (this.v == null) {
                     this.v = new Matrix();
                 }
@@ -173,24 +173,24 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
             textPaint2.setColor(-1);
             textPaint.setColor(-1);
             textPaint2.linkColor = -1;
-            this.f43927n.setColor(-1);
+            this.f43971n.setColor(-1);
         } else {
-            this.f43928r = null;
-            this.f43929s = null;
-            int i11 = org.telegram.ui.ActionBar.i6.f20894ic;
+            this.f43972r = null;
+            this.f43973s = null;
+            int i11 = org.telegram.ui.ActionBar.i6.f20898ic;
             textPaint2.setColor(x0(i11));
             textPaint.setColor(x0(i11));
-            textPaint2.linkColor = x0(org.telegram.ui.ActionBar.i6.f20912jc);
+            textPaint2.linkColor = x0(org.telegram.ui.ActionBar.i6.f20916jc);
         }
-        Paint paint = this.f43924c;
+        Paint paint = this.f43968c;
         paint.setColor(x02);
         Paint paint2 = this.d;
         paint2.setColor(x03);
-        if (this.f43929s != null && (this.f43923b.indexOfKey(i10) < 0 || z10 || (drawable instanceof BitmapDrawable))) {
+        if (this.f43973s != null && (this.f43967b.indexOfKey(i10) < 0 || z10 || (drawable instanceof BitmapDrawable))) {
             ColorMatrix colorMatrix = new ColorMatrix();
             if (z10) {
                 float f14 = -0.06f;
-                if (((org.telegram.ui.Components.cd0) drawable).f25347q >= 0.0f) {
+                if (((org.telegram.ui.Components.dd0) drawable).f25672q >= 0.0f) {
                     colorMatrix.setSaturation(1.6f);
                     if (a()) {
                         f13 = 0.97f;
@@ -231,7 +231,7 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f11);
             }
             if (z10) {
-                float f15 = ((org.telegram.ui.Components.cd0) drawable).f25347q;
+                float f15 = ((org.telegram.ui.Components.dd0) drawable).f25672q;
                 if (f7 != null) {
                     f15 = f7.floatValue();
                 }
@@ -249,10 +249,10 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
                 AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.97f);
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.06f);
             }
-            paint.setShader(this.f43929s);
+            paint.setShader(this.f43973s);
             paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
             paint.setAlpha(255);
-            paint2.setShader(this.f43929s);
+            paint2.setShader(this.f43973s);
             ColorMatrix colorMatrix2 = new ColorMatrix(colorMatrix);
             AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix2, 0.85f);
             paint2.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
@@ -272,7 +272,7 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        org.telegram.ui.ActionBar.e6 e6Var = this.f43922a;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f43966a;
         if (e6Var != null) {
             return e6Var.getDrawable(str);
         }
@@ -281,7 +281,7 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
 
     @Override
     public final boolean k0() {
-        org.telegram.ui.ActionBar.e6 e6Var = this.f43922a;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f43966a;
         if (e6Var != null) {
             return e6Var.k0();
         }
@@ -291,8 +291,8 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
     @Override
     public final void m(float f7, float f10, int i10, int i11) {
         BitmapShader bitmapShader;
-        Bitmap bitmap = this.f43928r;
-        if (bitmap != null && (bitmapShader = this.f43929s) != null) {
+        Bitmap bitmap = this.f43972r;
+        if (bitmap != null && (bitmapShader = this.f43973s) != null) {
             org.telegram.ui.ActionBar.i6.r(bitmap, bitmapShader, this.v, i10, i11, f7, f10);
         } else {
             org.telegram.ui.ActionBar.i6.q(f7, f10, i10, i11);
@@ -301,12 +301,12 @@ public final class xc1 implements org.telegram.ui.ActionBar.e6 {
 
     @Override
     public final ColorFilter x() {
-        return org.telegram.ui.ActionBar.i6.f21125v3;
+        return org.telegram.ui.ActionBar.i6.f21129v3;
     }
 
     @Override
     public final int x0(int i10) {
-        org.telegram.ui.ActionBar.e6 e6Var = this.f43922a;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f43966a;
         if (e6Var != null) {
             return e6Var.x0(i10);
         }

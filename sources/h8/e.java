@@ -45,11 +45,11 @@ public abstract class e {
                     try {
                         i8.a V0 = a2.V0();
                         l.h(V0);
-                        u7.f49325a = V0;
+                        u7.f49369a = V0;
                         s7.e X0 = a2.X0();
-                        if (u8.f49326a == null) {
+                        if (u8.f49370a == null) {
                             l.i(X0, "delegate must not be null");
-                            u8.f49326a = X0;
+                            u8.f49370a = X0;
                         }
                         f11036a = true;
                         try {

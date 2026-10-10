@@ -1,15 +1,15 @@
 package td;
 public abstract class d {
-    public static final a f48253a;
+    public static final a f48297a;
 
     static {
         b bVar;
-        Integer num = pd.a.f45550a;
+        Integer num = pd.a.f45594a;
         if (num != null && num.intValue() < 34) {
             bVar = new b();
         } else {
             bVar = new Object();
         }
-        f48253a = bVar;
+        f48297a = bVar;
     }
 }

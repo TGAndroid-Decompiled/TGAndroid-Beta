@@ -22,11 +22,11 @@ import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.fa0;
 import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.l71;
 import org.telegram.ui.Components.m9;
-import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.sc;
 public final class t0 implements gi.e {
@@ -76,8 +76,8 @@ public final class t0 implements gi.e {
         }
     }
 
-    public final void b(k71 k71Var) {
-        if (!this.f10060m && !this.f10061n && k71Var.V2.N0() + 10 > k71Var.W2.f25283x.size()) {
+    public final void b(l71 l71Var) {
+        if (!this.f10060m && !this.f10061n && l71Var.V2.N0() + 10 > l71Var.W2.f25590x.size()) {
             d();
         }
     }
@@ -102,16 +102,16 @@ public final class t0 implements gi.e {
                             z10 = false;
                         }
                         int i11 = gi.g.f10910a;
-                        p61 J = p61.J(gi.g.class);
+                        q61 J = q61.J(gi.g.class);
                         J.G = new gi.f(peerDialogId, user, z11);
                         J.H = this;
-                        J.f29732j = !z10;
+                        J.f30061j = !z10;
                         arrayList.add(J);
                     }
                 }
             }
             if (!this.f10061n) {
-                arrayList.add(p61.n(29));
+                arrayList.add(q61.n(29));
             }
         }
     }
@@ -158,7 +158,7 @@ public final class t0 implements gi.e {
                 b2 O = g5.O(this.f10050a, this.f10051b, string, replaceTags, LocaleController.getString(i11), new bi.f(7, this, z10));
                 O.show();
                 if (!z10 && (textView = (TextView) O.d(-1)) != null) {
-                    textView.setTextColor(i6.x0(null, i6.f21037q7, false));
+                    textView.setTextColor(i6.x0(null, i6.f21041q7, false));
                     return;
                 }
                 return;
@@ -202,7 +202,7 @@ public final class t0 implements gi.e {
         e6 e6Var = this.f10051b;
         sc scVar = new sc(context, e6Var, false);
         TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(j3);
-        m9 m9Var = scVar.f30763a;
+        m9 m9Var = scVar.f30755a;
         if (userOrChat != null) {
             m9Var.setCount(1);
             m9Var.b(0, userOrChat, UserConfig.selectedAccount);
@@ -214,17 +214,17 @@ public final class t0 implements gi.e {
         m9Var.setScaleX(1.333f);
         m9Var.setScaleY(1.333f);
         m9Var.a(false);
-        ea0 ea0Var = scVar.f30764b;
-        ea0Var.setSingleLine(false);
-        ea0Var.setMaxLines(2);
-        ea0Var.setTextSize(1, 14.0f);
-        ea0Var.setText(replaceTags);
-        if (ea0Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+        fa0 fa0Var = scVar.f30756b;
+        fa0Var.setSingleLine(false);
+        fa0Var.setMaxLines(2);
+        fa0Var.setTextSize(1, 14.0f);
+        fa0Var.setText(replaceTags);
+        if (fa0Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             int dp = AndroidUtilities.dp(74 - ((3 - i11) * 12));
             if (LocaleController.isRTL) {
-                ((ViewGroup.MarginLayoutParams) ea0Var.getLayoutParams()).rightMargin = dp;
+                ((ViewGroup.MarginLayoutParams) fa0Var.getLayoutParams()).rightMargin = dp;
             } else {
-                ((ViewGroup.MarginLayoutParams) ea0Var.getLayoutParams()).leftMargin = dp;
+                ((ViewGroup.MarginLayoutParams) fa0Var.getLayoutParams()).leftMargin = dp;
             }
         }
         if (LocaleController.isRTL) {
@@ -232,8 +232,8 @@ public final class t0 implements gi.e {
         }
         rc rcVar = new rc(context, e6Var, true, true);
         rcVar.e(LocaleController.getString(R.string.UndoNoCaps));
-        rcVar.f30421a = new ai.j(this, j3, 9);
-        rcVar.f30422b = this.f10056i;
+        rcVar.f30443a = new ai.j(this, j3, 9);
+        rcVar.f30444b = this.f10056i;
         scVar.setButton(rcVar);
         this.f10052c.b(scVar, 5000).j();
     }

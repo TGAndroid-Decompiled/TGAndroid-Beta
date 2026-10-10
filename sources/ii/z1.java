@@ -6,7 +6,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.mr0;
+import org.telegram.ui.Components.nr0;
 import org.telegram.ui.Components.xg;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ty;
@@ -40,12 +40,12 @@ public final class z1 extends xg {
     public final boolean f() {
         switch (this.f12871l0) {
             case 0:
-                if (!((e2) this.m0).L0 && this.f32845r <= 0) {
+                if (!((e2) this.m0).L0 && this.f32935r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((c4) this.m0).W && this.f32845r <= 0) {
+                if (!((c4) this.m0).W && this.f32935r <= 0) {
                     return false;
                 }
                 return true;
@@ -64,12 +64,12 @@ public final class z1 extends xg {
         Object obj = this.m0;
         switch (i10) {
             case 2:
-                return ((mr0) obj).getThemedColor(org.telegram.ui.ActionBar.i6.S5);
+                return ((nr0) obj).getThemedColor(org.telegram.ui.ActionBar.i6.S5);
             case 3:
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = org.telegram.ui.ActionBar.i6.f21208zf;
+                int i11 = org.telegram.ui.ActionBar.i6.f21212zf;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).z1(i11);
         }

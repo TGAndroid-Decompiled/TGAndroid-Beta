@@ -9,7 +9,7 @@ public final class u extends g {
 
     public u(v vVar) {
         this.f10366b = new AtomicReference(vVar);
-        this.f10367c = new a0(vVar.f16655r, 0);
+        this.f10367c = new a0(vVar.f16659r, 0);
     }
 
     @Override

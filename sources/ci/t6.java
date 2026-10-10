@@ -21,7 +21,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class t6 extends View {
     public final Paint f6000a;
     public final Paint f6001b;
@@ -47,7 +47,7 @@ public final class t6 extends View {
         this.f6000a = paint;
         Paint paint2 = new Paint(1);
         this.f6001b = paint2;
-        this.f6006r = new org.telegram.ui.Components.g6(this, 0L, 220L, hs.h);
+        this.f6006r = new org.telegram.ui.Components.g6(this, 0L, 220L, is.h);
         this.f6007s = true;
         this.f6005n = z10;
         paint.setColor(-15098625);

@@ -1,97 +1,141 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Paint;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class lg0 extends FrameLayout {
-    public final ci.wc f28452a;
-    public final ci.d f28453b;
-    public final fu f28454c;
-    public k81 d;
-    public long f28455e;
-    public float f28456f;
-    public ci.z3 h;
-    public Utilities.Callback f28457n;
-    public Runnable f28458r;
+public final class lg0 extends qm0 {
+    public final Context f28338c;
+    public final mg0 d;
 
-    public lg0(Context context, org.telegram.ui.ActionBar.e6 e6Var, ma maVar) {
-        super(context);
-        this.f28455e = -1L;
-        this.f28456f = 1.39f;
-        org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, e6Var);
-        kVar.setBackButtonImage(R.drawable.ic_ab_back);
-        kVar.setTitle(LocaleController.getString(R.string.EditorSetCoverTitle));
-        kVar.D(-1, false);
-        kVar.C(587202559, false);
-        kVar.setActionBarMenuOnItemClick(new org.telegram.ui.ro(this, 10));
-        addView(kVar, w7.x5.e(-1, -2, 55));
-        ci.wc wcVar = new ci.wc(context, null, null, e6Var, maVar);
-        this.f28452a = wcVar;
-        wcVar.X0 = true;
-        addView(wcVar, w7.x5.a(388, 0.0f, 0.0f, 0.0f, 74.0f, -1, 87));
-        ci.d dVar = new ci.d(context, e6Var, true);
-        this.f28453b = dVar;
-        dVar.g(LocaleController.getString(R.string.EditorSetCoverSave), false, true);
-        dVar.e();
-        addView(dVar, w7.x5.a(48.0f, 16.0f, 10.0f, 16.0f, 16.0f, -1, 87));
-        fu fuVar = new fu(context, LocaleController.getString(R.string.EditorSetCoverGallery));
-        this.f28454c = fuVar;
-        fuVar.setOnClickListener(new ai.d0(this, context, e6Var, 26));
-        addView(fuVar, w7.x5.a(32.0f, 60.0f, 0.0f, 60.0f, 134.0f, -1, 87));
-        wcVar.setDelegate(new org.telegram.ui.ActionBar.b5(this));
+    public lg0(mg0 mg0Var, Context context) {
+        this.d = mg0Var;
+        this.f28338c = context;
     }
 
-    public final void a(MediaController.PhotoEntry photoEntry, k81 k81Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        int i10;
-        ci.d dVar = this.f28453b;
-        dVar.f4861a = e6Var;
-        dVar.j();
-        int i11 = photoEntry.width;
-        if (i11 > 0 && (i10 = photoEntry.height) > 0) {
-            this.f28456f = Utilities.clamp(i10 / i11, 1.39f, 0.85f);
+    @Override
+    public final boolean D(s4.d1 d1Var) {
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.F;
+    }
+
+    @Override
+    public final long i(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        mg0 mg0Var = this.d;
+        if (i10 != mg0Var.f28813y && i10 != mg0Var.E) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        int i11 = d1Var.f47706f;
+        View view = d1Var.f47702a;
+        mg0 mg0Var = this.d;
+        if (i11 != 0) {
+            if (i11 == 1) {
+                org.telegram.ui.Cells.u5 u5Var = (org.telegram.ui.Cells.u5) view;
+                u5Var.setTag(Integer.valueOf(i10));
+                if (i10 == mg0Var.f28813y) {
+                    u5Var.a(mg0Var.N, LocaleController.getString(R.string.TintShadows));
+                    return;
+                } else if (i10 == mg0Var.E) {
+                    u5Var.a(mg0Var.O, LocaleController.getString(R.string.TintHighlights));
+                    return;
+                } else {
+                    return;
+                }
+            }
+            return;
+        }
+        org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) view;
+        v5Var.setTag(Integer.valueOf(i10));
+        if (i10 == mg0Var.f28782b) {
+            v5Var.a(LocaleController.getString(R.string.Enhance), 0, mg0Var.G);
+        } else if (i10 == mg0Var.f28802r) {
+            v5Var.a(LocaleController.getString(R.string.Highlights), -100, mg0Var.P);
+        } else if (i10 == mg0Var.d) {
+            v5Var.a(LocaleController.getString(R.string.Contrast), -100, mg0Var.I);
+        } else if (i10 == mg0Var.f28784c) {
+            v5Var.a(LocaleController.getString(R.string.Exposure), -100, mg0Var.H);
+        } else if (i10 == mg0Var.f28789f) {
+            v5Var.a(LocaleController.getString(R.string.Warmth), -100, mg0Var.J);
+        } else if (i10 == mg0Var.f28787e) {
+            v5Var.a(LocaleController.getString(R.string.Saturation), -100, mg0Var.K);
+        } else if (i10 == mg0Var.v) {
+            v5Var.a(LocaleController.getString(R.string.Vignette), 0, mg0Var.R);
+        } else if (i10 == mg0Var.f28804s) {
+            v5Var.a(LocaleController.getString(R.string.Shadows), -100, mg0Var.Q);
+        } else if (i10 == mg0Var.f28809w) {
+            v5Var.a(LocaleController.getString(R.string.Grain), 0, mg0Var.S);
+        } else if (i10 == mg0Var.f28811x) {
+            v5Var.a(LocaleController.getString(R.string.Sharpen), 0, mg0Var.U);
+        } else if (i10 == mg0Var.h) {
+            v5Var.a(LocaleController.getString(R.string.Fade), 0, mg0Var.L);
+        } else if (i10 == mg0Var.f28797n) {
+            v5Var.a(LocaleController.getString(R.string.SoftenSkin), 0, mg0Var.M);
+        }
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.u5 u5Var;
+        Context context = this.f28338c;
+        if (i10 == 0) {
+            org.telegram.ui.ActionBar.e6 e6Var = this.d.I0;
+            ?? frameLayout = new FrameLayout(context);
+            frameLayout.f23549e = new ai.r4((Object) frameLayout, 29);
+            TextView textView = new TextView(context);
+            frameLayout.f23546a = textView;
+            textView.setGravity(5);
+            textView.setTextColor(-1);
+            textView.setTextSize(1, 12.0f);
+            textView.setMaxLines(1);
+            textView.setSingleLine(true);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            frameLayout.addView(textView, w7.x5.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 80, 19));
+            TextView textView2 = new TextView(context);
+            frameLayout.f23547b = textView2;
+            org.telegram.messenger.bi.o(org.telegram.ui.ActionBar.i6.f21212zf, e6Var, textView2, 1, 12.0f);
+            textView2.setGravity(5);
+            textView2.setSingleLine(true);
+            frameLayout.addView(textView2, w7.x5.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 80, 19));
+            ?? view = new View(context);
+            Paint paint = new Paint();
+            view.f33585a = paint;
+            Paint paint2 = new Paint(1);
+            view.f33586b = paint2;
+            view.f33587c = AndroidUtilities.dp(16.0f);
+            view.d = 0;
+            view.f33588e = 0.0f;
+            view.f33589f = false;
+            paint.setColor(-11711155);
+            paint2.setColor(-1);
+            frameLayout.f23548c = view;
+            frameLayout.addView(view, w7.x5.a(40.0f, 96.0f, 0.0f, 24.0f, 0.0f, -1, 19));
+            frameLayout.setSeekBarDelegate(new cw(this, 11));
+            u5Var = frameLayout;
         } else {
-            this.f28456f = 1.39f;
+            org.telegram.ui.Cells.u5 u5Var2 = new org.telegram.ui.Cells.u5(context);
+            u5Var2.setOnClickListener(new c90(this, 5));
+            u5Var = u5Var2;
         }
-        this.d = k81Var;
-        long j3 = photoEntry.coverSavedPosition;
-        if (j3 >= 0) {
-            this.f28455e = j3;
-            k81Var.L(j3, false);
-        } else {
-            this.f28455e = k81Var.n();
-        }
-        String path = k81Var.F.getPath();
-        long p5 = k81Var.p();
-        i2.f0 f0Var = k81Var.d;
-        f0Var.D1();
-        this.f28452a.o(false, path, p5, f0Var.Z);
-        long p10 = k81Var.p();
-        float max = 2.8f / ((float) Math.max(60L, p10));
-        float max2 = (1.0f - max) * (((float) this.f28455e) / ((float) Math.max(1L, k81Var.p())));
-        ci.wc wcVar = this.f28452a;
-        wcVar.setVideoLeft(max2);
-        wcVar.setVideoRight(max2 + max);
-        wcVar.Z0 = 0L;
-        wcVar.f6229a1 = p10;
-        ci.qc qcVar = wcVar.h;
-        if (qcVar != null) {
-            ci.qc.a(qcVar, true);
-        }
-        wcVar.k();
-    }
-
-    public long getTime() {
-        return this.f28455e;
-    }
-
-    public void setOnClose(Runnable runnable) {
-        this.f28458r = runnable;
-    }
-
-    public void setOnGalleryImage(Utilities.Callback<MediaController.PhotoEntry> callback) {
-        this.f28457n = callback;
+        return new s4.d1(u5Var);
     }
 }

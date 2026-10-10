@@ -18,7 +18,7 @@ public final class k1 extends w7.y5 {
                 ((o1) this.f5305b).Z2 = false;
                 return;
             default:
-                ((k71) this.f5305b).f39165w1 = false;
+                ((k71) this.f5305b).f39209w1 = false;
                 return;
         }
     }
@@ -30,7 +30,7 @@ public final class k1 extends w7.y5 {
                 ((o1) this.f5305b).Z2 = true;
                 return;
             default:
-                ((k71) this.f5305b).f39165w1 = true;
+                ((k71) this.f5305b).f39209w1 = true;
                 return;
         }
     }

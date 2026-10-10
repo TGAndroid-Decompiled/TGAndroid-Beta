@@ -1,15 +1,15 @@
 package rg;
 public final class e {
-    public final String f47232a;
-    public final String f47233b;
-    public final int f47234c;
+    public final String f47276a;
+    public final String f47277b;
+    public final int f47278c;
     public final int d;
-    public int f47235e;
+    public int f47279e;
 
     public e(int i10, int i11, String str, String str2) {
-        this.f47232a = str;
-        this.f47233b = str2;
-        this.f47234c = i10;
+        this.f47276a = str;
+        this.f47277b = str2;
+        this.f47278c = i10;
         this.d = i11;
     }
 }

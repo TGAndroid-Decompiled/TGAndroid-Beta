@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public class yd extends LinearLayout {
-    public static float f44318b = 1.0f;
-    public final int f44319a;
+    public static float f44362b = 1.0f;
+    public final int f44363a;
 
     public yd(Context context, int i10) {
         super(context);
-        this.f44319a = i10;
+        this.f44363a = i10;
     }
 
     @Override
@@ -21,14 +21,14 @@ public class yd extends LinearLayout {
         View childAt;
         boolean z10;
         boolean z11;
-        switch (this.f44319a) {
+        switch (this.f44363a) {
             case 4:
-                if (getParent() instanceof org.telegram.ui.Components.ep0) {
-                    org.telegram.ui.Components.ep0 ep0Var = (org.telegram.ui.Components.ep0) getParent();
+                if (getParent() instanceof org.telegram.ui.Components.fp0) {
+                    org.telegram.ui.Components.fp0 fp0Var = (org.telegram.ui.Components.fp0) getParent();
                     canvas.save();
-                    LinearLayout linearLayout = ep0Var.f26141b;
-                    Path path = ep0Var.f26145n;
-                    if (view != null && org.telegram.ui.Components.ep0.e(view)) {
+                    LinearLayout linearLayout = fp0Var.f26485b;
+                    Path path = fp0Var.f26489n;
+                    if (view != null && org.telegram.ui.Components.fp0.e(view)) {
                         int indexOfChild = linearLayout.indexOfChild(view);
                         int i10 = indexOfChild - 1;
                         View view2 = null;
@@ -42,22 +42,22 @@ public class yd extends LinearLayout {
                         if (i11 < linearLayout.getChildCount()) {
                             view2 = linearLayout.getChildAt(i11);
                         }
-                        if (childAt != null && org.telegram.ui.Components.ep0.e(childAt)) {
+                        if (childAt != null && org.telegram.ui.Components.fp0.e(childAt)) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        if (view2 != null && org.telegram.ui.Components.ep0.e(view2)) {
+                        if (view2 != null && org.telegram.ui.Components.fp0.e(view2)) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
                         RectF rectF = AndroidUtilities.rectTmp;
                         float x10 = view.getX();
-                        float max = Math.max(ep0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
+                        float max = Math.max(fp0Var.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + linearLayout.getY());
                         float x11 = view.getX() + view.getWidth();
-                        int height = ep0Var.getHeight();
-                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + ep0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
+                        int height = fp0Var.getHeight();
+                        rectF.set(x10, max, x11, Math.min(AndroidUtilities.dp(16.0f) + fp0Var.getScrollY() + height, view.getY() + linearLayout.getY() + view.getHeight()));
                         if (z10 && z11) {
                             if (view.getY() >= rectF.top) {
                                 z10 = true;
@@ -73,16 +73,16 @@ public class yd extends LinearLayout {
                         }
                         if (!z10 && !z11) {
                             path.rewind();
-                            float f7 = ep0Var.f26142c;
+                            float f7 = fp0Var.f26486c;
                             path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z10) {
                             path.rewind();
-                            path.addRoundRect(rectF, ep0Var.d, Path.Direction.CW);
+                            path.addRoundRect(rectF, fp0Var.d, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z11) {
                             path.rewind();
-                            path.addRoundRect(rectF, ep0Var.f26143e, Path.Direction.CW);
+                            path.addRoundRect(rectF, fp0Var.f26487e, Path.Direction.CW);
                             canvas.clipPath(path);
                         }
                     }
@@ -98,7 +98,7 @@ public class yd extends LinearLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f44319a) {
+        switch (this.f44363a) {
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
                 setPivotX(getWidth());
@@ -109,8 +109,8 @@ public class yd extends LinearLayout {
                 return;
             case 4:
                 super.onLayout(z10, i10, i11, i12, i13);
-                if (getParent() instanceof org.telegram.ui.Components.ep0) {
-                    ((org.telegram.ui.Components.ep0) getParent()).invalidate();
+                if (getParent() instanceof org.telegram.ui.Components.fp0) {
+                    ((org.telegram.ui.Components.fp0) getParent()).invalidate();
                     return;
                 }
                 return;
@@ -119,7 +119,7 @@ public class yd extends LinearLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f44319a) {
+        switch (this.f44363a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
                 return;
@@ -159,7 +159,7 @@ public class yd extends LinearLayout {
 
     public yd(Context context) {
         super(context);
-        this.f44319a = 4;
+        this.f44363a = 4;
         setWillNotDraw(false);
     }
 }

@@ -40,52 +40,52 @@ public final class r {
     public long X;
     public long Y;
     public volatile boolean Z;
-    public Size f15071a;
-    public final Surface f15073b;
-    public volatile a f15074b0;
-    public final int f15075c;
-    public boolean f15076c0;
+    public Size f15075a;
+    public final Surface f15077b;
+    public volatile a f15078b0;
+    public final int f15079c;
+    public boolean f15080c0;
     public final boolean d;
-    public volatile RuntimeException f15077d0;
-    public final n f15078e;
-    public int f15080f;
-    public boolean f15081g;
-    public final q f15083j;
-    public final b f15084k;
-    public HandlerThread f15085l;
-    public Handler f15086m;
-    public SurfaceTexture f15087n;
-    public Surface f15088o;
-    public int f15092s;
-    public int f15093t;
-    public int f15094u;
-    public b0 f15096x;
-    public int f15097y;
-    public long f15098z;
-    public volatile long f15082i = Long.MAX_VALUE;
-    public EGLDisplay f15089p = EGL14.EGL_NO_DISPLAY;
-    public EGLContext f15090q = EGL14.EGL_NO_CONTEXT;
-    public EGLSurface f15091r = EGL14.EGL_NO_SURFACE;
+    public volatile RuntimeException f15081d0;
+    public final n f15082e;
+    public int f15084f;
+    public boolean f15085g;
+    public final q f15087j;
+    public final b f15088k;
+    public HandlerThread f15089l;
+    public Handler f15090m;
+    public SurfaceTexture f15091n;
+    public Surface f15092o;
+    public int f15096s;
+    public int f15097t;
+    public int f15098u;
+    public b0 f15100x;
+    public int f15101y;
+    public long f15102z;
+    public volatile long f15086i = Long.MAX_VALUE;
+    public EGLDisplay f15093p = EGL14.EGL_NO_DISPLAY;
+    public EGLContext f15094q = EGL14.EGL_NO_CONTEXT;
+    public EGLSurface f15095r = EGL14.EGL_NO_SURFACE;
     public final int[] v = new int[1];
-    public final float[] f15095w = new float[16];
+    public final float[] f15099w = new float[16];
     public long A = -1;
     public long C = -1;
-    public final o f15079e0 = new o(this, 0);
+    public final o f15083e0 = new o(this, 0);
     public volatile long h = 0;
-    public volatile boolean f15072a0 = false;
+    public volatile boolean f15076a0 = false;
 
     public r(Size size, Surface surface, int i10, int i11, boolean z10, boolean z11, n nVar, q qVar, b bVar) {
-        this.f15071a = size;
-        this.f15073b = surface;
-        this.f15075c = i10;
-        this.f15080f = i11;
-        this.f15081g = z10;
+        this.f15075a = size;
+        this.f15077b = surface;
+        this.f15079c = i10;
+        this.f15084f = i11;
+        this.f15085g = z10;
         this.d = z11;
-        this.f15078e = nVar;
-        this.f15093t = i10;
-        this.f15094u = i10;
-        this.f15083j = qVar;
-        this.f15084k = bVar;
+        this.f15082e = nVar;
+        this.f15097t = i10;
+        this.f15098u = i10;
+        this.f15087j = qVar;
+        this.f15088k = bVar;
     }
 
     public static void a(String str, boolean z10) {
@@ -114,7 +114,7 @@ public final class r {
     public final float d(long j3) {
         long max = Math.max(0L, j3 - this.I);
         long max2 = Math.max(33L, this.L) * 1000000;
-        float f7 = ((this.f15096x.f14883a * 4.0f) / 48.0f) * 1.15f;
+        float f7 = ((this.f15100x.f14883a * 4.0f) / 48.0f) * 1.15f;
         if (max <= max2) {
             float max3 = 1.0f - Math.max(0.0f, Math.min(1.0f, ((float) max) / ((float) max2)));
             return (1.0f - (((max3 * max3) * max3) * max3)) * f7;
@@ -126,56 +126,56 @@ public final class r {
         boolean z10;
         boolean z11;
         EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-        this.f15089p = eglGetDisplay;
+        this.f15093p = eglGetDisplay;
         if (eglGetDisplay != EGL14.EGL_NO_DISPLAY) {
             int[] iArr = new int[2];
             if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
                 EGLConfig[] eGLConfigArr = new EGLConfig[1];
                 int[] iArr2 = new int[1];
-                if (EGL14.eglChooseConfig(this.f15089p, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
-                    EGLContext eglCreateContext = EGL14.eglCreateContext(this.f15089p, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
-                    this.f15090q = eglCreateContext;
+                if (EGL14.eglChooseConfig(this.f15093p, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
+                    EGLContext eglCreateContext = EGL14.eglCreateContext(this.f15093p, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
+                    this.f15094q = eglCreateContext;
                     if (eglCreateContext != EGL14.EGL_NO_CONTEXT) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     a("Unable to create EGL context", z10);
-                    EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.f15089p, eGLConfigArr[0], this.f15073b, new int[]{12344}, 0);
-                    this.f15091r = eglCreateWindowSurface;
+                    EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.f15093p, eGLConfigArr[0], this.f15077b, new int[]{12344}, 0);
+                    this.f15095r = eglCreateWindowSurface;
                     if (eglCreateWindowSurface != EGL14.EGL_NO_SURFACE) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     a("Unable to create EGL surface", z11);
-                    EGLDisplay eGLDisplay = this.f15089p;
-                    EGLSurface eGLSurface = this.f15091r;
-                    if (EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f15090q)) {
-                        this.f15078e.b("GL initialized: egl=" + iArr[0] + "." + iArr[1] + ", vendor=" + GLES20.glGetString(7936) + ", renderer=" + GLES20.glGetString(7937) + ", version=" + GLES20.glGetString(7938) + ", elapsedMs=" + ((System.nanoTime() - this.Y) / 1000000));
+                    EGLDisplay eGLDisplay = this.f15093p;
+                    EGLSurface eGLSurface = this.f15095r;
+                    if (EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f15094q)) {
+                        this.f15082e.b("GL initialized: egl=" + iArr[0] + "." + iArr[1] + ", vendor=" + GLES20.glGetString(7936) + ", renderer=" + GLES20.glGetString(7937) + ", version=" + GLES20.glGetString(7938) + ", elapsedMs=" + ((System.nanoTime() - this.Y) / 1000000));
                         int[] iArr3 = new int[1];
                         GLES20.glGenTextures(1, iArr3, 0);
                         int i10 = iArr3[0];
-                        this.f15092s = i10;
+                        this.f15096s = i10;
                         GLES20.glBindTexture(36197, i10);
                         g();
                         GLES20.glTexParameteri(36197, 10242, 33071);
                         GLES20.glTexParameteri(36197, 10243, 33071);
-                        SurfaceTexture surfaceTexture = new SurfaceTexture(this.f15092s);
-                        this.f15087n = surfaceTexture;
-                        surfaceTexture.setDefaultBufferSize(this.f15071a.getWidth(), this.f15071a.getHeight());
-                        this.f15087n.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
+                        SurfaceTexture surfaceTexture = new SurfaceTexture(this.f15096s);
+                        this.f15091n = surfaceTexture;
+                        surfaceTexture.setDefaultBufferSize(this.f15075a.getWidth(), this.f15075a.getHeight());
+                        this.f15091n.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
                             @Override
                             public final void onFrameAvailable(android.graphics.SurfaceTexture r21) {
                                 throw new UnsupportedOperationException("Method not decompiled: ki.p.onFrameAvailable(android.graphics.SurfaceTexture):void");
                             }
-                        }, this.f15086m);
-                        this.f15088o = new Surface(this.f15087n);
-                        Size size = this.f15071a;
-                        int i11 = this.f15080f;
+                        }, this.f15090m);
+                        this.f15092o = new Surface(this.f15091n);
+                        Size size = this.f15075a;
+                        int i11 = this.f15084f;
                         boolean z12 = this.d;
-                        int i12 = this.f15075c;
-                        this.f15096x = new b0(i12, size, i11, z12);
+                        int i12 = this.f15079c;
+                        this.f15100x = new b0(i12, size, i11, z12);
                         GLES20.glViewport(0, 0, i12, i12);
                         return;
                     }
@@ -239,30 +239,30 @@ public final class r {
         sb2.append(obj);
         sb2.append(", swapMaxMs=");
         sb2.append(((float) this.R) / 1000000.0f);
-        this.f15078e.b(sb2.toString());
-        Handler handler = this.f15086m;
+        this.f15082e.b(sb2.toString());
+        Handler handler = this.f15090m;
         if (handler != null) {
-            handler.removeCallbacks(this.f15079e0);
+            handler.removeCallbacks(this.f15083e0);
         }
-        EGLDisplay eGLDisplay = this.f15089p;
-        if (eGLDisplay != EGL14.EGL_NO_DISPLAY && (eGLSurface = this.f15091r) != EGL14.EGL_NO_SURFACE && (eGLContext = this.f15090q) != EGL14.EGL_NO_CONTEXT) {
+        EGLDisplay eGLDisplay = this.f15093p;
+        if (eGLDisplay != EGL14.EGL_NO_DISPLAY && (eGLSurface = this.f15095r) != EGL14.EGL_NO_SURFACE && (eGLContext = this.f15094q) != EGL14.EGL_NO_CONTEXT) {
             EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, eGLContext);
         }
-        SurfaceTexture surfaceTexture = this.f15087n;
+        SurfaceTexture surfaceTexture = this.f15091n;
         if (surfaceTexture != null) {
             surfaceTexture.setOnFrameAvailableListener(null);
         }
-        Surface surface = this.f15088o;
+        Surface surface = this.f15092o;
         if (surface != null) {
             surface.release();
-            this.f15088o = null;
+            this.f15092o = null;
         }
-        SurfaceTexture surfaceTexture2 = this.f15087n;
+        SurfaceTexture surfaceTexture2 = this.f15091n;
         if (surfaceTexture2 != null) {
             surfaceTexture2.release();
-            this.f15087n = null;
+            this.f15091n = null;
         }
-        b0 b0Var = this.f15096x;
+        b0 b0Var = this.f15100x;
         if (b0Var != null) {
             b0Var.f14888g.d();
             b0Var.h.d();
@@ -285,37 +285,37 @@ public final class r {
             GLES20.glDeleteTextures(iArr.length, iArr, 0);
             int[] iArr2 = b0Var.f14899s;
             GLES20.glDeleteFramebuffers(iArr2.length, iArr2, 0);
-            this.f15096x = null;
+            this.f15100x = null;
         }
-        int i12 = this.f15092s;
+        int i12 = this.f15096s;
         if (i12 != 0) {
             GLES20.glDeleteTextures(1, new int[]{i12}, 0);
-            this.f15092s = 0;
+            this.f15096s = 0;
         }
-        EGLDisplay eGLDisplay2 = this.f15089p;
+        EGLDisplay eGLDisplay2 = this.f15093p;
         if (eGLDisplay2 != EGL14.EGL_NO_DISPLAY) {
             EGLSurface eGLSurface2 = EGL14.EGL_NO_SURFACE;
             EGL14.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL14.EGL_NO_CONTEXT);
-            EGLSurface eGLSurface3 = this.f15091r;
+            EGLSurface eGLSurface3 = this.f15095r;
             if (eGLSurface3 != EGL14.EGL_NO_SURFACE) {
-                EGL14.eglDestroySurface(this.f15089p, eGLSurface3);
+                EGL14.eglDestroySurface(this.f15093p, eGLSurface3);
             }
-            EGLContext eGLContext2 = this.f15090q;
+            EGLContext eGLContext2 = this.f15094q;
             if (eGLContext2 != EGL14.EGL_NO_CONTEXT) {
-                EGL14.eglDestroyContext(this.f15089p, eGLContext2);
+                EGL14.eglDestroyContext(this.f15093p, eGLContext2);
             }
             EGL14.eglReleaseThread();
-            EGL14.eglTerminate(this.f15089p);
+            EGL14.eglTerminate(this.f15093p);
         }
-        this.f15089p = EGL14.EGL_NO_DISPLAY;
-        this.f15090q = EGL14.EGL_NO_CONTEXT;
-        this.f15091r = EGL14.EGL_NO_SURFACE;
+        this.f15093p = EGL14.EGL_NO_DISPLAY;
+        this.f15094q = EGL14.EGL_NO_CONTEXT;
+        this.f15095r = EGL14.EGL_NO_SURFACE;
     }
 
     public final void g() {
         int i10;
-        GLES20.glBindTexture(36197, this.f15092s);
-        if (this.f15080f == this.f15075c) {
+        GLES20.glBindTexture(36197, this.f15096s);
+        if (this.f15084f == this.f15079c) {
             i10 = 9728;
         } else {
             i10 = 9729;
@@ -325,13 +325,13 @@ public final class r {
     }
 
     public final void h() {
-        Handler handler = this.f15086m;
-        HandlerThread handlerThread = this.f15085l;
+        Handler handler = this.f15090m;
+        HandlerThread handlerThread = this.f15089l;
         if (handler != null) {
-            handler.removeCallbacks(this.f15079e0);
+            handler.removeCallbacks(this.f15083e0);
         }
-        this.f15086m = null;
-        this.f15085l = null;
+        this.f15090m = null;
+        this.f15089l = null;
         this.Z = false;
         if (handler != null && handlerThread != null) {
             CountDownLatch countDownLatch = new CountDownLatch(1);
@@ -346,9 +346,9 @@ public final class r {
 
     public final void i(long j3) {
         this.C = j3;
-        EGLExt.eglPresentationTimeANDROID(this.f15089p, this.f15091r, j3);
+        EGLExt.eglPresentationTimeANDROID(this.f15093p, this.f15095r, j3);
         long nanoTime = System.nanoTime();
-        if (EGL14.eglSwapBuffers(this.f15089p, this.f15091r)) {
+        if (EGL14.eglSwapBuffers(this.f15093p, this.f15095r)) {
             long nanoTime2 = System.nanoTime();
             this.U++;
             long j10 = nanoTime2 - nanoTime;
@@ -356,21 +356,21 @@ public final class r {
             this.Q += j10;
             this.R = Math.max(this.R, j10);
             if (this.P % 30 == 0) {
-                this.f15078e.b("encoder swap: average=" + ((((float) this.Q) / this.P) / 1000000.0f) + " ms, max=" + (((float) this.R) / 1000000.0f) + " ms");
+                this.f15082e.b("encoder swap: average=" + ((((float) this.Q) / this.P) / 1000000.0f) + " ms, max=" + (((float) this.R) / 1000000.0f) + " ms");
             }
-            q qVar = this.f15083j;
+            q qVar = this.f15087j;
             if (qVar != null) {
                 m mVar = (m) qVar;
-                long j11 = mVar.f15049x;
+                long j11 = mVar.f15053x;
                 int i10 = (int) (j11 % 256);
-                mVar.f15037k[i10] = j3 / 1000;
-                mVar.f15038l[i10] = nanoTime2;
-                mVar.f15049x = j11 + 1;
+                mVar.f15041k[i10] = j3 / 1000;
+                mVar.f15042l[i10] = nanoTime2;
+                mVar.f15053x = j11 + 1;
                 synchronized (mVar) {
-                    if (mVar.f15046t != null && !mVar.f15047u) {
-                        c cVar = mVar.f15046t;
-                        mVar.f15046t = null;
-                        mVar.f15033f.b("first synchronized video frame submitted");
+                    if (mVar.f15050t != null && !mVar.f15051u) {
+                        c cVar = mVar.f15050t;
+                        mVar.f15050t = null;
+                        mVar.f15037f.b("first synchronized video frame submitted");
                         cVar.run();
                         return;
                     }
@@ -383,7 +383,7 @@ public final class r {
     }
 
     public final void j(Size size, int i10, boolean z10) {
-        Handler handler = this.f15086m;
+        Handler handler = this.f15090m;
         if (this.Z && handler != null) {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             RuntimeException[] runtimeExceptionArr = new RuntimeException[1];
@@ -402,18 +402,18 @@ public final class r {
     }
 
     public final void k() {
-        EGLDisplay eGLDisplay = this.f15089p;
-        EGLSurface eGLSurface = this.f15091r;
+        EGLDisplay eGLDisplay = this.f15093p;
+        EGLSurface eGLSurface = this.f15095r;
         int[] iArr = this.v;
         if (EGL14.eglQuerySurface(eGLDisplay, eGLSurface, 12375, iArr, 0)) {
             int i10 = iArr[0];
-            if (EGL14.eglQuerySurface(this.f15089p, this.f15091r, 12374, iArr, 0)) {
+            if (EGL14.eglQuerySurface(this.f15093p, this.f15095r, 12374, iArr, 0)) {
                 int i11 = iArr[0];
                 if (i10 > 0 && i11 > 0) {
-                    if (i10 != this.f15093t || i11 != this.f15094u) {
-                        this.f15093t = i10;
-                        this.f15094u = i11;
-                        this.f15078e.b("EGL output size changed: " + i10 + "x" + i11);
+                    if (i10 != this.f15097t || i11 != this.f15098u) {
+                        this.f15097t = i10;
+                        this.f15098u = i11;
+                        this.f15082e.b("EGL output size changed: " + i10 + "x" + i11);
                     }
                 }
             }

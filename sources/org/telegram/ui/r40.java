@@ -5,16 +5,16 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class r40 implements mv0 {
-    public final g60 f41264a;
+    public final g60 f41308a;
 
     public r40(g60 g60Var) {
-        this.f41264a = g60Var;
+        this.f41308a = g60Var;
     }
 
     @Override
     public final void H(MessageObject messageObject) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f41264a).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f41308a).containerView;
         viewGroup.invalidate();
     }
 
@@ -26,9 +26,9 @@ public final class r40 implements mv0 {
     @Override
     public final void w0(MessageObject messageObject) {
         ViewGroup viewGroup;
-        g60 g60Var = this.f41264a;
+        g60 g60Var = this.f41308a;
         g60Var.Q.I0(true);
-        g60Var.f37799c2.f41198f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
+        g60Var.f37843c2.f41242f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
         viewGroup = ((org.telegram.ui.ActionBar.f3) g60Var).containerView;
         viewGroup.invalidate();
     }

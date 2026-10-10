@@ -42,7 +42,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_toncenter;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ib0;
 import org.telegram.ui.ls0;
@@ -58,53 +58,53 @@ public final class k0 {
     public final HashMap H;
     public final HashMap I;
     public final HashMap J;
-    public final int f35117a;
-    public WalletEngine2 f35118b;
-    public p0 f35119c;
+    public final int f35155a;
+    public WalletEngine2 f35156b;
+    public p0 f35157c;
     public String d;
-    public TL_wallet.WalletState f35120e;
-    public TL_update.TL_updateWalletGaslessInfo f35121f;
-    public final d2 f35122g;
+    public TL_wallet.WalletState f35158e;
+    public TL_update.TL_updateWalletGaslessInfo f35159f;
+    public final e2 f35160g;
     public final f h;
-    public Boolean f35123i;
-    public String f35124j;
-    public long f35125k;
-    public boolean f35126l;
-    public boolean f35127m;
-    public j0 f35128n;
-    public c0 f35129o;
-    public z0 f35132r;
-    public String f35134t;
-    public int f35138y;
-    public final ArrayList f35130p = new ArrayList();
-    public final ArrayList f35131q = new ArrayList();
-    public final HashMap f35133s = new HashMap();
-    public final ArrayList f35135u = new ArrayList();
+    public Boolean f35161i;
+    public String f35162j;
+    public long f35163k;
+    public boolean f35164l;
+    public boolean f35165m;
+    public j0 f35166n;
+    public c0 f35167o;
+    public z0 f35170r;
+    public String f35172t;
+    public int f35176y;
+    public final ArrayList f35168p = new ArrayList();
+    public final ArrayList f35169q = new ArrayList();
+    public final HashMap f35171s = new HashMap();
+    public final ArrayList f35173u = new ArrayList();
     public final ArrayList v = new ArrayList();
-    public int f35136w = -1;
-    public int f35137x = -1;
-    public int f35139z = 0;
+    public int f35174w = -1;
+    public int f35175x = -1;
+    public int f35177z = 0;
     public final HashSet A = new HashSet();
     public final g B = new Runnable(this) {
-        public final k0 f34945b;
+        public final k0 f34977b;
 
         {
-            this.f34945b = this;
+            this.f34977b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    k0 k0Var = this.f34945b;
-                    z0 z0Var = k0Var.f35132r;
+                    k0 k0Var = this.f34977b;
+                    z0 z0Var = k0Var.f35170r;
                     if (z0Var != null && z0Var.d) {
                         k0Var.B();
                         return;
                     }
                     return;
                 default:
-                    k0 k0Var2 = this.f34945b;
+                    k0 k0Var2 = this.f34977b;
                     k0Var2.S();
                     k0Var2.I();
                     return;
@@ -113,31 +113,31 @@ public final class k0 {
     };
 
     public k0(int i10) {
-        this.f35138y = -1;
+        this.f35176y = -1;
         boolean z10 = false;
         ArrayList arrayList = new ArrayList();
         this.C = arrayList;
         this.D = DesugarCollections.unmodifiableList(arrayList);
         this.F = new Runnable(this) {
-            public final k0 f34945b;
+            public final k0 f34977b;
 
             {
-                this.f34945b = this;
+                this.f34977b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        k0 k0Var = this.f34945b;
-                        z0 z0Var = k0Var.f35132r;
+                        k0 k0Var = this.f34977b;
+                        z0 z0Var = k0Var.f35170r;
                         if (z0Var != null && z0Var.d) {
                             k0Var.B();
                             return;
                         }
                         return;
                     default:
-                        k0 k0Var2 = this.f34945b;
+                        k0 k0Var2 = this.f34977b;
                         k0Var2.S();
                         k0Var2.I();
                         return;
@@ -148,9 +148,9 @@ public final class k0 {
         this.H = new HashMap();
         this.I = new HashMap();
         this.J = new HashMap();
-        this.f35117a = i10;
+        this.f35155a = i10;
         try {
-            this.f35127m = u().getSharedPreferences("gram_wallet", 0).getBoolean("passcode", true);
+            this.f35165m = u().getSharedPreferences("gram_wallet", 0).getBoolean("passcode", true);
         } catch (Exception e7) {
             j("failed to load prefs", e7);
         }
@@ -158,24 +158,24 @@ public final class k0 {
         U();
         T();
         E("requesting has walt balance");
-        this.f35138y = ConnectionsManager.getInstance(this.f35117a).sendRequestTyped(new TL_wallet.getExistingWaltBalance(), new Object(), new h(this, 0));
-        this.f35122g = new d2(this);
+        this.f35176y = ConnectionsManager.getInstance(this.f35155a).sendRequestTyped(new TL_wallet.getExistingWaltBalance(), new Object(), new h(this, 0));
+        this.f35160g = new e2(this);
         g gVar = this.F;
-        Object obj = p0.f35370f;
+        Object obj = p0.f35406f;
         synchronized (p0.class) {
             try {
-                Iterator it = p0.f35372i.iterator();
+                Iterator it = p0.f35408i.iterator();
                 while (it.hasNext()) {
                     WeakReference weakReference = (WeakReference) it.next();
                     Runnable runnable = (Runnable) weakReference.get();
                     if (runnable == null) {
-                        p0.f35372i.remove(weakReference);
+                        p0.f35408i.remove(weakReference);
                     } else if (runnable == gVar) {
                         z10 = true;
                     }
                 }
                 if (gVar != null && !z10) {
-                    p0.f35372i.add(new WeakReference(gVar));
+                    p0.f35408i.add(new WeakReference(gVar));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -197,7 +197,7 @@ public final class k0 {
                 long j3 = wallettransaction.random_id;
                 if (j3 == 0 || message.random_id != j3) {
                     if (wallettransaction.localMessageId == 0 || messageObject.getId() != wallettransaction.localMessageId) {
-                        if (!TextUtils.isEmpty(wallettransaction.f20300id) && TextUtils.equals(wallettransaction.f20300id, tL_messageActionGramTransfer.transaction_id)) {
+                        if (!TextUtils.isEmpty(wallettransaction.f20304id) && TextUtils.equals(wallettransaction.f20304id, tL_messageActionGramTransfer.transaction_id)) {
                             return true;
                         }
                     } else {
@@ -346,7 +346,7 @@ public final class k0 {
     }
 
     public static boolean d0(TL_wallet.walletTransaction wallettransaction, TL_wallet.walletTransaction wallettransaction2) {
-        if ((TextUtils.isEmpty(wallettransaction.f20300id) || !TextUtils.equals(wallettransaction.f20300id, wallettransaction2.f20300id)) && !Y(wallettransaction.tx_hash, wallettransaction2.tx_hash) && !Y(wallettransaction.messageHash, wallettransaction2.messageHash)) {
+        if ((TextUtils.isEmpty(wallettransaction.f20304id) || !TextUtils.equals(wallettransaction.f20304id, wallettransaction2.f20304id)) && !Y(wallettransaction.tx_hash, wallettransaction2.tx_hash) && !Y(wallettransaction.messageHash, wallettransaction2.messageHash)) {
             if (!wallettransaction.incoming && !wallettransaction2.incoming) {
                 if (!Y(wallettransaction.gaslessMessageBodyHash, wallettransaction2.gaslessMessageBodyHash) && !Y(wallettransaction.normalMessageBodyHash, wallettransaction2.normalMessageBodyHash)) {
                     return false;
@@ -387,7 +387,7 @@ public final class k0 {
         TL_wallet.WalletTransactionPeer wallettransactionpeeraddress;
         if (user != null) {
             wallettransactionpeeraddress = new TL_wallet.walletTransactionPeerUser();
-            wallettransactionpeeraddress.user_id = user.f20185id;
+            wallettransactionpeeraddress.user_id = user.f20189id;
         } else {
             wallettransactionpeeraddress = new TL_wallet.walletTransactionPeerAddress();
         }
@@ -520,25 +520,25 @@ public final class k0 {
             byte[] secretPhraseToAnchorPublicKey = WalletEngine2.secretPhraseToAnchorPublicKey(h0Var);
             h0 b10 = h0Var.b();
             E("import wallet: requesting proof challenge");
-            q2.a(this.f35117a, null, new n(this, b10, callback, secretPhraseToAnchorPublicKey, 2), null, null, new u(this, callback, secretPhraseToPublicKey, b10), z10, z11, new ib0(new m(b10, 2), 1));
+            r2.a(this.f35155a, null, new o(this, b10, callback, secretPhraseToAnchorPublicKey, 2), null, null, new u(this, callback, secretPhraseToPublicKey, b10), z10, z11, new ib0(new n(b10, 2), 1));
         } catch (Exception unused2) {
             callback.run("INVALID_PHRASE");
         }
     }
 
     public final void B() {
-        j0 j0Var = this.f35128n;
+        j0 j0Var = this.f35166n;
         if (j0Var != null) {
             j0Var.d();
         }
-        if (this.f35136w >= 0) {
+        if (this.f35174w >= 0) {
             return;
         }
         U();
     }
 
     public final boolean C() {
-        TL_update.TL_updateWalletGaslessInfo tL_updateWalletGaslessInfo = this.f35121f;
+        TL_update.TL_updateWalletGaslessInfo tL_updateWalletGaslessInfo = this.f35159f;
         if (tL_updateWalletGaslessInfo != null && tL_updateWalletGaslessInfo.available && tL_updateWalletGaslessInfo.left > 0 && !TextUtils.isEmpty(tL_updateWalletGaslessInfo.relayer_address)) {
             return true;
         }
@@ -546,7 +546,7 @@ public final class k0 {
     }
 
     public final boolean D() {
-        if ((this.f35120e instanceof TL_wallet.TL_walletState) && this.f35118b != null && this.f35119c != null) {
+        if ((this.f35158e instanceof TL_wallet.TL_walletState) && this.f35156b != null && this.f35157c != null) {
             return true;
         }
         return false;
@@ -555,14 +555,14 @@ public final class k0 {
     public final boolean G() {
         p0 p0Var;
         boolean z10;
-        if (!(this.f35120e instanceof TL_wallet.TL_walletState) || (p0Var = this.f35119c) == null) {
+        if (!(this.f35158e instanceof TL_wallet.TL_walletState) || (p0Var = this.f35157c) == null) {
             return false;
         }
         p0Var.getClass();
-        synchronized (p0.f35370f) {
+        synchronized (p0.f35406f) {
             try {
                 try {
-                    z10 = p0Var.r().f25858c;
+                    z10 = p0Var.r().f26216c;
                 } catch (Exception e7) {
                     FileLog.e(e7);
                     z10 = true;
@@ -577,14 +577,14 @@ public final class k0 {
     }
 
     public final boolean H() {
-        if (this.f35127m && !SharedConfig.passcodeHash.isEmpty()) {
+        if (this.f35165m && !SharedConfig.passcodeHash.isEmpty()) {
             return true;
         }
         return false;
     }
 
     public final void I() {
-        NotificationCenter.getInstance(this.f35117a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.walletUpdate, this);
+        NotificationCenter.getInstance(this.f35155a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.walletUpdate, this);
     }
 
     public final void J(org.json.JSONObject r43) {
@@ -594,7 +594,7 @@ public final class k0 {
     public final void K() {
         byte[] bArr;
         String str;
-        TL_wallet.WalletState walletState = this.f35120e;
+        TL_wallet.WalletState walletState = this.f35158e;
         if (walletState instanceof TL_wallet.TL_walletState) {
             TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) walletState;
             str = tL_walletState.address;
@@ -603,51 +603,51 @@ public final class k0 {
             bArr = null;
             str = null;
         }
-        p0 p0Var = this.f35119c;
-        if (p0Var != null && !TextUtils.equals(p0Var.f35375c, str)) {
+        p0 p0Var = this.f35157c;
+        if (p0Var != null && !TextUtils.equals(p0Var.f35411c, str)) {
             if (str == null) {
-                E("received empty state, leaving wallet storage of " + this.f35119c.f35375c);
+                E("received empty state, leaving wallet storage of " + this.f35157c.f35411c);
             } else {
                 StringBuilder w10 = a1.g.w("received new state of ", str, ", leaving wallet storage of ");
-                w10.append(this.f35119c.f35375c);
+                w10.append(this.f35157c.f35411c);
                 E(w10.toString());
             }
-            this.f35119c = null;
+            this.f35157c = null;
         }
-        if (!TextUtils.isEmpty(str) && this.f35119c == null) {
+        if (!TextUtils.isEmpty(str) && this.f35157c == null) {
             E("setting up wallet storage of " + str);
-            this.f35119c = new p0(ApplicationLoader.applicationContext, str, this.f35117a);
-            E("storage public keys = " + this.f35119c.m().length);
+            this.f35157c = new p0(ApplicationLoader.applicationContext, str, this.f35155a);
+            E("storage public keys = " + this.f35157c.m().length);
         }
-        c0 c0Var = this.f35129o;
-        if (c0Var != null && !TextUtils.equals(c0Var.f34706e, str)) {
-            c0Var.f34706e = str;
+        c0 c0Var = this.f35167o;
+        if (c0Var != null && !TextUtils.equals(c0Var.f34761e, str)) {
+            c0Var.f34761e = str;
             c0Var.c();
         }
-        if (this.f35118b != null && !TextUtils.equals(this.d, str)) {
-            this.f35118b.close();
-            this.f35118b = null;
+        if (this.f35156b != null && !TextUtils.equals(this.d, str)) {
+            this.f35156b.close();
+            this.f35156b = null;
             this.d = null;
         }
-        if (!TextUtils.isEmpty(str) && bArr != null && (this.f35118b == null || !TextUtils.equals(this.d, str))) {
-            if (this.f35118b != null) {
+        if (!TextUtils.isEmpty(str) && bArr != null && (this.f35156b == null || !TextUtils.equals(this.d, str))) {
+            if (this.f35156b != null) {
                 E("closing wallet-engine of " + this.d);
-                this.f35118b.close();
-                this.f35118b = null;
+                this.f35156b.close();
+                this.f35156b = null;
             }
             E("creating wallet-engine for " + str);
             try {
-                int i10 = this.f35117a;
+                int i10 = this.f35155a;
                 this.d = str;
-                this.f35118b = new WalletEngine2(i10, str, bArr);
+                this.f35156b = new WalletEngine2(i10, str, bArr);
             } catch (Exception e7) {
                 j("failed to create engine!", e7);
                 this.d = null;
             }
         }
         int i11 = 0;
-        if ((this.f35120e instanceof TL_wallet.TL_walletState) && this.f35118b != null) {
-            ArrayList arrayList = this.f35135u;
+        if ((this.f35158e instanceof TL_wallet.TL_walletState) && this.f35156b != null) {
+            ArrayList arrayList = this.f35173u;
             int size = arrayList.size();
             int i12 = 0;
             while (i12 < size) {
@@ -658,9 +658,9 @@ public final class k0 {
                     AndroidUtilities.runOnUIThread(runnable);
                 }
             }
-            this.f35135u.clear();
+            this.f35173u.clear();
         }
-        if ((this.f35120e instanceof TL_wallet.TL_walletState) && this.f35118b != null && this.f35121f != null) {
+        if ((this.f35158e instanceof TL_wallet.TL_walletState) && this.f35156b != null && this.f35159f != null) {
             ArrayList arrayList2 = this.v;
             int size2 = arrayList2.size();
             while (i11 < size2) {
@@ -684,7 +684,7 @@ public final class k0 {
         if (!TextUtils.isEmpty(str)) {
             try {
                 c0(str);
-                ArrayList arrayList = this.f35130p;
+                ArrayList arrayList = this.f35168p;
                 ArrayList arrayList2 = new ArrayList(arrayList);
                 int size = arrayList2.size();
                 int i10 = 0;
@@ -714,7 +714,7 @@ public final class k0 {
     }
 
     public final void M(TL_update.TL_updateWalletGaslessInfo tL_updateWalletGaslessInfo) {
-        this.f35121f = tL_updateWalletGaslessInfo;
+        this.f35159f = tL_updateWalletGaslessInfo;
         K();
         I();
     }
@@ -725,47 +725,47 @@ public final class k0 {
 
     public final void O() {
         b0();
-        this.f35130p.clear();
-        ArrayList arrayList = this.f35131q;
+        this.f35168p.clear();
+        ArrayList arrayList = this.f35169q;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            h0 h0Var = ((e0) obj).f34847b;
+            h0 h0Var = ((e0) obj).f34851b;
             if (h0Var != null) {
                 h0Var.close();
             }
         }
         arrayList.clear();
-        j0 j0Var = this.f35128n;
+        j0 j0Var = this.f35166n;
         if (j0Var != null) {
             j0Var.a();
-            j0Var.f35060b.clear();
+            j0Var.f35111b.clear();
             j0Var.d.clear();
-            j0Var.f35062e.clear();
-            j0Var.f35063f = "";
-            j0Var.f35064g = false;
+            j0Var.f35113e.clear();
+            j0Var.f35114f = "";
+            j0Var.f35115g = false;
             j0Var.h();
-            this.f35128n.h();
-            this.f35128n.f();
+            this.f35166n.h();
+            this.f35166n.f();
         }
         P();
-        this.f35121f = null;
+        this.f35159f = null;
         T();
     }
 
     public final void P() {
         boolean z10;
         boolean z11;
-        if (!TextUtils.equals(this.f35134t, r())) {
+        if (!TextUtils.equals(this.f35172t, r())) {
             b0();
-            this.f35134t = r();
+            this.f35172t = r();
         }
         boolean D = D();
-        int i10 = this.f35117a;
+        int i10 = this.f35155a;
         if (D && !TextUtils.isEmpty(r())) {
-            HashMap hashMap = this.f35133s;
+            HashMap hashMap = this.f35171s;
             ArrayList arrayList = new ArrayList(hashMap.keySet());
             int size = arrayList.size();
             int i11 = 0;
@@ -773,11 +773,11 @@ public final class k0 {
                 Object obj = arrayList.get(i11);
                 i11++;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
-                if (!wallettransaction.pending || !TextUtils.equals(((m0) hashMap.get(wallettransaction)).f35220b, wallettransaction.messageHash)) {
+                if (!wallettransaction.pending || !TextUtils.equals(((m0) hashMap.get(wallettransaction)).f35272b, wallettransaction.messageHash)) {
                     ((m0) hashMap.remove(wallettransaction)).b();
                 }
             }
-            ArrayList arrayList2 = this.f35130p;
+            ArrayList arrayList2 = this.f35168p;
             int size2 = arrayList2.size();
             int i12 = 0;
             while (i12 < size2) {
@@ -790,7 +790,7 @@ public final class k0 {
                     hashMap.put(wallettransaction2, m0Var);
                     if (!m0Var.d && !TextUtils.isEmpty(str)) {
                         m0Var.d = true;
-                        m0Var.f35223f = 0;
+                        m0Var.f35275f = 0;
                         m0Var.a();
                     }
                 }
@@ -803,30 +803,30 @@ public final class k0 {
         } else {
             z10 = false;
         }
-        z0 z0Var = this.f35132r;
+        z0 z0Var = this.f35170r;
         if (z0Var != null && z0Var.d) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (z11 != z10 || (z11 && z0Var != null && !TextUtils.equals(z0Var.f35707b, r()))) {
+        if (z11 != z10 || (z11 && z0Var != null && !TextUtils.equals(z0Var.f35772b, r()))) {
             if (z10) {
-                z0 z0Var2 = this.f35132r;
-                if (z0Var2 != null && !TextUtils.equals(z0Var2.f35707b, r())) {
-                    this.f35132r.h();
-                    this.f35132r = null;
+                z0 z0Var2 = this.f35170r;
+                if (z0Var2 != null && !TextUtils.equals(z0Var2.f35772b, r())) {
+                    this.f35170r.h();
+                    this.f35170r = null;
                 }
-                if (this.f35132r == null) {
-                    this.f35132r = new z0(i10, r(), this);
+                if (this.f35170r == null) {
+                    this.f35170r = new z0(i10, r(), this);
                 }
-                z0 z0Var3 = this.f35132r;
+                z0 z0Var3 = this.f35170r;
                 boolean z12 = z0Var3.d;
                 if (!z12) {
-                    String str2 = z0Var3.f35707b;
+                    String str2 = z0Var3.f35772b;
                     if (!z12 && !TextUtils.isEmpty(str2)) {
                         z0Var3.d("starting; address=" + str2);
                         z0Var3.d = true;
-                        z0Var3.f35713j = 0;
+                        z0Var3.f35778j = 0;
                         z0Var3.e();
                         return;
                     }
@@ -835,7 +835,7 @@ public final class k0 {
                 }
                 return;
             }
-            z0 z0Var4 = this.f35132r;
+            z0 z0Var4 = this.f35170r;
             if (z0Var4 != null) {
                 z0Var4.h();
             }
@@ -846,13 +846,13 @@ public final class k0 {
     public final void R(h0 h0Var, boolean z10, Utilities.Callback2 callback2) {
         h0 b10 = h0Var.b();
         E("requesting proof challenge");
-        ConnectionsManager.getInstance(this.f35117a).sendRequestTyped(new TL_wallet.getProofChallenge(), new Object(), new v(this, b10, callback2, z10, 0));
+        ConnectionsManager.getInstance(this.f35155a).sendRequestTyped(new TL_wallet.getProofChallenge(), new Object(), new v(this, b10, callback2, z10, 0));
     }
 
     public final void S() {
         int i10;
         this.E = r();
-        ArrayList n10 = p0.n(ApplicationLoader.applicationContext, UserConfig.getInstance(this.f35117a).getClientUserId());
+        ArrayList n10 = p0.n(ApplicationLoader.applicationContext, UserConfig.getInstance(this.f35155a).getClientUserId());
         n10.remove(this.E);
         HashMap hashMap = new HashMap();
         ArrayList arrayList = this.C;
@@ -862,7 +862,7 @@ public final class k0 {
             Object obj = arrayList.get(i11);
             i11++;
             g0 g0Var = (g0) obj;
-            hashMap.put(g0Var.f34946a, g0Var);
+            hashMap.put(g0Var.f34978a, g0Var);
         }
         this.C.clear();
         int size2 = n10.size();
@@ -873,13 +873,13 @@ public final class k0 {
             String str = (String) obj2;
             g0 g0Var2 = (g0) hashMap.get(str);
             if (g0Var2 == null) {
-                g0Var2 = new g0(new p0(ApplicationLoader.applicationContext, str, this.f35117a));
+                g0Var2 = new g0(new p0(ApplicationLoader.applicationContext, str, this.f35155a));
             }
-            p0 p0Var = g0Var2.f34950f;
-            synchronized (p0.f35370f) {
+            p0 p0Var = g0Var2.f34982f;
+            synchronized (p0.f35406f) {
                 try {
                     try {
-                        i10 = p0Var.r().f25857b;
+                        i10 = p0Var.r().f26215b;
                     } catch (Exception e7) {
                         FileLog.e(e7);
                         i10 = 0;
@@ -887,7 +887,7 @@ public final class k0 {
                 } finally {
                 }
             }
-            g0Var2.f34947b = i10;
+            g0Var2.f34979b = i10;
             this.C.add(g0Var2);
             s(str, null);
             f0((b0) this.J.get(str));
@@ -897,12 +897,12 @@ public final class k0 {
 
     public final void T() {
         E("requesting gasless info");
-        this.f35137x = ConnectionsManager.getInstance(this.f35117a).sendRequestTyped(new TL_wallet.getGaslessInfo(), new Object(), new h(this, 2));
+        this.f35175x = ConnectionsManager.getInstance(this.f35155a).sendRequestTyped(new TL_wallet.getGaslessInfo(), new Object(), new h(this, 2));
     }
 
     public final void U() {
         E("requesting state");
-        this.f35136w = ConnectionsManager.getInstance(this.f35117a).sendRequestTyped(new TL_wallet.getState(), new Object(), new h(this, 1));
+        this.f35174w = ConnectionsManager.getInstance(this.f35155a).sendRequestTyped(new TL_wallet.getState(), new Object(), new h(this, 1));
     }
 
     public final void V(String str, Utilities.Callback2 callback2) {
@@ -917,7 +917,7 @@ public final class k0 {
         }
         TL_wallet.getUserAddresses getuseraddresses = new TL_wallet.getUserAddresses();
         getuseraddresses.addresses.add(str);
-        ConnectionsManager.getInstance(this.f35117a).sendRequestTyped(getuseraddresses, new Object(), new i((Object) this, (Object) str, (Object) callback2, 0));
+        ConnectionsManager.getInstance(this.f35155a).sendRequestTyped(getuseraddresses, new Object(), new j((Object) this, (Object) str, (Object) callback2, 0));
     }
 
     public final void W(TLRPC.User user, Utilities.Callback2 callback2) {
@@ -925,18 +925,18 @@ public final class k0 {
             callback2.run(null, null);
             return;
         }
-        Long valueOf = Long.valueOf(user.f20185id);
+        Long valueOf = Long.valueOf(user.f20189id);
         HashMap hashMap = this.H;
         if (hashMap.containsKey(valueOf)) {
-            callback2.run((TL_wallet.walletUserAddress) hashMap.get(Long.valueOf(user.f20185id)), null);
+            callback2.run((TL_wallet.walletUserAddress) hashMap.get(Long.valueOf(user.f20189id)), null);
             return;
         }
         TL_wallet.getUserAddresses getuseraddresses = new TL_wallet.getUserAddresses();
         getuseraddresses.force = true;
-        ArrayList<TLRPC.InputUser> arrayList = getuseraddresses.f20297id;
-        int i10 = this.f35117a;
+        ArrayList<TLRPC.InputUser> arrayList = getuseraddresses.f20301id;
+        int i10 = this.f35155a;
         arrayList.add(MessagesController.getInstance(i10).getInputUser(user));
-        ConnectionsManager.getInstance(i10).sendRequestTyped(getuseraddresses, new Object(), new i(this, (Object) callback2, (Object) user, 1));
+        ConnectionsManager.getInstance(i10).sendRequestTyped(getuseraddresses, new Object(), new j(this, (Object) callback2, (Object) user, 1));
     }
 
     public final void X(String str, Utilities.Callback callback) {
@@ -955,18 +955,18 @@ public final class k0 {
             jSONObject = null;
         }
         performapirequest.payload = jSONObject.toString();
-        int i10 = this.f35117a;
+        int i10 = this.f35155a;
         ConnectionsManager.getInstance(i10).sendRequestTyped(performapirequest, new Object(), new ai.m0(this, str, callback), MessagesController.getInstance(i10).webFileDatacenterId, 0);
     }
 
     public final void Z(TLRPC.User user, String str, long j3, String str2, byte[] bArr, TL_wallet.nftItem nftitem, String str3, Utilities.Callback callback, Utilities.Callback callback2) {
         String r10 = r();
         E("send to " + str + ", amount " + j3 + ", when ready...");
-        h0(new p(this, str, callback, nftitem, r10, str2, bArr, j3, user, str3, callback2, 0));
+        h0(new q(this, str, callback, nftitem, r10, str2, bArr, j3, user, str3, callback2, 0));
     }
 
     public final void b0() {
-        HashMap hashMap = this.f35133s;
+        HashMap hashMap = this.f35171s;
         for (m0 m0Var : hashMap.values()) {
             m0Var.b();
         }
@@ -989,13 +989,13 @@ public final class k0 {
     }
 
     public final boolean e() {
-        TL_wallet.WalletState walletState = this.f35120e;
+        TL_wallet.WalletState walletState = this.f35158e;
         if (!(walletState instanceof TL_wallet.TL_walletState)) {
             return false;
         }
         TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) walletState;
         if (!tL_walletState.backup_enabled) {
-            p0 p0Var = this.f35119c;
+            p0 p0Var = this.f35157c;
             if (p0Var == null || !p0Var.f(tL_walletState.public_key)) {
                 return false;
             }
@@ -1006,12 +1006,12 @@ public final class k0 {
 
     public final boolean f() {
         p0 p0Var;
-        TL_wallet.WalletState walletState = this.f35120e;
+        TL_wallet.WalletState walletState = this.f35158e;
         if (!(walletState instanceof TL_wallet.TL_walletState)) {
             return false;
         }
         TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) walletState;
-        if (tL_walletState.backup_enabled || ((p0Var = this.f35119c) != null && p0Var.f(tL_walletState.public_key))) {
+        if (tL_walletState.backup_enabled || ((p0Var = this.f35157c) != null && p0Var.f(tL_walletState.public_key))) {
             return false;
         }
         return true;
@@ -1026,15 +1026,15 @@ public final class k0 {
                 Object obj = arrayList.get(i10);
                 i10++;
                 g0 g0Var = (g0) obj;
-                if (TextUtils.equals(g0Var.f34946a, b0Var.f34664a)) {
-                    g0Var.f34948c = b0Var.f34665b;
+                if (TextUtils.equals(g0Var.f34978a, b0Var.f34690a)) {
+                    g0Var.f34980c = b0Var.f34691b;
                     boolean z10 = true;
-                    g0Var.d = !b0Var.f34667e;
-                    byte[] bArr = b0Var.f34666c;
-                    if (bArr == null || bArr.length <= 0 || g0Var.f34950f.f(bArr)) {
+                    g0Var.d = !b0Var.f34693e;
+                    byte[] bArr = b0Var.f34692c;
+                    if (bArr == null || bArr.length <= 0 || g0Var.f34982f.f(bArr)) {
                         z10 = false;
                     }
-                    g0Var.f34949e = z10;
+                    g0Var.f34981e = z10;
                 }
             }
         }
@@ -1045,20 +1045,20 @@ public final class k0 {
         j0 j0Var;
         if (walletState != null) {
             if (walletState instanceof TL_wallet.TL_walletState) {
-                TL_wallet.WalletState walletState2 = this.f35120e;
+                TL_wallet.WalletState walletState2 = this.f35158e;
                 if (!(walletState2 instanceof TL_wallet.TL_walletState) || ((TL_wallet.TL_walletState) walletState2).balance != ((TL_wallet.TL_walletState) walletState).balance) {
                     z10 = true;
-                    this.f35120e = walletState;
+                    this.f35158e = walletState;
                     K();
                     I();
-                    if (!z10 && (j0Var = this.f35128n) != null) {
+                    if (!z10 && (j0Var = this.f35166n) != null) {
                         j0Var.d();
                         return;
                     }
                 }
             }
             z10 = false;
-            this.f35120e = walletState;
+            this.f35158e = walletState;
             K();
             I();
             if (!z10) {
@@ -1066,10 +1066,10 @@ public final class k0 {
         }
     }
 
-    public final m h(String str, long j3, String str2, byte[] bArr, Utilities.Callback2 callback2) {
+    public final n h(String str, long j3, String str2, byte[] bArr, Utilities.Callback2 callback2) {
         y yVar = new y(this, str, j3, str2, bArr, callback2);
         h0(yVar);
-        return new m(yVar, 0);
+        return new n(yVar, 0);
     }
 
     public final void h0(Runnable runnable) {
@@ -1077,7 +1077,7 @@ public final class k0 {
             runnable.run();
             return;
         }
-        this.f35135u.add(new WeakReference(runnable));
+        this.f35173u.add(new WeakReference(runnable));
     }
 
     public final CharSequence l(long j3, boolean z10) {
@@ -1099,7 +1099,7 @@ public final class k0 {
             int i11 = j10.exp;
             double d = j10.rate;
             if (d > 0.0d && !Double.isNaN(d) && !Double.isInfinite(d)) {
-                double d10 = MessagesController.getInstance(this.f35117a).config.tonUsdRate.get() * d;
+                double d10 = MessagesController.getInstance(this.f35155a).config.tonUsdRate.get() * d;
                 boolean z14 = false;
                 int max = Math.max(0, Math.min(i11, 20));
                 BigDecimal movePointLeft = BigDecimal.valueOf(j3).multiply(BigDecimal.valueOf(d10)).movePointLeft(9);
@@ -1156,7 +1156,7 @@ public final class k0 {
                 int indexOf = D.indexOf(8387);
                 if (indexOf >= 0) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(D);
-                    spannableStringBuilder.setSpan(new m61(AndroidUtilities.getTypeface("fonts/gram.ttf")), indexOf, indexOf + 1, 33);
+                    spannableStringBuilder.setSpan(new n61(AndroidUtilities.getTypeface("fonts/gram.ttf")), indexOf, indexOf + 1, 33);
                     return spannableStringBuilder;
                 }
                 return D;
@@ -1166,44 +1166,44 @@ public final class k0 {
     }
 
     public final String r() {
-        TL_wallet.WalletState walletState = this.f35120e;
+        TL_wallet.WalletState walletState = this.f35158e;
         if (!(walletState instanceof TL_wallet.TL_walletState)) {
             return null;
         }
         return ((TL_wallet.TL_walletState) walletState).address;
     }
 
-    public final b0 s(final String str, g7 g7Var) {
+    public final b0 s(final String str, h7 h7Var) {
         HashMap hashMap = this.J;
         b0 b0Var = (b0) hashMap.get(str);
-        if (b0Var != null && !b0Var.f34667e) {
-            if (g7Var != null) {
-                b0Var.f34668f.add(g7Var);
+        if (b0Var != null && !b0Var.f34693e) {
+            if (h7Var != null) {
+                b0Var.f34694f.add(h7Var);
             }
             return null;
         }
-        int i10 = this.f35117a;
-        if (b0Var != null && b0Var.f34667e && ConnectionsManager.getInstance(i10).getCurrentTime() < b0Var.d + 300) {
-            if (g7Var != null) {
-                g7Var.run(b0Var);
+        int i10 = this.f35155a;
+        if (b0Var != null && b0Var.f34693e && ConnectionsManager.getInstance(i10).getCurrentTime() < b0Var.d + 300) {
+            if (h7Var != null) {
+                h7Var.run(b0Var);
             }
             return b0Var;
         }
         final ?? obj = new Object();
-        obj.f34665b = -1L;
+        obj.f34691b = -1L;
         ArrayList arrayList = new ArrayList();
-        obj.f34668f = arrayList;
-        obj.f34664a = str;
+        obj.f34694f = arrayList;
+        obj.f34690a = str;
         obj.d = ConnectionsManager.getInstance(i10).getCurrentTime();
-        if (g7Var != null) {
-            arrayList.add(g7Var);
+        if (h7Var != null) {
+            arrayList.add(h7Var);
         }
         hashMap.put(str, obj);
-        Utilities.raceCallbacks(new k(this, str, (Object) obj, 0), new Utilities.Callback(this) {
-            public final k0 f35178b;
+        Utilities.raceCallbacks(new l(this, str, (Object) obj, 0), new Utilities.Callback(this) {
+            public final k0 f35268b;
 
             {
-                this.f35178b = this;
+                this.f35268b = this;
             }
 
             @Override
@@ -1218,23 +1218,23 @@ public final class k0 {
                         sb2.append(Uri.encode(str2));
                         sb2.append("&use_v2=false");
                         performapirequest.query = sb2.toString();
-                        k0 k0Var = this.f35178b;
-                        int i11 = k0Var.f35117a;
-                        ConnectionsManager.getInstance(i11).sendRequestTyped(performapirequest, new Object(), new n(k0Var, obj, str2, runnable, 0), MessagesController.getInstance(i11).webFileDatacenterId, 0);
+                        k0 k0Var = this.f35268b;
+                        int i11 = k0Var.f35155a;
+                        ConnectionsManager.getInstance(i11).sendRequestTyped(performapirequest, new Object(), new o(k0Var, obj, str2, runnable, 0), MessagesController.getInstance(i11).webFileDatacenterId, 0);
                         return;
                     default:
-                        k0 k0Var2 = this.f35178b;
+                        k0 k0Var2 = this.f35268b;
                         b0 b0Var2 = obj;
                         String str3 = str;
-                        k0Var2.X(str3, new q(k0Var2, b0Var2, str3, (Runnable) obj2));
+                        k0Var2.X(str3, new r(k0Var2, b0Var2, str3, (Runnable) obj2));
                         return;
                 }
             }
         }, new Utilities.Callback(this) {
-            public final k0 f35178b;
+            public final k0 f35268b;
 
             {
-                this.f35178b = this;
+                this.f35268b = this;
             }
 
             @Override
@@ -1249,15 +1249,15 @@ public final class k0 {
                         sb2.append(Uri.encode(str2));
                         sb2.append("&use_v2=false");
                         performapirequest.query = sb2.toString();
-                        k0 k0Var = this.f35178b;
-                        int i11 = k0Var.f35117a;
-                        ConnectionsManager.getInstance(i11).sendRequestTyped(performapirequest, new Object(), new n(k0Var, obj, str2, runnable, 0), MessagesController.getInstance(i11).webFileDatacenterId, 0);
+                        k0 k0Var = this.f35268b;
+                        int i11 = k0Var.f35155a;
+                        ConnectionsManager.getInstance(i11).sendRequestTyped(performapirequest, new Object(), new o(k0Var, obj, str2, runnable, 0), MessagesController.getInstance(i11).webFileDatacenterId, 0);
                         return;
                     default:
-                        k0 k0Var2 = this.f35178b;
+                        k0 k0Var2 = this.f35268b;
                         b0 b0Var2 = obj;
                         String str3 = str;
-                        k0Var2.X(str3, new q(k0Var2, b0Var2, str3, (Runnable) obj2));
+                        k0Var2.X(str3, new r(k0Var2, b0Var2, str3, (Runnable) obj2));
                         return;
                 }
             }
@@ -1266,7 +1266,7 @@ public final class k0 {
     }
 
     public final long t() {
-        TL_wallet.WalletState walletState = this.f35120e;
+        TL_wallet.WalletState walletState = this.f35158e;
         if (!(walletState instanceof TL_wallet.TL_walletState)) {
             return 0L;
         }
@@ -1274,7 +1274,7 @@ public final class k0 {
     }
 
     public final byte[] w() {
-        TL_wallet.WalletState walletState = this.f35120e;
+        TL_wallet.WalletState walletState = this.f35158e;
         if (!(walletState instanceof TL_wallet.TL_walletState)) {
             return null;
         }
@@ -1287,9 +1287,9 @@ public final class k0 {
     }
 
     public final j0 z() {
-        if (this.f35128n == null) {
-            this.f35128n = new j0(this);
+        if (this.f35166n == null) {
+            this.f35166n = new j0(this);
         }
-        return this.f35128n;
+        return this.f35166n;
     }
 }

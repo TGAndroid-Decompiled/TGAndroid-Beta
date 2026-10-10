@@ -6,31 +6,31 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class vf1 extends FrameLayout {
-    public TextView f42845a;
-    public float f42846b;
-    public boolean f42847c;
+    public TextView f42889a;
+    public float f42890b;
+    public boolean f42891c;
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         int i10 = 1;
-        if (this.f42847c) {
-            float f7 = this.f42846b + 0.013333334f;
-            this.f42846b = f7;
+        if (this.f42891c) {
+            float f7 = this.f42890b + 0.013333334f;
+            this.f42890b = f7;
             if (f7 > 1.0f) {
-                this.f42847c = false;
-                this.f42846b = 1.0f;
+                this.f42891c = false;
+                this.f42890b = 1.0f;
             }
         } else {
-            float f10 = this.f42846b - 0.013333334f;
-            this.f42846b = f10;
+            float f10 = this.f42890b - 0.013333334f;
+            this.f42890b = f10;
             if (f10 < 0.0f) {
-                this.f42847c = true;
-                this.f42846b = 0.0f;
+                this.f42891c = true;
+                this.f42890b = 0.0f;
             }
         }
-        TextView textView = this.f42845a;
-        float interpolation = org.telegram.ui.Components.hs.f27118f.getInterpolation(this.f42846b) * AndroidUtilities.dp(8.0f);
+        TextView textView = this.f42889a;
+        float interpolation = org.telegram.ui.Components.is.f27443f.getInterpolation(this.f42890b) * AndroidUtilities.dp(8.0f);
         if (LocaleController.isRTL) {
             i10 = -1;
         }

@@ -8,36 +8,36 @@ import java.util.HashMap;
 import java.util.List;
 import ki.x;
 public final class a implements t {
-    public final c f45162a;
+    public final c f45206a;
 
     public a(c cVar) {
-        this.f45162a = cVar;
+        this.f45206a = cVar;
     }
 
     @Override
     public final void a() {
-        this.f45162a.f45175e.remove(this);
+        this.f45206a.f45219e.remove(this);
     }
 
     @Override
     public final boolean b(Uri uri, b0 b0Var, boolean z10) {
         b bVar;
-        c cVar = this.f45162a;
+        c cVar = this.f45206a;
         HashMap hashMap = cVar.d;
-        if (cVar.f45180w == null) {
+        if (cVar.f45224w == null) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            o oVar = cVar.f45179s;
+            o oVar = cVar.f45223s;
             String str = d0.f8532a;
-            List list = oVar.f45261e;
+            List list = oVar.f45305e;
             int i10 = 0;
             for (int i11 = 0; i11 < list.size(); i11++) {
-                b bVar2 = (b) hashMap.get(((n) list.get(i11)).f45255a);
-                if (bVar2 != null && elapsedRealtime < bVar2.f45168n) {
+                b bVar2 = (b) hashMap.get(((n) list.get(i11)).f45299a);
+                if (bVar2 != null && elapsedRealtime < bVar2.f45212n) {
                     i10++;
                 }
             }
-            x xVar = new x(1, 0, cVar.f45179s.f45261e.size(), i10);
-            cVar.f45174c.getClass();
+            x xVar = new x(1, 0, cVar.f45223s.f45305e.size(), i10);
+            cVar.f45218c.getClass();
             k4.d l32 = rb.a.l3(xVar, b0Var);
             if (l32 != null && l32.f14622a == 2 && (bVar = (b) hashMap.get(uri)) != null) {
                 b.a(bVar, l32.f14623b);

@@ -3,22 +3,22 @@ package org.telegram.messenger.voip;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.ax0;
-import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.bx0;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.ol;
 public final class n0 implements Runnable {
-    public final int f19594a;
-    public final int f19595b;
-    public final boolean f19596c;
+    public final int f19598a;
+    public final int f19599b;
+    public final boolean f19600c;
     public final Object d;
-    public final Object f19597e;
+    public final Object f19601e;
 
     public n0(int i10, int i11, Object obj, Object obj2, boolean z10) {
-        this.f19594a = i11;
+        this.f19598a = i11;
         this.d = obj;
-        this.f19597e = obj2;
-        this.f19595b = i10;
-        this.f19596c = z10;
+        this.f19601e = obj2;
+        this.f19599b = i10;
+        this.f19600c = z10;
     }
 
     @Override
@@ -27,26 +27,26 @@ public final class n0 implements Runnable {
     }
 
     public n0(ol olVar, boolean z10, ArrayList arrayList, int i10) {
-        this.f19594a = 2;
+        this.f19598a = 2;
         this.d = olVar;
-        this.f19596c = z10;
-        this.f19597e = arrayList;
-        this.f19595b = i10;
+        this.f19600c = z10;
+        this.f19601e = arrayList;
+        this.f19599b = i10;
     }
 
-    public n0(ax0 ax0Var, boolean z10, int i10, u1 u1Var) {
-        this.f19594a = 5;
-        this.d = ax0Var;
-        this.f19596c = z10;
-        this.f19595b = i10;
-        this.f19597e = u1Var;
+    public n0(bx0 bx0Var, boolean z10, int i10, u1 u1Var) {
+        this.f19598a = 5;
+        this.d = bx0Var;
+        this.f19600c = z10;
+        this.f19599b = i10;
+        this.f19601e = u1Var;
     }
 
-    public n0(c71 c71Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
-        this.f19594a = i11;
-        this.d = c71Var;
-        this.f19595b = i10;
-        this.f19597e = tL_messages_searchGlobal;
-        this.f19596c = z10;
+    public n0(d71 d71Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
+        this.f19598a = i11;
+        this.d = d71Var;
+        this.f19599b = i10;
+        this.f19601e = tL_messages_searchGlobal;
+        this.f19600c = z10;
     }
 }

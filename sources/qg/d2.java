@@ -15,21 +15,21 @@ import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.ma;
 import org.telegram.ui.Components.qa;
 public abstract class d2 extends ci.d {
-    public final qa f46220h0;
-    public final RectF f46221i0;
-    public int f46222j0;
-    public final o2 f46223k0;
-    public final e6 f46224l0;
+    public final qa f46264h0;
+    public final RectF f46265i0;
+    public int f46266j0;
+    public final o2 f46267k0;
+    public final e6 f46268l0;
     public int m0;
-    public boolean f46225n0;
+    public boolean f46269n0;
 
     public d2(o2 o2Var, ContextThemeWrapper contextThemeWrapper, e6 e6Var, ma maVar) {
         super(contextThemeWrapper, e6Var, false);
-        this.f46221i0 = new RectF();
+        this.f46265i0 = new RectF();
         this.m0 = 8;
-        this.f46224l0 = e6Var;
-        this.f46223k0 = o2Var;
-        this.f46220h0 = new qa(maVar, this, 0, true);
+        this.f46268l0 = e6Var;
+        this.f46267k0 = o2Var;
+        this.f46264h0 = new qa(maVar, this, 0, true);
         setWillNotDraw(false);
         setTextColor(-1);
         setFlickeringLoading(true);
@@ -42,7 +42,7 @@ public abstract class d2 extends ci.d {
     @Override
     public void onDraw(Canvas canvas) {
         boolean z10 = this.f4867d0;
-        RectF rectF = this.f46221i0;
+        RectF rectF = this.f46265i0;
         if (z10) {
             float c10 = this.d.c() + getPaddingLeft() + getPaddingRight();
             rectF.set((getMeasuredWidth() - c10) / 2.0f, 0.0f, (getMeasuredWidth() + c10) / 2.0f, getMeasuredHeight());
@@ -54,7 +54,7 @@ public abstract class d2 extends ci.d {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f46225n0) {
+        if (this.f46269n0) {
             i10 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.d.c()), 1073741824);
         }
         super.onMeasure(i10, i11);
@@ -63,17 +63,17 @@ public abstract class d2 extends ci.d {
     @Override
     public void setAlpha(float f7) {
         l2[] l2VarArr;
-        o2 o2Var = this.f46223k0;
-        super.setAlpha((!o2Var.f46499y || (l2VarArr = o2Var.H) == null || l2VarArr.length <= 0) ? 0.0f : 0.0f);
+        o2 o2Var = this.f46267k0;
+        super.setAlpha((!o2Var.f46543y || (l2VarArr = o2Var.H) == null || l2VarArr.length <= 0) ? 0.0f : 0.0f);
     }
 
     public void setCancelState(boolean z10) {
-        this.f46222j0 = 2;
+        this.f46266j0 = 2;
         g(LocaleController.getString(R.string.Cancel), z10, true);
     }
 
     public void setCutOutState(boolean z10) {
-        this.f46222j0 = 0;
+        this.f46266j0 = 0;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         er erVar = new er(R.drawable.media_magic_cut, 0);
         erVar.setSize(AndroidUtilities.dp(22.0f));
@@ -86,7 +86,7 @@ public abstract class d2 extends ci.d {
     }
 
     public void setEraseState(boolean z10) {
-        this.f46222j0 = 3;
+        this.f46266j0 = 3;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         er erVar = new er(R.drawable.media_button_erase, 0);
         erVar.setSize(AndroidUtilities.dp(20.0f));
@@ -97,7 +97,7 @@ public abstract class d2 extends ci.d {
     }
 
     public void setOutlineState(boolean z10) {
-        this.f46222j0 = 6;
+        this.f46266j0 = 6;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         er erVar = new er(R.drawable.media_sticker_stroke, 0);
         erVar.setSize(AndroidUtilities.dp(20.0f));
@@ -109,11 +109,11 @@ public abstract class d2 extends ci.d {
 
     public void setRad(int i10) {
         this.m0 = i10;
-        setForeground(i6.Z(i6.w0(i6.f20888i6, this.f46224l0), i10, i10));
+        setForeground(i6.Z(i6.w0(i6.f20892i6, this.f46268l0), i10, i10));
     }
 
     public void setRestoreState(boolean z10) {
-        this.f46222j0 = 4;
+        this.f46266j0 = 4;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         er erVar = new er(R.drawable.media_button_restore, 0);
         erVar.setSize(AndroidUtilities.dp(20.0f));
@@ -124,11 +124,11 @@ public abstract class d2 extends ci.d {
     }
 
     public void setUndoCutState(boolean z10) {
-        this.f46222j0 = 1;
+        this.f46266j0 = 1;
     }
 
     public void setUndoState(boolean z10) {
-        this.f46222j0 = 5;
+        this.f46266j0 = 5;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
         er erVar = new er(R.drawable.photo_undo2, 0);
         erVar.setSize(AndroidUtilities.dp(20.0f));

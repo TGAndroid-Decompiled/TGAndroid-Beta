@@ -4,22 +4,22 @@ import b2.m0;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class a extends j {
-    public final String f45930b;
-    public final String f45931c;
+    public final String f45974b;
+    public final String f45975c;
     public final int d;
-    public final byte[] f45932e;
+    public final byte[] f45976e;
 
     public a(int i10, String str, String str2, byte[] bArr) {
         super("APIC");
-        this.f45930b = str;
-        this.f45931c = str2;
+        this.f45974b = str;
+        this.f45975c = str2;
         this.d = i10;
-        this.f45932e = bArr;
+        this.f45976e = bArr;
     }
 
     @Override
     public final void b(m0 m0Var) {
-        m0Var.a(this.d, this.f45932e);
+        m0Var.a(this.d, this.f45976e);
     }
 
     public final boolean equals(Object obj) {
@@ -28,7 +28,7 @@ public final class a extends j {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.d == aVar.d && Objects.equals(this.f45930b, aVar.f45930b) && Objects.equals(this.f45931c, aVar.f45931c) && Arrays.equals(this.f45932e, aVar.f45932e)) {
+            if (this.d == aVar.d && Objects.equals(this.f45974b, aVar.f45974b) && Objects.equals(this.f45975c, aVar.f45975c) && Arrays.equals(this.f45976e, aVar.f45976e)) {
                 return true;
             }
         }
@@ -39,22 +39,22 @@ public final class a extends j {
         int i10;
         int i11 = (527 + this.d) * 31;
         int i12 = 0;
-        String str = this.f45930b;
+        String str = this.f45974b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (i11 + i10) * 31;
-        String str2 = this.f45931c;
+        String str2 = this.f45975c;
         if (str2 != null) {
             i12 = str2.hashCode();
         }
-        return Arrays.hashCode(this.f45932e) + ((i13 + i12) * 31);
+        return Arrays.hashCode(this.f45976e) + ((i13 + i12) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f45953a + ": mimeType=" + this.f45930b + ", description=" + this.f45931c;
+        return this.f45997a + ": mimeType=" + this.f45974b + ", description=" + this.f45975c;
     }
 }

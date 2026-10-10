@@ -6,7 +6,7 @@ import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 public final class l2 extends TLObject {
-    public final ArrayList f43390a = new ArrayList();
+    public final ArrayList f43434a = new ArrayList();
 
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
@@ -14,8 +14,8 @@ public final class l2 extends TLObject {
         for (int i10 = 0; i10 < readInt32; i10++) {
             m2 m2Var = new m2();
             m2Var.readParams(inputSerializedData, z10);
-            if (!TextUtils.isEmpty(m2Var.f43398b)) {
-                this.f43390a.add(m2Var);
+            if (!TextUtils.isEmpty(m2Var.f43442b)) {
+                this.f43434a.add(m2Var);
             } else {
                 return;
             }
@@ -24,7 +24,7 @@ public final class l2 extends TLObject {
 
     @Override
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        ArrayList arrayList = this.f43390a;
+        ArrayList arrayList = this.f43434a;
         outputSerializedData.writeInt32(arrayList.size());
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             ((m2) arrayList.get(i10)).serializeToStream(outputSerializedData);

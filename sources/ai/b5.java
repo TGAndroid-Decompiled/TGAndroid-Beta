@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class b5 extends i0 {
     public final org.telegram.ui.Components.g6 d;
     public final org.telegram.ui.Components.g6 f704e;
@@ -24,16 +24,16 @@ public final class b5 extends i0 {
         this.f710x = f6Var;
         this.v = c6Var;
         this.f709w = kcVar;
-        hs hsVar = hs.f27118f;
-        this.d = new org.telegram.ui.Components.g6(this, 150L, hsVar);
-        this.f704e = new org.telegram.ui.Components.g6(this, 150L, hsVar);
+        is isVar = is.f27443f;
+        this.d = new org.telegram.ui.Components.g6(this, 150L, isVar);
+        this.f704e = new org.telegram.ui.Components.g6(this, 150L, isVar);
         this.f705f = new org.telegram.ui.Components.voip.h(32, 102, 240);
         org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(this);
         this.h = g6Var;
         org.telegram.ui.Components.g6 g6Var2 = new org.telegram.ui.Components.g6(this);
         this.f706n = g6Var2;
-        g6Var.f26602g = 500L;
-        g6Var2.f26602g = 100L;
+        g6Var.f26619g = 500L;
+        g6Var2.f26619g = 100L;
     }
 
     public final void b(android.graphics.Canvas r34) {
@@ -60,8 +60,8 @@ public final class b5 extends i0 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view != this.f710x.f978j1) {
             if (this.f707r) {
-                org.telegram.ui.Components.tc tcVar = org.telegram.ui.Components.tc.f31122w;
-                if (tcVar != null && view == tcVar.f31126e) {
+                org.telegram.ui.Components.tc tcVar = org.telegram.ui.Components.tc.f31088w;
+                if (tcVar != null && view == tcVar.f31092e) {
                     if (this.f708s) {
                         return super.drawChild(canvas, view, j3);
                     }

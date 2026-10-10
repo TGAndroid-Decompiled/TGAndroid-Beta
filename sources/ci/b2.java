@@ -2,12 +2,12 @@ package ci;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sw;
-public final class b2 extends sw {
+import org.telegram.ui.Components.tw;
+public final class b2 extends tw {
     public final d2 f4748g0;
 
     public b2(d2 d2Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21128v6, e6Var), false);
+        super(context, e6Var, false, false, false, true, 0, null, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21132v6, e6Var), false);
         this.f4748g0 = d2Var;
     }
 

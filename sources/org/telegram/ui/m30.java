@@ -8,12 +8,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
-public final class m30 extends org.telegram.ui.Components.fk0 {
-    public final g60 f39762r;
+public final class m30 extends org.telegram.ui.Components.gk0 {
+    public final g60 f39806r;
 
     public m30(g60 g60Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f39762r = g60Var;
+        this.f39806r = g60Var;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class m30 extends org.telegram.ui.Components.fk0 {
         boolean z10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName(Button.class.getName());
-        g60 g60Var = this.f39762r;
+        g60 g60Var = this.f39806r;
         int i10 = g60Var.F1;
         if (i10 != 0 && i10 != 1) {
             z10 = false;
@@ -36,13 +36,13 @@ public final class m30 extends org.telegram.ui.Components.fk0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        g60 g60Var = this.f39762r;
-        t20 t20Var = g60Var.f37892y2;
+        g60 g60Var = this.f39806r;
+        t20 t20Var = g60Var.f37936y2;
         ArrayList arrayList = g60Var.Z1;
         if (g60Var.s1()) {
             return super.onTouchEvent(motionEvent);
         }
-        if (motionEvent.getAction() == 0 && g60Var.F1 == 0 && g60Var.f37789a1 != null) {
+        if (motionEvent.getAction() == 0 && g60Var.F1 == 0 && g60Var.f37833a1 != null) {
             AndroidUtilities.runOnUIThread(t20Var, 300L);
             g60Var.R1 = true;
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -50,12 +50,12 @@ public final class m30 extends org.telegram.ui.Components.fk0 {
                 AndroidUtilities.cancelRunOnUIThread(t20Var);
                 g60Var.R1 = false;
             } else if (g60Var.S1) {
-                AndroidUtilities.cancelRunOnUIThread(g60Var.f37887x2);
+                AndroidUtilities.cancelRunOnUIThread(g60Var.f37931x2);
                 g60Var.K1(0, true);
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().setMicMute(true, true, false);
                     try {
-                        g60Var.f37879w.performHapticFeedback(3, 2);
+                        g60Var.f37923w.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }

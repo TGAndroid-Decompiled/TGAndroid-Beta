@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class b2 extends Drawable {
     public final Paint f12285a;
     public final org.telegram.ui.Components.g6 f12286b;
@@ -16,7 +16,7 @@ public final class b2 extends Drawable {
     public b2(int i10) {
         Paint paint = new Paint(1);
         this.f12285a = paint;
-        this.f12286b = new org.telegram.ui.Components.g6(new i2.h0(this, 5), 420L, hs.h, 0);
+        this.f12286b = new org.telegram.ui.Components.g6(new i2.h0(this, 5), 420L, is.h, 0);
         this.d = 255;
         paint.setColor(i10);
     }

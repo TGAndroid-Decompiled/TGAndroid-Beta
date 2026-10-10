@@ -15,7 +15,7 @@ public final class r8 extends jq {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f27756b * 2.0f) + this.f27755a);
+                return (int) ((this.f27749b * 2.0f) + this.f27748a);
         }
     }
 
@@ -25,7 +25,7 @@ public final class r8 extends jq {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f27756b * 2.0f) + this.f27755a);
+                return (int) ((this.f27749b * 2.0f) + this.f27748a);
         }
     }
 

@@ -15,7 +15,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.xy0;
+import org.telegram.ui.Components.yy0;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.c41;
@@ -80,15 +80,15 @@ public final class q3 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                org.telegram.ui.vb vbVar = pbVar.f40758a.f41368n;
+                org.telegram.ui.vb vbVar = pbVar.f40802a.f41412n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (vbVar.f42803z0 == null) {
-                            vbVar.f42803z0 = new HashMap();
+                        if (vbVar.f42847z0 == null) {
+                            vbVar.f42847z0 = new HashMap();
                         }
-                        vbVar.f42803z0.put(Long.valueOf(user.f20185id), user);
+                        vbVar.f42847z0.put(Long.valueOf(user.f20189id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -102,7 +102,7 @@ public final class q3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new n3((nq) obj4, tL_error, (TLRPC.InputCheckPasswordSRP) obj, (TwoStepVerificationActivity) obj3, (TLRPC.TL_channels_editCreator) obj2, 20));
                 return;
             case 7:
-                xy0.r((rs0) obj4, this.d, (TLRPC.TL_messages_getAttachedStickers) obj3, (oo) obj2, tLObject, tL_error);
+                yy0.r((rs0) obj4, this.d, (TLRPC.TL_messages_getAttachedStickers) obj3, (oo) obj2, tLObject, tL_error);
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new g90((Object) ((wg0) obj4), tL_error, (Object) ((String) obj), (Object) ((String) obj3), (Object) ((String) obj2), 5));
@@ -139,7 +139,7 @@ public final class q3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new a9((yh.s3) obj4, tLObject, (tg.m1[]) obj, (Long) obj3, (tg.q) obj2, tL_error, 22));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.q6((yh.m5) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (TL_stars.InputSavedStarGift) obj3, (Utilities.Callback) obj2, 11));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.r6((yh.m5) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (TL_stars.InputSavedStarGift) obj3, (Utilities.Callback) obj2, 11));
                 return;
             case 19:
                 AndroidUtilities.runOnUIThread(new a9((yh.m5) obj4, tLObject, (MessageObject) obj, (TLRPC.TL_inputInvoiceMessage) obj3, (cj) obj2, tL_error, 25));

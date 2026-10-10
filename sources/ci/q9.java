@@ -19,15 +19,15 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ds;
-import org.telegram.ui.Components.fm0;
+import org.telegram.ui.Components.es;
+import org.telegram.ui.Components.gm0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.g01;
 import org.telegram.ui.g60;
 import org.telegram.ui.ty;
 import org.telegram.ui.vg1;
-public final class q9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, fm0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, pa.a, vg1 {
+public final class q9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, gm0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, pa.a, vg1 {
     public final int f5840a;
     public final long f5841b;
     public final Object f5842c;
@@ -50,7 +50,7 @@ public final class q9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.O
         boolean z10;
         String str = (String) this.f5842c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((o5.c) this.d).f17080a;
+        int i10 = ((o5.c) this.d).f17084a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -137,11 +137,11 @@ public final class q9 implements org.telegram.ui.ActionBar.a2, ChatObject.Call.O
                 y9Var.f6369x.K = true;
                 return;
             case 3:
-                ds.R((ds) this.f5842c, (d) this.d, this.f5841b);
+                es.R((es) this.f5842c, (d) this.d, this.f5841b);
                 return;
             default:
                 g60 g60Var = (g60) this.f5842c;
-                g60Var.d.getMessagesController().addUserToChat(g60Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) g60Var.f37823i0.O().getFragmentStack().get(g60Var.f37823i0.O().getFragmentStack().size() - 1), new ai.j(g60Var, this.f5841b, 26));
+                g60Var.d.getMessagesController().addUserToChat(g60Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) g60Var.f37867i0.O().getFragmentStack().get(g60Var.f37867i0.O().getFragmentStack().size() - 1), new ai.j(g60Var, this.f5841b, 26));
                 return;
         }
     }

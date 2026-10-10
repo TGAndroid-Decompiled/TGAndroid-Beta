@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class kj1 extends org.telegram.ui.Components.pm0 {
-    public final Context f39310c;
+public final class kj1 extends org.telegram.ui.Components.qm0 {
+    public final Context f39354c;
     public final WallpapersListActivity d;
 
     public kj1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f39310c = context;
+        this.f39354c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47662f == 0) {
+        if (d1Var.f47706f == 0) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class kj1 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final int h() {
-        return this.d.f35765a;
+        return this.d.f35809a;
     }
 
     @Override
@@ -30,9 +30,9 @@ public final class kj1 extends org.telegram.ui.Components.pm0 {
         int i11;
         WallpapersListActivity wallpapersListActivity = this.d;
         i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.f35781r && i10 != wallpapersListActivity.f35767b && i10 != wallpapersListActivity.h) {
-            if (i10 != wallpapersListActivity.f35769c && i10 != wallpapersListActivity.f35774f) {
-                if (i10 != wallpapersListActivity.f35780n && i10 != wallpapersListActivity.f35782s) {
+        if (i10 != i11 && i10 != wallpapersListActivity.f35825r && i10 != wallpapersListActivity.f35811b && i10 != wallpapersListActivity.h) {
+            if (i10 != wallpapersListActivity.f35813c && i10 != wallpapersListActivity.f35818f) {
+                if (i10 != wallpapersListActivity.f35824n && i10 != wallpapersListActivity.f35826s) {
                     return 2;
                 }
                 return 3;
@@ -50,7 +50,7 @@ public final class kj1 extends org.telegram.ui.Components.pm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View r8Var;
-        Context context = this.f39310c;
+        Context context = this.f39354c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {

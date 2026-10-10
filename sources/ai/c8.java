@@ -27,7 +27,7 @@ import org.telegram.messenger.jk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.nw0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.k71;
 public final class c8 implements Runnable {
@@ -125,7 +125,7 @@ public final class c8 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i15 = i11; i15 < arrayList2.size(); i15++) {
                             if (arrayList2.get(i15) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = z9Var.f(arrayList2.get(i15).f20275id, peerDialogId);
+                                TL_stories.StoryItem f7 = z9Var.f(arrayList2.get(i15).f20279id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i15, f7);
                                 }
@@ -219,14 +219,14 @@ public final class c8 implements Runnable {
                                     AndroidUtilities.cancelRunOnUIThread(m51Var);
                                     k71Var3.I1 = null;
                                 }
-                                String str3 = k71Var3.f39173z1;
+                                String str3 = k71Var3.f39217z1;
                                 String str4 = str2;
                                 if (str4 != str3) {
                                     return;
                                 }
-                                k71Var3.f39171y1 = true;
+                                k71Var3.f39215y1 = true;
                                 k71Var3.z(true, z15);
-                                b61 b61Var = k71Var3.f39128f0;
+                                b61 b61Var = k71Var3.f39172f0;
                                 if (b61Var != null) {
                                     b61Var.d(true);
                                 }
@@ -255,7 +255,7 @@ public final class c8 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i17 = 0;
-                                k71Var3.f39134i0.u0(0);
+                                k71Var3.f39178i0.u0(0);
                                 int i18 = k71Var3.W;
                                 if (i18 == 1 || i18 == 14 || i18 == 11 || i18 == 2) {
                                     ArrayList arrayList16 = arrayList8;
@@ -279,7 +279,7 @@ public final class c8 implements Runnable {
                                     ArrayList arrayList18 = k71Var3.A1;
                                     ?? obj5 = new Object();
                                     long longValue2 = l4.longValue();
-                                    obj5.f54618g = longValue2;
+                                    obj5.f54662g = longValue2;
                                     obj5.h = longValue2;
                                     arrayList18.add(obj5);
                                 }
@@ -295,7 +295,7 @@ public final class c8 implements Runnable {
                                     i17++;
                                     k71Var3.C1.addAll((ArrayList) obj6);
                                 }
-                                k71Var3.f39149q0.E(true ^ z16);
+                                k71Var3.f39193q0.E(true ^ z16);
                             }
                         });
                     }
@@ -419,11 +419,11 @@ public final class c8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.s0 s0Var = ((pg.c1) obj3).f45608y.f45635c;
-                mw0 mw0Var = s0Var.f45760g;
-                n6.t h = s0Var.h(new RectF(0.0f, 0.0f, mw0Var.f28963a, mw0Var.f28964b), false, z12, z11);
+                pg.s0 s0Var = ((pg.c1) obj3).f45652y.f45679c;
+                nw0 nw0Var = s0Var.f45804g;
+                n6.t h = s0Var.h(new RectF(0.0f, 0.0f, nw0Var.f29260a, nw0Var.f29261b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f16717b;
+                    bitmapArr[0] = (Bitmap) h.f16721b;
                 }
                 countDownLatch.countDown();
                 return;

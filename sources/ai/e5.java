@@ -1,7 +1,7 @@
 package ai;
 
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class e5 implements Runnable {
     public final int f880a;
     public final kc f881b;
@@ -32,7 +32,7 @@ public final class e5 implements Runnable {
                     }
                     kcVar2.F.addListener(new tb(kcVar2, 0));
                     kcVar2.F.setDuration(320L);
-                    kcVar2.F.setInterpolator(hs.h);
+                    kcVar2.F.setInterpolator(is.h);
                     kcVar2.F.start();
                     return;
                 }

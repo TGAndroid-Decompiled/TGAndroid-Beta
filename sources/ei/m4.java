@@ -4,9 +4,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.ls;
-import org.telegram.ui.Components.xh0;
+import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.ms;
+import org.telegram.ui.Components.yh0;
 public final class m4 extends GestureDetector.SimpleOnGestureListener {
     public final int f9223a;
     public final int f9224b;
@@ -22,14 +22,14 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
     public boolean onDown(MotionEvent motionEvent) {
         switch (this.f9223a) {
             case 1:
-                ls lsVar = (ls) this.f9225c;
-                is isVar = lsVar.f28586r;
-                if (lsVar.f28585n) {
-                    lsVar.removeCallbacks(isVar);
+                ms msVar = (ms) this.f9225c;
+                js jsVar = msVar.f28890r;
+                if (msVar.f28889n) {
+                    msVar.removeCallbacks(jsVar);
                 }
-                lsVar.f28585n = true;
-                lsVar.postDelayed(isVar, 200L);
-                lsVar.h.run();
+                msVar.f28889n = true;
+                msVar.postDelayed(jsVar, 200L);
+                msVar.h.run();
                 return true;
             case 2:
                 return true;
@@ -85,11 +85,11 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
             default:
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
-                xh0 xh0Var = (xh0) this.f9225c;
-                if (!xh0Var.f32868f && !xh0Var.h && f7 >= 600.0f) {
-                    xh0Var.f32867e = false;
-                    xh0Var.h = false;
-                    xh0Var.a(0.0f, f7 / 6000.0f);
+                yh0 yh0Var = (yh0) this.f9225c;
+                if (!yh0Var.f33210f && !yh0Var.h && f7 >= 600.0f) {
+                    yh0Var.f33209e = false;
+                    yh0Var.h = false;
+                    yh0Var.a(0.0f, f7 / 6000.0f);
                 }
                 return false;
         }

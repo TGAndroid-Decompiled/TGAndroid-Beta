@@ -18,30 +18,30 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.ud0;
-import org.telegram.ui.Wallet.z6;
+import org.telegram.ui.Components.vd0;
+import org.telegram.ui.Wallet.a7;
 import w7.x5;
 import yh.d7;
 import yh.e5;
 import yh.p7;
 public final class a implements View.OnClickListener {
-    public final int f51161a;
-    public final Object f51162b;
-    public final Object f51163c;
+    public final int f51205a;
+    public final Object f51206b;
+    public final Object f51207c;
 
     public a(int i10, Object obj, Object obj2) {
-        this.f51161a = i10;
-        this.f51162b = obj;
-        this.f51163c = obj2;
+        this.f51205a = i10;
+        this.f51206b = obj;
+        this.f51207c = obj2;
     }
 
     @Override
     public final void onClick(View view) {
         TL_stars.SavedStarGift savedStarGift;
-        int i10 = this.f51161a;
+        int i10 = this.f51205a;
         yh.n0 n0Var = null;
-        Object obj = this.f51163c;
-        Object obj2 = this.f51162b;
+        Object obj = this.f51207c;
+        Object obj2 = this.f51206b;
         switch (i10) {
             case 0:
                 d.Q((d) obj2, (TL_stars.TL_StarGiftAuctionAcquiredGift) obj);
@@ -49,7 +49,7 @@ public final class a implements View.OnClickListener {
             case 1:
                 i4 i4Var = (i4) obj2;
                 i4Var.getClass();
-                if (((d7) obj).f52403f > 0) {
+                if (((d7) obj).f52447f > 0) {
                     i4Var.presentFragment(new p7());
                     return;
                 }
@@ -66,7 +66,7 @@ public final class a implements View.OnClickListener {
                     Iterator it = hashSet.iterator();
                     while (it.hasNext()) {
                         long longValue = ((Long) it.next()).longValue();
-                        ArrayList arrayList2 = m4Var.Y.f52442l;
+                        ArrayList arrayList2 = m4Var.Y.f52486l;
                         int size = arrayList2.size();
                         int i11 = 0;
                         while (true) {
@@ -95,8 +95,8 @@ public final class a implements View.OnClickListener {
                 }
                 return;
             case 4:
-                e5 e5Var = ((j4) obj2).f51321c.Y;
-                e5Var.f52436e = !e5Var.f52436e;
+                e5 e5Var = ((j4) obj2).f51365c.Y;
+                e5Var.f52480e = !e5Var.f52480e;
                 ((zj) obj).run();
                 e5Var.i(true);
                 return;
@@ -110,27 +110,27 @@ public final class a implements View.OnClickListener {
                 int i13 = 0;
                 int i14 = 0;
                 while (true) {
-                    int[] iArr = yh.y.f53382w0;
+                    int[] iArr = yh.y.f53426w0;
                     if (i13 < 6) {
                         strArr[i13] = LocaleController.formatPluralString("GiftOfferHours", iArr[i13] / 3600, new Object[0]);
-                        if (iArr[i13] == yVar.f53395n0) {
+                        if (iArr[i13] == yVar.f53439n0) {
                             i14 = i13;
                         }
                         i13++;
                     } else {
                         String string = LocaleController.getString(R.string.GiftOfferDuration);
                         ii.q1 q1Var = new ii.q1(yVar, 24);
-                        Pattern pattern = g5.f26593a;
+                        Pattern pattern = g5.f26609a;
                         hg.g2 b10 = hg.g2.b(UserConfig.selectedAccount);
                         b10.g();
                         if (!b10.d.isEmpty()) {
-                            int x02 = i6.x0(null, i6.f20905j5, false);
-                            int x03 = i6.x0(null, i6.f20868h5, false);
+                            int x02 = i6.x0(null, i6.f20909j5, false);
+                            int x03 = i6.x0(null, i6.f20872h5, false);
                             i6.x0(null, i6.Ji, false);
                             i6.x0(null, i6.Ni, false);
                             i6.x0(null, i6.E8, false);
                             i6.x0(null, i6.G8, false);
-                            i6.x0(null, i6.f20888i6, false);
+                            i6.x0(null, i6.f20892i6, false);
                             i6.x0(null, i6.Sh, false);
                             i6.x0(null, i6.Oh, false);
                             i6.x0(null, i6.Qh, false);
@@ -140,17 +140,17 @@ public final class a implements View.OnClickListener {
                             LinearLayout linearLayout = new LinearLayout(context);
                             linearLayout.setOrientation(0);
                             linearLayout.setWeightSum(1.0f);
-                            ud0 ud0Var = new ud0(context, null);
-                            ud0Var.setAllItemsCount(6);
-                            ud0Var.setItemCount(Math.min(6, 8));
-                            ud0Var.setTextColor(x02);
-                            ud0Var.setGravity(17);
-                            ud0Var.setMinValue(0);
-                            ud0Var.setMaxValue(5);
-                            ud0Var.setValue(i14);
-                            linearLayout.addView(ud0Var, x5.l(1.0f, 0, 432));
-                            ud0Var.setFormatter(new org.telegram.ui.Components.s(strArr, 7));
-                            org.telegram.ui.Components.y4 y4Var = new org.telegram.ui.Components.y4(context, ud0Var);
+                            vd0 vd0Var = new vd0(context, null);
+                            vd0Var.setAllItemsCount(6);
+                            vd0Var.setItemCount(Math.min(6, 8));
+                            vd0Var.setTextColor(x02);
+                            vd0Var.setGravity(17);
+                            vd0Var.setMinValue(0);
+                            vd0Var.setMaxValue(5);
+                            vd0Var.setValue(i14);
+                            linearLayout.addView(vd0Var, x5.l(1.0f, 0, 432));
+                            vd0Var.setFormatter(new org.telegram.ui.Components.s(strArr, 7));
+                            org.telegram.ui.Components.y4 y4Var = new org.telegram.ui.Components.y4(context, vd0Var);
                             y4Var.setOrientation(1);
                             FrameLayout frameLayout = new FrameLayout(context);
                             TextView textView = new TextView(context);
@@ -168,7 +168,7 @@ public final class a implements View.OnClickListener {
                             y4Var.addView(dVar, x5.t(-1, 48, 0, 16, 12, 16, 12));
                             f3Var.customView = y4Var;
                             f3Var.show();
-                            f3Var.setOnDismissListener(new ei.e0(7, q1Var, ud0Var));
+                            f3Var.setOnDismissListener(new ei.e0(7, q1Var, vd0Var));
                             f3Var.setBackgroundColor(x03);
                             f3Var.fixNavigationBar(x03);
                             org.telegram.ui.ActionBar.f3[] f3VarArr = {f3Var};
@@ -179,19 +179,19 @@ public final class a implements View.OnClickListener {
                 }
             case 7:
                 yh.h0 h0Var = (yh.h0) obj2;
-                z6 z6Var = (z6) obj;
-                ci.d dVar2 = h0Var.f52605f;
+                a7 a7Var = (a7) obj;
+                ci.d dVar2 = h0Var.f52649f;
                 if (dVar2.W && !dVar2.N) {
-                    AndroidUtilities.hideKeyboard(h0Var.f52603c);
+                    AndroidUtilities.hideKeyboard(h0Var.f52647c);
                     dVar2.setLoading(true);
-                    z6Var.run(h0Var.E);
+                    a7Var.run(h0Var.E);
                     return;
                 }
                 return;
             case 8:
                 yh.r0 r0Var = (yh.r0) obj2;
                 ArrayList<TL_stars.StarGiftAttribute> arrayList3 = (ArrayList) obj;
-                yh.l0 l0Var = r0Var.f53104o0;
+                yh.l0 l0Var = r0Var.f53148o0;
                 int i15 = r0Var.C0;
                 if (i15 == 2) {
                     l0Var.setPreviewingAttributes(arrayList3);
@@ -199,7 +199,7 @@ public final class a implements View.OnClickListener {
                     return;
                 } else if (i15 == 1) {
                     yh.n0 n0Var2 = new yh.n0(l0Var.getUpgradeBackdropAttribute(), l0Var.getUpgradePatternAttribute(), l0Var.getUpgradeImageViewAttribute());
-                    r0Var.f53111v0 = n0Var2;
+                    r0Var.f53155v0 = n0Var2;
                     l0Var.setPreviewAttributes(n0Var2);
                     r0Var.T(2);
                     return;
@@ -210,26 +210,26 @@ public final class a implements View.OnClickListener {
                 yh.n0 n0Var3 = (yh.n0) obj;
                 yh.r0 r0Var2 = ((yh.m0) obj2).N;
                 int i16 = r0Var2.C0;
-                yh.l0 l0Var2 = r0Var2.f53104o0;
+                yh.l0 l0Var2 = r0Var2.f53148o0;
                 if (i16 == 1) {
-                    r0Var2.f53111v0 = new yh.n0(l0Var2.getUpgradeBackdropAttribute(), l0Var2.getUpgradePatternAttribute(), l0Var2.getUpgradeImageViewAttribute());
+                    r0Var2.f53155v0 = new yh.n0(l0Var2.getUpgradeBackdropAttribute(), l0Var2.getUpgradePatternAttribute(), l0Var2.getUpgradeImageViewAttribute());
                     r0Var2.T(2);
                 }
-                int i17 = r0Var2.f53100j0.f53056r;
-                yh.n0 n0Var4 = r0Var2.f53111v0;
+                int i17 = r0Var2.f53144j0.f53100r;
+                yh.n0 n0Var4 = r0Var2.f53155v0;
                 if (n0Var4 != null) {
-                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = n0Var4.f52914a;
-                    TL_stars.starGiftAttributeModel stargiftattributemodel = n0Var4.f52916c;
-                    TL_stars.starGiftAttributePattern stargiftattributepattern = n0Var4.f52915b;
+                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = n0Var4.f52958a;
+                    TL_stars.starGiftAttributeModel stargiftattributemodel = n0Var4.f52960c;
+                    TL_stars.starGiftAttributePattern stargiftattributepattern = n0Var4.f52959b;
                     if (i17 == 1) {
-                        n0Var = new yh.n0(n0Var3.f52914a, stargiftattributepattern, stargiftattributemodel);
+                        n0Var = new yh.n0(n0Var3.f52958a, stargiftattributepattern, stargiftattributemodel);
                     } else if (i17 == 2) {
-                        n0Var = new yh.n0(stargiftattributebackdrop, n0Var3.f52915b, stargiftattributemodel);
+                        n0Var = new yh.n0(stargiftattributebackdrop, n0Var3.f52959b, stargiftattributemodel);
                     } else if (i17 == 0) {
-                        n0Var = new yh.n0(stargiftattributebackdrop, stargiftattributepattern, n0Var3.f52916c);
+                        n0Var = new yh.n0(stargiftattributebackdrop, stargiftattributepattern, n0Var3.f52960c);
                     }
                 }
-                r0Var2.f53111v0 = n0Var;
+                r0Var2.f53155v0 = n0Var;
                 l0Var2.setPreviewAttributes(n0Var);
                 r0Var2.V();
                 return;
@@ -242,8 +242,8 @@ public final class a implements View.OnClickListener {
             case 12:
                 yh.t2 t2Var = (yh.t2) obj2;
                 e6 e6Var = (e6) obj;
-                if (t2Var.E.getAlpha() >= 1.0f && !t2Var.f53230h0 && !t2Var.f53232j0 && t2Var.f53224d0 != null) {
-                    new yh.r0(t2Var.getContext(), e6Var, t2Var.W, t2Var.f53223c0, t2Var.f53224d0, true).show();
+                if (t2Var.E.getAlpha() >= 1.0f && !t2Var.f53274h0 && !t2Var.f53276j0 && t2Var.f53268d0 != null) {
+                    new yh.r0(t2Var.getContext(), e6Var, t2Var.W, t2Var.f53267c0, t2Var.f53268d0, true).show();
                     return;
                 }
                 return;

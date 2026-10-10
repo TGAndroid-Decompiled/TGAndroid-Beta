@@ -7,14 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 public final class l2 {
-    public final int f15721a;
+    public final int f15725a;
 
     public l2(int i10) {
-        this.f15721a = i10;
+        this.f15725a = i10;
     }
 
     public final Drawable a(Context context, XmlResourceParser xmlResourceParser, AttributeSet attributeSet, Resources.Theme theme) {
-        switch (this.f15721a) {
+        switch (this.f15725a) {
             case 0:
                 String classAttribute = attributeSet.getClassAttribute();
                 if (classAttribute == null) {

@@ -5,65 +5,65 @@ import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class f60 {
-    public float f37460c;
+    public float f37504c;
     public float d;
-    public float f37461e;
-    public float f37462f;
-    public Shader f37463g;
-    public final int f37464i;
-    public float f37458a = -1.0f;
-    public float f37459b = -1.0f;
+    public float f37505e;
+    public float f37506f;
+    public Shader f37507g;
+    public final int f37508i;
+    public float f37502a = -1.0f;
+    public float f37503b = -1.0f;
     public final Matrix h = new Matrix();
 
     public f60(int i10) {
-        this.f37464i = i10;
+        this.f37508i = i10;
     }
 
     public final void a() {
-        int i10 = this.f37464i;
+        int i10 = this.f37508i;
         if (g60.q1(i10)) {
-            this.f37458a = a1.g.B(Utilities.random.nextInt(100), 0.2f, 100.0f, 0.85f);
-            this.f37459b = 1.0f;
+            this.f37502a = a1.g.B(Utilities.random.nextInt(100), 0.2f, 100.0f, 0.85f);
+            this.f37503b = 1.0f;
         } else if (i10 == 1) {
-            this.f37458a = a1.g.B(Utilities.random.nextInt(100), 0.3f, 100.0f, 0.2f);
-            this.f37459b = a1.g.B(Utilities.random.nextInt(100), 0.3f, 100.0f, 0.7f);
+            this.f37502a = a1.g.B(Utilities.random.nextInt(100), 0.3f, 100.0f, 0.2f);
+            this.f37503b = a1.g.B(Utilities.random.nextInt(100), 0.3f, 100.0f, 0.7f);
         } else {
-            this.f37458a = a1.g.e(Utilities.random.nextInt(100), 100.0f, 0.2f, 0.8f);
-            this.f37459b = Utilities.random.nextInt(100) / 100.0f;
+            this.f37502a = a1.g.e(Utilities.random.nextInt(100), 100.0f, 0.2f, 0.8f);
+            this.f37503b = Utilities.random.nextInt(100) / 100.0f;
         }
     }
 
     public final void b(int i10, int i11, int i12, long j3, float f7) {
         float f10;
-        if (this.f37463g == null) {
+        if (this.f37507g == null) {
             return;
         }
-        float f11 = this.f37461e;
-        if (f11 == 0.0f || this.f37462f >= f11) {
-            this.f37461e = Utilities.random.nextInt(200) + 1500;
-            this.f37462f = 0.0f;
-            if (this.f37458a == -1.0f) {
+        float f11 = this.f37505e;
+        if (f11 == 0.0f || this.f37506f >= f11) {
+            this.f37505e = Utilities.random.nextInt(200) + 1500;
+            this.f37506f = 0.0f;
+            if (this.f37502a == -1.0f) {
                 a();
             }
-            this.f37460c = this.f37458a;
-            this.d = this.f37459b;
+            this.f37504c = this.f37502a;
+            this.d = this.f37503b;
             a();
         }
         float f12 = (float) j3;
         float f13 = 1.0f;
-        float f14 = (f12 * 0.02f * f7) + (f12 * 1.0f) + this.f37462f;
-        this.f37462f = f14;
-        float f15 = this.f37461e;
+        float f14 = (f12 * 0.02f * f7) + (f12 * 1.0f) + this.f37506f;
+        this.f37506f = f14;
+        float f15 = this.f37505e;
         if (f14 > f15) {
-            this.f37462f = f15;
+            this.f37506f = f15;
         }
-        float interpolation = org.telegram.ui.Components.hs.f27119g.getInterpolation(this.f37462f / f15);
+        float interpolation = org.telegram.ui.Components.is.f27444g.getInterpolation(this.f37506f / f15);
         float f16 = i12;
-        float f17 = this.f37460c;
-        float f18 = (((((this.f37458a - f17) * interpolation) + f17) * f16) + i11) - 200.0f;
+        float f17 = this.f37504c;
+        float f18 = (((((this.f37502a - f17) * interpolation) + f17) * f16) + i11) - 200.0f;
         float f19 = this.d;
-        float f20 = (((((this.f37459b - f19) * interpolation) + f19) * f16) + i10) - 200.0f;
-        int i13 = this.f37464i;
+        float f20 = (((((this.f37503b - f19) * interpolation) + f19) * f16) + i10) - 200.0f;
+        int i13 = this.f37508i;
         if (!g60.q1(i13)) {
             if (i13 == 1) {
                 f10 = 4.0f;
@@ -77,6 +77,6 @@ public final class f60 {
         matrix.reset();
         matrix.postTranslate(f18, f20);
         matrix.postScale(dp, dp, f18 + 200.0f, f20 + 200.0f);
-        this.f37463g.setLocalMatrix(matrix);
+        this.f37507g.setLocalMatrix(matrix);
     }
 }

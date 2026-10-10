@@ -27,7 +27,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.fr;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class j7 extends View implements v2 {
     public boolean A0;
     public final org.telegram.ui.Components.g6 B0;
@@ -139,30 +139,30 @@ public final class j7 extends View implements v2 {
         this.J = new org.telegram.ui.Components.bd(this);
         this.K = new org.telegram.ui.Components.bd(this);
         this.L = new org.telegram.ui.Components.bd(this);
-        hs hsVar = hs.h;
-        this.N = new org.telegram.ui.Components.g6(this, 0L, 310L, hsVar);
-        this.P = new org.telegram.ui.Components.g6(this, 0L, 330L, hsVar);
+        is isVar = is.h;
+        this.N = new org.telegram.ui.Components.g6(this, 0L, 310L, isVar);
+        this.P = new org.telegram.ui.Components.g6(this, 0L, 330L, isVar);
         this.S = new Path();
         this.T = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
         this.U = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
         this.V = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
-        this.f5262h0 = new org.telegram.ui.Components.g6(this, 0L, 200L, hs.f27118f);
-        this.m0 = new org.telegram.ui.Components.g6(this, 0L, 350L, hsVar);
+        this.f5262h0 = new org.telegram.ui.Components.g6(this, 0L, 200L, is.f27443f);
+        this.m0 = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
         this.f5268n0 = -1.0f;
         this.f5269o0 = true;
-        this.f5270p0 = new org.telegram.ui.Components.g6(this, 0L, 350L, hsVar);
-        this.f5271q0 = new org.telegram.ui.Components.g6(this, 0L, 850L, hsVar);
+        this.f5270p0 = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
+        this.f5271q0 = new org.telegram.ui.Components.g6(this, 0L, 850L, isVar);
         this.f5275s0 = new float[2];
-        this.f5276t0 = new org.telegram.ui.Components.g6(this, 0L, 350L, hsVar);
-        this.B0 = new org.telegram.ui.Components.g6(this, 0L, 350L, hsVar);
-        this.C0 = new org.telegram.ui.Components.g6(this, 0L, 650L, hsVar);
-        this.D0 = new org.telegram.ui.Components.g6(this, 0L, 160L, hs.f27120i);
-        this.E0 = new org.telegram.ui.Components.g6(this, 0L, 750L, hsVar);
-        this.F0 = new org.telegram.ui.Components.g6(this, 0L, 650L, hsVar);
-        this.G0 = new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar);
-        this.I0 = new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar);
-        this.J0 = new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar);
-        this.K0 = new org.telegram.ui.Components.g6(this, 0L, 320L, hsVar);
+        this.f5276t0 = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
+        this.B0 = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
+        this.C0 = new org.telegram.ui.Components.g6(this, 0L, 650L, isVar);
+        this.D0 = new org.telegram.ui.Components.g6(this, 0L, 160L, is.f27445i);
+        this.E0 = new org.telegram.ui.Components.g6(this, 0L, 750L, isVar);
+        this.F0 = new org.telegram.ui.Components.g6(this, 0L, 650L, isVar);
+        this.G0 = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
+        this.I0 = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
+        this.J0 = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
+        this.K0 = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
         this.L0 = new g7(this, 2);
         this.M0 = new g7(this, 3);
         this.N0 = new Path();
@@ -215,11 +215,11 @@ public final class j7 extends View implements v2 {
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         fr frVar = new fr(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
         this.f5254c = frVar;
-        frVar.f26471w = false;
+        frVar.f26503w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
-        frVar.f26466e = dp;
-        frVar.f26467f = dp2;
+        frVar.f26498e = dp;
+        frVar.f26499f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -276,7 +276,7 @@ public final class j7 extends View implements v2 {
         } else {
             j3 = 310;
         }
-        this.N.f26602g = j3;
+        this.N.f26619g = j3;
         this.M += f7;
         invalidate();
     }
@@ -441,7 +441,7 @@ public final class j7 extends View implements v2 {
         g7 g7Var2 = this.L0;
         if (action == 0) {
             this.f5280w0 = true;
-            if (bdVar2.f24977i || bdVar3.f24977i) {
+            if (bdVar2.f24928i || bdVar3.f24928i) {
                 z14 = true;
             }
             this.f5282x0 = z14;
@@ -450,7 +450,7 @@ public final class j7 extends View implements v2 {
             if (Math.abs(clamp - this.f5263i0) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(g7Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (bdVar3.f24977i) {
+            if (bdVar3.f24928i) {
                 AndroidUtilities.runOnUIThread(g7Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
@@ -478,10 +478,10 @@ public final class j7 extends View implements v2 {
                 AndroidUtilities.cancelRunOnUIThread(g7Var2);
                 AndroidUtilities.cancelRunOnUIThread(g7Var);
                 boolean z15 = this.f5273r0;
-                if (!z15 && bdVar.f24977i) {
+                if (!z15 && bdVar.f24928i) {
                     ((gb) this.f5250a).c();
                 } else if (z15 && this.f5285z0) {
-                    if (bdVar.f24977i) {
+                    if (bdVar.f24928i) {
                         this.f5285z0 = false;
                         this.G0.d(1.0f, true);
                         a4 a4Var = ((gb) this.f5250a).f5132a.T0;
@@ -493,7 +493,7 @@ public final class j7 extends View implements v2 {
                         this.f5277u0 = true;
                         ((gb) this.f5250a).e(false);
                     }
-                } else if (bdVar2.f24977i) {
+                } else if (bdVar2.f24928i) {
                     if (b()) {
                         ((gb) this.f5250a).a();
                     } else if (!this.f5269o0 && !this.f5273r0 && !this.f5285z0) {
@@ -513,7 +513,7 @@ public final class j7 extends View implements v2 {
                     }
                 }
                 this.f5285z0 = false;
-                if (bdVar3.f24977i) {
+                if (bdVar3.f24928i) {
                     d(180.0f);
                     ((gb) this.f5250a).b();
                 }

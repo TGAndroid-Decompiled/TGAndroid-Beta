@@ -16,23 +16,23 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.b5;
 public final class i {
-    public static i f49706q;
-    public Bitmap f49710e;
-    public Canvas f49711f;
-    public Paint f49712g;
+    public static i f49750q;
+    public Bitmap f49754e;
+    public Canvas f49755f;
+    public Paint f49756g;
     public long h;
-    public ArrayList f49713i;
-    public boolean f49714j;
-    public final int f49715k;
-    public boolean f49716l;
-    public boolean f49720p;
-    public final DispatchQueue f49707a = new DispatchQueue("SpoilerEffectBitmapFactory", true, 3);
-    public final b0[] f49708b = new b0[g.C.length];
-    public final b5[] f49709c = new b5[2];
+    public ArrayList f49757i;
+    public boolean f49758j;
+    public final int f49759k;
+    public boolean f49760l;
+    public boolean f49764p;
+    public final DispatchQueue f49751a = new DispatchQueue("SpoilerEffectBitmapFactory", true, 3);
+    public final b0[] f49752b = new b0[g.C.length];
+    public final b5[] f49753c = new b5[2];
     public int d = 0;
-    public final Rect f49717m = new Rect();
-    public final qf.b f49718n = new qf.b(this, 2);
-    public final Rect f49719o = new Rect();
+    public final Rect f49761m = new Rect();
+    public final qf.b f49762n = new qf.b(this, 2);
+    public final Rect f49763o = new Rect();
 
     public i() {
         float f7;
@@ -44,10 +44,10 @@ public final class i {
         int dp = AndroidUtilities.dp(f7);
         Point point = AndroidUtilities.displaySize;
         int min = (int) Math.min(Math.min(point.x, point.y) * 0.5f, dp);
-        this.f49715k = min < AndroidUtilities.dp(80.0f) ? AndroidUtilities.dp(80.0f) : min;
+        this.f49759k = min < AndroidUtilities.dp(80.0f) ? AndroidUtilities.dp(80.0f) : min;
         int i10 = 0;
         while (true) {
-            b0[] b0VarArr = this.f49708b;
+            b0[] b0VarArr = this.f49752b;
             if (i10 < b0VarArr.length) {
                 b0 b0Var = new b0(13, false, false);
                 b0Var.f4204c = new float[Math.max(64, 2)];
@@ -71,25 +71,25 @@ public final class i {
         float f10;
         boolean z10;
         Rect rect2 = rect;
-        b0[] b0VarArr = this.f49708b;
+        b0[] b0VarArr = this.f49752b;
         for (b0 b0Var : b0VarArr) {
             b0Var.f4203b = 0;
         }
         int i14 = 0;
         while (i14 < 100) {
-            g gVar = (g) this.f49713i.get(i14);
+            g gVar = (g) this.f49757i.get(i14);
             if (Rect.intersects(gVar.getBounds(), rect2)) {
                 float[][] fArr = g.D;
-                int[] iArr2 = gVar.f49684f;
-                float[] fArr2 = gVar.f49683e;
+                int[] iArr2 = gVar.f49728f;
+                float[] fArr2 = gVar.f49727e;
                 if (b0VarArr != null) {
                     int length = b0VarArr.length;
                     float[] fArr3 = g.C;
                     if (length == fArr3.length) {
                         long currentTimeMillis = System.currentTimeMillis();
-                        gVar.f49687j = currentTimeMillis;
+                        gVar.f49731j = currentTimeMillis;
                         ArrayList arrayList = gVar.h;
-                        Stack stack = gVar.f49682c;
+                        Stack stack = gVar.f49726c;
                         int i15 = gVar.d;
                         int length2 = fArr3.length;
                         Rect bounds = gVar.getBounds();
@@ -98,7 +98,7 @@ public final class i {
                         i10 = i14;
                         float width = bounds.width();
                         float height = bounds.height();
-                        RectF rectF = gVar.f49702z;
+                        RectF rectF = gVar.f49746z;
                         float f13 = rectF.left;
                         float f14 = rectF.top;
                         float f15 = rectF.right;
@@ -108,7 +108,7 @@ public final class i {
                         float f18 = rect2.top - dpf2;
                         float f19 = rect2.right + dpf2;
                         float f20 = rect2.bottom + dpf2;
-                        float min = (int) Math.min(currentTimeMillis - gVar.f49687j, 34L);
+                        float min = (int) Math.min(currentTimeMillis - gVar.f49731j, 34L);
                         float f21 = min / 500.0f;
                         int size = arrayList.size();
                         int i16 = 0;
@@ -117,19 +117,19 @@ public final class i {
                             c cVar2 = (c) arrayList.get(i16);
                             float f22 = min;
                             float f23 = f15;
-                            float min2 = Math.min(cVar2.f49654g + f22, cVar2.f49653f);
-                            cVar2.f49654g = min2;
-                            float f24 = cVar2.f49649a;
-                            float f25 = cVar2.f49650b;
+                            float min2 = Math.min(cVar2.f49698g + f22, cVar2.f49697f);
+                            cVar2.f49698g = min2;
+                            float f24 = cVar2.f49693a;
+                            float f25 = cVar2.f49694b;
                             if (f24 >= f13 && f24 <= f23 && f25 >= f14 && f25 <= f16) {
                                 z10 = false;
                             } else {
                                 z10 = true;
                             }
-                            if (min2 < cVar2.f49653f && !z10) {
-                                float f26 = cVar2.f49652e * f21;
-                                cVar2.f49649a = (cVar2.f49651c * f26) + f24;
-                                cVar2.f49650b = (cVar2.d * f26) + f25;
+                            if (min2 < cVar2.f49697f && !z10) {
+                                float f26 = cVar2.f49696e * f21;
+                                cVar2.f49693a = (cVar2.f49695c * f26) + f24;
+                                cVar2.f49694b = (cVar2.d * f26) + f25;
                                 size = i17;
                             } else {
                                 if (stack.size() < i15) {
@@ -177,12 +177,12 @@ public final class i {
                                 }
                                 int i24 = 0;
                                 while (true) {
-                                    cVar.f49649a = (Utilities.fastRandom.nextFloat() * width) + f11;
+                                    cVar.f49693a = (Utilities.fastRandom.nextFloat() * width) + f11;
                                     float nextFloat = (Utilities.fastRandom.nextFloat() * height) + f29;
-                                    cVar.f49650b = nextFloat;
+                                    cVar.f49694b = nextFloat;
                                     int i25 = i24 + 1;
                                     f10 = f29;
-                                    float f32 = cVar.f49649a;
+                                    float f32 = cVar.f49693a;
                                     if ((f32 < f13 || f32 > f27 || nextFloat < f14 || nextFloat > f16) && i25 < 4) {
                                         f29 = f10;
                                         i24 = i25;
@@ -191,11 +191,11 @@ public final class i {
                                 int i26 = i21;
                                 int[] iArr3 = iArr2;
                                 double d = ((f31 * 3.141592653589793d) * 2.0d) - 3.141592653589793d;
-                                cVar.f49651c = (float) Math.cos(d);
+                                cVar.f49695c = (float) Math.cos(d);
                                 cVar.d = (float) Math.sin(d);
-                                cVar.f49654g = 0.0f;
-                                cVar.f49653f = Utilities.fastRandom.nextInt(2000) + 1000;
-                                cVar.f49652e = (f31 * 6.0f) + 4.0f;
+                                cVar.f49698g = 0.0f;
+                                cVar.f49697f = Utilities.fastRandom.nextInt(2000) + 1000;
+                                cVar.f49696e = (f31 * 6.0f) + 4.0f;
                                 cVar.h = Utilities.fastRandom.nextInt(length2);
                                 arrayList.add(cVar);
                                 i21 = i26 + 1;
@@ -212,12 +212,12 @@ public final class i {
                         for (int i27 = 0; i27 < length2; i27++) {
                             iArr[i27] = 0;
                         }
-                        int i28 = gVar.f49700x;
+                        int i28 = gVar.f49744x;
                         int i29 = 0;
                         while (i29 < size2) {
                             c cVar3 = (c) arrayList.get(i29);
-                            float f33 = cVar3.f49649a;
-                            float f34 = cVar3.f49650b;
+                            float f33 = cVar3.f49693a;
+                            float f34 = cVar3.f49694b;
                             if (f33 >= f17 && f33 <= f19 && f34 >= f18 && f34 <= f20) {
                                 int i30 = cVar3.h;
                                 float[] fArr4 = fArr[i30];
@@ -227,7 +227,7 @@ public final class i {
                                     fArr4[i31] = f33;
                                     fArr4[i32] = f34;
                                     int i33 = i31 + 2;
-                                    float f35 = gVar.f49681b[i30];
+                                    float f35 = gVar.f49725b[i30];
                                     if (f33 < f35) {
                                         int i34 = i31 + 3;
                                         i11 = size2;
@@ -292,13 +292,13 @@ public final class i {
             i14 = i10 + 1;
             rect2 = rect;
         }
-        g gVar2 = (g) this.f49713i.get(0);
+        g gVar2 = (g) this.f49757i.get(0);
         gVar2.getClass();
         float[] fArr7 = g.C;
         if (b0VarArr != null && b0VarArr.length == fArr7.length) {
             for (int i39 = 0; i39 < fArr7.length; i39++) {
                 b0 b0Var3 = b0VarArr[i39];
-                Paint paint = gVar2.f49680a[i39];
+                Paint paint = gVar2.f49724a[i39];
                 int i40 = b0Var3.f4203b;
                 if (i40 > 0) {
                     canvas.drawPoints((float[]) b0Var3.f4204c, 0, i40, paint);

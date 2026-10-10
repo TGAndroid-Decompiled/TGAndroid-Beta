@@ -5,23 +5,23 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class e8 extends ImageReceiver {
-    public final org.telegram.ui.ActionBar.e6 f22044a;
-    public final f8 f22045b;
+    public final org.telegram.ui.ActionBar.e6 f22048a;
+    public final f8 f22049b;
 
     public e8(f8 f8Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f22045b = f8Var;
-        this.f22044a = e6Var;
+        this.f22049b = f8Var;
+        this.f22048a = e6Var;
     }
 
     @Override
     public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
         if (drawable instanceof BitmapDrawable) {
-            f8 f8Var = this.f22045b;
+            f8 f8Var = this.f22049b;
             if (f8Var.K == 0) {
                 f8Var.K = AndroidUtilities.getDominantColor(((BitmapDrawable) drawable).getBitmap());
                 int i12 = f8Var.K;
                 if (i12 == -1 || i12 == 0) {
-                    f8Var.K = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21036q5, this.f22044a);
+                    f8Var.K = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21040q5, this.f22048a);
                 }
                 f8Var.J.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(12.0f), f8Var.K));
                 invalidate();

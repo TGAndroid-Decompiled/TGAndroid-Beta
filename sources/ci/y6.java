@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gn0;
-import org.telegram.ui.Components.l50;
+import org.telegram.ui.Components.hn0;
+import org.telegram.ui.Components.m50;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ev0;
 import org.telegram.ui.g01;
@@ -22,7 +22,7 @@ import org.telegram.ui.g60;
 import org.telegram.ui.ty;
 import org.telegram.ui.web.w1;
 import org.telegram.ui.zn;
-public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.a2, t5.b, r9.g, l50 {
+public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.a2, t5.b, r9.g, m50 {
     public final int f6352a;
     public final long f6353b;
     public final Object f6354c;
@@ -39,7 +39,7 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        zn.h0((zn) this.f6354c, (ArrayList) this.d, this.f6353b, (gn0) this.f6355e, z10, i10);
+        zn.h0((zn) this.f6354c, (ArrayList) this.d, this.f6353b, (hn0) this.f6355e, z10, i10);
     }
 
     @Override
@@ -75,14 +75,14 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
         switch (this.f6352a) {
             case 5:
                 r9.f fVar = (r9.f) this.f6354c;
-                return fVar.f47117b.schedule(new r9.d(fVar, (Runnable) this.d, f3Var, 1), this.f6353b, (TimeUnit) this.f6355e);
+                return fVar.f47161b.schedule(new r9.d(fVar, (Runnable) this.d, f3Var, 1), this.f6353b, (TimeUnit) this.f6355e);
             default:
                 final r9.f fVar2 = (r9.f) this.f6354c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f47117b.schedule(new Callable() {
+                return fVar2.f47161b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f47116a.submit(new w1(14, callable, f3Var));
+                        return f.this.f47160a.submit(new w1(14, callable, f3Var));
                     }
                 }, this.f6353b, (TimeUnit) this.f6355e);
         }
@@ -129,7 +129,7 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.f6355e;
-                ProfileActivity profileActivity = ((g01) this.f6354c).f37738b;
+                ProfileActivity profileActivity = ((g01) this.f6354c).f37782b;
                 profileActivity.N1 = true;
                 Bundle i11 = a1.g.i("scrollToTopOnResume", true);
                 long j3 = -this.f6353b;

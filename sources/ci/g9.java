@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class g9 extends FrameLayout {
     public final int f5127a = 2;
     public Object f5128b;
@@ -104,14 +104,14 @@ public final class g9 extends FrameLayout {
     public g9(fi.k0 k0Var, Context context) {
         super(context);
         this.f5130e = k0Var;
-        this.f5128b = new org.telegram.ui.Components.g6(this, 250L, hs.h);
+        this.f5128b = new org.telegram.ui.Components.g6(this, 250L, is.h);
         this.d = new Path();
     }
 
     public g9(fa faVar, Context context) {
         super(context);
         this.f5130e = faVar;
-        this.f5128b = new org.telegram.ui.Components.g6(this, 250L, hs.h);
+        this.f5128b = new org.telegram.ui.Components.g6(this, 250L, is.h);
         this.d = new Path();
     }
 }

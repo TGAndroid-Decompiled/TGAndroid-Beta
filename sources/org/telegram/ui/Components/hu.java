@@ -1,29 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-public final class hu implements ViewTreeObserver.OnPreDrawListener {
-    public final int f27141a;
-    public final View f27142b;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class hu implements Utilities.Callback0Return {
+    public final int f27150a;
+    public final Object f27151b;
 
-    public hu(int i10, View view) {
-        this.f27141a = i10;
-        this.f27142b = view;
+    public hu(Object obj, int i10) {
+        this.f27150a = i10;
+        this.f27151b = obj;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f27141a) {
+    public final Object run() {
+        boolean z10;
+        Editable text;
+        xj0[] xj0VarArr;
+        int i10 = this.f27150a;
+        Object obj = this.f27151b;
+        switch (i10) {
             case 0:
-                org.telegram.ui.ActionBar.h4 h4Var = ((EditTextBoldCursor) this.f27142b).floatingActionMode;
-                if (h4Var != null) {
-                    h4Var.c();
-                    return true;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
+                int i11 = EditTextBoldCursor.f24165a;
+                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((xj0VarArr = (xj0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), xj0.class)) == null || xj0VarArr.length == 0)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                return true;
+                return Boolean.valueOf(z10);
             default:
-                ((n80) this.f27142b).invalidate();
-                return true;
+                return ((m50) obj).getCloseIntoObject();
         }
     }
 }

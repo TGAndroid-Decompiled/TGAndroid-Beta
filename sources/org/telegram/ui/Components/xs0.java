@@ -1,49 +1,37 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.ImageView;
-public final class xs0 extends uu0 {
-    public final bw0 M;
+import android.graphics.Rect;
+public final class xs0 extends org.telegram.ui.a21 {
+    public final cw0 H;
 
-    public xs0(bw0 bw0Var, Context context) {
-        super(context);
-        this.M = bw0Var;
+    public xs0(cw0 cw0Var, Context context, tw0 tw0Var, ai.y8 y8Var, ws0 ws0Var) {
+        super(context, tw0Var, y8Var, ws0Var);
+        this.H = cw0Var;
     }
 
     @Override
-    public final void setTranslationX(float f7) {
-        uu0 uu0Var;
-        int i10;
-        super.setTranslationX(f7);
-        bw0 bw0Var = this.M;
-        uu0[] uu0VarArr = bw0Var.f25142k0;
-        if (bw0Var.f25135g1 && (uu0Var = uu0VarArr[0]) == this) {
-            float abs = Math.abs(uu0Var.getTranslationX()) / uu0VarArr[0].getMeasuredWidth();
-            bw0Var.Z0(abs, uu0VarArr[1].F);
-            if (bw0Var.D()) {
-                int i11 = bw0Var.f25171x0;
-                if (i11 == 2) {
-                    bw0Var.f25149o0 = 1.0f - abs;
-                } else if (i11 == 1) {
-                    bw0Var.f25149o0 = abs;
+    public final void a() {
+        bt0 bt0Var;
+        Rect rect = this.F;
+        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
+        setClipBounds(rect);
+        invalidate();
+        cw0 cw0Var = this.H;
+        vu0[] vu0VarArr = cw0Var.f25450k0;
+        if (vu0VarArr != null) {
+            for (vu0 vu0Var : vu0VarArr) {
+                if (vu0Var != null && (bt0Var = vu0Var.h) != null) {
+                    int paddingLeft = bt0Var.getPaddingLeft();
+                    int Z = cw0Var.Z(vu0Var.F);
+                    int paddingRight = vu0Var.h.getPaddingRight();
+                    bt0 bt0Var2 = vu0Var.h;
+                    int Y = cw0Var.Y(cw0Var.v0());
+                    bt0Var2.f31639c3 = Y;
+                    bt0Var.setPadding(paddingLeft, Z, paddingRight, Y);
                 }
-                bw0Var.s1(abs);
-                float a02 = bw0Var.a0(abs);
-                bw0Var.f25151p0 = a02;
-                ImageView imageView = bw0Var.f25156r0;
-                if (a02 != 0.0f && bw0Var.D() && !bw0Var.q0()) {
-                    i10 = 0;
-                } else {
-                    i10 = 4;
-                }
-                imageView.setVisibility(i10);
-            } else {
-                bw0Var.f25149o0 = 0.0f;
             }
-            bw0Var.q1(false);
         }
-        bw0Var.I();
-        bw0Var.K();
-        bw0Var.o0();
+        cw0Var.K();
     }
 }

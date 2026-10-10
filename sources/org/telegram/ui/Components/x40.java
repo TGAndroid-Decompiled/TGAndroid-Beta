@@ -1,54 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class x40 extends AnimatorListenerAdapter {
-    public final int f32744a;
-    public final z40 f32745b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.util.TypedValue;
+public class x40 extends EditTextBoldCursor {
+    public final TextPaint f32834b;
+    public String f32835c;
+    public final Rect d;
 
-    public x40(z40 z40Var, int i10) {
-        this.f32744a = i10;
-        this.f32745b = z40Var;
+    public x40(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f32834b = textPaint;
+        this.d = new Rect();
+        textPaint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.H6, false));
+    }
+
+    public String getHintText() {
+        return this.f32835c;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        long j3;
-        switch (this.f32744a) {
-            case 0:
-                z40 z40Var = this.f32745b;
-                z40Var.f33460f = null;
-                if (!z40Var.H) {
-                    nq nqVar = new nq(this, 21);
-                    z40Var.h = nqVar;
-                    if (z40Var.f33461n == 0) {
-                        j3 = 10000;
-                    } else {
-                        j3 = 2000;
-                    }
-                    AndroidUtilities.runOnUIThread(nqVar, j3);
-                    return;
+    public void onDraw(Canvas canvas) {
+        float measureText;
+        Rect rect;
+        Canvas canvas2;
+        if (this.f32835c != null && length() < this.f32835c.length()) {
+            int i10 = 0;
+            float f7 = 0.0f;
+            while (i10 < this.f32835c.length()) {
+                int length = length();
+                TextPaint textPaint = this.f32834b;
+                if (i10 < length) {
+                    measureText = getPaint().measureText(getText(), i10, i10 + 1);
+                } else {
+                    measureText = textPaint.measureText(this.f32835c, i10, i10 + 1);
                 }
-                return;
-            case 1:
-                z40 z40Var2 = this.f32745b;
-                z40Var2.f33460f = null;
-                if (!z40Var2.H) {
-                    nq nqVar2 = new nq(this, 22);
-                    z40Var2.h = nqVar2;
-                    AndroidUtilities.runOnUIThread(nqVar2, z40Var2.E);
-                    return;
+                if (i10 < length()) {
+                    f7 += measureText;
+                    canvas2 = canvas;
+                } else {
+                    int color = textPaint.getColor();
+                    canvas.save();
+                    String str = this.f32835c;
+                    textPaint.getTextBounds(str, 0, str.length(), this.d);
+                    i(i10);
+                    canvas2 = canvas;
+                    canvas2.drawText(this.f32835c, i10, i10 + 1, f7, (rect.height() + getHeight()) / 2.0f, (Paint) textPaint);
+                    f7 += measureText;
+                    canvas2.restore();
+                    textPaint.setColor(color);
                 }
-                return;
-            default:
-                z40 z40Var3 = this.f32745b;
-                z40Var3.setVisibility(4);
-                z40Var3.getClass();
-                z40Var3.f33459e = null;
-                z40Var3.d = null;
-                z40Var3.f33460f = null;
-                return;
+                i10++;
+                canvas = canvas2;
+            }
         }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        invalidate();
+    }
+
+    public void setHintText(String str) {
+        this.f32835c = str;
+        invalidate();
+        setText(getText());
+    }
+
+    @Override
+    public void setTextSize(int i10, float f7) {
+        super.setTextSize(i10, f7);
+        this.f32834b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
+    }
+
+    public void i(int i10) {
     }
 }

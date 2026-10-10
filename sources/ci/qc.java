@@ -3,7 +3,7 @@ package ci;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class qc {
     public int f5845a;
     public boolean f5846b;
@@ -20,7 +20,7 @@ public final class qc {
 
     public qc(wc wcVar) {
         this.f5854l = wcVar;
-        this.f5853k = new org.telegram.ui.Components.g6(wcVar, 360L, hs.h);
+        this.f5853k = new org.telegram.ui.Components.g6(wcVar, 360L, is.h);
     }
 
     public static void a(qc qcVar, boolean z10) {

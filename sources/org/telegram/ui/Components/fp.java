@@ -12,29 +12,29 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class fp {
-    public final org.telegram.ui.ActionBar.f1 f26446a;
-    public final org.telegram.ui.ActionBar.f1 f26447b;
-    public final org.telegram.ui.ActionBar.f1 f26448c;
+    public final org.telegram.ui.ActionBar.f1 f26471a;
+    public final org.telegram.ui.ActionBar.f1 f26472b;
+    public final org.telegram.ui.ActionBar.f1 f26473c;
     public final org.telegram.ui.ActionBar.f1 d;
-    public final org.telegram.ui.ActionBar.f1 f26449e;
-    public final dp f26450f;
-    public final int f26451g;
+    public final org.telegram.ui.ActionBar.f1 f26474e;
+    public final dp f26475f;
+    public final int f26476g;
     public org.telegram.ui.ActionBar.n1 h;
-    public final ep f26452i;
-    public long f26453j;
-    public int f26454k;
-    public int f26455l;
-    public final FrameLayout f26456m;
-    public final TextView f26457n;
-    public int f26458o;
+    public final ep f26477i;
+    public long f26478j;
+    public int f26479k;
+    public int f26480l;
+    public final FrameLayout f26481m;
+    public final TextView f26482n;
+    public int f26483o;
 
-    public fp(Context context, int i10, xh0 xh0Var, boolean z10, final ep epVar, org.telegram.ui.ActionBar.e6 e6Var) {
+    public fp(Context context, int i10, yh0 yh0Var, boolean z10, final ep epVar, org.telegram.ui.ActionBar.e6 e6Var) {
         int i11;
         dp dpVar;
         int i12;
         Integer num;
-        this.f26451g = i10;
-        this.f26452i = epVar;
+        this.f26476g = i10;
+        this.f26477i = epVar;
         if (z10) {
             i11 = R.drawable.popup_fixed_alert;
         } else {
@@ -42,57 +42,57 @@ public final class fp {
         }
         dp dpVar2 = new dp(context, i11, 0, e6Var, 0);
         dpVar2.U = new Path();
-        this.f26450f = dpVar2;
+        this.f26475f = dpVar2;
         dpVar2.setFitItems(true);
-        if (xh0Var != null) {
+        if (yh0Var != null) {
             i12 = 1;
             num = 1;
             dpVar = dpVar2;
             org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, dpVar, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, e6Var);
-            this.f26446a = c10;
-            c10.setOnClickListener(new n8(xh0Var, 1));
+            this.f26471a = c10;
+            c10.setOnClickListener(new n8(yh0Var, 1));
         } else {
             dpVar = dpVar2;
             i12 = 1;
             num = 1;
         }
         org.telegram.ui.ActionBar.f1 c11 = org.telegram.ui.ActionBar.v0.c(false, false, dpVar, R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), false, e6Var);
-        this.f26447b = c11;
+        this.f26472b = c11;
         c11.setOnClickListener(new View.OnClickListener(this) {
-            public final fp f25078b;
+            public final fp f25015b;
 
             {
-                this.f25078b = this;
+                this.f25015b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.s();
                         return;
                     case 1:
-                        fp fpVar = this.f25078b;
+                        fp fpVar = this.f25015b;
                         fpVar.a();
-                        epVar.x(fpVar.f26455l);
+                        epVar.x(fpVar.f26480l);
                         return;
                     case 2:
-                        fp fpVar2 = this.f25078b;
+                        fp fpVar2 = this.f25015b;
                         fpVar2.a();
-                        epVar.x(fpVar2.f26454k);
+                        epVar.x(fpVar2.f26479k);
                         return;
                     case 3:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.p();
                         return;
                     case 4:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         AndroidUtilities.runOnUIThread(new rg(epVar, 27));
                         return;
                     default:
                         epVar.m();
-                        this.f25078b.a();
+                        this.f25015b.a();
                         return;
                 }
             }
@@ -100,81 +100,81 @@ public final class fp {
         org.telegram.ui.ActionBar.f1 c12 = org.telegram.ui.ActionBar.v0.c(false, false, dpVar, R.drawable.msg_mute_1h, LocaleController.getString(R.string.MuteFor1h), false, e6Var);
         this.d = c12;
         c12.setOnClickListener(new View.OnClickListener(this) {
-            public final fp f25078b;
+            public final fp f25015b;
 
             {
-                this.f25078b = this;
+                this.f25015b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.s();
                         return;
                     case 1:
-                        fp fpVar = this.f25078b;
+                        fp fpVar = this.f25015b;
                         fpVar.a();
-                        epVar.x(fpVar.f26455l);
+                        epVar.x(fpVar.f26480l);
                         return;
                     case 2:
-                        fp fpVar2 = this.f25078b;
+                        fp fpVar2 = this.f25015b;
                         fpVar2.a();
-                        epVar.x(fpVar2.f26454k);
+                        epVar.x(fpVar2.f26479k);
                         return;
                     case 3:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.p();
                         return;
                     case 4:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         AndroidUtilities.runOnUIThread(new rg(epVar, 27));
                         return;
                     default:
                         epVar.m();
-                        this.f25078b.a();
+                        this.f25015b.a();
                         return;
                 }
             }
         });
         org.telegram.ui.ActionBar.f1 c13 = org.telegram.ui.ActionBar.v0.c(false, false, dpVar, R.drawable.msg_mute_1h, LocaleController.getString(R.string.MuteFor1h), false, e6Var);
-        this.f26449e = c13;
+        this.f26474e = c13;
         c13.setOnClickListener(new View.OnClickListener(this) {
-            public final fp f25078b;
+            public final fp f25015b;
 
             {
-                this.f25078b = this;
+                this.f25015b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.s();
                         return;
                     case 1:
-                        fp fpVar = this.f25078b;
+                        fp fpVar = this.f25015b;
                         fpVar.a();
-                        epVar.x(fpVar.f26455l);
+                        epVar.x(fpVar.f26480l);
                         return;
                     case 2:
-                        fp fpVar2 = this.f25078b;
+                        fp fpVar2 = this.f25015b;
                         fpVar2.a();
-                        epVar.x(fpVar2.f26454k);
+                        epVar.x(fpVar2.f26479k);
                         return;
                     case 3:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.p();
                         return;
                     case 4:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         AndroidUtilities.runOnUIThread(new rg(epVar, 27));
                         return;
                     default:
                         epVar.m();
-                        this.f25078b.a();
+                        this.f25015b.a();
                         return;
                 }
             }
@@ -182,91 +182,91 @@ public final class fp {
         Integer num2 = num;
         org.telegram.ui.ActionBar.v0.c(false, false, dpVar, R.drawable.msg_mute_period, LocaleController.getString(R.string.MuteForPopup), false, e6Var).setOnClickListener(new cp(this, context, e6Var, i10, epVar, 0));
         org.telegram.ui.ActionBar.v0.c(false, false, dpVar, R.drawable.msg_customize, LocaleController.getString(R.string.NotificationsCustomize), false, e6Var).setOnClickListener(new View.OnClickListener(this) {
-            public final fp f25078b;
+            public final fp f25015b;
 
             {
-                this.f25078b = this;
+                this.f25015b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.s();
                         return;
                     case 1:
-                        fp fpVar = this.f25078b;
+                        fp fpVar = this.f25015b;
                         fpVar.a();
-                        epVar.x(fpVar.f26455l);
+                        epVar.x(fpVar.f26480l);
                         return;
                     case 2:
-                        fp fpVar2 = this.f25078b;
+                        fp fpVar2 = this.f25015b;
                         fpVar2.a();
-                        epVar.x(fpVar2.f26454k);
+                        epVar.x(fpVar2.f26479k);
                         return;
                     case 3:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.p();
                         return;
                     case 4:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         AndroidUtilities.runOnUIThread(new rg(epVar, 27));
                         return;
                     default:
                         epVar.m();
-                        this.f25078b.a();
+                        this.f25015b.a();
                         return;
                 }
             }
         });
         org.telegram.ui.ActionBar.f1 c14 = org.telegram.ui.ActionBar.v0.c(false, false, dpVar, 0, "", false, e6Var);
-        this.f26448c = c14;
+        this.f26473c = c14;
         c14.setOnClickListener(new View.OnClickListener(this) {
-            public final fp f25078b;
+            public final fp f25015b;
 
             {
-                this.f25078b = this;
+                this.f25015b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.s();
                         return;
                     case 1:
-                        fp fpVar = this.f25078b;
+                        fp fpVar = this.f25015b;
                         fpVar.a();
-                        epVar.x(fpVar.f26455l);
+                        epVar.x(fpVar.f26480l);
                         return;
                     case 2:
-                        fp fpVar2 = this.f25078b;
+                        fp fpVar2 = this.f25015b;
                         fpVar2.a();
-                        epVar.x(fpVar2.f26454k);
+                        epVar.x(fpVar2.f26479k);
                         return;
                     case 3:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.p();
                         return;
                     case 4:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         AndroidUtilities.runOnUIThread(new rg(epVar, 27));
                         return;
                     default:
                         epVar.m();
-                        this.f25078b.a();
+                        this.f25015b.a();
                         return;
                 }
             }
         });
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f26456m = frameLayout;
+        this.f26481m = frameLayout;
         frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.H8, e6Var));
         dpVar.a(frameLayout, w7.x5.n(-1, 8));
         TextView textView = new TextView(context);
-        this.f26457n = textView;
+        this.f26482n = textView;
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setTextSize(i12, 13.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.E8, e6Var));
@@ -275,40 +275,40 @@ public final class fp {
         dpVar.a(textView, w7.x5.n(-2, -2));
         textView.setBackground(org.telegram.ui.ActionBar.i6.Z(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.I5, e6Var), 0, 6));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final fp f25078b;
+            public final fp f25015b;
 
             {
-                this.f25078b = this;
+                this.f25015b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.s();
                         return;
                     case 1:
-                        fp fpVar = this.f25078b;
+                        fp fpVar = this.f25015b;
                         fpVar.a();
-                        epVar.x(fpVar.f26455l);
+                        epVar.x(fpVar.f26480l);
                         return;
                     case 2:
-                        fp fpVar2 = this.f25078b;
+                        fp fpVar2 = this.f25015b;
                         fpVar2.a();
-                        epVar.x(fpVar2.f26454k);
+                        epVar.x(fpVar2.f26479k);
                         return;
                     case 3:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         epVar.p();
                         return;
                     case 4:
-                        this.f25078b.a();
+                        this.f25015b.a();
                         AndroidUtilities.runOnUIThread(new rg(epVar, 27));
                         return;
                     default:
                         epVar.m();
-                        this.f25078b.a();
+                        this.f25015b.a();
                         return;
                 }
             }
@@ -348,19 +348,19 @@ public final class fp {
             n1Var.d(true);
             this.h.d(true);
         }
-        this.f26452i.dismiss();
-        this.f26453j = System.currentTimeMillis();
+        this.f26477i.dismiss();
+        this.f26478j = System.currentTimeMillis();
     }
 
     public final void c(org.telegram.ui.ActionBar.n2 n2Var, View view, float f7, float f10, boolean z10) {
         float measuredWidth;
         float measuredHeight;
         if (n2Var.getFragmentView() != null) {
-            dp dpVar = this.f26450f;
+            dp dpVar = this.f26475f;
             org.telegram.ui.ActionBar.n1 n1Var = new org.telegram.ui.ActionBar.n1(dpVar, -2, -2);
             this.h = n1Var;
-            n1Var.f21415e = true;
-            n1Var.f21414c = 220;
+            n1Var.f21419e = true;
+            n1Var.f21418c = 220;
             n1Var.setOutsideTouchable(true);
             this.h.setClippingEnabled(true);
             this.h.setAnimationStyle(R.style.PopupContextAnimation);
@@ -392,21 +392,21 @@ public final class fp {
         int i10;
         int i11;
         int i12;
-        if (System.currentTimeMillis() - this.f26453j < 200) {
+        if (System.currentTimeMillis() - this.f26478j < 200) {
             AndroidUtilities.runOnUIThread(new a3.g0(this, j3, j10, hashSet, 13));
             return;
         }
-        int i13 = this.f26451g;
+        int i13 = this.f26476g;
         boolean isDialogMuted = MessagesController.getInstance(i13).isDialogMuted(j3, j10);
-        org.telegram.ui.ActionBar.f1 f1Var = this.f26447b;
-        org.telegram.ui.ActionBar.f1 f1Var2 = this.f26448c;
+        org.telegram.ui.ActionBar.f1 f1Var = this.f26472b;
+        org.telegram.ui.ActionBar.f1 f1Var2 = this.f26473c;
         if (isDialogMuted) {
             f1Var2.g(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute, null);
-            i10 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21165x6, false);
+            i10 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21169x6, false);
             f1Var.setVisibility(8);
         } else {
             f1Var2.g(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute, null);
-            int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21037q7, false);
+            int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21041q7, false);
             f1Var.setVisibility(0);
             if (MessagesController.getInstance(i13).isDialogNotificationsSoundEnabled(j3, j10)) {
                 f1Var.g(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off, null);
@@ -415,10 +415,10 @@ public final class fp {
             }
             i10 = x02;
         }
-        if (this.f26458o == 1) {
-            this.f26446a.setVisibility(8);
+        if (this.f26483o == 1) {
+            this.f26471a.setVisibility(8);
         }
-        if (!isDialogMuted && this.f26458o != 1) {
+        if (!isDialogMuted && this.f26483o != 1) {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i13);
             i12 = notificationsSettings.getInt("last_selected_mute_until_time", 0);
             i11 = notificationsSettings.getInt("last_selected_mute_until_time2", 0);
@@ -428,30 +428,30 @@ public final class fp {
         }
         org.telegram.ui.ActionBar.f1 f1Var3 = this.d;
         if (i12 != 0) {
-            this.f26455l = i12;
+            this.f26480l = i12;
             f1Var3.setVisibility(0);
-            f1Var3.getImageView().setImageDrawable(a31.a(i12));
+            f1Var3.getImageView().setImageDrawable(b31.a(i12));
             f1Var3.setText(b(i12));
         } else {
             f1Var3.setVisibility(8);
         }
-        org.telegram.ui.ActionBar.f1 f1Var4 = this.f26449e;
+        org.telegram.ui.ActionBar.f1 f1Var4 = this.f26474e;
         if (i11 != 0) {
-            this.f26454k = i11;
+            this.f26479k = i11;
             f1Var4.setVisibility(0);
-            f1Var4.getImageView().setImageDrawable(a31.a(i11));
+            f1Var4.getImageView().setImageDrawable(b31.a(i11));
             f1Var4.setText(b(i11));
         } else {
             f1Var4.setVisibility(8);
         }
         f1Var2.c(i10, i10);
         f1Var2.setSelectorColor(org.telegram.ui.ActionBar.i6.m1(0.1f, i10));
-        FrameLayout frameLayout = this.f26456m;
-        TextView textView = this.f26457n;
+        FrameLayout frameLayout = this.f26481m;
+        TextView textView = this.f26482n;
         if (hashSet != null && !hashSet.isEmpty()) {
             frameLayout.setVisibility(0);
             textView.setVisibility(0);
-            textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), org.telegram.ui.ActionBar.i6.f20982n6, 1, null));
+            textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), org.telegram.ui.ActionBar.i6.f20986n6, 1, null));
             return;
         }
         frameLayout.setVisibility(8);

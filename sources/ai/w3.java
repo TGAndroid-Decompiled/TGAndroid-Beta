@@ -29,9 +29,9 @@ public final class w3 extends AnimatorListenerAdapter {
                 f6Var2.N2.unlock();
                 f6Var2.H2 = f6Var2.f992o2;
                 b4 b4Var = f6Var2.f952b2;
-                if (b4Var != null && (runnable = b4Var.f23977w) != null) {
+                if (b4Var != null && (runnable = b4Var.f23981w) != null) {
                     runnable.run();
-                    b4Var.f23977w = null;
+                    b4Var.f23981w = null;
                 }
                 if (f6Var2.K1 && !f6Var2.f1013v2) {
                     kc kcVar = ((bc) f6Var2.Q1).d;

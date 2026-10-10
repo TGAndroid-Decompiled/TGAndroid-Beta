@@ -11,8 +11,8 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.ru;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.su;
 public final class e implements Runnable {
     public final int f4986a;
     public final m f4987b;
@@ -73,14 +73,14 @@ public final class e implements Runnable {
                     }
                     mVar.f5567q0.addListener(new ai.n(7, mVar, z10));
                     if (z10) {
-                        mVar.f5567q0.setInterpolator(org.telegram.ui.ActionBar.p1.f21455w);
+                        mVar.f5567q0.setInterpolator(org.telegram.ui.ActionBar.p1.f21459w);
                         mVar.f5567q0.setDuration(250L);
                     } else {
                         mVar.f5567q0.setInterpolator(new u1.a());
                         mVar.f5567q0.setDuration(420L);
                     }
                     mVar.f5567q0.start();
-                    ru editText = gVar.getEditText();
+                    su editText = gVar.getEditText();
                     if (editText != null && editText.getLayout() != null) {
                         ObjectAnimator objectAnimator = mVar.f5557g0;
                         if (objectAnimator != null) {
@@ -88,7 +88,7 @@ public final class e implements Runnable {
                         }
                         int scrollY = editText.getScrollY();
                         if (z10) {
-                            i10 = gVar.f33649a.length();
+                            i10 = gVar.f24637a.length();
                         } else {
                             i10 = 0;
                         }
@@ -104,7 +104,7 @@ public final class e implements Runnable {
                         ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", scrollY, i11);
                         mVar.f5557g0 = ofInt;
                         ofInt.setDuration(360L);
-                        mVar.f5557g0.setInterpolator(hs.h);
+                        mVar.f5557g0.setInterpolator(is.h);
                         mVar.f5557g0.start();
                     }
                     gVar.setSuggestionsEnabled(z10);

@@ -1,78 +1,116 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class gz extends FrameLayout {
-    public final ImageView f26897a;
-    public final TextView f26898b;
-    public final RadialProgressView f26899c;
-    public boolean d;
-    public final a00 f26900e;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.FileLoader;
+import org.telegram.tgnet.TLRPC;
+public final class gz extends e00 {
+    public final nw0 X;
+    public final b00 Y;
 
-    public gz(a00 a00Var, Context context) {
-        super(context);
-        this.f26900e = a00Var;
-        ImageView imageView = new ImageView(getContext());
-        this.f26897a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.gif_empty);
-        int i10 = org.telegram.ui.ActionBar.i6.Le;
-        imageView.setColorFilter(new PorterDuffColorFilter(a00Var.B(i10), PorterDuff.Mode.MULTIPLY));
-        addView(imageView, w7.x5.a(-2.0f, 0.0f, 8.0f, 0.0f, 0.0f, -2, 17));
-        TextView textView = new TextView(getContext());
-        this.f26898b = textView;
-        org.telegram.messenger.bi.j(16.0f, R.string.NoGIFsFound, 1, textView);
-        textView.setTextColor(a00Var.B(i10));
-        addView(textView, w7.x5.a(-2.0f, 0.0f, 42.0f, 0.0f, 0.0f, -2, 17));
-        RadialProgressView radialProgressView = new RadialProgressView(context, a00Var.Z1);
-        this.f26899c = radialProgressView;
-        radialProgressView.setVisibility(8);
-        radialProgressView.setProgressColor(a00Var.B(org.telegram.ui.ActionBar.i6.f20869h6));
-        addView(radialProgressView, w7.x5.e(-2, -2, 17));
-    }
-
-    public final void a(boolean z10) {
-        int i10;
-        int i11;
-        if (this.d != z10) {
-            this.d = z10;
-            int i12 = 0;
-            if (z10) {
-                i10 = 8;
-            } else {
-                i10 = 0;
-            }
-            this.f26897a.setVisibility(i10);
-            if (z10) {
-                i11 = 8;
-            } else {
-                i11 = 0;
-            }
-            this.f26898b.setVisibility(i11);
-            if (!z10) {
-                i12 = 8;
-            }
-            this.f26899c.setVisibility(i12);
-        }
+    public gz(b00 b00Var) {
+        super(100, true);
+        this.Y = b00Var;
+        this.X = new Object();
+        this.O = new ci.w1(this, 4);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int dp;
-        a00 a00Var = this.f26900e;
-        int measuredHeight = a00Var.f24417h0.getMeasuredHeight();
-        if (!this.d) {
-            dp = (int) (org.telegram.messenger.bi.A(8.0f, measuredHeight - a00Var.f24397b1, 3) * 1.7f);
-        } else {
-            dp = measuredHeight - AndroidUtilities.dp(80.0f);
+    public final int A() {
+        b00 b00Var = this.Y;
+        s4.i0 adapter = b00Var.f24705h0.getAdapter();
+        fz fzVar = b00Var.f24711j0;
+        if (adapter == fzVar && fzVar.f26543x.isEmpty()) {
+            return 0;
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
+        return B() - 1;
+    }
+
+    @Override
+    public final nw0 D1(int i10) {
+        ArrayList<TLRPC.DocumentAttribute> arrayList;
+        TLRPC.Document document;
+        b00 b00Var = this.Y;
+        fz fzVar = b00Var.f24711j0;
+        s4.i0 adapter = b00Var.f24705h0.getAdapter();
+        fz fzVar2 = b00Var.f24722n0;
+        TLRPC.Document document2 = null;
+        r4 = null;
+        ArrayList<TLRPC.DocumentAttribute> arrayList2 = null;
+        if (adapter == fzVar2) {
+            int i11 = fzVar2.H;
+            if (i10 > i11) {
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) fzVar2.f26543x.get((i10 - i11) - 1);
+                document = botInlineResult.document;
+                if (document != null) {
+                    arrayList2 = document.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument = botInlineResult.content;
+                    if (webDocument != null) {
+                        arrayList2 = webDocument.attributes;
+                    } else {
+                        TLRPC.WebDocument webDocument2 = botInlineResult.thumb;
+                        if (webDocument2 != null) {
+                            arrayList2 = webDocument2.attributes;
+                        }
+                    }
+                }
+                arrayList = arrayList2;
+                document2 = document;
+                return F1(document2, arrayList);
+            } else if (i10 == i11) {
+                return null;
+            } else {
+                document2 = (TLRPC.Document) b00Var.f24709i1.get(i10);
+                arrayList = document2.attributes;
+                return F1(document2, arrayList);
+            }
+        } else if (!fzVar.f26543x.isEmpty()) {
+            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) fzVar.f26543x.get(i10);
+            document = botInlineResult2.document;
+            if (document != null) {
+                arrayList2 = document.attributes;
+            } else {
+                TLRPC.WebDocument webDocument3 = botInlineResult2.content;
+                if (webDocument3 != null) {
+                    arrayList2 = webDocument3.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument4 = botInlineResult2.thumb;
+                    if (webDocument4 != null) {
+                        arrayList2 = webDocument4.attributes;
+                    }
+                }
+            }
+            arrayList = arrayList2;
+            document2 = document;
+            return F1(document2, arrayList);
+        } else {
+            arrayList = null;
+            return F1(document2, arrayList);
+        }
+    }
+
+    public final nw0 F1(TLRPC.Document document, List list) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        int i10;
+        int i11;
+        nw0 nw0Var = this.X;
+        nw0Var.f29261b = 100.0f;
+        nw0Var.f29260a = 100.0f;
+        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i10 = closestPhotoSizeWithSize.f20067w) != 0 && (i11 = closestPhotoSizeWithSize.h) != 0) {
+            nw0Var.f29260a = i10;
+            nw0Var.f29261b = i11;
+        }
+        if (list != null) {
+            for (int i12 = 0; i12 < list.size(); i12++) {
+                TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i12);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                    nw0Var.f29260a = documentAttribute.f20049w;
+                    nw0Var.f29261b = documentAttribute.h;
+                    break;
+                }
+            }
+        }
+        return nw0Var;
     }
 }

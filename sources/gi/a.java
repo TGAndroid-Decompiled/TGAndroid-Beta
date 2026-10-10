@@ -13,11 +13,11 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.n61;
-import org.telegram.ui.Components.o91;
-import org.telegram.ui.Wallet.c4;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.p91;
+import org.telegram.ui.Wallet.d4;
 import yf.p;
 public final class a extends View {
     public final int f10893a = 1;
@@ -28,14 +28,14 @@ public final class a extends View {
 
     public a(Activity activity, e6 e6Var) {
         super(activity);
-        this.f10895c = new me.b(this, hs.h, 380L);
+        this.f10895c = new me.b(this, is.h, 380L);
         this.f10894b = new Paint(1);
         this.d = e6Var;
-        n61 n61Var = new n61(true);
-        this.f10896e = n61Var;
-        n61Var.setCallback(this);
-        n61Var.b(-1);
-        n61Var.f29058i = true;
+        o61 o61Var = new o61(true);
+        this.f10896e = o61Var;
+        o61Var.setCallback(this);
+        o61Var.b(-1);
+        o61Var.f29360i = true;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class a extends View {
         switch (this.f10893a) {
             case 1:
                 super.onAttachedToWindow();
-                ((n61) this.f10896e).d();
+                ((o61) this.f10896e).d();
                 return;
             case 2:
             default:
@@ -62,7 +62,7 @@ public final class a extends View {
         switch (this.f10893a) {
             case 1:
                 super.onDetachedFromWindow();
-                ((n61) this.f10896e).e();
+                ((o61) this.f10896e).e();
                 return;
             case 2:
             default:
@@ -100,10 +100,10 @@ public final class a extends View {
                 Paint paint = this.f10894b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, AndroidUtilities.dp(19.0f), paint);
-                float f7 = ((me.b) this.f10895c).f16337e;
+                float f7 = ((me.b) this.f10895c).f16341e;
                 float f10 = 1.0f - f7;
                 if (f10 > 0.0f) {
-                    p.b(canvas, (n61) this.f10896e, f10 * 1.35f);
+                    p.b(canvas, (o61) this.f10896e, f10 * 1.35f);
                     invalidate();
                 }
                 if (f7 > 0.0f) {
@@ -114,14 +114,14 @@ public final class a extends View {
                 }
                 return;
             case 2:
-                c4 c4Var = (c4) this.f10896e;
-                c4Var.getClass();
-                int themedColor = c4Var.getThemedColor(i6.f20797d6);
+                d4 d4Var = (d4) this.f10896e;
+                d4Var.getClass();
+                int themedColor = d4Var.getThemedColor(i6.f20801d6);
                 Paint paint2 = this.f10894b;
                 paint2.setColor(themedColor);
-                c4Var.f34721b0.getLocationInWindow((int[]) this.f10895c);
+                d4Var.f34810b0.getLocationInWindow((int[]) this.f10895c);
                 getLocationInWindow((int[]) this.d);
-                for (View view : ((o91) c4Var.f34721b0).getViewPages()) {
+                for (View view : ((p91) d4Var.f34810b0).getViewPages()) {
                     if (view != null && view.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view.getLeft() + (iArr[0] - iArr2[0]), view.getTop() + (iArr[1] - iArr2[1]));
@@ -166,7 +166,7 @@ public final class a extends View {
         switch (this.f10893a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
-                p.d((n61) this.f10896e, i10 / 2.0f, i11 / 2.0f, 17);
+                p.d((o61) this.f10896e, i10 / 2.0f, i11 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -178,7 +178,7 @@ public final class a extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f10893a) {
             case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((n61) this.f10896e) || ((me.b) this.f10895c).f16338f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((o61) this.f10896e) || ((me.b) this.f10895c).f16342f)) {
                     return false;
                 }
                 return true;
@@ -197,13 +197,13 @@ public final class a extends View {
         this.d = paint3;
         this.f10896e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(i6.w0(i6.f20797d6, e6Var));
+        paint.setColor(i6.w0(i6.f20801d6, e6Var));
         paint3.setColor(i6.w0(i6.wj, e6Var));
     }
 
-    public a(c4 c4Var, Context context) {
+    public a(d4 d4Var, Context context) {
         super(context);
-        this.f10896e = c4Var;
+        this.f10896e = d4Var;
         this.f10894b = new Paint(1);
         this.f10895c = new int[2];
         this.d = new int[2];

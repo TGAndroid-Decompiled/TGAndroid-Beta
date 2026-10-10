@@ -70,7 +70,7 @@ public final class f4 extends FrameLayout {
 
     public void setProgress(float f7) {
         this.f9067b = f7;
-        this.d = i0.a.d(f7, i6.x0(null, i6.f20787cf, false), this.f9068c);
+        this.d = i0.a.d(f7, i6.x0(null, i6.f20791cf, false), this.f9068c);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             getChildAt(i10).setAlpha(f7);
         }

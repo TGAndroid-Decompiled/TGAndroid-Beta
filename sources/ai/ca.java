@@ -32,10 +32,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ba0;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.fa0;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.ga0;
+import org.telegram.ui.Components.is;
 public final class ca implements Runnable {
     public final int f788a;
     public final Object f789b;
@@ -77,15 +77,15 @@ public final class ca implements Runnable {
                 return;
             case 1:
                 wa waVar = (wa) this.f789b;
-                fa0 fa0Var = (fa0) this.f790c;
-                fa0 fa0Var2 = waVar.f1868a;
-                if (fa0Var == fa0Var2 && fa0Var2 != null) {
-                    CharacterStyle characterStyle = fa0Var2.f26330i;
+                ga0 ga0Var = (ga0) this.f790c;
+                ga0 ga0Var2 = waVar.f1868a;
+                if (ga0Var == ga0Var2 && ga0Var2 != null) {
+                    CharacterStyle characterStyle = ga0Var2.f26673i;
                     if (characterStyle instanceof URLSpan) {
                         xa xaVar = waVar.v;
-                        ba0 ba0Var = waVar.f1870c;
-                        Objects.requireNonNull(ba0Var);
-                        xaVar.J.H((URLSpan) characterStyle, xaVar, new a3.d(ba0Var, 18));
+                        ca0 ca0Var = waVar.f1870c;
+                        Objects.requireNonNull(ca0Var);
+                        xaVar.J.H((URLSpan) characterStyle, xaVar, new a3.d(ca0Var, 18));
                         waVar.f1868a = null;
                         return;
                     }
@@ -142,7 +142,7 @@ public final class ca implements Runnable {
                 }
                 return;
             case 8:
-                ((c1.e) this.f789b).e().onError(((kotlin.jvm.internal.p) this.f790c).f15180a);
+                ((c1.e) this.f789b).e().onError(((kotlin.jvm.internal.p) this.f790c).f15184a);
                 return;
             case 9:
                 ((c1.e) this.f789b).e().onError((w0.h) this.f790c);
@@ -158,7 +158,7 @@ public final class ca implements Runnable {
                 ca.c cVar = (ca.c) this.f789b;
                 CountDownLatch countDownLatch = (CountDownLatch) this.f790c;
                 try {
-                    l5.s.a().d.e(cVar.h.f15430a.b(i5.d.f12016c), 1);
+                    l5.s.a().d.e(cVar.h.f15434a.b(i5.d.f12016c), 1);
                 } catch (SQLException unused2) {
                 }
                 countDownLatch.countDown();
@@ -269,7 +269,7 @@ public final class ca implements Runnable {
                 pVar.f5688w.addUpdateListener(new ci.m7(pVar, n7Var.getScaleX(), width, ((c2Var.getWidth() / 2.0f) + c2Var.getX()) - ((n7Var.getWidth() / 2.0f) + n7Var.getX()), ((c2Var.getHeight() / 2.0f) + c2Var.getY()) - ((n7Var.getHeight() / 2.0f) + n7Var.getY()), 0));
                 pVar.f5688w.addListener(new z(4, pVar, c2Var));
                 pVar.f5688w.setDuration(320L);
-                pVar.f5688w.setInterpolator(hs.h);
+                pVar.f5688w.setInterpolator(is.h);
                 pVar.v = c2Var;
                 pVar.f5688w.start();
                 return;
@@ -303,7 +303,7 @@ public final class ca implements Runnable {
                         }
                         if (document != null) {
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_inputDocument.f20050id = document.f20044id;
+                            tL_inputDocument.f20054id = document.f20048id;
                             tL_inputDocument.access_hash = document.access_hash;
                             tL_inputDocument.file_reference = document.file_reference;
                             l8Var2.V0.add(tL_inputDocument);
@@ -319,7 +319,7 @@ public final class ca implements Runnable {
                 ci.u8 u8Var = (ci.u8) this.f789b;
                 TextView textView = (TextView) this.f790c;
                 ClipboardManager clipboardManager = (ClipboardManager) u8Var.getContext().getSystemService("clipboard");
-                org.telegram.ui.Cells.h3 h3Var = u8Var.Y.f22297b;
+                org.telegram.ui.Cells.h3 h3Var = u8Var.Y.f22301b;
                 if ((TextUtils.isEmpty(h3Var.getText()) || TextUtils.equals(h3Var.getText(), "https://") || TextUtils.isEmpty(h3Var.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     i10 = 1;
                 }
@@ -337,7 +337,7 @@ public final class ca implements Runnable {
                 if (i10 == 0) {
                     f10 = 0.7f;
                 }
-                bi.t(scaleX.scaleY(f10), hs.h, 300L);
+                bi.t(scaleX.scaleY(f10), is.h, 300L);
                 return;
         }
     }

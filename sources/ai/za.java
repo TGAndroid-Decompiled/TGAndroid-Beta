@@ -13,7 +13,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sh0;
+import org.telegram.ui.Components.th0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cj;
 import org.telegram.ui.m70;
@@ -61,7 +61,7 @@ public final class za implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new gg.d1(tL_error, tLObject, (ArrayList) obj3, this.f2024b, (AtomicInteger) obj4, (ArrayList) obj, (vq) obj2));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new db((sh0) obj4, (Integer[]) obj, this.f2024b, tLObject, (ArrayList) obj3, (TLRPC.PollAnswerVoters) obj2));
+                AndroidUtilities.runOnUIThread(new db((th0) obj4, (Integer[]) obj, this.f2024b, tLObject, (ArrayList) obj3, (TLRPC.PollAnswerVoters) obj2));
                 return;
             case 6:
                 AndroidUtilities.runOnUIThread(new gg.d1((org.telegram.ui.ActionBar.b2) obj4, tLObject, this.f2024b, (TLRPC.Document) obj3, tL_error, this.f2026e, (TLRPC.TL_stickers_addStickerToSet) obj2));

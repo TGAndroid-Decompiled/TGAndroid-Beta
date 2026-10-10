@@ -2,36 +2,36 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLObject;
 public final class a7 implements Runnable {
-    public final int f17307a;
-    public final MediaDataController f17308b;
-    public final TLObject f17309c;
+    public final int f17311a;
+    public final MediaDataController f17312b;
+    public final TLObject f17313c;
 
     public a7(MediaDataController mediaDataController, TLObject tLObject, int i10) {
-        this.f17307a = i10;
-        this.f17308b = mediaDataController;
-        this.f17309c = tLObject;
+        this.f17311a = i10;
+        this.f17312b = mediaDataController;
+        this.f17313c = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f17307a) {
+        switch (this.f17311a) {
             case 0:
-                this.f17308b.lambda$checkPremiumGiftStickers$75(this.f17309c);
+                this.f17312b.lambda$checkPremiumGiftStickers$75(this.f17313c);
                 return;
             case 1:
-                this.f17308b.lambda$loadReactions$13(this.f17309c);
+                this.f17312b.lambda$loadReactions$13(this.f17313c);
                 return;
             case 2:
-                this.f17308b.lambda$checkTonGiftStickers$77(this.f17309c);
+                this.f17312b.lambda$checkTonGiftStickers$77(this.f17313c);
                 return;
             case 3:
-                this.f17308b.lambda$checkDefaultTopicIcons$81(this.f17309c);
+                this.f17312b.lambda$checkDefaultTopicIcons$81(this.f17313c);
                 return;
             case 4:
-                this.f17308b.lambda$clearRecentStickers$18(this.f17309c);
+                this.f17312b.lambda$clearRecentStickers$18(this.f17313c);
                 return;
             default:
-                this.f17308b.lambda$checkGenericAnimations$79(this.f17309c);
+                this.f17312b.lambda$checkGenericAnimations$79(this.f17313c);
                 return;
         }
     }

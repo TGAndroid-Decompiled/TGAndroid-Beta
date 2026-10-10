@@ -8,45 +8,45 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.o6;
 import org.telegram.ui.Cells.z7;
 import org.telegram.ui.Components.aa;
-import org.telegram.ui.Components.xh0;
+import org.telegram.ui.Components.yh0;
 public final class z0 extends AnimatorListenerAdapter {
-    public final int f21738a;
-    public final float f21739b;
-    public final Object f21740c;
+    public final int f21742a;
+    public final float f21743b;
+    public final Object f21744c;
 
     public z0(Object obj, float f7, int i10) {
-        this.f21738a = i10;
-        this.f21740c = obj;
-        this.f21739b = f7;
+        this.f21742a = i10;
+        this.f21744c = obj;
+        this.f21743b = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f21738a) {
+        switch (this.f21742a) {
             case 0:
-                c1 c1Var = (c1) this.f21740c;
+                c1 c1Var = (c1) this.f21744c;
                 c1Var.T = null;
-                c1Var.f20486a = this.f21739b;
+                c1Var.f20490a = this.f21743b;
                 c1Var.invalidate();
                 return;
             case 1:
-                v3 v3Var = (v3) this.f21740c;
-                v3Var.f21618i = this.f21739b;
-                w3 w3Var = v3Var.f21613b;
+                v3 v3Var = (v3) this.f21744c;
+                v3Var.f21622i = this.f21743b;
+                w3 w3Var = v3Var.f21617b;
                 if (w3Var != null) {
                     w3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
-                o6 o6Var = (o6) this.f21740c;
-                o6Var.F = this.f21739b;
+                o6 o6Var = (o6) this.f21744c;
+                o6Var.F = this.f21743b;
                 o6Var.invalidate();
                 return;
             case 3:
                 ColorMatrix colorMatrix = new ColorMatrix();
-                z7 z7Var = (z7) this.f21740c;
-                float f7 = this.f21739b;
+                z7 z7Var = (z7) this.f21744c;
+                float f7 = this.f21743b;
                 z7Var.v = f7;
                 colorMatrix.setSaturation(f7);
                 if (i6.I.q()) {
@@ -55,31 +55,31 @@ public final class z0 extends AnimatorListenerAdapter {
                 z7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 return;
             case 4:
-                aa aaVar = (aa) this.f21740c;
-                aaVar.f24645g = this.f21739b;
+                aa aaVar = (aa) this.f21744c;
+                aaVar.f24525g = this.f21743b;
                 aaVar.invalidateSelf();
                 return;
             case 5:
-                xh0 xh0Var = (xh0) this.f21740c;
-                xh0Var.H.unlock();
-                float f10 = this.f21739b;
-                xh0Var.f32865b = f10;
+                yh0 yh0Var = (yh0) this.f21744c;
+                yh0Var.H.unlock();
+                float f10 = this.f21743b;
+                yh0Var.f33207b = f10;
                 if (f10 <= 0.0f) {
-                    xh0Var.G = -1;
+                    yh0Var.G = -1;
                 }
-                xh0Var.c(true);
-                xh0Var.f32868f = false;
-                if (xh0Var.O != null && Math.abs(f10 - 1.0f) < 0.01f) {
-                    xh0Var.O.run();
+                yh0Var.c(true);
+                yh0Var.f33210f = false;
+                if (yh0Var.O != null && Math.abs(f10 - 1.0f) < 0.01f) {
+                    yh0Var.O.run();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.a5 a5Var = (org.telegram.ui.Wallet.a5) this.f21740c;
-                if (a5Var.f34629k0 == animator) {
-                    a5Var.f34629k0 = null;
-                    a5Var.x0(this.f21739b);
-                    a5Var.f34632n0.o(false);
+                org.telegram.ui.Wallet.b5 b5Var = (org.telegram.ui.Wallet.b5) this.f21744c;
+                if (b5Var.f34720k0 == animator) {
+                    b5Var.f34720k0 = null;
+                    b5Var.x0(this.f21743b);
+                    b5Var.f34723n0.o(false);
                     return;
                 }
                 return;
@@ -88,11 +88,11 @@ public final class z0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f21738a) {
+        switch (this.f21742a) {
             case 5:
-                xh0 xh0Var = (xh0) this.f21740c;
-                xh0Var.f32868f = true;
-                xh0Var.f32866c = this.f21739b;
+                yh0 yh0Var = (yh0) this.f21744c;
+                yh0Var.f33210f = true;
+                yh0Var.f33208c = this.f21743b;
                 return;
             default:
                 super.onAnimationStart(animator);

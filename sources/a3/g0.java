@@ -19,7 +19,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.fp;
-import org.telegram.ui.Components.g11;
+import org.telegram.ui.Components.h11;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.fg1;
 import org.telegram.ui.ty;
@@ -48,7 +48,7 @@ public final class g0 implements Runnable {
                 long j3 = this.f127b;
                 long j10 = this.f128c;
                 String str2 = e2.d0.f8532a;
-                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45559c)).f11620a.f11683s;
+                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45603c)).f11620a.f11683s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j10, j3));
                 return;
@@ -60,7 +60,7 @@ public final class g0 implements Runnable {
                 long j11 = this.f127b;
                 long j12 = this.f128c;
                 String str4 = e2.d0.f8532a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.d).f16613c)).f11620a.f11683s;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.d).f16617c)).f11620a.f11683s;
                 j2.a p10 = fVar2.p();
                 fVar2.q(p10, 1008, new hg.o1(p10, str3, j12, j11));
                 return;
@@ -69,9 +69,9 @@ public final class g0 implements Runnable {
                 p0 p0Var = (p0) this.f129e;
                 long j13 = this.f127b;
                 long j14 = this.f128c;
-                synchronized (t0Var.f15118g) {
-                    if (!p0Var.d && !p0Var.f15070e) {
-                        ((g11) t0Var.f15116e).a(p0Var.f15067a, p0Var.f15068b, j13, j14);
+                synchronized (t0Var.f15122g) {
+                    if (!p0Var.d && !p0Var.f15074e) {
+                        ((h11) t0Var.f15120e).a(p0Var.f15071a, p0Var.f15072b, j13, j14);
                         return;
                     }
                     return;
@@ -115,7 +115,7 @@ public final class g0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j15, j16));
                     tyVar.C2.w(tyVar, arrayList, null, false, tyVar.J2, tyVar.K2, tyVar.L2, fg1Var);
-                    if (tyVar.f42197i2) {
+                    if (tyVar.f42241i2) {
                         tyVar.C2 = null;
                         return;
                     }
@@ -135,7 +135,7 @@ public final class g0 implements Runnable {
                 u10.append(" TL_forumTopic ");
                 u10.append(findTopic);
                 FileLog.d(u10.toString());
-                if (launchActivity.f33807q0 != null) {
+                if (launchActivity.f33845q0 != null) {
                     ng.d.a(znVar, MessagesStorage.TopicKey.of(-j17, j18));
                     ((ActionBarLayout) launchActivity.O()).P(znVar);
                     return;

@@ -45,7 +45,7 @@ public final class e extends f implements Handler.Callback {
     public boolean X;
     public s Y;
     public long Z;
-    public long f49760a0;
+    public long f49804a0;
 
     public e(c0 c0Var, Looper looper) {
         super(3);
@@ -63,7 +63,7 @@ public final class e extends f implements Handler.Callback {
         this.I = new Object();
         this.J = new h(1, 0);
         this.V = new x(19, false);
-        this.f49760a0 = -9223372036854775807L;
+        this.f49804a0 = -9223372036854775807L;
         this.Z = -9223372036854775807L;
     }
 
@@ -75,7 +75,7 @@ public final class e extends f implements Handler.Callback {
         if (!equals) {
             m2.t tVar = (m2.t) this.L;
             tVar.getClass();
-            if (!((ob.a) tVar.f15972b).D1(sVar) && !Objects.equals(str, "application/cea-608") && !Objects.equals(str, "application/x-mp4-cea-608") && !Objects.equals(str, "application/cea-708")) {
+            if (!((ob.a) tVar.f15976b).D1(sVar) && !Objects.equals(str, "application/cea-608") && !Objects.equals(str, "application/x-mp4-cea-608") && !Objects.equals(str, "application/cea-708")) {
                 if (r0.l(str)) {
                     return hg.c.b(1, 0, 0, 0);
                 }
@@ -208,7 +208,7 @@ public final class e extends f implements Handler.Callback {
     @Override
     public final void o() {
         this.Y = null;
-        this.f49760a0 = -9223372036854775807L;
+        this.f49804a0 = -9223372036854775807L;
         d2.d dVar = new d2.d(E(this.Z), a1.f8715e);
         Handler handler = this.T;
         if (handler != null) {
@@ -243,7 +243,7 @@ public final class e extends f implements Handler.Callback {
         }
         this.W = false;
         this.X = false;
-        this.f49760a0 = -9223372036854775807L;
+        this.f49804a0 = -9223372036854775807L;
         s sVar = this.Y;
         if (sVar != null && !Objects.equals(sVar.f3643r, "application/x-media3-cues")) {
             if (this.N != 0) {
@@ -292,7 +292,7 @@ public final class e extends f implements Handler.Callback {
         boolean z10;
         long j11;
         if (this.f11654y) {
-            long j12 = this.f49760a0;
+            long j12 = this.f49804a0;
             if (j12 != -9223372036854775807L && j3 >= j12) {
                 H();
                 this.X = true;
@@ -473,9 +473,9 @@ public final class e extends f implements Handler.Callback {
                                     this.W = true;
                                     this.M = false;
                                 } else {
-                                    s sVar2 = (s) xVar.f16613c;
+                                    s sVar2 = (s) xVar.f16617c;
                                     if (sVar2 != null) {
-                                        iVar.f53505r = sVar2.f3647w;
+                                        iVar.f53549r = sVar2.f3647w;
                                         iVar.c();
                                         this.M &= !iVar.isKeyFrame();
                                     } else {

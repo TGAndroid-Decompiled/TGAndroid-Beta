@@ -13,11 +13,11 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class uv0 implements org.telegram.ui.Components.az {
-    public final aw0 f42570a;
+public final class uv0 implements org.telegram.ui.Components.bz {
+    public final aw0 f42614a;
 
     public uv0(aw0 aw0Var) {
-        this.f42570a = aw0Var;
+        this.f42614a = aw0Var;
     }
 
     @Override
@@ -58,9 +58,9 @@ public final class uv0 implements org.telegram.ui.Components.az {
         } else {
             z10 = false;
         }
-        aw0 aw0Var = this.f42570a;
+        aw0 aw0Var = this.f42614a;
         aw0Var.B0 = z10;
-        aw0Var.f36041e.requestLayout();
+        aw0Var.f36085e.requestLayout();
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class uv0 implements org.telegram.ui.Components.az {
 
     @Override
     public final boolean k() {
-        EditTextBoldCursor editField = this.f42570a.f36037b0.getEditField();
+        EditTextBoldCursor editField = this.f42614a.f36081b0.getEditField();
         if (editField == null) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class uv0 implements org.telegram.ui.Components.az {
 
     @Override
     public final void l(String str) {
-        EditTextBoldCursor editField = this.f42570a.f36037b0.getEditField();
+        EditTextBoldCursor editField = this.f42614a.f36081b0.getEditField();
         if (editField == null) {
             return;
         }
@@ -101,12 +101,12 @@ public final class uv0 implements org.telegram.ui.Components.az {
     @Override
     public final void n() {
         org.telegram.ui.ActionBar.e6 e6Var;
-        aw0 aw0Var = this.f42570a;
+        aw0 aw0Var = this.f42614a;
         Activity parentActivity = aw0Var.getParentActivity();
         e6Var = ((org.telegram.ui.ActionBar.n2) aw0Var).resourceProvider;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(parentActivity, 0, e6Var);
-        alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new hq0(this, 4));
         hg.c.p(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -119,8 +119,8 @@ public final class uv0 implements org.telegram.ui.Components.az {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.b6 b6Var;
-        aw0 aw0Var = this.f42570a;
-        EditTextBoldCursor editField = aw0Var.f36037b0.getEditField();
+        aw0 aw0Var = this.f42614a;
+        EditTextBoldCursor editField = aw0Var.f36081b0.getEditField();
         if (editField == null) {
             return;
         }
@@ -135,7 +135,7 @@ public final class uv0 implements org.telegram.ui.Components.az {
             } else {
                 b6Var = new org.telegram.ui.Components.b6(j3, editField.getPaint().getFontMetricsInt());
             }
-            b6Var.cacheType = aw0Var.R.f24399c;
+            b6Var.cacheType = aw0Var.R.f24687c;
             spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
             editField.setText(editField.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -147,7 +147,7 @@ public final class uv0 implements org.telegram.ui.Components.az {
 
     @Override
     public final boolean z() {
-        return this.f42570a.B0;
+        return this.f42614a.B0;
     }
 
     @Override
@@ -155,7 +155,7 @@ public final class uv0 implements org.telegram.ui.Components.az {
     }
 
     @Override
-    public final void o(org.telegram.ui.Components.l61 l61Var) {
+    public final void o(org.telegram.ui.Components.m61 m61Var) {
     }
 
     @Override

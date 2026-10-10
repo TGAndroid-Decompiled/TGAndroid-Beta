@@ -18,67 +18,67 @@ import java.lang.reflect.Method;
 import java.util.WeakHashMap;
 public final class p3 implements View.OnLongClickListener, View.OnHoverListener, View.OnAttachStateChangeListener {
     public static p3 v;
-    public static p3 f15780w;
-    public final View f15781a;
-    public final CharSequence f15782b;
-    public final int f15783c;
+    public static p3 f15784w;
+    public final View f15785a;
+    public final CharSequence f15786b;
+    public final int f15787c;
     public final o3 d = new Runnable(this) {
-        public final p3 f15765b;
+        public final p3 f15769b;
 
         {
-            this.f15765b = this;
+            this.f15769b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f15765b.c(false);
+                    this.f15769b.c(false);
                     return;
                 default:
-                    this.f15765b.a();
+                    this.f15769b.a();
                     return;
             }
         }
     };
-    public final o3 f15784e = new Runnable(this) {
-        public final p3 f15765b;
+    public final o3 f15788e = new Runnable(this) {
+        public final p3 f15769b;
 
         {
-            this.f15765b = this;
+            this.f15769b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f15765b.c(false);
+                    this.f15769b.c(false);
                     return;
                 default:
-                    this.f15765b.a();
+                    this.f15769b.a();
                     return;
             }
         }
     };
-    public int f15785f;
+    public int f15789f;
     public int h;
-    public q3 f15786n;
-    public boolean f15787r;
-    public boolean f15788s;
+    public q3 f15790n;
+    public boolean f15791r;
+    public boolean f15792s;
 
     public p3(View view, CharSequence charSequence) {
         int scaledTouchSlop;
-        this.f15781a = view;
-        this.f15782b = charSequence;
+        this.f15785a = view;
+        this.f15786b = charSequence;
         ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-        Method method = r0.j0.f46770a;
+        Method method = r0.j0.f46814a;
         if (Build.VERSION.SDK_INT >= 28) {
             scaledTouchSlop = b5.d.o(viewConfiguration);
         } else {
             scaledTouchSlop = viewConfiguration.getScaledTouchSlop() / 2;
         }
-        this.f15783c = scaledTouchSlop;
-        this.f15788s = true;
+        this.f15787c = scaledTouchSlop;
+        this.f15792s = true;
         view.setOnLongClickListener(this);
         view.setOnHoverListener(this);
     }
@@ -86,27 +86,27 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
     public static void b(p3 p3Var) {
         p3 p3Var2 = v;
         if (p3Var2 != null) {
-            p3Var2.f15781a.removeCallbacks(p3Var2.d);
+            p3Var2.f15785a.removeCallbacks(p3Var2.d);
         }
         v = p3Var;
         if (p3Var != null) {
-            p3Var.f15781a.postDelayed(p3Var.d, ViewConfiguration.getLongPressTimeout());
+            p3Var.f15785a.postDelayed(p3Var.d, ViewConfiguration.getLongPressTimeout());
         }
     }
 
     public final void a() {
-        p3 p3Var = f15780w;
-        View view = this.f15781a;
+        p3 p3Var = f15784w;
+        View view = this.f15785a;
         if (p3Var == this) {
-            f15780w = null;
-            q3 q3Var = this.f15786n;
+            f15784w = null;
+            q3 q3Var = this.f15790n;
             if (q3Var != null) {
-                View view2 = (View) q3Var.f15796b;
+                View view2 = (View) q3Var.f15800b;
                 if (view2.getParent() != null) {
-                    ((WindowManager) ((Context) q3Var.f15795a).getSystemService("window")).removeView(view2);
+                    ((WindowManager) ((Context) q3Var.f15799a).getSystemService("window")).removeView(view2);
                 }
-                this.f15786n = null;
-                this.f15788s = true;
+                this.f15790n = null;
+                this.f15792s = true;
                 view.removeOnAttachStateChangeListener(this);
             } else {
                 Log.e("TooltipCompatHandler", "sActiveHandler.mPopup == null");
@@ -115,7 +115,7 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
         if (v == this) {
             b(null);
         }
-        view.removeCallbacks(this.f15784e);
+        view.removeCallbacks(this.f15788e);
     }
 
     public final void c(boolean z10) {
@@ -130,29 +130,29 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
         long longPressTimeout;
         long j3;
         long j10;
-        WeakHashMap weakHashMap = r0.i0.f46766a;
-        View view = this.f15781a;
+        WeakHashMap weakHashMap = r0.i0.f46810a;
+        View view = this.f15785a;
         if (!view.isAttachedToWindow()) {
             return;
         }
         b(null);
-        p3 p3Var = f15780w;
+        p3 p3Var = f15784w;
         if (p3Var != null) {
             p3Var.a();
         }
-        f15780w = this;
-        this.f15787r = z10;
+        f15784w = this;
+        this.f15791r = z10;
         Context context = view.getContext();
         ?? obj = new Object();
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         obj.d = layoutParams;
-        obj.f15798e = new Rect();
-        obj.f15799f = new int[2];
+        obj.f15802e = new Rect();
+        obj.f15803f = new int[2];
         obj.h = new int[2];
-        obj.f15795a = context;
+        obj.f15799a = context;
         View inflate = LayoutInflater.from(context).inflate(2131492891, (ViewGroup) null);
-        obj.f15796b = inflate;
-        obj.f15797c = (TextView) inflate.findViewById(2131296513);
+        obj.f15800b = inflate;
+        obj.f15801c = (TextView) inflate.findViewById(2131296513);
         layoutParams.setTitle(q3.class.getSimpleName());
         layoutParams.packageName = context.getPackageName();
         layoutParams.type = 1002;
@@ -161,20 +161,20 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
         layoutParams.format = -3;
         layoutParams.windowAnimations = 2131755014;
         layoutParams.flags = 24;
-        View view2 = (View) obj.f15796b;
-        Context context2 = (Context) obj.f15795a;
-        this.f15786n = obj;
-        int i16 = this.f15785f;
+        View view2 = (View) obj.f15800b;
+        Context context2 = (Context) obj.f15799a;
+        this.f15790n = obj;
+        int i16 = this.f15789f;
         int i17 = this.h;
-        boolean z12 = this.f15787r;
+        boolean z12 = this.f15791r;
         WindowManager.LayoutParams layoutParams2 = (WindowManager.LayoutParams) obj.d;
         if (view2.getParent() != null && view2.getParent() != null) {
             ((WindowManager) context2.getSystemService("window")).removeView(view2);
         }
-        ((TextView) obj.f15797c).setText(this.f15782b);
+        ((TextView) obj.f15801c).setText(this.f15786b);
         int[] iArr = (int[]) obj.h;
-        int[] iArr2 = (int[]) obj.f15799f;
-        Rect rect = (Rect) obj.f15798e;
+        int[] iArr2 = (int[]) obj.f15803f;
+        Rect rect = (Rect) obj.f15802e;
         layoutParams2.token = view.getApplicationWindowToken();
         int dimensionPixelOffset = context2.getResources().getDimensionPixelOffset(2131165359);
         if (view.getWidth() < dimensionPixelOffset) {
@@ -263,7 +263,7 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
         }
         ((WindowManager) context2.getSystemService("window")).addView(view2, layoutParams2);
         view.addOnAttachStateChangeListener(this);
-        if (this.f15787r) {
+        if (this.f15791r) {
             j10 = 2500;
         } else {
             if ((view.getWindowSystemUiVisibility() & 1) == i14) {
@@ -275,7 +275,7 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
             }
             j10 = j3 - longPressTimeout;
         }
-        o3 o3Var = this.f15784e;
+        o3 o3Var = this.f15788e;
         view.removeCallbacks(o3Var);
         view.postDelayed(o3Var, j10);
     }
@@ -287,7 +287,7 @@ public final class p3 implements View.OnLongClickListener, View.OnHoverListener,
 
     @Override
     public final boolean onLongClick(View view) {
-        this.f15785f = view.getWidth() / 2;
+        this.f15789f = view.getWidth() / 2;
         this.h = view.getHeight() / 2;
         c(true);
         return true;

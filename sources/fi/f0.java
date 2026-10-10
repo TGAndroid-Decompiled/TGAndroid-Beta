@@ -13,7 +13,7 @@ import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.l71;
 import org.telegram.ui.Components.y9;
 import w7.x5;
 public final class f0 extends h0 {
@@ -33,12 +33,12 @@ public final class f0 extends h0 {
         u uVar = new u(k0Var, 3);
         u uVar2 = new u(k0Var, 4);
         e6Var = ((f3) k0Var).resourcesProvider;
-        k71 k71Var = new k71(context, i10, 0, false, tVar, uVar, uVar2, e6Var);
-        this.d = k71Var;
-        k71Var.p1();
-        k71 k71Var2 = this.d;
-        k71Var2.W2.f25280r = false;
-        k71Var2.setClipToPadding(false);
+        l71 l71Var = new l71(context, i10, 0, false, tVar, uVar, uVar2, e6Var);
+        this.d = l71Var;
+        l71Var.p1();
+        l71 l71Var2 = this.d;
+        l71Var2.W2.f25587r = false;
+        l71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         AndroidUtilities.removeFromParent(this.f9974b);
         this.f9975c.addView(k0Var.F, x5.g());
@@ -49,9 +49,9 @@ public final class f0 extends h0 {
         this.f9973a = kVar;
         kVar.setOccupyStatusBar(false);
         this.f9973a.setTitleColor(k0Var.getThemedColor(i6.G6));
-        this.f9973a.C(k0Var.getThemedColor(i6.f21201z8), false);
+        this.f9973a.C(k0Var.getThemedColor(i6.f21205z8), false);
         this.f9973a.setBackButtonImage(R.drawable.ic_ab_back);
-        this.f9973a.D(k0Var.getThemedColor(i6.f21183y8), false);
+        this.f9973a.D(k0Var.getThemedColor(i6.f21187y8), false);
         this.f9973a.setTitle(DialogObject.getName(k0Var.f9993f));
         this.f9973a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f9973a.setActionBarMenuOnItemClick(new ei.t(this, 7));
@@ -92,7 +92,7 @@ public final class f0 extends h0 {
 
     @Override
     public final float b() {
-        return yf.e0.b(this.f9967r.f9990b.f16337e) * super.b();
+        return yf.e0.b(this.f9967r.f9990b.f16341e) * super.b();
     }
 
     @Override

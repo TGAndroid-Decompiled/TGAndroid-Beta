@@ -1,53 +1,77 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-public final class w2 {
-    public final HashSet f35611a = new HashSet();
-    public final HashMap f35612b = new HashMap();
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.q61;
+import org.telegram.ui.Components.rm0;
+public final class w2 extends p61 {
+    public static final int f35659a = 0;
 
-    public static String c(int i10, String str) {
-        if (str.length() <= (i10 * 2) + 1) {
-            return str;
-        }
-        return str.substring(0, i10) + "…" + str.substring(str.length() - i10);
+    static {
+        p61.setup(new p61());
     }
 
-    public final String a(String str) {
-        if (str == null) {
-            return null;
+    public static boolean a(TL_wallet.walletTransaction wallettransaction, TL_wallet.walletTransaction wallettransaction2) {
+        TL_wallet.walletTransaction wallettransaction3;
+        TL_wallet.walletTransaction wallettransaction4;
+        if (wallettransaction instanceof v2) {
+            wallettransaction3 = ((v2) wallettransaction).f35628a;
+        } else {
+            wallettransaction3 = wallettransaction;
         }
-        String str2 = (String) this.f35612b.get(str);
-        if (str2 == null) {
-            return str;
+        if (wallettransaction2 instanceof v2) {
+            wallettransaction4 = ((v2) wallettransaction2).f35628a;
+        } else {
+            wallettransaction4 = wallettransaction2;
         }
-        return str2;
+        if (wallettransaction3 != wallettransaction4 && !k0.d0(wallettransaction, wallettransaction2) && !k0.d0(wallettransaction3, wallettransaction4)) {
+            return false;
+        }
+        return true;
     }
 
-    public final void b(int i10, ArrayList arrayList) {
-        HashMap hashMap = new HashMap();
-        int size = arrayList.size();
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            String str = (String) obj;
-            String c10 = c(i10, str);
-            ArrayList arrayList2 = (ArrayList) hashMap.get(c10);
-            if (arrayList2 == null) {
-                arrayList2 = new ArrayList();
-                hashMap.put(c10, arrayList2);
+    @Override
+    public final void bindView(View view, q61 q61Var, boolean z10, d71 d71Var, l71 l71Var) {
+        ((y2) view).h((TL_wallet.walletTransaction) q61Var.G, (x2) q61Var.H, z10);
+    }
+
+    @Override
+    public final boolean contentsEquals(q61 q61Var, q61 q61Var2) {
+        Object obj = q61Var.G;
+        if (obj instanceof TL_wallet.walletTransaction) {
+            Object obj2 = q61Var2.G;
+            if (obj2 instanceof TL_wallet.walletTransaction) {
+                return ((TL_wallet.walletTransaction) obj).equals((TL_wallet.walletTransaction) obj2);
             }
-            arrayList2.add(str);
+            return false;
         }
-        for (ArrayList arrayList3 : hashMap.values()) {
-            if (arrayList3.size() == 1) {
-                String str2 = (String) arrayList3.get(0);
-                this.f35612b.put(str2, c(i10, str2));
-            } else {
-                b(i10 + 1, arrayList3);
+        return false;
+    }
+
+    @Override
+    public final View createView(Context context, rm0 rm0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new y2(context, i10, e6Var);
+    }
+
+    @Override
+    public final boolean equals(q61 q61Var, q61 q61Var2) {
+        Object obj = q61Var.G;
+        if (obj instanceof TL_wallet.walletTransaction) {
+            Object obj2 = q61Var2.G;
+            if (obj2 instanceof TL_wallet.walletTransaction) {
+                return a((TL_wallet.walletTransaction) obj, (TL_wallet.walletTransaction) obj2);
             }
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean isClickable() {
+        return true;
     }
 }

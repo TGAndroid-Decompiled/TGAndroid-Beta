@@ -1,130 +1,64 @@
 package org.telegram.ui.Components;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-public abstract class ef0 {
-    public static int f26080a = 1500;
+public final class ef0 implements Utilities.Callback {
+    public final int f26039a;
+    public final String[] f26040b;
+    public final Activity f26041c;
+    public final Utilities.Callback d;
 
-    public static boolean a() {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return false;
-        }
-        return activity.shouldShowRequestPermissionRationale("android.permission.POST_NOTIFICATIONS");
+    public ef0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
+        this.f26039a = i10;
+        this.f26040b = strArr;
+        this.f26041c = activity;
+        this.d = callback;
     }
 
-    public static void b(int i10, int i11, String[] strArr, Utilities.Callback callback) {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return;
-        }
-        for (String str : strArr) {
-            if (activity.checkSelfPermission(str) != 0) {
-                for (String str2 : strArr) {
-                    if (activity.shouldShowRequestPermissionRationale(str2)) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
-                        alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.L5, false), null);
-                        alertDialog$Builder.f20374a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
-                        alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new k1(activity, 2));
-                        alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                        alertDialog$Builder.f20374a.show();
-                        callback.run(Boolean.FALSE);
-                        return;
+    @Override
+    public final void run(Object obj) {
+        int[] iArr = (int[]) obj;
+        switch (this.f26039a) {
+            case 0:
+                String[] strArr = this.f26040b;
+                int length = strArr.length;
+                boolean z10 = false;
+                int i10 = 0;
+                while (true) {
+                    if (i10 < length) {
+                        if (this.f26041c.checkSelfPermission(strArr[i10]) == 0) {
+                            z10 = true;
+                        } else {
+                            i10++;
+                        }
                     }
                 }
-                e(strArr, new cf0(strArr, activity, callback, 1));
+                Utilities.Callback callback = this.d;
+                if (callback != null) {
+                    callback.run(Boolean.valueOf(z10));
+                    return;
+                }
                 return;
-            }
-        }
-        callback.run(Boolean.TRUE);
-    }
-
-    public static void c(int i10, int i11, String[] strArr, String[] strArr2, Utilities.Callback callback) {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return;
-        }
-        for (String str : strArr) {
-            if (activity.checkSelfPermission(str) == 0) {
-                callback.run(Boolean.TRUE);
+            default:
+                String[] strArr2 = this.f26040b;
+                int length2 = strArr2.length;
+                boolean z11 = false;
+                int i11 = 0;
+                while (true) {
+                    if (i11 < length2) {
+                        if (this.f26041c.checkSelfPermission(strArr2[i11]) == 0) {
+                            i11++;
+                        }
+                    } else {
+                        z11 = true;
+                    }
+                }
+                Utilities.Callback callback2 = this.d;
+                if (callback2 != null) {
+                    callback2.run(Boolean.valueOf(z11));
+                    return;
+                }
                 return;
-            }
-        }
-        for (String str2 : strArr) {
-            if (!activity.shouldShowRequestPermissionRationale(str2)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
-                alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.L5, false), null);
-                alertDialog$Builder.f20374a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
-                alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new k1(activity, 1));
-                alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                alertDialog$Builder.f20374a.show();
-                callback.run(Boolean.FALSE);
-                return;
-            }
-        }
-        e(strArr2, new cf0(strArr2, activity, callback, 0));
-    }
-
-    public static boolean d(String str) {
-        Context context = LaunchActivity.G1;
-        if (context == null) {
-            context = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (context != null && context.checkSelfPermission(str) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static void e(String[] strArr, Utilities.Callback callback) {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return;
-        }
-        int i10 = f26080a;
-        f26080a = i10 + 1;
-        NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new df0(i10, callback, notificationCenterDelegateArr)};
-        NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
-        activity.requestPermissions(strArr, i10);
-    }
-
-    public static void f() {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return;
-        }
-        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-        intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-        try {
-            activity.startActivity(intent);
-        } catch (Exception e7) {
-            FileLog.e(e7);
         }
     }
 }

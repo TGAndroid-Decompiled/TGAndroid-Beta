@@ -14,7 +14,7 @@ import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class yc extends View implements v2 {
     public final Drawable f6375a;
     public final int f6376b;
@@ -31,7 +31,7 @@ public final class yc extends View implements v2 {
         this.d = paint;
         Paint paint2 = new Paint(3);
         this.f6378e = paint2;
-        this.h = new org.telegram.ui.Components.g6(this, 0L, 350L, hs.h);
+        this.h = new org.telegram.ui.Components.g6(this, 0L, 350L, is.h);
         this.f6380n = new Path();
         this.f6375a = activity.getResources().getDrawable(i10).mutate();
         this.f6376b = i11;

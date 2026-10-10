@@ -3,29 +3,29 @@ package org.telegram.ui.ActionBar;
 import android.content.DialogInterface;
 import org.telegram.messenger.Utilities;
 public final class j3 implements DialogInterface.OnDismissListener {
-    public final int f21213a = 1;
-    public final Utilities.Callback f21214b;
-    public final boolean[] f21215c;
+    public final int f21217a = 1;
+    public final Utilities.Callback f21218b;
+    public final boolean[] f21219c;
 
     public j3(Utilities.Callback callback, boolean[] zArr) {
-        this.f21214b = callback;
-        this.f21215c = zArr;
+        this.f21218b = callback;
+        this.f21219c = zArr;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f21213a) {
+        switch (this.f21217a) {
             case 0:
-                boolean[] zArr = this.f21215c;
+                boolean[] zArr = this.f21219c;
                 if (!zArr[0]) {
-                    this.f21214b.run(Boolean.FALSE);
+                    this.f21218b.run(Boolean.FALSE);
                     zArr[0] = true;
                     return;
                 }
                 return;
             default:
-                Utilities.Callback callback = this.f21214b;
-                if (callback != null && !this.f21215c[0]) {
+                Utilities.Callback callback = this.f21218b;
+                if (callback != null && !this.f21219c[0]) {
                     callback.run(Boolean.FALSE);
                     return;
                 }
@@ -34,7 +34,7 @@ public final class j3 implements DialogInterface.OnDismissListener {
     }
 
     public j3(boolean[] zArr, Utilities.Callback callback) {
-        this.f21215c = zArr;
-        this.f21214b = callback;
+        this.f21219c = zArr;
+        this.f21218b = callback;
     }
 }

@@ -12,10 +12,10 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.v3;
 import org.telegram.ui.Components.ao;
-import org.telegram.ui.Components.j10;
-import org.telegram.ui.Components.pm0;
+import org.telegram.ui.Components.k10;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.xs;
-public abstract class t1 extends pm0 {
+public abstract class t1 extends qm0 {
     public int E;
     public int F;
     public ArrayList G;
@@ -37,7 +37,7 @@ public abstract class t1 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47662f;
+        int i10 = d1Var.f47706f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -152,11 +152,11 @@ public abstract class t1 extends pm0 {
                         if (i10 != 5) {
                             v3Var = new r8(16, context, false);
                         } else {
-                            j10 j10Var = new j10(context, null);
-                            j10Var.setIsSingleCell(true);
-                            j10Var.setViewType(29);
-                            j10Var.setBackgroundColor(i6.x0(null, i6.f20797d6, false));
-                            v3Var = j10Var;
+                            k10 k10Var = new k10(context, null);
+                            k10Var.setIsSingleCell(true);
+                            k10Var.setViewType(29);
+                            k10Var.setBackgroundColor(i6.x0(null, i6.f20801d6, false));
+                            v3Var = k10Var;
                         }
                     } else {
                         View aoVar = new ao(context, 7);

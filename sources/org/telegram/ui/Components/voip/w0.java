@@ -12,13 +12,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.cd0;
+import org.telegram.ui.Components.dd0;
 import w7.x5;
 public final class w0 extends z4.a {
-    public final x0 f32339c;
+    public final x0 f32404c;
 
     public w0(x0 x0Var) {
-        this.f32339c = x0Var;
+        this.f32404c = x0Var;
     }
 
     @Override
@@ -28,19 +28,19 @@ public final class w0 extends z4.a {
 
     @Override
     public final int b() {
-        return this.f32339c.f32362f.length;
+        return this.f32404c.f32427f.length;
     }
 
     @Override
     public final Object e(z4.g gVar, int i10) {
         Bitmap bitmap;
         ImageView imageView;
-        x0 x0Var = this.f32339c;
-        boolean z10 = x0Var.f32368y;
+        x0 x0Var = this.f32404c;
+        boolean z10 = x0Var.f32433y;
         int i11 = 1;
         if (z10 && i10 == 0) {
             ?? frameLayout = new FrameLayout(x0Var.getContext());
-            frameLayout.setBackground(new cd0(true, -14602694, -13935795, -14395293, -14203560));
+            frameLayout.setBackground(new dd0(true, -14602694, -13935795, -14395293, -14203560));
             ImageView imageView2 = new ImageView(x0Var.getContext());
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             imageView2.setImageResource(R.drawable.screencast_big);

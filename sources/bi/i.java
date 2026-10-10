@@ -4,11 +4,11 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.u7;
-import org.telegram.ui.Components.d00;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.e00;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.nw0;
 import s4.a1;
-public final class i extends d00 {
+public final class i extends e00 {
     public final int X = 0;
     public final Object Y;
 
@@ -28,13 +28,13 @@ public final class i extends d00 {
     }
 
     @Override
-    public mw0 D1(int i10) {
+    public nw0 D1(int i10) {
         switch (this.X) {
             case 0:
-                mw0 mw0Var = (mw0) this.Y;
-                mw0Var.f28964b = 100.0f;
-                mw0Var.f28963a = 100.0f;
-                return mw0Var;
+                nw0 nw0Var = (nw0) this.Y;
+                nw0Var.f29261b = 100.0f;
+                nw0Var.f29260a = 100.0f;
+                return nw0Var;
             default:
                 return super.D1(i10);
         }
@@ -46,7 +46,7 @@ public final class i extends d00 {
         switch (this.X) {
             case 0:
                 super.U(eVar, a1Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47587a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47631a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     aVar = new e.a(collectionItemInfo);
@@ -72,7 +72,7 @@ public final class i extends d00 {
     public int W0(a1 a1Var) {
         switch (this.X) {
             case 1:
-                if (((k71) this.Y).Y2) {
+                if (((l71) this.Y).Y2) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(a1Var);
@@ -94,8 +94,8 @@ public final class i extends d00 {
         }
     }
 
-    public i(k71 k71Var, int i10) {
+    public i(l71 l71Var, int i10) {
         super(i10, false);
-        this.Y = k71Var;
+        this.Y = l71Var;
     }
 }

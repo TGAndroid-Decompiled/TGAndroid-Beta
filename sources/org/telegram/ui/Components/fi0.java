@@ -2,123 +2,157 @@ package org.telegram.ui.Components;
 
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class fi0 {
-    public int f26373a;
-    public final bd f26374b;
-    public final g6 f26376e;
-    public Drawable f26379i;
-    public Drawable f26380j;
-    public ck0 f26381k;
-    public l11 f26382l;
-    public ia0 f26388r;
-    public boolean f26389s;
-    public boolean f26390t;
-    public int f26391u;
-    public long f26392w;
-    public int f26393x;
-    public final ii0 f26394y;
-    public final RectF f26375c = new RectF();
-    public final RectF d = new RectF();
-    public final RectF f26377f = new RectF();
-    public final RectF f26378g = new RectF();
-    public final Rect h = new Rect();
-    public float f26383m = 1.0f;
-    public boolean f26384n = false;
-    public boolean f26385o = false;
-    public boolean f26386p = false;
-    public final float f26387q = 1.0f;
-    public int v = 0;
+import android.os.Bundle;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.accessibility.AccessibilityNodeProvider;
+import android.widget.Button;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.ui.ProfileActivity;
+public class fi0 extends AccessibilityNodeProvider {
+    public final int f26424a = 1;
+    public final Object f26425b;
 
-    public fi0(ii0 ii0Var) {
-        this.f26394y = ii0Var;
-        this.f26374b = new bd(ii0Var);
-        this.f26376e = new g6(ii0Var, 0L, 250L, hs.f27118f);
+    public fi0(l2.f fVar) {
+        this.f26425b = fVar;
     }
 
-    public final void a() {
-        float d = this.f26376e.d(1.0f, false);
-        if (d != 1.0f) {
-            RectF rectF = this.f26378g;
-            float f7 = rectF.left;
-            RectF rectF2 = this.f26377f;
-            float lerp = AndroidUtilities.lerp(f7, rectF2.left, d);
-            RectF rectF3 = this.d;
-            rectF3.left = lerp;
-            rectF3.right = AndroidUtilities.lerp(rectF.right, rectF2.right, d);
-            return;
-        }
-        this.f26384n = false;
-        if (this.f26385o) {
-            this.f26386p = true;
-        }
-    }
-
-    public final float b() {
-        boolean z10 = this.f26385o;
-        g6 g6Var = this.f26376e;
-        if (z10) {
-            return 1.0f - g6Var.d(1.0f, false);
-        }
-        if (!this.f26384n) {
-            return 1.0f;
-        }
-        return g6Var.d(1.0f, false);
-    }
-
-    public final void c(String str) {
-        l11 l11Var = new l11(str, 11.0f, AndroidUtilities.bold());
-        l11Var.n(3);
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        l11Var.a();
-        this.f26382l = l11Var;
-    }
-
-    public final void d(int i10, int i11, int i12) {
-        Drawable drawable;
-        Drawable drawable2 = null;
-        ii0 ii0Var = this.f26394y;
-        if (i10 != 0) {
-            ck0 ck0Var = new ck0(i10, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), false, null);
-            ck0Var.R(ii0Var);
-            ck0Var.start();
-            this.f26381k = ck0Var;
-        } else {
-            this.f26381k = null;
-        }
-        if (i11 != 0) {
-            drawable = ii0Var.getResources().getDrawable(i11).mutate();
-        } else {
-            drawable = null;
-        }
-        this.f26379i = drawable;
-        if (i12 != 0) {
-            drawable2 = ii0Var.getResources().getDrawable(i12).mutate();
-        }
-        this.f26380j = drawable2;
-        ck0 ck0Var2 = this.f26381k;
-        Rect rect = this.h;
-        if (ck0Var2 != null) {
-            ck0Var2.setBounds(rect);
-        }
-        Drawable drawable3 = this.f26379i;
-        if (drawable3 != null) {
-            drawable3.setBounds(rect);
-        }
-        Drawable drawable4 = this.f26380j;
-        if (drawable4 != null) {
-            drawable4.setBounds(rect);
+    @Override
+    public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i10) {
+        gi0 gi0Var;
+        switch (this.f26424a) {
+            case 0:
+                int[] iArr = {0, 0};
+                ji0 ji0Var = (ji0) this.f26425b;
+                ArrayList arrayList = ji0Var.f27690a;
+                ji0Var.getLocationOnScreen(iArr);
+                if (i10 == -1) {
+                    AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(ji0Var);
+                    ji0Var.onInitializeAccessibilityNodeInfo(obtain);
+                    obtain.setEnabled(true);
+                    for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                        obtain.addChild(ji0Var, ((gi0) arrayList.get(i11)).f26721a);
+                    }
+                    return obtain;
+                }
+                int i12 = 0;
+                while (true) {
+                    if (i12 < arrayList.size()) {
+                        if (((gi0) arrayList.get(i12)).f26721a == i10) {
+                            gi0Var = (gi0) arrayList.get(i12);
+                        } else {
+                            i12++;
+                        }
+                    } else {
+                        gi0Var = null;
+                    }
+                }
+                if (gi0Var != null) {
+                    RectF rectF = gi0Var.d;
+                    if (!rectF.isEmpty()) {
+                        AccessibilityNodeInfo obtain2 = AccessibilityNodeInfo.obtain();
+                        obtain2.setSource(ji0Var, i10);
+                        obtain2.setParent(ji0Var);
+                        obtain2.setPackageName(ji0Var.getContext().getPackageName());
+                        obtain2.addAction(16);
+                        obtain2.addAction(64);
+                        obtain2.setClickable(true);
+                        obtain2.setFocusable(true);
+                        obtain2.setEnabled(true);
+                        obtain2.setVisibleToUser(true);
+                        obtain2.setClassName(Button.class.getName());
+                        obtain2.setText(gi0Var.f26730l.k());
+                        Rect rect = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                        obtain2.setBoundsInParent(rect);
+                        rect.offset(iArr[0], iArr[1]);
+                        obtain2.setBoundsInScreen(rect);
+                        return obtain2;
+                    }
+                }
+                return null;
+            default:
+                s0.d o9 = ((l2.f) this.f26425b).o(i10);
+                if (o9 == null) {
+                    return null;
+                }
+                return o9.f47631a;
         }
     }
 
-    public fi0(ii0 ii0Var, gi0 gi0Var) {
-        this.f26394y = ii0Var;
-        this.f26374b = new bd(ii0Var);
-        this.f26376e = new g6(ii0Var, 0L, 250L, hs.f27118f);
-        d(0, gi0Var.f26733b, gi0Var.f26734c);
-        c(LocaleController.getString(gi0Var.f26732a));
+    @Override
+    public List findAccessibilityNodeInfosByText(String str, int i10) {
+        switch (this.f26424a) {
+            case 1:
+                ((l2.f) this.f26425b).getClass();
+                return null;
+            default:
+                return super.findAccessibilityNodeInfosByText(str, i10);
+        }
+    }
+
+    @Override
+    public AccessibilityNodeInfo findFocus(int i10) {
+        switch (this.f26424a) {
+            case 1:
+                s0.d p5 = ((l2.f) this.f26425b).p(i10);
+                if (p5 == null) {
+                    return null;
+                }
+                return p5.f47631a;
+            default:
+                return super.findFocus(i10);
+        }
+    }
+
+    @Override
+    public final boolean performAction(int i10, int i11, Bundle bundle) {
+        gi0 gi0Var;
+        switch (this.f26424a) {
+            case 0:
+                ji0 ji0Var = (ji0) this.f26425b;
+                ArrayList arrayList = ji0Var.f27690a;
+                if (i10 == -1) {
+                    return ji0Var.performAccessibilityAction(i11, bundle);
+                }
+                int i12 = 0;
+                while (true) {
+                    if (i12 < arrayList.size()) {
+                        if (((gi0) arrayList.get(i12)).f26721a == i10) {
+                            gi0Var = (gi0) arrayList.get(i12);
+                        } else {
+                            i12++;
+                        }
+                    } else {
+                        gi0Var = null;
+                    }
+                }
+                if (gi0Var != null) {
+                    if (i11 == 64) {
+                        if (((AccessibilityManager) ji0Var.getContext().getSystemService("accessibility")).isTouchExplorationEnabled()) {
+                            AccessibilityEvent obtain = AccessibilityEvent.obtain(32768);
+                            obtain.setPackageName(ji0Var.getContext().getPackageName());
+                            obtain.setSource(ji0Var, i10);
+                            if (ji0Var.getParent() != null) {
+                                ji0Var.getParent().requestSendAccessibilityEvent(ji0Var, obtain);
+                            }
+                        }
+                    } else if (i11 == 16) {
+                        ii0 ii0Var = ji0Var.F;
+                        if (ii0Var != null) {
+                            ProfileActivity.Y(((org.telegram.ui.jy0) ii0Var).f39088b, i10, 0.0f, 0.0f);
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            default:
+                return ((l2.f) this.f26425b).t(i10, i11, bundle);
+        }
+    }
+
+    public fi0(ji0 ji0Var) {
+        this.f26425b = ji0Var;
     }
 }

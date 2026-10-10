@@ -31,8 +31,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.j20;
 public final class w3 extends View {
@@ -55,47 +55,47 @@ public final class w3 extends View {
     public boolean U;
     public float V;
     public ValueAnimator W;
-    public n3 f21647a;
-    public final int[] f21648a0;
-    public t3 f21649b;
-    public final int[] f21650b0;
-    public k3 f21651c;
-    public final RectF f21652c0;
+    public n3 f21651a;
+    public final int[] f21652a0;
+    public t3 f21653b;
+    public final int[] f21654b0;
+    public k3 f21655c;
+    public final RectF f21656c0;
     public ValueAnimator d;
-    public final RectF f21653d0;
-    public float f21654e;
-    public final RectF f21655e0;
-    public final org.telegram.ui.Components.g6 f21656f;
-    public final Path f21657f0;
-    public l11 f21658g0;
+    public final RectF f21657d0;
+    public float f21658e;
+    public final RectF f21659e0;
+    public final org.telegram.ui.Components.g6 f21660f;
+    public final Path f21661f0;
+    public m11 f21662g0;
     public final OverScroller h;
-    public boolean f21659h0;
-    public org.telegram.ui.Cells.z f21660i0;
-    public j20 f21661j0;
-    public final int f21662n;
-    public final int f21663r;
-    public int f21664s;
+    public boolean f21663h0;
+    public org.telegram.ui.Cells.z f21664i0;
+    public j20 f21665j0;
+    public final int f21666n;
+    public final int f21667r;
+    public int f21668s;
     public final s3 v;
-    public v3 f21665w;
-    public boolean f21666x;
-    public float f21667y;
+    public v3 f21669w;
+    public boolean f21670x;
+    public float f21671y;
 
     public w3(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f21656f = new org.telegram.ui.Components.g6(this, 0L, 350L, hs.h);
+        this.f21660f = new org.telegram.ui.Components.g6(this, 0L, 350L, is.h);
         this.Q = new RectF();
         this.R = new ArrayList();
-        this.f21648a0 = new int[2];
-        this.f21650b0 = new int[2];
-        this.f21652c0 = new RectF();
-        this.f21653d0 = new RectF();
-        this.f21655e0 = new RectF();
-        this.f21657f0 = new Path();
+        this.f21652a0 = new int[2];
+        this.f21654b0 = new int[2];
+        this.f21656c0 = new RectF();
+        this.f21657d0 = new RectF();
+        this.f21659e0 = new RectF();
+        this.f21661f0 = new Path();
         setWillNotDraw(false);
         this.h = new OverScroller(launchActivity);
         ViewConfiguration viewConfiguration = ViewConfiguration.get(launchActivity);
-        this.f21662n = viewConfiguration.getScaledMaximumFlingVelocity();
-        this.f21663r = viewConfiguration.getScaledMinimumFlingVelocity();
+        this.f21666n = viewConfiguration.getScaledMaximumFlingVelocity();
+        this.f21667r = viewConfiguration.getScaledMinimumFlingVelocity();
         s3 s3Var = new s3(this, this);
         this.v = s3Var;
         r0.i0.j(this, s3Var);
@@ -182,9 +182,9 @@ public final class w3 extends View {
             valueAnimator.cancel();
         }
         this.U = z10;
-        n3 n3Var = this.f21647a;
+        n3 n3Var = this.f21651a;
         if (n3Var != null) {
-            n3Var.f21421b = false;
+            n3Var.f21425b = false;
             n3Var.invalidate();
         }
         setModalAccessibility(z10);
@@ -199,54 +199,54 @@ public final class w3 extends View {
         this.W = ofFloat;
         ofFloat.addUpdateListener(new o3(this, 0));
         this.W.addListener(new h(this, 4));
-        this.W.setInterpolator(hs.h);
+        this.W.setInterpolator(is.h);
         this.W.setDuration(320L);
         this.W.start();
     }
 
     public final void b(t3 t3Var) {
         ValueAnimator valueAnimator;
-        if (this.f21647a == null) {
+        if (this.f21651a == null) {
             return;
         }
-        if (this.f21649b != null && (valueAnimator = this.d) != null) {
+        if (this.f21653b != null && (valueAnimator = this.d) != null) {
             valueAnimator.end();
             this.d = null;
         }
-        this.f21649b = t3Var;
+        this.f21653b = t3Var;
         t3Var.setLastVisible(false);
         ValueAnimator valueAnimator2 = this.d;
         if (valueAnimator2 != null) {
             valueAnimator2.cancel();
         }
         m3 a2 = t3Var.a();
-        n3 n3Var = this.f21647a;
+        n3 n3Var = this.f21651a;
         ArrayList<m3> tabs = n3Var.getTabs();
         ArrayList<k3> tabDrawables = n3Var.getTabDrawables();
         k3 k3Var = new k3(n3Var, a2);
-        k3Var.f21316e.d(-1.0f, true);
-        k3Var.f21317f.d(0.0f, true);
+        k3Var.f21320e.d(-1.0f, true);
+        k3Var.f21321f.d(0.0f, true);
         tabDrawables.add(k3Var);
         tabs.add(0, a2);
         for (int i10 = 0; i10 < tabDrawables.size(); i10++) {
             k3 k3Var2 = tabDrawables.get(i10);
-            int indexOf = tabs.indexOf(k3Var2.f21313a);
+            int indexOf = tabs.indexOf(k3Var2.f21317a);
             k3Var2.d = indexOf;
             if (indexOf >= 0) {
-                k3Var2.f21315c = indexOf;
+                k3Var2.f21319c = indexOf;
             }
         }
         n3Var.n();
         n3Var.o(true);
         n3Var.invalidate();
-        l3 l3Var = n3Var.f21423e;
+        l3 l3Var = n3Var.f21427e;
         if (l3Var != null) {
             l3Var.i();
         }
-        this.f21651c = k3Var;
+        this.f21655c = k3Var;
         post(new q(t3Var, 10));
         invalidate();
-        this.f21654e = 0.0f;
+        this.f21658e = 0.0f;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.d = ofFloat;
         ofFloat.addUpdateListener(new o3(this, 1));
@@ -298,34 +298,34 @@ public final class w3 extends View {
         int i15;
         w3 w3Var = this;
         super.dispatchDraw(canvas);
-        t3 t3Var = w3Var.f21649b;
+        t3 t3Var = w3Var.f21653b;
         float f18 = 1.0f;
         int i16 = 1;
-        int[] iArr = w3Var.f21648a0;
-        int[] iArr2 = w3Var.f21650b0;
+        int[] iArr = w3Var.f21652a0;
+        int[] iArr2 = w3Var.f21654b0;
         int i17 = 0;
-        RectF rectF3 = w3Var.f21652c0;
+        RectF rectF3 = w3Var.f21656c0;
         if (t3Var != null) {
             w3Var.getLocationOnScreen(iArr2);
-            w3Var.f21647a.getLocationOnScreen(iArr);
-            w3Var.f21647a.d(rectF3, 0.0f);
+            w3Var.f21651a.getLocationOnScreen(iArr);
+            w3Var.f21651a.d(rectF3, 0.0f);
             rectF3.offset(iArr[0] - iArr2[0], iArr[1] - iArr2[1]);
             canvas.save();
-            canvas.clipRect(0, 0, w3Var.getMeasuredWidth(), w3Var.getMeasuredHeight() - w3Var.f21664s);
-            u3 mo36getWindowView = w3Var.f21649b.mo36getWindowView();
-            float f19 = w3Var.f21654e;
-            RectF rectF4 = w3Var.f21655e0;
+            canvas.clipRect(0, 0, w3Var.getMeasuredWidth(), w3Var.getMeasuredHeight() - w3Var.f21668s);
+            u3 mo36getWindowView = w3Var.f21653b.mo36getWindowView();
+            float f19 = w3Var.f21658e;
+            RectF rectF4 = w3Var.f21659e0;
             float x10 = mo36getWindowView.x(canvas, rectF3, f19, rectF4, f19);
-            if (w3Var.f21651c != null) {
-                Path path = w3Var.f21657f0;
+            if (w3Var.f21655c != null) {
+                Path path = w3Var.f21661f0;
                 path.rewind();
                 path.addRoundRect(rectF4, x10, x10, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
-                float b10 = com.google.android.gms.internal.vision.e2.b(1.0f, w3Var.f21654e, AndroidUtilities.dp(50.0f), rectF4.top);
+                float b10 = com.google.android.gms.internal.vision.e2.b(1.0f, w3Var.f21658e, AndroidUtilities.dp(50.0f), rectF4.top);
                 rectF3.set(rectF4.left, b10, rectF4.right, AndroidUtilities.dp(50.0f) + b10);
-                w3Var.f21647a.setupTab(w3Var.f21651c);
-                w3Var.f21651c.a(canvas, rectF3, x10, w3Var.f21654e, 1.0f);
+                w3Var.f21651a.setupTab(w3Var.f21655c);
+                w3Var.f21655c.a(canvas, rectF3, x10, w3Var.f21658e, 1.0f);
                 rectF = rectF3;
                 canvas.restore();
             } else {
@@ -392,7 +392,7 @@ public final class w3 extends View {
             i19++;
             i16 = i10;
         }
-        float d = w3Var.f21656f.d(f23, false);
+        float d = w3Var.f21660f.d(f23, false);
         if (w3Var.getScrollWindow() <= 0.0f) {
             scrollMin = 0.0f;
         } else {
@@ -424,9 +424,9 @@ public final class w3 extends View {
                     k3 k3Var = v3Var.d;
                 }
                 k3 k3Var2 = v3Var.d;
-                float[] fArr = v3Var.f21617g;
+                float[] fArr = v3Var.f21621g;
                 float f25 = dp;
-                Matrix matrix = v3Var.f21616f;
+                Matrix matrix = v3Var.f21620f;
                 float[] fArr2 = v3Var.h;
                 if (k3Var2 == null) {
                     f10 = f24;
@@ -444,7 +444,7 @@ public final class w3 extends View {
                 float f27 = ((((f21 - f11) - (0.26f * f26)) - min2) * max) + min2;
                 float f28 = min / 2.0f;
                 i12 = min;
-                RectF rectF6 = w3Var.f21653d0;
+                RectF rectF6 = w3Var.f21657d0;
                 rectF6.set(f22 - f28, f27, f22 + f28, f26 + f27);
                 if ((rectF6.top > f21 || rectF6.bottom < 0.0f || lerp < 0.1f) && c10 < d - 3.0f) {
                     i13 = i10;
@@ -452,10 +452,10 @@ public final class w3 extends View {
                     i13 = i21;
                 }
                 int i22 = i13;
-                w3Var.f21647a.d(rectF, Utilities.clamp(k3Var2.c(), 1.0f, 0.0f));
-                rectF.offset(w3Var.f21647a.getX(), w3Var.f21647a.getY());
+                w3Var.f21651a.d(rectF, Utilities.clamp(k3Var2.c(), 1.0f, 0.0f));
+                rectF.offset(w3Var.f21651a.getX(), w3Var.f21651a.getY());
                 AndroidUtilities.lerpCentered(rectF, rectF6, lerp, rectF6);
-                n3 n3Var = w3Var.f21647a;
+                n3 n3Var = w3Var.f21651a;
                 if (n3Var != null) {
                     n3Var.setupTab(k3Var2);
                 }
@@ -470,7 +470,7 @@ public final class w3 extends View {
                     f16 = f25;
                 } else {
                     canvas.save();
-                    v3Var.f21612a.set(rectF6);
+                    v3Var.f21616a.set(rectF6);
                     matrix.reset();
                     fArr[i21] = rectF6.left;
                     float f29 = rectF6.top;
@@ -491,34 +491,34 @@ public final class w3 extends View {
                     fArr2[5] = (AndroidUtilities.lerp(1.0f, 0.6f, f31) * ((rectF6.height() * 1.0f) + AndroidUtilities.dp(0.0f))) + (rectF6.top - AndroidUtilities.dp(0.0f));
                     fArr2[6] = rectF6.centerX() - (AndroidUtilities.lerp(1.0f, 0.83f, f31) * (rectF6.width() / 2.0f));
                     fArr2[7] = (AndroidUtilities.lerp(1.0f, 0.6f, f31) * ((rectF6.height() * 1.0f) + AndroidUtilities.dp(0.0f))) + (rectF6.top - AndroidUtilities.dp(0.0f));
-                    matrix.setPolyToPoly(v3Var.f21617g, 0, v3Var.h, 0, 4);
+                    matrix.setPolyToPoly(v3Var.f21621g, 0, v3Var.h, 0, 4);
                     canvas.concat(matrix);
                     float lerp2 = AndroidUtilities.lerp(k3Var2.b(), 1.0f, w3Var.V);
                     float lerp3 = AndroidUtilities.lerp(Utilities.clamp01((c10 - d) + 2.0f), 1.0f, Utilities.clamp01((f10 - 0.1f) / 0.8f));
-                    RadialGradient radialGradient = v3Var.f21625p;
-                    Paint paint = v3Var.f21624o;
-                    Paint paint2 = v3Var.f21627r;
+                    RadialGradient radialGradient = v3Var.f21629p;
+                    Paint paint = v3Var.f21628o;
+                    Paint paint2 = v3Var.f21631r;
                     f12 = lerp;
-                    Matrix matrix2 = v3Var.f21626q;
-                    m3 m3Var = v3Var.f21614c;
+                    Matrix matrix2 = v3Var.f21630q;
+                    m3 m3Var = v3Var.f21618c;
                     f14 = d;
-                    Path path2 = v3Var.f21623n;
+                    Path path2 = v3Var.f21627n;
                     arrayList2 = arrayList;
-                    Paint paint3 = v3Var.f21615e;
+                    Paint paint3 = v3Var.f21619e;
                     rectF2 = rectF;
-                    RectF rectF7 = v3Var.f21622m;
+                    RectF rectF7 = v3Var.f21626m;
                     i14 = i18;
-                    Paint paint4 = v3Var.f21621l;
+                    Paint paint4 = v3Var.f21625l;
                     f15 = f21;
                     f13 = f20;
-                    float clamp = Utilities.clamp(1.0f - ((Math.abs(v3Var.f21618i) - 0.3f) / 0.7f), 1.0f, 0.0f) * lerp2;
+                    float clamp = Utilities.clamp(1.0f - ((Math.abs(v3Var.f21622i) - 0.3f) / 0.7f), 1.0f, 0.0f) * lerp2;
                     if (clamp > 0.0f) {
                         float f32 = f31 * 1.0f;
                         float lerp4 = AndroidUtilities.lerp(1.0f, 1.3f, f32);
                         float currentActionBarHeight = ((k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(50.0f)) * 0.0f;
                         canvas.save();
-                        canvas.rotate(v3Var.f21618i * 20.0f, (v3Var.f21618i * AndroidUtilities.dp(50.0f)) + rectF6.centerX(), rectF6.bottom + AndroidUtilities.dp(350.0f));
-                        float a2 = v3Var.f21620k.a(0.01f);
+                        canvas.rotate(v3Var.f21622i * 20.0f, (v3Var.f21622i * AndroidUtilities.dp(50.0f)) + rectF6.centerX(), rectF6.bottom + AndroidUtilities.dp(350.0f));
+                        float a2 = v3Var.f21624k.a(0.01f);
                         canvas.scale(a2, a2, rectF6.centerX(), rectF6.centerY());
                         float lerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), f31);
                         if (i22 != 0) {
@@ -543,11 +543,11 @@ public final class w3 extends View {
                             canvas.save();
                             canvas.translate(rectF6.left, sc.v.d(AndroidUtilities.dp(50.0f), lerp4, rectF6.top, currentActionBarHeight));
                             canvas.scale(1.0f, AndroidUtilities.lerp(1.0f, 1.25f, f32));
-                            if (m3Var != null && m3Var.f21385m != null) {
-                                float width3 = rectF6.width() / m3Var.f21385m.getWidth();
+                            if (m3Var != null && m3Var.f21389m != null) {
+                                float width3 = rectF6.width() / m3Var.f21389m.getWidth();
                                 canvas.scale(width3, width3);
                                 paint.setAlpha(i23);
-                                canvas.drawBitmap(m3Var.f21385m, 0.0f, 0.0f, paint);
+                                canvas.drawBitmap(m3Var.f21389m, 0.0f, 0.0f, paint);
                             }
                             canvas.restore();
                             canvas.save();
@@ -563,7 +563,7 @@ public final class w3 extends View {
                             rectF7.set(rectF6);
                             rectF7.bottom = Math.min(rectF6.height(), AndroidUtilities.dp(50.0f)) + rectF7.top;
                             rectF7.offset(0.0f, currentActionBarHeight);
-                            v3Var.d.f21332w = f31;
+                            v3Var.d.f21336w = f31;
                             canvas.scale(1.0f, lerp4, rectF7.centerX(), rectF7.top);
                             f16 = f25;
                             v3Var.d.a(canvas, rectF7, lerp5, clamp * clamp, lerp3);
@@ -594,33 +594,33 @@ public final class w3 extends View {
         float f34 = dp;
         float f35 = f20;
         canvas.save();
-        if (this.f21661j0 == null) {
-            this.f21661j0 = new j20();
+        if (this.f21665j0 == null) {
+            this.f21665j0 = new j20();
         }
         RectF rectF8 = AndroidUtilities.rectTmp;
         rectF8.set(0.0f, 0.0f, f35, f34);
-        this.f21661j0.b(canvas, rectF8, i10, this.V);
+        this.f21665j0.b(canvas, rectF8, i10, this.V);
         canvas.restore();
         canvas.restore();
-        if (this.f21658g0 == null) {
-            this.f21658g0 = new l11(LocaleController.getString(R.string.BotCloseAllTabs), 14.0f, AndroidUtilities.bold());
+        if (this.f21662g0 == null) {
+            this.f21662g0 = new m11(LocaleController.getString(R.string.BotCloseAllTabs), 14.0f, AndroidUtilities.bold());
         }
-        if (this.f21660i0 == null || this.f21659h0 != i6.I.q()) {
+        if (this.f21664i0 == null || this.f21663h0 != i6.I.q()) {
             boolean q6 = i6.I.q();
-            this.f21659h0 = q6;
+            this.f21663h0 = q6;
             if (q6) {
-                this.f21660i0 = i6.j0(64, 64, 64, 64, 553648127, 872415231, 872415231);
+                this.f21664i0 = i6.j0(64, 64, 64, 64, 553648127, 872415231, 872415231);
             } else {
-                this.f21660i0 = i6.j0(64, 64, 64, 64, 771751936, 1140850688, 1140850688);
+                this.f21664i0 = i6.j0(64, 64, 64, 64, 771751936, 1140850688, 1140850688);
             }
-            this.f21660i0.setCallback(this);
+            this.f21664i0.setCallback(this);
         }
-        float dp3 = this.f21658g0.f28222c + AndroidUtilities.dp(24.0f);
+        float dp3 = this.f21662g0.f28602c + AndroidUtilities.dp(24.0f);
         float f36 = (f35 - dp3) / 2.0f;
-        this.f21660i0.setBounds((int) f36, (int) ((f34 - (AndroidUtilities.dp(95.0f) / 2.0f)) - AndroidUtilities.dp(14.0f)), (int) ((f35 + dp3) / 2.0f), (int) ((f34 - (AndroidUtilities.dp(95.0f) / 2.0f)) + AndroidUtilities.dp(14.0f)));
-        this.f21660i0.setAlpha((int) (this.V * 255.0f));
-        this.f21660i0.draw(canvas);
-        this.f21658g0.c(f36 + AndroidUtilities.dp(12.0f), f34 - (AndroidUtilities.dp(95.0f) / 2.0f), this.V, -1, canvas);
+        this.f21664i0.setBounds((int) f36, (int) ((f34 - (AndroidUtilities.dp(95.0f) / 2.0f)) - AndroidUtilities.dp(14.0f)), (int) ((f35 + dp3) / 2.0f), (int) ((f34 - (AndroidUtilities.dp(95.0f) / 2.0f)) + AndroidUtilities.dp(14.0f)));
+        this.f21664i0.setAlpha((int) (this.V * 255.0f));
+        this.f21664i0.draw(canvas);
+        this.f21662g0.c(f36 + AndroidUtilities.dp(12.0f), f34 - (AndroidUtilities.dp(95.0f) / 2.0f), this.V, -1, canvas);
         canvas.restore();
     }
 
@@ -656,7 +656,7 @@ public final class w3 extends View {
             i10++;
         }
         if (z10) {
-            return this.f21656f.d(f10, false);
+            return this.f21660f.d(f10, false);
         }
         return f10;
     }
@@ -664,7 +664,7 @@ public final class w3 extends View {
     public final void f() {
         float f7;
         k3 k3Var;
-        n3 n3Var = this.f21647a;
+        n3 n3Var = this.f21651a;
         if (n3Var != null && (n3Var.getParent() instanceof View)) {
             HashSet hashSet = ei.k3.W0;
             if (!hashSet.isEmpty()) {
@@ -680,16 +680,16 @@ public final class w3 extends View {
                 valueAnimator.cancel();
                 this.d = null;
             }
-            View view = (View) this.f21647a.getParent();
+            View view = (View) this.f21651a.getParent();
             this.S = view;
-            int[] iArr = this.f21648a0;
+            int[] iArr = this.f21652a0;
             if (view != null) {
                 view.getLocationOnScreen(iArr);
             } else {
                 iArr[1] = 0;
                 iArr[0] = 0;
             }
-            int[] iArr2 = this.f21650b0;
+            int[] iArr2 = this.f21654b0;
             getLocationOnScreen(iArr2);
             int i10 = iArr[0] - iArr2[0];
             int i11 = iArr[1] - iArr2[1];
@@ -716,15 +716,15 @@ public final class w3 extends View {
             this.P = new Matrix();
             ArrayList arrayList = this.R;
             arrayList.clear();
-            ArrayList<m3> tabs = this.f21647a.getTabs();
-            ArrayList<k3> tabDrawables = this.f21647a.getTabDrawables();
+            ArrayList<m3> tabs = this.f21651a.getTabs();
+            ArrayList<k3> tabDrawables = this.f21651a.getTabDrawables();
             for (int size = tabs.size() - 1; size >= 0; size--) {
                 m3 m3Var = tabs.get(size);
                 int i12 = 0;
                 while (true) {
                     if (i12 < tabDrawables.size()) {
                         k3Var = tabDrawables.get(i12);
-                        if (k3Var.f21313a == m3Var) {
+                        if (k3Var.f21317a == m3Var) {
                             break;
                         }
                         i12++;
@@ -737,7 +737,7 @@ public final class w3 extends View {
                     arrayList.add(new v3(this, m3Var, k3Var));
                 }
             }
-            this.f21656f.d(arrayList.size(), true);
+            this.f21660f.d(arrayList.size(), true);
             setScrollOffset(getScrollMax());
             a(true);
         }
@@ -773,7 +773,7 @@ public final class w3 extends View {
         this.T = ofFloat;
         ofFloat.addUpdateListener(new o3(this, 2));
         this.T.setDuration(250L);
-        this.T.setInterpolator(hs.h);
+        this.T.setInterpolator(is.h);
         this.T.start();
     }
 
@@ -782,12 +782,12 @@ public final class w3 extends View {
     }
 
     public void setTabsView(n3 n3Var) {
-        this.f21647a = n3Var;
+        this.f21651a = n3Var;
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f21660i0 && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f21664i0 && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

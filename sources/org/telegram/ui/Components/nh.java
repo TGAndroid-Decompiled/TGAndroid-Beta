@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class nh implements bh.a {
-    public final int f29159a;
-    public final Object f29160b;
+    public final int f29122a;
+    public final Object f29123b;
 
     public nh(Object obj, int i10) {
-        this.f29159a = i10;
-        this.f29160b = obj;
+        this.f29122a = i10;
+        this.f29123b = obj;
     }
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f29159a) {
+        switch (this.f29122a) {
             case 0:
             case 1:
             default:
@@ -30,9 +30,9 @@ public final class nh implements bh.a {
         float alpha;
         qi qiVar2;
         ci.w7 w7Var;
-        switch (this.f29159a) {
+        switch (this.f29122a) {
             case 0:
-                yi yiVar = (yi) this.f29160b;
+                yi yiVar = (yi) this.f29123b;
                 int i10 = 0;
                 while (i10 < 2) {
                     if (i10 == 0) {
@@ -40,7 +40,7 @@ public final class nh implements bh.a {
                     } else {
                         qiVar = yiVar.C0;
                     }
-                    if (qiVar != null && qiVar.f30174c != null && qiVar.getVisibility() == 0) {
+                    if (qiVar != null && qiVar.f30212c != null && qiVar.getVisibility() == 0) {
                         if (i10 == 0 && (qiVar2 = yiVar.C0) != null && qiVar2.getVisibility() == 0) {
                             alpha = (1.0f - yiVar.C0.getAlpha()) * qiVar.getAlpha();
                         } else {
@@ -48,7 +48,7 @@ public final class nh implements bh.a {
                         }
                         canvas2 = canvas;
                         rectF2 = rectF;
-                        gh.d.b(qiVar.f30174c, canvas2, rectF2, qiVar.d, yiVar.getContainerView(), (int) (alpha * 255.0f));
+                        gh.d.b(qiVar.f30212c, canvas2, rectF2, qiVar.d, yiVar.getContainerView(), (int) (alpha * 255.0f));
                     } else {
                         canvas2 = canvas;
                         rectF2 = rectF;
@@ -59,24 +59,24 @@ public final class nh implements bh.a {
                 }
                 return;
             case 1:
-                a00 a00Var = (a00) this.f29160b;
-                my myVar = a00Var.P;
-                gh.d.a(myVar, canvas, rectF, myVar, a00Var);
-                cx cxVar = a00Var.f24417h0;
-                gh.d.a(cxVar, canvas, rectF, cxVar, a00Var);
-                ix ixVar = a00Var.D0;
-                gh.d.a(ixVar, canvas, rectF, ixVar, a00Var);
+                b00 b00Var = (b00) this.f29123b;
+                ny nyVar = b00Var.P;
+                gh.d.a(nyVar, canvas, rectF, nyVar, b00Var);
+                dx dxVar = b00Var.f24705h0;
+                gh.d.a(dxVar, canvas, rectF, dxVar, b00Var);
+                jx jxVar = b00Var.D0;
+                gh.d.a(jxVar, canvas, rectF, jxVar, b00Var);
                 return;
             default:
-                bw0 bw0Var = (bw0) this.f29160b;
-                for (uu0 uu0Var : bw0Var.f25142k0) {
-                    ah.n nVar = uu0Var.f31624n;
+                cw0 cw0Var = (cw0) this.f29123b;
+                for (vu0 vu0Var : cw0Var.f25450k0) {
+                    ah.n nVar = vu0Var.f32518n;
                     if (nVar != null) {
                         nVar.f(canvas, rectF);
                     }
                 }
-                rs0 rs0Var = bw0Var.V;
-                if (rs0Var != null && (w7Var = rs0Var.R) != null) {
+                ss0 ss0Var = cw0Var.V;
+                if (ss0Var != null && (w7Var = ss0Var.R) != null) {
                     w7Var.f(canvas, rectF);
                     return;
                 }

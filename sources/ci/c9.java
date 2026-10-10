@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class c9 extends FrameLayout {
     public final Paint f4842a;
     public final org.telegram.ui.Components.g6 f4843b;
@@ -19,7 +19,7 @@ public final class c9 extends FrameLayout {
         this.d = f9Var;
         this.f4844c = e6Var;
         this.f4842a = new Paint(1);
-        this.f4843b = new org.telegram.ui.Components.g6(this, 0L, 350L, hs.h);
+        this.f4843b = new org.telegram.ui.Components.g6(this, 0L, 350L, is.h);
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class c9 extends FrameLayout {
         int i11;
         int i12;
         int i13;
-        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20868h5, this.f4844c);
+        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20872h5, this.f4844c);
         Paint paint = this.f4842a;
         paint.setColor(w02);
         f9 f9Var = this.d;
@@ -46,7 +46,7 @@ public final class c9 extends FrameLayout {
         int width = getWidth();
         i11 = ((org.telegram.ui.ActionBar.f3) f9Var).backgroundPaddingLeft;
         rectF.set(i10, lerp, width - i11, AndroidUtilities.dp(14.0f) + getHeight());
-        float dp = (1.0f - g6Var.f26599c) * AndroidUtilities.dp(14.0f);
+        float dp = (1.0f - g6Var.f26616c) * AndroidUtilities.dp(14.0f);
         canvas.drawRoundRect(rectF, dp, dp, paint);
         f9Var.f5091n.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, AndroidUtilities.dp(14.0f) + lerp));
         canvas.save();

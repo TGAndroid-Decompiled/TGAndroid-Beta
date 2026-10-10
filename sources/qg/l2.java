@@ -9,46 +9,46 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class l2 {
-    public boolean f46341b;
-    public int f46342c;
+    public boolean f46385b;
+    public int f46386c;
     public Bitmap d;
-    public Bitmap f46343e;
-    public Bitmap f46344f;
-    public Bitmap f46345g;
-    public float f46347j;
-    public float f46348k;
-    public int f46351n;
-    public float[] f46352o;
-    public final Paint f46355r;
-    public final Paint f46356s;
-    public final o2 f46357t;
-    public final g6 f46340a = new g6(0.0f, (View) null, 0, 320, hs.h);
+    public Bitmap f46387e;
+    public Bitmap f46388f;
+    public Bitmap f46389g;
+    public float f46391j;
+    public float f46392k;
+    public int f46395n;
+    public float[] f46396o;
+    public final Paint f46399r;
+    public final Paint f46400s;
+    public final o2 f46401t;
+    public final g6 f46384a = new g6(0.0f, (View) null, 0, 320, is.h);
     public final RectF h = new RectF();
-    public final RectF f46346i = new RectF();
-    public final Path f46349l = new Path();
-    public final Path f46350m = new Path();
-    public final Paint f46353p = new Paint(1);
-    public final Paint f46354q = new Paint(1);
+    public final RectF f46390i = new RectF();
+    public final Path f46393l = new Path();
+    public final Path f46394m = new Path();
+    public final Paint f46397p = new Paint(1);
+    public final Paint f46398q = new Paint(1);
 
     public l2(o2 o2Var) {
-        this.f46357t = o2Var;
+        this.f46401t = o2Var;
         new Paint(1);
-        this.f46355r = new Paint(1);
-        this.f46356s = new Paint(1);
+        this.f46399r = new Paint(1);
+        this.f46400s = new Paint(1);
     }
 
     public final Bitmap a() {
-        Bitmap bitmap = this.f46345g;
+        Bitmap bitmap = this.f46389g;
         if (bitmap != null) {
             return bitmap;
         }
-        return this.f46344f;
+        return this.f46388f;
     }
 
     public final Bitmap b() {
-        Bitmap bitmap = this.f46343e;
+        Bitmap bitmap = this.f46387e;
         if (bitmap != null) {
             return bitmap;
         }

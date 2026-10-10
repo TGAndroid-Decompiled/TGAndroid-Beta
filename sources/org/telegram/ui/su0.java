@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.content.Context;
 import android.widget.FrameLayout;
 import androidx.core.widget.NestedScrollView;
-public final class su0 extends org.telegram.ui.Components.v11 {
-    public boolean f41772a;
-    public float f41773b;
-    public NestedScrollView f41774c;
+public final class su0 extends org.telegram.ui.Components.w11 {
+    public boolean f41816a;
+    public float f41817b;
+    public NestedScrollView f41818c;
     public FrameLayout d;
 
     public su0(Context context) {
         super(context);
-        this.f41772a = false;
-        this.f41773b = 1.0f;
+        this.f41816a = false;
+        this.f41817b = 1.0f;
     }
 
     public final void b(int i10, boolean z10) {
         super.setVisibility(i10);
-        if (this.f41772a && z10) {
-            this.f41774c.setVisibility(i10);
+        if (this.f41816a && z10) {
+            this.f41818c.setVisibility(i10);
         }
     }
 
     @Override
     public float getAlpha() {
-        if (this.f41772a) {
-            return this.f41773b;
+        if (this.f41816a) {
+            return this.f41817b;
         }
         return super.getAlpha();
     }
@@ -34,9 +34,9 @@ public final class su0 extends org.telegram.ui.Components.v11 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (this.d != null && getParent() == this.d) {
-            this.f41772a = true;
-            this.f41774c.setVisibility(getVisibility());
-            this.f41774c.setAlpha(this.f41773b);
+            this.f41816a = true;
+            this.f41818c.setVisibility(getVisibility());
+            this.f41818c.setAlpha(this.f41817b);
             super.setAlpha(1.0f);
         }
     }
@@ -44,18 +44,18 @@ public final class su0 extends org.telegram.ui.Components.v11 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f41772a) {
-            this.f41772a = false;
-            this.f41774c.setVisibility(8);
-            super.setAlpha(this.f41773b);
+        if (this.f41816a) {
+            this.f41816a = false;
+            this.f41818c.setVisibility(8);
+            super.setAlpha(this.f41817b);
         }
     }
 
     @Override
     public void setAlpha(float f7) {
-        this.f41773b = f7;
-        if (this.f41772a) {
-            this.f41774c.setAlpha(f7);
+        this.f41817b = f7;
+        if (this.f41816a) {
+            this.f41818c.setAlpha(f7);
         } else {
             super.setAlpha(f7);
         }
@@ -66,14 +66,14 @@ public final class su0 extends org.telegram.ui.Components.v11 {
     }
 
     public void setScrollView(NestedScrollView nestedScrollView) {
-        this.f41774c = nestedScrollView;
+        this.f41818c = nestedScrollView;
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        if (this.f41772a) {
-            this.f41774c.invalidate();
+        if (this.f41816a) {
+            this.f41818c.invalidate();
         }
     }
 

@@ -41,14 +41,14 @@ import org.telegram.ui.Cells.j5;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.pu;
+import org.telegram.ui.Components.q61;
+import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.qu;
 import org.telegram.ui.fg1;
 import org.telegram.ui.ny;
 import org.telegram.ui.ty;
 import w7.i6;
-public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, org.telegram.ui.ActionBar.a2, e2.m, pu, ii.p0, ny, r5, f2.t {
+public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, org.telegram.ui.ActionBar.a2, e2.m, qu, ii.p0, ny, r5, f2.t {
     public final int f8998a;
     public final Object f8999b;
 
@@ -68,8 +68,8 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
     }
 
     @Override
-    public p80 a(ii.i1 i1Var) {
-        return p80.H((ii.e2) ((a6.i) this.f8999b).f326b, i1Var);
+    public q80 a(ii.i1 i1Var) {
+        return q80.H((ii.e2) ((a6.i) this.f8999b).f326b, i1Var);
     }
 
     @Override
@@ -349,13 +349,13 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                ((d5) this.f8999b).V((p61) obj);
+                ((d5) this.f8999b).V((q61) obj);
                 return;
             case 1:
             case 2:
             case 5:
             default:
-                p61 p61Var = (p61) obj;
+                q61 q61Var = (q61) obj;
                 View view2 = (View) obj2;
                 Integer num = (Integer) obj3;
                 Float f7 = (Float) obj4;
@@ -373,12 +373,12 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 return;
             case 3:
                 hg.g1 g1Var = (hg.g1) this.f8999b;
-                p61 p61Var2 = (p61) obj;
+                q61 q61Var2 = (q61) obj;
                 View view3 = (View) obj2;
                 ((Integer) obj3).getClass();
                 float floatValue = ((Float) obj4).floatValue();
                 ((Float) obj5).getClass();
-                int i12 = p61Var2.d;
+                int i12 = q61Var2.d;
                 if (i12 == -1) {
                     boolean z10 = !g1Var.f11248e;
                     g1Var.f11248e = z10;
@@ -392,21 +392,21 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     n2Var.f11232c = new ai.h3(18, g1Var, view3);
                     g1Var.presentFragment((org.telegram.ui.ActionBar.n2) n2Var);
                     return;
-                } else if (p61Var2.f17125a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
+                } else if (q61Var2.f17129a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
                     if (!LocaleController.isRTL ? floatValue >= view3.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
-                        if (g1Var.h[p61Var2.d].isEmpty()) {
+                        if (g1Var.h[q61Var2.d].isEmpty()) {
                             ((j5) view3).setChecked(true);
-                            g1Var.h[p61Var2.d].add(new hg.f1(0, 1439));
-                            g1Var.X(p61Var2.d);
+                            g1Var.h[q61Var2.d].add(new hg.f1(0, 1439));
+                            g1Var.X(q61Var2.d);
                         } else {
-                            g1Var.h[p61Var2.d].clear();
+                            g1Var.h[q61Var2.d].clear();
                             ((j5) view3).setChecked(false);
                         }
-                        ((j5) view3).setValue(hg.g1.a0(g1Var.h[p61Var2.d]));
+                        ((j5) view3).setValue(hg.g1.a0(g1Var.h[q61Var2.d]));
                         g1Var.Y(true);
                         return;
                     }
-                    int i13 = (p61Var2.d + 6) % 7;
+                    int i13 = (q61Var2.d + 6) % 7;
                     int i14 = 0;
                     for (int i15 = 0; i15 < g1Var.h[i13].size(); i15++) {
                         if (((hg.f1) g1Var.h[i13].get(i15)).f11229b > i14) {
@@ -414,7 +414,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                         }
                     }
                     int max = Math.max(0, i14 - 1439);
-                    int i16 = (p61Var2.d + 1) % 7;
+                    int i16 = (q61Var2.d + 1) % 7;
                     int i17 = 1440;
                     for (int i18 = 0; i18 < g1Var.h[i16].size(); i18++) {
                         if (((hg.f1) g1Var.h[i16].get(i18)).f11228a < i17) {
@@ -422,8 +422,8 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = p61Var2.f29734l;
-                    ArrayList arrayList = g1Var.h[p61Var2.d];
+                    CharSequence charSequence = q61Var2.f30063l;
+                    ArrayList arrayList = g1Var.h[q61Var2.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
                         ArrayList arrayList2 = g1Var.h[i21];
@@ -433,7 +433,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     }
                     hg.i1 i1Var = new hg.i1(charSequence, arrayList, max, i19, 28 - i20);
                     i1Var.f11271f = new rc(g1Var, 23);
-                    i1Var.h = new gg.w1(5, g1Var, p61Var2);
+                    i1Var.h = new gg.w1(5, g1Var, q61Var2);
                     g1Var.presentFragment(i1Var);
                     return;
                 } else {
@@ -441,7 +441,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 }
             case 4:
                 final hg.i1 i1Var2 = (hg.i1) this.f8999b;
-                p61 p61Var3 = (p61) obj;
+                q61 q61Var3 = (q61) obj;
                 final View view4 = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
@@ -449,7 +449,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 int i22 = i1Var2.f11269c;
                 int i23 = i1Var2.d;
                 ArrayList arrayList3 = i1Var2.f11268b;
-                int i24 = p61Var3.d;
+                int i24 = q61Var3.d;
                 if (i24 == -1) {
                     i1Var2.f11273r = !i1Var2.f11273r;
                     arrayList3.clear();
@@ -458,13 +458,13 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     }
                     w8 w8Var = (w8) view4;
                     boolean z11 = i1Var2.f11273r;
-                    p61Var3.f29728e = z11;
+                    q61Var3.f30057e = z11;
                     w8Var.setChecked(z11);
                     boolean z12 = i1Var2.f11273r;
                     if (z12) {
-                        i11 = org.telegram.ui.ActionBar.i6.f20834f6;
+                        i11 = org.telegram.ui.ActionBar.i6.f20838f6;
                     } else {
-                        i11 = org.telegram.ui.ActionBar.i6.f20817e6;
+                        i11 = org.telegram.ui.ActionBar.i6.f20821e6;
                     }
                     w8Var.b(org.telegram.ui.ActionBar.i6.x0(null, i11, false), z12);
                     i1Var2.f11272n.W2.N(true);
@@ -492,7 +492,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     }
                     i1Var2.f11272n.W2.N(true);
                     return;
-                } else if (p61Var3.f17125a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (q61Var3.f17129a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i26 = i10 - 1;
                     if (i26 >= 0) {
                         f1Var = (hg.f1) arrayList3.get(i26);
@@ -506,7 +506,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     } else {
                         f1Var2 = null;
                     }
-                    int i28 = p61Var3.d % 3;
+                    int i28 = q61Var3.d % 3;
                     if (i28 == 0) {
                         Activity parentActivity = i1Var2.getParentActivity();
                         String string = LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker);
@@ -622,7 +622,7 @@ public final class c5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                hg.f2.U((hg.f2) this.f8999b, (p61) obj, (View) obj2);
+                hg.f2.U((hg.f2) this.f8999b, (q61) obj, (View) obj2);
                 return;
         }
     }

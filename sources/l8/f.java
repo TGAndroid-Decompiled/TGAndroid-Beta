@@ -1,14 +1,14 @@
 package l8;
 public abstract class f {
-    public static final k6.c f15445a;
-    public static final k6.c f15446b;
-    public static final k6.c[] f15447c;
+    public static final k6.c f15449a;
+    public static final k6.c f15450b;
+    public static final k6.c[] f15451c;
 
     static {
         k6.c cVar = new k6.c("EXECUTE", 1L);
-        f15445a = cVar;
+        f15449a = cVar;
         k6.c cVar2 = new k6.c("INIT", 1L);
-        f15446b = cVar2;
-        f15447c = new k6.c[]{cVar, cVar2};
+        f15450b = cVar2;
+        f15451c = new k6.c[]{cVar, cVar2};
     }
 }

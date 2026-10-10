@@ -20,19 +20,19 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.gs;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.hs;
 import org.telegram.ui.Components.jq;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.q61;
 import w7.x5;
 public final class d extends n2 implements NotificationCenter.NotificationCenterDelegate {
     public int E;
     public int F;
     public int G;
-    public gs f11187a;
+    public hs f11187a;
     public org.telegram.ui.ActionBar.v0 f11188b;
-    public k71 f11189c;
+    public l71 f11189c;
     public b0 d;
     public boolean f11190e;
     public boolean f11191f;
@@ -45,35 +45,35 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
     public int f11196x;
     public int f11197y;
 
-    public static void U(d dVar, ArrayList arrayList, c71 c71Var) {
+    public static void U(d dVar, ArrayList arrayList, d71 d71Var) {
         boolean z10;
         boolean z11;
         String string = LocaleController.getString(R.string.BusinessAway);
         String string2 = LocaleController.getString(R.string.BusinessAwayInfo);
-        p61 p61Var = new p61(2);
-        p61Var.f29734l = string;
-        p61Var.f29737o = string2;
-        p61Var.f29735m = "RestrictedEmoji";
-        p61Var.f29736n = "💤";
-        arrayList.add(p61Var);
-        p61 i10 = p61.i(1, LocaleController.getString(R.string.BusinessAwaySend));
+        q61 q61Var = new q61(2);
+        q61Var.f30063l = string;
+        q61Var.f30066o = string2;
+        q61Var.f30064m = "RestrictedEmoji";
+        q61Var.f30065n = "💤";
+        arrayList.add(q61Var);
+        q61 i10 = q61.i(1, LocaleController.getString(R.string.BusinessAwaySend));
         i10.K(dVar.f11194s);
         arrayList.add(i10);
-        arrayList.add(p61.B(null));
+        arrayList.add(q61.B(null));
         if (dVar.f11194s) {
             b2 d = c2.f(dVar.currentAccount).d("away");
             if (d != null) {
-                p61 p61Var2 = new p61(17);
-                p61Var2.G = d;
-                arrayList.add(p61Var2);
+                q61 q61Var2 = new q61(17);
+                q61Var2.G = d;
+                arrayList.add(q61Var2);
             } else {
-                p61 c10 = p61.c(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessAwayCreate));
-                c10.f29739q = true;
+                q61 c10 = q61.c(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessAwayCreate));
+                c10.f30068q = true;
                 arrayList.add(c10);
             }
-            arrayList.add(p61.B(null));
+            arrayList.add(q61.B(null));
             com.google.android.gms.internal.vision.e2.n(R.string.BusinessAwaySchedule, arrayList);
-            p61 w10 = p61.w(3, LocaleController.getString(R.string.BusinessAwayScheduleAlways));
+            q61 w10 = q61.w(3, LocaleController.getString(R.string.BusinessAwayScheduleAlways));
             boolean z12 = false;
             if (dVar.f11196x == 0) {
                 z10 = true;
@@ -83,7 +83,7 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
             w10.K(z10);
             arrayList.add(w10);
             if (dVar.f11190e) {
-                p61 w11 = p61.w(4, LocaleController.getString(R.string.BusinessAwayScheduleOutsideHours));
+                q61 w11 = q61.w(4, LocaleController.getString(R.string.BusinessAwayScheduleOutsideHours));
                 if (dVar.f11196x == 1) {
                     z11 = true;
                 } else {
@@ -92,33 +92,33 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
                 w11.K(z11);
                 arrayList.add(w11);
             }
-            p61 w12 = p61.w(5, LocaleController.getString(R.string.BusinessAwayScheduleCustom));
+            q61 w12 = q61.w(5, LocaleController.getString(R.string.BusinessAwayScheduleCustom));
             if (dVar.f11196x == 2) {
                 z12 = true;
             }
             w12.K(z12);
             arrayList.add(w12);
             if (dVar.f11196x == 2) {
-                arrayList.add(p61.B(null));
+                arrayList.add(q61.B(null));
                 com.google.android.gms.internal.vision.e2.n(R.string.BusinessAwaySchedule, arrayList);
-                arrayList.add(p61.f(LocaleController.getString(R.string.BusinessAwayScheduleCustomStart), LocaleController.formatShortDateTime(dVar.F), 8));
-                arrayList.add(p61.f(LocaleController.getString(R.string.BusinessAwayScheduleCustomEnd), LocaleController.formatShortDateTime(dVar.G), 9));
+                arrayList.add(q61.f(LocaleController.getString(R.string.BusinessAwayScheduleCustomStart), LocaleController.formatShortDateTime(dVar.F), 8));
+                arrayList.add(q61.f(LocaleController.getString(R.string.BusinessAwayScheduleCustomEnd), LocaleController.formatShortDateTime(dVar.G), 9));
             }
-            arrayList.add(p61.B(null));
-            p61 i11 = p61.i(10, LocaleController.getString(R.string.BusinessAwayOnlyOffline));
+            arrayList.add(q61.B(null));
+            q61 i11 = q61.i(10, LocaleController.getString(R.string.BusinessAwayOnlyOffline));
             i11.K(dVar.f11195w);
             arrayList.add(i11);
             c.n(R.string.BusinessAwayOnlyOfflineInfo, arrayList);
             com.google.android.gms.internal.vision.e2.n(R.string.BusinessRecipients, arrayList);
-            p61 w13 = p61.w(6, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
+            q61 w13 = q61.w(6, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
             w13.K(dVar.v);
             arrayList.add(w13);
-            p61 w14 = p61.w(7, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
+            q61 w14 = q61.w(7, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
             w14.K(!dVar.v);
             arrayList.add(w14);
-            arrayList.add(p61.B(null));
-            dVar.d.a(arrayList, c71Var, true);
-            arrayList.add(p61.B(null));
+            arrayList.add(q61.B(null));
+            dVar.d.a(arrayList, d71Var, true);
+            arrayList.add(q61.B(null));
         }
     }
 
@@ -201,7 +201,7 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
     }
 
     public final void X() {
-        if (this.f11187a.f26867c <= 0.0f) {
+        if (this.f11187a.f27135c <= 0.0f) {
             if (!W()) {
                 finishFragment();
                 return;
@@ -214,8 +214,8 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
                 int i10 = -this.h;
                 this.h = i10;
                 AndroidUtilities.shakeViewSpring(z12, i10);
-                k71 k71Var = this.f11189c;
-                k71Var.x0(k71Var.y1(2));
+                l71 l71Var = this.f11189c;
+                l71Var.x0(l71Var.y1(2));
             } else if (z10 && !this.d.k(this.f11189c)) {
             } else {
                 this.f11187a.a(1.0f);
@@ -263,8 +263,8 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
         boolean z11;
         boolean z12;
         boolean z13;
-        k71 k71Var;
-        c71 c71Var;
+        l71 l71Var;
+        d71 d71Var;
         TL_account.TL_businessRecipients tL_businessRecipients;
         if (this.f11191f) {
             return;
@@ -322,9 +322,9 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
                 int i11 = tL_businessAwayMessageScheduleCustom.end_date;
                 this.E = i11;
                 this.G = i11;
-                k71Var = this.f11189c;
-                if (k71Var != null && (c71Var = k71Var.W2) != null) {
-                    c71Var.N(true);
+                l71Var = this.f11189c;
+                if (l71Var != null && (d71Var = l71Var.W2) != null) {
+                    d71Var.N(true);
                 }
                 V(true);
                 this.f11191f = true;
@@ -343,9 +343,9 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
             this.f11193r = 0;
             this.f11196x = 0;
         }
-        k71Var = this.f11189c;
-        if (k71Var != null) {
-            c71Var.N(true);
+        l71Var = this.f11189c;
+        if (l71Var != null) {
+            d71Var.N(true);
         }
         V(true);
         this.f11191f = true;
@@ -359,13 +359,13 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessAway));
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 9));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = i6.f21130v8;
+        int i10 = i6.f21134v8;
         mutate.setColorFilter(new PorterDuffColorFilter(i6.x0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.f11187a = new gs(mutate, new jq(i6.x0(null, i10, false)));
+        this.f11187a = new hs(mutate, new jq(i6.x0(null, i10, false)));
         this.f11188b = this.actionBar.o().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f11187a);
         V(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(i6.x0(null, i6.f20741a7, false));
+        frameLayout.setBackgroundColor(i6.x0(null, i6.f20745a7, false));
         b0 b0Var = new b0(this, new rc(this, 18));
         this.d = b0Var;
         b0Var.h = this.v;
@@ -376,12 +376,12 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
             tL_businessRecipients = tL_businessAwayMessage.recipients;
         }
         b0Var.j(tL_businessRecipients);
-        k71 k71Var = new k71(this, new bi.v(this, 21), new a(this, 0), null);
-        this.f11189c = k71Var;
-        k71Var.p1();
-        k71 k71Var2 = this.f11189c;
-        k71Var2.W2.f25280r = false;
-        frameLayout.addView(k71Var2, x5.d(-1.0f, -1));
+        l71 l71Var = new l71(this, new bi.v(this, 21), new a(this, 0), null);
+        this.f11189c = l71Var;
+        l71Var.p1();
+        l71 l71Var2 = this.f11189c;
+        l71Var2.W2.f25587r = false;
+        frameLayout.addView(l71Var2, x5.d(-1.0f, -1));
         this.actionBar.B(this.f11189c, true);
         Y();
         this.fragmentView = frameLayout;
@@ -390,11 +390,11 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        c71 c71Var;
+        d71 d71Var;
         if (i10 == NotificationCenter.quickRepliesUpdated) {
-            k71 k71Var = this.f11189c;
-            if (k71Var != null && (c71Var = k71Var.W2) != null) {
-                c71Var.N(true);
+            l71 l71Var = this.f11189c;
+            if (l71Var != null && (d71Var = l71Var.W2) != null) {
+                d71Var.N(true);
             }
             V(true);
         } else if (i10 == NotificationCenter.userInfoDidLoad) {
@@ -416,11 +416,11 @@ public final class d extends n2 implements NotificationCenter.NotificationCenter
                     return false;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.BusinessAwayUnsavedChanges);
+                alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.BusinessAwayUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new a(this, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new a(this, 2));
-                showDialog(alertDialog$Builder.f20374a);
+                showDialog(alertDialog$Builder.f20378a);
             }
             return false;
         }

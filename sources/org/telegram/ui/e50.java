@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.content.DialogInterface;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class e50 implements DialogInterface.OnShowListener {
-    public final int f37154a;
-    public final org.telegram.ui.ActionBar.b2 f37155b;
-    public final EditTextBoldCursor f37156c;
+    public final int f37198a;
+    public final org.telegram.ui.ActionBar.b2 f37199b;
+    public final EditTextBoldCursor f37200c;
     public final Object d;
 
     public e50(Object obj, org.telegram.ui.ActionBar.b2 b2Var, EditTextBoldCursor editTextBoldCursor, int i10) {
-        this.f37154a = i10;
+        this.f37198a = i10;
         this.d = obj;
-        this.f37155b = b2Var;
-        this.f37156c = editTextBoldCursor;
+        this.f37199b = b2Var;
+        this.f37200c = editTextBoldCursor;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f37154a) {
+        switch (this.f37198a) {
             case 0:
-                ((j50) this.d).f38826b.t1(null, this.f37155b, this.f37156c, true);
+                ((j50) this.d).f38870b.t1(null, this.f37199b, this.f37200c, true);
                 return;
             default:
-                ((f50) this.d).f37452n.f38826b.t1(null, this.f37155b, this.f37156c, true);
+                ((f50) this.d).f37496n.f38870b.t1(null, this.f37199b, this.f37200c, true);
                 return;
         }
     }

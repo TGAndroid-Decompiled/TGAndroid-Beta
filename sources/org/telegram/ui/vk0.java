@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class vk0 {
-    public int f42893a;
-    public boolean f42894b;
-    public int f42895c;
+    public int f42937a;
+    public boolean f42938b;
+    public int f42939c;
     public long d;
-    public boolean f42896e;
-    public boolean f42897f;
+    public boolean f42940e;
+    public boolean f42941f;
 }

@@ -27,18 +27,18 @@ public final class m extends uu0 {
                 int[] iArr = new int[2];
                 pVar.v.getLocationInWindow(iArr);
                 ev0 ev0Var = new ev0();
-                ev0Var.f37357b = iArr[0];
-                ev0Var.f37358c = iArr[1];
+                ev0Var.f37401b = iArr[0];
+                ev0Var.f37402c = iArr[1];
                 y9 y9Var = pVar.v;
                 ev0Var.d = y9Var;
                 ImageReceiver imageReceiver = y9Var.getImageReceiver();
-                ev0Var.f37356a = imageReceiver;
-                ev0Var.f37360f = -pVar.f10022b;
-                ev0Var.f37359e = imageReceiver.getBitmapSafe();
-                ev0Var.f37361g = -1L;
+                ev0Var.f37400a = imageReceiver;
+                ev0Var.f37404f = -pVar.f10022b;
+                ev0Var.f37403e = imageReceiver.getBitmapSafe();
+                ev0Var.f37405g = -1L;
                 ev0Var.h = pVar.v.getImageReceiver().getRoundRadius(true);
-                ev0Var.f37364k = 1.0f;
-                ev0Var.f37369p = true;
+                ev0Var.f37408k = 1.0f;
+                ev0Var.f37413p = true;
                 return ev0Var;
             }
         }

@@ -13,44 +13,44 @@ public final class lq0 extends FrameLayout {
     public int F;
     public boolean G;
     public final nq0 H;
-    public final Paint f39653a;
-    public final Paint f39654b;
-    public final Paint f39655c;
+    public final Paint f39697a;
+    public final Paint f39698b;
+    public final Paint f39699c;
     public float d;
-    public float f39656e;
-    public float f39657f;
+    public float f39700e;
+    public float f39701f;
     public float h;
-    public int f39658n;
-    public float f39659r;
-    public float f39660s;
+    public int f39702n;
+    public float f39703r;
+    public float f39704s;
     public int v;
-    public int f39661w;
-    public int f39662x;
-    public int f39663y;
+    public int f39705w;
+    public int f39706x;
+    public int f39707y;
 
     public lq0(nq0 nq0Var, Context context) {
         super(context);
         this.H = nq0Var;
-        this.f39653a = null;
-        this.f39654b = null;
-        this.f39655c = null;
+        this.f39697a = null;
+        this.f39698b = null;
+        this.f39699c = null;
         this.d = 600.0f;
-        this.f39656e = 600.0f;
-        this.f39657f = -1.0f;
+        this.f39700e = 600.0f;
+        this.f39701f = -1.0f;
         this.h = -1.0f;
-        this.f39658n = 0;
-        this.f39659r = 0.0f;
-        this.f39660s = 0.0f;
+        this.f39702n = 0;
+        this.f39703r = 0.0f;
+        this.f39704s = 0.0f;
         Paint paint = new Paint();
-        this.f39653a = paint;
+        this.f39697a = paint;
         paint.setColor(1073412858);
-        this.f39653a.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.f39653a.setStyle(Paint.Style.STROKE);
+        this.f39697a.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        this.f39697a.setStyle(Paint.Style.STROKE);
         Paint paint2 = new Paint();
-        this.f39654b = paint2;
+        this.f39698b = paint2;
         paint2.setColor(-1);
         Paint paint3 = new Paint();
-        this.f39655c = paint3;
+        this.f39699c = paint3;
         paint3.setColor(-939524096);
         setBackgroundColor(-13421773);
         setOnTouchListener(new e0(this, 4));
@@ -61,59 +61,59 @@ public final class lq0 extends FrameLayout {
         int i10;
         int i11;
         nq0 nq0Var = this.H;
-        BitmapDrawable bitmapDrawable = nq0Var.f40351b;
+        BitmapDrawable bitmapDrawable = nq0Var.f40395b;
         if (bitmapDrawable != null) {
             try {
-                int i12 = this.f39662x;
-                int i13 = this.f39663y;
-                bitmapDrawable.setBounds(i12, i13, this.v + i12, this.f39661w + i13);
-                nq0Var.f40351b.draw(canvas);
+                int i12 = this.f39706x;
+                int i13 = this.f39707y;
+                bitmapDrawable.setBounds(i12, i13, this.v + i12, this.f39705w + i13);
+                nq0Var.f40395b.draw(canvas);
             } catch (Throwable th2) {
                 FileLog.e(th2);
             }
         }
-        canvas.drawRect(this.f39662x, this.f39663y, i10 + this.v, this.h, this.f39655c);
+        canvas.drawRect(this.f39706x, this.f39707y, i10 + this.v, this.h, this.f39699c);
         float f7 = this.h;
-        canvas.drawRect(this.f39662x, f7, this.f39657f, f7 + this.f39656e, this.f39655c);
+        canvas.drawRect(this.f39706x, f7, this.f39701f, f7 + this.f39700e, this.f39699c);
         float f10 = this.h;
-        canvas.drawRect(this.f39657f + this.d, f10, this.f39662x + this.v, f10 + this.f39656e, this.f39655c);
-        canvas.drawRect(this.f39662x, this.h + this.f39656e, i11 + this.v, this.f39663y + this.f39661w, this.f39655c);
-        float f11 = this.f39657f;
+        canvas.drawRect(this.f39701f + this.d, f10, this.f39706x + this.v, f10 + this.f39700e, this.f39699c);
+        canvas.drawRect(this.f39706x, this.h + this.f39700e, i11 + this.v, this.f39707y + this.f39705w, this.f39699c);
+        float f11 = this.f39701f;
         float f12 = this.h;
-        canvas.drawRect(f11, f12, f11 + this.d, f12 + this.f39656e, this.f39653a);
+        canvas.drawRect(f11, f12, f11 + this.d, f12 + this.f39700e, this.f39697a);
         int dp = AndroidUtilities.dp(1.0f);
-        float f13 = this.f39657f;
+        float f13 = this.f39701f;
         float f14 = dp;
         float f15 = dp * 3;
-        canvas.drawRect(f13 + f14, this.h + f14, f13 + f14 + AndroidUtilities.dp(20.0f), this.h + f15, this.f39654b);
-        float f16 = this.f39657f;
+        canvas.drawRect(f13 + f14, this.h + f14, f13 + f14 + AndroidUtilities.dp(20.0f), this.h + f15, this.f39698b);
+        float f16 = this.f39701f;
         float f17 = this.h;
-        canvas.drawRect(f16 + f14, f17 + f14, f16 + f15, f17 + f14 + AndroidUtilities.dp(20.0f), this.f39654b);
-        float dp2 = ((this.f39657f + this.d) - f14) - AndroidUtilities.dp(20.0f);
+        canvas.drawRect(f16 + f14, f17 + f14, f16 + f15, f17 + f14 + AndroidUtilities.dp(20.0f), this.f39698b);
+        float dp2 = ((this.f39701f + this.d) - f14) - AndroidUtilities.dp(20.0f);
         float f18 = this.h;
-        canvas.drawRect(dp2, f18 + f14, (this.f39657f + this.d) - f14, f18 + f15, this.f39654b);
-        float f19 = this.f39657f;
+        canvas.drawRect(dp2, f18 + f14, (this.f39701f + this.d) - f14, f18 + f15, this.f39698b);
+        float f19 = this.f39701f;
         float f20 = this.d;
         float f21 = this.h;
-        canvas.drawRect((f19 + f20) - f15, f21 + f14, (f19 + f20) - f14, f21 + f14 + AndroidUtilities.dp(20.0f), this.f39654b);
-        canvas.drawRect(this.f39657f + f14, ((this.h + this.f39656e) - f14) - AndroidUtilities.dp(20.0f), this.f39657f + f15, (this.h + this.f39656e) - f14, this.f39654b);
-        float f22 = this.f39657f;
-        canvas.drawRect(f22 + f14, (this.h + this.f39656e) - f15, f22 + f14 + AndroidUtilities.dp(20.0f), (this.h + this.f39656e) - f14, this.f39654b);
-        float dp3 = ((this.f39657f + this.d) - f14) - AndroidUtilities.dp(20.0f);
+        canvas.drawRect((f19 + f20) - f15, f21 + f14, (f19 + f20) - f14, f21 + f14 + AndroidUtilities.dp(20.0f), this.f39698b);
+        canvas.drawRect(this.f39701f + f14, ((this.h + this.f39700e) - f14) - AndroidUtilities.dp(20.0f), this.f39701f + f15, (this.h + this.f39700e) - f14, this.f39698b);
+        float f22 = this.f39701f;
+        canvas.drawRect(f22 + f14, (this.h + this.f39700e) - f15, f22 + f14 + AndroidUtilities.dp(20.0f), (this.h + this.f39700e) - f14, this.f39698b);
+        float dp3 = ((this.f39701f + this.d) - f14) - AndroidUtilities.dp(20.0f);
         float f23 = this.h;
-        float f24 = this.f39656e;
-        canvas.drawRect(dp3, (f23 + f24) - f15, (this.f39657f + this.d) - f14, (f23 + f24) - f14, this.f39654b);
-        canvas.drawRect((this.f39657f + this.d) - f15, ((this.h + this.f39656e) - f14) - AndroidUtilities.dp(20.0f), (this.f39657f + this.d) - f14, (this.h + this.f39656e) - f14, this.f39654b);
+        float f24 = this.f39700e;
+        canvas.drawRect(dp3, (f23 + f24) - f15, (this.f39701f + this.d) - f14, (f23 + f24) - f14, this.f39698b);
+        canvas.drawRect((this.f39701f + this.d) - f15, ((this.h + this.f39700e) - f14) - AndroidUtilities.dp(20.0f), (this.f39701f + this.d) - f14, (this.h + this.f39700e) - f14, this.f39698b);
         for (int i14 = 1; i14 < 3; i14++) {
-            float f25 = this.f39657f;
+            float f25 = this.f39701f;
             float f26 = this.d;
             float f27 = i14;
             float f28 = this.h;
-            canvas.drawRect(((f26 / 3.0f) * f27) + f25, f28 + f14, a1.g.e(f26, 3.0f, f27, f25 + f14), (f28 + this.f39656e) - f14, this.f39654b);
-            float f29 = this.f39657f;
+            canvas.drawRect(((f26 / 3.0f) * f27) + f25, f28 + f14, a1.g.e(f26, 3.0f, f27, f25 + f14), (f28 + this.f39700e) - f14, this.f39698b);
+            float f29 = this.f39701f;
             float f30 = this.h;
-            float f31 = this.f39656e;
-            canvas.drawRect(f29 + f14, a1.g.e(f31, 3.0f, f27, f30), this.d + (f29 - f14), ((f31 / 3.0f) * f27) + f30 + f14, this.f39654b);
+            float f31 = this.f39700e;
+            canvas.drawRect(f29 + f14, a1.g.e(f31, 3.0f, f27, f30), this.d + (f29 - f14), ((f31 / 3.0f) * f27) + f30 + f14, this.f39698b);
         }
     }
 
@@ -128,58 +128,58 @@ public final class lq0 extends FrameLayout {
         this.E = (i12 - i10) - AndroidUtilities.dp(28.0f);
         int dp = (i13 - i11) - AndroidUtilities.dp(28.0f);
         this.F = dp;
-        if (this.E != 0 && dp != 0 && (bitmap = (nq0Var = this.H).f40350a) != null) {
-            float f10 = this.f39657f - this.f39662x;
+        if (this.E != 0 && dp != 0 && (bitmap = (nq0Var = this.H).f40394a) != null) {
+            float f10 = this.f39701f - this.f39706x;
             float f11 = this.v;
             float f12 = f10 / f11;
-            float f13 = this.h - this.f39663y;
-            float f14 = this.f39661w;
+            float f13 = this.h - this.f39707y;
+            float f14 = this.f39705w;
             float f15 = f13 / f14;
             float f16 = this.d / f11;
-            float f17 = this.f39656e / f14;
+            float f17 = this.f39700e / f14;
             float width = bitmap.getWidth();
-            float height = nq0Var.f40350a.getHeight();
+            float height = nq0Var.f40394a.getHeight();
             int i16 = this.E;
             float f18 = i16 / width;
             int i17 = this.F;
             if (f18 > i17 / height) {
-                this.f39661w = i17;
+                this.f39705w = i17;
                 this.v = (int) Math.ceil(width * f7);
             } else {
                 this.v = i16;
-                this.f39661w = (int) Math.ceil(height * f18);
+                this.f39705w = (int) Math.ceil(height * f18);
             }
-            this.f39662x = AndroidUtilities.dp(14.0f) + ((this.E - this.v) / 2);
-            int dp2 = AndroidUtilities.dp(14.0f) + ((this.F - this.f39661w) / 2);
-            this.f39663y = dp2;
-            if (this.f39657f == -1.0f && this.h == -1.0f) {
+            this.f39706x = AndroidUtilities.dp(14.0f) + ((this.E - this.v) / 2);
+            int dp2 = AndroidUtilities.dp(14.0f) + ((this.F - this.f39705w) / 2);
+            this.f39707y = dp2;
+            if (this.f39701f == -1.0f && this.h == -1.0f) {
                 if (this.G) {
                     this.h = dp2;
-                    this.f39657f = this.f39662x;
+                    this.f39701f = this.f39706x;
                     this.d = this.v;
-                    this.f39656e = this.f39661w;
+                    this.f39700e = this.f39705w;
                 } else {
-                    if (this.v > this.f39661w) {
+                    if (this.v > this.f39705w) {
                         this.h = dp2;
-                        this.f39657f = AndroidUtilities.dp(14.0f) + ((this.E - i15) / 2);
-                        float f19 = this.f39661w;
+                        this.f39701f = AndroidUtilities.dp(14.0f) + ((this.E - i15) / 2);
+                        float f19 = this.f39705w;
                         this.d = f19;
-                        this.f39656e = f19;
+                        this.f39700e = f19;
                     } else {
-                        this.f39657f = this.f39662x;
+                        this.f39701f = this.f39706x;
                         this.h = AndroidUtilities.dp(14.0f) + ((this.F - i14) / 2);
                         float f20 = this.v;
                         this.d = f20;
-                        this.f39656e = f20;
+                        this.f39700e = f20;
                     }
                 }
             } else {
                 float f21 = this.v;
-                this.f39657f = (f12 * f21) + this.f39662x;
-                float f22 = this.f39661w;
+                this.f39701f = (f12 * f21) + this.f39706x;
+                float f22 = this.f39705w;
                 this.h = (f15 * f22) + dp2;
                 this.d = f16 * f21;
-                this.f39656e = f17 * f22;
+                this.f39700e = f17 * f22;
             }
             invalidate();
         }

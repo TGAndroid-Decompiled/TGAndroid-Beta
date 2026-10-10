@@ -12,7 +12,7 @@ public final class f6 extends pg.e1 {
 
     @Override
     public final void g(pg.m mVar) {
-        int indexOf = pg.m.f45688a.indexOf(mVar);
+        int indexOf = pg.m.f45732a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1) {
             indexOf = i10;

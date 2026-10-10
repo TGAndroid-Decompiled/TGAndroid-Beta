@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class a6 implements Runnable {
-    public final int f17304a;
-    public final MediaController f17305b;
-    public final int f17306c;
+    public final int f17308a;
+    public final MediaController f17309b;
+    public final int f17310c;
 
     public a6(MediaController mediaController, int i10, int i11) {
-        this.f17304a = i11;
-        this.f17305b = mediaController;
-        this.f17306c = i10;
+        this.f17308a = i11;
+        this.f17309b = mediaController;
+        this.f17310c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17304a) {
+        switch (this.f17308a) {
             case 0:
-                MediaController.o(this.f17305b, this.f17306c);
+                MediaController.o(this.f17309b, this.f17310c);
                 return;
             default:
-                MediaController.O(this.f17305b, this.f17306c);
+                MediaController.O(this.f17309b, this.f17310c);
                 return;
         }
     }

@@ -10,7 +10,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public class cd extends ea0 {
+public class cd extends fa0 {
     public final Path L;
     public final RectF M;
     public dd N;

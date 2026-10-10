@@ -9,13 +9,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 public final class fx0 extends sg.n {
-    public final Context f37715f0;
-    public final jx0 f37716g0;
+    public final Context f37759f0;
+    public final jx0 f37760g0;
 
     public fx0(jx0 jx0Var, Context context, int i10, int i11, Context context2) {
         super(context, i10, i11);
-        this.f37716g0 = jx0Var;
-        this.f37715f0 = context2;
+        this.f37760g0 = jx0Var;
+        this.f37759f0 = context2;
     }
 
     @Override
@@ -33,18 +33,18 @@ public final class fx0 extends sg.n {
         int i17;
         int i18;
         int i19;
-        jx0 jx0Var = this.f37716g0;
-        PremiumPreviewFragment premiumPreviewFragment = jx0Var.f39042n;
-        if (premiumPreviewFragment.f34148r0 == null && BuildVars.DEBUG_PRIVATE_VERSION) {
-            Context context = this.f37715f0;
-            premiumPreviewFragment.f34148r0 = new FrameLayout(context);
+        jx0 jx0Var = this.f37760g0;
+        PremiumPreviewFragment premiumPreviewFragment = jx0Var.f39086n;
+        if (premiumPreviewFragment.f34186r0 == null && BuildVars.DEBUG_PRIVATE_VERSION) {
+            Context context = this.f37759f0;
+            premiumPreviewFragment.f34186r0 = new FrameLayout(context);
             ScrollView scrollView = new ScrollView(context);
-            sg.g gVar = jx0Var.d.f48078b;
+            sg.g gVar = jx0Var.d.f48122b;
             yd ydVar = new yd(context, 5);
             ydVar.setOrientation(1);
             TextView textView = new TextView(context);
             textView.setText("Spectral top ");
-            int i20 = org.telegram.ui.ActionBar.i6.f20981n5;
+            int i20 = org.telegram.ui.ActionBar.i6.f20985n5;
             org.telegram.messenger.bi.u(textView, org.telegram.ui.ActionBar.i6.x0(null, i20, false), 1, 16.0f, 1);
             textView.setMaxLines(1);
             textView.setSingleLine(true);
@@ -60,18 +60,18 @@ public final class fx0 extends sg.n {
                 i11 = 5;
             }
             ydVar.addView(textView, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i11 | 48));
-            org.telegram.ui.Components.kp0 kp0Var = new org.telegram.ui.Components.kp0(context);
-            kp0Var.setDelegate(new h20(gVar, 0));
-            sg.o oVar = gVar.f48042c;
+            org.telegram.ui.Components.lp0 lp0Var = new org.telegram.ui.Components.lp0(context);
+            lp0Var.setDelegate(new h20(gVar, 0));
+            sg.o oVar = gVar.f48086c;
             float f12 = 0.0f;
             if (oVar == null) {
                 f7 = 0.0f;
             } else {
                 f7 = oVar.B / 2.0f;
             }
-            kp0Var.setProgress(f7);
-            kp0Var.setReportChanges(true);
-            ydVar.addView(kp0Var, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
+            lp0Var.setProgress(f7);
+            lp0Var.setReportChanges(true);
+            ydVar.addView(lp0Var, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
             TextView textView2 = new TextView(context);
             textView2.setText("Spectral bottom ");
             org.telegram.messenger.bi.u(textView2, org.telegram.ui.ActionBar.i6.x0(null, i20, false), 1, 16.0f, 1);
@@ -89,17 +89,17 @@ public final class fx0 extends sg.n {
                 i13 = 5;
             }
             ydVar.addView(textView2, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i13 | 48));
-            org.telegram.ui.Components.kp0 kp0Var2 = new org.telegram.ui.Components.kp0(context);
-            kp0Var2.setDelegate(new h20(gVar, 1));
-            sg.o oVar2 = gVar.f48042c;
+            org.telegram.ui.Components.lp0 lp0Var2 = new org.telegram.ui.Components.lp0(context);
+            lp0Var2.setDelegate(new h20(gVar, 1));
+            sg.o oVar2 = gVar.f48086c;
             if (oVar2 == null) {
                 f10 = 0.0f;
             } else {
                 f10 = oVar2.C / 2.0f;
             }
-            kp0Var2.setProgress(f10);
-            kp0Var2.setReportChanges(true);
-            ydVar.addView(kp0Var2, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
+            lp0Var2.setProgress(f10);
+            lp0Var2.setReportChanges(true);
+            ydVar.addView(lp0Var2, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
             TextView textView3 = new TextView(context);
             textView3.setText("Setup spec color");
             textView3.setTextSize(1, 16.0f);
@@ -130,17 +130,17 @@ public final class fx0 extends sg.n {
                 i15 = 5;
             }
             ydVar.addView(textView4, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i15 | 48));
-            org.telegram.ui.Components.kp0 kp0Var3 = new org.telegram.ui.Components.kp0(context);
-            kp0Var3.setDelegate(new h20(gVar, 2));
-            sg.o oVar3 = gVar.f48042c;
+            org.telegram.ui.Components.lp0 lp0Var3 = new org.telegram.ui.Components.lp0(context);
+            lp0Var3.setDelegate(new h20(gVar, 2));
+            sg.o oVar3 = gVar.f48086c;
             if (oVar3 == null) {
                 f11 = 0.0f;
             } else {
                 f11 = oVar3.D;
             }
-            kp0Var3.setProgress(f11);
-            kp0Var3.setReportChanges(true);
-            ydVar.addView(kp0Var3, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
+            lp0Var3.setProgress(f11);
+            lp0Var3.setReportChanges(true);
+            ydVar.addView(lp0Var3, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
             TextView textView5 = new TextView(context);
             textView5.setText("Normal map spectral");
             org.telegram.messenger.bi.u(textView5, org.telegram.ui.ActionBar.i6.x0(null, i20, false), 1, 16.0f, 1);
@@ -158,15 +158,15 @@ public final class fx0 extends sg.n {
                 i17 = 5;
             }
             ydVar.addView(textView5, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i17 | 48));
-            org.telegram.ui.Components.kp0 kp0Var4 = new org.telegram.ui.Components.kp0(context);
-            kp0Var4.setDelegate(new h20(gVar, 3));
-            sg.o oVar4 = gVar.f48042c;
+            org.telegram.ui.Components.lp0 lp0Var4 = new org.telegram.ui.Components.lp0(context);
+            lp0Var4.setDelegate(new h20(gVar, 3));
+            sg.o oVar4 = gVar.f48086c;
             if (oVar4 != null) {
                 f12 = oVar4.G / 2.0f;
             }
-            kp0Var4.setProgress(f12);
-            kp0Var4.setReportChanges(true);
-            ydVar.addView(kp0Var4, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
+            lp0Var4.setProgress(f12);
+            lp0Var4.setReportChanges(true);
+            ydVar.addView(lp0Var4, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
             TextView textView6 = new TextView(context);
             textView6.setText("Setup normal spec color");
             textView6.setTextSize(1, 16.0f);
@@ -195,18 +195,18 @@ public final class fx0 extends sg.n {
                 i19 = 5;
             }
             ydVar.addView(textView7, w7.x5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, i19 | 48));
-            org.telegram.ui.Components.kp0 kp0Var5 = new org.telegram.ui.Components.kp0(context);
-            kp0Var5.setDelegate(new Object());
-            kp0Var5.setProgress(yd.f44318b / 2.0f);
-            kp0Var5.setReportChanges(true);
-            ydVar.addView(kp0Var5, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
+            org.telegram.ui.Components.lp0 lp0Var5 = new org.telegram.ui.Components.lp0(context);
+            lp0Var5.setDelegate(new Object());
+            lp0Var5.setProgress(yd.f44362b / 2.0f);
+            lp0Var5.setReportChanges(true);
+            ydVar.addView(lp0Var5, w7.x5.a(38.0f, 5.0f, 4.0f, 5.0f, 0.0f, -1, 0));
             scrollView.addView(ydVar);
-            premiumPreviewFragment.f34148r0.addView(scrollView);
-            premiumPreviewFragment.f34148r0.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20868h5, false));
-            premiumPreviewFragment.f34131d0.addView(premiumPreviewFragment.f34148r0, w7.x5.e(-1, -1, 80));
-            ((ViewGroup.MarginLayoutParams) premiumPreviewFragment.f34148r0.getLayoutParams()).topMargin = premiumPreviewFragment.f34130c0;
-            premiumPreviewFragment.f34148r0.setTranslationY(AndroidUtilities.dp(1000.0f));
-            premiumPreviewFragment.f34148r0.animate().translationY(1.0f).setDuration(300L);
+            premiumPreviewFragment.f34186r0.addView(scrollView);
+            premiumPreviewFragment.f34186r0.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20872h5, false));
+            premiumPreviewFragment.f34169d0.addView(premiumPreviewFragment.f34186r0, w7.x5.e(-1, -1, 80));
+            ((ViewGroup.MarginLayoutParams) premiumPreviewFragment.f34186r0.getLayoutParams()).topMargin = premiumPreviewFragment.f34168c0;
+            premiumPreviewFragment.f34186r0.setTranslationY(AndroidUtilities.dp(1000.0f));
+            premiumPreviewFragment.f34186r0.animate().translationY(1.0f).setDuration(300L);
         }
     }
 }

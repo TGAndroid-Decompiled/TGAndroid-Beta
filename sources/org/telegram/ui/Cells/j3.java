@@ -11,35 +11,35 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public class j3 extends FrameLayout {
-    public boolean f22296a;
-    public final h3 f22297b;
-    public final int f22298c;
+    public boolean f22300a;
+    public final h3 f22301b;
+    public final int f22302c;
     public boolean d;
-    public int f22299e;
-    public boolean f22300f;
+    public int f22303e;
+    public boolean f22304f;
     public boolean h;
-    public boolean f22301n;
-    public final org.telegram.ui.Components.j5 f22302r;
-    public int f22303s;
+    public boolean f22305n;
+    public final org.telegram.ui.Components.j5 f22306r;
+    public int f22307s;
     public final org.telegram.ui.Components.q6 v;
-    public boolean f22304w;
+    public boolean f22308w;
 
     public j3(Context context, String str, boolean z10, boolean z11, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         int i11;
         int i12;
-        this.f22299e = -1;
-        this.f22302r = new org.telegram.ui.Components.j5(this);
+        this.f22303e = -1;
+        this.f22306r = new org.telegram.ui.Components.j5(this);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(false, true, true);
         this.v = q6Var;
-        q6Var.n(0.2f, 160L, hs.h);
+        q6Var.n(0.2f, 160L, is.h);
         q6Var.w(AndroidUtilities.dp(15.33f));
-        q6Var.f30065b = 5;
-        this.f22298c = i10;
+        q6Var.f30031b = 5;
+        this.f22302c = i10;
         h3 h3Var = new h3(this, context, e6Var, i10, e6Var, z11);
-        this.f22297b = h3Var;
+        this.f22301b = h3Var;
         q6Var.setCallback(h3Var);
         h3Var.setTextSize(1, 17.0f);
         h3Var.setHintTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.H6, e6Var));
@@ -81,19 +81,19 @@ public class j3 extends FrameLayout {
 
     public final void c() {
         int i10;
-        if (this.f22297b == null) {
+        if (this.f22301b == null) {
             return;
         }
-        this.f22303s = this.f22298c - getText().length();
+        this.f22307s = this.f22302c - getText().length();
         String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f22300f || (this.f22301n && !this.h)) && ((i10 = this.f22299e) == -1 || this.f22303s <= i10))) {
-            str = "" + this.f22303s;
+        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f22304f || (this.f22305n && !this.h)) && ((i10 = this.f22303e) == -1 || this.f22307s <= i10))) {
+            str = "" + this.f22307s;
         }
         this.v.t(str, true, true);
     }
 
     public CharSequence getText() {
-        return this.f22297b.getText();
+        return this.f22301b.getText();
     }
 
     public TLRPC.TL_textWithEntities getTextWithEntities() {
@@ -109,7 +109,7 @@ public class j3 extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f22304w) {
+        if (this.f22308w) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -123,17 +123,17 @@ public class j3 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
         }
     }
 
     public void setDivider(boolean z10) {
-        this.f22304w = z10;
+        this.f22308w = z10;
         setWillNotDraw(!z10);
     }
 
     public void setShowLimitOnFocus(boolean z10) {
-        this.f22300f = z10;
+        this.f22304f = z10;
     }
 
     public void setShowLimitWhenEmpty(boolean z10) {
@@ -144,25 +144,25 @@ public class j3 extends FrameLayout {
     }
 
     public void setShowLimitWhenNear(int i10) {
-        this.f22299e = i10;
+        this.f22303e = i10;
         c();
     }
 
     public void setText(CharSequence charSequence) {
-        this.f22296a = true;
-        h3 h3Var = this.f22297b;
+        this.f22300a = true;
+        h3 h3Var = this.f22301b;
         h3Var.setText(charSequence);
         h3Var.setSelection(h3Var.getText().length());
-        this.f22296a = false;
+        this.f22300a = false;
     }
 
     public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f22296a = true;
+        this.f22300a = true;
         CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false);
-        h3 h3Var = this.f22297b;
+        h3 h3Var = this.f22301b;
         h3Var.setText(formatTextWithEntities);
         h3Var.setSelection(h3Var.getText().length());
-        this.f22296a = false;
+        this.f22300a = false;
     }
 
     public void a(boolean z10) {

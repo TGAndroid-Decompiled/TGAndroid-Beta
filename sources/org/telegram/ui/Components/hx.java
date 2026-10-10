@@ -1,20 +1,61 @@
 package org.telegram.ui.Components;
-public final class hx implements Runnable {
-    public final int f27148a;
-    public final nz f27149b;
 
-    public hx(nz nzVar, int i10) {
-        this.f27148a = i10;
-        this.f27149b = nzVar;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class hx extends FrameLayout {
+    public final boolean f27157a;
+    public final b00 f27158b;
+
+    public hx(b00 b00Var, Context context, boolean z10) {
+        super(context);
+        this.f27158b = b00Var;
+        this.f27157a = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27148a) {
-            case 0:
-            default:
-                this.f27149b.d();
-                return;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        b00 b00Var = this.f27158b;
+        nx nxVar = b00Var.B0;
+        jx jxVar = b00Var.D0;
+        mx mxVar = b00Var.G0;
+        if (!this.f27157a && (view == jxVar || view == mxVar)) {
+            canvas.save();
+            float y3 = nxVar.getY() + nxVar.getMeasuredHeight() + 1.0f;
+            if (view == jxVar) {
+                y3 = Math.max(y3, mxVar.getY() + mxVar.getMeasuredHeight() + 1.0f);
+            }
+            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * b00Var.f24680a.f16341e), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        b00 b00Var = this.f27158b;
+        b00Var.K0 = true;
+        b00Var.Y();
+        gg.f1 f1Var = b00Var.T0;
+        if (f1Var != null) {
+            f1Var.a();
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        b00 b00Var = this.f27158b;
+        b00Var.K0 = false;
+        b00Var.Y();
+        gg.f1 f1Var = b00Var.T0;
+        if (f1Var != null) {
+            f1Var.a();
         }
     }
 }

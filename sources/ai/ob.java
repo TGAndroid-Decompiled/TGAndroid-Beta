@@ -21,7 +21,7 @@ import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class ob extends View {
     public int f1545a;
     public int f1546b;
@@ -41,7 +41,7 @@ public final class ob extends View {
         super(context);
         this.f1547c = new Matrix();
         this.d = r0;
-        this.f1548e = new org.telegram.ui.Components.g6(this, 0L, 260L, hs.h);
+        this.f1548e = new org.telegram.ui.Components.g6(this, 0L, 260L, is.h);
         this.f1550n = new Drawable[2];
         this.f1551r = new float[2];
         Paint paint = new Paint(1);

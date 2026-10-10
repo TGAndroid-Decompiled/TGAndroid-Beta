@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class c3 extends org.telegram.ui.ActionBar.g5 {
     public AnimatorSet f4833f;
     public final v3 h;
@@ -54,7 +54,7 @@ public final class c3 extends org.telegram.ui.ActionBar.g5 {
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.f4833f = animatorSet2;
         animatorSet2.setDuration(320L);
-        this.f4833f.setInterpolator(hs.h);
+        this.f4833f.setInterpolator(is.h);
         this.f4833f.playTogether(arrayList);
         this.f4833f.addListener(new ai.z(2, this, searchField));
         this.f4833f.start();
@@ -96,7 +96,7 @@ public final class c3 extends org.telegram.ui.ActionBar.g5 {
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.f4833f = animatorSet2;
         animatorSet2.setDuration(320L);
-        this.f4833f.setInterpolator(hs.h);
+        this.f4833f.setInterpolator(is.h);
         this.f4833f.playTogether(arrayList);
         this.f4833f.addListener(new ai.b(this, 13));
         this.f4833f.start();

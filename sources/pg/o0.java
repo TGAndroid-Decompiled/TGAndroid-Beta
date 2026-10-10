@@ -4,16 +4,16 @@ import android.animation.ValueAnimator;
 import android.graphics.RectF;
 import m.f3;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class o0 implements Runnable {
-    public final int f45711a;
-    public final s0 f45712b;
-    public final h1 f45713c;
+    public final int f45755a;
+    public final s0 f45756b;
+    public final h1 f45757c;
 
     public o0(s0 s0Var, h1 h1Var, int i10) {
-        this.f45711a = i10;
-        this.f45712b = s0Var;
-        this.f45713c = h1Var;
+        this.f45755a = i10;
+        this.f45756b = s0Var;
+        this.f45757c = h1Var;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class o0 implements Runnable {
         boolean z10;
         boolean z11;
         float f7;
-        int i10 = this.f45711a;
-        h1 h1Var = this.f45713c;
-        s0 s0Var = this.f45712b;
+        int i10 = this.f45755a;
+        h1 h1Var = this.f45757c;
+        s0 s0Var = this.f45756b;
         switch (i10) {
             case 0:
-                s0Var.f45757c = h1Var;
+                s0Var.f45801c = h1Var;
                 if (s0Var.h == null) {
                     s0Var.h = new RectF();
                 }
-                s0Var.f45757c.a(s0Var.h);
-                f3 f3Var = s0Var.f45755a;
+                s0Var.f45801c.a(s0Var.h);
+                f3 f3Var = s0Var.f45799a;
                 if (f3Var != null) {
                     f3Var.g();
                     return;
                 }
                 return;
             default:
-                if (h1Var != null && s0Var.f45769q == 0) {
-                    s0Var.f45769q = t1.b(s0Var.f45760g);
+                if (h1Var != null && s0Var.f45813q == 0) {
+                    s0Var.f45813q = t1.b(s0Var.f45804g);
                 }
                 boolean z12 = s0Var.H;
                 if (h1Var != null) {
@@ -69,10 +69,10 @@ public final class o0 implements Runnable {
                     s0Var.K = ofFloat;
                     ofFloat.addUpdateListener(new n0(s0Var, 0));
                     s0Var.K.addListener(new r0(s0Var, 0));
-                    s0Var.K.setInterpolator(hs.h);
+                    s0Var.K.setInterpolator(is.h);
                     s0Var.K.start();
                     s0Var.d = h1Var;
-                    f3 f3Var2 = s0Var.f45755a;
+                    f3 f3Var2 = s0Var.f45799a;
                     if (f3Var2 != null) {
                         f3Var2.g();
                     }
@@ -83,7 +83,7 @@ public final class o0 implements Runnable {
                     return;
                 } else if (h1Var != s0Var.d) {
                     s0Var.d = h1Var;
-                    f3 f3Var3 = s0Var.f45755a;
+                    f3 f3Var3 = s0Var.f45799a;
                     if (f3Var3 != null) {
                         f3Var3.g();
                         return;

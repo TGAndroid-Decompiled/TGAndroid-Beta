@@ -16,41 +16,41 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class n31 implements Runnable {
-    public final int f40067a;
-    public final Object f40068b;
-    public final Object f40069c;
+    public final int f40111a;
+    public final Object f40112b;
+    public final Object f40113c;
 
     public n31(int i10, Object obj, Object obj2) {
-        this.f40067a = i10;
-        this.f40068b = obj;
-        this.f40069c = obj2;
+        this.f40111a = i10;
+        this.f40112b = obj;
+        this.f40113c = obj2;
     }
 
     @Override
     public final void run() {
         long j3;
-        org.telegram.ui.Components.am0 am0Var;
-        int i10 = this.f40067a;
+        org.telegram.ui.Components.bm0 bm0Var;
+        int i10 = this.f40111a;
         int i11 = 0;
-        Object obj = this.f40069c;
-        Object obj2 = this.f40068b;
+        Object obj = this.f40113c;
+        Object obj2 = this.f40112b;
         switch (i10) {
             case 0:
                 b41 b41Var = (b41) ((View[]) obj2)[0];
-                b41Var.f36132b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
-                b41Var.f36133c = null;
+                b41Var.f36176b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
+                b41Var.f36177c = null;
                 b41Var.d = null;
-                b41Var.f36135f.W2.N(false);
+                b41Var.f36179f.W2.N(false);
                 return;
             case 1:
                 ((b41) ((View[]) obj2)[0]).b((TLRPC.TL_reportResultAddComment) obj);
                 return;
             case 2:
                 b41 b41Var2 = (b41) ((View[]) obj2)[0];
-                b41Var2.f36132b = null;
-                b41Var2.f36133c = (TLRPC.TL_reportResultChooseOption) obj;
+                b41Var2.f36176b = null;
+                b41Var2.f36177c = (TLRPC.TL_reportResultChooseOption) obj;
                 b41Var2.d = null;
-                b41Var2.f36135f.W2.N(false);
+                b41Var2.f36179f.W2.N(false);
                 return;
             case 3:
                 ((org.telegram.messenger.video.a) obj2).run();
@@ -58,14 +58,14 @@ public final class n31 implements Runnable {
                 return;
             case 4:
                 org.telegram.ui.Components.ad.a0((org.telegram.ui.ActionBar.n2) obj2).c(LocaleController.getString(R.string.AdHidden)).j();
-                AndroidUtilities.runOnUIThread((org.telegram.ui.Components.ci0) obj);
+                AndroidUtilities.runOnUIThread((org.telegram.ui.Components.di0) obj);
                 return;
             case 5:
                 ((SecretMediaViewer) obj2).M = false;
-                ((ev0) obj).f37356a.setVisible(false, true);
+                ((ev0) obj).f37400a.setVisible(false, true);
                 return;
             case 6:
-                ((SecretMediaViewer) ((n6.t) obj2).f16718c).h((File) obj);
+                ((SecretMediaViewer) ((n6.t) obj2).f16722c).h((File) obj);
                 return;
             case 7:
                 k71 k71Var = (k71) obj2;
@@ -87,12 +87,12 @@ public final class n31 implements Runnable {
             case 10:
                 b91 b91Var = (b91) obj2;
                 a0.i iVar = (a0.i) obj;
-                i91 i91Var = b91Var.f36186b1;
+                i91 i91Var = b91Var.f36230b1;
                 Activity parentActivity = i91Var.getParentActivity();
-                v8 v8Var = i91Var.f38582b;
+                v8 v8Var = i91Var.f38626b;
                 int m10 = iVar.m();
                 if (iVar.m() == 1) {
-                    j3 = ((TLRPC.Dialog) iVar.n(0)).f20042id;
+                    j3 = ((TLRPC.Dialog) iVar.n(0)).f20046id;
                 } else {
                     j3 = 0;
                 }
@@ -118,16 +118,16 @@ public final class n31 implements Runnable {
                 ThemeActivity themeActivity2 = (ThemeActivity) obj2;
                 String str = (String) obj;
                 themeActivity2.getClass();
-                org.telegram.ui.ActionBar.i6.f21139w = str;
+                org.telegram.ui.ActionBar.i6.f21143w = str;
                 if (str == null) {
-                    org.telegram.ui.ActionBar.i6.f21139w = String.format("(%.06f, %.06f)", Double.valueOf(org.telegram.ui.ActionBar.i6.f21158x), Double.valueOf(org.telegram.ui.ActionBar.i6.f21175y));
+                    org.telegram.ui.ActionBar.i6.f21143w = String.format("(%.06f, %.06f)", Double.valueOf(org.telegram.ui.ActionBar.i6.f21162x), Double.valueOf(org.telegram.ui.ActionBar.i6.f21179y));
                 }
                 org.telegram.ui.ActionBar.i6.r1();
-                org.telegram.ui.Components.qm0 qm0Var = themeActivity2.f34531b;
-                if (qm0Var != null && (am0Var = (org.telegram.ui.Components.am0) qm0Var.K(themeActivity2.Y)) != null) {
-                    View view2 = am0Var.f47658a;
+                org.telegram.ui.Components.rm0 rm0Var = themeActivity2.f34569b;
+                if (rm0Var != null && (bm0Var = (org.telegram.ui.Components.bm0) rm0Var.K(themeActivity2.Y)) != null) {
+                    View view2 = bm0Var.f47702a;
                     if (view2 instanceof org.telegram.ui.Cells.ca) {
-                        ((org.telegram.ui.Cells.ca) view2).c(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), org.telegram.ui.ActionBar.i6.f21139w, false, false);
+                        ((org.telegram.ui.Cells.ca) view2).c(LocaleController.getString("AutoNightUpdateLocation", R.string.AutoNightUpdateLocation), org.telegram.ui.ActionBar.i6.f21143w, false, false);
                         return;
                     }
                     return;
@@ -136,7 +136,7 @@ public final class n31 implements Runnable {
             case 15:
                 xd1 xd1Var = (xd1) obj2;
                 SharedPreferences sharedPreferences = (SharedPreferences) obj;
-                if (xd1Var.f43975n == 3) {
+                if (xd1Var.f44019n == 3) {
                     sharedPreferences.edit().putBoolean("bganimationhint", true).commit();
                     xd1Var.A0.f(xd1Var.K0[0], true);
                     return;
@@ -164,25 +164,25 @@ public final class n31 implements Runnable {
                 lf1 lf1Var = (lf1) obj2;
                 lf1Var.getClass();
                 Bundle bundle = new Bundle();
-                fg1 fg1Var = lf1Var.f39568b;
-                bundle.putLong("dialog_id", -fg1Var.f37558a);
-                bundle.putLong("topic_id", ((TLRPC.TL_forumTopic) obj).f20090id);
+                fg1 fg1Var = lf1Var.f39612b;
+                bundle.putLong("dialog_id", -fg1Var.f37602a);
+                bundle.putLong("topic_id", ((TLRPC.TL_forumTopic) obj).f20094id);
                 fg1Var.presentFragment(new v11(bundle, null));
                 return;
             case 21:
                 bg1 bg1Var = (bg1) obj2;
                 String str2 = (String) obj;
-                ArrayList arrayList = bg1Var.f36315c0;
-                fg1 fg1Var2 = bg1Var.f36331t0;
+                ArrayList arrayList = bg1Var.f36359c0;
+                fg1 fg1Var2 = bg1Var.f36375t0;
                 String lowerCase = str2.trim().toLowerCase();
                 ArrayList arrayList2 = new ArrayList();
                 int i12 = 0;
                 while (true) {
-                    ArrayList arrayList3 = fg1Var2.f37561b;
+                    ArrayList arrayList3 = fg1Var2.f37605b;
                     if (i12 < arrayList3.size()) {
-                        if (((wf1) arrayList3.get(i12)).f43570c != null && ((wf1) arrayList3.get(i12)).f43570c.title.toLowerCase().contains(lowerCase)) {
-                            arrayList2.add(((wf1) arrayList3.get(i12)).f43570c);
-                            ((wf1) arrayList3.get(i12)).f43570c.searchQuery = lowerCase;
+                        if (((wf1) arrayList3.get(i12)).f43614c != null && ((wf1) arrayList3.get(i12)).f43614c.title.toLowerCase().contains(lowerCase)) {
+                            arrayList2.add(((wf1) arrayList3.get(i12)).f43614c);
+                            ((wf1) arrayList3.get(i12)).f43614c.searchQuery = lowerCase;
                         }
                         i12++;
                     } else {
@@ -190,8 +190,8 @@ public final class n31 implements Runnable {
                         arrayList.addAll(arrayList2);
                         bg1Var.L();
                         if (!arrayList.isEmpty()) {
-                            bg1Var.f36324l0 = false;
-                            bg1Var.f36326o0.b(0);
+                            bg1Var.f36368l0 = false;
+                            bg1Var.f36370o0.b(0);
                         }
                         bg1Var.J(str2);
                         return;
@@ -199,9 +199,9 @@ public final class n31 implements Runnable {
                 }
                 break;
             case 22:
-                ig1 ig1Var = ((hg1) obj2).f38329b;
-                ig1Var.f38636a.f39577e.remove(Integer.valueOf(((TLRPC.TL_forumTopic) obj).f20090id));
-                ig1Var.f38636a.V();
+                ig1 ig1Var = ((hg1) obj2).f38373b;
+                ig1Var.f38680a.f39621e.remove(Integer.valueOf(((TLRPC.TL_forumTopic) obj).f20094id));
+                ig1Var.f38680a.V();
                 return;
             case 23:
                 TwoStepVerificationActivity.Y((TwoStepVerificationActivity) obj2, (byte[]) obj);
@@ -217,7 +217,7 @@ public final class n31 implements Runnable {
                 return;
             case 27:
                 Runnable runnable2 = (Runnable) obj;
-                es[] esVarArr = ((ih1) obj2).f38660w.f36734f;
+                es[] esVarArr = ((ih1) obj2).f38704w.f36778f;
                 int length = esVarArr.length;
                 while (i11 < length) {
                     esVarArr[i11].l(0.0f);
@@ -228,15 +228,15 @@ public final class n31 implements Runnable {
             case 28:
                 ph1 ph1Var = (ph1) obj2;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList4 = ph1Var.f40812f;
-                ArrayList<TLRPC.Chat> arrayList5 = ph1Var.f40811e;
+                ArrayList arrayList4 = ph1Var.f40856f;
+                ArrayList<TLRPC.Chat> arrayList5 = ph1Var.f40855e;
                 if (tLObject instanceof TLRPC.messages_Chats) {
                     arrayList5.clear();
                     arrayList5.addAll(((TLRPC.messages_Chats) tLObject).chats);
                 }
-                MessagesController.getInstance(ph1Var.f40808a).putChats(arrayList5, false);
+                MessagesController.getInstance(ph1Var.f40852a).putChats(arrayList5, false);
                 ph1Var.d = false;
-                ph1Var.f40810c = true;
+                ph1Var.f40854c = true;
                 int size = arrayList4.size();
                 while (i11 < size) {
                     Object obj3 = arrayList4.get(i11);
@@ -253,8 +253,8 @@ public final class n31 implements Runnable {
     }
 
     public n31(b91 b91Var, a0.i iVar, int i10) {
-        this.f40067a = 10;
-        this.f40068b = b91Var;
-        this.f40069c = iVar;
+        this.f40111a = 10;
+        this.f40112b = b91Var;
+        this.f40113c = iVar;
     }
 }

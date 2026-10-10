@@ -1,23 +1,23 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class dp0 extends org.telegram.ui.Components.f91 {
-    public final int f37059a;
-    public final Object f37060b;
+public final class dp0 extends org.telegram.ui.Components.g91 {
+    public final int f37103a;
+    public final Object f37104b;
 
     public dp0(Object obj, int i10) {
-        this.f37059a = i10;
-        this.f37060b = obj;
+        this.f37103a = i10;
+        this.f37104b = obj;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        switch (this.f37059a) {
+        switch (this.f37103a) {
             case 0:
                 return;
             default:
-                if (view instanceof org.telegram.ui.Wallet.f2) {
-                    ((org.telegram.ui.Wallet.f2) view).getClass();
+                if (view instanceof org.telegram.ui.Wallet.g2) {
+                    ((org.telegram.ui.Wallet.g2) view).getClass();
                     return;
                 }
                 return;
@@ -26,34 +26,34 @@ public final class dp0 extends org.telegram.ui.Components.f91 {
 
     @Override
     public final View d(int i10) {
-        switch (this.f37059a) {
+        switch (this.f37103a) {
             case 0:
-                aq0 aq0Var = (aq0) this.f37060b;
+                aq0 aq0Var = (aq0) this.f37104b;
                 if (i10 == 1) {
                     return aq0Var.h;
                 }
                 if (i10 == 0) {
-                    return aq0Var.f35995n;
+                    return aq0Var.f36039n;
                 }
                 return null;
             default:
-                return (View) ((org.telegram.ui.Wallet.h2) this.f37060b).f34981c.get(i10);
+                return (View) ((org.telegram.ui.Wallet.i2) this.f37104b).f35072c.get(i10);
         }
     }
 
     @Override
     public final int e() {
-        switch (this.f37059a) {
+        switch (this.f37103a) {
             case 0:
                 return 2;
             default:
-                return ((org.telegram.ui.Wallet.h2) this.f37060b).f34981c.size();
+                return ((org.telegram.ui.Wallet.i2) this.f37104b).f35072c.size();
         }
     }
 
     @Override
     public final int h(int i10) {
-        int i11 = this.f37059a;
+        int i11 = this.f37103a;
         return i10;
     }
 

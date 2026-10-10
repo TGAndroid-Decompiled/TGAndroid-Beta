@@ -19,7 +19,7 @@ public final class c implements Runnable {
             case 0:
                 j jVar = this.f14907b;
                 c cVar = new c(jVar, this.f14908c, 2);
-                Handler handler = jVar.f14985n;
+                Handler handler = jVar.f14989n;
                 if (handler != null) {
                     handler.post(cVar);
                     return;
@@ -28,7 +28,7 @@ public final class c implements Runnable {
             case 1:
                 j jVar2 = this.f14907b;
                 c cVar2 = new c(jVar2, this.f14908c, 3);
-                Handler handler2 = jVar2.f14985n;
+                Handler handler2 = jVar2.f14989n;
                 if (handler2 != null) {
                     handler2.post(cVar2);
                     return;
@@ -37,7 +37,7 @@ public final class c implements Runnable {
             case 2:
                 j jVar3 = this.f14907b;
                 m mVar = this.f14908c;
-                if (jVar3.S && !jVar3.Y && jVar3.f15002w == mVar && jVar3.f15008z != null && (rVar = jVar3.v) != null) {
+                if (jVar3.S && !jVar3.Y && jVar3.f15006w == mVar && jVar3.f15012z != null && (rVar = jVar3.v) != null) {
                     try {
                         long j3 = mVar.A;
                         if (j3 > 0) {
@@ -45,16 +45,16 @@ public final class c implements Runnable {
                             rVar.A = -1L;
                             rVar.B = 0L;
                             rVar.C = -1L;
-                            rVar.f15082i = Long.MAX_VALUE;
-                            rVar.f15072a0 = true;
-                            n nVar = jVar3.f14978j;
-                            nVar.b("common A/V start armed; waiting for next camera frame: segmentElapsedMs=" + j.s(jVar3.f14996s0));
+                            rVar.f15086i = Long.MAX_VALUE;
+                            rVar.f15076a0 = true;
+                            n nVar = jVar3.f14980j;
+                            nVar.b("common A/V start armed; waiting for next camera frame: segmentElapsedMs=" + j.u(jVar3.f15007w0));
                             return;
                         }
                         throw new IllegalArgumentException("Invalid recording time origin");
                     } catch (RuntimeException e7) {
-                        jVar3.g();
-                        jVar3.C(e7);
+                        jVar3.i();
+                        jVar3.H(e7);
                         return;
                     }
                 }
@@ -62,12 +62,12 @@ public final class c implements Runnable {
             default:
                 j jVar4 = this.f14907b;
                 m mVar2 = this.f14908c;
-                if (jVar4.S && !jVar4.Y && jVar4.f15002w == mVar2) {
-                    jVar4.g();
-                    n nVar2 = jVar4.f14978j;
-                    nVar2.b("common A/V start completed: segmentElapsedMs=" + j.s(jVar4.f14996s0));
-                    t0 t0Var = (t0) jVar4.f14980k.f51107b;
-                    t0Var.f15119i.post(new c0(t0Var, 2));
+                if (jVar4.S && !jVar4.Y && jVar4.f15006w == mVar2) {
+                    jVar4.i();
+                    n nVar2 = jVar4.f14980j;
+                    nVar2.b("common A/V start completed: segmentElapsedMs=" + j.u(jVar4.f15007w0));
+                    t0 t0Var = (t0) jVar4.f14983k.f51151b;
+                    t0Var.f15123i.post(new c0(t0Var, 2));
                     return;
                 }
                 return;

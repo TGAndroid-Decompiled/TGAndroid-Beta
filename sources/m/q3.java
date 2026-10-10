@@ -15,30 +15,30 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.Wallet.k5;
+import org.telegram.ui.Components.q80;
+import org.telegram.ui.Wallet.l5;
 import w7.x5;
 public final class q3 implements n5.b {
-    public Object f15795a;
-    public Object f15796b;
-    public Object f15797c;
+    public Object f15799a;
+    public Object f15800b;
+    public Object f15801c;
     public Object d;
-    public Object f15798e;
-    public Object f15799f;
+    public Object f15802e;
+    public Object f15803f;
     public Object h;
 
     public q3(Set set, a0.f fVar, String str, String str2, n8.a aVar) {
         Set unmodifiableSet = set == null ? Collections.EMPTY_SET : DesugarCollections.unmodifiableSet(set);
-        this.f15795a = unmodifiableSet;
+        this.f15799a = unmodifiableSet;
         a0.f fVar2 = fVar == null ? Collections.EMPTY_MAP : fVar;
-        this.f15797c = fVar2;
+        this.f15801c = fVar2;
         this.d = str;
-        this.f15798e = str2;
-        this.f15799f = aVar == null ? n8.a.f16822a : aVar;
+        this.f15802e = str2;
+        this.f15803f = aVar == null ? n8.a.f16826a : aVar;
         HashSet hashSet = new HashSet(unmodifiableSet);
         Iterator it = fVar2.values().iterator();
         if (!it.hasNext()) {
-            this.f15796b = DesugarCollections.unmodifiableSet(hashSet);
+            this.f15800b = DesugarCollections.unmodifiableSet(hashSet);
             return;
         }
         throw a1.g.k(it);
@@ -46,18 +46,18 @@ public final class q3 implements n5.b {
 
     public void a() {
         e(null);
-        p80 p80Var = (p80) this.f15797c;
-        if (p80Var != null) {
-            p80Var.u();
-            this.f15797c = null;
+        q80 q80Var = (q80) this.f15801c;
+        if (q80Var != null) {
+            q80Var.u();
+            this.f15801c = null;
         }
         this.d = null;
-        this.f15798e = null;
-        this.f15799f = null;
+        this.f15802e = null;
+        this.f15803f = null;
     }
 
     public void b(f6 f6Var, ArrayList arrayList) {
-        e6 e6Var = (e6) this.f15796b;
+        e6 e6Var = (e6) this.f15800b;
         LinearLayout linearLayout = (LinearLayout) this.d;
         if (linearLayout != null) {
             linearLayout.removeAllViews();
@@ -69,7 +69,7 @@ public final class q3 implements n5.b {
                 ii.o0 o0Var = (ii.o0) obj;
                 ii.n0 n0Var = new ii.n0(f6Var.getContext(), o0Var, e6Var);
                 n0Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                n0Var.setBackground(i6.Z(i6.w0(i6.f20888i6, e6Var), 0, 0));
+                n0Var.setBackground(i6.Z(i6.w0(i6.f20892i6, e6Var), 0, 0));
                 n0Var.setOnClickListener(new ai.d0(this, f6Var, o0Var, 10));
                 ((LinearLayout) this.d).addView(n0Var, x5.n(-1, 48));
             }
@@ -79,15 +79,15 @@ public final class q3 implements n5.b {
     public void c(int i10, int i11, float f7, float f10, boolean z10, float[] fArr) {
         float f11;
         float f12;
-        float[] fArr2 = (float[]) this.f15795a;
-        k5.e(fArr2, i10, i11);
-        float[] fArr3 = (float[]) this.f15796b;
+        float[] fArr2 = (float[]) this.f15799a;
+        l5.e(fArr2, i10, i11);
+        float[] fArr3 = (float[]) this.f15800b;
         Matrix.setLookAtM(fArr3, 0, 0.0f, 0.0f, 6.7f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        float[] fArr4 = (float[]) this.f15797c;
-        k5.d(f7, f10, fArr4);
+        float[] fArr4 = (float[]) this.f15801c;
+        l5.d(f7, f10, fArr4);
         float[] fArr5 = (float[]) this.d;
         Matrix.multiplyMM(fArr5, 0, fArr3, 0, fArr4, 0);
-        Matrix.multiplyMM((float[]) this.f15798e, 0, fArr2, 0, fArr5, 0);
+        Matrix.multiplyMM((float[]) this.f15802e, 0, fArr2, 0, fArr5, 0);
         if (z10) {
             f11 = 0.0125f;
         } else {
@@ -107,13 +107,13 @@ public final class q3 implements n5.b {
     }
 
     public void d(float f7, float f10, float f11, int i10, int i11, float[] fArr, int i12) {
-        float[] fArr2 = (float[]) this.f15799f;
+        float[] fArr2 = (float[]) this.f15803f;
         fArr2[0] = f7;
         fArr2[1] = f10;
         fArr2[2] = f11;
         fArr2[3] = 1.0f;
         float[] fArr3 = (float[]) this.h;
-        Matrix.multiplyMV(fArr3, 0, (float[]) this.f15798e, 0, fArr2, 0);
+        Matrix.multiplyMV(fArr3, 0, (float[]) this.f15802e, 0, fArr2, 0);
         float f12 = 1.0f / fArr3[3];
         fArr[i12] = com.google.android.gms.internal.vision.e2.w(fArr3[0], f12, 0.5f, 0.5f) * i10;
         fArr[i12 + 1] = (0.5f - ((fArr3[1] * f12) * 0.5f)) * i11;
@@ -133,8 +133,8 @@ public final class q3 implements n5.b {
     }
 
     public void f(f6 f6Var, String str) {
-        p80 p80Var;
-        p80 p80Var2;
+        q80 q80Var;
+        q80 q80Var2;
         if (str == null) {
             a();
             return;
@@ -145,38 +145,38 @@ public final class q3 implements n5.b {
             return;
         }
         e(f6Var);
-        if (((f6) this.f15799f) == f6Var && a2.equals((ArrayList) this.f15798e) && (p80Var2 = (p80) this.f15797c) != null && p80Var2.D()) {
+        if (((f6) this.f15803f) == f6Var && a2.equals((ArrayList) this.f15802e) && (q80Var2 = (q80) this.f15801c) != null && q80Var2.D()) {
             return;
         }
-        if (((f6) this.f15799f) == f6Var && (p80Var = (p80) this.f15797c) != null && p80Var.D() && ((LinearLayout) this.d) != null) {
-            this.f15798e = a2;
+        if (((f6) this.f15803f) == f6Var && (q80Var = (q80) this.f15801c) != null && q80Var.D() && ((LinearLayout) this.d) != null) {
+            this.f15802e = a2;
             b(f6Var, a2);
-            ((p80) this.f15797c).O();
+            ((q80) this.f15801c).O();
             return;
         }
         a();
         e(f6Var);
-        this.f15799f = f6Var;
-        this.f15798e = a2;
+        this.f15803f = f6Var;
+        this.f15802e = a2;
         LinearLayout linearLayout = new LinearLayout(f6Var.getContext());
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         b(f6Var, a2);
-        p80 a10 = ((ii.p0) this.f15795a).a(f6Var.getEditText());
+        q80 a10 = ((ii.p0) this.f15799a).a(f6Var.getEditText());
         a10.Q = true;
-        a10.f29789s = 0;
-        a10.f29790t = false;
+        a10.f30120s = 0;
+        a10.f30121t = false;
         a10.r((LinearLayout) this.d, x5.n(220, -2));
         a10.X = AndroidUtilities.dp(240.0f);
-        a10.f29771i = 3;
+        a10.f30102i = 3;
         a10.a0(-AndroidUtilities.dp(12.0f), 0.0f);
-        a10.f29784p = new i2.h0(this, 4);
-        a10.f29763d0 = true;
+        a10.f30115p = new i2.h0(this, 4);
+        a10.f30094d0 = true;
         if (a10.D()) {
             a10.C();
         }
         a10.Z();
-        this.f15797c = a10;
+        this.f15801c = a10;
     }
 
     @Override
@@ -184,12 +184,12 @@ public final class q3 implements n5.b {
         ob.a aVar = new ob.a(24);
         na.d dVar = new na.d(24);
         ?? obj = new Object();
-        obj.f8232a = (Context) ((gd.a) this.f15795a).mo27get();
-        obj.f8233b = (m5.d) ((gd.a) this.f15796b).mo27get();
-        obj.f8234c = (s5.d) ((gd.a) this.f15797c).mo27get();
+        obj.f8232a = (Context) ((gd.a) this.f15799a).mo27get();
+        obj.f8233b = (m5.d) ((gd.a) this.f15800b).mo27get();
+        obj.f8234c = (s5.d) ((gd.a) this.f15801c).mo27get();
         obj.d = (la.h) ((la.h) this.d).mo27get();
-        obj.f8235e = (Executor) ((gd.a) this.f15798e).mo27get();
-        obj.f8236f = (t5.c) ((gd.a) this.f15799f).mo27get();
+        obj.f8235e = (Executor) ((gd.a) this.f15802e).mo27get();
+        obj.f8236f = (t5.c) ((gd.a) this.f15803f).mo27get();
         obj.f8237g = aVar;
         obj.h = dVar;
         obj.f8238i = (s5.c) ((gd.a) this.h).mo27get();
@@ -197,27 +197,27 @@ public final class q3 implements n5.b {
     }
 
     public q3(ii.p0 p0Var, e6 e6Var) {
-        this.f15795a = p0Var;
-        this.f15796b = e6Var;
+        this.f15799a = p0Var;
+        this.f15800b = e6Var;
     }
 
     public q3(String str, ba.c cVar, com.google.firebase.messaging.s sVar) {
         this.d = new com.google.firebase.messaging.m(this, false);
-        this.f15798e = new com.google.firebase.messaging.m(this, true);
-        this.f15799f = new c5.b0(14, (short) 0);
+        this.f15802e = new com.google.firebase.messaging.m(this, true);
+        this.f15803f = new c5.b0(14, (short) 0);
         this.h = new AtomicMarkableReference(null, false);
-        this.f15797c = str;
-        this.f15795a = new x9.f(cVar);
-        this.f15796b = sVar;
+        this.f15801c = str;
+        this.f15799a = new x9.f(cVar);
+        this.f15800b = sVar;
     }
 
     public q3() {
-        this.f15795a = new float[16];
-        this.f15796b = new float[16];
-        this.f15797c = new float[16];
+        this.f15799a = new float[16];
+        this.f15800b = new float[16];
+        this.f15801c = new float[16];
         this.d = new float[16];
-        this.f15798e = new float[16];
-        this.f15799f = new float[4];
+        this.f15802e = new float[16];
+        this.f15803f = new float[4];
         this.h = new float[4];
     }
 }

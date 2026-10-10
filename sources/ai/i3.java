@@ -69,7 +69,7 @@ public final class i3 implements Runnable {
                 final boolean z11 = this.f1131b;
                 storiesController.i0(j10, z11, false);
                 n6.t tVar = new n6.t(4);
-                tVar.f16717b = new Runnable() {
+                tVar.f16721b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -82,7 +82,7 @@ public final class i3 implements Runnable {
                         }
                     }
                 };
-                tVar.f16718c = new Runnable() {
+                tVar.f16722c = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -101,7 +101,7 @@ public final class i3 implements Runnable {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
                 org.telegram.ui.Components.tc V = new ad(f6Var.f959d1, f6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, tVar);
-                V.f31123a = 2;
+                V.f31089a = 2;
                 V.k(true);
                 return;
             case 1:
@@ -125,7 +125,7 @@ public final class i3 implements Runnable {
                         if (z10 && R != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, e6Var);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
+                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
                             b2Var.R = string;
                             b2Var.T = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
                             org.telegram.messenger.q.p(R.string.OK, alertDialog$Builder, null);
@@ -154,7 +154,7 @@ public final class i3 implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                ChatActivityEnterView chatActivityEnterView = ((jg) obj4).f27710a;
+                ChatActivityEnterView chatActivityEnterView = ((jg) obj4).f27672a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -198,7 +198,7 @@ public final class i3 implements Runnable {
                 TLObject tLObject2 = (TLObject) obj2;
                 String str3 = (String) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj3;
-                int i11 = ec0Var.f37222b;
+                int i11 = ec0Var.f37266b;
                 ec0Var.c();
                 if (tLObject2 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
@@ -206,12 +206,12 @@ public final class i3 implements Runnable {
                     MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                     TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(tL_contacts_resolvedPeer.peer.user_id));
                     if (user != null) {
-                        org.telegram.ui.Wallet.j8 j8Var = new org.telegram.ui.Wallet.j8(user);
-                        j8Var.f35108r = j3;
-                        j8Var.f35092d0 = str3;
-                        j8Var.f35094e0 = z10;
-                        j8Var.f35091c0 = true;
-                        ec0Var.u(j8Var, false);
+                        org.telegram.ui.Wallet.k8 k8Var = new org.telegram.ui.Wallet.k8(user);
+                        k8Var.f35219r = j3;
+                        k8Var.f35203d0 = str3;
+                        k8Var.f35205e0 = z10;
+                        k8Var.f35202c0 = true;
+                        ec0Var.u(k8Var, false);
                         return;
                     }
                     return;
@@ -223,8 +223,8 @@ public final class i3 implements Runnable {
                 }
             case 5:
                 g01 g01Var = (g01) obj4;
-                ProfileActivity profileActivity = g01Var.f37738b;
-                nq nqVar = new nq(profileActivity.f34243e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
+                ProfileActivity profileActivity = g01Var.f37782b;
+                nq nqVar = new nq(profileActivity.f34281e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 nqVar.X0 = new f01(g01Var, (ty) obj2);
                 profileActivity.presentFragment(nqVar);
                 return;

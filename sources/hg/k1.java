@@ -17,11 +17,11 @@ import org.telegram.messenger.bi;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ia0;
+import org.telegram.ui.Components.ja0;
 import w7.x5;
 public final class k1 extends LinearLayout {
     public final e6 f11298a;
-    public final ia0 f11299b;
+    public final ja0 f11299b;
     public final ImageReceiver f11300c;
     public final TextView d;
     public boolean f11301e;
@@ -37,13 +37,13 @@ public final class k1 extends LinearLayout {
         this.f11300c = imageReceiver;
         this.f11298a = e6Var;
         setOrientation(1);
-        ia0 ia0Var = new ia0();
-        this.f11299b = ia0Var;
+        ja0 ja0Var = new ja0();
+        this.f11299b = ja0Var;
         int i15 = i6.G6;
         int w02 = i6.w0(i15, e6Var);
-        ia0Var.g(i6.m1(0.05f, w02), i6.m1(0.15f, w02), i6.m1(0.1f, w02), i6.m1(0.3f, w02));
-        ia0Var.k(4.0f);
-        ia0Var.f27340x.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        ja0Var.g(i6.m1(0.05f, w02), i6.m1(0.15f, w02), i6.m1(0.1f, w02), i6.m1(0.3f, w02));
+        ja0Var.k(4.0f);
+        ja0Var.f27651x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -69,7 +69,7 @@ public final class k1 extends LinearLayout {
         addView(textView, x5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(i6.w0(i6.f21199z6, e6Var));
+        textView2.setTextColor(i6.w0(i6.f21203z6, e6Var));
         bi.j(13.0f, R.string.BusinessProfileLocation, 1, textView2);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -117,7 +117,7 @@ public final class k1 extends LinearLayout {
         if (this.f11301e) {
             Paint U0 = i6.U0("paintDivider", this.f11298a);
             if (U0 == null) {
-                U0 = i6.f20919k0;
+                U0 = i6.f20923k0;
             }
             Paint paint = U0;
             float f11 = 21.33f;

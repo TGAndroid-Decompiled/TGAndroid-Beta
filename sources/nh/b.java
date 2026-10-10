@@ -6,22 +6,22 @@ import me.e;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import yf.i0;
 public final class b extends ci.d implements me.d {
-    public final me.b f16858h0;
-    public final e6 f16859i0;
+    public final me.b f16862h0;
+    public final e6 f16863i0;
 
     public b(Context context, e6 e6Var) {
         super(context, e6Var, true);
-        this.f16858h0 = new me.b(0, this, hs.h, 320L, true);
-        this.f16859i0 = e6Var;
+        this.f16862h0 = new me.b(0, this, is.h, 320L, true);
+        this.f16863i0 = e6Var;
         e();
-        setOutlineProvider(i0.f52172b);
+        setOutlineProvider(i0.f52216b);
     }
 
     public final int m(int i10) {
-        e6 e6Var = this.f16859i0;
+        e6 e6Var = this.f16863i0;
         if (e6Var != null) {
             return e6Var.x0(i10);
         }
@@ -31,16 +31,16 @@ public final class b extends ci.d implements me.d {
     @Override
     public final void n(int i10, float f7, float f10, e eVar) {
         boolean q6;
-        e6 e6Var = this.f16859i0;
+        e6 e6Var = this.f16863i0;
         if (e6Var != null) {
             q6 = e6Var.a();
         } else {
             q6 = i6.I.q();
         }
-        float f11 = this.f16858h0.f16337e;
+        float f11 = this.f16862h0.f16341e;
         setElevation((1.0f - f11) * AndroidUtilities.dp(1.0f));
-        setColor(i0.a.d(f11, m(i6.f20797d6), m(i6.Oh)));
-        setTextColor(i0.a.d(f11, m(i6.f21037q7), m(i6.Sh)));
+        setColor(i0.a.d(f11, m(i6.f20801d6), m(i6.Oh)));
+        setTextColor(i0.a.d(f11, m(i6.f21041q7), m(i6.Sh)));
         if (Build.VERSION.SDK_INT >= 28) {
             if (q6) {
                 setOutlineAmbientShadowColor(553648127);

@@ -16,11 +16,11 @@ import java.util.Locale;
 import pg.e0;
 import v7.r6;
 public final class i extends w7.l {
-    public static final e0 f45951b = new e0(3);
-    public final g f45952a;
+    public static final e0 f45995b = new e0(3);
+    public final g f45996a;
 
     public i(g gVar) {
-        this.f45952a = gVar;
+        this.f45996a = gVar;
     }
 
     public static a d(v vVar, int i10, int i11) {

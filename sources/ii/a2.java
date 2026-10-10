@@ -6,7 +6,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class a2 extends ImageView implements org.telegram.ui.ActionBar.z5 {
     public final int f12262a;
     public int f12263b;
@@ -22,7 +22,7 @@ public final class a2 extends ImageView implements org.telegram.ui.ActionBar.z5 
     public a2(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.f12265e = 20;
-        this.f12266f = org.telegram.ui.ActionBar.i6.f20797d6;
+        this.f12266f = org.telegram.ui.ActionBar.i6.f20801d6;
         this.f12267n = true;
         this.f12269s = true;
         this.f12263b = i10;
@@ -80,7 +80,7 @@ public final class a2 extends ImageView implements org.telegram.ui.ActionBar.z5 
             setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             return;
         }
-        setBackground(org.telegram.ui.ActionBar.i6.a0(org.telegram.ui.ActionBar.i6.w0(this.f12266f, e6Var), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20888i6, e6Var), AndroidUtilities.dp(this.f12265e), AndroidUtilities.dp(this.f12265e)));
+        setBackground(org.telegram.ui.ActionBar.i6.a0(org.telegram.ui.ActionBar.i6.w0(this.f12266f, e6Var), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20892i6, e6Var), AndroidUtilities.dp(this.f12265e), AndroidUtilities.dp(this.f12265e)));
         setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var), PorterDuff.Mode.SRC_IN));
     }
 
@@ -117,7 +117,7 @@ public final class a2 extends ImageView implements org.telegram.ui.ActionBar.z5 
         } else {
             f7 = 0.5f;
         }
-        animate.alpha(f7).setDuration(320L).setInterpolator(hs.h).start();
+        animate.alpha(f7).setDuration(320L).setInterpolator(is.h).start();
     }
 
     public void setPremiumLocked(boolean z10) {

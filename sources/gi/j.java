@@ -16,11 +16,11 @@ import org.telegram.messenger.bi;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Components.qc0;
+import org.telegram.ui.Components.rc0;
 import w7.x5;
 public final class j extends LinearLayout implements z5 {
     public final e6 f10923a;
-    public final qc0 f10924b;
+    public final rc0 f10924b;
     public final FrameLayout f10925c;
     public final ImageView d;
     public final TextView f10926e;
@@ -39,9 +39,9 @@ public final class j extends LinearLayout implements z5 {
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f10925c = frameLayout;
-        qc0 qc0Var = new qc0(1);
-        this.f10924b = qc0Var;
-        frameLayout.setBackground(qc0Var);
+        rc0 rc0Var = new rc0(1);
+        this.f10924b = rc0Var;
+        frameLayout.setBackground(rc0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -122,7 +122,7 @@ public final class j extends LinearLayout implements z5 {
         if (this.f10928n) {
             i10 = i6.W8;
         } else {
-            i10 = i6.f20982n6;
+            i10 = i6.f20986n6;
         }
         int w02 = i6.w0(i10, e6Var);
         TextView textView = this.f10927f;
@@ -138,7 +138,7 @@ public final class j extends LinearLayout implements z5 {
         } else {
             q6 = i6.I.q();
         }
-        this.f10924b.f30145b = q6;
+        this.f10924b.f30448b = q6;
     }
 
     public int[] getColorKeys() {
@@ -184,7 +184,7 @@ public final class j extends LinearLayout implements z5 {
             if (z10) {
                 i10 = i6.W8;
             } else {
-                i10 = i6.f20982n6;
+                i10 = i6.f20986n6;
             }
             e6 e6Var = this.f10923a;
             textView.setTextColor(i6.w0(i10, e6Var));

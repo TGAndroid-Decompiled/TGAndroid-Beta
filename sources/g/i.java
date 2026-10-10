@@ -27,7 +27,7 @@ public final class i extends n0 {
                 r rVar = (r) obj;
                 rVar.f10189y.setVisibility(0);
                 if (rVar.f10189y.getParent() instanceof View) {
-                    WeakHashMap weakHashMap = i0.f46766a;
+                    WeakHashMap weakHashMap = i0.f46810a;
                     r0.y.c((View) rVar.f10189y.getParent());
                     return;
                 }
@@ -55,20 +55,20 @@ public final class i extends n0 {
                 rVar2.G = null;
                 return;
             default:
-                r rVar3 = (r) ((n4.x) obj).f16613c;
+                r rVar3 = (r) ((n4.x) obj).f16617c;
                 rVar3.f10189y.setVisibility(8);
                 PopupWindow popupWindow = rVar3.E;
                 if (popupWindow != null) {
                     popupWindow.dismiss();
                 } else if (rVar3.f10189y.getParent() instanceof View) {
-                    WeakHashMap weakHashMap = i0.f46766a;
+                    WeakHashMap weakHashMap = i0.f46810a;
                     r0.y.c((View) rVar3.f10189y.getParent());
                 }
                 rVar3.f10189y.e();
                 rVar3.G.d(null);
                 rVar3.G = null;
                 ViewGroup viewGroup = rVar3.J;
-                WeakHashMap weakHashMap2 = i0.f46766a;
+                WeakHashMap weakHashMap2 = i0.f46810a;
                 r0.y.c(viewGroup);
                 return;
         }

@@ -10,26 +10,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.qm0;
-public final class i3 extends o61 {
-    public static final int f51281a = 0;
+import org.telegram.ui.Components.q61;
+import org.telegram.ui.Components.rm0;
+public final class i3 extends p61 {
+    public static final int f51325a = 0;
 
     static {
-        o61.setup(new o61());
+        p61.setup(new p61());
     }
 
     @Override
-    public final void bindView(View view, p61 p61Var, boolean z10, c71 c71Var, k71 k71Var) {
+    public final void bindView(View view, q61 q61Var, boolean z10, d71 d71Var, l71 l71Var) {
         j3 j3Var = (j3) view;
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) p61Var.G;
-        int i10 = p61Var.f29747z;
-        String str = (String) p61Var.f29734l;
-        boolean z11 = p61Var.f29728e;
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) q61Var.G;
+        int i10 = q61Var.f30076z;
+        String str = (String) q61Var.f30063l;
+        boolean z11 = q61Var.f30057e;
         j3Var.getClass();
         ShapeDrawable K = i6.K(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
         SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;
@@ -41,7 +41,7 @@ public final class i3 extends o61 {
             spannableStringBuilder2.append((CharSequence) "  ");
             int length = spannableStringBuilder2.length();
             spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
-            spannableStringBuilder2.setSpan(new m61(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder2.setSpan(new n61(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
         j3Var.g(spannableStringBuilder, 0, K);
@@ -49,12 +49,12 @@ public final class i3 extends o61 {
     }
 
     @Override
-    public final View createView(Context context, qm0 qm0Var, int i10, int i11, e6 e6Var) {
+    public final View createView(Context context, rm0 rm0Var, int i10, int i11, e6 e6Var) {
         org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(0, context, e6Var, false, false);
         f1Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         f1Var.c(i6.w0(i6.E8, e6Var), i6.w0(i6.F8, e6Var));
         f1Var.e(-1, PorterDuff.Mode.MULTIPLY);
-        f1Var.f20577c.setTranslationX(AndroidUtilities.dp(2.0f));
+        f1Var.f20581c.setTranslationX(AndroidUtilities.dp(2.0f));
         f1Var.a(2);
         f1Var.setBackground(null);
         return f1Var;

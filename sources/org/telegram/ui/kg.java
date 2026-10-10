@@ -9,27 +9,27 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class kg implements Utilities.Callback2 {
-    public final int f39276a;
-    public final int f39277b;
-    public final Object f39278c;
+    public final int f39320a;
+    public final int f39321b;
+    public final Object f39322c;
     public final Object d;
 
     public kg(org.telegram.ui.ActionBar.n2 n2Var, int i10, TLObject tLObject, int i11) {
-        this.f39276a = i11;
-        this.f39278c = n2Var;
-        this.f39277b = i10;
+        this.f39320a = i11;
+        this.f39322c = n2Var;
+        this.f39321b = i10;
         this.d = tLObject;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         TLRPC.Updates updates;
-        int i10 = this.f39276a;
+        int i10 = this.f39320a;
         Object obj3 = this.d;
-        Object obj4 = this.f39278c;
+        Object obj4 = this.f39322c;
         switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ei.l3((zn) obj4, this.f39277b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 16));
+                AndroidUtilities.runOnUIThread(new ei.l3((zn) obj4, this.f39321b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 16));
                 return;
             case 1:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
@@ -47,24 +47,24 @@ public final class kg implements Utilities.Callback2 {
                     }
                     updates = null;
                 }
-                AndroidUtilities.runOnUIThread(new ei.l3(launchActivity, m70Var, tL_error, updates, this.f39277b, 26));
+                AndroidUtilities.runOnUIThread(new ei.l3(launchActivity, m70Var, tL_error, updates, this.f39321b, 26));
                 return;
             default:
                 PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
                 TL_account.Passkey passkey = (TL_account.Passkey) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = passkeysActivity.f33861b;
+                ArrayList arrayList = passkeysActivity.f33899b;
                 boolean z10 = ((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse;
-                int i11 = this.f39277b;
+                int i11 = this.f39321b;
                 if (z10) {
                     org.telegram.ui.Components.ad.a0(passkeysActivity).e0("FALSE", false);
                     arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
-                    passkeysActivity.f33860a.W2.N(true);
+                    passkeysActivity.f33898a.W2.N(true);
                     return;
                 } else if (tL_error2 != null) {
                     org.telegram.ui.Components.ad.a0(passkeysActivity).f0(tL_error2, false);
                     arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
-                    passkeysActivity.f33860a.W2.N(true);
+                    passkeysActivity.f33898a.W2.N(true);
                     return;
                 } else {
                     return;
@@ -73,9 +73,9 @@ public final class kg implements Utilities.Callback2 {
     }
 
     public kg(LaunchActivity launchActivity, m70 m70Var, int i10) {
-        this.f39276a = 1;
-        this.f39278c = launchActivity;
+        this.f39320a = 1;
+        this.f39322c = launchActivity;
         this.d = m70Var;
-        this.f39277b = i10;
+        this.f39321b = i10;
     }
 }

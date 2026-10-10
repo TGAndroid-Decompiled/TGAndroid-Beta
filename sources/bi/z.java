@@ -29,10 +29,10 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.t7;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.n91;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.Components.qs0;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.o91;
+import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.rs0;
 import org.telegram.ui.Components.yi;
 import w7.x5;
 public abstract class z extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -46,7 +46,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
     public final ArrayList f3944f;
     public final ArrayList h;
     public final a f3945n;
-    public final n91 f3946r;
+    public final o91 f3946r;
     public Boolean f3947s;
     public int v;
     public float f3948w;
@@ -66,7 +66,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         e6 resourceProvider = n2Var.getResourceProvider();
         this.f3942c = resourceProvider;
         this.d = j3;
-        setBackgroundColor(i6.v(i6.w0(i6.f20797d6, resourceProvider), i6.m1(0.04f, i6.w0(i6.G6, resourceProvider))));
+        setBackgroundColor(i6.v(i6.w0(i6.f20801d6, resourceProvider), i6.m1(0.04f, i6.w0(i6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -85,16 +85,16 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             v8Var = v8Var2;
         }
         this.f3943e = v8Var;
-        qs0 qs0Var = (qs0) this;
-        a aVar = new a(qs0Var, context);
+        rs0 rs0Var = (rs0) this;
+        a aVar = new a(rs0Var, context);
         this.f3945n = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
-        aVar.setAdapter(new b(qs0Var, context));
+        aVar.setAdapter(new b(rs0Var, context));
         addView(aVar, x5.e(-1, -1, 119));
-        n91 n10 = aVar.n(9, true);
+        o91 n10 = aVar.n(9, true);
         this.f3946r = n10;
-        n10.f29117r = 12;
-        n10.setPreTabClick(new a1.c(qs0Var, 11));
+        n10.f29422r = 12;
+        n10.setPreTabClick(new a1.c(rs0Var, 11));
         addView(n10, x5.e(-1, 42, 48));
         i(false);
     }
@@ -106,9 +106,9 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             yiVar.N1(1, false);
             yiVar.W0 = true;
             yiVar.V0 = false;
-            yiVar.f33248m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            yiVar.f33240j0.f0();
-            yiVar.f33219c2 = new c(this, yiVar, str);
+            yiVar.f33255m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            yiVar.f33247j0.f0();
+            yiVar.f33226c2 = new c(this, yiVar, str);
             yiVar.t1();
             yiVar.show();
         }
@@ -301,7 +301,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         return null;
     }
 
-    public qm0 getCurrentListView() {
+    public rm0 getCurrentListView() {
         View currentView = this.f3945n.getCurrentView();
         if (currentView instanceof u) {
             return ((u) currentView).f3927f;
@@ -403,9 +403,9 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         erVar.setScale(0.9f, 0.9f);
         erVar.spaceScaleX = 0.85f;
         spannableString.setSpan(erVar, 0, 1, 33);
-        n91 n91Var = this.f3946r;
-        n91Var.a(-1, spannableString);
-        n91Var.f29121x.l();
+        o91 o91Var = this.f3946r;
+        o91Var.a(-1, spannableString);
+        o91Var.f29426x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {
@@ -432,7 +432,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             } else {
                 f7 = -42.0f;
             }
-            n91Var.setTranslationY(AndroidUtilities.dp(f7));
+            o91Var.setTranslationY(AndroidUtilities.dp(f7));
             if (z11) {
                 f11 = 42.0f;
             }
@@ -448,7 +448,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         ofFloat.addUpdateListener(new ai.a(this, 14));
         this.f3949x.addListener(new ai.n(4, this, z11));
         this.f3949x.setDuration(320L);
-        this.f3949x.setInterpolator(hs.h);
+        this.f3949x.setInterpolator(is.h);
         this.f3949x.start();
     }
 

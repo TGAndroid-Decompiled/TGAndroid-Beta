@@ -32,7 +32,7 @@ public final class a {
         if (str4 != null) {
             aVar.r("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = eVar.f8242e.b().f50221a;
+        String str5 = eVar.f8242e.b().f50265a;
         if (str5 != null) {
             aVar.r("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
@@ -52,7 +52,7 @@ public final class a {
 
     public JSONObject c(aa.b bVar) {
         int i10 = bVar.f388c;
-        t9.b bVar2 = t9.b.f48245a;
+        t9.b bVar2 = t9.b.f48289a;
         bVar2.c("Settings response code was: " + i10);
         String str = this.f8226b;
         if (i10 != 200 && i10 != 201 && i10 != 202 && i10 != 203) {

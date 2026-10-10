@@ -7,24 +7,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class wc implements Utilities.Callback {
-    public final int f32593a = 0;
-    public final long f32594b;
-    public final int f32595c;
+    public final int f32640a = 0;
+    public final long f32641b;
+    public final int f32642c;
     public final Object d;
 
     public wc(int i10, tc tcVar, long j3) {
-        this.f32595c = i10;
+        this.f32642c = i10;
         this.d = tcVar;
-        this.f32594b = j3;
+        this.f32641b = j3;
     }
 
     @Override
     public final void run(Object obj) {
         Object string;
         TLRPC.StickerSet stickerSet;
-        int i10 = this.f32593a;
-        int i11 = this.f32595c;
-        long j3 = this.f32594b;
+        int i10 = this.f32640a;
+        int i11 = this.f32642c;
+        long j3 = this.f32641b;
         Object obj2 = this.d;
         switch (i10) {
             case 0:
@@ -44,14 +44,14 @@ public final class wc implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new ea(1, tcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
                 return;
             default:
-                ((bw0) obj2).getStoriesController().b(i11, j3, (ArrayList) obj);
+                ((cw0) obj2).getStoriesController().b(i11, j3, (ArrayList) obj);
                 return;
         }
     }
 
-    public wc(bw0 bw0Var, long j3, int i10) {
-        this.d = bw0Var;
-        this.f32594b = j3;
-        this.f32595c = i10;
+    public wc(cw0 cw0Var, long j3, int i10) {
+        this.d = cw0Var;
+        this.f32641b = j3;
+        this.f32642c = i10;
     }
 }

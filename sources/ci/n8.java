@@ -23,8 +23,8 @@ public final class n8 implements Runnable {
                 u8 u8Var = this.f5647b;
                 org.telegram.ui.Cells.j3 j3Var = u8Var.Y;
                 if (u8Var.isShowing()) {
-                    j3Var.f22297b.requestFocus();
-                    AndroidUtilities.showKeyboard(j3Var.f22297b);
+                    j3Var.f22301b.requestFocus();
+                    AndroidUtilities.showKeyboard(j3Var.f22301b);
                     return;
                 }
                 return;

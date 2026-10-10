@@ -37,10 +37,10 @@ public final class oc extends lc {
         double d = pcVar.d;
         TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f1556b;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d10 = (mediaAreaCoordinates.f20272x * d) / 100.0d;
+        double d10 = (mediaAreaCoordinates.f20276x * d) / 100.0d;
         double d11 = pcVar.f1602e;
-        double d12 = (mediaAreaCoordinates.f20273y * d11) / 100.0d;
-        float f10 = (float) ((d * mediaAreaCoordinates.f20271w) / 100.0d);
+        double d12 = (mediaAreaCoordinates.f20277y * d11) / 100.0d;
+        float f10 = (float) ((d * mediaAreaCoordinates.f20275w) / 100.0d);
         canvas.save();
         canvas.translate((float) (d10 + pcVar.f1600b), (float) (d12 + pcVar.f1601c));
         nc ncVar = this.f1555a;
@@ -61,16 +61,16 @@ public final class oc extends lc {
         if (z10) {
             ncVar.K = true;
             if (ncVar.L) {
-                ncVar.f46550s.onAttachedToWindow();
+                ncVar.f46594s.onAttachedToWindow();
                 return;
             } else {
-                ncVar.f46549r.onAttachedToWindow();
+                ncVar.f46593r.onAttachedToWindow();
                 return;
             }
         }
         ncVar.K = false;
-        ncVar.f46549r.onDetachedFromWindow();
-        ncVar.f46550s.onDetachedFromWindow();
+        ncVar.f46593r.onDetachedFromWindow();
+        ncVar.f46594s.onDetachedFromWindow();
     }
 
     @Override

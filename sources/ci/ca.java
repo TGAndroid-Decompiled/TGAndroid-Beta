@@ -17,8 +17,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.d40;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.e40;
+import org.telegram.ui.Components.is;
 public abstract class ca extends ScrollView {
     public final Paint E;
     public final Matrix F;
@@ -31,7 +31,7 @@ public abstract class ca extends ScrollView {
     public final int f4846b;
     public final ba f4847c;
     public final ArrayList d;
-    public d40 f4848e;
+    public e40 f4848e;
     public final m9 f4849f;
     public boolean h;
     public Utilities.Callback f4850n;
@@ -46,15 +46,15 @@ public abstract class ca extends ScrollView {
         super(context);
         int i10;
         this.d = new ArrayList();
-        hs hsVar = hs.h;
-        this.f4851r = new org.telegram.ui.Components.g6(this, 0L, 300L, hsVar);
+        is isVar = is.h;
+        this.f4851r = new org.telegram.ui.Components.g6(this, 0L, 300L, isVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
         this.f4852s = linearGradient;
         Paint paint = new Paint(1);
         this.v = paint;
         this.f4853w = new Matrix();
-        this.f4854x = new org.telegram.ui.Components.g6(this, 0L, 300L, hsVar);
+        this.f4854x = new org.telegram.ui.Components.g6(this, 0L, 300L, isVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.f4855y = linearGradient2;
         Paint paint2 = new Paint(1);
@@ -67,7 +67,7 @@ public abstract class ca extends ScrollView {
         paint2.setXfermode(new PorterDuffXfermode(mode));
         this.f4849f = m9Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20797d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20801d6, false));
         ba baVar = new ba(this, context);
         this.f4847c = baVar;
         addView(baVar, w7.x5.d(-2.0f, -1));

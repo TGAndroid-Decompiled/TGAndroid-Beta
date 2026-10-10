@@ -5,9 +5,9 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import c0.l;
 public abstract class i {
-    public static final l f46972a = new Object();
-    public static final Object f46973b = new Object();
-    public static qb.b f46974c = null;
+    public static final l f47016a = new Object();
+    public static final Object f47017b = new Object();
+    public static qb.b f47018c = null;
 
     public static long a(Context context) {
         PackageManager packageManager = context.getApplicationContext().getPackageManager();
@@ -19,9 +19,9 @@ public abstract class i {
 
     public static qb.b b() {
         qb.b bVar = new qb.b(21);
-        f46974c = bVar;
-        f46972a.k(bVar);
-        return f46974c;
+        f47018c = bVar;
+        f47016a.k(bVar);
+        return f47018c;
     }
 
     public static void c(android.content.Context r18, boolean r19) {

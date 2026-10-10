@@ -2,30 +2,30 @@ package yh;
 
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.ih1;
 public final class d implements org.telegram.ui.ActionBar.a2, Utilities.Callback5, Utilities.Callback5Return {
-    public final g f52366a;
+    public final g f52410a;
 
     public d(g gVar) {
-        this.f52366a = gVar;
+        this.f52410a = gVar;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        g gVar = this.f52366a;
+        g gVar = this.f52410a;
         gVar.getClass();
         gVar.presentFragment(new ih1(6, null));
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        p61 p61Var = (p61) obj;
+        q61 q61Var = (q61) obj;
         View view = (View) obj2;
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f52366a.getClass();
+        this.f52410a.getClass();
         return Boolean.FALSE;
     }
 
@@ -35,6 +35,6 @@ public final class d implements org.telegram.ui.ActionBar.a2, Utilities.Callback
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        g.W(this.f52366a, (p61) obj);
+        g.W(this.f52410a, (q61) obj);
     }
 }

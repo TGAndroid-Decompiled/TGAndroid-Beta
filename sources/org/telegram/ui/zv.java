@@ -4,22 +4,22 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-public final class zv implements org.telegram.ui.Components.em0 {
-    public final int f45081a;
-    public final ty f45082b;
+public final class zv implements org.telegram.ui.Components.fm0 {
+    public final int f45125a;
+    public final ty f45126b;
 
     public zv(ty tyVar, int i10) {
-        this.f45081a = i10;
-        this.f45082b = tyVar;
+        this.f45125a = i10;
+        this.f45126b = tyVar;
     }
 
     @Override
     public final void d(int i10, View view) {
         gg.p0 p0Var;
-        switch (this.f45081a) {
+        switch (this.f45125a) {
             case 0:
-                ty tyVar = this.f45082b;
-                Object obj = tyVar.C0.f25785v0.G(i10).G;
+                ty tyVar = this.f45126b;
+                Object obj = tyVar.C0.f26146v0.G(i10).G;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
                     Bundle bundle = new Bundle();
@@ -38,15 +38,15 @@ public final class zv implements org.telegram.ui.Components.em0 {
                     Bundle f7 = org.telegram.ui.Cells.c1.f(3, "type");
                     f7.putString("hashtag", w8Var.C);
                     f7.putInt("storiesCount", w8Var.J);
-                    tyVar.presentFragment(new org.telegram.ui.Components.db0(f7, null));
+                    tyVar.presentFragment(new org.telegram.ui.Components.eb0(f7, null));
                     return;
                 } else {
                     return;
                 }
             default:
-                ty tyVar2 = this.f45082b;
-                tyVar2.f42157b0.I0(true);
-                ArrayList arrayList = tyVar2.f42157b0.V2;
+                ty tyVar2 = this.f45126b;
+                tyVar2.f42201b0.I0(true);
+                ArrayList arrayList = tyVar2.f42201b0.V2;
                 if (arrayList.isEmpty()) {
                     p0Var = gg.r0.f10779a3[i10];
                 } else {

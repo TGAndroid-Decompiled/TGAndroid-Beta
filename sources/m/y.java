@@ -23,16 +23,16 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import w7.n6;
 public class y {
     public static final int[] d = {16843067, 16843068};
-    public final int f15872a = 2;
-    public View f15873b;
-    public Object f15874c;
+    public final int f15876a = 2;
+    public View f15877b;
+    public Object f15878c;
 
     public y() {
     }
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((n6.t) ((m2.t) this.f15874c).f15972b).getClass();
+            ((n6.t) ((m2.t) this.f15878c).f15976b).getClass();
             if (keyListener instanceof q1.e) {
                 return keyListener;
             }
@@ -49,9 +49,9 @@ public class y {
 
     public void b(AttributeSet attributeSet, int i10) {
         boolean z10 = true;
-        switch (this.f15872a) {
+        switch (this.f15876a) {
             case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f15873b;
+                AbsSeekBar absSeekBar = (AbsSeekBar) this.f15877b;
                 la.h R = la.h.R(absSeekBar.getContext(), attributeSet, d, i10);
                 Drawable H = R.H(0);
                 if (H != null) {
@@ -77,7 +77,7 @@ public class y {
                 R.S();
                 return;
             default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f15873b).getContext().obtainStyledAttributes(attributeSet, f.a.f9532i, i10, 0);
+                TypedArray obtainStyledAttributes = ((EditText) this.f15877b).getContext().obtainStyledAttributes(attributeSet, f.a.f9532i, i10, 0);
                 try {
                     if (obtainStyledAttributes.hasValue(14)) {
                         z10 = obtainStyledAttributes.getBoolean(14, true);
@@ -93,26 +93,26 @@ public class y {
     }
 
     public q1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        m2.t tVar = (m2.t) this.f15874c;
+        m2.t tVar = (m2.t) this.f15878c;
         if (inputConnection == null) {
             tVar.getClass();
             inputConnection = null;
         } else {
-            n6.t tVar2 = (n6.t) tVar.f15972b;
+            n6.t tVar2 = (n6.t) tVar.f15976b;
             tVar2.getClass();
             if (!(inputConnection instanceof q1.b)) {
-                inputConnection = new q1.b((EditText) tVar2.f16717b, inputConnection, editorInfo);
+                inputConnection = new q1.b((EditText) tVar2.f16721b, inputConnection, editorInfo);
             }
         }
         return (q1.b) inputConnection;
     }
 
     public void d(boolean z10) {
-        q1.i iVar = (q1.i) ((n6.t) ((m2.t) this.f15874c).f15972b).f16718c;
-        if (iVar.f45918c != z10) {
-            if (iVar.f45917b != null) {
+        q1.i iVar = (q1.i) ((n6.t) ((m2.t) this.f15878c).f15976b).f16722c;
+        if (iVar.f45962c != z10) {
+            if (iVar.f45961b != null) {
                 androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f45917b;
+                q1.h hVar = iVar.f45961b;
                 a2.getClass();
                 n6.a(hVar, "initCallback cannot be null");
                 ReentrantReadWriteLock reentrantReadWriteLock = a2.f2605a;
@@ -123,9 +123,9 @@ public class y {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f45918c = z10;
+            iVar.f45962c = z10;
             if (z10) {
-                q1.i.a(iVar.f45916a, androidx.emoji2.text.l.a().b());
+                q1.i.a(iVar.f45960a, androidx.emoji2.text.l.a().b());
             }
         }
     }
@@ -165,8 +165,8 @@ public class y {
         } else if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f15874c) == null) {
-                this.f15874c = bitmap;
+            if (((Bitmap) this.f15878c) == null) {
+                this.f15878c = bitmap;
             }
             ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
             shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
@@ -180,11 +180,11 @@ public class y {
     }
 
     public y(AbsSeekBar absSeekBar) {
-        this.f15873b = absSeekBar;
+        this.f15877b = absSeekBar;
     }
 
     public y(EditText editText) {
-        this.f15873b = editText;
-        this.f15874c = new m2.t(editText);
+        this.f15877b = editText;
+        this.f15878c = new m2.t(editText);
     }
 }

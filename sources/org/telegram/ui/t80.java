@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
-public final class t80 extends org.telegram.ui.Components.pm0 {
-    public final Context f41909c;
+public final class t80 extends org.telegram.ui.Components.qm0 {
+    public final Context f41953c;
     public final boolean d;
-    public final LanguageSelectActivity f41910e;
+    public final LanguageSelectActivity f41954e;
 
     public t80(LanguageSelectActivity languageSelectActivity, Context context, boolean z10) {
-        this.f41910e = languageSelectActivity;
-        this.f41909c = context;
+        this.f41954e = languageSelectActivity;
+        this.f41953c = context;
         this.d = z10;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47662f;
+        int i10 = d1Var.f47706f;
         if (i10 != 0 && i10 != 4 && i10 != 5 && i10 != 2) {
             return false;
         }
@@ -35,9 +35,9 @@ public final class t80 extends org.telegram.ui.Components.pm0 {
         int i10;
         int i11;
         boolean z10 = this.d;
-        LanguageSelectActivity languageSelectActivity = this.f41910e;
+        LanguageSelectActivity languageSelectActivity = this.f41954e;
         if (z10) {
-            ArrayList arrayList = languageSelectActivity.f33773e;
+            ArrayList arrayList = languageSelectActivity.f33811e;
             if (arrayList == null) {
                 return 0;
             }
@@ -59,7 +59,7 @@ public final class t80 extends org.telegram.ui.Components.pm0 {
             }
             i11 = i10 + 1;
         }
-        int size = languageSelectActivity.f33774f.size() + i11 + 1;
+        int size = languageSelectActivity.f33812f.size() + i11 + 1;
         if (!languageSelectActivity.h.isEmpty()) {
             return languageSelectActivity.h.size() + 1 + size;
         }
@@ -87,7 +87,7 @@ public final class t80 extends org.telegram.ui.Components.pm0 {
         float f11;
         org.telegram.ui.Cells.b7 b7Var;
         int i15 = 5;
-        Context context = this.f41909c;
+        Context context = this.f41953c;
         if (i10 != 0) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -108,10 +108,10 @@ public final class t80 extends org.telegram.ui.Components.pm0 {
             }
         } else {
             ?? frameLayout = new FrameLayout(context);
-            frameLayout.f22160e = 50;
-            frameLayout.f22163r = 21;
+            frameLayout.f22164e = 50;
+            frameLayout.f22167r = 21;
             TextView textView = new TextView(context);
-            frameLayout.f22157a = textView;
+            frameLayout.f22161a = textView;
             org.telegram.messenger.bi.u(textView, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.G6, false), 1, 16.0f, 1);
             textView.setMaxLines(1);
             textView.setSingleLine(true);
@@ -143,8 +143,8 @@ public final class t80 extends org.telegram.ui.Components.pm0 {
             }
             frameLayout.addView(textView, w7.x5.a(-1.0f, f7, 0.0f, f10, 0.0f, -1, i16));
             TextView textView2 = new TextView(context);
-            frameLayout.f22158b = textView2;
-            textView2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21199z6, false));
+            frameLayout.f22162b = textView2;
+            textView2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21203z6, false));
             textView2.setTextSize(1, 13.0f);
             if (LocaleController.isRTL) {
                 i13 = 5;
@@ -174,14 +174,14 @@ public final class t80 extends org.telegram.ui.Components.pm0 {
             }
             frameLayout.addView(textView2, w7.x5.a(-2.0f, f11, 36.0f, f12, 0.0f, -2, i17));
             RadioButton radioButton = new RadioButton(context);
-            frameLayout.f22159c = radioButton;
+            frameLayout.f22163c = radioButton;
             radioButton.setSize(AndroidUtilities.dp(20.0f));
-            radioButton.b(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20854g7, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20870h7, false));
+            radioButton.b(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20858g7, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20874h7, false));
             if (!LocaleController.isRTL) {
                 i15 = 3;
             }
             frameLayout.addView(radioButton, w7.x5.a(20.0f, 22.0f, 0.0f, 22.0f, 0.0f, 20, i15 | 16));
-            frameLayout.f22162n = LocaleController.isRTL;
+            frameLayout.f22166n = LocaleController.isRTL;
             frameLayout.setClipChildren(false);
             b7Var = frameLayout;
         }
@@ -190,7 +190,7 @@ public final class t80 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final void y(s4.d1 d1Var) {
-        View view = d1Var.f47658a;
+        View view = d1Var.f47702a;
         if (view instanceof org.telegram.ui.Cells.g9) {
             ((org.telegram.ui.Cells.g9) view).c();
         }

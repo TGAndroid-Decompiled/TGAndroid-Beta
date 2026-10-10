@@ -163,7 +163,7 @@ public final class h0 extends a0 implements org.telegram.ui.ActionBar.z5 {
         int i10 = org.telegram.ui.ActionBar.i6.Oh;
         org.telegram.ui.ActionBar.e6 e6Var = this.f12451r;
         int w02 = org.telegram.ui.ActionBar.i6.w0(i10, e6Var);
-        int v = org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20797d6, e6Var), org.telegram.ui.ActionBar.i6.m1(0.1f, w02));
+        int v = org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20801d6, e6Var), org.telegram.ui.ActionBar.i6.m1(0.1f, w02));
         TextView textView = this.f12454x;
         textView.setTextColor(w02);
         textView.setBackground(org.telegram.ui.ActionBar.i6.a0(v, org.telegram.ui.ActionBar.i6.m1(0.16f, w02), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f)));

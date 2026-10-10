@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class u0 extends View {
     public final Paint f6046a;
     public final TextPaint f6047b;
@@ -75,12 +75,12 @@ public final class u0 extends View {
         }
         canvas.save();
         if (this.f6051n) {
-            f7 = hs.f27122k.getInterpolation(e7);
+            f7 = is.f27447k.getInterpolation(e7);
         } else {
             f7 = 1.0f;
         }
         canvas.translate(0.0f, f7 * AndroidUtilities.dp(12.0f));
-        float interpolation = hs.h.getInterpolation(e7);
+        float interpolation = is.h.getInterpolation(e7);
         float measuredWidth = getMeasuredWidth();
         float measuredHeight = getMeasuredHeight();
         float dp = AndroidUtilities.dp(22.0f) + this.d;

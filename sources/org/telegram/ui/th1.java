@@ -7,26 +7,26 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class th1 extends LinearLayout {
-    public final org.telegram.ui.ActionBar.e6 f42015a;
-    public final ImageView f42016b;
-    public final LinearLayout f42017c;
+    public final org.telegram.ui.ActionBar.e6 f42059a;
+    public final ImageView f42060b;
+    public final LinearLayout f42061c;
     public final TextView d;
-    public final TextView f42018e;
-    public final ImageView f42019f;
+    public final TextView f42062e;
+    public final ImageView f42063f;
     public boolean h;
-    public boolean f42020n;
+    public boolean f42064n;
 
     public th1(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         setOrientation(0);
-        this.f42015a = e6Var;
+        this.f42059a = e6Var;
         ImageView imageView = new ImageView(context);
-        this.f42016b = imageView;
+        this.f42060b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         addView(imageView, w7.x5.t(40, 40, 19, 12, 0, 12, 0));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f42017c = linearLayout;
+        this.f42061c = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
         addView(linearLayout, w7.x5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
@@ -34,11 +34,11 @@ public final class th1 extends LinearLayout {
         this.d = textView;
         textView.setTextSize(1, 16.0f);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.t(-1, -2, 7, 0, 0, 0, 0), context);
-        this.f42018e = h;
+        this.f42062e = h;
         h.setTextSize(1, 13.0f);
         linearLayout.addView(h, w7.x5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f42019f = imageView2;
+        this.f42063f = imageView2;
         imageView2.setScaleType(scaleType);
         addView(imageView2, w7.x5.t(40, 40, 21, 12, 0, 12, 0));
     }

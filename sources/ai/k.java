@@ -12,8 +12,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.d90;
-import org.telegram.ui.Components.i90;
+import org.telegram.ui.Components.e90;
+import org.telegram.ui.Components.j90;
 import org.telegram.ui.f10;
 import org.telegram.ui.g60;
 import org.telegram.ui.j50;
@@ -61,7 +61,7 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
             default:
                 f10 f10Var = (f10) this.f1217c;
                 LongSparseIntArray longSparseIntArray = f10Var.H;
-                f10Var.f37422y = i10;
+                f10Var.f37466y = i10;
                 if (this.f1216b) {
                     f10Var.o0(f10Var.F, arrayList, true);
                     f10Var.F = arrayList;
@@ -124,7 +124,7 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
 
     @Override
     public void e(long j3) {
-        org.telegram.ui.Components.q6 q6Var = ((org.telegram.ui.Cells.u1) this.f1217c).f23425w4;
+        org.telegram.ui.Components.q6 q6Var = ((org.telegram.ui.Cells.u1) this.f1217c).f23429w4;
         if (q6Var != null) {
             q6Var.t(LocaleController.formatPollEndTime((int) j3, this.f1216b), true, true);
         }
@@ -139,8 +139,8 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
                 return;
             case 6:
             default:
-                g60 g60Var = ((j50) this.f1217c).f38826b;
-                g60Var.f37789a1.toggleRecord(null, 0);
+                g60 g60Var = ((j50) this.f1217c).f38870b;
+                g60Var.f37833a1.toggleRecord(null, 0);
                 UndoView l1 = g60Var.l1();
                 if (this.f1216b) {
                     i11 = 101;
@@ -198,13 +198,13 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
                 if (z11) {
                     l02 = -1;
                 } else {
-                    l02 = b0Var.f15997t.l0();
+                    l02 = b0Var.f16001t.l0();
                 }
                 int i11 = l02;
                 if (z11) {
                     J0 = -9223372036854775807L;
                 } else {
-                    J0 = b0Var.f15997t.J0();
+                    J0 = b0Var.f16001t.J0();
                 }
                 return b0Var.q(rVar, z10, i11, J0);
             default:
@@ -213,13 +213,13 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
                 if (z12) {
                     l03 = -1;
                 } else {
-                    l03 = b0Var.f15997t.l0();
+                    l03 = b0Var.f16001t.l0();
                 }
                 int i12 = l03;
                 if (z12) {
                     J02 = -9223372036854775807L;
                 } else {
-                    J02 = b0Var.f15997t.J0();
+                    J02 = b0Var.f16001t.J0();
                 }
                 return b0Var.q(rVar, list, i12, J02);
         }
@@ -228,18 +228,18 @@ public final class k implements u9, wh1, m4.a1, e2.h, org.telegram.ui.ActionBar.
     @Override
     public void l(vh.g gVar, float f7, float f10) {
         vh.n nVar = (vh.n) this.f1217c;
-        if (!nVar.d && !nVar.f49733e && !nVar.f49734f && this.f1216b) {
+        if (!nVar.d && !nVar.f49777e && !nVar.f49778f && this.f1216b) {
             nVar.c(f7, f10);
         }
     }
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        i90 i90Var = (i90) this.f1217c;
+        j90 j90Var = (j90) this.f1217c;
         if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
-            i90Var.setOnDismissListener(new d90(0, i90Var, this.f1216b));
+            j90Var.setOnDismissListener(new e90(0, j90Var, this.f1216b));
         }
-        i90Var.dismiss();
+        j90Var.dismiss();
         return false;
     }
 }

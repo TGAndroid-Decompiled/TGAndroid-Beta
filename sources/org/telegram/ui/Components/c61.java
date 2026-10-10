@@ -1,68 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class c61 extends e00 {
-    public final l61 Y;
+public final class c61 extends rm0 {
+    public final j61 V2;
+    public final m61 W2;
 
-    public c61(l61 l61Var, int i10, b61 b61Var) {
-        super(5, i10, b61Var);
-        this.Y = l61Var;
+    public c61(m61 m61Var, Context context, j61 j61Var) {
+        super(context, null);
+        this.W2 = m61Var;
+        this.V2 = j61Var;
     }
 
     @Override
-    public final boolean D1() {
-        l61 l61Var = this.Y;
-        if (l61Var.f28308n.getAdapter() == l61Var.v) {
+    public final boolean E0(float f7) {
+        if (f7 >= AndroidUtilities.dp(58.0f) + this.W2.E) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final boolean Y0() {
-        return LocaleController.isRTL;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.W2.F = true;
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
-        int i11;
-        View m10;
-        l61 l61Var = this.Y;
-        if (l61Var.N) {
-            return super.o0(i10, eVar, a1Var);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.V2.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
         }
-        int i12 = 0;
-        if (l61Var.L != null) {
-            return 0;
-        }
-        if (l61Var.M) {
-            while (true) {
-                i11 = 1;
-                if (i12 >= r()) {
-                    break;
-                }
-                b61 b61Var = l61Var.f28308n;
-                View q6 = q(i12);
-                b61Var.getClass();
-                int R = RecyclerView.R(q6);
-                if (R < 1) {
-                    i11 = R;
-                    break;
-                }
-                i12++;
-            }
-            if (i11 == 0 && (m10 = l61Var.f28309r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
-                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
-            }
-        }
-        return super.o0(i10, eVar, a1Var);
+        return true;
     }
 
     @Override
-    public final boolean y0() {
-        return false;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.W2.L != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.W2.H) {
+            super.requestLayout();
+        }
     }
 }

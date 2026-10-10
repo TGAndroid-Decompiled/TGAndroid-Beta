@@ -1,31 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class kx extends g.o {
-    public final a00 f28180c;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class kx extends s4.s {
+    public final b00 Q;
 
-    public kx(a00 a00Var) {
-        this.f28180c = a00Var;
+    public kx(b00 b00Var) {
+        super(5);
+        this.Q = b00Var;
     }
 
     @Override
-    public final int i(int i10) {
-        a00 a00Var = this.f28180c;
-        vz vzVar = a00Var.f24475z0;
-        s4.i0 adapter = a00Var.D0.getAdapter();
-        qz qzVar = a00Var.f24472y0;
-        if (adapter == qzVar) {
-            if (i10 == 0) {
-                return qzVar.d;
-            }
-            if (i10 == qzVar.f30309s || (qzVar.h.get(i10) != null && !(qzVar.h.get(i10) instanceof TLRPC.Document))) {
-                return qzVar.d;
-            }
-            return 1;
-        } else if (i10 != vzVar.f32484x && (vzVar.f32481r.get(i10) == null || (vzVar.f32481r.get(i10) instanceof TLRPC.Document))) {
-            return 1;
-        } else {
-            return qzVar.d;
+    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
+        int o02 = super.o0(i10, eVar, a1Var);
+        b00 b00Var = this.Q;
+        if (o02 != 0 && b00Var.D0.getScrollState() == 1) {
+            b00Var.X1 = false;
+            b00Var.Y();
+        }
+        if (b00Var.T0 == null) {
+            gg.f1 f1Var = new gg.f1(b00Var, b00Var.f24689c1, b00Var.f24743t1.a(), b00Var.f24743t1.f(), 1);
+            b00Var.T0 = f1Var;
+            f1Var.a();
+        }
+        b00Var.T0.b();
+        return o02;
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
+        try {
+            ji.o oVar = new ji.o(recyclerView.getContext(), 2);
+            oVar.f47871a = i10;
+            w0(oVar);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 }

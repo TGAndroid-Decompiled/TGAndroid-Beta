@@ -1,3 +1,7 @@
 package org.telegram.ui.Components;
-public interface w60 {
+
+import android.widget.FrameLayout;
+import org.telegram.messenger.ImageReceiver;
+public abstract class w60 extends FrameLayout {
+    public abstract void setImageReceiver(ImageReceiver imageReceiver);
 }

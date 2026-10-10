@@ -4,8 +4,8 @@ import android.media.MediaCodecInfo;
 import android.os.Build;
 import java.util.List;
 public final class j implements w {
-    public static final j f46890a = new Object();
-    public static final j f46891b = new Object();
+    public static final j f46934a = new Object();
+    public static final j f46935b = new Object();
 
     public static MediaCodecInfo.VideoCapabilities.PerformancePoint c(Object obj) {
         return (MediaCodecInfo.VideoCapabilities.PerformancePoint) obj;
@@ -17,7 +17,7 @@ public final class j implements w {
 
     @Override
     public int b(Object obj) {
-        String str = ((p) obj).f46896a;
+        String str = ((p) obj).f46940a;
         if (!str.startsWith("OMX.google") && !str.startsWith("c2.android")) {
             if (Build.VERSION.SDK_INT < 26 && str.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
                 return -1;

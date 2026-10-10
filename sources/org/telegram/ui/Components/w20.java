@@ -3,150 +3,161 @@ package org.telegram.ui.Components;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ScrollView;
 import java.util.ArrayList;
-public class w20 extends ScrollView {
-    public final int f32523a;
-    public final a0.i f32524b;
-    public final ArrayList f32525c;
-    public final v20 d;
-    public int f32526e;
-    public t20 f32527f;
-    public boolean h;
-    public int f32528n;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class w20 extends ViewGroup {
+    public AnimatorSet f32569a;
+    public boolean f32570b;
+    public final ArrayList f32571c;
+    public e40 d;
+    public final ArrayList f32572e;
+    public int f32573f;
+    public int h;
+    public int f32574n;
+    public final x20 f32575r;
 
-    public w20(Context context, int i10) {
+    public w20(x20 x20Var, Context context) {
         super(context);
-        this.f32524b = new a0.i();
-        this.f32525c = new ArrayList();
-        this.f32523a = i10;
-        v20 v20Var = new v20(this, context);
-        this.d = v20Var;
-        setVerticalScrollBarEnabled(false);
-        addView(v20Var, w7.x5.d(-2.0f, -1));
-    }
-
-    public void a(d40 d40Var) {
-        v20 v20Var = this.d;
-        ArrayList arrayList = v20Var.f31669c;
-        w20 w20Var = v20Var.f31673r;
-        w20Var.f32525c.add(d40Var);
-        if (!d40Var.d) {
-            w20Var.f32524b.k(d40Var, d40Var.getUid());
-        }
-        AnimatorSet animatorSet = v20Var.f31667a;
-        if (animatorSet != null && animatorSet.isRunning()) {
-            v20Var.f31667a.setupEndValues();
-            v20Var.f31667a.cancel();
-        }
-        v20Var.f31668b = false;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        v20Var.f31667a = animatorSet2;
-        animatorSet2.addListener(new u20(v20Var, 1));
-        v20Var.f31667a.setDuration(150L);
-        v20Var.d = d40Var;
-        arrayList.clear();
-        arrayList.add(ObjectAnimator.ofFloat(v20Var.d, View.SCALE_X, 0.01f, 1.0f));
-        arrayList.add(ObjectAnimator.ofFloat(v20Var.d, View.SCALE_Y, 0.01f, 1.0f));
-        arrayList.add(ObjectAnimator.ofFloat(v20Var.d, View.ALPHA, 0.0f, 1.0f));
-        v20Var.addView(d40Var);
-    }
-
-    public void b() {
-        v20 v20Var = this.d;
-        ArrayList arrayList = v20Var.f31669c;
-        w20 w20Var = v20Var.f31673r;
-        w20Var.h = true;
-        ArrayList arrayList2 = w20Var.f32525c;
-        ArrayList arrayList3 = new ArrayList(arrayList2);
-        arrayList2.clear();
-        ArrayList arrayList4 = v20Var.f31670e;
-        arrayList4.clear();
-        arrayList4.addAll(arrayList3);
-        for (int i10 = 0; i10 < arrayList3.size(); i10++) {
-            ((d40) arrayList3.get(i10)).setOnClickListener(null);
-        }
-        AnimatorSet animatorSet = v20Var.f31667a;
-        if (animatorSet != null && animatorSet.isRunning()) {
-            v20Var.f31667a.setupEndValues();
-            v20Var.f31667a.cancel();
-        }
-        v20Var.f31668b = false;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        v20Var.f31667a = animatorSet2;
-        animatorSet2.addListener(new ai.z(26, v20Var, arrayList3));
-        arrayList.clear();
-        for (int i11 = 0; i11 < arrayList3.size(); i11++) {
-            d40 d40Var = (d40) arrayList3.get(i11);
-            arrayList.add(ObjectAnimator.ofFloat(d40Var, View.SCALE_X, 1.0f, 0.01f));
-            arrayList.add(ObjectAnimator.ofFloat(d40Var, View.SCALE_Y, 1.0f, 0.01f));
-            arrayList.add(ObjectAnimator.ofFloat(d40Var, View.ALPHA, 1.0f, 0.0f));
-        }
-        v20Var.requestLayout();
-    }
-
-    public void c(d40 d40Var) {
-        v20 v20Var = this.d;
-        ArrayList arrayList = v20Var.f31670e;
-        ArrayList arrayList2 = v20Var.f31669c;
-        w20 w20Var = v20Var.f31673r;
-        w20Var.h = true;
-        if (!d40Var.d) {
-            w20Var.f32524b.l(d40Var.getUid());
-        }
-        w20Var.f32525c.remove(d40Var);
-        d40Var.setOnClickListener(null);
-        AnimatorSet animatorSet = v20Var.f31667a;
-        if (animatorSet != null) {
-            animatorSet.setupEndValues();
-            v20Var.f31667a.cancel();
-        }
-        v20Var.f31668b = false;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        v20Var.f31667a = animatorSet2;
-        animatorSet2.addListener(new ai.z(25, v20Var, d40Var));
-        v20Var.f31667a.setDuration(150L);
-        arrayList.clear();
-        arrayList.add(d40Var);
-        arrayList2.clear();
-        arrayList2.add(ObjectAnimator.ofFloat(d40Var, View.SCALE_X, 1.0f, 0.01f));
-        arrayList2.add(ObjectAnimator.ofFloat(d40Var, View.SCALE_Y, 1.0f, 0.01f));
-        arrayList2.add(ObjectAnimator.ofFloat(d40Var, View.ALPHA, 1.0f, 0.0f));
-        v20Var.requestLayout();
+        this.f32575r = x20Var;
+        this.f32571c = new ArrayList();
+        this.f32572e = new ArrayList();
+        this.f32573f = -1;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        float f7 = this.f32526e;
-        float y3 = motionEvent.getY();
-        if (action == 0 && y3 > f7) {
-            return false;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public ViewGroup getSpansContainer() {
-        return this.d;
     }
 
     @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        if (this.h) {
-            this.h = false;
-            return false;
+    public final void onMeasure(int i10, int i11) {
+        ArrayList arrayList;
+        int A;
+        int i12;
+        int i13;
+        int i14;
+        int childCount = getChildCount();
+        int size = View.MeasureSpec.getSize(i10);
+        int dp = size - AndroidUtilities.dp(26.0f);
+        int dp2 = AndroidUtilities.dp(10.0f);
+        int dp3 = AndroidUtilities.dp(10.0f);
+        int i15 = 0;
+        if (!this.f32570b) {
+            this.f32574n = 0;
         }
-        rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top = org.telegram.messenger.q.C(20.0f, this.f32528n, rect.top);
-        rect.bottom = org.telegram.messenger.q.C(50.0f, this.f32528n, rect.bottom);
-        return super.requestChildRectangleOnScreen(view, rect, z10);
-    }
-
-    public void setDelegate(t20 t20Var) {
-        this.f32527f = t20Var;
+        int i16 = 0;
+        int i17 = 0;
+        int i18 = 0;
+        while (true) {
+            arrayList = this.f32571c;
+            if (i16 >= childCount) {
+                break;
+            }
+            View childAt = getChildAt(i16);
+            if (!(childAt instanceof e40)) {
+                i14 = i15;
+            } else {
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+                ArrayList arrayList2 = this.f32572e;
+                boolean contains = arrayList2.contains(childAt);
+                if (!contains) {
+                    i14 = i15;
+                    if (childAt.getMeasuredWidth() + i17 > dp) {
+                        dp2 = org.telegram.messenger.q.C(8.0f, childAt.getMeasuredHeight(), dp2);
+                        i17 = i14;
+                    }
+                } else {
+                    i14 = i15;
+                }
+                if (childAt.getMeasuredWidth() + i18 > dp) {
+                    dp3 = org.telegram.messenger.q.C(8.0f, childAt.getMeasuredHeight(), dp3);
+                    i18 = i14;
+                }
+                int dp4 = AndroidUtilities.dp(13.0f) + i17;
+                if (!this.f32570b) {
+                    if (contains) {
+                        childAt.setTranslationX(AndroidUtilities.dp(13.0f) + i18);
+                        childAt.setTranslationY(dp3);
+                    } else if (!arrayList2.isEmpty()) {
+                        float f7 = dp4;
+                        if (childAt.getTranslationX() != f7) {
+                            float[] fArr = new float[1];
+                            fArr[i14] = f7;
+                            arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_X, fArr));
+                        }
+                        float f10 = dp2;
+                        if (childAt.getTranslationY() != f10) {
+                            float[] fArr2 = new float[1];
+                            fArr2[i14] = f10;
+                            arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, fArr2));
+                        }
+                        this.f32574n = Math.max(this.f32574n, dp2);
+                    } else {
+                        childAt.setTranslationX(dp4);
+                        childAt.setTranslationY(dp2);
+                        this.f32574n = Math.max(this.f32574n, dp2);
+                    }
+                }
+                if (!contains) {
+                    i17 = org.telegram.messenger.q.C(9.0f, childAt.getMeasuredWidth(), i17);
+                }
+                i18 = org.telegram.messenger.q.C(9.0f, childAt.getMeasuredWidth(), i18);
+            }
+            i16++;
+            i15 = i14;
+        }
+        int i19 = i15;
+        if (AndroidUtilities.isTablet()) {
+            A = AndroidUtilities.dp(372.0f) / 3;
+        } else {
+            Point point = AndroidUtilities.displaySize;
+            A = org.telegram.messenger.bi.A(158.0f, Math.min(point.x, point.y), 3);
+        }
+        if (dp - i17 < A) {
+            dp2 += AndroidUtilities.dp(40.0f);
+        }
+        if (dp - i18 < A) {
+            dp3 += AndroidUtilities.dp(40.0f);
+        }
+        boolean z10 = this.f32570b;
+        x20 x20Var = this.f32575r;
+        if (!z10) {
+            int dp5 = AndroidUtilities.dp(42.0f) + dp3;
+            x20Var.f32821n = dp2;
+            if (this.f32569a != null) {
+                this.h = AndroidUtilities.dp(42.0f) + dp2;
+                this.f32569a.playTogether(arrayList);
+                i12 = i19;
+                this.f32569a.addListener(new v20(this, i12));
+                this.f32573f = NotificationCenter.getInstance(x20Var.f32816a).setAnimationInProgress(this.f32573f, null);
+                this.f32569a.start();
+                this.f32570b = true;
+            } else {
+                i12 = i19;
+                this.h = dp5;
+            }
+        } else {
+            i12 = i19;
+        }
+        int i20 = this.f32574n;
+        if (i20 > 0) {
+            i13 = AndroidUtilities.dp(40.0f) + i20;
+        } else {
+            i13 = i12;
+        }
+        x20Var.f32819e = i13;
+        setMeasuredDimension(size, this.h);
+        u20 u20Var = x20Var.f32820f;
+        if (u20Var != null) {
+            u20Var.a(x20Var.f32819e);
+        }
     }
 }

@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Components.ay0;
-import org.telegram.ui.Components.j10;
+import org.telegram.ui.Components.by0;
+import org.telegram.ui.Components.k10;
 import org.telegram.ui.Components.sk;
 import org.telegram.ui.fg1;
-public final class e7 extends ay0 {
+public final class e7 extends by0 {
     public final int K = 0;
     public final Object L;
 
-    public e7(sk skVar, Context context, j10 j10Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, j10Var, 1, e6Var);
+    public e7(sk skVar, Context context, k10 k10Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, k10Var, 1, e6Var);
         this.L = skVar;
     }
 
@@ -25,15 +25,15 @@ public final class e7 extends ay0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = fg1Var.f37587n.f42845a.animate();
+                    ViewPropertyAnimator animate = fg1Var.f37631n.f42889a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                fg1Var.f37587n.f42845a.animate().cancel();
-                TextView textView = fg1Var.f37587n.f42845a;
+                fg1Var.f37631n.f42889a.animate().cancel();
+                TextView textView = fg1Var.f37631n.f42889a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -85,8 +85,8 @@ public final class e7 extends ay0 {
         this.L = f7Var;
     }
 
-    public e7(fg1 fg1Var, Context context, j10 j10Var) {
-        super(context, j10Var, 0, null);
+    public e7(fg1 fg1Var, Context context, k10 k10Var) {
+        super(context, k10Var, 0, null);
         this.L = fg1Var;
     }
 }

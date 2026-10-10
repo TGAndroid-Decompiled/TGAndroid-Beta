@@ -49,8 +49,8 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.ao;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.ru;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.su;
 import org.telegram.ui.LaunchActivity;
 public final class kc implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.ActionBar.j2, sf.a {
     public static boolean A1;
@@ -190,7 +190,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
 
     public static void J(long j3, TL_stories.StoryItem storyItem, Editable editable) {
         if (j3 != 0 && storyItem != null) {
-            E1.put(j3 + (j3 >> 16) + (storyItem.f20275id << 16), editable);
+            E1.put(j3 + (j3 >> 16) + (storyItem.f20279id << 16), editable);
         }
     }
 
@@ -232,7 +232,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
 
     public static void j(kc kcVar) {
         q4 q4Var;
-        ru editField;
+        su editField;
         f6 currentPeerView = kcVar.f1283n0.getCurrentPeerView();
         if (currentPeerView != null && currentPeerView.f952b2 != null && (((q4Var = currentPeerView.f953b3) == null || q4Var.getVisibility() != 0) && (editField = currentPeerView.f952b2.getEditField()) != null)) {
             editField.requestFocus();
@@ -267,7 +267,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
         if (j3 == 0 || storyItem == null) {
             return "";
         }
-        return (CharSequence) E1.get(j3 + (j3 >> 16) + (storyItem.f20275id << 16), "");
+        return (CharSequence) E1.get(j3 + (j3 >> 16) + (storyItem.f20279id << 16), "");
     }
 
     public static boolean x(MessageObject messageObject) {
@@ -458,7 +458,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
         this.f1259c = z14;
         zb zbVar = this.v;
         a1.c cVar = new a1.c(this, 10);
-        WeakHashMap weakHashMap = r0.i0.f46766a;
+        WeakHashMap weakHashMap = r0.i0.f46810a;
         r0.a0.i(zbVar, cVar);
         if (this.f1256b) {
             AndroidUtilities.removeFromParent(this.f1294s);
@@ -691,13 +691,13 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
                     o1.l lVar = new o1.l();
                     lVar.a(0.75f);
                     lVar.b(650.0f);
-                    kVar.f16938u = lVar;
+                    kVar.f16942u = lVar;
                     n2Var2.P = kVar;
                     o1.k kVar2 = new o1.k(n2Var2, n2.Y);
                     o1.l lVar2 = new o1.l();
                     lVar2.a(0.75f);
                     lVar2.b(650.0f);
-                    kVar2.f16938u = lVar2;
+                    kVar2.f16942u = lVar2;
                     n2Var2.Q = kVar2;
                     if (findActivity != null) {
                         context = findActivity;
@@ -718,7 +718,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
                     viewGroup.addView(n2Var2.f1449e, w7.x5.d(-1.0f, -1));
                     n2Var2.f1449e.setOutlineProvider(new l2(0));
                     n2Var2.f1449e.setClipToOutline(true);
-                    n2Var2.f1449e.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20860gg, false));
+                    n2Var2.f1449e.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20864gg, false));
                     org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
                     n2Var2.f1451n = y9Var;
                     n2Var2.f1449e.addView(y9Var, w7.x5.d(-1.0f, -1));
@@ -741,9 +741,9 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
                     int dp = AndroidUtilities.dp(8.0f);
                     ImageView imageView = new ImageView(context);
                     imageView.setImageResource(R.drawable.pip_video_close);
-                    int i11 = org.telegram.ui.ActionBar.i6.f20878hg;
+                    int i11 = org.telegram.ui.ActionBar.i6.f20882hg;
                     imageView.setColorFilter(org.telegram.ui.ActionBar.i6.x0(null, i11, false));
-                    int i12 = org.telegram.ui.ActionBar.i6.f20888i6;
+                    int i12 = org.telegram.ui.ActionBar.i6.f20892i6;
                     imageView.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.x0(null, i12, false), 1, -1));
                     imageView.setPadding(dp, dp, dp, dp);
                     imageView.setOnClickListener(new e2(0));
@@ -781,7 +781,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
                     n2Var2.f1447b.addView(n2Var2.d, n2Var2.f1448c);
                     AnimatorSet animatorSet = new AnimatorSet();
                     animatorSet.setDuration(250L);
-                    animatorSet.setInterpolator(hs.f27118f);
+                    animatorSet.setInterpolator(is.f27443f);
                     animatorSet.playTogether(ObjectAnimator.ofFloat(n2Var2.d, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(n2Var2.d, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(n2Var2.d, View.SCALE_Y, 1.0f));
                     animatorSet.addListener(new m2(0));
                     animatorSet.start();
@@ -794,11 +794,11 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
                     }
                     if (findActivity != null && tf.c.a(findActivity) == 1) {
                         qf.d dVar = new qf.d(findActivity, n2Var2);
-                        dVar.f46153c = "pip-live-story";
-                        dVar.f46154e = 1;
+                        dVar.f46197c = "pip-live-story";
+                        dVar.f46198e = 1;
                         dVar.d = AndroidUtilities.dp(10.0f);
-                        dVar.f46158j = n2Var2.d;
-                        dVar.f46159k = n2Var2.f1450f.getPlaceholderView();
+                        dVar.f46202j = n2Var2.d;
+                        dVar.f46203k = n2Var2.f1450f.getPlaceholderView();
                         n2Var2.L = dVar.a();
                     }
                 }
@@ -932,7 +932,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
                     ArrayList arrayList2 = new ArrayList();
                     int i13 = 0;
                     while (i12 < this.O0.f899i.size()) {
-                        if (selectedStory != null && selectedStory.f20275id == ((MessageObject) this.O0.f899i.get(i12)).storyItem.f20275id) {
+                        if (selectedStory != null && selectedStory.f20279id == ((MessageObject) this.O0.f899i.get(i12)).storyItem.f20279id) {
                             i13 = i12;
                         }
                         arrayList2.add(((MessageObject) this.O0.f899i.get(i12)).storyItem);
@@ -983,7 +983,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
                     long longValue = ((Long) objArr[0]).longValue();
                     int intValue = ((Integer) objArr[1]).intValue();
                     TL_stories.StoryItem storyItem = this.T0;
-                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f20275id == intValue) {
+                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f20279id == intValue) {
                         this.S0 = true;
                         return;
                     }
@@ -1124,7 +1124,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
             ofFloat.addUpdateListener(new rb(this, 2));
             this.H.addListener(new tb(this, 1));
             this.H.setDuration(250L);
-            this.H.setInterpolator(org.telegram.ui.ActionBar.p1.f21455w);
+            this.H.setInterpolator(org.telegram.ui.ActionBar.p1.f21459w);
             this.H.start();
         }
     }
@@ -1160,10 +1160,10 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
             this.f1302v1.addListener(new n(3, this, z10));
             if (z10) {
                 this.f1302v1.setDuration(350L);
-                this.f1302v1.setInterpolator(hs.h);
+                this.f1302v1.setInterpolator(is.h);
             } else {
                 this.f1302v1.setDuration(350L);
-                this.f1302v1.setInterpolator(hs.f27118f);
+                this.f1302v1.setInterpolator(is.f27443f);
             }
             this.f1302v1.start();
         }
@@ -1190,7 +1190,7 @@ public final class kc implements NotificationCenter.NotificationCenterDelegate, 
             if (currentPage != null) {
                 p6 p6Var = currentPage.f1340r;
                 y6 y6Var = currentPage.f1338f;
-                if (y6Var != null && y6Var.f29276b) {
+                if (y6Var != null && y6Var.f29594b) {
                     y6Var.a();
                     return true;
                 } else if (Math.abs(currentPage.f1336c.getTranslationY() - p6Var.getPaddingTop()) > AndroidUtilities.dp(2.0f)) {

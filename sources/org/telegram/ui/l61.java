@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
-public final class l61 extends org.telegram.ui.Components.yt {
+public final class l61 extends org.telegram.ui.Components.zt {
     public int M;
     public int N;
     public ArrayList O;
@@ -44,14 +44,14 @@ public final class l61 extends org.telegram.ui.Components.yt {
             ArrayList arrayList = this.P;
             if (i10 < arrayList.size()) {
                 t61 t61Var = (t61) arrayList.get(i10);
-                if (!t61Var.f41871b) {
-                    if (t61Var.f41870a) {
+                if (!t61Var.f41915b) {
+                    if (t61Var.f41914a) {
                         t61Var.E.setBounds(t61Var.F);
                         t61Var.E.draw(canvas);
                     } else {
-                        ImageReceiver imageReceiver = t61Var.f41876r;
+                        ImageReceiver imageReceiver = t61Var.f41920r;
                         if (imageReceiver != null) {
-                            imageReceiver.draw(canvas, t61Var.f41874f[this.K]);
+                            imageReceiver.draw(canvas, t61Var.f41918f[this.K]);
                         }
                     }
                 }
@@ -68,7 +68,7 @@ public final class l61 extends org.telegram.ui.Components.yt {
         int i10;
         Drawable drawable;
         int i11;
-        k71 k71Var = this.T.f39780c3;
+        k71 k71Var = this.T.f39824c3;
         if (this.O != null) {
             canvas.save();
             canvas.translate(-this.N, 0.0f);
@@ -77,7 +77,7 @@ public final class l61 extends org.telegram.ui.Components.yt {
             int i13 = 0;
             while (i13 < this.O.size()) {
                 t61 t61Var = (t61) this.O.get(i13);
-                if (!t61Var.f41871b) {
+                if (!t61Var.f41915b) {
                     float scaleX = t61Var.getScaleX();
                     int i14 = k71Var.W;
                     if (i14 == 13) {
@@ -116,10 +116,10 @@ public final class l61 extends org.telegram.ui.Components.yt {
                     }
                     Rect rect = AndroidUtilities.rectTmp2;
                     rect.set(t61Var.getPaddingLeft() + ((int) t61Var.getX()), t61Var.getPaddingTop(), (t61Var.getWidth() + ((int) t61Var.getX())) - t61Var.getPaddingRight(), t61Var.getHeight() - t61Var.getPaddingBottom());
-                    if (!k71Var.f39165w1 && i10 == 0) {
+                    if (!k71Var.f39209w1 && i10 == 0) {
                         rect.offset(i12, (int) t61Var.getTranslationY());
                     }
-                    if (t61Var.f41870a) {
+                    if (t61Var.f41914a) {
                         drawable = k71Var.getPremiumStar();
                         int i18 = k71Var.W;
                         if (i18 == 5 || i18 == 10 || i18 == 9 || i18 == 7) {
@@ -127,8 +127,8 @@ public final class l61 extends org.telegram.ui.Components.yt {
                         }
                         drawable.setBounds(rect);
                         drawable.setAlpha(255);
-                    } else if (!t61Var.f41877s && !t61Var.Q) {
-                        if ((t61Var.f41873e != null || k71Var.W == 13) && !t61Var.f41871b && (drawable = t61Var.E) != null) {
+                    } else if (!t61Var.f41921s && !t61Var.Q) {
+                        if ((t61Var.f41917e != null || k71Var.W == 13) && !t61Var.f41915b && (drawable = t61Var.E) != null) {
                             drawable.setAlpha(255);
                             drawable.setBounds(rect);
                         }
@@ -139,7 +139,7 @@ public final class l61 extends org.telegram.ui.Components.yt {
                         }
                         drawable = null;
                     }
-                    PorterDuffColorFilter porterDuffColorFilter = k71Var.f39139k1;
+                    PorterDuffColorFilter porterDuffColorFilter = k71Var.f39183k1;
                     if (porterDuffColorFilter != null) {
                         Drawable drawable2 = t61Var.E;
                         if (drawable2 instanceof org.telegram.ui.Components.s5) {
@@ -186,13 +186,13 @@ public final class l61 extends org.telegram.ui.Components.yt {
         while (true) {
             ArrayList arrayList = this.P;
             if (i10 < arrayList.size()) {
-                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = ((t61) arrayList.get(i10)).f41874f[this.K];
+                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = ((t61) arrayList.get(i10)).f41918f[this.K];
                 if (backgroundThreadDrawHolder != null) {
                     backgroundThreadDrawHolder.release();
                 }
                 i10++;
             } else {
-                this.T.f39780c3.f39132h0.invalidate();
+                this.T.f39824c3.f39176h0.invalidate();
                 return;
             }
         }
@@ -207,8 +207,8 @@ public final class l61 extends org.telegram.ui.Components.yt {
         if (drawable != null) {
             drawable.setAlpha((int) (f7 * 255.0f));
             drawable.draw(canvas);
-            drawable.setColorFilter(this.T.f39780c3.f39139k1);
-        } else if ((t61Var.f41877s || t61Var.Q) && t61Var.h != null) {
+            drawable.setColorFilter(this.T.f39824c3.f39183k1);
+        } else if ((t61Var.f41921s || t61Var.Q) && t61Var.h != null) {
             canvas.save();
             canvas.clipRect(t61Var.h.getImageX(), t61Var.h.getImageY(), t61Var.h.getImageX2(), t61Var.h.getImageY2());
             t61Var.h.setAlpha(f7);

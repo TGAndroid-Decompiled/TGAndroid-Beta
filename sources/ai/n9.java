@@ -1,7 +1,7 @@
 package ai;
 
-import org.telegram.ui.Components.f30;
-public final class n9 extends f30 {
+import org.telegram.ui.Components.g30;
+public final class n9 extends g30 {
     public int f1485n;
     public int f1486o;
 

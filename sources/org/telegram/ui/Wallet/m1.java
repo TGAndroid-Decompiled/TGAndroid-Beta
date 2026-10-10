@@ -1,29 +1,61 @@
 package org.telegram.ui.Wallet;
 
-import android.view.ViewTreeObserver;
-import android.widget.PopupWindow;
-public final class m1 implements ViewTreeObserver.OnScrollChangedListener {
-    public final int f35226a;
-    public final Object f35227b;
+import android.text.TextUtils;
+import android.view.View;
+import org.json.JSONObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.messenger.bi;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.q80;
+public final class m1 implements View.OnClickListener {
+    public final int f35278a;
+    public final Object f35279b;
+    public final Object f35280c;
+    public final Object d;
 
-    public m1(Object obj, int i10) {
-        this.f35226a = i10;
-        this.f35227b = obj;
+    public m1(Object obj, Object obj2, Object obj3, int i10) {
+        this.f35278a = i10;
+        this.f35279b = obj;
+        this.f35280c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void onScrollChanged() {
-        switch (this.f35226a) {
+    public final void onClick(View view) {
+        switch (this.f35278a) {
             case 0:
-                ((k) this.f35227b).run();
-                return;
-            default:
-                h9 h9Var = (h9) this.f35227b;
-                PopupWindow popupWindow = h9Var.f35012s;
-                if (popupWindow != null && popupWindow.isShowing()) {
-                    h9Var.c();
+                i2 i2Var = (i2) this.f35280c;
+                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.d;
+                if (AndroidUtilities.addToClipboard(((JSONObject) this.f35279b).optString("text"))) {
+                    bi.p(R.string.WalletSigningDataCopied, new ad(i2Var.topBulletinContainer, e6Var));
                     return;
                 }
+                return;
+            case 1:
+                q80 q80Var = (q80) this.d;
+                f fVar = ((k0) this.f35279b).h;
+                String str = ((TL_wallet.currencyRate) this.f35280c).currency;
+                if (!TextUtils.equals(fVar.f34938f, str)) {
+                    fVar.f34938f = str;
+                    try {
+                        ApplicationLoader.applicationContext.getSharedPreferences("gram_wallet", 0).edit().putString("currency", fVar.g()).apply();
+                    } catch (Exception e7) {
+                        FileLog.e("[gram-wallet] failed to save currency prefs", e7);
+                    }
+                    fVar.f34935b.I();
+                }
+                q80Var.u();
+                return;
+            default:
+                o7 o7Var = (o7) this.f35279b;
+                o7Var.getClass();
+                ((org.telegram.ui.ActionBar.b2[]) this.f35280c)[0].dismiss();
+                AndroidUtilities.addToClipboard(o7Var.f35401r);
+                ((Runnable) this.d).run();
                 return;
         }
     }

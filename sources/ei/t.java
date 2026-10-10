@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import ci.ub;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.au;
+import org.telegram.ui.Components.bu;
 import org.telegram.ui.a6;
 import org.telegram.ui.aa;
 import org.telegram.ui.bd;
@@ -92,9 +92,9 @@ public final class t extends org.telegram.ui.ActionBar.j {
                     k0Var.setAllowNestedScroll(false);
                     k0Var.S = null;
                     k0Var.G.W2.N(true);
-                    k0Var.E.f30614r.getText().clear();
-                    k0Var.E.f30614r.requestFocus();
-                    AndroidUtilities.showKeyboard(k0Var.E.f30614r);
+                    k0Var.E.f30958r.getText().clear();
+                    k0Var.E.f30958r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var.E.f30958r);
                     return;
                 } else {
                     return;
@@ -113,9 +113,9 @@ public final class t extends org.telegram.ui.ActionBar.j {
                     TextUtils.isEmpty(k0Var2.R);
                     k0Var2.R = null;
                     k0Var2.F.h(0L, k0Var2.f9992e, 0L, 0L, null, false, null, true);
-                    k0Var2.f9999y.f30614r.getText().clear();
-                    k0Var2.f9999y.f30614r.requestFocus();
-                    AndroidUtilities.showKeyboard(k0Var2.f9999y.f30614r);
+                    k0Var2.f9999y.f30958r.getText().clear();
+                    k0Var2.f9999y.f30958r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var2.f9999y.f30958r);
                     return;
                 } else {
                     return;
@@ -326,7 +326,7 @@ public final class t extends org.telegram.ui.ActionBar.j {
                 if (i10 == -1) {
                     aaVar.finishFragment();
                     return;
-                } else if (i10 == 1 && aaVar.f35882a.getText().length() != 0) {
+                } else if (i10 == 1 && aaVar.f35926a.getText().length() != 0) {
                     aa.U(aaVar);
                     aaVar.finishFragment();
                     return;
@@ -354,7 +354,7 @@ public final class t extends org.telegram.ui.ActionBar.j {
             default:
                 bd bdVar = (bd) obj;
                 if (i10 == -1) {
-                    if (bdVar.f36249b >= bdVar.S0() && bdVar.Q0()) {
+                    if (bdVar.f36293b >= bdVar.S0() && bdVar.Q0()) {
                         bdVar.V0();
                         return;
                     } else {
@@ -382,14 +382,14 @@ public final class t extends org.telegram.ui.ActionBar.j {
                     lc lcVar = new lc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.L.getMeasuredWidth() / 2.0f) + f7, (bdVar.L.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
                     bdVar.m0 = lcVar;
                     lcVar.setOnTouchListener(new bi.d(2));
-                    bdVar.f36265n0 = 0.0f;
+                    bdVar.f36309n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    bdVar.f36266o0 = ofFloat;
+                    bdVar.f36310o0 = ofFloat;
                     ofFloat.addUpdateListener(new ub(bdVar, 1));
-                    bdVar.f36266o0.addListener(new org.telegram.ui.t4(bdVar, 17));
-                    bdVar.f36266o0.setDuration(400L);
-                    bdVar.f36266o0.setInterpolator(au.f24775e);
-                    bdVar.f36266o0.start();
+                    bdVar.f36310o0.addListener(new org.telegram.ui.t4(bdVar, 17));
+                    bdVar.f36310o0.setDuration(400L);
+                    bdVar.f36310o0.setInterpolator(bu.f25059e);
+                    bdVar.f36310o0.start();
                     frameLayout.addView(bdVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new gc(bdVar, 0));
                     return;

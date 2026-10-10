@@ -32,7 +32,7 @@ public final class c0 implements Runnable {
                         }
                     } catch (IOException unused) {
                     }
-                    w7.j.c(uVar.f15136a);
+                    w7.j.c(uVar.f15140a);
                 }
                 if (file != null) {
                     w7.j.c(file);
@@ -51,15 +51,15 @@ public final class c0 implements Runnable {
                 int i10 = t0Var3.W;
                 if (i10 == 2 || i10 == 6) {
                     t0Var3.F = SystemClock.elapsedRealtime();
-                    n nVar = t0Var3.f15123m;
+                    n nVar = t0Var3.f15127m;
                     nVar.b("recording started: retainedDurationMs=" + t0Var3.E);
                     t0Var3.v(3);
-                    long j3 = t0Var3.f15125o - t0Var3.E;
+                    long j3 = t0Var3.f15129o - t0Var3.E;
                     if (j3 <= 0) {
                         t0Var3.p();
                         return;
                     } else {
-                        t0Var3.f15119i.postDelayed(t0Var3.T, j3);
+                        t0Var3.f15123i.postDelayed(t0Var3.T, j3);
                         return;
                     }
                 }
@@ -67,25 +67,25 @@ public final class c0 implements Runnable {
             default:
                 t0 t0Var4 = this.f14910b;
                 t0Var4.B = false;
-                n nVar2 = t0Var4.f15123m;
+                n nVar2 = t0Var4.f15127m;
                 nVar2.b("recording segment stopped: state=" + hg.c.C(t0Var4.W) + ", retainedDurationMs=" + t0Var4.E);
                 if (t0Var4.A) {
                     t0Var4.A = false;
                     t0Var4.i();
                     return;
-                } else if (t0Var4.f15134y) {
-                    t0Var4.f15134y = false;
-                    boolean z10 = t0Var4.f15135z;
-                    t0Var4.f15120j.execute(new t4(t0Var4, t0Var4.Q, z10, t0Var4.P, 6));
+                } else if (t0Var4.f15138y) {
+                    t0Var4.f15138y = false;
+                    boolean z10 = t0Var4.f15139z;
+                    t0Var4.f15124j.execute(new t4(t0Var4, t0Var4.Q, z10, t0Var4.P, 6));
                     return;
                 } else if (t0Var4.W == 4) {
                     try {
                         File d = t0Var4.d("round_video_preview_");
                         t0Var4.R = d;
                         t0Var4.J = System.nanoTime();
-                        n nVar3 = t0Var4.f15123m;
+                        n nVar3 = t0Var4.f15127m;
                         nVar3.b("preview snapshot started: file=" + d.getName());
-                        t0Var4.f15120j.execute(new gg.t(t0Var4, t0Var4.Q, d, 23));
+                        t0Var4.f15124j.execute(new gg.t(t0Var4, t0Var4.Q, d, 23));
                         return;
                     } catch (IOException e7) {
                         t0Var4.h(e7);

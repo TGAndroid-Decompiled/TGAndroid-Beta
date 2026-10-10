@@ -6,7 +6,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.h10;
+import org.telegram.ui.Components.i10;
 import org.telegram.ui.Components.tc;
 import org.telegram.ui.zn;
 public final class d3 extends zn {
@@ -27,11 +27,11 @@ public final class d3 extends zn {
         if (!this.Qc) {
             this.Qc = true;
             tc O = ad.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
-            O.f31138r = false;
+            O.f31104r = false;
             O.j();
-            h10 h10Var = this.f44858m9;
-            if (h10Var != null) {
-                h10Var.c(true);
+            i10 i10Var = this.f44902m9;
+            if (i10Var != null) {
+                i10Var.c(true);
             }
         }
     }

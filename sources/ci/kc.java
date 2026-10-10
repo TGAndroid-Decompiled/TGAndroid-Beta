@@ -11,10 +11,10 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.a00;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.sw0;
-public final class kc extends sw0 {
+import org.telegram.ui.Components.b00;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.tw0;
+public final class kc extends tw0 {
     public boolean A0;
     public float B0;
     public float C0;
@@ -169,7 +169,7 @@ public final class kc extends sw0 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         xh.m mVar;
-        a00 emojiView;
+        b00 emojiView;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         lc lcVar = this.E0;
@@ -215,16 +215,16 @@ public final class kc extends sw0 {
         }
         nb nbVar = lcVar.f5527v1;
         if (nbVar != null) {
-            a00 a00Var = nbVar.f5819p2;
-            if (a00Var != null) {
-                a00Var.layout(lcVar.Y, (measuredHeight - lcVar.f5462b0) - a00Var.getMeasuredHeight(), measuredWidth - lcVar.f5459a0, measuredHeight - lcVar.f5462b0);
+            b00 b00Var = nbVar.f5819p2;
+            if (b00Var != null) {
+                b00Var.layout(lcVar.Y, (measuredHeight - lcVar.f5462b0) - b00Var.getMeasuredHeight(), measuredWidth - lcVar.f5459a0, measuredHeight - lcVar.f5462b0);
             }
-            kl0 kl0Var = lcVar.f5527v1.Z1;
-            if (kl0Var != null) {
+            ll0 ll0Var = lcVar.f5527v1.Z1;
+            if (ll0Var != null) {
                 int i21 = lcVar.Y;
-                kl0Var.layout(i21, lcVar.Z, kl0Var.getMeasuredWidth() + i21, lcVar.f5527v1.Z1.getMeasuredHeight() + lcVar.Z);
+                ll0Var.layout(i21, lcVar.Z, ll0Var.getMeasuredWidth() + i21, lcVar.f5527v1.Z1.getMeasuredHeight() + lcVar.Z);
                 if (lcVar.f5527v1.Z1.getReactionsWindow() != null) {
-                    mVar = lcVar.f5527v1.Z1.getReactionsWindow().f54451c;
+                    mVar = lcVar.f5527v1.Z1.getReactionsWindow().f54495c;
                 } else {
                     mVar = null;
                 }
@@ -314,7 +314,7 @@ public final class kc extends sw0 {
         }
         bc bcVar = lcVar.f5467c1;
         if (bcVar != null) {
-            a00 emojiView = bcVar.f5555f.getEmojiView();
+            b00 emojiView = bcVar.f5555f.getEmojiView();
             R();
             AndroidUtilities.dp(20.0f);
             if (emojiView != null) {
@@ -323,15 +323,15 @@ public final class kc extends sw0 {
         }
         nb nbVar = lcVar.f5527v1;
         if (nbVar != null) {
-            a00 a00Var = nbVar.f5819p2;
-            if (a00Var != null) {
-                a00Var.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(lcVar.f5527v1.f5819p2.getLayoutParams().height, 1073741824));
+            b00 b00Var = nbVar.f5819p2;
+            if (b00Var != null) {
+                b00Var.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(lcVar.f5527v1.f5819p2.getLayoutParams().height, 1073741824));
             }
-            kl0 kl0Var = lcVar.f5527v1.Z1;
-            if (kl0Var != null) {
-                measureChild(kl0Var, i10, i11);
+            ll0 ll0Var = lcVar.f5527v1.Z1;
+            if (ll0Var != null) {
+                measureChild(ll0Var, i10, i11);
                 if (lcVar.f5527v1.Z1.getReactionsWindow() != null) {
-                    measureChild(lcVar.f5527v1.Z1.getReactionsWindow().f54451c, i10, i11);
+                    measureChild(lcVar.f5527v1.Z1.getReactionsWindow().f54495c, i10, i11);
                 }
             }
         }

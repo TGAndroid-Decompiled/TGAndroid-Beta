@@ -42,7 +42,7 @@ public final class va implements Runnable {
                 boolean z10 = this.f6166c;
                 long j3 = this.f6165b;
                 if (!z10) {
-                    ai.d2.W = new ai.d2(lcVar.f5461b, lcVar.f5465c, storyItem, j3, storyItem.f20275id, z10, inputGroupCall, true, this.d);
+                    ai.d2.W = new ai.d2(lcVar.f5461b, lcVar.f5465c, storyItem, j3, storyItem.f20279id, z10, inputGroupCall, true, this.d);
                 }
                 gc gcVar = lcVar.F;
                 if (gcVar != null) {
@@ -59,7 +59,7 @@ public final class va implements Runnable {
                 storyItem.dialogId = j3;
                 storyItem.justUploaded = true;
                 U.getOrCreateStoryViewer().F(lcVar.f5461b, storyItem, null);
-                NotificationCenter.getInstance(lcVar.f5465c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20055id));
+                NotificationCenter.getInstance(lcVar.f5465c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20059id));
                 return;
             default:
                 ty tyVar = (ty) notificationCenterDelegate;
@@ -77,7 +77,7 @@ public final class va implements Runnable {
                 } else {
                     tyVar.getMessagesController().deleteDialog(j10, 0, z11);
                     if (user != null && user.bot && this.d) {
-                        tyVar.getMessagesController().blockPeer(user.f20185id);
+                        tyVar.getMessagesController().blockPeer(user.f20189id);
                     }
                 }
                 tyVar.getMessagesController().checkIfFolderEmpty(tyVar.V2);

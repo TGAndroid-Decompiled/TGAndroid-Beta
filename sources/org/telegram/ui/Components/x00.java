@@ -1,55 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class x00 extends AnimatorListenerAdapter {
-    public final int f32702a;
-    public final int f32703b;
-    public final float f32704c;
-    public final View d;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+public final class x00 {
+    public int f32794a;
+    public CharSequence f32795b;
+    public int f32796c;
+    public int d;
+    public boolean f32797e;
+    public boolean f32798f;
+    public boolean f32799g;
+    public final b10 h;
 
-    public x00(View view, int i10, float f7, int i11) {
-        this.f32702a = i11;
-        this.d = view;
-        this.f32703b = i10;
-        this.f32704c = f7;
+    public x00(b10 b10Var, int i10, Spannable spannable, boolean z10) {
+        this.h = b10Var;
+        this.f32794a = i10;
+        this.f32795b = spannable;
+        this.f32799g = z10;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        switch (this.f32702a) {
-            case 0:
-                y00 y00Var = (y00) this.d;
-                int i10 = this.f32703b;
-                if (i10 == 5) {
-                    f7 = 0.0f;
-                } else {
-                    f7 = -this.f32704c;
-                }
-                y00Var.b(f7, i10 + 1);
-                y00Var.f33087y = 0.0f;
-                y00Var.invalidate();
-                return;
-            case 1:
-                ((org.telegram.ui.web.u1) this.d).c(this.f32703b, this.f32704c, false);
-                return;
-            default:
-                yh.e8 e8Var = (yh.e8) this.d;
-                e8Var.f52462c0 = this.f32704c;
-                if (e8Var.getValue() != this.f32703b) {
-                    e8Var.e(e8Var.getValue());
-                }
-                e8Var.invalidate();
-                return;
+    public final int a(boolean z10) {
+        int i10;
+        int i11;
+        CharSequence charSequence = this.f32795b;
+        b10 b10Var = this.h;
+        int ceil = (int) Math.ceil(ci.d4.g(charSequence, b10Var.f24772b));
+        this.f32796c = ceil;
+        int i12 = 0;
+        if (z10) {
+            i10 = ((org.telegram.ui.sw) b10Var.J).a(this.f32794a);
+            if (i10 < 0) {
+                i10 = 0;
+            }
+            if (z10) {
+                this.d = i10;
+            }
+        } else {
+            i10 = this.d;
         }
+        if (i10 > 0) {
+            i11 = AndroidUtilities.dp(-2.0f) + AndroidUtilities.dp(10.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(b10Var.f24774c.measureText(String.format("%d", Integer.valueOf(i10)))));
+        } else {
+            if (!this.f32797e && b10Var.f24787n) {
+                i12 = AndroidUtilities.dp(12.333f);
+            }
+            i11 = i12;
+        }
+        return Math.max(AndroidUtilities.dp(16.0f), ceil + i11);
     }
 
-    public x00(yh.e8 e8Var, float f7, int i10) {
-        this.f32702a = 2;
-        this.d = e8Var;
-        this.f32704c = f7;
-        this.f32703b = i10;
+    public final void b(String str) {
+        TextPaint textPaint = this.h.f24772b;
+        if (TextUtils.equals(this.f32795b, str)) {
+            return;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        this.f32795b = spannableStringBuilder;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false);
+        this.f32795b = replaceEmoji;
+        this.f32795b = MessageObject.replaceAnimatedEmoji(replaceEmoji, null, textPaint.getFontMetricsInt());
+        this.f32799g = false;
     }
 }

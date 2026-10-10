@@ -1,51 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public abstract class c40 extends org.telegram.ui.ActionBar.f3 {
-    public z4.g f25230b;
-    public z30 f25231c;
-    public LinearLayout d;
-    public TextView[] f25232e;
-    public float f25233f;
-    public int h;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
+public final class c40 extends z4.a {
+    public final org.telegram.ui.f50 f25176c;
 
-    public static void o(org.telegram.ui.f50 f50Var) {
-        TextView textView;
-        TextView[] textViewArr = f50Var.f25232e;
-        int i10 = f50Var.h;
-        TextView textView2 = textViewArr[i10];
-        if (i10 < textViewArr.length - 1) {
-            textView = textViewArr[i10 + 1];
+    public c40(org.telegram.ui.f50 f50Var) {
+        this.f25176c = f50Var;
+    }
+
+    @Override
+    public final void a(z4.g gVar, Object obj) {
+        gVar.removeView((View) obj);
+    }
+
+    @Override
+    public final int b() {
+        return this.f25176c.f25543e.length;
+    }
+
+    @Override
+    public final Object e(z4.g gVar, int i10) {
+        int i11;
+        b40 b40Var = new b40(this, this.f25176c.getContext(), i10, 0);
+        b40Var.setOnClickListener(new ci.m4(this, i10, 10));
+        b40Var.setFocusable(true);
+        b40Var.setTag(Integer.valueOf(i10));
+        b40Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        b40Var.setScaleType(ImageView.ScaleType.FIT_XY);
+        b40Var.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
+        if (i10 == 0) {
+            b40Var.setContentDescription(LocaleController.getString(R.string.VoipRecordAudio));
+        } else if (i10 == 1) {
+            b40Var.setContentDescription(LocaleController.getString(R.string.VoipRecordPortrait));
         } else {
-            textView = null;
+            b40Var.setContentDescription(LocaleController.getString(R.string.VoipRecordLandscape));
         }
-        f50Var.containerView.getMeasuredWidth();
-        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
-        float measuredWidth2 = (f50Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
-        if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * f50Var.f25233f;
+        if (i10 == 0) {
+            i11 = R.raw.record_audio;
+        } else if (i10 == 1) {
+            i11 = R.raw.record_video_p;
+        } else {
+            i11 = R.raw.record_video_l;
         }
-        for (int i11 = 0; i11 < textViewArr.length; i11++) {
-            int i12 = f50Var.h;
-            float f7 = 0.9f;
-            float f10 = 0.7f;
-            if (i11 >= i12 && i11 <= i12 + 1) {
-                if (i11 == i12) {
-                    float f11 = f50Var.f25233f;
-                    f10 = 1.0f - (0.3f * f11);
-                    f7 = 1.0f - (f11 * 0.1f);
-                } else {
-                    float f12 = f50Var.f25233f;
-                    f10 = 0.7f + (0.3f * f12);
-                    f7 = 0.9f + (f12 * 0.1f);
-                }
-            }
-            textViewArr[i11].setAlpha(f10);
-            textViewArr[i11].setScaleX(f7);
-            textViewArr[i11].setScaleY(f7);
+        SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(AndroidUtilities.readRes(i11));
+        drawable.setAspectFill(false);
+        b40Var.setImageDrawable(drawable);
+        if (b40Var.getParent() != null) {
+            ((ViewGroup) b40Var.getParent()).removeView(b40Var);
         }
-        f50Var.d.setTranslationX(measuredWidth2);
-        f50Var.f25231c.invalidate();
+        gVar.addView(b40Var, 0);
+        return b40Var;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        return view.equals(obj);
+    }
+
+    @Override
+    public final void h(int i10) {
     }
 }

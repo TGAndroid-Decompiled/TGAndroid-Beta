@@ -1,135 +1,83 @@
 package org.telegram.ui.Components;
 
+import android.text.Editable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class h50 implements wi {
-    public final m50 f26963a;
+public final class h50 implements org.telegram.ui.ar0 {
+    public boolean f26946a;
+    public final HashMap f26947b;
+    public final ArrayList f26948c;
+    public final n50 d;
 
-    public h50(m50 m50Var) {
-        this.f26963a = m50Var;
+    public h50(n50 n50Var, HashMap hashMap, ArrayList arrayList) {
+        this.d = n50Var;
+        this.f26947b = hashMap;
+        this.f26948c = arrayList;
     }
 
     @Override
-    public final void B0() {
-        this.f26963a.q();
+    public final boolean e() {
+        return this.d.f28985b.e();
     }
 
     @Override
-    public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        yi yiVar;
-        m50 m50Var = this.f26963a;
-        org.telegram.ui.ActionBar.n2 n2Var = m50Var.f28682a;
-        if (n2Var != null && n2Var.getParentActivity() != null && (yiVar = m50Var.f28684c) != null) {
-            if (i10 != 8 && i10 != 7) {
-                yiVar.dismissWithButtonClick(i10);
-                if (i10 == 0) {
-                    m50Var.l();
-                    return;
-                }
-                return;
-            }
-            HashMap<Object, Object> selectedPhotos = yiVar.f33240j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = m50Var.f28684c.f33240j0.getSelectedPhotosOrder();
-            ArrayList arrayList = new ArrayList();
-            boolean z14 = false;
-            for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                arrayList.add(sendingMediaInfo);
-                String str = null;
-                if (obj instanceof MediaController.PhotoEntry) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                    String str2 = photoEntry.imagePath;
-                    if (str2 != null) {
-                        sendingMediaInfo.path = str2;
+    public final void h(int i10, boolean z10, boolean z11) {
+        String str;
+        HashMap hashMap = this.f26947b;
+        if (!hashMap.isEmpty()) {
+            n50 n50Var = this.d;
+            if (n50Var.f28985b != null && !this.f26946a && !z10) {
+                this.f26946a = true;
+                ArrayList arrayList = new ArrayList();
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f26948c;
+                    if (i11 < arrayList2.size()) {
+                        Object obj = hashMap.get(arrayList2.get(i11));
+                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                        arrayList.add(sendingMediaInfo);
+                        if (obj instanceof MediaController.SearchImage) {
+                            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                            String str2 = searchImage.imagePath;
+                            if (str2 != null) {
+                                sendingMediaInfo.path = str2;
+                            } else {
+                                sendingMediaInfo.searchImage = searchImage;
+                            }
+                            sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                            sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                            CharSequence charSequence = searchImage.caption;
+                            if (charSequence != null) {
+                                str = charSequence.toString();
+                            } else {
+                                str = null;
+                            }
+                            sendingMediaInfo.caption = str;
+                            sendingMediaInfo.entities = searchImage.entities;
+                            sendingMediaInfo.masks = searchImage.stickers;
+                            sendingMediaInfo.ttl = searchImage.ttl;
+                        }
+                        i11++;
                     } else {
-                        sendingMediaInfo.path = photoEntry.path;
+                        n50.a(n50Var, false, arrayList);
+                        return;
                     }
-                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
-                    sendingMediaInfo.coverPath = photoEntry.coverPath;
-                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
-                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
-                    sendingMediaInfo.isVideo = photoEntry.isVideo;
-                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
-                    sendingMediaInfo.discardLivePhoto = true;
-                    CharSequence charSequence = photoEntry.caption;
-                    if (charSequence != null) {
-                        str = charSequence.toString();
-                    }
-                    sendingMediaInfo.caption = str;
-                    sendingMediaInfo.entities = photoEntry.entities;
-                    sendingMediaInfo.masks = photoEntry.stickers;
-                    sendingMediaInfo.ttl = photoEntry.ttl;
-                    TLRPC.VideoSize videoSize = photoEntry.emojiMarkup;
-                    sendingMediaInfo.emojiMarkup = videoSize;
-                    z14 = videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup;
-                } else if (obj instanceof MediaController.SearchImage) {
-                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                    String str3 = searchImage.imagePath;
-                    if (str3 != null) {
-                        sendingMediaInfo.path = str3;
-                    } else {
-                        sendingMediaInfo.searchImage = searchImage;
-                    }
-                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                    sendingMediaInfo.coverPath = searchImage.coverPath;
-                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                    CharSequence charSequence2 = searchImage.caption;
-                    if (charSequence2 != null) {
-                        str = charSequence2.toString();
-                    }
-                    sendingMediaInfo.caption = str;
-                    sendingMediaInfo.entities = searchImage.entities;
-                    sendingMediaInfo.masks = searchImage.stickers;
-                    sendingMediaInfo.ttl = searchImage.ttl;
-                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                    if (botInlineResult != null && searchImage.type == 1) {
-                        sendingMediaInfo.inlineResult = botInlineResult;
-                        sendingMediaInfo.params = searchImage.params;
-                    }
-                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
                 }
-            }
-            m50.a(m50Var, z14, arrayList);
-            if (i10 != 8) {
-                m50Var.f28684c.dismiss(true);
             }
         }
     }
 
     @Override
-    public final void P0() {
-        AndroidUtilities.hideKeyboard(this.f26963a.f28682a.getFragmentView().findFocus());
+    public final void a() {
     }
 
     @Override
-    public final boolean Y1() {
-        return false;
+    public final void b(Editable editable) {
     }
 
     @Override
-    public final void f0(jh jhVar) {
-        jhVar.run();
-    }
-
-    @Override
-    public final boolean i0() {
-        return false;
-    }
-
-    @Override
-    public final void a1(Object obj) {
-    }
-
-    @Override
-    public final void p1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void c2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public final void g() {
     }
 }

@@ -7,12 +7,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class lz extends org.telegram.ui.ActionBar.n2 {
-    public long f39709a;
-    public TLRPC.Chat f39710b;
-    public boolean f39711c;
+    public long f39753a;
+    public TLRPC.Chat f39754b;
+    public boolean f39755c;
     public boolean d;
-    public iz f39712e;
-    public ai.m0 f39713f;
+    public iz f39756e;
+    public ai.m0 f39757f;
 
     public final void U() {
         if (this.d && getParentLayout() != null) {
@@ -34,19 +34,19 @@ public final class lz extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setActionBarMenuOnItemClick(new ro(this, 21));
         this.actionBar.setTitle(LocaleController.getString(R.string.TopicsTitle));
         FrameLayout frameLayout = new FrameLayout(context);
-        ?? k71Var = new org.telegram.ui.Components.k71(this, new b5(this, 13), new gu(this, 6), null);
-        this.f39712e = k71Var;
-        k71Var.p1();
-        this.f39712e.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20741a7, this.resourceProvider));
-        frameLayout.addView(this.f39712e, w7.x5.e(-1, -1, 119));
-        this.actionBar.setAdaptiveBackground(this.f39712e);
+        ?? l71Var = new org.telegram.ui.Components.l71(this, new b5(this, 13), new gu(this, 6), null);
+        this.f39756e = l71Var;
+        l71Var.p1();
+        this.f39756e.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20745a7, this.resourceProvider));
+        frameLayout.addView(this.f39756e, w7.x5.e(-1, -1, 119));
+        this.actionBar.setAdaptiveBackground(this.f39756e);
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f39710b = getMessagesController().getChat(Long.valueOf(-this.f39709a));
+        this.f39754b = getMessagesController().getChat(Long.valueOf(-this.f39753a));
         return super.onFragmentCreate();
     }
 }

@@ -4,22 +4,22 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 import android.view.View;
 public final class mh implements DialogInterface.OnCancelListener {
-    public final int f28834a;
-    public final KeyEvent.Callback f28835b;
+    public final int f28816a;
+    public final KeyEvent.Callback f28817b;
 
     public mh(KeyEvent.Callback callback, int i10) {
-        this.f28834a = i10;
-        this.f28835b = callback;
+        this.f28816a = i10;
+        this.f28817b = callback;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f28834a) {
+        switch (this.f28816a) {
             case 0:
-                yi.s((yi) this.f28835b);
+                yi.s((yi) this.f28817b);
                 return;
             default:
-                ((View) this.f28835b).setTag(null);
+                ((View) this.f28817b).setTag(null);
                 return;
         }
     }

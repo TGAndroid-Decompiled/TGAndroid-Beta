@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import m.f3;
 public abstract class k {
-    public static final int f16128a = 0;
+    public static final int f16132a = 0;
 
     static {
         int i10 = e9.m0.f8770c;
@@ -128,13 +128,13 @@ public abstract class k {
                 }
             }
         }
-        return new n4.m((Bundle) fVar.f15331b);
+        return new n4.m((Bundle) fVar.f15335b);
     }
 
     public static b2.c1 c(n4.g0 g0Var) {
         if (g0Var != null) {
-            float f7 = g0Var.f16568b;
-            int i10 = g0Var.f16567a;
+            float f7 = g0Var.f16572b;
+            int i10 = g0Var.f16571a;
             boolean z10 = true;
             switch (i10) {
                 case 1:
@@ -226,11 +226,11 @@ public abstract class k {
         } else {
             f3Var = new f3(2);
         }
-        AudioAttributes.Builder builder = (AudioAttributes.Builder) f3Var.f15668b;
+        AudioAttributes.Builder builder = (AudioAttributes.Builder) f3Var.f15672b;
         builder.setContentType(eVar.f3277a);
         builder.setFlags(eVar.f3278b);
         f3Var.q(eVar.f3279c);
-        AudioAttributes audioAttributes = f3Var.f().f16542a;
+        AudioAttributes audioAttributes = f3Var.f().f16546a;
         audioAttributes.getClass();
         int flags = audioAttributes.getFlags();
         int usage = audioAttributes.getUsage();

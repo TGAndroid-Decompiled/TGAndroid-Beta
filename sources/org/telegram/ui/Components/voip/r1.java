@@ -6,16 +6,16 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class r1 extends FrameLayout {
-    public int f32191a;
-    public int f32192b;
-    public int f32193c;
+    public int f32256a;
+    public int f32257b;
+    public int f32258c;
     public int d;
-    public boolean f32194e;
+    public boolean f32259e;
 
     public r1(Context context) {
         super(context);
         this.d = 68;
-        this.f32194e = true;
+        this.f32259e = true;
     }
 
     @Override
@@ -29,20 +29,20 @@ public final class r1 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
-        if (this.f32194e) {
-            int childCount = (int) (((getChildCount() - this.f32191a) / 2.0f) * ((this.f32193c * 2) + this.f32192b));
+        if (this.f32259e) {
+            int childCount = (int) (((getChildCount() - this.f32256a) / 2.0f) * ((this.f32258c * 2) + this.f32257b));
             for (int i15 = 0; i15 < getChildCount(); i15++) {
                 View childAt = getChildAt(i15);
                 if (childAt.getVisibility() != 8) {
-                    int i16 = this.f32193c;
+                    int i16 = this.f32258c;
                     childAt.layout(childCount + i16, 0, childAt.getMeasuredWidth() + i16 + childCount, childAt.getMeasuredHeight());
-                    childCount = childAt.getMeasuredWidth() + (this.f32193c * 2) + childCount;
+                    childCount = childAt.getMeasuredWidth() + (this.f32258c * 2) + childCount;
                 }
             }
             return;
         }
-        if (this.f32191a > 0) {
-            i14 = (getMeasuredWidth() - this.f32192b) / (this.f32191a - 1);
+        if (this.f32256a > 0) {
+            i14 = (getMeasuredWidth() - this.f32257b) / (this.f32256a - 1);
         } else {
             i14 = 0;
         }
@@ -60,18 +60,18 @@ public final class r1 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f32191a = 0;
+        this.f32256a = 0;
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             if (getChildAt(i12).getVisibility() != 8) {
-                this.f32191a++;
+                this.f32256a++;
             }
         }
-        this.f32192b = AndroidUtilities.dp(this.d);
-        this.f32193c = ((size / getChildCount()) - this.f32192b) / 2;
+        this.f32257b = AndroidUtilities.dp(this.d);
+        this.f32258c = ((size / getChildCount()) - this.f32257b) / 2;
         int i13 = 0;
         for (int i14 = 0; i14 < getChildCount(); i14++) {
             if (getChildAt(i14).getVisibility() != 8) {
-                getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.f32192b, 1073741824), i11);
+                getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.f32257b, 1073741824), i11);
                 if (getChildAt(i14).getMeasuredHeight() > i13) {
                     i13 = getChildAt(i14).getMeasuredHeight();
                 }
@@ -85,6 +85,6 @@ public final class r1 extends FrameLayout {
     }
 
     public void setUseStartPadding(boolean z10) {
-        this.f32194e = z10;
+        this.f32259e = z10;
     }
 }

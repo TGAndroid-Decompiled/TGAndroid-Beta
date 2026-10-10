@@ -498,6 +498,42 @@ public class TL_bots {
         }
     }
 
+    public static class TL_bots_addUsername extends TLMethod<TLRPC.Bool> {
+        public static final int constructor = 889307274;
+        public TLRPC.InputUser bot;
+        public String username;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(889307274);
+            this.bot.serializeToStream(outputSerializedData);
+            outputSerializedData.writeString(this.username);
+        }
+
+        @Override
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        }
+    }
+
+    public static class TL_bots_removeUsername extends TLMethod<TLRPC.Bool> {
+        public static final int constructor = -956033923;
+        public TLRPC.InputUser bot;
+        public String username;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-956033923);
+            this.bot.serializeToStream(outputSerializedData);
+            outputSerializedData.writeString(this.username);
+        }
+
+        @Override
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        }
+    }
+
     public static class TL_updateBotMenuButton extends TLRPC.Update {
         public static final int constructor = 347625491;
         public long bot_id;

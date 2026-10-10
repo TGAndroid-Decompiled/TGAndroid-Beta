@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Paint;
 public final class qf extends ei.y {
-    public boolean f30152s;
+    public boolean f30198s;
     public final ChatActivityEnterView v;
 
     public qf(ChatActivityEnterView chatActivityEnterView, Context context) {
@@ -28,14 +28,14 @@ public final class qf extends ei.y {
         }
         invalidate();
         setClipChildren(false);
-        this.f30152s = false;
+        this.f30198s = false;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (!this.f30152s) {
-            this.f30152s = true;
+        if (!this.f30198s) {
+            this.f30198s = true;
             this.v.A1();
         }
     }

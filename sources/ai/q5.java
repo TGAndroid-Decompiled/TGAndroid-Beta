@@ -2,7 +2,7 @@ package ai;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.fk0;
+import org.telegram.ui.Components.gk0;
 public final class q5 implements Utilities.Callback4 {
     public final int f1615a;
     public final w5 f1616b;
@@ -41,9 +41,9 @@ public final class q5 implements Utilities.Callback4 {
                 e6Var.f882a = false;
                 jcVar.setOnReadyListener(new p3(1, currentTimeMillis, runnable));
                 ((bc) f6Var.Q1).g(false);
-                fk0 fk0Var = f6Var.f1026z0;
-                if (fk0Var != null) {
-                    fk0Var.setAnimation(this.f1617c.f777u);
+                gk0 gk0Var = f6Var.f1026z0;
+                if (gk0Var != null) {
+                    gk0Var.setAnimation(this.f1617c.f777u);
                 }
                 if (f6Var.R2 > 0 && l4.longValue() > f6Var.R2 - 1400) {
                     l4 = 0L;
@@ -80,9 +80,9 @@ public final class q5 implements Utilities.Callback4 {
                 e6Var2.f882a = false;
                 jcVar2.setOnReadyListener(new p3(2, currentTimeMillis2, runnable2));
                 ((bc) f6Var2.Q1).g(false);
-                fk0 fk0Var2 = f6Var2.f1026z0;
-                if (fk0Var2 != null) {
-                    fk0Var2.setAnimation(this.f1617c.f777u);
+                gk0 gk0Var2 = f6Var2.f1026z0;
+                if (gk0Var2 != null) {
+                    gk0Var2.setAnimation(this.f1617c.f777u);
                 }
                 if (f6Var2.R2 > 0 && l11.longValue() > f6Var2.R2 - 1400) {
                     l11 = 0L;

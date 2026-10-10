@@ -14,7 +14,7 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGL10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.ThemeActivity;
 public abstract class bi {
     public static int A(float f7, int i10, int i11) {
@@ -128,8 +128,8 @@ public abstract class bi {
         viewPropertyAnimator.alpha(f7).setDuration(j3).start();
     }
 
-    public static void t(ViewPropertyAnimator viewPropertyAnimator, hs hsVar, long j3) {
-        viewPropertyAnimator.setInterpolator(hsVar).setDuration(j3).start();
+    public static void t(ViewPropertyAnimator viewPropertyAnimator, is isVar, long j3) {
+        viewPropertyAnimator.setInterpolator(isVar).setDuration(j3).start();
     }
 
     public static void u(TextView textView, int i10, int i11, float f7, int i12) {

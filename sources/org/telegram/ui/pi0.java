@@ -17,14 +17,14 @@ public final class pi0 extends fz {
         dj0 dj0Var = this.O;
         wi0 wi0Var = dj0Var.K;
         if (ezVar != null) {
-            if (dj0Var.f37006l0 != null) {
-                ezVar.f37389c = true;
+            if (dj0Var.f37050l0 != null) {
+                ezVar.f37433c = true;
                 float f7 = (fz.f() * AndroidUtilities.density) / 1.3f;
                 float f10 = f7 / 3.0f;
                 ezVar.d = f10;
-                ezVar.f37390e = f10;
-                ezVar.f37387a = Utilities.clamp(dj0Var.f37006l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
-                ezVar.f37388b = dj0Var.f37006l0.bottom - (f7 / 2.0f);
+                ezVar.f37434e = f10;
+                ezVar.f37431a = Utilities.clamp(dj0Var.f37050l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
+                ezVar.f37432b = dj0Var.f37050l0.bottom - (f7 / 2.0f);
                 return;
             }
             org.telegram.ui.Cells.u1 u1Var = dj0Var.Q;
@@ -32,14 +32,14 @@ public final class pi0 extends fz {
                 org.telegram.ui.Cells.u1 u1Var2 = dj0Var.Q;
                 int[] iArr = this.N;
                 u1Var2.getLocationOnScreen(iArr);
-                ezVar.f37389c = true;
+                ezVar.f37433c = true;
                 float f11 = (fz.f() * AndroidUtilities.density) / 1.3f;
                 float f12 = f11 / 3.0f;
                 ezVar.d = f12;
-                ezVar.f37390e = f12;
+                ezVar.f37434e = f12;
                 float f13 = f11 / 2.0f;
-                ezVar.f37387a = Utilities.clamp(((wi0Var.getScaleX() * dj0Var.Q.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
-                ezVar.f37388b = ((wi0Var.getScaleY() * dj0Var.Q.getTimeY()) + iArr[1]) - f13;
+                ezVar.f37431a = Utilities.clamp(((wi0Var.getScaleX() * dj0Var.Q.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
+                ezVar.f37432b = ((wi0Var.getScaleY() * dj0Var.Q.getTimeY()) + iArr[1]) - f13;
             }
         }
     }

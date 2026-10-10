@@ -9,7 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.mr;
 import w7.x5;
 import w7.z5;
@@ -52,8 +52,8 @@ public final class h extends FrameLayout implements me.d {
                 aa.a aVar = aVarArr[i11];
                 if (aVar != null) {
                     ih.b bVar = (ih.b) aVar.f384b;
-                    float f10 = ((me.b) aVar.f385c).f16337e;
-                    float f11 = ((me.b) aVar.d).f16337e;
+                    float f10 = ((me.b) aVar.f385c).f16341e;
+                    float f11 = ((me.b) aVar.d).f16341e;
                     if (f10 > 0.0f) {
                         i10 = 0;
                     } else {
@@ -127,9 +127,9 @@ public final class h extends FrameLayout implements me.d {
             int i13 = i10 << 16;
             int i14 = i13 | 1;
             if (i10 == 0) {
-                interpolator = hs.h;
+                interpolator = is.h;
             } else {
-                interpolator = le.a.f15501a;
+                interpolator = le.a.f15505a;
             }
             if (i10 == 0) {
                 j3 = 300;
@@ -139,9 +139,9 @@ public final class h extends FrameLayout implements me.d {
             me.b bVar = new me.b(i14, this, interpolator, j3, false);
             int i15 = i13 | 2;
             if (i10 == 0) {
-                interpolator2 = hs.h;
+                interpolator2 = is.h;
             } else {
-                interpolator2 = le.a.f15501a;
+                interpolator2 = le.a.f15505a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i10 == 0) {

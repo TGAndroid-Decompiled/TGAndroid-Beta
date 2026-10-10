@@ -5,11 +5,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ga implements org.telegram.ui.Components.em0 {
-    public final ra f37951a;
+public final class ga implements org.telegram.ui.Components.fm0 {
+    public final ra f37995a;
 
     public ga(ra raVar) {
-        this.f37951a = raVar;
+        this.f37995a = raVar;
     }
 
     @Override
@@ -18,13 +18,13 @@ public final class ga implements org.telegram.ui.Components.em0 {
         int i12;
         int i13;
         boolean z10 = view instanceof oa;
-        ra raVar = this.f37951a;
+        ra raVar = this.f37995a;
         if (z10) {
             oa oaVar = (oa) view;
             TLRPC.TL_username tL_username = oaVar.v;
-            if (tL_username != null && !oaVar.f40454r) {
-                if (tL_username.editable && raVar.f41327x == 0) {
-                    raVar.f41319b.x0(0);
+            if (tL_username != null && !oaVar.f40498r) {
+                if (tL_username.editable && raVar.f41371x == 0) {
+                    raVar.f41363b.x0(0);
                     raVar.e0(true);
                     return;
                 }
@@ -34,13 +34,13 @@ public final class ga implements org.telegram.ui.Components.em0 {
                 } else {
                     i11 = R.string.UsernameActivateLink;
                 }
-                alertDialog$Builder.f20374a.R = LocaleController.getString(i11);
+                alertDialog$Builder.f20378a.R = LocaleController.getString(i11);
                 if (tL_username.active) {
                     i12 = R.string.UsernameDeactivateLinkProfileMessage;
                 } else {
                     i12 = R.string.UsernameActivateLinkProfileMessage;
                 }
-                alertDialog$Builder.f20374a.T = LocaleController.getString(i12);
+                alertDialog$Builder.f20378a.T = LocaleController.getString(i12);
                 if (tL_username.active) {
                     i13 = R.string.Hide;
                 } else {

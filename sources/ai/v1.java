@@ -144,7 +144,7 @@ public final class v1 implements RequestDelegate {
                                 Boolean bool = null;
                                 while (i12 < size2) {
                                     org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) arrayList3.get(i12);
-                                    if (g6Var.f20665o.equals(tL_wallPaper.slug)) {
+                                    if (g6Var.f20669o.equals(tL_wallPaper.slug)) {
                                         if (bool == null) {
                                             bool = Boolean.valueOf(pathToAttach.exists());
                                         }
@@ -157,22 +157,22 @@ public final class v1 implements RequestDelegate {
                                             arrayList4.add(g6Var);
                                         } else {
                                             String attachFileName = FileLoader.getAttachFileName(tL_wallPaper.document);
-                                            if (d6Var.f20545b == null) {
-                                                d6Var.f20545b = new HashMap();
+                                            if (d6Var.f20549b == null) {
+                                                d6Var.f20549b = new HashMap();
                                             }
-                                            org.telegram.ui.ActionBar.c6 c6Var2 = (org.telegram.ui.ActionBar.c6) d6Var.f20545b.get(attachFileName);
+                                            org.telegram.ui.ActionBar.c6 c6Var2 = (org.telegram.ui.ActionBar.c6) d6Var.f20549b.get(attachFileName);
                                             if (c6Var2 == null) {
                                                 ?? obj = new Object();
                                                 arrayList2 = arrayList3;
-                                                obj.f20523b = new ArrayList();
-                                                obj.f20522a = tL_wallPaper;
-                                                d6Var.f20545b.put(attachFileName, obj);
+                                                obj.f20527b = new ArrayList();
+                                                obj.f20526a = tL_wallPaper;
+                                                d6Var.f20549b.put(attachFileName, obj);
                                                 c6Var = obj;
                                             } else {
                                                 arrayList2 = arrayList3;
                                                 c6Var = c6Var2;
                                             }
-                                            c6Var.f20523b.add(g6Var);
+                                            c6Var.f20527b.add(g6Var);
                                         }
                                     } else {
                                         arrayList2 = arrayList3;

@@ -1,18 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class vv extends mr0 {
-    public final iw f32462b1;
+public final class vv extends g.o {
+    public final jw f32524c;
 
-    public vv(iw iwVar, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, str, false, str2, false, e6Var);
-        this.f32462b1 = iwVar;
+    public vv(jw jwVar) {
+        this.f32524c = jwVar;
     }
 
     @Override
-    public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        AndroidUtilities.runOnUIThread(new zk(this, iVar, i10, 2), 100L);
+    public final int i(int i10) {
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
+        TLRPC.StickerSet stickerSet;
+        jw jwVar = this.f32524c;
+        s4.s sVar = jwVar.f27807y;
+        tv tvVar = jwVar.f27800e;
+        ci.v vVar = jwVar.h;
+        if (vVar.getAdapter() != null && vVar.getAdapter().j(i10) == 1) {
+            int i11 = 0;
+            int i12 = 0;
+            while (true) {
+                ArrayList[] arrayListArr = tvVar.f26855c;
+                if (i11 >= arrayListArr.length) {
+                    break;
+                }
+                int size = arrayListArr[i11].size();
+                if (tvVar.f26855c.length > 1) {
+                    size = Math.min(sVar.J * 2, size);
+                }
+                i12 += size + 2;
+                if (i10 < i12) {
+                    break;
+                }
+                i11++;
+            }
+            ArrayList arrayList = tvVar.f26854b;
+            if (arrayList != null && i11 < arrayList.size()) {
+                tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tvVar.f26854b.get(i11);
+            } else {
+                tL_messages_stickerSet = null;
+            }
+            if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && !stickerSet.emojis) {
+                return 8;
+            }
+            return 5;
+        }
+        return sVar.J;
     }
 }

@@ -39,13 +39,13 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.a61;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.e11;
-import org.telegram.ui.Components.g11;
-import org.telegram.ui.Components.kb0;
-import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.f11;
+import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.lb0;
+import org.telegram.ui.Components.q80;
 import org.telegram.ui.Components.tc;
-import org.telegram.ui.Components.z51;
 public final class t implements Runnable {
     public final int f10810a;
     public final Object f10811b;
@@ -63,14 +63,14 @@ public final class t implements Runnable {
         oi.k kVar = (oi.k) this.f10811b;
         WebView webView = (WebView) this.f10812c;
         b5.h hVar = (b5.h) this.d;
-        synchronized (kVar.f17188a) {
-            if (!kVar.f17206u && kVar.f17200o == webView && kVar.f17201p == hVar && !kVar.f17203r) {
-                if (kVar.f17204s) {
+        synchronized (kVar.f17192a) {
+            if (!kVar.f17210u && kVar.f17204o == webView && kVar.f17205p == hVar && !kVar.f17207r) {
+                if (kVar.f17208s) {
                     FileLog.e("WEB proxy: Base64 bridge installation timed out again; transport stopped");
                     kVar.o();
                     return;
                 }
-                kVar.f17204s = true;
+                kVar.f17208s = true;
                 FileLog.e("WEB proxy: Base64 bridge installation timed out; retrying once");
                 kVar.f();
             }
@@ -126,11 +126,11 @@ public final class t implements Runnable {
                     }
                     if (!j1Var.f10683o0 && (arrayList = j1Var.A0) != null && !arrayList.isEmpty()) {
                         j1Var.H();
-                        kb0 kb0Var = j1Var.V;
+                        lb0 lb0Var = j1Var.V;
                         if (j1Var.K() > 0) {
                             z10 = true;
                         }
-                        kb0Var.a(z10);
+                        lb0Var.a(z10);
                         j1Var.f10683o0 = true;
                     }
                     if (i10 != i11) {
@@ -157,15 +157,15 @@ public final class t implements Runnable {
             case 4:
                 d2 d2Var = (d2) this.f10811b;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f10812c).f20150q;
+                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f10812c).f20154q;
                 f2 f2Var = d2Var.f10575a;
                 String str3 = f2Var.R;
-                z51 z51Var = f2Var.f10599e;
+                a61 a61Var = f2Var.f10599e;
                 if (str2.equals(str3)) {
                     d2Var.a();
-                    z51Var.f33479b.h.getProgressDrawable().f32421e = false;
+                    a61Var.f24497b.h.getProgressDrawable().f32485e = false;
                     f2Var.N = 0;
-                    z51Var.b(true);
+                    a61Var.b(true);
                     f2Var.E.addAll(tL_messages_foundStickerSets.sets);
                     f2Var.l();
                     return;
@@ -289,9 +289,9 @@ public final class t implements Runnable {
                 return;
             case 15:
                 x3 x3Var = (x3) this.f10811b;
-                p80 p80Var = (p80) this.f10812c;
+                q80 q80Var = (q80) this.f10812c;
                 q5 q5Var = (q5) this.d;
-                if (x3Var.f12814h4 == p80Var) {
+                if (x3Var.f12814h4 == q80Var) {
                     x3Var.f12814h4 = null;
                     if (x3Var.A3 && x3Var.f12812g4 == q5Var && !q5Var.H.isEmpty()) {
                         x3Var.N2();
@@ -367,7 +367,7 @@ public final class t implements Runnable {
                 return;
             case 21:
                 String str4 = e2.d0.f8532a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.f10811b).f16613c)).f11620a.f11683s;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.f10811b).f16617c)).f11620a.f11683s;
                 j2.a p5 = fVar2.p();
                 fVar2.q(p5, 1009, new j2.c(p5, (b2.s) this.f10812c, (i2.h) this.d, 19));
                 return;
@@ -387,12 +387,12 @@ public final class t implements Runnable {
                 ki.t0 t0Var = (ki.t0) this.f10811b;
                 ki.u uVar = (ki.u) this.f10812c;
                 File file = (File) this.d;
-                Handler handler = t0Var.f15119i;
+                Handler handler = t0Var.f15123i;
                 try {
                     uVar.c(file);
                     t0Var.g();
                     long e7 = w7.j.e(file) / 1000;
-                    t0Var.f15123m.b("preview snapshot completed: durationMs=" + e7 + ", size=" + file.length() + ", elapsedMs=" + ki.t0.f(t0Var.J));
+                    t0Var.f15127m.b("preview snapshot completed: durationMs=" + e7 + ", size=" + file.length() + ", elapsedMs=" + ki.t0.f(t0Var.J));
                     handler.post(new ki.e0(t0Var, e7, 1));
                     return;
                 } catch (Exception e10) {
@@ -401,12 +401,12 @@ public final class t implements Runnable {
                 }
             case 24:
                 File file2 = (File) this.d;
-                ki.q0 q0Var = ((ki.t0) this.f10811b).f15116e;
-                long j10 = ((ki.p0) this.f10812c).f15067a;
-                g11 g11Var = (g11) q0Var;
-                synchronized (g11Var) {
-                    if (!g11Var.d) {
-                        g11Var.f26554c.put(Long.valueOf(j10), new e11(file2));
+                ki.q0 q0Var = ((ki.t0) this.f10811b).f15120e;
+                long j10 = ((ki.p0) this.f10812c).f15071a;
+                h11 h11Var = (h11) q0Var;
+                synchronized (h11Var) {
+                    if (!h11Var.d) {
+                        h11Var.f26908c.put(Long.valueOf(j10), new f11(file2));
                         return;
                     }
                     return;
@@ -415,24 +415,24 @@ public final class t implements Runnable {
                 m4.x xVar = (m4.x) this.f10811b;
                 m4.r rVar2 = (m4.r) this.f10812c;
                 KeyEvent keyEvent = (KeyEvent) this.d;
-                m4.b0 b0Var = xVar.f16249b;
+                m4.b0 b0Var = xVar.f16253b;
                 if (b0Var.i(rVar2)) {
                     b0Var.b(keyEvent, false, false);
                 } else {
                     m4.l0 l0Var = b0Var.h;
-                    n4.z zVar3 = rVar2.f16217a;
+                    n4.z zVar3 = rVar2.f16221a;
                     zVar3.getClass();
                     l0Var.getClass();
                     l0Var.H(1, new m4.c0(l0Var, 7), zVar3, true);
                 }
-                xVar.f16248a = null;
+                xVar.f16252a = null;
                 return;
             case 26:
                 m4.b0 b0Var2 = (m4.b0) this.f10811b;
                 m4.q0 q0Var2 = (m4.q0) this.f10812c;
                 m4.s sVar2 = (m4.s) this.d;
                 if (!b0Var2.j()) {
-                    m4.f1 f1Var = b0Var2.f15997t;
+                    m4.f1 f1Var = b0Var2.f16001t;
                     q0Var2.getClass();
                     w7.s.b(f1Var, sVar2);
                     return;
@@ -440,7 +440,7 @@ public final class t implements Runnable {
                 return;
             case 27:
                 n2.j jVar = (n2.j) this.f10811b;
-                this.f10812c.b(jVar.f16518a, jVar.f16519b, (Exception) this.d);
+                this.f10812c.b(jVar.f16522a, jVar.f16523b, (Exception) this.d);
                 return;
             case 28:
                 a();

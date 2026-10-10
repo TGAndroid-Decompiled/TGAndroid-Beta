@@ -2,9 +2,9 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class ut {
-    public String f42549a;
-    public String f42550b;
-    public String f42551c;
+    public String f42593a;
+    public String f42594b;
+    public String f42595c;
     public String d;
 
     public final boolean equals(Object obj) {
@@ -13,7 +13,7 @@ public final class ut {
         }
         if (obj != null && ut.class == obj.getClass()) {
             ut utVar = (ut) obj;
-            if (Objects.equals(this.f42549a, utVar.f42549a) && Objects.equals(this.f42551c, utVar.f42551c)) {
+            if (Objects.equals(this.f42593a, utVar.f42593a) && Objects.equals(this.f42595c, utVar.f42595c)) {
                 return true;
             }
         }
@@ -21,6 +21,6 @@ public final class ut {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f42549a, this.f42551c);
+        return Objects.hash(this.f42593a, this.f42595c);
     }
 }

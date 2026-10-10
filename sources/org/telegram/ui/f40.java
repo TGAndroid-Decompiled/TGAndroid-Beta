@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.os.Bundle;
 import org.telegram.messenger.voip.GroupCallMessage;
 public final class f40 implements lh.a {
-    public final g60 f37441a;
+    public final g60 f37485a;
 
     public f40(g60 g60Var) {
-        this.f37441a = g60Var;
+        this.f37485a = g60Var;
     }
 
     public final void a(GroupCallMessage groupCallMessage) {
@@ -15,7 +15,7 @@ public final class f40 implements lh.a {
             return;
         }
         boolean z10 = R instanceof ProfileActivity;
-        g60 g60Var = this.f37441a;
+        g60 g60Var = this.f37485a;
         if (z10 && ((ProfileActivity) R).a() == groupCallMessage.fromId) {
             g60Var.dismiss();
             return;

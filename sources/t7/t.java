@@ -28,11 +28,11 @@ import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.b6;
-import org.telegram.ui.Components.jp0;
+import org.telegram.ui.Components.kp0;
 import org.telegram.ui.qv0;
 import org.telegram.ui.yd;
-public class t implements s0, bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, w, n6.k, q9.d, jp0, l1, p2.s, OnFailureListener, r4.c, y6.c {
-    public static t f48230a;
+public class t implements s0, bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, w, n6.k, q9.d, kp0, l1, p2.s, OnFailureListener, r4.c, y6.c {
+    public static t f48274a;
 
     public t(Object obj) {
     }
@@ -133,7 +133,7 @@ public class t implements s0, bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.and
 
     @Override
     public void X(float f7, boolean z10) {
-        yd.f44318b = f7 * 2.0f;
+        yd.f44362b = f7 * 2.0f;
     }
 
     @Override
@@ -366,7 +366,7 @@ public class t implements s0, bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.and
 
     @Override
     public y2.n x() {
-        return new p2.r(p2.o.f45260n, null);
+        return new p2.r(p2.o.f45304n, null);
     }
 
     @Override

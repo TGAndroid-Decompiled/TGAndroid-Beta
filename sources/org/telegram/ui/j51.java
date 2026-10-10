@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.graphics.SurfaceTexture;
 import org.telegram.messenger.AndroidUtilities;
-public final class j51 implements org.telegram.ui.Components.h81, org.telegram.ui.Components.d81 {
-    public final k51 f38827a;
+public final class j51 implements org.telegram.ui.Components.i81, org.telegram.ui.Components.e81 {
+    public final k51 f38871a;
 
     public j51(k51 k51Var) {
-        this.f38827a = k51Var;
+        this.f38871a = k51Var;
     }
 
     @Override
     public boolean needUpdate() {
-        if (this.f38827a.V.f28743i != null) {
+        if (this.f38871a.V.f28712i != null) {
             return true;
         }
         return false;
@@ -23,7 +23,7 @@ public final class j51 implements org.telegram.ui.Components.h81, org.telegram.u
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        k51 k51Var = this.f38827a;
+        k51 k51Var = this.f38871a;
         if (i10 == 4) {
             k51Var.dismiss();
             return;
@@ -39,7 +39,7 @@ public final class j51 implements org.telegram.ui.Components.h81, org.telegram.u
 
     @Override
     public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
-        this.f38827a.V.e(z10, true, fArr);
+        this.f38871a.V.e(z10, true, fArr);
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class j51 implements org.telegram.ui.Components.h81, org.telegram.u
     }
 
     @Override
-    public void onError(org.telegram.ui.Components.k81 k81Var, Exception exc) {
+    public void onError(org.telegram.ui.Components.l81 l81Var, Exception exc) {
     }
 
     @Override

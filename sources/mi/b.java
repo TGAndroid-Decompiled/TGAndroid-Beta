@@ -1,14 +1,14 @@
 package mi;
 public final class b {
-    public static final b f16447c = new b(Float.POSITIVE_INFINITY);
-    public final float f16448a;
-    public final float f16449b;
+    public static final b f16451c = new b(Float.POSITIVE_INFINITY);
+    public final float f16452a;
+    public final float f16453b;
 
     public b(float f7) {
         if (!Float.isNaN(Float.POSITIVE_INFINITY)) {
             if (!Float.isNaN(f7) && f7 >= 0.0f) {
-                this.f16448a = Float.POSITIVE_INFINITY;
-                this.f16449b = f7;
+                this.f16452a = Float.POSITIVE_INFINITY;
+                this.f16453b = f7;
                 return;
             }
             throw new IllegalArgumentException("epsY must be >= 0");

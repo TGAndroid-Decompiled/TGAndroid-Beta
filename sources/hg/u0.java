@@ -30,11 +30,11 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.v8;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.gs;
 import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.jq;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.LaunchActivity;
 public final class u0 extends n2 {
     public static final int U = -1;
@@ -74,9 +74,9 @@ public final class u0 extends n2 {
     public boolean R;
     public boolean S;
     public boolean T;
-    public gs f11399a;
+    public hs f11399a;
     public org.telegram.ui.ActionBar.v0 f11400b;
-    public k71 f11401c;
+    public l71 f11401c;
     public gg.b2 d;
     public FrameLayout f11402e;
     public EditTextBoldCursor f11403f;
@@ -132,9 +132,9 @@ public final class u0 extends n2 {
         }
     }
 
-    public static void W(u0 u0Var, p61 p61Var, final View view) {
-        if (p61Var.f29730g && !u0Var.v.h(p61Var)) {
-            int i10 = p61Var.d;
+    public static void W(u0 u0Var, q61 q61Var, final View view) {
+        if (q61Var.f30059g && !u0Var.v.h(q61Var)) {
+            int i10 = q61Var.d;
             if (i10 == U) {
                 b0 b0Var = u0Var.v;
                 u0Var.I = true;
@@ -151,15 +151,15 @@ public final class u0 extends n2 {
                 u0Var.M = null;
                 u0Var.f11401c.W2.N(true);
                 u0Var.Y(true);
-            } else if (p61Var.f17125a == 13) {
-                TLRPC.User user = (TLRPC.User) u0Var.N.get(p61Var.f29745x);
+            } else if (q61Var.f17129a == 13) {
+                TLRPC.User user = (TLRPC.User) u0Var.N.get(q61Var.f30074x);
                 if (user != null) {
                     if (!user.bot_business) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(u0Var.getParentActivity(), 0, u0Var.resourceProvider);
-                        alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.BusinessBotNotSupportedTitle);
-                        alertDialog$Builder.f20374a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage));
+                        alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.BusinessBotNotSupportedTitle);
+                        alertDialog$Builder.f20378a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage));
                         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                        u0Var.showDialog(alertDialog$Builder.f20374a);
+                        u0Var.showDialog(alertDialog$Builder.f20378a);
                         return;
                     }
                     u0Var.M = user;
@@ -689,7 +689,7 @@ public final class u0 extends n2 {
         if (!this.K && i10 == f11392h0 && z10) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
             String string = LocaleController.getString(R.string.BusinessBotPermissionsWarning);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
             b2Var.R = string;
             b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsUsernamesWarningText, UserObject.getPublicUsername(this.M)));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
@@ -719,7 +719,7 @@ public final class u0 extends n2 {
         } else if (!this.L && z10 && (i10 == f11395k0 || i10 == f11396l0 || i10 == m0 || i10 == f11397n0)) {
             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(getParentActivity(), 0, getResourceProvider());
             String string2 = LocaleController.getString(R.string.BusinessBotPermissionsWarning);
-            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20374a;
+            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20378a;
             b2Var2.R = string2;
             b2Var2.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsGiftsWarningText, UserObject.getPublicUsername(this.M)));
             alertDialog$Builder2.h(LocaleController.getString(R.string.Cancel), null);
@@ -826,7 +826,7 @@ public final class u0 extends n2 {
                 if (user == null) {
                     j3 = 0;
                 } else {
-                    j3 = user.f20185id;
+                    j3 = user.f20189id;
                 }
                 if (tL_connectedBot != null) {
                     j10 = tL_connectedBot.bot_id;
@@ -843,19 +843,19 @@ public final class u0 extends n2 {
         boolean z10;
         TLRPC.User user;
         TL_account.TL_connectedBot tL_connectedBot;
-        if (this.f11399a.f26867c <= 0.0f) {
+        if (this.f11399a.f27135c <= 0.0f) {
             if (!Z()) {
                 finishFragment();
             } else if (this.v.k(this.f11401c)) {
                 TLRPC.User user2 = this.M;
-                if (user2 != null && ((tL_connectedBot = this.H) == null || tL_connectedBot.bot_id != user2.f20185id)) {
+                if (user2 != null && ((tL_connectedBot = this.H) == null || tL_connectedBot.bot_id != user2.f20189id)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 ArrayList arrayList = new ArrayList();
                 TL_account.TL_connectedBot tL_connectedBot2 = this.H;
-                if (tL_connectedBot2 != null && ((user = this.M) == null || tL_connectedBot2.bot_id != user.f20185id)) {
+                if (tL_connectedBot2 != null && ((user = this.M) == null || tL_connectedBot2.bot_id != user.f20189id)) {
                     TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
                     updateconnectedbot.deleted = true;
                     updateconnectedbot.bot = getMessagesController().getInputUser(this.H.bot_id);
@@ -871,7 +871,7 @@ public final class u0 extends n2 {
                     arrayList.add(updateconnectedbot2);
                     TL_account.TL_connectedBot tL_connectedBot3 = this.H;
                     if (tL_connectedBot3 != null) {
-                        tL_connectedBot3.bot_id = this.M.f20185id;
+                        tL_connectedBot3.bot_id = this.M.f20189id;
                         tL_connectedBot3.recipients = this.v.c();
                         this.H.rights = this.J;
                     }
@@ -921,8 +921,8 @@ public final class u0 extends n2 {
                 f10 = 0.0f;
             }
             ViewPropertyAnimator duration = alpha.translationY(f10).setDuration(320L);
-            hs hsVar = hs.h;
-            duration.setInterpolator(hsVar).start();
+            is isVar = is.h;
+            duration.setInterpolator(isVar).start();
             ViewPropertyAnimator animate2 = this.f11406s.animate();
             if (!z12) {
                 f11 = 0.0f;
@@ -931,7 +931,7 @@ public final class u0 extends n2 {
             if (!z12) {
                 f12 = AndroidUtilities.dp(8.0f);
             }
-            alpha2.translationY(f12).setDuration(320L).setInterpolator(hsVar).start();
+            alpha2.translationY(f12).setDuration(320L).setInterpolator(isVar).start();
         }
     }
 
@@ -945,13 +945,13 @@ public final class u0 extends n2 {
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessBots2));
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 11));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i12 = i6.f21130v8;
+        int i12 = i6.f21134v8;
         mutate.setColorFilter(new PorterDuffColorFilter(i6.x0(null, i12, false), PorterDuff.Mode.MULTIPLY));
-        this.f11399a = new gs(mutate, new jq(i6.x0(null, i12, false)));
+        this.f11399a = new hs(mutate, new jq(i6.x0(null, i12, false)));
         this.f11400b = this.actionBar.o().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f11399a);
         Y(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(i6.x0(null, i6.f20741a7, false));
+        frameLayout.setBackgroundColor(i6.x0(null, i6.f20745a7, false));
         new LinearLayout(getParentActivity()).setOrientation(0);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getParentActivity());
         this.f11403f = editTextBoldCursor;
@@ -984,11 +984,11 @@ public final class u0 extends n2 {
         this.f11402e = frameLayout2;
         frameLayout2.addView(this.f11403f, w7.x5.a(-1.0f, 21.0f, 15.0f, 21.0f, 15.0f, -1, 48));
         FrameLayout frameLayout3 = this.f11402e;
-        int i14 = i6.f20797d6;
+        int i14 = i6.f20801d6;
         frameLayout3.setBackgroundColor(getThemedColor(i14));
         View view = new View(context);
         this.h = view;
-        view.setBackgroundColor(getThemedColor(i6.f20798d7));
+        view.setBackgroundColor(getThemedColor(i6.f20802d7));
         FrameLayout frameLayout4 = this.f11402e;
         View view2 = this.h;
         float f7 = 1.0f / AndroidUtilities.density;
@@ -1012,7 +1012,7 @@ public final class u0 extends n2 {
         textView.setText(LocaleController.getString(R.string.BusinessBotNotFound));
         this.f11405r.setTextSize(1, 14.0f);
         TextView textView2 = this.f11405r;
-        int i16 = i6.f21199z6;
+        int i16 = i6.f21203z6;
         textView2.setTextColor(getThemedColor(i16));
         this.f11404n.addView(this.f11405r, w7.x5.e(-2, -2, 17));
         this.f11406s = new ImageView(context);
@@ -1034,12 +1034,12 @@ public final class u0 extends n2 {
             tL_businessBotRecipients = tL_connectedBot.recipients;
         }
         b0Var.i(tL_businessBotRecipients);
-        k71 k71Var = new k71(this, new bi.v(this, 24), new q0(this, 3), null);
-        this.f11401c = k71Var;
-        k71Var.p1();
-        k71 k71Var2 = this.f11401c;
-        k71Var2.W2.f25280r = false;
-        frameLayout.addView(k71Var2, w7.x5.d(-1.0f, -1));
+        l71 l71Var = new l71(this, new bi.v(this, 24), new q0(this, 3), null);
+        this.f11401c = l71Var;
+        l71Var.p1();
+        l71 l71Var2 = this.f11401c;
+        l71Var2.W2.f25587r = false;
+        frameLayout.addView(l71Var2, w7.x5.d(-1.0f, -1));
         this.actionBar.B(this.f11401c, true);
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -1055,11 +1055,11 @@ public final class u0 extends n2 {
         if (Z()) {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.BusinessBotUnsavedChanges);
+                alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.BusinessBotUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new q0(this, 0));
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new q0(this, 1));
-                showDialog(alertDialog$Builder.f20374a);
+                showDialog(alertDialog$Builder.f20378a);
                 return false;
             }
         } else if (this.M != null || Z() || (this.d.d.isEmpty() && this.d.f10535e.isEmpty())) {
@@ -1067,11 +1067,11 @@ public final class u0 extends n2 {
         } else {
             if (z10) {
                 AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder2.f20374a.R = LocaleController.getString(R.string.BusinessBotNoAddedTitle);
-                alertDialog$Builder2.f20374a.T = LocaleController.getString(R.string.BusinessBotNoAddedText);
+                alertDialog$Builder2.f20378a.R = LocaleController.getString(R.string.BusinessBotNoAddedTitle);
+                alertDialog$Builder2.f20378a.T = LocaleController.getString(R.string.BusinessBotNoAddedText);
                 alertDialog$Builder2.k(LocaleController.getString(R.string.BusinessBotNoAddedButton), new q0(this, 2));
                 alertDialog$Builder2.h(LocaleController.getString(R.string.Cancel), null);
-                showDialog(alertDialog$Builder2.f20374a);
+                showDialog(alertDialog$Builder2.f20378a);
             }
         }
         return false;

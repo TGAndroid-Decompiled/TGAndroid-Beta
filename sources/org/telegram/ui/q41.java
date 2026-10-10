@@ -3,26 +3,26 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class q41 implements org.telegram.ui.Components.jp0 {
-    public final org.telegram.ui.Components.kp0 f41010a;
-    public final t41 f41011b;
-    public final t41 f41012c;
+public final class q41 implements org.telegram.ui.Components.kp0 {
+    public final org.telegram.ui.Components.lp0 f41054a;
+    public final t41 f41055b;
+    public final t41 f41056c;
     public final t41 d;
-    public final r41 f41013e;
+    public final r41 f41057e;
 
-    public q41(r41 r41Var, org.telegram.ui.Components.kp0 kp0Var, t41 t41Var, t41 t41Var2, t41 t41Var3) {
-        this.f41013e = r41Var;
-        this.f41010a = kp0Var;
-        this.f41011b = t41Var;
-        this.f41012c = t41Var2;
+    public q41(r41 r41Var, org.telegram.ui.Components.lp0 lp0Var, t41 t41Var, t41 t41Var2, t41 t41Var3) {
+        this.f41057e = r41Var;
+        this.f41054a = lp0Var;
+        this.f41055b = t41Var;
+        this.f41056c = t41Var2;
         this.d = t41Var3;
     }
 
     @Override
     public final void X(float f7, boolean z10) {
         long j3;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f41013e.d;
-        boolean isAttachedToWindow = this.f41010a.isAttachedToWindow();
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f41057e.d;
+        boolean isAttachedToWindow = this.f41054a.isAttachedToWindow();
         if (f7 > 0.7f) {
             j3 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
         } else {
@@ -30,8 +30,8 @@ public final class q41 implements org.telegram.ui.Components.jp0 {
         }
         int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
         t41 t41Var = this.d;
-        t41 t41Var2 = this.f41011b;
-        t41 t41Var3 = this.f41012c;
+        t41 t41Var2 = this.f41055b;
+        t41 t41Var3 = this.f41056c;
         if (i10 >= 0) {
             t41Var2.e(false, isAttachedToWindow);
             t41Var3.e(false, isAttachedToWindow);

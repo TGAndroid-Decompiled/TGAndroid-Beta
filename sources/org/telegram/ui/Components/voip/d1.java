@@ -28,9 +28,9 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.cd0;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.i91;
+import org.telegram.ui.Components.dd0;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.j91;
 import org.telegram.ui.dc1;
 import org.telegram.ui.pi1;
 import org.telegram.ui.ro;
@@ -51,31 +51,31 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
     public final boolean O;
     public final com.google.firebase.messaging.n P;
     public final com.google.firebase.messaging.n Q;
-    public final cd0 R;
-    public final cd0 S;
+    public final dd0 R;
+    public final dd0 S;
     public final GestureDetector T;
     public ValueAnimator U;
-    public boolean f31889a;
-    public final ai.f0 f31890b;
-    public final b1 f31891c;
+    public boolean f31954a;
+    public final ai.f0 f31955b;
+    public final b1 f31956c;
     public final dc1 d;
-    public final x2[] f31892e;
-    public final s2 f31893f;
+    public final x2[] f31957e;
+    public final s2 f31958f;
     public int h;
-    public boolean f31894n;
-    public final org.telegram.ui.ActionBar.k f31895r;
-    public float f31896s;
+    public boolean f31959n;
+    public final org.telegram.ui.ActionBar.k f31960r;
+    public float f31961s;
     public int v;
-    public int f31897w;
-    public int f31898x;
-    public float f31899y;
+    public int f31962w;
+    public int f31963x;
+    public float f31964y;
 
     public d1(Context context, float f7, float f10) {
         super(context);
         String string;
         this.h = 1;
-        this.f31898x = -1;
-        this.f31899y = 0.0f;
+        this.f31963x = -1;
+        this.f31964y = 0.0f;
         this.E = 0.0f;
         this.F = 0.0f;
         this.K = new Path();
@@ -84,44 +84,44 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
         this.N = new Matrix();
         this.P = new com.google.firebase.messaging.n(80, 80);
         this.Q = new com.google.firebase.messaging.n(80, 80);
-        this.R = new cd0(-10497967, -16730994, -5649306, -10833593, false, 0, true);
-        this.S = new cd0(-16735258, -14061833, -15151390, -12602625, false, 0, true);
+        this.R = new dd0(-10497967, -16730994, -5649306, -10833593, false, 0, true);
+        this.S = new dd0(-16735258, -14061833, -15151390, -12602625, false, 0, true);
         this.I = f7;
         this.J = f10;
-        this.f31892e = new x2[3];
+        this.f31957e = new x2[3];
         pi1 pi1Var = (pi1) this;
         this.T = new GestureDetector(context, new a1(pi1Var));
         ai.f0 f0Var = new ai.f0(pi1Var, context, 23);
-        this.f31890b = f0Var;
+        this.f31955b = f0Var;
         f0Var.setClickable(true);
         addView(f0Var, x5.d(-1.0f, -1));
         s2 s2Var = new s2(context, false, false);
-        this.f31893f = s2Var;
+        this.f31958f = s2Var;
         RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FILL;
         r2 r2Var = s2Var.d;
         r2Var.setScalingType(scalingType);
-        s2Var.f32211a0 = 1;
-        s2Var.f32215c0 = true;
+        s2Var.f32276a0 = 1;
+        s2Var.f32280c0 = true;
         r2Var.setAlpha(0.0f);
         r2Var.setRotateTextureWithScreen(true);
         r2Var.setUseCameraRotation(true);
         addView(s2Var, x5.d(-1.0f, -1));
         org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, null);
-        this.f31895r = kVar;
+        this.f31960r = kVar;
         kVar.setBackButtonDrawable(new org.telegram.ui.ActionBar.g2(false));
         kVar.setBackgroundColor(0);
-        kVar.D(i6.x0(null, i6.f20878hg, false), false);
+        kVar.D(i6.x0(null, i6.f20882hg, false), false);
         kVar.setOccupyStatusBar(true);
         kVar.setActionBarMenuOnItemClick(new ro(pi1Var, 15));
         addView(kVar);
         b1 b1Var = new b1(pi1Var, getContext());
-        this.f31891c = b1Var;
+        this.f31956c = b1Var;
         b1Var.setMaxLines(1);
         b1Var.setEllipsize(null);
         b1Var.setMinWidth(AndroidUtilities.dp(64.0f));
         b1Var.setTag(-1);
         b1Var.setTextSize(1, 14.0f);
-        int i10 = i6.f20990ng;
+        int i10 = i6.f20994ng;
         b1Var.setTextColor(i6.x0(null, i10, false));
         b1Var.setGravity(17);
         b1Var.setTypeface(AndroidUtilities.bold());
@@ -137,7 +137,7 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
         this.d = dc1Var;
         dc1Var.setClipChildren(false);
         addView(dc1Var, x5.e(-1, 64, 80));
-        for (int i11 = 0; i11 < this.f31892e.length; i11++) {
+        for (int i11 = 0; i11 < this.f31957e.length; i11++) {
             if (i11 == 0) {
                 string = LocaleController.getString(R.string.VoipPhoneScreen);
             } else if (i11 == 1) {
@@ -145,22 +145,22 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
             } else {
                 string = LocaleController.getString(R.string.VoipBackCamera);
             }
-            this.f31892e[i11] = new x2(context, string);
-            this.f31892e[i11].setContentDescription(string);
-            this.f31892e[i11].setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(10.0f), 0);
-            this.d.addView(this.f31892e[i11], x5.n(-2, -1));
-            this.f31892e[i11].setOnClickListener(new m4(pi1Var, i11, 16));
+            this.f31957e[i11] = new x2(context, string);
+            this.f31957e[i11].setContentDescription(string);
+            this.f31957e[i11].setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(10.0f), 0);
+            this.d.addView(this.f31957e[i11], x5.n(-2, -1));
+            this.f31957e[i11].setOnClickListener(new m4(pi1Var, i11, 16));
         }
         setWillNotDraw(false);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
-            this.f31893f.d.setMirror(sharedInstance.isFrontFaceCamera());
-            this.f31893f.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new Object());
-            sharedInstance.setLocalSink(this.f31893f.d, false);
+            this.f31958f.d.setMirror(sharedInstance.isFrontFaceCamera());
+            this.f31958f.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new Object());
+            sharedInstance.setLocalSink(this.f31958f.d, false);
         }
-        ai.f0 f0Var2 = this.f31890b;
+        ai.f0 f0Var2 = this.f31955b;
         FrameLayout frameLayout = new FrameLayout(getContext());
-        frameLayout.setBackground(new cd0(true, -14602694, -13935795, -14395293, -14203560));
+        frameLayout.setBackground(new dd0(true, -14602694, -13935795, -14395293, -14203560));
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.screencast_big);
@@ -181,15 +181,15 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
         f0Var2.addView(imageView2);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new ya(pi1Var, f7, f10, 3));
-        ofFloat.addListener(new i91(pi1Var, 6));
+        ofFloat.addListener(new j91(pi1Var, 6));
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat2.addUpdateListener(new r0(pi1Var, 1));
-        hs hsVar = hs.f27118f;
-        ofFloat.setInterpolator(hsVar);
+        is isVar = is.f27443f;
+        ofFloat.setInterpolator(isVar);
         long j3 = 320;
         ofFloat.setDuration(j3);
         ofFloat.start();
-        ofFloat2.setInterpolator(hsVar);
+        ofFloat2.setInterpolator(isVar);
         ofFloat2.setDuration(j3);
         ofFloat2.setStartDelay(32);
         ofFloat2.start();
@@ -197,64 +197,64 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
         this.d.setScaleY(0.8f);
         this.d.setScaleX(0.8f);
         this.d.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setStartDelay(120L).setDuration(250L).start();
-        this.f31891c.setTranslationY(AndroidUtilities.dp(53.0f));
-        this.f31891c.setTranslationX((f7 - (AndroidUtilities.displaySize.x / 2.0f)) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(26.0f));
-        this.f31891c.animate().translationY(0.0f).translationX(0.0f).setDuration(j3).start();
+        this.f31956c.setTranslationY(AndroidUtilities.dp(53.0f));
+        this.f31956c.setTranslationX((f7 - (AndroidUtilities.displaySize.x / 2.0f)) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(26.0f));
+        this.f31956c.animate().translationY(0.0f).translationX(0.0f).setDuration(j3).start();
         this.O = true;
         c(1, false);
     }
 
     public final void a(boolean z10, boolean z11) {
-        if (!this.f31889a && this.f31899y == 1.0f) {
+        if (!this.f31954a && this.f31964y == 1.0f) {
             pi1 pi1Var = (pi1) this;
             pi1Var.V.v.S = false;
             pi1Var.V.v.invalidate();
-            this.f31889a = true;
+            this.f31954a = true;
             b();
             wi1 wi1Var = pi1Var.V;
-            wi1Var.f43657o0 = null;
+            wi1Var.f43701o0 = null;
             VoIPService sharedInstance = VoIPService.getSharedInstance();
-            wi1Var.f43665u0.setLockOnScreen(false);
+            wi1Var.f43709u0.setLockOnScreen(false);
             if (z11) {
-                wi1Var.f43656n0 = true;
+                wi1Var.f43700n0 = true;
                 if (sharedInstance != null && !z10) {
                     sharedInstance.requestVideoCall(false);
                     sharedInstance.setVideoState(false, 2);
                     sharedInstance.switchToSpeaker();
                 }
                 if (sharedInstance != null) {
-                    wi1Var.u(wi1Var.f43640f, sharedInstance, true);
+                    wi1Var.u(wi1Var.f43684f, sharedInstance, true);
                 }
             } else if (sharedInstance != null) {
                 sharedInstance.setVideoState(false, 0);
             }
-            wi1Var.f43659q0 = wi1Var.f43658p0;
+            wi1Var.f43703q0 = wi1Var.f43702p0;
             wi1Var.G();
             if (pi1Var.V.m0 && z11) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new y0(this, 0));
-                ofFloat.setInterpolator(hs.f27118f);
+                ofFloat.setInterpolator(is.f27443f);
                 ofFloat.setStartDelay(60L);
                 ofFloat.setDuration(350L);
                 ofFloat.addListener(new z0(this, 2));
                 ofFloat.start();
-                this.f31891c.animate().setStartDelay(60L).alpha(0.0f).setDuration(100L).start();
-                this.f31895r.animate().setStartDelay(60L).alpha(0.0f).setDuration(100L).start();
+                this.f31956c.animate().setStartDelay(60L).alpha(0.0f).setDuration(100L).start();
+                this.f31960r.animate().setStartDelay(60L).alpha(0.0f).setDuration(100L).start();
                 this.d.animate().setStartDelay(60L).alpha(0.0f).setDuration(100L).start();
             } else if (z11) {
-                animate().setStartDelay(60L).alpha(0.0f).setDuration(350L).setInterpolator(hs.f27118f).setListener(new z0(this, 0));
+                animate().setStartDelay(60L).alpha(0.0f).setDuration(350L).setInterpolator(is.f27443f).setListener(new z0(this, 0));
             } else {
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(1.0f, 0.0f);
                 ofFloat2.addUpdateListener(new y0(this, 1));
                 ofFloat2.addListener(new z0(this, 1));
                 ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
                 ofFloat3.addUpdateListener(new y0(this, 2));
-                hs hsVar = hs.f27118f;
-                ofFloat2.setInterpolator(hsVar);
+                is isVar = is.f27443f;
+                ofFloat2.setInterpolator(isVar);
                 long j3 = 320;
                 ofFloat2.setDuration(j3);
                 ofFloat2.start();
-                ofFloat3.setInterpolator(hsVar);
+                ofFloat3.setInterpolator(isVar);
                 ofFloat3.setDuration(j3);
                 ofFloat3.start();
                 this.d.setAlpha(1.0f);
@@ -262,7 +262,7 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
                 this.d.setScaleX(1.0f);
                 this.d.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                 float f7 = 320;
-                this.f31891c.animate().translationY(AndroidUtilities.dp(53.0f)).translationX((this.I - (AndroidUtilities.displaySize.x / 2.0f)) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(26.0f)).setDuration(0.6f * f7).start();
+                this.f31956c.animate().translationY(AndroidUtilities.dp(53.0f)).translationX((this.I - (AndroidUtilities.displaySize.x / 2.0f)) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(26.0f)).setDuration(0.6f * f7).start();
                 animate().alpha(0.0f).setDuration(0.25f * f7).setStartDelay(f7 * 0.75f).start();
             }
             invalidate();
@@ -270,8 +270,8 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
     }
 
     public final void b() {
-        s2 s2Var = this.f31893f;
-        if (this.f31894n) {
+        s2 s2Var = this.f31958f;
+        if (this.f31959n) {
             try {
                 Bitmap bitmap = s2Var.d.getBitmap();
                 if (bitmap != null) {
@@ -287,7 +287,7 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
                         FileOutputStream fileOutputStream = new FileOutputStream(new File(filesDirFixed, "cthumb" + this.h + ".jpg"));
                         createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
                         fileOutputStream.close();
-                        View findViewWithTag = this.f31890b.findViewWithTag("image_stab");
+                        View findViewWithTag = this.f31955b.findViewWithTag("image_stab");
                         if (findViewWithTag instanceof ImageView) {
                             ((ImageView) findViewWithTag).setImageBitmap(createScaledBitmap);
                         }
@@ -300,13 +300,13 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
 
     public final void c(int i10, boolean z10) {
         int i11;
-        if (this.v != i10 && (i11 = this.f31897w) != i10) {
-            s2 s2Var = this.f31893f;
+        if (this.v != i10 && (i11 = this.f31962w) != i10) {
+            s2 s2Var = this.f31958f;
             if (z10) {
                 if (i11 == 0) {
                     if (this.h != i10) {
                         this.h = i10;
-                        this.f31894n = false;
+                        this.f31959n = false;
                         d(true, true);
                         if (VoIPService.getSharedInstance() != null) {
                             VoIPService.getSharedInstance().switchCamera();
@@ -316,44 +316,44 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
                         s2Var.animate().alpha(1.0f).setDuration(250L).start();
                     }
                 } else if (i10 == 0) {
-                    this.f31890b.findViewWithTag("screencast_stub").setVisibility(0);
+                    this.f31955b.findViewWithTag("screencast_stub").setVisibility(0);
                     b();
                     d(false, false);
                     s2Var.animate().alpha(0.0f).setDuration(250L).start();
                 } else {
                     b();
                     this.h = i10;
-                    this.f31894n = false;
+                    this.f31959n = false;
                     d(true, false);
                     s2Var.animate().alpha(0.0f).setDuration(250L).start();
                     if (VoIPService.getSharedInstance() != null) {
                         VoIPService.getSharedInstance().switchCamera();
                     }
                 }
-                int i12 = this.f31897w;
+                int i12 = this.f31962w;
                 if (i10 > i12) {
-                    this.f31898x = i12;
-                    this.f31897w = i12 + 1;
+                    this.f31963x = i12;
+                    this.f31962w = i12 + 1;
                     this.U = ValueAnimator.ofFloat(0.1f, 1.0f);
                 } else {
-                    this.f31898x = i12;
-                    this.f31897w = i12 - 1;
+                    this.f31963x = i12;
+                    this.f31962w = i12 - 1;
                     this.v = i10;
                     this.U = ValueAnimator.ofFloat(1.0f, 0.0f);
                 }
                 this.U.addUpdateListener(new y0(this, 3));
                 this.U.addListener(new ei.v2(this, i10, 12));
-                this.U.setInterpolator(hs.f27118f);
+                this.U.setInterpolator(is.f27443f);
                 this.U.setDuration(350L);
                 this.U.start();
                 return;
             }
-            this.f31897w = i10;
+            this.f31962w = i10;
             this.v = i10;
-            this.f31896s = 0.0f;
+            this.f31961s = 0.0f;
             e();
             s2Var.setVisibility(0);
-            this.f31894n = false;
+            this.f31959n = false;
             this.h = 1;
             d(true, false);
         }
@@ -361,7 +361,7 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
 
     public final void d(boolean z10, boolean z11) {
         Bitmap bitmap;
-        ImageView imageView = (ImageView) this.f31890b.findViewWithTag("image_stab");
+        ImageView imageView = (ImageView) this.f31955b.findViewWithTag("image_stab");
         if (!z10) {
             imageView.setVisibility(8);
             return;
@@ -389,13 +389,13 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int i10 = (this.f31899y > 1.0f ? 1 : (this.f31899y == 1.0f ? 0 : -1));
+        int i10 = (this.f31964y > 1.0f ? 1 : (this.f31964y == 1.0f ? 0 : -1));
         Path path = this.K;
         if (i10 < 0) {
             Point point = AndroidUtilities.displaySize;
             int i11 = point.x;
             int i12 = point.y + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight;
-            float dp = AndroidUtilities.dp(28.0f) - (AndroidUtilities.dp(28.0f) * this.f31899y);
+            float dp = AndroidUtilities.dp(28.0f) - (AndroidUtilities.dp(28.0f) * this.f31964y);
             path.reset();
             float f7 = this.I;
             float f10 = this.J;
@@ -403,10 +403,10 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
             path.addCircle(f7 + AndroidUtilities.dp(33.5f), f10 + AndroidUtilities.dp(26.6f), AndroidUtilities.dp(26.0f), direction);
             int dp2 = AndroidUtilities.dp(52.0f);
             int dp3 = AndroidUtilities.dp(52.0f);
-            int lerp = AndroidUtilities.lerp(dp2, i11, this.f31899y);
-            int lerp2 = AndroidUtilities.lerp(dp3, i12, this.f31899y);
-            float dp4 = this.G - ((1.0f - this.f31899y) * AndroidUtilities.dp(20.0f));
-            float dp5 = this.H - ((1.0f - this.f31899y) * AndroidUtilities.dp(51.0f));
+            int lerp = AndroidUtilities.lerp(dp2, i11, this.f31964y);
+            int lerp2 = AndroidUtilities.lerp(dp3, i12, this.f31964y);
+            float dp4 = this.G - ((1.0f - this.f31964y) * AndroidUtilities.dp(20.0f));
+            float dp5 = this.H - ((1.0f - this.f31964y) * AndroidUtilities.dp(51.0f));
             path.addRoundRect(dp4, dp5, lerp + dp4, dp5 + lerp2, dp, dp, direction);
             canvas.clipPath(path);
         }
@@ -430,7 +430,7 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
     public final void e() {
         x2 x2Var;
         int i10 = this.v;
-        x2[] x2VarArr = this.f31892e;
+        x2[] x2VarArr = this.f31957e;
         x2 x2Var2 = x2VarArr[i10];
         if (i10 < x2VarArr.length - 1) {
             x2Var = x2VarArr[i10 + 1];
@@ -440,7 +440,7 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
         float measuredWidth = (x2Var2.getMeasuredWidth() / 2) + x2Var2.getLeft();
         float measuredWidth2 = (getMeasuredWidth() / 2) - measuredWidth;
         if (x2Var != null) {
-            measuredWidth2 -= (((x2Var.getMeasuredWidth() / 2) + x2Var.getLeft()) - measuredWidth) * this.f31896s;
+            measuredWidth2 -= (((x2Var.getMeasuredWidth() / 2) + x2Var.getLeft()) - measuredWidth) * this.f31961s;
         }
         int i11 = 0;
         while (true) {
@@ -452,11 +452,11 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
             float f10 = 0.9f;
             if (i11 >= i12 && i11 <= i12 + 1) {
                 if (i11 == i12) {
-                    float f11 = this.f31896s;
+                    float f11 = this.f31961s;
                     f7 = 1.0f - (0.3f * f11);
                     f10 = 1.0f - (f11 * 0.1f);
                 } else {
-                    float f12 = this.f31896s;
+                    float f12 = this.f31961s;
                     f7 = 0.7f + (0.3f * f12);
                     f10 = 0.9f + (f12 * 0.1f);
                 }
@@ -467,24 +467,24 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
             x2VarArr[i11].setTranslationX(measuredWidth2);
             i11++;
         }
-        this.f31891c.invalidate();
-        if (this.f31897w == 0) {
-            x2VarArr[2].setAlpha(this.f31896s * 0.7f);
+        this.f31956c.invalidate();
+        if (this.f31962w == 0) {
+            x2VarArr[2].setAlpha(this.f31961s * 0.7f);
         }
-        if (this.f31897w == 2) {
-            float f13 = this.f31896s;
+        if (this.f31962w == 2) {
+            float f13 = this.f31961s;
             if (f13 > 0.0f) {
                 x2VarArr[0].setAlpha((1.0f - f13) * 0.7f);
             } else {
                 x2VarArr[0].setAlpha(0.0f);
             }
         }
-        if (this.f31897w == 1) {
-            if (this.f31898x == 0) {
-                x2VarArr[2].setAlpha(this.f31896s * 0.7f);
+        if (this.f31962w == 1) {
+            if (this.f31963x == 0) {
+                x2VarArr[2].setAlpha(this.f31961s * 0.7f);
             }
-            if (this.f31898x == 2) {
-                x2VarArr[0].setAlpha((1.0f - this.f31896s) * 0.7f);
+            if (this.f31963x == 2) {
+                x2VarArr[0].setAlpha((1.0f - this.f31961s) * 0.7f);
             }
         }
     }
@@ -509,10 +509,10 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
 
     @Override
     public final void onCameraFirstFrameAvailable() {
-        if (!this.f31894n) {
-            this.f31894n = true;
-            if (this.f31897w != 0) {
-                this.f31893f.animate().alpha(1.0f).setDuration(250L).start();
+        if (!this.f31959n) {
+            this.f31959n = true;
+            if (this.f31962w != 0) {
+                this.f31958f.animate().alpha(1.0f).setDuration(250L).start();
             }
         }
     }
@@ -520,7 +520,7 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
     @Override
     public final void onCameraSwitch(boolean z10) {
         if (VoIPService.getSharedInstance() != null) {
-            this.f31893f.d.setMirror(VoIPService.getSharedInstance().isFrontFaceCamera());
+            this.f31958f.d.setMirror(VoIPService.getSharedInstance().isFrontFaceCamera());
         }
     }
 
@@ -576,7 +576,7 @@ public abstract class d1 extends FrameLayout implements VoIPService.StateListene
     }
 
     public void setBottomPadding(int i10) {
-        ((FrameLayout.LayoutParams) this.f31891c.getLayoutParams()).bottomMargin = AndroidUtilities.dp(80.0f) + i10;
+        ((FrameLayout.LayoutParams) this.f31956c.getLayoutParams()).bottomMargin = AndroidUtilities.dp(80.0f) + i10;
         ((FrameLayout.LayoutParams) this.d.getLayoutParams()).bottomMargin = i10;
     }
 }

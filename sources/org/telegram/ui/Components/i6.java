@@ -26,7 +26,7 @@ public abstract class i6 extends LinearLayout {
         super(context);
         this.f27246a = new HashMap();
         this.f27247b = new ArrayList();
-        this.f27248c = new me.j(new s(this, 11), hs.h, 420L);
+        this.f27248c = new me.j(new s(this, 11), is.h, 420L);
     }
 
     public final void a() {
@@ -36,7 +36,7 @@ public abstract class i6 extends LinearLayout {
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = getChildAt(i10);
             h6 h6Var = (h6) this.f27246a.get(childAt);
-            if (childAt.getVisibility() == 0 && h6Var != null && h6Var.f26973b) {
+            if (childAt.getVisibility() == 0 && h6Var != null && h6Var.f26950b) {
                 this.f27249e = childAt.getMeasuredWidth() + this.f27249e;
                 this.f27250f = childAt.getMeasuredHeight() + this.f27250f;
             }
@@ -44,14 +44,14 @@ public abstract class i6 extends LinearLayout {
     }
 
     public final void b() {
-        ArrayList arrayList = this.f27248c.f16360b;
+        ArrayList arrayList = this.f27248c.f16364b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             me.g gVar = (me.g) obj;
-            View view = ((h6) gVar.f16348a).f26972a;
+            View view = ((h6) gVar.f16352a).f26949a;
             RectF b10 = gVar.b();
             if (getOrientation() == 1) {
                 view.setTranslationY((getPaddingTop() + b10.top) - view.getTop());
@@ -60,7 +60,7 @@ public abstract class i6 extends LinearLayout {
             }
             f(view, gVar.c());
         }
-        float f7 = getMetadata().f16358g.f16365a;
+        float f7 = getMetadata().f16362g.f16369a;
         if (this.f27251n != f7) {
             this.f27251n = f7;
             Runnable runnable = this.h;
@@ -71,12 +71,12 @@ public abstract class i6 extends LinearLayout {
     }
 
     public final float c(float f7) {
-        return (f7 * getMetadata().f16355c.f16365a) + getMetadata().f16358g.f16365a;
+        return (f7 * getMetadata().f16359c.f16369a) + getMetadata().f16362g.f16369a;
     }
 
     public final boolean d(View view) {
         h6 h6Var = (h6) this.f27246a.get(view);
-        if (h6Var != null && h6Var.f26973b) {
+        if (h6Var != null && h6Var.f26950b) {
             return true;
         }
         return false;
@@ -100,7 +100,7 @@ public abstract class i6 extends LinearLayout {
     }
 
     public int getEntriesCount() {
-        return this.f27248c.f16360b.size();
+        return this.f27248c.f16364b.size();
     }
 
     public me.i getMetadata() {
@@ -125,13 +125,13 @@ public abstract class i6 extends LinearLayout {
     public final void i(View view, boolean z10, boolean z11) {
         h6 h6Var;
         if (view != null && (h6Var = (h6) this.f27246a.get(view)) != null) {
-            View view2 = h6Var.f26972a;
-            if (h6Var.f26973b != z10) {
-                h6Var.f26973b = z10;
+            View view2 = h6Var.f26949a;
+            if (h6Var.f26950b != z10) {
+                h6Var.f26950b = z10;
                 if (z10) {
                     view2.setVisibility(0);
                 }
-                if (!z10 && !h6Var.f26974c) {
+                if (!z10 && !h6Var.f26951c) {
                     view2.setVisibility(8);
                 }
                 if (!z11) {
@@ -152,8 +152,8 @@ public abstract class i6 extends LinearLayout {
             View childAt = getChildAt(i14);
             h6 h6Var = (h6) this.f27246a.get(childAt);
             if (h6Var != null) {
-                h6Var.f26975e = i14;
-                if (childAt.getVisibility() == 0 && h6Var.f26973b) {
+                h6Var.f26952e = i14;
+                if (childAt.getVisibility() == 0 && h6Var.f26950b) {
                     arrayList.add(h6Var);
                 }
             }
@@ -165,7 +165,7 @@ public abstract class i6 extends LinearLayout {
         while (i15 < size) {
             Object obj = arrayList.get(i15);
             i15++;
-            ((h6) obj).f26974c = true;
+            ((h6) obj).f26951c = true;
         }
         this.d = false;
         b();

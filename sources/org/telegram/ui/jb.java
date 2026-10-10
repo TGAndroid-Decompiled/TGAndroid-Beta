@@ -8,25 +8,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class jb extends sb {
-    public final hh.k f38896x0;
-    public final vb f38897y0;
+    public final hh.k f38940x0;
+    public final vb f38941y0;
 
     public jb(vb vbVar, Context context) {
         super(vbVar, context);
-        this.f38897y0 = vbVar;
-        this.f38896x0 = new hh.k();
+        this.f38941y0 = vbVar;
+        this.f38940x0 = new hh.k();
     }
 
     @Override
     public final void U(Drawable drawable) {
-        if (drawable instanceof org.telegram.ui.Components.cd0) {
-            ((org.telegram.ui.Components.cd0) drawable).p();
+        if (drawable instanceof org.telegram.ui.Components.dd0) {
+            ((org.telegram.ui.Components.dd0) drawable).p();
         }
-        hh.k kVar = this.f38896x0;
+        hh.k kVar = this.f38940x0;
         fh.a c10 = kVar.c(drawable);
         AndroidUtilities.computePerceivedBrightness(kVar.a(c10));
-        vb vbVar = this.f38897y0;
-        vbVar.f42768a.f9942a = c10;
+        vb vbVar = this.f38941y0;
+        vbVar.f42812a.f9942a = c10;
         jh.f fVar = vbVar.W;
         if (fVar != null) {
             fVar.invalidate();
@@ -53,9 +53,9 @@ public final class jb extends sb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            vb vbVar = this.f38897y0;
-            if (dialogId == (-vbVar.f42777f.f20038id)) {
-                MediaController.getInstance().setTextureView(vbVar.Q0(false), vbVar.f42776e0, vbVar.f42774d0, true);
+            vb vbVar = this.f38941y0;
+            if (dialogId == (-vbVar.f42821f.f20042id)) {
+                MediaController.getInstance().setTextureView(vbVar.Q0(false), vbVar.f42820e0, vbVar.f42818d0, true);
             }
         }
     }
@@ -67,42 +67,32 @@ public final class jb extends sb {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        org.telegram.ui.ActionBar.k kVar4;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        vb vbVar = this.f38897y0;
-        fh.a aVar = vbVar.f42768a.f9942a;
+        vb vbVar = this.f38941y0;
+        fh.a aVar = vbVar.f42812a.f9942a;
         if (aVar instanceof fh.b) {
             ((fh.b) aVar).b(size, size2);
         }
         setMeasuredDimension(size, size2);
         int paddingTop = size2 - getPaddingTop();
-        kVar = ((org.telegram.ui.ActionBar.n2) vbVar).actionBar;
-        measureChildWithMargins(kVar, i10, 0, i11, 0);
-        kVar2 = ((org.telegram.ui.ActionBar.n2) vbVar).actionBar;
-        int measuredHeight = kVar2.getMeasuredHeight();
-        kVar3 = ((org.telegram.ui.ActionBar.n2) vbVar).actionBar;
-        if (kVar3.getVisibility() == 0) {
+        measureChildWithMargins(vb.a0(vbVar), i10, 0, i11, 0);
+        int measuredHeight = vb.b0(vbVar).getMeasuredHeight();
+        if (vb.c0(vbVar).getVisibility() == 0) {
             paddingTop -= measuredHeight;
         }
         int childCount = getChildCount();
         for (int i12 = 0; i12 < childCount; i12++) {
             View childAt = getChildAt(i12);
-            if (childAt != null && childAt.getVisibility() != 8) {
-                kVar4 = ((org.telegram.ui.ActionBar.n2) vbVar).actionBar;
-                if (childAt != kVar4) {
-                    if (childAt != vbVar.v && childAt != vbVar.f42785n) {
-                        if (childAt == vbVar.H) {
-                            childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
-                        } else {
-                            measureChildWithMargins(childAt, i10, 0, i11, 0);
-                        }
+            if (childAt != null && childAt.getVisibility() != 8 && childAt != vb.d0(vbVar)) {
+                if (childAt != vbVar.v && childAt != vbVar.f42829n) {
+                    if (childAt == vbVar.H) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                     } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (vbVar.f42775e * 2), 1073741824));
+                        measureChildWithMargins(childAt, i10, 0, i11, 0);
                     }
+                } else {
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (vbVar.f42819e * 2), 1073741824));
                 }
             }
         }

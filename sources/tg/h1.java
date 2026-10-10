@@ -3,7 +3,7 @@ package tg;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.rm0;
 public final class h1 extends xg.i {
     public boolean J;
     public final m1 K;
@@ -18,17 +18,17 @@ public final class h1 extends xg.i {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         m1 m1Var = this.K;
-        m1Var.f48370q0 = dp;
-        m1Var.f48369p0.G();
+        m1Var.f48414q0 = dp;
+        m1Var.f48413p0.G();
         if (this.J != m1Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = m1Var.isKeyboardVisible();
             this.J = isKeyboardVisible;
             if (isKeyboardVisible) {
-                qm0 qm0Var = m1Var.d;
+                rm0 rm0Var = m1Var.d;
                 ji.o oVar = new ji.o(m1Var.getContext(), 2, 0.6f);
-                oVar.f47827a = 1;
+                oVar.f47871a = 1;
                 oVar.f14273p = AndroidUtilities.dp(36.0f);
-                qm0Var.getLayoutManager().w0(oVar);
+                rm0Var.getLayoutManager().w0(oVar);
             }
         }
     }

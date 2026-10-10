@@ -1,10 +1,10 @@
 package ze;
 public final class j {
-    public final cf.n f54428a;
-    public final int f54429b;
+    public final cf.n f54472a;
+    public final int f54473b;
 
     public j(cf.n nVar, int i10) {
-        this.f54428a = nVar;
-        this.f54429b = i10;
+        this.f54472a = nVar;
+        this.f54473b = i10;
     }
 }

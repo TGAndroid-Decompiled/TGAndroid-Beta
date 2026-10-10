@@ -40,7 +40,7 @@ public final class i extends b8.b {
                     }
                     s7.b.a(parcel);
                     org.telegram.messenger.d dVar = (org.telegram.messenger.d) this.f11041c;
-                    lambda$setOnMarkerClickListener$1 = ((GoogleMapsProvider.GoogleMapImpl) dVar.f17605b).lambda$setOnMarkerClickListener$1((IMapsProvider.OnMarkerClickListener) dVar.f17606c, new j8.f(aVar));
+                    lambda$setOnMarkerClickListener$1 = ((GoogleMapsProvider.GoogleMapImpl) dVar.f17609b).lambda$setOnMarkerClickListener$1((IMapsProvider.OnMarkerClickListener) dVar.f17610c, new j8.f(aVar));
                     parcel2.writeNoException();
                     parcel2.writeInt(lambda$setOnMarkerClickListener$1 ? 1 : 0);
                     return true;
@@ -74,7 +74,7 @@ public final class i extends b8.b {
                     s7.b.a(parcel);
                     c cVar = new c(aVar2);
                     j4 j4Var = (j4) ((f) this.f11041c);
-                    j4Var.f18218a.lambda$getMapAsync$0(j4Var.f18219b, cVar);
+                    j4Var.f18222a.lambda$getMapAsync$0(j4Var.f18223b, cVar);
                     parcel2.writeNoException();
                     return true;
                 }
@@ -83,14 +83,14 @@ public final class i extends b8.b {
                 if (i10 == 1) {
                     x6.a K0 = x6.b.K0(parcel.readStrongBinder());
                     s7.b.a(parcel);
-                    ((h4) this.f11041c).f18014b.accept((Location) x6.b.L0(K0));
+                    ((h4) this.f11041c).f18018b.accept((Location) x6.b.L0(K0));
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             case 4:
                 if (i10 == 1) {
-                    ((i4) this.f11041c).f18119a.run();
+                    ((i4) this.f11041c).f18123a.run();
                     parcel2.writeNoException();
                     return true;
                 }
@@ -99,21 +99,21 @@ public final class i extends b8.b {
                 if (i10 == 1) {
                     int readInt = parcel.readInt();
                     s7.b.a(parcel);
-                    GoogleMapsProvider.GoogleMapImpl.lambda$setOnCameraMoveStartedListener$0((IMapsProvider.OnCameraMoveStartedListener) ((d0) this.f11041c).f17608b, readInt);
+                    GoogleMapsProvider.GoogleMapImpl.lambda$setOnCameraMoveStartedListener$0((IMapsProvider.OnCameraMoveStartedListener) ((d0) this.f11041c).f17612b, readInt);
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             case 6:
                 if (i10 == 1) {
-                    ((i4) this.f11041c).f18119a.run();
+                    ((i4) this.f11041c).f18123a.run();
                     parcel2.writeNoException();
                     return true;
                 }
                 return false;
             default:
                 if (i10 == 1) {
-                    ((i4) this.f11041c).f18119a.run();
+                    ((i4) this.f11041c).f18123a.run();
                     parcel2.writeNoException();
                     return true;
                 }

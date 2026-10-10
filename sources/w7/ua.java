@@ -1,25 +1,25 @@
 package w7;
 public final class ua extends sa {
-    public static final ua f50147e = new ua(0, new Object[0]);
-    public final transient Object[] f50148c;
+    public static final ua f50191e = new ua(0, new Object[0]);
+    public final transient Object[] f50192c;
     public final transient int d;
 
     public ua(int i10, Object[] objArr) {
-        this.f50148c = objArr;
+        this.f50192c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         b8.a(i10, this.d);
-        Object obj = this.f50148c[i10];
+        Object obj = this.f50192c[i10];
         obj.getClass();
         return obj;
     }
 
     @Override
     public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f50148c;
+        Object[] objArr2 = this.f50192c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -37,7 +37,7 @@ public final class ua extends sa {
 
     @Override
     public final Object[] p() {
-        return this.f50148c;
+        return this.f50192c;
     }
 
     @Override

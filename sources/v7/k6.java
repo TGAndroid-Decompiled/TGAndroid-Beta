@@ -183,14 +183,14 @@ public enum k6 implements f {
     OPTIONAL_MODULE_SMART_REPLY_INFERENCE(523),
     OPTIONAL_MODULE_SMART_REPLY_RELEASE(524);
     
-    public final int f49255a;
+    public final int f49299a;
 
     k6(int i10) {
-        this.f49255a = i10;
+        this.f49299a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f49255a;
+        return this.f49299a;
     }
 }

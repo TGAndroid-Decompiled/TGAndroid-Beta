@@ -5,9 +5,9 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagePreviewParams;
 import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.hc0;
-import org.telegram.ui.Components.pc0;
-import org.telegram.ui.Components.vc0;
+import org.telegram.ui.Components.ic0;
+import org.telegram.ui.Components.qc0;
+import org.telegram.ui.Components.wc0;
 import org.telegram.ui.pn;
 import org.telegram.ui.rl;
 import org.telegram.ui.zn;
@@ -41,15 +41,15 @@ public final class t3 extends w7.h0 {
                 return;
             case 2:
                 zn znVar = (zn) this.f1728b;
-                znVar.f44872n9 = !z10;
+                znVar.f44916n9 = !z10;
                 if (z10) {
-                    if (znVar.f44749d9 != null) {
+                    if (znVar.f44793d9 != null) {
                         zn.W1(znVar, 0.0f);
-                        znVar.f44749d9 = null;
+                        znVar.f44793d9 = null;
                     }
-                    znVar.f44762e9 = false;
-                    znVar.f44774f9 = false;
-                    rl rlVar = znVar.f44798h9;
+                    znVar.f44806e9 = false;
+                    znVar.f44818f9 = false;
+                    rl rlVar = znVar.f44842h9;
                     if (rlVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(rlVar.H);
                         rlVar.a();
@@ -58,34 +58,34 @@ public final class t3 extends w7.h0 {
                 znVar.zc();
                 return;
             default:
-                pc0 pc0Var = (pc0) this.f1728b;
-                hc0 hc0Var = pc0Var.f29846e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = pc0Var.f29850s;
-                vc0 vc0Var = pc0Var.f29845c0;
-                if (vc0Var.f31754s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f32865b > 0.0f) {
+                qc0 qc0Var = (qc0) this.f1728b;
+                ic0 ic0Var = qc0Var.f30184e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = qc0Var.f30188s;
+                wc0 wc0Var = qc0Var.f30183c0;
+                if (wc0Var.f32650s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f33207b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (hc0Var.v - hc0Var.f21884u > MessagesController.getInstance(vc0Var.f31755w).quoteLengthMax) {
-                            pc0Var.f();
+                        if (ic0Var.v - ic0Var.f21888u > MessagesController.getInstance(wc0Var.f32651w).quoteLengthMax) {
+                            qc0Var.f();
                             return;
                         }
-                        org.telegram.ui.Cells.w9 w9Var = hc0Var.W;
+                        org.telegram.ui.Cells.w9 w9Var = ic0Var.W;
                         if (w9Var != null) {
                             messageObject = ((org.telegram.ui.Cells.u1) w9Var).getMessageObject();
                         } else {
                             messageObject = null;
                         }
-                        MessageObject c10 = pc0Var.c(messageObject);
-                        MessagePreviewParams messagePreviewParams = vc0Var.d;
+                        MessageObject c10 = qc0Var.c(messageObject);
+                        MessagePreviewParams messagePreviewParams = wc0Var.d;
                         if (messagePreviewParams.quote == null) {
-                            int i10 = hc0Var.f21884u;
+                            int i10 = ic0Var.f21888u;
                             messagePreviewParams.quoteStart = i10;
-                            int i11 = hc0Var.v;
+                            int i11 = ic0Var.v;
                             messagePreviewParams.quoteEnd = i11;
                             messagePreviewParams.quote = pn.b(i10, i11, c10);
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(pc0Var.I);
+                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(qc0Var.I);
                             return;
                         }
                         return;

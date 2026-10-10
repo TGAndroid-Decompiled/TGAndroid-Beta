@@ -3,12 +3,12 @@ package z7;
 import java.util.Iterator;
 import java.util.Map;
 public final class o extends j {
-    public final transient com.google.android.gms.internal.cast.j0 f53986c;
+    public final transient com.google.android.gms.internal.cast.j0 f54030c;
     public final transient Object[] d;
-    public final transient int f53987e = 1;
+    public final transient int f54031e = 1;
 
     public o(com.google.android.gms.internal.cast.j0 j0Var, Object[] objArr) {
-        this.f53986c = j0Var;
+        this.f54030c = j0Var;
         this.d = objArr;
     }
 
@@ -18,7 +18,7 @@ public final class o extends j {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f53986c.get(key))) {
+            if (value != null && value.equals(this.f54030c.get(key))) {
                 return true;
             }
         }
@@ -27,26 +27,26 @@ public final class o extends j {
 
     @Override
     public final int i(Object[] objArr) {
-        i iVar = this.f53926b;
+        i iVar = this.f53970b;
         if (iVar == null) {
             iVar = new n(this);
-            this.f53926b = iVar;
+            this.f53970b = iVar;
         }
         return iVar.i(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        i iVar = this.f53926b;
+        i iVar = this.f53970b;
         if (iVar == null) {
             iVar = new n(this);
-            this.f53926b = iVar;
+            this.f53970b = iVar;
         }
         return iVar.listIterator(0);
     }
 
     @Override
     public final int size() {
-        return this.f53987e;
+        return this.f54031e;
     }
 }

@@ -10,42 +10,42 @@ import org.telegram.tgnet.tl.TL_chatlists;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.db0;
-import org.telegram.ui.Components.i40;
-import org.telegram.ui.Components.i90;
-import org.telegram.ui.Components.s10;
-import org.telegram.ui.Components.tz;
-import org.telegram.ui.Components.vz;
-import org.telegram.ui.Components.x90;
+import org.telegram.ui.Components.eb0;
+import org.telegram.ui.Components.j40;
+import org.telegram.ui.Components.j90;
+import org.telegram.ui.Components.t10;
+import org.telegram.ui.Components.uz;
+import org.telegram.ui.Components.wz;
+import org.telegram.ui.Components.y90;
 import org.telegram.ui.f10;
 import org.telegram.ui.sr;
 public final class n5 implements Runnable {
-    public final int f21435a;
-    public final Object f21436b;
-    public final Object f21437c;
+    public final int f21439a;
+    public final Object f21440b;
+    public final Object f21441c;
     public final Object d;
-    public final Object f21438e;
+    public final Object f21442e;
 
     public n5(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f21435a = i10;
-        this.f21436b = obj;
-        this.f21437c = obj2;
+        this.f21439a = i10;
+        this.f21440b = obj;
+        this.f21441c = obj2;
         this.d = obj3;
-        this.f21438e = obj4;
+        this.f21442e = obj4;
     }
 
     private final void a() {
-        tz tzVar = (tz) this.f21436b;
-        TLRPC.TL_messages_getStickers tL_messages_getStickers = (TLRPC.TL_messages_getStickers) this.f21437c;
+        uz uzVar = (uz) this.f21440b;
+        TLRPC.TL_messages_getStickers tL_messages_getStickers = (TLRPC.TL_messages_getStickers) this.f21441c;
         TLObject tLObject = (TLObject) this.d;
-        Runnable runnable = (Runnable) this.f21438e;
-        ArrayList arrayList = tzVar.f31317s;
-        vz vzVar = tzVar.f31318w;
-        if (vzVar.M != tzVar.f31311b) {
+        Runnable runnable = (Runnable) this.f21442e;
+        ArrayList arrayList = uzVar.f31676s;
+        wz wzVar = uzVar.f31677w;
+        if (wzVar.M != uzVar.f31670b) {
             return;
         }
-        vzVar.L = 0;
-        if (tL_messages_getStickers.emoticon.equals(tzVar.f31310a)) {
+        wzVar.L = 0;
+        if (tL_messages_getStickers.emoticon.equals(uzVar.f31669a)) {
             if (!(tLObject instanceof TLRPC.TL_messages_stickers)) {
                 runnable.run();
                 return;
@@ -55,14 +55,14 @@ public final class n5 implements Runnable {
             int size2 = tL_messages_stickers.stickers.size();
             for (int i10 = 0; i10 < size2; i10++) {
                 TLRPC.Document document = tL_messages_stickers.stickers.get(i10);
-                if (tzVar.v.indexOfKey(document.f20044id) < 0) {
+                if (uzVar.v.indexOfKey(document.f20048id) < 0) {
                     arrayList.add(document);
                 }
             }
             if (size != arrayList.size()) {
-                tzVar.f31314f.put(arrayList, vzVar.N);
+                uzVar.f31673f.put(arrayList, wzVar.N);
                 if (size == 0) {
-                    tzVar.h.add(arrayList);
+                    uzVar.h.add(arrayList);
                 }
             }
         }
@@ -70,12 +70,12 @@ public final class n5 implements Runnable {
     }
 
     private final void b() {
-        s10 s10Var = (s10) this.f21437c;
-        TLObject tLObject = (TLObject) this.f21438e;
-        Utilities.Callback callback = (Utilities.Callback) this.f21436b;
+        t10 t10Var = (t10) this.f21441c;
+        TLObject tLObject = (TLObject) this.f21442e;
+        Utilities.Callback callback = (Utilities.Callback) this.f21440b;
         int i10 = -1;
-        s10Var.f30594z0 = -1;
-        n2 n2Var = s10Var.f26025n;
+        t10Var.f30939z0 = -1;
+        n2 n2Var = t10Var.f25985n;
         f10.r0((TLRPC.TL_error) this.d, n2Var, ad.a0(n2Var));
         int i11 = 0;
         if (tLObject != null) {
@@ -85,14 +85,14 @@ public final class n5 implements Runnable {
                 if (arrayList.isEmpty()) {
                     TLRPC.Update update = updates.update;
                     if (update instanceof TL_update.TL_updateDialogFilter) {
-                        i10 = ((TL_update.TL_updateDialogFilter) update).f20293id;
+                        i10 = ((TL_update.TL_updateDialogFilter) update).f20297id;
                     }
                 } else {
                     while (true) {
                         if (i11 >= arrayList.size()) {
                             break;
                         } else if (arrayList.get(i11) instanceof TL_update.TL_updateDialogFilter) {
-                            i10 = ((TL_update.TL_updateDialogFilter) arrayList.get(i11)).f20293id;
+                            i10 = ((TL_update.TL_updateDialogFilter) arrayList.get(i11)).f20297id;
                             break;
                         } else {
                             i11++;
@@ -100,36 +100,36 @@ public final class n5 implements Runnable {
                     }
                 }
             }
-            if (s10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-                n2Var.getMessagesController().loadRemoteFilters(true, new ei.q4(s10Var, callback, i10, 3));
+            if (t10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
+                n2Var.getMessagesController().loadRemoteFilters(true, new ei.q4(t10Var, callback, i10, 3));
                 return;
             }
-            if (s10Var.f30570a0 != null) {
-                n2Var.getMessagesController().checkChatlistFolderUpdate(s10Var.Y, true);
+            if (t10Var.f30915a0 != null) {
+                n2Var.getMessagesController().checkChatlistFolderUpdate(t10Var.Y, true);
             }
-            s10Var.A0 = true;
-            s10Var.dismiss();
+            t10Var.A0 = true;
+            t10Var.dismiss();
             callback.run(Integer.valueOf(i10));
             return;
         }
-        s10Var.f30581l0.a(false);
+        t10Var.f30926l0.a(false);
     }
 
     private final void c() {
-        i40.O((i40) this.f21436b, (TLRPC.TL_error) this.f21437c, (TLObject) this.d, (TLRPC.TL_channels_getParticipants) this.f21438e);
+        j40.O((j40) this.f21440b, (TLRPC.TL_error) this.f21441c, (TLObject) this.d, (TLRPC.TL_channels_getParticipants) this.f21442e);
     }
 
     private final void e() {
-        i90.p((i90) this.f21436b, (TLRPC.TL_error) this.f21437c, (TLRPC.Updates) this.d, (TLRPC.TL_messages_importChatInvite) this.f21438e);
+        j90.p((j90) this.f21440b, (TLRPC.TL_error) this.f21441c, (TLRPC.Updates) this.d, (TLRPC.TL_messages_importChatInvite) this.f21442e);
     }
 
     private final void f() {
-        x90 x90Var = (x90) this.f21436b;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) this.f21437c;
+        y90 y90Var = (y90) this.f21440b;
+        TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) this.f21441c;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-        TLObject tLObject = (TLObject) this.f21438e;
-        x90Var.f32790y = false;
-        x90Var.K = tL_chatInviteExported.link;
+        TLObject tLObject = (TLObject) this.f21442e;
+        y90Var.f33156y = false;
+        y90Var.K = tL_chatInviteExported.link;
         if (tL_error == null) {
             TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) tLObject;
             if (tL_chatInviteExported.importers == null) {
@@ -139,20 +139,20 @@ public final class n5 implements Runnable {
             for (int i10 = 0; i10 < tL_messages_chatInviteImporters.users.size(); i10++) {
                 tL_chatInviteExported.importers.addAll(tL_messages_chatInviteImporters.users);
             }
-            x90Var.d(tL_chatInviteExported.usage, tL_chatInviteExported.importers, true);
+            y90Var.d(tL_chatInviteExported.usage, tL_chatInviteExported.importers, true);
         }
     }
 
     private final void g() {
-        db0 db0Var = (db0) this.f21436b;
+        eb0 eb0Var = (eb0) this.f21440b;
         ArrayList arrayList = (ArrayList) this.d;
-        boolean[] zArr = (boolean[]) this.f21438e;
-        ((boolean[]) this.f21437c)[0] = true;
-        AndroidUtilities.cancelRunOnUIThread(db0Var.U);
+        boolean[] zArr = (boolean[]) this.f21442e;
+        ((boolean[]) this.f21441c)[0] = true;
+        AndroidUtilities.cancelRunOnUIThread(eb0Var.U);
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             ((TL_stories.StoryItem) arrayList.get(i10)).pinned = zArr[i10];
         }
-        db0Var.getMessagesController().getStoriesController().n0(db0Var.f25680e, arrayList, false);
+        eb0Var.getMessagesController().getStoriesController().n0(eb0Var.f25996e, arrayList, false);
     }
 
     @Override
@@ -161,26 +161,26 @@ public final class n5 implements Runnable {
     }
 
     public n5(sr srVar, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f21435a = 15;
-        this.f21436b = srVar;
+        this.f21439a = 15;
+        this.f21440b = srVar;
         this.d = str;
-        this.f21437c = arrayList;
-        this.f21438e = arrayList2;
+        this.f21441c = arrayList;
+        this.f21442e = arrayList2;
     }
 
-    public n5(s10 s10Var, TLRPC.TL_error tL_error, TLObject tLObject, Utilities.Callback callback) {
-        this.f21435a = 23;
-        this.f21437c = s10Var;
+    public n5(t10 t10Var, TLRPC.TL_error tL_error, TLObject tLObject, Utilities.Callback callback) {
+        this.f21439a = 23;
+        this.f21441c = t10Var;
         this.d = tL_error;
-        this.f21438e = tLObject;
-        this.f21436b = callback;
+        this.f21442e = tLObject;
+        this.f21440b = callback;
     }
 
     public n5(int[] iArr, int[] iArr2, String[] strArr, TextView textView) {
-        this.f21435a = 18;
-        this.f21436b = iArr;
-        this.f21437c = iArr2;
-        this.f21438e = strArr;
+        this.f21439a = 18;
+        this.f21440b = iArr;
+        this.f21441c = iArr2;
+        this.f21442e = strArr;
         this.d = textView;
     }
 }

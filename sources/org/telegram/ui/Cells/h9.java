@@ -9,26 +9,26 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class h9 extends FrameLayout {
-    public final ImageView f22218a;
-    public final org.telegram.ui.ActionBar.j5 f22219b;
-    public final org.telegram.ui.ActionBar.e6 f22220c;
+    public final ImageView f22222a;
+    public final org.telegram.ui.ActionBar.j5 f22223b;
+    public final org.telegram.ui.ActionBar.e6 f22224c;
     public boolean d;
 
     public h9(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f22220c = e6Var;
+        this.f22224c = e6Var;
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f22219b = j5Var;
-        j5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20905j5, e6Var));
+        this.f22223b = j5Var;
+        j5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20909j5, e6Var));
         j5Var.setTextSize(16);
         j5Var.setGravity(19);
         addView(j5Var, w7.x5.a(48.0f, 22.0f, 0.0f, 56.0f, 0.0f, -1, 16));
         ImageView imageView = new ImageView(context);
-        this.f22218a = imageView;
+        this.f22222a = imageView;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.C6, e6Var), PorterDuff.Mode.SRC_IN));
         addView(imageView, w7.x5.a(24.0f, 0.0f, 0.0f, 16.0f, 0.0f, 24, 8388629));
-        int i10 = org.telegram.ui.ActionBar.i6.f20868h5;
-        int i11 = org.telegram.ui.ActionBar.y5.f21731a;
+        int i10 = org.telegram.ui.ActionBar.i6.f20872h5;
+        int i11 = org.telegram.ui.ActionBar.y5.f21735a;
         int x02 = org.telegram.ui.ActionBar.i6.x0(null, i10, false);
         setBackground(org.telegram.ui.ActionBar.y5.d(new float[0], x02, org.telegram.ui.ActionBar.y5.b(x02)));
     }
@@ -38,14 +38,14 @@ public final class h9 extends FrameLayout {
         Paint paint;
         super.dispatchDraw(canvas);
         if (this.d) {
-            org.telegram.ui.ActionBar.e6 e6Var = this.f22220c;
+            org.telegram.ui.ActionBar.e6 e6Var = this.f22224c;
             if (e6Var != null) {
                 paint = e6Var.F("paintDivider");
             } else {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.i6.f20919k0;
+                paint = org.telegram.ui.ActionBar.i6.f20923k0;
             }
             canvas.drawLine(AndroidUtilities.dp(22.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
         }

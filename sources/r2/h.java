@@ -11,16 +11,16 @@ import e2.d0;
 import java.util.ArrayList;
 import java.util.List;
 public final class h implements l {
-    public final Context f46888a;
+    public final Context f46932a;
 
     public h(Context context, int i10) {
         switch (i10) {
             case 1:
                 kotlin.jvm.internal.i.e(context, "context");
-                this.f46888a = context;
+                this.f46932a = context;
                 return;
             default:
-                this.f46888a = context;
+                this.f46932a = context;
                 return;
         }
     }
@@ -30,10 +30,10 @@ public final class h implements l {
             return hVar.c();
         }
         if (obj instanceof v0.n) {
-            for (v0.p pVar : ((v0.n) obj).f49023a) {
+            for (v0.p pVar : ((v0.n) obj).f49067a) {
             }
         }
-        Context ctx = hVar.f46888a;
+        Context ctx = hVar.f46932a;
         kotlin.jvm.internal.i.e(ctx, "ctx");
         if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
             int i10 = Build.VERSION.SDK_INT;
@@ -60,7 +60,7 @@ public final class h implements l {
     public m b(com.google.firebase.messaging.n nVar) {
         Context context;
         int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 31 || ((context = this.f46888a) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen"))) {
+        if (i10 >= 31 || ((context = this.f46932a) != null && i10 >= 28 && context.getPackageManager().hasSystemFeature("com.amazon.hardware.tv_screen"))) {
             int h = r0.h(((b2.s) nVar.f7956c).f3643r);
             e2.a.i("DMCodecAdapterFactory", "Creating an asynchronous MediaCodec adapter for track type " + d0.F(h));
             return new n6.t(14, new b(h, 0), new b(h, 1)).b(nVar);
@@ -70,7 +70,7 @@ public final class h implements l {
 
     public v0.j c() {
         String string;
-        Context context = this.f46888a;
+        Context context = this.f46932a;
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
         ArrayList arrayList = new ArrayList();
         ServiceInfo[] serviceInfoArr = packageInfo.services;

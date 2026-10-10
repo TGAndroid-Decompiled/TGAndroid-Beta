@@ -40,29 +40,29 @@ public final class t61 extends View {
     public float T;
     public final s50 U;
     public final k71 V;
-    public boolean f41870a;
-    public boolean f41871b;
-    public int f41872c;
+    public boolean f41914a;
+    public boolean f41915b;
+    public int f41916c;
     public TLRPC.Document d;
-    public org.telegram.ui.Components.b6 f41873e;
-    public final ImageReceiver.BackgroundThreadDrawHolder[] f41874f;
+    public org.telegram.ui.Components.b6 f41917e;
+    public final ImageReceiver.BackgroundThreadDrawHolder[] f41918f;
     public ImageReceiver h;
-    public final ImageReceiver f41875n;
-    public ImageReceiver f41876r;
-    public boolean f41877s;
+    public final ImageReceiver f41919n;
+    public ImageReceiver f41920r;
+    public boolean f41921s;
     public TL_stars.TL_starGiftUnique v;
-    public Integer f41878w;
-    public zg.n0 f41879x;
-    public boolean f41880y;
+    public Integer f41922w;
+    public zg.n0 f41923x;
+    public boolean f41924y;
 
     public t61(k71 k71Var, Context context) {
         super(context);
         this.V = k71Var;
-        this.f41870a = false;
-        this.f41871b = false;
-        this.f41874f = new ImageReceiver.BackgroundThreadDrawHolder[2];
+        this.f41914a = false;
+        this.f41915b = false;
+        this.f41918f = new ImageReceiver.BackgroundThreadDrawHolder[2];
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f41875n = imageReceiver;
+        this.f41919n = imageReceiver;
         this.T = 1.0f;
         this.U = new s50(this, 1);
         imageReceiver.ignoreNotifications = true;
@@ -95,9 +95,9 @@ public final class t61 extends View {
             return;
         }
         s61Var.h = false;
-        s61Var.f47219n = -1;
-        if (s61Var.f47214a == 2 && (paint = s61Var.f47223x) != null) {
-            paint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20741a7, false));
+        s61Var.f47263n = -1;
+        if (s61Var.f47258a == 2 && (paint = s61Var.f47267x) != null) {
+            paint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20745a7, false));
         }
     }
 
@@ -105,7 +105,7 @@ public final class t61 extends View {
         String str;
         this.d = document;
         a(m61Var);
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.i6.f20962m6, 0.2f);
+        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.i6.f20966m6, 0.2f);
         if (this.V.W == 6) {
             ImageReceiver imageReceiver = this.h;
             ImageLocation forDocument = ImageLocation.getForDocument(document);
@@ -119,7 +119,7 @@ public final class t61 extends View {
             this.h.setImage(ImageLocation.getForDocument(document), "100_100_firstframe", null, null, svgThumb, 0L, "tgs", document, 0);
         }
         this.Q = true;
-        this.f41873e = null;
+        this.f41917e = null;
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -190,7 +190,7 @@ public final class t61 extends View {
 
     @Override
     public final void invalidate() {
-        if (zg.d0.f54502b || getParent() == null) {
+        if (zg.d0.f54546b || getParent() == null) {
             return;
         }
         ((View) getParent()).invalidate();
@@ -212,7 +212,7 @@ public final class t61 extends View {
             imageReceiver.setParentView((View) getParent());
             this.h.onAttachedToWindow();
         }
-        this.f41875n.onAttachedToWindow();
+        this.f41919n.onAttachedToWindow();
     }
 
     @Override
@@ -225,7 +225,7 @@ public final class t61 extends View {
         Drawable drawable = this.E;
         if (drawable instanceof org.telegram.ui.Components.s5) {
             ((org.telegram.ui.Components.s5) drawable).p(this.U);
-            ai.m4 m4Var = ((org.telegram.ui.Components.s5) this.E).f30654k;
+            ai.m4 m4Var = ((org.telegram.ui.Components.s5) this.E).f30680k;
             if (m4Var != null) {
                 m4Var.setEmojiPaused(false);
             }
@@ -235,7 +235,7 @@ public final class t61 extends View {
             imageReceiver.onDetachedFromWindow();
             this.h.setEmojiPaused(false);
         }
-        this.f41875n.onDetachedFromWindow();
+        this.f41919n.onDetachedFromWindow();
     }
 
     @Override
@@ -243,13 +243,13 @@ public final class t61 extends View {
         String str;
         org.telegram.ui.Components.b6 b6Var;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f41870a) {
+        if (this.f41914a) {
             str = LocaleController.getString(R.string.RemoveStatus);
         } else {
-            zg.n0 n0Var = this.f41879x;
-            if (n0Var == null || (str = n0Var.f54617f) == null) {
+            zg.n0 n0Var = this.f41923x;
+            if (n0Var == null || (str = n0Var.f54661f) == null) {
                 TLRPC.Document document = this.d;
-                if (document == null && (b6Var = this.f41873e) != null && (document = b6Var.document) == null) {
+                if (document == null && (b6Var = this.f41917e) != null && (document = b6Var.document) == null) {
                     document = org.telegram.ui.Components.s5.f(this.V.V, b6Var.getDocumentId());
                 }
                 if (document != null) {
@@ -325,7 +325,7 @@ public final class t61 extends View {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (zg.d0.f54502b) {
+        if (zg.d0.f54546b) {
             return;
         }
         super.invalidate(i10, i11, i12, i13);

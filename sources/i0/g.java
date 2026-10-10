@@ -128,13 +128,13 @@ public final class g extends d8 {
             while (true) {
                 if (i11 < length) {
                     o0.h hVar = hVarArr[i11];
-                    Uri uri = hVar.f16902a;
+                    Uri uri = hVar.f16906a;
                     ByteBuffer byteBuffer = (ByteBuffer) mVar.get(uri);
                     if (byteBuffer == null) {
                         byteBuffer = g8.e(context, uri);
                         mVar.put(uri, byteBuffer);
                     }
-                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f16903b, hVar.f16904c, hVar.d)) {
+                    if (byteBuffer == null || !g(obj, byteBuffer, hVar.f16907b, hVar.f16908c, hVar.d)) {
                         break;
                     }
                     i11++;

@@ -9,16 +9,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class g9 extends FrameLayout {
-    public static final int f37942e = 0;
-    public final TextView f37943a;
-    public final TextView f37944b;
-    public final View f37945c;
-    public final org.telegram.ui.Components.fk0 d;
+    public static final int f37986e = 0;
+    public final TextView f37987a;
+    public final TextView f37988b;
+    public final View f37989c;
+    public final org.telegram.ui.Components.gk0 d;
 
-    public g9(j9 j9Var, Context context, org.telegram.ui.Components.j10 j10Var) {
+    public g9(j9 j9Var, Context context, org.telegram.ui.Components.k10 k10Var) {
         super(context);
-        addView(j10Var, w7.x5.d(-1.0f, -1));
-        this.f37945c = j10Var;
+        addView(k10Var, w7.x5.d(-1.0f, -1));
+        this.f37989c = k10Var;
         ?? imageView = new ImageView(context);
         this.d = imageView;
         imageView.f(R.raw.utyan_call, 110, 110, null);
@@ -26,7 +26,7 @@ public final class g9 extends FrameLayout {
         addView((View) imageView, w7.x5.a(110.0f, 52.0f, 17.0f, 52.0f, 60.0f, 110, 17));
         imageView.setOnClickListener(new a(this, 10));
         TextView textView = new TextView(context);
-        this.f37943a = textView;
+        this.f37987a = textView;
         textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.G6, false));
         textView.setText(LocaleController.getString(R.string.MakeYourFirstCall));
         textView.setTextSize(1, 20.0f);
@@ -34,18 +34,18 @@ public final class g9 extends FrameLayout {
         textView.setGravity(17);
         addView(textView, w7.x5.a(-2.0f, 17.0f, 40.0f, 17.0f, 0.0f, -1, 17));
         TextView textView2 = new TextView(context);
-        this.f37944b = textView2;
+        this.f37988b = textView2;
         String formatString = LocaleController.formatString(R.string.MakeYourFirstCallHint, Integer.valueOf(j9Var.getMessagesController().conferenceCallSizeLimit));
         if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
             formatString = formatString.replace('\n', ' ');
         }
         textView2.setText(formatString);
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20781c7, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20785c7, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(17);
         textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         addView(textView2, w7.x5.a(-2.0f, 17.0f, 80.0f, 17.0f, 0.0f, -1, 17));
-        j10Var.setAlpha(0.0f);
+        k10Var.setAlpha(0.0f);
         imageView.setAlpha(0.0f);
         textView.setAlpha(0.0f);
         textView2.setAlpha(0.0f);
@@ -54,18 +54,18 @@ public final class g9 extends FrameLayout {
 
     public final void a() {
         this.d.animate().alpha(0.0f).setDuration(150L).start();
-        this.f37943a.animate().alpha(0.0f).setDuration(150L).start();
-        this.f37944b.animate().alpha(0.0f).setDuration(150L).start();
-        this.f37945c.animate().alpha(1.0f).setDuration(150L).start();
+        this.f37987a.animate().alpha(0.0f).setDuration(150L).start();
+        this.f37988b.animate().alpha(0.0f).setDuration(150L).start();
+        this.f37989c.animate().alpha(1.0f).setDuration(150L).start();
     }
 
     public final void b() {
-        org.telegram.ui.Components.fk0 fk0Var = this.d;
-        fk0Var.animate().alpha(1.0f).setDuration(150L).start();
-        this.f37943a.animate().alpha(1.0f).setDuration(150L).start();
-        this.f37944b.animate().alpha(1.0f).setDuration(150L).start();
-        this.f37945c.animate().alpha(0.0f).setDuration(150L).start();
-        fk0Var.d();
+        org.telegram.ui.Components.gk0 gk0Var = this.d;
+        gk0Var.animate().alpha(1.0f).setDuration(150L).start();
+        this.f37987a.animate().alpha(1.0f).setDuration(150L).start();
+        this.f37988b.animate().alpha(1.0f).setDuration(150L).start();
+        this.f37989c.animate().alpha(0.0f).setDuration(150L).start();
+        gk0Var.d();
     }
 
     @Override

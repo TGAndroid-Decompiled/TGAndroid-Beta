@@ -8,31 +8,31 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class m2 {
-    public String f46398a;
-    public String f46399b;
-    public String f46400c;
+    public String f46442a;
+    public String f46443b;
+    public String f46444c;
     public CharSequence d;
-    public TLRPC.TL_inputStickerSetItem f46401e;
-    public TLRPC.TL_messageMediaDocument f46402f;
-    public TLRPC.InputFile f46403g;
+    public TLRPC.TL_inputStickerSetItem f46445e;
+    public TLRPC.TL_messageMediaDocument f46446f;
+    public TLRPC.InputFile f46447g;
     public boolean h;
-    public long f46404i;
-    public TLRPC.StickerSet f46405j;
-    public TLRPC.Document f46406k;
-    public String f46407l;
-    public Utilities.Callback2 f46408m;
-    public Utilities.Callback f46409n;
-    public boolean f46410o;
-    public ArrayList f46411p;
-    public ArrayList f46412q;
-    public MessageObject f46413r;
-    public VideoEditedInfo f46414s;
-    public float f46415t;
-    public float f46416u;
+    public long f46448i;
+    public TLRPC.StickerSet f46449j;
+    public TLRPC.Document f46450k;
+    public String f46451l;
+    public Utilities.Callback2 f46452m;
+    public Utilities.Callback f46453n;
+    public boolean f46454o;
+    public ArrayList f46455p;
+    public ArrayList f46456q;
+    public MessageObject f46457r;
+    public VideoEditedInfo f46458s;
+    public float f46459t;
+    public float f46460u;
 
     public final void a() {
-        ArrayList arrayList = this.f46412q;
-        ArrayList arrayList2 = this.f46411p;
+        ArrayList arrayList = this.f46456q;
+        ArrayList arrayList2 = this.f46455p;
         int size = arrayList2.size();
         int i10 = 0;
         int i11 = 0;
@@ -61,14 +61,14 @@ public final class m2 {
 
     public final float b() {
         float f7;
-        if (this.f46408m == null) {
+        if (this.f46452m == null) {
             f7 = 0.9f;
         } else {
             f7 = 1.0f;
         }
-        if (this.f46414s == null) {
-            return f7 * this.f46416u;
+        if (this.f46458s == null) {
+            return f7 * this.f46460u;
         }
-        return com.google.android.gms.internal.vision.e2.A(this.f46416u, 0.5f, this.f46415t * 0.5f, f7);
+        return com.google.android.gms.internal.vision.e2.A(this.f46460u, 0.5f, this.f46459t * 0.5f, f7);
     }
 }

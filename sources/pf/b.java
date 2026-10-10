@@ -85,7 +85,7 @@ import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.q80;
 import org.telegram.ui.Components.yi;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.a80;
@@ -93,14 +93,14 @@ import u2.t;
 import z3.m;
 public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Continuation, n5.b {
     public static volatile b d;
-    public final int f45557a;
-    public Object f45558b;
-    public Object f45559c;
+    public final int f45601a;
+    public Object f45602b;
+    public Object f45603c;
 
     public b(int i10, Object obj, Object obj2) {
-        this.f45557a = i10;
-        this.f45559c = obj;
-        this.f45558b = obj2;
+        this.f45601a = i10;
+        this.f45603c = obj;
+        this.f45602b = obj2;
     }
 
     public static b I() {
@@ -124,7 +124,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public c5.e A() {
-        if (((o) this.f45558b) != null) {
+        if (((o) this.f45602b) != null) {
             return new c5.e(this);
         }
         throw new NullPointerException("ProductDetails is required for constructing ProductDetailsParams.");
@@ -132,7 +132,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void B() {
-        c4 c4Var = ((r) this.f45559c).f12651s;
+        c4 c4Var = ((r) this.f45603c).f12651s;
         if (c4Var != null) {
             int i10 = 0;
             c4Var.e(false, true);
@@ -145,43 +145,43 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public boolean C(int i10) {
-        return ((q) this.f45558b).f3532a.get(i10);
+        return ((q) this.f45602b).f3532a.get(i10);
     }
 
     public w D(byte[] bArr) {
         byte[] bArr2;
-        la.h hVar = (la.h) this.f45559c;
-        if (hVar != null && (bArr2 = (byte[]) hVar.f15462b) != null && Arrays.equals(bArr2, bArr)) {
-            w wVar = (w) ((la.h) this.f45559c).d;
+        la.h hVar = (la.h) this.f45603c;
+        if (hVar != null && (bArr2 = (byte[]) hVar.f15466b) != null && Arrays.equals(bArr2, bArr)) {
+            w wVar = (w) ((la.h) this.f45603c).d;
             e2.d.h(wVar);
             return wVar;
         }
-        i iVar = (i) this.f45558b;
+        i iVar = (i) this.f45602b;
         w a2 = ((y) iVar.f10251a).a(new com.google.firebase.messaging.h(1, iVar, bArr));
-        this.f45559c = new la.h(bArr, a2);
+        this.f45603c = new la.h(bArr, a2);
         return a2;
     }
 
     @Override
-    public p80 E(View view) {
-        r rVar = (r) this.f45559c;
-        p80 p80Var = new p80(rVar, (e6) this.f45558b, view, false, false, true);
-        rVar.H = p80Var;
-        return p80Var;
+    public q80 E(View view) {
+        r rVar = (r) this.f45603c;
+        q80 q80Var = new q80(rVar, (e6) this.f45602b, view, false, false, true);
+        rVar.H = q80Var;
+        return q80Var;
     }
 
     public void F(i2.g gVar) {
         synchronized (gVar) {
         }
-        Handler handler = (Handler) this.f45558b;
+        Handler handler = (Handler) this.f45602b;
         if (handler != null) {
             handler.post(new j0(this, gVar, 1));
         }
     }
 
     public dc.b G() {
-        if (((dc.b) this.f45559c) == null) {
-            dc.f fVar = (dc.f) this.f45558b;
+        if (((dc.b) this.f45603c) == null) {
+            dc.f fVar = (dc.f) this.f45602b;
             int[] iArr = fVar.f8290c;
             cc.d dVar = fVar.f8288a;
             int i10 = dVar.f4589a;
@@ -255,32 +255,32 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
                         }
                     }
                 }
-                this.f45559c = bVar;
+                this.f45603c = bVar;
             } else {
                 throw cc.e.a();
             }
         }
-        return (dc.b) this.f45559c;
+        return (dc.b) this.f45603c;
     }
 
     @Override
     public void H() {
-        r rVar = (r) this.f45559c;
+        r rVar = (r) this.f45603c;
         rVar.a0();
         rVar.b0();
     }
 
     @Override
     public void J(u3 u3Var, View view) {
-        r rVar = (r) this.f45559c;
-        p80 p80Var = new p80(rVar, (e6) this.f45558b, view, false, false, true);
-        p80Var.Q = true;
-        rVar.H = l4.c(p80Var, rVar.f30173b.f33228f0, rVar.getContext(), (e6) this.f45558b, u3Var, true);
+        r rVar = (r) this.f45603c;
+        q80 q80Var = new q80(rVar, (e6) this.f45602b, view, false, false, true);
+        q80Var.Q = true;
+        rVar.H = l4.c(q80Var, rVar.f30211b.f33235f0, rVar.getContext(), (e6) this.f45602b, u3Var, true);
     }
 
     public String K(String str) {
-        Resources resources = (Resources) this.f45558b;
-        int identifier = resources.getIdentifier(str, "string", (String) this.f45559c);
+        Resources resources = (Resources) this.f45602b;
+        int identifier = resources.getIdentifier(str, "string", (String) this.f45603c);
         if (identifier == 0) {
             return null;
         }
@@ -288,7 +288,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public boolean L() {
-        if (((a) ((la.h) this.f45558b).d) != null) {
+        if (((a) ((la.h) this.f45602b).d) != null) {
             return true;
         }
         return false;
@@ -296,8 +296,8 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     public void M(Exception exc, boolean z10) {
         int i10;
-        this.f45559c = null;
-        HashSet hashSet = (HashSet) this.f45558b;
+        this.f45603c = null;
+        HashSet hashSet = (HashSet) this.f45602b;
         i0 v = i0.v(hashSet);
         hashSet.clear();
         g0 listIterator = v.listIterator(0);
@@ -314,8 +314,8 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public void N(boolean z10, boolean z11, float f7) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f45558b;
-        w5 w5Var = (w5) this.f45559c;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f45602b;
+        w5 w5Var = (w5) this.f45603c;
         kc kcVar = w5Var.f1854e;
         kc.B1 = f7;
         jc jcVar = kcVar.f1310z0;
@@ -339,22 +339,22 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public void Q(n2.b bVar) {
-        ((HashSet) this.f45558b).add(bVar);
-        if (((n2.b) this.f45559c) != null) {
+        ((HashSet) this.f45602b).add(bVar);
+        if (((n2.b) this.f45603c) != null) {
             return;
         }
-        this.f45559c = bVar;
-        p l4 = bVar.f16478b.l();
-        bVar.f16497x = l4;
-        android.support.v4.media.session.f fVar = bVar.f16492r;
+        this.f45603c = bVar;
+        p l4 = bVar.f16482b.l();
+        bVar.f16501x = l4;
+        android.support.v4.media.session.f fVar = bVar.f16496r;
         String str = d0.f8532a;
         l4.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new n2.a(t.f48708b.getAndIncrement(), true, SystemClock.elapsedRealtime(), l4)).sendToTarget();
+        fVar.obtainMessage(1, new n2.a(t.f48752b.getAndIncrement(), true, SystemClock.elapsedRealtime(), l4)).sendToTarget();
     }
 
     public void R(Object obj) {
-        Handler handler = (Handler) this.f45558b;
+        Handler handler = (Handler) this.f45602b;
         if (handler != null) {
             handler.post(new h0(this, obj, SystemClock.elapsedRealtime(), 0));
         }
@@ -364,17 +364,17 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
         d dVar;
         g gVar2;
         Log.d("CAST_CONTROLLER", "set current media");
-        la.h hVar = (la.h) this.f45558b;
-        g gVar3 = (g) hVar.f15463c;
+        la.h hVar = (la.h) this.f45602b;
+        g gVar3 = (g) hVar.f15467c;
         if (b5.d.u()) {
             if (gVar3 != null || gVar != null) {
                 if (gVar3 != null) {
-                    ArrayList arrayList = gVar3.f45582a;
-                    if (gVar != null && arrayList.size() == gVar.f45582a.size()) {
+                    ArrayList arrayList = gVar3.f45626a;
+                    if (gVar != null && arrayList.size() == gVar.f45626a.size()) {
                         for (int i10 = 0; i10 < arrayList.size(); i10++) {
                             f a2 = gVar3.a(i10);
                             f a10 = gVar.a(i10);
-                            if ((a2 == null && a10 == null) || (a2 != null && a10 != null && Objects.equals(a2.f45577a, a10.f45577a) && Objects.equals(a2.f45578b, a10.f45578b) && Objects.equals(a2.f45579c, a10.f45579c) && Objects.equals(a2.d, a10.d) && a2.f45580e == a10.f45580e && a2.f45581f == a10.f45581f)) {
+                            if ((a2 == null && a10 == null) || (a2 != null && a10 != null && Objects.equals(a2.f45621a, a10.f45621a) && Objects.equals(a2.f45622b, a10.f45622b) && Objects.equals(a2.f45623c, a10.f45623c) && Objects.equals(a2.d, a10.d) && a2.f45624e == a10.f45624e && a2.f45625f == a10.f45625f)) {
                             }
                         }
                         return;
@@ -387,29 +387,29 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
         if (((a) hVar.d) != null && gVar != null) {
             hVar.k(gVar);
         }
-        if (((a) hVar.d) != null && (gVar2 = (g) hVar.f15463c) != null) {
+        if (((a) hVar.d) != null && (gVar2 = (g) hVar.f15467c) != null) {
             hVar.U(gVar2);
         }
-        if (gVar != null && gVar.f45582a.size() > 0 && !gVar.a(0).f45577a.startsWith("audio/") && (dVar = (d) hVar.f15462b) != null) {
+        if (gVar != null && gVar.f45626a.size() > 0 && !gVar.a(0).f45621a.startsWith("audio/") && (dVar = (d) hVar.f15466b) != null) {
             dVar.l(null, null);
         }
         a aVar = (a) hVar.d;
         if (aVar != null && gVar != null) {
             aVar.d = gVar;
-            aVar.f45556g = 0;
+            aVar.f45600g = 0;
             aVar.h = 0;
             aVar.p();
         }
-        hVar.f15463c = gVar;
+        hVar.f15467c = gVar;
     }
 
     public void T(o oVar) {
-        this.f45558b = oVar;
+        this.f45602b = oVar;
         if (oVar.a() != null) {
             oVar.a().getClass();
             String str = oVar.a().d;
             if (str != null) {
-                this.f45559c = str;
+                this.f45603c = str;
             }
         }
     }
@@ -417,15 +417,15 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     public void U(d6.c cVar) {
         String str;
         String string;
-        la.h hVar = (la.h) this.f45558b;
+        la.h hVar = (la.h) this.f45602b;
         if (cVar != null) {
             l.e("Must be called from the main thread.");
             e6.h hVar2 = cVar.f8184j;
             String a2 = cVar.a();
             if (!TextUtils.isEmpty(a2) && hVar2 != null) {
                 a aVar = (a) hVar.d;
-                if (aVar == null || !TextUtils.equals(aVar.f45553c.a(), a2)) {
-                    hVar.X(new a(cVar, (d6.g) this.f45559c, hVar2));
+                if (aVar == null || !TextUtils.equals(aVar.f45597c.a(), a2)) {
+                    hVar.X(new a(cVar, (d6.g) this.f45603c, hVar2));
                     l.e("Must be called from the main thread.");
                     CastDevice castDevice = cVar.f8185k;
                     if (castDevice != null) {
@@ -435,8 +435,8 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
                     }
                     PhotoViewer t12 = PhotoViewer.t1();
                     d.i();
-                    if (t12.E != null && t12.f33904e0 != null && t12.R1()) {
-                        ad adVar = new ad(t12.f33904e0, new ai.d());
+                    if (t12.E != null && t12.f33942e0 != null && t12.R1()) {
+                        ad adVar = new ad(t12.f33942e0, new ai.d());
                         int i10 = R.raw.forward;
                         if (!TextUtils.isEmpty(str)) {
                             string = LocaleController.formatString(R.string.ChromecastStartedTo, str);
@@ -451,7 +451,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public void V(x1 x1Var) {
-        Handler handler = (Handler) this.f45558b;
+        Handler handler = (Handler) this.f45602b;
         if (handler != null) {
             handler.post(new a1.f(2, this, x1Var));
         }
@@ -459,7 +459,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     public void W(g3 g3Var) {
         try {
-            d0(g3Var, (p3) this.f45558b);
+            d0(g3Var, (p3) this.f45602b);
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -467,11 +467,11 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     public void X(g3 g3Var, int i10, long j3) {
         try {
-            o3 o3Var = (o3) ((p3) this.f45558b).g();
+            o3 o3Var = (o3) ((p3) this.f45602b).g();
             o3Var.c();
             p3.p((p3) o3Var.f7476b, i10);
             p3 p3Var = (p3) o3Var.a();
-            this.f45558b = p3Var;
+            this.f45602b = p3Var;
             if (j3 != 0) {
                 o3 o3Var2 = (o3) p3Var.g();
                 o3Var2.c();
@@ -495,9 +495,9 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
             g3.r((g3) f3Var.f7476b, (com.google.android.gms.internal.play_billing.v3) t3Var.a());
             g3 g3Var2 = (g3) f3Var.a();
             if (j3 == 0) {
-                p3Var = (p3) this.f45558b;
+                p3Var = (p3) this.f45602b;
             } else {
-                o3 o3Var = (o3) ((p3) this.f45558b).g();
+                o3 o3Var = (o3) ((p3) this.f45602b).g();
                 o3Var.c();
                 p3.r((p3) o3Var.f7476b, j3);
                 p3Var = (p3) o3Var.a();
@@ -511,10 +511,10 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     public void Z(g3 g3Var, int i10, long j3, boolean z10) {
         p3 p3Var;
         try {
-            o3 o3Var = (o3) ((p3) this.f45558b).g();
+            o3 o3Var = (o3) ((p3) this.f45602b).g();
             o3Var.c();
             p3.p((p3) o3Var.f7476b, i10);
-            this.f45558b = (p3) o3Var.a();
+            this.f45602b = (p3) o3Var.a();
             f3 f3Var = (f3) g3Var.g();
             t3 t3Var = (t3) g3Var.o().g();
             t3Var.c();
@@ -523,9 +523,9 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
             g3.r((g3) f3Var.f7476b, (com.google.android.gms.internal.play_billing.v3) t3Var.a());
             g3 g3Var2 = (g3) f3Var.a();
             if (j3 == 0) {
-                p3Var = (p3) this.f45558b;
+                p3Var = (p3) this.f45602b;
             } else {
-                o3 o3Var2 = (o3) ((p3) this.f45558b).g();
+                o3 o3Var2 = (o3) ((p3) this.f45602b).g();
                 o3Var2.c();
                 p3.r((p3) o3Var2.f7476b, j3);
                 p3Var = (p3) o3Var2.a();
@@ -538,9 +538,9 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void a(v vVar) {
-        j4.d0 d0Var = (j4.d0) this.f45559c;
+        j4.d0 d0Var = (j4.d0) this.f45603c;
         SparseArray sparseArray = d0Var.h;
-        a4.g gVar = (a4.g) this.f45558b;
+        a4.g gVar = (a4.g) this.f45602b;
         if (vVar.x() == 0 && (vVar.x() & 128) != 0) {
             vVar.K(6);
             int a2 = vVar.a() / 4;
@@ -568,10 +568,10 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     public void a0(l3 l3Var) {
         try {
             w3 t10 = x3.t();
-            t10.d((p3) this.f45558b);
+            t10.d((p3) this.f45602b);
             t10.c();
             x3.p((x3) t10.f7476b, l3Var);
-            ((b2.p) this.f45559c).i((x3) t10.a());
+            ((b2.p) this.f45603c).i((x3) t10.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -580,8 +580,8 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     @Override
     public void accept(Object obj, Object obj2) {
         boolean z10;
-        e0 e0Var = (e0) this.f45558b;
-        String str = (String) this.f45559c;
+        e0 e0Var = (e0) this.f45602b;
+        String str = (String) this.f45603c;
         g6.w wVar = (g6.w) obj;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
         if (e0Var.F == 2) {
@@ -610,10 +610,10 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     public void b0(a4 a4Var) {
         try {
             w3 t10 = x3.t();
-            t10.d((p3) this.f45558b);
+            t10.d((p3) this.f45602b);
             t10.c();
             x3.r((x3) t10.f7476b, a4Var);
-            ((b2.p) this.f45559c).i((x3) t10.a());
+            ((b2.p) this.f45603c).i((x3) t10.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -622,8 +622,8 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     @Override
     public df.a c(b5 b5Var) {
         int i10;
-        List list = (List) this.f45559c;
-        List list2 = (List) b5Var.f20461b;
+        List list = (List) this.f45603c;
+        List list2 = (List) b5Var.f20465b;
         if (list2 != null) {
             i10 = list2.size();
         } else {
@@ -635,7 +635,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
             arrayList.addAll(list2);
             list = arrayList;
         }
-        return new fd.i(b5Var, (List) this.f45558b, list);
+        return new fd.i(b5Var, (List) this.f45602b, list);
     }
 
     public void c0(b4 b4Var) {
@@ -644,10 +644,10 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
         }
         try {
             w3 t10 = x3.t();
-            t10.d((p3) this.f45558b);
+            t10.d((p3) this.f45602b);
             t10.c();
             x3.s((x3) t10.f7476b, b4Var);
-            ((b2.p) this.f45559c).i((x3) t10.a());
+            ((b2.p) this.f45603c).i((x3) t10.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -655,7 +655,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public g2.h createDataSource() {
-        return new g2.n((Context) this.f45558b, ((g2.o) this.f45559c).createDataSource());
+        return new g2.n((Context) this.f45602b, ((g2.o) this.f45603c).createDataSource());
     }
 
     @Override
@@ -672,7 +672,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
             t10.d(p3Var);
             t10.c();
             x3.n((x3) t10.f7476b, g3Var);
-            ((b2.p) this.f45559c).i((x3) t10.a());
+            ((b2.p) this.f45603c).i((x3) t10.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -680,12 +680,12 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void e(ii.w3 w3Var, View view) {
-        r rVar = (r) this.f45559c;
-        p80 p80Var = new p80(rVar, (e6) this.f45558b, view, false, false, true);
-        p80Var.Q = true;
-        n2 n2Var = rVar.f30173b.f33228f0;
+        r rVar = (r) this.f45603c;
+        q80 q80Var = new q80(rVar, (e6) this.f45602b, view, false, false, true);
+        q80Var.Q = true;
+        n2 n2Var = rVar.f30211b.f33235f0;
         rVar.getContext();
-        rVar.H = l4.b(p80Var, n2Var, w3Var, true);
+        rVar.H = l4.b(q80Var, n2Var, w3Var, true);
     }
 
     public void e0(i3 i3Var, p3 p3Var) {
@@ -694,7 +694,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
             t10.d(p3Var);
             t10.c();
             x3.o((x3) t10.f7476b, i3Var);
-            ((b2.p) this.f45559c).i((x3) t10.a());
+            ((b2.p) this.f45603c).i((x3) t10.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -712,7 +712,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public Object mo27get() {
-        return new m5.d((Context) ((k2.g0) this.f45558b).f14470b, (la.h) ((l2.f) this.f45559c).mo27get());
+        return new m5.d((Context) ((k2.g0) this.f45602b).f14470b, (la.h) ((l2.f) this.f45603c).mo27get());
     }
 
     @Override
@@ -722,9 +722,9 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void i(ii.f6 f6Var, String str) {
-        r rVar = (r) this.f45559c;
+        r rVar = (r) this.f45603c;
         if (rVar.v == null) {
-            e6 e6Var = (e6) this.f45558b;
+            e6 e6Var = (e6) this.f45602b;
             rVar.v = new q3(new ah.b(16, this, e6Var), e6Var);
         }
         rVar.v.f(f6Var, str);
@@ -733,18 +733,18 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     @Override
     public void j(d6.f fVar, int i10) {
         Log.d("CAST_SESSION", "onSessionEnded " + ((d6.c) fVar).a() + " " + i10);
-        ((la.h) this.f45558b).X(null);
+        ((la.h) this.f45602b).X(null);
     }
 
     @Override
     public void k(int i10) {
-        r.R((r) this.f45559c, 74, i10);
+        r.R((r) this.f45603c, 74, i10);
     }
 
     @Override
     public void l() {
         int i10;
-        r rVar = (r) this.f45559c;
+        r rVar = (r) this.f45603c;
         ii.x3 x3Var = rVar.f12650r;
         c4 c4Var = rVar.f12651s;
         if (c4Var != null) {
@@ -768,7 +768,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void m() {
-        c4 c4Var = ((r) this.f45559c).f12651s;
+        c4 c4Var = ((r) this.f45603c).f12651s;
         if (c4Var != null) {
             int i10 = c4Var.f12313a0;
             if (i10 == 2) {
@@ -782,7 +782,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void n(String str, long j3, long j10, long j11) {
-        n nVar = (n) this.f45558b;
+        n nVar = (n) this.f45602b;
         if (nVar != null) {
             nVar.n(str, j3, j10, j11);
         }
@@ -797,7 +797,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void onContentChanged() {
-        r rVar = (r) this.f45559c;
+        r rVar = (r) this.f45603c;
         c4 c4Var = rVar.f12651s;
         if (c4Var != null) {
             c4Var.setSendLoading(rVar.f12650r.n3());
@@ -811,15 +811,15 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void p(ii.a aVar) {
-        r rVar = (r) this.f45559c;
-        yi yiVar = rVar.f30173b;
-        n2 n2Var = yiVar.f33228f0;
+        r rVar = (r) this.f45603c;
+        yi yiVar = rVar.f30211b;
+        n2 n2Var = yiVar.f33235f0;
         if (n2Var != null && aVar != null && (aVar.f12234b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(n2Var)) {
-            yi yiVar2 = new yi(rVar.getContext(), yiVar.f33228f0, false, false, false, null);
-            yiVar2.f33219c2 = new ob.a(11);
+            yi yiVar2 = new yi(rVar.getContext(), yiVar.f33235f0, false, false, false, null);
+            yiVar2.f33226c2 = new ob.a(11);
             yiVar2.P = true;
             yiVar2.A1.setVisibility(8);
-            yiVar2.f33283w2 = new r5(rVar, aVar, yiVar2, 10);
+            yiVar2.f33290w2 = new r5(rVar, aVar, yiVar2, 10);
             yiVar2.t1();
             yiVar2.show();
         }
@@ -827,9 +827,9 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void q() {
-        r rVar = (r) this.f45559c;
+        r rVar = (r) this.f45603c;
         if (rVar.getCurrentItemTop() != rVar.I) {
-            rVar.f30173b.b2(rVar, 0);
+            rVar.f30211b.b2(rVar, 0);
         }
         rVar.d0();
         r.N(rVar);
@@ -837,7 +837,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void r(i1 i1Var, boolean z10) {
-        ((r) this.f45559c).f30173b.w1(i1Var, z10);
+        ((r) this.f45603c).f30211b.w1(i1Var, z10);
     }
 
     @Override
@@ -847,16 +847,16 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void t(int i10) {
-        r rVar = (r) this.f45559c;
-        rVar.f30173b.b2(rVar, i10);
+        r rVar = (r) this.f45603c;
+        rVar.f30211b.b2(rVar, i10);
         rVar.d0();
         r.N(rVar);
     }
 
     @Override
     public Object then(Task task) {
-        j6.a aVar = (j6.a) this.f45558b;
-        Bundle bundle = (Bundle) this.f45559c;
+        j6.a aVar = (j6.a) this.f45602b;
+        Bundle bundle = (Bundle) this.f45603c;
         aVar.getClass();
         if (!task.isSuccessful()) {
             return task;
@@ -869,7 +869,7 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public String toString() {
-        switch (this.f45557a) {
+        switch (this.f45601a) {
             case 10:
                 try {
                     return G().toString();
@@ -893,8 +893,8 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
 
     @Override
     public void w(String str, long j3, int i10, Object obj, long j10, long j11) {
-        ((g6.m) this.f45559c).f10335g = null;
-        n nVar = (n) this.f45558b;
+        ((g6.m) this.f45603c).f10335g = null;
+        n nVar = (n) this.f45602b;
         if (nVar != null) {
             nVar.w(str, j3, i10, obj, j10, j11);
         }
@@ -918,22 +918,22 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public b(int i10, boolean z10) {
-        this.f45557a = i10;
+        this.f45601a = i10;
     }
 
     public b(Object obj, int i10) {
-        this.f45557a = i10;
-        this.f45558b = obj;
+        this.f45601a = i10;
+        this.f45602b = obj;
     }
 
     public b(Object obj, Object obj2, boolean z10, int i10) {
-        this.f45557a = i10;
-        this.f45558b = obj;
-        this.f45559c = obj2;
+        this.f45601a = i10;
+        this.f45602b = obj;
+        this.f45603c = obj2;
     }
 
     public b(Context context, p3 p3Var) {
-        this.f45557a = 8;
+        this.f45601a = 8;
         b2.p pVar = new b2.p(1);
         try {
             l5.s.b(context);
@@ -941,28 +941,28 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
         } catch (Throwable unused) {
             pVar.f3505b = true;
         }
-        this.f45559c = pVar;
-        this.f45558b = p3Var;
+        this.f45603c = pVar;
+        this.f45602b = p3Var;
     }
 
     public b(m6.a aVar) {
-        this.f45557a = 14;
-        this.f45558b = aVar == null ? null : aVar.f16266b;
+        this.f45601a = 14;
+        this.f45602b = aVar == null ? null : aVar.f16270b;
     }
 
     public b(int i10) {
-        this.f45557a = i10;
+        this.f45601a = i10;
         switch (i10) {
             case 12:
-                this.f45558b = new ConcurrentHashMap(16, 0.75f, 10);
-                this.f45559c = new ReferenceQueue();
+                this.f45602b = new ConcurrentHashMap(16, 0.75f, 10);
+                this.f45603c = new ReferenceQueue();
                 return;
             case 19:
-                this.f45558b = new v();
-                this.f45559c = new i4.a();
+                this.f45602b = new v();
+                this.f45603c = new i4.a();
                 return;
             case 27:
-                this.f45558b = new HashSet();
+                this.f45602b = new HashSet();
                 return;
             default:
                 d6.a c10 = d6.a.c(ApplicationLoader.applicationContext);
@@ -980,9 +980,9 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
                 } catch (RemoteException e7) {
                     d6.g.f8192c.a(e7, "Unable to call %s on %s.", "addCastStateListener", d6.y.class.getSimpleName());
                 }
-                this.f45558b = new la.h(21, false);
+                this.f45602b = new la.h(21, false);
                 d6.g b10 = c10.b();
-                this.f45559c = b10;
+                this.f45603c = b10;
                 b10.a(this);
                 U(b10.c());
                 return;
@@ -994,28 +994,28 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public b(Context context, int i10) {
-        this.f45557a = i10;
+        this.f45601a = i10;
         switch (i10) {
             case 24:
-                this.f45558b = context == null ? null : context.getApplicationContext();
+                this.f45602b = context == null ? null : context.getApplicationContext();
                 return;
             case 28:
                 l.h(context);
                 Resources resources = context.getResources();
-                this.f45558b = resources;
-                this.f45559c = resources.getResourcePackageName(2131689566);
+                this.f45602b = resources;
+                this.f45603c = resources.getResourcePackageName(2131689566);
                 return;
             default:
                 g2.o oVar = new g2.o();
-                this.f45558b = context.getApplicationContext();
-                this.f45559c = oVar;
+                this.f45602b = context.getApplicationContext();
+                this.f45603c = oVar;
                 return;
         }
     }
 
     public b(q qVar, SparseArray sparseArray) {
-        this.f45557a = 21;
-        this.f45558b = qVar;
+        this.f45601a = 21;
+        this.f45602b = qVar;
         SparseBooleanArray sparseBooleanArray = qVar.f3532a;
         SparseArray sparseArray2 = new SparseArray(sparseBooleanArray.size());
         for (int i10 = 0; i10 < sparseBooleanArray.size(); i10++) {
@@ -1024,42 +1024,42 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
             aVar.getClass();
             sparseArray2.append(a2, aVar);
         }
-        this.f45559c = sparseArray2;
+        this.f45603c = sparseArray2;
     }
 
     public b(Handler handler, l0 l0Var) {
-        this.f45557a = 1;
+        this.f45601a = 1;
         if (l0Var != null) {
             handler.getClass();
         } else {
             handler = null;
         }
-        this.f45558b = handler;
-        this.f45559c = l0Var;
+        this.f45602b = handler;
+        this.f45603c = l0Var;
     }
 
     public b(Animation animation) {
-        this.f45557a = 4;
-        this.f45558b = animation;
-        this.f45559c = null;
+        this.f45601a = 4;
+        this.f45602b = animation;
+        this.f45603c = null;
     }
 
     public b(Animator animator) {
-        this.f45557a = 4;
-        this.f45558b = null;
+        this.f45601a = 4;
+        this.f45602b = null;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f45559c = animatorSet;
+        this.f45603c = animatorSet;
         animatorSet.play(animator);
     }
 
     public b(ArrayList arrayList, ArrayList arrayList2) {
-        this.f45557a = 18;
+        this.f45601a = 18;
         int size = arrayList.size();
-        this.f45558b = new int[size];
-        this.f45559c = new float[size];
+        this.f45602b = new int[size];
+        this.f45603c = new float[size];
         for (int i10 = 0; i10 < size; i10++) {
-            ((int[]) this.f45558b)[i10] = ((Integer) arrayList.get(i10)).intValue();
-            ((float[]) this.f45559c)[i10] = ((Float) arrayList2.get(i10)).floatValue();
+            ((int[]) this.f45602b)[i10] = ((Integer) arrayList.get(i10)).intValue();
+            ((float[]) this.f45603c)[i10] = ((Float) arrayList2.get(i10)).floatValue();
         }
     }
 
@@ -1068,20 +1068,20 @@ public final class b implements h, f0, s, de.b, df.b, g2.g, n, m, v3, a0, Contin
     }
 
     public b(int i10, int i11) {
-        this.f45557a = 18;
-        this.f45558b = new int[]{i10, i11};
-        this.f45559c = new float[]{0.0f, 1.0f};
+        this.f45601a = 18;
+        this.f45602b = new int[]{i10, i11};
+        this.f45603c = new float[]{0.0f, 1.0f};
     }
 
     public b(int i10, int i11, int i12) {
-        this.f45557a = 18;
-        this.f45558b = new int[]{i10, i11, i12};
-        this.f45559c = new float[]{0.0f, 0.5f, 1.0f};
+        this.f45601a = 18;
+        this.f45602b = new int[]{i10, i11, i12};
+        this.f45603c = new float[]{0.0f, 0.5f, 1.0f};
     }
 
     public b(j4.d0 d0Var) {
-        this.f45557a = 22;
-        this.f45559c = d0Var;
-        this.f45558b = new a4.g(new byte[4], 4);
+        this.f45601a = 22;
+        this.f45603c = d0Var;
+        this.f45602b = new a4.g(new byte[4], 4);
     }
 }

@@ -31,15 +31,15 @@ import xh.x;
 import yh.s3;
 import yh.v0;
 public final class e implements Utilities.Callback2 {
-    public final int f20210a;
-    public final Object f20211b;
-    public final Object f20212c;
+    public final int f20214a;
+    public final Object f20215b;
+    public final Object f20216c;
     public final Object d;
 
     public e(Object obj, Object obj2, Object obj3, int i10) {
-        this.f20210a = i10;
-        this.f20211b = obj;
-        this.f20212c = obj2;
+        this.f20214a = i10;
+        this.f20215b = obj;
+        this.f20216c = obj2;
         this.d = obj3;
     }
 
@@ -47,33 +47,33 @@ public final class e implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         dd ddVar;
         dd ddVar2;
-        switch (this.f20210a) {
+        switch (this.f20214a) {
             case 0:
-                ((ConnectionsManager) this.f20211b).lambda$sendRequestTypedAndProcessUpdates$5((Executor) this.f20212c, (Utilities.Callback2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ((ConnectionsManager) this.f20215b).lambda$sendRequestTypedAndProcessUpdates$5((Executor) this.f20216c, (Utilities.Callback2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                e0.X((e0) this.f20211b, (of.e) this.f20212c, (TL_aicompose.TL_aiComposeTone) this.d);
+                e0.X((e0) this.f20215b, (of.e) this.f20216c, (TL_aicompose.TL_aiComposeTone) this.d);
                 return;
             case 2:
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                org.telegram.ui.Components.q.T((org.telegram.ui.Components.q) this.f20211b, (e6) this.f20212c, (TL_aicompose.AiComposeTone) this.d, (TLRPC.TL_error) obj2);
+                org.telegram.ui.Components.q.T((org.telegram.ui.Components.q) this.f20215b, (e6) this.f20216c, (TL_aicompose.AiComposeTone) this.d, (TLRPC.TL_error) obj2);
                 return;
             case 3:
                 TLRPC.Bool bool3 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                y.Q((y) this.f20211b, (of.e) this.f20212c, (b2) this.d);
+                y.Q((y) this.f20215b, (of.e) this.f20216c, (b2) this.d);
                 return;
             case 4:
-                b1 b1Var = (b1) this.f20211b;
-                ea eaVar = (ea) this.f20212c;
+                b1 b1Var = (b1) this.f20215b;
+                ea eaVar = (ea) this.f20216c;
                 BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = (BotWebViewContainer$BotWebViewProxy) this.d;
                 String str = (String) obj;
                 ArrayList arrayList = (ArrayList) obj2;
                 if (TextUtils.isEmpty(str)) {
                     b1Var.x(eaVar, "prepared_message_sent", null);
-                    g0 g0Var = b1Var.f43241c;
+                    g0 g0Var = b1Var.f43285c;
                     if (g0Var != null) {
                         g0Var.c();
                     }
@@ -83,8 +83,8 @@ public final class e implements Utilities.Callback2 {
                 b1Var.x(eaVar, "prepared_message_failed", b1.A(str, "error"));
                 return;
             case 5:
-                x xVar = (x) this.f20211b;
-                d4[] d4VarArr = (d4[]) this.f20212c;
+                x xVar = (x) this.f20215b;
+                d4[] d4VarArr = (d4[]) this.f20216c;
                 FrameLayout frameLayout = (FrameLayout) this.d;
                 View view = (View) obj;
                 CharSequence charSequence = (CharSequence) obj2;
@@ -123,12 +123,12 @@ public final class e implements Utilities.Callback2 {
                 d4Var2.u();
                 return;
             case 6:
-                h4 h4Var = (h4) this.f20211b;
+                h4 h4Var = (h4) this.f20215b;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
                 String str2 = (String) obj2;
-                ((of.e) this.f20212c).b();
+                ((of.e) this.f20216c).b();
                 if (((Boolean) obj).booleanValue()) {
-                    v0 v0Var = h4Var.f51273f0;
+                    v0 v0Var = h4Var.f51317f0;
                     if (v0Var != null) {
                         v0Var.run(tL_starGiftUnique);
                     }
@@ -137,11 +137,11 @@ public final class e implements Utilities.Callback2 {
                 }
                 return;
             case 7:
-                yh.y.S((yh.y) this.f20211b, (of.e) this.f20212c, (b2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                yh.y.S((yh.y) this.f20215b, (of.e) this.f20216c, (b2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                s3 s3Var = (s3) this.f20211b;
-                d4[] d4VarArr2 = (d4[]) this.f20212c;
+                s3 s3Var = (s3) this.f20215b;
+                d4[] d4VarArr2 = (d4[]) this.f20216c;
                 FrameLayout frameLayout2 = (FrameLayout) this.d;
                 View view2 = (View) obj;
                 CharSequence charSequence2 = (CharSequence) obj2;

@@ -8,34 +8,34 @@ import c3.q;
 import c3.s;
 import org.telegram.ui.ActionBar.b5;
 public final class d implements q {
-    public static final s f49042s = new Object();
-    public final o f49043a;
-    public final int f49044b;
-    public final b2.s f49045c;
+    public static final s f49086s = new Object();
+    public final o f49087a;
+    public final int f49088b;
+    public final b2.s f49089c;
     public final SparseArray d = new SparseArray();
-    public boolean f49046e;
-    public b5 f49047f;
+    public boolean f49090e;
+    public b5 f49091f;
     public long h;
-    public b0 f49048n;
-    public b2.s[] f49049r;
+    public b0 f49092n;
+    public b2.s[] f49093r;
 
     public d(o oVar, int i10, b2.s sVar) {
-        this.f49043a = oVar;
-        this.f49044b = i10;
-        this.f49045c = sVar;
+        this.f49087a = oVar;
+        this.f49088b = i10;
+        this.f49089c = sVar;
     }
 
     public final void a(b5 b5Var, long j3, long j10) {
-        this.f49047f = b5Var;
+        this.f49091f = b5Var;
         this.h = j10;
-        boolean z10 = this.f49046e;
-        o oVar = this.f49043a;
+        boolean z10 = this.f49090e;
+        o oVar = this.f49087a;
         if (!z10) {
             oVar.g(this);
             if (j3 != -9223372036854775807L) {
                 oVar.h(0L, j3);
             }
-            this.f49046e = true;
+            this.f49090e = true;
             return;
         }
         if (j3 == -9223372036854775807L) {
@@ -48,11 +48,11 @@ public final class d implements q {
             if (i10 < sparseArray.size()) {
                 c cVar = (c) sparseArray.valueAt(i10);
                 if (b5Var == null) {
-                    cVar.f49040e = cVar.f49039c;
+                    cVar.f49084e = cVar.f49083c;
                 } else {
-                    cVar.f49041f = j10;
-                    h0 w10 = b5Var.w(cVar.f49037a);
-                    cVar.f49040e = w10;
+                    cVar.f49085f = j10;
+                    h0 w10 = b5Var.w(cVar.f49081a);
+                    cVar.f49084e = w10;
                     b2.s sVar = cVar.d;
                     if (sVar != null) {
                         w10.b(sVar);
@@ -67,7 +67,7 @@ public final class d implements q {
 
     @Override
     public final void d2(b0 b0Var) {
-        this.f49048n = b0Var;
+        this.f49092n = b0Var;
     }
 
     @Override
@@ -77,26 +77,26 @@ public final class d implements q {
         SparseArray sparseArray = this.d;
         c cVar = (c) sparseArray.get(i10);
         if (cVar == null) {
-            if (this.f49049r == null) {
+            if (this.f49093r == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             e2.d.g(z10);
-            if (i11 == this.f49044b) {
-                sVar = this.f49045c;
+            if (i11 == this.f49088b) {
+                sVar = this.f49089c;
             } else {
                 sVar = null;
             }
             cVar = new c(i10, i11, sVar);
-            b5 b5Var = this.f49047f;
+            b5 b5Var = this.f49091f;
             long j3 = this.h;
             if (b5Var == null) {
-                cVar.f49040e = cVar.f49039c;
+                cVar.f49084e = cVar.f49083c;
             } else {
-                cVar.f49041f = j3;
+                cVar.f49085f = j3;
                 h0 w10 = b5Var.w(i11);
-                cVar.f49040e = w10;
+                cVar.f49084e = w10;
                 b2.s sVar2 = cVar.d;
                 if (sVar2 != null) {
                     w10.b(sVar2);
@@ -116,6 +116,6 @@ public final class d implements q {
             e2.d.h(sVar);
             sVarArr[i10] = sVar;
         }
-        this.f49049r = sVarArr;
+        this.f49093r = sVarArr;
     }
 }

@@ -8,17 +8,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class vr {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f42970a;
-    public final LinearLayout f42971b;
-    public final qr0 f42972c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f43014a;
+    public final LinearLayout f43015b;
+    public final qr0 f43016c;
 
-    public vr(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.xh0 xh0Var, qr0 qr0Var) {
-        this.f42972c = qr0Var;
+    public vr(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.yh0 yh0Var, qr0 qr0Var) {
+        this.f43016c = qr0Var;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
-        this.f42970a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f43014a = actionBarPopupWindow$ActionBarPopupWindowLayout;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
         org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
-        c10.setOnClickListener(new ur(xh0Var, 0));
+        c10.setOnClickListener(new ur(yh0Var, 0));
         c10.c(-328966, -328966);
         c10.setSelectorColor(268435455);
         View x5Var = new ai.x5(contextThemeWrapper, 11);
@@ -33,7 +33,7 @@ public final class vr {
         layoutParams.height = AndroidUtilities.dp(8.0f);
         x5Var.setLayoutParams(layoutParams);
         LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
-        this.f42971b = linearLayout;
+        this.f43015b = linearLayout;
         linearLayout.setOrientation(1);
         actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }

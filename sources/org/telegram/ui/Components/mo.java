@@ -8,45 +8,45 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class mo extends qi {
-    public final c00 f28867n;
-    public final qm0 f28868r;
-    public final int f28869s;
+    public final d00 f28858n;
+    public final rm0 f28859r;
+    public final int f28860s;
     public final org.telegram.ui.v7 v;
-    public int f28870w;
+    public int f28861w;
 
     public mo(int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, yi yiVar) {
         super(context, e6Var, yiVar);
-        this.f28869s = i10;
-        c00 c00Var = new c00(context, e6Var);
-        this.f28867n = c00Var;
-        c00Var.setText(LocaleController.getString(R.string.NoPhotos));
-        c00Var.setOnTouchListener(null);
-        c00Var.setTextSize(16);
-        addView(c00Var, w7.x5.d(-2.0f, -1));
-        c00Var.a(R.raw.media_forbidden, 150, 150);
-        TLRPC.Chat m12 = this.f30173b.m1();
+        this.f28860s = i10;
+        d00 d00Var = new d00(context, e6Var);
+        this.f28858n = d00Var;
+        d00Var.setText(LocaleController.getString(R.string.NoPhotos));
+        d00Var.setOnTouchListener(null);
+        d00Var.setTextSize(16);
+        addView(d00Var, w7.x5.d(-2.0f, -1));
+        d00Var.a(R.raw.media_forbidden, 150, 150);
+        TLRPC.Chat m12 = this.f30211b.m1();
         if (i10 == 1) {
-            c00Var.setText(ChatObject.getRestrictedErrorText(m12, 7));
+            d00Var.setText(ChatObject.getRestrictedErrorText(m12, 7));
         } else if (i10 == 3) {
-            c00Var.setText(ChatObject.getRestrictedErrorText(m12, 18));
+            d00Var.setText(ChatObject.getRestrictedErrorText(m12, 18));
         } else if (i10 == 4) {
-            c00Var.setText(ChatObject.getRestrictedErrorText(m12, 19));
+            d00Var.setText(ChatObject.getRestrictedErrorText(m12, 19));
         } else {
-            c00Var.setText(ChatObject.getRestrictedErrorText(m12, 22));
+            d00Var.setText(ChatObject.getRestrictedErrorText(m12, 22));
         }
-        c00Var.c();
-        qm0 qm0Var = new qm0(context, e6Var);
-        this.f28868r = qm0Var;
-        qm0Var.setSectionsType(2);
-        qm0Var.setVerticalScrollBarEnabled(false);
-        qm0Var.setLayoutManager(new s4.d0());
-        qm0Var.setClipToPadding(false);
+        d00Var.c();
+        rm0 rm0Var = new rm0(context, e6Var);
+        this.f28859r = rm0Var;
+        rm0Var.setSectionsType(2);
+        rm0Var.setVerticalScrollBarEnabled(false);
+        rm0Var.setLayoutManager(new s4.d0());
+        rm0Var.setClipToPadding(false);
         org.telegram.ui.v7 v7Var = new org.telegram.ui.v7(this, 4);
         this.v = v7Var;
-        qm0Var.setAdapter(v7Var);
-        qm0Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
-        qm0Var.setOnScrollListener(new ai.r(this, 23));
-        addView(qm0Var, w7.x5.d(-1.0f, -1));
+        rm0Var.setAdapter(v7Var);
+        rm0Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
+        rm0Var.setOnScrollListener(new ai.r(this, 23));
+        addView(rm0Var, w7.x5.d(-1.0f, -1));
     }
 
     @Override
@@ -56,23 +56,23 @@ public final class mo extends qi {
 
     @Override
     public int getCurrentItemTop() {
-        qm0 qm0Var = this.f28868r;
-        if (qm0Var.getChildCount() <= 0) {
+        rm0 rm0Var = this.f28859r;
+        if (rm0Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
         int i10 = 0;
-        View childAt = qm0Var.getChildAt(0);
-        am0 am0Var = (am0) qm0Var.G(childAt);
+        View childAt = rm0Var.getChildAt(0);
+        bm0 bm0Var = (bm0) rm0Var.G(childAt);
         int top = childAt.getTop() - AndroidUtilities.dp(8.0f);
-        if (top > 0 && am0Var != null && am0Var.b() == 0) {
+        if (top > 0 && bm0Var != null && bm0Var.b() == 0) {
             i10 = top;
         }
-        if (top < 0 || am0Var == null || am0Var.b() != 0) {
+        if (top < 0 || bm0Var == null || bm0Var.b() != 0) {
             top = i10;
         }
         int measuredHeight = (getMeasuredHeight() - top) - AndroidUtilities.dp(50.0f);
-        c00 c00Var = this.f28867n;
-        c00Var.setTranslationY(((measuredHeight - c00Var.getMeasuredHeight()) / 2) + top);
+        d00 d00Var = this.f28858n;
+        d00Var.setTranslationY(((measuredHeight - d00Var.getMeasuredHeight()) / 2) + top);
         return AndroidUtilities.dp(12.0f) + top;
     }
 
@@ -83,12 +83,12 @@ public final class mo extends qi {
 
     @Override
     public int getListTopPadding() {
-        return this.f28868r.getPaddingTop();
+        return this.f28859r.getPaddingTop();
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30173b.getSheetContainer().invalidate();
+        this.f30211b.getSheetContainer().invalidate();
     }
 }

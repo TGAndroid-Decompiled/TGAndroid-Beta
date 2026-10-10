@@ -60,7 +60,7 @@ public final class h1 implements Utilities.Callback2 {
                     if (!(webPage2 instanceof TLRPC.TL_webPageEmpty)) {
                         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                             if (webPage2 instanceof TLRPC.TL_webPagePending) {
-                                long j3 = webPage2.f20191id;
+                                long j3 = webPage2.f20195id;
                                 int i10 = this.f9093b;
                                 i1 i1Var = new i1(j3, notificationCenterDelegateArr, i10, f1Var);
                                 notificationCenterDelegateArr[0] = i1Var;
@@ -141,12 +141,12 @@ public final class h1 implements Utilities.Callback2 {
                     z11 = true;
                 }
                 if (!z11) {
-                    MessagesController.getInstance(i11).generateJoinMessage(chat2.f20038id, true);
+                    MessagesController.getInstance(i11).generateJoinMessage(chat2.f20042id, true);
                 }
                 AndroidUtilities.runOnUIThread(new nu0(d1Var, 5));
                 AndroidUtilities.runOnUIThread(new p8(i11, chat2, 15), 1000L);
                 MessagesStorage messagesStorage = MessagesStorage.getInstance(i11);
-                long j10 = chat2.f20038id;
+                long j10 = chat2.f20042id;
                 messagesStorage.updateDialogsWithDeletedMessages(-j10, j10, new ArrayList<>(), null);
                 return;
             case 3:
@@ -187,10 +187,10 @@ public final class h1 implements Utilities.Callback2 {
                 if (!"CANCELLED".equalsIgnoreCase(str2)) {
                     if ("EMPTY".equalsIgnoreCase(str2)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                        alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
-                        alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
+                        alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
+                        alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                        alertDialog$Builder.f20374a.setOnDismissListener(new r5(f3Var, 9));
+                        alertDialog$Builder.f20378a.setOnDismissListener(new r5(f3Var, 9));
                         alertDialog$Builder.o();
                         return;
                     }
@@ -209,7 +209,7 @@ public final class h1 implements Utilities.Callback2 {
                             } else if (U instanceof PrivacySettingsActivity) {
                                 f3Var.dismiss();
                                 PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) U;
-                                ArrayList arrayList3 = privacySettingsActivity.f34203e;
+                                ArrayList arrayList3 = privacySettingsActivity.f34241e;
                                 if (arrayList3 == null) {
                                     arrayList3 = new ArrayList();
                                 }
@@ -237,7 +237,7 @@ public final class h1 implements Utilities.Callback2 {
                 if (textView != null && wallettransaction != null) {
                     long j11 = wallettransaction.fee;
                     if (j11 > 0) {
-                        textView.setText(org.telegram.ui.Wallet.a5.l0(this.f9093b, j11, e6Var));
+                        textView.setText(org.telegram.ui.Wallet.b5.l0(this.f9093b, j11, e6Var));
                         return;
                     }
                     return;

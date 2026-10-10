@@ -1,23 +1,29 @@
 package org.telegram.ui.Components;
-public final class iu extends q6 {
-    public final int f27486d0;
-    public final EditTextBoldCursor f27487e0;
 
-    public iu(int i10, EditTextBoldCursor editTextBoldCursor) {
-        super(false, false, false);
-        this.f27486d0 = i10;
-        this.f27487e0 = editTextBoldCursor;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class iu implements ViewTreeObserver.OnPreDrawListener {
+    public final int f27458a;
+    public final View f27459b;
+
+    public iu(int i10, View view) {
+        this.f27458a = i10;
+        this.f27459b = view;
     }
 
     @Override
-    public final void invalidateSelf() {
-        switch (this.f27486d0) {
+    public final boolean onPreDraw() {
+        switch (this.f27458a) {
             case 0:
-                this.f27487e0.invalidate();
-                return;
+                org.telegram.ui.ActionBar.h4 h4Var = ((EditTextBoldCursor) this.f27459b).floatingActionMode;
+                if (h4Var != null) {
+                    h4Var.c();
+                    return true;
+                }
+                return true;
             default:
-                this.f27487e0.invalidate();
-                return;
+                ((o80) this.f27459b).invalidate();
+                return true;
         }
     }
 }

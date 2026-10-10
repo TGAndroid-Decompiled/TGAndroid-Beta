@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class gb1 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final StickersActivity f37972a;
+    public final StickersActivity f38016a;
 
     public gb1(StickersActivity stickersActivity) {
-        this.f37972a = stickersActivity;
+        this.f38016a = stickersActivity;
     }
 
     @Override
@@ -15,19 +15,19 @@ public final class gb1 implements Utilities.Callback5, Utilities.Callback5Return
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        StickersActivity.U(this.f37972a, (org.telegram.ui.Components.p61) obj, (View) obj2);
+        StickersActivity.U(this.f38016a, (org.telegram.ui.Components.q61) obj, (View) obj2);
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         boolean z10;
-        org.telegram.ui.Components.p61 p61Var = (org.telegram.ui.Components.p61) obj;
+        org.telegram.ui.Components.q61 q61Var = (org.telegram.ui.Components.q61) obj;
         View view = (View) obj2;
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        StickersActivity stickersActivity = this.f37972a;
-        if (stickersActivity.f34495x.isEmpty() && (p61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
+        StickersActivity stickersActivity = this.f38016a;
+        if (stickersActivity.f34533x.isEmpty() && (q61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
             stickersActivity.n0((org.telegram.ui.Cells.m8) view);
             z10 = true;
         } else {

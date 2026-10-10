@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class d2 extends z1 {
     public final o1 f4895b;
     public final c2 f4896c;
@@ -39,11 +39,11 @@ public final class d2 extends z1 {
         o1Var.setOnItemClickListener(new ai.g(this, 4));
         o1Var.setOnScrollListener(new ai.r(this, 2));
         s4.j jVar = new s4.j();
-        jVar.f47750c = 220L;
-        jVar.f47751e = 220L;
-        jVar.f47752f = 160L;
-        jVar.f47753g = 160L;
-        jVar.f47754i = hs.f27119g;
+        jVar.f47794c = 220L;
+        jVar.f47795e = 220L;
+        jVar.f47796f = 160L;
+        jVar.f47797g = 160L;
+        jVar.f47798i = is.f27444g;
         o1Var.setItemAnimator(jVar);
         addView(o1Var, w7.x5.d(-1.0f, -1));
         e6Var = ((org.telegram.ui.ActionBar.f3) r2Var).resourcesProvider;
@@ -94,7 +94,7 @@ public final class d2 extends z1 {
                 j2Var.F1(r2Var.f5883c);
                 k2Var.f5310f.D1();
                 if (k2Var.f5310f.getSelectedCategory() != null) {
-                    c2Var.H = k2Var.f5310f.getSelectedCategory().f31634a;
+                    c2Var.H = k2Var.f5310f.getSelectedCategory().f32528a;
                     androidx.fragment.app.a0 a0Var = c2Var.M;
                     AndroidUtilities.cancelRunOnUIThread(a0Var);
                     AndroidUtilities.runOnUIThread(a0Var);

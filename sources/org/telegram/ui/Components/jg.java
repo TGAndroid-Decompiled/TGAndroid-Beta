@@ -23,25 +23,25 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.StickersActivity;
-public final class jg implements az {
-    public final ChatActivityEnterView f27710a;
+public final class jg implements bz {
+    public final ChatActivityEnterView f27672a;
 
     public jg(ChatActivityEnterView chatActivityEnterView) {
-        this.f27710a = chatActivityEnterView;
+        this.f27672a = chatActivityEnterView;
     }
 
     @Override
     public final boolean A() {
-        return this.f27710a.f23997z3;
+        return this.f27672a.f24001z3;
     }
 
     public final void B(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11, MediaController.PhotoEntry photoEntry, boolean z11) {
         yg ygVar;
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         yg ygVar2 = chatActivityEnterView.F0;
         org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         org.telegram.ui.pn pnVar = chatActivityEnterView.V2;
-        if (pnVar != null && znVar != null && pnVar.f40849f) {
+        if (pnVar != null && znVar != null && pnVar.f40893f) {
             znVar.Vb();
         } else if (c() && i10 == 0) {
             g5.L(chatActivityEnterView.O2, znVar.a(), new org.telegram.ui.tq(this, view, obj, str, obj2, photoEntry, z11), chatActivityEnterView.W3);
@@ -53,7 +53,7 @@ public final class jg implements az {
                 } else {
                     ygVar = ygVar2;
                 }
-                qgVar.z1(ygVar, ygVar2.f33197a.getText(), true);
+                qgVar.z1(ygVar, ygVar2.f33187a.getText(), true);
             }
         } else {
             g5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new ie(this, obj, photoEntry, z10, i10, i11, z11, str, obj2));
@@ -62,12 +62,12 @@ public final class jg implements az {
 
     @Override
     public final long a() {
-        return this.f27710a.Q2;
+        return this.f27672a.Q2;
     }
 
     @Override
     public final boolean b() {
-        org.telegram.ui.zn znVar = this.f27710a.P2;
+        org.telegram.ui.zn znVar = this.f27672a.P2;
         if (znVar != null && znVar.G6()) {
             return true;
         }
@@ -76,7 +76,7 @@ public final class jg implements az {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.zn znVar = this.f27710a.P2;
+        org.telegram.ui.zn znVar = this.f27672a.P2;
         if (znVar != null && znVar.c()) {
             return true;
         }
@@ -85,10 +85,10 @@ public final class jg implements az {
 
     @Override
     public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
-        ig igVar = chatActivityEnterView.f23854a3;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
+        ig igVar = chatActivityEnterView.f23858a3;
         if (igVar != null && !igVar.isDismissed()) {
-            chatActivityEnterView.f23854a3.f32755e.b(stickerSet, inputStickerSet);
+            chatActivityEnterView.f23858a3.f33112e.b(stickerSet, inputStickerSet);
             return;
         }
         org.telegram.ui.ActionBar.n2 n2Var = chatActivityEnterView.P2;
@@ -100,12 +100,12 @@ public final class jg implements az {
             if (stickerSet != null) {
                 inputStickerSet = new TLRPC.TL_inputStickerSetID();
                 inputStickerSet.access_hash = stickerSet.access_hash;
-                inputStickerSet.f20058id = stickerSet.f20065id;
+                inputStickerSet.f20062id = stickerSet.f20069id;
             }
-            xy0 xy0Var = new xy0(chatActivityEnterView.O2, n2Var2, inputStickerSet, null, chatActivityEnterView, chatActivityEnterView.W3);
-            n2Var2.showDialog(xy0Var);
+            yy0 yy0Var = new yy0(chatActivityEnterView.O2, n2Var2, inputStickerSet, null, chatActivityEnterView, chatActivityEnterView.W3);
+            n2Var2.showDialog(yy0Var);
             if (z10) {
-                xy0Var.q0();
+                yy0Var.q0();
             }
         }
     }
@@ -113,10 +113,10 @@ public final class jg implements az {
     @Override
     public final void e(Object obj, Object obj2) {
         File file;
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         if (znVar != null) {
-            PhotoViewer.t1().K2(null, znVar, znVar.f44763ea);
+            PhotoViewer.t1().K2(null, znVar, znVar.f44807ea);
             if (obj instanceof TLRPC.Document) {
                 file = FileLoader.getInstance(chatActivityEnterView.Q).getPathToAttach((TLRPC.Document) obj);
             } else {
@@ -144,13 +144,13 @@ public final class jg implements az {
     @Override
     public final int f() {
         int threadMessageId;
-        threadMessageId = this.f27710a.getThreadMessageId();
+        threadMessageId = this.f27672a.getThreadMessageId();
         return threadMessageId;
     }
 
     @Override
     public final boolean g() {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         if (chatActivityEnterView.Q2 == UserConfig.getInstance(chatActivityEnterView.Q).getClientUserId()) {
             return true;
         }
@@ -159,15 +159,15 @@ public final class jg implements az {
 
     @Override
     public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         MediaDataController.getInstance(chatActivityEnterView.Q).toggleStickerSet(chatActivityEnterView.O2, stickerSetCovered, 0, chatActivityEnterView.P2, false, false);
     }
 
     @Override
     public final void i(int i10) {
         boolean z10;
-        int i11 = ChatActivityEnterView.f23850n5;
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        int i11 = ChatActivityEnterView.f23854n5;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         chatActivityEnterView.k1(i10, true);
         if (i10 != 0) {
             if (i10 == 1) {
@@ -189,7 +189,7 @@ public final class jg implements az {
 
     @Override
     public final boolean k() {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         TextView textView = chatActivityEnterView.U4;
         if (textView == null) {
             textView = chatActivityEnterView.E0;
@@ -203,7 +203,7 @@ public final class jg implements az {
 
     @Override
     public final void l(String str) {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         EditText editText = chatActivityEnterView.U4;
         if (editText == null) {
             editText = chatActivityEnterView.E0;
@@ -230,13 +230,13 @@ public final class jg implements az {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         yg ygVar = chatActivityEnterView.F0;
-        if (!chatActivityEnterView.f23923l5) {
-            ig igVar = chatActivityEnterView.f23854a3;
+        if (!chatActivityEnterView.f23927l5) {
+            ig igVar = chatActivityEnterView.f23858a3;
             if (igVar != null) {
                 igVar.dismiss();
-                chatActivityEnterView.f23854a3 = null;
+                chatActivityEnterView.f23858a3 = null;
             }
             if (chatActivityEnterView.G0 > 0 && !c()) {
                 qg qgVar = chatActivityEnterView.Z2;
@@ -244,12 +244,12 @@ public final class jg implements az {
                     if (view == null) {
                         view = ygVar;
                     }
-                    qgVar.z1(view, ygVar.f33197a.getText(), true);
+                    qgVar.z1(view, ygVar.f33187a.getText(), true);
                     return;
                 }
                 return;
             }
-            if (chatActivityEnterView.f23997z3) {
+            if (chatActivityEnterView.f24001z3) {
                 if (chatActivityEnterView.R1 != 0) {
                     chatActivityEnterView.k1(0, true);
                     chatActivityEnterView.U0.t(MessageObject.getStickerSetId(document), true);
@@ -267,44 +267,44 @@ public final class jg implements az {
     @Override
     public final void n() {
         Activity activity;
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         if (znVar != null && (activity = chatActivityEnterView.O2) != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, chatActivityEnterView.W3);
-            alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-            alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+            alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+            alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
             alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 17));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            znVar.showDialog(alertDialog$Builder.f20374a);
+            znVar.showDialog(alertDialog$Builder.f20378a);
         }
     }
 
     @Override
-    public final void o(l61 l61Var) {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+    public final void o(m61 m61Var) {
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         org.telegram.ui.ActionBar.n2 n2Var = chatActivityEnterView.P2;
         if (n2Var == null) {
             n2Var = LaunchActivity.R();
         }
         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
         if (n2Var2 != null) {
-            chatActivityEnterView.f23854a3 = new ig(this, chatActivityEnterView.getContext(), n2Var2, l61Var, chatActivityEnterView.W3);
+            chatActivityEnterView.f23858a3 = new ig(this, chatActivityEnterView.getContext(), n2Var2, m61Var, chatActivityEnterView.W3);
             qg qgVar = chatActivityEnterView.Z2;
             if (qgVar != null) {
                 qgVar.C(true);
             }
-            n2Var2.showDialog(chatActivityEnterView.f23854a3);
+            n2Var2.showDialog(chatActivityEnterView.f23858a3);
         }
     }
 
     @Override
     public final float p() {
-        return this.f27710a.f23978w0;
+        return this.f27672a.f23982w0;
     }
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f27710a.P2;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f27672a.P2;
         if (n2Var == null) {
             n2Var = LaunchActivity.R();
         }
@@ -313,14 +313,14 @@ public final class jg implements az {
 
     @Override
     public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         MediaDataController.getInstance(chatActivityEnterView.Q).toggleStickerSet(chatActivityEnterView.O2, stickerSetCovered, 2, chatActivityEnterView.P2, false, false);
     }
 
     @Override
     public final void s(int i10) {
         boolean z10;
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         chatActivityEnterView.Z2.a0();
         qg qgVar = chatActivityEnterView.Z2;
         if (i10 == 3) {
@@ -329,12 +329,12 @@ public final class jg implements az {
             z10 = false;
         }
         qgVar.p2(z10);
-        chatActivityEnterView.post(chatActivityEnterView.f23960s3);
+        chatActivityEnterView.post(chatActivityEnterView.f23964s3);
     }
 
     @Override
     public final void t(ArrayList arrayList) {
-        org.telegram.ui.zn znVar = this.f27710a.P2;
+        org.telegram.ui.zn znVar = this.f27672a.P2;
         if (znVar != null) {
             znVar.presentFragment(new StickersActivity(5, arrayList));
         }
@@ -342,7 +342,7 @@ public final class jg implements az {
 
     @Override
     public final void u() {
-        this.f27710a.invalidate();
+        this.f27672a.invalidate();
     }
 
     @Override
@@ -352,7 +352,7 @@ public final class jg implements az {
 
     @Override
     public final void w() {
-        org.telegram.ui.zn znVar = this.f27710a.P2;
+        org.telegram.ui.zn znVar = this.f27672a.P2;
         if (znVar != null) {
             znVar.presentFragment(new StickersActivity(0, null));
         }
@@ -360,7 +360,7 @@ public final class jg implements az {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         EditTextBoldCursor editTextBoldCursor = chatActivityEnterView.U4;
         if (editTextBoldCursor == null) {
             editTextBoldCursor = chatActivityEnterView.E0;
@@ -370,21 +370,21 @@ public final class jg implements az {
 
     @Override
     public final void y(long j3) {
-        ChatActivityEnterView chatActivityEnterView = this.f27710a;
+        ChatActivityEnterView chatActivityEnterView = this.f27672a;
         org.telegram.ui.zn znVar = chatActivityEnterView.P2;
         if (znVar != null) {
             if (AndroidUtilities.isTablet()) {
                 chatActivityEnterView.k0(false);
             }
             org.telegram.ui.s70 s70Var = new org.telegram.ui.s70(j3);
-            s70Var.e0(chatActivityEnterView.f23873d2);
+            s70Var.e0(chatActivityEnterView.f23877d2);
             znVar.presentFragment(s70Var);
         }
     }
 
     @Override
     public final boolean z() {
-        if (this.f27710a.R1 != 0) {
+        if (this.f27672a.R1 != 0) {
             return true;
         }
         return false;

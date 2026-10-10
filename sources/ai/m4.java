@@ -6,7 +6,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.rg;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.co;
@@ -24,7 +24,7 @@ public final class m4 extends ImageReceiver {
     public void invalidate() {
         switch (this.f1390a) {
             case 3:
-                View view = ((co) this.f1391b).f36711b;
+                View view = ((co) this.f1391b).f36755b;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -56,7 +56,7 @@ public final class m4 extends ImageReceiver {
                 return imageBitmapByKey;
             case 1:
                 if (drawable != null && i10 != 1) {
-                    bi.t(((hg.e1) ((z5) obj).H).f11210n.animate().alpha(1.0f).translationY(0.0f), hs.f27122k, 250L);
+                    bi.t(((hg.e1) ((z5) obj).H).f11210n.animate().alpha(1.0f).translationY(0.0f), is.f27447k, 250L);
                 }
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 2:
@@ -67,8 +67,8 @@ public final class m4 extends ImageReceiver {
                 org.telegram.ui.Components.s5 s5Var = (org.telegram.ui.Components.s5) obj;
                 s5Var.k();
                 boolean imageBitmapByKey2 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (s5Var.f30656m && hasImageLoaded()) {
-                    s5Var.f30656m = false;
+                if (s5Var.f30682m && hasImageLoaded()) {
+                    s5Var.f30682m = false;
                     AndroidUtilities.runOnUIThread(new rg(s5Var, 4));
                 }
                 return imageBitmapByKey2;
@@ -97,9 +97,9 @@ public final class m4 extends ImageReceiver {
                 int dp = AndroidUtilities.dp(6.0f);
                 iArr2[3] = dp;
                 iArr2[2] = dp;
-                qh.g gVar = u1Var.f23129b6;
+                qh.g gVar = u1Var.f23133b6;
                 if (gVar != null) {
-                    gVar.f46681b.setRoundRadius(u1Var.R0);
+                    gVar.f46725b.setRoundRadius(u1Var.R0);
                     return;
                 }
                 return;

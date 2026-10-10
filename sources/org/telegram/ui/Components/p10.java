@@ -1,84 +1,176 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class p10 extends FrameLayout {
-    public final r6 f29686a;
-    public final r6 f29687b;
+    public ValueAnimator E;
+    public jq F;
+    public Paint f29645a;
+    public q6 f29646b;
+    public q6 f29647c;
+    public float d;
+    public g6 f29648e;
+    public View f29649f;
+    public float h;
+    public boolean f29650n;
+    public ValueAnimator f29651r;
+    public float f29652s;
+    public ValueAnimator v;
+    public int f29653w;
+    public float f29654x;
+    public boolean f29655y;
 
-    public p10(Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        r6 r6Var = new r6(context, true, true, false);
-        this.f29686a = r6Var;
-        r6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        r6Var.setTypeface(AndroidUtilities.bold());
-        int i13 = org.telegram.ui.ActionBar.i6.L6;
-        r6Var.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i13, false));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+    public final void a(boolean z10) {
+        float f7;
+        if (this.f29650n != z10) {
+            ValueAnimator valueAnimator = this.f29651r;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f29651r = null;
+            }
+            float f10 = this.h;
+            this.f29650n = z10;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+            this.f29651r = ofFloat;
+            ofFloat.addUpdateListener(new o10(this, 2));
+            this.f29651r.addListener(new fa(9, this, z10));
+            this.f29651r.setDuration(320L);
+            this.f29651r.setInterpolator(is.h);
+            this.f29651r.start();
         }
-        r6Var.setGravity(i10);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(r6Var, w7.x5.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -1, i11 | 80));
-        r6 r6Var2 = new r6(context, true, true, true);
-        this.f29687b = r6Var2;
-        r6Var2.b(0.45f, 250L, hs.h);
-        r6Var2.setTextSize(AndroidUtilities.dp(15.0f));
-        r6Var2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i13, false));
-        if (LocaleController.isRTL) {
-            i12 = 3;
-        } else {
-            i12 = 5;
-        }
-        r6Var2.setGravity(i12);
-        addView(r6Var2, w7.x5.a(20.0f, 21.0f, 15.0f, 21.0f, 2.0f, -2, (LocaleController.isRTL ? 3 : 5) | 80));
-        WeakHashMap weakHashMap = r0.i0.f46766a;
-        new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 
-    public final void a(String str, Runnable runnable) {
-        r6 r6Var = this.f29687b;
-        r6Var.c(str, !LocaleController.isRTL, true);
-        r6Var.setOnClickListener(new w6(1, runnable));
-    }
-
-    public final void b(String str, boolean z10) {
-        boolean z11;
-        r6 r6Var = this.f29686a;
+    public final void b(CharSequence charSequence, boolean z10) {
+        q6 q6Var = this.f29646b;
         if (z10) {
-            r6Var.a();
+            q6Var.a();
         }
-        if (z10 && !LocaleController.isRTL) {
-            z11 = true;
-        } else {
-            z11 = false;
+        q6Var.t(charSequence, z10, true);
+        invalidate();
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        return false;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        Paint paint = this.f29645a;
+        q6 q6Var = this.f29647c;
+        q6 q6Var2 = this.f29646b;
+        this.f29649f.draw(canvas);
+        if (this.h > 0.0f) {
+            if (this.F == null) {
+                this.F = new jq(q6Var2.f30029a.getColor());
+            }
+            int dp = (int) ((1.0f - this.h) * AndroidUtilities.dp(24.0f));
+            this.F.setBounds(0, dp, getWidth(), getHeight() + dp);
+            this.F.setAlpha((int) (this.h * 255.0f));
+            this.F.draw(canvas);
+            invalidate();
         }
-        r6Var.c(str, z11, true);
+        float f7 = this.h;
+        if (f7 < 1.0f) {
+            if (f7 != 0.0f) {
+                canvas.save();
+                canvas.translate(0.0f, (int) (this.h * AndroidUtilities.dp(-24.0f)));
+                canvas.scale(1.0f, 1.0f - (this.h * 0.4f));
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            float c10 = q6Var2.c();
+            float d = this.f29648e.d(this.d, false);
+            float c11 = ((q6Var.c() + AndroidUtilities.dp(15.66f)) * d) + c10;
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set((int) (((getMeasuredWidth() - c11) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - q6Var2.f30034e) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) org.telegram.messenger.q.a(getMeasuredWidth() - c11, getWidth(), 2.0f, c10), (int) (((getMeasuredHeight() + q6Var2.f30034e) / 2.0f) - AndroidUtilities.dp(1.0f)));
+            q6Var2.B = (int) (AndroidUtilities.lerp(0.5f, 1.0f, this.f29654x) * (1.0f - this.h) * 255.0f);
+            q6Var2.setBounds(rect);
+            q6Var2.draw(canvas);
+            rect.set((int) (com.google.android.gms.internal.vision.e2.z(getMeasuredWidth(), c11, 2.0f, c10) + AndroidUtilities.dp(5.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (Math.max(AndroidUtilities.dp(9.0f), q6Var.c()) + com.google.android.gms.internal.vision.e2.z(getMeasuredWidth(), c11, 2.0f, c10) + AndroidUtilities.dp(13.0f)), (int) ((AndroidUtilities.dp(18.0f) + getMeasuredHeight()) / 2.0f));
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(rect);
+            if (this.f29652s != 1.0f) {
+                canvas.save();
+                float f10 = this.f29652s;
+                canvas.scale(f10, f10, rect.centerX(), rect.centerY());
+            }
+            paint.setAlpha((int) ((1.0f - this.h) * 255.0f * d * d));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+            rect.offset(-AndroidUtilities.dp(0.3f), -AndroidUtilities.dp(0.4f));
+            q6Var.B = (int) org.telegram.messenger.q.z(1.0f, this.h, 255.0f, d);
+            q6Var.setBounds(rect);
+            q6Var.draw(canvas);
+            if (this.f29652s != 1.0f) {
+                canvas.restore();
+            }
+            if (z10) {
+                canvas.restore();
+            }
+        }
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f29686a.getText());
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append((Object) this.f29646b.f30037i);
+        if (this.f29653w > 0) {
+            str = ", " + LocaleController.formatPluralString("Chats", this.f29653w, new Object[0]);
+        } else {
+            str = "";
+        }
+        sb2.append(str);
+        accessibilityNodeInfo.setContentDescription(sb2.toString());
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void setEnabled(boolean z10) {
+        float f7;
+        if (this.f29655y != z10) {
+            ValueAnimator valueAnimator = this.E;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.E = null;
+            }
+            float f10 = this.f29654x;
+            this.f29655y = z10;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+            this.E = ofFloat;
+            ofFloat.addUpdateListener(new o10(this, 0));
+            this.E.addListener(new ai.m2(1));
+            this.E.start();
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f29646b != drawable && this.f29647c != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

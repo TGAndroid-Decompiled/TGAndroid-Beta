@@ -18,7 +18,7 @@ public final class z4 extends org.telegram.ui.Components.y9 {
     public final void onDraw(Canvas canvas) {
         int dp;
         b5 b5Var = this.H;
-        if (b5Var.f21842r != null) {
+        if (b5Var.f21846r != null) {
             float dp2 = AndroidUtilities.dp(1.0f);
             b5Var.N.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
             ai.da daVar = b5Var.N;
@@ -27,9 +27,9 @@ public final class z4 extends org.telegram.ui.Components.y9 {
             daVar.v = true;
             daVar.f850o = false;
             daVar.J = this.G;
-            TL_stories.StoryItem storyItem = b5Var.f21842r;
+            TL_stories.StoryItem storyItem = b5Var.f21846r;
             daVar.d = storyItem;
-            ai.ja.h(storyItem.dialogId, canvas, this.f33156a, daVar);
+            ai.ja.h(storyItem.dialogId, canvas, this.f33135a, daVar);
             return;
         }
         super.onDraw(canvas);

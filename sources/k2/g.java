@@ -19,7 +19,7 @@ public final class g implements Runnable {
                 synchronized (gVar) {
                 }
                 String str = e2.d0.f8532a;
-                j2.f fVar = ((i2.c0) ((j) xVar.f16613c)).f11620a.f11683s;
+                j2.f fVar = ((i2.c0) ((j) xVar.f16617c)).f11620a.f11683s;
                 j2.a n10 = fVar.n((u2.f0) fVar.d.f7957e);
                 fVar.q(n10, 1013, new j2.c(n10, gVar, 11));
                 return;
@@ -27,7 +27,7 @@ public final class g implements Runnable {
                 n4.x xVar2 = this.f14467b;
                 i2.g gVar2 = this.f14468c;
                 String str2 = e2.d0.f8532a;
-                j2.f fVar2 = ((i2.c0) ((j) xVar2.f16613c)).f11620a.f11683s;
+                j2.f fVar2 = ((i2.c0) ((j) xVar2.f16617c)).f11620a.f11683s;
                 j2.a p5 = fVar2.p();
                 fVar2.q(p5, 1007, new j2.c(p5, gVar2, 4));
                 return;

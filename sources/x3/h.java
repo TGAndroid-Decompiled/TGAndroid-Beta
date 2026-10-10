@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import n6.t;
 public final class h extends i {
-    public static final byte[] f50573o = {79, 112, 117, 115, 72, 101, 97, 100};
-    public static final byte[] f50574p = {79, 112, 117, 115, 84, 97, 103, 115};
-    public boolean f50575n;
+    public static final byte[] f50617o = {79, 112, 117, 115, 72, 101, 97, 100};
+    public static final byte[] f50618p = {79, 112, 117, 115, 84, 97, 103, 115};
+    public boolean f50619n;
 
     public static boolean e(v vVar, byte[] bArr) {
         if (vVar.a() < bArr.length) {
@@ -33,40 +33,40 @@ public final class h extends i {
         if (bArr.length > 1) {
             b10 = bArr[1];
         }
-        return (this.f50582i * c3.b.k(b11, b10)) / 1000000;
+        return (this.f50626i * c3.b.k(b11, b10)) / 1000000;
     }
 
     @Override
     public final boolean c(v vVar, long j3, t tVar) {
-        if (e(vVar, f50573o)) {
+        if (e(vVar, f50617o)) {
             byte[] copyOf = Arrays.copyOf(vVar.f8584a, vVar.f8586c);
             int i10 = copyOf[9] & 255;
             ArrayList a2 = c3.b.a(copyOf);
-            if (((s) tVar.f16717b) == null) {
+            if (((s) tVar.f16721b) == null) {
                 r rVar = new r();
                 rVar.f3584p = r0.n("audio/ogg");
                 rVar.f3585q = r0.n("audio/opus");
                 rVar.I = i10;
                 rVar.J = 48000;
                 rVar.f3588t = a2;
-                tVar.f16717b = new s(rVar);
+                tVar.f16721b = new s(rVar);
                 return true;
             }
-        } else if (e(vVar, f50574p)) {
-            e2.d.h((s) tVar.f16717b);
-            if (!this.f50575n) {
-                this.f50575n = true;
+        } else if (e(vVar, f50618p)) {
+            e2.d.h((s) tVar.f16721b);
+            if (!this.f50619n) {
+                this.f50619n = true;
                 vVar.K(8);
                 p0 r10 = c3.b.r(i0.w((String[]) c3.b.v(vVar, false, false).f297b));
                 if (r10 != null) {
-                    r a10 = ((s) tVar.f16717b).a();
-                    a10.f3579k = r10.b(((s) tVar.f16717b).f3637l);
-                    tVar.f16717b = new s(a10);
+                    r a10 = ((s) tVar.f16721b).a();
+                    a10.f3579k = r10.b(((s) tVar.f16721b).f3637l);
+                    tVar.f16721b = new s(a10);
                     return true;
                 }
             }
         } else {
-            e2.d.h((s) tVar.f16717b);
+            e2.d.h((s) tVar.f16721b);
             return false;
         }
         return true;
@@ -76,7 +76,7 @@ public final class h extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f50575n = false;
+            this.f50619n = false;
         }
     }
 }

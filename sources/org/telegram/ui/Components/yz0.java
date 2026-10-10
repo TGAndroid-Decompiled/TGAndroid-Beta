@@ -1,26 +1,47 @@
 package org.telegram.ui.Components;
-public final class yz0 extends c01 {
-    public int d;
+public final class yz0 {
+    public final int f33449a;
 
-    @Override
-    public final int a(l01 l01Var, e01 e01Var, xz0 xz0Var, int i10, boolean z10) {
-        return Math.max(0, this.f25199a - xz0Var.a(e01Var, i10));
+    public yz0(int i10) {
+        this.f33449a = i10;
     }
 
-    @Override
-    public final void b(int i10, int i11) {
-        super.b(i10, i11);
-        this.d = Math.max(this.d, i10 + i11);
+    public final int a(f01 f01Var, int i10) {
+        switch (this.f33449a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
+        }
     }
 
-    @Override
-    public final void c() {
-        super.c();
-        this.d = Integer.MIN_VALUE;
+    public final int b(f01 f01Var, int i10) {
+        switch (this.f33449a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
     }
 
-    @Override
-    public final int d(boolean z10) {
-        return Math.max(super.d(z10), this.d);
+    public int c(int i10, int i11) {
+        switch (this.f33449a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

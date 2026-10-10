@@ -10,8 +10,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pm0;
-public abstract class u3 extends pm0 {
+import org.telegram.ui.Components.qm0;
+public abstract class u3 extends qm0 {
     public boolean d;
     public String f6058f;
     public String h;
@@ -80,7 +80,7 @@ public abstract class u3 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        org.telegram.ui.Components.y9 y9Var = (org.telegram.ui.Components.y9) d1Var.f47658a;
+        org.telegram.ui.Components.y9 y9Var = (org.telegram.ui.Components.y9) d1Var.f47702a;
         TLObject tLObject = (TLObject) this.f6056c.get(i10);
         boolean z10 = tLObject instanceof TLRPC.Document;
         ColorDrawable colorDrawable = this.f6061s;

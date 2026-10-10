@@ -8,53 +8,53 @@ import org.telegram.messenger.lb;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.cl0;
 public final class q4 implements Utilities.Callback {
-    public final m5 f53066a;
-    public final long f53067b;
-    public final boolean[] f53068c;
+    public final m5 f53110a;
+    public final long f53111b;
+    public final boolean[] f53112c;
     public final Utilities.Callback d;
-    public final Context f53069e;
-    public final org.telegram.ui.ActionBar.e6 f53070f;
-    public final boolean f53071g;
+    public final Context f53113e;
+    public final org.telegram.ui.ActionBar.e6 f53114f;
+    public final boolean f53115g;
     public final String h;
-    public final MessageObject f53072i;
-    public final TLRPC.InputInvoice f53073j;
-    public final TLRPC.TL_payments_paymentFormStars f53074k;
-    public final int f53075l;
-    public final long f53076m;
+    public final MessageObject f53116i;
+    public final TLRPC.InputInvoice f53117j;
+    public final TLRPC.TL_payments_paymentFormStars f53118k;
+    public final int f53119l;
+    public final long f53120m;
 
     public q4(m5 m5Var, long j3, boolean[] zArr, Utilities.Callback callback, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, String str, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, int i10, long j10) {
-        this.f53066a = m5Var;
-        this.f53067b = j3;
-        this.f53068c = zArr;
+        this.f53110a = m5Var;
+        this.f53111b = j3;
+        this.f53112c = zArr;
         this.d = callback;
-        this.f53069e = context;
-        this.f53070f = e6Var;
-        this.f53071g = z10;
+        this.f53113e = context;
+        this.f53114f = e6Var;
+        this.f53115g = z10;
         this.h = str;
-        this.f53072i = messageObject;
-        this.f53073j = inputInvoice;
-        this.f53074k = tL_payments_paymentFormStars;
-        this.f53075l = i10;
-        this.f53076m = j10;
+        this.f53116i = messageObject;
+        this.f53117j = inputInvoice;
+        this.f53118k = tL_payments_paymentFormStars;
+        this.f53119l = i10;
+        this.f53120m = j10;
     }
 
     @Override
     public final void run(Object obj) {
         Utilities.Callback callback = (Utilities.Callback) obj;
-        m5 m5Var = this.f53066a;
-        long j3 = m5Var.f52884f.amount;
-        long j10 = this.f53067b;
+        m5 m5Var = this.f53110a;
+        long j3 = m5Var.f52928f.amount;
+        long j10 = this.f53111b;
         int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
-        boolean[] zArr = this.f53068c;
+        boolean[] zArr = this.f53112c;
         Utilities.Callback callback2 = this.d;
-        MessageObject messageObject = this.f53072i;
-        TLRPC.InputInvoice inputInvoice = this.f53073j;
-        TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = this.f53074k;
-        int i11 = this.f53075l;
+        MessageObject messageObject = this.f53116i;
+        TLRPC.InputInvoice inputInvoice = this.f53117j;
+        TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = this.f53118k;
+        int i11 = this.f53119l;
         if (i10 < 0) {
-            boolean starsPurchaseAvailable = MessagesController.getInstance(m5Var.f52880a).starsPurchaseAvailable();
-            Context context = this.f53069e;
-            org.telegram.ui.ActionBar.e6 e6Var = this.f53070f;
+            boolean starsPurchaseAvailable = MessagesController.getInstance(m5Var.f52924a).starsPurchaseAvailable();
+            Context context = this.f53113e;
+            org.telegram.ui.ActionBar.e6 e6Var = this.f53114f;
             int i12 = 0;
             if (!starsPurchaseAvailable) {
                 if (callback != null) {
@@ -68,10 +68,10 @@ public final class q4 implements Utilities.Callback {
                 return;
             }
             boolean[] zArr2 = {false};
-            if (this.f53071g) {
+            if (this.f53115g) {
                 i12 = 9;
             }
-            e7 e7Var = new e7(context, e6Var, j10, i12, this.h, new lb(m5Var, zArr2, messageObject, inputInvoice, tL_payments_paymentFormStars, zArr, i11, callback2, callback), this.f53076m);
+            e7 e7Var = new e7(context, e6Var, j10, i12, this.h, new lb(m5Var, zArr2, messageObject, inputInvoice, tL_payments_paymentFormStars, zArr, i11, callback2, callback), this.f53120m);
             e7Var.setOnDismissListener(new cl0(m5Var, callback, zArr2, zArr, callback2, 3));
             e7Var.show();
             return;

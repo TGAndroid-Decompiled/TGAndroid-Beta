@@ -4,15 +4,15 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import org.telegram.messenger.MediaDataController;
 public final class ea extends GestureDetector.SimpleOnGestureListener {
-    public final fa f22054a;
+    public final fa f22058a;
 
     public ea(fa faVar) {
-        this.f22054a = faVar;
+        this.f22058a = faVar;
     }
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        fa faVar = this.f22054a;
+        fa faVar = this.f22058a;
         int i10 = faVar.I7;
         if (faVar.Je != 2 || MediaDataController.getInstance(i10).getDoubleTapReaction() == null) {
             return false;
@@ -23,7 +23,7 @@ public final class ea extends GestureDetector.SimpleOnGestureListener {
         zg.j0.b(false);
         if (selectReaction) {
             ga gaVar = faVar.Ke;
-            zg.j0.d(gaVar.f22170r, null, gaVar.f22167e[1], null, motionEvent.getX(), motionEvent.getY(), zg.n0.b(MediaDataController.getInstance(i10).getDoubleTapReaction()), faVar.I7, 0);
+            zg.j0.d(gaVar.f22174r, null, gaVar.f22171e[1], null, motionEvent.getX(), motionEvent.getY(), zg.n0.b(MediaDataController.getInstance(i10).getDoubleTapReaction()), faVar.I7, 0);
             zg.j0.f();
         }
         faVar.getViewTreeObserver().addOnPreDrawListener(new da(this, 0));

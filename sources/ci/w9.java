@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.widget.LinearLayout;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class w9 extends LinearLayout {
     public float f6220a;
     public float f6221b;
@@ -46,7 +46,7 @@ public final class w9 extends LinearLayout {
             ofFloat.addUpdateListener(new v9(this, 0));
             this.f6222c.addListener(new ai.n(12, this, z10));
             this.f6222c.setDuration(320L);
-            this.f6222c.setInterpolator(hs.h);
+            this.f6222c.setInterpolator(is.h);
             this.f6222c.start();
             return;
         }
@@ -66,7 +66,7 @@ public final class w9 extends LinearLayout {
         org.telegram.ui.ActionBar.e6 e6Var;
         float f7;
         super.dispatchDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.i6.f20741a7;
+        int i10 = org.telegram.ui.ActionBar.i6.f20745a7;
         y9 y9Var = this.h;
         e6Var = ((org.telegram.ui.ActionBar.f3) y9Var.W).resourcesProvider;
         int w02 = org.telegram.ui.ActionBar.i6.w0(i10, e6Var);

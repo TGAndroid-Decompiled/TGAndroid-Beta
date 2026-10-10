@@ -4,27 +4,27 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 import org.telegram.messenger.ContactsController;
 public final class y80 implements org.telegram.ui.ActionBar.a2 {
-    public final int f44277a;
-    public final int f44278b;
-    public final HashMap f44279c;
+    public final int f44321a;
+    public final int f44322b;
+    public final HashMap f44323c;
     public final boolean d;
-    public final boolean f44280e;
+    public final boolean f44324e;
 
     public y80(int i10, HashMap hashMap, boolean z10, boolean z11, int i11) {
-        this.f44277a = i11;
-        this.f44278b = i10;
-        this.f44279c = hashMap;
+        this.f44321a = i11;
+        this.f44322b = i10;
+        this.f44323c = hashMap;
         this.d = z10;
-        this.f44280e = z11;
+        this.f44324e = z11;
     }
 
     @Override
     public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11 = this.f44277a;
-        boolean z10 = this.f44280e;
+        int i11 = this.f44321a;
+        boolean z10 = this.f44324e;
         boolean z11 = this.d;
-        HashMap<String, ContactsController.Contact> hashMap = this.f44279c;
-        int i12 = this.f44278b;
+        HashMap<String, ContactsController.Contact> hashMap = this.f44323c;
+        int i12 = this.f44322b;
         switch (i11) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;

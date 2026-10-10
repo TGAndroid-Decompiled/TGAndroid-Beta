@@ -104,7 +104,7 @@ public final class h extends MenuInflater {
                         } else if (name2.equals("item")) {
                             if (!gVar.h) {
                                 n nVar = gVar.f14310z;
-                                if (nVar != null && nVar.f15282a.hasSubMenu()) {
+                                if (nVar != null && nVar.f15286a.hasSubMenu()) {
                                     gVar.h = true;
                                     gVar.b(menu2.addSubMenu(gVar.f14289b, gVar.f14294i, gVar.f14295j, gVar.f14296k).getItem());
                                 } else {

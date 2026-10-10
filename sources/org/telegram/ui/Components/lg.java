@@ -8,10 +8,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class lg implements Runnable {
-    public final ChatActivityEnterView f28451a;
+    public final ChatActivityEnterView f28337a;
 
     public lg(ChatActivityEnterView chatActivityEnterView) {
-        this.f28451a = chatActivityEnterView;
+        this.f28337a = chatActivityEnterView;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class lg implements Runnable {
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f28451a;
+        ChatActivityEnterView chatActivityEnterView = this.f28337a;
         df dfVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         qg qgVar = chatActivityEnterView.Z2;
@@ -29,15 +29,15 @@ public final class lg implements Runnable {
             qgVar.J();
             chatActivityEnterView.J3 = true;
             chatActivityEnterView.I3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23915k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23919k1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f23915k1.setTranslationY(0.0f);
+                chatActivityEnterView.f23919k1.setTranslationY(0.0f);
             }
             SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.f23868c3 = null;
-            chatActivityEnterView.f23861b3 = null;
-            if (chatActivityEnterView.f23866c1) {
+            chatActivityEnterView.f23872c3 = null;
+            chatActivityEnterView.f23865b3 = null;
+            if (chatActivityEnterView.f23870c1) {
                 if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                     z10 = true;
                 } else {
@@ -64,12 +64,12 @@ public final class lg implements Runnable {
                         }
                         zg zgVar = chatActivityEnterView.Y0;
                         if (zgVar != null) {
-                            zgVar.f33567a = false;
+                            zgVar.f33592a = false;
                             zgVar.d = 0L;
-                            zgVar.f33570e = 0L;
+                            zgVar.f33595e = 0L;
                             zgVar.h = 0L;
-                            zgVar.f33572n = 0L;
-                            zgVar.f33568b = false;
+                            zgVar.f33597n = 0L;
+                            zgVar.f33593b = false;
                             return;
                         }
                         return;

@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class ad extends View {
     public final Paint f4737a;
     public final org.telegram.ui.Components.q6 f4738b;
@@ -23,15 +23,15 @@ public final class ad extends View {
         paint.setColor(Integer.MIN_VALUE);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(false, true, true);
         this.f4738b = q6Var;
-        q6Var.n(0.2f, 200L, hs.h);
+        q6Var.n(0.2f, 200L, is.h);
         q6Var.w(AndroidUtilities.dp(13.0f));
         q6Var.u(-1);
         q6Var.x(AndroidUtilities.bold());
         q6Var.setCallback(this);
-        q6Var.f30065b = 1;
+        q6Var.f30031b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, q6Var.f30071i)) {
+        if (!TextUtils.equals(sb2, q6Var.f30037i)) {
             q6Var.a();
             q6Var.t(sb2, false, true);
         }
@@ -44,7 +44,7 @@ public final class ad extends View {
         this.f4739c = false;
         animate().cancel();
         if (z10) {
-            bi.t(animate().translationY(AndroidUtilities.dp(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), hs.h, 220L);
+            bi.t(animate().translationY(AndroidUtilities.dp(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), is.h, 220L);
             return;
         }
         setTranslationY(AndroidUtilities.dp(6.0f));

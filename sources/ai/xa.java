@@ -20,8 +20,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.mx0;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.nx0;
 public final class xa extends View implements org.telegram.ui.Cells.x9 {
     public int E;
     public int F;
@@ -80,9 +80,9 @@ public final class xa extends View implements org.telegram.ui.Cells.x9 {
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setBreakStrategy(0).setHyphenationFrequency(0);
             if (LocaleController.isRTL) {
-                alignment = mx0.a();
+                alignment = nx0.a();
             } else {
-                Layout.Alignment[] alignmentArr = mx0.f28966a;
+                Layout.Alignment[] alignmentArr = nx0.f29263a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -123,7 +123,7 @@ public final class xa extends View implements org.telegram.ui.Cells.x9 {
             wa waVar4 = waVarArr[1];
             wa waVar5 = waVarArr[0];
             waVar4.f1882q = waVar5.f1882q;
-            waVar4.f1883r.d(waVar5.f1883r.f26599c, true);
+            waVar4.f1883r.d(waVar5.f1883r.f26616c, true);
             waVarArr[0].g(charSequence, taVar, taVar2);
             wa waVar6 = waVarArr[0];
             waVar6.f1882q = z10;
@@ -139,7 +139,7 @@ public final class xa extends View implements org.telegram.ui.Cells.x9 {
             ofFloat.addUpdateListener(new a(this, 13));
             this.I.addListener(new b(this, 10));
             this.I.setDuration(180L);
-            this.I.setInterpolator(hs.f27119g);
+            this.I.setInterpolator(is.f27444g);
             this.I.start();
             return;
         }

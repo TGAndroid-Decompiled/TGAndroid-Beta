@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.PhotoViewer;
-public final class km extends qm0 {
+public final class km extends rm0 {
     public final int V2;
     public final ChatAttachAlertPhotoLayout W2;
 
@@ -18,7 +18,7 @@ public final class km extends qm0 {
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         switch (this.V2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f30173b.f33226e2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f30211b.f33233e2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -44,7 +44,7 @@ public final class km extends qm0 {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (this.V2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f30173b.f33226e2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f30211b.f33233e2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

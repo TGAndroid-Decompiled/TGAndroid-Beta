@@ -6,18 +6,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class fj1 extends org.telegram.ui.ActionBar.j {
-    public final WallpapersListActivity f37624a;
+    public final WallpapersListActivity f37668a;
 
     public fj1(WallpapersListActivity wallpapersListActivity) {
-        this.f37624a = wallpapersListActivity;
+        this.f37668a = wallpapersListActivity;
     }
 
     @Override
     public final void b(int i10) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        WallpapersListActivity wallpapersListActivity = this.f37624a;
-        LongSparseArray longSparseArray = wallpapersListActivity.f35778i0;
+        WallpapersListActivity wallpapersListActivity = this.f37668a;
+        LongSparseArray longSparseArray = wallpapersListActivity.f35822i0;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.n2) wallpapersListActivity).actionBar;
             if (kVar.t()) {
@@ -31,15 +31,15 @@ public final class fj1 extends org.telegram.ui.ActionBar.j {
         } else if (i10 == 4) {
             if (wallpapersListActivity.getParentActivity() != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wallpapersListActivity.getParentActivity());
-                alertDialog$Builder.f20374a.R = LocaleController.formatPluralString("DeleteBackground", longSparseArray.size(), new Object[0]);
-                alertDialog$Builder.f20374a.T = LocaleController.formatString("DeleteChatBackgroundsAlert", R.string.DeleteChatBackgroundsAlert, new Object[0]);
+                alertDialog$Builder.f20378a.R = LocaleController.formatPluralString("DeleteBackground", longSparseArray.size(), new Object[0]);
+                alertDialog$Builder.f20378a.T = LocaleController.formatString("DeleteChatBackgroundsAlert", R.string.DeleteChatBackgroundsAlert, new Object[0]);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new dj1(this));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
                 wallpapersListActivity.showDialog(b2Var);
                 TextView textView = (TextView) b2Var.d(-1);
                 if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21037q7, false));
+                    textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21041q7, false));
                 }
             }
         } else if (i10 == 3) {

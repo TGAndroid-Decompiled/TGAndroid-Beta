@@ -10,7 +10,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class gk extends org.telegram.ui.Components.pb0 {
+public final class gk extends org.telegram.ui.Components.qb0 {
     public boolean V;
     public final zn W;
 
@@ -23,7 +23,7 @@ public final class gk extends org.telegram.ui.Components.pb0 {
     @Override
     public final boolean a() {
         zn znVar = this.W;
-        if (znVar.R.getVisibility() == 0 && !znVar.f44866n3) {
+        if (znVar.R.getVisibility() == 0 && !znVar.f44910n3) {
             return false;
         }
         return true;
@@ -58,7 +58,7 @@ public final class gk extends org.telegram.ui.Components.pb0 {
             }
             String str2 = botInlineResult.description;
             String str3 = botInlineResult.content.url;
-            org.telegram.ui.Components.lv.J(znVar, null, kiVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, znVar.C9());
+            org.telegram.ui.Components.mv.J(znVar, null, kiVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, znVar.C9());
         }
     }
 
@@ -84,12 +84,12 @@ public final class gk extends org.telegram.ui.Components.pb0 {
             org.telegram.ui.Components.ze zeVar = znVar.Y.P1;
             if (zeVar != null) {
                 if (z10) {
-                    zeVar.f32421e = true;
-                    zeVar.f32419b = System.currentTimeMillis();
+                    zeVar.f32485e = true;
+                    zeVar.f32483b = System.currentTimeMillis();
                     zeVar.invalidateSelf();
                     return;
                 }
-                zeVar.f32421e = false;
+                zeVar.f32485e = false;
             }
         }
     }
@@ -97,14 +97,14 @@ public final class gk extends org.telegram.ui.Components.pb0 {
     @Override
     public final void m() {
         zn znVar = this.W;
-        if (znVar.Z4 && ((getAdapter().R == null || znVar.f44705a5 || znVar.f44719b5) && znVar.h != null && getAdapter().R != null)) {
+        if (znVar.Z4 && ((getAdapter().R == null || znVar.f44749a5 || znVar.f44763b5) && znVar.h != null && getAdapter().R != null)) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!globalMainSettings.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar.getParentActivity(), 0, znVar.f44763ea);
-                alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar.getParentActivity(), 0, znVar.f44807ea);
+                alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                znVar.showDialog(alertDialog$Builder.f20374a);
+                znVar.showDialog(alertDialog$Builder.f20378a);
                 globalMainSettings.edit().putBoolean("secretbot", true).commit();
             }
         }
@@ -116,13 +116,13 @@ public final class gk extends org.telegram.ui.Components.pb0 {
         boolean z11;
         if (this.V != z10) {
             zn znVar = this.W;
-            org.telegram.ui.Components.oz0 oz0Var = znVar.f44741d1;
+            org.telegram.ui.Components.pz0 pz0Var = znVar.f44785d1;
             if (!znVar.isInPreviewMode() && z10) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            AndroidUtilities.updateViewShow(oz0Var, z11, false, true);
+            AndroidUtilities.updateViewShow(pz0Var, z11, false, true);
             this.V = z10;
         }
     }

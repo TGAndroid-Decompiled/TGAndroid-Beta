@@ -5,15 +5,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 public final class de0 implements NotificationCenter.NotificationCenterDelegate {
-    public final fe0 f36941a;
+    public final fe0 f36985a;
 
     public de0(fe0 fe0Var) {
-        this.f36941a = fe0Var;
+        this.f36985a = fe0Var;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        fe0 fe0Var = this.f36941a;
+        fe0 fe0Var = this.f36985a;
         int intValue = ((Integer) objArr[0]).intValue();
         ((Integer) objArr[1]).getClass();
         Intent intent = (Intent) objArr[2];

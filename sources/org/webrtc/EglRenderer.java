@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.og0;
+import org.telegram.ui.Components.cf0;
 import org.telegram.ui.ha0;
 import org.webrtc.EglBase;
 import org.webrtc.GlGenericDrawer;
@@ -493,7 +493,7 @@ public class EglRenderer implements VideoSink {
                         }
                     });
                     this.renderThreadHandler = handlerWithExceptionCallback;
-                    handlerWithExceptionCallback.post(new og0(this, context, iArr, 26));
+                    handlerWithExceptionCallback.post(new cf0(this, context, iArr, 27));
                     this.renderThreadHandler.post(this.eglSurfaceCreationRunnable);
                 } else {
                     throw new IllegalStateException(this.name + "Already initialized");
@@ -610,7 +610,7 @@ public class EglRenderer implements VideoSink {
                     return;
                 }
                 if (Thread.currentThread() != this.renderThreadHandler.getLooper().getThread()) {
-                    postToRenderThread(new og0(this, countDownLatch, frameListener, 27));
+                    postToRenderThread(new cf0(this, countDownLatch, frameListener, 28));
                     ThreadUtils.awaitUninterruptibly(countDownLatch);
                     return;
                 }

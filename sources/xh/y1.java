@@ -12,26 +12,26 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.Components.b6;
-import org.telegram.ui.Components.f91;
-import org.telegram.ui.Components.rs0;
+import org.telegram.ui.Components.g91;
+import org.telegram.ui.Components.ss0;
 import yh.d5;
 import yh.e5;
-public final class y1 extends f91 {
-    public final int f51608a;
-    public final e6 f51609b;
-    public final rs0 f51610c;
+public final class y1 extends g91 {
+    public final int f51652a;
+    public final e6 f51653b;
+    public final ss0 f51654c;
 
-    public y1(rs0 rs0Var, int i10, e6 e6Var) {
-        this.f51610c = rs0Var;
-        this.f51608a = i10;
-        this.f51609b = e6Var;
+    public y1(ss0 ss0Var, int i10, e6 e6Var) {
+        this.f51654c = ss0Var;
+        this.f51652a = i10;
+        this.f51653b = e6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        rs0 rs0Var = this.f51610c;
-        u1 u1Var = rs0Var.N;
-        d5 d5Var = rs0Var.f51514e;
+        ss0 ss0Var = this.f51654c;
+        u1 u1Var = ss0Var.N;
+        d5 d5Var = ss0Var.f51558e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -47,7 +47,7 @@ public final class y1 extends f91 {
         }
         d5Var.getClass();
         HashMap hashMap = new HashMap();
-        ArrayList arrayList3 = d5Var.f52388e;
+        ArrayList arrayList3 = d5Var.f52432e;
         int size2 = arrayList3.size();
         int i12 = 0;
         while (i12 < size2) {
@@ -72,12 +72,12 @@ public final class y1 extends f91 {
         arrayList3.clear();
         arrayList3.addAll(arrayList4);
         d5Var.j();
-        o2 currentPage = rs0Var.getCurrentPage();
+        o2 currentPage = ss0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
-                i10 = d5Var.f(currentPage.f51438e.d) + 1;
+                i10 = d5Var.f(currentPage.f51482e.d) + 1;
             }
-            rs0Var.f51516n.e(0.0f, i10, i10);
+            ss0Var.f51560n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(u1Var);
         AndroidUtilities.runOnUIThread(u1Var, 1000L);
@@ -87,12 +87,12 @@ public final class y1 extends f91 {
     public final void b(View view, int i10, int i11) {
         e5 e5Var;
         boolean z10;
-        rs0 rs0Var = this.f51610c;
-        d5 d5Var = rs0Var.f51514e;
+        ss0 ss0Var = this.f51654c;
+        d5 d5Var = ss0Var.f51558e;
         o2 o2Var = (o2) view;
         int i12 = 0;
         if (i11 == 0) {
-            e5Var = rs0Var.d;
+            e5Var = ss0Var.d;
             z10 = false;
         } else {
             int i13 = i10 - 1;
@@ -108,19 +108,19 @@ public final class y1 extends f91 {
             z10 = true;
         }
         o2Var.d = z10;
-        o2Var.f51438e = e5Var;
+        o2Var.f51482e = e5Var;
         if (e5Var != null) {
             e5Var.a();
         }
         o2Var.f(false);
         LinearLayout linearLayout = o2Var.E;
         if (linearLayout != null) {
-            if (!o2Var.f51435a.f51514e.h()) {
+            if (!o2Var.f51479a.f51558e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
         }
-        o2Var.setVisibleHeight(rs0Var.Q);
+        o2Var.setVisibleHeight(ss0Var.Q);
         o2Var.setHasTabs(!d5Var.d().isEmpty());
     }
 
@@ -137,12 +137,12 @@ public final class y1 extends f91 {
         if (i10 == -1) {
             return null;
         }
-        return new o2(this.f51610c, this.f51608a, this.f51609b);
+        return new o2(this.f51654c, this.f51652a, this.f51653b);
     }
 
     @Override
     public final int e() {
-        return this.f51610c.f51514e.d().size() + 1;
+        return this.f51654c.f51558e.d().size() + 1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class y1 extends f91 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f51610c.f51514e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f51654c.f51558e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class y1 extends f91 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f51610c.f51514e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f51654c.f51558e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

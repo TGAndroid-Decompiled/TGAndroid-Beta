@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class vn implements az {
-    public final Utilities.Callback f31833a;
-    public final sn f31834b;
+public final class vn implements bz {
+    public final Utilities.Callback f31898a;
+    public final sn f31899b;
 
     public vn(Utilities.Callback callback, sn snVar) {
-        this.f31833a = callback;
-        this.f31834b = snVar;
+        this.f31898a = callback;
+        this.f31899b = snVar;
     }
 
     @Override
@@ -56,8 +56,8 @@ public final class vn implements az {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f31833a.run(new rh.h(document, obj));
-        this.f31834b.dismiss(true);
+        this.f31898a.run(new rh.h(document, obj));
+        this.f31899b.dismiss(true);
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class vn implements az {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f31833a.run(new rh.h(document, null));
-        this.f31834b.dismiss(true);
+        this.f31898a.run(new rh.h(document, null));
+        this.f31899b.dismiss(true);
     }
 
     @Override
@@ -93,7 +93,7 @@ public final class vn implements az {
     }
 
     @Override
-    public final void o(l61 l61Var) {
+    public final void o(m61 m61Var) {
     }
 
     @Override

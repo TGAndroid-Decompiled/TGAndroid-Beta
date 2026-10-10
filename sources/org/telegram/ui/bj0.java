@@ -35,7 +35,7 @@ public final class bj0 extends s4.o0 {
                     byte b10 = groupedMessagePosition.minY;
                     byte b11 = currentPosition.minY;
                     if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
-                        round = org.telegram.messenger.q.A(4.0f, (int) Math.ceil(max * groupedMessagePosition.f17249ph), round);
+                        round = org.telegram.messenger.q.A(4.0f, (int) Math.ceil(max * groupedMessagePosition.f17253ph), round);
                         break;
                     }
                     i10++;

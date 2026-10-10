@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
-public final class gg extends a00 {
+public final class gg extends b00 {
     public final ChatActivityEnterView P2;
 
     public gg(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z11, org.telegram.ui.ActionBar.e6 e6Var, boolean z12, boolean z13) {
@@ -15,7 +15,7 @@ public final class gg extends a00 {
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
         ChatActivityEnterView chatActivityEnterView = this.P2;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23938o3 == 0) {
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23942o3 == 0) {
             chatActivityEnterView.Z2.z(f7);
         }
     }

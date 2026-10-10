@@ -1,46 +1,78 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hz {
-    public final ArrayList f27157a = new ArrayList();
-    public final a00 f27158b;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class hz extends FrameLayout {
+    public final ImageView f27165a;
+    public final TextView f27166b;
+    public final RadialProgressView f27167c;
+    public boolean d;
+    public final b00 f27168e;
 
-    public hz(a00 a00Var) {
-        this.f27158b = a00Var;
+    public hz(b00 b00Var, Context context) {
+        super(context);
+        this.f27168e = b00Var;
+        ImageView imageView = new ImageView(getContext());
+        this.f27165a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.gif_empty);
+        int i10 = org.telegram.ui.ActionBar.i6.Le;
+        imageView.setColorFilter(new PorterDuffColorFilter(b00Var.B(i10), PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.x5.a(-2.0f, 0.0f, 8.0f, 0.0f, 0.0f, -2, 17));
+        TextView textView = new TextView(getContext());
+        this.f27166b = textView;
+        org.telegram.messenger.bi.j(16.0f, R.string.NoGIFsFound, 1, textView);
+        textView.setTextColor(b00Var.B(i10));
+        addView(textView, w7.x5.a(-2.0f, 0.0f, 42.0f, 0.0f, 0.0f, -2, 17));
+        RadialProgressView radialProgressView = new RadialProgressView(context, b00Var.Z1);
+        this.f27167c = radialProgressView;
+        radialProgressView.setVisibility(8);
+        radialProgressView.setProgressColor(b00Var.B(org.telegram.ui.ActionBar.i6.f20873h6));
+        addView(radialProgressView, w7.x5.e(-2, -2, 17));
     }
 
-    public final void a(String str, boolean z10) {
-        a00 a00Var = this.f27158b;
-        int i10 = a00Var.f24401c1;
-        String q6 = a1.g.q("gif_search_", str, "_");
-        if (!z10 || !a00Var.f24429l0.containsKey(q6)) {
-            ci.s1 s1Var = new ci.s1(this, str, z10, q6);
-            ArrayList arrayList = this.f27157a;
+    public final void a(boolean z10) {
+        int i10;
+        int i11;
+        if (this.d != z10) {
+            this.d = z10;
+            int i12 = 0;
             if (z10) {
-                arrayList.add(q6);
-                MessagesStorage.getInstance(i10).getBotCache(q6, s1Var);
-                return;
+                i10 = 8;
+            } else {
+                i10 = 0;
             }
-            MessagesController messagesController = MessagesController.getInstance(i10);
-            TLObject userOrChat = messagesController.getUserOrChat(messagesController.gifSearchBot);
-            if (!(userOrChat instanceof TLRPC.User)) {
-                return;
+            this.f27165a.setVisibility(i10);
+            if (z10) {
+                i11 = 8;
+            } else {
+                i11 = 0;
             }
-            arrayList.add(q6);
-            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-            if (str == null) {
-                str = "";
+            this.f27166b.setVisibility(i11);
+            if (!z10) {
+                i12 = 8;
             }
-            tL_messages_getInlineBotResults.query = str;
-            tL_messages_getInlineBotResults.bot = messagesController.getInputUser((TLRPC.User) userOrChat);
-            tL_messages_getInlineBotResults.offset = "";
-            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, s1Var, 2);
+            this.f27167c.setVisibility(i12);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int dp;
+        b00 b00Var = this.f27168e;
+        int measuredHeight = b00Var.f24705h0.getMeasuredHeight();
+        if (!this.d) {
+            dp = (int) (org.telegram.messenger.bi.A(8.0f, measuredHeight - b00Var.f24685b1, 3) * 1.7f);
+        } else {
+            dp = measuredHeight - AndroidUtilities.dp(80.0f);
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
     }
 }

@@ -15,22 +15,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class o9 extends Drawable {
-    public final ViewGroup f29410a;
-    public final int f29411b;
+    public final ViewGroup f29381a;
+    public final int f29382b;
     public boolean d;
-    public final int f29413e;
-    public final int f29414f;
-    public final float f29415g;
-    public final me.j f29412c = new me.j(new m2.t(this, 6), hs.h, 380);
+    public final int f29384e;
+    public final int f29385f;
+    public final float f29386g;
+    public final me.j f29383c = new me.j(new m2.t(this, 6), is.h, 380);
     public final ArrayList h = new ArrayList();
-    public int f29416i = 255;
+    public int f29387i = 255;
 
     public o9(int i10, ViewGroup viewGroup, int i11, int i12, float f7) {
-        this.f29411b = i10;
-        this.f29410a = viewGroup;
-        this.f29413e = i11;
-        this.f29414f = i12;
-        this.f29415g = f7;
+        this.f29382b = i10;
+        this.f29381a = viewGroup;
+        this.f29384e = i11;
+        this.f29385f = i12;
+        this.f29386g = f7;
     }
 
     public final void a() {
@@ -43,9 +43,9 @@ public final class o9 extends Drawable {
                 Object obj = arrayList.get(i10);
                 i10++;
                 n9 n9Var = (n9) obj;
-                if (n9Var.f29081c != 0 && !n9Var.d) {
+                if (n9Var.f29071c != 0 && !n9Var.d) {
                     n9Var.d = true;
-                    n9Var.f29079a.onAttachedToWindow();
+                    n9Var.f29069a.onAttachedToWindow();
                 }
             }
         }
@@ -63,7 +63,7 @@ public final class o9 extends Drawable {
                 n9 n9Var = (n9) obj;
                 if (n9Var.d) {
                     n9Var.d = false;
-                    n9Var.f29079a.onDetachedFromWindow();
+                    n9Var.f29069a.onDetachedFromWindow();
                 }
             }
         }
@@ -71,16 +71,16 @@ public final class o9 extends Drawable {
 
     public final void c(Canvas canvas) {
         Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.f29416i != 0) {
+        if (!bounds.isEmpty() && this.f29387i != 0) {
             float f7 = bounds.left;
             float f10 = bounds.top;
-            me.j jVar = this.f29412c;
-            canvas.saveLayer(f7, f10, f7 + jVar.d.f16357f.f16365a, f10 + this.f29413e, null);
-            for (int size = jVar.f16360b.size() - 1; size >= 0; size--) {
+            me.j jVar = this.f29383c;
+            canvas.saveLayer(f7, f10, f7 + jVar.d.f16361f.f16369a, f10 + this.f29384e, null);
+            for (int size = jVar.f16364b.size() - 1; size >= 0; size--) {
                 me.g n10 = jVar.n(size);
                 RectF b10 = n10.b();
-                Object obj = n10.f16348a;
-                float f11 = n10.f16352f.f16365a;
+                Object obj = n10.f16352a;
+                float f11 = n10.f16356f.f16369a;
                 float c10 = n10.c();
                 float width = b10.width() - f11;
                 float f12 = f7 + b10.left + f11;
@@ -89,11 +89,11 @@ public final class o9 extends Drawable {
                 float f15 = f10 + f13;
                 canvas.save();
                 canvas.scale(c10, c10, f14, f15);
-                canvas.drawCircle(f14, f15, f13 + this.f29415g, org.telegram.ui.ActionBar.i6.Ll);
+                canvas.drawCircle(f14, f15, f13 + this.f29386g, org.telegram.ui.ActionBar.i6.Ll);
                 n9 n9Var = (n9) obj;
-                n9Var.f29079a.setImageCoords(f12, f10, width, width);
-                n9Var.f29079a.setAlpha((this.f29416i / 255.0f) * n10.c());
-                n9Var.f29079a.draw(canvas);
+                n9Var.f29069a.setImageCoords(f12, f10, width, width);
+                n9Var.f29069a.setAlpha((this.f29387i / 255.0f) * n10.c());
+                n9Var.f29069a.draw(canvas);
                 canvas.restore();
             }
             canvas.restore();
@@ -102,7 +102,7 @@ public final class o9 extends Drawable {
 
     public final void d(List list, boolean z10) {
         n9 n9Var;
-        me.j jVar = this.f29412c;
+        me.j jVar = this.f29383c;
         if (list != null && !list.isEmpty()) {
             if (!z10) {
                 jVar.r(null, false);
@@ -119,7 +119,7 @@ public final class o9 extends Drawable {
                         Object obj = arrayList2.get(i10);
                         i10++;
                         n9Var = (n9) obj;
-                        if (n9Var.f29081c == peerDialogId) {
+                        if (n9Var.f29071c == peerDialogId) {
                             break;
                         }
                     } else {
@@ -135,7 +135,7 @@ public final class o9 extends Drawable {
                             Object obj2 = arrayList2.get(i11);
                             i11++;
                             n9Var = (n9) obj2;
-                            if (n9Var.f29081c == 0) {
+                            if (n9Var.f29071c == 0) {
                                 break;
                             }
                         } else {
@@ -145,14 +145,14 @@ public final class o9 extends Drawable {
                     }
                 }
                 if (n9Var == null) {
-                    n9Var = new n9(this, this.f29410a);
+                    n9Var = new n9(this, this.f29381a);
                     arrayList2.add(n9Var);
                 }
-                ImageReceiver imageReceiver = n9Var.f29079a;
-                j9 j9Var = n9Var.f29080b;
-                if (n9Var.f29081c != peerDialogId) {
-                    n9Var.f29081c = peerDialogId;
-                    int i12 = this.f29411b;
+                ImageReceiver imageReceiver = n9Var.f29069a;
+                j9 j9Var = n9Var.f29070b;
+                if (n9Var.f29071c != peerDialogId) {
+                    n9Var.f29071c = peerDialogId;
+                    int i12 = this.f29382b;
                     TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(peerDialogId);
                     if (userOrChat != null) {
                         j9Var.j(i12, userOrChat);
@@ -181,7 +181,7 @@ public final class o9 extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f29416i;
+        return this.f29387i;
     }
 
     @Override
@@ -191,7 +191,7 @@ public final class o9 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f29416i = i10;
+        this.f29387i = i10;
     }
 
     @Override

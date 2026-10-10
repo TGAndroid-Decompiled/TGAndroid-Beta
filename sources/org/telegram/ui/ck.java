@@ -1,17 +1,17 @@
 package org.telegram.ui;
 public final class ck implements Runnable {
-    public final int f36696a;
-    public final zn f36697b;
+    public final int f36740a;
+    public final zn f36741b;
 
     public ck(zn znVar, int i10) {
-        this.f36696a = i10;
-        this.f36697b = znVar;
+        this.f36740a = i10;
+        this.f36741b = znVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f36696a;
-        zn znVar = this.f36697b;
+        int i10 = this.f36740a;
+        zn znVar = this.f36741b;
         switch (i10) {
             case 0:
                 int i11 = zn.Hc;

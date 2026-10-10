@@ -5,14 +5,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
 public final class qr implements Runnable {
-    public final int f41168a;
-    public final sr f41169b;
-    public final String f41170c;
+    public final int f41212a;
+    public final sr f41213b;
+    public final String f41214c;
 
     public qr(sr srVar, String str, int i10) {
-        this.f41168a = i10;
-        this.f41169b = srVar;
-        this.f41170c = str;
+        this.f41212a = i10;
+        this.f41213b = srVar;
+        this.f41214c = str;
     }
 
     @Override
@@ -21,21 +21,21 @@ public final class qr implements Runnable {
         ArrayList arrayList2;
         boolean z10;
         long j3;
-        switch (this.f41168a) {
+        switch (this.f41212a) {
             case 0:
-                sr srVar = this.f41169b;
+                sr srVar = this.f41213b;
                 srVar.getClass();
-                AndroidUtilities.runOnUIThread(new qr(srVar, this.f41170c, 1));
+                AndroidUtilities.runOnUIThread(new qr(srVar, this.f41214c, 1));
                 return;
             default:
-                sr srVar2 = this.f41169b;
+                sr srVar2 = this.f41213b;
                 org.telegram.ui.ActionBar.n5 n5Var = null;
-                srVar2.f41754n = null;
-                tr trVar = srVar2.f41759y;
-                TLRPC.Chat chat = trVar.f42090r;
-                int i10 = trVar.f42065e1;
-                if (!ChatObject.isChannel(chat) && trVar.f42093s != null) {
-                    arrayList = new ArrayList(trVar.f42093s.participants.participants);
+                srVar2.f41798n = null;
+                tr trVar = srVar2.f41803y;
+                TLRPC.Chat chat = trVar.f42134r;
+                int i10 = trVar.f42109e1;
+                if (!ChatObject.isChannel(chat) && trVar.f42137s != null) {
+                    arrayList = new ArrayList(trVar.f42137s.participants.participants);
                 } else {
                     arrayList = null;
                 }
@@ -44,9 +44,9 @@ public final class qr implements Runnable {
                 } else {
                     arrayList2 = null;
                 }
-                String str = this.f41170c;
+                String str = this.f41214c;
                 if (arrayList == null && arrayList2 == null) {
-                    srVar2.f41756s = false;
+                    srVar2.f41800s = false;
                 } else {
                     n5Var = new org.telegram.ui.ActionBar.n5(srVar2, str, arrayList, arrayList2);
                 }
@@ -57,7 +57,7 @@ public final class qr implements Runnable {
                 } else {
                     z10 = false;
                 }
-                if (ChatObject.isChannel(trVar.f42090r)) {
+                if (ChatObject.isChannel(trVar.f42134r)) {
                     j3 = trVar.N;
                 } else {
                     j3 = 0;

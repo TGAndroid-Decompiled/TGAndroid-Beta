@@ -22,7 +22,7 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 public final class cc extends FrameLayout {
     public final ac E;
-    public final org.telegram.ui.Components.qm0 F;
+    public final org.telegram.ui.Components.rm0 F;
     public ah.n G;
     public boolean H;
     public final LinearLayout I;
@@ -33,54 +33,54 @@ public final class cc extends FrameLayout {
     public int N;
     public int O;
     public int P;
-    public final long f36614a;
-    public final int f36615b;
-    public final bb1 f36616c;
+    public final long f36658a;
+    public final int f36659b;
+    public final bb1 f36660c;
     public TL_stories.TL_premium_boostsStatus d;
-    public final org.telegram.ui.ActionBar.e6 f36617e;
-    public ScrollSlidingTextTabStrip f36618f;
+    public final org.telegram.ui.ActionBar.e6 f36661e;
+    public ScrollSlidingTextTabStrip f36662f;
     public final ArrayList h;
-    public final ArrayList f36619n;
-    public boolean f36620r;
-    public int f36621s;
+    public final ArrayList f36663n;
+    public boolean f36664r;
+    public int f36665s;
     public boolean v;
-    public int f36622w;
-    public final ArrayList f36623x;
-    public int f36624y;
+    public int f36666w;
+    public final ArrayList f36667x;
+    public int f36668y;
 
     public cc(bb1 bb1Var, long j3, org.telegram.ui.ActionBar.e6 e6Var) {
         super(bb1Var.getParentActivity());
         int i10 = UserConfig.selectedAccount;
-        this.f36615b = i10;
+        this.f36659b = i10;
         this.h = new ArrayList();
-        this.f36619n = new ArrayList();
-        this.f36623x = new ArrayList();
-        this.f36624y = 0;
+        this.f36663n = new ArrayList();
+        this.f36667x = new ArrayList();
+        this.f36668y = 0;
         ac acVar = new ac(this);
         this.E = acVar;
         this.K = "";
         this.L = "";
         this.M = 5;
         this.N = 5;
-        this.f36616c = bb1Var;
+        this.f36660c = bb1Var;
         Activity parentActivity = bb1Var.getParentActivity();
-        this.f36617e = e6Var;
-        this.f36614a = j3;
+        this.f36661e = e6Var;
+        this.f36658a = j3;
         this.J = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
-        org.telegram.ui.Components.qm0 qm0Var = new org.telegram.ui.Components.qm0(parentActivity, null);
-        this.F = qm0Var;
-        qm0Var.setSections(true);
-        qm0Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20741a7, e6Var));
-        qm0Var.setLayoutManager(new s4.d0());
+        org.telegram.ui.Components.rm0 rm0Var = new org.telegram.ui.Components.rm0(parentActivity, null);
+        this.F = rm0Var;
+        rm0Var.setSections(true);
+        rm0Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20745a7, e6Var));
+        rm0Var.setLayoutManager(new s4.d0());
         s4.j jVar = new s4.j();
-        jVar.f47698m = false;
+        jVar.f47742m = false;
         jVar.C = false;
-        qm0Var.setItemAnimator(jVar);
-        qm0Var.setClipToPadding(false);
-        qm0Var.setOnItemClickListener(new wb(this, parentActivity, j3, e6Var, bb1Var));
-        addView(qm0Var);
+        rm0Var.setItemAnimator(jVar);
+        rm0Var.setClipToPadding(false);
+        rm0Var.setOnItemClickListener(new wb(this, parentActivity, j3, e6Var, bb1Var));
+        addView(rm0Var);
         MessagesController.getInstance(i10).getBoostsController().getBoostsStats(j3, new t3(this, 1));
-        qm0Var.setAdapter(acVar);
+        rm0Var.setAdapter(acVar);
         d(false);
         Context context = getContext();
         LinearLayout linearLayout = new LinearLayout(context);
@@ -116,8 +116,8 @@ public final class cc extends FrameLayout {
         TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
         tL_premium_getBoostsList.limit = this.N;
         tL_premium_getBoostsList.offset = this.K;
-        int i10 = this.f36615b;
-        tL_premium_getBoostsList.peer = MessagesController.getInstance(i10).getInputPeer(this.f36614a);
+        int i10 = this.f36659b;
+        tL_premium_getBoostsList.peer = MessagesController.getInstance(i10).getInputPeer(this.f36658a);
         ConnectionsManager.getInstance(i10).sendRequest(tL_premium_getBoostsList, new zb(this, countDownLatch, ybVar, 1), 2);
     }
 
@@ -126,8 +126,8 @@ public final class cc extends FrameLayout {
         tL_premium_getBoostsList.limit = this.M;
         tL_premium_getBoostsList.gifts = true;
         tL_premium_getBoostsList.offset = this.L;
-        int i10 = this.f36615b;
-        tL_premium_getBoostsList.peer = MessagesController.getInstance(i10).getInputPeer(this.f36614a);
+        int i10 = this.f36659b;
+        tL_premium_getBoostsList.peer = MessagesController.getInstance(i10).getInputPeer(this.f36658a);
         ConnectionsManager.getInstance(i10).sendRequest(tL_premium_getBoostsList, new zb(this, countDownLatch, ybVar, 0), 2);
     }
 
@@ -153,7 +153,7 @@ public final class cc extends FrameLayout {
         int i13;
         boolean z12;
         boolean z13;
-        ArrayList arrayList = this.f36623x;
+        ArrayList arrayList = this.f36667x;
         ArrayList arrayList2 = new ArrayList(arrayList);
         arrayList.clear();
         if (this.d != null) {
@@ -171,14 +171,14 @@ public final class cc extends FrameLayout {
                         z13 = false;
                     }
                     ?? aVar = new og.a(11, true);
-                    aVar.f36241e = prepaidGiveaway;
-                    aVar.f36242f = z13;
+                    aVar.f36285e = prepaidGiveaway;
+                    aVar.f36286f = z13;
                     arrayList.add(aVar);
                 }
                 arrayList.add(new bc(6, LocaleController.getString(R.string.BoostingSelectPaidGiveaway)));
             }
             arrayList.add(new bc(13, LocaleController.getString(R.string.Boosters)));
-            int i15 = this.f36624y;
+            int i15 = this.f36668y;
             TLRPC.Chat chat = this.J;
             if (i15 == 0) {
                 ArrayList arrayList3 = this.h;
@@ -188,14 +188,14 @@ public final class cc extends FrameLayout {
                 } else {
                     for (int i16 = 0; i16 < arrayList3.size(); i16++) {
                         TL_stories.Boost boost = (TL_stories.Boost) arrayList3.get(i16);
-                        if (i16 == arrayList3.size() - 1 && !this.f36620r) {
+                        if (i16 == arrayList3.size() - 1 && !this.f36664r) {
                             z12 = true;
                         } else {
                             z12 = false;
                         }
-                        arrayList.add(new bc(boost, z12, this.f36624y));
+                        arrayList.add(new bc(boost, z12, this.f36668y));
                     }
-                    if (this.f36620r) {
+                    if (this.f36664r) {
                         arrayList.add(new og.a(9, true));
                     } else {
                         arrayList.add(new og.a(7, false));
@@ -208,7 +208,7 @@ public final class cc extends FrameLayout {
                     arrayList.add(new bc(6, LocaleController.getString(i13)));
                 }
             } else {
-                ArrayList arrayList4 = this.f36619n;
+                ArrayList arrayList4 = this.f36663n;
                 if (arrayList4.isEmpty()) {
                     arrayList.add(new og.a(8, false));
                     arrayList.add(new og.a(2, false));
@@ -220,7 +220,7 @@ public final class cc extends FrameLayout {
                         } else {
                             z11 = false;
                         }
-                        arrayList.add(new bc(boost2, z11, this.f36624y));
+                        arrayList.add(new bc(boost2, z11, this.f36668y));
                     }
                     if (this.v) {
                         arrayList.add(new og.a(9, true));
@@ -237,7 +237,7 @@ public final class cc extends FrameLayout {
             }
             arrayList.add(new bc(1, LocaleController.getString(R.string.LinkForBoosting)));
             arrayList.add(new bc(3, this.d.boost_url));
-            if (MessagesController.getInstance(this.f36615b).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(chat)) {
+            if (MessagesController.getInstance(this.f36659b).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(chat)) {
                 if (ChatObject.isChannelAndNotMegaGroup(chat)) {
                     i11 = R.string.BoostingShareThisLink;
                 } else {

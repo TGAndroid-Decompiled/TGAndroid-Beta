@@ -3,39 +3,39 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 public final class f51 implements Runnable {
-    public final int f37453a;
-    public final k51 f37454b;
+    public final int f37497a;
+    public final k51 f37498b;
 
     public f51(k51 k51Var, int i10) {
-        this.f37453a = i10;
-        this.f37454b = k51Var;
+        this.f37497a = i10;
+        this.f37498b = k51Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37453a) {
+        switch (this.f37497a) {
             case 0:
-                k51 k51Var = this.f37454b;
+                k51 k51Var = this.f37498b;
                 f51 f51Var = k51Var.Z;
-                org.telegram.ui.Components.k81 k81Var = k51Var.f39100w;
-                if (k81Var != null) {
-                    k51Var.f39088a0 = ((float) k81Var.n()) / ((float) k51Var.f39100w.p());
+                org.telegram.ui.Components.l81 l81Var = k51Var.f39144w;
+                if (l81Var != null) {
+                    k51Var.f39132a0 = ((float) l81Var.n()) / ((float) k51Var.f39144w.p());
                     i51 i51Var = k51Var.N;
                     if (i51Var != null) {
-                        i51Var.Xd = (k51Var.f39100w.p() - k51Var.f39100w.n()) / 1000;
+                        i51Var.Xd = (k51Var.f39144w.p() - k51Var.f39144w.n()) / 1000;
                         k51Var.N.q4();
-                        org.telegram.ui.Components.np0 seekBarWaveform = k51Var.N.getSeekBarWaveform();
+                        org.telegram.ui.Components.op0 seekBarWaveform = k51Var.N.getSeekBarWaveform();
                         if (seekBarWaveform != null) {
-                            float f7 = k51Var.f39088a0;
+                            float f7 = k51Var.f39132a0;
                             seekBarWaveform.J = true;
                             seekBarWaveform.K = f7;
-                            org.telegram.ui.Cells.u1 u1Var = seekBarWaveform.f29243n;
+                            org.telegram.ui.Cells.u1 u1Var = seekBarWaveform.f29557n;
                             if (u1Var != null) {
                                 u1Var.invalidate();
                             }
                         }
                     }
-                    if (k51Var.f39100w.y()) {
+                    if (k51Var.f39144w.y()) {
                         AndroidUtilities.cancelRunOnUIThread(f51Var);
                         AndroidUtilities.runOnUIThread(f51Var, 16L);
                         return;
@@ -50,7 +50,7 @@ public final class f51 implements Runnable {
                 super/*android.app.Dialog*/.dismiss();
                 return;
             default:
-                k51 k51Var2 = this.f37454b;
+                k51 k51Var2 = this.f37498b;
                 if (k51Var2.d == null) {
                     AndroidUtilities.runOnUIThread(new f51(k51Var2, 2));
                     org.telegram.ui.Cells.u1 u1Var2 = k51Var2.O;

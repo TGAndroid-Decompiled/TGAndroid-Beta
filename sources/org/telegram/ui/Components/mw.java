@@ -1,11 +1,21 @@
 package org.telegram.ui.Components;
-public final class mw extends rg.c1 {
+
+import android.content.Context;
+public final class mw extends y9 {
+    public final pw G;
+
+    public mw(pw pwVar, Context context) {
+        super(context);
+        this.G = pwVar;
+    }
+
     @Override
     public final void invalidate() {
         if (zg.d0.b(this)) {
             return;
         }
         super.invalidate();
+        this.G.f();
     }
 
     @Override

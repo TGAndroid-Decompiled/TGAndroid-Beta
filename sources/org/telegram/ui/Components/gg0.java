@@ -1,57 +1,41 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class gg0 {
-    public final hg0 f26691a = new hg0();
-    public final hg0 f26692b = new hg0();
-    public final hg0 f26693c = new hg0();
-    public final hg0 d = new hg0();
-    public final ByteBuffer f26694e;
-    public int f26695f;
+import android.content.Context;
+import android.graphics.Matrix;
+import android.view.TextureView;
+import android.view.View;
+public final class gg0 extends TextureView {
+    public final mg0 f26716a;
 
-    public gg0() {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.f26694e = allocateDirect;
-        allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+    public gg0(mg0 mg0Var, Context context) {
+        super(context);
+        this.f26716a = mg0Var;
     }
 
-    public final void a() {
-        ByteBuffer byteBuffer = this.f26694e;
-        byteBuffer.position(0);
-        hg0 hg0Var = this.f26691a;
-        if (hg0Var.f27068f == null) {
-            hg0Var.a();
-        }
-        float[] fArr = hg0Var.f27068f;
-        hg0 hg0Var2 = this.f26692b;
-        if (hg0Var2.f27068f == null) {
-            hg0Var2.a();
-        }
-        float[] fArr2 = hg0Var2.f27068f;
-        hg0 hg0Var3 = this.f26693c;
-        if (hg0Var3.f27068f == null) {
-            hg0Var3.a();
-        }
-        float[] fArr3 = hg0Var3.f27068f;
-        hg0 hg0Var4 = this.d;
-        if (hg0Var4.f27068f == null) {
-            hg0Var4.a();
-        }
-        float[] fArr4 = hg0Var4.f27068f;
-        for (int i10 = 0; i10 < 200; i10++) {
-            byteBuffer.put((byte) (fArr2[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr3[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr4[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr[i10] * 255.0f));
-        }
-        byteBuffer.position(0);
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        View.MeasureSpec.getSize(i10);
+        super.onMeasure(i10, i11);
     }
 
-    public final boolean b() {
-        if (this.f26691a.b() && this.f26692b.b() && this.f26693c.b() && this.d.b()) {
-            return true;
+    @Override
+    public final void setTransform(Matrix matrix) {
+        super.setTransform(matrix);
+        m00 m00Var = this.f26716a.f28796l0;
+        if (m00Var != null) {
+            int width = getWidth();
+            int height = getHeight();
+            sa saVar = m00Var.I;
+            if (saVar != null) {
+                Matrix matrix2 = saVar.v;
+                matrix.invert(matrix2);
+                float f7 = width;
+                float f10 = height;
+                matrix2.preScale(f7, f10);
+                matrix2.postScale(1.0f / f7, 1.0f / f10);
+                saVar.c(matrix2);
+                m00Var.e(false, false, false);
+            }
         }
-        return false;
     }
 }

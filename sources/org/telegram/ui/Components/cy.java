@@ -1,22 +1,26 @@
 package org.telegram.ui.Components;
-public final class cy extends w7.y5 {
-    public final a00 f25524a;
+public final class cy extends g.o {
+    public final b00 f25490c;
 
-    public cy(a00 a00Var) {
-        this.f25524a = a00Var;
+    public cy(b00 b00Var) {
+        this.f25490c = b00Var;
     }
 
     @Override
-    public final void a() {
-        a00 a00Var = this.f25524a;
-        a00Var.f24411f0 = false;
-        a00Var.P.z1();
-    }
-
-    @Override
-    public final void b() {
-        a00 a00Var = this.f25524a;
-        a00Var.P.z1();
-        a00Var.f24411f0 = true;
+    public final int i(int i10) {
+        b00 b00Var = this.f25490c;
+        ky kyVar = b00Var.R;
+        ay ayVar = b00Var.Q;
+        s4.i0 adapter = b00Var.P.getAdapter();
+        az azVar = b00Var.S;
+        if (adapter == azVar) {
+            int j3 = azVar.j(i10);
+            if (j3 == 1 || j3 == 3 || j3 == 2 || j3 == 4 || j3 == 5) {
+                return ayVar.J;
+            }
+        } else if ((b00Var.f24691d0 && i10 == 0) || i10 == kyVar.d || i10 == kyVar.f28112c || i10 == kyVar.f28114f || kyVar.f28116r.indexOfKey(i10) >= 0 || kyVar.v.indexOfKey(i10) >= 0) {
+            return ayVar.J;
+        }
+        return 1;
     }
 }

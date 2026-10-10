@@ -4,14 +4,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class xc extends org.telegram.ui.Components.pm0 {
-    public final int f43919c;
+public final class xc extends org.telegram.ui.Components.qm0 {
+    public final int f43963c;
     public final org.telegram.ui.ActionBar.e6 d;
-    public final zc f43920e;
+    public final zc f43964e;
 
     public xc(zc zcVar, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f43920e = zcVar;
-        this.f43919c = i10;
+        this.f43964e = zcVar;
+        this.f43963c = i10;
         this.d = e6Var;
     }
 
@@ -22,7 +22,7 @@ public final class xc extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final int h() {
-        return this.f43920e.f44541c.size();
+        return this.f43964e.f44585c.size();
     }
 
     @Override
@@ -32,26 +32,26 @@ public final class xc extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new org.telegram.ui.Components.z21(this.f43919c, 3, viewGroup.getContext(), this.d));
+        return new s4.d1(new org.telegram.ui.Components.a31(this.f43963c, 3, viewGroup.getContext(), this.d));
     }
 
     @Override
     public final void y(s4.d1 d1Var) {
         TLRPC.WallPaper wallPaper;
-        zc zcVar = this.f43920e;
-        ArrayList arrayList = zcVar.f44541c;
+        zc zcVar = this.f43964e;
+        ArrayList arrayList = zcVar.f44585c;
         int b10 = d1Var.b();
-        View view = d1Var.f47658a;
+        View view = d1Var.f47702a;
         if (b10 >= 0 && b10 < arrayList.size()) {
             org.telegram.ui.Components.bq bqVar = (org.telegram.ui.Components.bq) arrayList.get(b10);
-            org.telegram.ui.Components.z21 z21Var = (org.telegram.ui.Components.z21) view;
-            z21Var.g(bqVar.d, false);
-            if (bqVar.f25082a.f20506b) {
+            org.telegram.ui.Components.a31 a31Var = (org.telegram.ui.Components.a31) view;
+            a31Var.g(bqVar.d, false);
+            if (bqVar.f25019a.f20510b) {
                 wallPaper = null;
             } else {
                 wallPaper = zcVar.v;
             }
-            z21Var.setFallbackWallpaper(wallPaper);
+            a31Var.setFallbackWallpaper(wallPaper);
         }
     }
 }

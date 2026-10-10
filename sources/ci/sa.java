@@ -1,8 +1,8 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.eh0;
-import org.telegram.ui.Components.gh0;
+import org.telegram.ui.Components.fh0;
+import org.telegram.ui.Components.hh0;
 public final class sa implements o1.f {
     public final int f5962a;
     public final float f5963b;
@@ -40,11 +40,11 @@ public final class sa implements o1.f {
                 o4Var.h = f11;
                 return;
             default:
-                eh0 eh0Var = (eh0) this.f5964c;
+                fh0 fh0Var = (fh0) this.f5964c;
                 if (!z10) {
-                    gh0 gh0Var = eh0Var.d;
-                    o1.l lVar = gh0Var.M.f16938u;
-                    int i10 = gh0Var.H;
+                    hh0 hh0Var = fh0Var.d;
+                    o1.l lVar = hh0Var.M.f16942u;
+                    int i10 = hh0Var.H;
                     float f12 = (i10 / 2.0f) + this.f5963b;
                     int i11 = AndroidUtilities.displaySize.x;
                     if (f12 >= i11 / 2.0f) {
@@ -52,7 +52,7 @@ public final class sa implements o1.f {
                     } else {
                         dp = AndroidUtilities.dp(16.0f);
                     }
-                    lVar.f16945i = dp;
+                    lVar.f16949i = dp;
                     return;
                 }
                 return;

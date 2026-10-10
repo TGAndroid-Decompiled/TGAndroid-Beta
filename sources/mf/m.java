@@ -2,7 +2,7 @@ package mf;
 
 import java.util.logging.Logger;
 public final class m extends kf.a {
-    public static final Logger f16408r = Logger.getLogger(m.class.getName());
+    public static final Logger f16412r = Logger.getLogger(m.class.getName());
 
     public m(java.io.BufferedInputStream r25, long r26) {
         throw new UnsupportedOperationException("Method not decompiled: mf.m.<init>(java.io.BufferedInputStream, long):void");

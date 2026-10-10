@@ -12,48 +12,48 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ge extends LinearLayout {
-    public final int f37985a;
-    public final org.telegram.ui.Components.o91 f37986b;
-    public final fe f37987c;
+    public final int f38029a;
+    public final org.telegram.ui.Components.p91 f38030b;
+    public final fe f38031c;
     public final long d;
-    public final od f37988e;
-    public String f37989f;
+    public final od f38032e;
+    public String f38033f;
     public final ArrayList h;
-    public final ArrayList f37990n;
-    public String f37991r;
-    public final boolean[] f37992s;
+    public final ArrayList f38034n;
+    public String f38035r;
+    public final boolean[] f38036s;
     public final ke v;
 
     public ge(ke keVar, Context context, int i10, long j3, int i11, od odVar, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.v = keVar;
-        this.f37989f = "";
+        this.f38033f = "";
         this.h = new ArrayList();
-        this.f37990n = new ArrayList();
-        this.f37991r = "";
-        this.f37992s = new boolean[]{false, false};
-        this.f37985a = i10;
+        this.f38034n = new ArrayList();
+        this.f38035r = "";
+        this.f38036s = new boolean[]{false, false};
+        this.f38029a = i10;
         this.d = j3;
-        this.f37988e = odVar;
+        this.f38032e = odVar;
         setOrientation(1);
-        org.telegram.ui.Components.o91 o91Var = new org.telegram.ui.Components.o91(context, null);
-        this.f37986b = o91Var;
+        org.telegram.ui.Components.p91 p91Var = new org.telegram.ui.Components.p91(context, null);
+        this.f38030b = p91Var;
         fe feVar = new fe(this, context, i10, j3, i11, e6Var);
-        this.f37987c = feVar;
-        o91Var.setAdapter(feVar);
-        View n10 = o91Var.n(3, true);
+        this.f38031c = feVar;
+        p91Var.setAdapter(feVar);
+        View n10 = p91Var.n(3, true);
         View view = new View(context);
-        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20798d7, e6Var));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20802d7, e6Var));
         addView(n10, w7.x5.n(-1, 48));
         addView(view, new LinearLayout.LayoutParams(w7.x5.z(-1.0f), w7.x5.z(1.0f / AndroidUtilities.density)));
-        addView(o91Var, w7.x5.n(-1, -1));
-        setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20868h5, e6Var));
+        addView(p91Var, w7.x5.n(-1, -1));
+        setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20872h5, e6Var));
         c(1);
         c(0);
     }
 
     public final boolean a() {
-        if (this.h.isEmpty() && this.f37990n.isEmpty()) {
+        if (this.h.isEmpty() && this.f38034n.isEmpty()) {
             return false;
         }
         return true;
@@ -64,7 +64,7 @@ public final class ge extends LinearLayout {
         if (i10 == 1) {
             isEmpty = this.h.isEmpty();
         } else if (i10 == 0) {
-            isEmpty = this.f37990n.isEmpty();
+            isEmpty = this.f38034n.isEmpty();
         } else {
             return false;
         }
@@ -72,37 +72,37 @@ public final class ge extends LinearLayout {
     }
 
     public final void c(final int i10) {
-        boolean[] zArr = this.f37992s;
+        boolean[] zArr = this.f38036s;
         if (!zArr[i10]) {
             final boolean a2 = a();
             final boolean b10 = b(i10);
             int i11 = 20;
             long j3 = this.d;
             ke keVar = this.v;
-            int i12 = this.f37985a;
+            int i12 = this.f38029a;
             if (i10 == 1) {
-                if (this.f37989f != null && keVar.f39238f1) {
+                if (this.f38033f != null && keVar.f39282f1) {
                     zArr[i10] = true;
                     TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions = new TL_stars.TL_payments_getStarsTransactions();
                     tL_payments_getStarsTransactions.ton = true;
                     tL_payments_getStarsTransactions.peer = MessagesController.getInstance(i12).getInputPeer(j3);
-                    tL_payments_getStarsTransactions.offset = this.f37989f;
+                    tL_payments_getStarsTransactions.offset = this.f38033f;
                     if (this.h.isEmpty()) {
                         i11 = 5;
                     }
                     tL_payments_getStarsTransactions.limit = i11;
                     ConnectionsManager.getInstance(i12).sendRequest(tL_payments_getStarsTransactions, new RequestDelegate(this) {
-                        public final ge f36630b;
+                        public final ge f36674b;
 
                         {
-                            this.f36630b = this;
+                            this.f36674b = this;
                         }
 
                         @Override
                         public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                             switch (r5) {
                                 case 0:
-                                    final ge geVar = this.f36630b;
+                                    final ge geVar = this.f36674b;
                                     final int i13 = i10;
                                     final boolean z10 = a2;
                                     final boolean z11 = b10;
@@ -114,7 +114,7 @@ public final class ge extends LinearLayout {
                                             switch (r7) {
                                                 case 0:
                                                     ge geVar2 = geVar;
-                                                    int i14 = geVar2.f37985a;
+                                                    int i14 = geVar2.f38029a;
                                                     TLObject tLObject2 = tLObject;
                                                     boolean z12 = tLObject2 instanceof TL_stars.StarsStatus;
                                                     int i15 = i13;
@@ -122,9 +122,9 @@ public final class ge extends LinearLayout {
                                                         TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                         MessagesController.getInstance(i14).putUsers(starsStatus.users, false);
                                                         MessagesController.getInstance(i14).putChats(starsStatus.chats, false);
-                                                        geVar2.f37990n.addAll(starsStatus.history);
-                                                        geVar2.f37991r = starsStatus.next_offset;
-                                                        geVar2.f37992s[i15] = false;
+                                                        geVar2.f38034n.addAll(starsStatus.history);
+                                                        geVar2.f38035r = starsStatus.next_offset;
+                                                        geVar2.f38036s[i15] = false;
                                                         geVar2.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error2 = tL_error;
@@ -132,7 +132,7 @@ public final class ge extends LinearLayout {
                                                             org.telegram.ui.Components.ad.d0(tL_error2);
                                                         }
                                                     }
-                                                    if (geVar2.a() != z10 && (odVar = geVar2.f37988e) != null) {
+                                                    if (geVar2.a() != z10 && (odVar = geVar2.f38032e) != null) {
                                                         odVar.run();
                                                     }
                                                     if (geVar2.b(i15) != z11) {
@@ -142,7 +142,7 @@ public final class ge extends LinearLayout {
                                                     return;
                                                 default:
                                                     ge geVar3 = geVar;
-                                                    int i16 = geVar3.f37985a;
+                                                    int i16 = geVar3.f38029a;
                                                     TLObject tLObject3 = tLObject;
                                                     boolean z13 = tLObject3 instanceof TL_stars.StarsStatus;
                                                     int i17 = i13;
@@ -151,8 +151,8 @@ public final class ge extends LinearLayout {
                                                         MessagesController.getInstance(i16).putUsers(starsStatus2.users, false);
                                                         MessagesController.getInstance(i16).putChats(starsStatus2.chats, false);
                                                         geVar3.h.addAll(starsStatus2.history);
-                                                        geVar3.f37989f = starsStatus2.next_offset;
-                                                        geVar3.f37992s[i17] = false;
+                                                        geVar3.f38033f = starsStatus2.next_offset;
+                                                        geVar3.f38036s[i17] = false;
                                                         geVar3.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error3 = tL_error;
@@ -160,7 +160,7 @@ public final class ge extends LinearLayout {
                                                             org.telegram.ui.Components.ad.d0(tL_error3);
                                                         }
                                                     }
-                                                    if (geVar3.a() != z10 && (odVar2 = geVar3.f37988e) != null) {
+                                                    if (geVar3.a() != z10 && (odVar2 = geVar3.f38032e) != null) {
                                                         odVar2.run();
                                                     }
                                                     if (geVar3.b(i17) != z11) {
@@ -173,7 +173,7 @@ public final class ge extends LinearLayout {
                                     });
                                     return;
                                 default:
-                                    final ge geVar2 = this.f36630b;
+                                    final ge geVar2 = this.f36674b;
                                     final int i14 = i10;
                                     final boolean z12 = a2;
                                     final boolean z13 = b10;
@@ -185,7 +185,7 @@ public final class ge extends LinearLayout {
                                             switch (r7) {
                                                 case 0:
                                                     ge geVar22 = geVar2;
-                                                    int i142 = geVar22.f37985a;
+                                                    int i142 = geVar22.f38029a;
                                                     TLObject tLObject2 = tLObject;
                                                     boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                     int i15 = i14;
@@ -193,9 +193,9 @@ public final class ge extends LinearLayout {
                                                         TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                         MessagesController.getInstance(i142).putUsers(starsStatus.users, false);
                                                         MessagesController.getInstance(i142).putChats(starsStatus.chats, false);
-                                                        geVar22.f37990n.addAll(starsStatus.history);
-                                                        geVar22.f37991r = starsStatus.next_offset;
-                                                        geVar22.f37992s[i15] = false;
+                                                        geVar22.f38034n.addAll(starsStatus.history);
+                                                        geVar22.f38035r = starsStatus.next_offset;
+                                                        geVar22.f38036s[i15] = false;
                                                         geVar22.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error2 = tL_error;
@@ -203,7 +203,7 @@ public final class ge extends LinearLayout {
                                                             org.telegram.ui.Components.ad.d0(tL_error2);
                                                         }
                                                     }
-                                                    if (geVar22.a() != z12 && (odVar = geVar22.f37988e) != null) {
+                                                    if (geVar22.a() != z12 && (odVar = geVar22.f38032e) != null) {
                                                         odVar.run();
                                                     }
                                                     if (geVar22.b(i15) != z13) {
@@ -213,7 +213,7 @@ public final class ge extends LinearLayout {
                                                     return;
                                                 default:
                                                     ge geVar3 = geVar2;
-                                                    int i16 = geVar3.f37985a;
+                                                    int i16 = geVar3.f38029a;
                                                     TLObject tLObject3 = tLObject;
                                                     boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                     int i17 = i14;
@@ -222,8 +222,8 @@ public final class ge extends LinearLayout {
                                                         MessagesController.getInstance(i16).putUsers(starsStatus2.users, false);
                                                         MessagesController.getInstance(i16).putChats(starsStatus2.chats, false);
                                                         geVar3.h.addAll(starsStatus2.history);
-                                                        geVar3.f37989f = starsStatus2.next_offset;
-                                                        geVar3.f37992s[i17] = false;
+                                                        geVar3.f38033f = starsStatus2.next_offset;
+                                                        geVar3.f38036s[i17] = false;
                                                         geVar3.d();
                                                     } else {
                                                         TLRPC.TL_error tL_error3 = tL_error;
@@ -231,7 +231,7 @@ public final class ge extends LinearLayout {
                                                             org.telegram.ui.Components.ad.d0(tL_error3);
                                                         }
                                                     }
-                                                    if (geVar3.a() != z12 && (odVar2 = geVar3.f37988e) != null) {
+                                                    if (geVar3.a() != z12 && (odVar2 = geVar3.f38032e) != null) {
                                                         odVar2.run();
                                                     }
                                                     if (geVar3.b(i17) != z13) {
@@ -247,28 +247,28 @@ public final class ge extends LinearLayout {
                         }
                     });
                 }
-            } else if (i10 == 0 && this.f37991r != null && keVar.f39239g1) {
+            } else if (i10 == 0 && this.f38035r != null && keVar.f39283g1) {
                 zArr[i10] = true;
                 TL_stars.TL_payments_getStarsTransactions tL_payments_getStarsTransactions2 = new TL_stars.TL_payments_getStarsTransactions();
                 tL_payments_getStarsTransactions2.ton = false;
                 tL_payments_getStarsTransactions2.peer = MessagesController.getInstance(i12).getInputPeer(j3);
-                tL_payments_getStarsTransactions2.offset = this.f37991r;
-                if (this.f37990n.isEmpty()) {
+                tL_payments_getStarsTransactions2.offset = this.f38035r;
+                if (this.f38034n.isEmpty()) {
                     i11 = 5;
                 }
                 tL_payments_getStarsTransactions2.limit = i11;
                 ConnectionsManager.getInstance(i12).sendRequest(tL_payments_getStarsTransactions2, new RequestDelegate(this) {
-                    public final ge f36630b;
+                    public final ge f36674b;
 
                     {
-                        this.f36630b = this;
+                        this.f36674b = this;
                     }
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                         switch (r5) {
                             case 0:
-                                final ge geVar = this.f36630b;
+                                final ge geVar = this.f36674b;
                                 final int i13 = i10;
                                 final boolean z10 = a2;
                                 final boolean z11 = b10;
@@ -280,7 +280,7 @@ public final class ge extends LinearLayout {
                                         switch (r7) {
                                             case 0:
                                                 ge geVar22 = geVar;
-                                                int i142 = geVar22.f37985a;
+                                                int i142 = geVar22.f38029a;
                                                 TLObject tLObject2 = tLObject;
                                                 boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                 int i15 = i13;
@@ -288,9 +288,9 @@ public final class ge extends LinearLayout {
                                                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                     MessagesController.getInstance(i142).putUsers(starsStatus.users, false);
                                                     MessagesController.getInstance(i142).putChats(starsStatus.chats, false);
-                                                    geVar22.f37990n.addAll(starsStatus.history);
-                                                    geVar22.f37991r = starsStatus.next_offset;
-                                                    geVar22.f37992s[i15] = false;
+                                                    geVar22.f38034n.addAll(starsStatus.history);
+                                                    geVar22.f38035r = starsStatus.next_offset;
+                                                    geVar22.f38036s[i15] = false;
                                                     geVar22.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error2 = tL_error;
@@ -298,7 +298,7 @@ public final class ge extends LinearLayout {
                                                         org.telegram.ui.Components.ad.d0(tL_error2);
                                                     }
                                                 }
-                                                if (geVar22.a() != z10 && (odVar = geVar22.f37988e) != null) {
+                                                if (geVar22.a() != z10 && (odVar = geVar22.f38032e) != null) {
                                                     odVar.run();
                                                 }
                                                 if (geVar22.b(i15) != z11) {
@@ -308,7 +308,7 @@ public final class ge extends LinearLayout {
                                                 return;
                                             default:
                                                 ge geVar3 = geVar;
-                                                int i16 = geVar3.f37985a;
+                                                int i16 = geVar3.f38029a;
                                                 TLObject tLObject3 = tLObject;
                                                 boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                 int i17 = i13;
@@ -317,8 +317,8 @@ public final class ge extends LinearLayout {
                                                     MessagesController.getInstance(i16).putUsers(starsStatus2.users, false);
                                                     MessagesController.getInstance(i16).putChats(starsStatus2.chats, false);
                                                     geVar3.h.addAll(starsStatus2.history);
-                                                    geVar3.f37989f = starsStatus2.next_offset;
-                                                    geVar3.f37992s[i17] = false;
+                                                    geVar3.f38033f = starsStatus2.next_offset;
+                                                    geVar3.f38036s[i17] = false;
                                                     geVar3.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error3 = tL_error;
@@ -326,7 +326,7 @@ public final class ge extends LinearLayout {
                                                         org.telegram.ui.Components.ad.d0(tL_error3);
                                                     }
                                                 }
-                                                if (geVar3.a() != z10 && (odVar2 = geVar3.f37988e) != null) {
+                                                if (geVar3.a() != z10 && (odVar2 = geVar3.f38032e) != null) {
                                                     odVar2.run();
                                                 }
                                                 if (geVar3.b(i17) != z11) {
@@ -339,7 +339,7 @@ public final class ge extends LinearLayout {
                                 });
                                 return;
                             default:
-                                final ge geVar2 = this.f36630b;
+                                final ge geVar2 = this.f36674b;
                                 final int i14 = i10;
                                 final boolean z12 = a2;
                                 final boolean z13 = b10;
@@ -351,7 +351,7 @@ public final class ge extends LinearLayout {
                                         switch (r7) {
                                             case 0:
                                                 ge geVar22 = geVar2;
-                                                int i142 = geVar22.f37985a;
+                                                int i142 = geVar22.f38029a;
                                                 TLObject tLObject2 = tLObject;
                                                 boolean z122 = tLObject2 instanceof TL_stars.StarsStatus;
                                                 int i15 = i14;
@@ -359,9 +359,9 @@ public final class ge extends LinearLayout {
                                                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
                                                     MessagesController.getInstance(i142).putUsers(starsStatus.users, false);
                                                     MessagesController.getInstance(i142).putChats(starsStatus.chats, false);
-                                                    geVar22.f37990n.addAll(starsStatus.history);
-                                                    geVar22.f37991r = starsStatus.next_offset;
-                                                    geVar22.f37992s[i15] = false;
+                                                    geVar22.f38034n.addAll(starsStatus.history);
+                                                    geVar22.f38035r = starsStatus.next_offset;
+                                                    geVar22.f38036s[i15] = false;
                                                     geVar22.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error2 = tL_error;
@@ -369,7 +369,7 @@ public final class ge extends LinearLayout {
                                                         org.telegram.ui.Components.ad.d0(tL_error2);
                                                     }
                                                 }
-                                                if (geVar22.a() != z12 && (odVar = geVar22.f37988e) != null) {
+                                                if (geVar22.a() != z12 && (odVar = geVar22.f38032e) != null) {
                                                     odVar.run();
                                                 }
                                                 if (geVar22.b(i15) != z13) {
@@ -379,7 +379,7 @@ public final class ge extends LinearLayout {
                                                 return;
                                             default:
                                                 ge geVar3 = geVar2;
-                                                int i16 = geVar3.f37985a;
+                                                int i16 = geVar3.f38029a;
                                                 TLObject tLObject3 = tLObject;
                                                 boolean z132 = tLObject3 instanceof TL_stars.StarsStatus;
                                                 int i17 = i14;
@@ -388,8 +388,8 @@ public final class ge extends LinearLayout {
                                                     MessagesController.getInstance(i16).putUsers(starsStatus2.users, false);
                                                     MessagesController.getInstance(i16).putChats(starsStatus2.chats, false);
                                                     geVar3.h.addAll(starsStatus2.history);
-                                                    geVar3.f37989f = starsStatus2.next_offset;
-                                                    geVar3.f37992s[i17] = false;
+                                                    geVar3.f38033f = starsStatus2.next_offset;
+                                                    geVar3.f38036s[i17] = false;
                                                     geVar3.d();
                                                 } else {
                                                     TLRPC.TL_error tL_error3 = tL_error;
@@ -397,7 +397,7 @@ public final class ge extends LinearLayout {
                                                         org.telegram.ui.Components.ad.d0(tL_error3);
                                                     }
                                                 }
-                                                if (geVar3.a() != z12 && (odVar2 = geVar3.f37988e) != null) {
+                                                if (geVar3.a() != z12 && (odVar2 = geVar3.f38032e) != null) {
                                                     odVar2.run();
                                                 }
                                                 if (geVar3.b(i17) != z13) {
@@ -419,20 +419,20 @@ public final class ge extends LinearLayout {
     public final void d() {
         int i10 = 0;
         while (true) {
-            org.telegram.ui.Components.o91 o91Var = this.f37986b;
-            if (i10 < o91Var.getViewPages().length) {
-                View view = o91Var.getViewPages()[i10];
+            org.telegram.ui.Components.p91 p91Var = this.f38030b;
+            if (i10 < p91Var.getViewPages().length) {
+                View view = p91Var.getViewPages()[i10];
                 if (view instanceof ee) {
                     ee eeVar = (ee) view;
-                    org.telegram.ui.Components.k71 k71Var = eeVar.f37239a;
-                    k71Var.W2.N(true);
-                    if (k71Var.canScrollVertically(1)) {
-                        for (int i11 = 0; i11 < k71Var.getChildCount(); i11++) {
-                            if (!(k71Var.getChildAt(i11) instanceof org.telegram.ui.Components.j10)) {
+                    org.telegram.ui.Components.l71 l71Var = eeVar.f37283a;
+                    l71Var.W2.N(true);
+                    if (l71Var.canScrollVertically(1)) {
+                        for (int i11 = 0; i11 < l71Var.getChildCount(); i11++) {
+                            if (!(l71Var.getChildAt(i11) instanceof org.telegram.ui.Components.k10)) {
                             }
                         }
                     }
-                    eeVar.f37242e.run();
+                    eeVar.f37286e.run();
                     break;
                 }
                 i10++;
@@ -443,28 +443,28 @@ public final class ge extends LinearLayout {
     }
 
     public final void e() {
-        this.f37987c.i();
-        org.telegram.ui.Components.o91 o91Var = this.f37986b;
-        o91Var.o(false);
-        View[] viewArr = o91Var.f29429e;
-        int[] iArr = o91Var.f29430f;
-        if (iArr[0] != o91Var.L.h(o91Var.f29427b)) {
-            o91Var.I(0);
+        this.f38031c.i();
+        org.telegram.ui.Components.p91 p91Var = this.f38030b;
+        p91Var.o(false);
+        View[] viewArr = p91Var.f29734e;
+        int[] iArr = p91Var.f29735f;
+        if (iArr[0] != p91Var.L.h(p91Var.f29732b)) {
+            p91Var.I(0);
             View view = viewArr[1];
             if (view != null) {
-                o91Var.h.put(iArr[1], view);
-                o91Var.removeView(viewArr[1]);
+                p91Var.h.put(iArr[1], view);
+                p91Var.removeView(viewArr[1]);
                 viewArr[1] = null;
             }
             viewArr[0].setTranslationX(0.0f);
         }
     }
 
-    public org.telegram.ui.Components.qm0 getCurrentListView() {
-        View currentView = this.f37986b.getCurrentView();
+    public org.telegram.ui.Components.rm0 getCurrentListView() {
+        View currentView = this.f38030b.getCurrentView();
         if (!(currentView instanceof ee)) {
             return null;
         }
-        return ((ee) currentView).f37239a;
+        return ((ee) currentView).f37283a;
     }
 }

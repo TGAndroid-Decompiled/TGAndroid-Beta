@@ -1,30 +1,30 @@
 package org.telegram.messenger;
 public final class i7 implements Runnable {
-    public final int f18121a;
-    public final MediaDataController f18122b;
-    public final long f18123c;
+    public final int f18125a;
+    public final MediaDataController f18126b;
+    public final long f18127c;
     public final long d;
-    public final int[] f18124e;
+    public final int[] f18128e;
 
     public i7(MediaDataController mediaDataController, long j3, long j10, int[] iArr, int i10) {
-        this.f18121a = i10;
-        this.f18122b = mediaDataController;
-        this.f18123c = j3;
+        this.f18125a = i10;
+        this.f18126b = mediaDataController;
+        this.f18127c = j3;
         this.d = j10;
-        this.f18124e = iArr;
+        this.f18128e = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f18121a) {
+        switch (this.f18125a) {
             case 0:
-                this.f18122b.lambda$getMediaCounts$128(this.f18123c, this.d, this.f18124e);
+                this.f18126b.lambda$getMediaCounts$128(this.f18127c, this.d, this.f18128e);
                 return;
             case 1:
-                this.f18122b.lambda$getMediaCounts$127(this.f18123c, this.d, this.f18124e);
+                this.f18126b.lambda$getMediaCounts$127(this.f18127c, this.d, this.f18128e);
                 return;
             default:
-                this.f18122b.lambda$getMediaCounts$130(this.f18123c, this.d, this.f18124e);
+                this.f18126b.lambda$getMediaCounts$130(this.f18127c, this.d, this.f18128e);
                 return;
         }
     }

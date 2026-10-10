@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class qw0 implements org.telegram.ui.Components.qg {
-    public final PopupNotificationActivity f41217a;
+    public final PopupNotificationActivity f41261a;
 
     public qw0(PopupNotificationActivity popupNotificationActivity) {
-        this.f41217a = popupNotificationActivity;
+        this.f41261a = popupNotificationActivity;
     }
 
     @Override
@@ -24,13 +24,13 @@ public final class qw0 implements org.telegram.ui.Components.qg {
 
     @Override
     public final void K(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        PopupNotificationActivity popupNotificationActivity = this.f41217a;
+        PopupNotificationActivity popupNotificationActivity = this.f41261a;
         if (popupNotificationActivity.Q == null) {
             return;
         }
         int i12 = popupNotificationActivity.S;
-        if (i12 >= 0 && i12 < popupNotificationActivity.f34114a0.size()) {
-            popupNotificationActivity.f34114a0.remove(popupNotificationActivity.S);
+        if (i12 >= 0 && i12 < popupNotificationActivity.f34152a0.size()) {
+            popupNotificationActivity.f34152a0.remove(popupNotificationActivity.S);
         }
         MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
         popupNotificationActivity.Q = null;
@@ -39,7 +39,7 @@ public final class qw0 implements org.telegram.ui.Components.qg {
 
     @Override
     public final void L1() {
-        PopupNotificationActivity popupNotificationActivity = this.f41217a;
+        PopupNotificationActivity popupNotificationActivity = this.f41261a;
         MessageObject messageObject = popupNotificationActivity.Q;
         if (messageObject != null) {
             MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);

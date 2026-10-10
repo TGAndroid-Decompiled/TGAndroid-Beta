@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.hq0;
 import org.telegram.ui.la1;
 public abstract class g extends View implements i {
@@ -404,9 +404,9 @@ public abstract class g extends View implements i {
                 e eVar = this.Q0;
                 if (eVar != null) {
                     getSelectedDate();
-                    la1 la1Var = (la1) ((hq0) eVar).f38391b;
+                    la1 la1Var = (la1) ((hq0) eVar).f38435b;
                     la1Var.f();
-                    la1Var.f39489b.f12192t0.d(false, false);
+                    la1Var.f39533b.f12192t0.d(false, false);
                 }
                 B();
                 invalidate();
@@ -606,7 +606,7 @@ public abstract class g extends View implements i {
                     this.v = f11;
                 } else {
                     float f13 = this.T0;
-                    this.v = (hs.f27119g.getInterpolation(f12) * (f11 - f13)) + f13;
+                    this.v = (is.f27444g.getInterpolation(f12) * (f11 - f13)) + f13;
                 }
                 invalidate();
             }
@@ -621,7 +621,7 @@ public abstract class g extends View implements i {
                         this.f12195w = f15;
                     } else {
                         float f17 = this.U0;
-                        this.f12195w = (hs.f27119g.getInterpolation(f16) * (f15 - f17)) + f17;
+                        this.f12195w = (is.f27444g.getInterpolation(f16) * (f15 - f17)) + f17;
                     }
                     invalidate();
                 }
@@ -658,7 +658,7 @@ public abstract class g extends View implements i {
         paint2.setColor(w05);
         this.Q.setColor(i6.w0(i6.dj, e6Var));
         this.R.setColor(i6.w0(i6.cj, e6Var));
-        this.S.setColor(i6.w0(i6.f20797d6, e6Var));
+        this.S.setColor(i6.w0(i6.f20801d6, e6Var));
         this.T.setColor(i6.w0(i6.ej, e6Var));
         this.f12192t0.b();
         this.f12183n = paint.getAlpha();

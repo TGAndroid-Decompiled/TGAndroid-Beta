@@ -8,30 +8,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class s3 extends j1.b {
-    public final Rect f21508o;
-    public final w3 f21509p;
+    public final Rect f21512o;
+    public final w3 f21513p;
 
     public s3(w3 w3Var, w3 w3Var2) {
         super(w3Var2);
-        this.f21509p = w3Var;
-        this.f21508o = new Rect();
+        this.f21513p = w3Var;
+        this.f21512o = new Rect();
     }
 
     @Override
     public final int g(float f7, float f10) {
-        w3 w3Var = this.f21509p;
+        w3 w3Var = this.f21513p;
         ArrayList arrayList = w3Var.R;
         if (w3Var.V >= 0.5f) {
-            org.telegram.ui.Cells.z zVar = w3Var.f21660i0;
+            org.telegram.ui.Cells.z zVar = w3Var.f21664i0;
             if (zVar != null && zVar.getBounds().contains((int) f7, (int) f10)) {
                 return 1;
             }
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 v3 v3Var = (v3) arrayList.get(size);
-                float f11 = v3Var.f21618i;
-                RectF rectF = v3Var.f21612a;
+                float f11 = v3Var.f21622i;
+                RectF rectF = v3Var.f21616a;
                 if (Math.abs(f11) < 0.4f && rectF.contains(f7, f10)) {
-                    Rect bounds = v3Var.d.f21322l.getBounds();
+                    Rect bounds = v3Var.d.f21326l.getBounds();
                     if (!bounds.isEmpty() && bounds.contains((int) (f7 - rectF.left), (int) ((f10 - rectF.top) - AndroidUtilities.dp(24.0f)))) {
                         return size + 2000;
                     }
@@ -45,19 +45,19 @@ public final class s3 extends j1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        w3 w3Var = this.f21509p;
+        w3 w3Var = this.f21513p;
         ArrayList arrayList2 = w3Var.R;
         if (w3Var.V >= 0.5f) {
-            org.telegram.ui.Cells.z zVar = w3Var.f21660i0;
+            org.telegram.ui.Cells.z zVar = w3Var.f21664i0;
             if (zVar != null && !zVar.getBounds().isEmpty()) {
                 arrayList.add(1);
             }
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 v3 v3Var = (v3) arrayList2.get(i10);
-                if (Math.abs(v3Var.f21618i) < 0.4f && !v3Var.f21612a.isEmpty()) {
+                if (Math.abs(v3Var.f21622i) < 0.4f && !v3Var.f21616a.isEmpty()) {
                     arrayList.add(Integer.valueOf(i10 + 1000));
                     k3 k3Var = v3Var.d;
-                    if (k3Var != null && !k3Var.f21322l.getBounds().isEmpty()) {
+                    if (k3Var != null && !k3Var.f21326l.getBounds().isEmpty()) {
                         arrayList.add(Integer.valueOf(i10 + 2000));
                     }
                 }
@@ -69,11 +69,11 @@ public final class s3 extends j1.b {
     public final boolean k(int i10, int i11) {
         int i12;
         boolean z10;
-        w3 w3Var = this.f21509p;
+        w3 w3Var = this.f21513p;
         ArrayList arrayList = w3Var.R;
         if (i11 == 16) {
             if (i10 == 1) {
-                n3 n3Var = w3Var.f21647a;
+                n3 n3Var = w3Var.f21651a;
                 if (n3Var != null) {
                     n3Var.f();
                 }
@@ -90,15 +90,15 @@ public final class s3 extends j1.b {
             if (i12 >= 0 && i12 < arrayList.size()) {
                 v3 v3Var = (v3) arrayList.get(i12);
                 if (z10) {
-                    n3 n3Var2 = w3Var.f21647a;
+                    n3 n3Var2 = w3Var.f21651a;
                     if (n3Var2 != null) {
-                        n3Var2.g(v3Var.f21614c, new ai.h3(26, this, v3Var));
+                        n3Var2.g(v3Var.f21618c, new ai.h3(26, this, v3Var));
                         return true;
                     }
-                } else if (w3Var.f21647a != null) {
+                } else if (w3Var.f21651a != null) {
                     w3Var.a(false);
                     v3Var.getClass();
-                    w3Var.f21647a.e(v3Var.f21614c);
+                    w3Var.f21651a.e(v3Var.f21618c);
                 }
                 return true;
             }
@@ -113,13 +113,13 @@ public final class s3 extends j1.b {
         String str;
         String str2;
         String str3;
-        w3 w3Var = this.f21509p;
+        w3 w3Var = this.f21513p;
         ArrayList arrayList = w3Var.R;
         dVar.i("android.widget.Button");
-        dVar.b(s0.c.f47580c);
-        Rect rect = this.f21508o;
+        dVar.b(s0.c.f47624c);
+        Rect rect = this.f21512o;
         if (i10 == 1) {
-            org.telegram.ui.Cells.z zVar = w3Var.f21660i0;
+            org.telegram.ui.Cells.z zVar = w3Var.f21664i0;
             if (zVar != null) {
                 rect.set(zVar.getBounds());
             } else {
@@ -144,15 +144,15 @@ public final class s3 extends j1.b {
         }
         if (i11 >= 0 && i11 < arrayList.size()) {
             v3 v3Var = (v3) arrayList.get(i11);
-            m3 m3Var = v3Var.f21614c;
-            RectF rectF = v3Var.f21612a;
+            m3 m3Var = v3Var.f21618c;
+            RectF rectF = v3Var.f21616a;
             if (m3Var != null && m3Var.b() != null) {
-                str = v3Var.f21614c.b();
+                str = v3Var.f21618c.b();
             } else {
                 str = "";
             }
             if (z10) {
-                Rect bounds = v3Var.d.f21322l.getBounds();
+                Rect bounds = v3Var.d.f21326l.getBounds();
                 rect.set((int) (rectF.left + bounds.left), (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.bottom));
                 dVar.h(rect);
                 if (TextUtils.isEmpty(str)) {

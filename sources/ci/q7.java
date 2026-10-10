@@ -29,14 +29,14 @@ public final class q7 extends s7 {
     @Override
     public final void c(org.telegram.ui.ActionBar.n2 n2Var) {
         TLRPC.User user = this.f5839b;
-        if (user.f20185id == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+        if (user.f20189id == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user.f20185id);
+            bundle.putLong("user_id", user.f20189id);
             bundle.putBoolean("my_profile", true);
             n2Var.presentFragment(new ProfileActivity(bundle, null));
             return;
         }
-        n2Var.presentFragment(ProfileActivity.m4(user.f20185id));
+        n2Var.presentFragment(ProfileActivity.m4(user.f20189id));
     }
 
     @Override

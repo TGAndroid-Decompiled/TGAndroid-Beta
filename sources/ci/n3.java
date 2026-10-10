@@ -10,9 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.Components.yl0;
-public final class n3 extends yl0 {
+import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.zl0;
+public final class n3 extends zl0 {
     public final v3 f5632c;
 
     public n3(v3 v3Var) {
@@ -21,7 +21,7 @@ public final class n3 extends yl0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47662f == 2) {
+        if (d1Var.f47706f == 2) {
             return true;
         }
         return false;
@@ -55,26 +55,26 @@ public final class n3 extends yl0 {
     }
 
     @Override
-    public final void G(qm0 qm0Var, float f7, int[] iArr) {
+    public final void G(rm0 rm0Var, float f7, int[] iArr) {
         int i10;
         int k10 = k();
         v3 v3Var = this.f5632c;
         e3 e3Var = v3Var.f6135e;
         float f10 = e3Var.J;
-        int width = (int) (((int) (((qm0Var.getWidth() - qm0Var.getPaddingLeft()) - qm0Var.getPaddingRight()) / f10)) * v3Var.O);
+        int width = (int) (((int) (((rm0Var.getWidth() - rm0Var.getPaddingLeft()) - rm0Var.getPaddingRight()) / f10)) * v3Var.O);
         int ceil = (int) Math.ceil(k10 / f10);
-        float lerp = (AndroidUtilities.lerp(0, Math.max(0, i10 - ((AndroidUtilities.displaySize.y - qm0Var.getPaddingTop()) - qm0Var.getPaddingBottom())), f7) / (ceil * width)) * ceil;
+        float lerp = (AndroidUtilities.lerp(0, Math.max(0, i10 - ((AndroidUtilities.displaySize.y - rm0Var.getPaddingTop()) - rm0Var.getPaddingBottom())), f7) / (ceil * width)) * ceil;
         int round = Math.round(lerp);
         iArr[0] = Math.max(0, e3Var.J * round) + 2;
-        iArr[1] = qm0Var.getPaddingTop() + ((int) ((lerp - round) * width));
+        iArr[1] = rm0Var.getPaddingTop() + ((int) ((lerp - round) * width));
     }
 
     @Override
-    public final float H(qm0 qm0Var) {
+    public final float H(rm0 rm0Var) {
         v3 v3Var;
         int k10 = k();
         float f7 = this.f5632c.f6135e.J;
-        return (Math.max(0, qm0Var.computeVerticalScrollOffset() - v3Var.getPadding()) - qm0Var.getPaddingTop()) / ((((int) Math.ceil(k10 / f7)) * ((int) (((int) (((qm0Var.getWidth() - qm0Var.getPaddingLeft()) - qm0Var.getPaddingRight()) / f7)) * v3Var.O))) - (AndroidUtilities.displaySize.y - qm0Var.getPaddingTop()));
+        return (Math.max(0, rm0Var.computeVerticalScrollOffset() - v3Var.getPadding()) - rm0Var.getPaddingTop()) / ((((int) Math.ceil(k10 / f7)) * ((int) (((int) (((rm0Var.getWidth() - rm0Var.getPaddingLeft()) - rm0Var.getPaddingRight()) / f7)) * v3Var.O))) - (AndroidUtilities.displaySize.y - rm0Var.getPaddingTop()));
     }
 
     @Override
@@ -121,8 +121,8 @@ public final class n3 extends yl0 {
         v3 v3Var = this.f5632c;
         ArrayList arrayList = v3Var.f6140h0;
         ArrayList arrayList2 = v3Var.f6131b0;
-        int i11 = d1Var.f47662f;
-        View view = d1Var.f47658a;
+        int i11 = d1Var.f47706f;
+        View view = d1Var.f47702a;
         int i12 = -1;
         if (i11 == 0) {
             r3 r3Var = (r3) view;
@@ -245,8 +245,8 @@ public final class n3 extends yl0 {
         boolean z10;
         v3 v3Var = this.f5632c;
         ArrayList arrayList = v3Var.f6140h0;
-        if (d1Var.f47662f == 2) {
-            q3 q3Var = (q3) d1Var.f47658a;
+        if (d1Var.f47706f == 2) {
+            q3 q3Var = (q3) d1Var.f47702a;
             Object obj = q3Var.S;
             if (obj instanceof MediaController.PhotoEntry) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;

@@ -6,32 +6,32 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class w5 extends Drawable {
-    public final RectF f21684a = new RectF();
-    public final int f21685b;
-    public final int f21686c;
+    public final RectF f21688a = new RectF();
+    public final int f21689b;
+    public final int f21690c;
     public final int d;
-    public final int f21687e;
-    public final float f21688f;
+    public final int f21691e;
+    public final float f21692f;
 
     public w5(int i10, int i11, int i12, int i13, float f7) {
-        this.f21685b = i10;
-        this.f21686c = i11;
+        this.f21689b = i10;
+        this.f21690c = i11;
         this.d = i12;
-        this.f21687e = i13;
-        this.f21688f = f7;
+        this.f21691e = i13;
+        this.f21692f = f7;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f21684a;
+        RectF rectF = this.f21688a;
         rectF.set(bounds);
-        rectF.left += this.f21685b;
-        rectF.top += this.f21686c;
+        rectF.left += this.f21689b;
+        rectF.top += this.f21690c;
         rectF.right -= this.d;
-        rectF.bottom -= this.f21687e;
-        float f7 = this.f21688f;
-        canvas.drawRoundRect(rectF, f7, f7, i6.f21192z);
+        rectF.bottom -= this.f21691e;
+        float f7 = this.f21692f;
+        canvas.drawRoundRect(rectF, f7, f7, i6.f21196z);
     }
 
     @Override

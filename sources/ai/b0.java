@@ -30,11 +30,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.f30;
-import org.telegram.ui.Components.gk0;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.g30;
+import org.telegram.ui.Components.hk0;
 import org.telegram.ui.Components.id;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.kx;
 import org.telegram.ui.ty;
 public abstract class b0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, me.d {
@@ -91,7 +91,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
     public y f675k0;
     public boolean f676l0;
     public boolean m0;
-    public gk0 f677n;
+    public hk0 f677n;
     public float f678n0;
     public int f679o0;
     public a0 f680p0;
@@ -115,7 +115,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
     public b0(Context context, ty tyVar, int i10, int i11) {
         super(context);
         float f7;
-        this.f660a = new me.b(1, this, hs.h, 380L, false);
+        this.f660a = new me.b(1, this, is.h, 380L, false);
         this.v = new ArrayList();
         this.f689w = new ArrayList();
         this.f691x = new ArrayList();
@@ -159,14 +159,14 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         qVar.setClipChildren(false);
         idVar.h = new a3.d(kxVar, 2);
         f fVar = new f(kxVar, 0);
-        idVar.f27357l = true;
-        idVar.f27355j = fVar;
+        idVar.f27355l = true;
+        idVar.f27353j = fVar;
         qVar.j(new r(kxVar, 0));
         s4.j jVar = new s4.j();
         this.R = jVar;
         jVar.C = false;
         jVar.n(150L);
-        jVar.f47698m = false;
+        jVar.f47742m = false;
         qVar.setItemAnimator(jVar);
         s4.d0 d0Var = new s4.d0(0, false);
         this.S = d0Var;
@@ -201,7 +201,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         addView(imageView, w7.x5.d(22.0f, 90));
         org.telegram.ui.Components.q5 q5Var = new org.telegram.ui.Components.q5(AndroidUtilities.dp(26.0f), null);
         this.f661a0 = q5Var;
-        q5Var.f30042a = true;
+        q5Var.f30007a = true;
         q5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.W = imageView2;
@@ -223,7 +223,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         ?? jVar2 = new s4.j();
         this.d = jVar2;
         jVar2.C = false;
-        jVar2.f47698m = false;
+        jVar2.f47742m = false;
         qVar2.setItemAnimator(jVar2);
         qVar2.setAdapter(vVar2);
         qVar2.setClipChildren(false);
@@ -344,7 +344,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         int i11;
         int i12;
         float a2 = w7.o.a(Math.min(this.N, this.f666d0), 0.0f, 1.0f);
-        float f7 = this.f660a.f16337e;
+        float f7 = this.f660a.f16341e;
         float f10 = 1.0f - f7;
         float f11 = f7 * a2;
         float f12 = f10 * a2;
@@ -642,7 +642,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
                             }
                         }
                     });
-                    this.C0.setInterpolator(hs.h);
+                    this.C0.setInterpolator(is.h);
                     float f14 = this.f665c0;
                     if (z11) {
                         f11 = f14;
@@ -830,7 +830,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
             SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), org.telegram.ui.ActionBar.i6.Gi, 0, new h(this, 1));
             ClickableSpan[] clickableSpanArr = (ClickableSpan[]) replaceSingleTag.getSpans(0, replaceSingleTag.length(), ClickableSpan.class);
             if (clickableSpanArr != null && clickableSpanArr.length >= 1) {
-                replaceSingleTag.setSpan(new m61(AndroidUtilities.bold()), replaceSingleTag.getSpanStart(clickableSpanArr[0]), replaceSingleTag.getSpanEnd(clickableSpanArr[0]), 33);
+                replaceSingleTag.setSpan(new n61(AndroidUtilities.bold()), replaceSingleTag.getSpanStart(clickableSpanArr[0]), replaceSingleTag.getSpanEnd(clickableSpanArr[0]), 33);
             }
             ci.d4 d4Var2 = this.J;
             d4Var2.h = ci.d4.a(replaceSingleTag, d4Var2.getTextPaint());
@@ -904,8 +904,8 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
             idVar.getClass();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((int) qVar.getX(), (int) qVar.getY(), x10, y3);
-            idVar.f27354i = false;
-            idVar.f27350c = 0;
+            idVar.f27352i = false;
+            idVar.f27348c = 0;
             idVar.a(rectF);
             if (idVar.b(motionEvent)) {
                 return true;
@@ -915,26 +915,26 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
     }
 
     public final void p() {
-        f30 f30Var = ja.f1196b;
-        if (f30Var != null) {
-            f30Var.d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.lk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.mk, false), 0, 0);
+        g30 g30Var = ja.f1196b;
+        if (g30Var != null) {
+            g30Var.d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.lk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.mk, false), 0, 0);
         }
-        f30 f30Var2 = ja.f1197c;
-        if (f30Var2 != null) {
-            f30Var2.d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.nk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.ok, false), 0, 0);
+        g30 g30Var2 = ja.f1197c;
+        if (g30Var2 != null) {
+            g30Var2.d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.nk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.ok, false), 0, 0);
         }
-        f30[] f30VarArr = ja.f1195a;
-        f30 f30Var3 = f30VarArr[0];
-        if (f30Var3 != null) {
-            f30Var3.d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.jk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.kk, false), 0, 0);
+        g30[] g30VarArr = ja.f1195a;
+        g30 g30Var3 = g30VarArr[0];
+        if (g30Var3 != null) {
+            g30Var3.d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.jk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.kk, false), 0, 0);
         }
-        f30 f30Var4 = f30VarArr[1];
-        if (f30Var4 != null) {
-            f30Var4.d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.hk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.ik, false), 0, 0);
+        g30 g30Var4 = g30VarArr[1];
+        if (g30Var4 != null) {
+            g30Var4.d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.hk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.ik, false), 0, 0);
         }
         if (ja.d != null) {
             int x02 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.xj, false);
-            int x03 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21037q7, false);
+            int x03 = org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21041q7, false);
             ja.d.d(i0.a.d(0.25f, x02, x03), x03, 0, 0);
         }
         int textColor = getTextColor();

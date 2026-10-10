@@ -17,8 +17,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.gk0;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.hk0;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.kx;
 public final class a0 extends FrameLayout {
     public long E;
@@ -34,7 +34,7 @@ public final class a0 extends FrameLayout {
     public final da O;
     public float P;
     public float Q;
-    public gk0 R;
+    public hk0 R;
     public o S;
     public final float T;
     public boolean U;
@@ -73,7 +73,7 @@ public final class a0 extends FrameLayout {
         this.P = 1.0f;
         this.Q = 1.0f;
         this.T = 1.0f;
-        this.f621a0 = new org.telegram.ui.Components.g6(this, 0L, 350L, hs.h);
+        this.f621a0 = new org.telegram.ui.Components.g6(this, 0L, 350L, is.h);
         if (kxVar.f662b == 1) {
             z10 = true;
         } else {
@@ -131,14 +131,14 @@ public final class a0 extends FrameLayout {
             float dp2 = f10 + AndroidUtilities.dp(16.0f);
             paint.setColor(org.telegram.ui.ActionBar.i6.m1(f11, kxVar.f(org.telegram.ui.ActionBar.i6.hl)));
             if (i11 == 0) {
-                paint2.setColor(org.telegram.ui.ActionBar.i6.m1(f11, kxVar.f(org.telegram.ui.ActionBar.i6.f21075s8)));
+                paint2.setColor(org.telegram.ui.ActionBar.i6.m1(f11, kxVar.f(org.telegram.ui.ActionBar.i6.f21079s8)));
             } else {
                 paint2.setColor(org.telegram.ui.ActionBar.i6.m1(f11, kxVar.f(org.telegram.ui.ActionBar.i6.M8)));
             }
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(11.0f), paint2);
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(9.0f), paint);
             if (i11 == 0) {
-                i10 = org.telegram.ui.ActionBar.i6.f21075s8;
+                i10 = org.telegram.ui.ActionBar.i6.f21079s8;
             } else {
                 i10 = org.telegram.ui.ActionBar.i6.M8;
             }

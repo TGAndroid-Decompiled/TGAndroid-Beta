@@ -56,7 +56,7 @@ public final class n2 extends TimerTask {
                 return;
             default:
                 try {
-                    Socket socket = ((sc.q) this.f5631b).f47891a.f47939a.f47933g;
+                    Socket socket = ((sc.q) this.f5631b).f47935a.f47983a.f47977g;
                     if (socket != null) {
                         socket.close();
                         return;

@@ -22,70 +22,70 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class c4 {
-    public static final int[] h = {i6.f21059ra, i6.Aa, i6.Oh, i6.Nd, i6.Od, i6.Pd, i6.Qd, i6.Rd};
-    public boolean f20505a;
-    public boolean f20506b;
-    public fg.b f20507c;
+    public static final int[] h = {i6.f21063ra, i6.Aa, i6.Oh, i6.Nd, i6.Od, i6.Pd, i6.Qd, i6.Rd};
+    public boolean f20509a;
+    public boolean f20510b;
+    public fg.b f20511c;
     public TLRPC.ChatTheme d;
-    public String f20508e;
-    public final ArrayList f20509f;
-    public final int f20510g;
+    public String f20512e;
+    public final ArrayList f20513f;
+    public final int f20514g;
 
     public c4(int i10) {
-        this.f20509f = new ArrayList();
-        this.f20510g = i10;
+        this.f20513f = new ArrayList();
+        this.f20514g = i10;
     }
 
     public static c4 a(int i10) {
         c4 c4Var = new c4(i10);
-        c4Var.f20508e = "❌";
-        c4Var.f20507c = fg.b.d("❌");
+        c4Var.f20512e = "❌";
+        c4Var.f20511c = fg.b.d("❌");
         c4Var.d = TLRPC.ChatTheme.ofEmoticon("❌");
-        c4Var.f20506b = true;
+        c4Var.f20510b = true;
         b4 b4Var = new b4();
-        b4Var.f20447a = e(true);
-        c4Var.f20509f.add(b4Var);
+        b4Var.f20451a = e(true);
+        c4Var.f20513f.add(b4Var);
         b4 b4Var2 = new b4();
-        b4Var2.f20447a = e(false);
-        c4Var.f20509f.add(b4Var2);
+        b4Var2.f20451a = e(false);
+        c4Var.f20513f.add(b4Var2);
         return c4Var;
     }
 
     public static c4 c(int i10) {
         c4 c4Var = new c4(i10);
-        c4Var.f20508e = "🏠";
-        c4Var.f20507c = fg.b.d("🏠");
-        c4Var.d = TLRPC.ChatTheme.ofEmoticon(c4Var.f20508e);
+        c4Var.f20512e = "🏠";
+        c4Var.f20511c = fg.b.d("🏠");
+        c4Var.d = TLRPC.ChatTheme.ofEmoticon(c4Var.f20512e);
         b4 b4Var = new b4();
-        b4Var.f20447a = i6.O0("Blue");
-        b4Var.f20450e = 99;
-        c4Var.f20509f.add(b4Var);
+        b4Var.f20451a = i6.O0("Blue");
+        b4Var.f20454e = 99;
+        c4Var.f20513f.add(b4Var);
         b4 b4Var2 = new b4();
-        b4Var2.f20447a = i6.O0("Day");
-        b4Var2.f20450e = 9;
-        c4Var.f20509f.add(b4Var2);
+        b4Var2.f20451a = i6.O0("Day");
+        b4Var2.f20454e = 9;
+        c4Var.f20513f.add(b4Var2);
         b4 b4Var3 = new b4();
-        b4Var3.f20447a = i6.O0("Night");
-        b4Var3.f20450e = 0;
-        c4Var.f20509f.add(b4Var3);
+        b4Var3.f20451a = i6.O0("Night");
+        b4Var3.f20454e = 0;
+        c4Var.f20513f.add(b4Var3);
         b4 b4Var4 = new b4();
-        b4Var4.f20447a = i6.O0("Dark Blue");
-        b4Var4.f20450e = 0;
-        c4Var.f20509f.add(b4Var4);
+        b4Var4.f20451a = i6.O0("Dark Blue");
+        b4Var4.f20454e = 0;
+        c4Var.f20513f.add(b4Var4);
         return c4Var;
     }
 
     public static c4 d(int i10, TLRPC.TL_theme tL_theme) {
         c4 c4Var = new c4(i10);
         String str = tL_theme.emoticon;
-        c4Var.f20508e = str;
-        c4Var.f20507c = new fg.b(str, null);
+        c4Var.f20512e = str;
+        c4Var.f20511c = new fg.b(str, null);
         c4Var.d = TLRPC.ChatTheme.ofEmoticon(str);
         for (int i11 = 0; i11 < tL_theme.settings.size(); i11++) {
             b4 b4Var = new b4();
-            b4Var.f20448b = tL_theme;
+            b4Var.f20452b = tL_theme;
             b4Var.d = i11;
-            c4Var.f20509f.add(b4Var);
+            c4Var.f20513f.add(b4Var);
         }
         return c4Var;
     }
@@ -138,7 +138,7 @@ public final class c4 {
         SparseArray sparseArray;
         g6 g6Var;
         if (h6Var != null) {
-            if (i10 < 0 || (sparseArray = h6Var.f20704a0) == null || ((g6Var = (g6) sparseArray.get(i10)) != null && !g6Var.f20675z)) {
+            if (i10 < 0 || (sparseArray = h6Var.f20708a0) == null || ((g6Var = (g6) sparseArray.get(i10)) != null && !g6Var.f20679z)) {
                 if (!h6Var.m().equals("Blue") || i10 != 99) {
                     if (!h6Var.m().equals("Day") || i10 != 9) {
                         if (!h6Var.m().equals("Night") || i10 != 0) {
@@ -170,27 +170,27 @@ public final class c4 {
         int indexOfKey;
         h6 h6Var;
         h6 j3 = j(i11);
-        ArrayList arrayList = this.f20509f;
+        ArrayList arrayList = this.f20513f;
         if (j3 == null) {
             int i12 = ((b4) arrayList.get(i11)).d;
             b4 b4Var = (b4) ((fg.a) arrayList.get(i11));
             TLRPC.ThemeSettings b10 = b4Var.b(i12);
-            TLRPC.TL_theme tL_theme = ((b4) arrayList.get(i11)).f20448b;
+            TLRPC.TL_theme tL_theme = ((b4) arrayList.get(i11)).f20452b;
             h6 h6Var2 = new h6(i6.O0(i6.r0(b10)));
             g6Var = h6Var2.e(b4Var.a(), b10, tL_theme, i10, true);
-            h6Var2.u(g6Var.f20653a);
+            h6Var2.u(g6Var.f20657a);
             j3 = h6Var2;
         } else {
-            SparseArray sparseArray = j3.f20704a0;
+            SparseArray sparseArray = j3.f20708a0;
             if (sparseArray != null) {
-                g6Var = (g6) sparseArray.get(((b4) arrayList.get(i11)).f20450e);
+                g6Var = (g6) sparseArray.get(((b4) arrayList.get(i11)).f20454e);
             } else {
                 g6Var = null;
             }
         }
         String[] strArr = new String[1];
-        if (j3.f20705b != null) {
-            sparseIntArray = i6.R0(new File(j3.f20705b), null, strArr);
+        if (j3.f20709b != null) {
+            sparseIntArray = i6.R0(new File(j3.f20709b), null, strArr);
         } else {
             String str = j3.d;
             if (str != null) {
@@ -199,12 +199,12 @@ public final class c4 {
                 sparseIntArray = new SparseIntArray();
             }
         }
-        ((b4) arrayList.get(i11)).f20452g = strArr[0];
+        ((b4) arrayList.get(i11)).f20456g = strArr[0];
         if (g6Var != null) {
             SparseIntArray clone = sparseIntArray.clone();
             g6Var.c(sparseIntArray, clone);
-            fg.b bVar = this.f20507c;
-            if (bVar != null && !TextUtils.isEmpty(bVar.f9926b) && (h6Var = g6Var.f20654b) != null && h6Var.f20705b == null && !h6Var.q()) {
+            fg.b bVar = this.f20511c;
+            if (bVar != null && !TextUtils.isEmpty(bVar.f9926b) && (h6Var = g6Var.f20658b) != null && h6Var.f20709b == null && !h6Var.q()) {
                 g6.g(clone);
             }
             sparseIntArray = clone;
@@ -232,7 +232,7 @@ public final class c4 {
             return zf.d.e(((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift);
         }
         if (chatTheme instanceof TLRPC.TL_chatTheme) {
-            return MediaDataController.getInstance(this.f20510g).getEmojiAnimatedSticker(((TLRPC.TL_chatTheme) this.d).emoticon);
+            return MediaDataController.getInstance(this.f20514g).getEmojiAnimatedSticker(((TLRPC.TL_chatTheme) this.d).emoticon);
         }
         return null;
     }
@@ -244,8 +244,8 @@ public final class c4 {
         h6 h6Var;
         h6 O0;
         g6 g6Var2;
-        ArrayList arrayList = this.f20509f;
-        SparseIntArray sparseIntArray2 = ((b4) arrayList.get(i11)).f20451f;
+        ArrayList arrayList = this.f20513f;
+        SparseIntArray sparseIntArray2 = ((b4) arrayList.get(i11)).f20455f;
         if (sparseIntArray2 != null) {
             return sparseIntArray2;
         }
@@ -253,7 +253,7 @@ public final class c4 {
         if (j3 == null) {
             int i12 = ((b4) arrayList.get(i11)).d;
             fg.a aVar = (fg.a) arrayList.get(i11);
-            TLRPC.TL_theme tL_theme = ((b4) arrayList.get(i11)).f20448b;
+            TLRPC.TL_theme tL_theme = ((b4) arrayList.get(i11)).f20452b;
             if (aVar != null) {
                 O0 = i6.O0(i6.r0(((b4) aVar).b(i12)));
             } else {
@@ -268,16 +268,16 @@ public final class c4 {
                     g6Var2 = null;
                 }
                 if (g6Var2 != null) {
-                    h6Var2.u(g6Var2.f20653a);
+                    h6Var2.u(g6Var2.f20657a);
                 }
                 g6Var = g6Var2;
                 j3 = h6Var2;
             }
             g6Var = null;
         } else {
-            SparseArray sparseArray = j3.f20704a0;
+            SparseArray sparseArray = j3.f20708a0;
             if (sparseArray != null) {
-                g6Var = (g6) sparseArray.get(((b4) arrayList.get(i11)).f20450e);
+                g6Var = (g6) sparseArray.get(((b4) arrayList.get(i11)).f20454e);
             }
             g6Var = null;
         }
@@ -285,8 +285,8 @@ public final class c4 {
             return sparseIntArray2;
         }
         String[] strArr = new String[1];
-        if (j3.f20705b != null) {
-            sparseIntArray = i6.R0(new File(j3.f20705b), null, strArr);
+        if (j3.f20709b != null) {
+            sparseIntArray = i6.R0(new File(j3.f20709b), null, strArr);
         } else {
             String str = j3.d;
             if (str != null) {
@@ -296,19 +296,19 @@ public final class c4 {
             }
         }
         int i13 = 0;
-        ((b4) arrayList.get(i11)).f20452g = strArr[0];
+        ((b4) arrayList.get(i11)).f20456g = strArr[0];
         if (g6Var != null) {
             SparseIntArray clone = sparseIntArray.clone();
             g6Var.c(sparseIntArray, clone);
-            fg.b bVar = this.f20507c;
-            if (bVar != null && !TextUtils.isEmpty(bVar.f9926b) && (h6Var = g6Var.f20654b) != null && h6Var.f20705b == null && !h6Var.q()) {
+            fg.b bVar = this.f20511c;
+            if (bVar != null && !TextUtils.isEmpty(bVar.f9926b) && (h6Var = g6Var.f20658b) != null && h6Var.f20709b == null && !h6Var.q()) {
                 g6.g(clone);
             }
             sparseIntArray = clone;
         }
         SparseIntArray sparseIntArray3 = i6.rl;
         SparseIntArray sparseIntArray4 = new SparseIntArray();
-        ((b4) arrayList.get(i11)).f20451f = sparseIntArray4;
+        ((b4) arrayList.get(i11)).f20455f = sparseIntArray4;
         while (true) {
             try {
                 int[] iArr = h;
@@ -335,15 +335,15 @@ public final class c4 {
     }
 
     public final long i(int i10) {
-        return ((b4) this.f20509f.get(i10)).a();
+        return ((b4) this.f20513f.get(i10)).a();
     }
 
     public final h6 j(int i10) {
-        return ((b4) this.f20509f.get(i10)).f20447a;
+        return ((b4) this.f20513f.get(i10)).f20451a;
     }
 
     public final TLRPC.WallPaper k(int i10) {
-        b4 b4Var = (b4) this.f20509f.get(i10);
+        b4 b4Var = (b4) this.f20513f.get(i10);
         TLRPC.ThemeSettings b10 = b4Var.b(b4Var.d);
         if (b10 != null) {
             return b10.wallpaper;
@@ -357,7 +357,7 @@ public final class c4 {
     }
 
     public final boolean m() {
-        if (!this.f20505a && !this.f20506b) {
+        if (!this.f20509a && !this.f20510b) {
             return false;
         }
         return true;
@@ -367,29 +367,29 @@ public final class c4 {
         int i11;
         int i12 = 0;
         while (true) {
-            ArrayList arrayList = this.f20509f;
+            ArrayList arrayList = this.f20513f;
             if (i12 < arrayList.size()) {
                 if (arrayList.get(i12) != null) {
                     SparseIntArray h10 = h(i10, i12);
-                    ((b4) arrayList.get(i12)).h = g(h10, i6.f21059ra);
-                    ((b4) arrayList.get(i12)).f20453i = g(h10, i6.Aa);
-                    ((b4) arrayList.get(i12)).f20454j = g(h10, i6.Oh);
-                    ((b4) arrayList.get(i12)).f20455k = h10.get(i6.Nd, 0);
-                    ((b4) arrayList.get(i12)).f20456l = h10.get(i6.Od, 0);
-                    ((b4) arrayList.get(i12)).f20457m = h10.get(i6.Pd, 0);
-                    ((b4) arrayList.get(i12)).f20458n = h10.get(i6.Qd, 0);
-                    ((b4) arrayList.get(i12)).f20459o = h10.get(i6.Rd, 0);
-                    if (((b4) arrayList.get(i12)).f20447a != null && ((b4) arrayList.get(i12)).f20447a.m().equals("Blue")) {
-                        if (((b4) arrayList.get(i12)).f20450e >= 0) {
-                            i11 = ((b4) arrayList.get(i12)).f20450e;
+                    ((b4) arrayList.get(i12)).h = g(h10, i6.f21063ra);
+                    ((b4) arrayList.get(i12)).f20457i = g(h10, i6.Aa);
+                    ((b4) arrayList.get(i12)).f20458j = g(h10, i6.Oh);
+                    ((b4) arrayList.get(i12)).f20459k = h10.get(i6.Nd, 0);
+                    ((b4) arrayList.get(i12)).f20460l = h10.get(i6.Od, 0);
+                    ((b4) arrayList.get(i12)).f20461m = h10.get(i6.Pd, 0);
+                    ((b4) arrayList.get(i12)).f20462n = h10.get(i6.Qd, 0);
+                    ((b4) arrayList.get(i12)).f20463o = h10.get(i6.Rd, 0);
+                    if (((b4) arrayList.get(i12)).f20451a != null && ((b4) arrayList.get(i12)).f20451a.m().equals("Blue")) {
+                        if (((b4) arrayList.get(i12)).f20454e >= 0) {
+                            i11 = ((b4) arrayList.get(i12)).f20454e;
                         } else {
-                            i11 = ((b4) arrayList.get(i12)).f20447a.Y;
+                            i11 = ((b4) arrayList.get(i12)).f20451a.Y;
                         }
                         if (i11 == 99) {
-                            ((b4) arrayList.get(i12)).f20455k = -2368069;
-                            ((b4) arrayList.get(i12)).f20456l = -9722489;
-                            ((b4) arrayList.get(i12)).f20457m = -2762611;
-                            ((b4) arrayList.get(i12)).f20458n = -7817084;
+                            ((b4) arrayList.get(i12)).f20459k = -2368069;
+                            ((b4) arrayList.get(i12)).f20460l = -9722489;
+                            ((b4) arrayList.get(i12)).f20461m = -2762611;
+                            ((b4) arrayList.get(i12)).f20462n = -7817084;
                         }
                     }
                 }
@@ -410,10 +410,10 @@ public final class c4 {
             return;
         }
         long i11 = i(i10);
-        long j3 = k10.f20190id;
+        long j3 = k10.f20194id;
         p9 p9Var = new p9(resultCallback, i11, 1);
         boolean z10 = k10.pattern;
-        int i12 = this.f20510g;
+        int i12 = this.f20514g;
         ChatThemeController.getInstance(i12).loadWallpaperBitmap(j3, z10 ? 1 : 0, new a4(p9Var, k10, z10 ? 1 : 0, i12, j3));
     }
 
@@ -430,7 +430,7 @@ public final class c4 {
                     resultCallback.onComplete(null);
                 }
             } else {
-                Bitmap wallpaperThumbBitmap = ChatThemeController.getInstance(this.f20510g).getWallpaperThumbBitmap(i11);
+                Bitmap wallpaperThumbBitmap = ChatThemeController.getInstance(this.f20514g).getWallpaperThumbBitmap(i11);
                 File file = new File(ApplicationLoader.getFilesDirFixed(), org.telegram.ui.Cells.c1.h(i11, "wallpaper_thumb_", ".png"));
                 if (wallpaperThumbBitmap == null && file.exists() && file.length() > 0) {
                     try {
@@ -466,37 +466,37 @@ public final class c4 {
 
     public c4(int i10, TLRPC.TL_theme tL_theme) {
         ArrayList arrayList = new ArrayList();
-        this.f20509f = arrayList;
-        this.f20510g = i10;
-        this.f20505a = false;
+        this.f20513f = arrayList;
+        this.f20514g = i10;
+        this.f20509a = false;
         String str = tL_theme.emoticon;
-        this.f20508e = str;
-        this.f20507c = new fg.b(str, null);
+        this.f20512e = str;
+        this.f20511c = new fg.b(str, null);
         this.d = TLRPC.ChatTheme.ofEmoticon(str);
         b4 b4Var = new b4();
-        b4Var.f20448b = tL_theme;
+        b4Var.f20452b = tL_theme;
         b4Var.d = 0;
         arrayList.add(b4Var);
         b4 b4Var2 = new b4();
-        b4Var2.f20448b = tL_theme;
+        b4Var2.f20452b = tL_theme;
         b4Var2.d = 1;
         arrayList.add(b4Var2);
     }
 
     public c4(int i10, TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift) {
         ArrayList arrayList = new ArrayList();
-        this.f20509f = arrayList;
-        this.f20510g = i10;
-        this.f20505a = false;
-        this.f20508e = tL_chatThemeUniqueGift.gift.slug;
-        this.f20507c = fg.b.c(tL_chatThemeUniqueGift);
+        this.f20513f = arrayList;
+        this.f20514g = i10;
+        this.f20509a = false;
+        this.f20512e = tL_chatThemeUniqueGift.gift.slug;
+        this.f20511c = fg.b.c(tL_chatThemeUniqueGift);
         this.d = tL_chatThemeUniqueGift;
         b4 b4Var = new b4();
-        b4Var.f20449c = tL_chatThemeUniqueGift;
+        b4Var.f20453c = tL_chatThemeUniqueGift;
         b4Var.d = 0;
         arrayList.add(b4Var);
         b4 b4Var2 = new b4();
-        b4Var2.f20449c = tL_chatThemeUniqueGift;
+        b4Var2.f20453c = tL_chatThemeUniqueGift;
         b4Var2.d = 1;
         arrayList.add(b4Var2);
     }

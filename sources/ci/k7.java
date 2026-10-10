@@ -1,7 +1,7 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class k7 implements Runnable {
     public final int f5321a;
     public final o7 f5322b;
@@ -19,7 +19,7 @@ public final class k7 implements Runnable {
                 return;
             default:
                 o7 o7Var = this.f5322b;
-                o7Var.f5680a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(hs.h).setDuration(280L).start();
+                o7Var.f5680a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(is.h).setDuration(280L).start();
                 o7Var.f5682c = System.currentTimeMillis();
                 o7Var.invalidate();
                 try {

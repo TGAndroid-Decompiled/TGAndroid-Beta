@@ -169,14 +169,14 @@ public final class ia implements Utilities.Callback {
                 lc lcVar4 = this.f5210b;
                 ai.d dVar = lcVar4.f5458a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.nb nbVar = new org.telegram.ui.Components.ob(lcVar4.f5461b, new a9(1)).f29445a;
+                org.telegram.ui.Components.nb nbVar = new org.telegram.ui.Components.ob(lcVar4.f5461b, new a9(1)).f29434a;
                 WindowManager.LayoutParams layout = nbVar.getLayout();
                 if (layout != null) {
                     layout.height = -2;
                     layout.width = lcVar4.f5512r.getWidth();
                     layout.y = (int) (lcVar4.f5512r.getY() + AndroidUtilities.dp(56.0f));
-                    org.telegram.ui.Components.ob obVar = nbVar.f29137a;
-                    obVar.getWindow().setAttributes(obVar.f29446b);
+                    org.telegram.ui.Components.ob obVar = nbVar.f29094a;
+                    obVar.getWindow().setAttributes(obVar.f29435b);
                 }
                 nbVar.setTouchable(true);
                 new org.telegram.ui.Components.ad(nbVar, dVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.i6.gc, 0, new ha(lcVar4, 27), dVar)).k(true);
@@ -204,8 +204,8 @@ public final class ia implements Utilities.Callback {
                     f7 = 1.0f;
                 }
                 bi.s(animate, f7, 120L);
-                org.telegram.ui.Components.tc tcVar = org.telegram.ui.Components.tc.f31122w;
-                if (tcVar != null && tcVar.f31123a == 2) {
+                org.telegram.ui.Components.tc tcVar = org.telegram.ui.Components.tc.f31088w;
+                if (tcVar != null && tcVar.f31089a == 2) {
                     tcVar.l();
                     return;
                 }
@@ -414,8 +414,8 @@ public final class ia implements Utilities.Callback {
                     }
                     cbVar2.setTranslationY(i16 - contentHeight);
                 }
-                org.telegram.ui.Components.tc tcVar2 = org.telegram.ui.Components.tc.f31122w;
-                if (tcVar2 != null && tcVar2.f31123a == 2) {
+                org.telegram.ui.Components.tc tcVar2 = org.telegram.ui.Components.tc.f31088w;
+                if (tcVar2 != null && tcVar2.f31089a == 2) {
                     tcVar2.l();
                 }
                 if (lcVar12.f5467c1.f5566p0 && (cbVar = lcVar12.f5470d1) != null) {

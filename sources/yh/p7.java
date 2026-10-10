@@ -37,19 +37,19 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.ae0;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.h10;
-import org.telegram.ui.Components.hs;
-import org.telegram.ui.Components.ja0;
-import org.telegram.ui.Components.o01;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.r01;
-import org.telegram.ui.Components.y11;
+import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.i10;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.ka0;
+import org.telegram.ui.Components.p01;
+import org.telegram.ui.Components.q61;
+import org.telegram.ui.Components.s01;
 import org.telegram.ui.Components.y9;
-import org.telegram.ui.Components.zd0;
+import org.telegram.ui.Components.z11;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.dc1;
 import org.telegram.ui.o20;
@@ -59,35 +59,35 @@ import org.telegram.ui.uo;
 import org.telegram.ui.w70;
 import org.telegram.ui.zn;
 public final class p7 extends p20 implements NotificationCenter.NotificationCenterDelegate {
-    public static DecimalFormat f53044h0;
-    public static DecimalFormat f53045i0;
+    public static DecimalFormat f53088h0;
+    public static DecimalFormat f53089i0;
     public FrameLayout P;
     public sg.n Q;
     public o7 R;
     public q50 S;
-    public h10 T;
+    public i10 T;
     public LinearLayout U;
     public SpannableStringBuilder V;
     public org.telegram.ui.Components.r6 W;
     public TextView X;
     public ci.d Y;
     public rg.t0 Z;
-    public ci.d f53046a0;
-    public dc1 f53047b0;
-    public ci.d f53048c0;
-    public ci.d f53049d0;
-    public boolean f53050e0;
-    public boolean f53051f0;
-    public s6 f53052g0;
+    public ci.d f53090a0;
+    public dc1 f53091b0;
+    public ci.d f53092c0;
+    public ci.d f53093d0;
+    public boolean f53094e0;
+    public boolean f53095f0;
+    public s6 f53096g0;
 
     public p7() {
         this.M = true;
     }
 
-    public static void A0(p7 p7Var, p61 p61Var, Boolean bool, String str) {
+    public static void A0(p7 p7Var, q61 q61Var, Boolean bool, String str) {
         if (p7Var.getParentActivity() != null) {
             if (bool.booleanValue()) {
-                ad.a0(p7Var).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) p61Var.B, new Object[0])), R.raw.stars_topup).j();
+                ad.a0(p7Var).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) q61Var.B, new Object[0])), R.raw.stars_topup).j();
                 p7Var.T.c(true);
                 m5.y(p7Var.currentAccount, false).T(true);
             } else if (str != null) {
@@ -109,18 +109,18 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         }
     }
 
-    public static void G0(r01 r01Var, int i10, TL_stars.StarGift starGift, org.telegram.ui.ActionBar.e6 e6Var) {
+    public static void G0(s01 s01Var, int i10, TL_stars.StarGift starGift, org.telegram.ui.ActionBar.e6 e6Var) {
         CharSequence formatPluralStringComma;
         CharSequence charSequence;
-        TextView textView = (TextView) ((o01) r01Var.c(LocaleController.getString(R.string.Gift2Availability), "", null, null).getChildAt(1)).getChildAt(0);
+        TextView textView = (TextView) ((p01) s01Var.c(LocaleController.getString(R.string.Gift2Availability), "", null, null).getChildAt(1)).getChildAt(0);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x ");
-        ja0 ja0Var = new ja0(textView, AndroidUtilities.dp(90.0f), 0, e6Var);
-        ja0Var.a(org.telegram.ui.ActionBar.i6.m1(0.21f, textView.getPaint().getColor()), org.telegram.ui.ActionBar.i6.m1(0.08f, textView.getPaint().getColor()));
-        spannableStringBuilder.setSpan(ja0Var, 0, 1, 33);
+        ka0 ka0Var = new ka0(textView, AndroidUtilities.dp(90.0f), 0, e6Var);
+        ka0Var.a(org.telegram.ui.ActionBar.i6.m1(0.21f, textView.getPaint().getColor()), org.telegram.ui.ActionBar.i6.m1(0.08f, textView.getPaint().getColor()));
+        spannableStringBuilder.setSpan(ka0Var, 0, 1, 33);
         textView.setText(spannableStringBuilder, TextView.BufferType.SPANNABLE);
         if (!starGift.sold_out) {
             final m5 y3 = m5.y(i10, false);
-            final long j3 = starGift.f20265id;
+            final long j3 = starGift.f20269id;
             final ii.q1 q1Var = new ii.q1(textView, 29);
             final boolean[] zArr = {false};
             final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
@@ -132,12 +132,12 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
                     boolean[] zArr2 = zArr;
                     if (!zArr2[0] && i11 == (i13 = NotificationCenter.starGiftsLoaded) && (J = (m5Var = m5.this).J(j3)) != null) {
                         zArr2[0] = true;
-                        NotificationCenter.getInstance(m5Var.f52880a).removeObserver(notificationCenterDelegateArr[0], i13);
+                        NotificationCenter.getInstance(m5Var.f52924a).removeObserver(notificationCenterDelegateArr[0], i13);
                         q1Var.run(J);
                     }
                 }
             }};
-            int i11 = y3.f52880a;
+            int i11 = y3.f52924a;
             NotificationCenter notificationCenter = NotificationCenter.getInstance(i11);
             NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = notificationCenterDelegateArr[0];
             int i12 = NotificationCenter.starGiftsLoaded;
@@ -180,15 +180,15 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
     public static SpannableStringBuilder K0(TL_stars.StarsAmount starsAmount, float f7, char c10) {
         double d;
         int i10;
-        if (f53045i0 == null) {
-            f53045i0 = new DecimalFormat("0.###", new DecimalFormatSymbols(Locale.US));
+        if (f53089i0 == null) {
+            f53089i0 = new DecimalFormat("0.###", new DecimalFormatSymbols(Locale.US));
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         String str = "";
         if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
             long j3 = starsAmount.amount;
             if (j3 % 1000000000 != 0) {
-                String format = f53045i0.format(j3 / 1.0E9d);
+                String format = f53089i0.format(j3 / 1.0E9d);
                 spannableStringBuilder.append((CharSequence) format);
                 int indexOf = format.indexOf(".");
                 if (indexOf >= 0) {
@@ -232,7 +232,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
                 sb3.append(str);
                 sb3.append(LocaleController.formatNumber(Math.abs(j11), c10));
                 spannableStringBuilder.append((CharSequence) sb3.toString());
-                DecimalFormat decimalFormat = f53045i0;
+                DecimalFormat decimalFormat = f53089i0;
                 int i13 = starsAmount.nanos;
                 double d10 = i13;
                 if (i13 < 0) {
@@ -263,12 +263,12 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         double d;
         int i10;
         boolean z10;
-        if (f53045i0 == null) {
-            f53045i0 = new DecimalFormat("0.################", new DecimalFormatSymbols(Locale.US));
+        if (f53089i0 == null) {
+            f53089i0 = new DecimalFormat("0.################", new DecimalFormatSymbols(Locale.US));
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
-            String format = f53045i0.format(starsAmount.amount / 1.0E9d);
+            String format = f53089i0.format(starsAmount.amount / 1.0E9d);
             spannableStringBuilder.append((CharSequence) format);
             int indexOf = format.indexOf(".");
             if (indexOf >= 0) {
@@ -304,7 +304,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
                 sb2.append(str);
                 sb2.append(LocaleController.formatNumber(Math.abs(j10), c10));
                 spannableStringBuilder.append((CharSequence) sb2.toString());
-                DecimalFormat decimalFormat = f53045i0;
+                DecimalFormat decimalFormat = f53089i0;
                 int i13 = starsAmount.nanos;
                 double d10 = i13;
                 if (i13 < 0) {
@@ -349,10 +349,10 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         String str;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (starsAmount instanceof TL_stars.TL_starsTonAmount) {
-            if (f53045i0 == null) {
-                f53045i0 = new DecimalFormat("0.################", new DecimalFormatSymbols(Locale.US));
+            if (f53089i0 == null) {
+                f53089i0 = new DecimalFormat("0.################", new DecimalFormatSymbols(Locale.US));
             }
-            String format = f53045i0.format(starsAmount.amount / 1.0E9d);
+            String format = f53089i0.format(starsAmount.amount / 1.0E9d);
             spannableStringBuilder.append((CharSequence) format);
             int indexOf = format.indexOf(".");
             if (indexOf >= 0) {
@@ -388,10 +388,10 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
             sb2.append(str);
             sb2.append(LocaleController.formatNumber(Math.abs(j10), ','));
             spannableStringBuilder.append((CharSequence) sb2.toString());
-            if (f53045i0 == null) {
-                f53045i0 = new DecimalFormat("0.################", new DecimalFormatSymbols(Locale.US));
+            if (f53089i0 == null) {
+                f53089i0 = new DecimalFormat("0.################", new DecimalFormatSymbols(Locale.US));
             }
-            DecimalFormat decimalFormat = f53045i0;
+            DecimalFormat decimalFormat = f53089i0;
             int i13 = starsAmount.nanos;
             double d10 = i13;
             if (i13 < 0) {
@@ -413,11 +413,11 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
 
     public static String N0(long j3) {
         String str;
-        if (f53044h0 == null) {
-            f53044h0 = new DecimalFormat("0.####", new DecimalFormatSymbols(Locale.US));
+        if (f53088h0 == null) {
+            f53088h0 = new DecimalFormat("0.####", new DecimalFormatSymbols(Locale.US));
         }
         if (j3 % 1000000000 != 0) {
-            return f53044h0.format(j3 / 1.0E9d);
+            return f53088h0.format(j3 / 1.0E9d);
         }
         StringBuilder sb2 = new StringBuilder();
         if (j3 < 0) {
@@ -619,7 +619,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         return spannableStringBuilder;
     }
 
-    public static y11 Z0(View view, ImageReceiver imageReceiver, String str, boolean z10) {
+    public static z11 Z0(View view, ImageReceiver imageReceiver, String str, boolean z10) {
         int i10;
         int currentAccount = imageReceiver.getCurrentAccount();
         final m4.f0 f0Var = new m4.f0(z10, currentAccount, str, imageReceiver, new boolean[1]);
@@ -630,7 +630,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         } else {
             i10 = NotificationCenter.didUpdatePremiumGiftStickers;
         }
-        return new y11(notificationCenter.listen(view, i10, new Utilities.Callback() {
+        return new z11(notificationCenter.listen(view, i10, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 Object[] objArr = (Object[]) obj;
@@ -665,7 +665,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
             return;
         }
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, i10);
-        imageReceiver.setImage(ImageLocation.getForDocument(document), a1.g.l(i10, i10, "_"), ImageLocation.getForDocument(closestPhotoSizeWithSize, document), a1.g.l(i10, i10, "_"), DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.i6.f20741a7, 0.35f), 0L, null, null, 0);
+        imageReceiver.setImage(ImageLocation.getForDocument(document), a1.g.l(i10, i10, "_"), ImageLocation.getForDocument(closestPhotoSizeWithSize, document), a1.g.l(i10, i10, "_"), DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.i6.f20745a7, 0.35f), 0L, null, null, 0);
     }
 
     public static void b1(ImageReceiver imageReceiver, TL_stars.StarGift starGift, int i10) {
@@ -690,7 +690,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         Z0(y9Var, imageReceiver, str, false);
     }
 
-    public static y11 d1(y9 y9Var, ImageReceiver imageReceiver, int i10) {
+    public static z11 d1(y9 y9Var, ImageReceiver imageReceiver, int i10) {
         String str;
         if (i10 != 3) {
             if (i10 != 6) {
@@ -740,15 +740,15 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         r6 r6Var = new r6(context, 70, 0);
         frameLayout.addView(r6Var, w7.x5.d(-1.0f, -1));
         sg.n nVar = new sg.n(context, 1, 2);
-        sg.g gVar = nVar.f48078b;
-        gVar.f48062z = org.telegram.ui.ActionBar.i6.fk;
+        sg.g gVar = nVar.f48122b;
+        gVar.f48106z = org.telegram.ui.ActionBar.i6.fk;
         gVar.A = org.telegram.ui.ActionBar.i6.gk;
         gVar.b();
         nVar.setStarParticlesView(r6Var);
         frameLayout.addView(nVar, w7.x5.a(170.0f, 0.0f, 32.0f, 0.0f, 24.0f, 170, 17));
         nVar.setPaused(false);
         TextView textView = new TextView(context);
-        org.telegram.ui.Cells.c1.n(org.telegram.ui.ActionBar.i6.f20905j5, e6Var, textView, 1, 20.0f);
+        org.telegram.ui.Cells.c1.n(org.telegram.ui.ActionBar.i6.f20909j5, e6Var, textView, 1, 20.0f);
         textView.setGravity(17);
         org.telegram.ui.ActionBar.f3[] f3VarArr = new org.telegram.ui.ActionBar.f3[1];
         textView.setText(LocaleController.formatPluralStringSpaced("BoostStars", (int) boost.stars));
@@ -771,26 +771,26 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         spannableStringBuilder.setSpan(erVar, 0, 1, 33);
         h.setText(spannableStringBuilder);
         e7.addView(h, w7.x5.t(-2, 20, 17, 20, 4, 20, 4));
-        r01 r01Var = new r01(context, e6Var);
-        r01Var.m(LocaleController.getString(R.string.BoostFrom), i10, j3, new o5(f3VarArr, j3, 2));
-        r01Var.c(LocaleController.getString(R.string.BoostGift), LocaleController.formatPluralString("BoostStars", (int) boost.stars, new Object[0]), null, null);
+        s01 s01Var = new s01(context, e6Var);
+        s01Var.m(LocaleController.getString(R.string.BoostFrom), i10, j3, new o5(f3VarArr, j3, 2));
+        s01Var.c(LocaleController.getString(R.string.BoostGift), LocaleController.formatPluralString("BoostStars", (int) boost.stars, new Object[0]), null, null);
         if (boost.giveaway_msg_id != 0) {
             String string = LocaleController.getString(R.string.BoostReason);
             String string2 = LocaleController.getString(R.string.BoostReasonGiveaway);
             xh.q0 q0Var = new xh.q0(f3VarArr, j3, boost, 3);
             f3VarArr = f3VarArr;
-            r01Var.h(string, string2, q0Var);
+            s01Var.h(string, string2, q0Var);
         }
-        r01Var.c(LocaleController.getString(R.string.BoostDate), LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(boost.date * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date(boost.date * 1000))), null, null);
-        r01Var.c(LocaleController.getString(R.string.BoostUntil), LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(boost.expires * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date(boost.expires * 1000))), null, null);
-        e7.addView(r01Var, w7.x5.k(16.0f, 17.0f, 16.0f, 0.0f, -1, -2));
-        ea0 ea0Var = new ea0(context, e6Var);
-        ea0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, e6Var));
-        ea0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, e6Var));
-        ea0Var.setTextSize(1, 14.0f);
-        ea0Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTransactionTOS), new di.a(context, 9)));
-        ea0Var.setGravity(17);
-        e7.addView(ea0Var, w7.x5.k(14.0f, 15.0f, 14.0f, 7.0f, -1, -2));
+        s01Var.c(LocaleController.getString(R.string.BoostDate), LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(boost.date * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date(boost.date * 1000))), null, null);
+        s01Var.c(LocaleController.getString(R.string.BoostUntil), LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterGiveawayCard().format(new Date(boost.expires * 1000)), LocaleController.getInstance().getFormatterDay().format(new Date(boost.expires * 1000))), null, null);
+        e7.addView(s01Var, w7.x5.k(16.0f, 17.0f, 16.0f, 0.0f, -1, -2));
+        fa0 fa0Var = new fa0(context, e6Var);
+        fa0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21203z6, e6Var));
+        fa0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, e6Var));
+        fa0Var.setTextSize(1, 14.0f);
+        fa0Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTransactionTOS), new di.a(context, 9)));
+        fa0Var.setGravity(17);
+        e7.addView(fa0Var, w7.x5.k(14.0f, 15.0f, 14.0f, 7.0f, -1, -2));
         ci.d dVar = new ci.d(context, e6Var, true);
         dVar.g(LocaleController.getString(R.string.OK), false, true);
         dVar.setOnClickListener(new u5(f3VarArr, 1));
@@ -810,15 +810,15 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
 
     public static h0 g1(Context context, int i10, TL_stars.TL_starGiftUnique tL_starGiftUnique, Utilities.Callback2 callback2, org.telegram.ui.ActionBar.e6 e6Var) {
         zf.a resellAmount;
-        zf.b bVar = zf.b.f54443a;
+        zf.b bVar = zf.b.f54487a;
         if (tL_starGiftUnique == null) {
             resellAmount = zf.a.g(MessagesController.getInstance(i10).config.starsStarGiftResaleAmountMin.get(), bVar);
         } else if (tL_starGiftUnique.resale_ton_only) {
-            resellAmount = tL_starGiftUnique.getResellAmount(zf.b.f54444b);
+            resellAmount = tL_starGiftUnique.getResellAmount(zf.b.f54488b);
         } else {
             resellAmount = tL_starGiftUnique.getResellAmount(bVar);
         }
-        h0 h0Var = new h0(context, e6Var, i10, resellAmount, new org.telegram.ui.Wallet.z6(16, callback2, r8));
+        h0 h0Var = new h0(context, e6Var, i10, resellAmount, new org.telegram.ui.Wallet.a7(16, callback2, r8));
         h0[] h0VarArr = {h0Var};
         h0Var.show();
         return h0VarArr[0];
@@ -844,10 +844,10 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(i13, e6Var));
         linearLayout.addView(textView, w7.x5.k(4.0f, 0.0f, 4.0f, 18.0f, -1, -2));
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        zd0 zd0Var = new zd0(context, e6Var);
-        zd0Var.setForceForceUseCenter(true);
-        zd0Var.setText(LocaleController.getString(R.string.PaidContentPriceTitle));
-        zd0Var.setLeftPadding(AndroidUtilities.dp(36.0f));
+        ae0 ae0Var = new ae0(context, e6Var);
+        ae0Var.setForceForceUseCenter(true);
+        ae0Var.setText(LocaleController.getString(R.string.PaidContentPriceTitle));
+        ae0Var.setLeftPadding(AndroidUtilities.dp(36.0f));
         editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.i6.w0(i13, e6Var));
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
@@ -860,15 +860,15 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         editTextBoldCursor.setInputType(2);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21119uf, e6Var));
-        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21136vf, e6Var));
+        editTextBoldCursor.setHighlightColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21123uf, e6Var));
+        editTextBoldCursor.setHandlesColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21140vf, e6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         editTextBoldCursor.setGravity(i10);
-        editTextBoldCursor.setOnFocusChangeListener(new ei.w1(zd0Var, editTextBoldCursor, 2));
+        editTextBoldCursor.setOnFocusChangeListener(new ei.w1(ae0Var, editTextBoldCursor, 2));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         ImageView imageView = new ImageView(context);
@@ -876,19 +876,19 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         imageView.setImageResource(R.drawable.star_small_inner);
         linearLayout2.addView(imageView, w7.x5.p(-2, -2, 0.0f, 19, 14, 0, 0, 0));
         linearLayout2.addView(editTextBoldCursor, w7.x5.o(-1, -2, 1.0f, 119));
-        zd0Var.e(editTextBoldCursor);
-        zd0Var.addView(linearLayout2, w7.x5.e(-1, -2, 48));
-        linearLayout.addView(zd0Var, w7.x5.n(-1, -2));
+        ae0Var.e(editTextBoldCursor);
+        ae0Var.addView(linearLayout2, w7.x5.e(-1, -2, 48));
+        linearLayout.addView(ae0Var, w7.x5.n(-1, -2));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 16.0f);
         textView2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.A6, false));
-        zd0Var.addView(textView2, w7.x5.a(-2.0f, 0.0f, 0.0f, 14.0f, 0.0f, -2, 21));
-        ea0 ea0Var = new ea0(context, null);
-        ea0Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PaidContentInfo), new di.a(context, 10)), true));
-        ea0Var.setTextSize(1, 12.0f);
-        ea0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, e6Var));
-        ea0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, e6Var));
-        linearLayout.addView(ea0Var, w7.x5.k(14.0f, 3.0f, 14.0f, 24.0f, -1, -2));
+        ae0Var.addView(textView2, w7.x5.a(-2.0f, 0.0f, 0.0f, 14.0f, 0.0f, -2, 21));
+        fa0 fa0Var = new fa0(context, null);
+        fa0Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PaidContentInfo), new di.a(context, 10)), true));
+        fa0Var.setTextSize(1, 12.0f);
+        fa0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21203z6, e6Var));
+        fa0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, e6Var));
+        linearLayout.addView(fa0Var, w7.x5.k(14.0f, 3.0f, 14.0f, 24.0f, -1, -2));
         final ci.d f7 = bi.f(24, context, e6Var, true);
         int i14 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i14 > 0) {
@@ -911,7 +911,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
             l4 = Long.toString(j3);
         }
         editTextBoldCursor.setText(l4);
-        editTextBoldCursor.addTextChangedListener(new q6(editTextBoldCursor, zd0Var, j3, z10, f7, textView2));
+        editTextBoldCursor.addTextChangedListener(new q6(editTextBoldCursor, ae0Var, j3, z10, f7, textView2));
         final boolean[] zArr = {false};
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -969,7 +969,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         tL_starsTransactionPeer.peer = tL_messageActionPaymentRefunded.peer;
         starsTransaction.date = i11;
         starsTransaction.amount = TL_stars.StarsAmount.ofStars(tL_messageActionPaymentRefunded.total_amount);
-        starsTransaction.f20267id = tL_messageActionPaymentRefunded.charge.f20166id;
+        starsTransaction.f20271id = tL_messageActionPaymentRefunded.charge.f20170id;
         starsTransaction.refund = true;
         i1(activity, false, 0L, i10, starsTransaction, e6Var);
     }
@@ -984,7 +984,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         tL_starsTransactionPeer.peer = MessagesController.getInstance(i10).getPeer(tL_payments_paymentReceiptStars.bot_id);
         starsTransaction.date = tL_payments_paymentReceiptStars.date;
         starsTransaction.amount = TL_stars.StarsAmount.ofStars(-tL_payments_paymentReceiptStars.total_amount);
-        starsTransaction.f20267id = tL_payments_paymentReceiptStars.transaction_id;
+        starsTransaction.f20271id = tL_payments_paymentReceiptStars.transaction_id;
         i1(context, false, 0L, i10, starsTransaction, e6Var);
     }
 
@@ -992,18 +992,18 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         throw new UnsupportedOperationException("Method not decompiled: yh.p7.y0(yh.p7, int):void");
     }
 
-    public final void I0(ArrayList arrayList, c71 c71Var) {
+    public final void I0(ArrayList arrayList, d71 d71Var) {
         int i10;
         if (getParentActivity() == null) {
             return;
         }
         m5 y3 = m5.y(this.currentAccount, false);
         ArrayList arrayList2 = y3.v;
-        p61 p61Var = new p61(-2);
-        p61Var.f29727c = (bb) super.r0(getParentActivity());
-        arrayList.add(p61Var);
-        arrayList.add(p61.k(this.U));
-        ci.d dVar = this.f53049d0;
+        q61 q61Var = new q61(-2);
+        q61Var.f30056c = (bb) super.r0(getParentActivity());
+        arrayList.add(q61Var);
+        arrayList.add(q61.k(this.U));
+        ci.d dVar = this.f53093d0;
         if (dVar != null) {
             if (getMessagesController().starsGiftsEnabled) {
                 i10 = 0;
@@ -1012,35 +1012,35 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
             }
             dVar.setVisibility(i10);
         }
-        arrayList.add(p61.B(null));
+        arrayList.add(q61.B(null));
         if (getMessagesController().starrefConnectAllowed) {
             arrayList.add(ei.h.a(-4, getThemedColor(org.telegram.ui.ActionBar.i6.uj), R.drawable.filled_earn_stars, uo.d0(LocaleController.getString(R.string.UserAffiliateProgramRowTitle)), LocaleController.getString(R.string.UserAffiliateProgramRowText)));
-            arrayList.add(p61.B(null));
+            arrayList.add(q61.B(null));
         }
-        if (y3.f52883e && !arrayList2.isEmpty()) {
+        if (y3.f52927e && !arrayList2.isEmpty()) {
             com.google.android.gms.internal.vision.e2.n(R.string.StarMySubscriptions, arrayList);
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                int i12 = g7.f52591a;
-                p61 J = p61.J(g7.class);
+                int i12 = g7.f52635a;
+                q61 J = q61.J(g7.class);
                 J.G = (TL_stars.StarsSubscription) arrayList2.get(i11);
                 arrayList.add(J);
             }
-            if (y3.f52900x) {
-                arrayList.add(p61.o(arrayList.size(), 33));
-            } else if (!y3.f52901y) {
-                p61 c10 = p61.c(-3, R.drawable.arrow_more, LocaleController.getString(R.string.StarMySubscriptionsExpand));
-                c10.f29739q = true;
+            if (y3.f52944x) {
+                arrayList.add(q61.o(arrayList.size(), 33));
+            } else if (!y3.f52945y) {
+                q61 c10 = q61.c(-3, R.drawable.arrow_more, LocaleController.getString(R.string.StarMySubscriptionsExpand));
+                c10.f30068q = true;
                 arrayList.add(c10);
             }
-            arrayList.add(p61.B(null));
+            arrayList.add(q61.B(null));
         }
         boolean O = y3.O(0);
-        this.f53050e0 = O;
+        this.f53094e0 = O;
         if (O) {
-            arrayList.add(p61.p(this.R, AndroidUtilities.dp(24.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
+            arrayList.add(q61.p(this.R, AndroidUtilities.dp(24.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
             return;
         }
-        arrayList.add(p61.l(this.S));
+        arrayList.add(q61.l(this.S));
     }
 
     @Override
@@ -1061,24 +1061,24 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         frameLayout.setClickable(true);
         sg.n nVar = new sg.n(context, 1, 2);
         this.Q = nVar;
-        sg.g gVar = nVar.f48078b;
-        gVar.f48062z = org.telegram.ui.ActionBar.i6.fk;
+        sg.g gVar = nVar.f48122b;
+        gVar.f48106z = org.telegram.ui.ActionBar.i6.fk;
         gVar.A = org.telegram.ui.ActionBar.i6.gk;
         gVar.b();
-        this.Q.setStarParticlesView(this.f40641e);
+        this.Q.setStarParticlesView(this.f40685e);
         this.P.addView(this.Q, w7.x5.a(190.0f, 0.0f, 12.0f, 0.0f, 24.0f, 190, 17));
         m0(LocaleController.getString(R.string.TelegramStars), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.TelegramStarsInfo2), new di.a(context, 7)), true), this.P, null);
-        this.f40640c.setOverScrollMode(2);
+        this.f40684c.setOverScrollMode(2);
         s4.j jVar = new s4.j();
-        jVar.f47698m = false;
+        jVar.f47742m = false;
         jVar.C = false;
-        jVar.o(hs.h);
+        jVar.o(is.h);
         jVar.n(350L);
-        this.f40640c.setItemAnimator(jVar);
-        this.f40640c.setOnItemClickListener(new ai.g(this, 21));
-        h10 h10Var = new h10(getParentActivity());
-        this.T = h10Var;
-        this.f40645s.addView(h10Var, w7.x5.d(-1.0f, -1));
+        this.f40684c.setItemAnimator(jVar);
+        this.f40684c.setOnItemClickListener(new ai.g(this, 21));
+        i10 i10Var = new i10(getParentActivity());
+        this.T = i10Var;
+        this.f40689s.addView(i10Var, w7.x5.d(-1.0f, -1));
         m5 y3 = m5.y(this.currentAccount, false);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.U = linearLayout;
@@ -1092,11 +1092,11 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         this.W.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, this.resourceProvider));
         this.V = new SpannableStringBuilder("S");
         w70 w70Var = new w70(this.W, 42.0f, this.currentAccount);
-        ck0 ck0Var = new ck0(R.raw.star_reaction, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
-        ImageReceiver imageReceiver = w70Var.f43104b;
-        imageReceiver.setImageBitmap(ck0Var);
+        dk0 dk0Var = new dk0(R.raw.star_reaction, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+        ImageReceiver imageReceiver = w70Var.f43148b;
+        imageReceiver.setImageBitmap(dk0Var);
         imageReceiver.setAutoRepeat(2);
-        w70Var.f43107f = false;
+        w70Var.f43151f = false;
         w70Var.h = -AndroidUtilities.dp(3.0f);
         this.V.setSpan(w70Var, 0, 1, 33);
         this.U.addView(this.W, w7.x5.a(40.0f, 24.0f, 0.0f, 24.0f, 0.0f, -1, 17));
@@ -1105,66 +1105,66 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         textView.setTextSize(1, 14.0f);
         this.X.setGravity(17);
         this.X.setText(LocaleController.getString(R.string.YourStarsBalance));
-        this.X.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21199z6, this.resourceProvider));
+        this.X.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21203z6, this.resourceProvider));
         this.U.addView(this.X, w7.x5.a(-2.0f, 24.0f, 0.0f, 24.0f, 0.0f, -1, 17));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
         rg.t0 t0Var = new rg.t0(this, getParentActivity(), 4);
         this.Z = t0Var;
         frameLayout2.addView(t0Var);
         ci.d dVar = new ci.d(getParentActivity(), this.resourceProvider, true);
-        this.f53046a0 = dVar;
+        this.f53090a0 = dVar;
         dVar.e();
-        this.f53046a0.g("", false, true);
-        this.f53046a0.setOnClickListener(new View.OnClickListener(this) {
-            public final p7 f53347b;
+        this.f53090a0.g("", false, true);
+        this.f53090a0.setOnClickListener(new View.OnClickListener(this) {
+            public final p7 f53391b;
 
             {
-                this.f53347b = this;
+                this.f53391b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        p7.C0(this.f53347b, context);
+                        p7.C0(this.f53391b, context);
                         return;
                     default:
-                        new f7(context, this.f53347b.resourceProvider).show();
+                        new f7(context, this.f53391b.resourceProvider).show();
                         return;
                 }
             }
         });
-        this.Z.addView(this.f53046a0, w7.x5.e(-1, 48, 119));
+        this.Z.addView(this.f53090a0, w7.x5.e(-1, 48, 119));
         dc1 dc1Var = new dc1(this, getParentActivity(), 20);
-        this.f53047b0 = dc1Var;
+        this.f53091b0 = dc1Var;
         frameLayout2.addView(dc1Var);
         ci.d dVar2 = new ci.d(getParentActivity(), this.resourceProvider, true);
-        this.f53048c0 = dVar2;
+        this.f53092c0 = dVar2;
         dVar2.e();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  ");
         spannableStringBuilder.setSpan(new er(R.drawable.mini_topup, 2), 0, 1, 33);
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StarsTopUp));
-        this.f53048c0.g(spannableStringBuilder, false, true);
-        this.f53048c0.setOnClickListener(new View.OnClickListener(this) {
-            public final p7 f53347b;
+        this.f53092c0.g(spannableStringBuilder, false, true);
+        this.f53092c0.setOnClickListener(new View.OnClickListener(this) {
+            public final p7 f53391b;
 
             {
-                this.f53347b = this;
+                this.f53391b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        p7.C0(this.f53347b, context);
+                        p7.C0(this.f53391b, context);
                         return;
                     default:
-                        new f7(context, this.f53347b.resourceProvider).show();
+                        new f7(context, this.f53391b.resourceProvider).show();
                         return;
                 }
             }
         });
-        this.f53047b0.addView(this.f53048c0, w7.x5.p(-1, 48, 17.0f, 1, 0, 0, 8, 0));
+        this.f53091b0.addView(this.f53092c0, w7.x5.p(-1, 48, 17.0f, 1, 0, 0, 8, 0));
         ci.d dVar3 = new ci.d(getParentActivity(), this.resourceProvider, true);
         this.Y = dVar3;
         dVar3.e();
@@ -1173,58 +1173,58 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.StarsStats));
         this.Y.g(spannableStringBuilder2, false, true);
         this.Y.setOnClickListener(new View.OnClickListener(this) {
-            public final p7 f53378b;
+            public final p7 f53422b;
 
             {
-                this.f53378b = this;
+                this.f53422b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        p7 p7Var = this.f53378b;
+                        p7 p7Var = this.f53422b;
                         p7Var.presentFragment(new g(0, p7Var.getUserConfig().getClientUserId()));
                         return;
                     default:
-                        p7.B0(this.f53378b);
+                        p7.B0(this.f53422b);
                         return;
                 }
             }
         });
-        this.f53047b0.addView(this.Y, w7.x5.p(-1, 48, 17.0f, 1, 0, 0, 0, 0));
+        this.f53091b0.addView(this.Y, w7.x5.p(-1, 48, 17.0f, 1, 0, 0, 0, 0));
         this.U.addView(frameLayout2, w7.x5.a(48.0f, 20.0f, 17.0f, 20.0f, 0.0f, -1, 17));
         ci.d dVar4 = new ci.d(getParentActivity(), this.resourceProvider, false);
-        this.f53049d0 = dVar4;
+        this.f53093d0 = dVar4;
         dVar4.e();
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
         spannableStringBuilder3.append((CharSequence) "G  ");
         spannableStringBuilder3.setSpan(new er(R.drawable.menu_stars_gift, 0), 0, 1, 33);
         spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.TelegramStarsGift));
-        this.f53049d0.g(spannableStringBuilder3, false, true);
-        this.f53049d0.setOnClickListener(new View.OnClickListener(this) {
-            public final p7 f53378b;
+        this.f53093d0.g(spannableStringBuilder3, false, true);
+        this.f53093d0.setOnClickListener(new View.OnClickListener(this) {
+            public final p7 f53422b;
 
             {
-                this.f53378b = this;
+                this.f53422b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        p7 p7Var = this.f53378b;
+                        p7 p7Var = this.f53422b;
                         p7Var.presentFragment(new g(0, p7Var.getUserConfig().getClientUserId()));
                         return;
                     default:
-                        p7.B0(this.f53378b);
+                        p7.B0(this.f53422b);
                         return;
                 }
             }
         });
-        this.U.addView(this.f53049d0, w7.x5.a(48.0f, 20.0f, 8.0f, 20.0f, 0.0f, -1, 17));
+        this.U.addView(this.f53093d0, w7.x5.a(48.0f, 20.0f, 8.0f, 20.0f, 0.0f, -1, 17));
         l1();
-        s6 s6Var = this.f53052g0;
+        s6 s6Var = this.f53096g0;
         if (s6Var != null) {
             s6Var.N(false);
         }
@@ -1241,7 +1241,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.starOptionsLoaded) {
             t0();
-            s6 s6Var = this.f53052g0;
+            s6 s6Var = this.f53096g0;
             if (s6Var != null) {
                 s6Var.N(true);
             }
@@ -1251,10 +1251,10 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
             l0();
         } else if (i10 == NotificationCenter.starTransactionsLoaded) {
             m5 y3 = m5.y(this.currentAccount, false);
-            if (this.f53050e0 != y3.O(0)) {
-                this.f53050e0 = y3.O(0);
+            if (this.f53094e0 != y3.O(0)) {
+                this.f53094e0 = y3.O(0);
                 t0();
-                s6 s6Var2 = this.f53052g0;
+                s6 s6Var2 = this.f53096g0;
                 if (s6Var2 != null) {
                     s6Var2.N(true);
                 }
@@ -1264,7 +1264,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
                 l0();
             }
         } else if (i10 == NotificationCenter.starSubscriptionsLoaded) {
-            s6 s6Var3 = this.f53052g0;
+            s6 s6Var3 = this.f53096g0;
             if (s6Var3 != null) {
                 s6Var3.N(true);
             }
@@ -1284,7 +1284,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         spannableStringBuilder.append((CharSequence) this.V);
         spannableStringBuilder.append((CharSequence) K0(y3.p(), 0.66f, ' '));
         this.W.setText(spannableStringBuilder);
-        ci.d dVar = this.f53046a0;
+        ci.d dVar = this.f53090a0;
         if (y3.p().amount > 0) {
             i10 = R.string.StarsBuyMore;
         } else {
@@ -1302,12 +1302,12 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         float f7;
         int i10;
         float f10;
-        this.f53051f0 = z10;
+        this.f53095f0 = z10;
         float f11 = 1.0f;
         int i11 = 0;
         if (z11) {
             this.Z.setVisibility(0);
-            this.f53047b0.setVisibility(0);
+            this.f53091b0.setVisibility(0);
             ViewPropertyAnimator animate = this.Z.animate();
             if (z10) {
                 f10 = 0.0f;
@@ -1315,10 +1315,10 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
                 f10 = 1.0f;
             }
             animate.alpha(f10).withEndAction(new Runnable(this) {
-                public final p7 f53446b;
+                public final p7 f53490b;
 
                 {
-                    this.f53446b = this;
+                    this.f53490b = this;
                 }
 
                 @Override
@@ -1326,28 +1326,28 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
                     switch (r3) {
                         case 0:
                             if (z10) {
-                                this.f53446b.Z.setVisibility(8);
+                                this.f53490b.Z.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
                             if (!z10) {
-                                this.f53446b.f53047b0.setVisibility(8);
+                                this.f53490b.f53091b0.setVisibility(8);
                                 return;
                             }
                             return;
                     }
                 }
             }).start();
-            ViewPropertyAnimator animate2 = this.f53047b0.animate();
+            ViewPropertyAnimator animate2 = this.f53091b0.animate();
             if (!z10) {
                 f11 = 0.0f;
             }
             animate2.alpha(f11).withEndAction(new Runnable(this) {
-                public final p7 f53446b;
+                public final p7 f53490b;
 
                 {
-                    this.f53446b = this;
+                    this.f53490b = this;
                 }
 
                 @Override
@@ -1355,13 +1355,13 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
                     switch (r3) {
                         case 0:
                             if (z10) {
-                                this.f53446b.Z.setVisibility(8);
+                                this.f53490b.Z.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
                             if (!z10) {
-                                this.f53446b.f53047b0.setVisibility(8);
+                                this.f53490b.f53091b0.setVisibility(8);
                                 return;
                             }
                             return;
@@ -1371,8 +1371,8 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
             return;
         }
         this.Z.animate().cancel();
-        this.f53047b0.animate().cancel();
-        dc1 dc1Var = this.f53047b0;
+        this.f53091b0.animate().cancel();
+        dc1 dc1Var = this.f53091b0;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -1384,7 +1384,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
             f11 = 0.0f;
         }
         t0Var.setAlpha(f11);
-        dc1 dc1Var2 = this.f53047b0;
+        dc1 dc1Var2 = this.f53091b0;
         if (z10) {
             i10 = 0;
         } else {
@@ -1400,9 +1400,9 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
 
     @Override
     public final s4.i0 n0() {
-        s6 s6Var = new s6(this, this.f40640c, getParentActivity(), this.currentAccount, this.classGuid, new hi.a(this, 26), getResourceProvider());
-        this.f53052g0 = s6Var;
-        s6Var.f25280r = false;
+        s6 s6Var = new s6(this, this.f40684c, getParentActivity(), this.currentAccount, this.classGuid, new hi.a(this, 26), getResourceProvider());
+        this.f53096g0 = s6Var;
+        s6Var.f25587r = false;
         return s6Var;
     }
 
@@ -1464,7 +1464,7 @@ public final class p7 extends p20 implements NotificationCenter.NotificationCent
         o7 o7Var = this.R;
         boolean z10 = false;
         if (o7Var != null && (o7Var.getParent() instanceof View)) {
-            if ((this.f40640c.getHeight() - this.f40640c.getPaddingBottom()) - ((View) this.R.getParent()).getBottom() >= 0) {
+            if ((this.f40684c.getHeight() - this.f40684c.getPaddingBottom()) - ((View) this.R.getParent()).getBottom() >= 0) {
                 z10 = true;
             }
         }

@@ -2,9 +2,9 @@ package ci;
 
 import android.content.Context;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.Components.ux0;
-import org.telegram.ui.Components.yx0;
-public final class j2 extends yx0 {
+import org.telegram.ui.Components.vx0;
+import org.telegram.ui.Components.zx0;
+public final class j2 extends zx0 {
     public final boolean f5229x3;
     public final k2 y3;
 
@@ -20,13 +20,13 @@ public final class j2 extends yx0 {
     }
 
     @Override
-    public final ux0[] C1(ux0[] ux0VarArr) {
-        if (ux0VarArr != null && this.f5229x3) {
+    public final vx0[] C1(vx0[] vx0VarArr) {
+        if (vx0VarArr != null && this.f5229x3) {
             int i10 = 0;
             while (true) {
-                if (i10 < ux0VarArr.length) {
-                    ux0 ux0Var = ux0VarArr[i10];
-                    if (ux0Var != null && ux0Var.f31635b) {
+                if (i10 < vx0VarArr.length) {
+                    vx0 vx0Var = vx0VarArr[i10];
+                    if (vx0Var != null && vx0Var.f32529b) {
                         break;
                     }
                     i10++;
@@ -36,16 +36,16 @@ public final class j2 extends yx0 {
                 }
             }
             if (i10 >= 0) {
-                int length = ux0VarArr.length;
-                ux0[] ux0VarArr2 = new ux0[length];
-                ux0VarArr2[0] = ux0VarArr[i10];
+                int length = vx0VarArr.length;
+                vx0[] vx0VarArr2 = new vx0[length];
+                vx0VarArr2[0] = vx0VarArr[i10];
                 for (int i11 = 1; i11 < length; i11++) {
-                    ux0VarArr2[i11] = ux0VarArr[i11 <= i10 ? i11 - 1 : i11];
+                    vx0VarArr2[i11] = vx0VarArr[i11 <= i10 ? i11 - 1 : i11];
                 }
-                return ux0VarArr2;
+                return vx0VarArr2;
             }
         }
-        return ux0VarArr;
+        return vx0VarArr;
     }
 
     @Override

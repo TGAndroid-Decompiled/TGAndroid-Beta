@@ -36,12 +36,12 @@ public final class x7 implements Utilities.CallbackReturn {
                     yi yiVar = new yi(m0Var.getContext(), new qg.x(m0Var), false, false, false, m0Var.Q1);
                     yiVar.drawNavigationBar = true;
                     yiVar.P1(LocaleController.getString(R.string.AddImage));
-                    yiVar.f33219c2 = new qg.y(m0Var, yiVar);
+                    yiVar.f33226c2 = new qg.y(m0Var, yiVar);
                     yiVar.setOnDismissListener(new e1(7));
                     yiVar.N1(1, false);
                     yiVar.t1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    yiVar.f33240j0.f0();
+                    yiVar.f33247j0.f0();
                     yiVar.show();
                 }
                 return Boolean.TRUE;
@@ -50,7 +50,7 @@ public final class x7 implements Utilities.CallbackReturn {
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
                 yh.r6 r6Var = (yh.r6) this.f6310b;
-                return r6Var.f53135n[((Integer) obj).intValue() % r6Var.f53135n.length];
+                return r6Var.f53179n[((Integer) obj).intValue() % r6Var.f53179n.length];
         }
     }
 }

@@ -17,10 +17,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.j10;
-import org.telegram.ui.Components.pm0;
+import org.telegram.ui.Components.k10;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.zn;
-public final class n1 extends pm0 implements NotificationCenter.NotificationCenterDelegate {
+public final class n1 extends qm0 implements NotificationCenter.NotificationCenterDelegate {
     public final Context f10739c;
     public final zn f10741f;
     public int h;
@@ -45,7 +45,7 @@ public final class n1 extends pm0 implements NotificationCenter.NotificationCent
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47662f;
+        int i10 = d1Var.f47706f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -135,16 +135,16 @@ public final class n1 extends pm0 implements NotificationCenter.NotificationCent
         boolean z10;
         int i11;
         int i12;
-        int i13 = d1Var.f47662f;
-        View view = d1Var.f47658a;
+        int i13 = d1Var.f47706f;
+        View view = d1Var.f47702a;
         if (i13 == 0) {
             s2 s2Var = (s2) view;
-            s2Var.f22857s2 = true;
+            s2Var.f22861s2 = true;
             MessageObject messageObject = (MessageObject) E(i10);
             long dialogId = messageObject.getDialogId();
             int i14 = messageObject.messageOwner.date;
             if (this.f10745w) {
-                s2Var.f22849r0 = true;
+                s2Var.f22853r0 = true;
                 long savedDialogId = messageObject.getSavedDialogId();
                 TLRPC.Message message = messageObject.messageOwner;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
@@ -177,7 +177,7 @@ public final class n1 extends pm0 implements NotificationCenter.NotificationCent
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View s2Var;
-        j10 j10Var;
+        k10 k10Var;
         if (i10 != 0) {
             e6 e6Var = this.f10744s;
             Context context = this.f10739c;
@@ -185,15 +185,15 @@ public final class n1 extends pm0 implements NotificationCenter.NotificationCent
                 if (i10 != 2) {
                     s2Var = null;
                 } else {
-                    j10Var = new m1(context, e6Var);
+                    k10Var = new m1(context, e6Var);
                 }
             } else {
-                j10 j10Var2 = new j10(context, e6Var);
-                j10Var2.setIsSingleCell(true);
-                j10Var2.setViewType(7);
-                j10Var = j10Var2;
+                k10 k10Var2 = new k10(context, e6Var);
+                k10Var2.setIsSingleCell(true);
+                k10Var2.setViewType(7);
+                k10Var = k10Var2;
             }
-            s2Var = j10Var;
+            s2Var = k10Var;
         } else {
             s2Var = new s2(null, this.f10739c, true, this.f10743r, this.f10744s);
         }

@@ -4,8 +4,8 @@ import java.util.Set;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.do0;
-import org.telegram.ui.Components.rg0;
+import org.telegram.ui.Components.eo0;
+import org.telegram.ui.Components.sg0;
 import org.telegram.ui.Components.tc;
 import org.telegram.ui.f10;
 import yh.m5;
@@ -37,12 +37,12 @@ public final class g0 implements Runnable {
                 fVar.q(p5, 1033, new hg.o1(p5, i11, i12, this.f11705b));
                 return;
             case 1:
-                ((rg0) this.d).f30440a.f30783b.y3(this.f11706c, this.f11705b);
+                ((sg0) this.d).f30782a.f31121b.y3(this.f11706c, this.f11705b);
                 return;
             case 2:
-                do0 do0Var = (do0) this.d;
-                do0Var.f25761o = null;
-                do0Var.c(this.f11706c, this.f11705b, true);
+                eo0 eo0Var = (eo0) this.d;
+                eo0Var.f26122o = null;
+                eo0Var.c(this.f11706c, this.f11705b, true);
                 return;
             case 3:
                 ad a02 = ad.a0((f10) this.d);
@@ -59,7 +59,7 @@ public final class g0 implements Runnable {
                     formatPluralString = LocaleController.formatPluralString("FolderLinkRemovedChats", i13, new Object[0]);
                 }
                 tc M = a02.M(formatPluralString, LocaleController.getString(R.string.FolderLinkChatlistUpdate), i10);
-                M.f31130j = 5000;
+                M.f31096j = 5000;
                 M.j();
                 return;
             default:

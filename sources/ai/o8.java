@@ -17,7 +17,6 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.og0;
 import org.telegram.ui.mb1;
 public final class o8 implements RequestDelegate {
     public final int f1536a;
@@ -151,7 +150,7 @@ public final class o8 implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new og0(x0Var, hashMap, arrayList, 29));
+                    AndroidUtilities.runOnUIThread(new tg.q(x0Var, hashMap, arrayList, 0));
                     return;
                 }
                 return;
@@ -212,7 +211,7 @@ public final class o8 implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new tg.q(q1Var, hashMap2, arrayList2, 2));
+                    AndroidUtilities.runOnUIThread(new tg.q(q1Var, hashMap2, arrayList2, 3));
                     return;
                 }
                 return;
@@ -223,10 +222,10 @@ public final class o8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new u2.p0(2, (vf.c) obj, tLObject));
                 return;
             case 23:
-                AndroidUtilities.runOnUIThread(new tg.q((Object) ((vf.d) obj), tLObject, (Object) tL_error, 3));
+                AndroidUtilities.runOnUIThread(new tg.q((vf.d) obj, tLObject, tL_error, 4));
                 return;
             case 24:
-                AndroidUtilities.runOnUIThread(new tg.q((Object) ((yh.g) obj), tLObject, (Object) tL_error, 11));
+                AndroidUtilities.runOnUIThread(new tg.q((yh.g) obj, tLObject, tL_error, 12));
                 return;
             case 25:
                 AndroidUtilities.runOnUIThread(new u2.p0(13, (yh.l) obj, tLObject));
@@ -243,7 +242,7 @@ public final class o8 implements RequestDelegate {
             default:
                 yh.h8 h8Var = (yh.h8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(h8Var.f52649c).putMessages(new ArrayList<>(Arrays.asList(h8Var.L.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(h8Var.f52693c).putMessages(new ArrayList<>(Arrays.asList(h8Var.L.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     h8Var.getClass();

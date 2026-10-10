@@ -1,8 +1,8 @@
 package ki;
 public final class t {
-    public long f15110a = Long.MIN_VALUE;
-    public long f15111b = Long.MIN_VALUE;
-    public long f15112c = Long.MIN_VALUE;
+    public long f15114a = Long.MIN_VALUE;
+    public long f15115b = Long.MIN_VALUE;
+    public long f15116c = Long.MIN_VALUE;
     public long d;
 
     public t(long j3) {

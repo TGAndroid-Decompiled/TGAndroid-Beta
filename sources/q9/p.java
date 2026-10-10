@@ -3,31 +3,31 @@ package q9;
 import org.telegram.ui.ls0;
 import pg.e0;
 public final class p implements pa.b {
-    public static final e0 f46038c = new e0(5);
+    public static final e0 f46082c = new e0(5);
     public static final f d = new f(1);
-    public pa.a f46039a;
-    public volatile pa.b f46040b;
+    public pa.a f46083a;
+    public volatile pa.b f46084b;
 
     public p(e0 e0Var, pa.b bVar) {
-        this.f46039a = e0Var;
-        this.f46040b = bVar;
+        this.f46083a = e0Var;
+        this.f46084b = bVar;
     }
 
     public final void a(pa.a aVar) {
         pa.b bVar;
         pa.b bVar2;
-        pa.b bVar3 = this.f46040b;
+        pa.b bVar3 = this.f46084b;
         f fVar = d;
         if (bVar3 != fVar) {
             aVar.g(bVar3);
             return;
         }
         synchronized (this) {
-            bVar = this.f46040b;
+            bVar = this.f46084b;
             if (bVar != fVar) {
                 bVar2 = bVar;
             } else {
-                this.f46039a = new ls0(29, this.f46039a, aVar);
+                this.f46083a = new ls0(29, this.f46083a, aVar);
                 bVar2 = null;
             }
         }
@@ -38,6 +38,6 @@ public final class p implements pa.b {
 
     @Override
     public final Object get() {
-        return this.f46040b.get();
+        return this.f46084b.get();
     }
 }

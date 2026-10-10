@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j5;
 import org.telegram.ui.Components.q6;
 public final class s1 extends EditTextBoldCursor {
@@ -23,10 +23,10 @@ public final class s1 extends EditTextBoldCursor {
         this.f11372b = new j5(this);
         q6 q6Var = new q6(false, true, true);
         this.d = q6Var;
-        q6Var.n(0.2f, 160L, hs.h);
+        q6Var.n(0.2f, 160L, is.h);
         q6Var.w(AndroidUtilities.dp(15.33f));
         q6Var.setCallback(this);
-        q6Var.f30065b = 5;
+        q6Var.f30031b = 5;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class s1 extends EditTextBoldCursor {
         int i10;
         super.dispatchDraw(canvas);
         if (this.f11373c < 0) {
-            i10 = i6.f21018p7;
+            i10 = i6.f21022p7;
         } else {
             i10 = i6.P5;
         }

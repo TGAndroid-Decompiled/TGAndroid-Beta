@@ -77,7 +77,7 @@ public final class i5 implements Runnable {
         ki.m0 m0Var2 = (ki.m0) this.d;
         Handler handler = (Handler) this.f1139e;
         if (rVar.Z && rVar.G == 0 && rVar.D) {
-            rVar.f15096x.g(rVar.f15095w, rVar.f15092s, false);
+            rVar.f15100x.g(rVar.f15099w, rVar.f15096s, false);
             rVar.E = false;
             rVar.F = false;
             rVar.M = 0.0f;
@@ -88,11 +88,11 @@ public final class i5 implements Runnable {
             rVar.I = elapsedRealtimeNanos;
             rVar.N = m0Var;
             rVar.O = m0Var2;
-            String[] strArr = ki.u0.f15156a;
+            String[] strArr = ki.u0.f15160a;
             synchronized (ki.u0.class) {
                 ki.u0.b();
                 if (m0Var != m0Var2) {
-                    if (m0Var == ki.m0.f15053b) {
+                    if (m0Var == ki.m0.f15057b) {
                         i10 = 0;
                     }
                     a2 = ki.u0.a(i10);
@@ -103,10 +103,10 @@ public final class i5 implements Runnable {
             rVar.L = a2;
             rVar.J = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a2 - 400) * 3) / 20))) * 45) / 100) * 1000000;
             rVar.K = (max - max2) * 1000000;
-            rVar.f15078e.b("synthetic camera switch started: from=" + m0Var + ", to=" + m0Var2 + ", expectedWaitMs=" + rVar.L + ", targetBlurRadiusPx=" + (((rVar.f15096x.f14883a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((rVar.J + rVar.K) / 1000000));
+            rVar.f15082e.b("synthetic camera switch started: from=" + m0Var + ", to=" + m0Var2 + ", expectedWaitMs=" + rVar.L + ", targetBlurRadiusPx=" + (((rVar.f15100x.f14883a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((rVar.J + rVar.K) / 1000000));
             rVar.A = -1L;
-            handler.removeCallbacks(rVar.f15079e0);
-            handler.post(rVar.f15079e0);
+            handler.removeCallbacks(rVar.f15083e0);
+            handler.post(rVar.f15083e0);
         }
     }
 
@@ -120,7 +120,7 @@ public final class i5 implements Runnable {
 
     private final void f() {
         oi.f fVar = (oi.f) this.f1137b;
-        ((ArrayDeque) fVar.f17175a).addLast(new oi.e((m4.w) this.f1138c, (oi.b) this.d, (RequestTimeDelegate) this.f1139e));
+        ((ArrayDeque) fVar.f17179a).addLast(new oi.e((m4.w) this.f1138c, (oi.b) this.d, (RequestTimeDelegate) this.f1139e));
         fVar.K();
     }
 

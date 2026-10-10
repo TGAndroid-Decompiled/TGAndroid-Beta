@@ -1,18 +1,18 @@
 package m2;
 public final class g {
-    public final n3.a[] f15936a;
-    public final long[] f15937b;
-    public final String f15938c;
+    public final n3.a[] f15940a;
+    public final long[] f15941b;
+    public final String f15942c;
     public final String d;
 
     public g(String str, String str2, long[] jArr, n3.a[] aVarArr) {
-        this.f15938c = str;
+        this.f15942c = str;
         this.d = str2;
-        this.f15937b = jArr;
-        this.f15936a = aVarArr;
+        this.f15941b = jArr;
+        this.f15940a = aVarArr;
     }
 
     public final String a() {
-        return this.f15938c + "/" + this.d;
+        return this.f15942c + "/" + this.d;
     }
 }

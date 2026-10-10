@@ -8,7 +8,7 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class qc extends ReplacementSpan {
     public View f1632a;
     public float d;
@@ -18,7 +18,7 @@ public final class qc extends ReplacementSpan {
     public boolean f1638r;
     public int f1633b = 1;
     public int f1634c = 2;
-    public final hs h = new hs(0.0f, 0.5f, 0.5f, 1.0f);
+    public final is h = new is(0.0f, 0.5f, 0.5f, 1.0f);
 
     public static CharSequence a(TextView textView, String str) {
         int i10;

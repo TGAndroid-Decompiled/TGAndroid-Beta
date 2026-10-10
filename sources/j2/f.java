@@ -153,7 +153,7 @@ public final class f implements z0, j0, n2.k {
         }
         long j3 = 0;
         if (f0Var2 != null && f0Var2.b()) {
-            if (z10 && this.h.k0() == f0Var2.f48573b && this.h.O() == f0Var2.f48574c) {
+            if (z10 && this.h.k0() == f0Var2.f48617b && this.h.O() == f0Var2.f48618c) {
                 j3 = this.h.J0();
             }
         } else if (z10) {
@@ -173,7 +173,7 @@ public final class f implements z0, j0, n2.k {
             k1Var = (k1) ((k0) this.d.f7956c).get(f0Var);
         }
         if (f0Var != null && k1Var != null) {
-            return m(k1Var, k1Var.g(f0Var.f48572a, this.f13691b).f3329c, f0Var);
+            return m(k1Var, k1Var.g(f0Var.f48616a, this.f13691b).f3329c, f0Var);
         }
         int l02 = this.h.l0();
         k1 w02 = this.h.w0();

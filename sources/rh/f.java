@@ -8,12 +8,12 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 public final class f extends qh.e {
-    public final TLRPC.MessageMedia f47560b;
+    public final TLRPC.MessageMedia f47604b;
 
     public f(TLRPC.MessageMedia messageMedia) {
-        this.f47560b = messageMedia;
-        this.f46677a.setRoundRadius(AndroidUtilities.dp(7.0f));
-        ImageReceiver imageReceiver = this.f46677a;
+        this.f47604b = messageMedia;
+        this.f46721a.setRoundRadius(AndroidUtilities.dp(7.0f));
+        ImageReceiver imageReceiver = this.f46721a;
         TLRPC.GeoPoint geoPoint = messageMedia.geo;
         if (geoPoint == null) {
             imageReceiver.clearImage();
@@ -24,7 +24,7 @@ public final class f extends qh.e {
 
     @Override
     public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f46677a;
+        ImageReceiver imageReceiver = this.f46721a;
         imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
         imageReceiver.draw(canvas);
     }

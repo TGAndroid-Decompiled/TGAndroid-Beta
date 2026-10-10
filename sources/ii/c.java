@@ -63,7 +63,7 @@ public final class c implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21037q7, e6Var), PorterDuff.Mode.SRC_IN));
+                        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21041q7, e6Var), PorterDuff.Mode.SRC_IN));
                         if (!z10) {
                             int i12 = -iArr[0];
                             iArr[0] = i12;
@@ -87,15 +87,15 @@ public final class c implements Utilities.Callback2 {
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.z1 z1Var = (org.telegram.ui.Wallet.z1) obj6;
+                org.telegram.ui.Wallet.a2 a2Var = (org.telegram.ui.Wallet.a2) obj6;
                 boolean[] zArr2 = (boolean[]) obj5;
                 org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) obj4;
                 TextView textView = (TextView) obj3;
-                org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) callback;
+                org.telegram.ui.Wallet.i2 i2Var = (org.telegram.ui.Wallet.i2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !z1Var.f35730m && !z1Var.f35731n) {
-                    boolean z11 = z1Var.f35733p;
+                if (!zArr[0] && !a2Var.f34658m && !a2Var.f34659n) {
+                    boolean z11 = a2Var.f34661p;
                     zArr2[0] = z11;
                     dVar.setEnabled(z11);
                     boolean z12 = zArr2[0];
@@ -116,9 +116,9 @@ public final class c implements Utilities.Callback2 {
                             string = LocaleController.getString(R.string.WalletTransactionSimulationFailed);
                         }
                         if (str == null) {
-                            org.telegram.ui.Wallet.d2.k("preview", string);
+                            org.telegram.ui.Wallet.e2.k("preview", string);
                         }
-                        ad.c0(string, h2Var.topBulletinContainer, e6Var);
+                        ad.c0(string, i2Var.topBulletinContainer, e6Var);
                         return;
                     } else {
                         return;
@@ -128,15 +128,15 @@ public final class c implements Utilities.Callback2 {
         }
     }
 
-    public c(boolean[] zArr, org.telegram.ui.Wallet.z1 z1Var, boolean[] zArr2, ci.d dVar, boolean z10, org.telegram.ui.Wallet.k0 k0Var, TextView textView, org.telegram.ui.Wallet.h2 h2Var, org.telegram.ui.ActionBar.e6 e6Var) {
+    public c(boolean[] zArr, org.telegram.ui.Wallet.a2 a2Var, boolean[] zArr2, ci.d dVar, boolean z10, org.telegram.ui.Wallet.k0 k0Var, TextView textView, org.telegram.ui.Wallet.i2 i2Var, org.telegram.ui.ActionBar.e6 e6Var) {
         this.f12294b = zArr;
-        this.f12297f = z1Var;
+        this.f12297f = a2Var;
         this.f12298g = zArr2;
         this.f12295c = dVar;
         this.d = z10;
         this.h = k0Var;
         this.f12299i = textView;
-        this.f12300j = h2Var;
+        this.f12300j = i2Var;
         this.f12296e = e6Var;
     }
 }

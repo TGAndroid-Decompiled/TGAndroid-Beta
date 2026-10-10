@@ -3,26 +3,26 @@ package x7;
 import java.util.Map;
 import java.util.Set;
 public abstract class e implements q {
-    public transient a f50735a;
-    public transient e9.d f50736b;
+    public transient a f50779a;
+    public transient e9.d f50780b;
 
     public final Map a() {
-        e9.d dVar = this.f50736b;
+        e9.d dVar = this.f50780b;
         if (dVar == null) {
             f fVar = (f) this;
-            e9.d dVar2 = new e9.d(fVar, fVar.f50750c, 1);
-            this.f50736b = dVar2;
+            e9.d dVar2 = new e9.d(fVar, fVar.f50794c, 1);
+            this.f50780b = dVar2;
             return dVar2;
         }
         return dVar;
     }
 
     public final Set b() {
-        a aVar = this.f50735a;
+        a aVar = this.f50779a;
         if (aVar == null) {
             f fVar = (f) this;
-            a aVar2 = new a(fVar, fVar.f50750c);
-            this.f50735a = aVar2;
+            a aVar2 = new a(fVar, fVar.f50794c);
+            this.f50779a = aVar2;
             return aVar2;
         }
         return aVar;

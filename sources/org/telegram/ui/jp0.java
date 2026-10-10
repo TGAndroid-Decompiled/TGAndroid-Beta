@@ -11,9 +11,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class jp0 extends Drawable {
-    public final org.telegram.ui.Components.l11 f39004a;
-    public final Drawable f39005b;
-    public final rg.a1 f39006c;
+    public final org.telegram.ui.Components.m11 f39048a;
+    public final Drawable f39049b;
+    public final rg.a1 f39050c;
 
     public jp0(int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
         String str;
@@ -22,11 +22,11 @@ public final class jp0 extends Drawable {
         } else {
             str = "BoostLevel";
         }
-        this.f39004a = new org.telegram.ui.Components.l11(LocaleController.formatPluralString(str, i10, new Object[0]), 12.0f, AndroidUtilities.bold());
+        this.f39048a = new org.telegram.ui.Components.m11(LocaleController.formatPluralString(str, i10, new Object[0]), 12.0f, AndroidUtilities.bold());
         Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-        this.f39005b = mutate;
+        this.f39049b = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        this.f39006c = new rg.a1(org.telegram.ui.ActionBar.i6.Lj, org.telegram.ui.ActionBar.i6.Mj, -1, -1, e6Var);
+        this.f39050c = new rg.a1(org.telegram.ui.ActionBar.i6.Lj, org.telegram.ui.ActionBar.i6.Mj, -1, -1, e6Var);
     }
 
     @Override
@@ -36,13 +36,13 @@ public final class jp0 extends Drawable {
         RectF rectF = AndroidUtilities.rectTmp;
         float f7 = centerY;
         rectF.set(i10, f7 - (AndroidUtilities.dp(18.33f) / 2.0f), getIntrinsicWidth() + i10, (AndroidUtilities.dp(18.33f) / 2.0f) + f7);
-        rg.a1 a1Var = this.f39006c;
+        rg.a1 a1Var = this.f39050c;
         a1Var.e(rectF);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), a1Var.f47179f);
-        Drawable drawable = this.f39005b;
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), a1Var.f47223f);
+        Drawable drawable = this.f39049b;
         drawable.setBounds(AndroidUtilities.dp(3.33f) + i10, (int) (f7 - ((drawable.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.33f) + i10), (int) a1.g.B(drawable.getIntrinsicHeight(), 0.875f, 2.0f, f7));
         drawable.draw(canvas);
-        this.f39004a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i10, f7, 1.0f, -1, canvas);
+        this.f39048a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i10, f7, 1.0f, -1, canvas);
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class jp0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (this.f39004a.l() + (this.f39005b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
+        return (int) (this.f39048a.l() + (this.f39049b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
     }
 
     @Override

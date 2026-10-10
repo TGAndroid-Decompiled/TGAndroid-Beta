@@ -28,25 +28,25 @@ public final class cx extends FragmentContextView {
         switch (this.R0) {
             case 0:
                 ty tyVar = this.S0;
-                org.telegram.ui.Components.at atVar = tyVar.J1;
+                org.telegram.ui.Components.bt btVar = tyVar.J1;
                 FrameLayout frameLayout = tyVar.G1;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                atVar.i(frameLayout, z10, true);
+                btVar.i(frameLayout, z10, true);
                 return;
             default:
                 ty tyVar2 = this.S0;
-                org.telegram.ui.Components.at atVar2 = tyVar2.J1;
+                org.telegram.ui.Components.bt btVar2 = tyVar2.J1;
                 FrameLayout frameLayout2 = tyVar2.I1;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                atVar2.i(frameLayout2, z11, true);
+                btVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

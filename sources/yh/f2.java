@@ -19,68 +19,68 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.y90;
+import org.telegram.ui.Components.z90;
 public final class f2 extends View {
-    public final TextPaint f52490a;
-    public final y90 f52491b;
-    public final Paint f52492c;
+    public final TextPaint f52534a;
+    public final z90 f52535b;
+    public final Paint f52536c;
     public final Paint d;
-    public StaticLayout f52493e;
-    public boolean f52494f;
+    public StaticLayout f52537e;
+    public boolean f52538f;
     public int h;
-    public int f52495n;
-    public BitmapShader f52496r;
-    public Matrix f52497s;
+    public int f52539n;
+    public BitmapShader f52540r;
+    public Matrix f52541s;
     public Matrix v;
-    public CharSequence f52498w;
+    public CharSequence f52542w;
 
     public f2(Context context) {
         super(context);
         this.h = AndroidUtilities.dp(6.0f);
-        this.f52495n = AndroidUtilities.dp(2.0f);
+        this.f52539n = AndroidUtilities.dp(2.0f);
         TextPaint textPaint = new TextPaint(1);
-        this.f52490a = textPaint;
+        this.f52534a = textPaint;
         textPaint.setColor(-1);
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         Paint paint = new Paint(1);
-        this.f52492c = paint;
+        this.f52536c = paint;
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(9.66f)));
         Paint paint2 = new Paint(1);
         this.d = paint2;
         paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(9.66f)));
-        this.f52491b = new y90(0);
+        this.f52535b = new z90(0);
     }
 
     public final void a(int i10, CharSequence charSequence) {
         if (i10 <= 0) {
-            this.f52498w = charSequence;
+            this.f52542w = charSequence;
             return;
         }
-        this.f52493e = new StaticLayout(charSequence, this.f52490a, i10 - AndroidUtilities.dp(18.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        y90 y90Var = this.f52491b;
-        y90Var.rewind();
+        this.f52537e = new StaticLayout(charSequence, this.f52534a, i10 - AndroidUtilities.dp(18.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        z90 z90Var = this.f52535b;
+        z90Var.rewind();
         int i11 = this.h;
-        int i12 = this.f52495n;
-        y90Var.f28151e = i11;
-        y90Var.f28152f = i12;
-        if (this.f52494f) {
-            y90Var.e(null, 0, 0.0f, 0.0f);
+        int i12 = this.f52539n;
+        z90Var.f28087e = i11;
+        z90Var.f28088f = i12;
+        if (this.f52538f) {
+            z90Var.e(null, 0, 0.0f, 0.0f);
             float f7 = Float.MAX_VALUE;
-            float width = this.f52493e.getWidth();
+            float width = this.f52537e.getWidth();
             float f10 = Float.MIN_VALUE;
             float f11 = 0.0f;
-            for (int i13 = 0; i13 < this.f52493e.getLineCount(); i13++) {
-                width = Math.min(width, this.f52493e.getLineLeft(i13));
-                f10 = Math.min(f10, this.f52493e.getLineTop(i13));
-                f11 = Math.max(f11, this.f52493e.getLineRight(i13));
-                f7 = Math.max(f7, this.f52493e.getLineBottom(i13));
+            for (int i13 = 0; i13 < this.f52537e.getLineCount(); i13++) {
+                width = Math.min(width, this.f52537e.getLineLeft(i13));
+                f10 = Math.min(f10, this.f52537e.getLineTop(i13));
+                f11 = Math.max(f11, this.f52537e.getLineRight(i13));
+                f7 = Math.max(f7, this.f52537e.getLineBottom(i13));
             }
-            this.f52491b.addRect(width, f10, f11, this.f52493e.getHeight(), Path.Direction.CW);
+            this.f52535b.addRect(width, f10, f11, this.f52537e.getHeight(), Path.Direction.CW);
         } else {
-            y90Var.e(this.f52493e, 0, 0.0f, 0.0f);
-            StaticLayout staticLayout = this.f52493e;
-            staticLayout.getSelectionPath(0, staticLayout.getText().length(), y90Var);
-            y90Var.a();
+            z90Var.e(this.f52537e, 0, 0.0f, 0.0f);
+            StaticLayout staticLayout = this.f52537e;
+            staticLayout.getSelectionPath(0, staticLayout.getText().length(), z90Var);
+            z90Var.a();
         }
         invalidate();
     }
@@ -114,10 +114,10 @@ public final class f2 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f52493e != null) {
+        if (this.f52537e != null) {
             canvas.save();
-            canvas.translate((getWidth() - this.f52493e.getWidth()) / 2.0f, AndroidUtilities.dp(16.0f));
-            Matrix matrix = this.f52497s;
+            canvas.translate((getWidth() - this.f52537e.getWidth()) / 2.0f, AndroidUtilities.dp(16.0f));
+            Matrix matrix = this.f52541s;
             if (matrix != null) {
                 matrix.reset();
                 this.v.reset();
@@ -130,19 +130,19 @@ public final class f2 extends View {
                         f2Var = 0;
                     }
                 }
-                this.v.invert(this.f52497s);
-                this.f52497s.preTranslate((-this.h) / 2, -AndroidUtilities.dp(16.0f));
-                this.f52497s.preScale(12.0f, 12.0f);
-                this.f52496r.setLocalMatrix(this.f52497s);
+                this.v.invert(this.f52541s);
+                this.f52541s.preTranslate((-this.h) / 2, -AndroidUtilities.dp(16.0f));
+                this.f52541s.preScale(12.0f, 12.0f);
+                this.f52540r.setLocalMatrix(this.f52541s);
             }
-            Paint paint = this.f52492c;
-            y90 y90Var = this.f52491b;
-            canvas.drawPath(y90Var, paint);
+            Paint paint = this.f52536c;
+            z90 z90Var = this.f52535b;
+            canvas.drawPath(z90Var, paint);
             int m12 = org.telegram.ui.ActionBar.i6.m1(0.35f, -16777216);
             Paint paint2 = this.d;
             paint2.setColor(m12);
-            canvas.drawPath(y90Var, paint2);
-            this.f52493e.draw(canvas);
+            canvas.drawPath(z90Var, paint2);
+            this.f52537e.draw(canvas);
             canvas.restore();
         }
     }
@@ -151,12 +151,12 @@ public final class f2 extends View {
     public final void onMeasure(int i10, int i11) {
         int height;
         int size = View.MeasureSpec.getSize(i10);
-        CharSequence charSequence = this.f52498w;
+        CharSequence charSequence = this.f52542w;
         if (charSequence != null) {
             a(size, charSequence);
         }
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        StaticLayout staticLayout = this.f52493e;
+        StaticLayout staticLayout = this.f52537e;
         if (staticLayout == null) {
             height = 0;
         } else {
@@ -204,11 +204,11 @@ public final class f2 extends View {
     }
 
     public void setFullRect(boolean z10) {
-        this.f52494f = z10;
+        this.f52538f = z10;
     }
 
     public void setRoundRadius(float f7) {
-        this.f52492c.setPathEffect(new CornerPathEffect(f7));
+        this.f52536c.setPathEffect(new CornerPathEffect(f7));
         this.d.setPathEffect(new CornerPathEffect(f7));
     }
 

@@ -3,58 +3,58 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
-public final class d7 extends org.telegram.ui.Components.f91 {
-    public org.telegram.ui.ActionBar.n1 f36874a;
-    public final Context f36875b;
-    public final org.telegram.ui.ActionBar.n2 f36876c;
+public final class d7 extends org.telegram.ui.Components.g91 {
+    public org.telegram.ui.ActionBar.n1 f36918a;
+    public final Context f36919b;
+    public final org.telegram.ui.ActionBar.n2 f36920c;
     public final r7 d;
 
     public d7(r7 r7Var, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
         this.d = r7Var;
-        this.f36875b = context;
-        this.f36876c = n2Var;
+        this.f36919b = context;
+        this.f36920c = n2Var;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        org.telegram.ui.Components.qm0 qm0Var = (org.telegram.ui.Components.qm0) view;
-        ArrayList arrayList = this.d.f41291e;
-        qm0Var.setAdapter(((q7) arrayList.get(i10)).f41034c);
-        if (((q7) arrayList.get(i10)).f41033b != 1 && ((q7) arrayList.get(i10)).f41033b != 4) {
+        org.telegram.ui.Components.rm0 rm0Var = (org.telegram.ui.Components.rm0) view;
+        ArrayList arrayList = this.d.f41335e;
+        rm0Var.setAdapter(((q7) arrayList.get(i10)).f41078c);
+        if (((q7) arrayList.get(i10)).f41077b != 1 && ((q7) arrayList.get(i10)).f41077b != 4) {
             view.getContext();
-            qm0Var.setLayoutManager(new s4.d0());
+            rm0Var.setLayoutManager(new s4.d0());
         } else {
             view.getContext();
-            qm0Var.setLayoutManager(new s4.s(3));
+            rm0Var.setLayoutManager(new s4.s(3));
         }
-        qm0Var.setTag(Integer.valueOf(((q7) arrayList.get(i10)).f41033b));
+        rm0Var.setTag(Integer.valueOf(((q7) arrayList.get(i10)).f41077b));
     }
 
     @Override
     public final View d(int i10) {
-        org.telegram.ui.Components.qm0 qm0Var = new org.telegram.ui.Components.qm0(this.f36875b, null);
-        s4.j jVar = (s4.j) qm0Var.getItemAnimator();
+        org.telegram.ui.Components.rm0 rm0Var = new org.telegram.ui.Components.rm0(this.f36919b, null);
+        s4.j jVar = (s4.j) rm0Var.getItemAnimator();
         jVar.C = false;
-        jVar.f47698m = false;
-        qm0Var.setClipToPadding(false);
-        qm0Var.setPadding(0, 0, 0, this.d.f41295s);
-        qm0Var.setOnItemClickListener(new c7(this, qm0Var));
-        qm0Var.setOnItemLongClickListener(new a7(this, qm0Var, this.f36876c, 0));
-        return qm0Var;
+        jVar.f47742m = false;
+        rm0Var.setClipToPadding(false);
+        rm0Var.setPadding(0, 0, 0, this.d.f41339s);
+        rm0Var.setOnItemClickListener(new c7(this, rm0Var));
+        rm0Var.setOnItemLongClickListener(new a7(this, rm0Var, this.f36920c, 0));
+        return rm0Var;
     }
 
     @Override
     public final int e() {
-        return this.d.f41291e.size();
+        return this.d.f41335e.size();
     }
 
     @Override
     public final int f(int i10) {
-        return ((q7) this.d.f41291e.get(i10)).f41033b;
+        return ((q7) this.d.f41335e.get(i10)).f41077b;
     }
 
     @Override
     public final CharSequence g(int i10) {
-        return ((q7) this.d.f41291e.get(i10)).f41032a;
+        return ((q7) this.d.f41335e.get(i10)).f41076a;
     }
 }

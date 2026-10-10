@@ -18,7 +18,7 @@ import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.b6;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j5;
 import org.telegram.ui.Components.jq;
 import org.telegram.ui.Components.q6;
@@ -39,9 +39,9 @@ public abstract class x extends FrameLayout {
         this.f9470a = paint;
         Paint paint2 = new Paint(1);
         this.f9471b = paint2;
-        hs hsVar = hs.h;
-        this.f9472c = new g6(this, 0L, 320L, hsVar);
-        this.d = new j5(this, 320L, hsVar, 0);
+        is isVar = is.h;
+        this.f9472c = new g6(this, 0L, 320L, isVar);
+        this.d = new j5(this, 320L, isVar, 0);
         a5.a aVar = new a5.a((char) 0, 6);
         aVar.f300c = new Object();
         aVar.d = new Object();
@@ -50,7 +50,7 @@ public abstract class x extends FrameLayout {
         setWillNotDraw(false);
         paint2.setColor(i6.m1(0.1f, -16777216));
         a5.a aVar2 = this.f9473e;
-        int w02 = i6.w0(i6.f20797d6, e6Var);
+        int w02 = i6.w0(i6.f20801d6, e6Var);
         aVar2.f299b = w02;
         paint.setColor(w02);
         v[] vVarArr = {new v(this), new v(this)};
@@ -62,7 +62,7 @@ public abstract class x extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) wVar.f9447e);
-            spannableStringBuilder.setSpan(new b6(wVar.f9448f, 1.4f, q6Var.f30063a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new b6(wVar.f9448f, 1.4f, q6Var.f30029a.getFontMetricsInt()), 0, 1, 33);
             q6Var.t(spannableStringBuilder, z10, true);
             return;
         }
@@ -121,7 +121,7 @@ public abstract class x extends FrameLayout {
         String str2 = ((w) this.f9473e.d).f9450i;
         v[] vVarArr = this.f9474f;
         int i14 = 1;
-        if (vVarArr[1].f9407b.f26599c < vVarArr[0].f9407b.f26599c) {
+        if (vVarArr[1].f9407b.f26616c < vVarArr[0].f9407b.f26616c) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -160,7 +160,7 @@ public abstract class x extends FrameLayout {
             RectF rectF = vVar.f9406a;
             float e7 = g6Var.e(wVar.f9444a);
             if (!wVar.f9444a) {
-                d = g6Var4.f26599c;
+                d = g6Var4.f26616c;
                 q6Var = q6Var2;
             } else {
                 a5.a aVar2 = this.f9473e;
@@ -178,7 +178,7 @@ public abstract class x extends FrameLayout {
                 d = g6Var4.d(f7, false);
             }
             if (!wVar.f9444a) {
-                d10 = g6Var3.f26599c;
+                d10 = g6Var3.f26616c;
             } else {
                 a5.a aVar3 = this.f9473e;
                 if (((w) aVar3.d).f9444a && ((w) aVar3.f300c).f9444a) {
@@ -194,7 +194,7 @@ public abstract class x extends FrameLayout {
                 d10 = g6Var3.d(f10, false);
             }
             if (!wVar.f9444a) {
-                d11 = g6Var2.f26599c;
+                d11 = g6Var2.f26616c;
             } else {
                 a5.a aVar4 = this.f9473e;
                 if (((w) aVar4.d).f9444a && ((w) aVar4.f300c).f9444a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
@@ -228,7 +228,7 @@ public abstract class x extends FrameLayout {
                 if (q6Var3.Z != m12) {
                     q6Var3.Z = m12;
                     str = str2;
-                    q6Var3.f30064a0 = new PorterDuffColorFilter(m12, PorterDuff.Mode.SRC_IN);
+                    q6Var3.f30030a0 = new PorterDuffColorFilter(m12, PorterDuff.Mode.SRC_IN);
                 } else {
                     str = str2;
                 }
@@ -288,7 +288,7 @@ public abstract class x extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f9472c.f26599c;
+        return this.f9472c.f26616c;
     }
 
     public int getTotalHeight() {

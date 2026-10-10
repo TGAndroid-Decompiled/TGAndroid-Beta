@@ -4,15 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class n6 extends o6.a {
     public static final Parcelable.Creator<n6> CREATOR = new n5(1);
-    public final int f50877a;
-    public final float f50878b;
-    public final int f50879c;
+    public final int f50921a;
+    public final float f50922b;
+    public final int f50923c;
 
     public n6(int i10, int i11, float f7, int i12) {
         if (i10 == 1) {
-            this.f50877a = i11;
-            this.f50878b = f7;
-            this.f50879c = i12;
+            this.f50921a = i11;
+            this.f50922b = f7;
+            this.f50923c = i12;
             return;
         }
         throw new IllegalArgumentException("Unknown language.");
@@ -24,11 +24,11 @@ public final class n6 extends o6.a {
         w7.d0.s(parcel, 2, 4);
         parcel.writeInt(1);
         w7.d0.s(parcel, 3, 4);
-        parcel.writeInt(this.f50877a);
+        parcel.writeInt(this.f50921a);
         w7.d0.s(parcel, 4, 4);
-        parcel.writeFloat(this.f50878b);
+        parcel.writeFloat(this.f50922b);
         w7.d0.s(parcel, 5, 4);
-        parcel.writeInt(this.f50879c);
+        parcel.writeInt(this.f50923c);
         w7.d0.r(parcel, q6);
     }
 }

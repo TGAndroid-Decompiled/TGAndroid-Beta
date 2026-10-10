@@ -54,7 +54,7 @@ public final class u extends FrameLayout {
         j5 j5Var2 = new j5(context);
         this.f11382c = j5Var2;
         j5Var2.setTextSize(14);
-        int i12 = i6.f21199z6;
+        int i12 = i6.f21203z6;
         j5Var2.setTextColor(i6.x0(null, i12, false));
         if (LocaleController.isRTL) {
             i11 = 3;
@@ -70,7 +70,7 @@ public final class u extends FrameLayout {
         nVar.setEllipsize(TextUtils.TruncateAt.END);
         nVar.setTextColor(i6.w0(i12, e6Var));
         nVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        nVar.f49736r = false;
+        nVar.f49780r = false;
         nVar.setUseAlphaForEmoji(false);
         NotificationCenter.listenEmojiLoading(nVar);
         addView(nVar, x5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
@@ -83,7 +83,7 @@ public final class u extends FrameLayout {
         if (this.f11383e) {
             Paint U0 = i6.U0("paintDivider", this.d);
             if (U0 == null) {
-                U0 = i6.f20919k0;
+                U0 = i6.f20923k0;
             }
             Paint paint = U0;
             float f10 = 64.0f;

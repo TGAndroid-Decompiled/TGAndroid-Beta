@@ -12,11 +12,11 @@ import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Random;
 import org.telegram.messenger.bi;
-import org.telegram.ui.Wallet.j5;
+import org.telegram.ui.Wallet.k5;
 public class x {
-    public final int f15161a;
-    public final int f15162b;
-    public final int f15163c;
+    public final int f15165a;
+    public final int f15166b;
+    public final int f15167c;
     public final int d;
 
     public x() {
@@ -106,7 +106,7 @@ public class x {
                                 arrayList.add(rect);
                             }
                         }
-                        arrayList2.add(new j5(f30, f31, nextFloat3, f28, f29, a2, a10));
+                        arrayList2.add(new k5(f30, f31, nextFloat3, f28, f29, a2, a10));
                         i17++;
                     }
                     i16++;
@@ -120,8 +120,8 @@ public class x {
         GLES20.glGenTextures(3, iArr, 0);
         int i19 = iArr[0];
         int i20 = iArr[1];
-        this.f15161a = i20;
-        this.f15162b = iArr[2];
+        this.f15165a = i20;
+        this.f15166b = iArr[2];
         GLES20.glBindTexture(35866, i20);
         e(35866);
         GLES20.glTexParameteri(35866, 33085, 3);
@@ -141,7 +141,7 @@ public class x {
         }
         createBitmap.recycle();
         GLES20.glGenerateMipmap(35866);
-        GLES20.glBindTexture(3553, this.f15162b);
+        GLES20.glBindTexture(3553, this.f15166b);
         e(3553);
         GLES30.glTexStorage2D(3553, 8, 32856, 128, 128);
         int[] iArr2 = new int[1];
@@ -161,7 +161,7 @@ public class x {
                 GLES20.glBindTexture(3553, i19);
                 GLUtils.texSubImage2D(3553, 0, 0, 0, createBitmap2);
                 GLES20.glGenerateMipmap(3553);
-                GLES20.glBindTexture(3553, this.f15162b);
+                GLES20.glBindTexture(3553, this.f15166b);
                 GLES20.glCopyTexSubImage2D(3553, 0, i24 / 4, i23 / 4, 0, 0, 16, 16);
             }
         }
@@ -195,7 +195,7 @@ public class x {
         int[] iArr5 = new int[1];
         GLES20.glGenBuffers(1, iArr5, 0);
         int i28 = iArr5[0];
-        this.f15163c = i28;
+        this.f15167c = i28;
         GLES20.glBindBuffer(34962, i28);
         GLES20.glBufferData(34962, this.d * 32, h, 35044);
         GLES20.glBindBuffer(34962, 0);
@@ -215,9 +215,9 @@ public class x {
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
-            j5 j5Var = (j5) obj;
-            paint.setShader(j5Var.f35083b);
-            canvas.drawPath(j5Var.f35082a, paint);
+            k5 k5Var = (k5) obj;
+            paint.setShader(k5Var.f35194b);
+            canvas.drawPath(k5Var.f35193a, paint);
         }
     }
 
@@ -230,33 +230,33 @@ public class x {
 
     public boolean b(int i10) {
         if (i10 == 1) {
-            if (this.f15161a - this.f15162b <= 1) {
+            if (this.f15165a - this.f15166b <= 1) {
                 return false;
             }
-        } else if (this.f15163c - this.d <= 1) {
+        } else if (this.f15167c - this.d <= 1) {
             return false;
         }
         return true;
     }
 
     public void d() {
-        GLES20.glDeleteProgram(this.f15161a);
-        GLES20.glDeleteShader(this.f15162b);
-        GLES20.glDeleteShader(this.f15163c);
+        GLES20.glDeleteProgram(this.f15165a);
+        GLES20.glDeleteShader(this.f15166b);
+        GLES20.glDeleteShader(this.f15167c);
     }
 
     public x(int i10, int i11, int i12, int i13) {
-        this.f15161a = i10;
-        this.f15162b = i11;
-        this.f15163c = i12;
+        this.f15165a = i10;
+        this.f15166b = i11;
+        this.f15167c = i12;
         this.d = i13;
     }
 
     public x(String str, String str2) {
         int a2 = b0.a(35633, str);
-        this.f15162b = a2;
+        this.f15166b = a2;
         int a10 = b0.a(35632, str2);
-        this.f15163c = a10;
+        this.f15167c = a10;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a2);
         GLES20.glAttachShader(glCreateProgram, a10);
@@ -266,7 +266,7 @@ public class x {
         int[] iArr = new int[1];
         GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
         if (iArr[0] != 0) {
-            this.f15161a = glCreateProgram;
+            this.f15165a = glCreateProgram;
             this.d = 1;
             int glGetUniformLocation = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
             GLES20.glUseProgram(glCreateProgram);

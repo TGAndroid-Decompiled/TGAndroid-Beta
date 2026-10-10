@@ -19,22 +19,22 @@ public final class ys extends gg.e {
         boolean z10 = false;
         X(false);
         ContactsActivity contactsActivity = this.L;
-        org.telegram.ui.Components.qm0 qm0Var = contactsActivity.f33700f;
-        if (qm0Var != null && qm0Var.getAdapter() == this) {
+        org.telegram.ui.Components.rm0 rm0Var = contactsActivity.f33738f;
+        if (rm0Var != null && rm0Var.getAdapter() == this) {
             int h = h();
             if (contactsActivity.H) {
-                org.telegram.ui.Components.qm0 qm0Var2 = contactsActivity.f33700f;
+                org.telegram.ui.Components.rm0 rm0Var2 = contactsActivity.f33738f;
                 if (h != 2) {
                     z10 = true;
                 }
-                qm0Var2.setFastScrollVisible(z10);
+                rm0Var2.setFastScrollVisible(z10);
                 return;
             }
-            org.telegram.ui.Components.qm0 qm0Var3 = contactsActivity.f33700f;
+            org.telegram.ui.Components.rm0 rm0Var3 = contactsActivity.f33738f;
             if (h != 0) {
                 z10 = true;
             }
-            qm0Var3.setFastScrollVisible(z10);
+            rm0Var3.setFastScrollVisible(z10);
         }
     }
 }

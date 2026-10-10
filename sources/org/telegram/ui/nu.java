@@ -14,19 +14,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class nu extends FrameLayout {
-    public final ImageView f40364a;
-    public final TextView f40365b;
-    public final ImageView f40366c;
+    public final ImageView f40408a;
+    public final TextView f40409b;
+    public final ImageView f40410c;
     public final TextView d;
-    public boolean f40367e;
+    public boolean f40411e;
 
     public nu(yu yuVar, Context context) {
         super(context);
         int i10;
         int i11;
-        setBackgroundColor(yuVar.getThemedColor(org.telegram.ui.ActionBar.i6.f20797d6));
+        setBackgroundColor(yuVar.getThemedColor(org.telegram.ui.ActionBar.i6.f20801d6));
         ImageView imageView = new ImageView(context);
-        this.f40364a = imageView;
+        this.f40408a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -50,7 +50,7 @@ public final class nu extends FrameLayout {
         }
         linearLayout2.setWeightSum(2.0f);
         TextView textView = new TextView(context);
-        this.f40365b = textView;
+        this.f40409b = textView;
         textView.setTextSize(1, 16.0f);
         int i12 = org.telegram.ui.ActionBar.i6.G6;
         textView.setTextColor(yuVar.getThemedColor(i12));
@@ -58,7 +58,7 @@ public final class nu extends FrameLayout {
         textView.setSingleLine();
         textView.setLines(1);
         ImageView imageView2 = new ImageView(context);
-        this.f40366c = imageView2;
+        this.f40410c = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView2.setImageResource(R.drawable.arrow_more);
         imageView2.setColorFilter(new PorterDuffColorFilter(yuVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
@@ -74,7 +74,7 @@ public final class nu extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 16.0f);
-        textView2.setTextColor(yuVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21000o6));
+        textView2.setTextColor(yuVar.getThemedColor(org.telegram.ui.ActionBar.i6.f21004o6));
         textView2.setGravity(LocaleController.isRTL ? 3 : 5);
         if (LocaleController.isRTL) {
             linearLayout.addView(textView2, w7.x5.q(-2, -2, 19));
@@ -90,7 +90,7 @@ public final class nu extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f40367e) {
+        if (this.f40411e) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -104,7 +104,7 @@ public final class nu extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
         }
     }
 

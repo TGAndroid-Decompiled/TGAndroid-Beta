@@ -14,7 +14,7 @@ public final class uf1 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47662f;
+        int i10 = d1Var.f47706f;
         if (i10 != 0 && i10 != 3) {
             return false;
         }
@@ -24,7 +24,7 @@ public final class uf1 extends og.b {
     public final ArrayList F() {
         fg1 fg1Var = this.d;
         fg1Var.getClass();
-        return fg1Var.f37561b;
+        return fg1Var.f37605b;
     }
 
     @Override
@@ -37,12 +37,12 @@ public final class uf1 extends og.b {
         if (i10 == h() - 1) {
             return 2;
         }
-        return ((wf1) this.d.f37561b.get(i10)).f17125a;
+        return ((wf1) this.d.f37605b.get(i10)).f17129a;
     }
 
     @Override
     public final void l() {
-        this.d.f37564c = h();
+        this.d.f37608c = h();
         super.l();
     }
 
@@ -64,17 +64,17 @@ public final class uf1 extends og.b {
                 fg1Var.E0 = tf1Var;
                 return new s4.d1(tf1Var);
             }
-            org.telegram.ui.Components.j10 j10Var = new org.telegram.ui.Components.j10(viewGroup.getContext(), null);
-            j10Var.setViewType(24);
-            j10Var.setIsSingleCell(true);
-            j10Var.f27555w = true;
-            return new s4.d1(j10Var);
+            org.telegram.ui.Components.k10 k10Var = new org.telegram.ui.Components.k10(viewGroup.getContext(), null);
+            k10Var.setViewType(24);
+            k10Var.setIsSingleCell(true);
+            k10Var.f27857w = true;
+            return new s4.d1(k10Var);
         }
         cg1 cg1Var = new cg1(fg1Var, viewGroup.getContext(), false);
         if (i10 == 3) {
             i11 = ((org.telegram.ui.ActionBar.n2) fg1Var).currentAccount;
-            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -fg1Var.f37558a);
-            cg1Var.setForumIcon(ng.d.d(ng.a.f16843k[0], ""));
+            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -fg1Var.f37602a);
+            cg1Var.setForumIcon(ng.d.d(ng.a.f16847k[0], ""));
             if (!isBotForumWithEditableTopics) {
                 i12 = R.string.BotForumAskForStartOffNewChatTitle;
             } else {
@@ -89,8 +89,8 @@ public final class uf1 extends og.b {
             cg1Var.setCustomMessage(LocaleController.getString(i13));
         }
         z10 = ((org.telegram.ui.ActionBar.n2) fg1Var).inPreviewMode;
-        cg1Var.f22815k0 = z10;
-        cg1Var.setArchivedPullAnimation(fg1Var.f37599w);
+        cg1Var.f22819k0 = z10;
+        cg1Var.setArchivedPullAnimation(fg1Var.f37643w);
         return new s4.d1(cg1Var);
     }
 }

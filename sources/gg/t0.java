@@ -10,7 +10,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.Cells.u4;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.j10;
+import org.telegram.ui.Components.k10;
 public abstract class t0 extends c {
     public final Context K;
     public final e6 L;
@@ -21,7 +21,7 @@ public abstract class t0 extends c {
         this.M = false;
         this.K = context;
         this.L = e6Var;
-        new j10(context, null).setIsSingleCell(true);
+        new k10(context, null).setIsSingleCell(true);
     }
 
     @Override
@@ -91,8 +91,8 @@ public abstract class t0 extends c {
         int i11;
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         int i12;
-        int i13 = d1Var.f47662f;
-        View view = d1Var.f47658a;
+        int i13 = d1Var.f47706f;
+        View view = d1Var.f47702a;
         boolean z10 = true;
         ArrayList arrayList = this.f10552r;
         if (i13 == 0) {

@@ -15,23 +15,23 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class i3 extends Dialog {
-    public final t3 f20730a;
-    public final h3 f20731b;
-    public final bb f20732c;
+    public final t3 f20734a;
+    public final h3 f20735b;
+    public final bb f20736c;
     public final Paint d;
-    public boolean f20733e;
+    public boolean f20737e;
 
     public i3(t3 t3Var) {
         super(t3Var.mo36getWindowView().getContext(), R.style.TransparentDialog);
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f20730a = t3Var;
+        this.f20734a = t3Var;
         u3 mo36getWindowView = t3Var.mo36getWindowView();
         bb bbVar = new bb(this, getContext(), 8);
-        this.f20732c = bbVar;
-        paint.setColor(i6.x0(null, i6.f20741a7, false));
+        this.f20736c = bbVar;
+        paint.setColor(i6.x0(null, i6.f20745a7, false));
         h3 h3Var = new h3(mo36getWindowView);
-        this.f20731b = h3Var;
+        this.f20735b = h3Var;
         setContentView(h3Var, new ViewGroup.LayoutParams(-1, -1));
         h3Var.addView(bbVar, w7.x5.e(-1, -2, 80));
         h3Var.setClipToPadding(false);
@@ -51,8 +51,8 @@ public final class i3 extends Dialog {
             if (AndroidUtilities.isTablet() || t3Var.b() || AndroidUtilities.hasDialogOnTop(U)) {
                 i3 i3Var = new i3(t3Var);
                 if (t3Var.c(i3Var)) {
-                    h3 h3Var = i3Var.f20731b;
-                    View view = (View) h3Var.f20683a;
+                    h3 h3Var = i3Var.f20735b;
+                    View view = (View) h3Var.f20687a;
                     AndroidUtilities.removeFromParent(view);
                     h3Var.addView(view, w7.x5.e(-1, -1, 119));
                 }
@@ -61,11 +61,11 @@ public final class i3 extends Dialog {
     }
 
     public final void c() {
-        this.f20730a.c(null);
-        if (!this.f20733e) {
+        this.f20734a.c(null);
+        if (!this.f20737e) {
             return;
         }
-        this.f20733e = false;
+        this.f20737e = false;
         try {
             super.dismiss();
         } catch (Exception e7) {
@@ -75,7 +75,7 @@ public final class i3 extends Dialog {
 
     @Override
     public final void dismiss() {
-        this.f20730a.dismiss(false);
+        this.f20734a.dismiss(false);
     }
 
     @Override
@@ -101,7 +101,7 @@ public final class i3 extends Dialog {
         }
         window.setAttributes(attributes);
         window.setStatusBarColor(0);
-        h3 h3Var = this.f20731b;
+        h3 h3Var = this.f20735b;
         h3Var.setFitsSystemWindows(true);
         h3Var.setSystemUiVisibility(1792);
         h3Var.setPadding(0, 0, 0, 0);

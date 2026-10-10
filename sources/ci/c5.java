@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.ha0;
 public final class c5 implements q0.a {
     public final int f4836a;
@@ -32,7 +32,7 @@ public final class c5 implements q0.a {
                 k3Var.f9185y.setLoadProgressAnimated(f7.floatValue());
                 if (f7.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(hs.f27118f);
+                    duration.setInterpolator(is.f27443f);
                     duration.addUpdateListener(new ei.d2(k3Var, 1));
                     duration.addListener(new ai.b(k3Var, 21));
                     duration.start();
@@ -45,7 +45,7 @@ public final class c5 implements q0.a {
                 p4Var.I.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(hs.f27118f);
+                    duration2.setInterpolator(is.f27443f);
                     duration2.addUpdateListener(new ei.h4(p4Var, 0));
                     duration2.addListener(new ai.b(p4Var, 22));
                     duration2.start();

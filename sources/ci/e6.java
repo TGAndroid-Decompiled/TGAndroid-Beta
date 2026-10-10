@@ -12,9 +12,9 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.az;
-import org.telegram.ui.Components.l61;
-public final class e6 implements az {
+import org.telegram.ui.Components.bz;
+import org.telegram.ui.Components.m61;
+public final class e6 implements bz {
     public final q6 f5029a;
 
     public e6(q6 q6Var) {
@@ -99,8 +99,8 @@ public final class e6 implements az {
     public final void n() {
         q6 q6Var = this.f5029a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(q6Var.getContext(), 0, q6Var.G1);
-        alertDialog$Builder.f20374a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20374a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 19));
         hg.c.p(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -122,7 +122,7 @@ public final class e6 implements az {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    b6Var = new org.telegram.ui.Components.b6(document.f20044id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    b6Var = new org.telegram.ui.Components.b6(document.f20048id, 1.0f, editText.getPaint().getFontMetricsInt());
                     b6Var.document = document;
                 } else {
                     b6Var = new org.telegram.ui.Components.b6(j3, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -153,7 +153,7 @@ public final class e6 implements az {
     }
 
     @Override
-    public final void o(l61 l61Var) {
+    public final void o(m61 m61Var) {
     }
 
     @Override

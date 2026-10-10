@@ -17,8 +17,8 @@ public final class sg implements Runnable {
                 ug ugVar = this.f30780b;
                 ci.d4 d4Var = this.f30781c;
                 ugVar.removeView(d4Var);
-                if (ugVar.f31486b == d4Var) {
-                    ugVar.f31486b = null;
+                if (ugVar.f31494b == d4Var) {
+                    ugVar.f31494b = null;
                     return;
                 }
                 return;
@@ -32,8 +32,8 @@ public final class sg implements Runnable {
                 ug ugVar2 = this.f30780b;
                 ci.d4 d4Var2 = this.f30781c;
                 ugVar2.removeView(d4Var2);
-                if (ugVar2.f31485a == d4Var2) {
-                    ugVar2.f31485a = null;
+                if (ugVar2.f31493a == d4Var2) {
+                    ugVar2.f31493a = null;
                     return;
                 }
                 return;

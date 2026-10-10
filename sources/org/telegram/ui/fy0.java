@@ -8,18 +8,18 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class fy0 extends org.telegram.ui.Components.pm0 {
-    public final Context f37718c;
+public final class fy0 extends org.telegram.ui.Components.qm0 {
+    public final Context f37762c;
     public final gy0 d;
 
     public fy0(gy0 gy0Var, Context context) {
         this.d = gy0Var;
-        this.f37718c = context;
+        this.f37762c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47662f;
+        int i10 = d1Var.f47706f;
         if (i10 != 0 && i10 != 2 && i10 != 4) {
             return false;
         }
@@ -28,19 +28,19 @@ public final class fy0 extends org.telegram.ui.Components.pm0 {
 
     @Override
     public final int h() {
-        return this.d.f38145e;
+        return this.d.f38189e;
     }
 
     @Override
     public final int j(int i10) {
         gy0 gy0Var = this.d;
-        if (i10 == gy0Var.f38150w) {
+        if (i10 == gy0Var.f38194w) {
             return 4;
         }
-        if (i10 == gy0Var.f38147n) {
+        if (i10 == gy0Var.f38191n) {
             return 3;
         }
-        if (i10 == gy0Var.f38146f) {
+        if (i10 == gy0Var.f38190f) {
             return 2;
         }
         if (i10 != gy0Var.h && i10 != gy0Var.v) {
@@ -54,16 +54,16 @@ public final class fy0 extends org.telegram.ui.Components.pm0 {
         String string;
         String string2;
         gy0 gy0Var = this.d;
-        int i11 = gy0Var.f38152y;
-        int i12 = d1Var.f47662f;
-        View view = d1Var.f47658a;
+        int i11 = gy0Var.f38196y;
+        int i12 = d1Var.f47706f;
+        View view = d1Var.f47702a;
         boolean z10 = false;
         if (i12 != 0) {
             if (i12 != 1) {
                 if (i12 != 2) {
                     if (i12 == 3) {
                         org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-                        if (i10 == gy0Var.f38147n) {
+                        if (i10 == gy0Var.f38191n) {
                             if (i11 == 1) {
                                 m4Var.setText(LocaleController.formatPluralString("BlockedUsersCount", gy0Var.getMessagesController().totalBlockedCount, new Object[0]));
                                 return;
@@ -77,7 +77,7 @@ public final class fy0 extends org.telegram.ui.Components.pm0 {
                     return;
                 }
                 org.telegram.ui.Cells.y4 y4Var = (org.telegram.ui.Cells.y4) view;
-                y4Var.a(org.telegram.ui.ActionBar.i6.f21128v6, org.telegram.ui.ActionBar.i6.f21110u6);
+                y4Var.a(org.telegram.ui.ActionBar.i6.f21132v6, org.telegram.ui.ActionBar.i6.f21114u6);
                 if (i11 == 1) {
                     y4Var.b(LocaleController.getString(R.string.BlockUser), R.drawable.msg_contact_add, 5, false);
                     return;
@@ -106,7 +106,7 @@ public final class fy0 extends org.telegram.ui.Components.pm0 {
         }
         org.telegram.ui.Cells.b5 b5Var = (org.telegram.ui.Cells.b5) view;
         if (i11 == 1) {
-            long keyAt = gy0Var.getMessagesController().blockePeers.keyAt(i10 - gy0Var.f38148r);
+            long keyAt = gy0Var.getMessagesController().blockePeers.keyAt(i10 - gy0Var.f38192r);
             b5Var.setTag(Long.valueOf(keyAt));
             if (keyAt > 0) {
                 TLRPC.User user = gy0Var.getMessagesController().getUser(Long.valueOf(keyAt));
@@ -121,7 +121,7 @@ public final class fy0 extends org.telegram.ui.Components.pm0 {
                             string2 = LocaleController.getString(R.string.NumberUnknown);
                         }
                     }
-                    if (i10 != gy0Var.f38149s - 1) {
+                    if (i10 != gy0Var.f38193s - 1) {
                         z10 = true;
                     }
                     b5Var.b(user, null, string2, z10);
@@ -141,7 +141,7 @@ public final class fy0 extends org.telegram.ui.Components.pm0 {
                 } else {
                     string = LocaleController.getString(R.string.MegaPublic);
                 }
-                if (i10 != gy0Var.f38149s - 1) {
+                if (i10 != gy0Var.f38193s - 1) {
                     z10 = true;
                 }
                 b5Var.b(chat, null, string, z10);
@@ -157,17 +157,17 @@ public final class fy0 extends org.telegram.ui.Components.pm0 {
         org.telegram.ui.Cells.m4 m4Var;
         FrameLayout e9Var;
         if (i10 != 0) {
-            Context context = this.f37718c;
+            Context context = this.f37762c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 4) {
-                        org.telegram.ui.Cells.m4 m4Var2 = new org.telegram.ui.Cells.m4(this.f37718c, org.telegram.ui.ActionBar.i6.L6, 21, 11, false, null);
+                        org.telegram.ui.Cells.m4 m4Var2 = new org.telegram.ui.Cells.m4(this.f37762c, org.telegram.ui.ActionBar.i6.L6, 21, 11, false, null);
                         m4Var2.setHeight(43);
                         m4Var = m4Var2;
                     } else {
                         org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(viewGroup.getContext());
                         r8Var.i(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                        r8Var.e(-1, org.telegram.ui.ActionBar.i6.f21018p7);
+                        r8Var.e(-1, org.telegram.ui.ActionBar.i6.f21022p7);
                         m4Var = r8Var;
                     }
                 } else {
@@ -178,7 +178,7 @@ public final class fy0 extends org.telegram.ui.Components.pm0 {
             }
             m4Var = e9Var;
         } else {
-            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(7, 6, this.f37718c, null, true);
+            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(7, 6, this.f37762c, null, true);
             b5Var.setDelegate(new hq0(this, 9));
             m4Var = b5Var;
         }

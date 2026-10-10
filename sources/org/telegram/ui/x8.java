@@ -19,25 +19,25 @@ public final class x8 extends FragmentContextView {
         switch (this.R0) {
             case 0:
                 j9 j9Var = (j9) this.S0;
-                org.telegram.ui.Components.at atVar = j9Var.M;
+                org.telegram.ui.Components.bt btVar = j9Var.M;
                 FrameLayout frameLayout = j9Var.N;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                atVar.i(frameLayout, z10, true);
+                btVar.i(frameLayout, z10, true);
                 return;
             default:
                 fg1 fg1Var = (fg1) this.S0;
-                org.telegram.ui.Components.at atVar2 = fg1Var.U0;
+                org.telegram.ui.Components.bt btVar2 = fg1Var.U0;
                 FrameLayout frameLayout2 = fg1Var.F0;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                atVar2.i(frameLayout2, z11, true);
+                btVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

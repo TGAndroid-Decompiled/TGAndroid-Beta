@@ -14,9 +14,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.pm0;
+import org.telegram.ui.Components.qm0;
 import w7.x5;
-public final class b0 extends pm0 {
+public final class b0 extends qm0 {
     public ArrayList f8956c;
     public ArrayList d;
     public ArrayList f8957e;
@@ -54,7 +54,7 @@ public final class b0 extends pm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        a0 a0Var = (a0) d1Var.f47658a;
+        a0 a0Var = (a0) d1Var.f47702a;
         String str = (String) this.f8956c.get(i10);
         if (((Boolean) this.f8957e.get(i10)).booleanValue()) {
             er erVar = new er(R.drawable.mini_ephemeral_hidden_14, 0);
@@ -90,7 +90,7 @@ public final class b0 extends pm0 {
         TextView textView = new TextView(context);
         linearLayout.f8919a = textView;
         textView.setTextSize(1, 14.0f);
-        int i12 = i6.f21181y6;
+        int i12 = i6.f21185y6;
         textView.setTextColor(i6.x0(null, i12, false));
         textView.setTag(Integer.valueOf(i12));
         linearLayout.addView(textView, x5.o(-2, -2, 0.0f, 16));

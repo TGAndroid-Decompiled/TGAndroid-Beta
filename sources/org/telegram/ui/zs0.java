@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class zs0 extends org.telegram.ui.Components.fu {
+public final class zs0 extends org.telegram.ui.Components.gu {
     public zs0(Context context, String str) {
         super(context, str);
     }

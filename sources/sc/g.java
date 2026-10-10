@@ -1,6 +1,6 @@
 package sc;
 public final class g extends e2.a0 {
-    public static final g f47906f;
+    public static final g f47950f;
 
     static {
         int[] iArr = new int[288];
@@ -21,6 +21,6 @@ public final class g extends e2.a0 {
             iArr[i10] = 8;
             i10++;
         }
-        f47906f = new e2.a0(iArr);
+        f47950f = new e2.a0(iArr);
     }
 }

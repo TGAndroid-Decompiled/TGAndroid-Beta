@@ -2,7 +2,7 @@ package ci;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public abstract class l2 {
     public int f5379a;
     public float f5380b;
@@ -15,7 +15,7 @@ public abstract class l2 {
 
     public l2(p2 p2Var) {
         this.f5384g = new org.telegram.ui.Components.bd(p2Var);
-        this.h = new org.telegram.ui.Components.g6(p2Var, 350L, hs.h);
+        this.h = new org.telegram.ui.Components.g6(p2Var, 350L, is.h);
     }
 
     public abstract void a(Canvas canvas, float f7, float f10);

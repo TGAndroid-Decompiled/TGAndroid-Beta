@@ -3,9 +3,9 @@ package o0;
 import j$.util.Objects;
 import java.util.List;
 public final class b {
-    public String f16884a;
-    public String f16885b;
-    public List f16886c;
+    public String f16888a;
+    public String f16889b;
+    public List f16890c;
 
     public final boolean equals(Object obj) {
         if (this == obj) {
@@ -15,13 +15,13 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (Objects.equals(this.f16884a, bVar.f16884a) && Objects.equals(this.f16885b, bVar.f16885b) && Objects.equals(this.f16886c, bVar.f16886c)) {
+        if (Objects.equals(this.f16888a, bVar.f16888a) && Objects.equals(this.f16889b, bVar.f16889b) && Objects.equals(this.f16890c, bVar.f16890c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f16884a, this.f16885b, this.f16886c);
+        return Objects.hash(this.f16888a, this.f16889b, this.f16890c);
     }
 }

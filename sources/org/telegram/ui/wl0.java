@@ -14,22 +14,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class wl0 extends FrameLayout {
-    public final int f43706a;
-    public final org.telegram.ui.ActionBar.e6 f43707b;
-    public final FrameLayout f43708c;
+    public final int f43750a;
+    public final org.telegram.ui.ActionBar.e6 f43751b;
+    public final FrameLayout f43752c;
     public final org.telegram.ui.Components.y9 d;
-    public final TextView f43709e;
-    public final TextView f43710f;
+    public final TextView f43753e;
+    public final TextView f43754f;
     public final ImageView h;
-    public boolean f43711n;
-    public String f43712r;
+    public boolean f43755n;
+    public String f43756r;
 
     public wl0(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f43706a = i10;
-        this.f43707b = e6Var;
+        this.f43750a = i10;
+        this.f43751b = e6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f43708c = frameLayout;
+        this.f43752c = frameLayout;
         addView(frameLayout, w7.x5.a(36.0f, 18.5f, 0.0f, 0.0f, 0.0f, 36, 19));
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
         this.d = y9Var;
@@ -40,14 +40,14 @@ public final class wl0 extends FrameLayout {
         y9Var.setColorFilter(new PorterDuffColorFilter(m12, mode));
         frameLayout.addView(y9Var, w7.x5.e(36, 36, 17));
         TextView b10 = w7.b6.b(context, 15.0f, i11, true, null);
-        this.f43709e = b10;
+        this.f43753e = b10;
         b10.setSingleLine();
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         b10.setEllipsize(truncateAt);
         addView(b10, w7.x5.a(-2.0f, 72.0f, 8.0f, 46.0f, 0.0f, -1, 55));
-        int i12 = org.telegram.ui.ActionBar.i6.f21181y6;
+        int i12 = org.telegram.ui.ActionBar.i6.f21185y6;
         TextView b11 = w7.b6.b(context, 13.0f, i12, false, null);
-        this.f43710f = b11;
+        this.f43754f = b11;
         b11.setSingleLine();
         b11.setEllipsize(truncateAt);
         addView(b11, w7.x5.a(-2.0f, 72.0f, 31.0f, 46.0f, 0.0f, -1, 55));
@@ -56,7 +56,7 @@ public final class wl0 extends FrameLayout {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_ab_other);
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.x0(null, i12, false), mode));
-        imageView.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20888i6, e6Var), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20892i6, e6Var), 1, -1));
         addView(imageView, w7.x5.a(32.0f, 0.0f, 0.0f, 13.0f, 0.0f, 32, 21));
     }
 
@@ -64,10 +64,10 @@ public final class wl0 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float f7;
         super.onDraw(canvas);
-        if (this.f43711n) {
-            Paint U0 = org.telegram.ui.ActionBar.i6.U0("paintDivider", this.f43707b);
+        if (this.f43755n) {
+            Paint U0 = org.telegram.ui.ActionBar.i6.U0("paintDivider", this.f43751b);
             if (U0 == null) {
-                U0 = org.telegram.ui.ActionBar.i6.f20919k0;
+                U0 = org.telegram.ui.ActionBar.i6.f20923k0;
             }
             Paint paint = U0;
             float f10 = 72.0f;

@@ -2,35 +2,23 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class n4 extends FrameLayout {
-    public View f35295a;
-    public float f35296b;
-    public int f35297c;
-    public final l4 d;
-    public final a5 f35298e;
+public final class n4 extends j5 {
+    public final b5 f35331a0;
 
-    public n4(a5 a5Var, Context context) {
-        super(context);
-        this.f35298e = a5Var;
-        this.d = new l4(this, 1);
+    public n4(b5 b5Var, Context context, boolean z10) {
+        super(context, z10);
+        this.f35331a0 = b5Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        getViewTreeObserver().addOnPreDrawListener(this.d);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        getViewTreeObserver().removeOnPreDrawListener(this.d);
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f35298e.C0();
+    public final void onMeasure(int i10, int i11) {
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+        super.onMeasure(i10, makeMeasureSpec);
+        b5 b5Var = this.f35331a0;
+        if (b5Var.f34722n > 0 && getMeasuredHeight() > b5Var.f34722n) {
+            int paddingRight = getPaddingRight() + getPaddingLeft();
+            int paddingBottom = getPaddingBottom() + getPaddingTop();
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, b5Var.f34722n - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
+        }
     }
 }

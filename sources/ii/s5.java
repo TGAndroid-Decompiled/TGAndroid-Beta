@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class s5 extends ViewGroup {
     public final RectF E;
     public final Path F;
@@ -71,7 +71,7 @@ public final class s5 extends ViewGroup {
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setStrokeJoin(Paint.Join.ROUND);
         paint2.setStrokeCap(Paint.Cap.ROUND);
-        this.G = new org.telegram.ui.Components.g6(this, 0L, 220L, hs.h);
+        this.G = new org.telegram.ui.Components.g6(this, 0L, 220L, is.h);
         b();
     }
 
@@ -125,14 +125,14 @@ public final class s5 extends ViewGroup {
     }
 
     public final void b() {
-        int i10 = org.telegram.ui.ActionBar.i6.f21047qh;
+        int i10 = org.telegram.ui.ActionBar.i6.f21051qh;
         org.telegram.ui.ActionBar.e6 e6Var = this.f12686b;
         this.f12690n.setColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
         int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.M6, e6Var);
         int red = Color.red(w02);
         int green = Color.green(w02);
         int blue = Color.blue(w02);
-        this.f12691r.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21028ph, e6Var));
+        this.f12691r.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21032ph, e6Var));
         this.f12692s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
         int i11 = org.telegram.ui.ActionBar.i6.Oh;

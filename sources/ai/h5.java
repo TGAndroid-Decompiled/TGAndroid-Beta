@@ -23,14 +23,14 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.db0;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.s40;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.t11;
+import org.telegram.ui.Components.eb0;
+import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.t40;
 import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.u11;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.w61;
+import org.telegram.ui.Components.x61;
 import org.telegram.ui.zn;
 public final class h5 extends ya {
     public final kc f1084x0;
@@ -58,7 +58,7 @@ public final class h5 extends ya {
                     org.telegram.ui.ActionBar.e6 e6Var = this.f1085y0;
                     org.telegram.ui.Components.tc h = new ad(b5Var, e6Var).h(document, 2, new d5(this, this.f1084x0, e6Var, 0));
                     if (h != null) {
-                        h.f31123a = 1;
+                        h.f31089a = 1;
                         h.k(true);
                     }
                 }
@@ -68,25 +68,25 @@ public final class h5 extends ya {
 
     @Override
     public final void G(CharacterStyle characterStyle, View view) {
-        boolean z10 = characterStyle instanceof w61;
+        boolean z10 = characterStyle instanceof x61;
         kc kcVar = this.f1084x0;
         f6 f6Var = this.f1086z0;
         if (z10) {
-            TLRPC.User user = MessagesController.getInstance(f6Var.C2).getUser(Utilities.parseLong(((w61) characterStyle).getURL()));
+            TLRPC.User user = MessagesController.getInstance(f6Var.C2).getUser(Utilities.parseLong(((x61) characterStyle).getURL()));
             if (user != null) {
                 MessagesController.getInstance(f6Var.C2).openChatOrProfileWith(user, null, kcVar.f1267f, 0, false);
             }
-        } else if (characterStyle instanceof t61) {
-            String url = ((t61) characterStyle).getURL();
+        } else if (characterStyle instanceof u61) {
+            String url = ((u61) characterStyle).getURL();
             if (url != null && (url.startsWith("#") || url.startsWith("$"))) {
                 if (url.contains("@")) {
-                    kcVar.H(new s40(url, null));
+                    kcVar.H(new t40(url, null));
                     return;
                 }
                 Bundle bundle = new Bundle();
                 bundle.putInt("type", 3);
                 bundle.putString("hashtag", url);
-                kcVar.H(new db0(bundle, null));
+                kcVar.H(new eb0(bundle, null));
                 return;
             }
             String b10 = of.f.b(url);
@@ -102,10 +102,10 @@ public final class h5 extends ya {
             }
             M(0, url, characterStyle, false);
         } else if (characterStyle instanceof URLSpan) {
-            M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof v61);
-        } else if (characterStyle instanceof s61) {
-            s61 s61Var = (s61) characterStyle;
-            AndroidUtilities.addToClipboard(s61Var.f30705a.subSequence(s61Var.f30706b, s61Var.f30707c).toString());
+            M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof w61);
+        } else if (characterStyle instanceof t61) {
+            t61 t61Var = (t61) characterStyle;
+            AndroidUtilities.addToClipboard(t61Var.f31033a.subSequence(t61Var.f31034b, t61Var.f31035c).toString());
             bi.p(R.string.TextCopied, new ad(f6Var.f955c1, this.f1085y0));
         } else if (characterStyle instanceof ClickableSpan) {
             ((ClickableSpan) characterStyle).onClick(view);
@@ -159,7 +159,7 @@ public final class h5 extends ya {
         f3Var.items = charSequenceArr;
         f3Var.onClickListener = onClickListener;
         f3Var.setOnHideListener(new g5(dVar, 0));
-        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20868h5, e6Var));
+        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20872h5, e6Var));
         ((bc) f6Var.Q1).h(f3Var);
     }
 
@@ -173,8 +173,8 @@ public final class h5 extends ya {
         kc kcVar = this.f1084x0;
         final org.telegram.ui.ActionBar.e6 e6Var = this.f1085y0;
         if (document != null) {
-            p80 F = p80.F(kcVar.v, e6Var, f6Var.K0);
-            F.f29771i = 3;
+            q80 F = q80.F(kcVar.v, e6Var, f6Var.K0);
+            F.f30102i = 3;
             F.a0(-AndroidUtilities.dp(8.0f), 0.0f);
             F.l(R.drawable.msg_saved, LocaleController.getString(R.string.StoryAudioAddToSavedMessages), new Runnable(this) {
                 public final h5 f757b;
@@ -205,9 +205,9 @@ public final class h5 extends ya {
                             f6 f6Var3 = this.f757b.f1086z0;
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f20066id = tL_inputDocument;
+                            tL_account_saveMusic.f20070id = tL_inputDocument;
                             TLRPC.Document document2 = document;
-                            tL_inputDocument.f20050id = document2.f20044id;
+                            tL_inputDocument.f20054id = document2.f20048id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
                             if (MediaController.getInstance().currentSavedMusicList != null && MediaController.getInstance().currentSavedMusicList.dialogId == UserConfig.getInstance(f6Var3.C2).getClientUserId()) {
@@ -248,9 +248,9 @@ public final class h5 extends ya {
                             f6 f6Var3 = this.f757b.f1086z0;
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f20066id = tL_inputDocument;
+                            tL_account_saveMusic.f20070id = tL_inputDocument;
                             TLRPC.Document document2 = document;
-                            tL_inputDocument.f20050id = document2.f20044id;
+                            tL_inputDocument.f20054id = document2.f20048id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
                             if (MediaController.getInstance().currentSavedMusicList != null && MediaController.getInstance().currentSavedMusicList.dialogId == UserConfig.getInstance(f6Var3.C2).getClientUserId()) {
@@ -276,14 +276,14 @@ public final class h5 extends ya {
             MessagesController.getInstance(f6Var.C2).getStoriesController().d0(taVar.f1754b.longValue(), taVar.f1755c.intValue(), new f4(this, taVar, kcVar, e6Var, 1));
         } else {
             org.telegram.ui.Components.tc Q = new ad(f6Var.f955c1, e6Var).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-            Q.f31123a = 3;
+            Q.f31089a = 3;
             Q.k(true);
         }
     }
 
     public final void M(int i10, String str, CharacterStyle characterStyle, boolean z10) {
         boolean z11;
-        t11 t11Var;
+        u11 u11Var;
         if (!z10 && !AndroidUtilities.shouldShowUrlInAlert(str)) {
             if (i10 == 0) {
                 of.f.q(getContext(), Uri.parse(str), true, true, null);
@@ -306,7 +306,7 @@ public final class h5 extends ya {
             }
             return;
         }
-        if ((characterStyle instanceof v61) && (t11Var = ((v61) characterStyle).f31699a) != null && (t11Var.f30974a & 1024) != 0) {
+        if ((characterStyle instanceof w61) && (u11Var = ((w61) characterStyle).f32608a) != null && (u11Var.f31299a & 1024) != 0) {
             z11 = true;
         } else {
             z11 = false;

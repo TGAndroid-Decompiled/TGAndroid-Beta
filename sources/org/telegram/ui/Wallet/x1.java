@@ -1,44 +1,13 @@
 package org.telegram.ui.Wallet;
+public final class x1 extends org.telegram.ui.ActionBar.g5 {
+    public final ci.d f35698f;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class x1 implements Runnable {
-    public final int f35644a;
-    public final boolean[] f35645b;
-    public final z1 f35646c;
-    public final h2 d;
-
-    public x1(boolean[] zArr, z1 z1Var, h2 h2Var, int i10) {
-        this.f35644a = i10;
-        this.f35645b = zArr;
-        this.f35646c = z1Var;
-        this.d = h2Var;
+    public x1(ci.d dVar) {
+        this.f35698f = dVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35644a) {
-            case 0:
-                if (!this.f35645b[0]) {
-                    if (this.f35646c.f35730m) {
-                        AndroidUtilities.runOnUIThread(this, 1000L);
-                        return;
-                    } else {
-                        this.d.dismiss();
-                        return;
-                    }
-                }
-                return;
-            default:
-                if (!this.f35645b[0]) {
-                    if (this.f35646c.f35730m) {
-                        AndroidUtilities.runOnUIThread(this, 1000L);
-                        return;
-                    } else {
-                        this.d.dismiss();
-                        return;
-                    }
-                }
-                return;
-        }
+    public final boolean h() {
+        return !this.f35698f.N;
     }
 }

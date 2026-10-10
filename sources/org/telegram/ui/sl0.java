@@ -3,13 +3,13 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class sl0 extends org.telegram.ui.Components.pm0 {
-    public final Context f41730c;
+public final class sl0 extends org.telegram.ui.Components.qm0 {
+    public final Context f41774c;
     public final PasscodeActivity d;
 
     public sl0(PasscodeActivity passcodeActivity, Context context) {
         this.d = passcodeActivity;
-        this.f41730c = context;
+        this.f41774c = context;
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class sl0 extends org.telegram.ui.Components.pm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View w8Var;
-        Context context = this.f41730c;
+        Context context = this.f41774c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {

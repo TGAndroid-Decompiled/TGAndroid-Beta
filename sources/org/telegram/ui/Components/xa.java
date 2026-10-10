@@ -22,11 +22,11 @@ public abstract class xa extends eb {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f26023e.setTitle(charSequence);
+        this.f25983e.setTitle(charSequence);
     }
 
     @Override
-    public final pm0 x(qm0 qm0Var) {
+    public final qm0 x(rm0 rm0Var) {
         return new gg.m0(this, 1);
     }
 }

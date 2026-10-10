@@ -4,7 +4,7 @@ public final class e {
     public final String f4230b;
 
     public e(pf.b bVar) {
-        this.f4229a = (o) bVar.f45558b;
-        this.f4230b = (String) bVar.f45559c;
+        this.f4229a = (o) bVar.f45602b;
+        this.f4230b = (String) bVar.f45603c;
     }
 }

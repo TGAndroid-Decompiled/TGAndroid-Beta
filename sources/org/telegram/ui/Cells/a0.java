@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.pw0;
-public abstract class a0 extends ViewGroup implements pw0 {
-    public boolean f21775a;
-    public androidx.emoji2.text.j f21776b;
-    public int f21777c;
+import org.telegram.ui.Components.qw0;
+public abstract class a0 extends ViewGroup implements qw0 {
+    public boolean f21779a;
+    public androidx.emoji2.text.j f21780b;
+    public int f21781c;
     public ai.r4 d;
-    public Runnable f21778e;
+    public Runnable f21782e;
 
     public a0(Context context) {
         super(context);
-        this.f21775a = false;
-        this.f21776b = null;
-        this.f21777c = 0;
+        this.f21779a = false;
+        this.f21780b = null;
+        this.f21781c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements pw0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.f21778e = runnable;
+        this.f21782e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements pw0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f21778e;
+        Runnable runnable = this.f21782e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements pw0 {
     }
 
     public final void k() {
-        this.f21775a = false;
-        androidx.emoji2.text.j jVar = this.f21776b;
+        this.f21779a = false;
+        androidx.emoji2.text.j jVar = this.f21780b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class a0 extends ViewGroup implements pw0 {
     }
 
     public final void r() {
-        if (this.f21775a) {
+        if (this.f21779a) {
             return;
         }
-        this.f21775a = true;
+        this.f21779a = true;
         if (this.d == null) {
             this.d = new ai.r4(this, 28);
         }

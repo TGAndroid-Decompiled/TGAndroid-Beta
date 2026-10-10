@@ -3,15 +3,15 @@ package zg;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.kl0;
-public final class s extends kl0 {
+import org.telegram.ui.Components.ll0;
+public final class s extends ll0 {
     public float l1;
-    public long f54661m1;
+    public long f54705m1;
 
     @Override
     public final void draw(Canvas canvas) {
-        long min = Math.min(16L, System.currentTimeMillis() - this.f54661m1);
-        this.f54661m1 = System.currentTimeMillis();
+        long min = Math.min(16L, System.currentTimeMillis() - this.f54705m1);
+        this.f54705m1 = System.currentTimeMillis();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         canvas.saveLayerAlpha(rectF, (int) (this.l1 * 255.0f), 31);

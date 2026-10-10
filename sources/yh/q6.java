@@ -3,24 +3,24 @@ package yh;
 import android.text.TextWatcher;
 import android.widget.TextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.zd0;
+import org.telegram.ui.Components.ae0;
 public final class q6 implements TextWatcher {
-    public boolean f53080a;
-    public int f53081b = 2;
-    public final EditTextBoldCursor f53082c;
-    public final zd0 d;
-    public final long f53083e;
-    public final boolean f53084f;
+    public boolean f53124a;
+    public int f53125b = 2;
+    public final EditTextBoldCursor f53126c;
+    public final ae0 d;
+    public final long f53127e;
+    public final boolean f53128f;
     public final ci.d h;
-    public final TextView f53085n;
+    public final TextView f53129n;
 
-    public q6(EditTextBoldCursor editTextBoldCursor, zd0 zd0Var, long j3, boolean z10, ci.d dVar, TextView textView) {
-        this.f53082c = editTextBoldCursor;
-        this.d = zd0Var;
-        this.f53083e = j3;
-        this.f53084f = z10;
+    public q6(EditTextBoldCursor editTextBoldCursor, ae0 ae0Var, long j3, boolean z10, ci.d dVar, TextView textView) {
+        this.f53126c = editTextBoldCursor;
+        this.d = ae0Var;
+        this.f53127e = j3;
+        this.f53128f = z10;
         this.h = dVar;
-        this.f53085n = textView;
+        this.f53129n = textView;
     }
 
     @Override

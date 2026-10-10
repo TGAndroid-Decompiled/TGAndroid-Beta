@@ -23,14 +23,14 @@ import org.telegram.ui.Cells.c1;
 import sc.v;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset f47879e = Charset.forName("UTF-8");
-    public final Context f47880a;
-    public final pa.b f47881b;
-    public final d f47882c = new d();
+    public static final Charset f47923e = Charset.forName("UTF-8");
+    public final Context f47924a;
+    public final pa.b f47925b;
+    public final d f47926c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f47880a = context;
-        this.f47881b = bVar;
+        this.f47924a = context;
+        this.f47925b = bVar;
     }
 
     public static URL a(String str) {
@@ -46,7 +46,7 @@ public final class c {
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f47879e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f47923e));
             try {
                 StringBuilder sb2 = new StringBuilder();
                 while (true) {
@@ -92,7 +92,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f47879e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f47923e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         String str = null;
@@ -134,7 +134,7 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f47879e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f47923e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {

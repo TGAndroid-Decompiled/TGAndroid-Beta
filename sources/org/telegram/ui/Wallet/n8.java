@@ -1,54 +1,65 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Intent;
-import android.net.Uri;
-import java.util.ArrayList;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e71;
-public final class n8 implements gg.f0, org.telegram.ui.ActionBar.a2 {
-    public final s8 f35314a;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class n8 implements View.OnClickListener {
+    public final int f35355a;
+    public final t8 f35356b;
 
-    public n8(s8 s8Var) {
-        this.f35314a = s8Var;
+    public n8(t8 t8Var, int i10) {
+        this.f35355a = i10;
+        this.f35356b = t8Var;
     }
 
     @Override
-    public void a(a0.i iVar, ArrayList arrayList) {
-        s8 s8Var = this.f35314a;
-        ArrayList arrayList2 = s8Var.f35493r;
-        if (!s8Var.f35492n) {
-            arrayList2.clear();
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                gg.g0 g0Var = (gg.g0) obj;
-                TLObject tLObject = g0Var.f10609a;
-                if ((tLObject instanceof TLRPC.User) && s8.b0((TLRPC.User) tLObject)) {
-                    arrayList2.add((TLRPC.User) g0Var.f10609a);
+    public final void onClick(View view) {
+        switch (this.f35355a) {
+            case 0:
+                t8 t8Var = this.f35356b;
+                if (t8Var.f35588w != null) {
+                    AndroidUtilities.hideKeyboard(t8Var.M);
+                    t8Var.f0(t8Var.f35588w, null);
+                    return;
                 }
-            }
-            e71 e71Var = s8Var.f26290a;
-            if (e71Var != null) {
-                e71Var.W2.N(true);
-            }
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        s8 s8Var = this.f35314a;
-        s8Var.getClass();
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            s8Var.getParentActivity().startActivity(intent);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+                return;
+            case 1:
+                t8 t8Var2 = this.f35356b;
+                if (t8Var2.f35588w != null) {
+                    AndroidUtilities.hideKeyboard(t8Var2.M);
+                    t8Var2.f0(t8Var2.f35588w, null);
+                    return;
+                }
+                return;
+            case 2:
+                t8 t8Var3 = this.f35356b;
+                ClipboardManager clipboardManager = (ClipboardManager) t8Var3.getParentActivity().getSystemService("clipboard");
+                if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
+                    ClipData primaryClip = clipboardManager.getPrimaryClip();
+                    if (primaryClip != null && primaryClip.getItemCount() != 0) {
+                        CharSequence coerceToText = primaryClip.getItemAt(0).coerceToText(t8Var3.getParentActivity());
+                        if (!TextUtils.isEmpty(coerceToText)) {
+                            t8Var3.M.setText(coerceToText.toString().trim());
+                            ci.g2 g2Var = t8Var3.M;
+                            g2Var.setSelection(g2Var.length());
+                            return;
+                        }
+                        t8Var3.R = false;
+                        t8Var3.i0(true);
+                        return;
+                    }
+                    t8Var3.R = false;
+                    t8Var3.i0(true);
+                    return;
+                }
+                t8Var3.R = false;
+                t8Var3.i0(true);
+                return;
+            default:
+                this.f35356b.c0();
+                return;
         }
     }
 }

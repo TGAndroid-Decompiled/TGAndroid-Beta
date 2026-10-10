@@ -1,10 +1,10 @@
 package m;
 public final class y0 extends l2.f {
-    public final z0 f15875c;
+    public final z0 f15879c;
 
     public y0(z0 z0Var) {
         super(z0Var, 2);
-        this.f15875c = z0Var;
+        this.f15879c = z0Var;
     }
 
     @Override

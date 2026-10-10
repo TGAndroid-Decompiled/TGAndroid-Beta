@@ -12,9 +12,9 @@ import ci.rc;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.jq;
 public final class i0 extends Drawable {
     public final ImageView f9105a;
@@ -28,7 +28,7 @@ public final class i0 extends Drawable {
     public final g6 f9111i;
     public final g6 f9112j;
     public final g6 f9113k;
-    public ck0 f9114l;
+    public dk0 f9114l;
 
     public i0(Context context, ImageView imageView) {
         Paint paint = new Paint(1);
@@ -36,10 +36,10 @@ public final class i0 extends Drawable {
         this.f9107c = new RectF();
         this.h = false;
         rc rcVar = new rc(this, 7);
-        hs hsVar = hs.h;
-        this.f9111i = new g6(rcVar, 320L, hsVar, 0);
-        this.f9112j = new g6(new rc(this, 7), 320L, hsVar, 0);
-        this.f9113k = new g6(new rc(this, 7), 320L, hsVar, 0);
+        is isVar = is.h;
+        this.f9111i = new g6(rcVar, 320L, isVar, 0);
+        this.f9112j = new g6(new rc(this, 7), 320L, isVar, 0);
+        this.f9113k = new g6(new rc(this, 7), 320L, isVar, 0);
         this.f9105a = imageView;
         this.d = System.currentTimeMillis();
         this.f9108e = context.getResources().getDrawable(R.drawable.search_files_filled).mutate();
@@ -53,7 +53,7 @@ public final class i0 extends Drawable {
     public final void draw(Canvas canvas) {
         float f7;
         float f10;
-        ck0 ck0Var;
+        dk0 dk0Var;
         int i10;
         Canvas canvas2 = canvas;
         Rect bounds = getBounds();
@@ -114,10 +114,10 @@ public final class i0 extends Drawable {
             f7 = 0.0f;
             f10 = 255.0f;
         }
-        if (e7 > f7 && (ck0Var = this.f9114l) != null) {
-            int i12 = ck0Var.f25396b / 2;
-            int i13 = ck0Var.f25398c / 2;
-            ck0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
+        if (e7 > f7 && (dk0Var = this.f9114l) != null) {
+            int i12 = dk0Var.f25727b / 2;
+            int i13 = dk0Var.f25729c / 2;
+            dk0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
             this.f9114l.setAlpha((int) (e7 * f10));
             this.f9114l.draw(canvas2);
         }

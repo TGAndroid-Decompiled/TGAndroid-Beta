@@ -3,25 +3,25 @@ package org.telegram.ui;
 import android.content.Context;
 public final class ce0 extends cs {
     public final int h;
-    public final Object f36633n;
+    public final Object f36677n;
 
     public ce0(Object obj, Context context, int i10) {
         super(context);
         this.h = i10;
-        this.f36633n = obj;
+        this.f36677n = obj;
     }
 
     @Override
     public final void a() {
         switch (this.h) {
             case 0:
-                ((fe0) this.f36633n).h(null);
+                ((fe0) this.f36677n).h(null);
                 return;
             case 1:
-                ((ze0) this.f36633n).h(null);
+                ((ze0) this.f36677n).h(null);
                 return;
             case 2:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f36633n;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f36677n;
                 if (passcodeActivity.E == 0) {
                     postDelayed(new tk0(this, 1), 260L);
                     return;
@@ -30,7 +30,7 @@ public final class ce0 extends cs {
                     return;
                 }
             default:
-                ((ih1) this.f36633n).C0();
+                ((ih1) this.f36677n).C0();
                 return;
         }
     }

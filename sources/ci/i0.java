@@ -9,7 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public abstract class i0 extends FrameLayout {
     public final b7 f5180a;
     public final org.telegram.ui.Components.g6 f5181b;
@@ -35,9 +35,9 @@ public abstract class i0 extends FrameLayout {
         this.f5180a = b7Var;
         h0 h0Var = new h0(this, context);
         this.d = h0Var;
-        hs hsVar = hs.h;
-        this.f5181b = new org.telegram.ui.Components.g6(h0Var, 0L, 320L, hsVar);
-        this.f5182c = new org.telegram.ui.Components.g6(this, 0L, 360L, hsVar);
+        is isVar = is.h;
+        this.f5181b = new org.telegram.ui.Components.g6(h0Var, 0L, 320L, isVar);
+        this.f5182c = new org.telegram.ui.Components.g6(this, 0L, 360L, isVar);
         g0 g0Var = new g0(this, context, 0);
         this.f5184f = g0Var;
         g0Var.setListener(new a6.i(this, 11));
@@ -232,8 +232,8 @@ public abstract class i0 extends FrameLayout {
         h0Var.setAlpha(f7);
         h0Var.invalidate();
         g0 g0Var = this.f5184f;
-        CropAreaView cropAreaView = g0Var.f15572a;
-        CropAreaView cropAreaView2 = g0Var.f15572a;
+        CropAreaView cropAreaView = g0Var.f15576a;
+        CropAreaView cropAreaView2 = g0Var.f15576a;
         cropAreaView.setDimAlpha(0.5f * f7);
         cropAreaView2.setFrameAlpha(f7);
         cropAreaView2.invalidate();
@@ -281,7 +281,7 @@ public abstract class i0 extends FrameLayout {
             g6Var.d(0.0f, false);
         }
         g0Var.r(false);
-        this.f5182c.d(gVar.f15533i, true);
+        this.f5182c.d(gVar.f15537i, true);
         h0 h0Var = this.d;
         h0Var.setVisibility(0);
         h0Var.invalidate();

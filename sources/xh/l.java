@@ -18,19 +18,19 @@ import org.telegram.ui.Components.y9;
 import w7.x5;
 import yh.p7;
 public final class l extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final y9 f51327a;
-    public final r6 f51328b;
-    public final r6 f51329c;
+    public final y9 f51371a;
+    public final r6 f51372b;
+    public final r6 f51373c;
     public final r6 d;
-    public final er[] f51330e;
-    public boolean f51331f;
+    public final er[] f51374e;
+    public boolean f51375f;
 
     public l(Context context, e6 e6Var) {
         super(context);
-        this.f51330e = new er[1];
+        this.f51374e = new er[1];
         setOrientation(0);
         r6 r6Var = new r6(context, false, false, false);
-        this.f51329c = r6Var;
+        this.f51373c = r6Var;
         int i10 = i6.G6;
         r6Var.setTextColor(i6.w0(i10, e6Var));
         r6Var.setTextSize(AndroidUtilities.dp(15.0f));
@@ -38,12 +38,12 @@ public final class l extends LinearLayout implements NotificationCenter.Notifica
         r6Var.setEllipsizeByGradient(true);
         r6 r6Var2 = new r6(context, false, false, false);
         this.d = r6Var2;
-        r6Var2.setTextColor(i6.w0(i6.f21181y6, e6Var));
+        r6Var2.setTextColor(i6.w0(i6.f21185y6, e6Var));
         r6Var2.setTextSize(AndroidUtilities.dp(15.0f));
         y9 y9Var = new y9(context);
-        this.f51327a = y9Var;
+        this.f51371a = y9Var;
         r6 r6Var3 = new r6(context, false, false, false);
-        this.f51328b = r6Var3;
+        this.f51372b = r6Var3;
         r6Var3.setTextSize(AndroidUtilities.dp(15.0f));
         r6Var3.setPadding(AndroidUtilities.dp(20.0f), 0, 0, 0);
         r6Var3.setTextColor(i6.w0(i10, e6Var));
@@ -56,11 +56,11 @@ public final class l extends LinearLayout implements NotificationCenter.Notifica
     }
 
     public final void a(long j3, boolean z10) {
-        this.d.c(p7.Y0(false, org.telegram.messenger.q.h((int) j3, ',', new StringBuilder("⭐️")), 0.78f, this.f51330e), z10, true);
+        this.d.c(p7.Y0(false, org.telegram.messenger.q.h((int) j3, ',', new StringBuilder("⭐️")), 0.78f, this.f51374e), z10, true);
     }
 
     public final void b(int i10, boolean z10, boolean z11) {
-        r6 r6Var = this.f51328b;
+        r6 r6Var = this.f51372b;
         if (z10 && i10 <= 3) {
             if (i10 == 1) {
                 r6Var.c(Emoji.replaceWithRestrictedEmoji("🥇", r6Var.getPaint().getFontMetricsInt(), (Runnable) null), z11, true);
@@ -88,22 +88,22 @@ public final class l extends LinearLayout implements NotificationCenter.Notifica
     public final void c(TLRPC.User user) {
         j9 j9Var = new j9((e6) null);
         j9Var.r(user);
-        y9 y9Var = this.f51327a;
+        y9 y9Var = this.f51371a;
         y9Var.e(user, j9Var);
         y9Var.setRoundRadius(AndroidUtilities.dp(16.0f));
-        this.f51329c.setText(UserObject.getUserName(user));
+        this.f51373c.setText(UserObject.getUserName(user));
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        this.f51328b.invalidate();
+        this.f51372b.invalidate();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f51331f) {
-            canvas.drawLine(AndroidUtilities.dp(112.0f), getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(16.0f), getMeasuredHeight(), i6.f20919k0);
+        if (this.f51375f) {
+            canvas.drawLine(AndroidUtilities.dp(112.0f), getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(16.0f), getMeasuredHeight(), i6.f20923k0);
         }
     }
 

@@ -12,7 +12,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 public final class l extends Drawable {
     public final Paint f5353a;
     public final Paint f5354b;
@@ -40,22 +40,22 @@ public final class l extends Drawable {
         this.d = kVar2;
         this.f5356e = false;
         androidx.fragment.app.a0 a0Var = new androidx.fragment.app.a0(this, 6);
-        hs hsVar = hs.h;
-        this.f5357f = new org.telegram.ui.Components.g6(a0Var, 350L, hsVar, 0);
+        is isVar = is.h;
+        this.f5357f = new org.telegram.ui.Components.g6(a0Var, 350L, isVar, 0);
         this.f5358g = new Path();
         this.f5359i = 21.0f;
         this.h = i10;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        kVar.n(0.3f, 250L, hsVar);
+        kVar.n(0.3f, 250L, isVar);
         kVar.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar.w(AndroidUtilities.dpf2(12.0f));
-        kVar.f30065b = 17;
-        kVar2.n(0.3f, 250L, hsVar);
+        kVar.f30031b = 17;
+        kVar2.n(0.3f, 250L, isVar);
         kVar2.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar2.w(AndroidUtilities.dpf2(12.0f));
-        kVar2.f30065b = 17;
+        kVar2.f30031b = 17;
         e(-1, -15033089, -1);
     }
 
@@ -120,7 +120,7 @@ public final class l extends Drawable {
                 porterDuffXfermode = null;
             }
             this.f5353a.setXfermode(porterDuffXfermode);
-            TextPaint textPaint = this.f5355c.f30063a;
+            TextPaint textPaint = this.f5355c.f30029a;
             if (z10) {
                 porterDuffXfermode2 = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
             }

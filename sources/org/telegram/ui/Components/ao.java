@@ -7,11 +7,11 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class ao extends View {
-    public final int f24723a;
+    public final int f24595a;
 
     public ao(Context context, int i10) {
         super(context);
-        this.f24723a = i10;
+        this.f24595a = i10;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class ao extends View {
         int i13;
         float dp5;
         int i14;
-        switch (this.f24723a) {
+        switch (this.f24595a) {
             case 1:
                 if (getAlpha() != 0.0f) {
                     AndroidUtilities.rectTmp.set(0.0f, 0.0f, getWidth(), getHeight());
@@ -36,7 +36,7 @@ public final class ao extends View {
                 return;
             case 9:
                 super.onDraw(canvas);
-                canvas.drawLine(0.0f, AndroidUtilities.dp(14.0f), 2.0f, getMeasuredHeight() - AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.i6.f20919k0);
+                canvas.drawLine(0.0f, AndroidUtilities.dp(14.0f), 2.0f, getMeasuredHeight() - AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.i6.f20923k0);
                 return;
             case 16:
                 if (LocaleController.isRTL) {
@@ -52,7 +52,7 @@ public final class ao extends View {
                 } else {
                     i10 = 0;
                 }
-                canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
+                canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
                 return;
             case 17:
                 if (LocaleController.isRTL) {
@@ -68,7 +68,7 @@ public final class ao extends View {
                 } else {
                     i11 = 0;
                 }
-                canvas.drawLine(f10, measuredHeight2, measuredWidth2 - i11, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
+                canvas.drawLine(f10, measuredHeight2, measuredWidth2 - i11, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
                 return;
             case 18:
                 if (LocaleController.isRTL) {
@@ -84,7 +84,7 @@ public final class ao extends View {
                 } else {
                     i12 = 0;
                 }
-                canvas.drawLine(f11, measuredHeight3, measuredWidth3 - i12, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
+                canvas.drawLine(f11, measuredHeight3, measuredWidth3 - i12, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
                 return;
             case 19:
                 if (LocaleController.isRTL) {
@@ -100,7 +100,7 @@ public final class ao extends View {
                 } else {
                     i13 = 0;
                 }
-                canvas.drawLine(f12, measuredHeight4, measuredWidth4 - i13, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
+                canvas.drawLine(f12, measuredHeight4, measuredWidth4 - i13, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
                 return;
             case 27:
                 if (LocaleController.isRTL) {
@@ -116,7 +116,7 @@ public final class ao extends View {
                 } else {
                     i14 = 0;
                 }
-                canvas.drawLine(f13, measuredHeight5, measuredWidth5 - i14, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20919k0);
+                canvas.drawLine(f13, measuredHeight5, measuredWidth5 - i14, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -129,7 +129,7 @@ public final class ao extends View {
         boolean z10;
         float f7;
         float f10;
-        switch (this.f24723a) {
+        switch (this.f24595a) {
             case 2:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
                 return;
@@ -231,7 +231,7 @@ public final class ao extends View {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f24723a) {
+        switch (this.f24595a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
                 return;

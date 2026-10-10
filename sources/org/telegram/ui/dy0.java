@@ -4,18 +4,18 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.GenericProvider;
-public final class dy0 implements GenericProvider, org.telegram.ui.Components.gm0, y60 {
-    public final gy0 f37110a;
+public final class dy0 implements GenericProvider, org.telegram.ui.Components.hm0, y60 {
+    public final gy0 f37154a;
 
     public dy0(gy0 gy0Var) {
-        this.f37110a = gy0Var;
+        this.f37154a = gy0Var;
     }
 
     @Override
     public void b(ArrayList arrayList, boolean z10, boolean z11) {
         Iterator it = arrayList.iterator();
         if (!it.hasNext()) {
-            this.f37110a.V();
+            this.f37154a.V();
         } else {
             Long l4 = (Long) it.next();
             throw null;
@@ -24,10 +24,10 @@ public final class dy0 implements GenericProvider, org.telegram.ui.Components.gm
 
     @Override
     public boolean d(int i10, View view) {
-        gy0 gy0Var = this.f37110a;
-        if (i10 >= gy0Var.f38148r && i10 < gy0Var.f38149s) {
-            if (gy0Var.f38152y == 1) {
-                gy0Var.U(Long.valueOf(gy0Var.getMessagesController().blockePeers.keyAt(i10 - gy0Var.f38148r)), view);
+        gy0 gy0Var = this.f37154a;
+        if (i10 >= gy0Var.f38192r && i10 < gy0Var.f38193s) {
+            if (gy0Var.f38196y == 1) {
+                gy0Var.U(Long.valueOf(gy0Var.getMessagesController().blockePeers.keyAt(i10 - gy0Var.f38192r)), view);
                 return true;
             }
             throw null;
@@ -37,11 +37,11 @@ public final class dy0 implements GenericProvider, org.telegram.ui.Components.gm
 
     @Override
     public Object provide(Object obj) {
-        gy0 gy0Var = this.f37110a;
+        gy0 gy0Var = this.f37154a;
         gy0Var.getClass();
-        if (((Integer) obj).intValue() != gy0Var.f38150w) {
+        if (((Integer) obj).intValue() != gy0Var.f38194w) {
             return null;
         }
-        return Integer.valueOf(org.telegram.ui.ActionBar.i6.m1(0.12f, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21018p7, false)));
+        return Integer.valueOf(org.telegram.ui.ActionBar.i6.m1(0.12f, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21022p7, false)));
     }
 }

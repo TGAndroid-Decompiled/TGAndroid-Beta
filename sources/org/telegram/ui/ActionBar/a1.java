@@ -2,19 +2,19 @@ package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.hd;
-import org.telegram.ui.Components.k10;
-public final class a1 extends k10 {
-    public final b1 f20379e;
+import org.telegram.ui.Components.l10;
+public final class a1 extends l10 {
+    public final b1 f20383e;
 
     public a1(b1 b1Var) {
         super(false);
-        this.f20379e = b1Var;
+        this.f20383e = b1Var;
     }
 
     @Override
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(hd.a(this.f20379e.getSpeed()));
+        sb2.append(hd.a(this.f20383e.getSpeed()));
         sb2.append("x  ");
         return org.telegram.messenger.q.g(R.string.AccDescrSpeedSlider, sb2);
     }
@@ -36,11 +36,11 @@ public final class a1 extends k10 {
 
     @Override
     public final float k() {
-        return this.f20379e.getSpeed();
+        return this.f20383e.getSpeed();
     }
 
     @Override
     public final void l(float f7) {
-        this.f20379e.d(f7, true);
+        this.f20383e.d(f7, true);
     }
 }

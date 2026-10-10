@@ -2,16 +2,16 @@ package o0;
 
 import android.graphics.Typeface;
 public final class f {
-    public final Typeface f16897a;
-    public final int f16898b;
+    public final Typeface f16901a;
+    public final int f16902b;
 
     public f(int i10) {
-        this.f16897a = null;
-        this.f16898b = i10;
+        this.f16901a = null;
+        this.f16902b = i10;
     }
 
     public f(Typeface typeface) {
-        this.f16897a = typeface;
-        this.f16898b = 0;
+        this.f16901a = typeface;
+        this.f16902b = 0;
     }
 }

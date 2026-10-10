@@ -69,7 +69,7 @@ public abstract class f0 {
 
     public static void g(n4.x xVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((n4.r) xVar.f16612b).f16593a;
+            MediaSession mediaSession = ((n4.r) xVar.f16616b).f16597a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e7) {

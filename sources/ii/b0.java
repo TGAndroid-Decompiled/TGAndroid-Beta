@@ -2,7 +2,7 @@ package ii;
 
 import android.animation.ValueAnimator;
 import java.net.URL;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import v7.n8;
 public final class b0 {
     public int f12281a;
@@ -39,7 +39,7 @@ public final class b0 {
         if (z10 && (i10 = this.f12281a) != b10) {
             ValueAnimator ofInt = ValueAnimator.ofInt(i10, b10);
             ofInt.addUpdateListener(new ai.x(6, this, c5Var));
-            ofInt.setInterpolator(hs.f27118f);
+            ofInt.setInterpolator(is.f27443f);
             ofInt.setDuration(200L);
             this.f12283c = ofInt;
             ofInt.start();

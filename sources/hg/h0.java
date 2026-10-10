@@ -5,8 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.pm0;
-public final class h0 extends pm0 {
+import org.telegram.ui.Components.qm0;
+public final class h0 extends qm0 {
     public final Context f11259c;
     public final ArrayList d = new ArrayList();
     public String f11260e;
@@ -19,7 +19,7 @@ public final class h0 extends pm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47662f == 0) {
+        if (d1Var.f47706f == 0) {
             return true;
         }
         return false;
@@ -66,7 +66,7 @@ public final class h0 extends pm0 {
                 y1Var.setTag(-33024);
             }
         } else {
-            y1Var = new y1(context, this.f11261f.f30172a, false);
+            y1Var = new y1(context, this.f11261f.f30210a, false);
         }
         return new s4.d1(y1Var);
     }

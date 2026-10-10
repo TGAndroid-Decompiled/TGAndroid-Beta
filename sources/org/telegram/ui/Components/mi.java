@@ -4,19 +4,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 public final class mi extends t6 {
-    public final int f28838b;
-    public final yi f28839c;
+    public final int f28818b;
+    public final yi f28819c;
 
     public mi(yi yiVar, int i10) {
         super("translation", 0);
-        this.f28838b = i10;
+        this.f28818b = i10;
         switch (i10) {
             case 1:
-                this.f28839c = yiVar;
+                this.f28819c = yiVar;
                 super("openProgress", 0);
                 return;
             default:
-                this.f28839c = yiVar;
+                this.f28819c = yiVar;
                 return;
         }
     }
@@ -26,11 +26,11 @@ public final class mi extends t6 {
         ViewGroup viewGroup;
         int i10;
         float f10;
-        switch (this.f28838b) {
+        switch (this.f28818b) {
             case 0:
                 qi qiVar = (qi) obj;
-                yi yiVar = this.f28839c;
-                yiVar.f33220d0 = f7;
+                yi yiVar = this.f28819c;
+                yiVar.f33227d0 = f7;
                 qi qiVar2 = yiVar.C0;
                 if (qiVar2 != null) {
                     if (!(qiVar2 instanceof hn) && !(yiVar.B0 instanceof hn)) {
@@ -48,7 +48,7 @@ public final class mi extends t6 {
                             yiVar.e2(i10);
                         }
                         qi qiVar4 = yiVar.C0;
-                        lo loVar2 = yiVar.f33251n0;
+                        lo loVar2 = yiVar.f33258n0;
                         if (qiVar4 == loVar2 || yiVar.B0 == loVar2) {
                             if (qiVar4 == loVar2) {
                                 i11 = 1;
@@ -57,7 +57,7 @@ public final class mi extends t6 {
                         }
                         yiVar.C0.setTranslationY(AndroidUtilities.dp(78.0f) * f7);
                         yiVar.B0.v(1.0f - Math.min(1.0f, f7 / 0.7f));
-                        yiVar.B0.l(yiVar.f33256o2);
+                        yiVar.B0.l(yiVar.f33263o2);
                     } else {
                         int max = Math.max(qiVar2.getWidth(), yiVar.B0.getWidth());
                         if (yiVar.C0 instanceof hn) {
@@ -68,7 +68,7 @@ public final class mi extends t6 {
                             yiVar.C0.setTranslationX((1.0f - f7) * (-max));
                         }
                     }
-                    if (yiVar.f33282w1 != null) {
+                    if (yiVar.f33289w1 != null) {
                         yiVar.e2(1);
                     }
                     yiVar.b1();
@@ -79,7 +79,7 @@ public final class mi extends t6 {
                 return;
             default:
                 yi yiVar2 = (yi) obj;
-                bi biVar = this.f28839c.B1;
+                bi biVar = this.f28819c.B1;
                 int childCount = biVar.getChildCount();
                 for (int i12 = 0; i12 < childCount; i12++) {
                     float f11 = (3 - i12) * 32.0f;
@@ -88,13 +88,13 @@ public final class mi extends t6 {
                         float f12 = f7 - f11;
                         if (f12 <= 200.0f) {
                             float f13 = f12 / 200.0f;
-                            f10 = hs.f27119g.getInterpolation(f13) * 1.1f;
-                            childAt.setAlpha(hs.f27121j.getInterpolation(f13));
+                            f10 = is.f27444g.getInterpolation(f13) * 1.1f;
+                            childAt.setAlpha(is.f27446j.getInterpolation(f13));
                         } else {
                             childAt.setAlpha(1.0f);
                             float f14 = f12 - 200.0f;
                             if (f14 <= 100.0f) {
-                                f10 = 1.1f - (hs.f27120i.getInterpolation(f14 / 100.0f) * 0.1f);
+                                f10 = 1.1f - (is.f27445i.getInterpolation(f14 / 100.0f) * 0.1f);
                             } else {
                                 f10 = 1.0f;
                             }
@@ -103,7 +103,7 @@ public final class mi extends t6 {
                         f10 = 0.0f;
                     }
                     if (childAt instanceof ti) {
-                        ((ti) childAt).f31189a.setAttachScale(f10);
+                        ((ti) childAt).f31146a.setAttachScale(f10);
                     }
                 }
                 return;
@@ -112,10 +112,10 @@ public final class mi extends t6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f28838b) {
+        switch (this.f28818b) {
             case 0:
                 qi qiVar = (qi) obj;
-                return Float.valueOf(this.f28839c.f33220d0);
+                return Float.valueOf(this.f28819c.f33227d0);
             default:
                 yi yiVar = (yi) obj;
                 return Float.valueOf(0.0f);

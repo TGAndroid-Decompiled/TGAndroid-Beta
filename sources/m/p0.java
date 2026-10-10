@@ -17,15 +17,15 @@ import android.widget.SpinnerAdapter;
 import android.widget.ThemedSpinnerAdapter;
 import v7.s7;
 public final class p0 extends Spinner {
-    public static final int[] f15771r = {16843505};
-    public final e2.c f15772a;
-    public final Context f15773b;
-    public final e0 f15774c;
+    public static final int[] f15775r = {16843505};
+    public final e2.c f15776a;
+    public final Context f15777b;
+    public final e0 f15778c;
     public SpinnerAdapter d;
-    public final boolean f15775e;
-    public final o0 f15776f;
+    public final boolean f15779e;
+    public final o0 f15780f;
     public int h;
-    public final Rect f15777n;
+    public final Rect f15781n;
 
     public p0(android.content.Context r13, android.util.AttributeSet r14) {
         throw new UnsupportedOperationException("Method not decompiled: m.p0.<init>(android.content.Context, android.util.AttributeSet):void");
@@ -56,7 +56,7 @@ public final class p0 extends Spinner {
             i11 = Math.max(i11, view.getMeasuredWidth());
         }
         if (drawable != null) {
-            Rect rect = this.f15777n;
+            Rect rect = this.f15781n;
             drawable.getPadding(rect);
             return rect.left + rect.right + i11;
         }
@@ -66,7 +66,7 @@ public final class p0 extends Spinner {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f15772a;
+        e2.c cVar = this.f15776a;
         if (cVar != null) {
             cVar.b();
         }
@@ -74,7 +74,7 @@ public final class p0 extends Spinner {
 
     @Override
     public int getDropDownHorizontalOffset() {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             return o0Var.b();
         }
@@ -83,7 +83,7 @@ public final class p0 extends Spinner {
 
     @Override
     public int getDropDownVerticalOffset() {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             return o0Var.m();
         }
@@ -92,19 +92,19 @@ public final class p0 extends Spinner {
 
     @Override
     public int getDropDownWidth() {
-        if (this.f15776f != null) {
+        if (this.f15780f != null) {
             return this.h;
         }
         return super.getDropDownWidth();
     }
 
     public final o0 getInternalPopup() {
-        return this.f15776f;
+        return this.f15780f;
     }
 
     @Override
     public Drawable getPopupBackground() {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             return o0Var.e();
         }
@@ -113,12 +113,12 @@ public final class p0 extends Spinner {
 
     @Override
     public Context getPopupContext() {
-        return this.f15773b;
+        return this.f15777b;
     }
 
     @Override
     public CharSequence getPrompt() {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             return o0Var.d();
         }
@@ -126,7 +126,7 @@ public final class p0 extends Spinner {
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f15772a;
+        e2.c cVar = this.f15776a;
         if (cVar != null) {
             return cVar.d();
         }
@@ -134,7 +134,7 @@ public final class p0 extends Spinner {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f15772a;
+        e2.c cVar = this.f15776a;
         if (cVar != null) {
             return cVar.e();
         }
@@ -144,7 +144,7 @@ public final class p0 extends Spinner {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null && o0Var.a()) {
             o0Var.dismiss();
         }
@@ -153,7 +153,7 @@ public final class p0 extends Spinner {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        if (this.f15776f != null && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
+        if (this.f15780f != null && View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
             setMeasuredDimension(Math.min(Math.max(getMeasuredWidth(), a(getAdapter(), getBackground())), View.MeasureSpec.getSize(i10)), getMeasuredHeight());
         }
     }
@@ -163,7 +163,7 @@ public final class p0 extends Spinner {
         ViewTreeObserver viewTreeObserver;
         n0 n0Var = (n0) parcelable;
         super.onRestoreInstanceState(n0Var.getSuperState());
-        if (n0Var.f15751a && (viewTreeObserver = getViewTreeObserver()) != null) {
+        if (n0Var.f15755a && (viewTreeObserver = getViewTreeObserver()) != null) {
             viewTreeObserver.addOnGlobalLayoutListener(new androidx.mediarouter.app.j(this, 3));
         }
     }
@@ -172,19 +172,19 @@ public final class p0 extends Spinner {
     public final Parcelable onSaveInstanceState() {
         boolean z10;
         ?? baseSavedState = new View.BaseSavedState(super.onSaveInstanceState());
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null && o0Var.a()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        baseSavedState.f15751a = z10;
+        baseSavedState.f15755a = z10;
         return baseSavedState;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        e0 e0Var = this.f15774c;
+        e0 e0Var = this.f15778c;
         if (e0Var != null && e0Var.onTouch(this, motionEvent)) {
             return true;
         }
@@ -193,7 +193,7 @@ public final class p0 extends Spinner {
 
     @Override
     public final boolean performClick() {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             if (!o0Var.a()) {
                 o0Var.l(g0.b(this), g0.a(this));
@@ -207,7 +207,7 @@ public final class p0 extends Spinner {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f15772a;
+        e2.c cVar = this.f15776a;
         if (cVar != null) {
             cVar.g();
         }
@@ -216,7 +216,7 @@ public final class p0 extends Spinner {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f15772a;
+        e2.c cVar = this.f15776a;
         if (cVar != null) {
             cVar.h(i10);
         }
@@ -224,7 +224,7 @@ public final class p0 extends Spinner {
 
     @Override
     public void setDropDownHorizontalOffset(int i10) {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             o0Var.k(i10);
             o0Var.c(i10);
@@ -235,7 +235,7 @@ public final class p0 extends Spinner {
 
     @Override
     public void setDropDownVerticalOffset(int i10) {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             o0Var.j(i10);
         } else {
@@ -245,7 +245,7 @@ public final class p0 extends Spinner {
 
     @Override
     public void setDropDownWidth(int i10) {
-        if (this.f15776f != null) {
+        if (this.f15780f != null) {
             this.h = i10;
         } else {
             super.setDropDownWidth(i10);
@@ -254,7 +254,7 @@ public final class p0 extends Spinner {
 
     @Override
     public void setPopupBackgroundDrawable(Drawable drawable) {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             o0Var.i(drawable);
         } else {
@@ -269,7 +269,7 @@ public final class p0 extends Spinner {
 
     @Override
     public void setPrompt(CharSequence charSequence) {
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != null) {
             o0Var.h(charSequence);
         } else {
@@ -278,14 +278,14 @@ public final class p0 extends Spinner {
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f15772a;
+        e2.c cVar = this.f15776a;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f15772a;
+        e2.c cVar = this.f15776a;
         if (cVar != null) {
             cVar.m(mode);
         }
@@ -293,22 +293,22 @@ public final class p0 extends Spinner {
 
     @Override
     public void setAdapter(SpinnerAdapter spinnerAdapter) {
-        if (!this.f15775e) {
+        if (!this.f15779e) {
             this.d = spinnerAdapter;
             return;
         }
         super.setAdapter(spinnerAdapter);
-        o0 o0Var = this.f15776f;
+        o0 o0Var = this.f15780f;
         if (o0Var != 0) {
-            Context context = this.f15773b;
+            Context context = this.f15777b;
             if (context == null) {
                 context = getContext();
             }
             Resources.Theme theme = context.getTheme();
             ?? obj = new Object();
-            obj.f15709a = spinnerAdapter;
+            obj.f15713a = spinnerAdapter;
             if (spinnerAdapter instanceof ListAdapter) {
-                obj.f15710b = (ListAdapter) spinnerAdapter;
+                obj.f15714b = (ListAdapter) spinnerAdapter;
             }
             if (theme != null && (spinnerAdapter instanceof ThemedSpinnerAdapter)) {
                 h0.a((ThemedSpinnerAdapter) spinnerAdapter, theme);

@@ -3,8 +3,8 @@ package ai;
 import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ee0;
-import org.telegram.ui.Components.ki0;
+import org.telegram.ui.Components.fe0;
+import org.telegram.ui.Components.li0;
 public final class o7 implements z4.e {
     public final int f1534a;
     public final Object f1535b;
@@ -22,13 +22,13 @@ public final class o7 implements z4.e {
             case 1:
                 return;
             case 2:
-                ee0 ee0Var = (ee0) this.f1535b;
-                z4.e eVar = ee0Var.f26069c;
+                fe0 fe0Var = (fe0) this.f1535b;
+                z4.e eVar = fe0Var.f26398c;
                 if (eVar != null) {
                     eVar.a(i10);
                 }
-                for (int i11 = 0; i11 < ee0Var.d.getChildCount(); i11++) {
-                    View childAt = ee0Var.d.getChildAt(i11);
+                for (int i11 = 0; i11 < fe0Var.d.getChildCount(); i11++) {
+                    View childAt = fe0Var.d.getChildAt(i11);
                     if (i11 == i10) {
                         z10 = true;
                     } else {
@@ -80,16 +80,16 @@ public final class o7 implements z4.e {
                 }
                 return;
             case 1:
-                ((li.e) this.f1535b).f15611f++;
+                ((li.e) this.f1535b).f15615f++;
                 return;
             case 2:
-                ee0 ee0Var = (ee0) this.f1535b;
-                ee0Var.h = i10;
-                ee0Var.f26072n = f7;
-                if (ee0Var.d.getChildAt(i10) != null) {
-                    ee0.a(ee0Var, i10, (int) (ee0Var.d.getChildAt(i10).getWidth() * f7));
-                    ee0Var.invalidate();
-                    z4.e eVar = ee0Var.f26069c;
+                fe0 fe0Var = (fe0) this.f1535b;
+                fe0Var.h = i10;
+                fe0Var.f26401n = f7;
+                if (fe0Var.d.getChildAt(i10) != null) {
+                    fe0.a(fe0Var, i10, (int) (fe0Var.d.getChildAt(i10).getWidth() * f7));
+                    fe0Var.invalidate();
+                    z4.e eVar = fe0Var.f26398c;
                     if (eVar != null) {
                         eVar.b(f7, i10, i11);
                         return;
@@ -98,23 +98,23 @@ public final class o7 implements z4.e {
                 }
                 return;
             default:
-                ki0 ki0Var = (ki0) this.f1535b;
-                if (!ki0Var.f28013a && Math.abs(i10 - ki0Var.f28021w) == 1) {
-                    int i15 = ki0Var.f28021w;
+                li0 li0Var = (li0) this.f1535b;
+                if (!li0Var.f28346a && Math.abs(i10 - li0Var.f28354w) == 1) {
+                    int i15 = li0Var.f28354w;
                     if (i10 > i15) {
-                        ki0.a(ki0Var, 0, 1, 1);
+                        li0.a(li0Var, 0, 1, 1);
                     } else if (i10 < i15) {
-                        ki0.a(ki0Var, 1, 0, 0);
-                        ki0.a(ki0Var, 2, 0, -1);
+                        li0.a(li0Var, 1, 0, 0);
+                        li0.a(li0Var, 2, 0, -1);
                     }
                 }
-                int i16 = ki0Var.f28021w;
-                int i17 = ki0Var.f28022x;
-                ki0Var.f28021w = i10;
-                ki0Var.f28022x = i11;
+                int i16 = li0Var.f28354w;
+                int i17 = li0Var.f28355x;
+                li0Var.f28354w = i10;
+                li0Var.f28355x = i11;
                 if (i16 != i10 || i17 != i11) {
-                    ki0Var.H = true;
-                    ki0Var.postInvalidateOnAnimation();
+                    li0Var.H = true;
+                    li0Var.postInvalidateOnAnimation();
                     return;
                 }
                 return;
@@ -134,11 +134,11 @@ public final class o7 implements z4.e {
             case 1:
                 return;
             case 2:
-                ee0 ee0Var = (ee0) this.f1535b;
+                fe0 fe0Var = (fe0) this.f1535b;
                 if (i10 == 0) {
-                    ee0.a(ee0Var, ee0Var.f26070e.getCurrentItem(), 0);
+                    fe0.a(fe0Var, fe0Var.f26399e.getCurrentItem(), 0);
                 }
-                z4.e eVar = ee0Var.f26069c;
+                z4.e eVar = fe0Var.f26398c;
                 if (eVar != null) {
                     eVar.c(i10);
                     return;

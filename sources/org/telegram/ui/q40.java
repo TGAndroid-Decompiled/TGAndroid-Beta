@@ -17,7 +17,7 @@ public final class q40 extends qv0 {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
         g60 g60Var = this.T;
-        a40 a40Var = g60Var.f37791b;
+        a40 a40Var = g60Var.f37835b;
         b40 b40Var = g60Var.C2;
         if (f7 > 0.0f) {
             float x10 = b40Var.getX();
@@ -37,7 +37,7 @@ public final class q40 extends qv0 {
 
     @Override
     public final void e() {
-        a40 a40Var = this.T.f37791b;
+        a40 a40Var = this.T.f37835b;
         super.e();
         for (int i10 = 0; i10 < a40Var.getChildCount(); i10++) {
             a40Var.getChildAt(i10).invalidate();

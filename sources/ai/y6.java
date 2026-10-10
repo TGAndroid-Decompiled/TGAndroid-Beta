@@ -7,8 +7,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ns;
-public final class y6 extends ns {
+import org.telegram.ui.Components.os;
+public final class y6 extends os {
     public final z6 f1948c;
 
     public y6(z6 z6Var, Context context, d dVar) {
@@ -180,7 +180,7 @@ public final class y6 extends ns {
         d dVar = l7Var.f1341s;
         TextView textView = new TextView(actionBarPopupWindow$ActionBarPopupWindowLayout.getContext());
         textView.setTextSize(1, 13.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20905j5, dVar));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20909j5, dVar));
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setText(string);
         textView.setTag(R.id.fit_width_tag, 1);

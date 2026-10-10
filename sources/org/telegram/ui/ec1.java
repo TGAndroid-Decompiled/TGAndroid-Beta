@@ -7,12 +7,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ec1 extends org.telegram.ui.Cells.na {
-    public final int f37229h3 = 1;
-    public final Object f37230i3;
+    public final int f37273h3 = 1;
+    public final Object f37274i3;
 
     public ec1(Context context, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, ArrayList arrayList2, org.telegram.ui.ActionBar.a3 a3Var) {
         super(context, n2Var, 2, arrayList, arrayList2);
-        this.f37230i3 = a3Var;
+        this.f37274i3 = a3Var;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class ec1 extends org.telegram.ui.Cells.na {
         CharSequence[] charSequenceArr;
         boolean z11;
         int[] iArr;
-        switch (this.f37229h3) {
+        switch (this.f37273h3) {
             case 0:
-                hc1 hc1Var = ((hc1) this.f37230i3).f38253e.f34529a;
-                ThemeActivity themeActivity = hc1Var.f38253e;
+                hc1 hc1Var = ((hc1) this.f37274i3).f38297e.f34567a;
+                ThemeActivity themeActivity = hc1Var.f38297e;
                 if (themeActivity.getParentActivity() != null) {
-                    if ((h6Var.F == null || h6Var.U) && themeActivity.f34538f != 1) {
+                    if ((h6Var.F == null || h6Var.U) && themeActivity.f34576f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
-                        if (h6Var.f20705b == null) {
+                        if (h6Var.f20709b == null) {
                             charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};
                             iArr = new int[]{0, R.drawable.msg_shareout};
                             z11 = false;
@@ -67,13 +67,13 @@ public final class ec1 extends org.telegram.ui.Cells.na {
                             iArr = new int[]{R.drawable.msg_share, R.drawable.msg_shareout, R.drawable.msg_edit, R.drawable.msg_link, R.drawable.msg_delete};
                         }
                         lg.j jVar = new lg.j(13, hc1Var, h6Var);
-                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20374a;
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
                         b2Var.P = charSequenceArr;
                         b2Var.Q = iArr;
                         b2Var.M = jVar;
                         themeActivity.showDialog(b2Var);
                         if (z11) {
-                            b2Var.l(b2Var.N0.size() - 1, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21037q7, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21018p7, false));
+                            b2Var.l(b2Var.N0.size() - 1, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21041q7, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21022p7, false));
                             return;
                         }
                         return;
@@ -89,12 +89,12 @@ public final class ec1 extends org.telegram.ui.Cells.na {
     @Override
     public final void B1() {
         Runnable runnable;
-        switch (this.f37229h3) {
+        switch (this.f37273h3) {
             case 0:
-                ((hc1) this.f37230i3).f38253e.A0(false);
+                ((hc1) this.f37274i3).f38297e.A0(false);
                 return;
             default:
-                runnable = ((org.telegram.ui.ActionBar.a3) this.f37230i3).f20380a.dismissRunnable;
+                runnable = ((org.telegram.ui.ActionBar.a3) this.f37274i3).f20384a.dismissRunnable;
                 runnable.run();
                 return;
         }
@@ -102,6 +102,6 @@ public final class ec1 extends org.telegram.ui.Cells.na {
 
     public ec1(hc1 hc1Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, ArrayList arrayList, ArrayList arrayList2) {
         super(context, n2Var, i10, arrayList, arrayList2);
-        this.f37230i3 = hc1Var;
+        this.f37274i3 = hc1Var;
     }
 }

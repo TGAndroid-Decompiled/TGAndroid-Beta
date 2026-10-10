@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class jj extends org.telegram.ui.Components.z40 {
+public final class jj extends org.telegram.ui.Components.a50 {
     public final int I;
 
     public jj(int i10, int i11, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {

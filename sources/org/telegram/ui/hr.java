@@ -6,20 +6,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class hr implements lr {
-    public final tr f38392a;
+    public final tr f38436a;
 
     public hr(tr trVar) {
-        this.f38392a = trVar;
+        this.f38436a = trVar;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        tr.c0(this.f38392a, user);
+        tr.c0(this.f38436a, user);
     }
 
     @Override
     public final void b(long j3) {
-        tr trVar = this.f38392a;
+        tr trVar = this.f38436a;
         ArrayList arrayList = trVar.F;
         a0.i iVar = trVar.K;
         TLRPC.User user = trVar.getMessagesController().getUser(Long.valueOf(j3));
@@ -31,11 +31,11 @@ public final class hr implements lr {
             TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_channelParticipantAdmin.peer = tL_peerUser;
-            tL_peerUser.user_id = user.f20185id;
+            tL_peerUser.user_id = user.f20189id;
             tL_channelParticipantAdmin.date = trVar.getConnectionsManager().getCurrentTime();
             tL_channelParticipantAdmin.promoted_by = trVar.getAccountInstance().getUserConfig().clientUserId;
             arrayList.add(tL_channelParticipantAdmin);
-            iVar.k(tL_channelParticipantAdmin, user.f20185id);
+            iVar.k(tL_channelParticipantAdmin, user.f20189id);
             Collections.sort(arrayList, new gf(4));
             trVar.A0(w02);
         }
@@ -43,7 +43,7 @@ public final class hr implements lr {
 
     @Override
     public final void c(long j3, TLObject tLObject) {
-        tr trVar = this.f38392a;
+        tr trVar = this.f38436a;
         ArrayList arrayList = trVar.F;
         a0.i iVar = trVar.K;
         if (tLObject != null && iVar.f(j3) == null) {

@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
-public final class de implements ei.m0, org.telegram.ui.ActionBar.a2, pu, org.telegram.ui.ActionBar.l1 {
-    public final ChatActivityEnterView f25694a;
+public final class de implements ei.m0, org.telegram.ui.ActionBar.a2, qu, org.telegram.ui.ActionBar.l1 {
+    public final ChatActivityEnterView f25681a;
 
     public de(ChatActivityEnterView chatActivityEnterView) {
-        this.f25694a = chatActivityEnterView;
+        this.f25681a = chatActivityEnterView;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11 = ChatActivityEnterView.f23850n5;
-        ChatActivityEnterView chatActivityEnterView = this.f25694a;
+        int i11 = ChatActivityEnterView.f23854n5;
+        ChatActivityEnterView chatActivityEnterView = this.f25681a;
         chatActivityEnterView.M();
         sf sfVar = chatActivityEnterView.E0;
         if (sfVar != null) {
@@ -21,7 +21,7 @@ public final class de implements ei.m0, org.telegram.ui.ActionBar.a2, pu, org.te
 
     @Override
     public void i() {
-        ChatActivityEnterView chatActivityEnterView = this.f25694a;
+        ChatActivityEnterView chatActivityEnterView = this.f25681a;
         chatActivityEnterView.E0.invalidateEffects();
         qg qgVar = chatActivityEnterView.Z2;
         if (qgVar != null) {
@@ -33,8 +33,8 @@ public final class de implements ei.m0, org.telegram.ui.ActionBar.a2, pu, org.te
     public void o(KeyEvent keyEvent) {
         ChatActivityEnterView chatActivityEnterView;
         of ofVar;
-        int i10 = ChatActivityEnterView.f23850n5;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (ofVar = (chatActivityEnterView = this.f25694a).N0) != null && ofVar.isShowing()) {
+        int i10 = ChatActivityEnterView.f23854n5;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (ofVar = (chatActivityEnterView = this.f25681a).N0) != null && ofVar.isShowing()) {
             chatActivityEnterView.N0.dismiss();
         }
     }

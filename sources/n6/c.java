@@ -1,22 +1,22 @@
 package n6;
 public final class c implements b {
-    public final o8.a f16624a;
+    public final o8.a f16628a;
 
     public c(o8.a aVar) {
-        this.f16624a = aVar;
+        this.f16628a = aVar;
     }
 
     @Override
     public final void a(k6.a aVar) {
         boolean c10 = aVar.c();
-        o8.a aVar2 = this.f16624a;
+        o8.a aVar2 = this.f16628a;
         if (c10) {
             aVar2.b(null, aVar2.S);
             return;
         }
         m mVar = aVar2.K;
         if (mVar != null) {
-            ((com.google.android.gms.common.api.l) mVar.f16695a).onConnectionFailed(aVar);
+            ((com.google.android.gms.common.api.l) mVar.f16699a).onConnectionFailed(aVar);
         }
     }
 }

@@ -2,7 +2,7 @@ package x7;
 
 import java.util.logging.Logger;
 public abstract class qa {
-    public static final int f50922a = 0;
+    public static final int f50966a = 0;
 
     static {
         Logger.getLogger(qa.class.getName());

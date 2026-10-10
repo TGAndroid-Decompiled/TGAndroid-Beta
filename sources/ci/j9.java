@@ -16,8 +16,8 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.bi;
 import org.telegram.ui.Components.lf;
-import org.telegram.ui.Components.pe0;
-import org.telegram.ui.Components.te0;
+import org.telegram.ui.Components.qe0;
+import org.telegram.ui.Components.ue0;
 public final class j9 extends FrameLayout {
     public final int f5286a = 0;
     public final Object f5287b;
@@ -27,9 +27,9 @@ public final class j9 extends FrameLayout {
     public Object f5290f;
     public Object h;
 
-    public j9(te0 te0Var, Context context) {
+    public j9(ue0 ue0Var, Context context) {
         super(context);
-        this.h = te0Var;
+        this.h = ue0Var;
         this.f5287b = new ArrayList(4);
         this.f5288c = new ArrayList(4);
         this.d = new StringBuilder(4);
@@ -100,7 +100,7 @@ public final class j9 extends FrameLayout {
             j9Var.f5289e = animatorSet2;
             animatorSet2.setDuration(150L);
             ((AnimatorSet) j9Var.f5289e).playTogether(arrayList3);
-            ((AnimatorSet) j9Var.f5289e).addListener(new pe0(j9Var, 2));
+            ((AnimatorSet) j9Var.f5289e).addListener(new qe0(j9Var, 2));
             ((AnimatorSet) j9Var.f5289e).start();
         } else {
             for (int i12 = 0; i12 < 4; i12++) {
@@ -108,7 +108,7 @@ public final class j9 extends FrameLayout {
                 ((TextView) arrayList.get(i12)).setAlpha(0.0f);
             }
         }
-        te0.a((te0) j9Var.h);
+        ue0.a((ue0) j9Var.h);
     }
 
     public void b(String str) {
@@ -187,9 +187,9 @@ public final class j9 extends FrameLayout {
         this.f5289e = animatorSet2;
         animatorSet2.setDuration(150L);
         ((AnimatorSet) this.f5289e).playTogether(arrayList3);
-        ((AnimatorSet) this.f5289e).addListener(new pe0(this, 0));
+        ((AnimatorSet) this.f5289e).addListener(new qe0(this, 0));
         ((AnimatorSet) this.f5289e).start();
-        te0.a((te0) this.h);
+        ue0.a((ue0) this.h);
     }
 
     public int c(int i10) {
@@ -228,7 +228,7 @@ public final class j9 extends FrameLayout {
             case 0:
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.f5290f;
-                paint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20798d7, (org.telegram.ui.ActionBar.e6) this.f5287b));
+                paint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20802d7, (org.telegram.ui.ActionBar.e6) this.f5287b));
                 canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -304,7 +304,7 @@ public final class j9 extends FrameLayout {
         this.d = textView;
         bi.k(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20905j5, e6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20909j5, e6Var));
         boolean z10 = LocaleController.isRTL;
         addView(textView, w7.x5.a(-2.0f, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f, -1, 23));
         ImageView imageView = new ImageView(context);
@@ -314,7 +314,7 @@ public final class j9 extends FrameLayout {
         imageView.setImageDrawable(g2Var);
         g2Var.a(-1);
         g2Var.b(-1);
-        g2Var.f20640k = 220.0f;
+        g2Var.f20644k = 220.0f;
         addView(imageView, w7.x5.a(24.0f, 16.0f, 0.0f, 16.0f, 0.0f, 24, (LocaleController.isRTL ? 5 : 3) | 16));
         imageView.setOnClickListener(new ai.v0(this, 12));
     }

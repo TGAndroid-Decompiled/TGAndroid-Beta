@@ -30,8 +30,8 @@ public class t implements b0 {
                 u uVar = (u) this.f4153c;
                 e2.d.h(uVar.f4162k);
                 pf.b bVar = uVar.f4162k;
-                long[] jArr = (long[]) bVar.f45558b;
-                long[] jArr2 = (long[]) bVar.f45559c;
+                long[] jArr = (long[]) bVar.f45602b;
+                long[] jArr2 = (long[]) bVar.f45603c;
                 int e7 = e2.d0.e(jArr, e2.d0.i((uVar.f4157e * j3) / 1000000, 0L, uVar.f4161j - 1), false);
                 long j11 = 0;
                 if (e7 == -1) {

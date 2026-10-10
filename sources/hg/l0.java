@@ -23,13 +23,13 @@ import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.ActionBar.j5;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.eb;
-import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.nd;
-import org.telegram.ui.Components.pm0;
 import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.LaunchActivity;
 import w7.x5;
@@ -42,7 +42,7 @@ public final class l0 extends eb {
     public final LinearLayout f11305a0;
     public final ci.d f11306b0;
     public final ci.d f11307c0;
-    public c71 f11308d0;
+    public d71 f11308d0;
     public boolean f11309e0;
     public Boolean f11310f0;
 
@@ -74,10 +74,10 @@ public final class l0 extends eb {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(UserObject.getUserName(user));
         linearLayout.addView(textView, x5.r(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f26023e.setTitle(UserObject.getUserName(user));
+        this.f25983e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(i6.f21181y6));
+        textView2.setTextColor(getThemedColor(i6.f21185y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, x5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -90,12 +90,12 @@ public final class l0 extends eb {
             textView3.setGravity(17);
             linearLayout.addView(textView3, x5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = i6.f20741a7;
+        int i10 = i6.f20745a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
-        qm0 qm0Var = this.d;
+        rm0 rm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        qm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
+        rm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
         this.d.p1();
         this.d.setOnItemClickListener(new ai.g(this, 11));
         FrameLayout frameLayout = new FrameLayout(activity);
@@ -122,14 +122,14 @@ public final class l0 extends eb {
         e7.rightMargin += i13;
         this.containerView.addView(frameLayout, e7);
         s4.j jVar = new s4.j();
-        jVar.f47698m = false;
+        jVar.f47742m = false;
         jVar.C = false;
-        jVar.o(hs.h);
+        jVar.o(is.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        c71 c71Var = this.f11308d0;
-        if (c71Var != null) {
-            c71Var.N(false);
+        d71 d71Var = this.f11308d0;
+        if (d71Var != null) {
+            d71Var.N(false);
         }
     }
 
@@ -182,7 +182,7 @@ public final class l0 extends eb {
 
     @Override
     public final void D(float f7) {
-        j5 titleTextView = this.f26023e.getTitleTextView();
+        j5 titleTextView = this.f25983e.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f7);
         }
@@ -282,8 +282,8 @@ public final class l0 extends eb {
             f11 = 0.8f;
         }
         ViewPropertyAnimator duration = scaleX.scaleY(f11).setDuration(320L);
-        hs hsVar = hs.h;
-        duration.setInterpolator(hsVar).withEndAction(new Runnable(this) {
+        is isVar = is.h;
+        duration.setInterpolator(isVar).withEndAction(new Runnable(this) {
             public final l0 f11296b;
 
             {
@@ -331,7 +331,7 @@ public final class l0 extends eb {
         if (!z11) {
             f18 = 1.0f;
         }
-        scaleX2.scaleY(f18).setDuration(320L).setInterpolator(hsVar).withEndAction(new Runnable(this) {
+        scaleX2.scaleY(f18).setDuration(320L).setInterpolator(isVar).withEndAction(new Runnable(this) {
             public final l0 f11296b;
 
             {
@@ -385,10 +385,10 @@ public final class l0 extends eb {
     }
 
     @Override
-    public final pm0 x(qm0 qm0Var) {
-        c71 c71Var = new c71(qm0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
-        this.f11308d0 = c71Var;
-        c71Var.f25280r = false;
-        return c71Var;
+    public final qm0 x(rm0 rm0Var) {
+        d71 d71Var = new d71(rm0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
+        this.f11308d0 = d71Var;
+        d71Var.f25587r = false;
+        return d71Var;
     }
 }

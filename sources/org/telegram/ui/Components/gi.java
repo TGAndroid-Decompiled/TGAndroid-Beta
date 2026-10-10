@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class gi extends zu {
+public final class gi extends av {
     public final yi V;
 
     public gi(yi yiVar, Context context, oi oiVar, org.telegram.ui.ActionBar.e6 e6Var) {
@@ -16,10 +16,10 @@ public final class gi extends zu {
     @Override
     public final void f() {
         super.f();
-        a00 emojiView = getEmojiView();
+        b00 emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f24464w0 = false;
-            emojiView.f24466w2 = false;
+            emojiView.f24752w0 = false;
+            emojiView.f24754w2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -27,7 +27,7 @@ public final class gi extends zu {
 
     @Override
     public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.V.f33228f0;
+        org.telegram.ui.ActionBar.n2 n2Var = this.V.f33235f0;
         if (n2Var instanceof org.telegram.ui.zn) {
             org.telegram.ui.zn.n8(menu, ((org.telegram.ui.zn) n2Var).h, true, true, true, true);
         }
@@ -37,7 +37,7 @@ public final class gi extends zu {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         yi yiVar = this.V;
         gi giVar = yiVar.S0;
-        if (!yiVar.f33286x1) {
+        if (!yiVar.f33293x1) {
             if (motionEvent.getX() > giVar.getEditText().getLeft() && motionEvent.getX() < giVar.getEditText().getRight() && motionEvent.getY() > giVar.getEditText().getTop() && motionEvent.getY() < giVar.getEditText().getBottom()) {
                 yiVar.w1(giVar.getEditText(), true);
             } else {
@@ -58,7 +58,7 @@ public final class gi extends zu {
         boolean z10;
         yi yiVar = this.V;
         yiVar.f2();
-        if (yiVar.f33217c0) {
+        if (yiVar.f33224c0) {
             if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
             } else {
