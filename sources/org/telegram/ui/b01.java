@@ -5,21 +5,21 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 public final class b01 extends AnimatorListenerAdapter {
-    public final int f36228a;
-    public final boolean f36229b;
-    public final ProfileActivity f36230c;
+    public final int f36262a;
+    public final boolean f36263b;
+    public final ProfileActivity f36264c;
 
     public b01(ProfileActivity profileActivity, boolean z10, int i10) {
-        this.f36228a = i10;
-        this.f36230c = profileActivity;
-        this.f36229b = z10;
+        this.f36262a = i10;
+        this.f36264c = profileActivity;
+        this.f36263b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f36228a) {
+        switch (this.f36262a) {
             case 1:
-                this.f36230c.f34278f0 = null;
+                this.f36264c.f34312f0 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -31,17 +31,17 @@ public final class b01 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         int i10;
         org.telegram.ui.Cells.z3 z3Var;
-        switch (this.f36228a) {
+        switch (this.f36262a) {
             case 0:
-                ProfileActivity profileActivity = this.f36230c;
-                boolean z10 = this.f36229b;
+                ProfileActivity profileActivity = this.f36264c;
+                boolean z10 = this.f36263b;
                 ProfileActivity.n1(profileActivity, z10);
                 profileActivity.Y.setClickable(true);
                 if (z10) {
                     org.telegram.ui.ActionBar.u0 u0Var = profileActivity.U0;
-                    if (u0Var.F.getWidth() != 0 && !u0Var.f21540e.isFocused()) {
-                        u0Var.f21540e.requestFocus();
-                        AndroidUtilities.showKeyboard(u0Var.f21540e);
+                    if (u0Var.F.getWidth() != 0 && !u0Var.f21576e.isFocused()) {
+                        u0Var.f21576e.requestFocus();
+                        AndroidUtilities.showKeyboard(u0Var.f21576e);
                     }
                 }
                 profileActivity.k4(true);
@@ -58,12 +58,12 @@ public final class b01 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f36230c;
-                if (profileActivity2.f34278f0 != null && (z3Var = profileActivity2.f34285g0) != null) {
-                    if (!this.f36229b) {
+                ProfileActivity profileActivity2 = this.f36264c;
+                if (profileActivity2.f34312f0 != null && (z3Var = profileActivity2.f34319g0) != null) {
+                    if (!this.f36263b) {
                         z3Var.setVisibility(4);
                     }
-                    profileActivity2.f34278f0 = null;
+                    profileActivity2.f34312f0 = null;
                     return;
                 }
                 return;

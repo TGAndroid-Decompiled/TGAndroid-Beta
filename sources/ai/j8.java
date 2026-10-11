@@ -9,7 +9,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ov0;
+import org.telegram.ui.Components.nv0;
 import org.telegram.ui.Components.vh;
 import org.telegram.ui.Components.zk;
 import org.telegram.ui.LaunchActivity;
@@ -56,7 +56,7 @@ public final class j8 implements RequestDelegate {
                 ((VoIPService) obj).lambda$startScreenCapture$60(i11, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new zk((ov0) obj, tLObject, i11, 17));
+                AndroidUtilities.runOnUIThread(new zk((nv0) obj, tLObject, i11, 17));
                 return;
             case 5:
                 LaunchActivity launchActivity = (LaunchActivity) obj;

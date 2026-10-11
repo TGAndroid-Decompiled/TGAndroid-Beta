@@ -2,26 +2,26 @@ package r7;
 
 import w7.f7;
 public final class u extends t {
-    public static final u f47125e = new u(0, new Object[0]);
-    public final transient Object[] f47126c;
+    public static final u f47159e = new u(0, new Object[0]);
+    public final transient Object[] f47160c;
     public final transient int d;
 
     public u(int i10, Object[] objArr) {
-        this.f47126c = objArr;
+        this.f47160c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
         f7.a(i10, this.d);
-        Object obj = this.f47126c[i10];
+        Object obj = this.f47160c[i10];
         obj.getClass();
         return obj;
     }
 
     @Override
     public final int i(Object[] objArr) {
-        Object[] objArr2 = this.f47126c;
+        Object[] objArr2 = this.f47160c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -44,7 +44,7 @@ public final class u extends t {
 
     @Override
     public final Object[] q() {
-        return this.f47126c;
+        return this.f47160c;
     }
 
     @Override

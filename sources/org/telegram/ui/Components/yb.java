@@ -1,13 +1,13 @@
 package org.telegram.ui.Components;
 public final class yb extends ac implements xb {
-    public fa0 d;
+    public ea0 d;
 
     @Override
     public void setTextColor(int i10) {
         super.setTextColor(i10);
-        fa0 fa0Var = this.d;
-        if (fa0Var != null) {
-            fa0Var.setTextColor(i10);
+        ea0 ea0Var = this.d;
+        if (ea0Var != null) {
+            ea0Var.setTextColor(i10);
         }
     }
 }

@@ -17,8 +17,8 @@ import org.telegram.messenger.ai;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.hk0;
-import org.telegram.ui.Components.ia0;
+import org.telegram.ui.Components.gk0;
+import org.telegram.ui.Components.ha0;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.jq;
 import org.telegram.ui.Components.lr;
@@ -28,7 +28,7 @@ import org.telegram.ui.Wallet.z4;
 import org.telegram.ui.f70;
 import w7.x5;
 import w7.z5;
-public class p0 extends FrameLayout implements ia0 {
+public class p0 extends FrameLayout implements ha0 {
     public boolean E;
     public boolean F;
     public mr G;
@@ -40,20 +40,20 @@ public class p0 extends FrameLayout implements ia0 {
     public float M;
     public boolean N;
     public ValueAnimator O;
-    public final Paint f47469a;
-    public float f47470b;
-    public boolean f47471c;
+    public final Paint f47503a;
+    public float f47504b;
+    public boolean f47505c;
     public final o0 d;
-    public final o0 f47472e;
-    public final int f47473f;
+    public final o0 f47506e;
+    public final int f47507f;
     public boolean h;
-    public float f47474n;
-    public final ai.f0 f47475r;
-    public ValueAnimator f47476s;
+    public float f47508n;
+    public final ai.f0 f47509r;
+    public ValueAnimator f47510s;
     public final Path v;
-    public final org.telegram.ui.Components.voip.h f47477w;
-    public boolean f47478x;
-    public final hk0 f47479y;
+    public final org.telegram.ui.Components.voip.h f47511w;
+    public boolean f47512x;
+    public final gk0 f47513y;
 
     public p0(Context context, d6 d6Var, boolean z10) {
         this(AndroidUtilities.dp(8.0f), context, d6Var, z10);
@@ -65,11 +65,11 @@ public class p0 extends FrameLayout implements ia0 {
         }
         this.E = true;
         o0 o0Var = this.d;
-        if (z10 && o0Var.f30346c.h()) {
+        if (z10 && o0Var.f30430c.h()) {
             o0Var.a();
         }
         o0Var.c(str, z10, true);
-        ai.f0 f0Var = this.f47475r;
+        ai.f0 f0Var = this.f47509r;
         f0Var.setContentDescription(str);
         if (!this.I) {
             f0Var.setOnClickListener(onClickListener);
@@ -78,8 +78,8 @@ public class p0 extends FrameLayout implements ia0 {
 
     public final void b(CharSequence charSequence, boolean z10, boolean z11) {
         this.h = true;
-        this.f47478x = z10;
-        o0 o0Var = this.f47472e;
+        this.f47512x = z10;
+        o0 o0Var = this.f47506e;
         o0Var.c(charSequence, z11, true);
         o0Var.setContentDescription(charSequence);
         d(z11);
@@ -91,76 +91,76 @@ public class p0 extends FrameLayout implements ia0 {
     }
 
     public final void d(boolean z10) {
-        ValueAnimator valueAnimator = this.f47476s;
+        ValueAnimator valueAnimator = this.f47510s;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f47476s.cancel();
+            this.f47510s.cancel();
         }
         float f7 = 0.0f;
         if (!z10) {
             if (this.h) {
                 f7 = 1.0f;
             }
-            this.f47474n = f7;
+            this.f47508n = f7;
             e();
             return;
         }
-        float f10 = this.f47474n;
+        float f10 = this.f47508n;
         if (this.h) {
             f7 = 1.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f47476s = ofFloat;
+        this.f47510s = ofFloat;
         ofFloat.addUpdateListener(new l6(this, 11));
-        this.f47476s.addListener(new z4(this, 10));
-        this.f47476s.setDuration(250L);
-        this.f47476s.setInterpolator(is.f27451f);
-        this.f47476s.start();
+        this.f47510s.addListener(new z4(this, 10));
+        this.f47510s.setDuration(250L);
+        this.f47510s.setInterpolator(is.f27500f);
+        this.f47510s.start();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int dp;
         mr mrVar = this.G;
-        o0 o0Var = this.f47472e;
+        o0 o0Var = this.f47506e;
         if (mrVar != null) {
-            lr lrVar = mrVar.f28841a;
+            lr lrVar = mrVar.f28916a;
             if (lrVar.h == 0) {
                 dp = 0;
             } else {
-                dp = AndroidUtilities.dp(lrVar.C - 0.5f) + lrVar.f28436s;
+                dp = AndroidUtilities.dp(lrVar.C - 0.5f) + lrVar.f28598s;
             }
             g6 g6Var = this.J;
             g6Var.d(((dp * 0.85f) + AndroidUtilities.dp(3.0f)) / 2.0f, false);
             float e7 = (o0Var.getDrawable().e() / 2.0f) + (getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(3.0f);
             g6 g6Var2 = this.K;
             g6Var2.d(e7, false);
-            o0Var.setTranslationX(-g6Var.f26613c);
-            this.G.setTranslationX(g6Var2.f26613c - g6Var.f26613c);
+            o0Var.setTranslationX(-g6Var.f26665c);
+            this.G.setTranslationX(g6Var2.f26665c - g6Var.f26665c);
         } else if (o0Var != null) {
             o0Var.setTranslationX(0.0f);
         }
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        int i10 = (this.f47474n > 1.0f ? 1 : (this.f47474n == 1.0f ? 0 : -1));
-        Paint paint = this.f47469a;
-        int i11 = this.f47473f;
-        if (i10 != 0 || !this.f47478x) {
-            if (this.f47471c) {
-                float f7 = this.f47470b + 0.016f;
-                this.f47470b = f7;
+        int i10 = (this.f47508n > 1.0f ? 1 : (this.f47508n == 1.0f ? 0 : -1));
+        Paint paint = this.f47503a;
+        int i11 = this.f47507f;
+        if (i10 != 0 || !this.f47512x) {
+            if (this.f47505c) {
+                float f7 = this.f47504b + 0.016f;
+                this.f47504b = f7;
                 if (f7 > 3.0f) {
-                    this.f47471c = false;
+                    this.f47505c = false;
                 }
             } else {
-                float f10 = this.f47470b - 0.016f;
-                this.f47470b = f10;
+                float f10 = this.f47504b - 0.016f;
+                this.f47504b = f10;
                 if (f10 < 1.0f) {
-                    this.f47471c = true;
+                    this.f47505c = true;
                 }
             }
             if (this.H) {
-                b1.d().f((-getMeasuredWidth()) * 0.1f * this.f47470b, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                b1.d().f((-getMeasuredWidth()) * 0.1f * this.f47504b, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 float f11 = i11;
                 canvas.drawRoundRect(rectF, f11, f11, b1.d().e());
             } else {
@@ -172,17 +172,17 @@ public class p0 extends FrameLayout implements ia0 {
         }
         if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.F) {
             int measuredWidth = getMeasuredWidth();
-            org.telegram.ui.Components.voip.h hVar = this.f47477w;
-            hVar.f32001f = measuredWidth;
+            org.telegram.ui.Components.voip.h hVar = this.f47511w;
+            hVar.f32065f = measuredWidth;
             hVar.a(i11, canvas, rectF, null);
         }
-        float f13 = this.f47474n;
-        if (f13 != 0.0f && this.f47478x) {
+        float f13 = this.f47508n;
+        if (f13 != 0.0f && this.f47512x) {
             paint.setAlpha((int) (f13 * 255.0f));
-            if (this.f47474n != 1.0f) {
+            if (this.f47508n != 1.0f) {
                 Path path = this.v;
                 path.rewind();
-                path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.f47474n, Path.Direction.CW);
+                path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.f47508n, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
                 float f14 = i11;
@@ -198,29 +198,29 @@ public class p0 extends FrameLayout implements ia0 {
 
     public final void e() {
         int i10;
-        float f7 = this.f47474n;
-        o0 o0Var = this.f47472e;
+        float f7 = this.f47508n;
+        o0 o0Var = this.f47506e;
         o0Var.setAlpha(f7);
-        o0Var.setTranslationY((1.0f - this.f47474n) * AndroidUtilities.dp(12.0f));
-        ai.f0 f0Var = this.f47475r;
-        f0Var.setAlpha(1.0f - this.f47474n);
-        f0Var.setTranslationY((-AndroidUtilities.dp(12.0f)) * this.f47474n);
+        o0Var.setTranslationY((1.0f - this.f47508n) * AndroidUtilities.dp(12.0f));
+        ai.f0 f0Var = this.f47509r;
+        f0Var.setAlpha(1.0f - this.f47508n);
+        f0Var.setTranslationY((-AndroidUtilities.dp(12.0f)) * this.f47508n);
         int i11 = 0;
-        if (this.f47474n == 1.0f) {
+        if (this.f47508n == 1.0f) {
             i10 = 4;
         } else {
             i10 = 0;
         }
         f0Var.setVisibility(i10);
-        if (this.f47474n == 0.0f) {
+        if (this.f47508n == 0.0f) {
             i11 = 4;
         }
         o0Var.setVisibility(i11);
         invalidate();
     }
 
-    public hk0 getIconView() {
-        return this.f47479y;
+    public gk0 getIconView() {
+        return this.f47513y;
     }
 
     public r6 getTextView() {
@@ -229,7 +229,7 @@ public class p0 extends FrameLayout implements ia0 {
 
     @Override
     public final boolean isEnabled() {
-        return this.f47475r.isEnabled();
+        return this.f47509r.isEnabled();
     }
 
     @Override
@@ -240,7 +240,7 @@ public class p0 extends FrameLayout implements ia0 {
     @Override
     public void setEnabled(boolean z10) {
         super.setEnabled(z10);
-        this.f47475r.setEnabled(z10);
+        this.f47509r.setEnabled(z10);
     }
 
     public void setFlickerDisabled(boolean z10) {
@@ -249,13 +249,13 @@ public class p0 extends FrameLayout implements ia0 {
     }
 
     public void setIcon(int i10) {
-        hk0 hk0Var = this.f47479y;
-        hk0Var.f(i10, 24, 24, null);
-        org.telegram.ui.Components.voip.h hVar = this.f47477w;
-        hVar.f32002g = 2.0f;
-        hVar.f32010p = new org.telegram.ui.web.t0(this, 26);
+        gk0 gk0Var = this.f47513y;
+        gk0Var.f(i10, 24, 24, null);
+        org.telegram.ui.Components.voip.h hVar = this.f47511w;
+        hVar.f32066g = 2.0f;
+        hVar.f32074p = new org.telegram.ui.web.t0(this, 26);
         invalidate();
-        hk0Var.setVisibility(0);
+        gk0Var.setVisibility(0);
     }
 
     @Override
@@ -287,18 +287,18 @@ public class p0 extends FrameLayout implements ia0 {
     public p0(int i10, Context context, d6 d6Var, boolean z10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f47469a = paint;
+        this.f47503a = paint;
         this.v = new Path();
         this.H = true;
         this.J = new g6(this);
         this.K = new g6(this);
         this.M = 0.0f;
-        this.f47473f = i10;
+        this.f47507f = i10;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f47477w = hVar;
-        hVar.f32008n = 1.2f;
-        hVar.f32005k = false;
-        hVar.f32007m = 4.0f;
+        this.f47511w = hVar;
+        hVar.f32072n = 1.2f;
+        hVar.f32069k = false;
+        hVar.f32071m = 4.0f;
         LinearLayout e7 = ai.e(context, 0);
         o0 o0Var = new o0(this, context, 0);
         this.d = o0Var;
@@ -308,23 +308,23 @@ public class p0 extends FrameLayout implements ia0 {
         o0Var.setTextSize(AndroidUtilities.dp(14.0f));
         o0Var.setTypeface(AndroidUtilities.bold());
         ?? imageView = new ImageView(context);
-        this.f47479y = imageView;
+        this.f47513y = imageView;
         imageView.setColorFilter(-1);
         imageView.setVisibility(8);
         ai.f0 f0Var = new ai.f0(this, context, 29);
-        this.f47475r = f0Var;
+        this.f47509r = f0Var;
         f0Var.addView(e7, x5.e(-2, -2, 17));
         int k10 = i0.a.k(-1, 120);
         f0Var.setBackground(h6.j0(i10, i10, i10, i10, 0, k10, k10));
         e7.addView(o0Var, x5.q(-2, -2, 16));
         e7.addView((View) imageView, x5.p(24, 24, 0.0f, 16, 4, 0, 0, 0));
         addView(f0Var);
-        setOutlineProvider(yf.i0.f52259b);
+        setOutlineProvider(yf.i0.f52293b);
         setClipToOutline(true);
         z5.b(this, 0.02f, 1.2f);
         if (z10) {
             o0 o0Var2 = new o0(this, context, 1);
-            this.f47472e = o0Var2;
+            this.f47506e = o0Var2;
             o0Var2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             o0Var2.setGravity(17);
             o0Var2.setTextColor(h6.w0(h6.Sh, d6Var));

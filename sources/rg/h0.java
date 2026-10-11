@@ -13,7 +13,7 @@ public final class h0 extends LimitPreviewView {
 
     @Override
     public final void invalidate() {
-        if (this.m0.f47359e.f47369f0) {
+        if (this.m0.f47393e.f47403f0) {
             return;
         }
         super.invalidate();

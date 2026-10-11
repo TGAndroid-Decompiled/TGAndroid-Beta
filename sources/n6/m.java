@@ -9,9 +9,9 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import org.telegram.ui.Cells.c1;
 import v7.f5;
 public abstract class m {
-    public static final Object f16739a = new Object();
-    public static boolean f16740b;
-    public static int f16741c;
+    public static final Object f16775a = new Object();
+    public static boolean f16776b;
+    public static int f16777c;
 
     public static void a(String str, boolean z10) {
         if (z10) {

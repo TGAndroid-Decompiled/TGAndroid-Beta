@@ -3,34 +3,34 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class e implements Utilities.Callback {
-    public final int f25759a;
-    public final e0 f25760b;
+    public final int f25898a;
+    public final e0 f25899b;
 
     public e(e0 e0Var, int i10) {
-        this.f25759a = i10;
-        this.f25760b = e0Var;
+        this.f25898a = i10;
+        this.f25899b = e0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f25759a) {
+        switch (this.f25898a) {
             case 0:
-                e0.V(this.f25760b, (TL_aicompose.AiComposeTone) obj);
+                e0.V(this.f25899b, (TL_aicompose.AiComposeTone) obj);
                 return;
             case 1:
-                e0.U(this.f25760b, (TL_aicompose.AiComposeTone) obj);
+                e0.U(this.f25899b, (TL_aicompose.AiComposeTone) obj);
                 return;
             case 2:
                 TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
                 boolean z10 = aiComposeTone instanceof TL_aicompose.TL_aiComposeTone;
-                e0 e0Var = this.f25760b;
+                e0 e0Var = this.f25899b;
                 if (z10) {
-                    e0Var.f25780u0.edit((TL_aicompose.TL_aiComposeTone) aiComposeTone);
+                    e0Var.f25919u0.edit((TL_aicompose.TL_aiComposeTone) aiComposeTone);
                 }
                 e0Var.t0();
                 return;
             default:
-                e0.T(this.f25760b, ((Integer) obj).intValue());
+                e0.T(this.f25899b, ((Integer) obj).intValue());
                 return;
         }
     }

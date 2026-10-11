@@ -10,33 +10,33 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ca extends View {
-    public Bitmap f25165a;
-    public Bitmap f25166b;
-    public Paint f25167c;
+    public Bitmap f25272a;
+    public Bitmap f25273b;
+    public Paint f25274c;
     public int d;
-    public int f25168e;
-    public ba f25169f;
+    public int f25275e;
+    public ba f25276f;
 
     public int getRating() {
-        return this.f25168e;
+        return this.f25275e;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
         Bitmap bitmap;
-        Paint paint = this.f25167c;
+        Paint paint = this.f25274c;
         for (int i11 = 0; i11 < this.d; i11++) {
-            if (i11 < this.f25168e) {
-                i10 = org.telegram.ui.ActionBar.h6.f20950m5;
+            if (i11 < this.f25275e) {
+                i10 = org.telegram.ui.ActionBar.h6.f20986m5;
             } else {
-                i10 = org.telegram.ui.ActionBar.h6.f21081t5;
+                i10 = org.telegram.ui.ActionBar.h6.f21117t5;
             }
             paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-            if (i11 < this.f25168e) {
-                bitmap = this.f25165a;
+            if (i11 < this.f25275e) {
+                bitmap = this.f25272a;
             } else {
-                bitmap = this.f25166b;
+                bitmap = this.f25273b;
             }
             canvas.drawBitmap(bitmap, AndroidUtilities.dp(48.0f) * i11, 0.0f, paint);
         }
@@ -55,11 +55,11 @@ public final class ca extends View {
         float dp = AndroidUtilities.dp(-8.0f);
         boolean z10 = false;
         for (int i12 = 0; i12 < this.d; i12++) {
-            if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.f25168e != (i10 = i12 + 1)) {
-                this.f25168e = i10;
-                ba baVar = this.f25169f;
+            if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.f25275e != (i10 = i12 + 1)) {
+                this.f25275e = i10;
+                ba baVar = this.f25276f;
                 if (baVar != null) {
-                    View view = ((me.a) baVar).f16361a;
+                    View view = ((me.a) baVar).f16397a;
                     if (i10 > 0) {
                         z10 = true;
                     }
@@ -81,6 +81,6 @@ public final class ca extends View {
     }
 
     public void setOnRatingChangeListener(ba baVar) {
-        this.f25169f = baVar;
+        this.f25276f = baVar;
     }
 }

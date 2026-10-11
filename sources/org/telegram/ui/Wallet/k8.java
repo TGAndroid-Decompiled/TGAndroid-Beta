@@ -34,20 +34,20 @@ public final class k8 extends FrameLayout {
     public String O;
     public String P;
     public boolean Q;
-    public final LinearLayout f35172a;
-    public final g8 f35173b;
-    public final e6 f35174c;
+    public final LinearLayout f35206a;
+    public final g8 f35207b;
+    public final e6 f35208c;
     public final FrameLayout d;
-    public final TextView f35175e;
-    public final org.telegram.ui.Cells.u3 f35176f;
+    public final TextView f35209e;
+    public final org.telegram.ui.Cells.u3 f35210f;
     public ValueAnimator h;
-    public o1.k f35177n;
-    public o1.k f35178r;
-    public boolean f35179s;
+    public o1.k f35211n;
+    public o1.k f35212r;
+    public boolean f35213s;
     public boolean v;
-    public boolean f35180w;
-    public int f35181x;
-    public final org.telegram.ui.ActionBar.d6 f35182y;
+    public boolean f35214w;
+    public int f35215x;
+    public final org.telegram.ui.ActionBar.d6 f35216y;
 
     public k8(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -58,12 +58,12 @@ public final class k8 extends FrameLayout {
         this.N = 0.5f;
         this.O = ",";
         this.P = ".";
-        this.f35182y = d6Var;
+        this.f35216y = d6Var;
         this.E = true;
         setClipChildren(false);
         setClipToPadding(false);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f35172a = linearLayout;
+        this.f35206a = linearLayout;
         linearLayout.setOrientation(0);
         linearLayout.setGravity(16);
         linearLayout.setLayoutDirection(0);
@@ -76,14 +76,14 @@ public final class k8 extends FrameLayout {
         frameLayout.setClipToPadding(false);
         frameLayout.setTranslationZ(AndroidUtilities.dp(1.0f));
         linearLayout.addView(frameLayout, w7.x5.q(59, 60, 16));
-        this.f35181x = AndroidUtilities.dp(59.0f);
+        this.f35215x = AndroidUtilities.dp(59.0f);
         e6 e6Var = new e6(60, context, true);
-        this.f35174c = e6Var;
+        this.f35208c = e6Var;
         e6Var.i();
         frameLayout.addView(e6Var, w7.x5.a(60.0f, 0.0f, -5.0f, -2.0f, 0.0f, 60, 19));
         TextView textView = new TextView(context);
-        this.f35175e = textView;
-        int i10 = org.telegram.ui.ActionBar.h6.f21189z6;
+        this.f35209e = textView;
+        int i10 = org.telegram.ui.ActionBar.h6.f21225z6;
         ai.o(i10, d6Var, textView, 1, 44.0f);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         textView.setGravity(16);
@@ -93,7 +93,7 @@ public final class k8 extends FrameLayout {
         textView.setAlpha(0.0f);
         frameLayout.addView(textView, w7.x5.e(-2, 60, 19));
         g8 g8Var = new g8(this, context);
-        this.f35173b = g8Var;
+        this.f35207b = g8Var;
         g8Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
         g8Var.setHintTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         g8Var.setHint("0");
@@ -119,11 +119,11 @@ public final class k8 extends FrameLayout {
         g8Var.setImeOptions(33554438);
         linearLayout.addView(g8Var, w7.x5.q(-2, 60, 16));
         org.telegram.ui.Cells.u3 u3Var = new org.telegram.ui.Cells.u3(context, false, true, false, true, true);
-        this.f35176f = u3Var;
-        u3Var.f30346c.m(0.35f, 420L, 3.5f, is.h);
+        this.f35210f = u3Var;
+        u3Var.f30430c.m(0.35f, 420L, 3.5f, is.h);
         u3Var.setScaleProperty(0.2f);
         u3Var.setAllowCancel(true);
-        u3Var.getDrawable().f30020b0 = new o(u3Var, 13);
+        u3Var.getDrawable().f30135b0 = new o(u3Var, 13);
         u3Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         u3Var.setTextSize(AndroidUtilities.dp(28.0f));
         u3Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
@@ -147,19 +147,19 @@ public final class k8 extends FrameLayout {
             this.h.cancel();
             this.h = null;
         }
-        o1.k kVar = this.f35177n;
+        o1.k kVar = this.f35211n;
         if (kVar != null) {
             kVar.c();
         }
-        o1.k kVar2 = this.f35178r;
+        o1.k kVar2 = this.f35212r;
         if (kVar2 != null) {
             kVar2.c();
         }
         int i11 = 4;
         FrameLayout frameLayout = this.d;
-        TextView textView = this.f35175e;
+        TextView textView = this.f35209e;
         float f13 = 1.0f;
-        e6 e6Var = this.f35174c;
+        e6 e6Var = this.f35208c;
         if (!z10) {
             if (this.v) {
                 f12 = 0.0f;
@@ -167,7 +167,7 @@ public final class k8 extends FrameLayout {
                 f12 = 1.0f;
             }
             e6Var.setAlpha(f12);
-            if (!this.f35180w) {
+            if (!this.f35214w) {
                 f13 = 0.0f;
             }
             textView.setAlpha(f13);
@@ -180,11 +180,11 @@ public final class k8 extends FrameLayout {
                 i10 = 0;
             }
             e6Var.setVisibility(i10);
-            if (this.f35180w) {
+            if (this.f35214w) {
                 i11 = 0;
             }
             textView.setVisibility(i11);
-            frameLayout.getLayoutParams().width = this.f35181x;
+            frameLayout.getLayoutParams().width = this.f35215x;
             frameLayout.requestLayout();
             return;
         }
@@ -197,7 +197,7 @@ public final class k8 extends FrameLayout {
         } else {
             f7 = 1.0f;
         }
-        if (!this.f35180w) {
+        if (!this.f35214w) {
             f14 = 0.0f;
         }
         if (alpha > 0.0f || f7 > 0.0f) {
@@ -219,12 +219,12 @@ public final class k8 extends FrameLayout {
         o1.l lVar = new o1.l(0.0f);
         lVar.a(0.3f);
         lVar.b(180.0f);
-        kVar3.f16988u = lVar;
+        kVar3.f17024u = lVar;
         kVar3.e(0.1f);
-        kVar3.f16977a = (-f10) * 10.0f;
+        kVar3.f17013a = (-f10) * 10.0f;
         kVar3.b(new t2(this, 2));
         kVar3.h();
-        this.f35178r = kVar3;
+        this.f35212r = kVar3;
         if (this.v) {
             f11 = 18.0f;
         } else {
@@ -235,14 +235,14 @@ public final class k8 extends FrameLayout {
         if (textView.getAlpha() < 0.01f) {
             textView.setRotation(f11);
         }
-        o1.k kVar4 = new o1.k(textView, o1.h.f16973q);
+        o1.k kVar4 = new o1.k(textView, o1.h.f17009q);
         o1.l lVar2 = new o1.l(0.0f);
         lVar2.a(0.3f);
         lVar2.b(180.0f);
-        kVar4.f16988u = lVar2;
-        kVar4.f16977a = (-f11) * 10.0f;
+        kVar4.f17024u = lVar2;
+        kVar4.f17013a = (-f11) * 10.0f;
         kVar4.h();
-        this.f35177n = kVar4;
+        this.f35211n = kVar4;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.h = ofFloat;
         ofFloat.setDuration(320L);
@@ -265,7 +265,7 @@ public final class k8 extends FrameLayout {
     public final void c() {
         int dp;
         CharSequence charSequence;
-        g8 g8Var = this.f35173b;
+        g8 g8Var = this.f35207b;
         Editable text = g8Var.getText();
         boolean z10 = this.E;
         if (z10) {
@@ -326,24 +326,24 @@ public final class k8 extends FrameLayout {
         String str3;
         int i12;
         f fVar = l0Var.h;
-        if (this.f35179s && isAttachedToWindow() && isShown()) {
+        if (this.f35213s && isAttachedToWindow() && isShown()) {
             z11 = true;
         } else {
             z11 = false;
         }
         boolean z16 = this.E;
-        g8 g8Var = this.f35173b;
-        org.telegram.ui.Cells.u3 u3Var = this.f35176f;
-        TextView textView = this.f35175e;
+        g8 g8Var = this.f35207b;
+        org.telegram.ui.Cells.u3 u3Var = this.f35210f;
+        TextView textView = this.f35209e;
         if (z16) {
             if (z10) {
                 i12 = org.telegram.ui.ActionBar.h6.ll;
             } else {
                 i12 = org.telegram.ui.ActionBar.h6.Oh;
             }
-            int w02 = org.telegram.ui.ActionBar.h6.w0(i12, this.f35182y);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(i12, this.f35216y);
             textView.setTextColor(w02);
-            u3Var.f30346c.v(w02, z11);
+            u3Var.f30430c.v(w02, z11);
             u3Var.invalidate();
             g8Var.setCursorColor(w02);
             g8Var.setHandlesColor(w02);
@@ -369,7 +369,7 @@ public final class k8 extends FrameLayout {
         } else {
             z13 = false;
         }
-        if (this.v == z10 && this.f35180w == z12 && (!z12 || TextUtils.equals(textView.getText(), str))) {
+        if (this.v == z10 && this.f35214w == z12 && (!z12 || TextUtils.equals(textView.getText(), str))) {
             z14 = false;
         } else {
             z14 = true;
@@ -383,7 +383,7 @@ public final class k8 extends FrameLayout {
             currencyrate = j3;
         }
         this.v = z10;
-        this.f35180w = z12;
+        this.f35214w = z12;
         if (!z10) {
             i10 = AndroidUtilities.dp(59.0f);
         } else if (z12) {
@@ -397,8 +397,8 @@ public final class k8 extends FrameLayout {
         } else {
             i10 = 0;
         }
-        this.f35181x = i10;
-        if (z14 || !this.f35179s) {
+        this.f35215x = i10;
+        if (z14 || !this.f35213s) {
             if (z11 && z14) {
                 z15 = true;
             } else {
@@ -406,7 +406,7 @@ public final class k8 extends FrameLayout {
             }
             a(z15);
         }
-        this.f35179s = true;
+        this.f35213s = true;
         if (!z10) {
             g10 = LocaleController.getString(R.string.GramCurrency);
         } else if (!z12) {
@@ -450,15 +450,15 @@ public final class k8 extends FrameLayout {
         int right;
         boolean z11;
         float f11 = 1.0f - f7;
-        LinearLayout linearLayout = this.f35172a;
+        LinearLayout linearLayout = this.f35206a;
         float width = (getWidth() / 2.0f) - linearLayout.getLeft();
         FrameLayout frameLayout = this.d;
-        e6 e6Var = this.f35174c;
+        e6 e6Var = this.f35208c;
         frameLayout.setTranslationX((((width - frameLayout.getLeft()) - e6Var.getLeft()) - (e6Var.getWidth() / 2.0f)) * f11);
         frameLayout.setTranslationY(ai.y(e6Var.getHeight(), 2.0f, (((getHeight() / 2.0f) - linearLayout.getTop()) - frameLayout.getTop()) - e6Var.getTop(), f11) - (AndroidUtilities.dp(36.0f) * ((float) Math.sin(f7 * 3.141592653589793d))));
-        org.telegram.ui.Cells.u3 u3Var = this.f35176f;
+        org.telegram.ui.Cells.u3 u3Var = this.f35210f;
         int visibility = u3Var.getVisibility();
-        g8 g8Var = this.f35173b;
+        g8 g8Var = this.f35207b;
         if (visibility == 8) {
             right = g8Var.getRight();
         } else {
@@ -483,15 +483,15 @@ public final class k8 extends FrameLayout {
     }
 
     public org.telegram.ui.Components.r6 getCurrencyView() {
-        return this.f35176f;
+        return this.f35210f;
     }
 
     public e6 getDiamondView() {
-        return this.f35174c;
+        return this.f35208c;
     }
 
     public EditTextBoldCursor getEditText() {
-        return this.f35173b;
+        return this.f35207b;
     }
 
     @Override
@@ -504,13 +504,13 @@ public final class k8 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        g8 g8Var = this.f35173b;
+        g8 g8Var = this.f35207b;
         int baseline = g8Var.getBaseline() + g8Var.getTop();
-        TextView textView = this.f35175e;
+        TextView textView = this.f35209e;
         if (textView.getVisibility() == 0) {
             textView.setTranslationY(((baseline - this.d.getTop()) - textView.getTop()) - textView.getBaseline());
         }
-        org.telegram.ui.Cells.u3 u3Var = this.f35176f;
+        org.telegram.ui.Cells.u3 u3Var = this.f35210f;
         u3Var.setTranslationY((baseline - u3Var.getTop()) - u3Var.getBaseline());
     }
 
@@ -519,7 +519,7 @@ public final class k8 extends FrameLayout {
         super.onMeasure(i10, i11);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        LinearLayout linearLayout = this.f35172a;
+        LinearLayout linearLayout = this.f35206a;
         linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
         float min = Math.min(1.0f, getMeasuredWidth() / Math.max(1, linearLayout.getMeasuredWidth()));
         linearLayout.setPivotX(linearLayout.getMeasuredWidth() / 2.0f);
@@ -531,7 +531,7 @@ public final class k8 extends FrameLayout {
     public void setAmountText(String str) {
         this.Q = true;
         try {
-            this.f35173b.setText(str);
+            this.f35207b.setText(str);
         } finally {
             this.Q = false;
         }

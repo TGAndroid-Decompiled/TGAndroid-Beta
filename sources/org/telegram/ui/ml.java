@@ -34,7 +34,7 @@ public final class ml extends org.telegram.ui.ActionBar.h5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((xp0) this.N0).f44158s.a();
+                ((xp0) this.N0).f44192s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class ml extends org.telegram.ui.ActionBar.h5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((xp0) this.N0).f44158s.b();
+                ((xp0) this.N0).f44192s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class ml extends org.telegram.ui.ActionBar.h5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f34330n != null) {
+                    if (profileActivity.h != null || profileActivity.f34364n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f34330n != null) {
+                        if (profileActivity.f34364n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f34330n);
+                            sb2.append(profileActivity.f34364n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -114,10 +114,10 @@ public final class ml extends org.telegram.ui.ActionBar.h5 {
                 zn znVar = (zn) this.N0;
                 if (this == znVar.D2[0] && znVar.H2[1] != null) {
                     if (znVar.O4 && f7 < 0.0f) {
-                        znVar.f45015z2.setTranslationY(f7 / 2.0f);
+                        znVar.f45049z2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {
-                        znVar.f45015z2.setTranslationY(0.0f);
+                        znVar.f45049z2.setTranslationY(0.0f);
                         return;
                     }
                 }

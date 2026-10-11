@@ -39,12 +39,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.a61;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.b61;
-import org.telegram.ui.Components.g11;
-import org.telegram.ui.Components.i11;
-import org.telegram.ui.Components.lb0;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.f11;
+import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.kb0;
+import org.telegram.ui.Components.p80;
 import org.telegram.ui.Components.sc;
 public final class t implements Runnable {
     public final int f10809a;
@@ -108,11 +108,11 @@ public final class t implements Runnable {
                     }
                     if (!j1Var.f10682o0 && (arrayList = j1Var.A0) != null && !arrayList.isEmpty()) {
                         j1Var.H();
-                        lb0 lb0Var = j1Var.V;
+                        kb0 kb0Var = j1Var.V;
                         if (j1Var.K() > 0) {
                             z10 = true;
                         }
-                        lb0Var.a(z10);
+                        kb0Var.a(z10);
                         j1Var.f10682o0 = true;
                     }
                     if (i10 != i11) {
@@ -139,15 +139,15 @@ public final class t implements Runnable {
             case 4:
                 d2 d2Var = (d2) this.f10810b;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f10811c).f20144q;
+                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f10811c).f20180q;
                 f2 f2Var = d2Var.f10574a;
                 String str3 = f2Var.R;
-                b61 b61Var = f2Var.f10598e;
+                a61 a61Var = f2Var.f10598e;
                 if (str2.equals(str3)) {
                     d2Var.a();
-                    b61Var.f24868b.h.getProgressDrawable().f32461e = false;
+                    a61Var.f24521b.h.getProgressDrawable().f32522e = false;
                     f2Var.N = 0;
-                    b61Var.b(true);
+                    a61Var.b(true);
                     f2Var.E.addAll(tL_messages_foundStickerSets.sets);
                     f2Var.l();
                     return;
@@ -271,9 +271,9 @@ public final class t implements Runnable {
                 return;
             case 15:
                 x3 x3Var = (x3) this.f10810b;
-                q80 q80Var = (q80) this.f10811c;
+                p80 p80Var = (p80) this.f10811c;
                 q5 q5Var = (q5) this.d;
-                if (x3Var.f12813h4 == q80Var) {
+                if (x3Var.f12813h4 == p80Var) {
                     x3Var.f12813h4 = null;
                     if (x3Var.A3 && x3Var.f12811g4 == q5Var && !q5Var.H.isEmpty()) {
                         x3Var.N2();
@@ -349,77 +349,77 @@ public final class t implements Runnable {
                 return;
             case 21:
                 String str4 = e2.d0.f8531a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.f10810b).f16659c)).f11619a.f11682s;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.f10810b).f16695c)).f11619a.f11682s;
                 j2.a p5 = fVar2.p();
                 fVar2.q(p5, 1009, new j2.c(p5, (b2.s) this.f10811c, (i2.h) this.d, 19));
                 return;
             case 22:
-                ki.r rVar = (ki.r) this.f10810b;
+                ki.t tVar = (ki.t) this.f10810b;
                 HandlerThread handlerThread = (HandlerThread) this.f10811c;
                 CountDownLatch countDownLatch = (CountDownLatch) this.d;
-                rVar.getClass();
+                tVar.getClass();
                 try {
-                    rVar.f();
+                    tVar.i();
                     return;
                 } finally {
                     handlerThread.quitSafely();
                     countDownLatch.countDown();
                 }
             case 23:
-                ki.t0 t0Var = (ki.t0) this.f10810b;
-                ki.u uVar = (ki.u) this.f10811c;
+                ki.v0 v0Var = (ki.v0) this.f10810b;
+                ki.w wVar = (ki.w) this.f10811c;
                 File file = (File) this.d;
-                Handler handler = t0Var.f15122i;
+                Handler handler = v0Var.f15164i;
                 try {
-                    uVar.c(file);
-                    t0Var.g();
+                    wVar.c(file);
+                    v0Var.g();
                     long e7 = w7.j.e(file) / 1000;
-                    t0Var.f15126m.b("preview snapshot completed: durationMs=" + e7 + ", size=" + file.length() + ", elapsedMs=" + ki.t0.f(t0Var.J));
-                    handler.post(new ki.e0(t0Var, e7, 1));
+                    v0Var.f15168m.b("preview snapshot completed: durationMs=" + e7 + ", size=" + file.length() + ", elapsedMs=" + ki.v0.f(v0Var.J));
+                    handler.post(new ki.g0(v0Var, e7, 1));
                     return;
                 } catch (Exception e10) {
-                    handler.post(new ki.d0(t0Var, e10, 3));
+                    handler.post(new ki.f0(v0Var, e10, 3));
                     return;
                 }
             case 24:
                 File file2 = (File) this.d;
-                ki.q0 q0Var = ((ki.t0) this.f10810b).f15119e;
-                long j10 = ((ki.p0) this.f10811c).f15070a;
-                i11 i11Var = (i11) q0Var;
-                synchronized (i11Var) {
-                    if (!i11Var.d) {
-                        i11Var.f27137c.put(Long.valueOf(j10), new g11(file2));
+                ki.s0 s0Var = ((ki.v0) this.f10810b).f15161e;
+                long j10 = ((ki.r0) this.f10811c).f15094a;
+                h11 h11Var = (h11) s0Var;
+                synchronized (h11Var) {
+                    if (!h11Var.d) {
+                        h11Var.f26937c.put(Long.valueOf(j10), new f11(file2));
                         return;
                     }
                     return;
                 }
             case 25:
                 SpannableString spannableString = (SpannableString) this.f10810b;
-                li.k.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((n4.x) this.f10811c).f16658b);
+                li.k.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((n4.x) this.f10811c).f16694b);
                 ((fi.m0) this.d).run(spannableString);
                 return;
             case 26:
                 m4.x xVar = (m4.x) this.f10810b;
-                m4.r rVar2 = (m4.r) this.f10811c;
+                m4.r rVar = (m4.r) this.f10811c;
                 KeyEvent keyEvent = (KeyEvent) this.d;
-                m4.b0 b0Var = xVar.f16274b;
-                if (b0Var.i(rVar2)) {
+                m4.b0 b0Var = xVar.f16310b;
+                if (b0Var.i(rVar)) {
                     b0Var.b(keyEvent, false, false);
                 } else {
                     m4.l0 l0Var = b0Var.h;
-                    n4.z zVar3 = rVar2.f16242a;
+                    n4.z zVar3 = rVar.f16278a;
                     zVar3.getClass();
                     l0Var.getClass();
                     l0Var.H(1, new m4.c0(l0Var, 7), zVar3, true);
                 }
-                xVar.f16273a = null;
+                xVar.f16309a = null;
                 return;
             case 27:
                 m4.b0 b0Var2 = (m4.b0) this.f10810b;
                 m4.p0 p0Var = (m4.p0) this.f10811c;
                 m4.s sVar2 = (m4.s) this.d;
                 if (!b0Var2.j()) {
-                    m4.g1 g1Var = b0Var2.f16022t;
+                    m4.g1 g1Var = b0Var2.f16058t;
                     p0Var.getClass();
                     w7.s.b(g1Var, sVar2);
                     return;
@@ -427,7 +427,7 @@ public final class t implements Runnable {
                 return;
             case 28:
                 n2.j jVar = (n2.j) this.f10810b;
-                this.f10811c.b(jVar.f16564a, jVar.f16565b, (Exception) this.d);
+                this.f10811c.b(jVar.f16600a, jVar.f16601b, (Exception) this.d);
                 return;
             default:
                 ((VideoAds) this.f10810b).lambda$show$3((sc) this.f10811c, (TLRPC.TL_sponsoredMessage) this.d);

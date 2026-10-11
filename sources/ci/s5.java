@@ -32,12 +32,12 @@ public final class s5 implements qg.v1 {
         switch (this.f5951a) {
             case 0:
                 qg.v2 v2Var = this.f5952b;
-                v2Var.f46672z0 = true;
+                v2Var.f46706z0 = true;
                 v2Var.setBaseFontSize((int) (this.f5953c * f7));
                 return;
             default:
                 qg.v2 v2Var2 = this.f5952b;
-                v2Var2.f46672z0 = true;
+                v2Var2.f46706z0 = true;
                 v2Var2.setBaseFontSize((int) (this.f5953c * f7));
                 return;
         }

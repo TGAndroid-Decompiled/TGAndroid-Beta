@@ -78,7 +78,7 @@ public class f {
         if (i11 >= 0 && h6.d1(i11)) {
             this.f14850m = h6.w0(aVar.f14155g, d6Var);
         } else {
-            if (i0.a.f(h6.w0(h6.f20786d6, d6Var)) < 0.5d) {
+            if (i0.a.f(h6.w0(h6.f20822d6, d6Var)) < 0.5d) {
                 i10 = aVar.f14156i;
             } else {
                 i10 = aVar.h;

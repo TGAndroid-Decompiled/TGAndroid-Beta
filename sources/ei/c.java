@@ -10,7 +10,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Cells.b7;
 import org.telegram.ui.Cells.e9;
-import org.telegram.ui.Components.e71;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.y10;
 public final class c implements Utilities.CallbackReturn {
     public final int f8974a;
@@ -48,7 +48,7 @@ public final class c implements Utilities.CallbackReturn {
                 }
                 return Boolean.valueOf(z10);
             case 6:
-                return Boolean.valueOf(e71.K(((Integer) obj).intValue()));
+                return Boolean.valueOf(d71.K(((Integer) obj).intValue()));
             case 7:
                 TL_wallet.exportSecretPhrase exportsecretphrase = new TL_wallet.exportSecretPhrase();
                 exportsecretphrase.password = (TLRPC.InputCheckPasswordSRP) obj;

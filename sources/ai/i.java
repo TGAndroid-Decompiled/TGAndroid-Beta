@@ -64,11 +64,11 @@ public final class i implements Utilities.Callback {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = org.telegram.ui.ActionBar.k3.f21317r;
+                int i10 = org.telegram.ui.ActionBar.k3.f21353r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = org.telegram.ui.Cells.ua.f23514f;
+                int i11 = org.telegram.ui.Cells.ua.f23550f;
                 return;
             case 9:
                 ad.Y0((View) obj);
@@ -101,8 +101,8 @@ public final class i implements Utilities.Callback {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.h5) {
                     org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
-                    h5Var.f22191b.invalidate();
-                    h5Var.f22192c.invalidate();
+                    h5Var.f22227b.invalidate();
+                    h5Var.f22228c.invalidate();
                     return;
                 } else if (view7 instanceof hg.y1) {
                     ((hg.y1) view7).f11453c.invalidate();
@@ -157,7 +157,7 @@ public final class i implements Utilities.Callback {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                e41.f37199s = false;
+                e41.f37233s = false;
                 for (int i12 = 0; i12 < 4; i12++) {
                     try {
                         MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();

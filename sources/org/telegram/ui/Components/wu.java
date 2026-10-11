@@ -30,15 +30,15 @@ public final class wu extends b00 {
         av avVar = this.S2;
         if (avVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && avVar.f24598x) {
+            if (!this.Q2 && avVar.f24688x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.ai.t(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f21407w, 250L);
+                org.telegram.messenger.ai.t(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f21443w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = avVar.f24598x;
+            this.Q2 = avVar.f24688x;
             this.P2 = i15;
         }
     }

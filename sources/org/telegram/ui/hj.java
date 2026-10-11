@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class hj extends org.telegram.ui.ActionBar.m1 {
-    public final zn f38460o;
+    public final zn f38494o;
 
     public hj(zn znVar, fj fjVar) {
         super(fjVar, -2, -2);
-        this.f38460o = znVar;
+        this.f38494o = znVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        zn znVar = this.f38460o;
+        zn znVar = this.f38494o;
         if (znVar.Q8 == this) {
             znVar.Q8 = null;
             znVar.T8 = null;
             znVar.S8 = null;
-            znVar.f45013z0.R = true;
+            znVar.f45047z0.R = true;
             if (znVar.R8) {
                 znVar.j8(false, true, 0.0f);
             } else {

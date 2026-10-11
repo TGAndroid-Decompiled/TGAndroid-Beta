@@ -1,44 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class u41 extends ClickableSpan {
-    public final URLSpan f31228a;
-    public final d51 f31229b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class u41 extends c51 {
+    public final Runnable T;
 
-    public u41(d51 d51Var, URLSpan uRLSpan) {
-        this.f31229b = d51Var;
-        this.f31228a = uRLSpan;
+    public u41(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i10, boolean z10, Runnable runnable) {
+        super(context, str, str2, charSequence, inputPeer, i10, z10, null);
+        this.T = runnable;
     }
 
     @Override
-    public final void onClick(View view) {
-        d51 d51Var = this.f31229b;
-        Utilities.CallbackReturn callbackReturn = d51Var.N;
-        URLSpan uRLSpan = this.f31228a;
-        if (callbackReturn != null) {
-            if (((Boolean) callbackReturn.run(uRLSpan)).booleanValue()) {
-                d51Var.dismiss();
-                return;
-            }
-            return;
+    public final void dismiss() {
+        super.dismiss();
+        Runnable runnable = this.T;
+        if (runnable != null) {
+            runnable.run();
         }
-        org.telegram.ui.ActionBar.m2 m2Var = d51Var.M;
-        if (m2Var != null) {
-            g5.p0(m2Var, uRLSpan.getURL(), false, false);
-        }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
-        if (!(this.f31228a instanceof v61)) {
-            textPaint.setUnderlineText(true);
-        }
-        textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20913k5, false));
-        textPaint.setAlpha(min);
     }
 }

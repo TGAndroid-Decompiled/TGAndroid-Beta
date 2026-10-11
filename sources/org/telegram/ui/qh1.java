@@ -7,17 +7,17 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class qh1 extends org.telegram.ui.Components.h71 {
+public final class qh1 extends org.telegram.ui.Components.g71 {
     public oh1 d;
-    public long f41185e;
-    public mh1 f41186f;
+    public long f41219e;
+    public mh1 f41220f;
     public String h;
-    public org.telegram.ui.ActionBar.u0 f41187n;
-    public boolean f41188r;
+    public org.telegram.ui.ActionBar.u0 f41221n;
+    public boolean f41222r;
 
     @Override
-    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.e71 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qh1.U(java.util.ArrayList, org.telegram.ui.Components.e71):void");
+    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.d71 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qh1.U(java.util.ArrayList, org.telegram.ui.Components.d71):void");
     }
 
     @Override
@@ -26,14 +26,14 @@ public final class qh1 extends org.telegram.ui.Components.h71 {
     }
 
     @Override
-    public final void W(org.telegram.ui.Components.r61 r61Var, View view) {
-        mh1 mh1Var = this.f41186f;
-        int i10 = r61Var.d;
+    public final void W(org.telegram.ui.Components.q61 q61Var, View view) {
+        mh1 mh1Var = this.f41220f;
+        int i10 = q61Var.d;
         if (i10 == 1) {
             mh1Var.run(null);
             finishFragment();
         } else if (i10 == 2) {
-            this.f41188r = true;
+            this.f41222r = true;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
                 presentFragment(new ld(org.telegram.ui.Cells.c1.f(0, "step")));
@@ -41,14 +41,14 @@ public final class qh1 extends org.telegram.ui.Components.h71 {
             }
             presentFragment(new h(0));
             globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-        } else if (r61Var.f17175a == 12) {
+        } else if (q61Var.f17211a == 12) {
             finishFragment();
-            mh1Var.run(getMessagesController().getChat(Long.valueOf(-r61Var.f30372x)));
+            mh1Var.run(getMessagesController().getChat(Long.valueOf(-q61Var.f30178x)));
         }
     }
 
     @Override
-    public final boolean X(org.telegram.ui.Components.r61 r61Var, View view) {
+    public final boolean X(org.telegram.ui.Components.q61 q61Var, View view) {
         return false;
     }
 
@@ -57,24 +57,24 @@ public final class qh1 extends org.telegram.ui.Components.h71 {
         org.telegram.ui.ActionBar.u0 c10 = this.actionBar.o().c(0, R.drawable.outline_header_search, getResourceProvider());
         c10.F();
         c10.H = new hg.e2(this, 19);
-        this.f41187n = c10;
+        this.f41221n = c10;
         c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f41187n.setContentDescription(LocaleController.getString(R.string.Search));
-        this.f41187n.setVisibility(8);
+        this.f41221n.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f41221n.setVisibility(8);
         super.createView(context);
-        this.f26922a.p1();
-        this.actionBar.setAdaptiveBackground(this.f26922a);
+        this.f26675a.p1();
+        this.actionBar.setAdaptiveBackground(this.f26675a);
         return this.fragmentView;
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        if (this.f41188r) {
+        if (this.f41222r) {
             oh1 oh1Var = this.d;
-            oh1Var.f40549c = false;
-            oh1Var.f40551f.add(new ph1(this, 0));
-            this.f41188r = false;
+            oh1Var.f40583c = false;
+            oh1Var.f40585f.add(new ph1(this, 0));
+            this.f41222r = false;
         }
     }
 }

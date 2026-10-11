@@ -1,13 +1,13 @@
 package gg;
 
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.yo0;
+import org.telegram.ui.Components.xo0;
 public final class y extends b2 {
-    public final yo0 f10872t;
+    public final xo0 f10872t;
 
-    public y(yo0 yo0Var) {
+    public y(xo0 xo0Var) {
         super(false);
-        this.f10872t = yo0Var;
+        this.f10872t = xo0Var;
     }
 
     @Override

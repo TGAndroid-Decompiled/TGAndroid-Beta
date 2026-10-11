@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 public final class ix implements Runnable {
-    public final int f27473a;
-    public final oz f27474b;
+    public final int f27522a;
+    public final oz f27523b;
 
     public ix(oz ozVar, int i10) {
-        this.f27473a = i10;
-        this.f27474b = ozVar;
+        this.f27522a = i10;
+        this.f27523b = ozVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f27473a) {
+        switch (this.f27522a) {
             case 0:
             default:
-                this.f27474b.d();
+                this.f27523b.d();
                 return;
         }
     }

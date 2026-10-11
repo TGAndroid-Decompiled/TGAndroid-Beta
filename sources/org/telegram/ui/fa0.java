@@ -7,18 +7,18 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class fa0 implements RequestDelegate {
-    public final int f37614a;
-    public final LaunchActivity f37615b;
+    public final int f37648a;
+    public final LaunchActivity f37649b;
 
     public fa0(LaunchActivity launchActivity, int i10) {
-        this.f37614a = i10;
-        this.f37615b = launchActivity;
+        this.f37648a = i10;
+        this.f37649b = launchActivity;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f37614a;
-        LaunchActivity launchActivity = this.f37615b;
+        int i10 = this.f37648a;
+        LaunchActivity launchActivity = this.f37649b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;

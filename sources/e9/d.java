@@ -59,7 +59,7 @@ public class d extends AbstractMap {
                 return;
             case 1:
                 x7.f fVar = (x7.f) this.f8726e;
-                x7.j jVar = fVar.f50838c;
+                x7.j jVar = fVar.f50872c;
                 if (this.f8724b == jVar) {
                     for (Collection collection : jVar.values()) {
                         collection.clear();
@@ -75,7 +75,7 @@ public class d extends AbstractMap {
                 }
                 return;
             default:
-                z7.d dVar = ((mg) this.f8726e).f54070c;
+                z7.d dVar = ((mg) this.f8726e).f54104c;
                 if (this.f8724b == dVar) {
                     for (Collection collection2 : dVar.values()) {
                         collection2.clear();
@@ -281,19 +281,19 @@ public class d extends AbstractMap {
                 return set;
             case 1:
                 x7.f fVar = (x7.f) this.f8726e;
-                x7.a aVar = fVar.f50823a;
+                x7.a aVar = fVar.f50857a;
                 if (aVar == null) {
-                    x7.a aVar2 = new x7.a(fVar, fVar.f50838c);
-                    fVar.f50823a = aVar2;
+                    x7.a aVar2 = new x7.a(fVar, fVar.f50872c);
+                    fVar.f50857a = aVar2;
                     return aVar2;
                 }
                 return aVar;
             default:
                 mg mgVar = (mg) this.f8726e;
-                ed edVar = mgVar.f54054a;
+                ed edVar = mgVar.f54088a;
                 if (edVar == null) {
-                    ed edVar2 = new ed(mgVar, mgVar.f54070c);
-                    mgVar.f54054a = edVar2;
+                    ed edVar2 = new ed(mgVar, mgVar.f54104c);
+                    mgVar.f54088a = edVar2;
                     return edVar2;
                 }
                 return edVar;

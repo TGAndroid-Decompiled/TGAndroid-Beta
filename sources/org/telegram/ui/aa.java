@@ -21,26 +21,26 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_update;
 public final class aa implements RequestDelegate {
-    public final int f35944a;
-    public final Object f35945b;
-    public final Object f35946c;
+    public final int f35978a;
+    public final Object f35979b;
+    public final Object f35980c;
     public final Object d;
 
     public aa(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35944a = i10;
-        this.f35945b = obj;
-        this.f35946c = obj2;
+        this.f35978a = i10;
+        this.f35979b = obj;
+        this.f35980c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f35944a;
+        int i10 = this.f35978a;
         jg.b bVar = null;
         int i11 = 0;
         Object obj = this.d;
-        Object obj2 = this.f35946c;
-        Object obj3 = this.f35945b;
+        Object obj2 = this.f35980c;
+        Object obj3 = this.f35979b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ai.n3((qa) obj3, (String) obj2, tL_error, tLObject, (TL_account.checkUsername) obj, 13));
@@ -128,8 +128,8 @@ public final class aa implements RequestDelegate {
                 zn znVar = (zn) obj3;
                 long[] jArr = (long[]) obj;
                 AndroidUtilities.cancelRunOnUIThread((org.telegram.ui.ActionBar.l5) obj2);
-                znVar.f44744d5.messageOwner.voiceTranscriptionRated = true;
-                znVar.getMessagesStorage().updateMessageVoiceTranscriptionOpen(znVar.f44744d5.getDialogId(), znVar.f44744d5.getId(), znVar.f44744d5.messageOwner);
+                znVar.f44778d5.messageOwner.voiceTranscriptionRated = true;
+                znVar.getMessagesStorage().updateMessageVoiceTranscriptionOpen(znVar.f44778d5.getDialogId(), znVar.f44778d5.getId(), znVar.f44778d5.messageOwner);
                 sg sgVar = new sg(znVar, 17);
                 long j3 = 0;
                 if (jArr[0] > 0) {
@@ -174,7 +174,7 @@ public final class aa implements RequestDelegate {
                         if (i12 < updates.updates.size()) {
                             TLRPC.Update update = updates.updates.get(i12);
                             if (update instanceof TL_update.TL_updateGroupCall) {
-                                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.qo0(g60Var, chat, inputPeer, (TL_update.TL_updateGroupCall) update, 7));
+                                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.po0(g60Var, chat, inputPeer, (TL_update.TL_updateGroupCall) update, 7));
                             } else {
                                 i12++;
                             }
@@ -189,12 +189,12 @@ public final class aa implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.n3((g60) obj3, (org.telegram.ui.ActionBar.a2) obj2, tLObject, (TL_phone.exportGroupCallInvite) obj, tL_error, 28));
                 return;
             case 13:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.qo0(tLObject, (ArrayList) obj3, (ArrayList) obj2, (ai.n3) obj, 9));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.po0(tLObject, (ArrayList) obj3, (ArrayList) obj2, (ai.n3) obj, 9));
                 return;
             case 14:
                 r70 r70Var = (r70) obj3;
                 String str = (String) obj;
-                s70 s70Var = r70Var.f41346r;
+                s70 s70Var = r70Var.f41380r;
                 if (Objects.equals(r70Var.h, (String) obj2) && (tLObject instanceof TLRPC.TL_messages_foundStickerSets)) {
                     ArrayList arrayList = new ArrayList();
                     ArrayList<TLRPC.StickerSetCovered> arrayList2 = ((TLRPC.TL_messages_foundStickerSets) tLObject).sets;
@@ -226,7 +226,7 @@ public final class aa implements RequestDelegate {
                             arrayList3.add(tL_messages_stickerSet3);
                         }
                     }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.qo0(r70Var, arrayList, arrayList3, str, 12));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.po0(r70Var, arrayList, arrayList3, str, 12));
                     return;
                 }
                 return;
@@ -249,13 +249,13 @@ public final class aa implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new vq((gd0) obj3, (org.telegram.ui.ActionBar.a2[]) obj2, (TLRPC.TL_messageMediaVenue) obj, 23));
                 return;
             case 20:
-                AndroidUtilities.runOnUIThread(new f90((org.telegram.ui.Components.zw0) ((ee0) obj3), tLObject, (Bundle) obj2, tL_error, (TLObject) ((TLRPC.TL_auth_resendCode) obj), 6));
+                AndroidUtilities.runOnUIThread(new f90((org.telegram.ui.Components.yw0) ((ee0) obj3), tLObject, (Bundle) obj2, tL_error, (TLObject) ((TLRPC.TL_auth_resendCode) obj), 6));
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new f90((org.telegram.ui.Components.zw0) ((jf0) obj3), tLObject, (Bundle) obj2, tL_error, (TLObject) ((TL_account.verifyEmail) obj), 8));
+                AndroidUtilities.runOnUIThread(new f90((org.telegram.ui.Components.yw0) ((jf0) obj3), tLObject, (Bundle) obj2, tL_error, (TLObject) ((TL_account.verifyEmail) obj), 8));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new f90((org.telegram.ui.Components.zw0) ((jf0) obj3), tLObject, (Bundle) obj2, tL_error, (TLObject) ((TL_account.sendVerifyEmailCode) obj), 7));
+                AndroidUtilities.runOnUIThread(new f90((org.telegram.ui.Components.yw0) ((jf0) obj3), tLObject, (Bundle) obj2, tL_error, (TLObject) ((TL_account.sendVerifyEmailCode) obj), 7));
                 return;
             case 23:
                 AndroidUtilities.runOnUIThread(new f90((Object) ((eg0) obj3), tLObject, (Object) ((TLRPC.TL_inputInvoicePremiumAuthCode) obj2), (Object) ((TLRPC.TL_inputStorePaymentAuthCode) obj), tL_error, 9));
@@ -281,14 +281,14 @@ public final class aa implements RequestDelegate {
                 za1 za1Var = (za1) obj;
                 if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        bVar = ab1.e0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), hj0Var.f39254r.f39887i, false);
+                        bVar = ab1.e0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), hj0Var.f39288r.f39921i, false);
                     } catch (JSONException e10) {
                         e10.printStackTrace();
                     }
                 } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
                     Toast.makeText(hj0Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.qo0(hj0Var, bVar, str4, za1Var, 24));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.po0(hj0Var, bVar, str4, za1Var, 24));
                 return;
             case 26:
                 AndroidUtilities.runOnUIThread(new f90((ck0) obj3, (TLRPC.TL_contacts_importedContacts) tLObject, (TLRPC.TL_inputPhoneContact) obj2, tL_error, (TLRPC.TL_contacts_importContacts) obj));
@@ -314,9 +314,9 @@ public final class aa implements RequestDelegate {
     }
 
     public aa(Object obj, TLObject tLObject, String str, int i10) {
-        this.f35944a = i10;
-        this.f35945b = obj;
+        this.f35978a = i10;
+        this.f35979b = obj;
         this.d = tLObject;
-        this.f35946c = str;
+        this.f35980c = str;
     }
 }

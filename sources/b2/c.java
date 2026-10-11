@@ -66,7 +66,7 @@ public abstract class c {
                     break;
                 }
             }
-            if (i12 == 1 && b7.f49997a == null) {
+            if (i12 == 1 && b7.f50031a == null) {
                 if (Build.VERSION.SDK_INT < 35) {
                     int c10 = c(false);
                     int c11 = c(true);
@@ -74,12 +74,12 @@ public abstract class c {
                         if (c11 == 0) {
                         }
                     }
-                    b7.f49997a = Boolean.valueOf(z10);
+                    b7.f50031a = Boolean.valueOf(z10);
                     if (!z10) {
                     }
                 }
                 z10 = false;
-                b7.f49997a = Boolean.valueOf(z10);
+                b7.f50031a = Boolean.valueOf(z10);
                 if (!z10) {
                 }
             }

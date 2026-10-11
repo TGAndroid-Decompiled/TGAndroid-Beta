@@ -48,16 +48,16 @@ import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.b6;
 import org.telegram.ui.Components.c30;
-import org.telegram.ui.Components.cd0;
 import org.telegram.ui.Components.d30;
-import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.jh0;
-import org.telegram.ui.Components.kr0;
-import org.telegram.ui.Components.m81;
-import org.telegram.ui.Components.nl0;
-import org.telegram.ui.Components.or0;
+import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.ih0;
+import org.telegram.ui.Components.jr0;
+import org.telegram.ui.Components.l81;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.nr0;
+import org.telegram.ui.Components.vf0;
 import org.telegram.ui.Components.wf0;
-import org.telegram.ui.Components.xf0;
+import org.telegram.ui.Components.yc0;
 import org.telegram.ui.Components.yi;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.pv0;
@@ -72,7 +72,7 @@ import u2.c1;
 import u2.n1;
 import v7.a8;
 import w7.u8;
-public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.e, j81, a2, com.google.android.gms.common.api.internal.s, v1, r4.c, com.google.android.gms.common.api.internal.o, j1, v0.i {
+public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.e, i81, a2, com.google.android.gms.common.api.internal.s, v1, r4.c, com.google.android.gms.common.api.internal.o, j1, v0.i {
     public final int f14468a;
     public Object f14469b;
 
@@ -87,7 +87,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
 
     @Override
     public void B0(ah.a aVar) {
-        aVar.a(((yi) this.f14469b).getThemedColor(h6.f20786d6));
+        aVar.a(((yi) this.f14469b).getThemedColor(h6.f20822d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
@@ -97,14 +97,14 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
         y2.o oVar = (y2.o) iVar;
         l2.h hVar = (l2.h) this.f14469b;
         if (i10 == 0) {
-            long j11 = oVar.f51786a;
-            tVar = new u2.t(oVar.f51787b);
+            long j11 = oVar.f51820a;
+            tVar = new u2.t(oVar.f51821b);
         } else {
-            long j12 = oVar.f51786a;
+            long j12 = oVar.f51820a;
             Uri uri = oVar.d.f10234c;
             tVar = new u2.t(j10);
         }
-        hVar.f15344q.u(tVar, oVar.f51788c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+        hVar.f15380q.u(tVar, oVar.f51822c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
     }
 
     @Override
@@ -132,25 +132,25 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
         long j11;
         y2.o oVar = (y2.o) iVar;
         l2.h hVar = (l2.h) this.f14469b;
-        long j12 = oVar.f51786a;
+        long j12 = oVar.f51820a;
         Uri uri = oVar.d.f10234c;
         u2.t tVar = new u2.t(j10);
-        hVar.f15340m.getClass();
-        hVar.f15344q.q(tVar, oVar.f51788c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        m2.c cVar = (m2.c) oVar.f51790f;
+        hVar.f15376m.getClass();
+        hVar.f15380q.q(tVar, oVar.f51822c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        m2.c cVar = (m2.c) oVar.f51824f;
         m2.c cVar2 = hVar.H;
         if (cVar2 == null) {
             size = 0;
         } else {
-            size = cVar2.f15946m.size();
+            size = cVar2.f15982m.size();
         }
-        long j13 = cVar.b(0).f15965b;
+        long j13 = cVar.b(0).f16001b;
         int i11 = 0;
-        while (i11 < size && hVar.H.b(i11).f15965b < j13) {
+        while (i11 < size && hVar.H.b(i11).f16001b < j13) {
             i11++;
         }
         if (cVar.d) {
-            if (size - i11 > cVar.f15946m.size()) {
+            if (size - i11 > cVar.f15982m.size()) {
                 e2.a.n("DashMediaSource", "Loaded out of sync manifest");
             } else {
                 j11 = -9223372036854775807L;
@@ -169,7 +169,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
             }
             int i12 = hVar.M;
             hVar.M = i12 + 1;
-            if (i12 < hVar.f15340m.m3(oVar.f51788c)) {
+            if (i12 < hVar.f15376m.m3(oVar.f51822c)) {
                 hVar.D.postDelayed(hVar.v, Math.min((hVar.M - 1) * 1000, 5000));
                 return;
             }
@@ -184,10 +184,10 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
         hVar.J = j3 - j10;
         hVar.K = j3;
         hVar.O += i10;
-        synchronized (hVar.f15347t) {
+        synchronized (hVar.f15383t) {
             try {
-                if (oVar.f51787b.f10266a.equals(hVar.F)) {
-                    Uri uri2 = hVar.H.f15944k;
+                if (oVar.f51821b.f10266a.equals(hVar.F)) {
+                    Uri uri2 = hVar.H.f15980k;
                     if (uri2 == null) {
                         uri2 = u8.a(oVar.d.f10234c);
                     }
@@ -199,9 +199,9 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
         }
         m2.c cVar3 = hVar.H;
         if (cVar3.d && hVar.L == j11) {
-            pf.b bVar = cVar3.f15942i;
+            pf.b bVar = cVar3.f15978i;
             if (bVar != null) {
-                String str = (String) bVar.f45592b;
+                String str = (String) bVar.f45626b;
                 if (!Objects.equals(str, "urn:mpeg:dash:utc:direct:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:direct:2012")) {
                     if (!Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2012")) {
                         if (!Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2012")) {
@@ -220,7 +220,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
                     return;
                 }
                 try {
-                    hVar.L = e2.d0.S((String) bVar.f45593c) - hVar.K;
+                    hVar.L = e2.d0.S((String) bVar.f45627c) - hVar.K;
                     hVar.y(z10);
                     return;
                 } catch (s0 e7) {
@@ -246,7 +246,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
 
     @Override
     public void I0() {
-        ((xf0) this.f14469b).f32884b.k();
+        ((wf0) this.f14469b).f32682b.k();
     }
 
     @Override
@@ -298,17 +298,17 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
 
     @Override
     public void K() {
-        ((xf0) this.f14469b).f32884b.o();
+        ((wf0) this.f14469b).f32682b.o();
     }
 
     @Override
     public void K0(float f7) {
-        xf0 xf0Var = (xf0) this.f14469b;
-        xf0Var.f32884b.setRotation(f7);
-        xf0Var.getClass();
-        wf0 wf0Var = xf0Var.f32883a;
-        if (wf0Var != null) {
-            ((ss0) wf0Var).a(false);
+        wf0 wf0Var = (wf0) this.f14469b;
+        wf0Var.f32682b.setRotation(f7);
+        wf0Var.getClass();
+        vf0 vf0Var = wf0Var.f32681a;
+        if (vf0Var != null) {
+            ((ss0) vf0Var).a(false);
         }
     }
 
@@ -324,13 +324,13 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
         int i11 = 0;
         for (o2.q qVar : kVar.J) {
             qVar.e();
-            i11 += qVar.Y.f48738a;
+            i11 += qVar.Y.f48772a;
         }
         b2.l1[] l1VarArr = new b2.l1[i11];
         int i12 = 0;
         for (o2.q qVar2 : kVar.J) {
             qVar2.e();
-            int i13 = qVar2.Y.f48738a;
+            int i13 = qVar2.Y.f48772a;
             int i14 = 0;
             while (i14 < i13) {
                 qVar2.e();
@@ -366,7 +366,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     @Override
     public void P(int i10, long j3, long j10) {
         n4.x xVar = ((h0) this.f14469b).X0;
-        Handler handler = (Handler) xVar.f16658b;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new i(xVar, i10, j3, j10, 0));
         }
@@ -429,7 +429,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
         ga gaVar = (ga) this.f14469b;
         org.telegram.ui.Cells.g gVar = gaVar.v;
         if (gaVar.a()) {
-            gaVar.f22163s = 2;
+            gaVar.f22199s = 2;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -441,7 +441,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
         ga gaVar = (ga) this.f14469b;
         org.telegram.ui.Cells.g gVar = gaVar.v;
         if (gaVar.a()) {
-            gaVar.f22163s = 2;
+            gaVar.f22199s = 2;
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
         }
@@ -509,7 +509,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     @Override
     public void a(long j3) {
         n4.x xVar = ((h0) this.f14469b).X0;
-        Handler handler = (Handler) xVar.f16658b;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new ai.j(xVar, j3, 13));
         }
@@ -517,7 +517,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
 
     @Override
     public void a0() {
-        ((xf0) this.f14469b).f32884b.f15575a.g(1, true);
+        ((wf0) this.f14469b).f32682b.f15611a.g(1, true);
     }
 
     public void a1(long j3) {
@@ -609,7 +609,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     @Override
     public int c0() {
         p0 p0Var = (p0) this.f14469b;
-        return p0Var.f47864n - p0Var.C();
+        return p0Var.f47898n - p0Var.C();
     }
 
     @Override
@@ -670,7 +670,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     public void f0(Exception exc) {
         e2.a.f("MediaCodecAudioRenderer", "Audio sink error", exc);
         n4.x xVar = ((h0) this.f14469b).X0;
-        Handler handler = (Handler) xVar.f16658b;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new f(xVar, exc, 1));
         }
@@ -695,25 +695,25 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     public void h(int i10) {
         switch (this.f14468a) {
             case 15:
-                kr0 kr0Var = (kr0) this.f14469b;
-                or0 or0Var = kr0Var.K;
-                kr0Var.f28070s = i10;
-                if (kr0Var.v != i10) {
-                    kr0Var.d.clear();
+                jr0 jr0Var = (jr0) this.f14469b;
+                nr0 nr0Var = jr0Var.K;
+                jr0Var.f27827s = i10;
+                if (jr0Var.v != i10) {
+                    jr0Var.d.clear();
                 }
-                int i11 = kr0Var.J;
-                if (kr0Var.h() == 0 && !kr0Var.f28066e.e() && !kr0Var.I) {
-                    or0Var.Q.e(false, true);
+                int i11 = jr0Var.J;
+                if (jr0Var.h() == 0 && !jr0Var.f27823e.e() && !jr0Var.I) {
+                    nr0Var.Q.e(false, true);
                 } else {
-                    or0Var.f29506x0.b(i11);
+                    nr0Var.f29263x0.b(i11);
                 }
-                kr0Var.l();
-                int i12 = or0.f29474a1;
-                or0Var.L0(true);
+                jr0Var.l();
+                int i12 = nr0.f29231a1;
+                nr0Var.L0(true);
                 return;
             default:
                 org.telegram.ui.Wallet.u8 u8Var = (org.telegram.ui.Wallet.u8) this.f14469b;
-                if (!u8Var.f35615n && i10 == u8Var.I) {
+                if (!u8Var.f35649n && i10 == u8Var.I) {
                     u8Var.d0(u8Var.M.getText().toString().trim());
                     return;
                 }
@@ -731,7 +731,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
         ga gaVar = (ga) this.f14469b;
         org.telegram.ui.Cells.g gVar = gaVar.v;
         if (gaVar.a()) {
-            gaVar.f22163s = 0;
+            gaVar.f22199s = 0;
             u1Var.invalidate();
             AndroidUtilities.cancelRunOnUIThread(gVar);
             AndroidUtilities.runOnUIThread(gVar, 5000L);
@@ -740,18 +740,18 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
 
     @Override
     public boolean i0() {
-        wf0 wf0Var = ((xf0) this.f14469b).f32883a;
-        if (wf0Var == null) {
+        vf0 vf0Var = ((wf0) this.f14469b).f32681a;
+        if (vf0Var == null) {
             return false;
         }
-        PhotoViewer photoViewer = ((ss0) wf0Var).f41849a;
+        PhotoViewer photoViewer = ((ss0) vf0Var).f41883a;
         Drawable[] drawableArr = PhotoViewer.U8;
         return photoViewer.O0(-90.0f, false, null);
     }
 
     @Override
     public boolean i1(int i10, u1 u1Var) {
-        if (i10 == ((ga) this.f14469b).f22163s) {
+        if (i10 == ((ga) this.f14469b).f22199s) {
             return true;
         }
         return false;
@@ -770,7 +770,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     @Override
     public void l(Canvas canvas) {
         yi yiVar = (yi) this.f14469b;
-        canvas.drawColor(yiVar.getThemedColor(h6.f20786d6));
+        canvas.drawColor(yiVar.getThemedColor(h6.f20822d6));
         if (SharedConfig.chatBlurEnabled()) {
             yiVar.F2.b(canvas, -2);
         }
@@ -784,15 +784,15 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     @Override
     public void n0(l.k kVar, l.m mVar) {
         l.e eVar = (l.e) this.f14469b;
-        Handler handler = eVar.f15218f;
+        Handler handler = eVar.f15254f;
         l.d dVar = null;
         handler.removeCallbacksAndMessages(null);
-        ArrayList arrayList = eVar.f15219n;
+        ArrayList arrayList = eVar.f15255n;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
             if (i10 < size) {
-                if (kVar == ((l.d) arrayList.get(i10)).f15212b) {
+                if (kVar == ((l.d) arrayList.get(i10)).f15248b) {
                     break;
                 }
                 i10++;
@@ -819,7 +819,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     @Override
     public void o0(k kVar) {
         n4.x xVar = ((h0) this.f14469b).X0;
-        Handler handler = (Handler) xVar.f16658b;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new h(xVar, kVar, 0));
         }
@@ -833,14 +833,14 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
             kVar.d(i10);
         }
         n4.x xVar = h0Var.X0;
-        Handler handler = (Handler) xVar.f16658b;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new p8(xVar, i10, 11));
         }
     }
 
     @Override
-    public void onError(m81 m81Var, Exception exc) {
+    public void onError(l81 l81Var, Exception exc) {
     }
 
     @Override
@@ -860,7 +860,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         n4.x xVar = ((h0) this.f14469b).X0;
-        Handler handler = (Handler) xVar.f16658b;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new bi.f(8, xVar, z10));
         }
@@ -868,16 +868,16 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        nl0 nl0Var = (nl0) this.f14469b;
-        if (z10 && nl0Var.f29085n.n() >= 0) {
-            nl0Var.f29088w = true;
+        ml0 ml0Var = (ml0) this.f14469b;
+        if (z10 && ml0Var.f28881n.n() >= 0) {
+            ml0Var.f28884w = true;
         }
-        jh0 jh0Var = nl0Var.f29084f;
-        cd0 cd0Var = nl0Var.f29089x;
-        jh0Var.a(z10, true);
-        AndroidUtilities.cancelRunOnUIThread(cd0Var);
+        ih0 ih0Var = ml0Var.f28880f;
+        yc0 yc0Var = ml0Var.f28885x;
+        ih0Var.a(z10, true);
+        AndroidUtilities.cancelRunOnUIThread(yc0Var);
         if (z10) {
-            AndroidUtilities.runOnUIThread(cd0Var, 16L);
+            AndroidUtilities.runOnUIThread(yc0Var, 16L);
         }
     }
 
@@ -893,9 +893,9 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
 
     @Override
     public boolean q() {
-        wf0 wf0Var = ((xf0) this.f14469b).f32883a;
-        if (wf0Var != null) {
-            PhotoViewer photoViewer = ((ss0) wf0Var).f41849a;
+        vf0 vf0Var = ((wf0) this.f14469b).f32681a;
+        if (vf0Var != null) {
+            PhotoViewer photoViewer = ((ss0) vf0Var).f41883a;
             Drawable[] drawableArr = PhotoViewer.U8;
             return photoViewer.N0();
         }
@@ -916,7 +916,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     public boolean s0(int i10) {
         switch (this.f14468a) {
             case 15:
-                if (i10 == ((kr0) this.f14469b).f28069r) {
+                if (i10 == ((jr0) this.f14469b).f27826r) {
                     return true;
                 }
                 return false;
@@ -957,7 +957,7 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
     public void x(Object obj) {
         com.google.android.gms.common.api.internal.n nVar;
         g8.c cVar = (g8.c) obj;
-        androidx.activity.n nVar2 = ((r7.i) this.f14469b).f47099b;
+        androidx.activity.n nVar2 = ((r7.i) this.f14469b).f47133b;
         synchronized (nVar2) {
             nVar2.f2147b = false;
             nVar = ((com.google.android.gms.common.api.internal.p) nVar2.f2148c).f6654c;
@@ -987,13 +987,13 @@ public final class g0 implements n, e2, y2.g, m.k, n5.b, o0.a, b1, l1, ah.j, lg.
 
     @Override
     public void z(l.k kVar, MenuItem menuItem) {
-        ((l.e) this.f14469b).f15218f.removeCallbacksAndMessages(kVar);
+        ((l.e) this.f14469b).f15254f.removeCallbacksAndMessages(kVar);
     }
 
     @Override
     public void z0(k kVar) {
         n4.x xVar = ((h0) this.f14469b).X0;
-        Handler handler = (Handler) xVar.f16658b;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new h(xVar, kVar, 1));
         }

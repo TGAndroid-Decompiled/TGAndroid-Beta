@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
-public final class fw0 implements org.telegram.ui.Components.ll0 {
-    public final zn f37791a;
-    public final MessageObject f37792b;
-    public final org.telegram.ui.Components.ml0 f37793c;
+public final class fw0 implements org.telegram.ui.Components.kl0 {
+    public final zn f37825a;
+    public final MessageObject f37826b;
+    public final org.telegram.ui.Components.ll0 f37827c;
     public final lw0 d;
 
-    public fw0(lw0 lw0Var, zn znVar, MessageObject messageObject, org.telegram.ui.Components.ml0 ml0Var) {
+    public fw0(lw0 lw0Var, zn znVar, MessageObject messageObject, org.telegram.ui.Components.ll0 ll0Var) {
         this.d = lw0Var;
-        this.f37791a = znVar;
-        this.f37792b = messageObject;
-        this.f37793c = ml0Var;
+        this.f37825a = znVar;
+        this.f37826b = messageObject;
+        this.f37827c = ll0Var;
     }
 
     @Override

@@ -4,17 +4,17 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.be0;
+import org.telegram.ui.Components.ae0;
 public final class z1 implements TextWatcher {
     public boolean f9517a;
     public final EditTextBoldCursor f9518b;
     public final int f9519c;
-    public final be0 d;
+    public final ae0 d;
 
-    public z1(EditTextBoldCursor editTextBoldCursor, int i10, be0 be0Var) {
+    public z1(EditTextBoldCursor editTextBoldCursor, int i10, ae0 ae0Var) {
         this.f9518b = editTextBoldCursor;
         this.f9519c = i10;
-        this.d = be0Var;
+        this.d = ae0Var;
     }
 
     @Override

@@ -6,9 +6,9 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class a implements Continuation, com.google.android.gms.common.api.internal.s {
-    public static final a f47086a = new Object();
-    public static final a f47087b = new Object();
-    public static final a f47088c = new Object();
+    public static final a f47120a = new Object();
+    public static final a f47121b = new Object();
+    public static final a f47122c = new Object();
 
     public void a(k kVar, com.google.android.gms.common.api.internal.n nVar, boolean z10, TaskCompletionSource taskCompletionSource) {
         k6.c cVar;
@@ -19,7 +19,7 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     taskCompletionSource.setResult(Boolean.FALSE);
                     return;
                 }
-                com.google.android.gms.common.api.internal.p e7 = iVar.f47099b.e();
+                com.google.android.gms.common.api.internal.p e7 = iVar.f47133b.e();
                 e7.f6653b = null;
                 e7.f6654c = null;
                 if (z10) {

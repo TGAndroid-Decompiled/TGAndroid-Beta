@@ -4,19 +4,19 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class ph implements Utilities.Callback4 {
-    public final int f29724a;
-    public final KeyEvent.Callback f29725b;
+    public final int f29870a;
+    public final KeyEvent.Callback f29871b;
 
     public ph(KeyEvent.Callback callback, int i10) {
-        this.f29724a = i10;
-        this.f29725b = callback;
+        this.f29870a = i10;
+        this.f29871b = callback;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f29724a) {
+        switch (this.f29870a) {
             case 0:
-                yi yiVar = (yi) this.f29725b;
+                yi yiVar = (yi) this.f29871b;
                 CharSequence charSequence = (CharSequence) obj;
                 Integer num = (Integer) obj2;
                 Integer num2 = (Integer) obj3;
@@ -27,7 +27,7 @@ public final class ph implements Utilities.Callback4 {
                 yiVar.C1();
                 return;
             case 1:
-                yi yiVar2 = (yi) this.f29725b;
+                yi yiVar2 = (yi) this.f29871b;
                 CharSequence charSequence2 = (CharSequence) obj;
                 Integer num3 = (Integer) obj2;
                 Integer num4 = (Integer) obj3;
@@ -38,7 +38,7 @@ public final class ph implements Utilities.Callback4 {
                 yiVar2.C1();
                 return;
             default:
-                od odVar = (od) this.f29725b;
+                od odVar = (od) this.f29871b;
                 Integer num5 = (Integer) obj2;
                 Integer num6 = (Integer) obj3;
                 Boolean bool3 = (Boolean) obj4;

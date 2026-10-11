@@ -5,29 +5,29 @@ import android.graphics.Paint;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 public final class j8 {
-    public final float f35120a;
-    public final float f35121b;
-    public final float f35122c;
+    public final float f35154a;
+    public final float f35155b;
+    public final float f35156c;
     public final float d;
-    public final float f35123e;
-    public final boolean f35124f;
-    public final long f35125g;
+    public final float f35157e;
+    public final boolean f35158f;
+    public final long f35159g;
     public final k8 h;
 
     public j8(k8 k8Var, j8 j8Var, float f7, boolean z10) {
         float y3;
         this.h = k8Var;
-        this.f35124f = z10;
-        this.f35121b = f7;
-        this.f35120a = j8Var != null ? j8Var.f35120a : f7;
-        this.f35125g = (j8Var == null || z10) ? SystemClock.uptimeMillis() : j8Var.f35125g;
+        this.f35158f = z10;
+        this.f35155b = f7;
+        this.f35154a = j8Var != null ? j8Var.f35154a : f7;
+        this.f35159g = (j8Var == null || z10) ? SystemClock.uptimeMillis() : j8Var.f35159g;
         float f10 = 0.0f;
         float a2 = (j8Var == null || !z10) ? 0.0f : j8Var.a();
         if (j8Var != null) {
-            float f11 = j8Var.f35122c;
+            float f11 = j8Var.f35156c;
             f10 = com.google.android.gms.internal.vision.e2.y(1.0f, f11, a2, f11);
         }
-        this.f35122c = f10;
+        this.f35156c = f10;
         if (j8Var == null) {
             y3 = k8Var.N;
         } else {
@@ -35,14 +35,14 @@ public final class j8 {
             y3 = com.google.android.gms.internal.vision.e2.y(1.0f, f12, a2, f12);
         }
         this.d = y3;
-        this.f35123e = j8Var == null ? (-AndroidUtilities.dpf2(44.0f)) * 0.1f : j8Var.f35123e * (1.0f - a2);
+        this.f35157e = j8Var == null ? (-AndroidUtilities.dpf2(44.0f)) * 0.1f : j8Var.f35157e * (1.0f - a2);
     }
 
     public final float a() {
         if (this.h.H >= 1.0f) {
             return 1.0f;
         }
-        return k8.R.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f35125g)) / 320.0f));
+        return k8.R.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f35159g)) / 320.0f));
     }
 
     public final void b(Canvas canvas, Paint paint, String str, float f7, int i10) {
@@ -50,13 +50,13 @@ public final class j8 {
         float f11;
         float a2 = a();
         float f12 = 1.0f;
-        boolean z10 = this.f35124f;
+        boolean z10 = this.f35158f;
         if (z10) {
             f10 = 0.0f;
         } else {
             f10 = 1.0f;
         }
-        float f13 = this.f35122c;
+        float f13 = this.f35156c;
         float y3 = com.google.android.gms.internal.vision.e2.y(f10, f13, a2, f13);
         if (y3 <= 0.0f) {
             return;
@@ -66,7 +66,7 @@ public final class j8 {
         canvas.save();
         float d = d() + f7;
         float f14 = i10;
-        float f15 = this.f35123e;
+        float f15 = this.f35157e;
         float f16 = f14 + f15;
         if (z10) {
             f11 = AndroidUtilities.dpf2(44.0f) * 0.1f;
@@ -95,30 +95,30 @@ public final class j8 {
     }
 
     public final float d() {
-        float f7 = this.f35121b;
-        float f10 = this.f35120a;
+        float f7 = this.f35155b;
+        float f10 = this.f35154a;
         return (k8.R.getInterpolation(this.h.H) * (f7 - f10)) + f10;
     }
 
     public j8(k8 k8Var, float f7) {
         this.h = k8Var;
-        this.f35124f = false;
-        this.f35121b = f7;
-        this.f35120a = f7;
-        this.f35122c = 1.0f;
+        this.f35158f = false;
+        this.f35155b = f7;
+        this.f35154a = f7;
+        this.f35156c = 1.0f;
         this.d = 1.0f;
-        this.f35123e = 0.0f;
-        this.f35125g = SystemClock.uptimeMillis();
+        this.f35157e = 0.0f;
+        this.f35159g = SystemClock.uptimeMillis();
     }
 
     public j8(k8 k8Var, float f7, j8 j8Var) {
         this.h = k8Var;
-        this.f35124f = j8Var.f35124f;
-        this.f35121b = f7;
-        this.f35120a = f7;
-        this.f35122c = j8Var.f35122c;
+        this.f35158f = j8Var.f35158f;
+        this.f35155b = f7;
+        this.f35154a = f7;
+        this.f35156c = j8Var.f35156c;
         this.d = j8Var.d;
-        this.f35123e = j8Var.f35123e;
-        this.f35125g = j8Var.f35125g;
+        this.f35157e = j8Var.f35157e;
+        this.f35159g = j8Var.f35159g;
     }
 }

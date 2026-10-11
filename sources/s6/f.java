@@ -5,13 +5,13 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import v7.g5;
 public final class f extends b8.b implements d {
-    public final int f47947b;
-    public final TaskCompletionSource f47948c;
+    public final int f47981b;
+    public final TaskCompletionSource f47982c;
 
     public f(int i10, TaskCompletionSource taskCompletionSource) {
         super("com.google.android.gms.common.moduleinstall.internal.IModuleInstallCallbacks", 6);
-        this.f47947b = i10;
-        this.f47948c = taskCompletionSource;
+        this.f47981b = i10;
+        this.f47982c = taskCompletionSource;
     }
 
     @Override
@@ -42,9 +42,9 @@ public final class f extends b8.b implements d {
 
     @Override
     public void W(Status status, r6.c cVar) {
-        switch (this.f47947b) {
+        switch (this.f47981b) {
             case 1:
-                g5.b(status, cVar, this.f47948c);
+                g5.b(status, cVar, this.f47982c);
                 return;
             default:
                 throw new UnsupportedOperationException();
@@ -53,9 +53,9 @@ public final class f extends b8.b implements d {
 
     @Override
     public void v(Status status, r6.a aVar) {
-        switch (this.f47947b) {
+        switch (this.f47981b) {
             case 0:
-                g5.b(status, aVar, this.f47948c);
+                g5.b(status, aVar, this.f47982c);
                 return;
             default:
                 throw new UnsupportedOperationException();

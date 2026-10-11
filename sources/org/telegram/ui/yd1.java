@@ -10,43 +10,43 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class yd1 implements Runnable {
-    public final int f44326a;
-    public final Object f44327b;
-    public final Object f44328c;
+    public final int f44360a;
+    public final Object f44361b;
+    public final Object f44362c;
     public final Object d;
 
     public yd1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f44326a = i10;
-        this.f44327b = obj;
+        this.f44360a = i10;
+        this.f44361b = obj;
         this.d = obj2;
-        this.f44328c = obj3;
+        this.f44362c = obj3;
     }
 
     @Override
     public final void run() {
         TLRPC.Message message;
         int i10;
-        int i11 = this.f44326a;
+        int i11 = this.f44360a;
         pn pnVar = null;
         pnVar = null;
         pnVar = null;
         boolean z10 = false;
-        Object obj = this.f44328c;
+        Object obj = this.f44362c;
         Object obj2 = this.d;
-        Object obj3 = this.f44327b;
+        Object obj3 = this.f44361b;
         switch (i11) {
             case 0:
                 be1 be1Var = (be1) obj3;
                 String str = (String) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                be1Var.f36361y = 0;
+                be1Var.f36395y = 0;
                 String str2 = be1Var.E;
                 if (str2 != null && str2.equals(str)) {
                     if (tL_error != null && ("THEME_SLUG_INVALID".equals(tL_error.text) || "THEME_SLUG_OCCUPIED".equals(tL_error.text))) {
-                        be1Var.a0(org.telegram.ui.ActionBar.h6.f21007p7, LocaleController.getString(R.string.SetUrlInUse));
+                        be1Var.a0(org.telegram.ui.ActionBar.h6.f21043p7, LocaleController.getString(R.string.SetUrlInUse));
                         return;
                     } else {
-                        be1Var.a0(org.telegram.ui.ActionBar.h6.f21136w6, LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str));
+                        be1Var.a0(org.telegram.ui.ActionBar.h6.f21172w6, LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str));
                         return;
                     }
                 }
@@ -58,14 +58,14 @@ public final class yd1 implements Runnable {
                 le1 le1Var = (le1) obj3;
                 zn znVar = (zn) obj2;
                 MessageObject messageObject = le1Var.G;
-                int i12 = ((TLRPC.TodoItem) obj).f20177id;
+                int i12 = ((TLRPC.TodoItem) obj).f20213id;
                 if (messageObject != null && (message = messageObject.messageOwner) != null && (message.media instanceof TLRPC.TL_messageMediaToDo)) {
                     messageObject.getDialogId();
                     ?? obj4 = new Object();
-                    obj4.f40912a = messageObject;
-                    obj4.f40913b = -1;
-                    obj4.f40914c = -1;
-                    obj4.f40917g = true;
+                    obj4.f40946a = messageObject;
+                    obj4.f40947b = -1;
+                    obj4.f40948c = -1;
+                    obj4.f40951g = true;
                     obj4.d = i12;
                     obj4.e();
                     pnVar = obj4;
@@ -77,17 +77,17 @@ public final class yd1 implements Runnable {
                 te1 te1Var = (te1) obj3;
                 ArrayList arrayList = te1Var.h;
                 arrayList.clear();
-                ArrayList arrayList2 = te1Var.f42171f;
+                ArrayList arrayList2 = te1Var.f42205f;
                 arrayList2.clear();
                 arrayList.addAll((ArrayList) obj2);
                 arrayList2.addAll(((TLRPC.TL_messages_inactiveChats) obj).chats);
                 te1Var.d.l();
-                if (te1Var.f42167a.getMeasuredHeight() > 0) {
+                if (te1Var.f42201a.getMeasuredHeight() > 0) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    te1Var.f42177y = ofFloat;
+                    te1Var.f42211y = ofFloat;
                     ofFloat.addUpdateListener(new x11(te1Var, 15));
-                    te1Var.f42177y.setDuration(100L);
-                    te1Var.f42177y.start();
+                    te1Var.f42211y.setDuration(100L);
+                    te1Var.f42211y.start();
                 } else {
                     te1Var.E = 1.0f;
                 }
@@ -99,22 +99,22 @@ public final class yd1 implements Runnable {
                 return;
             case 4:
                 eg1 eg1Var = (eg1) obj3;
-                eg1Var.f37347s.deleteTopics(eg1Var.f37311a, (ArrayList) obj2);
+                eg1Var.f37381s.deleteTopics(eg1Var.f37345a, (ArrayList) obj2);
                 ((Runnable) obj).run();
                 return;
             case 5:
                 ag1 ag1Var = (ag1) obj3;
                 String str3 = (String) obj2;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList3 = ag1Var.f36073d0;
-                if (str3.equals(ag1Var.f36071b0)) {
-                    int i13 = ag1Var.f36080k0;
-                    ag1Var.f36084p0 = false;
-                    ag1Var.f36081l0 = false;
+                ArrayList arrayList3 = ag1Var.f36107d0;
+                if (str3.equals(ag1Var.f36105b0)) {
+                    int i13 = ag1Var.f36114k0;
+                    ag1Var.f36118p0 = false;
+                    ag1Var.f36115l0 = false;
                     if (tLObject instanceof TLRPC.messages_Messages) {
                         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                         for (int i14 = 0; i14 < messages_messages.messages.size(); i14++) {
-                            i10 = ((org.telegram.ui.ActionBar.m2) ag1Var.f36088t0).currentAccount;
+                            i10 = ((org.telegram.ui.ActionBar.m2) ag1Var.f36122t0).currentAccount;
                             MessageObject messageObject2 = new MessageObject(i10, messages_messages.messages.get(i14), false, false);
                             messageObject2.setQuery(str3);
                             arrayList3.add(messageObject2);
@@ -127,10 +127,10 @@ public final class yd1 implements Runnable {
                     } else {
                         ag1Var.m0 = false;
                     }
-                    if (ag1Var.f36080k0 == 0) {
-                        ag1Var.f36082n0.e(ag1Var.f36081l0, true);
+                    if (ag1Var.f36114k0 == 0) {
+                        ag1Var.f36116n0.e(ag1Var.f36115l0, true);
                     }
-                    ag1Var.f36083o0.b(i13);
+                    ag1Var.f36117o0.b(i13);
                     return;
                 }
                 return;
@@ -138,14 +138,14 @@ public final class yd1 implements Runnable {
                 xh1 xh1Var = (xh1) obj3;
                 ArrayList arrayList4 = (ArrayList) obj2;
                 ArrayList arrayList5 = (ArrayList) obj;
-                gg.b2 b2Var = xh1Var.f44076f;
-                if (xh1Var.f44077n) {
+                gg.b2 b2Var = xh1Var.f44110f;
+                if (xh1Var.f44111n) {
                     xh1Var.h = null;
                     xh1Var.d = arrayList4;
-                    xh1Var.f44075e = arrayList5;
+                    xh1Var.f44109e = arrayList5;
                     b2Var.f(arrayList4, null);
-                    if (xh1Var.f44077n && !b2Var.e()) {
-                        xh1Var.v.f34624f.e(false, true);
+                    if (xh1Var.f44111n && !b2Var.e()) {
+                        xh1Var.v.f34658f.e(false, true);
                     }
                     xh1Var.l();
                     return;
@@ -155,9 +155,9 @@ public final class yd1 implements Runnable {
     }
 
     public yd1(be1 be1Var, TLRPC.TL_error tL_error, TL_account.updateTheme updatetheme) {
-        this.f44326a = 1;
-        this.f44327b = be1Var;
-        this.f44328c = tL_error;
+        this.f44360a = 1;
+        this.f44361b = be1Var;
+        this.f44362c = tL_error;
         this.d = updatetheme;
     }
 }

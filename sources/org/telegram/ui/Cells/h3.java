@@ -9,32 +9,32 @@ import android.view.Menu;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.su;
-import org.telegram.ui.Components.w11;
+import org.telegram.ui.Components.v11;
 public final class h3 extends su {
-    public final int f22185c;
+    public final int f22221c;
     public final org.telegram.ui.ActionBar.d6 d;
-    public final boolean f22186e;
-    public final j3 f22187f;
+    public final boolean f22222e;
+    public final j3 f22223f;
 
     public h3(j3 j3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10, org.telegram.ui.ActionBar.d6 d6Var2, boolean z10) {
         super(context, d6Var);
-        this.f22187f = j3Var;
-        this.f22185c = i10;
+        this.f22223f = j3Var;
+        this.f22221c = i10;
         this.d = d6Var2;
-        this.f22186e = z10;
+        this.f22222e = z10;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        j3 j3Var = this.f22187f;
+        j3 j3Var = this.f22223f;
         org.telegram.ui.Components.q6 q6Var = j3Var.v;
-        org.telegram.ui.Components.j5 j5Var = j3Var.f22294r;
-        if (j3Var.f22295s <= 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21007p7;
+        org.telegram.ui.Components.j5 j5Var = j3Var.f22330r;
+        if (j3Var.f22331s <= 0) {
+            i10 = org.telegram.ui.ActionBar.h6.f21043p7;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.P5;
         }
@@ -46,20 +46,20 @@ public final class h3 extends su {
 
     @Override
     public final void extendActionMode(ActionMode actionMode, Menu menu) {
-        if (!this.f22186e || menu.findItem(R.id.menu_bold) != null) {
+        if (!this.f22222e || menu.findItem(R.id.menu_bold) != null) {
             return;
         }
         menu.removeItem(16908341);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
-        spannableStringBuilder.setSpan(new o61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new n61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 6, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
-        spannableStringBuilder2.setSpan(new o61(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(new n61(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 7, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
         ?? obj = new Object();
-        obj.f31643a |= 8;
-        spannableStringBuilder3.setSpan(new w11(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        obj.f31418a |= 8;
+        spannableStringBuilder3.setSpan(new v11(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 8, spannableStringBuilder3);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
     }
@@ -75,9 +75,9 @@ public final class h3 extends su {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        j3 j3Var = this.f22187f;
+        j3 j3Var = this.f22223f;
         org.telegram.ui.Components.q6 q6Var = j3Var.v;
-        if (q6Var != null && this.f22185c > 0) {
+        if (q6Var != null && this.f22221c > 0) {
             q6Var.a();
             j3Var.c();
         }
@@ -85,7 +85,7 @@ public final class h3 extends su {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f22187f.v && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f22223f.v && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

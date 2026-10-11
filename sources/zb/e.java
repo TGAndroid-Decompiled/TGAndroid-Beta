@@ -3,18 +3,18 @@ package zb;
 import android.content.Context;
 import x7.ia;
 public final class e extends b2.g {
-    public final qb.g f54399b;
+    public final qb.g f54433b;
 
     public e(qb.g gVar) {
         super(4);
-        this.f54399b = gVar;
+        this.f54433b = gVar;
     }
 
     @Override
     public final Object N0(Object obj) {
         b cVar;
         yb.a aVar = (yb.a) obj;
-        Context b10 = this.f54399b.b();
+        Context b10 = this.f54433b.b();
         k6.e.f14706b.getClass();
         if (k6.e.a(b10) >= 204700000) {
             cVar = new a(b10, aVar);

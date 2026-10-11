@@ -67,20 +67,20 @@ public abstract class a implements jd.c, d, Serializable {
             if (i10 >= 0) {
                 i12 = eVar.l()[i10];
             }
-            f fVar = g.f15502b;
-            f fVar2 = g.f15501a;
+            f fVar = g.f15538b;
+            f fVar2 = g.f15537a;
             if (fVar == null) {
                 try {
                     f fVar3 = new f(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    g.f15502b = fVar3;
+                    g.f15538b = fVar3;
                     fVar = fVar3;
                 } catch (Exception unused2) {
-                    g.f15502b = fVar2;
+                    g.f15538b = fVar2;
                     fVar = fVar2;
                 }
             }
-            if (fVar != fVar2 && (method = fVar.f15498a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = fVar.f15499b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = fVar.f15500c;
+            if (fVar != fVar2 && (method = fVar.f15534a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = fVar.f15535b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
+                Method method3 = fVar.f15536c;
                 if (method3 != null) {
                     obj = method3.invoke(invoke2, null);
                 } else {

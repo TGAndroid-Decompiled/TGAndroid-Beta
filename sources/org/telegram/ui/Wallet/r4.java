@@ -4,10 +4,10 @@ import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 import android.text.style.UpdateAppearance;
 public final class r4 extends CharacterStyle implements UpdateAppearance {
-    public int f35503a;
+    public int f35537a;
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(this.f35503a);
+        textPaint.setColor(this.f35537a);
     }
 }

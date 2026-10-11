@@ -32,7 +32,7 @@ public final class e3 extends d4 {
         canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.F.getAlpha(), r1Var.b().getAlpha()) * f7), 31);
         Path path = this.f4927t0;
         canvas.drawPath(path, paint);
-        if (r1Var.f32234e) {
+        if (r1Var.f32298e) {
             paint.setShader(((Paint) r1Var.d.f7953a).getShader());
             canvas.drawPath(path, paint);
         }

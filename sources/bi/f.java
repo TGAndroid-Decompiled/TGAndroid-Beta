@@ -35,16 +35,16 @@ import org.telegram.ui.ActionBar.b4;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.aq;
 import org.telegram.ui.Components.bq;
+import org.telegram.ui.Components.co0;
 import org.telegram.ui.Components.cq;
-import org.telegram.ui.Components.do0;
-import org.telegram.ui.Components.eb0;
+import org.telegram.ui.Components.db0;
 import org.telegram.ui.Components.m60;
-import org.telegram.ui.Components.qz0;
-import org.telegram.ui.Components.ss0;
+import org.telegram.ui.Components.pz0;
+import org.telegram.ui.Components.rs0;
 import org.telegram.ui.Components.t10;
 import org.telegram.ui.Components.t40;
+import org.telegram.ui.Components.t60;
 import org.telegram.ui.Components.tw;
-import org.telegram.ui.Components.u60;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.qm;
 import org.telegram.ui.uo;
@@ -73,12 +73,12 @@ public final class f implements Runnable {
         switch (i11) {
             case 0:
                 u uVar = (u) obj;
-                ss0 ss0Var = uVar.W;
+                rs0 rs0Var = uVar.W;
                 if (z10) {
-                    new y(ss0Var.f3940a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(ss0Var, 4)).show();
+                    new y(rs0Var.f3940a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(rs0Var, 4)).show();
                     return;
                 } else {
-                    ss0Var.b(uVar.f3923a.E);
+                    rs0Var.b(uVar.f3923a.E);
                     return;
                 }
             case 1:
@@ -149,7 +149,7 @@ public final class f implements Runnable {
                 return;
             case 8:
                 String str2 = d0.f8531a;
-                f0 f0Var = ((c0) ((k2.j) ((n4.x) obj).f16659c)).f11619a;
+                f0 f0Var = ((c0) ((k2.j) ((n4.x) obj).f16695c)).f11619a;
                 if (f0Var.f11654a0 != z10) {
                     f0Var.f11654a0 = z10;
                     f0Var.f11675m.e(23, new i2.y(1, z10));
@@ -157,13 +157,13 @@ public final class f implements Runnable {
                 }
                 return;
             case 9:
-                ki.j jVar = (ki.j) obj;
-                jVar.M = z10;
-                jVar.N = jVar.z();
-                jVar.O = 0;
-                jVar.P = 0;
-                jVar.f14979j.b("torch requested: enabled=" + z10 + ", available=" + jVar.z() + ", cameraId=" + jVar.f14990o + ", facing=" + jVar.D);
-                jVar.e();
+                ki.k kVar = (ki.k) obj;
+                kVar.P = z10;
+                kVar.Q = kVar.F();
+                kVar.R = 0;
+                kVar.S = 0;
+                kVar.f14986j.b("torch requested: enabled=" + z10 + ", available=" + kVar.F() + ", cameraId=" + kVar.f14999o + ", facing=" + kVar.G);
+                kVar.g();
                 return;
             case 10:
                 ((FileLoader) obj).lambda$onNetworkChanged$4(z10);
@@ -205,16 +205,16 @@ public final class f implements Runnable {
                 of.f.s(context, LocaleController.getString(i10));
                 return;
             case 21:
-                qz0 qz0Var = ((qm) obj).f41202c.f44740d1;
-                if (qz0Var != null && z10) {
-                    qz0Var.setVisibility(8);
+                pz0 pz0Var = ((qm) obj).f41236c.f44774d1;
+                if (pz0Var != null && z10) {
+                    pz0Var.setVisibility(8);
                     return;
                 }
                 return;
             case 22:
                 uo uoVar = (uo) obj;
-                uoVar.f42686x0.autotranslation = z10;
-                uoVar.getMessagesController().putChat(uoVar.f42686x0, false);
+                uoVar.f42720x0.autotranslation = z10;
+                uoVar.getMessagesController().putChat(uoVar.f42720x0, false);
                 return;
             case 23:
                 cq cqVar = (cq) obj;
@@ -224,19 +224,19 @@ public final class f implements Runnable {
                     if (cqVar.M != null) {
                         cqVar.P = true;
                         if (!cqVar.x()) {
-                            wallPaper = cqVar.f25273n.h;
+                            wallPaper = cqVar.f25434n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        b4 b4Var = cqVar.M.f25002a;
-                        if (b4Var.f20467a) {
-                            cqVar.f25273n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        b4 b4Var = cqVar.M.f25058a;
+                        if (b4Var.f20503a) {
+                            cqVar.f25434n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            cqVar.f25273n.i(b4Var, wallPaper2, false, Boolean.valueOf(z10), false);
+                            cqVar.f25434n.i(b4Var, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (aqVar.d != null) {
                         while (i12 < aqVar.d.size()) {
-                            ((bq) aqVar.d.get(i12)).f25004c = z10 ? 1 : 0;
+                            ((bq) aqVar.d.get(i12)).f25060c = z10 ? 1 : 0;
                             i12++;
                         }
                         aqVar.l();
@@ -254,50 +254,50 @@ public final class f implements Runnable {
                 return;
             case 25:
                 t10 t10Var = (t10) obj;
-                t10Var.S(t10Var.f30953y0, z10);
+                t10Var.S(t10Var.f31018y0, z10);
                 return;
             case 26:
                 t40 t40Var = (t40) obj;
                 if (!z10) {
-                    t40Var.f30987r.setVisibility(8);
+                    t40Var.f31059r.setVisibility(8);
                     return;
                 } else {
                     t40Var.getClass();
                     return;
                 }
             case 27:
-                u60 u60Var = ((m60) obj).H0;
-                if (!u60Var.f31281l0) {
+                t60 t60Var = ((m60) obj).H0;
+                if (!t60Var.f31105l0) {
                     try {
-                        u60Var.performHapticFeedback(3, 2);
+                        t60Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    AndroidUtilities.lockOrientation(u60Var.f31282n.getParentActivity());
+                    AndroidUtilities.lockOrientation(t60Var.f31106n.getParentActivity());
                     if (z10) {
-                        j3 = u60Var.f31279k0;
+                        j3 = t60Var.f31103k0;
                     } else {
                         j3 = 0;
                     }
-                    u60Var.f31275i0 = j3;
-                    u60Var.f31273h0 = System.currentTimeMillis();
-                    u60Var.f31277j0 = true;
-                    u60Var.v();
-                    u60Var.invalidate();
-                    NotificationCenter.getInstance(u60Var.f31268f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(u60Var.V), Boolean.FALSE);
+                    t60Var.f31099i0 = j3;
+                    t60Var.f31097h0 = System.currentTimeMillis();
+                    t60Var.f31101j0 = true;
+                    t60Var.v();
+                    t60Var.invalidate();
+                    NotificationCenter.getInstance(t60Var.f31092f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(t60Var.V), Boolean.FALSE);
                     return;
                 }
                 return;
             case 28:
-                eb0 eb0Var = (eb0) obj;
+                db0 db0Var = (db0) obj;
                 if (z10) {
-                    eb0Var.G.setVisibility(8);
+                    db0Var.G.setVisibility(8);
                     return;
                 } else {
-                    eb0Var.getClass();
+                    db0Var.getClass();
                     return;
                 }
             default:
-                m2 m2Var = ((do0) obj).G;
+                m2 m2Var = ((co0) obj).G;
                 if (z10) {
                     str = "upload_speed";
                 } else {

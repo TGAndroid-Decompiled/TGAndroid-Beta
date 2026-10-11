@@ -1,9 +1,9 @@
 package org.telegram.ui;
-public final class pi implements org.telegram.ui.Components.jm0 {
-    public final zn f40875a;
+public final class pi implements org.telegram.ui.Components.im0 {
+    public final zn f40909a;
 
     public pi(zn znVar) {
-        this.f40875a = znVar;
+        this.f40909a = znVar;
     }
 
     @Override

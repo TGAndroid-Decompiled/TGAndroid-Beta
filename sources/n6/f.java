@@ -14,20 +14,20 @@ public final class f extends o6.a {
     public static final Parcelable.Creator<f> CREATOR = new m8.h(21);
     public static final Scope[] E = new Scope[0];
     public static final k6.c[] F = new k6.c[0];
-    public final int f16683a;
-    public final int f16684b;
-    public final int f16685c;
+    public final int f16719a;
+    public final int f16720b;
+    public final int f16721c;
     public String d;
-    public IBinder f16686e;
-    public Scope[] f16687f;
+    public IBinder f16722e;
+    public Scope[] f16723f;
     public Bundle h;
-    public Account f16688n;
-    public k6.c[] f16689r;
-    public k6.c[] f16690s;
+    public Account f16724n;
+    public k6.c[] f16725r;
+    public k6.c[] f16726s;
     public final boolean v;
-    public final int f16691w;
-    public boolean f16692x;
-    public final String f16693y;
+    public final int f16727w;
+    public boolean f16728x;
+    public final String f16729y;
 
     public f(int i10, int i11, int i12, String str, IBinder iBinder, Scope[] scopeArr, Bundle bundle, Account account, k6.c[] cVarArr, k6.c[] cVarArr2, boolean z10, int i13, boolean z11, String str2) {
         Scope[] scopeArr2;
@@ -51,9 +51,9 @@ public final class f extends o6.a {
             cVarArr3 = cVarArr;
         }
         cVarArr4 = cVarArr2 != null ? cVarArr2 : cVarArr4;
-        this.f16683a = i10;
-        this.f16684b = i11;
-        this.f16685c = i12;
+        this.f16719a = i10;
+        this.f16720b = i11;
+        this.f16721c = i12;
         if ("com.google.android.gms".equals(str)) {
             this.d = "com.google.android.gms";
         } else {
@@ -62,7 +62,7 @@ public final class f extends o6.a {
         if (i10 < 2) {
             Account account2 = null;
             if (iBinder != null) {
-                int i14 = a.f16667b;
+                int i14 = a.f16703b;
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IAccountAccessor");
                 if (queryLocalInterface instanceof h) {
                     aVar = (h) queryLocalInterface;
@@ -87,19 +87,19 @@ public final class f extends o6.a {
                     throw th2;
                 }
             }
-            this.f16688n = account2;
+            this.f16724n = account2;
         } else {
-            this.f16686e = iBinder;
-            this.f16688n = account;
+            this.f16722e = iBinder;
+            this.f16724n = account;
         }
-        this.f16687f = scopeArr2;
+        this.f16723f = scopeArr2;
         this.h = bundle2;
-        this.f16689r = cVarArr3;
-        this.f16690s = cVarArr4;
+        this.f16725r = cVarArr3;
+        this.f16726s = cVarArr4;
         this.v = z10;
-        this.f16691w = i13;
-        this.f16692x = z11;
-        this.f16693y = str2;
+        this.f16727w = i13;
+        this.f16728x = z11;
+        this.f16729y = str2;
     }
 
     @Override

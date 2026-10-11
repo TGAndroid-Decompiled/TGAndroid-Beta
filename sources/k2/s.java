@@ -129,7 +129,7 @@ public final class s {
                 this.G.getClass();
                 long currentTimeMillis = System.currentTimeMillis() - e2.d0.d0(C);
                 this.f14546j = -9223372036854775807L;
-                n nVar = ((d0) this.f14539a.f51194b).f14451s;
+                n nVar = ((d0) this.f14539a.f51228b).f14451s;
                 if (nVar != null) {
                     nVar.a(currentTimeMillis);
                 }

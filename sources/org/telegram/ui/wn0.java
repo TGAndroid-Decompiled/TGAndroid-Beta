@@ -7,17 +7,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class wn0 implements TextWatcher {
-    public boolean f43832a;
-    public String f43833b;
-    public boolean f43834c;
+    public boolean f43866a;
+    public String f43867b;
+    public boolean f43868c;
     public int d;
-    public int f43835e;
-    public boolean f43836f;
+    public int f43869e;
+    public boolean f43870f;
     public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
-    public final uo0 f43837n;
+    public final uo0 f43871n;
 
     public wn0(uo0 uo0Var) {
-        this.f43837n = uo0Var;
+        this.f43871n = uo0Var;
     }
 
     public final int a(String str) {
@@ -43,7 +43,7 @@ public final class wn0 implements TextWatcher {
         String str;
         String str2;
         String substring;
-        uo0 uo0Var = this.f43837n;
+        uo0 uo0Var = this.f43871n;
         if (uo0Var.m0) {
             return;
         }
@@ -53,7 +53,7 @@ public final class wn0 implements TextWatcher {
         } else {
             j3 = 0;
         }
-        String str3 = this.f43833b;
+        String str3 = this.f43867b;
         if (str3 == null) {
             str3 = LocaleController.fixNumbers(editable.toString());
         }
@@ -80,7 +80,7 @@ public final class wn0 implements TextWatcher {
         String p5 = a1.g.p(longValue2, "");
         String str5 = "" + (currencyExpDivider - 1);
         if (a2 > 0 && p5.length() > str5.length()) {
-            if (this.f43835e - a2 < p5.length()) {
+            if (this.f43869e - a2 < p5.length()) {
                 substring = p5.substring(0, str5.length());
             } else {
                 substring = p5.substring(p5.length() - str5.length());
@@ -96,36 +96,36 @@ public final class wn0 implements TextWatcher {
                 uo0Var.H0 = Long.valueOf(j10);
             }
         }
-        int selectionStart = uo0Var.f42706f[0].getSelectionStart();
+        int selectionStart = uo0Var.f42740f[0].getSelectionStart();
         uo0Var.m0 = true;
         if (uo0Var.H0.longValue() == 0) {
-            uo0Var.f42706f[0].setText("");
+            uo0Var.f42740f[0].setText("");
         } else {
-            EditTextBoldCursor editTextBoldCursor = uo0Var.f42706f[0];
+            EditTextBoldCursor editTextBoldCursor = uo0Var.f42740f[0];
             str4 = LocaleController.getInstance().formatCurrencyString(uo0Var.H0.longValue(), false, z10, true, uo0Var.C0.invoice.currency);
             editTextBoldCursor.setText(str4);
         }
-        if (j3 < uo0Var.H0.longValue() && j3 != 0 && this.f43832a && selectionStart >= 0) {
-            EditTextBoldCursor editTextBoldCursor2 = uo0Var.f42706f[0];
+        if (j3 < uo0Var.H0.longValue() && j3 != 0 && this.f43866a && selectionStart >= 0) {
+            EditTextBoldCursor editTextBoldCursor2 = uo0Var.f42740f[0];
             editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
-        } else if (this.f43834c && this.d != uo0Var.f42706f[0].length()) {
-            EditTextBoldCursor editTextBoldCursor3 = uo0Var.f42706f[0];
+        } else if (this.f43868c && this.d != uo0Var.f42740f[0].length()) {
+            EditTextBoldCursor editTextBoldCursor3 = uo0Var.f42740f[0];
             editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
-        } else if (!this.f43836f && z10 && a2 >= 0) {
+        } else if (!this.f43870f && z10 && a2 >= 0) {
             int a10 = a(str4);
             if (a10 > 0) {
-                uo0Var.f42706f[0].setSelection(a10 + 1);
+                uo0Var.f42740f[0].setSelection(a10 + 1);
             } else {
-                EditTextBoldCursor editTextBoldCursor4 = uo0Var.f42706f[0];
+                EditTextBoldCursor editTextBoldCursor4 = uo0Var.f42740f[0];
                 editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
             }
         } else {
-            EditTextBoldCursor editTextBoldCursor5 = uo0Var.f42706f[0];
+            EditTextBoldCursor editTextBoldCursor5 = uo0Var.f42740f[0];
             editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
         }
-        this.f43836f = z10;
+        this.f43870f = z10;
         uo0Var.L0();
-        this.f43833b = null;
+        this.f43867b = null;
         uo0Var.m0 = false;
     }
 
@@ -134,22 +134,22 @@ public final class wn0 implements TextWatcher {
         int length;
         boolean z10;
         String str;
-        if (!this.f43837n.m0) {
-            this.f43832a = !TextUtils.isEmpty(charSequence);
-            this.f43833b = null;
+        if (!this.f43871n.m0) {
+            this.f43866a = !TextUtils.isEmpty(charSequence);
+            this.f43867b = null;
             if (charSequence == null) {
                 length = 0;
             } else {
                 length = charSequence.length();
             }
             this.d = length;
-            this.f43835e = i10;
+            this.f43869e = i10;
             if (i11 == 1 && i12 == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f43834c = z10;
+            this.f43868c = z10;
             if (z10) {
                 String fixNumbers = LocaleController.fixNumbers(charSequence);
                 char charAt = fixNumbers.charAt(i10);
@@ -162,7 +162,7 @@ public final class wn0 implements TextWatcher {
                 long longValue = Utilities.parseLong(hf.b.d(str, false)).longValue();
                 if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
                     if (a2 > 0 && i10 > a2 && longValue == 0) {
-                        this.f43833b = fixNumbers.substring(0, a2 - 1);
+                        this.f43867b = fixNumbers.substring(0, a2 - 1);
                         return;
                     }
                     return;
@@ -172,7 +172,7 @@ public final class wn0 implements TextWatcher {
                     if (i13 >= 0) {
                         char charAt2 = fixNumbers.charAt(i13);
                         if (charAt2 >= '0' && charAt2 <= '9') {
-                            this.f43833b = fixNumbers.substring(0, i13) + fixNumbers.substring(i10);
+                            this.f43867b = fixNumbers.substring(0, i13) + fixNumbers.substring(i10);
                             return;
                         }
                         i10 = i13;

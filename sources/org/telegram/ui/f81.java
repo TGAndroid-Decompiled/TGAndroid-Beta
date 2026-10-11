@@ -12,26 +12,26 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.Switch;
 public final class f81 extends FrameLayout {
-    public final ImageView f37600a;
-    public final TextView f37601b;
-    public final TextView f37602c;
+    public final ImageView f37634a;
+    public final TextView f37635b;
+    public final TextView f37636c;
     public final Switch d;
-    public boolean f37603e;
+    public boolean f37637e;
 
     public f81(Activity activity, boolean z10) {
         super(activity);
         int i10;
         int i11;
-        this.f37603e = false;
+        this.f37637e = false;
         ImageView imageView = new ImageView(activity);
-        this.f37600a = imageView;
+        this.f37634a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, w7.x5.a(32.0f, 12.0f, 4.0f, 0.0f, 0.0f, 32, 0));
         LinearLayout linearLayout = new LinearLayout(activity);
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.x5.a(-2.0f, 64.0f, 4.0f, 0.0f, 4.0f, -1, 0));
         TextView textView = new TextView(activity);
-        this.f37601b = textView;
+        this.f37635b = textView;
         textView.setTextSize(2, 16.0f);
         textView.setGravity(3);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
@@ -42,10 +42,10 @@ public final class f81 extends FrameLayout {
         }
         linearLayout.addView(textView, w7.x5.t(-1, -2, 0, 0, 0, i10, 0));
         TextView textView2 = new TextView(activity);
-        this.f37602c = textView2;
+        this.f37636c = textView2;
         textView2.setTextSize(2, 13.0f);
         textView2.setGravity(3);
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21171y6, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21207y6, false));
         if (z10) {
             i11 = 64;
         } else {
@@ -64,8 +64,8 @@ public final class f81 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f37603e) {
-            canvas.drawRect(AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f20908k0);
+        if (this.f37637e) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f20944k0);
         }
     }
 
@@ -79,9 +79,9 @@ public final class f81 extends FrameLayout {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(r02.h);
             StringBuilder sb2 = new StringBuilder();
-            sb2.append((Object) this.f37601b.getText());
+            sb2.append((Object) this.f37635b.getText());
             sb2.append("\n");
-            sb2.append((Object) this.f37602c.getText());
+            sb2.append((Object) this.f37636c.getText());
             sb2.append("\n");
             if (r02.h) {
                 i10 = R.string.NotificationsOn;

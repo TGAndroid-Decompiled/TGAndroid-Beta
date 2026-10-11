@@ -8,55 +8,55 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.ea0;
 import w7.x5;
 public final class x0 extends LinearLayout {
-    public int f47600a;
-    public final TextView f47601b;
-    public final fa0 f47602c;
+    public int f47634a;
+    public final TextView f47635b;
+    public final ea0 f47636c;
     public LinearLayout d;
-    public final l0 f47603e;
-    public final ViewGroup f47604f;
+    public final l0 f47637e;
+    public final ViewGroup f47638f;
     public boolean h;
-    public final y0 f47605n;
+    public final y0 f47639n;
 
     public x0(y0 y0Var, Context context, int i10) {
         super(context);
-        this.f47605n = y0Var;
+        this.f47639n = y0Var;
         setOrientation(1);
         ViewGroup C = y0Var.C(context, i10);
-        this.f47604f = C;
+        this.f47638f = C;
         addView(C);
-        this.f47603e = (l0) C;
+        this.f47637e = (l0) C;
         TextView textView = new TextView(context);
-        this.f47601b = textView;
+        this.f47635b = textView;
         textView.setGravity(1);
-        int i11 = h6.f20894j5;
+        int i11 = h6.f20930j5;
         textView.setTextColor(y0Var.getThemedColor(i11));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         addView(textView, x5.a(-2.0f, 21.0f, 20.0f, 21.0f, 0.0f, -1, 0));
-        fa0 fa0Var = new fa0(context, null);
-        this.f47602c = fa0Var;
-        fa0Var.setGravity(1);
-        fa0Var.setTextSize(1, 15.0f);
-        fa0Var.setTextColor(y0Var.getThemedColor(i11));
+        ea0 ea0Var = new ea0(context, null);
+        this.f47636c = ea0Var;
+        ea0Var.setGravity(1);
+        ea0Var.setTextSize(1, 15.0f);
+        ea0Var.setTextColor(y0Var.getThemedColor(i11));
         if (!y0Var.E) {
-            fa0Var.setLines(2);
+            ea0Var.setLines(2);
         }
-        addView(fa0Var, x5.t(-1, -2, 1, 21, 10, 21, 16));
+        addView(ea0Var, x5.t(-1, -2, 1, 21, 10, 21, 16));
         setImportantForAccessibility(2);
         setClipChildren(false);
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f47604f) {
+        if (view == this.f47638f) {
             boolean z10 = view instanceof b;
             if (z10) {
                 setTranslationY(0.0f);
             } else {
-                setTranslationY(this.f47605n.L);
+                setTranslationY(this.f47639n.L);
             }
             if (z10) {
                 return super.drawChild(canvas, view, j3);
@@ -72,24 +72,24 @@ public final class x0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f47601b;
+        TextView textView = this.f47635b;
         textView.setVisibility(0);
-        ViewGroup viewGroup = this.f47604f;
+        ViewGroup viewGroup = this.f47638f;
         boolean z10 = viewGroup instanceof b;
-        y0 y0Var = this.f47605n;
+        y0 y0Var = this.f47639n;
         if (z10) {
             ((b) viewGroup).setTopOffset(y0Var.L);
         }
-        viewGroup.getLayoutParams().height = y0Var.f47617s;
-        fa0 fa0Var = this.f47602c;
-        fa0Var.setVisibility(0);
+        viewGroup.getLayoutParams().height = y0Var.f47651s;
+        ea0 ea0Var = this.f47636c;
+        ea0Var.setVisibility(0);
         ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);
         if (this.h) {
             viewGroup.getLayoutParams().height = getMeasuredHeight() - AndroidUtilities.dp(16.0f);
             ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
             textView.setVisibility(8);
-            fa0Var.setVisibility(8);
+            ea0Var.setVisibility(8);
             super.onMeasure(i10, i11);
         }
     }

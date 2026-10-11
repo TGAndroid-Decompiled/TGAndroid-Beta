@@ -1,13 +1,13 @@
 package org.telegram.ui.ActionBar;
 public final class a6 implements Runnable {
-    public final int f20441a;
-    public final Object f20442b;
-    public final Object f20443c;
+    public final int f20477a;
+    public final Object f20478b;
+    public final Object f20479c;
 
     public a6(int i10, Object obj, Object obj2) {
-        this.f20441a = i10;
-        this.f20442b = obj;
-        this.f20443c = obj2;
+        this.f20477a = i10;
+        this.f20478b = obj;
+        this.f20479c = obj2;
     }
 
     @Override

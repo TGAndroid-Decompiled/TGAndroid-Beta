@@ -16,18 +16,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.y9;
 public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.d6 f34717a;
-    public final y9 f34718b;
-    public final TextView f34719c;
+    public final org.telegram.ui.ActionBar.d6 f34751a;
+    public final y9 f34752b;
+    public final TextView f34753c;
     public final TextView d;
-    public boolean f34720e;
+    public boolean f34754e;
 
     public c(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f34717a = d6Var;
+        this.f34751a = d6Var;
         setWillNotDraw(false);
         y9 y9Var = new y9(context);
-        this.f34718b = y9Var;
+        this.f34752b = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(8.0f));
         addView(y9Var, w7.x5.a(46.0f, 15.0f, 0.0f, 0.0f, 0.0f, 46, 19));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -35,7 +35,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
         linearLayout.setGravity(16);
         addView(linearLayout, w7.x5.a(-1.0f, 71.0f, 0.0f, 20.0f, 0.0f, -1, 119));
         TextView textView = new TextView(context);
-        this.f34719c = textView;
+        this.f34753c = textView;
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -85,9 +85,9 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
     public final void e() {
         setBackgroundColor(0);
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f34717a;
-        this.f34719c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21189z6, d6Var));
+        org.telegram.ui.ActionBar.d6 d6Var = this.f34751a;
+        this.f34753c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225z6, d6Var));
     }
 
     public int[] getColorKeys() {
@@ -99,7 +99,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f34720e) {
+        if (this.f34754e) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -113,7 +113,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.x5
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f7, height, width - i10, getHeight(), org.telegram.ui.ActionBar.h6.f20908k0);
+            canvas.drawRect(f7, height, width - i10, getHeight(), org.telegram.ui.ActionBar.h6.f20944k0);
         }
     }
 

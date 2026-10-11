@@ -14,24 +14,24 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 public final class b extends ReplacementSpan {
-    public final TextPaint f54559a;
-    public final RectF f54560b;
-    public StaticLayout f54561c;
+    public final TextPaint f54593a;
+    public final RectF f54594b;
+    public StaticLayout f54595c;
     public float d;
-    public float f54562e;
-    public int f54563f;
+    public float f54596e;
+    public int f54597f;
 
     public b(d6 d6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f54559a = textPaint;
-        this.f54560b = new RectF();
+        this.f54593a = textPaint;
+        this.f54594b = new RectF();
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint.setColor(h6.w0(h6.C6, d6Var));
     }
 
     public final void a() {
         Layout.Alignment alignment;
-        if (this.f54561c == null) {
+        if (this.f54595c == null) {
             String string = LocaleController.getString(R.string.ReactionAddReactionsHint);
             int i10 = AndroidUtilities.displaySize.x;
             if (LocaleController.isRTL) {
@@ -39,10 +39,10 @@ public final class b extends ReplacementSpan {
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
-            StaticLayout staticLayout = new StaticLayout(string, this.f54559a, i10, alignment, 1.0f, 0.0f, false);
-            this.f54561c = staticLayout;
+            StaticLayout staticLayout = new StaticLayout(string, this.f54593a, i10, alignment, 1.0f, 0.0f, false);
+            this.f54595c = staticLayout;
             this.d = staticLayout.getLineWidth(0);
-            this.f54562e = this.f54561c.getHeight();
+            this.f54596e = this.f54595c.getHeight();
         }
     }
 
@@ -50,11 +50,11 @@ public final class b extends ReplacementSpan {
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         a();
         Rect clipBounds = canvas.getClipBounds();
-        RectF rectF = this.f54560b;
+        RectF rectF = this.f54594b;
         rectF.set(clipBounds);
-        canvas.saveLayerAlpha(rectF, this.f54563f, 31);
-        canvas.translate(f7 + AndroidUtilities.dp(4.0f), (((i14 - i12) / 2.0f) + i12) - (this.f54562e / 2.0f));
-        this.f54561c.draw(canvas);
+        canvas.saveLayerAlpha(rectF, this.f54597f, 31);
+        canvas.translate(f7 + AndroidUtilities.dp(4.0f), (((i14 - i12) / 2.0f) + i12) - (this.f54596e / 2.0f));
+        this.f54595c.draw(canvas);
         canvas.restore();
     }
 

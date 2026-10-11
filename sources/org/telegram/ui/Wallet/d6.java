@@ -12,7 +12,7 @@ public final class d6 extends sg.f {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.L.f34869x && super.onTouchEvent(motionEvent)) {
+        if (!this.L.f34903x && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

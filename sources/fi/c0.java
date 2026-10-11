@@ -1,8 +1,8 @@
 package fi;
 
 import android.view.View;
-import org.telegram.ui.Components.h91;
-public final class c0 extends h91 {
+import org.telegram.ui.Components.g91;
+public final class c0 extends g91 {
     public final k0 f9951a;
 
     public c0(k0 k0Var) {

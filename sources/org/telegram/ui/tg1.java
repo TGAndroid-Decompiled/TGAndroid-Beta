@@ -5,18 +5,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class tg1 extends org.telegram.ui.Components.rm0 {
-    public final Context f42185c;
+public final class tg1 extends org.telegram.ui.Components.qm0 {
+    public final Context f42219c;
     public final TwoStepVerificationActivity d;
 
     public tg1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
         this.d = twoStepVerificationActivity;
-        this.f42185c = context;
+        this.f42219c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47752f == 0) {
+        if (d1Var.f47786f == 0) {
             return true;
         }
         return false;
@@ -44,8 +44,8 @@ public final class tg1 extends org.telegram.ui.Components.rm0 {
     public final void v(s4.d1 d1Var, int i10) {
         int i11;
         int i12;
-        int i13 = d1Var.f47752f;
-        View view = d1Var.f47748a;
+        int i13 = d1Var.f47786f;
+        View view = d1Var.f47782a;
         TwoStepVerificationActivity twoStepVerificationActivity = this.d;
         if (i13 != 0) {
             if (i13 == 1) {
@@ -86,12 +86,12 @@ public final class tg1 extends org.telegram.ui.Components.rm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View caVar;
-        Context context = this.f42185c;
+        Context context = this.f42219c;
         if (i10 != 0) {
             caVar = new org.telegram.ui.Cells.e9(context);
         } else {
             caVar = new org.telegram.ui.Cells.ca(context);
-            caVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20786d6, false));
+            caVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20822d6, false));
         }
         return new s4.d1(caVar);
     }

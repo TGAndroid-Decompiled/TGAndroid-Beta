@@ -1,26 +1,23 @@
 package ki;
+public final class k0 implements Runnable {
+    public final int f15028a;
+    public final Object f15029b;
+    public final Object f15030c;
 
-import android.content.Context;
-import android.view.TextureView;
-import java.io.File;
-import org.telegram.ui.Components.cw;
-import org.telegram.ui.Components.q60;
-public final class k0 {
-    public final Context f15017a;
-    public final TextureView f15018b;
-    public File f15019c;
-    public m0 d;
-    public r0 f15020e;
-    public n0 f15021f;
-    public o0 f15022g;
-    public int h;
-    public boolean f15023i = true;
-    public m2.t f15024j;
-    public q0 f15025k;
-    public cw f15026l;
+    public k0(int i10, Object obj, Object obj2) {
+        this.f15028a = i10;
+        this.f15029b = obj;
+        this.f15030c = obj2;
+    }
 
-    public k0(Context context, q60 q60Var) {
-        this.f15017a = context;
-        this.f15018b = q60Var;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ki.k0.run():void");
+    }
+
+    public k0(m4.b0 b0Var, m4.r rVar, Runnable runnable) {
+        this.f15028a = 5;
+        this.f15029b = b0Var;
+        this.f15030c = runnable;
     }
 }

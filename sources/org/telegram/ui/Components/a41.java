@@ -1,25 +1,31 @@
 package org.telegram.ui.Components;
-public final class a41 {
-    public static final a41 f24432a;
-    public static final a41 f24433b;
-    public static final a41 f24434c;
-    public static final a41[] d;
 
-    static {
-        ?? r02 = new Enum("TOP", 0);
-        f24432a = r02;
-        ?? r12 = new Enum("LEFT", 1);
-        f24433b = r12;
-        ?? r32 = new Enum("BOTTOM", 2);
-        f24434c = r32;
-        d = new a41[]{r02, r12, r32};
+import android.animation.ValueAnimator;
+public final class a41 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f24494a;
+    public final c41 f24495b;
+
+    public a41(c41 c41Var, int i10) {
+        this.f24494a = i10;
+        this.f24495b = c41Var;
     }
 
-    public static a41 valueOf(String str) {
-        return (a41) Enum.valueOf(a41.class, str);
-    }
-
-    public static a41[] values() {
-        return (a41[]) d.clone();
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f24494a) {
+            case 0:
+                c41 c41Var = this.f24495b;
+                c41Var.getClass();
+                c41Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c41Var.h();
+                c41Var.g();
+                return;
+            default:
+                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                c41 c41Var2 = this.f24495b;
+                c41Var2.K = max;
+                c41Var2.h.invalidate();
+                return;
+        }
     }
 }

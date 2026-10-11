@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 public final class u3 implements View.OnClickListener {
     public final int f9394a = 1;
     public final int f9395b;
@@ -61,11 +61,11 @@ public final class u3 implements View.OnClickListener {
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f53037j;
+                ArrayList arrayList2 = g10.f53071j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f53039l;
+                ArrayList arrayList3 = g10.f53073l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }
@@ -73,19 +73,19 @@ public final class u3 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.e3 e3Var = this.f9396c;
                 ViewGroup containerView = e3Var.getContainerView();
                 d6 d6Var = this.d;
-                q80 F = q80.F(containerView, d6Var, linearLayout);
+                p80 F = p80.F(containerView, d6Var, linearLayout);
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
                     int i13 = i12 + 1;
                     TLObject tLObject = (TLObject) arrayList.get(i12);
                     if (tLObject instanceof TLRPC.User) {
-                        j3 = ((TLRPC.User) tLObject).f20179id;
+                        j3 = ((TLRPC.User) tLObject).f20215id;
                     } else {
                         if (tLObject instanceof TLRPC.Chat) {
                             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                             if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                                j3 = -chat.f20032id;
+                                j3 = -chat.f20068id;
                             }
                         }
                         i12 = i13;
@@ -98,8 +98,8 @@ public final class u3 implements View.OnClickListener {
                     F.g(tLObject, z10, new p3(i11, j3, this.f9398f, this.h, e3Var, d6Var));
                     i12 = i13;
                 }
-                F.f30084t = false;
-                F.f30083s = 0;
+                F.f29780t = false;
+                F.f29779s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();

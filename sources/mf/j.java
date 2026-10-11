@@ -1,12 +1,12 @@
 package mf;
 public final class j {
-    public short f16422a;
+    public short f16458a;
 
     public final void a(byte b10) {
         boolean z10;
         int i10 = 128;
         do {
-            short s10 = this.f16422a;
+            short s10 = this.f16458a;
             boolean z11 = false;
             if ((32768 & s10) == 0) {
                 z10 = true;
@@ -17,9 +17,9 @@ public final class j {
                 z11 = true;
             }
             if (z10 ^ z11) {
-                this.f16422a = (short) (((short) (s10 << 1)) ^ 32773);
+                this.f16458a = (short) (((short) (s10 << 1)) ^ 32773);
             } else {
-                this.f16422a = (short) (s10 << 1);
+                this.f16458a = (short) (s10 << 1);
             }
             i10 >>>= 1;
         } while (i10 != 0);

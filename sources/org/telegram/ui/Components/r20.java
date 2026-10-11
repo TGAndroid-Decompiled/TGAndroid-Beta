@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import android.transition.Transition;
 public final class r20 implements Transition.TransitionListener {
-    public final t20 f30314a;
+    public final t20 f30380a;
 
     public r20(t20 t20Var) {
-        this.f30314a = t20Var;
+        this.f30380a = t20Var;
     }
 
     @Override
     public final void onTransitionCancel(Transition transition) {
-        this.f30314a.E.unlock();
+        this.f30380a.E.unlock();
     }
 
     @Override
     public final void onTransitionEnd(Transition transition) {
-        this.f30314a.E.unlock();
+        this.f30380a.E.unlock();
     }
 
     @Override
     public final void onTransitionStart(Transition transition) {
-        this.f30314a.E.lock();
+        this.f30380a.E.lock();
     }
 
     @Override

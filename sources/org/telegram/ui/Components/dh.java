@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public class dh extends hk0 {
-    public bh f25601r;
-    public ch f25602s;
+public class dh extends gk0 {
+    public bh f25771r;
+    public ch f25772s;
     public final int v;
-    public final ah f25603w;
+    public final ah f25773w;
 
     public dh(Context context) {
         this(context, 32);
     }
 
     public bh getCurrentState() {
-        return this.f25601r;
+        return this.f25771r;
     }
 
     public final void j(org.telegram.ui.Components.bh r12, boolean r13) {
@@ -21,7 +21,7 @@ public class dh extends hk0 {
 
     public dh(Context context, int i10) {
         super(context);
-        this.f25603w = new ah(this, 0);
+        this.f25773w = new ah(this, 0);
         this.v = i10;
     }
 }

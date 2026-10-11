@@ -6,7 +6,7 @@ public final class qw extends pw {
     public final rw K;
 
     public qw(rw rwVar, Context context, int i10) {
-        super(rwVar.f30556s, context, i10);
+        super(rwVar.f30660s, context, i10);
         this.K = rwVar;
     }
 

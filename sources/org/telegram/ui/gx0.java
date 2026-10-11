@@ -15,13 +15,13 @@ public final class gx0 extends rg.q1 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f47502r;
+        TextView textView = this.f47536r;
         if (textView.getVisibility() == 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             hx0 hx0Var = this.N;
-            hx0Var.d.f38799n.f34171n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f47501n.h, hx0Var.d.f38799n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), hx0Var.d.f38799n.f34171n0.f47269f);
+            hx0Var.d.f38833n.f34205n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f47535n.h, hx0Var.d.f38833n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), hx0Var.d.f38833n.f34205n0.f47303f);
         }
         super.dispatchDraw(canvas);
     }

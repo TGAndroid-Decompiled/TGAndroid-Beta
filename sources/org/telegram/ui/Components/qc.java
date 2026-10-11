@@ -9,11 +9,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class qc extends ob {
-    public Runnable f30123a;
-    public Runnable f30124b;
-    public sc f30125c;
+    public Runnable f30224a;
+    public Runnable f30225b;
+    public sc f30226c;
     public final TextView d;
-    public boolean f30126e;
+    public boolean f30227e;
 
     public qc(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
         super(context);
@@ -52,14 +52,14 @@ public final class qc extends ob {
 
     @Override
     public final void a(sc scVar) {
-        this.f30125c = scVar;
+        this.f30226c = scVar;
     }
 
     @Override
     public final void b() {
-        this.f30125c = null;
-        Runnable runnable = this.f30124b;
-        if (runnable != null && !this.f30126e) {
+        this.f30226c = null;
+        Runnable runnable = this.f30225b;
+        if (runnable != null && !this.f30227e) {
             runnable.run();
         }
     }
@@ -72,13 +72,13 @@ public final class qc extends ob {
     }
 
     public final void f() {
-        if (this.f30125c != null) {
-            this.f30126e = true;
-            Runnable runnable = this.f30123a;
+        if (this.f30226c != null) {
+            this.f30227e = true;
+            Runnable runnable = this.f30224a;
             if (runnable != null) {
                 runnable.run();
             }
-            sc scVar = this.f30125c;
+            sc scVar = this.f30226c;
             if (scVar != null) {
                 scVar.b();
             }

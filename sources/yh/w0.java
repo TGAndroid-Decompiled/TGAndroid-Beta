@@ -15,12 +15,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public final class w0 implements Utilities.Callback3 {
-    public final int f53410a;
-    public final NotificationCenter.NotificationCenterDelegate f53411b;
+    public final int f53444a;
+    public final NotificationCenter.NotificationCenterDelegate f53445b;
 
     public w0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f53410a = i10;
-        this.f53411b = notificationCenterDelegate;
+        this.f53444a = i10;
+        this.f53445b = notificationCenterDelegate;
     }
 
     @Override
@@ -29,15 +29,15 @@ public final class w0 implements Utilities.Callback3 {
         int i10;
         ci.t tVar;
         float f7;
-        switch (this.f53410a) {
+        switch (this.f53444a) {
             case 0:
-                ((s3) this.f53411b).q2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((s3) this.f53445b).q2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                s3.w0((s3) this.f53411b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
+                s3.w0((s3) this.f53445b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
                 return;
             default:
-                lc lcVar = (lc) this.f53411b;
+                lc lcVar = (lc) this.f53445b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj3;

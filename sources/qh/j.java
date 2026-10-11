@@ -7,85 +7,85 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.web.t0;
 public final class j implements Utilities.Callback2 {
-    public final int f46777a;
-    public final p f46778b;
+    public final int f46811a;
+    public final p f46812b;
 
     public j(p pVar, int i10) {
-        this.f46777a = i10;
-        this.f46778b = pVar;
+        this.f46811a = i10;
+        this.f46812b = pVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f46777a;
+        int i10 = this.f46811a;
         int i11 = 0;
         boolean z10 = false;
-        p pVar = this.f46778b;
+        p pVar = this.f46812b;
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                e71 e71Var = (e71) obj2;
+                d71 d71Var = (d71) obj2;
                 arrayList.clear();
-                ArrayList arrayList2 = pVar.f46792j;
+                ArrayList arrayList2 = pVar.f46826j;
                 int size = arrayList2.size();
                 while (i11 < size) {
                     Object obj3 = arrayList2.get(i11);
                     i11++;
                     TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) obj3;
                     long peerDialogId = DialogObject.getPeerDialogId(messagePeerVote.peer);
-                    TLObject userOrChat = MessagesController.getInstance(pVar.f46785a).getUserOrChat(peerDialogId);
+                    TLObject userOrChat = MessagesController.getInstance(pVar.f46819a).getUserOrChat(peerDialogId);
                     int i12 = messagePeerVote.date;
                     b3 b3Var = new b3(pVar, peerDialogId, 3);
-                    int i13 = m.f46782a;
-                    r61 J = r61.J(m.class);
+                    int i13 = m.f46816a;
+                    q61 J = q61.J(m.class);
                     J.G = userOrChat;
                     J.B = peerDialogId;
-                    J.f30374z = i12;
+                    J.f30180z = i12;
                     J.D = b3Var;
                     arrayList.add(J);
                 }
                 if (!pVar.h) {
                     if (arrayList2.isEmpty()) {
-                        int i14 = n.f46783a;
-                        arrayList.add(r61.J(n.class));
-                        arrayList.add(r61.J(n.class));
-                        arrayList.add(r61.J(n.class));
-                        arrayList.add(r61.J(n.class));
-                        arrayList.add(r61.J(n.class));
+                        int i14 = n.f46817a;
+                        arrayList.add(q61.J(n.class));
+                        arrayList.add(q61.J(n.class));
+                        arrayList.add(q61.J(n.class));
+                        arrayList.add(q61.J(n.class));
+                        arrayList.add(q61.J(n.class));
                         return;
                     }
-                    int i15 = o.f46784a;
-                    arrayList.add(r61.J(o.class));
+                    int i15 = o.f46818a;
+                    arrayList.add(q61.J(o.class));
                     return;
                 }
                 return;
             default:
                 TLRPC.TL_messages_votesList tL_messages_votesList = (TLRPC.TL_messages_votesList) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i16 = pVar.f46785a;
-                pVar.f46791i = false;
+                int i16 = pVar.f46819a;
+                pVar.f46825i = false;
                 if (tL_messages_votesList != null) {
                     MessagesController.getInstance(i16).putUsers(tL_messages_votesList.users, false);
                     MessagesController.getInstance(i16).putChats(tL_messages_votesList.chats, false);
                     String str = tL_messages_votesList.next_offset;
-                    pVar.f46790g = str;
+                    pVar.f46824g = str;
                     if (str == null) {
                         z10 = true;
                     }
                     pVar.h = z10;
-                    pVar.f46792j.addAll(tL_messages_votesList.votes);
-                    t0 t0Var = pVar.f46788e;
+                    pVar.f46826j.addAll(tL_messages_votesList.votes);
+                    t0 t0Var = pVar.f46822e;
                     if (t0Var != null) {
                         t0Var.run();
                         return;
                     }
                     return;
                 }
-                pVar.f46790g = null;
+                pVar.f46824g = null;
                 pVar.h = true;
                 return;
         }

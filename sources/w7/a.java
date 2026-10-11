@@ -1,9 +1,9 @@
 package w7;
 public final class a implements d {
-    public final int f49979a;
+    public final int f50013a;
 
     public a(int i10) {
-        this.f49979a = i10;
+        this.f50013a = i10;
     }
 
     @Override
@@ -15,8 +15,8 @@ public final class a implements d {
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof d) {
-                if (this.f49979a == ((a) ((d) obj)).f49979a) {
-                    Object obj2 = c.f49998a;
+                if (this.f50013a == ((a) ((d) obj)).f50013a) {
+                    Object obj2 = c.f50032a;
                     if (obj2.equals(obj2)) {
                         return true;
                     }
@@ -31,11 +31,11 @@ public final class a implements d {
 
     @Override
     public final int hashCode() {
-        return (this.f49979a ^ 14552422) + (c.f49998a.hashCode() ^ 2041407134);
+        return (this.f50013a ^ 14552422) + (c.f50032a.hashCode() ^ 2041407134);
     }
 
     @Override
     public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f49979a + "intEncoding=" + c.f49998a + ')';
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f50013a + "intEncoding=" + c.f50032a + ')';
     }
 }

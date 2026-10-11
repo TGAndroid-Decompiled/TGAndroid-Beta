@@ -49,14 +49,14 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.h1;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.b70;
+import org.telegram.ui.Components.a70;
 import org.telegram.ui.Components.c81;
 import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.gi0;
-import org.telegram.ui.Components.nb0;
-import org.telegram.ui.Components.or0;
+import org.telegram.ui.Components.fi0;
+import org.telegram.ui.Components.mb0;
+import org.telegram.ui.Components.nr0;
+import org.telegram.ui.Components.vf0;
 import org.telegram.ui.Components.wf0;
-import org.telegram.ui.Components.xf0;
 import org.telegram.ui.Components.yi;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -75,12 +75,12 @@ import s4.j1;
 import s4.p0;
 import s4.q0;
 import v7.g5;
-public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.google.android.gms.common.api.internal.o, j1, s, s0 {
-    public final int f15333a;
-    public Object f15334b;
+public class f implements x0, n5.b, o0.a, c81, f5, mb0, lg.o, ah.j, t9, v1, com.google.android.gms.common.api.internal.o, j1, s, s0 {
+    public final int f15369a;
+    public Object f15370b;
 
     public f(int i10, boolean z10) {
-        this.f15333a = i10;
+        this.f15369a = i10;
     }
 
     public static float[] q(ArrayList arrayList) {
@@ -295,37 +295,37 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
     }
 
     public void A(String str, String str2) {
-        Integer num = (Integer) n4.m.f16629c.get(str);
+        Integer num = (Integer) n4.m.f16665c.get(str);
         if (num != null && num.intValue() != 1) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a String"));
         }
-        ((Bundle) this.f15334b).putCharSequence(str, str2);
+        ((Bundle) this.f15370b).putCharSequence(str, str2);
     }
 
     public void B(CharSequence charSequence, String str) {
-        Integer num = (Integer) n4.m.f16629c.get(str);
+        Integer num = (Integer) n4.m.f16665c.get(str);
         if (num != null && num.intValue() != 1) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a CharSequence"));
         }
-        ((Bundle) this.f15334b).putCharSequence(str, charSequence);
+        ((Bundle) this.f15370b).putCharSequence(str, charSequence);
     }
 
     @Override
     public void B0(ah.a aVar) {
-        aVar.a(((or0) this.f15334b).getThemedColor(h6.f20786d6));
+        aVar.a(((nr0) this.f15370b).getThemedColor(h6.f20822d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
     public void C(d1 d1Var) {
-        RecyclerView recyclerView = (RecyclerView) this.f15334b;
+        RecyclerView recyclerView = (RecyclerView) this.f15370b;
         p0 p0Var = recyclerView.f3169x;
-        View view = d1Var.f47748a;
+        View view = d1Var.f47782a;
         pf.e eVar = recyclerView.f3140b;
-        la.h hVar = p0Var.f47853a;
-        g0 g0Var = (g0) hVar.f15465b;
+        la.h hVar = p0Var.f47887a;
+        g0 g0Var = (g0) hVar.f15501b;
         int indexOfChild = ((RecyclerView) g0Var.f14469b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((e6.n) hVar.f15466c).F(indexOfChild)) {
+            if (((e6.n) hVar.f15502c).F(indexOfChild)) {
                 hVar.Z(view);
             }
             g0Var.Z0(indexOfChild);
@@ -335,18 +335,18 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void D(boolean z10) {
-        ((xf0) this.f15334b).f32885c.setAspectLock(z10);
+        ((wf0) this.f15370b).f32683c.setAspectLock(z10);
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        ((ChatActivityEnterView) this.f15334b).R0(i10, z10, 0, true, 0L);
+        ((ChatActivityEnterView) this.f15370b).R0(i10, z10, 0, true, 0L);
     }
 
     @Override
     public void K(String str) {
         String trim;
-        c5 c5Var = (c5) this.f15334b;
+        c5 c5Var = (c5) this.f15370b;
         if (str == null) {
             trim = "";
         } else {
@@ -367,20 +367,20 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void R(boolean z10) {
-        xf0 xf0Var = (xf0) this.f15334b;
-        xf0Var.getClass();
-        wf0 wf0Var = xf0Var.f32883a;
-        if (wf0Var != null) {
-            ((ss0) wf0Var).a(z10);
+        wf0 wf0Var = (wf0) this.f15370b;
+        wf0Var.getClass();
+        vf0 vf0Var = wf0Var.f32681a;
+        if (vf0Var != null) {
+            ((ss0) vf0Var).a(z10);
         }
     }
 
     @Override
     public void U() {
-        wf0 wf0Var = ((xf0) this.f15334b).f32883a;
-        if (wf0Var != null) {
-            PhotoViewer photoViewer = ((ss0) wf0Var).f41849a;
-            if (photoViewer.f33915c2 == 1) {
+        vf0 vf0Var = ((wf0) this.f15370b).f32681a;
+        if (vf0Var != null) {
+            PhotoViewer photoViewer = ((ss0) vf0Var).f41883a;
+            if (photoViewer.f33949c2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.q3();
             }
@@ -389,7 +389,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public Cursor X(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15334b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15370b;
         if (contentProviderClient == null) {
             return null;
         }
@@ -413,17 +413,17 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f15333a) {
+        switch (this.f15369a) {
             case 25:
                 s6.f fVar = new s6.f(0, (TaskCompletionSource) obj2);
                 s6.e eVar = (s6.e) ((s6.h) obj).u();
                 Parcel H0 = eVar.H0();
                 k7.a.d(H0, fVar);
-                k7.a.c(H0, (s6.a) this.f15334b);
+                k7.a.c(H0, (s6.a) this.f15370b);
                 eVar.I0(H0, 1);
                 return;
             default:
-                v8.e eVar2 = (v8.e) this.f15334b;
+                v8.e eVar2 = (v8.e) this.f15370b;
                 e8.b bVar = (e8.b) obj;
                 bVar.getClass();
                 e8.a aVar = new e8.a(1, (TaskCompletionSource) obj2);
@@ -457,18 +457,18 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public int c() {
-        return ((p0) this.f15334b).D();
+        return ((p0) this.f15370b).D();
     }
 
     @Override
     public int c0() {
-        p0 p0Var = (p0) this.f15334b;
-        return p0Var.f47863m - p0Var.E();
+        p0 p0Var = (p0) this.f15370b;
+        return p0Var.f47897m - p0Var.E();
     }
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15334b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15370b;
         if (contentProviderClient != null) {
             contentProviderClient.release();
         }
@@ -476,12 +476,12 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public Paint.FontMetricsInt f() {
-        return ((yi) this.f15334b).H0.getEditText().getPaint().getFontMetricsInt();
+        return ((yi) this.f15370b).H0.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public Object mo27get() {
-        return new la.h((Context) ((g0) this.f15334b).f14469b, new ob.a(24), new na.d(24), 4);
+        return new la.h((Context) ((g0) this.f15370b).f14469b, new ob.a(24), new na.d(24), 4);
     }
 
     public void h(int i10, int i11, c3.p pVar) {
@@ -495,11 +495,11 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
         int i18;
         byte[] bArr;
         int i19;
-        u3.d dVar = (u3.d) this.f15334b;
-        u3.e eVar = dVar.f48893b;
-        SparseArray sparseArray = dVar.f48895c;
-        v vVar = dVar.f48904k;
-        v vVar2 = dVar.f48902i;
+        u3.d dVar = (u3.d) this.f15370b;
+        u3.e eVar = dVar.f48927b;
+        SparseArray sparseArray = dVar.f48929c;
+        v vVar = dVar.f48938k;
+        v vVar2 = dVar.f48936i;
         int i20 = 1;
         int i21 = 0;
         if (i10 != 161 && i10 != 163) {
@@ -512,7 +512,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                                     if (i10 == 30322) {
                                         dVar.d(i10);
                                         byte[] bArr2 = new byte[i11];
-                                        dVar.f48916x.f48882x = bArr2;
+                                        dVar.f48950x.f48916x = bArr2;
                                         pVar.readFully(bArr2, 0, i11);
                                         return;
                                     }
@@ -520,30 +520,30 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                                 }
                                 dVar.d(i10);
                                 byte[] bArr3 = new byte[i11];
-                                dVar.f48916x.f48871l = bArr3;
+                                dVar.f48950x.f48905l = bArr3;
                                 pVar.readFully(bArr3, 0, i11);
                                 return;
                             }
                             Arrays.fill(vVar.f8583a, (byte) 0);
                             pVar.readFully(vVar.f8583a, 4 - i11, i11);
                             vVar.J(0);
-                            dVar.f48918z = (int) vVar.z();
+                            dVar.f48952z = (int) vVar.z();
                             return;
                         }
                         byte[] bArr4 = new byte[i11];
                         pVar.readFully(bArr4, 0, i11);
                         dVar.d(i10);
-                        dVar.f48916x.f48870k = new c3.g0(1, 0, 0, bArr4);
+                        dVar.f48950x.f48904k = new c3.g0(1, 0, 0, bArr4);
                         return;
                     }
                     dVar.d(i10);
                     byte[] bArr5 = new byte[i11];
-                    dVar.f48916x.f48869j = bArr5;
+                    dVar.f48950x.f48903j = bArr5;
                     pVar.readFully(bArr5, 0, i11);
                     return;
                 }
                 dVar.d(i10);
-                u3.c cVar = dVar.f48916x;
+                u3.c cVar = dVar.f48950x;
                 int i22 = cVar.h;
                 if (i22 != 1685485123 && i22 != 1685480259) {
                     pVar.r(i11);
@@ -556,8 +556,8 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
             } else if (dVar.J == 2) {
                 u3.c cVar2 = (u3.c) sparseArray.get(dVar.P);
                 int i23 = dVar.S;
-                v vVar3 = dVar.f48909p;
-                if (i23 == 4 && "V_VP9".equals(cVar2.f48864c)) {
+                v vVar3 = dVar.f48943p;
+                if (i23 == 4 && "V_VP9".equals(cVar2.f48898c)) {
                     vVar3.G(i11);
                     pVar.readFully(vVar3.f8583a, 0, i11);
                     return;
@@ -570,7 +570,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
         }
         if (dVar.J == 0) {
             dVar.P = (int) eVar.b(pVar, false, true, 8);
-            dVar.Q = eVar.f48921c;
+            dVar.Q = eVar.f48955c;
             dVar.L = -9223372036854775807L;
             dVar.J = 1;
             vVar2.G(0);
@@ -712,7 +712,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
             i13 = 0;
             int i41 = vVar2.f8583a[i12] & 255;
             dVar.K = dVar.l(i41 | (bArr[i13] << 8)) + dVar.E;
-            if (cVar3.f48865e != 2 && (i10 != 163 || (vVar2.f8583a[2] & 128) != 128)) {
+            if (cVar3.f48899e != 2 && (i10 != 163 || (vVar2.f8583a[2] & 128) != 128)) {
                 i19 = i13;
             } else {
                 i19 = i12;
@@ -727,7 +727,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
             while (true) {
                 int i42 = dVar.M;
                 if (i42 < dVar.N) {
-                    dVar.e(cVar3, ((dVar.M * cVar3.f48866f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i42], false), 0);
+                    dVar.e(cVar3, ((dVar.M * cVar3.f48900f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i42], false), 0);
                     dVar.M++;
                 } else {
                     dVar.J = 0;
@@ -751,41 +751,41 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void invalidate() {
-        ((u1) ((h1) this.f15334b).f22182b).invalidate();
+        ((u1) ((h1) this.f15370b).f22218b).invalidate();
     }
 
     public l5.j j() {
-        Context context = (Context) this.f15334b;
+        Context context = (Context) this.f15370b;
         if (context != null) {
             ?? obj = new Object();
-            obj.f15417a = n5.a.a(l5.m.f15424a);
+            obj.f15453a = n5.a.a(l5.m.f15460a);
             g0 g0Var = new g0(context, 7);
-            obj.f15418b = g0Var;
-            obj.f15419c = n5.a.a(new x(27, g0Var, new f(g0Var, 3)));
-            g0 g0Var2 = obj.f15418b;
+            obj.f15454b = g0Var;
+            obj.f15455c = n5.a.a(new x(27, g0Var, new f(g0Var, 3)));
+            g0 g0Var2 = obj.f15454b;
             obj.d = new t(g0Var2, 16);
             gd.a a2 = n5.a.a(new z0(16, obj.d, n5.a.a(new f3(g0Var2, 20))));
-            obj.f15420e = a2;
+            obj.f15456e = a2;
             qb.b bVar = new qb.b(19);
-            g0 g0Var3 = obj.f15418b;
+            g0 g0Var3 = obj.f15454b;
             la.h hVar = new la.h(g0Var3, a2, bVar, 23);
-            gd.a aVar = obj.f15417a;
-            gd.a aVar2 = obj.f15419c;
+            gd.a aVar = obj.f15453a;
+            gd.a aVar2 = obj.f15455c;
             u5 u5Var = new u5(aVar, aVar2, hVar, a2, a2);
             ?? obj2 = new Object();
-            obj2.f15820a = g0Var3;
-            obj2.f15821b = aVar2;
-            obj2.f15822c = a2;
+            obj2.f15856a = g0Var3;
+            obj2.f15857b = aVar2;
+            obj2.f15858c = a2;
             obj2.d = hVar;
-            obj2.f15823e = aVar;
-            obj2.f15824f = a2;
+            obj2.f15859e = aVar;
+            obj2.f15860f = a2;
             obj2.h = a2;
             ?? obj3 = new Object();
-            obj3.f45938a = aVar;
-            obj3.f45939b = a2;
-            obj3.f45940c = hVar;
+            obj3.f45972a = aVar;
+            obj3.f45973b = a2;
+            obj3.f45974c = hVar;
             obj3.d = a2;
-            obj.f15421f = n5.a.a(new aa.a(u5Var, obj2, obj3, false, 29));
+            obj.f15457f = n5.a.a(new aa.a(u5Var, obj2, obj3, false, 29));
             return obj;
         }
         throw new IllegalStateException(Context.class.getCanonicalName() + " must be set");
@@ -793,7 +793,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void k(int i10, int i11, CharSequence charSequence, boolean z10) {
-        yi yiVar = (yi) this.f15334b;
+        yi yiVar = (yi) this.f15370b;
         if (yiVar.o1() == null) {
             return;
         }
@@ -812,18 +812,18 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void l(Canvas canvas) {
-        or0 or0Var = (or0) this.f15334b;
-        canvas.drawColor(or0Var.getThemedColor(h6.f20786d6));
+        nr0 nr0Var = (nr0) this.f15370b;
+        canvas.drawColor(nr0Var.getThemedColor(h6.f20822d6));
         if (SharedConfig.chatBlurEnabled()) {
-            or0Var.O0.b(canvas, -3);
+            nr0Var.O0.b(canvas, -3);
         }
     }
 
     @Override
     public androidx.lifecycle.p0 m(Class cls, v1.b bVar) {
         m0 m0Var = null;
-        for (v1.c cVar : (v1.c[]) this.f15334b) {
-            if (cVar.f49117a.equals(cls)) {
+        for (v1.c cVar : (v1.c[]) this.f15370b) {
+            if (cVar.f49151a.equals(cls)) {
                 m0Var = new m0();
             }
         }
@@ -843,24 +843,24 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void q0(float f7) {
-        w0 w0Var = (w0) this.f15334b;
-        u0.e(w0Var.f46673a).k("-1", f7);
-        w0Var.f46676e.setBrushSize(f7);
+        w0 w0Var = (w0) this.f15370b;
+        u0.e(w0Var.f46707a).k("-1", f7);
+        w0Var.f46710e.setBrushSize(f7);
     }
 
     public void r(int i10, long j3) {
-        u3.d dVar = (u3.d) this.f15334b;
+        u3.d dVar = (u3.d) this.f15370b;
         if (i10 != 20529) {
             if (i10 != 20530) {
                 boolean z10 = false;
                 switch (i10) {
                     case 131:
                         dVar.d(i10);
-                        dVar.f48916x.f48865e = (int) j3;
+                        dVar.f48950x.f48899e = (int) j3;
                         return;
                     case 136:
                         dVar.d(i10);
-                        u3.c cVar = dVar.f48916x;
+                        u3.c cVar = dVar.f48950x;
                         if (j3 == 1) {
                             z10 = true;
                         }
@@ -871,11 +871,11 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                         return;
                     case 159:
                         dVar.d(i10);
-                        dVar.f48916x.Q = (int) j3;
+                        dVar.f48950x.Q = (int) j3;
                         return;
                     case 176:
                         dVar.d(i10);
-                        dVar.f48916x.f48873n = (int) j3;
+                        dVar.f48950x.f48907n = (int) j3;
                         return;
                     case 179:
                         dVar.b(i10);
@@ -883,11 +883,11 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                         return;
                     case 186:
                         dVar.d(i10);
-                        dVar.f48916x.f48874o = (int) j3;
+                        dVar.f48950x.f48908o = (int) j3;
                         return;
                     case 215:
                         dVar.d(i10);
-                        dVar.f48916x.d = (int) j3;
+                        dVar.f48950x.d = (int) j3;
                         return;
                     case 231:
                         dVar.E = dVar.l(j3);
@@ -908,7 +908,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                         return;
                     case 16871:
                         dVar.d(i10);
-                        dVar.f48916x.h = (int) j3;
+                        dVar.f48950x.h = (int) j3;
                         return;
                     case 16980:
                         if (j3 != 3) {
@@ -936,7 +936,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                         }
                         return;
                     case 21420:
-                        dVar.A = j3 + dVar.f48912s;
+                        dVar.A = j3 + dVar.f48946s;
                         return;
                     case 21432:
                         int i11 = (int) j3;
@@ -945,34 +945,34 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                             if (i11 != 1) {
                                 if (i11 != 3) {
                                     if (i11 == 15) {
-                                        dVar.f48916x.f48883y = 3;
+                                        dVar.f48950x.f48917y = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f48916x.f48883y = 1;
+                                dVar.f48950x.f48917y = 1;
                                 return;
                             }
-                            dVar.f48916x.f48883y = 2;
+                            dVar.f48950x.f48917y = 2;
                             return;
                         }
-                        dVar.f48916x.f48883y = 0;
+                        dVar.f48950x.f48917y = 0;
                         return;
                     case 21680:
                         dVar.d(i10);
-                        dVar.f48916x.f48876q = (int) j3;
+                        dVar.f48950x.f48910q = (int) j3;
                         return;
                     case 21682:
                         dVar.d(i10);
-                        dVar.f48916x.f48878s = (int) j3;
+                        dVar.f48950x.f48912s = (int) j3;
                         return;
                     case 21690:
                         dVar.d(i10);
-                        dVar.f48916x.f48877r = (int) j3;
+                        dVar.f48950x.f48911r = (int) j3;
                         return;
                     case 21930:
                         dVar.d(i10);
-                        u3.c cVar2 = dVar.f48916x;
+                        u3.c cVar2 = dVar.f48950x;
                         if (j3 == 1) {
                             z10 = true;
                         }
@@ -980,25 +980,25 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                         return;
                     case 21938:
                         dVar.d(i10);
-                        u3.c cVar3 = dVar.f48916x;
-                        cVar3.f48884z = true;
-                        cVar3.f48875p = (int) j3;
+                        u3.c cVar3 = dVar.f48950x;
+                        cVar3.f48918z = true;
+                        cVar3.f48909p = (int) j3;
                         return;
                     case 21998:
                         dVar.d(i10);
-                        dVar.f48916x.f48867g = (int) j3;
+                        dVar.f48950x.f48901g = (int) j3;
                         return;
                     case 22186:
                         dVar.d(i10);
-                        dVar.f48916x.T = j3;
+                        dVar.f48950x.T = j3;
                         return;
                     case 22203:
                         dVar.d(i10);
-                        dVar.f48916x.U = j3;
+                        dVar.f48950x.U = j3;
                         return;
                     case 25188:
                         dVar.d(i10);
-                        dVar.f48916x.R = (int) j3;
+                        dVar.f48950x.R = (int) j3;
                         return;
                     case 30114:
                         dVar.U = j3;
@@ -1010,25 +1010,25 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                             if (i12 != 1) {
                                 if (i12 != 2) {
                                     if (i12 == 3) {
-                                        dVar.f48916x.f48879t = 3;
+                                        dVar.f48950x.f48913t = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f48916x.f48879t = 2;
+                                dVar.f48950x.f48913t = 2;
                                 return;
                             }
-                            dVar.f48916x.f48879t = 1;
+                            dVar.f48950x.f48913t = 1;
                             return;
                         }
-                        dVar.f48916x.f48879t = 0;
+                        dVar.f48950x.f48913t = 0;
                         return;
                     case 2352003:
                         dVar.d(i10);
-                        dVar.f48916x.f48866f = (int) j3;
+                        dVar.f48950x.f48900f = (int) j3;
                         return;
                     case 2807729:
-                        dVar.f48913t = j3;
+                        dVar.f48947t = j3;
                         return;
                     default:
                         switch (i10) {
@@ -1037,37 +1037,37 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                                 int i13 = (int) j3;
                                 if (i13 != 1) {
                                     if (i13 == 2) {
-                                        dVar.f48916x.C = 1;
+                                        dVar.f48950x.C = 1;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f48916x.C = 2;
+                                dVar.f48950x.C = 2;
                                 return;
                             case 21946:
                                 dVar.d(i10);
                                 int g10 = b2.j.g((int) j3);
                                 if (g10 != -1) {
-                                    dVar.f48916x.B = g10;
+                                    dVar.f48950x.B = g10;
                                     return;
                                 }
                                 return;
                             case 21947:
                                 dVar.d(i10);
-                                dVar.f48916x.f48884z = true;
+                                dVar.f48950x.f48918z = true;
                                 int f7 = b2.j.f((int) j3);
                                 if (f7 != -1) {
-                                    dVar.f48916x.A = f7;
+                                    dVar.f48950x.A = f7;
                                     return;
                                 }
                                 return;
                             case 21948:
                                 dVar.d(i10);
-                                dVar.f48916x.D = (int) j3;
+                                dVar.f48950x.D = (int) j3;
                                 return;
                             case 21949:
                                 dVar.d(i10);
-                                dVar.f48916x.E = (int) j3;
+                                dVar.f48950x.E = (int) j3;
                                 return;
                             default:
                                 return;
@@ -1084,9 +1084,9 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void t() {
-        wf0 wf0Var = ((xf0) this.f15334b).f32883a;
-        if (wf0Var != null) {
-            ((ss0) wf0Var).f41849a.f33932e0.invalidate();
+        vf0 vf0Var = ((wf0) this.f15370b).f32681a;
+        if (vf0Var != null) {
+            ((ss0) vf0Var).f41883a.f33966e0.invalidate();
         }
     }
 
@@ -1096,7 +1096,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public View u0(int i10) {
-        return ((p0) this.f15334b).q(i10);
+        return ((p0) this.f15370b).q(i10);
     }
 
     public void v(d1 d1Var, b2.q0 q0Var, b2.q0 q0Var2) {
@@ -1105,7 +1105,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
         boolean z10;
         d1 T;
         int i12;
-        RecyclerView recyclerView = (RecyclerView) this.f15334b;
+        RecyclerView recyclerView = (RecyclerView) this.f15370b;
         recyclerView.f3140b.k(d1Var);
         recyclerView.h(d1Var);
         d1Var.q(false);
@@ -1113,7 +1113,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
         g1Var.getClass();
         int i13 = q0Var.f3533a;
         int i14 = q0Var.f3534b;
-        View view = d1Var.f47748a;
+        View view = d1Var.f47782a;
         if (q0Var2 == null) {
             i10 = view.getLeft();
         } else {
@@ -1140,7 +1140,7 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                     }
                 }
             }
-            d1Var.f47754i = (d1Var.h - i18) + (i18 * 1000);
+            d1Var.f47788i = (d1Var.h - i18) + (i18 * 1000);
             g1Var.s(d1Var, q0Var);
             z10 = true;
         }
@@ -1150,11 +1150,11 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
     }
 
     public void w(String str, Bitmap bitmap) {
-        Integer num = (Integer) n4.m.f16629c.get(str);
+        Integer num = (Integer) n4.m.f16665c.get(str);
         if (num != null && num.intValue() != 2) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a Bitmap"));
         }
-        ((Bundle) this.f15334b).putParcelable(str, bitmap);
+        ((Bundle) this.f15370b).putParcelable(str, bitmap);
     }
 
     @Override
@@ -1164,27 +1164,27 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
 
     @Override
     public void x(Object obj) {
-        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f15334b);
+        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f15370b);
     }
 
     public void y(long j3, String str) {
-        Integer num = (Integer) n4.m.f16629c.get(str);
+        Integer num = (Integer) n4.m.f16665c.get(str);
         if (num != null && num.intValue() != 0) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a long"));
         }
-        ((Bundle) this.f15334b).putLong(str, j3);
+        ((Bundle) this.f15370b).putLong(str, j3);
     }
 
     public void z(String str, n4.g0 g0Var) {
         Rating rating;
-        float f7 = g0Var.f16614b;
-        int i10 = g0Var.f16613a;
-        Integer num = (Integer) n4.m.f16629c.get(str);
+        float f7 = g0Var.f16650b;
+        int i10 = g0Var.f16649a;
+        Integer num = (Integer) n4.m.f16665c.get(str);
         if (num != null && num.intValue() != 3) {
             throw new IllegalArgumentException(a1.g.q("The ", str, " key cannot be used to put a Rating"));
         }
-        Bundle bundle = (Bundle) this.f15334b;
-        if (g0Var.f16615c == null) {
+        Bundle bundle = (Bundle) this.f15370b;
+        if (g0Var.f16651c == null) {
             if (g0Var.b()) {
                 boolean z10 = true;
                 switch (i10) {
@@ -1192,21 +1192,21 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                         if (i10 != 1 || f7 != 1.0f) {
                             z10 = false;
                         }
-                        g0Var.f16615c = Rating.newHeartRating(z10);
+                        g0Var.f16651c = Rating.newHeartRating(z10);
                         break;
                     case 2:
                         if (i10 != 2 || f7 != 1.0f) {
                             z10 = false;
                         }
-                        g0Var.f16615c = Rating.newThumbRating(z10);
+                        g0Var.f16651c = Rating.newThumbRating(z10);
                         break;
                     case 3:
                     case 4:
                     case 5:
-                        g0Var.f16615c = Rating.newStarRating(i10, g0Var.a());
+                        g0Var.f16651c = Rating.newStarRating(i10, g0Var.a());
                         break;
                     case 6:
-                        g0Var.f16615c = Rating.newPercentageRating((i10 == 6 && g0Var.b()) ? -1.0f : -1.0f);
+                        g0Var.f16651c = Rating.newPercentageRating((i10 == 6 && g0Var.b()) ? -1.0f : -1.0f);
                         break;
                     default:
                         rating = null;
@@ -1214,9 +1214,9 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
                 }
                 bundle.putParcelable(str, rating);
             }
-            g0Var.f16615c = Rating.newUnratedRating(i10);
+            g0Var.f16651c = Rating.newUnratedRating(i10);
         }
-        rating = g0Var.f16615c;
+        rating = g0Var.f16651c;
         bundle.putParcelable(str, rating);
     }
 
@@ -1226,73 +1226,73 @@ public class f implements x0, n5.b, o0.a, c81, f5, nb0, lg.o, ah.j, t9, v1, com.
     }
 
     public f(Object obj, int i10) {
-        this.f15333a = i10;
-        this.f15334b = obj;
+        this.f15369a = i10;
+        this.f15370b = obj;
     }
 
     public f(s6.g gVar, s6.a aVar) {
-        this.f15333a = 25;
-        this.f15334b = aVar;
+        this.f15369a = 25;
+        this.f15370b = aVar;
     }
 
     public f(int i10, int i11, int[] iArr) {
-        this.f15333a = 9;
-        b70[] b70VarArr = new b70[(iArr.length / 2) + 1];
-        this.f15334b = b70VarArr;
-        b70 b70Var = new b70(i10, i11);
+        this.f15369a = 9;
+        a70[] a70VarArr = new a70[(iArr.length / 2) + 1];
+        this.f15370b = a70VarArr;
+        a70 a70Var = new a70(i10, i11);
         int i12 = 0;
-        b70VarArr[0] = b70Var;
+        a70VarArr[0] = a70Var;
         while (i12 < iArr.length / 2) {
             int i13 = i12 + 1;
             int i14 = i12 * 2;
-            ((b70[]) this.f15334b)[i13] = new b70(iArr[i14], iArr[i14 + 1]);
+            ((a70[]) this.f15370b)[i13] = new a70(iArr[i14], iArr[i14 + 1]);
             i12 = i13;
         }
     }
 
     public f(v1.c[] initializers) {
-        this.f15333a = 28;
+        this.f15369a = 28;
         kotlin.jvm.internal.i.e(initializers, "initializers");
-        this.f15334b = initializers;
+        this.f15370b = initializers;
     }
 
     @Override
     public float get() {
-        w0 w0Var = (w0) this.f15334b;
-        int i10 = w0Var.f46673a;
-        pg.m currentBrush = w0Var.f46676e.getCurrentBrush();
+        w0 w0Var = (w0) this.f15370b;
+        int i10 = w0Var.f46707a;
+        pg.m currentBrush = w0Var.f46710e.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f45840i;
+            return u0.e(i10).f45874i;
         }
         return u0.e(i10).f("-1", currentBrush.d());
     }
 
     public f(TextView textView) {
-        this.f15333a = 18;
-        this.f15334b = new q1.g(textView);
+        this.f15369a = 18;
+        this.f15370b = new q1.g(textView);
     }
 
     public f(Context context, Uri uri) {
-        this.f15333a = 6;
-        this.f15334b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+        this.f15369a = 6;
+        this.f15370b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
     public f(int i10) {
-        this.f15333a = i10;
+        this.f15369a = i10;
         switch (i10) {
             case 7:
-                this.f15334b = new LinkedHashMap(5, 1.0f, false);
+                this.f15370b = new LinkedHashMap(5, 1.0f, false);
                 return;
             case 22:
                 if (Build.VERSION.SDK_INT >= 26) {
-                    this.f15334b = new gi0(this);
+                    this.f15370b = new fi0(this);
                     return;
                 } else {
-                    this.f15334b = new gi0(this);
+                    this.f15370b = new fi0(this);
                     return;
                 }
             default:
-                this.f15334b = new Bundle();
+                this.f15370b = new Bundle();
                 return;
         }
     }

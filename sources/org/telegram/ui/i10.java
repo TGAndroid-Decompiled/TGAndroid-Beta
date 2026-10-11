@@ -7,15 +7,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class i10 extends tu0 {
-    public final v10 f38553a;
+    public final v10 f38587a;
 
     public i10(v10 v10Var) {
-        this.f38553a = v10Var;
+        this.f38587a = v10Var;
     }
 
     @Override
     public final CharSequence C(int i10) {
-        return LocaleController.formatDateAudio(((MessageObject) this.f38553a.f42837f.get(i10)).messageOwner.date, false);
+        return LocaleController.formatDateAudio(((MessageObject) this.f38587a.f42871f.get(i10)).messageOwner.date, false);
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class i10 extends tu0 {
         MessageObject messageObject2;
         org.telegram.ui.Components.y9 y9Var;
         if (messageObject != null) {
-            ai.w0 w0Var = this.f38553a.f42830b;
+            ai.w0 w0Var = this.f38587a.f42864b;
             int childCount = w0Var.getChildCount();
             for (int i12 = 0; i12 < childCount; i12++) {
                 View childAt = w0Var.getChildAt(i12);
@@ -35,19 +35,19 @@ public final class i10 extends tu0 {
                     org.telegram.ui.Cells.u7 u7Var = (org.telegram.ui.Cells.u7) childAt;
                     photoImage = null;
                     for (int i13 = 0; i13 < 6; i13++) {
-                        if (i13 >= u7Var.f23505e) {
+                        if (i13 >= u7Var.f23541e) {
                             messageObject2 = null;
                         } else {
-                            messageObject2 = u7Var.f23503b[i13];
+                            messageObject2 = u7Var.f23539b[i13];
                         }
                         if (messageObject2 == null) {
                             break;
                         }
                         if (messageObject2.getId() == messageObject.getId()) {
-                            if (i13 >= u7Var.f23505e) {
+                            if (i13 >= u7Var.f23541e) {
                                 y9Var = null;
                             } else {
-                                y9Var = u7Var.f23502a[i13].f22679a;
+                                y9Var = u7Var.f23538a[i13].f22715a;
                             }
                             ImageReceiver imageReceiver = y9Var.getImageReceiver();
                             y9Var.getLocationInWindow(iArr);
@@ -76,29 +76,29 @@ public final class i10 extends tu0 {
                 }
                 if (photoImage != null) {
                     dv0 dv0Var = new dv0();
-                    dv0Var.f37114b = iArr[0];
-                    dv0Var.f37115c = iArr[1];
+                    dv0Var.f37148b = iArr[0];
+                    dv0Var.f37149c = iArr[1];
                     dv0Var.d = w0Var;
                     w0Var.getLocationInWindow(iArr);
-                    dv0Var.f37124n = -iArr[1];
-                    dv0Var.f37113a = photoImage;
-                    dv0Var.f37125o = false;
+                    dv0Var.f37158n = -iArr[1];
+                    dv0Var.f37147a = photoImage;
+                    dv0Var.f37159o = false;
                     dv0Var.h = photoImage.getRoundRadius(true);
-                    dv0Var.f37116e = dv0Var.f37113a.getBitmapSafe();
+                    dv0Var.f37150e = dv0Var.f37147a.getBitmapSafe();
                     dv0Var.d.getLocationInWindow(iArr);
-                    dv0Var.f37120j = 0;
+                    dv0Var.f37154j = 0;
                     if (PhotoViewer.N1(messageObject) && (pinnedHeader = w0Var.getPinnedHeader()) != null) {
                         if (childAt instanceof org.telegram.ui.Cells.k7) {
                             i11 = AndroidUtilities.dp(8.0f);
                         } else {
                             i11 = 0;
                         }
-                        int i14 = i11 - dv0Var.f37115c;
+                        int i14 = i11 - dv0Var.f37149c;
                         if (i14 > childAt.getHeight()) {
                             w0Var.scrollBy(0, -(pinnedHeader.getHeight() + i14));
                             return dv0Var;
                         }
-                        int height = dv0Var.f37115c - w0Var.getHeight();
+                        int height = dv0Var.f37149c - w0Var.getHeight();
                         if (childAt instanceof org.telegram.ui.Cells.k7) {
                             height -= AndroidUtilities.dp(8.0f);
                         }
@@ -115,9 +115,9 @@ public final class i10 extends tu0 {
 
     @Override
     public final boolean Y() {
-        v10 v10Var = this.f38553a;
+        v10 v10Var = this.f38587a;
         if (!v10Var.N) {
-            v10Var.h(v10Var.E, v10Var.F, v10Var.H, v10Var.G, v10Var.f42855y, v10Var.J, v10Var.f42853w, false);
+            v10Var.h(v10Var.E, v10Var.F, v10Var.H, v10Var.G, v10Var.f42889y, v10Var.J, v10Var.f42887w, false);
             return true;
         }
         return true;
@@ -125,11 +125,11 @@ public final class i10 extends tu0 {
 
     @Override
     public final CharSequence b0(int i10) {
-        return v10.d((MessageObject) this.f38553a.f42837f.get(i10), true, 0, null);
+        return v10.d((MessageObject) this.f38587a.f42871f.get(i10), true, 0, null);
     }
 
     @Override
     public final int y() {
-        return this.f38553a.O;
+        return this.f38587a.O;
     }
 }

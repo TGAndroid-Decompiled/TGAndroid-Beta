@@ -1,11 +1,11 @@
 package li;
 public final class c {
-    public final String f15608a;
-    public final String f15609b;
+    public final String f15644a;
+    public final String f15645b;
 
     public c(String str, String str2) {
-        this.f15608a = str;
-        this.f15609b = str2;
+        this.f15644a = str;
+        this.f15645b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -13,13 +13,13 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (!this.f15608a.equals(cVar.f15608a) || !this.f15609b.equals(cVar.f15609b)) {
+        if (!this.f15644a.equals(cVar.f15644a) || !this.f15645b.equals(cVar.f15645b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return this.f15609b.hashCode() + (this.f15608a.hashCode() * 31);
+        return this.f15645b.hashCode() + (this.f15644a.hashCode() * 31);
     }
 }

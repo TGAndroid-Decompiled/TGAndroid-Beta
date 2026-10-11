@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class cd1 extends AnimatorListenerAdapter {
-    public final wd1 f36671a;
+    public final wd1 f36705a;
 
     public cd1(wd1 wd1Var) {
-        this.f36671a = wd1Var;
+        this.f36705a = wd1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        wd1 wd1Var = this.f36671a;
+        wd1 wd1Var = this.f36705a;
         if (wd1Var.W0 == null) {
             wd1Var.J0[0].setVisibility(4);
         }

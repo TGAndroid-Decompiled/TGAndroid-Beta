@@ -22,7 +22,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.n11;
+import org.telegram.ui.Components.m11;
 public final class t7 extends View {
     public s7 E;
     public View F;
@@ -40,8 +40,8 @@ public final class t7 extends View {
     public final RectF f6013f;
     public final ImageReceiver h;
     public boolean f6014n;
-    public n11 f6015r;
-    public n11 f6016s;
+    public m11 f6015r;
+    public m11 f6016s;
     public final Path v;
     public final Paint f6017w;
     public final org.telegram.ui.Components.bd f6018x;
@@ -67,7 +67,7 @@ public final class t7 extends View {
         if (s7Var == null) {
             return;
         }
-        this.f6015r = new n11(s7Var.b(), 16.0f, AndroidUtilities.bold());
+        this.f6015r = new m11(s7Var.b(), 16.0f, AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.E.a());
         if (spannableStringBuilder.toString().contains(">")) {
             spannableStringBuilder.clear();
@@ -79,7 +79,7 @@ public final class t7 extends View {
             erVar.setScale(1.25f, 1.25f);
             spannableStringBuilder.setSpan(erVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         }
-        this.f6016s = new n11(spannableStringBuilder, 14.0f, null);
+        this.f6016s = new m11(spannableStringBuilder, 14.0f, null);
         this.E.d(this.h);
         this.f6014n = true;
     }
@@ -95,10 +95,10 @@ public final class t7 extends View {
         int[] iArr;
         int[] iArr2;
         float e7 = this.d.e(this.f6019y);
-        n11 n11Var = this.f6015r;
-        if (n11Var != null && this.f6016s != null && e7 > 0.0f) {
-            n11Var.f28913p = getWidth() * 0.7f;
-            this.f6016s.f28913p = getWidth() * 0.7f;
+        m11 m11Var = this.f6015r;
+        if (m11Var != null && this.f6016s != null && e7 > 0.0f) {
+            m11Var.f28689p = getWidth() * 0.7f;
+            this.f6016s.f28689p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -110,7 +110,7 @@ public final class t7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f6015r.f28902c, this.f6016s.f28902c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f6015r.f28678c, this.f6016s.f28678c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f6014n) {
                 f10 = dp3;
             } else {
@@ -164,20 +164,20 @@ public final class t7 extends View {
                 imageReceiver.draw(canvas);
             }
             float centerY = rectF.centerY() - ((this.f6016s.j() + (this.f6015r.j() + dp4)) / f12);
-            n11 n11Var2 = this.f6015r;
+            m11 m11Var2 = this.f6015r;
             float f16 = rectF.left;
             if (this.f6014n) {
                 f13 = dp5 + dp3 + dp5;
             } else {
                 f13 = 0.0f;
             }
-            n11Var2.c(f16 + f13 + f11, (n11Var2.j() / f12) + centerY, e7, -1, canvas);
-            n11 n11Var3 = this.f6016s;
+            m11Var2.c(f16 + f13 + f11, (m11Var2.j() / f12) + centerY, e7, -1, canvas);
+            m11 m11Var3 = this.f6016s;
             float f17 = rectF.left;
             if (this.f6014n) {
                 f14 = dp3 + dp5 + dp5;
             }
-            n11Var3.c(f17 + f14 + f11, this.f6015r.j() + centerY + dp4 + (this.f6016s.j() / f12), e7, org.telegram.ui.ActionBar.h6.v(-16777216, -1610612737), canvas);
+            m11Var3.c(f17 + f14 + f11, this.f6015r.j() + centerY + dp4 + (this.f6016s.j() / f12), e7, org.telegram.ui.ActionBar.h6.v(-16777216, -1610612737), canvas);
             canvas.restore();
         }
     }
@@ -196,11 +196,11 @@ public final class t7 extends View {
                     bdVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (bdVar.f24913i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (bdVar.f24981i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     bdVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (bdVar.f24913i && (iaVar = this.f6011c) != null && this.E != null) {
+                if (bdVar.f24981i && (iaVar = this.f6011c) != null && this.E != null) {
                     iaVar.run(new p7(this, 1));
                 }
                 bdVar.c(false);
@@ -209,7 +209,7 @@ public final class t7 extends View {
                 bdVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !bdVar.f24913i) {
+            if (!this.L && !bdVar.f24981i) {
                 return false;
             }
             return true;

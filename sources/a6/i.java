@@ -95,7 +95,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.n9;
 import org.telegram.ui.Cells.o9;
 import org.telegram.ui.Components.jh;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 import org.telegram.ui.Components.wi;
 import org.telegram.ui.Components.yi;
 import org.telegram.ui.Stories.ProfileStoriesView;
@@ -269,8 +269,8 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
     }
 
     @Override
-    public q80 J(View view) {
-        return q80.H((e2) this.f326b, view);
+    public p80 J(View view) {
+        return p80.H((e2) this.f326b, view);
     }
 
     @Override
@@ -325,7 +325,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
     @Override
     public void N(u3 u3Var, View view) {
         e2 e2Var = (e2) this.f326b;
-        q80 H = q80.H(e2Var, view);
+        p80 H = p80.H(e2Var, view);
         H.Q = true;
         e2Var.f12389x0 = l4.c(H, e2Var, e2Var.getParentActivity(), e2Var.getResourceProvider(), u3Var, false);
     }
@@ -602,7 +602,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
 
     @Override
     public void Z(long j3, int i10, e5 e5Var) {
-        int i11 = ProfileStoriesView.f34525s0;
+        int i11 = ProfileStoriesView.f34559s0;
         ((qz0) this.f326b).f(true, false);
         e5Var.run();
     }
@@ -722,7 +722,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
     @Override
     public void e(w3 w3Var, View view) {
         e2 e2Var = (e2) this.f326b;
-        q80 H = q80.H(e2Var, view);
+        p80 H = p80.H(e2Var, view);
         H.Q = true;
         e2Var.getParentActivity();
         e2Var.getResourceProvider();
@@ -740,7 +740,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
         hcVar.f1107c = null;
         qz0 qz0Var = (qz0) this.f326b;
         k01 k01Var = qz0Var.h;
-        ArrayList arrayList = qz0Var.f34551w;
+        ArrayList arrayList = qz0Var.f34585w;
         if (qz0Var.N < 0.2f) {
             hcVar.f1106b = k01Var.getImageReceiver();
             hcVar.f1107c = null;
@@ -748,7 +748,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
             hcVar.h = 0.0f;
             hcVar.f1111i = AndroidUtilities.displaySize.y;
             hcVar.f1110g = (View) qz0Var.getParent();
-            hcVar.d = qz0Var.f34553y;
+            hcVar.d = qz0Var.f34587y;
             hcVar.f1116n = true;
             return true;
         }
@@ -852,9 +852,9 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
         int i10 = nbVar.F1;
         pg.m currentBrush = nbVar.O0.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f45840i;
+            return u0.e(i10).f45874i;
         }
-        return u0.e(i10).f(String.valueOf(pg.m.f45722a.indexOf(currentBrush)), currentBrush.d());
+        return u0.e(i10).f(String.valueOf(pg.m.f45756a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -1041,10 +1041,10 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
         e2 e2Var = (e2) this.f326b;
         if (aVar != null && (aVar.f12233b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(e2Var)) {
             yi yiVar = new yi(e2Var.getParentActivity(), e2Var, false, false, false, e2Var.getResourceProvider());
-            yiVar.f33207c2 = new qb.b(11);
+            yiVar.f33280c2 = new qb.b(11);
             yiVar.P = true;
             yiVar.A1.setVisibility(8);
-            yiVar.f33271w2 = new r5(e2Var, aVar, yiVar, 11);
+            yiVar.f33344w2 = new r5(e2Var, aVar, yiVar, 11);
             yiVar.t1();
             yiVar.show();
         }
@@ -1053,9 +1053,9 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
     @Override
     public void q0(float f7) {
         nb nbVar = (nb) this.f326b;
-        u0.e(nbVar.F1).k(String.valueOf(pg.m.f45722a.indexOf(nbVar.O0.getCurrentBrush())), f7);
+        u0.e(nbVar.F1).k(String.valueOf(pg.m.f45756a.indexOf(nbVar.O0.getCurrentBrush())), f7);
         s1 s1Var = nbVar.A1;
-        s1Var.f45814c = f7;
+        s1Var.f45848c = f7;
         nbVar.D0(s1Var, null, false);
     }
 
@@ -1143,7 +1143,7 @@ public final class i implements m0, s, gc, a0, androidx.activity.result.b, p, o,
             }
             try {
                 jSONObject.put("expires_at", j3);
-                fileWriter = new FileWriter((File) cVar2.f45578b);
+                fileWriter = new FileWriter((File) cVar2.f45612b);
                 try {
                     try {
                         fileWriter.write(jSONObject.toString());

@@ -14,28 +14,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 public final class b8 {
-    public final int f52395a;
-    public final ArrayList f52396b;
+    public final int f52429a;
+    public final ArrayList f52430b;
     public final Bitmap d;
-    public int f52398e;
-    public int f52402j;
-    public e0.g0 f52404l;
-    public final Paint f52405m;
-    public long f52406n;
-    public long f52407o;
-    public final RectF f52397c = new RectF();
-    public final Paint f52399f = new Paint(3);
-    public final Rect f52400g = new Rect();
+    public int f52432e;
+    public int f52436j;
+    public e0.g0 f52438l;
+    public final Paint f52439m;
+    public long f52440n;
+    public long f52441o;
+    public final RectF f52431c = new RectF();
+    public final Paint f52433f = new Paint(3);
+    public final Rect f52434g = new Rect();
     public float h = 1.0f;
-    public final float f52401i = 1.0f;
-    public boolean f52403k = true;
+    public final float f52435i = 1.0f;
+    public boolean f52437k = true;
 
     public b8(int i10, int i11) {
-        this.f52395a = i10;
-        this.f52402j = i11;
-        this.f52396b = new ArrayList(i11);
+        this.f52429a = i10;
+        this.f52436j = i11;
+        this.f52430b = new ArrayList(i11);
         for (int i12 = 0; i12 < i11; i12++) {
-            this.f52396b.add(new a8(this));
+            this.f52430b.add(new a8(this));
         }
         int dp = AndroidUtilities.dp(10.0f);
         Bitmap createBitmap = Bitmap.createBitmap(dp, dp, Bitmap.Config.ARGB_8888);
@@ -62,17 +62,17 @@ public final class b8 {
         canvas.drawPath(path, paint);
         if (Build.VERSION.SDK_INT >= 29) {
             e0.g0 g0Var = new e0.g0(i11);
-            this.f52404l = g0Var;
+            this.f52438l = g0Var;
             float width = createBitmap.getWidth();
             float height = createBitmap.getHeight();
             for (int i14 = 0; i14 < g0Var.f8411a; i14++) {
                 e0.g0.a((float[]) g0Var.f8413c, i14, 0.0f, 0.0f, width, height);
             }
-            this.f52405m = g0.a.a(createBitmap);
+            this.f52439m = g0.a.a(createBitmap);
             return;
         }
-        this.f52404l = null;
-        this.f52405m = null;
+        this.f52438l = null;
+        this.f52439m = null;
     }
 
     public final void a(Canvas canvas, int i10) {
@@ -83,109 +83,109 @@ public final class b8 {
         if (!LiteMode.isEnabled(131072)) {
             return;
         }
-        int i11 = this.f52402j;
-        ArrayList arrayList = this.f52396b;
+        int i11 = this.f52436j;
+        ArrayList arrayList = this.f52430b;
         int min = Math.min(i11, arrayList.size());
         float f10 = 2.0f;
-        if (this.f52404l != null) {
+        if (this.f52438l != null) {
             Bitmap bitmap = this.d;
             float width = bitmap.getWidth();
             float height = bitmap.getHeight();
             for (int i12 = 0; i12 < min; i12++) {
                 a8 a8Var = (a8) arrayList.get(i12);
-                float f11 = a8Var.f52358i * a8Var.f52355e * f7;
+                float f11 = a8Var.f52392i * a8Var.f52389e * f7;
                 float f12 = (width / 2.0f) * f11;
                 float f13 = (height / 2.0f) * f11;
-                e0.g0 g0Var = this.f52404l;
-                float f14 = a8Var.f52352a;
-                float f15 = a8Var.f52353b;
+                e0.g0 g0Var = this.f52438l;
+                float f14 = a8Var.f52386a;
+                float f15 = a8Var.f52387b;
                 e0.g0.a((float[]) g0Var.f8412b, i12, f14 - f12, f15 - f13, f14 + f12, f15 + f13);
-                this.f52404l.e(i12, i0.a.k(i10, (int) (Utilities.clamp01(a8Var.h * f7) * 255.0f)));
+                this.f52438l.e(i12, i0.a.k(i10, (int) (Utilities.clamp01(a8Var.h * f7) * 255.0f)));
             }
-            g0.a.b(canvas, this.f52404l, min, this.f52405m);
+            g0.a.b(canvas, this.f52438l, min, this.f52439m);
         } else {
-            if (this.f52398e != i10) {
-                this.f52398e = i10;
-                this.f52399f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            if (this.f52432e != i10) {
+                this.f52432e = i10;
+                this.f52433f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             }
             int i13 = 0;
             while (i13 < min) {
                 a8 a8Var2 = (a8) arrayList.get(i13);
                 float f16 = a8Var2.h * f7;
-                b8 b8Var = a8Var2.f52359j;
-                Paint paint = b8Var.f52399f;
-                Rect rect = b8Var.f52400g;
+                b8 b8Var = a8Var2.f52393j;
+                Paint paint = b8Var.f52433f;
+                Rect rect = b8Var.f52434g;
                 Bitmap bitmap2 = b8Var.d;
                 paint.setAlpha((int) (f16 * 255.0f));
                 float f17 = f10;
-                rect.set((int) (a8Var2.f52352a - ((((bitmap2.getWidth() / f10) * a8Var2.f52358i) * a8Var2.f52355e) * f16)), (int) (a8Var2.f52353b - ((((bitmap2.getHeight() / f10) * a8Var2.f52358i) * a8Var2.f52355e) * f16)), (int) com.google.android.gms.internal.vision.e2.w((bitmap2.getWidth() / f10) * a8Var2.f52358i, a8Var2.f52355e, f16, a8Var2.f52352a), (int) com.google.android.gms.internal.vision.e2.w((bitmap2.getHeight() / f17) * a8Var2.f52358i, a8Var2.f52355e, f16, a8Var2.f52353b));
+                rect.set((int) (a8Var2.f52386a - ((((bitmap2.getWidth() / f10) * a8Var2.f52392i) * a8Var2.f52389e) * f16)), (int) (a8Var2.f52387b - ((((bitmap2.getHeight() / f10) * a8Var2.f52392i) * a8Var2.f52389e) * f16)), (int) com.google.android.gms.internal.vision.e2.w((bitmap2.getWidth() / f10) * a8Var2.f52392i, a8Var2.f52389e, f16, a8Var2.f52386a), (int) com.google.android.gms.internal.vision.e2.w((bitmap2.getHeight() / f17) * a8Var2.f52392i, a8Var2.f52389e, f16, a8Var2.f52387b));
                 canvas.drawBitmap(bitmap2, (Rect) null, rect, paint);
                 i13++;
                 f10 = f17;
             }
         }
-        this.f52403k = false;
+        this.f52437k = false;
     }
 
     public final void c(a8 a8Var, long j3, boolean z10) {
         long j10;
-        a8Var.f52356f = j3;
-        a8Var.f52357g = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat()) * this.f52401i;
+        a8Var.f52390f = j3;
+        a8Var.f52391g = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat()) * this.f52435i;
         if (z10) {
-            a8Var.f52356f -= Utilities.clamp01(Utilities.fastRandom.nextFloat()) * ((float) j10);
+            a8Var.f52390f -= Utilities.clamp01(Utilities.fastRandom.nextFloat()) * ((float) j10);
         }
-        RectF rectF = this.f52397c;
-        a8Var.f52352a = AndroidUtilities.lerp(rectF.left, rectF.right, Utilities.fastRandom.nextFloat());
-        a8Var.f52353b = AndroidUtilities.lerp(rectF.top, rectF.bottom, Utilities.fastRandom.nextFloat());
-        if (this.f52395a == 0) {
-            a8Var.f52354c = AndroidUtilities.dp(AndroidUtilities.lerp(-7.0f, -18.0f, Utilities.fastRandom.nextFloat()));
+        RectF rectF = this.f52431c;
+        a8Var.f52386a = AndroidUtilities.lerp(rectF.left, rectF.right, Utilities.fastRandom.nextFloat());
+        a8Var.f52387b = AndroidUtilities.lerp(rectF.top, rectF.bottom, Utilities.fastRandom.nextFloat());
+        if (this.f52429a == 0) {
+            a8Var.f52388c = AndroidUtilities.dp(AndroidUtilities.lerp(-7.0f, -18.0f, Utilities.fastRandom.nextFloat()));
             a8Var.d = AndroidUtilities.dp(AndroidUtilities.lerp(-2.0f, 2.0f, Utilities.fastRandom.nextFloat()));
         } else {
-            a8Var.f52354c = rectF.centerX() - a8Var.f52352a;
-            a8Var.d = rectF.centerY() - a8Var.f52353b;
-            float f7 = a8Var.f52354c;
+            a8Var.f52388c = rectF.centerX() - a8Var.f52386a;
+            a8Var.d = rectF.centerY() - a8Var.f52387b;
+            float f7 = a8Var.f52388c;
             float f10 = a8Var.d;
             float dp = AndroidUtilities.dp(AndroidUtilities.lerp(1.0f, 4.0f, Utilities.fastRandom.nextFloat())) / ((float) Math.sqrt((f10 * f10) + (f7 * f7)));
-            a8Var.f52354c *= dp;
+            a8Var.f52388c *= dp;
             a8Var.d *= dp;
         }
-        a8Var.f52358i = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
-        a8Var.f52355e = AndroidUtilities.lerp(0.8f, 1.2f, Utilities.fastRandom.nextFloat()) * 0.7f;
+        a8Var.f52392i = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
+        a8Var.f52389e = AndroidUtilities.lerp(0.8f, 1.2f, Utilities.fastRandom.nextFloat()) * 0.7f;
     }
 
     public final boolean d() {
         float f7;
         if (LiteMode.isEnabled(131072)) {
             long currentTimeMillis = System.currentTimeMillis();
-            float min = (((float) Math.min(this.f52407o - currentTimeMillis, 16L)) / 1000.0f) * this.h;
+            float min = (((float) Math.min(this.f52441o - currentTimeMillis, 16L)) / 1000.0f) * this.h;
             int i10 = 0;
             while (true) {
-                int i11 = this.f52402j;
-                ArrayList arrayList = this.f52396b;
+                int i11 = this.f52436j;
+                ArrayList arrayList = this.f52430b;
                 if (i10 >= Math.min(i11, arrayList.size())) {
                     break;
                 }
                 a8 a8Var = (a8) arrayList.get(i10);
-                long j3 = a8Var.f52357g;
+                long j3 = a8Var.f52391g;
                 if (j3 <= 0) {
                     f7 = 2.0f;
                 } else {
-                    f7 = ((float) (currentTimeMillis - a8Var.f52356f)) / ((float) j3);
+                    f7 = ((float) (currentTimeMillis - a8Var.f52390f)) / ((float) j3);
                 }
                 if (f7 > 1.0f) {
-                    c(a8Var, currentTimeMillis, this.f52403k);
+                    c(a8Var, currentTimeMillis, this.f52437k);
                     f7 = 0.0f;
                 }
-                a8Var.f52352a = (a8Var.f52354c * min) + a8Var.f52352a;
-                a8Var.f52353b = (a8Var.d * min) + a8Var.f52353b;
+                a8Var.f52386a = (a8Var.f52388c * min) + a8Var.f52386a;
+                a8Var.f52387b = (a8Var.d * min) + a8Var.f52387b;
                 float f10 = 4.0f * f7;
                 a8Var.h = f10 - (f7 * f10);
                 i10++;
             }
-            this.f52407o = currentTimeMillis;
-            long j10 = this.f52406n;
+            this.f52441o = currentTimeMillis;
+            long j10 = this.f52440n;
             if (j10 == 0 || j10 - currentTimeMillis >= 66) {
-                this.f52406n = currentTimeMillis;
+                this.f52440n = currentTimeMillis;
                 return true;
             }
         }
@@ -193,15 +193,15 @@ public final class b8 {
     }
 
     public final void e() {
-        if (this.f52395a == 2) {
+        if (this.f52429a == 2) {
             long currentTimeMillis = System.currentTimeMillis();
             int i10 = 0;
             while (true) {
-                ArrayList arrayList = this.f52396b;
+                ArrayList arrayList = this.f52430b;
                 if (i10 < arrayList.size()) {
                     a8 a8Var = (a8) arrayList.get(i10);
-                    if (!this.f52397c.contains((int) a8Var.f52352a, (int) a8Var.f52353b)) {
-                        c(a8Var, currentTimeMillis, this.f52403k);
+                    if (!this.f52431c.contains((int) a8Var.f52386a, (int) a8Var.f52387b)) {
+                        c(a8Var, currentTimeMillis, this.f52437k);
                     }
                     i10++;
                 } else {
@@ -212,12 +212,12 @@ public final class b8 {
     }
 
     public final void f(int i10, int i11, int i12, int i13) {
-        this.f52397c.set(i10, i11, i12, i13);
+        this.f52431c.set(i10, i11, i12, i13);
         e();
     }
 
     public final void g(RectF rectF) {
-        this.f52397c.set(rectF);
+        this.f52431c.set(rectF);
         e();
     }
 }

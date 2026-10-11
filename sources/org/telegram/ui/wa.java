@@ -7,21 +7,21 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class wa implements RequestDelegate {
-    public final int f43278a;
-    public final ub f43279b;
+    public final int f43312a;
+    public final ub f43313b;
 
     public wa(ub ubVar, int i10) {
-        this.f43278a = i10;
-        this.f43279b = ubVar;
+        this.f43312a = i10;
+        this.f43313b = ubVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f43278a) {
+        switch (this.f43312a) {
             case 0:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final ub ubVar = this.f43279b;
+                    final ub ubVar = this.f43313b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -39,7 +39,7 @@ public final class wa implements RequestDelegate {
                 }
                 return;
             case 1:
-                ub ubVar2 = this.f43279b;
+                ub ubVar2 = this.f43313b;
                 ubVar2.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList = ((Vector) tLObject).objects;
@@ -54,12 +54,12 @@ public final class wa implements RequestDelegate {
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.a6(17, this.f43279b, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.a6(17, this.f43313b, tLObject));
                 return;
             case 3:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final ub ubVar3 = this.f43279b;
+                    final ub ubVar3 = this.f43313b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -77,7 +77,7 @@ public final class wa implements RequestDelegate {
                 }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new q1(this.f43279b, tL_error, tLObject, 9));
+                AndroidUtilities.runOnUIThread(new q1(this.f43313b, tL_error, tLObject, 9));
                 return;
         }
     }

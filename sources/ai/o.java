@@ -26,7 +26,7 @@ public final class o extends fr {
         jx jxVar = this.G;
         int i12 = jxVar.f662b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21065s8;
+            i10 = org.telegram.ui.ActionBar.h6.f21101s8;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.M8;
         }

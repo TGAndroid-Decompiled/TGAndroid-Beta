@@ -7,19 +7,19 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g71;
+import org.telegram.ui.Components.f71;
 public final class p8 implements gg.f0, org.telegram.ui.ActionBar.z1 {
-    public final u8 f35432a;
+    public final u8 f35466a;
 
     public p8(u8 u8Var) {
-        this.f35432a = u8Var;
+        this.f35466a = u8Var;
     }
 
     @Override
     public void a(a0.i iVar, ArrayList arrayList) {
-        u8 u8Var = this.f35432a;
-        ArrayList arrayList2 = u8Var.f35616r;
-        if (!u8Var.f35615n) {
+        u8 u8Var = this.f35466a;
+        ArrayList arrayList2 = u8Var.f35650r;
+        if (!u8Var.f35649n) {
             arrayList2.clear();
             int size = arrayList.size();
             int i10 = 0;
@@ -32,16 +32,16 @@ public final class p8 implements gg.f0, org.telegram.ui.ActionBar.z1 {
                     arrayList2.add((TLRPC.User) g0Var.f10608a);
                 }
             }
-            g71 g71Var = u8Var.f26922a;
-            if (g71Var != null) {
-                g71Var.W2.N(true);
+            f71 f71Var = u8Var.f26675a;
+            if (f71Var != null) {
+                f71Var.W2.N(true);
             }
         }
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        u8 u8Var = this.f35432a;
+        u8 u8Var = this.f35466a;
         u8Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

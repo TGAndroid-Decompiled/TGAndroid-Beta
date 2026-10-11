@@ -7,18 +7,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class d20 implements View.OnLongClickListener {
-    public final int f25409a;
-    public final Object f25410b;
+    public final int f25587a;
+    public final Object f25588b;
 
     public d20(Object obj, int i10) {
-        this.f25409a = i10;
-        this.f25410b = obj;
+        this.f25587a = i10;
+        this.f25588b = obj;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        int i10 = this.f25409a;
-        Object obj = this.f25410b;
+        int i10 = this.f25587a;
+        Object obj = this.f25588b;
         switch (i10) {
             case 0:
                 final FragmentContextView fragmentContextView = (FragmentContextView) obj;
@@ -27,15 +27,15 @@ public final class d20 implements View.OnLongClickListener {
                 fragmentContextView.I.d(playbackSpeed, false);
                 org.telegram.ui.ActionBar.a1 a1Var = fragmentContextView.I;
                 int i11 = org.telegram.ui.ActionBar.h6.G8;
-                a1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i11, fragmentContextView.f24175q0));
+                a1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i11, fragmentContextView.f24211q0));
                 org.telegram.ui.ActionBar.a1 a1Var2 = fragmentContextView.I;
                 a1Var2.N = fragmentContextView.h instanceof org.telegram.ui.zn;
                 a1Var2.F.setShader(null);
                 a1Var2.h = null;
-                Bitmap bitmap = a1Var2.f20456f;
+                Bitmap bitmap = a1Var2.f20492f;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    a1Var2.f20456f = null;
+                    a1Var2.f20492f = null;
                 }
                 fragmentContextView.G.B(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
                 fragmentContextView.G.N();
@@ -56,16 +56,16 @@ public final class d20 implements View.OnLongClickListener {
                 MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
                 return true;
             case 1:
-                ue0 ue0Var = (ue0) obj;
-                ue0Var.f31413r.setText("");
-                ci.j9.a(ue0Var.f31414s, true);
-                Drawable drawable = ue0Var.f31403a;
-                if (drawable instanceof dd0) {
-                    ((dd0) drawable).y();
+                te0 te0Var = (te0) obj;
+                te0Var.f31230r.setText("");
+                ci.j9.a(te0Var.f31231s, true);
+                Drawable drawable = te0Var.f31220a;
+                if (drawable instanceof cd0) {
+                    ((cd0) drawable).y();
                 }
                 return true;
             default:
-                return or0.p((or0) obj);
+                return nr0.p((nr0) obj);
         }
     }
 }

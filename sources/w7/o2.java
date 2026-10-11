@@ -1,6 +1,6 @@
 package w7;
 public final class o2 implements ia.d {
-    public static final o2 f50182a = new Object();
+    public static final o2 f50216a = new Object();
 
     static {
         sc.v.t(sc.v.m(d.class, new a(1)));

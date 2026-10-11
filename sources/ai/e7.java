@@ -4,11 +4,11 @@ import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
 import org.telegram.messenger.ai;
-import org.telegram.ui.Components.cy0;
+import org.telegram.ui.Components.by0;
 import org.telegram.ui.Components.k10;
 import org.telegram.ui.Components.sk;
 import org.telegram.ui.eg1;
-public final class e7 extends cy0 {
+public final class e7 extends by0 {
     public final int K = 0;
     public final Object L;
 
@@ -25,15 +25,15 @@ public final class e7 extends cy0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = eg1Var.f37340n.f42546a.animate();
+                    ViewPropertyAnimator animate = eg1Var.f37374n.f42580a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                eg1Var.f37340n.f42546a.animate().cancel();
-                TextView textView = eg1Var.f37340n.f42546a;
+                eg1Var.f37374n.f42580a.animate().cancel();
+                TextView textView = eg1Var.f37374n.f42580a;
                 if (z10) {
                     f7 = 0.0f;
                 }

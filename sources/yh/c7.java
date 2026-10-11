@@ -17,25 +17,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ai;
 import org.telegram.ui.Components.is;
 public final class c7 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f52443a;
-    public final Drawable f52444b;
-    public final Drawable f52445c;
+    public final org.telegram.ui.ActionBar.d6 f52477a;
+    public final Drawable f52478b;
+    public final Drawable f52479c;
     public final TextView d;
-    public final org.telegram.ui.Components.r6 f52446e;
-    public SpannableString f52447f;
+    public final org.telegram.ui.Components.r6 f52480e;
+    public SpannableString f52481f;
     public boolean h;
-    public int f52448n;
-    public final org.telegram.ui.Components.g6 f52449r;
+    public int f52482n;
+    public final org.telegram.ui.Components.g6 f52483r;
 
     public c7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         int i10;
-        this.f52449r = new org.telegram.ui.Components.g6(this, 0L, 500L, is.h);
-        this.f52443a = d6Var;
+        this.f52483r = new org.telegram.ui.Components.g6(this, 0L, 500L, is.h);
+        this.f52477a = d6Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
-        this.f52444b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20857h5, d6Var), PorterDuff.Mode.SRC_IN));
-        this.f52445c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        this.f52478b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20893h5, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f52479c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.d = textView;
@@ -43,9 +43,9 @@ public final class c7 extends FrameLayout {
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
         addView(textView, w7.x5.i(-2.0f, -2.0f, 8388627, 48.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(context, false, false, false);
-        this.f52446e = r6Var;
+        this.f52480e = r6Var;
         r6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21189z6, d6Var));
+        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225z6, d6Var));
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
@@ -63,7 +63,7 @@ public final class c7 extends FrameLayout {
         Paint paint;
         int i10;
         super.onDraw(canvas);
-        float d = this.f52449r.d(this.f52448n, false);
+        float d = this.f52483r.d(this.f52482n, false);
         if (LocaleController.isRTL) {
             f7 = -1.0f;
         } else {
@@ -90,26 +90,26 @@ public final class c7 extends FrameLayout {
             int i12 = (int) measuredHeight;
             int i13 = (int) (f11 + dp2);
             int i14 = (int) (measuredHeight + dp3);
-            Drawable drawable = this.f52444b;
+            Drawable drawable = this.f52478b;
             drawable.setBounds(i11, i12, i13, i14);
             int i15 = (int) (clamp * 255.0f);
             drawable.setAlpha(i15);
             drawable.draw(canvas);
-            Drawable drawable2 = this.f52445c;
+            Drawable drawable2 = this.f52479c;
             drawable2.setBounds(i11, i12, i13, i14);
             drawable2.setAlpha(i15);
             drawable2.draw(canvas);
             ceil--;
         }
         if (this.h) {
-            org.telegram.ui.ActionBar.d6 d6Var = this.f52443a;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f52477a;
             if (d6Var != null) {
                 paint = d6Var.F("paintDivider");
             } else {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.h6.f20908k0;
+                paint = org.telegram.ui.ActionBar.h6.f20944k0;
             }
             Paint paint2 = paint;
             if (!LocaleController.isRTL) {

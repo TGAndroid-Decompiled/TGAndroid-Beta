@@ -3,49 +3,49 @@ package org.telegram.ui.Wallet;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.h91;
-import org.telegram.ui.Components.m71;
-import org.telegram.ui.Components.v51;
-public final class y3 extends h91 {
-    public final c5 f35731a;
+import org.telegram.ui.Components.g91;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.u51;
+public final class y3 extends g91 {
+    public final c5 f35765a;
 
     public y3(c5 c5Var) {
-        this.f35731a = c5Var;
+        this.f35765a = c5Var;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        m71 m71Var = (m71) view;
-        boolean canScrollVertically = m71Var.canScrollVertically(-1);
-        m71Var.W2.N(false);
-        m71Var.a0();
+        l71 l71Var = (l71) view;
+        boolean canScrollVertically = l71Var.canScrollVertically(-1);
+        l71Var.W2.N(false);
+        l71Var.a0();
         if (!canScrollVertically) {
-            m71Var.V2.h1(0, 0);
+            l71Var.V2.h1(0, 0);
         }
     }
 
     @Override
     public final View d(int i10) {
-        c5 c5Var = this.f35731a;
-        m71[] m71VarArr = c5Var.f34756p0;
-        m71 m71Var = m71VarArr[i10];
-        if (m71Var != null) {
-            return m71Var;
+        c5 c5Var = this.f35765a;
+        l71[] l71VarArr = c5Var.f34790p0;
+        l71 l71Var = l71VarArr[i10];
+        if (l71Var != null) {
+            return l71Var;
         }
-        m71 m71Var2 = new m71(c5Var, new org.telegram.ui.Components.o(this, i10, 2), new k3(c5Var), new k3(c5Var));
-        m71Var2.setFocusableInTouchMode(false);
-        m71Var2.setClipChildren(false);
-        m71Var2.setClipToPadding(false);
-        m71Var2.p1();
-        m71Var2.W2.f25890r = false;
-        m71Var2.j(new v51(this, i10));
-        m71VarArr[i10] = m71Var2;
-        return m71Var2;
+        l71 l71Var2 = new l71(c5Var, new org.telegram.ui.Components.o(this, i10, 2), new k3(c5Var), new k3(c5Var));
+        l71Var2.setFocusableInTouchMode(false);
+        l71Var2.setClipChildren(false);
+        l71Var2.setClipToPadding(false);
+        l71Var2.p1();
+        l71Var2.W2.f25649r = false;
+        l71Var2.j(new u51(this, i10));
+        l71VarArr[i10] = l71Var2;
+        return l71Var2;
     }
 
     @Override
     public final int e() {
-        if (this.f35731a.f34747g0) {
+        if (this.f35765a.f34781g0) {
             return 2;
         }
         return 1;

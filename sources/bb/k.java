@@ -43,8 +43,8 @@ public final class k extends ld.j implements p {
         } else {
             bVar.getClass();
             kotlin.jvm.internal.i.e(key, "key");
-            if (!bVar.f16513b.get()) {
-                bVar.f16512a.remove(key);
+            if (!bVar.f16549b.get()) {
+                bVar.f16548a.remove(key);
             } else {
                 throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
             }

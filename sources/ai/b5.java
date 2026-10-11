@@ -24,7 +24,7 @@ public final class b5 extends i0 {
         this.f710x = f6Var;
         this.v = c6Var;
         this.f709w = kcVar;
-        is isVar = is.f27451f;
+        is isVar = is.f27500f;
         this.d = new org.telegram.ui.Components.g6(this, 150L, isVar);
         this.f704e = new org.telegram.ui.Components.g6(this, 150L, isVar);
         this.f705f = new org.telegram.ui.Components.voip.h(32, 102, 240);
@@ -32,8 +32,8 @@ public final class b5 extends i0 {
         this.h = g6Var;
         org.telegram.ui.Components.g6 g6Var2 = new org.telegram.ui.Components.g6(this);
         this.f706n = g6Var2;
-        g6Var.f26616g = 500L;
-        g6Var2.f26616g = 100L;
+        g6Var.f26668g = 500L;
+        g6Var2.f26668g = 100L;
     }
 
     public final void b(android.graphics.Canvas r34) {
@@ -60,8 +60,8 @@ public final class b5 extends i0 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view != this.f710x.f978j1) {
             if (this.f707r) {
-                org.telegram.ui.Components.sc scVar = org.telegram.ui.Components.sc.f30703w;
-                if (scVar != null && view == scVar.f30707e) {
+                org.telegram.ui.Components.sc scVar = org.telegram.ui.Components.sc.f30825w;
+                if (scVar != null && view == scVar.f30829e) {
                     if (this.f708s) {
                         return super.drawChild(canvas, view, j3);
                     }

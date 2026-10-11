@@ -5,10 +5,10 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 public final class iv implements my, at {
-    public final lv f38784a;
+    public final lv f38818a;
 
     public iv(lv lvVar) {
-        this.f38784a = lvVar;
+        this.f38818a = lvVar;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class iv implements my, at {
 
     @Override
     public void b(TLRPC.User user) {
-        this.f38784a.l0(user);
+        this.f38818a.l0(user);
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class iv implements my, at {
         if (!arrayList.isEmpty()) {
             long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             if (DialogObject.isUserDialog(j3)) {
-                lv lvVar = this.f38784a;
+                lv lvVar = this.f38818a;
                 lvVar.l0(lvVar.getMessagesController().getUser(Long.valueOf(j3)));
                 return true;
             }

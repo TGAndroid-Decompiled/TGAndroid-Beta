@@ -162,7 +162,7 @@ public final class r4 implements Runnable {
                 ((com.google.android.gms.common.api.internal.p0) this.f1654b).f();
                 return;
             case 15:
-                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((xa.c) this.f1654b).f51194b).f6656b;
+                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((xa.c) this.f1654b).f51228b).f6656b;
                 cVar2.e(cVar2.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 16:
@@ -207,21 +207,21 @@ public final class r4 implements Runnable {
                 eVar3.h.animate().setDuration(120L).alpha(1.0f).start();
                 return;
             case 24:
-                ki.t0 t0Var = (ki.t0) this.f1654b;
-                if (t0Var.W == 5 && (f0Var = t0Var.S) != null && t0Var.f15136x) {
+                ki.v0 v0Var = (ki.v0) this.f1654b;
+                if (v0Var.W == 5 && (f0Var = v0Var.S) != null && v0Var.f15178x) {
                     long J0 = f0Var.J0();
-                    long j3 = t0Var.G;
-                    if (J0 < j3 || J0 >= t0Var.H) {
-                        t0Var.S.W0(5, j3);
+                    long j3 = v0Var.G;
+                    if (J0 < j3 || J0 >= v0Var.H) {
+                        v0Var.S.W0(5, j3);
                     }
-                    t0Var.d.getClass();
-                    t0Var.f15122i.postDelayed(this, 33L);
+                    v0Var.d.getClass();
+                    v0Var.f15164i.postDelayed(this, 33L);
                     return;
                 }
                 return;
             case 25:
                 m.r1 r1Var = (m.r1) this.f1654b;
-                r1Var.f15834w = null;
+                r1Var.f15870w = null;
                 r1Var.drawableStateChanged();
                 return;
             case 26:
@@ -232,27 +232,27 @@ public final class r4 implements Runnable {
                 }
                 return;
             case 27:
-                Object obj2 = ((xa.c) this.f1654b).f51194b;
+                Object obj2 = ((xa.c) this.f1654b).f51228b;
                 return;
             case 28:
                 org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1654b;
-                if (a0Var.f21768b == null) {
-                    a0Var.f21768b = new androidx.emoji2.text.j(a0Var, 3);
+                if (a0Var.f21804b == null) {
+                    a0Var.f21804b = new androidx.emoji2.text.j(a0Var, 3);
                 }
-                androidx.emoji2.text.j jVar2 = a0Var.f21768b;
-                int i10 = a0Var.f21769c + 1;
-                a0Var.f21769c = i10;
+                androidx.emoji2.text.j jVar2 = a0Var.f21804b;
+                int i10 = a0Var.f21805c + 1;
+                a0Var.f21805c = i10;
                 jVar2.f2601b = i10;
                 a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             default:
                 org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1654b;
-                TextView textView = v5Var.f23535b;
+                TextView textView = v5Var.f23571b;
                 textView.setTag(null);
                 AnimatorSet animatorSet = new AnimatorSet();
                 v5Var.d = animatorSet;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23534a, property, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23570a, property, 1.0f));
                 v5Var.d.setDuration(250L);
                 v5Var.d.setInterpolator(new DecelerateInterpolator());
                 v5Var.d.addListener(new org.telegram.ui.s4(this, 9));

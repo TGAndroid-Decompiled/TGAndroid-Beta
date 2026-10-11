@@ -24,8 +24,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.p80;
-public abstract class e0 extends FrameLayout implements p80 {
+import org.telegram.ui.Components.o80;
+public abstract class e0 extends FrameLayout implements o80 {
     public static final int f4987x0 = 0;
     public final LinearGradient E;
     public final Matrix F;
@@ -288,11 +288,11 @@ public abstract class e0 extends FrameLayout implements p80 {
         org.telegram.ui.Components.g6[] g6VarArr = this.J;
         float f18 = 0.0f;
         if (!j3 && !this.f4998f0 && !this.f4996e0) {
-            float f19 = g6Var.f26613c;
+            float f19 = g6Var.f26665c;
             t tVar = this.f4997f;
-            if (f19 == tVar.f5975c && g6VarArr[0].f26613c == tVar.d[0]) {
+            if (f19 == tVar.f5975c && g6VarArr[0].f26665c == tVar.d[0]) {
                 e7 e7Var = this.f4992c;
-                if (!e7Var.f5029a && ((org.telegram.ui.Components.g6) e7Var.d).f26613c <= 0.0f) {
+                if (!e7Var.f5029a && ((org.telegram.ui.Components.g6) e7Var.d).f26665c <= 0.0f) {
                     setCameraNeedsBlur(false);
                     i(canvas);
                     return;

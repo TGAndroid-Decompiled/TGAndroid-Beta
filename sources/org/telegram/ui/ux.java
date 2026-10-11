@@ -6,16 +6,16 @@ import android.view.View;
 import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ux extends ScrollView {
-    public final int f42781a;
+    public final int f42815a;
 
     public ux(Context context, int i10) {
         super(context);
-        this.f42781a = i10;
+        this.f42815a = i10;
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f42781a) {
+        switch (this.f42815a) {
             case 0:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i11), Math.min(AndroidUtilities.displaySize.y * 0.35f, AndroidUtilities.dp(400.0f))), View.MeasureSpec.getMode(i11)));
                 return;
@@ -37,7 +37,7 @@ public final class ux extends ScrollView {
 
     @Override
     public boolean onRequestFocusInDescendants(int i10, Rect rect) {
-        switch (this.f42781a) {
+        switch (this.f42815a) {
             case 1:
                 return false;
             default:
@@ -47,7 +47,7 @@ public final class ux extends ScrollView {
 
     @Override
     public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f42781a) {
+        switch (this.f42815a) {
             case 1:
                 rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
                 rect.top = AndroidUtilities.dp(20.0f) + rect.top;

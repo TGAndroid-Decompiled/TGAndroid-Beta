@@ -248,14 +248,14 @@ public abstract class a extends i2.f {
                 eVar.getClass();
                 String name = eVar.getName();
                 long j3 = elapsedRealtime2 - elapsedRealtime;
-                Handler handler = (Handler) bVar.f45592b;
+                Handler handler = (Handler) bVar.f45626b;
                 if (handler != null) {
                     handler.post(new g0(bVar, name, elapsedRealtime2, j3, 0));
                 }
                 this.m0.f11693a++;
             } catch (h2.f e7) {
                 e2.a.f("DecoderVideoRenderer", "Video codec error", e7);
-                Handler handler2 = (Handler) bVar.f45592b;
+                Handler handler2 = (Handler) bVar.f45626b;
                 if (handler2 != null) {
                     handler2.post(new a1.f(3, bVar, e7));
                 }
@@ -269,9 +269,9 @@ public abstract class a extends i2.f {
     public final void H(n4.x xVar) {
         i2.h hVar;
         this.f54d0 = true;
-        b2.s sVar = (b2.s) xVar.f16659c;
+        b2.s sVar = (b2.s) xVar.f16695c;
         sVar.getClass();
-        n2.g gVar = (n2.g) xVar.f16658b;
+        n2.g gVar = (n2.g) xVar.f16694b;
         hg.c.A(this.X, gVar);
         this.X = gVar;
         b2.s sVar2 = this.N;
@@ -282,7 +282,7 @@ public abstract class a extends i2.f {
             G();
             b2.s sVar3 = this.N;
             sVar3.getClass();
-            Handler handler = (Handler) bVar.f45592b;
+            Handler handler = (Handler) bVar.f45626b;
             if (handler != null) {
                 handler.post(new k0(bVar, sVar3, null, 0));
                 return;
@@ -308,7 +308,7 @@ public abstract class a extends i2.f {
         }
         b2.s sVar4 = this.N;
         sVar4.getClass();
-        Handler handler2 = (Handler) bVar.f45592b;
+        Handler handler2 = (Handler) bVar.f45626b;
         if (handler2 != null) {
             handler2.post(new k0(bVar, sVar4, hVar, 0));
         }
@@ -326,7 +326,7 @@ public abstract class a extends i2.f {
             eVar.release();
             String name = this.P.getName();
             pf.b bVar = this.K;
-            Handler handler = (Handler) bVar.f45592b;
+            Handler handler = (Handler) bVar.f45626b;
             if (handler != null) {
                 handler.post(new a1.f(4, bVar, name));
             }
@@ -393,7 +393,7 @@ public abstract class a extends i2.f {
             long j3 = elapsedRealtime - this.f58h0;
             int i16 = this.f59i0;
             pf.b bVar = this.K;
-            Handler handler = (Handler) bVar.f45592b;
+            Handler handler = (Handler) bVar.f45626b;
             if (handler != null) {
                 handler.post(new i0(bVar, i16, j3));
             }
@@ -504,7 +504,7 @@ public abstract class a extends i2.f {
         ?? obj = new Object();
         this.m0 = obj;
         pf.b bVar = this.K;
-        Handler handler = (Handler) bVar.f45592b;
+        Handler handler = (Handler) bVar.f45626b;
         if (handler != null) {
             handler.post(new j0(bVar, obj, 0));
         }
@@ -553,7 +553,7 @@ public abstract class a extends i2.f {
             long j3 = elapsedRealtime - this.f58h0;
             int i10 = this.f59i0;
             pf.b bVar = this.K;
-            Handler handler = (Handler) bVar.f45592b;
+            Handler handler = (Handler) bVar.f45626b;
             if (handler != null) {
                 handler.post(new i0(bVar, i10, j3));
             }
@@ -595,7 +595,7 @@ public abstract class a extends i2.f {
                 } catch (h2.f e7) {
                     e2.a.f("DecoderVideoRenderer", "Video codec error", e7);
                     pf.b bVar = this.K;
-                    Handler handler = (Handler) bVar.f45592b;
+                    Handler handler = (Handler) bVar.f45626b;
                     if (handler != null) {
                         handler.post(new a1.f(3, bVar, e7));
                     }

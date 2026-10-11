@@ -4,14 +4,18 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import ii.u0;
 import org.telegram.ui.Components.hd;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.rp0;
+import org.telegram.ui.Components.j41;
+import org.telegram.ui.Components.qp0;
 import org.telegram.ui.Components.uq;
 import yh.h3;
 import zg.l0;
 public final class f implements Drawable.Callback {
     public final int f11571a;
     public Object f11572b;
+
+    public f() {
+        this.f11571a = 0;
+    }
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
@@ -25,19 +29,19 @@ public final class f implements Drawable.Callback {
                 ((uq) this.f11572b).invalidateSelf();
                 return;
             case 3:
-                ((rp0) this.f11572b).f30495b.run();
+                ((qp0) this.f11572b).f30277b.run();
                 return;
             case 4:
                 ((hd) this.f11572b).invalidateSelf();
                 return;
             case 5:
-                ((k41) this.f11572b).invalidateSelf();
+                ((j41) this.f11572b).invalidateSelf();
                 return;
             case 6:
-                ((wg.a) this.f11572b).f50430c.invalidate();
+                ((wg.a) this.f11572b).f50464c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11572b).f50456c.invalidate();
+                ((wg.c) this.f11572b).f50490c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11572b).invalidateSelf();
@@ -83,10 +87,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11572b).f50430c.invalidate();
+                ((wg.a) this.f11572b).f50464c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11572b).f50456c.invalidate();
+                ((wg.c) this.f11572b).f50490c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11572b).scheduleSelf(runnable, j3);
@@ -126,10 +130,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11572b).f50430c.invalidate();
+                ((wg.a) this.f11572b).f50464c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11572b).f50456c.invalidate();
+                ((wg.c) this.f11572b).f50490c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f11572b).unscheduleSelf(runnable);

@@ -1,13 +1,13 @@
 package li;
 public final class o {
-    public final String f15631a;
-    public final String f15632b;
-    public final int f15633c;
+    public final String f15667a;
+    public final String f15668b;
+    public final int f15669c;
 
     public o(String str, String str2) {
-        this.f15631a = str;
-        this.f15632b = str2;
-        this.f15633c = str2.hashCode() + (str.hashCode() * 31);
+        this.f15667a = str;
+        this.f15668b = str2;
+        this.f15669c = str2.hashCode() + (str.hashCode() * 31);
     }
 
     public final boolean equals(Object obj) {
@@ -15,13 +15,13 @@ public final class o {
             return false;
         }
         o oVar = (o) obj;
-        if (!this.f15631a.equals(oVar.f15631a) || !this.f15632b.equals(oVar.f15632b)) {
+        if (!this.f15667a.equals(oVar.f15667a) || !this.f15668b.equals(oVar.f15668b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return this.f15633c;
+        return this.f15669c;
     }
 }

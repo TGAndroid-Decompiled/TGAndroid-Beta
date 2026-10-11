@@ -1,16 +1,37 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class l21 extends s4.t0 {
-    public final ThemeEditorView.EditorAlert f28142a;
+public final class l21 extends AnimatorListenerAdapter {
+    public final boolean f28179a;
+    public final ThemeEditorView.EditorAlert f28180b;
 
-    public l21(ThemeEditorView.EditorAlert editorAlert) {
-        this.f28142a = editorAlert;
+    public l21(ThemeEditorView.EditorAlert editorAlert, boolean z10) {
+        this.f28180b = editorAlert;
+        this.f28179a = z10;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ThemeEditorView.EditorAlert.u(this.f28142a);
+    public final void onAnimationCancel(Animator animator) {
+        AnimatorSet[] animatorSetArr = this.f28180b.f24396x;
+        AnimatorSet animatorSet = animatorSetArr[0];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            animatorSetArr[0] = null;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f28180b;
+        AnimatorSet[] animatorSetArr = editorAlert.f24396x;
+        AnimatorSet animatorSet = animatorSetArr[0];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            if (!this.f28179a) {
+                editorAlert.f24395w[0].setVisibility(4);
+            }
+            animatorSetArr[0] = null;
+        }
     }
 }

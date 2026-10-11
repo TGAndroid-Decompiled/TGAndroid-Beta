@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class vi0 extends org.telegram.ui.Components.sm0 {
+public final class vi0 extends org.telegram.ui.Components.rm0 {
     public final ArrayList V2;
     public final org.telegram.ui.Components.g6 W2;
     public final org.telegram.ui.Components.g6 X2;
@@ -32,7 +32,7 @@ public final class vi0 extends org.telegram.ui.Components.sm0 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         org.telegram.ui.Cells.u1 u1Var;
         cj0 cj0Var = this.Z2;
-        if (cj0Var.f36752w && ((view == (u1Var = cj0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == cj0Var.X)) {
+        if (cj0Var.f36786w && ((view == (u1Var = cj0Var.Q) && u1Var != null && u1Var.getCurrentPosition() == null) || view == cj0Var.X)) {
             return false;
         }
         if (!(view instanceof org.telegram.ui.Cells.u1)) {
@@ -108,13 +108,13 @@ public final class vi0 extends org.telegram.ui.Components.sm0 {
         } else {
             measuredHeight = viewGroup.getMeasuredHeight();
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - cj0Var.f36730e.f11576b), Integer.MIN_VALUE));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - cj0Var.f36764e.f11576b), Integer.MIN_VALUE));
         if (cj0Var.m0) {
             l4 = cj0Var.Y;
         } else {
             l4 = cj0Var.W.l();
         }
-        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + cj0Var.f36742o0[0]) - getMeasuredWidth()));
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + cj0Var.f36776o0[0]) - getMeasuredWidth()));
         int i13 = cj0Var.O;
         int measuredWidth = getMeasuredWidth() - max;
         if (cj0Var.P.i()) {

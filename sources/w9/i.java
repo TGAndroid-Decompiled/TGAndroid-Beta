@@ -5,13 +5,13 @@ import java.io.IOException;
 import org.telegram.ui.lb1;
 public final class i {
     public static final ba.a d = new ba.a(2);
-    public static final lb1 f50319e = new lb1(10);
-    public final ba.c f50320a;
-    public String f50321b = null;
-    public String f50322c = null;
+    public static final lb1 f50353e = new lb1(10);
+    public final ba.c f50354a;
+    public String f50355b = null;
+    public String f50356c = null;
 
     public i(ba.c cVar) {
-        this.f50320a = cVar;
+        this.f50354a = cVar;
     }
 
     public static void a(ba.c cVar, String str, String str2) {

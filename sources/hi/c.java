@@ -15,26 +15,26 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.db;
-import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.sm0;
 import org.telegram.ui.Components.y9;
 import w7.x5;
 public final class c extends db {
     public final d1 X;
-    public e71 Y;
+    public d71 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, (d6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        sm0 sm0Var = this.d;
+        rm0 rm0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        sm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        rm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -82,10 +82,10 @@ public final class c extends db {
     }
 
     @Override
-    public final rm0 x(sm0 sm0Var) {
-        e71 e71Var = new e71(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = e71Var;
-        e71Var.f25890r = false;
-        return e71Var;
+    public final qm0 x(rm0 rm0Var) {
+        d71 d71Var = new d71(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = d71Var;
+        d71Var.f25649r = false;
+        return d71Var;
     }
 }

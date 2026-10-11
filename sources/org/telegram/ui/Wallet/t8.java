@@ -5,16 +5,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MrzRecognizer;
 import org.telegram.ui.t9;
 public final class t8 implements t9 {
-    public final u8 f35587a;
+    public final u8 f35621a;
 
     public t8(u8 u8Var) {
-        this.f35587a = u8Var;
+        this.f35621a = u8Var;
     }
 
     @Override
     public final void K(String str) {
         String trim;
-        u8 u8Var = this.f35587a;
+        u8 u8Var = this.f35621a;
         if (!u8Var.isFinished && u8Var.M != null) {
             if (str == null) {
                 trim = "";

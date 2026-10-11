@@ -20,7 +20,7 @@ public final class io extends org.telegram.ui.Cells.d6 {
     public final boolean e() {
         s4.d1 T;
         lo loVar = this.F.d;
-        ec1 ec1Var = loVar.f28403s;
+        ec1 ec1Var = loVar.f28540s;
         View F = ec1Var.F(this);
         if (F == null) {
             T = null;
@@ -30,7 +30,7 @@ public final class io extends org.telegram.ui.Cells.d6 {
         if (T != null) {
             int b10 = T.b();
             int i10 = loVar.M;
-            if (i10 == loVar.J && b10 == (loVar.f28405t0 + i10) - 1) {
+            if (i10 == loVar.J && b10 == (loVar.f28542t0 + i10) - 1) {
                 return false;
             }
         }
@@ -42,7 +42,7 @@ public final class io extends org.telegram.ui.Cells.d6 {
         s4.d1 T;
         int b10;
         lo loVar = this.F.d;
-        ec1 ec1Var = loVar.f28403s;
+        ec1 ec1Var = loVar.f28540s;
         View F = ec1Var.F(d6Var);
         if (F == null) {
             T = null;
@@ -50,7 +50,7 @@ public final class io extends org.telegram.ui.Cells.d6 {
             T = ec1Var.T(F);
         }
         if (T != null && (b10 = T.b()) != -1) {
-            return loVar.L[b10 - loVar.f28405t0];
+            return loVar.L[b10 - loVar.f28542t0];
         }
         return false;
     }
@@ -58,10 +58,10 @@ public final class io extends org.telegram.ui.Cells.d6 {
     @Override
     public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
         lo loVar = this.F.d;
-        if (loVar.f28396n && c6Var.isFocused() && c6Var.hasSelection()) {
+        if (loVar.f28533n && c6Var.isFocused() && c6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.zn.n8(menu, ((org.telegram.ui.zn) loVar.f30161b.f33216f0).h, false, true, true, true);
+                org.telegram.ui.zn.n8(menu, ((org.telegram.ui.zn) loVar.f30245b.f33289f0).h, false, true, true, true);
             }
         }
     }
@@ -71,21 +71,21 @@ public final class io extends org.telegram.ui.Cells.d6 {
         s4.d1 T;
         int b10;
         lo loVar = this.F.d;
-        if (z10 && loVar.f28377c0 && !loVar.f28375b0) {
+        if (z10 && loVar.f28514c0 && !loVar.f28512b0) {
             Arrays.fill(loVar.L, false);
-            loVar.f28403s.getChildCount();
-            for (int i10 = loVar.f28405t0; i10 < loVar.f28405t0 + loVar.M; i10++) {
-                s4.d1 K = loVar.f28403s.K(i10);
+            loVar.f28540s.getChildCount();
+            for (int i10 = loVar.f28542t0; i10 < loVar.f28542t0 + loVar.M; i10++) {
+                s4.d1 K = loVar.f28540s.K(i10);
                 if (K != null) {
-                    View view = K.f47748a;
+                    View view = K.f47782a;
                     if (view instanceof org.telegram.ui.Cells.d6) {
-                        ((org.telegram.ui.Cells.d6) view).f21969r.a(false, true);
+                        ((org.telegram.ui.Cells.d6) view).f22005r.a(false, true);
                     }
                 }
             }
         }
         super.h(d6Var, z10);
-        ec1 ec1Var = loVar.f28403s;
+        ec1 ec1Var = loVar.f28540s;
         View F = ec1Var.F(d6Var);
         if (F == null) {
             T = null;
@@ -93,7 +93,7 @@ public final class io extends org.telegram.ui.Cells.d6 {
             T = ec1Var.T(F);
         }
         if (T != null && (b10 = T.b()) != -1) {
-            loVar.L[b10 - loVar.f28405t0] = z10;
+            loVar.L[b10 - loVar.f28542t0] = z10;
         }
         loVar.W();
     }
@@ -110,15 +110,15 @@ public final class io extends org.telegram.ui.Cells.d6 {
 
     @Override
     public final void k(org.telegram.ui.Cells.c6 c6Var) {
-        this.F.d.f30161b.w1(c6Var, true);
+        this.F.d.f30245b.w1(c6Var, true);
     }
 
     @Override
     public final boolean l(ArrayList arrayList) {
         lo loVar = this.F.d;
         if (!arrayList.isEmpty()) {
-            loVar.f28403s.getClass();
-            int R = RecyclerView.R(this) - loVar.f28405t0;
+            loVar.f28540s.getClass();
+            int R = RecyclerView.R(this) - loVar.f28542t0;
             if (R >= 0) {
                 org.telegram.ui.Cells.c6 c6Var = this.d;
                 c6Var.getText().replace(c6Var.getSelectionStart(), c6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
@@ -133,9 +133,9 @@ public final class io extends org.telegram.ui.Cells.d6 {
                     i10++;
                 }
                 loVar.k0();
-                loVar.f28393k0 = (loVar.f28405t0 + i10) - 1;
-                loVar.f28403s.setItemAnimator(loVar.v);
-                loVar.f28401r.l();
+                loVar.f28530k0 = (loVar.f28542t0 + i10) - 1;
+                loVar.f28540s.setItemAnimator(loVar.v);
+                loVar.f28538r.l();
                 return true;
             }
         }
@@ -144,6 +144,6 @@ public final class io extends org.telegram.ui.Cells.d6 {
 
     @Override
     public final boolean p() {
-        return this.F.d.f28377c0;
+        return this.F.d.f28514c0;
     }
 }

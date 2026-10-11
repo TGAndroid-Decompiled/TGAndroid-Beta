@@ -9,7 +9,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.oy0;
+import org.telegram.ui.Components.ny0;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.g60;
 import org.telegram.ui.gy;
@@ -69,7 +69,7 @@ public final class u1 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new t1((Object) ((je) this.d), (Object) tL_error, tLObject, (Object) ((TwoStepVerificationActivity) this.f6053b), this.f6054c, 14));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new ai.t4((oy0) this.d, tLObject, this.f6054c, (org.telegram.ui.ActionBar.a2) this.f6053b, 20));
+                AndroidUtilities.runOnUIThread(new ai.t4((ny0) this.d, tLObject, this.f6054c, (org.telegram.ui.ActionBar.a2) this.f6053b, 20));
                 return;
             case 4:
                 AndroidUtilities.runOnUIThread(new t1((Object) ((gy) this.d), (Object) tL_error, tLObject, (Object) ((String) this.f6053b), this.f6054c, 20));

@@ -69,17 +69,17 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.Components.gm0;
 import org.telegram.ui.Components.hm0;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.ss0;
-import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.q61;
+import org.telegram.ui.Components.rs0;
+import org.telegram.ui.Components.tl0;
 import pg.u1;
 import r0.k1;
 import r0.n;
 import s4.n0;
 import vh.k;
-public final class c implements OnSuccessListener, i, im0, Utilities.Callback2Return, hm0, z1, u9, ec, k, n, ul0, Utilities.Callback5, u1, CameraController.VideoTakeCallback, Continuation, OnCompleteListener {
+public final class c implements OnSuccessListener, i, hm0, Utilities.Callback2Return, gm0, z1, u9, ec, k, n, tl0, Utilities.Callback5, u1, CameraController.VideoTakeCallback, Continuation, OnCompleteListener {
     public final int f40a;
     public final Object f41b;
 
@@ -100,7 +100,7 @@ public final class c implements OnSuccessListener, i, im0, Utilities.Callback2Re
         }
         marginLayoutParams.topMargin = i10;
         if (kcVar.f1259c) {
-            a2 = k1Var.f46867a.f(2).d;
+            a2 = k1Var.f46901a.f(2).d;
         } else {
             a2 = k1Var.a();
         }
@@ -115,7 +115,7 @@ public final class c implements OnSuccessListener, i, im0, Utilities.Callback2Re
         if (zbVar != null) {
             zbVar.requestLayout();
         }
-        return k1.f46866b;
+        return k1.f46900b;
     }
 
     @Override
@@ -332,7 +332,7 @@ public final class c implements OnSuccessListener, i, im0, Utilities.Callback2Re
         xa xaVar;
         wa waVar = (wa) this.f41b;
         if (!waVar.v.f1926x) {
-            gVar.f49781q = new va(waVar, 2);
+            gVar.f49815q = new va(waVar, 2);
             float sqrt = (float) Math.sqrt(Math.pow(xaVar.getHeight(), 2.0d) + Math.pow(xaVar.getWidth(), 2.0d));
             ArrayList arrayList = waVar.f1874i;
             int size = arrayList.size();
@@ -486,13 +486,13 @@ public final class c implements OnSuccessListener, i, im0, Utilities.Callback2Re
     @Override
     public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         cb cbVar = (cb) this.f41b;
-        r61 r61Var = (r61) obj;
+        q61 q61Var = (q61) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        int i10 = r61Var.d;
-        l8 l8Var = (l8) r61Var.G;
+        int i10 = q61Var.d;
+        l8 l8Var = (l8) q61Var.G;
         cbVar.c(false, true);
         lc lcVar = cbVar.O;
         if (l8Var == lcVar.K1 || lcVar.X1) {
@@ -550,10 +550,10 @@ public final class c implements OnSuccessListener, i, im0, Utilities.Callback2Re
                 Long l4 = (Long) obj;
                 return ai.o1.a((ai.o1) this.f41b, (Long) obj2);
             default:
-                ss0 ss0Var = (ss0) this.f41b;
+                rs0 rs0Var = (rs0) this.f41b;
                 Integer num = (Integer) obj2;
                 if (((Integer) obj).intValue() == -1) {
-                    new y(ss0Var.f3940a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(ss0Var, 4)).show();
+                    new y(rs0Var.f3940a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(rs0Var, 4)).show();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;

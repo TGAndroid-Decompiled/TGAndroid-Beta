@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class o40 extends db {
     public final LinearLayout X;
-    public e71 Y;
+    public d71 Y;
 
     public o40(Activity activity, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.dq dqVar) {
         super(activity, null, false, false, 1, d6Var);
@@ -29,7 +29,7 @@ public final class o40 extends db {
         org.telegram.ui.k01 Q2 = Q(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21189z6, d6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225z6, d6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -67,9 +67,9 @@ public final class o40 extends db {
         dVar2.g(LocaleController.formatString(R.string.GuardBotReplaceKeepCurrent, shortName), false, true);
         dVar2.setOnClickListener(new f0(this, 23));
         linearLayout.addView(dVar2, w7.x5.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        sm0 sm0Var = this.d;
+        rm0 rm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        sm0Var.setPadding(i11, 0, i11, 0);
+        rm0Var.setPadding(i11, 0, i11, 0);
         this.Y.N(false);
     }
 
@@ -89,10 +89,10 @@ public final class o40 extends db {
     }
 
     @Override
-    public final rm0 x(sm0 sm0Var) {
-        e71 e71Var = new e71(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
-        this.Y = e71Var;
-        e71Var.f25890r = false;
-        return e71Var;
+    public final qm0 x(rm0 rm0Var) {
+        d71 d71Var = new d71(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
+        this.Y = d71Var;
+        d71Var.f25649r = false;
+        return d71Var;
     }
 }

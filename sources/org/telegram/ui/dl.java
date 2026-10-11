@@ -5,30 +5,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 public final class dl implements LayoutTransition.TransitionListener {
-    public cl f37043a;
-    public int f37044b;
-    public final org.telegram.ui.ActionBar.y f37045c;
+    public cl f37077a;
+    public int f37078b;
+    public final org.telegram.ui.ActionBar.y f37079c;
     public final zn d;
 
     public dl(zn znVar, org.telegram.ui.ActionBar.y yVar) {
         this.d = znVar;
-        this.f37045c = yVar;
+        this.f37079c = yVar;
     }
 
     @Override
     public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        int i11 = this.f37044b - 1;
-        this.f37044b = i11;
-        if (i11 == 0 && this.f37043a != null) {
-            this.f37045c.getViewTreeObserver().removeOnPreDrawListener(this.f37043a);
-            this.f37043a = null;
+        int i11 = this.f37078b - 1;
+        this.f37078b = i11;
+        if (i11 == 0 && this.f37077a != null) {
+            this.f37079c.getViewTreeObserver().removeOnPreDrawListener(this.f37077a);
+            this.f37077a = null;
         }
     }
 
     @Override
     public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        if (this.f37044b == 0 && this.f37043a == null) {
-            this.f37043a = new ViewTreeObserver.OnPreDrawListener() {
+        if (this.f37078b == 0 && this.f37077a == null) {
+            this.f37077a = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
                 public final boolean onPreDraw() {
                     org.telegram.ui.ActionBar.k kVar;
@@ -37,8 +37,8 @@ public final class dl implements LayoutTransition.TransitionListener {
                     return true;
                 }
             };
-            this.f37045c.getViewTreeObserver().addOnPreDrawListener(this.f37043a);
+            this.f37079c.getViewTreeObserver().addOnPreDrawListener(this.f37077a);
         }
-        this.f37044b++;
+        this.f37078b++;
     }
 }

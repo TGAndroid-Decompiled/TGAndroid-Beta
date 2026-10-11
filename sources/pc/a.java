@@ -3,28 +3,28 @@ package pc;
 import c5.b0;
 import java.io.InputStream;
 public final class a {
-    public static int f45579f;
-    public InputStream f45580a;
-    public int f45581b;
-    public int f45582c;
+    public static int f45613f;
+    public InputStream f45614a;
+    public int f45615b;
+    public int f45616c;
     public int d;
-    public b0 f45583e;
+    public b0 f45617e;
 
     public final int a() {
         char c10;
         if (this.d == 8) {
-            this.f45581b = this.f45582c;
-            this.f45582c = this.f45580a.read();
+            this.f45615b = this.f45616c;
+            this.f45616c = this.f45614a.read();
             this.d = 0;
-            if (this.f45581b == -1) {
+            if (this.f45615b == -1) {
                 return -1;
             }
         }
-        int i10 = this.f45581b;
+        int i10 = this.f45615b;
         int i11 = this.d;
         int i12 = (i10 >> (7 - i11)) & 1;
         this.d = i11 + 1;
-        b0 b0Var = this.f45583e;
+        b0 b0Var = this.f45617e;
         if (i12 == 0) {
             c10 = '0';
         } else {
@@ -36,7 +36,7 @@ public final class a {
             cArr[i13] = c10;
             b0Var.f4202b = i13 + 1;
         }
-        f45579f++;
+        f45613f++;
         return i12;
     }
 
@@ -89,8 +89,8 @@ public final class a {
 
     public final void f(String str, String str2) {
         StringBuilder sb2 = new StringBuilder();
-        int i10 = f45579f;
-        b0 b0Var = this.f45583e;
+        int i10 = f45613f;
+        b0 b0Var = this.f45617e;
         String valueOf = String.valueOf(i10 - b0Var.f4202b);
         int length = 8 - valueOf.length();
         sb2.append("@".concat(valueOf));

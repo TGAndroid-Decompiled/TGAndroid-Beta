@@ -16,14 +16,14 @@ public final class e20 extends s4.w {
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        View view = d1Var.f47748a;
+        View view = d1Var.f47782a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
-        if (d1Var.f47752f != 2) {
+        if (d1Var.f47786f != 2) {
             return s4.w.l(0, 0);
         }
         return s4.w.l(3, 0);
@@ -38,15 +38,15 @@ public final class e20 extends s4.w {
     public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
         MessagesController.DialogFilter dialogFilter;
         MessagesController.DialogFilter dialogFilter2;
-        if (d1Var.f47752f != d1Var2.f47752f) {
+        if (d1Var.f47786f != d1Var2.f47786f) {
             return false;
         }
-        b20 b20Var = this.d.f33789b;
+        b20 b20Var = this.d.f33823b;
         int b10 = d1Var.b();
         int b11 = d1Var2.b();
-        FiltersSetupActivity filtersSetupActivity = b20Var.f36245e;
-        int i10 = filtersSetupActivity.f33794r;
-        ArrayList arrayList = filtersSetupActivity.f33793n;
+        FiltersSetupActivity filtersSetupActivity = b20Var.f36279e;
+        int i10 = filtersSetupActivity.f33828r;
+        ArrayList arrayList = filtersSetupActivity.f33827n;
         if (b10 >= i10 && b11 >= i10) {
             z10 z10Var = (z10) arrayList.get(b10);
             z10 z10Var2 = (z10) arrayList.get(b11);
@@ -56,11 +56,11 @@ public final class e20 extends s4.w {
                 dialogFilter2.order = i11;
                 ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
                 try {
-                    arrayList2.set(b10 - filtersSetupActivity.f33794r, z10Var2.d);
-                    arrayList2.set(b11 - filtersSetupActivity.f33794r, z10Var.d);
+                    arrayList2.set(b10 - filtersSetupActivity.f33828r, z10Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f33828r, z10Var.d);
                 } catch (Exception unused) {
                 }
-                filtersSetupActivity.f33791e = true;
+                filtersSetupActivity.f33825e = true;
                 filtersSetupActivity.Z(true);
             }
         }
@@ -71,14 +71,14 @@ public final class e20 extends s4.w {
     public final void p(s4.d1 d1Var, int i10) {
         Boolean bool;
         if (i10 != 0) {
-            this.d.f33788a.I0(false);
-            d1Var.f47748a.setPressed(true);
+            this.d.f33822a.I0(false);
+            d1Var.f47782a.setPressed(true);
         } else {
             AndroidUtilities.cancelRunOnUIThread(new tz(this, 5));
             AndroidUtilities.runOnUIThread(new tz(this, 5), 320L);
         }
         if (d1Var != null) {
-            View view = d1Var.f47748a;
+            View view = d1Var.f47782a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

@@ -18,21 +18,21 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class ky extends rm0 {
+public final class ky extends qm0 {
     public int E;
     public final b00 F;
     public ArrayList h;
-    public int f28113y;
-    public int f28105c = -1;
+    public int f28157y;
+    public int f28149c = -1;
     public int d = -1;
-    public int f28106e = -1;
-    public int f28107f = -1;
-    public final ArrayList f28108n = new ArrayList();
-    public final SparseIntArray f28109r = new SparseIntArray();
-    public final SparseIntArray f28110s = new SparseIntArray();
+    public int f28150e = -1;
+    public int f28151f = -1;
+    public final ArrayList f28152n = new ArrayList();
+    public final SparseIntArray f28153r = new SparseIntArray();
+    public final SparseIntArray f28154s = new SparseIntArray();
     public final SparseIntArray v = new SparseIntArray();
-    public final SparseIntArray f28111w = new SparseIntArray();
-    public final ArrayList f28112x = new ArrayList();
+    public final SparseIntArray f28155w = new SparseIntArray();
+    public final ArrayList f28156x = new ArrayList();
 
     public ky(b00 b00Var) {
         this.F = b00Var;
@@ -40,7 +40,7 @@ public final class ky extends rm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47752f;
+        int i10 = d1Var.f47786f;
         if (i10 != 0 && i10 != 4 && i10 != 3 && i10 != 6) {
             return false;
         }
@@ -54,8 +54,8 @@ public final class ky extends rm0 {
         Integer num;
         float f7;
         b00 b00Var = this.F;
-        ArrayList arrayList = b00Var.f24705q1;
-        int i11 = this.f28111w.get(i10);
+        ArrayList arrayList = b00Var.f24774q1;
+        int i11 = this.f28155w.get(i10);
         if (i11 >= 0 && i11 < arrayList.size()) {
             oy oyVar = (oy) arrayList.get(i11);
             if (!oyVar.h) {
@@ -64,27 +64,27 @@ public final class ky extends rm0 {
                 } else {
                     z10 = false;
                 }
-                int intValue = ((Integer) this.f28112x.get(i11)).intValue();
-                b00Var.f24699o1.add(Long.valueOf(oyVar.f29548b.f20059id));
-                if (!UserConfig.getInstance(b00Var.f24662c1).isPremium() && !b00Var.U0) {
+                int intValue = ((Integer) this.f28156x.get(i11)).intValue();
+                b00Var.f24768o1.add(Long.valueOf(oyVar.f29651b.f20095id));
+                if (!UserConfig.getInstance(b00Var.f24731c1).isPremium() && !b00Var.U0) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 int i12 = b00Var.Q.J * 3;
-                if ((oyVar.f29551f && !oyVar.f29552g && (oyVar.f29550e || z11)) || oyVar.h) {
-                    min = oyVar.f29549c.size();
+                if ((oyVar.f29654f && !oyVar.f29655g && (oyVar.f29653e || z11)) || oyVar.h) {
+                    min = oyVar.f29652c.size();
                 } else {
-                    min = Math.min(i12, oyVar.f29549c.size());
+                    min = Math.min(i12, oyVar.f29652c.size());
                 }
                 Integer num2 = null;
-                if (oyVar.f29549c.size() > i12) {
+                if (oyVar.f29652c.size() > i12) {
                     num = Integer.valueOf(intValue + 1 + min);
                 } else {
                     num = null;
                 }
                 oyVar.h = true;
-                int size = oyVar.f29549c.size() - min;
+                int size = oyVar.f29652c.size() - min;
                 if (size > 0) {
                     num = Integer.valueOf(intValue + 1 + min);
                     num2 = Integer.valueOf(size);
@@ -92,10 +92,10 @@ public final class ky extends rm0 {
                 G(false);
                 H();
                 if (num != null && num2 != null) {
-                    b00Var.f24710r2 = view;
-                    b00Var.f24714s2 = num.intValue();
-                    b00Var.f24717t2 = num2.intValue() + num.intValue();
-                    b00Var.f24720u2 = SystemClock.elapsedRealtime();
+                    b00Var.f24779r2 = view;
+                    b00Var.f24783s2 = num.intValue();
+                    b00Var.f24786t2 = num2.intValue() + num.intValue();
+                    b00Var.f24789u2 = SystemClock.elapsedRealtime();
                     s(num.intValue(), num2.intValue());
                     m(num.intValue());
                     if (z10) {
@@ -114,18 +114,18 @@ public final class ky extends rm0 {
 
     public final void F(boolean z10) {
         b00 b00Var = this.F;
-        ArrayList arrayList = b00Var.f24696n1;
+        ArrayList arrayList = b00Var.f24765n1;
         if (b00Var.N2) {
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f28108n);
-        MediaDataController mediaDataController = MediaDataController.getInstance(b00Var.f24662c1);
+        ArrayList arrayList2 = new ArrayList(this.f28152n);
+        MediaDataController mediaDataController = MediaDataController.getInstance(b00Var.f24731c1);
         ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = mediaDataController.getFeaturedEmojiSets();
         arrayList.clear();
         int size = featuredEmojiSets.size();
         for (int i10 = 0; i10 < size; i10++) {
             TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i10);
-            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20059id) || b00Var.f24702p1.contains(Long.valueOf(stickerSetCovered.set.f20059id))) {
+            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20095id) || b00Var.f24771p1.contains(Long.valueOf(stickerSetCovered.set.f20095id))) {
                 arrayList.add(stickerSetCovered);
             }
         }
@@ -145,12 +145,12 @@ public final class ky extends rm0 {
         TLRPC.StickerSet stickerSet;
         TLRPC.TL_messages_stickerSet groupStickerSetById;
         b00 b00Var = this.F;
-        ArrayList arrayList = b00Var.f24696n1;
-        ArrayList arrayList2 = b00Var.f24699o1;
-        int i11 = b00Var.f24662c1;
-        ArrayList arrayList3 = b00Var.f24705q1;
+        ArrayList arrayList = b00Var.f24765n1;
+        ArrayList arrayList2 = b00Var.f24768o1;
+        int i11 = b00Var.f24731c1;
+        ArrayList arrayList3 = b00Var.f24774q1;
         arrayList3.clear();
-        if (b00Var.f24663c2) {
+        if (b00Var.f24732c2) {
             MediaDataController mediaDataController = MediaDataController.getInstance(i11);
             if (z10 || this.h == null) {
                 this.h = new ArrayList(mediaDataController.getStickerSets(5));
@@ -165,22 +165,22 @@ public final class ky extends rm0 {
             TLRPC.ChatFull chatFull = b00Var.J1;
             if (chatFull != null && (stickerSet = chatFull.emojiset) != null && (groupStickerSetById = mediaDataController.getGroupStickerSetById(stickerSet)) != null) {
                 oy oyVar = new oy();
-                oyVar.f29548b = b00Var.J1.emojiset;
-                oyVar.f29549c = new ArrayList(groupStickerSetById.documents);
-                oyVar.f29550e = true;
-                oyVar.f29551f = true;
-                oyVar.f29552g = false;
+                oyVar.f29651b = b00Var.J1.emojiset;
+                oyVar.f29652c = new ArrayList(groupStickerSetById.documents);
+                oyVar.f29653e = true;
+                oyVar.f29654f = true;
+                oyVar.f29655g = false;
                 oyVar.h = true;
-                oyVar.f29553i = true;
+                oyVar.f29656i = true;
                 arrayList3.add(oyVar);
-                TLRPC.StickerSet stickerSet2 = oyVar.f29548b;
+                TLRPC.StickerSet stickerSet2 = oyVar.f29651b;
                 int i12 = 0;
                 while (true) {
                     if (i12 >= arrayList4.size()) {
                         break;
                     }
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList4.get(i12);
-                    if (tL_messages_stickerSet != null && tL_messages_stickerSet.set.f20059id == stickerSet2.f20059id) {
+                    if (tL_messages_stickerSet != null && tL_messages_stickerSet.set.f20095id == stickerSet2.f20095id) {
                         arrayList4.remove(i12);
                         break;
                     }
@@ -193,11 +193,11 @@ public final class ky extends rm0 {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) arrayList4.get(i13);
                     if (tL_messages_stickerSet2 != null && !MessageObject.isPremiumEmojiPack(tL_messages_stickerSet2)) {
                         oy oyVar2 = new oy();
-                        oyVar2.f29548b = tL_messages_stickerSet2.set;
-                        oyVar2.f29549c = new ArrayList(tL_messages_stickerSet2.documents);
-                        oyVar2.f29550e = true;
-                        oyVar2.f29551f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet2.set.f20059id);
-                        oyVar2.f29552g = false;
+                        oyVar2.f29651b = tL_messages_stickerSet2.set;
+                        oyVar2.f29652c = new ArrayList(tL_messages_stickerSet2.documents);
+                        oyVar2.f29653e = true;
+                        oyVar2.f29654f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet2.set.f20095id);
+                        oyVar2.f29655g = false;
                         oyVar2.h = true;
                         arrayList3.add(oyVar2);
                         arrayList4.remove(i13);
@@ -212,11 +212,11 @@ public final class ky extends rm0 {
                 if (z11) {
                     oy oyVar3 = new oy();
                     TLRPC.StickerSet stickerSet3 = tL_messages_stickerSet3.set;
-                    oyVar3.f29548b = stickerSet3;
-                    oyVar3.f29549c = tL_messages_stickerSet3.documents;
-                    oyVar3.f29550e = false;
-                    oyVar3.f29551f = mediaDataController.isStickerPackInstalled(stickerSet3.f20059id);
-                    oyVar3.f29552g = false;
+                    oyVar3.f29651b = stickerSet3;
+                    oyVar3.f29652c = tL_messages_stickerSet3.documents;
+                    oyVar3.f29653e = false;
+                    oyVar3.f29654f = mediaDataController.isStickerPackInstalled(stickerSet3.f20095id);
+                    oyVar3.f29655g = false;
                     oyVar3.h = z13;
                     arrayList3.add(oyVar3);
                     i10 = i14;
@@ -234,12 +234,12 @@ public final class ky extends rm0 {
                     }
                     if (arrayList5.size() > 0) {
                         oy oyVar4 = new oy();
-                        oyVar4.f29548b = tL_messages_stickerSet3.set;
-                        oyVar4.f29549c = new ArrayList(arrayList5);
-                        oyVar4.f29550e = z13;
+                        oyVar4.f29651b = tL_messages_stickerSet3.set;
+                        oyVar4.f29652c = new ArrayList(arrayList5);
+                        oyVar4.f29653e = z13;
                         i10 = i14;
-                        oyVar4.f29551f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f20059id);
-                        oyVar4.f29552g = false;
+                        oyVar4.f29654f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f20095id);
+                        oyVar4.f29655g = false;
                         oyVar4.h = true;
                         arrayList3.add(oyVar4);
                     } else {
@@ -247,12 +247,12 @@ public final class ky extends rm0 {
                     }
                     if (arrayList6.size() > 0) {
                         oy oyVar5 = new oy();
-                        oyVar5.f29548b = tL_messages_stickerSet3.set;
-                        oyVar5.f29549c = new ArrayList(arrayList6);
-                        oyVar5.f29550e = false;
-                        oyVar5.f29551f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f20059id);
-                        oyVar5.f29552g = false;
-                        oyVar5.h = arrayList2.contains(Long.valueOf(oyVar5.f29548b.f20059id));
+                        oyVar5.f29651b = tL_messages_stickerSet3.set;
+                        oyVar5.f29652c = new ArrayList(arrayList6);
+                        oyVar5.f29653e = false;
+                        oyVar5.f29654f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f20095id);
+                        oyVar5.f29655g = false;
+                        oyVar5.h = arrayList2.contains(Long.valueOf(oyVar5.f29651b.f20095id));
                         arrayList3.add(oyVar5);
                     }
                 }
@@ -262,27 +262,27 @@ public final class ky extends rm0 {
             for (int i16 = 0; i16 < arrayList.size(); i16++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i16);
                 oy oyVar6 = new oy();
-                oyVar6.f29551f = mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20059id);
+                oyVar6.f29654f = mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f20095id);
                 TLRPC.StickerSet stickerSet4 = stickerSetCovered.set;
-                oyVar6.f29548b = stickerSet4;
+                oyVar6.f29651b = stickerSet4;
                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                    oyVar6.f29549c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+                    oyVar6.f29652c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                 } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
                     TLRPC.TL_messages_stickerSet stickerSet5 = mediaDataController.getStickerSet(MediaDataController.getInputStickerSet(stickerSet4), Integer.valueOf(stickerSetCovered.set.hash), true);
                     if (stickerSet5 != null) {
-                        oyVar6.f29549c = stickerSet5.documents;
+                        oyVar6.f29652c = stickerSet5.documents;
                     } else {
                         oyVar6.d = MediaDataController.getInputStickerSet(stickerSetCovered.set);
                     }
                 } else {
-                    oyVar6.f29549c = stickerSetCovered.covers;
+                    oyVar6.f29652c = stickerSetCovered.covers;
                 }
-                ArrayList arrayList7 = oyVar6.f29549c;
+                ArrayList arrayList7 = oyVar6.f29652c;
                 if (arrayList7 != null && !arrayList7.isEmpty()) {
                     int i17 = 0;
                     while (true) {
-                        if (i17 < oyVar6.f29549c.size()) {
-                            if (!MessageObject.isFreeEmoji((TLRPC.Document) oyVar6.f29549c.get(i17))) {
+                        if (i17 < oyVar6.f29652c.size()) {
+                            if (!MessageObject.isFreeEmoji((TLRPC.Document) oyVar6.f29652c.get(i17))) {
                                 z12 = true;
                                 break;
                             }
@@ -292,9 +292,9 @@ public final class ky extends rm0 {
                             break;
                         }
                     }
-                    oyVar6.f29550e = !z12;
-                    oyVar6.h = arrayList2.contains(Long.valueOf(oyVar6.f29548b.f20059id));
-                    oyVar6.f29552g = true;
+                    oyVar6.f29653e = !z12;
+                    oyVar6.h = arrayList2.contains(Long.valueOf(oyVar6.f29651b.f20095id));
+                    oyVar6.f29655g = true;
                     arrayList3.add(oyVar6);
                 }
             }
@@ -311,7 +311,7 @@ public final class ky extends rm0 {
 
     @Override
     public final int h() {
-        return this.f28113y;
+        return this.f28157y;
     }
 
     @Override
@@ -324,22 +324,22 @@ public final class ky extends rm0 {
         if (i10 == this.d) {
             return 4;
         }
-        if (i10 == this.f28105c || i10 == this.f28107f) {
+        if (i10 == this.f28149c || i10 == this.f28151f) {
             return 1;
         }
-        SparseIntArray sparseIntArray = this.f28109r;
+        SparseIntArray sparseIntArray = this.f28153r;
         if (sparseIntArray.indexOfKey(i10) >= 0) {
             if (sparseIntArray.get(i10) < EmojiData.dataColored.length) {
                 return 1;
             }
             return 5;
-        } else if (this.F.f24664d0 && i10 == 0) {
+        } else if (this.F.f24733d0 && i10 == 0) {
             return 2;
         } else {
             if (this.v.indexOfKey(i10) >= 0) {
                 return 3;
             }
-            if (this.f28111w.indexOfKey(i10) >= 0) {
+            if (this.f28155w.indexOfKey(i10) >= 0) {
                 return 6;
             }
             return 0;
@@ -364,27 +364,27 @@ public final class ky extends rm0 {
         int i12;
         int i13 = i10;
         b00 b00Var = this.F;
-        String[] strArr = b00Var.f24655a1;
+        String[] strArr = b00Var.f24724a1;
         ay ayVar = b00Var.Q;
-        int i14 = b00Var.f24662c1;
-        ArrayList arrayList = b00Var.f24705q1;
-        int i15 = d1Var.f47752f;
-        View view = d1Var.f47748a;
+        int i14 = b00Var.f24731c1;
+        ArrayList arrayList = b00Var.f24774q1;
+        int i15 = d1Var.f47786f;
+        View view = d1Var.f47782a;
         boolean z10 = true;
         oy oyVar2 = null;
         if (i15 != 0) {
-            SparseIntArray sparseIntArray = this.f28109r;
+            SparseIntArray sparseIntArray = this.f28153r;
             if (i15 != 1) {
                 if (i15 != 5) {
                     if (i15 == 6) {
                         qy qyVar = (qy) view;
-                        int i16 = this.f28111w.get(i13);
+                        int i16 = this.f28155w.get(i13);
                         int i17 = ayVar.J * 3;
                         if (i16 >= 0 && i16 < arrayList.size()) {
                             oyVar2 = (oy) arrayList.get(i16);
                         }
                         if (oyVar2 != null) {
-                            qyVar.f30264a.setText("+" + ((oyVar2.f29549c.size() - i17) + 1));
+                            qyVar.f30341a.setText("+" + ((oyVar2.f29652c.size() - i17) + 1));
                             return;
                         }
                         return;
@@ -400,7 +400,7 @@ public final class ky extends rm0 {
                 } else {
                     oyVar = null;
                 }
-                if (oyVar3 == null || !oyVar3.f29552g || (oyVar != null && !oyVar.f29550e && oyVar.f29551f && !UserConfig.getInstance(i14).isPremium())) {
+                if (oyVar3 == null || !oyVar3.f29655g || (oyVar != null && !oyVar.f29653e && oyVar.f29654f && !UserConfig.getInstance(i14).isPremium())) {
                     z10 = false;
                 }
                 if (oyVar3 != null && oyVar3.d != null) {
@@ -409,17 +409,17 @@ public final class ky extends rm0 {
                 }
                 rg.p0 p0Var = syVar.h;
                 if (oyVar3 != null) {
-                    syVar.f30902s = oyVar3;
+                    syVar.f30973s = oyVar3;
                     syVar.v = z10;
-                    syVar.f30896b.l(oyVar3.f29548b.title, false);
-                    TextView textView = syVar.f30897c;
-                    if (oyVar3.f29553i) {
+                    syVar.f30967b.l(oyVar3.f29651b.title, false);
+                    TextView textView = syVar.f30968c;
+                    if (oyVar3.f29656i) {
                         i12 = 0;
                     } else {
                         i12 = 8;
                     }
                     textView.setVisibility(i12);
-                    if (oyVar3.f29551f && !oyVar3.f29548b.official) {
+                    if (oyVar3.f29654f && !oyVar3.f29651b.official) {
                         p0Var.a(LocaleController.getString(R.string.Restore), new ry(syVar, 5), false);
                     } else {
                         p0Var.a(LocaleController.getString(R.string.Unlock), new ry(syVar, 6), false);
@@ -432,15 +432,15 @@ public final class ky extends rm0 {
             org.telegram.ui.Cells.o8 o8Var = (org.telegram.ui.Cells.o8) view;
             o8Var.getClass();
             int i19 = sparseIntArray.get(i13);
-            if (i13 == this.f28105c) {
+            if (i13 == this.f28149c) {
                 o8Var.c(LocaleController.getString(R.string.FeaturedEmojiPacks), R.drawable.msg_close, LocaleController.getString(R.string.AccDescrCloseTrendingEmoji), 0, 0);
                 return;
-            } else if (i13 == this.f28107f) {
+            } else if (i13 == this.f28151f) {
                 o8Var.b(0, LocaleController.getString(R.string.RecentlyUsed));
                 return;
             } else if (i19 >= strArr.length) {
                 try {
-                    o8Var.b(0, ((oy) arrayList.get(i19 - strArr.length)).f29548b.title);
+                    o8Var.b(0, ((oy) arrayList.get(i19 - strArr.length)).f29651b.title);
                     return;
                 } catch (Exception unused) {
                     o8Var.b(0, "");
@@ -452,12 +452,12 @@ public final class ky extends rm0 {
             }
         }
         jz jzVar = (jz) view;
-        jzVar.f27775a = i13;
-        jzVar.f27778e = null;
-        if (b00Var.f24664d0) {
+        jzVar.f27879a = i13;
+        jzVar.f27882e = null;
+        if (b00Var.f24733d0) {
             i13--;
         }
-        if (this.f28107f >= 0) {
+        if (this.f28151f >= 0) {
             i13--;
         }
         if (this.d >= 0) {
@@ -511,25 +511,25 @@ public final class ky extends rm0 {
                 int i22 = ayVar.J * 3;
                 int i23 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f28112x;
+                    ArrayList arrayList2 = this.f28156x;
                     if (i23 >= arrayList2.size()) {
                         break;
                     }
                     oy oyVar4 = (oy) arrayList.get(i23);
                     int intValue = ((Integer) arrayList2.get(i23)).intValue() + 1;
-                    if ((oyVar4.f29551f && !oyVar4.f29552g && (oyVar4.f29550e || isPremium)) || oyVar4.h) {
-                        min = oyVar4.f29549c.size();
+                    if ((oyVar4.f29654f && !oyVar4.f29655g && (oyVar4.f29653e || isPremium)) || oyVar4.h) {
+                        min = oyVar4.f29652c.size();
                     } else {
-                        min = Math.min(i22, oyVar4.f29549c.size());
+                        min = Math.min(i22, oyVar4.f29652c.size());
                     }
-                    int i24 = jzVar.f27775a;
+                    int i24 = jzVar.f27879a;
                     if (i24 >= intValue && (i11 = i24 - intValue) < min) {
-                        jzVar.f27778e = oyVar4;
-                        TLRPC.Document document2 = (TLRPC.Document) oyVar4.f29549c.get(i11);
+                        jzVar.f27882e = oyVar4;
+                        TLRPC.Document document2 = (TLRPC.Document) oyVar4.f29652c.get(i11);
                         if (document2 == null) {
                             valueOf = null;
                         } else {
-                            valueOf = Long.valueOf(document2.f20038id);
+                            valueOf = Long.valueOf(document2.f20074id);
                         }
                         Long l10 = valueOf;
                         document = document2;
@@ -577,15 +577,15 @@ public final class ky extends rm0 {
                         if (i10 != 5) {
                             if (i10 != 6) {
                                 View view = new View(b00Var.getContext());
-                                view.setLayoutParams(new s4.q0(-1, b00Var.f24658b1));
+                                view.setLayoutParams(new s4.q0(-1, b00Var.f24727b1));
                                 w0Var = view;
                             } else {
                                 Context context = b00Var.getContext();
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f30264a = textView;
+                                frameLayout.f30341a = textView;
                                 textView.setTextSize(1, 13.0f);
-                                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20786d6, d6Var));
+                                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20822d6, d6Var));
                                 textView.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(11.0f), i0.a.k(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Te, d6Var), 99)));
                                 textView.setTypeface(AndroidUtilities.bold());
                                 textView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.66f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f));
@@ -624,7 +624,7 @@ public final class ky extends rm0 {
                     w0Var = frameLayout2;
                 }
             } else {
-                org.telegram.ui.Cells.o8 o8Var = new org.telegram.ui.Cells.o8(b00Var.getContext(), true, false, b00Var.Z1, b00Var.f24683i2);
+                org.telegram.ui.Cells.o8 o8Var = new org.telegram.ui.Cells.o8(b00Var.getContext(), true, false, b00Var.Z1, b00Var.f24752i2);
                 o8Var.setOnIconClickListener(new f0(this, 13));
                 w0Var = o8Var;
             }

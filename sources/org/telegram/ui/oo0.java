@@ -4,15 +4,15 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class oo0 implements TextWatcher {
-    public final String[] f40590a = {"34", "37"};
-    public final String[] f40591b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
-    public final String[] f40592c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+    public final String[] f40624a = {"34", "37"};
+    public final String[] f40625b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public final String[] f40626c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
     public int d = -1;
-    public int f40593e;
-    public final uo0 f40594f;
+    public int f40627e;
+    public final uo0 f40628f;
 
     public oo0(uo0 uo0Var) {
-        this.f40594f = uo0Var;
+        this.f40628f = uo0Var;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class oo0 implements TextWatcher {
         String[] strArr;
         int i13;
         String str;
-        uo0 uo0Var = this.f40594f;
-        if (uo0Var.f42717o0) {
+        uo0 uo0Var = this.f40628f;
+        if (uo0Var.f42751o0) {
             return;
         }
         int i14 = 0;
-        EditTextBoldCursor editTextBoldCursor = uo0Var.f42706f[0];
+        EditTextBoldCursor editTextBoldCursor = uo0Var.f42740f[0];
         int selectionStart = editTextBoldCursor.getSelectionStart();
         String obj = editTextBoldCursor.getText().toString();
         int i15 = 3;
         int i16 = 1;
         if (this.d == 3) {
-            obj = obj.substring(0, this.f40593e) + obj.substring(this.f40593e + 1);
+            obj = obj.substring(0, this.f40627e) + obj.substring(this.f40627e + 1);
             selectionStart--;
         }
         StringBuilder sb2 = new StringBuilder(obj.length());
@@ -48,7 +48,7 @@ public final class oo0 implements TextWatcher {
             }
             i17 = i18;
         }
-        uo0Var.f42717o0 = true;
+        uo0Var.f42751o0 = true;
         String str2 = null;
         int i19 = 100;
         if (sb2.length() > 0) {
@@ -58,16 +58,16 @@ public final class oo0 implements TextWatcher {
                 if (i20 < i15) {
                     if (i20 != 0) {
                         if (i20 != i16) {
-                            strArr = this.f40591b;
+                            strArr = this.f40625b;
                             i13 = 14;
                             str = "xxxx xxxx xxxx xx";
                         } else {
-                            strArr = this.f40590a;
+                            strArr = this.f40624a;
                             i13 = 15;
                             str = "xxxx xxxx xxxx xxx";
                         }
                     } else {
-                        strArr = this.f40592c;
+                        strArr = this.f40626c;
                         i13 = 16;
                         str = "xxxx xxxx xxxx xxxx";
                     }
@@ -106,7 +106,7 @@ public final class oo0 implements TextWatcher {
         }
         if (str2 != null) {
             if (sb2.length() == i19) {
-                uo0Var.f42706f[i10].requestFocus();
+                uo0Var.f42740f[i10].requestFocus();
             }
             editTextBoldCursor.setTextColor(uo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
             int i22 = 0;
@@ -139,7 +139,7 @@ public final class oo0 implements TextWatcher {
         if (selectionStart >= 0) {
             editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
         }
-        uo0Var.f42717o0 = z10;
+        uo0Var.f42751o0 = z10;
     }
 
     @Override
@@ -149,7 +149,7 @@ public final class oo0 implements TextWatcher {
         } else if (i11 == 1 && i12 == 0) {
             if (charSequence.charAt(i10) == ' ' && i10 > 0) {
                 this.d = 3;
-                this.f40593e = i10 - 1;
+                this.f40627e = i10 - 1;
                 return;
             }
             this.d = 2;

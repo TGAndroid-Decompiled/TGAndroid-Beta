@@ -15,7 +15,7 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.a50;
 import org.telegram.ui.Components.qg;
-import org.telegram.ui.Components.u60;
+import org.telegram.ui.Components.t60;
 import org.telegram.ui.pn;
 public final class c4 implements qg {
     public final f6 f755a;
@@ -80,9 +80,9 @@ public final class c4 implements qg {
 
     @Override
     public final void V(float f7, int i10) {
-        u60 u60Var = this.f755a.J2;
-        if (u60Var != null) {
-            u60Var.b(f7, i10);
+        t60 t60Var = this.f755a.J2;
+        if (t60Var != null) {
+            t60Var.b(f7, i10);
         }
     }
 
@@ -137,8 +137,8 @@ public final class c4 implements qg {
 
     @Override
     public final boolean o1() {
-        u60 u60Var = this.f755a.J2;
-        if (u60Var != null && !u60Var.f31277j0) {
+        t60 t60Var = this.f755a.J2;
+        if (t60Var != null && !t60Var.f31101j0) {
             return true;
         }
         return false;
@@ -170,7 +170,7 @@ public final class c4 implements qg {
             }
         }
         a50 a50Var2 = f6Var.W2;
-        if (f6Var.f952b2.f23858c1) {
+        if (f6Var.f952b2.f23894c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
@@ -184,22 +184,22 @@ public final class c4 implements qg {
         f6 f6Var = this.f755a;
         boolean z11 = false;
         if (f6Var.J2 == null && CameraView.isCameraAllowed()) {
-            f6Var.J2 = new u60(f6Var.getContext(), new s4(f6Var), f6Var.B0, false);
+            f6Var.J2 = new t60(f6Var.getContext(), new s4(f6Var), f6Var.B0, false);
             f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f952b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f952b2.O1)), w7.x5.e(-1, -1, 51));
         }
-        u60 u60Var = f6Var.J2;
-        if (u60Var != null) {
+        t60 t60Var = f6Var.J2;
+        if (t60Var != null) {
             if (i10 == 0) {
-                u60Var.h(false);
+                t60Var.h(false);
             } else if (i10 != 1 && i10 != 3 && i10 != 4) {
                 if (i10 == 2 || i10 == 5) {
                     if (i10 == 2) {
                         z11 = true;
                     }
-                    u60Var.a(z11);
+                    t60Var.a(z11);
                 }
             } else {
-                u60Var.f(i10, i11, i12, j3, j10, z10);
+                t60Var.f(i10, i11, i12, j3, j10, z10);
             }
         }
     }
@@ -266,9 +266,9 @@ public final class c4 implements qg {
 
     @Override
     public final void t1() {
-        u60 u60Var = this.f755a.J2;
-        if (u60Var != null) {
-            u60Var.i();
+        t60 t60Var = this.f755a.J2;
+        if (t60Var != null) {
+            t60Var.i();
         }
     }
 

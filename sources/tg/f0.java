@@ -14,8 +14,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.sm0;
 import org.telegram.ui.sy;
 import w7.x5;
 public final class f0 extends rg.l1 {
@@ -28,18 +28,18 @@ public final class f0 extends rg.l1 {
         this.R0 = str;
         sc.a((FrameLayout) this.containerView, new a9(15));
         if (!z10) {
-            sm0 sm0Var = this.d;
+            rm0 rm0Var = this.d;
             int i11 = this.backgroundPaddingLeft;
-            sm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
+            rm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
             vg.a aVar = new vg.a(getContext(), this.resourcesProvider);
             this.Q0 = aVar;
             aVar.setOnClickListener(new org.telegram.ui.Components.voip.p(this, 11));
             vg.a aVar2 = this.Q0;
-            aVar2.f49653e = true;
-            ci.d dVar = aVar2.f49650a;
+            aVar2.f49687e = true;
+            ci.d dVar = aVar2.f49684a;
             dVar.setEnabled(true);
             dVar.g(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            aVar2.f49651b.setBackgroundColor(h6.w0(h6.f20857h5, aVar2.f49652c));
+            aVar2.f49685b.setBackgroundColor(h6.w0(h6.f20893h5, aVar2.f49686c));
             this.containerView.addView(this.Q0, x5.a(68.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
         }
         fixNavigationBar();
@@ -51,17 +51,17 @@ public final class f0 extends rg.l1 {
     }
 
     public static void e0(f0 f0Var) {
-        rg.l1 l1Var = new rg.l1(f0Var.f25523n, UserConfig.selectedAccount, null, null, null, f0Var.resourcesProvider);
+        rg.l1 l1Var = new rg.l1(f0Var.f25736n, UserConfig.selectedAccount, null, null, null, f0Var.resourcesProvider);
         l1Var.J0 = true;
         l1Var.K0 = true;
-        l1Var.f47413c0 = true;
-        f0Var.f25523n.showDialog(l1Var);
+        l1Var.f47447c0 = true;
+        f0Var.f25736n.showDialog(l1Var);
     }
 
     public static void f0(f0 f0Var) {
         sy syVar = new sy(ai.d(3, "onlySelect", "dialogsType", true));
         syVar.C2 = new q9.p(10, f0Var, "https://t.me/giftcode/" + f0Var.R0);
-        f0Var.f25523n.presentFragment(syVar);
+        f0Var.f25736n.presentFragment(syVar);
         f0Var.dismiss();
     }
 
@@ -96,17 +96,17 @@ public final class f0 extends rg.l1 {
 
     @Override
     public final void c0() {
-        int i10 = this.f47416f0;
-        this.f47417g0 = i10;
-        this.f47418h0 = i10 + 1;
+        int i10 = this.f47450f0;
+        this.f47451g0 = i10;
+        this.f47452h0 = i10 + 1;
         int i11 = i10 + 2;
-        this.f47416f0 = i11;
-        this.f47419i0 = i11;
-        this.f47420j0 = i11;
+        this.f47450f0 = i11;
+        this.f47453i0 = i11;
+        this.f47454j0 = i11;
         int size = this.X.size() + i11;
-        this.f47421k0 = size;
-        this.f47416f0 = size + 1;
-        this.f47422l0 = size;
+        this.f47455k0 = size;
+        this.f47450f0 = size + 1;
+        this.f47456l0 = size;
     }
 
     @Override

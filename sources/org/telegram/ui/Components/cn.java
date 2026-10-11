@@ -10,16 +10,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class cn extends org.telegram.ui.tu0 {
-    public ArrayList f25243a = new ArrayList();
-    public final gn f25244b;
+    public ArrayList f25387a = new ArrayList();
+    public final gn f25388b;
 
     public cn(gn gnVar) {
-        this.f25244b = gnVar;
+        this.f25388b = gnVar;
     }
 
     @Override
     public final void D() {
-        gn gnVar = this.f25244b;
+        gn gnVar = this.f25388b;
         gnVar.c();
         gnVar.i(gnVar.P.P, false);
     }
@@ -28,10 +28,10 @@ public final class cn extends org.telegram.ui.tu0 {
     public final org.telegram.ui.dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         MediaController.PhotoEntry photoEntry;
         ArrayList arrayList;
-        gn gnVar = this.f25244b;
-        ArrayList arrayList2 = gnVar.f26774b;
+        gn gnVar = this.f25388b;
+        ArrayList arrayList2 = gnVar.f26824b;
         hn hnVar = gnVar.P;
-        if (i10 >= 0 && i10 < this.f25243a.size() && x(i10) && (photoEntry = (MediaController.PhotoEntry) this.f25243a.get(i10)) != null) {
+        if (i10 >= 0 && i10 < this.f25387a.size() && x(i10) && (photoEntry = (MediaController.PhotoEntry) this.f25387a.get(i10)) != null) {
             int size = arrayList2.size();
             fn fnVar = null;
             en enVar = null;
@@ -45,7 +45,7 @@ public final class cn extends org.telegram.ui.tu0 {
                             break;
                         }
                         en enVar2 = (en) arrayList.get(i12);
-                        if (enVar2 != null && enVar2.f26082b == photoEntry && enVar2.f26089k > 0.5d) {
+                        if (enVar2 != null && enVar2.f26120b == photoEntry && enVar2.f26127k > 0.5d) {
                             enVar = (en) arrayList.get(i12);
                             break;
                         }
@@ -61,20 +61,20 @@ public final class cn extends org.telegram.ui.tu0 {
                 int[] iArr = new int[2];
                 gnVar.getLocationInWindow(iArr);
                 if (Build.VERSION.SDK_INT < 26) {
-                    iArr[0] = iArr[0] - hnVar.f30161b.getLeftInset();
+                    iArr[0] = iArr[0] - hnVar.f30245b.getLeftInset();
                 }
-                dv0Var.f37114b = iArr[0];
-                dv0Var.f37115c = iArr[1] + ((int) fnVar.f26375a);
-                dv0Var.f37121k = 1.0f;
+                dv0Var.f37148b = iArr[0];
+                dv0Var.f37149c = iArr[1] + ((int) fnVar.f26490a);
+                dv0Var.f37155k = 1.0f;
                 dv0Var.d = gnVar;
-                ImageReceiver imageReceiver = enVar.f26083c;
-                dv0Var.f37113a = imageReceiver;
-                dv0Var.f37116e = imageReceiver.getBitmapSafe();
+                ImageReceiver imageReceiver = enVar.f26121c;
+                dv0Var.f37147a = imageReceiver;
+                dv0Var.f37150e = imageReceiver.getBitmapSafe();
                 dv0Var.h = r5;
-                RectF rectF = enVar.f26095q;
+                RectF rectF = enVar.f26133q;
                 int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
-                dv0Var.f37120j = (int) (-gnVar.getY());
-                dv0Var.f37119i = gnVar.getHeight() - ((int) (((-gnVar.getY()) + hnVar.f27032r.getHeight()) - hnVar.f30161b.n1()));
+                dv0Var.f37154j = (int) (-gnVar.getY());
+                dv0Var.f37153i = gnVar.getHeight() - ((int) (((-gnVar.getY()) + hnVar.f27170r.getHeight()) - hnVar.f30245b.n1()));
                 return dv0Var;
             }
         }
@@ -83,14 +83,14 @@ public final class cn extends org.telegram.ui.tu0 {
 
     @Override
     public final int H() {
-        return this.f25244b.h.size();
+        return this.f25388b.h.size();
     }
 
     @Override
     public final int Q(Object obj) {
         int indexOf;
         Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) obj).imageId);
-        gn gnVar = this.f25244b;
+        gn gnVar = this.f25388b;
         if (gnVar.h.size() <= 1 || (indexOf = gnVar.h.indexOf(valueOf)) < 0) {
             return -1;
         }
@@ -102,10 +102,10 @@ public final class cn extends org.telegram.ui.tu0 {
     @Override
     public final int R(int i10) {
         MediaController.PhotoEntry photoEntry;
-        if (i10 < 0 || i10 >= this.f25243a.size() || (photoEntry = (MediaController.PhotoEntry) this.f25243a.get(i10)) == null) {
+        if (i10 < 0 || i10 >= this.f25387a.size() || (photoEntry = (MediaController.PhotoEntry) this.f25387a.get(i10)) == null) {
             return -1;
         }
-        return this.f25244b.h.indexOf(Integer.valueOf(photoEntry.imageId));
+        return this.f25388b.h.indexOf(Integer.valueOf(photoEntry.imageId));
     }
 
     @Override
@@ -113,25 +113,25 @@ public final class cn extends org.telegram.ui.tu0 {
         MediaController.PhotoEntry photoEntry;
         ArrayList arrayList;
         boolean z10;
-        if (i10 >= 0 && i10 < this.f25243a.size() && (photoEntry = (MediaController.PhotoEntry) this.f25243a.get(i10)) != null) {
+        if (i10 >= 0 && i10 < this.f25387a.size() && (photoEntry = (MediaController.PhotoEntry) this.f25387a.get(i10)) != null) {
             int i11 = photoEntry.imageId;
-            gn gnVar = this.f25244b;
+            gn gnVar = this.f25388b;
             gnVar.invalidate();
-            for (int i12 = 0; i12 < gnVar.f26774b.size(); i12++) {
-                fn fnVar = (fn) gnVar.f26774b.get(i12);
+            for (int i12 = 0; i12 < gnVar.f26824b.size(); i12++) {
+                fn fnVar = (fn) gnVar.f26824b.get(i12);
                 if (fnVar != null && (arrayList = fnVar.h) != null) {
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
                         en enVar = (en) arrayList.get(i13);
-                        if (enVar != null && enVar.f26082b.imageId == i11) {
+                        if (enVar != null && enVar.f26120b.imageId == i11) {
                             en.a(enVar, photoEntry);
                         }
                     }
-                    an anVar = fnVar.f26383k;
-                    if (anVar != null && anVar.f24544g != null) {
+                    an anVar = fnVar.f26498k;
+                    if (anVar != null && anVar.f24633g != null) {
                         z10 = false;
-                        for (int i14 = 0; i14 < fnVar.f26383k.f24544g.size(); i14++) {
-                            if (((MediaController.PhotoEntry) fnVar.f26383k.f24544g.get(i14)).imageId == i11) {
-                                fnVar.f26383k.f24544g.set(i14, photoEntry);
+                        for (int i14 = 0; i14 < fnVar.f26498k.f24633g.size(); i14++) {
+                            if (((MediaController.PhotoEntry) fnVar.f26498k.f24633g.get(i14)).imageId == i11) {
+                                fnVar.f26498k.f24633g.set(i14, photoEntry);
                                 z10 = true;
                             }
                         }
@@ -139,7 +139,7 @@ public final class cn extends org.telegram.ui.tu0 {
                         z10 = false;
                     }
                     if (z10) {
-                        fn.a(fnVar, fnVar.f26383k, true);
+                        fn.a(fnVar, fnVar.f26498k, true);
                     }
                 }
             }
@@ -150,16 +150,16 @@ public final class cn extends org.telegram.ui.tu0 {
 
     @Override
     public final ArrayList c() {
-        return this.f25244b.h;
+        return this.f25388b.h;
     }
 
     @Override
     public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        if (i10 < 0 || i10 >= this.f25243a.size()) {
+        if (i10 < 0 || i10 >= this.f25387a.size()) {
             return -1;
         }
-        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) this.f25243a.get(i10)).imageId);
-        gn gnVar = this.f25244b;
+        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) this.f25387a.get(i10)).imageId);
+        gn gnVar = this.f25388b;
         int indexOf = gnVar.h.indexOf(valueOf);
         if (indexOf >= 0) {
             if (gnVar.h.size() <= 1) {
@@ -181,13 +181,13 @@ public final class cn extends org.telegram.ui.tu0 {
 
     @Override
     public final HashMap v() {
-        return this.f25244b.d;
+        return this.f25388b.d;
     }
 
     @Override
     public final boolean x(int i10) {
-        if (i10 >= 0 && i10 < this.f25243a.size()) {
-            return this.f25244b.h.contains(Integer.valueOf(((MediaController.PhotoEntry) this.f25243a.get(i10)).imageId));
+        if (i10 >= 0 && i10 < this.f25387a.size()) {
+            return this.f25388b.h.contains(Integer.valueOf(((MediaController.PhotoEntry) this.f25387a.get(i10)).imageId));
         }
         return false;
     }

@@ -13,7 +13,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.y9;
 import w7.x5;
 import w7.z5;
@@ -25,7 +25,7 @@ public final class n extends FrameLayout {
     public final TextView d;
     public final TextView f9229e;
     public final TextView f9230f;
-    public final fa0 h;
+    public final ea0 h;
 
     public n(Activity activity, d6 d6Var) {
         super(activity);
@@ -67,13 +67,13 @@ public final class n extends FrameLayout {
         textView3.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(textView3, x5.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2));
         NotificationCenter.listenEmojiLoading(textView3);
-        fa0 fa0Var = new fa0(activity, null);
-        this.h = fa0Var;
-        fa0Var.setTextSize(1, 13.0f);
-        fa0Var.setLinkTextColor(h6.w0(h6.gc, d6Var));
-        fa0Var.setTextColor(h6.w0(i11, d6Var));
-        linearLayout.addView(fa0Var, x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
-        NotificationCenter.listenEmojiLoading(fa0Var);
+        ea0 ea0Var = new ea0(activity, null);
+        this.h = ea0Var;
+        ea0Var.setTextSize(1, 13.0f);
+        ea0Var.setLinkTextColor(h6.w0(h6.gc, d6Var));
+        ea0Var.setTextColor(h6.w0(i11, d6Var));
+        linearLayout.addView(ea0Var, x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        NotificationCenter.listenEmojiLoading(ea0Var);
         y9 y9Var = new y9(activity);
         this.f9227b = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(4.0f));
@@ -85,7 +85,7 @@ public final class n extends FrameLayout {
         z5.a(imageView);
         imageView.setImageResource(R.drawable.msg_close);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f20794de, d6Var), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f20830de, d6Var), PorterDuff.Mode.SRC_IN));
         imageView.setOnClickListener(new ai.e2(3));
         imageView.setVisibility(8);
         e7.addView(imageView, x5.t(32, 32, 53, 10, 3, 0, 2));

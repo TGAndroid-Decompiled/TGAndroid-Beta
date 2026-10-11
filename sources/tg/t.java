@@ -6,17 +6,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.Components.xw0;
-public final class t implements f5, xw0, vg.f, vg.k {
-    public final z f48478a;
+import org.telegram.ui.Components.ww0;
+public final class t implements f5, ww0, vg.f, vg.k {
+    public final z f48512a;
 
     public t(z zVar) {
-        this.f48478a = zVar;
+        this.f48512a = zVar;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        z zVar = this.f48478a;
+        z zVar = this.f48512a;
         zVar.m0 = i10 * 1000;
         zVar.b0(false, true);
     }
@@ -28,26 +28,26 @@ public final class t implements f5, xw0, vg.f, vg.k {
         String string;
         String str2;
         String formatPluralString;
-        z zVar = this.f48478a;
-        int i12 = zVar.f48526h0;
+        z zVar = this.f48512a;
+        int i12 = zVar.f48560h0;
         int i13 = vg.d.v;
         if (i12 == 2) {
-            zVar.f48531n0 = i10;
+            zVar.f48565n0 = i10;
         } else {
-            zVar.f48532o0 = i10;
+            zVar.f48566o0 = i10;
         }
-        zVar.f48534q0.f49650a.b(zVar.W(), true);
-        if (zVar.f48526h0 == 3) {
+        zVar.f48568q0.f49684a.b(zVar.W(), true);
+        if (zVar.f48560h0 == 3) {
             zVar.b0(true, true);
         } else {
             zVar.b0(false, false);
         }
-        ug.b bVar = zVar.f48525g0;
+        ug.b bVar = zVar.f48559g0;
         int W = zVar.W();
-        for (int i14 = 0; i14 < bVar.f48999f.getChildCount(); i14++) {
-            View childAt = bVar.f48999f.getChildAt(i14);
+        for (int i14 = 0; i14 < bVar.f49033f.getChildCount(); i14++) {
+            View childAt = bVar.f49033f.getChildAt(i14);
             if (childAt instanceof vg.x) {
-                r6 r6Var = ((vg.x) childAt).f49725r;
+                r6 r6Var = ((vg.x) childAt).f49759r;
                 if (W <= 0) {
                     formatPluralString = "";
                 } else {
@@ -59,8 +59,8 @@ public final class t implements f5, xw0, vg.f, vg.k {
             if (childAt instanceof vg.g) {
                 vg.g gVar = (vg.g) childAt;
                 int F = bVar.F(gVar.getChat());
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49681w);
-                if (gVar.f49682x) {
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49715w);
+                if (gVar.f49716x) {
                     if (F >= 1) {
                         if (isChannelAndNotMegaGroup) {
                             str2 = "Subscribers";
@@ -88,7 +88,7 @@ public final class t implements f5, xw0, vg.f, vg.k {
             }
         }
         bVar.m(8);
-        bVar.q(bVar.f48998e.size() - 12, 12);
+        bVar.q(bVar.f49032e.size() - 12, 12);
     }
 
     @Override

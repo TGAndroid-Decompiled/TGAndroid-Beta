@@ -13,25 +13,25 @@ public final class j10 extends View {
     public RectF F;
     public float G;
     public ValueAnimator H;
-    public boolean f27510a;
-    public boolean f27511b;
-    public boolean f27512c;
+    public boolean f27554a;
+    public boolean f27555b;
+    public boolean f27556c;
     public String d;
-    public TextPaint f27513e;
-    public Paint f27514f;
+    public TextPaint f27557e;
+    public Paint f27558f;
     public Paint h;
-    public Paint f27515n;
-    public int f27516r;
-    public int f27517s;
+    public Paint f27559n;
+    public int f27560r;
+    public int f27561s;
     public int v;
-    public int f27518w;
-    public int f27519x;
-    public int f27520y;
+    public int f27562w;
+    public int f27563x;
+    public int f27564y;
 
     public final void a(boolean z10, boolean z11) {
-        this.f27511b = z10;
+        this.f27555b = z10;
         float f7 = 0.0f;
-        if (this.f27510a && z11) {
+        if (this.f27554a && z11) {
             ValueAnimator valueAnimator = this.H;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -58,30 +58,30 @@ public final class j10 extends View {
     public final void draw(Canvas canvas) {
         float f7;
         Canvas canvas2;
-        int i10 = this.f27518w;
+        int i10 = this.f27562w;
         RectF rectF = this.F;
         Paint paint = this.h;
-        Paint paint2 = this.f27515n;
-        Paint paint3 = this.f27514f;
-        TextPaint textPaint = this.f27513e;
+        Paint paint2 = this.f27559n;
+        Paint paint3 = this.f27558f;
+        TextPaint textPaint = this.f27557e;
         super.draw(canvas);
         float f10 = this.G;
         if (f10 <= 0.5f) {
             f7 = f10 / 0.5f;
-            paint3.setColor(Color.rgb(Color.red(this.f27516r) + ((int) ((Color.red(this.f27517s) - Color.red(this.f27516r)) * f7)), Color.green(this.f27516r) + ((int) ((Color.green(this.f27517s) - Color.green(this.f27516r)) * f7)), Color.blue(this.f27516r) + ((int) ((Color.blue(this.f27517s) - Color.blue(this.f27516r)) * f7))));
-            textPaint.setColor(Color.rgb(Color.red(this.f27517s) + ((int) ((Color.red(this.v) - Color.red(this.f27517s)) * f7)), Color.green(this.f27517s) + ((int) ((Color.green(this.v) - Color.green(this.f27517s)) * f7)), Color.blue(this.f27517s) + ((int) ((Color.blue(this.v) - Color.blue(this.f27517s)) * f7))));
+            paint3.setColor(Color.rgb(Color.red(this.f27560r) + ((int) ((Color.red(this.f27561s) - Color.red(this.f27560r)) * f7)), Color.green(this.f27560r) + ((int) ((Color.green(this.f27561s) - Color.green(this.f27560r)) * f7)), Color.blue(this.f27560r) + ((int) ((Color.blue(this.f27561s) - Color.blue(this.f27560r)) * f7))));
+            textPaint.setColor(Color.rgb(Color.red(this.f27561s) + ((int) ((Color.red(this.v) - Color.red(this.f27561s)) * f7)), Color.green(this.f27561s) + ((int) ((Color.green(this.v) - Color.green(this.f27561s)) * f7)), Color.blue(this.f27561s) + ((int) ((Color.blue(this.v) - Color.blue(this.f27561s)) * f7))));
         } else {
             textPaint.setColor(this.v);
-            paint3.setColor(this.f27517s);
+            paint3.setColor(this.f27561s);
             f7 = 1.0f;
         }
         int measuredHeight = getMeasuredHeight() >> 1;
-        paint.setColor(this.f27517s);
+        paint.setColor(this.f27561s);
         canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint3);
         canvas.drawRoundRect(rectF, i10 / 2.0f, i10 / 2.0f, paint);
         String str = this.d;
         if (str != null) {
-            canvas.drawText(str, (f7 * this.f27520y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
+            canvas.drawText(str, (f7 * this.f27564y) + (getMeasuredWidth() >> 1), (textPaint.getTextSize() * 0.35f) + measuredHeight, textPaint);
         }
         float f11 = 2.0f - (this.G / 0.5f);
         canvas.save();
@@ -102,13 +102,13 @@ public final class j10 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f27510a = true;
+        this.f27554a = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f27510a = false;
+        this.f27554a = false;
     }
 
     @Override
@@ -121,9 +121,9 @@ public final class j10 extends View {
         if (str == null) {
             measureText = 0;
         } else {
-            measureText = (int) this.f27513e.measureText(str);
+            measureText = (int) this.f27557e.measureText(str);
         }
-        setMeasuredDimension((i12 * 2) + measureText + (this.f27519x << 1), AndroidUtilities.dp(4.0f) + this.f27518w);
+        setMeasuredDimension((i12 * 2) + measureText + (this.f27563x << 1), AndroidUtilities.dp(4.0f) + this.f27562w);
         if (getMeasuredWidth() != 0) {
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             rectF.inset((paint.getStrokeWidth() / 2.0f) + i12, (paint.getStrokeWidth() / 2.0f) + i12);

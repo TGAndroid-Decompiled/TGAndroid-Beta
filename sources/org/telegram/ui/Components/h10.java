@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 public final class h10 {
-    public byte f26872a;
-    public byte f26873b;
-    public byte f26874c;
+    public byte f26925a;
+    public byte f26926b;
+    public byte f26927c;
     public byte d;
-    public byte f26875e;
-    public byte f26876f;
-    public float f26877g;
+    public byte f26928e;
+    public byte f26929f;
+    public float f26930g;
     public float h;
-    public short f26878i;
-    public float f26879j;
-    public float f26880k;
-    public final i10 f26881l;
+    public short f26931i;
+    public float f26932j;
+    public float f26933k;
+    public final i10 f26934l;
 
     public h10(i10 i10Var) {
-        this.f26881l = i10Var;
+        this.f26934l = i10Var;
     }
 }

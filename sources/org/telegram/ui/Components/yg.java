@@ -12,19 +12,19 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class yg extends FrameLayout {
-    public final org.telegram.ui.ActionBar.h5 f33188a;
-    public final RectF f33189b;
-    public final Paint f33190c;
+    public final org.telegram.ui.ActionBar.h5 f33241a;
+    public final RectF f33242b;
+    public final Paint f33243c;
     public final Drawable d;
-    public boolean f33191e;
+    public boolean f33244e;
 
     public yg(Activity activity) {
         super(activity);
-        this.f33189b = new RectF();
-        this.f33190c = new Paint(1);
-        this.f33191e = false;
+        this.f33242b = new RectF();
+        this.f33243c = new Paint(1);
+        this.f33244e = false;
         org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(activity);
-        this.f33188a = h5Var;
+        this.f33241a = h5Var;
         addView(h5Var, w7.x5.d(-1.0f, -1));
         setWillNotDraw(false);
         Drawable drawable = activity.getDrawable(R.drawable.msg_mini_close_tooltip);
@@ -37,7 +37,7 @@ public final class yg extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if ((view instanceof org.telegram.ui.ActionBar.h5) && this.f33191e) {
+        if ((view instanceof org.telegram.ui.ActionBar.h5) && this.f33244e) {
             org.telegram.ui.ActionBar.h5 h5Var = (org.telegram.ui.ActionBar.h5) view;
             canvas.save();
             canvas.scale(0.8f, 0.8f);
@@ -54,15 +54,15 @@ public final class yg extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f33191e) {
+        if (this.f33244e) {
             canvas.save();
             int dp = AndroidUtilities.dp(26.0f);
             canvas.translate(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - dp) / 2.0f);
             float f7 = dp;
-            RectF rectF = this.f33189b;
+            RectF rectF = this.f33242b;
             rectF.set(-AndroidUtilities.dp(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f7);
             float f10 = f7 / 2.0f;
-            canvas.drawRoundRect(rectF, f10, f10, this.f33190c);
+            canvas.drawRoundRect(rectF, f10, f10, this.f33243c);
             int measuredWidth = (getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f);
             Drawable drawable = this.d;
             canvas.translate(measuredWidth - drawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
@@ -74,6 +74,6 @@ public final class yg extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f33190c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        this.f33243c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 }

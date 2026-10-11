@@ -22,7 +22,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.ea0;
 import org.telegram.ui.aj;
 import org.telegram.ui.ee;
 import org.telegram.ui.ij;
@@ -168,7 +168,7 @@ public final class p8 implements Runnable {
                 return;
             case 11:
                 String str = e2.d0.f8531a;
-                e2.c cVar = ((i2.c0) ((k2.j) ((n4.x) obj).f16659c)).f11619a.E;
+                e2.c cVar = ((i2.c0) ((k2.j) ((n4.x) obj).f16695c)).f11619a.E;
                 i2.w wVar = new i2.w(i13, 2);
                 cVar.getClass();
                 if (Looper.myLooper() == ((e2.z) cVar.f8527c).f8592a.getLooper()) {
@@ -204,86 +204,86 @@ public final class p8 implements Runnable {
                 ConnectionsManager.lambda$onUpdateConfig$21(i13, (TLRPC.TL_config) obj);
                 return;
             case 15:
-                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f20032id, 0, true);
+                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f20068id, 0, true);
                 return;
             case 16:
-                ((org.telegram.ui.o4) ((org.telegram.ui.g) obj).f37816b).V(i13, true);
+                ((org.telegram.ui.o4) ((org.telegram.ui.g) obj).f37850b).V(i13, true);
                 return;
             case 17:
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj;
-                int i15 = u1Var.f23405v7;
+                int i15 = u1Var.f23441v7;
                 if (i13 == i15) {
-                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f23304o7.get(i15);
+                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) u1Var.f23340o7.get(i15);
                     if (e0Var2 != null) {
-                        org.telegram.ui.Cells.z zVar = e0Var2.f22006s;
+                        org.telegram.ui.Cells.z zVar = e0Var2.f22042s;
                         if (zVar != null) {
                             zVar.setState(StateSet.NOTHING);
                         }
                         e0Var2.b(false);
-                        if (!u1Var.f23450y7.scheduled) {
-                            if (e0Var2.f21997j != null) {
+                        if (!u1Var.f23486y7.scheduled) {
+                            if (e0Var2.f22033j != null) {
                                 u1Var.k();
-                            } else if (e0Var2.f21996i != null) {
+                            } else if (e0Var2.f22032i != null) {
                                 u1Var.k();
                                 org.telegram.ui.Cells.l1 l1Var = u1Var.Jc;
                                 if (l1Var != null) {
-                                    l1Var.N1(u1Var, e0Var2.f21996i);
+                                    l1Var.N1(u1Var, e0Var2.f22032i);
                                 }
                             }
                         }
                     }
-                    u1Var.f23405v7 = -1;
+                    u1Var.f23441v7 = -1;
                     u1Var.a3();
                     return;
                 }
                 return;
             case 18:
-                ((ee) obj).f37277f.c(i13);
+                ((ee) obj).f37311f.c(i13);
                 return;
             case 19:
-                zn znVar = ((zi) obj).f44675g;
-                if (znVar.f44986wb == i13) {
+                zn znVar = ((zi) obj).f44709g;
+                if (znVar.f45020wb == i13) {
                     znVar.Qa();
                     return;
                 }
                 return;
             case 20:
-                zn znVar2 = ((aj) obj).f36102g;
-                if (znVar2.f44986wb == i13) {
+                zn znVar2 = ((aj) obj).f36136g;
+                if (znVar2.f45020wb == i13) {
                     znVar2.Qa();
                     return;
                 }
                 return;
             case 21:
-                ((ij) obj).f38697a.F(this.f1577b, 0, 0, 0, true, true);
+                ((ij) obj).f38731a.F(this.f1577b, 0, 0, 0, true, true);
                 return;
             case 22:
-                zn znVar3 = ((zi) obj).f44675g;
-                if (znVar3.f44986wb == i13) {
+                zn znVar3 = ((zi) obj).f44709g;
+                if (znVar3.f45020wb == i13) {
                     znVar3.Qa();
                     return;
                 }
                 return;
             case 23:
-                zn znVar4 = ((aj) obj).f36102g;
-                if (znVar4.f44986wb == i13) {
+                zn znVar4 = ((aj) obj).f36136g;
+                if (znVar4.f45020wb == i13) {
                     znVar4.Qa();
                     return;
                 }
                 return;
             case 24:
-                zn znVar5 = ((aj) obj).f36102g;
-                if (znVar5.f44986wb == i13) {
+                zn znVar5 = ((aj) obj).f36136g;
+                if (znVar5.f45020wb == i13) {
                     znVar5.Qa();
                     return;
                 }
                 return;
             case 25:
                 zn znVar6 = ((sm) obj).J0;
-                znVar6.f45013z0.h1(i13, znVar6.f45005y4);
+                znVar6.f45047z0.h1(i13, znVar6.f45039y4);
                 return;
             case 26:
-                i11 = ((org.telegram.ui.ActionBar.m2) ((ln) obj).f39701a).currentAccount;
+                i11 = ((org.telegram.ui.ActionBar.m2) ((ln) obj).f39735a).currentAccount;
                 ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
             case 27:
@@ -291,7 +291,7 @@ public final class p8 implements Runnable {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.u1((MessagesStorage.BooleanCallback) obj, 1), 250L);
                 return;
             case 28:
-                fa0 fa0Var = (fa0) obj;
+                ea0 ea0Var = (ea0) obj;
                 ArrayList<TLRPC.PrivacyRule> privacyRules = ContactsController.getInstance(i13).getPrivacyRules(11);
                 String string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
                 if (privacyRules != null && !privacyRules.isEmpty()) {
@@ -309,7 +309,7 @@ public final class p8 implements Runnable {
                         }
                     }
                 }
-                fa0Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new org.telegram.ui.Components.n1(privacyRules, 0)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
+                ea0Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new org.telegram.ui.Components.n1(privacyRules, 0)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
                 return;
             default:
                 ((org.telegram.ui.Components.q8) obj).b(i13);

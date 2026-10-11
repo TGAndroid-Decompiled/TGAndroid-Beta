@@ -31,15 +31,15 @@ public final class a implements d {
         int i11;
         w2 w2Var = this.f14869e;
         if (i10 == 1) {
-            w2Var.setTranslationX(this.f14866a.f16373e);
+            w2Var.setTranslationX(this.f14866a.f16409e);
         }
         if (i10 == 2) {
-            w2Var.setTranslationY(this.f14867b.f16373e);
+            w2Var.setTranslationY(this.f14867b.f16409e);
         }
         me.b bVar = this.d;
         me.b bVar2 = this.f14868c;
         if (i10 == 0) {
-            w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.f16365e) * bVar2.f16365e);
+            w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.f16401e) * bVar2.f16401e);
             w2Var.setScaleX(AndroidUtilities.lerp(0.3f, 1.0f, f7));
             w2Var.setScaleY(AndroidUtilities.lerp(0.3f, 1.0f, f7));
             if (f7 > 0.0f) {
@@ -50,7 +50,7 @@ public final class a implements d {
             w2Var.setVisibility(i11);
         }
         if (i10 == 3) {
-            w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.f16365e) * bVar2.f16365e);
+            w2Var.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, bVar.f16401e) * bVar2.f16401e);
         }
         h0 h0Var = this.f14870f;
         if (h0Var != null) {

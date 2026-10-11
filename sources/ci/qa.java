@@ -24,13 +24,13 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.a81;
-import org.telegram.ui.Components.gf0;
+import org.telegram.ui.Components.ff0;
+import org.telegram.ui.Components.ia1;
 import org.telegram.ui.Components.ja1;
-import org.telegram.ui.Components.ka1;
+import org.telegram.ui.Components.lg0;
 import org.telegram.ui.Components.m00;
-import org.telegram.ui.Components.mg0;
 import org.telegram.ui.Components.n00;
-public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.z1, ja1, Utilities.CallbackVoidReturn, a81, h9, j8 {
+public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegram.ui.ActionBar.z1, ia1, Utilities.CallbackVoidReturn, a81, h9, j8 {
     public final int f5842a;
     public final lc f5843b;
 
@@ -49,7 +49,7 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
         lcVar.f5458a0 = defaultWindowInsets.f11577c;
         lcVar.f5461b0 = defaultWindowInsets.d;
         lcVar.f5498n.requestLayout();
-        return r0.k1.f46866b;
+        return r0.k1.f46900b;
     }
 
     @Override
@@ -242,7 +242,7 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
                 int i15 = R.string.PermissionNoCameraMicVideo;
                 String[] strArr = z13 ? new String[0] : new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"};
                 final lc lcVar2 = this.f5843b;
-                gf0.b(i14, i15, strArr, new Utilities.Callback() {
+                ff0.b(i14, i15, strArr, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
                         boolean z14;
@@ -310,10 +310,10 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
             str = B;
         }
         lcVar.d0(str);
-        ka1 ka1Var = lcVar.V0;
-        if (ka1Var != null) {
+        ja1 ja1Var = lcVar.V0;
+        if (ja1Var != null) {
             lcVar.T1 = 0.0f;
-            ka1Var.b(0.0f, false);
+            ja1Var.b(0.0f, false);
         }
         lcVar.l0(true);
     }
@@ -323,9 +323,9 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
         Bitmap bitmap;
         zb zbVar;
         lc lcVar = this.f5843b;
-        mg0 mg0Var = lcVar.B1;
-        if (mg0Var != null) {
-            bitmap = mg0Var.getUiBlurBitmap();
+        lg0 lg0Var = lcVar.B1;
+        if (lg0Var != null) {
+            bitmap = lg0Var.getUiBlurBitmap();
         } else {
             bitmap = null;
         }

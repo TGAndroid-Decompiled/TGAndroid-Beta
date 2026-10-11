@@ -8,7 +8,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.gd0;
 public final class z0 implements Utilities.Callback5, org.telegram.ui.ActionBar.z1 {
     public final int f11463a;
@@ -45,22 +45,22 @@ public final class z0 implements Utilities.Callback5, org.telegram.ui.ActionBar.
     @Override
     public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         e1 e1Var = this.f11464b;
-        r61 r61Var = (r61) obj;
+        q61 q61Var = (q61) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        int i10 = r61Var.d;
-        if (i10 != 1 && r61Var.f30354c != e1Var.h) {
+        int i10 = q61Var.d;
+        if (i10 != 1 && q61Var.f30160c != e1Var.h) {
             if (i10 == 2) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e1Var.getParentActivity());
-                alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
-                alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
+                alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.BusinessLocationClearTitle);
+                alertDialog$Builder.f20404a.T = LocaleController.getString(R.string.BusinessLocationClearMessage);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new z0(e1Var, 3));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                e1Var.showDialog(alertDialog$Builder.f20368a);
+                e1Var.showDialog(alertDialog$Builder.f20404a);
             }
-        } else if (e1Var.f11213x != null && r61Var.f30354c != e1Var.h) {
+        } else if (e1Var.f11213x != null && q61Var.f30160c != e1Var.h) {
             e1Var.f11213x = null;
             e1Var.f11204a.W2.N(true);
         } else {
@@ -74,7 +74,7 @@ public final class z0 implements Utilities.Callback5, org.telegram.ui.ActionBar.
             gd0Var.F0 = new ah.b(15, e1Var, gd0Var);
             if (e1Var.f11213x == null && !TextUtils.isEmpty(e1Var.f11214y)) {
                 org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(e1Var.getParentActivity(), 3, null);
-                a2Var.f20390g0 = false;
+                a2Var.f20426g0 = false;
                 a2Var.q(200L);
                 Utilities.searchQueue.postRunnable(new x0(e1Var, gd0Var, a2Var));
                 return;

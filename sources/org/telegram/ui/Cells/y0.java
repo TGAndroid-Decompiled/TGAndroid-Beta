@@ -12,9 +12,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.RadioButton;
 public final class y0 extends FrameLayout {
-    public x0 f23745a;
-    public boolean f23746b;
-    public RectF f23747c;
+    public x0 f23781a;
+    public boolean f23782b;
+    public RectF f23783c;
     public TextPaint d;
 
     @Override
@@ -30,16 +30,16 @@ public final class y0 extends FrameLayout {
         int red = Color.red(x02);
         int green = Color.green(x02);
         int blue = Color.blue(x02);
-        x0 x0Var = this.f23745a;
-        x0Var.b(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20843g7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20859h7, false));
-        RectF rectF = this.f23747c;
+        x0 x0Var = this.f23781a;
+        x0Var.b(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20879g7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20895h7, false));
+        RectF rectF = this.f23783c;
         rectF.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), AndroidUtilities.dp(73.0f));
         org.telegram.ui.ActionBar.h6.X1.setColor(Color.argb((int) (x0Var.getProgress() * 43.0f), red, green, blue));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.X1);
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(74.0f));
-        org.telegram.ui.ActionBar.h6.f21076t0.setColor(Color.argb((int) ((1.0f - x0Var.getProgress()) * 31.0f), red, green, blue));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.f21076t0);
-        boolean z10 = this.f23746b;
+        org.telegram.ui.ActionBar.h6.f21112t0.setColor(Color.argb((int) ((1.0f - x0Var.getProgress()) * 31.0f), red, green, blue));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.f21112t0);
+        boolean z10 = this.f23782b;
         if (z10) {
             i10 = R.string.ChatListExpanded;
         } else {
@@ -57,14 +57,14 @@ public final class y0 extends FrameLayout {
                 f7 = 53.0f;
             }
             int dp = AndroidUtilities.dp(f7);
-            Paint paint = org.telegram.ui.ActionBar.h6.f21076t0;
+            Paint paint = org.telegram.ui.ActionBar.h6.f21112t0;
             if (i15 == 0) {
                 i11 = 204;
             } else {
                 i11 = 90;
             }
             paint.setColor(Color.argb(i11, red, green, blue));
-            canvas.drawCircle(AndroidUtilities.dp(22.0f), dp, AndroidUtilities.dp(11.0f), org.telegram.ui.ActionBar.h6.f21076t0);
+            canvas.drawCircle(AndroidUtilities.dp(22.0f), dp, AndroidUtilities.dp(11.0f), org.telegram.ui.ActionBar.h6.f21112t0);
             int i16 = 0;
             while (true) {
                 if (z10) {
@@ -73,7 +73,7 @@ public final class y0 extends FrameLayout {
                     i12 = i14;
                 }
                 if (i16 < i12) {
-                    Paint paint2 = org.telegram.ui.ActionBar.h6.f21076t0;
+                    Paint paint2 = org.telegram.ui.ActionBar.h6.f21112t0;
                     if (i16 == 0) {
                         i13 = 204;
                     } else {
@@ -89,7 +89,7 @@ public final class y0 extends FrameLayout {
                             f11 = 48.0f;
                         }
                         rectF.set(dp2, dp3, measuredWidth - AndroidUtilities.dp(f11), dp - AndroidUtilities.dp(5.3f - f10));
-                        canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), org.telegram.ui.ActionBar.h6.f21076t0);
+                        canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), org.telegram.ui.ActionBar.h6.f21112t0);
                     } else {
                         float dp4 = AndroidUtilities.dp(41.0f);
                         int i17 = i16 * 10;
@@ -99,7 +99,7 @@ public final class y0 extends FrameLayout {
                             f11 = 48.0f;
                         }
                         rectF.set(dp4, dp5, measuredWidth2 - AndroidUtilities.dp(f11), dp - AndroidUtilities.dp(3 - i17));
-                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.h6.f21076t0);
+                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.h6.f21112t0);
                     }
                     i16++;
                     i14 = 2;
@@ -115,9 +115,9 @@ public final class y0 extends FrameLayout {
         int i10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName(RadioButton.class.getName());
-        accessibilityNodeInfo.setChecked(this.f23745a.f24292f);
+        accessibilityNodeInfo.setChecked(this.f23781a.f24328f);
         accessibilityNodeInfo.setCheckable(true);
-        if (this.f23746b) {
+        if (this.f23782b) {
             i10 = R.string.ChatListExpanded;
         } else {
             i10 = R.string.ChatListDefault;

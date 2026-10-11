@@ -18,68 +18,68 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.LaunchActivity;
 public final class e implements rf.c, rf.b {
     public f d;
-    public f f48073e;
-    public qf.f f48074f;
-    public View f48075g;
+    public f f48107e;
+    public qf.f f48108f;
+    public View f48109g;
     public u5 h;
-    public View f48076i;
-    public final qf.e f48077j;
-    public float f48078k;
-    public boolean f48081n;
-    public float f48082o;
-    public int f48070a = 0;
-    public final Rect f48071b = new Rect();
-    public final Rect f48072c = new Rect();
-    public final RectF f48079l = new RectF();
-    public final Path f48080m = new Path();
+    public View f48110i;
+    public final qf.e f48111j;
+    public float f48112k;
+    public boolean f48115n;
+    public float f48116o;
+    public int f48104a = 0;
+    public final Rect f48105b = new Rect();
+    public final Rect f48106c = new Rect();
+    public final RectF f48113l = new RectF();
+    public final Path f48114m = new Path();
 
     public e(qf.e eVar) {
-        this.f48077j = eVar;
+        this.f48111j = eVar;
     }
 
     @Override
     public final void a() {
         f0 f0Var;
-        qf.e eVar = this.f48077j;
-        if (eVar != null && (f0Var = eVar.f46249l) != null) {
+        qf.e eVar = this.f48111j;
+        if (eVar != null && (f0Var = eVar.f46283l) != null) {
             f0Var.e();
         }
     }
 
     @Override
     public final void b() {
-        this.f48081n = false;
+        this.f48115n = false;
         h();
     }
 
     @Override
     public final void c() {
         f0 f0Var;
-        qf.e eVar = this.f48077j;
-        if (eVar != null && (f0Var = eVar.f46249l) != null) {
+        qf.e eVar = this.f48111j;
+        if (eVar != null && (f0Var = eVar.f46283l) != null) {
             f0Var.i();
         }
     }
 
     @Override
     public final void e() {
-        this.f48081n = true;
+        this.f48115n = true;
         g();
     }
 
     public final void g() {
-        Rect rect = this.f48071b;
-        qf.e eVar = this.f48077j;
-        if (this.f48070a != 0) {
-            FileLog.e("[PIP_DEBUG] wrong pip state STATE_DETACHED: " + this.f48070a);
+        Rect rect = this.f48105b;
+        qf.e eVar = this.f48111j;
+        if (this.f48104a != 0) {
+            FileLog.e("[PIP_DEBUG] wrong pip state STATE_DETACHED: " + this.f48104a);
             return;
         }
-        rect.set(eVar.h.f48348a);
+        rect.set(eVar.h.f48382a);
         Log.i("PIP_DEBUG", "[HANDLER] pre attach start " + rect);
-        int measuredWidth = ((LaunchActivity) eVar.f46240a.d).getWindow().getDecorView().getMeasuredWidth();
-        int measuredHeight = ((LaunchActivity) eVar.f46240a.d).getWindow().getDecorView().getMeasuredHeight();
-        Bitmap e7 = eVar.f46245g.e();
-        final a aVar = eVar.f46245g;
+        int measuredWidth = ((LaunchActivity) eVar.f46274a.d).getWindow().getDecorView().getMeasuredWidth();
+        int measuredHeight = ((LaunchActivity) eVar.f46274a.d).getWindow().getDecorView().getMeasuredHeight();
+        Bitmap e7 = eVar.f46279g.e();
+        final a aVar = eVar.f46279g;
         Objects.requireNonNull(aVar);
         this.d = new f(measuredWidth, measuredHeight, new Utilities.Callback() {
             @Override
@@ -94,9 +94,9 @@ public final class e implements rf.c, rf.b {
                 }
             }
         });
-        final a aVar2 = eVar.f46245g;
+        final a aVar2 = eVar.f46279g;
         Objects.requireNonNull(aVar2);
-        this.f48073e = new f(measuredWidth, measuredHeight, new Utilities.Callback() {
+        this.f48107e = new f(measuredWidth, measuredHeight, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 switch (r2) {
@@ -109,37 +109,37 @@ public final class e implements rf.c, rf.b {
                 }
             }
         });
-        this.f48076i = eVar.f46245g.h();
-        this.f48075g = new View((LaunchActivity) eVar.f46240a.d);
-        qf.f fVar = new qf.f((LaunchActivity) eVar.f46240a.d, this);
-        this.f48074f = fVar;
-        fVar.addView(this.f48075g);
-        this.f48074f.addView(this.f48076i);
-        View view = this.f48075g;
-        View view2 = eVar.f46248k;
+        this.f48110i = eVar.f46279g.h();
+        this.f48109g = new View((LaunchActivity) eVar.f46274a.d);
+        qf.f fVar = new qf.f((LaunchActivity) eVar.f46274a.d, this);
+        this.f48108f = fVar;
+        fVar.addView(this.f48109g);
+        this.f48108f.addView(this.f48110i);
+        View view = this.f48109g;
+        View view2 = eVar.f46282k;
         ?? obj = new Object();
         obj.f6064a = view;
         obj.f6065b = view2;
         this.h = obj;
         obj.z(e7);
-        eVar.f46240a.q().addView(this.f48074f);
-        this.f48070a = 1;
-        this.f48074f.invalidate();
-        AndroidUtilities.doOnPreDraw(this.f48076i, new p(ApplicationLoader.applicationHandler, new b(this, 1), 300L));
+        eVar.f46274a.q().addView(this.f48108f);
+        this.f48104a = 1;
+        this.f48108f.invalidate();
+        AndroidUtilities.doOnPreDraw(this.f48110i, new p(ApplicationLoader.applicationHandler, new b(this, 1), 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre attach end");
     }
 
     public final void h() {
-        if (this.f48070a != 2) {
-            FileLog.e("[PIP_DEBUG] wrong pip state STATE_ATTACHED: " + this.f48070a);
+        if (this.f48104a != 2) {
+            FileLog.e("[PIP_DEBUG] wrong pip state STATE_ATTACHED: " + this.f48104a);
             return;
         }
-        this.h.z(this.f48077j.f46245g.c());
-        this.f48070a = 3;
-        this.f48074f.removeView(this.f48076i);
-        this.f48074f.invalidate();
-        this.f48076i = null;
-        AndroidUtilities.doOnPreDraw(this.f48074f, new p(ApplicationLoader.applicationHandler, new b(this, 0), 300L));
+        this.h.z(this.f48111j.f46279g.c());
+        this.f48104a = 3;
+        this.f48108f.removeView(this.f48110i);
+        this.f48108f.invalidate();
+        this.f48110i = null;
+        AndroidUtilities.doOnPreDraw(this.f48108f, new p(ApplicationLoader.applicationHandler, new b(this, 0), 300L));
         Log.i("PIP_DEBUG", "[HANDLER] pre detach 1");
     }
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.m71;
+import org.telegram.ui.Components.l71;
 import w7.x5;
 public final class i1 extends m2 {
     public final CharSequence f11266a;
@@ -19,7 +19,7 @@ public final class i1 extends m2 {
     public final int f11269e;
     public rc f11270f;
     public gg.w1 h;
-    public m71 f11271n;
+    public l71 f11271n;
     public boolean f11272r;
 
     public i1(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
@@ -58,10 +58,10 @@ public final class i1 extends m2 {
         this.actionBar.setTitle(this.f11266a);
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 15));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20730a7, false));
-        m71 m71Var = new m71(this, new bi.v(this, 28), new c5(this, 4), null);
-        this.f11271n = m71Var;
-        m71Var.p1();
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20766a7, false));
+        l71 l71Var = new l71(this, new bi.v(this, 28), new c5(this, 4), null);
+        this.f11271n = l71Var;
+        l71Var.p1();
         this.actionBar.setAdaptiveBackground(this.f11271n);
         frameLayout.addView(this.f11271n, x5.d(-1.0f, -1));
         this.fragmentView = frameLayout;

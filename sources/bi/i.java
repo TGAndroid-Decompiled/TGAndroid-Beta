@@ -5,8 +5,8 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.u7;
 import org.telegram.ui.Components.e00;
-import org.telegram.ui.Components.m71;
-import org.telegram.ui.Components.ow0;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.nw0;
 import s4.a1;
 public final class i extends e00 {
     public final int X = 0;
@@ -28,13 +28,13 @@ public final class i extends e00 {
     }
 
     @Override
-    public ow0 D1(int i10) {
+    public nw0 D1(int i10) {
         switch (this.X) {
             case 0:
-                ow0 ow0Var = (ow0) this.Y;
-                ow0Var.f29542b = 100.0f;
-                ow0Var.f29541a = 100.0f;
-                return ow0Var;
+                nw0 nw0Var = (nw0) this.Y;
+                nw0Var.f29303b = 100.0f;
+                nw0Var.f29302a = 100.0f;
+                return nw0Var;
             default:
                 return super.D1(i10);
         }
@@ -46,7 +46,7 @@ public final class i extends e00 {
         switch (this.X) {
             case 0:
                 super.U(eVar, a1Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47677a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47711a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     aVar = new e.a(collectionItemInfo);
@@ -72,7 +72,7 @@ public final class i extends e00 {
     public int W0(a1 a1Var) {
         switch (this.X) {
             case 1:
-                if (((m71) this.Y).Y2) {
+                if (((l71) this.Y).Y2) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(a1Var);
@@ -94,8 +94,8 @@ public final class i extends e00 {
         }
     }
 
-    public i(m71 m71Var, int i10) {
+    public i(l71 l71Var, int i10) {
         super(i10, false);
-        this.Y = m71Var;
+        this.Y = l71Var;
     }
 }

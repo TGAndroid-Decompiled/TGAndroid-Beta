@@ -4,28 +4,28 @@ import android.os.Bundle;
 import android.os.Parcel;
 import j$.util.Objects;
 public final class y0 implements q {
-    public final i f16281a;
-    public final int f16282b;
+    public final i f16317a;
+    public final int f16318b;
 
     public y0(i iVar, int i10) {
-        this.f16281a = iVar;
-        this.f16282b = i10;
+        this.f16317a = iVar;
+        this.f16318b = i10;
     }
 
     @Override
     public final void a(int i10, l lVar) {
         Bundle bundle = new Bundle();
-        bundle.putInt(l.d, lVar.f16157a);
-        bundle.putLong(l.f16154e, lVar.f16158b);
-        bundle.putBundle(l.f16156g, lVar.f16159c.a());
-        bundle.putInt(l.f16155f, 4);
-        h hVar = (h) this.f16281a;
+        bundle.putInt(l.d, lVar.f16193a);
+        bundle.putLong(l.f16190e, lVar.f16194b);
+        bundle.putBundle(l.f16192g, lVar.f16195c.a());
+        bundle.putInt(l.f16191f, 4);
+        h hVar = (h) this.f16317a;
         Parcel obtain = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i10);
             w7.q.a(obtain, bundle);
-            hVar.f16130a.transact(3003, obtain, null, 1);
+            hVar.f16166a.transact(3003, obtain, null, 1);
         } finally {
             obtain.recycle();
         }
@@ -33,13 +33,13 @@ public final class y0 implements q {
 
     @Override
     public final void b(int i10) {
-        h hVar = (h) this.f16281a;
+        h hVar = (h) this.f16317a;
         hVar.getClass();
         Parcel obtain = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i10);
-            hVar.f16130a.transact(3011, obtain, null, 1);
+            hVar.f16166a.transact(3011, obtain, null, 1);
         } finally {
             obtain.recycle();
         }
@@ -48,13 +48,13 @@ public final class y0 implements q {
     @Override
     public final void c(int i10, b2.x0 x0Var) {
         Bundle b10 = x0Var.b();
-        h hVar = (h) this.f16281a;
+        h hVar = (h) this.f16317a;
         Parcel obtain = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i10);
             w7.q.a(obtain, b10);
-            hVar.f16130a.transact(3009, obtain, null, 1);
+            hVar.f16166a.transact(3009, obtain, null, 1);
         } finally {
             obtain.recycle();
         }
@@ -64,17 +64,17 @@ public final class y0 implements q {
     public final void d(int i10, i1 i1Var) {
         Bundle bundle = Bundle.EMPTY;
         Bundle bundle2 = new Bundle();
-        bundle2.putInt(i1.f16137f, i1Var.f16139a);
-        bundle2.putString(i1.f16138g, i1Var.f16140b);
-        bundle2.putBundle(i1.h, i1Var.f16141c);
-        h hVar = (h) this.f16281a;
+        bundle2.putInt(i1.f16173f, i1Var.f16175a);
+        bundle2.putString(i1.f16174g, i1Var.f16176b);
+        bundle2.putBundle(i1.h, i1Var.f16177c);
+        h hVar = (h) this.f16317a;
         Parcel obtain = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i10);
             w7.q.a(obtain, bundle2);
             w7.q.a(obtain, bundle);
-            hVar.f16130a.transact(3005, obtain, null, 1);
+            hVar.f16166a.transact(3005, obtain, null, 1);
         } finally {
             obtain.recycle();
         }
@@ -83,13 +83,13 @@ public final class y0 implements q {
     @Override
     public final void e(int i10, l1 l1Var, boolean z10, boolean z11, int i11) {
         Bundle b10 = l1Var.a(z10, z11).b(i11);
-        h hVar = (h) this.f16281a;
+        h hVar = (h) this.f16317a;
         Parcel obtain = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i10);
             w7.q.a(obtain, b10);
-            hVar.f16130a.transact(3008, obtain, null, 1);
+            hVar.f16166a.transact(3008, obtain, null, 1);
         } finally {
             obtain.recycle();
         }
@@ -100,14 +100,14 @@ public final class y0 implements q {
             return true;
         }
         if (obj != null && obj.getClass() == y0.class) {
-            return Objects.equals(this.f16281a.asBinder(), ((y0) obj).f16281a.asBinder());
+            return Objects.equals(this.f16317a.asBinder(), ((y0) obj).f16317a.asBinder());
         }
         return false;
     }
 
     @Override
     public final void f() {
-        w7.t.a(this.f16281a);
+        w7.t.a(this.f16317a);
     }
 
     @Override
@@ -116,7 +116,7 @@ public final class y0 implements q {
         ?? r32;
         Parcel obtain;
         boolean z13 = false;
-        int i11 = this.f16282b;
+        int i11 = this.f16318b;
         if (i11 != 0) {
             z12 = true;
         } else {
@@ -131,12 +131,12 @@ public final class y0 implements q {
         if (z11 || !x0Var.a(30)) {
             z13 = true;
         }
-        i iVar = this.f16281a;
+        i iVar = this.f16317a;
         if (i11 >= 2) {
             Bundle f7 = e1Var.e(x0Var, z10, z11).f(i11);
             Bundle bundle = new Bundle();
-            bundle.putBoolean(d1.f16039a, r32);
-            bundle.putBoolean(d1.f16040b, z13);
+            bundle.putBoolean(d1.f16075a, r32);
+            bundle.putBoolean(d1.f16076b, z13);
             h hVar = (h) iVar;
             obtain = Parcel.obtain();
             try {
@@ -144,7 +144,7 @@ public final class y0 implements q {
                 obtain.writeInt(i10);
                 w7.q.a(obtain, f7);
                 w7.q.a(obtain, bundle);
-                hVar.f16130a.transact(3013, obtain, null, 1);
+                hVar.f16166a.transact(3013, obtain, null, 1);
                 return;
             } finally {
             }
@@ -157,32 +157,32 @@ public final class y0 implements q {
             obtain.writeInt(i10);
             w7.q.a(obtain, f10);
             obtain.writeInt(r32);
-            hVar2.f16130a.transact(3007, obtain, null, 1);
+            hVar2.f16166a.transact(3007, obtain, null, 1);
         } finally {
         }
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f16281a.asBinder());
+        return Objects.hash(this.f16317a.asBinder());
     }
 
     @Override
     public final void i(int i10, m1 m1Var) {
         Bundle bundle = new Bundle();
-        bundle.putInt(m1.f16198e, m1Var.f16201a);
-        bundle.putBundle(m1.f16199f, m1Var.f16202b);
-        bundle.putLong(m1.f16200g, m1Var.f16203c);
+        bundle.putInt(m1.f16234e, m1Var.f16237a);
+        bundle.putBundle(m1.f16235f, m1Var.f16238b);
+        bundle.putLong(m1.f16236g, m1Var.f16239c);
         k1 k1Var = m1Var.d;
         if (k1Var != null) {
             bundle.putBundle(m1.h, k1Var.a());
         }
-        h hVar = (h) this.f16281a;
+        h hVar = (h) this.f16317a;
         Parcel obtain = Parcel.obtain();
         try {
             obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
             obtain.writeInt(i10);
             w7.q.a(obtain, bundle);
-            hVar.f16130a.transact(3002, obtain, null, 1);
+            hVar.f16166a.transact(3002, obtain, null, 1);
         } finally {
             obtain.recycle();
         }

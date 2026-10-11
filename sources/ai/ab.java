@@ -12,8 +12,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.ct;
-import org.telegram.ui.Components.dw0;
-import org.telegram.ui.Components.s21;
+import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.r21;
 import org.telegram.ui.Components.ws;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ri0;
@@ -71,7 +71,7 @@ public final class ab implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ei.l3((ws) obj3, tLObject, (TLRPC.InputPeer) obj2, this.f655b, (int[]) obj, 22));
                 return;
             case 5:
-                dw0 dw0Var = (dw0) obj3;
+                cw0 cw0Var = (cw0) obj3;
                 TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) obj;
                 AndroidUtilities.runOnUIThread(new ct((org.telegram.ui.ActionBar.a2[]) obj2, 2));
                 int i11 = this.f655b;
@@ -79,7 +79,7 @@ public final class ab implements RequestDelegate {
                     MessagesController.getInstance(i11).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
-                    AndroidUtilities.runOnUIThread(new d9(dw0Var, i11, tL_error, tL_messages_editMessage, 26));
+                    AndroidUtilities.runOnUIThread(new d9(cw0Var, i11, tL_error, tL_messages_editMessage, 26));
                     return;
                 }
             case 6:
@@ -97,7 +97,7 @@ public final class ab implements RequestDelegate {
                     AndroidUtilities.runOnUIThread(ri0Var);
                     return;
                 } else if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new s21(i12, tL_error, m2Var2, tL_payments_assignPlayMarketTransaction, 11));
+                    AndroidUtilities.runOnUIThread(new r21(i12, tL_error, m2Var2, tL_payments_assignPlayMarketTransaction, 11));
                     return;
                 } else {
                     return;

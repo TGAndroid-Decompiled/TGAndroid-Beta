@@ -38,7 +38,7 @@ public final class ac extends ClickableSpan {
             case 2:
                 org.telegram.ui.Cells.y1 y1Var = (org.telegram.ui.Cells.y1) this.f4735b;
                 Context context = y1Var.getContext();
-                of.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.pa) y1Var.M).f40804e.f41084r);
+                of.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.pa) y1Var.M).f40838e.f41118r);
                 return;
             case 3:
                 ((org.telegram.ui.ub) this.f4735b).finishFragment();
@@ -47,11 +47,11 @@ public final class ac extends ClickableSpan {
                 ((org.telegram.ui.q1) this.f4735b).run();
                 return;
             case 5:
-                ((org.telegram.ui.Components.ad) this.f4735b).f24492a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((org.telegram.ui.Components.ad) this.f4735b).f24560a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
                 gl glVar = (gl) this.f4735b;
-                org.telegram.ui.Wallet.c5.u0(glVar.getContext(), glVar.f26746n, glVar.f30160a);
+                org.telegram.ui.Wallet.c5.u0(glVar.getContext(), glVar.f26798n, glVar.f30244a);
                 return;
             case 7:
                 ((ActionBarLayout) ((LaunchActivity) this.f4735b).O()).P(new PremiumPreviewFragment(0, "gift"));
@@ -64,8 +64,8 @@ public final class ac extends ClickableSpan {
                 org.telegram.ui.Wallet.c5.u0(l8Var.getParentActivity(), org.telegram.ui.Wallet.l8.d0(l8Var), l8Var.getResourceProvider());
                 return;
             case 10:
-                rg.j0 j0Var = ((rg.c0) this.f4735b).f47303c;
-                tg.m.o(j0Var.f25523n, rg.j0.j1(j0Var), j0Var.f47364a0, null);
+                rg.j0 j0Var = ((rg.c0) this.f4735b).f47337c;
+                tg.m.o(j0Var.f25736n, rg.j0.j1(j0Var), j0Var.f47398a0, null);
                 return;
             default:
                 return;
@@ -97,7 +97,7 @@ public final class ac extends ClickableSpan {
                 textPaint.setUnderlineText(false);
                 return;
             case 6:
-                textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, ((gl) this.f4735b).f30160a));
+                textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, ((gl) this.f4735b).f30244a));
                 textPaint.setUnderlineText(false);
                 return;
             case 7:
@@ -115,12 +115,12 @@ public final class ac extends ClickableSpan {
             case 10:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.gc, rg.j0.S0(((rg.c0) this.f4735b).f47303c)));
+                textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.gc, rg.j0.S0(((rg.c0) this.f4735b).f47337c)));
                 return;
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                Integer num = ((rg.l1) this.f4735b).f47430u0;
+                Integer num = ((rg.l1) this.f4735b).f47464u0;
                 if (num != null) {
                     textPaint.setColor(num.intValue());
                     return;

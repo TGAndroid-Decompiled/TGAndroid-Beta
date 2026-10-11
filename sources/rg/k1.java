@@ -16,8 +16,8 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.b7;
-import org.telegram.ui.Components.fa0;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.zb;
 import org.telegram.ui.ax0;
 import org.telegram.ui.cc1;
@@ -25,16 +25,16 @@ import org.telegram.ui.dg0;
 import org.telegram.ui.jx0;
 import org.telegram.ui.tw0;
 import w7.x5;
-public final class k1 extends rm0 {
-    public final l1 f47399c;
+public final class k1 extends qm0 {
+    public final l1 f47433c;
 
     public k1(l1 l1Var) {
-        this.f47399c = l1Var;
+        this.f47433c = l1Var;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47752f == 1) {
+        if (d1Var.f47786f == 1) {
             return true;
         }
         return false;
@@ -42,20 +42,20 @@ public final class k1 extends rm0 {
 
     @Override
     public final int h() {
-        return this.f47399c.f47416f0;
+        return this.f47433c.f47450f0;
     }
 
     @Override
     public final int j(int i10) {
-        l1 l1Var = this.f47399c;
-        if (i10 != l1Var.f47417g0) {
-            if (i10 >= l1Var.f47418h0 && i10 < l1Var.f47419i0) {
+        l1 l1Var = this.f47433c;
+        if (i10 != l1Var.f47451g0) {
+            if (i10 >= l1Var.f47452h0 && i10 < l1Var.f47453i0) {
                 return l1Var.Y();
             }
-            if (i10 >= l1Var.f47420j0 && i10 < l1Var.f47421k0) {
+            if (i10 >= l1Var.f47454j0 && i10 < l1Var.f47455k0) {
                 return 1;
             }
-            if (i10 == l1Var.f47422l0) {
+            if (i10 == l1Var.f47456l0) {
                 return 2;
             }
             if (i10 == l1Var.m0) {
@@ -64,7 +64,7 @@ public final class k1 extends rm0 {
             if (i10 == 0) {
                 return 4;
             }
-            if (i10 == l1Var.f47423n0) {
+            if (i10 == l1Var.f47457n0) {
                 return 5;
             }
             return 0;
@@ -74,18 +74,18 @@ public final class k1 extends rm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        View view = d1Var.f47748a;
-        l1 l1Var = this.f47399c;
-        int i11 = l1Var.f47420j0;
-        if (i10 >= i11 && i10 < l1Var.f47421k0) {
+        View view = d1Var.f47782a;
+        l1 l1Var = this.f47433c;
+        int i11 = l1Var.f47454j0;
+        if (i10 >= i11 && i10 < l1Var.f47455k0) {
             tw0 tw0Var = (tw0) view;
             jx0 jx0Var = (jx0) l1Var.X.get(i10 - i11);
             boolean z10 = true;
-            if (i10 == l1Var.f47421k0 - 1) {
+            if (i10 == l1Var.f47455k0 - 1) {
                 z10 = false;
             }
             tw0Var.a(jx0Var, z10);
-        } else if (i10 >= l1Var.f47418h0 && i10 < l1Var.f47419i0) {
+        } else if (i10 >= l1Var.f47452h0 && i10 < l1Var.f47453i0) {
             l1Var.Z(view);
         }
     }
@@ -100,7 +100,7 @@ public final class k1 extends rm0 {
         d6 d6Var3;
         d6 d6Var4;
         Context context = viewGroup.getContext();
-        l1 l1Var = this.f47399c;
+        l1 l1Var = this.f47433c;
         View a02 = l1Var.a0(context, i10);
         if (a02 != null) {
             return e2.k(a02, a02, -1, -2);
@@ -119,38 +119,38 @@ public final class k1 extends rm0 {
                             String string = LocaleController.getString("GiftPremiumPrivacyPolicyAndTerms", R.string.GiftPremiumPrivacyPolicyAndTerms);
                             int i12 = h6.gc;
                             d0Var.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i12, 0, new Runnable(this) {
-                                public final k1 f47361b;
+                                public final k1 f47395b;
 
                                 {
-                                    this.f47361b = this;
+                                    this.f47395b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r2) {
                                         case 0:
-                                            of.f.s(this.f47361b.f47399c.f47429t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
+                                            of.f.s(this.f47395b.f47433c.f47463t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
                                             return;
                                         default:
-                                            of.f.s(this.f47361b.f47399c.f47429t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
+                                            of.f.s(this.f47395b.f47433c.f47463t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
                                             return;
                                     }
                                 }
                             }), AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i12, 0, new Runnable(this) {
-                                public final k1 f47361b;
+                                public final k1 f47395b;
 
                                 {
-                                    this.f47361b = this;
+                                    this.f47395b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r2) {
                                         case 0:
-                                            of.f.s(this.f47361b.f47399c.f47429t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
+                                            of.f.s(this.f47395b.f47433c.f47463t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
                                             return;
                                         default:
-                                            of.f.s(this.f47361b.f47399c.f47429t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
+                                            of.f.s(this.f47395b.f47433c.f47463t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
                                             return;
                                     }
                                 }
@@ -164,25 +164,25 @@ public final class k1 extends rm0 {
                     ax0Var = new j1(context, 0);
                 }
             } else {
-                ax0Var = new b7(context, l1Var.getThemedColor(h6.f20730a7), 0);
+                ax0Var = new b7(context, l1Var.getThemedColor(h6.f20766a7), 0);
             }
         } else {
             cc1 cc1Var = new cc1(this, context, 17);
-            l1Var.f47428s0 = cc1Var;
+            l1Var.f47462s0 = cc1Var;
             cc1Var.setOrientation(1);
             View view = l1Var.B0;
             if (view == null) {
-                l1Var.f47427r0 = new dg0(context, 1, 0, 2);
+                l1Var.f47461r0 = new dg0(context, 1, 0, 2);
                 Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 int i13 = h6.Mj;
-                canvas.drawColor(i0.a.d(0.5f, l1Var.getThemedColor(i13), l1Var.getThemedColor(h6.f20857h5)));
-                l1Var.f47427r0.setBackgroundBitmap(createBitmap);
-                sg.g gVar = l1Var.f47427r0.f48168b;
-                gVar.f48152z = i13;
+                canvas.drawColor(i0.a.d(0.5f, l1Var.getThemedColor(i13), l1Var.getThemedColor(h6.f20893h5)));
+                l1Var.f47461r0.setBackgroundBitmap(createBitmap);
+                sg.g gVar = l1Var.f47461r0.f48202b;
+                gVar.f48186z = i13;
                 gVar.A = h6.Lj;
                 gVar.b();
-                cc1Var.addView(l1Var.f47427r0, x5.q(160, 160, 1));
+                cc1Var.addView(l1Var.f47461r0, x5.q(160, 160, 1));
             } else {
                 if (view.getParent() != null) {
                     ((ViewGroup) l1Var.B0.getParent()).removeView(l1Var.B0);
@@ -193,25 +193,25 @@ public final class k1 extends rm0 {
                 FrameLayout frameLayout = new FrameLayout(context);
                 l1Var.N0 = frameLayout;
                 frameLayout.setClipChildren(false);
-                Integer num = l1Var.f47430u0;
+                Integer num = l1Var.f47464u0;
                 if (num == null) {
-                    intValue = l1Var.getThemedColor(h6.f21118v6);
+                    intValue = l1Var.getThemedColor(h6.f21154v6);
                 } else {
                     intValue = num.intValue();
                 }
                 new PorterDuffColorFilter(intValue, PorterDuff.Mode.SRC_IN);
-                l1Var.O0 = new fa0[2];
+                l1Var.O0 = new ea0[2];
                 for (int i14 = 0; i14 < 2; i14++) {
-                    fa0[] fa0VarArr = l1Var.O0;
+                    ea0[] ea0VarArr = l1Var.O0;
                     d6Var2 = ((e3) l1Var).resourcesProvider;
-                    fa0VarArr[i14] = new zb(context, 4, d6Var2);
-                    fa0 fa0Var = l1Var.O0[i14];
+                    ea0VarArr[i14] = new zb(context, 4, d6Var2);
+                    ea0 ea0Var = l1Var.O0[i14];
                     if (i14 == 0) {
                         i11 = 0;
                     } else {
                         i11 = 8;
                     }
-                    fa0Var.setVisibility(i11);
+                    ea0Var.setVisibility(i11);
                     l1Var.O0[i14].setTextSize(1, 16.0f);
                     l1Var.O0[i14].setTypeface(AndroidUtilities.bold());
                     l1Var.O0[i14].setGravity(1);
@@ -227,9 +227,9 @@ public final class k1 extends rm0 {
             if (l1Var.P0 == null) {
                 Context context2 = l1Var.getContext();
                 d6Var = ((e3) l1Var).resourcesProvider;
-                fa0 fa0Var2 = new fa0(context2, d6Var);
-                l1Var.P0 = fa0Var2;
-                fa0Var2.setTextSize(1, 14.0f);
+                ea0 ea0Var2 = new ea0(context2, d6Var);
+                l1Var.P0 = ea0Var2;
+                ea0Var2.setTextSize(1, 14.0f);
                 l1Var.P0.setGravity(1);
                 l1Var.P0.setTextColor(l1Var.getThemedColor(h6.G6));
                 l1Var.P0.setLinkTextColor(l1Var.getThemedColor(h6.J6));
@@ -239,15 +239,15 @@ public final class k1 extends rm0 {
             }
             cc1Var.addView(l1Var.P0, x5.p(-1, -2, 0.0f, 0, 24, 9, 24, 20));
             l1Var.b0(false);
-            l1Var.f47426q0 = new ei.f(context, 5);
+            l1Var.f47460q0 = new ei.f(context, 5);
             t0 t0Var = new t0(this, context, 1);
             t0Var.setClipChildren(false);
-            t0Var.addView(l1Var.f47426q0);
+            t0Var.addView(l1Var.f47460q0);
             t0Var.addView(cc1Var);
-            dg0 dg0Var = l1Var.f47427r0;
+            dg0 dg0Var = l1Var.f47461r0;
             ax0Var = t0Var;
             if (dg0Var != null) {
-                dg0Var.setStarParticlesView(l1Var.f47426q0);
+                dg0Var.setStarParticlesView(l1Var.f47460q0);
                 ax0Var = t0Var;
             }
         }

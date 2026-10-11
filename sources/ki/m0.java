@@ -1,22 +1,26 @@
 package ki;
+
+import android.content.Context;
+import android.view.TextureView;
+import java.io.File;
+import org.telegram.ui.Components.cw;
+import org.telegram.ui.Components.p60;
 public final class m0 {
-    public static final m0 f15055a;
-    public static final m0 f15056b;
-    public static final m0[] f15057c;
+    public final Context f15037a;
+    public final TextureView f15038b;
+    public File f15039c;
+    public o0 d;
+    public t0 f15040e;
+    public p0 f15041f;
+    public q0 f15042g;
+    public int h;
+    public boolean f15043i = true;
+    public m2.t f15044j;
+    public s0 f15045k;
+    public cw f15046l;
 
-    static {
-        ?? r02 = new Enum("FRONT", 0);
-        f15055a = r02;
-        ?? r12 = new Enum("BACK", 1);
-        f15056b = r12;
-        f15057c = new m0[]{r02, r12};
-    }
-
-    public static m0 valueOf(String str) {
-        return (m0) Enum.valueOf(m0.class, str);
-    }
-
-    public static m0[] values() {
-        return (m0[]) f15057c.clone();
+    public m0(Context context, p60 p60Var) {
+        this.f15037a = context;
+        this.f15038b = p60Var;
     }
 }

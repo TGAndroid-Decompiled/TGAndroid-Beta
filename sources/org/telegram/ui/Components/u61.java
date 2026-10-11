@@ -1,54 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
+import android.net.Uri;
 import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class u61 extends MetricAffectingSpan {
-    public final CharSequence f31301a;
-    public final int f31302b;
-    public final int f31303c;
-    public final byte d;
-    public final v11 f31304e;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.tgnet.TLObject;
+public class u61 extends URLSpan {
+    public final boolean f31454a;
+    public final u11 f31455b;
+    public TLObject f31456c;
+    public String d;
 
-    public u61(CharSequence charSequence, int i10, int i11, byte b10, v11 v11Var) {
-        this.f31301a = charSequence;
-        this.f31302b = i10;
-        this.f31303c = i11;
-        this.d = b10;
-        this.f31304e = v11Var;
+    public u61(String str) {
+        this(str, (u11) null);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20828fc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.ec, false));
-        }
-        v11 v11Var = this.f31304e;
-        if (v11Var != null) {
-            v11Var.a(textPaint);
+    public void onClick(View view) {
+        String url = getURL();
+        if (url.startsWith("@")) {
+            of.f.p(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
             return;
         }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
+        of.f.s(view.getContext(), url);
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        v11 v11Var = this.f31304e;
-        if (v11Var != null) {
-            v11Var.a(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
+    public void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int i10 = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        u11 u11Var = this.f31455b;
+        if (u11Var != null) {
+            u11Var.a(textPaint);
         }
+        if (i10 == color && !this.f31454a) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+    }
+
+    public u61(String str, int i10) {
+        this(str, (u11) null);
+        this.f31454a = true;
+    }
+
+    public u61(String str, u11 u11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f31454a = false;
+        this.f31455b = u11Var;
     }
 }

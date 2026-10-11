@@ -60,7 +60,7 @@ public abstract class pb extends wb {
     public void setTimer() {
         lc lcVar = new lc(getContext(), this.resourcesProvider);
         this.timerView = lcVar;
-        lcVar.f28291b = 5000L;
+        lcVar.f28339b = 5000L;
         addView(lcVar, w7.x5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

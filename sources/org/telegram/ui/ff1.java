@@ -4,16 +4,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.HashSet;
 public final class ff1 implements View.OnTouchListener {
-    public final int f37673a;
+    public final int f37707a;
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f37673a) {
+        switch (this.f37707a) {
             case 0:
-                HashSet hashSet = eg1.f37310n1;
+                HashSet hashSet = eg1.f37344n1;
                 return true;
             default:
-                int[][] iArr = WallpapersListActivity.f35798k0;
+                int[][] iArr = WallpapersListActivity.f35832k0;
                 return true;
         }
     }

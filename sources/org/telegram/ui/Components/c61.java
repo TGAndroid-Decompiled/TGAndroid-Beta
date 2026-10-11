@@ -1,41 +1,53 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-public final class c61 extends eo0 {
-    public final n61 h;
+public final class c61 extends rm0 {
+    public final j61 V2;
+    public final m61 W2;
 
-    public c61(n61 n61Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 14.0f, d6Var);
-        this.h = n61Var;
+    public c61(m61 m61Var, Context context, j61 j61Var) {
+        super(context, null);
+        this.W2 = m61Var;
+        this.V2 = j61Var;
     }
 
     @Override
-    public final void a(String str) {
-        gg.f2 f2Var = this.h.v;
-        gg.d2 d2Var = f2Var.S;
-        int i10 = f2Var.f10597c;
-        if (f2Var.N != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(f2Var.N, true);
-            f2Var.N = 0;
+    public final boolean E0(float f7) {
+        if (f7 >= AndroidUtilities.dp(58.0f) + this.W2.E) {
+            return true;
         }
-        if (f2Var.O != 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(f2Var.O, true);
-            f2Var.O = 0;
+        return false;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.W2.F = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.V2.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
         }
-        if (TextUtils.isEmpty(str)) {
-            f2Var.R = null;
-            f2Var.F.clear();
-            f2Var.I.clear();
-            f2Var.E.clear();
-            f2Var.f10598e.b(false);
-            f2Var.l();
-        } else {
-            f2Var.R = str.toLowerCase();
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.W2.L != null) {
+            return false;
         }
-        AndroidUtilities.cancelRunOnUIThread(d2Var);
-        AndroidUtilities.runOnUIThread(d2Var, 300L);
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.W2.H) {
+            super.requestLayout();
+        }
     }
 }

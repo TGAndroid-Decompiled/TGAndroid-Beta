@@ -38,12 +38,12 @@ public final class a0 extends s4.d0 {
         switch (this.I) {
             case 4:
                 ji.o oVar = new ji.o(recyclerView.getContext(), 0);
-                oVar.f47917a = i10;
+                oVar.f47951a = i10;
                 w0(oVar);
                 return;
             case 15:
                 ct0 ct0Var = new ct0(recyclerView.getContext());
-                ct0Var.f47917a = i10;
+                ct0Var.f47951a = i10;
                 w0(ct0Var);
                 return;
             default:

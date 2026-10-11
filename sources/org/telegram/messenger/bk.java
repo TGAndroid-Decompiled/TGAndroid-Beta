@@ -13,92 +13,92 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class bk implements Runnable {
-    public final int f17458a;
-    public final boolean f17459b;
-    public final Object f17460c;
+    public final int f17494a;
+    public final boolean f17495b;
+    public final Object f17496c;
     public final Object d;
-    public final Object f17461e;
+    public final Object f17497e;
 
     public bk(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f17458a = i10;
-        this.f17460c = obj;
+        this.f17494a = i10;
+        this.f17496c = obj;
         this.d = obj2;
-        this.f17461e = obj3;
-        this.f17459b = z10;
+        this.f17497e = obj3;
+        this.f17495b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17458a) {
+        switch (this.f17494a) {
             case 0:
-                SendMessagesHelper.lambda$prepareSendingMedia$130((SendMessagesHelper.MediaSendPrepareWorker) this.f17460c, (AccountInstance) this.d, (SendMessagesHelper.SendingMediaInfo) this.f17461e, this.f17459b);
+                SendMessagesHelper.lambda$prepareSendingMedia$130((SendMessagesHelper.MediaSendPrepareWorker) this.f17496c, (AccountInstance) this.d, (SendMessagesHelper.SendingMediaInfo) this.f17497e, this.f17495b);
                 return;
             case 1:
-                CacheFetcher.c((CacheFetcher) this.f17460c, (Pair) this.d, this.f17461e, this.f17459b);
+                CacheFetcher.c((CacheFetcher) this.f17496c, (Pair) this.d, this.f17497e, this.f17495b);
                 return;
             case 2:
-                ((ChatObject.Call) this.f17460c).lambda$loadMembers$2(this.f17459b, (TLObject) this.d, (TL_phone.getGroupParticipants) this.f17461e);
+                ((ChatObject.Call) this.f17496c).lambda$loadMembers$2(this.f17495b, (TLObject) this.d, (TL_phone.getGroupParticipants) this.f17497e);
                 return;
             case 3:
-                ((ChatThemeController) this.f17460c).lambda$requestAllChatThemes$2((List) this.d, (ResultCallback) this.f17461e, this.f17459b);
+                ((ChatThemeController) this.f17496c).lambda$requestAllChatThemes$2((List) this.d, (ResultCallback) this.f17497e, this.f17495b);
                 return;
             case 4:
-                ((ContactsController) this.f17460c).lambda$deleteContact$56((ArrayList) this.d, this.f17459b, (String) this.f17461e);
+                ((ContactsController) this.f17496c).lambda$deleteContact$56((ArrayList) this.d, this.f17495b, (String) this.f17497e);
                 return;
             case 5:
-                ((MediaController) this.f17460c).lambda$toggleRecordingPause$27((File) this.d, this.f17459b, (TLRPC.TL_document) this.f17461e);
+                ((MediaController) this.f17496c).lambda$toggleRecordingPause$27((File) this.d, this.f17495b, (TLRPC.TL_document) this.f17497e);
                 return;
             case 6:
-                ((MediaController) this.f17460c).lambda$playEmojiSound$19((MessagesController.EmojiSound) this.f17461e, (AccountInstance) this.d, this.f17459b);
+                ((MediaController) this.f17496c).lambda$playEmojiSound$19((MessagesController.EmojiSound) this.f17497e, (AccountInstance) this.d, this.f17495b);
                 return;
             case 7:
-                ((MediaDataController) this.f17460c).lambda$saveReplyMessages$178(this.f17459b, (ArrayList) this.d, (a0.i) this.f17461e);
+                ((MediaDataController) this.f17496c).lambda$saveReplyMessages$178(this.f17495b, (ArrayList) this.d, (a0.i) this.f17497e);
                 return;
             case 8:
-                ((MediaDataController) this.f17460c).lambda$loadAvatarConstructor$242((TLObject) this.d, (SharedPreferences) this.f17461e, this.f17459b);
+                ((MediaDataController) this.f17496c).lambda$loadAvatarConstructor$242((TLObject) this.d, (SharedPreferences) this.f17497e, this.f17495b);
                 return;
             case 9:
-                ((MediaDataController) this.f17460c).lambda$broadcastPinnedMessage$167((ArrayList) this.d, this.f17459b, (ArrayList) this.f17461e);
+                ((MediaDataController) this.f17496c).lambda$broadcastPinnedMessage$167((ArrayList) this.d, this.f17495b, (ArrayList) this.f17497e);
                 return;
             case 10:
-                ((MessagesController) this.f17460c).lambda$getBlockedPeers$111((TLObject) this.d, this.f17459b, (TLRPC.TL_contacts_getBlocked) this.f17461e);
+                ((MessagesController) this.f17496c).lambda$getBlockedPeers$111((TLObject) this.d, this.f17495b, (TLRPC.TL_contacts_getBlocked) this.f17497e);
                 return;
             case 11:
-                ((MessagesController) this.f17460c).lambda$processUpdates$380(this.f17459b, (TLRPC.Updates) this.d, (ArrayList) this.f17461e);
+                ((MessagesController) this.f17496c).lambda$processUpdates$380(this.f17495b, (TLRPC.Updates) this.d, (ArrayList) this.f17497e);
                 return;
             case 12:
-                ((MessagesController.CommonChatsList) this.f17460c).lambda$load$0((int[]) this.d, (TLObject) this.f17461e, this.f17459b);
+                ((MessagesController.CommonChatsList) this.f17496c).lambda$load$0((int[]) this.d, (TLObject) this.f17497e, this.f17495b);
                 return;
             case 13:
-                ((MessagesStorage) this.f17460c).lambda$putUsersAndChats$181((List) this.d, (List) this.f17461e, this.f17459b);
+                ((MessagesStorage) this.f17496c).lambda$putUsersAndChats$181((List) this.d, (List) this.f17497e, this.f17495b);
                 return;
             default:
-                ((NotificationsController) this.f17460c).lambda$removeDeletedMessagesFromNotifications$11((a0.i) this.d, this.f17459b, (ArrayList) this.f17461e);
+                ((NotificationsController) this.f17496c).lambda$removeDeletedMessagesFromNotifications$11((a0.i) this.d, this.f17495b, (ArrayList) this.f17497e);
                 return;
         }
     }
 
     public bk(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
-        this.f17458a = i10;
-        this.f17460c = obj;
+        this.f17494a = i10;
+        this.f17496c = obj;
         this.d = obj2;
-        this.f17459b = z10;
-        this.f17461e = obj3;
+        this.f17495b = z10;
+        this.f17497e = obj3;
     }
 
     public bk(Object obj, boolean z10, Object obj2, Object obj3, int i10) {
-        this.f17458a = i10;
-        this.f17460c = obj;
-        this.f17459b = z10;
+        this.f17494a = i10;
+        this.f17496c = obj;
+        this.f17495b = z10;
         this.d = obj2;
-        this.f17461e = obj3;
+        this.f17497e = obj3;
     }
 
     public bk(MediaController mediaController, MessagesController.EmojiSound emojiSound, AccountInstance accountInstance, boolean z10) {
-        this.f17458a = 6;
-        this.f17460c = mediaController;
-        this.f17461e = emojiSound;
+        this.f17494a = 6;
+        this.f17496c = mediaController;
+        this.f17497e = emojiSound;
         this.d = accountInstance;
-        this.f17459b = z10;
+        this.f17495b = z10;
     }
 }

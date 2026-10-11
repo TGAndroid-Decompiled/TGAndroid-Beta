@@ -8,7 +8,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.m71;
+import org.telegram.ui.Components.l71;
 import w7.x5;
 public final class e0 extends h0 {
     public final k0 h;
@@ -26,12 +26,12 @@ public final class e0 extends h0 {
         t tVar = new t(k0Var, 3);
         u uVar = new u(k0Var, 2);
         d6Var = ((e3) k0Var).resourcesProvider;
-        m71 m71Var = new m71(context, i10, 0, false, tVar, uVar, null, d6Var);
-        this.d = m71Var;
-        m71Var.p1();
-        m71 m71Var2 = this.d;
-        m71Var2.W2.f25890r = false;
-        m71Var2.setClipToPadding(false);
+        l71 l71Var = new l71(context, i10, 0, false, tVar, uVar, null, d6Var);
+        this.d = l71Var;
+        l71Var.p1();
+        l71 l71Var2 = this.d;
+        l71Var2.W2.f25649r = false;
+        l71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.f9974c.addView(k0Var.G, x5.g());
         this.f9974c.addView(this.d, 0, x5.d(-1.0f, -1));
@@ -41,7 +41,7 @@ public final class e0 extends h0 {
         this.f9972a = kVar;
         kVar.setOccupyStatusBar(false);
         this.f9972a.setTitleColor(k0Var.getThemedColor(h6.G6));
-        this.f9972a.C(k0Var.getThemedColor(h6.f21191z8), false);
+        this.f9972a.C(k0Var.getThemedColor(h6.f21227z8), false);
         org.telegram.ui.ActionBar.k kVar2 = this.f9972a;
         boolean z10 = k0Var.N;
         if (z10) {
@@ -50,7 +50,7 @@ public final class e0 extends h0 {
             i11 = R.drawable.ic_ab_back;
         }
         kVar2.setBackButtonImage(i11);
-        this.f9972a.D(k0Var.getThemedColor(h6.f21173y8), false);
+        this.f9972a.D(k0Var.getThemedColor(h6.f21209y8), false);
         this.f9972a.setTitle(LocaleController.getString(R.string.CommunityAddAChatToCommunity));
         this.f9972a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f9972a.setActionBarMenuOnItemClick(new ei.t(this, 6));
@@ -76,7 +76,7 @@ public final class e0 extends h0 {
 
     @Override
     public final float b() {
-        return yf.e0.b(this.h.f9990c.f16365e) * super.b();
+        return yf.e0.b(this.h.f9990c.f16401e) * super.b();
     }
 
     @Override

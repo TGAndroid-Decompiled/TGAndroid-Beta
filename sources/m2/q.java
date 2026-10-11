@@ -1,11 +1,11 @@
 package m2;
 public final class q {
-    public final long f15990a;
-    public final long f15991b;
+    public final long f16026a;
+    public final long f16027b;
 
     public q(long j3, long j10) {
-        this.f15990a = j3;
-        this.f15991b = j10;
+        this.f16026a = j3;
+        this.f16027b = j10;
     }
 
     public final boolean equals(Object obj) {
@@ -14,7 +14,7 @@ public final class q {
         }
         if (obj != null && q.class == obj.getClass()) {
             q qVar = (q) obj;
-            if (this.f15990a == qVar.f15990a && this.f15991b == qVar.f15991b) {
+            if (this.f16026a == qVar.f16026a && this.f16027b == qVar.f16027b) {
                 return true;
             }
         }
@@ -22,6 +22,6 @@ public final class q {
     }
 
     public final int hashCode() {
-        return (((int) this.f15990a) * 31) + ((int) this.f15991b);
+        return (((int) this.f16026a) * 31) + ((int) this.f16027b);
     }
 }

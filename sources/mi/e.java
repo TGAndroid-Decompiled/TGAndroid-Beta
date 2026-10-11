@@ -6,57 +6,57 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.du;
-import org.telegram.ui.Components.sm0;
+import org.telegram.ui.Components.rm0;
 public final class e {
-    public c f16479a;
-    public long f16483f;
-    public long f16484g;
+    public c f16515a;
+    public long f16519f;
+    public long f16520g;
     public long h;
-    public View f16485i;
-    public long f16486j;
-    public long f16487k;
-    public long f16488l;
-    public int f16490n;
-    public int f16491o;
-    public final a f16480b = new a(this);
-    public final ArrayList f16481c = new ArrayList();
+    public View f16521i;
+    public long f16522j;
+    public long f16523k;
+    public long f16524l;
+    public int f16526n;
+    public int f16527o;
+    public final a f16516b = new a(this);
+    public final ArrayList f16517c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public ni.b f16482e = ni.b.f16918c;
-    public final RectF f16489m = new RectF();
-    public final ni.a f16492p = new ni.a();
-    public final ni.a f16493q = new ni.a();
-    public final ni.a f16494r = new ni.a();
-    public final ArrayList f16495s = new ArrayList();
+    public ni.b f16518e = ni.b.f16954c;
+    public final RectF f16525m = new RectF();
+    public final ni.a f16528p = new ni.a();
+    public final ni.a f16529q = new ni.a();
+    public final ni.a f16530r = new ni.a();
+    public final ArrayList f16531s = new ArrayList();
 
-    public final void a(sm0 sm0Var) {
-        if (sm0Var == null) {
+    public final void a(rm0 rm0Var) {
+        if (rm0Var == null) {
             return;
         }
-        sm0Var.C2.f26493b.add(new du() {
+        rm0Var.C2.f26574b.add(new du() {
             @Override
             public final void a(int i10, boolean z10) {
-                e.this.f16484g++;
+                e.this.f16520g++;
             }
         });
-        sm0Var.j(new r(this, 11));
+        rm0Var.j(new r(this, 11));
     }
 
     public final void b(View view) {
         uf.b a2;
         uf.d dVar;
-        View view2 = this.f16485i;
+        View view2 = this.f16521i;
         if (view2 != view) {
-            a aVar = this.f16480b;
+            a aVar = this.f16516b;
             if (view2 != null && (dVar = (uf.d) view2.getTag(R.id.tag_view_on_post_draw_state)) != null) {
-                ArrayList arrayList = dVar.f48986a;
+                ArrayList arrayList = dVar.f49020a;
                 if (arrayList.remove(aVar)) {
-                    uf.b bVar = dVar.f48987b;
+                    uf.b bVar = dVar.f49021b;
                     if (bVar != null) {
-                        ((qe.b) bVar.f48985a.f1526b).remove(aVar);
+                        ((qe.b) bVar.f49019a.f1526b).remove(aVar);
                     }
                     if (arrayList.isEmpty()) {
-                        dVar.f48987b = null;
-                        view2.removeOnAttachStateChangeListener(dVar.f48988c);
+                        dVar.f49021b = null;
+                        view2.removeOnAttachStateChangeListener(dVar.f49022c);
                         view2.setTag(R.id.tag_view_on_post_draw_state, null);
                     }
                 }
@@ -69,17 +69,17 @@ public final class e {
                 if (dVar2 == null) {
                     dVar2 = new uf.d();
                     view.setTag(R.id.tag_view_on_post_draw_state, dVar2);
-                    view.addOnAttachStateChangeListener(dVar2.f48988c);
+                    view.addOnAttachStateChangeListener(dVar2.f49022c);
                 }
-                ArrayList arrayList2 = dVar2.f48986a;
+                ArrayList arrayList2 = dVar2.f49020a;
                 if (!arrayList2.contains(aVar)) {
                     arrayList2.add(aVar);
                     if (view.isAttachedToWindow() && (a2 = uf.e.a(view, dVar2)) != null) {
-                        ((qe.b) a2.f48985a.f1526b).add(aVar);
+                        ((qe.b) a2.f49019a.f1526b).add(aVar);
                     }
                 }
             }
-            this.f16485i = view;
+            this.f16521i = view;
         }
     }
 }

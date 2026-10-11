@@ -33,15 +33,15 @@ public final class g implements Runnable {
                     Object obj = arrayList.get(i10);
                     i10++;
                     s4.i iVar = (s4.i) obj;
-                    nVar.T(iVar.f47798a, iVar, this.f14233b);
+                    nVar.T(iVar.f47832a, iVar, this.f14233b);
                 }
                 arrayList.clear();
-                nVar.f47814u.remove(arrayList);
+                nVar.f47848u.remove(arrayList);
                 return;
             case 1:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                if (actionBarLayout.f20318e == this) {
-                    actionBarLayout.f20318e = null;
+                if (actionBarLayout.f20354e == this) {
+                    actionBarLayout.f20354e = null;
                     ((m2) this.f14234c).onTransitionAnimationStart(true, false);
                     actionBarLayout.d0(true, true, this.f14233b);
                     return;
@@ -49,19 +49,19 @@ public final class g implements Runnable {
                 return;
             default:
                 try {
-                    ((zc.i) this.d).f54443a.bind(new InetSocketAddress(61578));
+                    ((zc.i) this.d).f54477a.bind(new InetSocketAddress(61578));
                     this.f14233b = true;
                     do {
                         try {
-                            Socket accept = ((zc.i) this.d).f54443a.accept();
+                            Socket accept = ((zc.i) this.d).f54477a.accept();
                             accept.setSoTimeout(5000);
                             InputStream inputStream = accept.getInputStream();
                             zc.i iVar2 = (zc.i) this.d;
-                            iVar2.f54445c.C(new zc.a(iVar2, inputStream, accept));
+                            iVar2.f54479c.C(new zc.a(iVar2, inputStream, accept));
                         } catch (IOException e7) {
                             zc.i.d.log(Level.FINE, "Communication with the client broken", (Throwable) e7);
                         }
-                    } while (!((zc.i) this.d).f54443a.isClosed());
+                    } while (!((zc.i) this.d).f54477a.isClosed());
                     return;
                 } catch (IOException e10) {
                     this.f14234c = e10;

@@ -10,66 +10,66 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class om0 implements RequestDelegate {
-    public final an0 f40568a;
-    public final String f40569b;
-    public final TL_account.saveSecureValue f40570c;
+    public final an0 f40602a;
+    public final String f40603b;
+    public final TL_account.saveSecureValue f40604c;
     public final TLRPC.TL_secureRequiredType d;
-    public final TLRPC.TL_secureRequiredType f40571e;
-    public final ArrayList f40572f;
-    public final SecureDocument f40573g;
+    public final TLRPC.TL_secureRequiredType f40605e;
+    public final ArrayList f40606f;
+    public final SecureDocument f40607g;
     public final SecureDocument h;
-    public final SecureDocument f40574i;
-    public final ArrayList f40575j;
-    public final String f40576k;
-    public final String f40577l;
-    public final Runnable f40578m;
-    public final pm0 f40579n;
-    public final TLRPC.TL_inputSecureValue f40580o;
-    public final pm0 f40581p;
+    public final SecureDocument f40608i;
+    public final ArrayList f40609j;
+    public final String f40610k;
+    public final String f40611l;
+    public final Runnable f40612m;
+    public final pm0 f40613n;
+    public final TLRPC.TL_inputSecureValue f40614o;
+    public final pm0 f40615p;
 
     public om0(pm0 pm0Var, an0 an0Var, String str, TL_account.saveSecureValue savesecurevalue, TLRPC.TL_secureRequiredType tL_secureRequiredType, TLRPC.TL_secureRequiredType tL_secureRequiredType2, ArrayList arrayList, SecureDocument secureDocument, SecureDocument secureDocument2, SecureDocument secureDocument3, ArrayList arrayList2, String str2, String str3, Runnable runnable, pm0 pm0Var2, TLRPC.TL_inputSecureValue tL_inputSecureValue) {
-        this.f40581p = pm0Var;
-        this.f40568a = an0Var;
-        this.f40569b = str;
-        this.f40570c = savesecurevalue;
+        this.f40615p = pm0Var;
+        this.f40602a = an0Var;
+        this.f40603b = str;
+        this.f40604c = savesecurevalue;
         this.d = tL_secureRequiredType;
-        this.f40571e = tL_secureRequiredType2;
-        this.f40572f = arrayList;
-        this.f40573g = secureDocument;
+        this.f40605e = tL_secureRequiredType2;
+        this.f40606f = arrayList;
+        this.f40607g = secureDocument;
         this.h = secureDocument2;
-        this.f40574i = secureDocument3;
-        this.f40575j = arrayList2;
-        this.f40576k = str2;
-        this.f40577l = str3;
-        this.f40578m = runnable;
-        this.f40579n = pm0Var2;
-        this.f40580o = tL_inputSecureValue;
+        this.f40608i = secureDocument3;
+        this.f40609j = arrayList2;
+        this.f40610k = str2;
+        this.f40611l = str3;
+        this.f40612m = runnable;
+        this.f40613n = pm0Var2;
+        this.f40614o = tL_inputSecureValue;
     }
 
     public final void a(final TLRPC.TL_error tL_error, final TLRPC.TL_secureValue tL_secureValue, final TLRPC.TL_secureValue tL_secureValue2) {
-        pm0 pm0Var = this.f40581p;
-        final boolean z10 = pm0Var.f40910b;
-        final int i10 = pm0Var.f40911c;
-        final an0 an0Var = this.f40568a;
-        final String str = this.f40569b;
-        final TL_account.saveSecureValue savesecurevalue = this.f40570c;
+        pm0 pm0Var = this.f40615p;
+        final boolean z10 = pm0Var.f40944b;
+        final int i10 = pm0Var.f40945c;
+        final an0 an0Var = this.f40602a;
+        final String str = this.f40603b;
+        final TL_account.saveSecureValue savesecurevalue = this.f40604c;
         final TLRPC.TL_secureRequiredType tL_secureRequiredType = this.d;
-        final TLRPC.TL_secureRequiredType tL_secureRequiredType2 = this.f40571e;
-        final ArrayList arrayList = this.f40572f;
-        final SecureDocument secureDocument = this.f40573g;
+        final TLRPC.TL_secureRequiredType tL_secureRequiredType2 = this.f40605e;
+        final ArrayList arrayList = this.f40606f;
+        final SecureDocument secureDocument = this.f40607g;
         final SecureDocument secureDocument2 = this.h;
-        final SecureDocument secureDocument3 = this.f40574i;
-        final ArrayList arrayList2 = this.f40575j;
-        final String str2 = this.f40576k;
-        final String str3 = this.f40577l;
-        final Runnable runnable = this.f40578m;
+        final SecureDocument secureDocument3 = this.f40608i;
+        final ArrayList arrayList2 = this.f40609j;
+        final String str2 = this.f40610k;
+        final String str3 = this.f40611l;
+        final Runnable runnable = this.f40612m;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
                 mn0 mn0Var;
                 TLRPC.TL_secureRequiredType tL_secureRequiredType3;
                 int i11;
-                pm0 pm0Var2 = om0.this.f40581p;
+                pm0 pm0Var2 = om0.this.f40615p;
                 mn0 mn0Var2 = pm0Var2.d;
                 TLRPC.TL_error tL_error2 = tL_error;
                 String str4 = str;
@@ -98,11 +98,11 @@ public final class om0 implements RequestDelegate {
                 }
                 TLRPC.TL_secureValue tL_secureValue3 = tL_secureValue;
                 if (tL_secureValue3 != null) {
-                    mn0Var2.f40038y.values.add(tL_secureValue3);
+                    mn0Var2.f40072y.values.add(tL_secureValue3);
                 }
                 TLRPC.TL_secureValue tL_secureValue4 = tL_secureValue2;
                 if (tL_secureValue4 != null) {
-                    mn0Var2.f40038y.values.add(tL_secureValue4);
+                    mn0Var2.f40072y.values.add(tL_secureValue4);
                 }
                 ArrayList arrayList3 = arrayList;
                 if (arrayList3 != null && !arrayList3.isEmpty()) {
@@ -204,30 +204,30 @@ public final class om0 implements RequestDelegate {
         TLRPC.TL_inputSecureValue tL_inputSecureValue;
         int i10;
         int i11;
-        mn0 mn0Var = this.f40581p.d;
+        mn0 mn0Var = this.f40615p.d;
         if (tL_error != null) {
             boolean equals = tL_error.text.equals("EMAIL_VERIFICATION_NEEDED");
-            String str = this.f40569b;
+            String str = this.f40603b;
             if (equals) {
                 TL_account.sendVerifyEmailCode sendverifyemailcode = new TL_account.sendVerifyEmailCode();
                 sendverifyemailcode.purpose = new TLRPC.TL_emailVerifyPurposePassport();
                 sendverifyemailcode.email = str;
                 i11 = ((org.telegram.ui.ActionBar.m2) mn0Var).currentAccount;
-                ConnectionsManager.getInstance(i11).sendRequest(sendverifyemailcode, new ci.hd(this, this.f40569b, this.f40571e, this.f40579n, this.f40568a, 10));
+                ConnectionsManager.getInstance(i11).sendRequest(sendverifyemailcode, new ci.hd(this, this.f40603b, this.f40605e, this.f40613n, this.f40602a, 10));
                 return;
             }
             om0Var = this;
             if (tL_error.text.equals("PHONE_VERIFICATION_NEEDED")) {
-                AndroidUtilities.runOnUIThread(new nf0(om0Var.f40568a, tL_error, str, 11));
+                AndroidUtilities.runOnUIThread(new nf0(om0Var.f40602a, tL_error, str, 11));
                 return;
             }
         } else {
             om0Var = this;
         }
-        if (tL_error == null && (tL_inputSecureValue = om0Var.f40580o) != null) {
+        if (tL_error == null && (tL_inputSecureValue = om0Var.f40614o) != null) {
             TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
             savesecurevalue.value = tL_inputSecureValue;
-            savesecurevalue.secure_secret_id = mn0Var.f39987b1;
+            savesecurevalue.secure_secret_id = mn0Var.f40021b1;
             i10 = ((org.telegram.ui.ActionBar.m2) mn0Var).currentAccount;
             ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue, new zb0(7, this, (TLRPC.TL_secureValue) tLObject));
             return;

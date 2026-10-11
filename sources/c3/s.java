@@ -23,7 +23,7 @@ public final class s implements vb {
     public void c(wb wbVar, hb hbVar, fb fbVar, ib ibVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(wbVar, wb.IN_OUT_OFFSET_Y2, wbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(bu.f25023c);
+        ofFloat.setInterpolator(bu.f25096c);
         ofFloat.addListener(new ai.z(hbVar, fbVar, 17));
         ofFloat.addUpdateListener(new ai.x(12, ibVar, wbVar));
         ofFloat.start();

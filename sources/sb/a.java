@@ -3,7 +3,7 @@ package sb;
 import java.util.Arrays;
 import n6.m;
 public final class a {
-    public static final a f47977a = new Object();
+    public static final a f48011a = new Object();
 
     public final boolean equals(Object obj) {
         if (this != obj) {

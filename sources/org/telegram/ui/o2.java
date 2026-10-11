@@ -6,23 +6,23 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class o2 extends View {
-    public final p2 f40389a;
+    public final p2 f40423a;
 
     public o2(p2 p2Var, Context context) {
         super(context);
-        this.f40389a = p2Var;
+        this.f40423a = p2Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float dp;
-        p2 p2Var = this.f40389a;
+        p2 p2Var = this.f40423a;
         if (p2Var.d == null) {
             return;
         }
-        int b10 = p2Var.f40687b.b();
+        int b10 = p2Var.f40721b.b();
         int dp2 = AndroidUtilities.dp(4.0f) + org.telegram.messenger.q.D(6.0f, b10 - 1, AndroidUtilities.dp(7.0f) * b10);
-        float f7 = p2Var.v + p2Var.f40693s;
+        float f7 = p2Var.v + p2Var.f40727s;
         if (dp2 < getMeasuredWidth()) {
             dp = (getMeasuredWidth() - dp2) / 2.0f;
         } else {

@@ -8,12 +8,12 @@ import java.util.Arrays;
 import w7.d0;
 public final class h extends o6.a {
     public static final Parcelable.Creator<h> CREATOR = new m8.h(29);
-    public final int f45525a;
-    public final Bundle f45526b;
+    public final int f45559a;
+    public final Bundle f45560b;
 
     public h(int i10, Bundle bundle) {
-        this.f45525a = i10;
-        this.f45526b = bundle;
+        this.f45559a = i10;
+        this.f45560b = bundle;
     }
 
     public final boolean equals(java.lang.Object r7) {
@@ -22,8 +22,8 @@ public final class h extends o6.a {
 
     public final int hashCode() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(Integer.valueOf(this.f45525a));
-        Bundle bundle = this.f45526b;
+        arrayList.add(Integer.valueOf(this.f45559a));
+        Bundle bundle = this.f45560b;
         if (bundle != null) {
             for (String str : bundle.keySet()) {
                 arrayList.add(str);
@@ -40,8 +40,8 @@ public final class h extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = d0.q(parcel, 20293);
         d0.s(parcel, 1, 4);
-        parcel.writeInt(this.f45525a);
-        d0.b(parcel, 2, this.f45526b);
+        parcel.writeInt(this.f45559a);
+        d0.b(parcel, 2, this.f45560b);
         d0.r(parcel, q6);
     }
 }

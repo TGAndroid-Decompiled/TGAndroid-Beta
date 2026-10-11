@@ -38,18 +38,18 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.ad;
 public final class ds0 implements Runnable {
-    public final int f37087a;
-    public final Object f37088b;
-    public final Object f37089c;
+    public final int f37121a;
+    public final Object f37122b;
+    public final Object f37123c;
     public final Object d;
-    public final Object f37090e;
+    public final Object f37124e;
 
     public ds0(Dialog dialog, boolean[] zArr, Object obj, Serializable serializable, int i10) {
-        this.f37087a = i10;
-        this.f37088b = dialog;
+        this.f37121a = i10;
+        this.f37122b = dialog;
         this.d = zArr;
-        this.f37089c = obj;
-        this.f37090e = serializable;
+        this.f37123c = obj;
+        this.f37124e = serializable;
     }
 
     @Override
@@ -61,21 +61,21 @@ public final class ds0 implements Runnable {
         int i10;
         String formatPluralString;
         org.telegram.ui.web.b1 b1Var;
-        int i11 = this.f37087a;
-        Object obj = this.f37090e;
-        Object obj2 = this.f37089c;
+        int i11 = this.f37121a;
+        Object obj = this.f37124e;
+        Object obj2 = this.f37123c;
         Object obj3 = this.d;
-        Object obj4 = this.f37088b;
+        Object obj4 = this.f37122b;
         switch (i11) {
             case 0:
                 PhotoViewer photoViewer = (PhotoViewer) obj4;
                 Bitmap bitmap = (Bitmap) obj2;
                 boolean[] zArr = (boolean[]) obj3;
                 cs0 cs0Var = (cs0) obj;
-                ImageView imageView = photoViewer.f34104x3;
+                ImageView imageView = photoViewer.f34138x3;
                 if (imageView != null) {
                     imageView.setImageBitmap(bitmap);
-                    photoViewer.f34104x3.setVisibility(0);
+                    photoViewer.f34138x3.setVisibility(0);
                     SurfaceView surfaceView = photoViewer.C2;
                     if (surfaceView != null) {
                         surfaceView.setVisibility(4);
@@ -92,7 +92,7 @@ public final class ds0 implements Runnable {
                 TLObject tLObject = (TLObject) obj2;
                 UserConfig userConfig = (UserConfig) obj3;
                 TLRPC.Photo photo = (TLRPC.Photo) obj;
-                PhotoViewer photoViewer2 = ((rs0) obj4).f41508b;
+                PhotoViewer photoViewer2 = ((rs0) obj4).f41542b;
                 if (tLObject instanceof TLRPC.TL_photos_photo) {
                     TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
                     int i12 = photoViewer2.T;
@@ -105,7 +105,7 @@ public final class ds0 implements Runnable {
                             arrayList.set(indexOf2, tL_photos_photo.photo);
                         }
                         if (user != null) {
-                            user.photo.photo_id = tL_photos_photo.photo.f20056id;
+                            user.photo.photo_id = tL_photos_photo.photo.f20092id;
                             userConfig.setCurrentUser(user);
                             userConfig.saveConfig(true);
                             return;
@@ -135,7 +135,7 @@ public final class ds0 implements Runnable {
                 if (tLObject2 instanceof TLRPC.TL_boolTrue) {
                     privacySettingsActivity.Q = true;
                     privacySettingsActivity.getContactsController().setDeleteAccountTTL(setaccountttl.ttl.days);
-                    privacySettingsActivity.f34225a.l();
+                    privacySettingsActivity.f34259a.l();
                     return;
                 }
                 return;
@@ -186,8 +186,8 @@ public final class ds0 implements Runnable {
                     profileActivity.getClass();
                     org.telegram.ui.Components.ad.a0(profileActivity).f0(tL_error, false);
                 }
-                if (profileActivity.f34342o4 == iArr[0]) {
-                    profileActivity.f34342o4 = 0;
+                if (profileActivity.f34376o4 == iArr[0]) {
+                    profileActivity.f34376o4 = 0;
                     return;
                 }
                 return;
@@ -197,12 +197,12 @@ public final class ds0 implements Runnable {
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
                 if (tLObject3 instanceof TL_fragment.TL_collectibleInfo) {
-                    if (profileActivity2.f34271e1 != 0) {
-                        chat = profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.f34271e1));
+                    if (profileActivity2.f34305e1 != 0) {
+                        chat = profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.f34305e1));
                     } else {
-                        chat = profileActivity2.getMessagesController().getChat(Long.valueOf(profileActivity2.f34279f1));
+                        chat = profileActivity2.getMessagesController().getChat(Long.valueOf(profileActivity2.f34313f1));
                     }
-                    f20.a(profileActivity2.getParentActivity(), 0, tL_username.username, chat, (TL_fragment.TL_collectibleInfo) tLObject3, profileActivity2.f34414z0);
+                    f20.a(profileActivity2.getParentActivity(), 0, tL_username.username, chat, (TL_fragment.TL_collectibleInfo) tLObject3, profileActivity2.f34448z0);
                     return;
                 }
                 org.telegram.ui.Components.ad.d0(tL_error2);
@@ -213,7 +213,7 @@ public final class ds0 implements Runnable {
                 String str = (String) obj3;
                 String str2 = (String) obj;
                 if (AndroidUtilities.isContextSafe(profileActivity3.getParentActivity())) {
-                    org.telegram.ui.Components.d51.L(profileActivity3.getParentActivity(), profileActivity3, strArr[0], str, str2, new j20(profileActivity3, 2), null);
+                    org.telegram.ui.Components.c51.L(profileActivity3.getParentActivity(), profileActivity3, strArr[0], str, str2, new j20(profileActivity3, 2), null);
                     return;
                 }
                 return;
@@ -224,20 +224,20 @@ public final class ds0 implements Runnable {
                 TLObject tLObject4 = (TLObject) obj2;
                 UserConfig userConfig2 = (UserConfig) obj3;
                 TLRPC.Photo photo2 = (TLRPC.Photo) obj;
-                ProfileActivity profileActivity4 = ((f01) obj4).f37499b;
-                profileActivity4.f34331n0.f31805c1--;
+                ProfileActivity profileActivity4 = ((f01) obj4).f37533b;
+                profileActivity4.f34365n0.f31599c1--;
                 if (tLObject4 instanceof TLRPC.TL_photos_photo) {
                     TLRPC.TL_photos_photo tL_photos_photo2 = (TLRPC.TL_photos_photo) tLObject4;
                     profileActivity4.getMessagesController().putUsers(tL_photos_photo2.users, false);
                     TLRPC.User user2 = profileActivity4.getMessagesController().getUser(Long.valueOf(userConfig2.clientUserId));
                     TLRPC.Photo photo3 = tL_photos_photo2.photo;
                     if (photo3 instanceof TLRPC.TL_photo) {
-                        ArrayList arrayList2 = profileActivity4.f34331n0.V0;
+                        ArrayList arrayList2 = profileActivity4.f34365n0.V0;
                         if (!arrayList2.isEmpty() && (indexOf = arrayList2.indexOf(photo2)) >= 0) {
                             arrayList2.set(indexOf, photo3);
                         }
                         if (user2 != null) {
-                            user2.photo.photo_id = tL_photos_photo2.photo.f20056id;
+                            user2.photo.photo_id = tL_photos_photo2.photo.f20092id;
                             userConfig2.setCurrentUser(user2);
                             userConfig2.saveConfig(true);
                             return;
@@ -251,17 +251,17 @@ public final class ds0 implements Runnable {
                 TLObject tLObject5 = (TLObject) obj2;
                 TLRPC.TL_username tL_username2 = (TLRPC.TL_username) obj3;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj;
-                ProfileActivity profileActivity5 = ((q01) obj4).f41014c.f43916e;
+                ProfileActivity profileActivity5 = ((q01) obj4).f41048c.f43950e;
                 profileActivity5.M4(null);
                 if (tLObject5 instanceof TL_fragment.TL_collectibleInfo) {
-                    if (profileActivity5.f34271e1 != 0) {
-                        chat2 = profileActivity5.getMessagesController().getUser(Long.valueOf(profileActivity5.f34271e1));
+                    if (profileActivity5.f34305e1 != 0) {
+                        chat2 = profileActivity5.getMessagesController().getUser(Long.valueOf(profileActivity5.f34305e1));
                     } else {
-                        chat2 = profileActivity5.getMessagesController().getChat(Long.valueOf(profileActivity5.f34279f1));
+                        chat2 = profileActivity5.getMessagesController().getChat(Long.valueOf(profileActivity5.f34313f1));
                     }
                     TLObject tLObject6 = chat2;
                     if (profileActivity5.getParentActivity() != null) {
-                        f20.a(profileActivity5.getParentActivity(), 0, tL_username2.username, tLObject6, (TL_fragment.TL_collectibleInfo) tLObject5, profileActivity5.f34414z0);
+                        f20.a(profileActivity5.getParentActivity(), 0, tL_username2.username, tLObject6, (TL_fragment.TL_collectibleInfo) tLObject5, profileActivity5.f34448z0);
                         return;
                     }
                     return;
@@ -280,9 +280,9 @@ public final class ds0 implements Runnable {
                     FileLog.e(e11);
                 }
                 if (tL_error4 == null) {
-                    sessionsActivity.f34504e.remove(tL_webAuthorization);
+                    sessionsActivity.f34538e.remove(tL_webAuthorization);
                     sessionsActivity.m0();
-                    t81 t81Var = sessionsActivity.f34501a;
+                    t81 t81Var = sessionsActivity.f34535a;
                     if (t81Var != null) {
                         t81Var.l();
                         return;
@@ -302,10 +302,10 @@ public final class ds0 implements Runnable {
                     FileLog.e(e12);
                 }
                 if (tL_error5 == null) {
-                    sessionsActivity2.f34504e.remove(tL_authorization);
-                    sessionsActivity2.f34505f.remove(tL_authorization);
+                    sessionsActivity2.f34538e.remove(tL_authorization);
+                    sessionsActivity2.f34539f.remove(tL_authorization);
                     sessionsActivity2.m0();
-                    t81 t81Var2 = sessionsActivity2.f34501a;
+                    t81 t81Var2 = sessionsActivity2.f34535a;
                     if (t81Var2 != null) {
                         t81Var2.l();
                         return;
@@ -315,8 +315,8 @@ public final class ds0 implements Runnable {
                 return;
             case 14:
                 s81 s81Var = (s81) obj4;
-                s81Var.f41641a = (TLObject) obj2;
-                s81Var.f41642b = (TLRPC.TL_error) obj3;
+                s81Var.f41675a = (TLObject) obj2;
+                s81Var.f41676b = (TLRPC.TL_error) obj3;
                 ((j9) obj).run();
                 return;
             case 15:
@@ -327,16 +327,16 @@ public final class ds0 implements Runnable {
                 jg.b bVar = (jg.b) obj2;
                 String str3 = (String) obj3;
                 za1 za1Var = (za1) obj;
-                ab1 ab1Var = la1Var.f39575w;
+                ab1 ab1Var = la1Var.f39609w;
                 if (bVar != null) {
                     ab1Var.V.put(str3, bVar);
                 }
-                if (bVar != null && !za1Var.f44628b && (i10 = za1Var.f44627a) >= 0) {
+                if (bVar != null && !za1Var.f44662b && (i10 = za1Var.f44661a) >= 0) {
                     View m10 = ab1Var.U.m(i10);
                     if (m10 instanceof la1) {
-                        la1Var.f39254r.f39884e = bVar;
+                        la1Var.f39288r.f39918e = bVar;
                         la1 la1Var2 = (la1) m10;
-                        la1Var2.f39249b.f12191t0.d(false, false);
+                        la1Var2.f39283b.f12191t0.d(false, false);
                         la1Var2.g(false);
                     }
                 }
@@ -344,9 +344,9 @@ public final class ds0 implements Runnable {
                 return;
             case 17:
                 ma1 ma1Var = (ma1) obj4;
-                ma1Var.f39889k = false;
+                ma1Var.f39923k = false;
                 ma1Var.d = (jg.b) obj2;
-                ma1Var.f39886g = (String) obj3;
+                ma1Var.f39920g = (String) obj3;
                 ka1 ka1Var = (ka1) ((Utilities.Callback0Return) obj).run();
                 if (ka1Var != null) {
                     ka1Var.e(ma1Var, true);
@@ -357,7 +357,7 @@ public final class ds0 implements Runnable {
                 TLObject tLObject7 = (TLObject) obj2;
                 String str4 = (String) obj3;
                 org.telegram.ui.ActionBar.a2 a2Var4 = (org.telegram.ui.ActionBar.a2) obj;
-                af1 af1Var = ((we1) obj4).f43402a;
+                af1 af1Var = ((we1) obj4).f43436a;
                 if (tLObject7 != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject7;
                     for (int i14 = 0; i14 < updates.updates.size(); i14++) {
@@ -367,16 +367,16 @@ public final class ds0 implements Runnable {
                             tL_messageActionTopicCreate.title = str4;
                             TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
                             tL_messageService.action = tL_messageActionTopicCreate;
-                            tL_messageService.peer_id = af1Var.getMessagesController().getPeer(af1Var.f36054a);
-                            tL_messageService.dialog_id = af1Var.f36054a;
-                            tL_messageService.f20053id = tL_updateMessageID.f20288id;
+                            tL_messageService.peer_id = af1Var.getMessagesController().getPeer(af1Var.f36088a);
+                            tL_messageService.dialog_id = af1Var.f36088a;
+                            tL_messageService.f20089id = tL_updateMessageID.f20324id;
                             tL_messageService.date = (int) (System.currentTimeMillis() / 1000);
                             ArrayList arrayList3 = new ArrayList();
                             arrayList3.add(new MessageObject(af1.X(af1Var), tL_messageService, false, false));
-                            TLRPC.Chat chat3 = af1Var.getMessagesController().getChat(Long.valueOf(-af1Var.f36054a));
+                            TLRPC.Chat chat3 = af1Var.getMessagesController().getChat(Long.valueOf(-af1Var.f36088a));
                             TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
-                            tL_forumTopic.f20084id = tL_updateMessageID.f20288id;
-                            long j3 = af1Var.f36055b;
+                            tL_forumTopic.f20120id = tL_updateMessageID.f20324id;
+                            long j3 = af1Var.f36089b;
                             if (j3 != 0) {
                                 tL_forumTopic.icon_emoji_id = j3;
                                 tL_forumTopic.flags |= 1;
@@ -385,20 +385,20 @@ public final class ds0 implements Runnable {
                             tL_forumTopic.flags |= 2;
                             tL_forumTopic.topicStartMessage = tL_messageService;
                             tL_forumTopic.title = str4;
-                            tL_forumTopic.top_message = tL_messageService.f20053id;
+                            tL_forumTopic.top_message = tL_messageService.f20089id;
                             tL_forumTopic.topMessage = tL_messageService;
                             tL_forumTopic.from_id = af1Var.getMessagesController().getPeer(af1Var.getUserConfig().clientUserId);
                             tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
                             tL_forumTopic.icon_color = af1Var.E;
-                            zn znVar = af1Var.f36064y;
+                            zn znVar = af1Var.f36098y;
                             if (znVar != null) {
                                 znVar.Pa();
                                 znVar.Ta();
-                                znVar.tb(arrayList3, chat3, tL_messageService.f20053id, 1, 1, tL_forumTopic);
-                                znVar.f44726c = true;
+                                znVar.tb(arrayList3, chat3, tL_messageService.f20089id, 1, 1, tL_forumTopic);
+                                znVar.f44760c = true;
                                 znVar.v8();
                                 znVar.Rc(true);
-                                znVar.f44701a1.o(true);
+                                znVar.f44735a1.o(true);
                                 znVar.Xc();
                                 znVar.R1.setCurrentTopic(znVar.d());
                                 znVar.Uc(true);
@@ -406,18 +406,18 @@ public final class ds0 implements Runnable {
                                 znVar.j9(true);
                                 znVar.D6(true, true);
                                 znVar.Ia();
-                                af1Var.getMessagesController().getTopicsController().onTopicCreated(af1Var.f36054a, tL_forumTopic, true);
+                                af1Var.getMessagesController().getTopicsController().onTopicCreated(af1Var.f36088a, tL_forumTopic, true);
                                 af1Var.finishFragment();
                             } else {
                                 Bundle bundle = new Bundle();
-                                bundle.putLong("chat_id", -af1Var.f36054a);
+                                bundle.putLong("chat_id", -af1Var.f36088a);
                                 bundle.putInt("message_id", 1);
                                 bundle.putInt("unread_count", 0);
                                 bundle.putBoolean("historyPreloaded", false);
                                 zn znVar2 = new zn(bundle);
-                                znVar2.tb(arrayList3, chat3, tL_messageService.f20053id, 1, 1, tL_forumTopic);
-                                znVar2.f44726c = true;
-                                af1Var.getMessagesController().getTopicsController().onTopicCreated(af1Var.f36054a, tL_forumTopic, true);
+                                znVar2.tb(arrayList3, chat3, tL_messageService.f20089id, 1, 1, tL_forumTopic);
+                                znVar2.f44760c = true;
+                                af1Var.getMessagesController().getTopicsController().onTopicCreated(af1Var.f36088a, tL_forumTopic, true);
                                 af1Var.presentFragment(znVar2);
                             }
                         }
@@ -457,7 +457,7 @@ public final class ds0 implements Runnable {
                 ai.ea eaVar = (ai.ea) obj2;
                 String str6 = (String) obj3;
                 JSONObject jSONObject = (JSONObject) obj;
-                if (y0Var.f43731c && ((b1Var = y0Var.Q) == null || !b1Var.o(eaVar))) {
+                if (y0Var.f43765c && ((b1Var = y0Var.Q) == null || !b1Var.o(eaVar))) {
                     FileLog.d("notifyEvent " + str6 + " dropped after document change");
                     return;
                 }
@@ -465,25 +465,25 @@ public final class ds0 implements Runnable {
                 return;
             case 22:
                 pi.f fVar = (pi.f) obj4;
-                ((ArrayDeque) fVar.f45938a).addLast(new pi.e((m4.w) obj2, (pi.b) obj3, (RequestTimeDelegate) obj));
+                ((ArrayDeque) fVar.f45972a).addLast(new pi.e((m4.w) obj2, (pi.b) obj3, (RequestTimeDelegate) obj));
                 fVar.K();
                 return;
             case 23:
                 q5.a aVar = (q5.a) obj4;
                 l5.i iVar = (l5.i) obj2;
-                String str7 = iVar.f15414a;
+                String str7 = iVar.f15450a;
                 i5.g gVar = (i5.g) obj3;
                 l5.h hVar = (l5.h) obj;
                 aVar.getClass();
-                Logger logger = q5.a.f46070f;
+                Logger logger = q5.a.f46104f;
                 try {
-                    m5.e a2 = aVar.f46073c.a(str7);
+                    m5.e a2 = aVar.f46107c.a(str7);
                     if (a2 == null) {
                         String str8 = "Transport backend '" + str7 + "' is not registered";
                         logger.warning(str8);
                         gVar.a(new IllegalArgumentException(str8));
                     } else {
-                        ((s5.g) aVar.f46074e).f(new org.telegram.ui.Components.sz(aVar, iVar, ((j5.b) a2).a(hVar), 6));
+                        ((s5.g) aVar.f46108e).f(new org.telegram.ui.Components.sz(aVar, iVar, ((j5.b) a2).a(hVar), 6));
                         gVar.a(null);
                     }
                     return;
@@ -506,8 +506,8 @@ public final class ds0 implements Runnable {
                 if (tLObject8 instanceof TLRPC.TL_messageMediaDocument) {
                     n2Var2.getClass();
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) tLObject8;
-                    l2Var.f46437e = MediaDataController.getInputStickerSetItem(tL_messageMediaDocument.document, l2Var.f46436c);
-                    l2Var.f46438f = tL_messageMediaDocument;
+                    l2Var.f46471e = MediaDataController.getInputStickerSetItem(tL_messageMediaDocument.document, l2Var.f46470c);
+                    l2Var.f46472f = tL_messageMediaDocument;
                     n2Var2.a();
                     return;
                 }
@@ -533,36 +533,36 @@ public final class ds0 implements Runnable {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
                 xh.j1 j1Var = (xh.j1) obj3;
                 final View view = (View) obj;
-                org.telegram.ui.Components.ts0 ts0Var = o2Var.f51522a;
+                org.telegram.ui.Components.ss0 ss0Var = o2Var.f51556a;
                 if (savedStarGift.unsaved) {
                     savedStarGift.unsaved = false;
                     j1Var.h(savedStarGift, true, false);
                     TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
-                    savestargift.stargift = o2Var.f51525e.g(savedStarGift);
+                    savestargift.stargift = o2Var.f51559e.g(savedStarGift);
                     savestargift.unsave = savedStarGift.unsaved;
-                    ConnectionsManager.getInstance(o2Var.f51523b).sendRequest(savestargift, null, 64);
+                    ConnectionsManager.getInstance(o2Var.f51557b).sendRequest(savestargift, null, 64);
                 }
                 boolean z10 = savedStarGift.pinned_to_top;
                 final boolean z11 = !z10;
-                if (o2Var.f51525e.m(savedStarGift, z11, false)) {
-                    new xh.r2(o2Var.getContext(), ts0Var.f51600c, savedStarGift, o2Var.f51524c, new Utilities.Callback0Return() {
+                if (o2Var.f51559e.m(savedStarGift, z11, false)) {
+                    new xh.r2(o2Var.getContext(), ss0Var.f51634c, savedStarGift, o2Var.f51558c, new Utilities.Callback0Return() {
                         @Override
                         public final Object run() {
                             ((j1) view).c(z11, true);
                             o2 o2Var2 = o2.this;
-                            o2Var2.f51526f.u0(0);
-                            return ad.a0(o2Var2.f51522a.f51598a);
+                            o2Var2.f51560f.u0(0);
+                            return ad.a0(o2Var2.f51556a.f51632a);
                         }
                     }).show();
                     return;
                 }
                 if (!z10) {
-                    org.telegram.ui.Components.ad.a0(ts0Var.f51598a).M(LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle), R.raw.ic_pin).j();
+                    org.telegram.ui.Components.ad.a0(ss0Var.f51632a).M(LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle), R.raw.ic_pin).j();
                 } else {
-                    org.telegram.messenger.q.q(R.string.Gift2Unpinned, org.telegram.ui.Components.ad.a0(ts0Var.f51598a), R.raw.ic_unpin, 36);
+                    org.telegram.messenger.q.q(R.string.Gift2Unpinned, org.telegram.ui.Components.ad.a0(ss0Var.f51632a), R.raw.ic_unpin, 36);
                 }
                 ((xh.j1) view).c(z11, true);
-                o2Var.f51526f.u0(0);
+                o2Var.f51560f.u0(0);
                 return;
             case 28:
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj4;
@@ -585,18 +585,18 @@ public final class ds0 implements Runnable {
     }
 
     public ds0(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f37087a = i10;
-        this.f37088b = obj;
-        this.f37089c = obj2;
+        this.f37121a = i10;
+        this.f37122b = obj;
+        this.f37123c = obj2;
         this.d = obj3;
-        this.f37090e = obj4;
+        this.f37124e = obj4;
     }
 
     public ds0(PrivacyControlActivity privacyControlActivity, TLRPC.TL_error tL_error, TLObject tLObject, boolean[] zArr) {
-        this.f37087a = 3;
-        this.f37088b = privacyControlActivity;
-        this.f37089c = tL_error;
-        this.f37090e = tLObject;
+        this.f37121a = 3;
+        this.f37122b = privacyControlActivity;
+        this.f37123c = tL_error;
+        this.f37124e = tLObject;
         this.d = zArr;
     }
 }

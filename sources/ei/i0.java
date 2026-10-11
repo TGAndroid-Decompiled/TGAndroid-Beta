@@ -12,7 +12,7 @@ import ci.rc;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.g6;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.jq;
@@ -28,7 +28,7 @@ public final class i0 extends Drawable {
     public final g6 f9110i;
     public final g6 f9111j;
     public final g6 f9112k;
-    public ek0 f9113l;
+    public dk0 f9113l;
 
     public i0(Context context, ImageView imageView) {
         Paint paint = new Paint(1);
@@ -53,7 +53,7 @@ public final class i0 extends Drawable {
     public final void draw(Canvas canvas) {
         float f7;
         float f10;
-        ek0 ek0Var;
+        dk0 dk0Var;
         int i10;
         Canvas canvas2 = canvas;
         Rect bounds = getBounds();
@@ -114,10 +114,10 @@ public final class i0 extends Drawable {
             f7 = 0.0f;
             f10 = 255.0f;
         }
-        if (e7 > f7 && (ek0Var = this.f9113l) != null) {
-            int i12 = ek0Var.f26038b / 2;
-            int i13 = ek0Var.f26040c / 2;
-            ek0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
+        if (e7 > f7 && (dk0Var = this.f9113l) != null) {
+            int i12 = dk0Var.f25805b / 2;
+            int i13 = dk0Var.f25807c / 2;
+            dk0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
             this.f9113l.setAlpha((int) (e7 * f10));
             this.f9113l.draw(canvas2);
         }

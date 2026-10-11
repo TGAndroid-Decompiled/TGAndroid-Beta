@@ -81,7 +81,7 @@ public final class s implements Runnable {
                         for (int i17 = 0; i17 < messages_messages.messages.size(); i17++) {
                             TLRPC.Message message = messages_messages.messages.get(i17);
                             int i18 = MessagesController.getInstance(i16).deletedHistory.get(MessageObject.getDialogId(message));
-                            if (i18 == 0 || message.f20053id > i18) {
+                            if (i18 == 0 || message.f20089id > i18) {
                                 arrayList2.add((MessageObject) arrayList.get(i17));
                             }
                         }
@@ -142,7 +142,7 @@ public final class s implements Runnable {
                         while (i20 < messages_messages2.messages.size()) {
                             TLRPC.Message message2 = messages_messages2.messages.get(i20);
                             int i21 = MessagesController.getInstance(i19).deletedHistory.get(MessageObject.getDialogId(message2));
-                            if (i21 == 0 || message2.f20053id > i21) {
+                            if (i21 == 0 || message2.f20089id > i21) {
                                 MessageObject messageObject = (MessageObject) arrayList.get(i20);
                                 if (!arrayList4.isEmpty()) {
                                     for (int i22 = i15; i22 < arrayList4.size(); i22++) {
@@ -160,7 +160,7 @@ public final class s implements Runnable {
                                 }
                                 Integer num = concurrentHashMap.get(Long.valueOf(dialogId));
                                 if (num != null) {
-                                    if (num.intValue() < message2.f20053id) {
+                                    if (num.intValue() < message2.f20089id) {
                                         z14 = true;
                                     } else {
                                         z14 = false;

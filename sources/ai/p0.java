@@ -5,7 +5,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 import org.telegram.ui.zn;
 public final class p0 implements Runnable {
     public final int f1558a = 3;
@@ -59,7 +59,7 @@ public final class p0 implements Runnable {
             case 2:
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f1562f;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.h;
-                ((q80) this.f1561e).u();
+                ((p80) this.f1561e).u();
                 int i12 = this.d;
                 MessagesController messagesController = MessagesController.getInstance(i12);
                 long j11 = this.f1559b;
@@ -109,8 +109,8 @@ public final class p0 implements Runnable {
         this.h = iArr;
     }
 
-    public p0(q80 q80Var, int i10, long j3, long j10, zn znVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f1561e = q80Var;
+    public p0(p80 p80Var, int i10, long j3, long j10, zn znVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f1561e = p80Var;
         this.d = i10;
         this.f1559b = j3;
         this.f1560c = j10;

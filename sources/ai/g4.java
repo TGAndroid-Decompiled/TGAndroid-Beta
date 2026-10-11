@@ -2,8 +2,8 @@ package ai;
 
 import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.nb0;
-public final class g4 implements nb0 {
+import org.telegram.ui.Components.mb0;
+public final class g4 implements mb0 {
     public final f6 f1052a;
 
     public g4(f6 f6Var) {

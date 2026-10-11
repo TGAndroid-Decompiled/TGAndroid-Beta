@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class ul implements Runnable {
-    public final int f19377a;
-    public final VideoEncodingService f19378b;
+    public final int f19413a;
+    public final VideoEncodingService f19414b;
 
     public ul(VideoEncodingService videoEncodingService, int i10) {
-        this.f19377a = i10;
-        this.f19378b = videoEncodingService;
+        this.f19413a = i10;
+        this.f19414b = videoEncodingService;
     }
 
     @Override
     public final void run() {
-        switch (this.f19377a) {
+        switch (this.f19413a) {
             case 0:
-                VideoEncodingService.a(this.f19378b);
+                VideoEncodingService.a(this.f19414b);
                 return;
             default:
-                VideoEncodingService.b(this.f19378b);
+                VideoEncodingService.b(this.f19414b);
                 return;
         }
     }

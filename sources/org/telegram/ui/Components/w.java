@@ -6,21 +6,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class w extends org.telegram.ui.j71 {
-    public final org.telegram.ui.a71[] f32516d2;
-    public final y f32517e2;
+    public final org.telegram.ui.a71[] f32579d2;
+    public final y f32580e2;
 
     public w(y yVar, Context context, Integer num, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.a71[] a71VarArr) {
         super(null, context, true, num, 15, d6Var);
-        this.f32517e2 = yVar;
-        this.f32516d2 = a71VarArr;
+        this.f32580e2 = yVar;
+        this.f32579d2 = a71VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
         if (tL_starGiftUnique != null) {
-            i10 = ((org.telegram.ui.ActionBar.e3) this.f32517e2).currentAccount;
-            if (yh.n5.y(i10, false).n(tL_starGiftUnique.f20259id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+            i10 = ((org.telegram.ui.ActionBar.e3) this.f32580e2).currentAccount;
+            if (yh.n5.y(i10, false).n(tL_starGiftUnique.f20295id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -30,13 +30,13 @@ public final class w extends org.telegram.ui.j71 {
 
     @Override
     public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        y yVar = this.f32517e2;
-        yVar.f33055h0 = l4;
+        y yVar = this.f32580e2;
+        yVar.f33100h0 = l4;
         yVar.Y();
         yVar.X();
-        org.telegram.ui.a71 a71Var = this.f32516d2[0];
+        org.telegram.ui.a71 a71Var = this.f32579d2[0];
         if (a71Var != null) {
-            yVar.f33056i0 = null;
+            yVar.f33101i0 = null;
             a71Var.dismiss();
         }
     }

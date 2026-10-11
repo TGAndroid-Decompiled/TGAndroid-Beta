@@ -6,31 +6,31 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.UndoView;
 public final class gw implements Runnable {
-    public final int f38168a;
-    public final sy f38169b;
+    public final int f38202a;
+    public final sy f38203b;
 
     public gw(sy syVar, int i10) {
-        this.f38168a = i10;
-        this.f38169b = syVar;
+        this.f38202a = i10;
+        this.f38203b = syVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f38168a) {
+        switch (this.f38202a) {
             case 0:
-                sy syVar = this.f38169b;
+                sy syVar = this.f38203b;
                 cy cyVar = syVar.C0;
-                if (cyVar != null && cyVar.f26459y0) {
+                if (cyVar != null && cyVar.f26187y0) {
                     cyVar.Q(false);
                     return;
                 }
-                syVar.X.f30964r.getText().clear();
-                AndroidUtilities.hideKeyboard(syVar.X.f30964r);
-                syVar.X.f30964r.clearFocus();
+                syVar.X.f31038r.getText().clear();
+                AndroidUtilities.hideKeyboard(syVar.X.f31038r);
+                syVar.X.f31038r.clearFocus();
                 syVar.Y.b(false);
                 return;
             case 1:
-                sy syVar2 = this.f38169b;
+                sy syVar2 = this.f38203b;
                 if (syVar2.R0 != 10) {
                     syVar2.Z3(false);
                 }
@@ -42,8 +42,8 @@ public final class gw implements Runnable {
                     return;
                 }
             case 2:
-                sy syVar3 = this.f38169b;
-                hh.f fVar = syVar3.f42009y1;
+                sy syVar3 = this.f38203b;
+                hh.f fVar = syVar3.f42043y1;
                 if (fVar != null) {
                     fVar.d();
                 }
@@ -57,33 +57,33 @@ public final class gw implements Runnable {
                 }
                 return;
             case 3:
-                this.f38169b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
+                this.f38203b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
                 return;
             case 4:
-                this.f38169b.J3();
+                this.f38203b.J3();
                 return;
             case 5:
-                this.f38169b.R4();
+                this.f38203b.R4();
                 return;
             case 6:
-                sy.C0(this.f38169b);
+                sy.C0(this.f38203b);
                 return;
             case 7:
-                this.f38169b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
+                this.f38203b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 8:
-                sy syVar4 = this.f38169b;
-                ci.d4 d4Var = syVar4.f41965q0;
+                sy syVar4 = this.f38203b;
+                ci.d4 d4Var = syVar4.f41999q0;
                 if (d4Var != null) {
                     d4Var.e(true);
                 }
                 syVar4.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 9:
-                this.f38169b.f41907e0[0].d.l();
+                this.f38203b.f41941e0[0].d.l();
                 return;
             case 10:
-                sy syVar5 = this.f38169b;
+                sy syVar5 = this.f38203b;
                 UndoView V3 = syVar5.V3();
                 if (V3 != null) {
                     V3.l(0L, 15, null, new nv(syVar5, 26));
@@ -91,7 +91,7 @@ public final class gw implements Runnable {
                 }
                 return;
             case 11:
-                sy syVar6 = this.f38169b;
+                sy syVar6 = this.f38203b;
                 syVar6.getClass();
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                 long j3 = globalMainSettings.getLong("cache_hint_period", 604800000L);
@@ -102,10 +102,10 @@ public final class gw implements Runnable {
                 syVar6.R4();
                 return;
             case 12:
-                MessagesController.getInstance(this.f38169b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                MessagesController.getInstance(this.f38203b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
                 return;
             default:
-                this.f38169b.X4();
+                this.f38203b.X4();
                 return;
         }
     }

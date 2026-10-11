@@ -3,12 +3,12 @@ package org.telegram.ui.Wallet;
 import z7.hb;
 import z7.xf;
 public final class p5 implements Runnable {
-    public final int f35417a;
-    public final Object f35418b;
+    public final int f35451a;
+    public final Object f35452b;
 
     public p5(Object obj, int i10) {
-        this.f35417a = i10;
-        this.f35418b = obj;
+        this.f35451a = i10;
+        this.f35452b = obj;
     }
 
     private final void a() {
@@ -21,8 +21,8 @@ public final class p5 implements Runnable {
     }
 
     public p5(xf xfVar) {
-        this.f35417a = 16;
+        this.f35451a = 16;
         hb hbVar = hb.UNKNOWN_EVENT;
-        this.f35418b = xfVar;
+        this.f35452b = xfVar;
     }
 }

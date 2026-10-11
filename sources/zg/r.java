@@ -2,16 +2,16 @@ package zg;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.ll0;
 import org.telegram.ui.zn;
 import w7.x5;
 public final class r implements Runnable {
-    public final int f54746a;
-    public final t f54747b;
+    public final int f54780a;
+    public final t f54781b;
 
     public r(t tVar, int i10) {
-        this.f54746a = i10;
-        this.f54747b = tVar;
+        this.f54780a = i10;
+        this.f54781b = tVar;
     }
 
     @Override
@@ -19,17 +19,17 @@ public final class r implements Runnable {
         boolean z10;
         int i10;
         int i11;
-        switch (this.f54746a) {
+        switch (this.f54780a) {
             case 0:
-                this.f54747b.c(true);
+                this.f54781b.c(true);
                 return;
             default:
-                t tVar = this.f54747b;
-                tVar.f54752e = tVar.b();
-                int i12 = tVar.f54753f;
+                t tVar = this.f54781b;
+                tVar.f54786e = tVar.b();
+                int i12 = tVar.f54787f;
                 int i13 = tVar.h;
-                zn znVar = tVar.f54749a;
-                if (tVar.f54750b == null) {
+                zn znVar = tVar.f54783a;
+                if (tVar.f54784b == null) {
                     if (znVar.getUserConfig().getClientUserId() == znVar.a()) {
                         z10 = true;
                     } else {
@@ -40,10 +40,10 @@ public final class r implements Runnable {
                     } else {
                         i10 = 0;
                     }
-                    ?? ml0Var = new ml0(i10, znVar.getCurrentAccount(), tVar.getContext(), tVar.f54749a, znVar.getResourceProvider());
-                    ml0Var.l1 = 1.0f;
-                    ml0Var.setWillNotDraw(false);
-                    tVar.f54750b = ml0Var;
+                    ?? ll0Var = new ll0(i10, znVar.getCurrentAccount(), tVar.getContext(), tVar.f54783a, znVar.getResourceProvider());
+                    ll0Var.l1 = 1.0f;
+                    ll0Var.setWillNotDraw(false);
+                    tVar.f54784b = ll0Var;
                     int dp = AndroidUtilities.dp(4.0f);
                     if (LocaleController.isRTL) {
                         i11 = 0;
@@ -56,21 +56,21 @@ public final class r implements Runnable {
                     if (!LocaleController.isRTL) {
                         i13 = 0;
                     }
-                    ml0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
-                    tVar.f54750b.setDelegate(new m2.t(tVar, 25));
-                    tVar.f54750b.setClipChildren(false);
-                    tVar.f54750b.setClipToPadding(false);
-                    tVar.addView(tVar.f54750b, x5.e(-2, i12 + 70, 5));
+                    ll0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    tVar.f54784b.setDelegate(new m2.t(tVar, 25));
+                    tVar.f54784b.setClipChildren(false);
+                    tVar.f54784b.setClipToPadding(false);
+                    tVar.addView(tVar.f54784b, x5.e(-2, i12 + 70, 5));
                 }
                 tVar.c(false);
-                if (tVar.f54750b.isEnabled()) {
-                    tVar.f54758x = true;
-                    tVar.f54750b.p(tVar.f54752e, znVar.Z7, true);
-                    tVar.f54750b.r(false);
+                if (tVar.f54784b.isEnabled()) {
+                    tVar.f54792x = true;
+                    tVar.f54784b.p(tVar.f54786e, znVar.Z7, true);
+                    tVar.f54784b.r(false);
                     return;
                 }
-                tVar.f54758x = false;
-                tVar.f54750b.setTransitionProgress(1.0f);
+                tVar.f54792x = false;
+                tVar.f54784b.setTransitionProgress(1.0f);
                 return;
         }
     }

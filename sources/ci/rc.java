@@ -21,8 +21,8 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.sm0;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.LaunchActivity;
 public final class rc implements Runnable {
     public final int f5914a;
@@ -41,49 +41,49 @@ public final class rc implements Runnable {
         y2.e eVar = (y2.e) tVar.f8573a.get();
         if (eVar != null) {
             int b10 = tVar.f8575c.b();
-            y2.f fVar = eVar.f51753a;
+            y2.f fVar = eVar.f51787a;
             synchronized (fVar) {
                 synchronized (fVar) {
-                    int i11 = fVar.f51771n;
-                    if (i11 != 0 && !fVar.f51763e) {
+                    int i11 = fVar.f51805n;
+                    if (i11 != 0 && !fVar.f51797e) {
                         return;
                     }
-                    if (i11 == b10 && fVar.f51772o != null) {
+                    if (i11 == b10 && fVar.f51806o != null) {
                         return;
                     }
-                    fVar.f51771n = b10;
+                    fVar.f51805n = b10;
                     if (b10 != 1 && b10 != 0 && b10 != 8) {
-                        if (fVar.f51772o == null) {
-                            Context context = fVar.f51760a;
+                        if (fVar.f51806o == null) {
+                            Context context = fVar.f51794a;
                             String str = e2.d0.f8531a;
                             if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
                                 String networkCountryIso = telephonyManager.getNetworkCountryIso();
                                 if (!TextUtils.isEmpty(networkCountryIso)) {
                                     c10 = v7.r6.c(networkCountryIso);
-                                    fVar.f51772o = c10;
+                                    fVar.f51806o = c10;
                                 }
                             }
                             c10 = v7.r6.c(Locale.getDefault().getCountry());
-                            fVar.f51772o = c10;
+                            fVar.f51806o = c10;
                         }
-                        fVar.f51769l = fVar.a(b10);
+                        fVar.f51803l = fVar.a(b10);
                         fVar.d.getClass();
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (fVar.f51765g > 0) {
+                        if (fVar.f51799g > 0) {
                             i10 = (int) (elapsedRealtime - fVar.h);
                         } else {
                             i10 = 0;
                         }
-                        fVar.c(i10, fVar.f51766i, fVar.f51769l);
+                        fVar.c(i10, fVar.f51800i, fVar.f51803l);
                         fVar.h = elapsedRealtime;
-                        fVar.f51766i = 0L;
-                        fVar.f51768k = 0L;
-                        fVar.f51767j = 0L;
-                        y2.q qVar = fVar.f51764f;
-                        qVar.f51795a.clear();
-                        qVar.f51797c = -1;
+                        fVar.f51800i = 0L;
+                        fVar.f51802k = 0L;
+                        fVar.f51801j = 0L;
+                        y2.q qVar = fVar.f51798f;
+                        qVar.f51829a.clear();
+                        qVar.f51831c = -1;
                         qVar.d = 0;
-                        qVar.f51798e = 0;
+                        qVar.f51832e = 0;
                     }
                 }
             }
@@ -151,7 +151,7 @@ public final class rc implements Runnable {
                 di.f fVar = (di.f) this.f5915b;
                 fVar.getClass();
                 try {
-                    sm0 currentListView = ((di.i) fVar.M0).R.getCurrentListView();
+                    rm0 currentListView = ((di.i) fVar.M0).R.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -215,9 +215,9 @@ public final class rc implements Runnable {
                 return;
             case 20:
                 hg.l0 l0Var = (hg.l0) this.f5915b;
-                e71 e71Var = l0Var.f11307d0;
-                if (e71Var != null) {
-                    e71Var.N(true);
+                d71 d71Var = l0Var.f11307d0;
+                if (d71Var != null) {
+                    d71Var.N(true);
                 }
                 l0Var.U(true);
                 return;

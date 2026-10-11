@@ -1,63 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-public final class d91 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25496a;
-    public final q91 f25497b;
+public final class d91 extends AnimatorListenerAdapter {
+    public final int f25700a;
+    public final p91 f25701b;
 
-    public d91(q91 q91Var, int i10) {
-        this.f25496a = i10;
-        this.f25497b = q91Var;
+    public d91(p91 p91Var, int i10) {
+        this.f25700a = i10;
+        this.f25701b = p91Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25496a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25700a) {
             case 0:
-                q91 q91Var = this.f25497b;
-                q91Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View[] viewArr = q91Var.f30096e;
-                View view = viewArr[1];
+                p91 p91Var = this.f25701b;
+                View[] viewArr = p91Var.f29798e;
+                View[] viewArr2 = p91Var.f29798e;
+                if (viewArr[1] != null) {
+                    p91Var.F();
+                    p91Var.h.put(p91Var.f29799f[1], viewArr2[1]);
+                    p91Var.removeView(viewArr2[1]);
+                    p91Var.E(viewArr2[0], 0.0f);
+                    viewArr2[1] = null;
+                }
+                p91Var.Q = null;
+                p91Var.w(true);
+                e91 e91Var = p91Var.M;
+                if (e91Var != null) {
+                    e91Var.v.invalidate();
+                    p91Var.M.v.f1();
+                    p91Var.M.invalidate();
+                }
+                p91Var.u();
+                p91Var.J.unlock();
+                return;
+            case 1:
+                p91 p91Var2 = this.f25701b;
+                p91Var2.f29803w = null;
+                View[] viewArr3 = p91Var2.f29798e;
+                if (viewArr3[1] != null) {
+                    if (!p91Var2.F) {
+                        p91Var2.F();
+                    }
+                    p91Var2.h.put(p91Var2.f29799f[1], viewArr3[1]);
+                    p91Var2.removeView(viewArr3[1]);
+                    viewArr3[1].setVisibility(8);
+                    viewArr3[1] = null;
+                }
+                p91Var2.f29804x = false;
+                p91Var2.I = false;
+                e91 e91Var2 = p91Var2.M;
+                if (e91Var2 != null) {
+                    e91Var2.setEnabled(true);
+                }
+                p91Var2.w(false);
+                p91Var2.u();
+                p91Var2.J.unlock();
+                return;
+            case 2:
+                p91 p91Var3 = this.f25701b;
+                p91Var3.f29803w = null;
+                View[] viewArr4 = p91Var3.f29798e;
+                View view = viewArr4[1];
                 if (view != null) {
-                    if (q91Var.f30103y) {
-                        q91Var.E(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
-                        View view2 = viewArr[0];
-                        q91Var.E(view2, (-view2.getMeasuredWidth()) * floatValue);
-                    } else {
-                        q91Var.E(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
-                        View view3 = viewArr[0];
-                        q91Var.E(view3, view3.getMeasuredWidth() * floatValue);
-                    }
-                    q91Var.f30095c = floatValue;
-                    q91Var.w(true);
-                    f91 f91Var = q91Var.M;
-                    if (f91Var != null) {
-                        f91Var.v.invalidate();
-                        q91Var.M.v.f1();
-                        q91Var.M.invalidate();
-                        return;
-                    }
+                    p91Var3.removeView(view);
+                    viewArr4[1] = null;
+                }
+                p91Var3.f29804x = false;
+                e91 e91Var3 = p91Var3.M;
+                if (e91Var3 != null) {
+                    e91Var3.setEnabled(true);
+                    e91 e91Var4 = p91Var3.M;
+                    e91Var4.J = false;
+                    e91Var4.f29430a = 1.0f;
+                    e91Var4.v.f1();
+                    p91Var3.M.invalidate();
                     return;
                 }
                 return;
-            case 1:
-                q91 q91Var2 = this.f25497b;
-                q91Var2.getClass();
-                q91Var2.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 2:
-                q91 q91Var3 = this.f25497b;
-                q91Var3.N.onAnimationUpdate(valueAnimator);
-                q91Var3.M.f29658a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q91Var3.M.v.f1();
-                q91Var3.M.invalidate();
-                return;
             default:
-                q91 q91Var4 = this.f25497b;
-                q91Var4.getClass();
-                q91Var4.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p91 p91Var4 = this.f25701b;
+                p91Var4.f29803w = null;
+                View[] viewArr5 = p91Var4.f29798e;
+                if (viewArr5[1] != null) {
+                    if (!p91Var4.F) {
+                        p91Var4.F();
+                    }
+                    p91Var4.h.put(p91Var4.f29799f[1], viewArr5[1]);
+                    p91Var4.removeView(viewArr5[1]);
+                    viewArr5[1].setVisibility(8);
+                    viewArr5[1] = null;
+                }
+                p91Var4.f29804x = false;
+                p91Var4.I = false;
+                e91 e91Var5 = p91Var4.M;
+                if (e91Var5 != null) {
+                    e91Var5.setEnabled(true);
+                }
+                p91Var4.w(false);
+                p91Var4.u();
+                p91Var4.J.unlock();
                 return;
         }
     }

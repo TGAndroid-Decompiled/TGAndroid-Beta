@@ -9,7 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 public final class t4 implements View.OnClickListener {
     public final int f12705a;
     public final w4 f12706b;
@@ -35,7 +35,7 @@ public final class t4 implements View.OnClickListener {
                     List m10 = w4Var.m();
                     if (indexOf >= 0 && indexOf < m10.size() && indexOf < arrayList.size()) {
                         final u uVar = (u) m10.get(indexOf);
-                        q80 J = w4Var.N.f12635a.f12808f3.J((View) arrayList.get(indexOf));
+                        p80 J = w4Var.N.f12635a.f12808f3.J((View) arrayList.get(indexOf));
                         boolean z10 = uVar.f12720n;
                         if (z10) {
                             i10 = R.drawable.msg_spoiler_off;
@@ -143,9 +143,9 @@ public final class t4 implements View.OnClickListener {
                         }, true);
                         J.a0(0.0f, -AndroidUtilities.dp(38.0f));
                         if (w4Var.H) {
-                            J.f30085u = false;
+                            J.f29781u = false;
                             J.v = true;
-                            J.f30083s = 0;
+                            J.f29779s = 0;
                         }
                         J.Z();
                         return;

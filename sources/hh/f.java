@@ -87,9 +87,9 @@ public final class f extends FrameLayout {
 
     public final void c() {
         int i10;
-        k1 k1Var = ((ph.i) this.f11499a).f45912r;
+        k1 k1Var = ((ph.i) this.f11499a).f45946r;
         if (k1Var != null) {
-            i10 = k1Var.f46867a.f(2).d;
+            i10 = k1Var.f46901a.f(2).d;
         } else {
             i10 = 0;
         }
@@ -115,7 +115,7 @@ public final class f extends FrameLayout {
         this.v = ((ph.i) this.f11499a).c();
         int i12 = 0;
         boolean z11 = true;
-        if (((ph.i) this.f11499a).f45913s != 1) {
+        if (((ph.i) this.f11499a).f45947s != 1) {
             z10 = true;
         } else {
             z10 = false;
@@ -136,7 +136,7 @@ public final class f extends FrameLayout {
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) f0Var.getLayoutParams();
         int i13 = layoutParams.height;
-        int i14 = ((ph.i) this.f11499a).f45914w;
+        int i14 = ((ph.i) this.f11499a).f45948w;
         if (i13 != i14) {
             layoutParams.height = i14;
             requestLayout();

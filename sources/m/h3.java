@@ -7,17 +7,17 @@ import android.view.ViewParent;
 import androidx.appcompat.widget.Toolbar;
 import java.util.ArrayList;
 public final class h3 implements l.x {
-    public l.k f15719a;
-    public l.m f15720b;
-    public final Toolbar f15721c;
+    public l.k f15755a;
+    public l.m f15756b;
+    public final Toolbar f15757c;
 
     public h3(Toolbar toolbar) {
-        this.f15721c = toolbar;
+        this.f15757c = toolbar;
     }
 
     @Override
     public final boolean b(l.m mVar) {
-        Toolbar toolbar = this.f15721c;
+        Toolbar toolbar = this.f15757c;
         toolbar.c();
         ViewParent parent = toolbar.f2288n.getParent();
         if (parent != toolbar) {
@@ -28,28 +28,28 @@ public final class h3 implements l.x {
         }
         View actionView = mVar.getActionView();
         toolbar.f2289r = actionView;
-        this.f15720b = mVar;
+        this.f15756b = mVar;
         ViewParent parent2 = actionView.getParent();
         if (parent2 != toolbar) {
             if (parent2 instanceof ViewGroup) {
                 ((ViewGroup) parent2).removeView(toolbar.f2289r);
             }
             i3 h = Toolbar.h();
-            h.f15727a = (toolbar.f2293y & 112) | 8388611;
-            h.f15728b = 2;
+            h.f15763a = (toolbar.f2293y & 112) | 8388611;
+            h.f15764b = 2;
             toolbar.f2289r.setLayoutParams(h);
             toolbar.addView(toolbar.f2289r);
         }
         for (int childCount = toolbar.getChildCount() - 1; childCount >= 0; childCount--) {
             View childAt = toolbar.getChildAt(childCount);
-            if (((i3) childAt.getLayoutParams()).f15728b != 2 && childAt != toolbar.f2273a) {
+            if (((i3) childAt.getLayoutParams()).f15764b != 2 && childAt != toolbar.f2273a) {
                 toolbar.removeViewAt(childCount);
                 toolbar.U.add(childAt);
             }
         }
         toolbar.requestLayout();
         mVar.C = true;
-        mVar.f15273n.p(false);
+        mVar.f15309n.p(false);
         View view = toolbar.f2289r;
         if (view instanceof k.b) {
             ((k.b) view).onActionViewExpanded();
@@ -65,28 +65,28 @@ public final class h3 implements l.x {
 
     @Override
     public final void e() {
-        if (this.f15720b != null) {
-            l.k kVar = this.f15719a;
+        if (this.f15756b != null) {
+            l.k kVar = this.f15755a;
             if (kVar != null) {
-                int size = kVar.f15242f.size();
+                int size = kVar.f15278f.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    if (this.f15719a.getItem(i10) == this.f15720b) {
+                    if (this.f15755a.getItem(i10) == this.f15756b) {
                         return;
                     }
                 }
             }
-            k(this.f15720b);
+            k(this.f15756b);
         }
     }
 
     @Override
     public final void i(Context context, l.k kVar) {
         l.m mVar;
-        l.k kVar2 = this.f15719a;
-        if (kVar2 != null && (mVar = this.f15720b) != null) {
+        l.k kVar2 = this.f15755a;
+        if (kVar2 != null && (mVar = this.f15756b) != null) {
             kVar2.d(mVar);
         }
-        this.f15719a = kVar;
+        this.f15755a = kVar;
     }
 
     @Override
@@ -96,7 +96,7 @@ public final class h3 implements l.x {
 
     @Override
     public final boolean k(l.m mVar) {
-        Toolbar toolbar = this.f15721c;
+        Toolbar toolbar = this.f15757c;
         View view = toolbar.f2289r;
         if (view instanceof k.b) {
             ((k.b) view).onActionViewCollapsed();
@@ -109,10 +109,10 @@ public final class h3 implements l.x {
             toolbar.addView((View) arrayList.get(size));
         }
         arrayList.clear();
-        this.f15720b = null;
+        this.f15756b = null;
         toolbar.requestLayout();
         mVar.C = false;
-        mVar.f15273n.p(false);
+        mVar.f15309n.p(false);
         toolbar.t();
         return true;
     }

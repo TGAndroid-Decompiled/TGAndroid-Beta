@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.view.View;
 public final class dt implements View.OnClickListener {
-    public final int f37091a;
-    public final qt f37092b;
+    public final int f37125a;
+    public final qt f37126b;
 
     public dt(qt qtVar, int i10) {
-        this.f37091a = i10;
-        this.f37092b = qtVar;
+        this.f37125a = i10;
+        this.f37126b = qtVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f37091a) {
+        switch (this.f37125a) {
             case 0:
-                qt qtVar = this.f37092b;
+                qt qtVar = this.f37126b;
                 qtVar.K = false;
-                qtVar.f41257z.invalidate();
+                qtVar.f41291z.invalidate();
                 qtVar.n();
                 return;
             case 1:
-                qt qtVar2 = this.f37092b;
-                Activity activity = qtVar2.f41254w;
+                qt qtVar2 = this.f37126b;
+                Activity activity = qtVar2.f41288w;
                 if (activity instanceof LaunchActivity) {
                     LaunchActivity launchActivity = (LaunchActivity) activity;
                     if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
@@ -31,20 +31,20 @@ public final class dt implements View.OnClickListener {
                     launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
                 }
                 qtVar2.K = false;
-                qtVar2.f41257z.invalidate();
+                qtVar2.f41291z.invalidate();
                 qtVar2.n();
                 return;
             case 2:
-                qt qtVar3 = this.f37092b;
-                ot otVar = qtVar3.f41244l;
+                qt qtVar3 = this.f37126b;
+                ot otVar = qtVar3.f41278l;
                 if (otVar != null) {
                     otVar.K();
                 }
                 qtVar3.p();
                 return;
             default:
-                qt qtVar4 = this.f37092b;
-                ot otVar2 = qtVar4.f41244l;
+                qt qtVar4 = this.f37126b;
+                ot otVar2 = qtVar4.f41278l;
                 if (otVar2 != null) {
                     otVar2.s();
                 }

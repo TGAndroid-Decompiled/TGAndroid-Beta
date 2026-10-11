@@ -66,7 +66,7 @@ public final class w1 extends FrameLayout {
         this.d = textView2;
         textView2.setLines(2);
         textView2.setEllipsize(truncateAt);
-        ai.o(h6.f21189z6, d6Var, textView2, 1, 15.0f);
+        ai.o(h6.f21225z6, d6Var, textView2, 1, 15.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             f11 = 40.0f;
@@ -81,7 +81,7 @@ public final class w1 extends FrameLayout {
         addView(textView2, x5.a(-2.0f, f11, 32.0f, f12, 0.0f, -1, 7));
         dq dqVar = new dq(getContext(), 21, d6Var);
         this.f11432e = dqVar;
-        dqVar.b(-1, h6.f20786d6, h6.f20915k7);
+        dqVar.b(-1, h6.f20822d6, h6.f20951k7);
         dqVar.setDrawUnchecked(false);
         dqVar.setDrawBackgroundAsArc(3);
         addView(dqVar, x5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -105,7 +105,7 @@ public final class w1 extends FrameLayout {
         if (this.f11436s) {
             Paint U0 = h6.U0("paintDivider", this.f11434n);
             if (U0 == null) {
-                U0 = h6.f20908k0;
+                U0 = h6.f20944k0;
             }
             Paint paint = U0;
             float f11 = 78.0f;
@@ -135,7 +135,7 @@ public final class w1 extends FrameLayout {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(h6.m1(0.85f, h6.w0(h6.f21189z6, this.f11434n)));
+        paint.setColor(h6.m1(0.85f, h6.w0(h6.f21225z6, this.f11434n)));
         Path path = this.f11433f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;

@@ -34,9 +34,9 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.kl0;
 import org.telegram.ui.lj1;
-public final class u5 implements ll0, z3.d, me.d, n5.b, q9.b {
+public final class u5 implements kl0, z3.d, me.d, n5.b, q9.b {
     public Object f6064a;
     public Object f6065b;
     public Object f6066c;
@@ -887,8 +887,8 @@ public final class u5 implements ll0, z3.d, me.d, n5.b, q9.b {
         byte[] bArr2 = (byte[]) this.f6064a;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = lj1.f39691b;
-        BigInteger bigInteger3 = lj1.f39690a;
+        BigInteger bigInteger2 = lj1.f39725b;
+        BigInteger bigInteger3 = lj1.f39724a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -997,7 +997,7 @@ public final class u5 implements ll0, z3.d, me.d, n5.b, q9.b {
 
     @Override
     public void n(int i10, float f7, float f10, me.e eVar) {
-        ((TextView) this.f6065b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((me.b) this.d).f16365e));
+        ((TextView) this.f6065b).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((me.b) this.d).f16401e));
         ((jh.c) this.f6067e).b(this);
     }
 
@@ -1127,7 +1127,7 @@ public final class u5 implements ll0, z3.d, me.d, n5.b, q9.b {
         }
         if (z10) {
             if (((org.telegram.ui.Components.pa) this.f6064a) == null) {
-                this.f6064a = new org.telegram.ui.Components.pa(q6Var.f5797e2, q6Var.Z1.getReactionsWindow().f54538c, 0, false);
+                this.f6064a = new org.telegram.ui.Components.pa(q6Var.f5797e2, q6Var.Z1.getReactionsWindow().f54572c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;

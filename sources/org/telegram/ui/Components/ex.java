@@ -5,19 +5,19 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ex extends s4.o0 {
-    public final b00 f26156a;
+    public final b00 f26227a;
 
     public ex(b00 b00Var) {
-        this.f26156a = b00Var;
+        this.f26227a = b00Var;
     }
 
     @Override
     public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
         recyclerView.getClass();
         int R = RecyclerView.R(view);
-        b00 b00Var = this.f26156a;
-        s4.i0 adapter = b00Var.f24678h0.getAdapter();
-        fz fzVar = b00Var.f24695n0;
+        b00 b00Var = this.f26227a;
+        s4.i0 adapter = b00Var.f24747h0.getAdapter();
+        fz fzVar = b00Var.f24764n0;
         int i10 = 0;
         if (adapter == fzVar && R == fzVar.I) {
             rect.set(0, 0, 0, 0);
@@ -29,7 +29,7 @@ public final class ex extends s4.o0 {
         rect.left = 0;
         rect.bottom = 0;
         rect.top = AndroidUtilities.dp(2.0f);
-        gz gzVar = b00Var.f24681i0;
+        gz gzVar = b00Var.f24750i0;
         fzVar.getClass();
         if (!gzVar.E1(R)) {
             i10 = AndroidUtilities.dp(2.0f);

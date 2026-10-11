@@ -7,9 +7,9 @@ import ii.z;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.hp0;
-import org.telegram.ui.Components.o71;
-public final class m implements b, hp0, me.d, ne.a {
+import org.telegram.ui.Components.gp0;
+import org.telegram.ui.Components.n71;
+public final class m implements b, gp0, me.d, ne.a {
     public final Object f8337a;
 
     public m(Object obj) {
@@ -74,12 +74,12 @@ public final class m implements b, hp0, me.d, ne.a {
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
         int dp = AndroidUtilities.dp(9.0f);
-        o71 o71Var = (o71) this.f8337a;
+        n71 n71Var = (n71) this.f8337a;
         float f11 = -dp;
-        o71Var.f29285g.inset(f11, f11);
-        boolean contains = o71Var.f29285g.contains(f7, f10);
+        n71Var.f29067g.inset(f11, f11);
+        boolean contains = n71Var.f29067g.contains(f7, f10);
         float f12 = dp;
-        o71Var.f29285g.inset(f12, f12);
+        n71Var.f29067g.inset(f12, f12);
         return contains;
     }
 
@@ -90,7 +90,7 @@ public final class m implements b, hp0, me.d, ne.a {
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((o71) this.f8337a).f29287j;
+        Runnable runnable = ((n71) this.f8337a).f29069j;
         if (runnable != null) {
             runnable.run();
         }
@@ -98,12 +98,12 @@ public final class m implements b, hp0, me.d, ne.a {
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        ((o71) this.f8337a).h.c(true);
+        ((n71) this.f8337a).h.c(true);
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        ((o71) this.f8337a).h.c(false);
+        ((n71) this.f8337a).h.c(false);
     }
 
     @Override

@@ -69,7 +69,7 @@ public class VoipAudioManager {
     }
 
     public void isBluetoothAndSpeakerOnAsync(Utilities.Callback2<Boolean, Boolean> callback2) {
-        Utilities.globalQueue.postRunnable(new ki.i0(25, this, callback2));
+        Utilities.globalQueue.postRunnable(new ki.k0(25, this, callback2));
     }
 
     public boolean isBluetoothOn() {
@@ -114,7 +114,7 @@ public class VoipAudioManager {
                 return;
             }
             this.isSpeakerphoneOn = Boolean.FALSE;
-            Utilities.globalQueue.postRunnable(new ki.i0(24, audioManager, findBluetoothDevice));
+            Utilities.globalQueue.postRunnable(new ki.k0(24, audioManager, findBluetoothDevice));
             return;
         }
         audioManager.startBluetoothSco();

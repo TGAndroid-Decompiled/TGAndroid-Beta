@@ -1,97 +1,69 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class ng0 extends FrameLayout {
-    public final ci.wc f29049a;
-    public final ci.d f29050b;
-    public final gu f29051c;
-    public m81 d;
-    public long f29052e;
-    public float f29053f;
-    public ci.z3 h;
-    public Utilities.Callback f29054n;
-    public Runnable f29055r;
+public final class ng0 extends LinearLayout {
+    public final LinearLayout f29162a;
+    public final LinearLayout f29163b;
 
-    public ng0(Context context, org.telegram.ui.ActionBar.d6 d6Var, la laVar) {
+    public ng0(Context context) {
         super(context);
-        this.f29052e = -1L;
-        this.f29053f = 1.39f;
-        org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, d6Var);
-        kVar.setBackButtonImage(R.drawable.ic_ab_back);
-        kVar.setTitle(LocaleController.getString(R.string.EditorSetCoverTitle));
-        kVar.D(-1, false);
-        kVar.C(587202559, false);
-        kVar.setActionBarMenuOnItemClick(new org.telegram.ui.ro(this, 10));
-        addView(kVar, w7.x5.e(-1, -2, 55));
-        ci.wc wcVar = new ci.wc(context, null, null, d6Var, laVar);
-        this.f29049a = wcVar;
-        wcVar.X0 = true;
-        addView(wcVar, w7.x5.a(388, 0.0f, 0.0f, 0.0f, 74.0f, -1, 87));
-        ci.d dVar = new ci.d(context, d6Var, true);
-        this.f29050b = dVar;
-        dVar.g(LocaleController.getString(R.string.EditorSetCoverSave), false, true);
-        dVar.e();
-        addView(dVar, w7.x5.a(48.0f, 16.0f, 10.0f, 16.0f, 16.0f, -1, 87));
-        gu guVar = new gu(context, LocaleController.getString(R.string.EditorSetCoverGallery));
-        this.f29051c = guVar;
-        guVar.setOnClickListener(new ai.d0(this, context, d6Var, 26));
-        addView(guVar, w7.x5.a(32.0f, 60.0f, 0.0f, 60.0f, 134.0f, -1, 87));
-        wcVar.setDelegate(new n7.z0(this));
+        setOrientation(0);
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
+        this.f29163b = a2;
+        addView(a2, w7.x5.n(-2, -1));
+        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
+        this.f29162a = a10;
+        addView(a10, w7.x5.n(-2, -1));
     }
 
-    public final void a(MediaController.PhotoEntry photoEntry, m81 m81Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        int i10;
-        ci.d dVar = this.f29050b;
-        dVar.f4860a = d6Var;
-        dVar.j();
-        int i11 = photoEntry.width;
-        if (i11 > 0 && (i10 = photoEntry.height) > 0) {
-            this.f29053f = Utilities.clamp(i10 / i11, 1.39f, 0.85f);
-        } else {
-            this.f29053f = 1.39f;
-        }
-        this.d = m81Var;
-        long j3 = photoEntry.coverSavedPosition;
-        if (j3 >= 0) {
-            this.f29052e = j3;
-            m81Var.L(j3, false);
-        } else {
-            this.f29052e = m81Var.n();
-        }
-        String path = m81Var.F.getPath();
-        long p5 = m81Var.p();
-        i2.f0 f0Var = m81Var.d;
-        f0Var.D1();
-        this.f29049a.o(false, path, p5, f0Var.Z);
-        long p10 = m81Var.p();
-        float max = 2.8f / ((float) Math.max(60L, p10));
-        float max2 = (1.0f - max) * (((float) this.f29052e) / ((float) Math.max(1L, m81Var.p())));
-        ci.wc wcVar = this.f29049a;
-        wcVar.setVideoLeft(max2);
-        wcVar.setVideoRight(max2 + max);
-        wcVar.Z0 = 0L;
-        wcVar.f6228a1 = p10;
-        ci.qc qcVar = wcVar.h;
-        if (qcVar != null) {
-            ci.qc.a(qcVar, true);
-        }
-        wcVar.k();
+    public final LinearLayout a(int i10, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i10);
+        linearLayout.addView(imageView, w7.x5.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, w7.x5.n(-2, -2));
+        w7.z5.a(linearLayout);
+        return linearLayout;
     }
 
-    public long getTime() {
-        return this.f29052e;
-    }
-
-    public void setOnClose(Runnable runnable) {
-        this.f29055r = runnable;
-    }
-
-    public void setOnGalleryImage(Utilities.Callback<MediaController.PhotoEntry> callback) {
-        this.f29054n = callback;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        LinearLayout linearLayout = this.f29162a;
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int max = Math.max(0, size - paddingRight);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+        LinearLayout linearLayout2 = this.f29163b;
+        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+        layoutParams2.width = min;
+        layoutParams.width = min;
+        super.onMeasure(i10, i11);
     }
 }

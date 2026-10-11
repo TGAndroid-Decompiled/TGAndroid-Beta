@@ -2,9 +2,9 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class b70 extends TLRPC.TL_contact {
-    public final String f36289a;
+    public final String f36323a;
 
     public b70(String str) {
-        this.f36289a = str;
+        this.f36323a = str;
     }
 }

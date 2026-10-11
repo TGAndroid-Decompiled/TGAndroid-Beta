@@ -6,29 +6,29 @@ import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewConfiguration;
 public final class x2 extends TouchDelegate {
-    public final View f15892a;
-    public final Rect f15893b;
-    public final Rect f15894c;
+    public final View f15928a;
+    public final Rect f15929b;
+    public final Rect f15930c;
     public final Rect d;
-    public final int f15895e;
-    public boolean f15896f;
+    public final int f15931e;
+    public boolean f15932f;
 
     public x2(Rect rect, Rect rect2, View view) {
         super(rect, view);
         int scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
-        this.f15895e = scaledTouchSlop;
+        this.f15931e = scaledTouchSlop;
         Rect rect3 = new Rect();
-        this.f15893b = rect3;
+        this.f15929b = rect3;
         Rect rect4 = new Rect();
         this.d = rect4;
         Rect rect5 = new Rect();
-        this.f15894c = rect5;
+        this.f15930c = rect5;
         rect3.set(rect);
         rect4.set(rect);
         int i10 = -scaledTouchSlop;
         rect4.inset(i10, i10);
         rect5.set(rect2);
-        this.f15892a = view;
+        this.f15928a = view;
     }
 
     @Override
@@ -42,13 +42,13 @@ public final class x2 extends TouchDelegate {
         if (action != 0) {
             if (action != 1 && action != 2) {
                 if (action == 3) {
-                    z11 = this.f15896f;
-                    this.f15896f = false;
+                    z11 = this.f15932f;
+                    this.f15932f = false;
                 }
                 z10 = true;
                 z12 = false;
             } else {
-                z11 = this.f15896f;
+                z11 = this.f15932f;
                 if (z11 && !this.d.contains(x10, y3)) {
                     z12 = z11;
                     z10 = false;
@@ -57,8 +57,8 @@ public final class x2 extends TouchDelegate {
             z12 = z11;
             z10 = true;
         } else {
-            if (this.f15893b.contains(x10, y3)) {
-                this.f15896f = true;
+            if (this.f15929b.contains(x10, y3)) {
+                this.f15932f = true;
                 z10 = true;
             }
             z10 = true;
@@ -67,8 +67,8 @@ public final class x2 extends TouchDelegate {
         if (!z12) {
             return false;
         }
-        Rect rect = this.f15894c;
-        View view = this.f15892a;
+        Rect rect = this.f15930c;
+        View view = this.f15928a;
         if (z10 && !rect.contains(x10, y3)) {
             motionEvent.setLocation(view.getWidth() / 2, view.getHeight() / 2);
         } else {

@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class ls extends org.telegram.ui.ActionBar.j {
-    public final ps f39721a;
+    public final ps f39755a;
 
     public ls(ps psVar) {
-        this.f39721a = psVar;
+        this.f39755a = psVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class ls extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i11;
         int i12;
-        ps psVar = this.f39721a;
+        ps psVar = this.f39755a;
         if (i10 == -1) {
             psVar.finishFragment();
-        } else if (i10 == 1 && psVar.f40944b.getText().length() != 0) {
+        } else if (i10 == 1 && psVar.f40978b.getText().length() != 0) {
             TLRPC.User user = psVar.getMessagesController().getUser(Long.valueOf(psVar.H));
             TLRPC.UserFull userFull = psVar.getMessagesController().getUserFull(psVar.H);
-            user.first_name = psVar.f40944b.getText().toString();
-            user.last_name = psVar.f40945c.getText().toString();
+            user.first_name = psVar.f40978b.getText().toString();
+            user.last_name = psVar.f40979c.getText().toString();
             user.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = psVar.d.getTextWithEntities();
             psVar.getMessagesController().putUser(user, false);
@@ -49,7 +49,7 @@ public final class ls extends org.telegram.ui.ActionBar.j {
                 }
                 i12 = ((org.telegram.ui.ActionBar.m2) psVar).currentAccount;
                 MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
-                psVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f20180id), userFull);
+                psVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f20216id), userFull);
             }
             psVar.finishFragment();
             os osVar = psVar.O;

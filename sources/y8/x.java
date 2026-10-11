@@ -5,20 +5,20 @@ import android.os.Parcelable;
 import com.google.android.gms.wearable.ConnectionConfiguration;
 public final class x extends o6.a {
     public static final Parcelable.Creator<x> CREATOR = new c(19);
-    public final int f51929a;
-    public final ConnectionConfiguration[] f51930b;
+    public final int f51963a;
+    public final ConnectionConfiguration[] f51964b;
 
     public x(int i10, ConnectionConfiguration[] connectionConfigurationArr) {
-        this.f51929a = i10;
-        this.f51930b = connectionConfigurationArr;
+        this.f51963a = i10;
+        this.f51964b = connectionConfigurationArr;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.d0.q(parcel, 20293);
         w7.d0.s(parcel, 2, 4);
-        parcel.writeInt(this.f51929a);
-        w7.d0.o(parcel, 3, this.f51930b, i10);
+        parcel.writeInt(this.f51963a);
+        w7.d0.o(parcel, 3, this.f51964b, i10);
         w7.d0.r(parcel, q6);
     }
 }

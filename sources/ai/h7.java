@@ -31,13 +31,13 @@ public final class h7 implements ToIntFunction {
             case 6:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 7:
-                return ((TLRPC.Message) obj).f20053id;
+                return ((TLRPC.Message) obj).f20089id;
             case 8:
-                return ((TLRPC.Message) obj).f20053id;
+                return ((TLRPC.Message) obj).f20089id;
             case 9:
                 return ((org.telegram.ui.Components.h6) obj).d;
             case 10:
-                return ((org.telegram.ui.Components.h6) obj).f26914e;
+                return ((org.telegram.ui.Components.h6) obj).f26981e;
             case 11:
                 bd.c cVar = (bd.c) obj;
                 return cVar.d - cVar.f3867b;
@@ -56,7 +56,7 @@ public final class h7 implements ToIntFunction {
                 }
                 return Integer.MIN_VALUE;
             case 14:
-                return ((yf.d) obj).f52213a;
+                return ((yf.d) obj).f52247a;
             case 15:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 16:

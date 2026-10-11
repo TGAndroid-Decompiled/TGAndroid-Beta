@@ -10,23 +10,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class rc extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f41408a;
-    public final ec1 f41409b;
-    public final s4.d0 f41410c;
+    public final org.telegram.ui.ActionBar.d6 f41442a;
+    public final ec1 f41443b;
+    public final s4.d0 f41444c;
     public final int d;
-    public int f41411e;
+    public int f41445e;
 
     public rc(int i10, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
         this.d = i10;
-        this.f41408a = d6Var;
+        this.f41442a = d6Var;
         ec1 ec1Var = new ec1(activity, 3, d6Var);
-        this.f41409b = ec1Var;
+        this.f41443b = ec1Var;
         ec1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
         ec1Var.setClipToPadding(false);
         ec1Var.setAdapter(new pc(this, activity, d6Var, i10));
         s4.d0 d0Var = new s4.d0();
-        this.f41410c = d0Var;
+        this.f41444c = d0Var;
         d0Var.j1(0);
         ec1Var.setLayoutManager(d0Var);
         addView(ec1Var, w7.x5.d(-1.0f, -1));
@@ -40,7 +40,7 @@ public final class rc extends FrameLayout {
             while (true) {
                 if (i12 >= peerColors.colors.size()) {
                     break;
-                } else if (peerColors.colors.get(i12).f17253id == i10) {
+                } else if (peerColors.colors.get(i12).f17289id == i10) {
                     i11 = i12;
                     break;
                 } else {
@@ -48,12 +48,12 @@ public final class rc extends FrameLayout {
                 }
             }
         }
-        if (i11 != this.f41411e) {
-            this.f41411e = i11;
+        if (i11 != this.f41445e) {
+            this.f41445e = i11;
             if (!z10) {
-                this.f41410c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
+                this.f41444c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
             }
-            AndroidUtilities.forEachViews((RecyclerView) this.f41409b, (Utilities.Callback<View>) new ai.j3(3, this, z10));
+            AndroidUtilities.forEachViews((RecyclerView) this.f41443b, (Utilities.Callback<View>) new ai.j3(3, this, z10));
         }
     }
 

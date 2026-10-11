@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
 public final class xk0 {
-    public boolean f44096a;
-    public boolean f44097b;
-    public int f44098c;
+    public boolean f44130a;
+    public boolean f44131b;
+    public int f44132c;
     public int d;
-    public TLRPC.Document f44099e;
-    public String f44100f;
-    public String f44101g;
+    public TLRPC.Document f44133e;
+    public String f44134f;
+    public String f44135g;
 
     public final Uri a(int i10) {
-        if (!TextUtils.isEmpty(this.f44101g)) {
-            return Uri.fromFile(new File(this.f44101g));
+        if (!TextUtils.isEmpty(this.f44135g)) {
+            return Uri.fromFile(new File(this.f44135g));
         }
-        TLRPC.Document document = this.f44099e;
+        TLRPC.Document document = this.f44133e;
         if (document != null) {
             String str = document.file_name_fixed;
             String documentExtension = FileLoader.getDocumentExtension(document);
@@ -32,7 +32,7 @@ public final class xk0 {
                 File file = new File(AndroidUtilities.getCacheDir(), str);
                 if (!file.exists()) {
                     try {
-                        AndroidUtilities.copyFile(FileLoader.getInstance(i10).getPathToAttach(this.f44099e), file);
+                        AndroidUtilities.copyFile(FileLoader.getInstance(i10).getPathToAttach(this.f44133e), file);
                     } catch (IOException e7) {
                         e7.printStackTrace();
                     }

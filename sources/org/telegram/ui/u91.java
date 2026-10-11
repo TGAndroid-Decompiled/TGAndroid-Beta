@@ -3,34 +3,34 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class u91 implements Runnable {
-    public final int f42459a;
-    public final ab1 f42460b;
-    public final ArrayList f42461c;
+    public final int f42493a;
+    public final ab1 f42494b;
+    public final ArrayList f42495c;
 
     public u91(ab1 ab1Var, ArrayList arrayList, int i10) {
-        this.f42459a = i10;
-        this.f42460b = ab1Var;
-        this.f42461c = arrayList;
+        this.f42493a = i10;
+        this.f42494b = ab1Var;
+        this.f42495c = arrayList;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f42459a) {
+        switch (this.f42493a) {
             case 0:
-                ab1 ab1Var = this.f42460b;
-                ArrayList arrayList = ab1Var.f35986s0;
-                ArrayList arrayList2 = ab1Var.f35984r0;
+                ab1 ab1Var = this.f42494b;
+                ArrayList arrayList = ab1Var.f36020s0;
+                ArrayList arrayList2 = ab1Var.f36018r0;
                 int i10 = 0;
-                ab1Var.f35991w0 = false;
-                ArrayList arrayList3 = this.f42461c;
+                ab1Var.f36025w0 = false;
+                ArrayList arrayList3 = this.f42495c;
                 if (!arrayList3.isEmpty()) {
                     int size = arrayList3.size();
                     for (int i11 = 0; i11 < size; i11++) {
                         MessageObject messageObject = (MessageObject) arrayList3.get(i11);
-                        int i12 = ab1Var.f35981p0.get(messageObject.getId(), -1);
+                        int i12 = ab1Var.f36015p0.get(messageObject.getId(), -1);
                         if (i12 >= 0 && ((xa1) arrayList2.get(i12)).b() == messageObject.getId()) {
-                            ((xa1) arrayList2.get(i12)).f44032b = messageObject;
+                            ((xa1) arrayList2.get(i12)).f44066b = messageObject;
                         }
                     }
                     arrayList.clear();
@@ -38,8 +38,8 @@ public final class u91 implements Runnable {
                     while (true) {
                         if (i10 < size2) {
                             xa1 xa1Var = (xa1) arrayList2.get(i10);
-                            if (xa1Var.f44032b == null) {
-                                ab1Var.f35980o0 = xa1Var.b();
+                            if (xa1Var.f44066b == null) {
+                                ab1Var.f36014o0 = xa1Var.b();
                             } else {
                                 arrayList.add(xa1Var);
                                 i10++;
@@ -48,15 +48,15 @@ public final class u91 implements Runnable {
                     }
                     ab1Var.o0();
                     ab1Var.S.setItemAnimator(null);
-                    ab1Var.f35995y0.f();
+                    ab1Var.f36029y0.f();
                     return;
                 }
                 return;
             default:
-                ab1 ab1Var2 = this.f42460b;
-                ai.e9 e9Var = ab1Var2.f35996z0;
+                ab1 ab1Var2 = this.f42494b;
+                ai.e9 e9Var = ab1Var2.f36030z0;
                 e9Var.getClass();
-                ArrayList arrayList4 = this.f42461c;
+                ArrayList arrayList4 = this.f42495c;
                 int size3 = arrayList4.size();
                 int i13 = 0;
                 while (true) {

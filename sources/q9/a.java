@@ -9,22 +9,22 @@ import java.util.Set;
 import m4.w;
 import w7.r6;
 public final class a {
-    public final String f46082a;
-    public final Set f46083b;
-    public final Set f46084c;
+    public final String f46116a;
+    public final Set f46117b;
+    public final Set f46118c;
     public final int d;
-    public final int f46085e;
-    public final d f46086f;
-    public final Set f46087g;
+    public final int f46119e;
+    public final d f46120f;
+    public final Set f46121g;
 
     public a(String str, Set set, Set set2, int i10, int i11, d dVar, Set set3) {
-        this.f46082a = str;
-        this.f46083b = DesugarCollections.unmodifiableSet(set);
-        this.f46084c = DesugarCollections.unmodifiableSet(set2);
+        this.f46116a = str;
+        this.f46117b = DesugarCollections.unmodifiableSet(set);
+        this.f46118c = DesugarCollections.unmodifiableSet(set2);
         this.d = i10;
-        this.f46085e = i11;
-        this.f46086f = dVar;
-        this.f46087g = DesugarCollections.unmodifiableSet(set3);
+        this.f46119e = i11;
+        this.f46120f = dVar;
+        this.f46121g = DesugarCollections.unmodifiableSet(set3);
     }
 
     public static i0 a(Class cls) {
@@ -62,6 +62,6 @@ public final class a {
     }
 
     public final String toString() {
-        return "Component<" + Arrays.toString(this.f46083b.toArray()) + ">{" + this.d + ", type=" + this.f46085e + ", deps=" + Arrays.toString(this.f46084c.toArray()) + "}";
+        return "Component<" + Arrays.toString(this.f46117b.toArray()) + ">{" + this.d + ", type=" + this.f46119e + ", deps=" + Arrays.toString(this.f46118c.toArray()) + "}";
     }
 }

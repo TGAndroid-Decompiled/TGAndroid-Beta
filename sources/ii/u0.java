@@ -79,7 +79,7 @@ public final class u0 extends FrameLayout implements org.telegram.ui.ActionBar.x
         org.telegram.ui.ActionBar.d6 d6Var = this.f12721a;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i10, d6Var);
         AnimatedArrowDrawable animatedArrowDrawable = this.f12723c;
-        animatedArrowDrawable.f23824a.setColor(w02);
+        animatedArrowDrawable.f23860a.setColor(w02);
         animatedArrowDrawable.invalidateSelf();
         this.f12724e.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Fk, d6Var));
     }

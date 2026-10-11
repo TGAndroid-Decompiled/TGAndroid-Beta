@@ -1,32 +1,32 @@
 package m4;
 public final class u implements Runnable {
-    public final int f16261a;
-    public final b0 f16262b;
+    public final int f16297a;
+    public final b0 f16298b;
 
     public u(b0 b0Var, int i10) {
-        this.f16261a = i10;
-        this.f16262b = b0Var;
+        this.f16297a = i10;
+        this.f16298b = b0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f16261a) {
+        switch (this.f16297a) {
             case 0:
-                b0 b0Var = this.f16262b;
-                z zVar = b0Var.f16023u;
+                b0 b0Var = this.f16298b;
+                z zVar = b0Var.f16059u;
                 if (zVar != null) {
-                    b0Var.f16022t.D(zVar);
+                    b0Var.f16058t.D(zVar);
                     return;
                 }
                 return;
             case 1:
-                this.f16262b.getClass();
+                this.f16298b.getClass();
                 return;
             case 2:
-                b0.a(this.f16262b);
+                b0.a(this.f16298b);
                 return;
             default:
-                this.f16262b.t();
+                this.f16298b.t();
                 return;
         }
     }

@@ -4,9 +4,9 @@ import android.text.TextUtils;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class z10 extends og.a {
-    public CharSequence f44554c;
+    public CharSequence f44588c;
     public MessagesController.DialogFilter d;
-    public TLRPC.TL_dialogFilterSuggested f44555e;
+    public TLRPC.TL_dialogFilterSuggested f44589e;
 
     public final boolean equals(Object obj) {
         boolean z10;
@@ -20,15 +20,15 @@ public final class z10 extends og.a {
             return false;
         }
         z10 z10Var = (z10) obj;
-        int i10 = z10Var.f17175a;
-        int i11 = this.f17175a;
+        int i10 = z10Var.f17211a;
+        int i11 = this.f17211a;
         if (i10 != i11) {
             return false;
         }
-        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f44554c, z10Var.f44554c)) {
+        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f44588c, z10Var.f44588c)) {
             return false;
         }
-        int i12 = this.f17175a;
+        int i12 = this.f17211a;
         if (i12 == 2) {
             MessagesController.DialogFilter dialogFilter = this.d;
             if (dialogFilter == null) {
@@ -45,18 +45,18 @@ public final class z10 extends og.a {
             if (z12 != z13) {
                 return false;
             }
-            if (dialogFilter != null && dialogFilter.f17251id != dialogFilter2.f17251id) {
+            if (dialogFilter != null && dialogFilter.f17287id != dialogFilter2.f17287id) {
                 return false;
             }
         }
         if (i12 == 5) {
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.f44555e;
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.f44589e;
             if (tL_dialogFilterSuggested == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = z10Var.f44555e;
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = z10Var.f44589e;
             if (tL_dialogFilterSuggested2 == null) {
                 z11 = true;
             } else {
@@ -65,7 +65,7 @@ public final class z10 extends og.a {
             if (z10 != z11) {
                 return false;
             }
-            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f20037id != tL_dialogFilterSuggested2.filter.f20037id) {
+            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f20073id != tL_dialogFilterSuggested2.filter.f20073id) {
                 return false;
             }
         }

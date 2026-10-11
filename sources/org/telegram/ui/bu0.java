@@ -6,20 +6,20 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class bu0 extends ou0 {
-    public final int f36458p0;
-    public final NotificationCenter.NotificationCenterDelegate f36459q0;
+    public final int f36492p0;
+    public final NotificationCenter.NotificationCenterDelegate f36493q0;
 
     public bu0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, ru0 ru0Var, FrameLayout frameLayout, int i10) {
         super(context, ru0Var, frameLayout);
-        this.f36458p0 = i10;
-        this.f36459q0 = notificationCenterDelegate;
+        this.f36492p0 = i10;
+        this.f36493q0 = notificationCenterDelegate;
     }
 
     @Override
     public boolean C() {
-        switch (this.f36458p0) {
+        switch (this.f36492p0) {
             case 0:
-                return !((PhotoViewer) this.f36459q0).f34053s;
+                return !((PhotoViewer) this.f36493q0).f34087s;
             default:
                 return super.C();
         }
@@ -27,11 +27,11 @@ public final class bu0 extends ou0 {
 
     @Override
     public void D() {
-        switch (this.f36458p0) {
+        switch (this.f36492p0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36459q0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36493q0;
                 if (secretMediaViewer.J && getScrollY() <= 0) {
-                    AndroidUtilities.runOnUIThread(secretMediaViewer.f34480r1, 3000L);
+                    AndroidUtilities.runOnUIThread(secretMediaViewer.f34514r1, 3000L);
                     return;
                 }
                 return;
@@ -42,9 +42,9 @@ public final class bu0 extends ou0 {
 
     @Override
     public void F() {
-        switch (this.f36458p0) {
+        switch (this.f36492p0) {
             case 1:
-                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f36459q0).f34480r1);
+                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f36493q0).f34514r1);
                 return;
             default:
                 return;
@@ -54,11 +54,11 @@ public final class bu0 extends ou0 {
     @Override
     public void G() {
         boolean z10;
-        switch (this.f36458p0) {
+        switch (this.f36492p0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36459q0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f36493q0;
                 if (secretMediaViewer.K0 == null) {
-                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f34465k0) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f34499k0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -78,10 +78,10 @@ public final class bu0 extends ou0 {
         boolean z11;
         int i10;
         boolean z12;
-        switch (this.f36458p0) {
+        switch (this.f36492p0) {
             case 0:
                 super.invalidate();
-                PhotoViewer photoViewer = (PhotoViewer) this.f36459q0;
+                PhotoViewer photoViewer = (PhotoViewer) this.f36493q0;
                 zu0[] zu0VarArr = photoViewer.W0;
                 ImageView[] imageViewArr = photoViewer.y3;
                 if (photoViewer.J) {
@@ -99,7 +99,7 @@ public final class bu0 extends ou0 {
                         z11 = false;
                     }
                     if (!z10) {
-                        int b10 = zu0VarArr[0].b() + zu0VarArr[0].f45075j;
+                        int b10 = zu0VarArr[0].b() + zu0VarArr[0].f45109j;
                         if (C()) {
                             i10 = AndroidUtilities.statusBarHeight;
                         } else {
@@ -118,7 +118,7 @@ public final class bu0 extends ou0 {
                         }
                         z11 = z12;
                     }
-                    if (photoViewer.f34122z3) {
+                    if (photoViewer.f34156z3) {
                         if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z11) {
                             imageViewArr[0].setTag(2);
                             imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new dp0(this, 5)).start();

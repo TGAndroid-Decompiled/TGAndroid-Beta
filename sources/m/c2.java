@@ -7,19 +7,19 @@ import org.telegram.ui.Components.az;
 import org.telegram.ui.Components.nz;
 import org.telegram.ui.Components.wz;
 public final class c2 implements View.OnTouchListener {
-    public final int f15663a;
-    public final Object f15664b;
+    public final int f15699a;
+    public final Object f15700b;
 
     public c2(Object obj, int i10) {
-        this.f15663a = i10;
-        this.f15664b = obj;
+        this.f15699a = i10;
+        this.f15700b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f15663a) {
+        switch (this.f15699a) {
             case 0:
-                d2 d2Var = (d2) this.f15664b;
+                d2 d2Var = (d2) this.f15700b;
                 a2 a2Var = d2Var.G;
                 Handler handler = d2Var.K;
                 x xVar = d2Var.O;
@@ -36,27 +36,27 @@ public final class c2 implements View.OnTouchListener {
                     return false;
                 }
             case 1:
-                az azVar = (az) this.f15664b;
+                az azVar = (az) this.f15700b;
                 if (motionEvent.getAction() == 0) {
-                    azVar.F.f24671f = true;
+                    azVar.F.f24740f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    azVar.F.f24671f = false;
+                    azVar.F.f24740f = false;
                 }
                 return false;
             case 2:
-                nz nzVar = (nz) this.f15664b;
+                nz nzVar = (nz) this.f15700b;
                 if (motionEvent.getAction() == 0) {
-                    nzVar.G.f24671f = true;
+                    nzVar.G.f24740f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    nzVar.G.f24671f = false;
+                    nzVar.G.f24740f = false;
                 }
                 return false;
             default:
-                wz wzVar = (wz) this.f15664b;
+                wz wzVar = (wz) this.f15700b;
                 if (motionEvent.getAction() == 0) {
-                    wzVar.Q.f24671f = true;
+                    wzVar.Q.f24740f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    wzVar.Q.f24671f = false;
+                    wzVar.Q.f24740f = false;
                 }
                 return false;
         }

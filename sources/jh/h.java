@@ -52,8 +52,8 @@ public final class h extends FrameLayout implements me.d {
                 aa.a aVar = aVarArr[i11];
                 if (aVar != null) {
                     ih.b bVar = (ih.b) aVar.f384b;
-                    float f10 = ((me.b) aVar.f385c).f16365e;
-                    float f11 = ((me.b) aVar.d).f16365e;
+                    float f10 = ((me.b) aVar.f385c).f16401e;
+                    float f11 = ((me.b) aVar.d).f16401e;
                     if (f10 > 0.0f) {
                         i10 = 0;
                     } else {
@@ -129,7 +129,7 @@ public final class h extends FrameLayout implements me.d {
             if (i10 == 0) {
                 interpolator = is.h;
             } else {
-                interpolator = le.a.f15504a;
+                interpolator = le.a.f15540a;
             }
             if (i10 == 0) {
                 j3 = 300;
@@ -141,7 +141,7 @@ public final class h extends FrameLayout implements me.d {
             if (i10 == 0) {
                 interpolator2 = is.h;
             } else {
-                interpolator2 = le.a.f15504a;
+                interpolator2 = le.a.f15540a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i10 == 0) {

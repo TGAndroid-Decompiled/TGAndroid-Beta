@@ -62,13 +62,13 @@ public final class h0 extends y9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f26051k0) {
+        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f25818k0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f26051k0) {
+        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f25818k0) {
             j0 j0Var = this.K;
-            if (j0Var.f54639a == 2 && !j0Var.f54661z) {
-                getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().f26043e[0] - 1, false, false);
+            if (j0Var.f54673a == 2 && !j0Var.f54695z) {
+                getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().f25810e[0] - 1, false, false);
             } else {
                 getImageReceiver().getLottieAnimation().N(0, false, false);
                 getImageReceiver().getLottieAnimation().start();

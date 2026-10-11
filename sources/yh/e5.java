@@ -11,30 +11,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.ll0;
 public final class e5 implements Runnable {
-    public final int f52520a;
-    public final Object f52521b;
-    public final Object f52522c;
+    public final int f52554a;
+    public final Object f52555b;
+    public final Object f52556c;
 
     public e5(int i10, Object obj, Object obj2) {
-        this.f52520a = i10;
-        this.f52522c = obj;
-        this.f52521b = obj2;
+        this.f52554a = i10;
+        this.f52556c = obj;
+        this.f52555b = obj2;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f52520a;
+        int i10 = this.f52554a;
         int i11 = 0;
-        Object obj = this.f52521b;
-        Object obj2 = this.f52522c;
+        Object obj = this.f52555b;
+        Object obj2 = this.f52556c;
         switch (i10) {
             case 0:
                 f5 f5Var = (f5) obj2;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList = f5Var.f52606l;
-                int i12 = f5Var.f52597a;
+                ArrayList arrayList = f5Var.f52640l;
+                int i12 = f5Var.f52631a;
                 if (tLObject instanceof TL_stars.TL_payments_savedStarGifts) {
                     TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject;
                     MessagesController.getInstance(i12).putUsers(tL_payments_savedStarGifts.users, false);
@@ -46,7 +46,7 @@ public final class e5 implements Runnable {
                             i13++;
                         }
                         arrayList.add(i13, savedStarGift);
-                        NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(f5Var.f52598b), f5Var);
+                        NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(f5Var.f52632b), f5Var);
                         return;
                     }
                     return;
@@ -67,18 +67,18 @@ public final class e5 implements Runnable {
             case 4:
                 zg.q qVar = (zg.q) obj2;
                 org.telegram.ui.Components.b6 b6Var = (org.telegram.ui.Components.b6) obj;
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar.f54739n.getText());
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar.f54773n.getText());
                 org.telegram.ui.Components.b6[] b6VarArr = (org.telegram.ui.Components.b6[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), org.telegram.ui.Components.b6.class);
                 int length = b6VarArr.length;
                 while (i11 < length) {
                     org.telegram.ui.Components.b6 b6Var2 = b6VarArr[i11];
                     if (b6Var2 == b6Var) {
-                        int editTextSelectionEnd = qVar.f54739n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd = qVar.f54773n.getEditTextSelectionEnd();
                         int spanEnd = spannableStringBuilder.getSpanEnd(b6Var2);
                         int spanStart = spannableStringBuilder.getSpanStart(b6Var2);
-                        qVar.f54739n.getText().delete(spanStart, spanEnd);
+                        qVar.f54773n.getText().delete(spanStart, spanEnd);
                         int i14 = spanEnd - spanStart;
-                        zg.o oVar = qVar.f54739n;
+                        zg.o oVar = qVar.f54773n;
                         if (spanEnd <= editTextSelectionEnd) {
                             editTextSelectionEnd -= i14;
                         }
@@ -103,19 +103,19 @@ public final class e5 implements Runnable {
                 return;
             case 6:
                 org.telegram.ui.Components.b6 b6Var3 = (org.telegram.ui.Components.b6) obj;
-                zg.q qVar3 = ((zg.p) obj2).f54733e2;
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(qVar3.f54739n.getText());
+                zg.q qVar3 = ((zg.p) obj2).f54767e2;
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(qVar3.f54773n.getText());
                 org.telegram.ui.Components.b6[] b6VarArr2 = (org.telegram.ui.Components.b6[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), org.telegram.ui.Components.b6.class);
                 int length2 = b6VarArr2.length;
                 while (i11 < length2) {
                     org.telegram.ui.Components.b6 b6Var4 = b6VarArr2[i11];
                     if (b6Var4 == b6Var3) {
-                        int editTextSelectionEnd2 = qVar3.f54739n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd2 = qVar3.f54773n.getEditTextSelectionEnd();
                         int spanEnd2 = spannableStringBuilder2.getSpanEnd(b6Var4);
                         int spanStart2 = spannableStringBuilder2.getSpanStart(b6Var4);
-                        qVar3.f54739n.getText().delete(spanStart2, spanEnd2);
+                        qVar3.f54773n.getText().delete(spanStart2, spanEnd2);
                         int i15 = spanEnd2 - spanStart2;
-                        zg.o oVar2 = qVar3.f54739n;
+                        zg.o oVar2 = qVar3.f54773n;
                         if (spanEnd2 <= editTextSelectionEnd2) {
                             editTextSelectionEnd2 -= i15;
                         }
@@ -127,11 +127,11 @@ public final class e5 implements Runnable {
                 return;
             case 7:
                 zg.a0 a0Var = (zg.a0) obj2;
-                ml0 ml0Var = (ml0) obj;
-                a0Var.f54545l = true;
-                a0Var.f54536a.invalidate();
-                ml0Var.f28755b1 = false;
-                ml0Var.invalidate();
+                ll0 ll0Var = (ll0) obj;
+                a0Var.f54579l = true;
+                a0Var.f54570a.invalidate();
+                ll0Var.f28460b1 = false;
+                ll0Var.invalidate();
                 a0Var.c(true);
                 return;
             case 8:
@@ -145,8 +145,8 @@ public final class e5 implements Runnable {
                 zg.o0 o0Var = (zg.o0) obj2;
                 zg.l0 l0Var = (zg.l0) obj;
                 o0Var.getClass();
-                TLRPC.ReactionCount reactionCount = l0Var.f54667a;
-                org.telegram.ui.Cells.a0 a0Var2 = o0Var.f54731z;
+                TLRPC.ReactionCount reactionCount = l0Var.f54701a;
+                org.telegram.ui.Cells.a0 a0Var2 = o0Var.f54765z;
                 if (com.google.android.gms.internal.vision.e2.t(a0Var2)) {
                     ((org.telegram.ui.Cells.o4) a0Var2).f(reactionCount, true, 0.0f, 0.0f);
                 }

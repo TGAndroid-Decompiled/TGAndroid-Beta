@@ -10,17 +10,17 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class nb extends Dialog {
-    public final mb f29027a;
-    public final WindowManager.LayoutParams f29028b;
+    public final mb f29140a;
+    public final WindowManager.LayoutParams f29141b;
 
     public nb(Context context, ci.a9 a9Var) {
         super(context);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         mb mbVar = new mb(this, context);
-        this.f29027a = mbVar;
+        this.f29140a = mbVar;
         setContentView(mbVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f46856a;
+        WeakHashMap weakHashMap = r0.i0.f46890a;
         r0.a0.i(mbVar, sVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
@@ -34,7 +34,7 @@ public final class nb extends Dialog {
             window.setWindowAnimations(R.style.DialogNoAnimation);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f29028b = attributes;
+            this.f29141b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -46,7 +46,7 @@ public final class nb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20730a7, false)) <= 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20766a7, false)) <= 0.721f) {
                 z10 = false;
             }
             AndroidUtilities.setLightNavigationBar(this, z10);
@@ -55,7 +55,7 @@ public final class nb extends Dialog {
     }
 
     public static mb a(Context context) {
-        return new nb(context, null).f29027a;
+        return new nb(context, null).f29140a;
     }
 
     @Override

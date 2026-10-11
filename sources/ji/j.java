@@ -30,14 +30,14 @@ public final class j extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         animator.removeAllListeners();
         d1 d1Var = this.f14239a;
-        View view = d1Var.f47748a;
+        View view = d1Var.f47782a;
         n nVar = this.d;
         nVar.X(view);
-        View view2 = d1Var.f47748a;
+        View view2 = d1Var.f47782a;
         if (view2 instanceof u1) {
             u1 u1Var = (u1) view2;
-            if (u1Var.f23184fd) {
-                u1Var.f23184fd = false;
+            if (u1Var.f23220fd) {
+                u1Var.f23220fd = false;
                 u1Var.setVisibility(0);
             }
             MessageObject.GroupedMessages currentMessagesGroup = u1Var.getCurrentMessagesGroup();
@@ -45,7 +45,7 @@ public final class j extends AnimatorListenerAdapter {
                 currentMessagesGroup.transitionParams.reset();
             }
         }
-        if (nVar.f47818z.remove(d1Var)) {
+        if (nVar.f47852z.remove(d1Var)) {
             nVar.v(d1Var);
             nVar.G();
         }

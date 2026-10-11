@@ -34,10 +34,10 @@ import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.ea0;
-import org.telegram.ui.Components.ga0;
-import org.telegram.ui.Components.q80;
-import org.telegram.ui.Components.ts0;
+import org.telegram.ui.Components.da0;
+import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.ss0;
 import org.telegram.ui.TwoStepVerificationActivity;
 import tg.c1;
 import tg.m1;
@@ -51,15 +51,15 @@ import xh.v3;
 import yh.n5;
 import yh.s3;
 public final class h implements Runnable {
-    public final int f45943a;
-    public final Object f45944b;
-    public final Object f45945c;
+    public final int f45977a;
+    public final Object f45978b;
+    public final Object f45979c;
     public final Object d;
 
     public h(Object obj, Object obj2, Object obj3, int i10) {
-        this.f45943a = i10;
-        this.f45944b = obj;
-        this.f45945c = obj2;
+        this.f45977a = i10;
+        this.f45978b = obj;
+        this.f45979c = obj2;
         this.d = obj3;
     }
 
@@ -79,19 +79,19 @@ public final class h implements Runnable {
         String str;
         ?? r32;
         boolean z19 = true;
-        switch (this.f45943a) {
+        switch (this.f45977a) {
             case 0:
-                k kVar = (k) this.f45944b;
-                WebView webView = (WebView) this.f45945c;
+                k kVar = (k) this.f45978b;
+                WebView webView = (WebView) this.f45979c;
                 b5.h hVar = (b5.h) this.d;
-                synchronized (kVar.f45952a) {
-                    if (!kVar.f45970u && kVar.f45964o == webView && kVar.f45965p == hVar && !kVar.f45967r) {
-                        if (kVar.f45968s) {
+                synchronized (kVar.f45986a) {
+                    if (!kVar.f46004u && kVar.f45998o == webView && kVar.f45999p == hVar && !kVar.f46001r) {
+                        if (kVar.f46002s) {
                             FileLog.e("WEB proxy: Base64 bridge installation timed out again; transport stopped");
                             kVar.o();
                             return;
                         }
-                        kVar.f45968s = true;
+                        kVar.f46002s = true;
                         FileLog.e("WEB proxy: Base64 bridge installation timed out; retrying once");
                         kVar.f();
                         return;
@@ -99,11 +99,11 @@ public final class h implements Runnable {
                     return;
                 }
             case 1:
-                ((w0) this.f45944b).run(new Pair((HashMap) this.f45945c, (ArrayList) this.d));
+                ((w0) this.f45978b).run(new Pair((HashMap) this.f45979c, (ArrayList) this.d));
                 return;
             case 2:
-                TLObject tLObject = (TLObject) this.f45944b;
-                MessagesController messagesController = (MessagesController) this.f45945c;
+                TLObject tLObject = (TLObject) this.f45978b;
+                MessagesController messagesController = (MessagesController) this.f45979c;
                 w0 w0Var = (w0) this.d;
                 if (tLObject instanceof TLRPC.TL_channels_channelParticipants) {
                     TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
@@ -122,8 +122,8 @@ public final class h implements Runnable {
                 }
                 return;
             case 3:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f45944b;
-                Utilities.Callback callback = (Utilities.Callback) this.f45945c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f45978b;
+                Utilities.Callback callback = (Utilities.Callback) this.f45979c;
                 Utilities.Callback callback2 = (Utilities.Callback) this.d;
                 if (tL_error != null) {
                     callback.run(tL_error);
@@ -133,14 +133,14 @@ public final class h implements Runnable {
                     return;
                 }
             case 4:
-                ((q1) this.f45944b).run(new Pair((HashMap) this.f45945c, (ArrayList) this.d));
+                ((q1) this.f45978b).run(new Pair((HashMap) this.f45979c, (ArrayList) this.d));
                 return;
             case 5:
-                vf.d dVar = (vf.d) this.f45944b;
-                TLObject tLObject2 = (TLObject) this.f45945c;
+                vf.d dVar = (vf.d) this.f45978b;
+                TLObject tLObject2 = (TLObject) this.f45979c;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.d;
-                String str2 = dVar.f49648b;
-                int i11 = dVar.f49647a;
+                String str2 = dVar.f49682b;
+                int i11 = dVar.f49681a;
                 if (tLObject2 != null) {
                     MediaDataController.getInstance(i11).onRingtoneUploaded(str2, (TLRPC.Document) tLObject2, false);
                 } else {
@@ -153,20 +153,20 @@ public final class h implements Runnable {
                 dVar.a();
                 return;
             case 6:
-                n nVar = (n) this.f45944b;
-                ga0 ga0Var = (ga0) this.f45945c;
+                n nVar = (n) this.f45978b;
+                fa0 fa0Var = (fa0) this.f45979c;
                 ClickableSpan clickableSpan = (ClickableSpan) this.d;
-                ea0 ea0Var = nVar.G;
-                if (ea0Var != null && nVar.H == ga0Var) {
-                    ea0Var.a(clickableSpan);
+                da0 da0Var = nVar.G;
+                if (da0Var != null && nVar.H == fa0Var) {
+                    da0Var.a(clickableSpan);
                     nVar.H = null;
-                    nVar.f49826x.d(true);
+                    nVar.f49860x.d(true);
                     return;
                 }
                 return;
             case 7:
-                u4.f fVar = (u4.f) this.f45944b;
-                Executor executor = (Executor) this.f45945c;
+                u4.f fVar = (u4.f) this.f45978b;
+                Executor executor = (Executor) this.f45979c;
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.d;
                 try {
                     ((Task) fVar.call()).continueWith(executor, new w(2, taskCompletionSource));
@@ -176,64 +176,64 @@ public final class h implements Runnable {
                     return;
                 }
             case 8:
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f45945c;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f45979c;
                 m2 m2Var = (m2) this.d;
-                ((ts0) this.f45944b).H = -1;
+                ((ss0) this.f45978b).H = -1;
                 if (tL_error3 != null) {
                     ad.a0(m2Var).f0(tL_error3, false);
                     return;
                 }
                 return;
             case 9:
-                o2 o2Var = (o2) this.f45944b;
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f45945c;
-                ts0 ts0Var = o2Var.f51522a;
-                ts0Var.f51601e.k(o2Var.f51525e.d, savedStarGift);
-                ((q80) this.d).u();
-                ts0Var.n();
-                TL_stars.TL_starGiftCollection c10 = ts0Var.f51601e.c(o2Var.f51525e.d);
+                o2 o2Var = (o2) this.f45978b;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f45979c;
+                ss0 ss0Var = o2Var.f51556a;
+                ss0Var.f51635e.k(o2Var.f51559e.d, savedStarGift);
+                ((p80) this.d).u();
+                ss0Var.n();
+                TL_stars.TL_starGiftCollection c10 = ss0Var.f51635e.c(o2Var.f51559e.d);
                 if (c10 != null) {
-                    ad.a0(ts0Var.f51598a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, s3.E1(savedStarGift.gift), c10.title))).j();
+                    ad.a0(ss0Var.f51632a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, s3.E1(savedStarGift.gift), c10.title))).j();
                     return;
                 }
                 return;
             case 10:
-                o2 o2Var2 = (o2) this.f45944b;
-                TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) this.f45945c;
+                o2 o2Var2 = (o2) this.f45978b;
+                TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) this.f45979c;
                 j1 j1Var = (j1) this.d;
                 if (!o2Var2.d && savedStarGift2.pinned_to_top && !savedStarGift2.unsaved) {
                     z10 = true;
                     j1Var.c(false, true);
-                    o2Var2.f51525e.m(savedStarGift2, false, false);
+                    o2Var2.f51559e.m(savedStarGift2, false, false);
                 } else {
                     z10 = true;
                 }
                 savedStarGift2.unsaved ^= z10;
                 j1Var.h(savedStarGift2, z10, o2Var2.d);
-                o2Var2.f51522a.f51601e.m(savedStarGift2, savedStarGift2.unsaved);
+                o2Var2.f51556a.f51635e.m(savedStarGift2, savedStarGift2.unsaved);
                 TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
-                savestargift.stargift = o2Var2.f51525e.g(savedStarGift2);
+                savestargift.stargift = o2Var2.f51559e.g(savedStarGift2);
                 savestargift.unsave = savedStarGift2.unsaved;
-                ConnectionsManager.getInstance(o2Var2.f51523b).sendRequest(savestargift, null);
+                ConnectionsManager.getInstance(o2Var2.f51557b).sendRequest(savestargift, null);
                 return;
             case 11:
-                v3 v3Var = (v3) this.f45944b;
-                TLObject tLObject3 = (TLObject) this.f45945c;
+                v3 v3Var = (v3) this.f45978b;
+                TLObject tLObject3 = (TLObject) this.f45979c;
                 TL_stars.getResaleStarGifts getresalestargifts = (TL_stars.getResaleStarGifts) this.d;
-                HashMap hashMap = v3Var.f51649m;
-                HashMap hashMap2 = v3Var.f51651o;
-                HashMap hashMap3 = v3Var.f51650n;
+                HashMap hashMap = v3Var.f51683m;
+                HashMap hashMap2 = v3Var.f51685o;
+                HashMap hashMap3 = v3Var.f51684n;
                 ArrayList arrayList2 = v3Var.h;
-                ArrayList arrayList3 = v3Var.f51644g;
-                ArrayList arrayList4 = v3Var.f51643f;
-                int i12 = v3Var.f51639a;
+                ArrayList arrayList3 = v3Var.f51678g;
+                ArrayList arrayList4 = v3Var.f51677f;
+                int i12 = v3Var.f51673a;
                 ArrayList arrayList5 = v3Var.d;
                 v3Var.v = -1;
                 if (tLObject3 instanceof TL_stars.resaleStarGifts) {
                     TL_stars.resaleStarGifts resalestargifts = (TL_stars.resaleStarGifts) tLObject3;
                     MessagesController.getInstance(i12).putUsers(resalestargifts.users, false);
                     MessagesController.getInstance(i12).putChats(resalestargifts.chats, false);
-                    v3Var.f51642e = resalestargifts.count;
+                    v3Var.f51676e = resalestargifts.count;
                     if (TextUtils.isEmpty(getresalestargifts.offset)) {
                         arrayList5.clear();
                         z11 = true;
@@ -251,14 +251,14 @@ public final class h implements Runnable {
                             arrayList5.add((TL_stars.TL_starGiftUnique) starGift2);
                         }
                     }
-                    if (arrayList5.size() < v3Var.f51642e && !TextUtils.isEmpty(resalestargifts.next_offset)) {
+                    if (arrayList5.size() < v3Var.f51676e && !TextUtils.isEmpty(resalestargifts.next_offset)) {
                         z12 = false;
                     } else {
                         z12 = true;
                     }
-                    v3Var.f51657u = z12;
-                    v3Var.f51653q = resalestargifts.next_offset;
-                    v3Var.f51656t = false;
+                    v3Var.f51691u = z12;
+                    v3Var.f51687q = resalestargifts.next_offset;
+                    v3Var.f51690t = false;
                     ArrayList<TL_stars.StarGiftAttribute> arrayList7 = resalestargifts.attributes;
                     if (arrayList7 != null && !arrayList7.isEmpty()) {
                         arrayList4.clear();
@@ -267,7 +267,7 @@ public final class h implements Runnable {
                         arrayList4.addAll(n5.m(resalestargifts.attributes, TL_stars.starGiftAttributeModel.class));
                         arrayList3.addAll(n5.m(resalestargifts.attributes, TL_stars.starGiftAttributeBackdrop.class));
                         arrayList2.addAll(n5.m(resalestargifts.attributes, TL_stars.starGiftAttributePattern.class));
-                        v3Var.f51645i = resalestargifts.attributes_hash;
+                        v3Var.f51679i = resalestargifts.attributes_hash;
                     }
                     if (!resalestargifts.counters.isEmpty()) {
                         hashMap3.clear();
@@ -290,7 +290,7 @@ public final class h implements Runnable {
                             }
                         }
                     }
-                    Utilities.Callback callback3 = v3Var.f51641c;
+                    Utilities.Callback callback3 = v3Var.f51675c;
                     if (callback3 != null) {
                         callback3.run(Boolean.valueOf(z11));
                         return;
@@ -299,8 +299,8 @@ public final class h implements Runnable {
                 }
                 return;
             case 12:
-                yh.g gVar = (yh.g) this.f45944b;
-                TLObject tLObject4 = (TLObject) this.f45945c;
+                yh.g gVar = (yh.g) this.f45978b;
+                TLObject tLObject4 = (TLObject) this.f45979c;
                 Context context = (Context) this.d;
                 if (tLObject4 instanceof TLRPC.TL_payments_starsRevenueAdsAccountUrl) {
                     of.f.s(context, ((TLRPC.TL_payments_starsRevenueAdsAccountUrl) tLObject4).url);
@@ -308,51 +308,51 @@ public final class h implements Runnable {
                 AndroidUtilities.runOnUIThread(new yh.b(gVar, 5), 1000L);
                 return;
             case 13:
-                yh.g.a0((yh.g) this.f45944b, (TLObject) this.f45945c, (TLRPC.TL_error) this.d);
+                yh.g.a0((yh.g) this.f45978b, (TLObject) this.f45979c, (TLRPC.TL_error) this.d);
                 return;
             case 14:
-                s3 s3Var = (s3) this.f45944b;
-                Long l4 = (Long) this.f45945c;
+                s3 s3Var = (s3) this.f45978b;
+                Long l4 = (Long) this.f45979c;
                 s3Var.a2(l4.longValue(), new d5(s3Var, l4, (m1[]) this.d, 13));
                 return;
             case 15:
-                s3.k0((s3) this.f45944b, (TLObject) this.f45945c, (MessageObject) this.d);
+                s3.k0((s3) this.f45978b, (TLObject) this.f45979c, (MessageObject) this.d);
                 return;
             case 16:
-                s3 s3Var2 = (s3) this.f45944b;
+                s3 s3Var2 = (s3) this.f45978b;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.d;
                 s3Var2.getClass();
-                ((of.e) this.f45945c).c(false);
+                ((of.e) this.f45979c).c(false);
                 tL_starGiftUnique.flags &= -17;
                 tL_starGiftUnique.resale_ton_only = false;
                 tL_starGiftUnique.resell_amount = null;
-                s3Var2.f53256f0.setResellPrice(zf.a.i(0L, zf.b.f54530a));
-                d2 d2Var = s3Var2.f53255e1;
+                s3Var2.f53290f0.setResellPrice(zf.a.i(0L, zf.b.f54564a));
+                d2 d2Var = s3Var2.f53289e1;
                 if (d2Var != null) {
                     d2Var.run();
                 }
                 hg.c.q(R.string.Gift2ResaleDisable, new Object[]{s3Var2.D1()}, s3Var2.getBulletinFactory(), R.raw.contact_check, 36);
                 return;
             case 17:
-                s3 s3Var3 = (s3) this.f45944b;
+                s3 s3Var3 = (s3) this.f45978b;
                 s3Var3.getClass();
-                ((of.e) this.f45945c).c(false);
+                ((of.e) this.f45979c).c(false);
                 s3Var3.getBulletinFactory().f0((TLRPC.TL_error) this.d, false);
                 return;
             case 18:
-                ((m1[]) this.f45944b)[0].dismiss();
-                ((of.e) this.f45945c).c(false);
+                ((m1[]) this.f45978b)[0].dismiss();
+                ((of.e) this.f45979c).c(false);
                 s3.e2((TwoStepVerificationActivity) this.d);
                 return;
             case 19:
-                s3.U((s3) this.f45944b, (a2) this.f45945c, (MessageObject) this.d);
+                s3.U((s3) this.f45978b, (a2) this.f45979c, (MessageObject) this.d);
                 return;
             case 20:
-                s3.W((s3) this.f45944b, (TL_stars.TL_starGiftUnique) this.f45945c, (String) this.d);
+                s3.W((s3) this.f45978b, (TL_stars.TL_starGiftUnique) this.f45979c, (String) this.d);
                 return;
             case 21:
-                TLObject tLObject5 = (TLObject) this.f45944b;
-                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f45945c;
+                TLObject tLObject5 = (TLObject) this.f45978b;
+                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f45979c;
                 Utilities.Callback callback4 = (Utilities.Callback) this.d;
                 if (!(tLObject5 instanceof TLRPC.TL_payments_paymentFormStarGift)) {
                     String str3 = "NO_PAYMENT_FORM";
@@ -366,15 +366,15 @@ public final class h implements Runnable {
                 callback4.run((TLRPC.TL_payments_paymentFormStarGift) tLObject5);
                 return;
             case 22:
-                n5 n5Var = (n5) this.f45944b;
-                TLObject tLObject6 = (TLObject) this.f45945c;
+                n5 n5Var = (n5) this.f45978b;
+                TLObject tLObject6 = (TLObject) this.f45979c;
                 Runnable runnable = (Runnable) this.d;
                 ArrayList arrayList9 = n5Var.v;
-                boolean[] zArr = n5Var.f53012r;
-                ArrayList[] arrayListArr = n5Var.f53011q;
-                int i15 = n5Var.f52997a;
-                boolean z20 = !n5Var.f53000e;
-                n5Var.f52999c = System.currentTimeMillis();
+                boolean[] zArr = n5Var.f53046r;
+                ArrayList[] arrayListArr = n5Var.f53045q;
+                int i15 = n5Var.f53031a;
+                boolean z20 = !n5Var.f53034e;
+                n5Var.f53033c = System.currentTimeMillis();
                 if (tLObject6 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject6;
                     MessagesController.getInstance(i15).putUsers(starsStatus.users, false);
@@ -406,7 +406,7 @@ public final class h implements Runnable {
                                 z17 = z13;
                             }
                             zArr[i17] = z17;
-                            boolean[] zArr2 = n5Var.f53015u;
+                            boolean[] zArr2 = n5Var.f53049u;
                             if ((starsStatus.flags & 1) == 0) {
                                 z18 = z13;
                             } else {
@@ -414,9 +414,9 @@ public final class h implements Runnable {
                             }
                             zArr2[i17] = z18;
                             if (z18) {
-                                n5Var.f53014t[i17] = false;
+                                n5Var.f53048t[i17] = false;
                             }
-                            String[] strArr = n5Var.f53013s;
+                            String[] strArr = n5Var.f53047s;
                             if (zArr2[i17]) {
                                 str = null;
                             } else {
@@ -432,32 +432,32 @@ public final class h implements Runnable {
                     }
                     if (arrayList9.isEmpty()) {
                         arrayList9.addAll(starsStatus.subscriptions);
-                        n5Var.f53017x = false;
-                        n5Var.f53016w = starsStatus.subscriptions_next_offset;
+                        n5Var.f53051x = false;
+                        n5Var.f53050w = starsStatus.subscriptions_next_offset;
                         if ((starsStatus.flags & 4) == 0) {
                             z16 = z13;
                         } else {
                             z16 = false;
                         }
-                        n5Var.f53018y = z16;
+                        n5Var.f53052y = z16;
                         z15 = z13;
                     } else {
                         z15 = false;
                     }
-                    long j10 = n5Var.f53001f.amount;
+                    long j10 = n5Var.f53035f.amount;
                     TL_stars.StarsAmount starsAmount = starsStatus.balance;
                     if (j10 != starsAmount.amount) {
                         z20 = z13;
                     }
-                    n5Var.f53001f = starsAmount;
-                    n5Var.f53002g = j3;
+                    n5Var.f53035f = starsAmount;
+                    n5Var.f53036g = j3;
                 } else {
                     z13 = true;
                     z14 = false;
                     z15 = false;
                 }
                 n5Var.d = false;
-                n5Var.f53000e = z13;
+                n5Var.f53034e = z13;
                 if (z20) {
                     NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starBalanceUpdated, new Object[0]);
                 }
@@ -473,10 +473,10 @@ public final class h implements Runnable {
                 }
                 return;
             case 23:
-                n5 n5Var2 = (n5) this.f45944b;
+                n5 n5Var2 = (n5) this.f45978b;
                 Runnable runnable2 = (Runnable) this.d;
                 n5Var2.getClass();
-                Iterator it = ((HashSet) this.f45945c).iterator();
+                Iterator it = ((HashSet) this.f45979c).iterator();
                 while (it.hasNext()) {
                     Integer num = (Integer) it.next();
                     num.intValue();
@@ -486,17 +486,17 @@ public final class h implements Runnable {
                 runnable2.run();
                 return;
             default:
-                ((boolean[]) this.f45944b)[0] = false;
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f45945c);
+                ((boolean[]) this.f45978b)[0] = false;
+                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f45979c);
                 ((e3[]) this.d)[0].dismiss();
                 return;
         }
     }
 
     public h(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f45943a = i10;
-        this.f45944b = obj2;
-        this.f45945c = obj3;
+        this.f45977a = i10;
+        this.f45978b = obj2;
+        this.f45979c = obj3;
         this.d = obj4;
     }
 }

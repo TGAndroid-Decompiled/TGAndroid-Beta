@@ -1,4 +1,51 @@
 package org.telegram.ui.Components;
-public interface xy0 {
-    void a();
+
+import android.animation.ValueAnimator;
+import java.util.ArrayList;
+public final class xy0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33088a;
+    public final com.google.firebase.messaging.n f33089b;
+    public final int f33090c;
+
+    public xy0(com.google.firebase.messaging.n nVar, int i10, int i11) {
+        this.f33088a = i11;
+        this.f33089b = nVar;
+        this.f33090c = i10;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33088a) {
+            case 0:
+                Float f7 = (Float) valueAnimator.getAnimatedValue();
+                f7.getClass();
+                ((ArrayList) this.f33089b.d).set(this.f33090c, f7);
+                return;
+            case 1:
+                Float f10 = (Float) valueAnimator.getAnimatedValue();
+                f10.getClass();
+                ((ArrayList) this.f33089b.f7956e).set(this.f33090c, f10);
+                return;
+            case 2:
+                Float f11 = (Float) valueAnimator.getAnimatedValue();
+                f11.getClass();
+                ((ArrayList) this.f33089b.f7957f).set(this.f33090c, f11);
+                return;
+            case 3:
+                Float f12 = (Float) valueAnimator.getAnimatedValue();
+                f12.getClass();
+                ((ArrayList) this.f33089b.d).set(this.f33090c, f12);
+                return;
+            case 4:
+                Float f13 = (Float) valueAnimator.getAnimatedValue();
+                f13.getClass();
+                ((ArrayList) this.f33089b.f7956e).set(this.f33090c, f13);
+                return;
+            default:
+                Float f14 = (Float) valueAnimator.getAnimatedValue();
+                f14.getClass();
+                ((ArrayList) this.f33089b.f7957f).set(this.f33090c, f14);
+                return;
+        }
+    }
 }

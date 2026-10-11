@@ -28,8 +28,8 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.dq;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.n11;
-import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.m11;
+import org.telegram.ui.Components.n61;
 import w7.x5;
 public final class y1 extends FrameLayout {
     public final j9 f11451a;
@@ -61,7 +61,7 @@ public final class y1 extends FrameLayout {
         this.f11453c = nVar;
         nVar.setLines(2);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
-        nVar.setTextColor(h6.w0(h6.f21189z6, d6Var));
+        nVar.setTextColor(h6.w0(h6.f21225z6, d6Var));
         nVar.setTextSize(1, 14.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -88,7 +88,7 @@ public final class y1 extends FrameLayout {
         }
         dq dqVar = new dq(getContext(), 21, d6Var);
         this.d = dqVar;
-        dqVar.b(-1, h6.f20786d6, h6.f20915k7);
+        dqVar.b(-1, h6.f20822d6, h6.f20951k7);
         dqVar.setDrawUnchecked(false);
         dqVar.setDrawBackgroundAsArc(3);
         addView(dqVar, x5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -116,12 +116,12 @@ public final class y1 extends FrameLayout {
             str3 = "/".concat(str3);
         }
         spannableStringBuilder.append((CharSequence) "/").append((CharSequence) b2Var.f11174b);
-        spannableStringBuilder.setSpan(new o61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new n61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         int i10 = h6.G6;
         d6 d6Var = this.f11455f;
         spannableStringBuilder.setSpan(new ForegroundColorSpan(h6.w0(i10, d6Var)), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(h6.w0(h6.f20989o6, d6Var));
+            ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(h6.w0(h6.f21025o6, d6Var));
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -150,7 +150,7 @@ public final class y1 extends FrameLayout {
             int i11 = x1.d;
             SpannableString spannableString = new SpannableString("+");
             x1 x1Var = new x1(b2Var.a() - 1);
-            this.f11456n[0] = (int) (((n11) x1Var.f11445c).f28902c + AndroidUtilities.dp(10.0f));
+            this.f11456n[0] = (int) (((m11) x1Var.f11445c).f28678c + AndroidUtilities.dp(10.0f));
             spannableString.setSpan(x1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, nVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -228,7 +228,7 @@ public final class y1 extends FrameLayout {
         if (this.f11457r) {
             Paint U0 = h6.U0("paintDivider", this.f11455f);
             if (U0 == null) {
-                U0 = h6.f20908k0;
+                U0 = h6.f20944k0;
             }
             Paint paint = U0;
             float f11 = 64.0f;

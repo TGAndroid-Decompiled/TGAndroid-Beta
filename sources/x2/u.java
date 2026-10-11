@@ -3,9 +3,9 @@ package x2;
 import b2.q1;
 import i2.p0;
 public abstract class u {
-    public p0 f50629a;
-    public y2.c f50630b;
-    public t f50631c;
+    public p0 f50663a;
+    public y2.c f50664b;
+    public t f50665c;
 
     public abstract void a();
 

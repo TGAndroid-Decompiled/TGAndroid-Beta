@@ -7,25 +7,25 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class ja implements TextWatcher {
-    public final ka f38955a;
+    public final ka f38989a;
 
     public ja(ka kaVar) {
-        this.f38955a = kaVar;
+        this.f38989a = kaVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i10;
-        qa qaVar = this.f38955a.f39244c;
-        if (qaVar.f41084r.startsWith("@")) {
-            qaVar.f41084r = qaVar.f41084r.substring(1);
+        qa qaVar = this.f38989a.f39278c;
+        if (qaVar.f41118r.startsWith("@")) {
+            qaVar.f41118r = qaVar.f41118r.substring(1);
         }
-        if (qaVar.f41084r.length() > 0) {
+        if (qaVar.f41118r.length() > 0) {
             StringBuilder sb2 = new StringBuilder("https://");
             i10 = ((org.telegram.ui.ActionBar.m2) qaVar).currentAccount;
             sb2.append(MessagesController.getInstance(i10).linkPrefix);
             sb2.append("/");
-            sb2.append(qaVar.f41084r);
+            sb2.append(qaVar.f41118r);
             String sb3 = sb2.toString();
             String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, sb3);
             int indexOf = formatString.indexOf(sb3);
@@ -39,42 +39,42 @@ public final class ja implements TextWatcher {
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         String charSequence2;
-        ka kaVar = this.f38955a;
-        qa qaVar = kaVar.f39244c;
-        String str = qaVar.f41084r;
+        ka kaVar = this.f38989a;
+        qa qaVar = kaVar.f39278c;
+        String str = qaVar.f41118r;
         if (charSequence == null) {
             charSequence2 = "";
         } else {
             charSequence2 = charSequence.toString();
         }
-        qaVar.f41084r = charSequence2;
-        qa qaVar2 = kaVar.f39244c;
+        qaVar.f41118r = charSequence2;
+        qa qaVar2 = kaVar.f39278c;
         na naVar = qaVar2.E;
         if (naVar != null && str != null) {
-            naVar.b(qaVar2.f41084r);
+            naVar.b(qaVar2.f41118r);
         }
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         String charSequence2;
-        ka kaVar = this.f38955a;
-        qa qaVar = kaVar.f39244c;
-        String str = qaVar.f41084r;
+        ka kaVar = this.f38989a;
+        qa qaVar = kaVar.f39278c;
+        String str = qaVar.f41118r;
         if (charSequence == null) {
             charSequence2 = "";
         } else {
             charSequence2 = charSequence.toString();
         }
-        qaVar.f41084r = charSequence2;
-        qa qaVar2 = kaVar.f39244c;
+        qaVar.f41118r = charSequence2;
+        qa qaVar2 = kaVar.f39278c;
         na naVar = qaVar2.E;
         if (naVar != null && str != null) {
-            naVar.b(qaVar2.f41084r);
+            naVar.b(qaVar2.f41118r);
         }
-        if (qaVar.f41083n) {
+        if (qaVar.f41117n) {
             return;
         }
-        qaVar.d0(qaVar.f41084r);
+        qaVar.d0(qaVar.f41118r);
     }
 }

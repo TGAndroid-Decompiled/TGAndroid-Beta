@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class a91 extends org.telegram.ui.Components.or0 {
-    public final h91 f35943b1;
+public final class a91 extends org.telegram.ui.Components.nr0 {
+    public final h91 f35977b1;
 
     public a91(h91 h91Var, Activity activity, String str) {
         super(activity, null, str, false, null, false, null);
-        this.f35943b1 = h91Var;
+        this.f35977b1 = h91Var;
     }
 
     @Override

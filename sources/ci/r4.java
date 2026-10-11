@@ -54,7 +54,7 @@ public final class r4 extends View {
         this.E = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
         q6Var.setCallback(this);
         q6Var.u(-1);
-        q6Var.f30019b = 17;
+        q6Var.f30134b = 17;
         q6Var.w(AndroidUtilities.dp(16.0f));
         q6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         q6Var.M = AndroidUtilities.displaySize.x;
@@ -335,14 +335,14 @@ public final class r4 extends View {
         if (action == 0) {
             bdVar.c(z10);
         } else if (motionEvent.getAction() == 1) {
-            if (bdVar.f24913i && z10 && (onClickListener = this.h) != null) {
+            if (bdVar.f24981i && z10 && (onClickListener = this.h) != null) {
                 onClickListener.onClick(this);
             }
             bdVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             bdVar.c(false);
         }
-        if (bdVar.f24913i || super.onTouchEvent(motionEvent)) {
+        if (bdVar.f24981i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

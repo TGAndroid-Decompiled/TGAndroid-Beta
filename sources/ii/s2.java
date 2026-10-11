@@ -2,10 +2,8 @@ package ii;
 
 import android.app.Activity;
 import android.net.Uri;
-import android.util.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
@@ -22,7 +20,7 @@ public final class s2 implements Runnable {
     public final Object h;
 
     public s2(Activity activity, int i10, TLRPC.InputGroupCall inputGroupCall, boolean z10, TLRPC.GroupCall groupCall, HashSet hashSet) {
-        this.f12672a = 5;
+        this.f12672a = 4;
         this.d = activity;
         this.f12673b = i10;
         this.f12675e = inputGroupCall;
@@ -56,18 +54,8 @@ public final class s2 implements Runnable {
         this.f12674c = z10;
     }
 
-    public s2(ki.r rVar, Size size, int i10, boolean z10, RuntimeException[] runtimeExceptionArr, CountDownLatch countDownLatch) {
-        this.f12672a = 1;
-        this.d = rVar;
-        this.f12675e = size;
-        this.f12673b = i10;
-        this.f12674c = z10;
-        this.f12676f = runtimeExceptionArr;
-        this.h = countDownLatch;
-    }
-
     public s2(ContactsController contactsController, int i10, ArrayList arrayList, ArrayList arrayList2, a0.i iVar, boolean z10) {
-        this.f12672a = 2;
+        this.f12672a = 1;
         this.d = contactsController;
         this.f12673b = i10;
         this.f12675e = arrayList;
@@ -77,7 +65,7 @@ public final class s2 implements Runnable {
     }
 
     public s2(ar0 ar0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
-        this.f12672a = 6;
+        this.f12672a = 5;
         this.d = ar0Var;
         this.f12676f = str;
         this.f12673b = i10;
@@ -87,7 +75,7 @@ public final class s2 implements Runnable {
     }
 
     public s2(org.telegram.ui.Wallet.l0 l0Var, boolean z10, org.telegram.ui.Wallet.i0 i0Var, TL_wallet.proofChallenge proofchallenge, int i10, Utilities.Callback2 callback2) {
-        this.f12672a = 7;
+        this.f12672a = 6;
         this.d = l0Var;
         this.f12674c = z10;
         this.f12675e = i0Var;

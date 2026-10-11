@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class hp extends org.telegram.ui.Components.sm0 {
+public final class hp extends org.telegram.ui.Components.rm0 {
     public static final int Z2 = 0;
     public final gp V2;
     public boolean W2;
@@ -43,7 +43,7 @@ public final class hp extends org.telegram.ui.Components.sm0 {
             }
         }
         if (i10 < i11) {
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20786d6, this.f30807n2);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20822d6, this.f30570n2);
             Paint paint = this.X2;
             paint.setColor(w02);
             canvas2 = canvas;
@@ -117,7 +117,7 @@ public final class hp extends org.telegram.ui.Components.sm0 {
                                 naVar.setLoading(ipVar.P.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = naVar.v;
                                 if (tL_username3 != null) {
-                                    naVar.a(tL_username3, naVar.f40175w, true, naVar.f40176x);
+                                    naVar.a(tL_username3, naVar.f40209w, true, naVar.f40210x);
                                 }
                             }
                         } else {
@@ -127,7 +127,7 @@ public final class hp extends org.telegram.ui.Components.sm0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         gp gpVar = this.V2;
-                        ArrayList arrayList2 = gpVar.f38148c.Y2.N;
+                        ArrayList arrayList2 = gpVar.f38182c.Y2.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             gpVar.p(i12, i13);

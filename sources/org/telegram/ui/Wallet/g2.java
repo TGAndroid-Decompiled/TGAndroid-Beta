@@ -13,21 +13,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.is;
 public final class g2 extends FrameLayout {
-    public final org.telegram.ui.Components.g6 f34973a;
-    public final Paint f34974b;
-    public final Path f34975c;
+    public final org.telegram.ui.Components.g6 f35007a;
+    public final Paint f35008b;
+    public final Path f35009c;
     public float d;
-    public final j2 f34976e;
+    public final j2 f35010e;
 
     public g2(j2 j2Var, Context context) {
         super(context);
-        this.f34976e = j2Var;
-        this.f34973a = new org.telegram.ui.Components.g6(this, 250L, is.h);
+        this.f35010e = j2Var;
+        this.f35007a = new org.telegram.ui.Components.g6(this, 250L, is.h);
         Paint paint = new Paint(1);
-        this.f34974b = paint;
-        this.f34975c = new Path();
+        this.f35008b = paint;
+        this.f35009c = new Path();
         setWillNotDraw(false);
-        paint.setColor(j2Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20857h5));
+        paint.setColor(j2Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20893h5));
     }
 
     @Override
@@ -38,16 +38,16 @@ public final class g2 extends FrameLayout {
         ViewGroup viewGroup;
         int i12;
         float f7;
-        j2 j2Var = this.f34976e;
-        Integer num = j2Var.f35104f;
+        j2 j2Var = this.f35010e;
+        Integer num = j2Var.f35138f;
         if (num != null) {
             themedColor = num.intValue();
         } else {
-            themedColor = j2Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20857h5);
+            themedColor = j2Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20893h5);
         }
-        Paint paint = this.f34974b;
+        Paint paint = this.f35008b;
         paint.setColor(themedColor);
-        View[] viewPages = j2Var.f35101b.getViewPages();
+        View[] viewPages = j2Var.f35135b.getViewPages();
         float f10 = 0.0f;
         this.d = 0.0f;
         for (View view : viewPages) {
@@ -57,7 +57,7 @@ public final class g2 extends FrameLayout {
                 boolean z10 = view instanceof h2;
                 if (z10) {
                     i2 i2Var = (i2) ((h2) view);
-                    f7 = Math.max(0.0f, i2Var.getHeight() - i2Var.f35076a.getMeasuredHeight());
+                    f7 = Math.max(0.0f, i2Var.getHeight() - i2Var.f35110a.getMeasuredHeight());
                 } else {
                     f7 = 0.0f;
                 }
@@ -70,7 +70,7 @@ public final class g2 extends FrameLayout {
         if (this.d <= AndroidUtilities.statusBarHeight) {
             f10 = 1.0f;
         }
-        float d = this.f34973a.d(f10, false);
+        float d = this.f35007a.d(f10, false);
         this.d = Math.max(AndroidUtilities.statusBarHeight, this.d) - (AndroidUtilities.statusBarHeight * d);
         RectF rectF = AndroidUtilities.rectTmp;
         i10 = ((org.telegram.ui.ActionBar.e3) j2Var).backgroundPaddingLeft;
@@ -87,7 +87,7 @@ public final class g2 extends FrameLayout {
             j2Var.topBulletinContainer.setTranslationY(Math.max(y3 + i12, j2Var.topBulletinContainer.getHeight() + (AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight)) - j2Var.topBulletinContainer.getBottom());
         }
         canvas.save();
-        Path path = this.f34975c;
+        Path path = this.f35009c;
         path.rewind();
         path.addRoundRect(rectF, lerp, lerp, Path.Direction.CW);
         canvas.clipPath(path);
@@ -98,7 +98,7 @@ public final class g2 extends FrameLayout {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0 && motionEvent.getY() < this.d) {
-            this.f34976e.dismiss();
+            this.f35010e.dismiss();
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -109,15 +109,15 @@ public final class g2 extends FrameLayout {
         int i12;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        j2 j2Var = this.f34976e;
-        FrameLayout frameLayout = j2Var.f35103e;
+        j2 j2Var = this.f35010e;
+        FrameLayout frameLayout = j2Var.f35137e;
         if (frameLayout != null) {
             frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-            i12 = j2Var.f35103e.getMeasuredHeight();
+            i12 = j2Var.f35137e.getMeasuredHeight();
         } else {
             i12 = 0;
         }
-        j2Var.f35101b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - i12), 1073741824));
+        j2Var.f35135b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - i12), 1073741824));
         setMeasuredDimension(size, size2);
     }
 }

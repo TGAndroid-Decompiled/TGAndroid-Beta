@@ -10,19 +10,19 @@ import android.view.ViewParent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class q5 extends FrameLayout {
-    public final Matrix f35473a;
-    public final float[] f35474b;
-    public final FrameLayout f35475c;
+    public final Matrix f35507a;
+    public final float[] f35508b;
+    public final FrameLayout f35509c;
     public final ai.j2 d;
-    public boolean f35476e;
-    public boolean f35477f;
+    public boolean f35510e;
+    public boolean f35511f;
 
     public q5(Context context) {
         super(context);
-        this.f35473a = new Matrix();
-        this.f35474b = new float[8];
-        this.f35476e = true;
-        this.f35477f = true;
+        this.f35507a = new Matrix();
+        this.f35508b = new float[8];
+        this.f35510e = true;
+        this.f35511f = true;
         setClipChildren(false);
         setClipToPadding(false);
         ai.j2 j2Var = new ai.j2(context, 1);
@@ -30,7 +30,7 @@ public final class q5 extends FrameLayout {
         j2Var.setLayerType(2, null);
         addView(j2Var, new FrameLayout.LayoutParams(-1, -1));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f35475c = frameLayout;
+        this.f35509c = frameLayout;
         frameLayout.setPivotX(0.0f);
         frameLayout.setPivotY(0.0f);
         j2Var.addView(frameLayout, new FrameLayout.LayoutParams(AndroidUtilities.dp(336.0f), AndroidUtilities.dp(205.0f)));
@@ -38,8 +38,8 @@ public final class q5 extends FrameLayout {
 
     public final void a(m5 m5Var) {
         Bitmap bitmap;
-        if (this.f35476e && getWidth() != 0 && getHeight() != 0) {
-            this.f35476e = false;
+        if (this.f35510e && getWidth() != 0 && getHeight() != 0) {
+            this.f35510e = false;
             int width = getWidth();
             int height = getHeight();
             synchronized (m5Var) {
@@ -72,7 +72,7 @@ public final class q5 extends FrameLayout {
         int width = getWidth();
         int height = getHeight();
         if (width != 0 && height != 0) {
-            float[] fArr2 = this.f35474b;
+            float[] fArr2 = this.f35508b;
             fArr2[0] = 0.0f;
             fArr2[1] = 0.0f;
             float f7 = width;
@@ -83,46 +83,46 @@ public final class q5 extends FrameLayout {
             fArr2[5] = f10;
             fArr2[6] = 0.0f;
             fArr2[7] = f10;
-            this.f35473a.setPolyToPoly(fArr2, 0, fArr, 0, 4);
+            this.f35507a.setPolyToPoly(fArr2, 0, fArr, 0, 4);
             invalidate();
         }
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (!this.f35477f) {
+        if (!this.f35511f) {
             return;
         }
         int save = canvas.save();
-        canvas.concat(this.f35473a);
+        canvas.concat(this.f35507a);
         super.dispatchDraw(canvas);
         canvas.restoreToCount(save);
     }
 
     @Override
     public final ViewParent invalidateChildInParent(int[] iArr, Rect rect) {
-        this.f35476e = true;
+        this.f35510e = true;
         return super.invalidateChildInParent(iArr, rect);
     }
 
     @Override
     public final void onDescendantInvalidated(View view, View view2) {
-        this.f35476e = true;
+        this.f35510e = true;
         super.onDescendantInvalidated(view, view2);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f35476e = true;
+        this.f35510e = true;
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        this.f35476e = true;
+        this.f35510e = true;
         float dp = i10 / AndroidUtilities.dp(336.0f);
-        FrameLayout frameLayout = this.f35475c;
+        FrameLayout frameLayout = this.f35509c;
         frameLayout.setScaleX(dp);
         frameLayout.setScaleY(i11 / AndroidUtilities.dp(205.0f));
     }

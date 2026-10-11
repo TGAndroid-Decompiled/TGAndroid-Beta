@@ -12,31 +12,31 @@ import java.util.ArrayList;
 public class AnimatedPhoneNumberEditText extends x40 {
     public String E;
     public ci.x0 F;
-    public final ArrayList f23834e;
-    public final ArrayList f23835f;
+    public final ArrayList f23870e;
+    public final ArrayList f23871f;
     public final TextPaint h;
-    public ObjectAnimator f23836n;
-    public float f23837r;
-    public String f23838s;
+    public ObjectAnimator f23872n;
+    public float f23873r;
+    public String f23874s;
     public final o1.d v;
-    public final ArrayList f23839w;
-    public final ArrayList f23840x;
-    public Boolean f23841y;
+    public final ArrayList f23875w;
+    public final ArrayList f23876x;
+    public Boolean f23877y;
 
     public AnimatedPhoneNumberEditText(Context context) {
         super(context);
-        this.f23834e = new ArrayList();
-        this.f23835f = new ArrayList();
+        this.f23870e = new ArrayList();
+        this.f23871f = new ArrayList();
         this.h = new TextPaint(1);
-        this.f23838s = "";
+        this.f23874s = "";
         this.v = new o1.d(this, 1);
-        this.f23839w = new ArrayList();
-        this.f23840x = new ArrayList();
+        this.f23875w = new ArrayList();
+        this.f23876x = new ArrayList();
     }
 
     public static void j(AnimatedPhoneNumberEditText animatedPhoneNumberEditText, boolean z10, String str) {
-        animatedPhoneNumberEditText.f23839w.clear();
-        ArrayList arrayList = animatedPhoneNumberEditText.f23840x;
+        animatedPhoneNumberEditText.f23875w.clear();
+        ArrayList arrayList = animatedPhoneNumberEditText.f23876x;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -55,14 +55,14 @@ public class AnimatedPhoneNumberEditText extends x40 {
     }
 
     public float getProgress() {
-        return this.f23837r;
+        return this.f23873r;
     }
 
     @Override
     public final void i(int i10) {
-        ArrayList arrayList = this.f23839w;
+        ArrayList arrayList = this.f23875w;
         if (i10 < arrayList.size()) {
-            this.f32825b.setAlpha((int) (((Float) arrayList.get(i10)).floatValue() * 255.0f));
+            this.f32864b.setAlpha((int) (((Float) arrayList.get(i10)).floatValue() * 255.0f));
         }
     }
 
@@ -73,9 +73,9 @@ public class AnimatedPhoneNumberEditText extends x40 {
         float f7;
         boolean isEmpty2 = TextUtils.isEmpty(str);
         boolean z10 = !isEmpty2;
-        Boolean bool = this.f23841y;
-        ArrayList arrayList = this.f23839w;
-        ArrayList arrayList2 = this.f23840x;
+        Boolean bool = this.f23877y;
+        ArrayList arrayList = this.f23875w;
+        ArrayList arrayList2 = this.f23876x;
         if (bool != null && bool.booleanValue() == z10) {
             isEmpty = false;
         } else {
@@ -88,7 +88,7 @@ public class AnimatedPhoneNumberEditText extends x40 {
                 ((o1.k) obj).c();
             }
             arrayList2.clear();
-            this.f23841y = Boolean.valueOf(z10);
+            this.f23877y = Boolean.valueOf(z10);
             isEmpty = TextUtils.isEmpty(getText());
         }
         if (!isEmpty2) {
@@ -105,7 +105,7 @@ public class AnimatedPhoneNumberEditText extends x40 {
         }
         if (isEmpty) {
             int length = str2.length();
-            ci.x0 x0Var = new ci.x0(this, z10, str, 17);
+            ci.x0 x0Var = new ci.x0(this, z10, str, 18);
             Runnable runnable = this.F;
             if (runnable != null) {
                 removeCallbacks(runnable);
@@ -125,10 +125,10 @@ public class AnimatedPhoneNumberEditText extends x40 {
                 o1.l lVar = new o1.l(f11);
                 lVar.b(500.0f);
                 lVar.a(1.0f);
-                lVar.f16995i = f11;
-                kVar.f16988u = lVar;
-                kVar.f16978b = 100.0f * f7;
-                kVar.f16979c = true;
+                lVar.f17031i = f11;
+                kVar.f17024u = lVar;
+                kVar.f17014b = 100.0f * f7;
+                kVar.f17015c = true;
                 arrayList2.add(kVar);
                 arrayList.add(Float.valueOf(f7));
                 postDelayed(new rg(kVar, 7), i11 * 5);
@@ -143,28 +143,28 @@ public class AnimatedPhoneNumberEditText extends x40 {
         boolean z10;
         String str2;
         TextPaint textPaint;
-        ArrayList arrayList2 = this.f23835f;
-        if (arrayList2 != null && (arrayList = this.f23834e) != null && !Objects.equals(this.f23838s, str)) {
-            ObjectAnimator objectAnimator = this.f23836n;
+        ArrayList arrayList2 = this.f23871f;
+        if (arrayList2 != null && (arrayList = this.f23870e) != null && !Objects.equals(this.f23874s, str)) {
+            ObjectAnimator objectAnimator = this.f23872n;
             if (objectAnimator != null) {
                 objectAnimator.cancel();
-                this.f23836n = null;
+                this.f23872n = null;
             }
             arrayList2.clear();
             arrayList2.addAll(arrayList);
             arrayList.clear();
             int i10 = 0;
-            if (TextUtils.isEmpty(this.f23838s) && !TextUtils.isEmpty(str)) {
+            if (TextUtils.isEmpty(this.f23874s) && !TextUtils.isEmpty(str)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f23837r = 0.0f;
+            this.f23873r = 0.0f;
             while (i10 < str.length()) {
                 int i11 = i10 + 1;
                 String substring = str.substring(i10, i11);
-                if (!arrayList2.isEmpty() && i10 < this.f23838s.length()) {
-                    str2 = this.f23838s.substring(i10, i11);
+                if (!arrayList2.isEmpty() && i10 < this.f23874s.length()) {
+                    str2 = this.f23874s.substring(i10, i11);
                 } else {
                     str2 = null;
                 }
@@ -185,21 +185,21 @@ public class AnimatedPhoneNumberEditText extends x40 {
             }
             if (!arrayList2.isEmpty()) {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", -1.0f, 0.0f);
-                this.f23836n = ofFloat;
+                this.f23872n = ofFloat;
                 ofFloat.setDuration(150L);
-                this.f23836n.addListener(new org.telegram.ui.s4(this, 27));
-                this.f23836n.start();
+                this.f23872n.addListener(new org.telegram.ui.s4(this, 27));
+                this.f23872n.start();
             }
-            this.f23838s = str;
+            this.f23874s = str;
             invalidate();
         }
     }
 
     public void setProgress(float f7) {
-        if (this.f23837r == f7) {
+        if (this.f23873r == f7) {
             return;
         }
-        this.f23837r = f7;
+        this.f23873r = f7;
         invalidate();
     }
 

@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class h20 implements View.OnClickListener {
-    public final int f38231a;
-    public final Context f38232b;
-    public final sg.g f38233c;
+    public final int f38265a;
+    public final Context f38266b;
+    public final sg.g f38267c;
 
     public h20(Context context, sg.g gVar, int i10) {
-        this.f38231a = i10;
-        this.f38232b = context;
-        this.f38233c = gVar;
+        this.f38265a = i10;
+        this.f38266b = context;
+        this.f38267c = gVar;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
         int i11;
-        switch (this.f38231a) {
+        switch (this.f38265a) {
             case 0:
                 g gVar = new g(this, 18);
-                Context context = this.f38232b;
+                Context context = this.f38266b;
                 org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8(context, false, gVar, 1);
-                sg.o oVar = this.f38233c.f48132c;
+                sg.o oVar = this.f38267c.f48166c;
                 if (oVar != null) {
                     i10 = oVar.I;
                 } else {
@@ -37,9 +37,9 @@ public final class h20 implements View.OnClickListener {
                 return;
             default:
                 g gVar2 = new g(this, 19);
-                Context context2 = this.f38232b;
+                Context context2 = this.f38266b;
                 org.telegram.ui.Components.w8 w8Var2 = new org.telegram.ui.Components.w8(context2, false, gVar2, 2);
-                sg.o oVar2 = this.f38233c.f48132c;
+                sg.o oVar2 = this.f38267c.f48166c;
                 if (oVar2 == null) {
                     i11 = 0;
                 } else {

@@ -2,28 +2,28 @@ package org.telegram.messenger;
 
 import java.util.concurrent.CountDownLatch;
 public final class h3 implements Runnable {
-    public final int f18011a;
-    public final FilePathDatabase f18012b;
-    public final String f18013c;
+    public final int f18047a;
+    public final FilePathDatabase f18048b;
+    public final String f18049c;
     public final boolean[] d;
-    public final CountDownLatch f18014e;
+    public final CountDownLatch f18050e;
 
     public h3(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch, int i10) {
-        this.f18011a = i10;
-        this.f18012b = filePathDatabase;
-        this.f18013c = str;
+        this.f18047a = i10;
+        this.f18048b = filePathDatabase;
+        this.f18049c = str;
         this.d = zArr;
-        this.f18014e = countDownLatch;
+        this.f18050e = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f18011a) {
+        switch (this.f18047a) {
             case 0:
-                FilePathDatabase.g(this.f18012b, this.f18013c, this.d, this.f18014e);
+                FilePathDatabase.g(this.f18048b, this.f18049c, this.d, this.f18050e);
                 return;
             default:
-                FilePathDatabase.e(this.f18012b, this.f18013c, this.d, this.f18014e);
+                FilePathDatabase.e(this.f18048b, this.f18049c, this.d, this.f18050e);
                 return;
         }
     }

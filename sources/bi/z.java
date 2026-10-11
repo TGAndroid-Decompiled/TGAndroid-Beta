@@ -30,9 +30,9 @@ import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.t7;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.p91;
-import org.telegram.ui.Components.sm0;
-import org.telegram.ui.Components.ss0;
+import org.telegram.ui.Components.o91;
+import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.rs0;
 import org.telegram.ui.Components.yi;
 import w7.x5;
 public abstract class z extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -46,7 +46,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
     public final ArrayList f3944f;
     public final ArrayList h;
     public final a f3945n;
-    public final p91 f3946r;
+    public final o91 f3946r;
     public Boolean f3947s;
     public int v;
     public float f3948w;
@@ -66,7 +66,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         d6 resourceProvider = m2Var.getResourceProvider();
         this.f3942c = resourceProvider;
         this.d = j3;
-        setBackgroundColor(h6.v(h6.w0(h6.f20786d6, resourceProvider), h6.m1(0.04f, h6.w0(h6.G6, resourceProvider))));
+        setBackgroundColor(h6.v(h6.w0(h6.f20822d6, resourceProvider), h6.m1(0.04f, h6.w0(h6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -85,16 +85,16 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             v8Var = v8Var2;
         }
         this.f3943e = v8Var;
-        ss0 ss0Var = (ss0) this;
-        a aVar = new a(ss0Var, context);
+        rs0 rs0Var = (rs0) this;
+        a aVar = new a(rs0Var, context);
         this.f3945n = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
-        aVar.setAdapter(new b(ss0Var, context));
+        aVar.setAdapter(new b(rs0Var, context));
         addView(aVar, x5.e(-1, -1, 119));
-        p91 n10 = aVar.n(9, true);
+        o91 n10 = aVar.n(9, true);
         this.f3946r = n10;
-        n10.f29680r = 12;
-        n10.setPreTabClick(new a1.c(ss0Var, 11));
+        n10.f29452r = 12;
+        n10.setPreTabClick(new a1.c(rs0Var, 11));
         addView(n10, x5.e(-1, 42, 48));
         i(false);
     }
@@ -106,9 +106,9 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             yiVar.N1(1, false);
             yiVar.W0 = true;
             yiVar.V0 = false;
-            yiVar.f33236m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            yiVar.f33228j0.f0();
-            yiVar.f33207c2 = new c(this, yiVar, str);
+            yiVar.f33309m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            yiVar.f33301j0.f0();
+            yiVar.f33280c2 = new c(this, yiVar, str);
             yiVar.t1();
             yiVar.show();
         }
@@ -301,7 +301,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         return null;
     }
 
-    public sm0 getCurrentListView() {
+    public rm0 getCurrentListView() {
         View currentView = this.f3945n.getCurrentView();
         if (currentView instanceof u) {
             return ((u) currentView).f3927f;
@@ -403,9 +403,9 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         erVar.setScale(0.9f, 0.9f);
         erVar.spaceScaleX = 0.85f;
         spannableString.setSpan(erVar, 0, 1, 33);
-        p91 p91Var = this.f3946r;
-        p91Var.a(-1, spannableString);
-        p91Var.f29684x.l();
+        o91 o91Var = this.f3946r;
+        o91Var.a(-1, spannableString);
+        o91Var.f29456x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {
@@ -432,7 +432,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             } else {
                 f7 = -42.0f;
             }
-            p91Var.setTranslationY(AndroidUtilities.dp(f7));
+            o91Var.setTranslationY(AndroidUtilities.dp(f7));
             if (z11) {
                 f11 = 42.0f;
             }

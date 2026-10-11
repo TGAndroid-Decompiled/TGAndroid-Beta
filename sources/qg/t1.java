@@ -6,8 +6,8 @@ import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.ai;
-import org.telegram.ui.Components.sm0;
-public final class t1 extends sm0 implements NotificationCenter.NotificationCenterDelegate {
+import org.telegram.ui.Components.rm0;
+public final class t1 extends rm0 implements NotificationCenter.NotificationCenterDelegate {
     public final Path V2;
     public q0.a W2;
 

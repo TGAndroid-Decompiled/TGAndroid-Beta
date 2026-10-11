@@ -12,10 +12,10 @@ public final class r implements q, ie.a {
     }
 
     public Object b() {
-        if (n7.a.f16782b == null) {
-            n7.a.f16782b = new Exception();
+        if (n7.a.f16818b == null) {
+            n7.a.f16818b = new Exception();
         }
-        synchronized (n7.a.f16781a) {
+        synchronized (n7.a.f16817a) {
         }
         throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
     }

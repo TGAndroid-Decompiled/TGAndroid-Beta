@@ -15,7 +15,7 @@ public final class m implements Handler.Callback {
 
     public final void a(long j3) {
         n nVar = this.f159b;
-        if (this == nVar.G1 && nVar.f47004b0 != null) {
+        if (this == nVar.G1 && nVar.f47038b0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 nVar.L0 = true;
                 return;

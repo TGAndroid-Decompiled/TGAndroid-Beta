@@ -19,8 +19,8 @@ import org.telegram.tgnet.TLParseException;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.h3;
 import org.telegram.ui.Cells.j3;
+import org.telegram.ui.Components.s60;
 import org.telegram.ui.Components.su;
-import org.telegram.ui.Components.t60;
 import org.telegram.ui.Components.voip.h2;
 import org.telegram.ui.Components.voip.q2;
 import org.telegram.ui.Components.voip.u2;
@@ -49,22 +49,22 @@ public final class h0 implements Runnable {
                     throw new RuntimeException(e7);
                 }
             case 1:
-                h3 h3Var = ((j3) this.f11721b).f22289b;
+                h3 h3Var = ((j3) this.f11721b).f22325b;
                 h3Var.requestFocus();
                 AndroidUtilities.showKeyboard(h3Var);
                 return;
             case 2:
-                AndroidUtilities.showKeyboard(((ii.x) this.f11721b).f12793e0.f22289b);
+                AndroidUtilities.showKeyboard(((ii.x) this.f11721b).f12793e0.f22325b);
                 return;
             case 3:
                 ((ii.e0) this.f11721b).invalidate();
                 return;
             case 4:
                 q3 q3Var = (q3) this.f11721b;
-                q3Var.f15822c = null;
+                q3Var.f15858c = null;
                 q3Var.d = null;
-                q3Var.f15823e = null;
-                q3Var.f15824f = null;
+                q3Var.f15859e = null;
+                q3Var.f15860f = null;
                 q3Var.e(null);
                 return;
             case 5:
@@ -91,17 +91,18 @@ public final class h0 implements Runnable {
                 ((kh.b) this.f11721b).invalidate();
                 return;
             case 10:
-                t60 t60Var = (t60) ((m2.t) this.f11721b).f15997b;
-                t60Var.f31021o0 = true;
-                FileLog.d("RoundVideo camera flip first frame: elapsedMs=" + t60.k(t60Var));
-                t60Var.s();
+                s60 s60Var = (s60) ((m2.t) this.f11721b).f16033b;
+                s60Var.f30766p0 = true;
+                FileLog.d("RoundVideo camera flip first frame: elapsedMs=" + s60.k(s60Var));
+                s60Var.t(true);
+                s60.l(s60Var);
                 return;
             case 11:
                 lh.c cVar = (lh.c) this.f11721b;
                 GroupCallMessage groupCallMessage = cVar.H;
                 if (groupCallMessage != null) {
-                    cVar.f15586a.a(groupCallMessage.isSendDelayed(), true);
-                    cVar.f15587b.a(cVar.H.isSendError(), true);
+                    cVar.f15622a.a(groupCallMessage.isSendDelayed(), true);
+                    cVar.f15623b.a(cVar.H.isSendError(), true);
                     return;
                 }
                 return;
@@ -110,13 +111,13 @@ public final class h0 implements Runnable {
                 return;
             case 13:
                 n2.d dVar = (n2.d) this.f11721b;
-                if (!dVar.f16546c) {
-                    n2.g gVar = dVar.f16545b;
+                if (!dVar.f16582c) {
+                    n2.g gVar = dVar.f16581b;
                     if (gVar != null) {
-                        gVar.a(dVar.f16544a);
+                        gVar.a(dVar.f16580a);
                     }
-                    dVar.d.f16556x.remove(dVar);
-                    dVar.f16546c = true;
+                    dVar.d.f16592x.remove(dVar);
+                    dVar.f16582c = true;
                     return;
                 }
                 return;
@@ -128,9 +129,9 @@ public final class h0 implements Runnable {
                 if (eg1Var.getParentLayout() != null) {
                     eg1Var.H = true;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", eg1Var.f37311a);
+                    bundle.putLong("chat_id", eg1Var.f37345a);
                     zn znVar = new zn(bundle);
-                    znVar.f44822ja = true;
+                    znVar.f44856ja = true;
                     eg1Var.presentFragment(znVar);
                     return;
                 }
@@ -153,24 +154,24 @@ public final class h0 implements Runnable {
                 k1Var.W = false;
                 return;
             case 20:
-                org.telegram.ui.Components.voip.k1 k1Var2 = (org.telegram.ui.Components.voip.k1) ((lg.b) this.f11721b).f15509b;
-                k1Var2.f32061e.invalidate();
-                if (!k1Var2.f32061e.isInLayout()) {
-                    k1Var2.f32061e.requestLayout();
+                org.telegram.ui.Components.voip.k1 k1Var2 = (org.telegram.ui.Components.voip.k1) ((lg.b) this.f11721b).f15545b;
+                k1Var2.f32125e.invalidate();
+                if (!k1Var2.f32125e.isInLayout()) {
+                    k1Var2.f32125e.requestLayout();
                     k1Var2.d.requestLayout();
-                    k1Var2.f32062f.requestLayout();
+                    k1Var2.f32126f.requestLayout();
                     return;
                 }
                 return;
             case 21:
-                ((org.telegram.ui.Components.voip.j1) this.f11721b).f32041a.i(false);
+                ((org.telegram.ui.Components.voip.j1) this.f11721b).f32105a.i(false);
                 return;
             case 22:
                 org.telegram.ui.Components.voip.i2 i2Var = (org.telegram.ui.Components.voip.i2) this.f11721b;
-                i2Var.f32032e = false;
-                HashMap hashMap = i2Var.f32029a;
-                ArrayList arrayList = i2Var.f32031c;
-                ArrayList arrayList2 = i2Var.f32030b;
+                i2Var.f32096e = false;
+                HashMap hashMap = i2Var.f32093a;
+                ArrayList arrayList = i2Var.f32095c;
+                ArrayList arrayList2 = i2Var.f32094b;
                 if (!arrayList2.isEmpty() || !arrayList.isEmpty()) {
                     if (i2Var.getParent() != null) {
                         TransitionManager.beginDelayedTransition(i2Var, i2Var.d);
@@ -182,7 +183,7 @@ public final class h0 implements Runnable {
                         while (true) {
                             if (i11 >= arrayList.size()) {
                                 break;
-                            } else if (h2Var.f32014a.equals(((h2) arrayList.get(i11)).f32014a)) {
+                            } else if (h2Var.f32078a.equals(((h2) arrayList.get(i11)).f32078a)) {
                                 arrayList2.remove(i10);
                                 arrayList.remove(i11);
                                 i10--;
@@ -201,11 +202,11 @@ public final class h0 implements Runnable {
                     hashMap.clear();
                     for (int i14 = 0; i14 < i2Var.getChildCount(); i14++) {
                         h2 h2Var2 = (h2) i2Var.getChildAt(i14);
-                        hashMap.put(h2Var2.f32014a, h2Var2);
+                        hashMap.put(h2Var2.f32078a, h2Var2);
                     }
                     arrayList2.clear();
                     arrayList.clear();
-                    i2Var.f32032e = true;
+                    i2Var.f32096e = true;
                     AndroidUtilities.runOnUIThread(new h0(i2Var, 22), 700L);
                     Runnable runnable = i2Var.h;
                     if (runnable != null) {
@@ -216,13 +217,13 @@ public final class h0 implements Runnable {
                 }
                 return;
             case 23:
-                TextView[] textViewArr = ((q2) this.f11721b).f32222a;
+                TextView[] textViewArr = ((q2) this.f11721b).f32286a;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
                 return;
             case 24:
-                TextView[] textViewArr2 = ((q2) ((gg.j0) this.f11721b).f10664e).f32222a;
+                TextView[] textViewArr2 = ((q2) ((gg.j0) this.f11721b).f10664e).f32286a;
                 TextView textView2 = textViewArr2[0];
                 textViewArr2[0] = textViewArr2[1];
                 textViewArr2[1] = textView2;
@@ -236,15 +237,15 @@ public final class h0 implements Runnable {
                 return;
             case 26:
                 y2 y2Var = (y2) this.f11721b;
-                y2Var.f32438e = Bitmap.createBitmap(y2Var.getMeasuredWidth(), y2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                new Canvas(y2Var.f32438e).drawText(y2Var.d, y2Var.getMeasuredWidth() / 2, (int) ((y2Var.getMeasuredHeight() / 2) - ((y2Var.f32435a.ascent() + y2Var.f32435a.descent()) / 2.0f)), y2Var.f32435a);
+                y2Var.f32502e = Bitmap.createBitmap(y2Var.getMeasuredWidth(), y2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                new Canvas(y2Var.f32502e).drawText(y2Var.d, y2Var.getMeasuredWidth() / 2, (int) ((y2Var.getMeasuredHeight() / 2) - ((y2Var.f32499a.ascent() + y2Var.f32499a.descent()) / 2.0f)), y2Var.f32499a);
                 y2Var.postInvalidate();
                 return;
             case 27:
-                ((org.telegram.ui.web.k) this.f11721b).f43562w.W2.N(true);
+                ((org.telegram.ui.web.k) this.f11721b).f43596w.W2.N(true);
                 return;
             case 28:
-                org.telegram.ui.web.i iVar = ((org.telegram.ui.web.n) this.f11721b).h.f43603e;
+                org.telegram.ui.web.i iVar = ((org.telegram.ui.web.n) this.f11721b).h.f43637e;
                 if (iVar != null) {
                     iVar.d();
                     return;

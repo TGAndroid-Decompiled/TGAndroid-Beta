@@ -13,7 +13,7 @@ import org.telegram.messenger.camera.CameraSession;
 import org.telegram.messenger.video.VideoAds;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 public final class i5 implements Runnable {
     public final int f1136a;
     public final Object f1137b;
@@ -74,41 +74,41 @@ public final class i5 implements Runnable {
         int a2;
         int max;
         int max2;
-        ki.r rVar = (ki.r) this.f1137b;
-        ki.m0 m0Var = (ki.m0) this.f1138c;
-        ki.m0 m0Var2 = (ki.m0) this.d;
+        ki.t tVar = (ki.t) this.f1137b;
+        ki.o0 o0Var = (ki.o0) this.f1138c;
+        ki.o0 o0Var2 = (ki.o0) this.d;
         Handler handler = (Handler) this.f1139e;
-        if (rVar.Z && rVar.G == 0 && rVar.D) {
-            rVar.f15099x.g(rVar.f15098w, rVar.f15095s, false);
-            rVar.E = false;
-            rVar.F = false;
-            rVar.M = 0.0f;
+        if (tVar.f15130r0 && tVar.W == 0 && tVar.T) {
+            tVar.N.g(tVar.L, tVar.D, false);
+            tVar.U = false;
+            tVar.V = false;
+            tVar.f15103c0 = 0.0f;
             int i10 = 1;
-            rVar.G = 1;
+            tVar.W = 1;
             long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
-            rVar.H = elapsedRealtimeNanos;
-            rVar.I = elapsedRealtimeNanos;
-            rVar.N = m0Var;
-            rVar.O = m0Var2;
-            String[] strArr = ki.u0.f15159a;
-            synchronized (ki.u0.class) {
-                ki.u0.b();
-                if (m0Var != m0Var2) {
-                    if (m0Var == ki.m0.f15056b) {
+            tVar.X = elapsedRealtimeNanos;
+            tVar.Y = elapsedRealtimeNanos;
+            tVar.f15104d0 = o0Var;
+            tVar.f15106e0 = o0Var2;
+            String[] strArr = ki.w0.f15201a;
+            synchronized (ki.w0.class) {
+                ki.w0.b();
+                if (o0Var != o0Var2) {
+                    if (o0Var == ki.o0.f15077b) {
                         i10 = 0;
                     }
-                    a2 = ki.u0.a(i10);
+                    a2 = ki.w0.a(i10);
                 } else {
                     throw new IllegalArgumentException("Camera switch direction must change");
                 }
             }
-            rVar.L = a2;
-            rVar.J = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a2 - 400) * 3) / 20))) * 45) / 100) * 1000000;
-            rVar.K = (max - max2) * 1000000;
-            rVar.f15081e.b("synthetic camera switch started: from=" + m0Var + ", to=" + m0Var2 + ", expectedWaitMs=" + rVar.L + ", targetBlurRadiusPx=" + (((rVar.f15099x.f14882a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((rVar.J + rVar.K) / 1000000));
-            rVar.A = -1L;
-            handler.removeCallbacks(rVar.f15082e0);
-            handler.post(rVar.f15082e0);
+            tVar.f15101b0 = a2;
+            tVar.Z = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a2 - 400) * 3) / 20))) * 45) / 100) * 1000000;
+            tVar.f15099a0 = (max - max2) * 1000000;
+            tVar.f15112i.b("synthetic camera switch started: from=" + o0Var + ", to=" + o0Var2 + ", expectedWaitMs=" + tVar.f15101b0 + ", targetBlurRadiusPx=" + (((tVar.N.f14894a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f15099a0) / 1000000));
+            tVar.Q = -1L;
+            handler.removeCallbacks(tVar.f15141x0);
+            handler.post(tVar.f15141x0);
         }
     }
 
@@ -129,7 +129,7 @@ public final class i5 implements Runnable {
     }
 
     private final void h() {
-        ((VideoAds) this.f1137b).lambda$show$14((Context) this.f1138c, (TLRPC.TL_sponsoredMessage) this.d, (q80) this.f1139e);
+        ((VideoAds) this.f1137b).lambda$show$14((Context) this.f1138c, (TLRPC.TL_sponsoredMessage) this.d, (p80) this.f1139e);
     }
 
     @Override

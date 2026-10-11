@@ -3,17 +3,17 @@ package org.telegram.ui.Components.voip;
 import android.content.Context;
 import org.webrtc.TextureViewRenderer;
 public final class s2 extends TextureViewRenderer {
-    public final t2 f32254a;
+    public final t2 f32318a;
 
     public s2(t2 t2Var, Context context) {
         super(context);
-        this.f32254a = t2Var;
+        this.f32318a = t2Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
         super.onFirstFrameRendered();
-        this.f32254a.b();
+        this.f32318a.b();
     }
 
     @Override

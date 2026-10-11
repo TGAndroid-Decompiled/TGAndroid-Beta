@@ -28,10 +28,10 @@ public final class ad extends View {
         q6Var.u(-1);
         q6Var.x(AndroidUtilities.bold());
         q6Var.setCallback(this);
-        q6Var.f30019b = 1;
+        q6Var.f30134b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, q6Var.f30025i)) {
+        if (!TextUtils.equals(sb2, q6Var.f30140i)) {
             q6Var.a();
             q6Var.t(sb2, false, true);
         }

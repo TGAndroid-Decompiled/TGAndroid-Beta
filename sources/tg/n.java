@@ -4,38 +4,38 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class n implements Runnable {
-    public final int f48447a;
-    public final TLRPC.Chat f48448b;
-    public final int f48449c;
+    public final int f48481a;
+    public final TLRPC.Chat f48482b;
+    public final int f48483c;
     public final ArrayList d;
-    public final Utilities.Callback f48450e;
+    public final Utilities.Callback f48484e;
 
     public n(TLRPC.Chat chat, int i10, ArrayList arrayList, Utilities.Callback callback, int i11) {
-        this.f48447a = i11;
-        this.f48448b = chat;
-        this.f48449c = i10;
+        this.f48481a = i11;
+        this.f48482b = chat;
+        this.f48483c = i10;
         this.d = arrayList;
-        this.f48450e = callback;
+        this.f48484e = callback;
     }
 
     @Override
     public final void run() {
-        switch (this.f48447a) {
+        switch (this.f48481a) {
             case 0:
-                TLRPC.Chat chat = this.f48448b;
+                TLRPC.Chat chat = this.f48482b;
                 ArrayList arrayList = this.d;
                 if (chat == null) {
-                    r.m(this.f48449c, arrayList);
+                    r.m(this.f48483c, arrayList);
                 }
-                this.f48450e.run(arrayList);
+                this.f48484e.run(arrayList);
                 return;
             default:
-                TLRPC.Chat chat2 = this.f48448b;
+                TLRPC.Chat chat2 = this.f48482b;
                 ArrayList arrayList2 = this.d;
                 if (chat2 == null) {
-                    r.m(this.f48449c, arrayList2);
+                    r.m(this.f48483c, arrayList2);
                 }
-                this.f48450e.run(arrayList2);
+                this.f48484e.run(arrayList2);
                 return;
         }
     }

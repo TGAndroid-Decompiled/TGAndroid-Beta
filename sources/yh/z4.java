@@ -8,43 +8,43 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.bl0;
 import org.telegram.ui.ye;
 public final class z4 implements Utilities.Callback {
-    public final n5 f53552a;
-    public final long f53553b;
-    public final int f53554c;
+    public final n5 f53586a;
+    public final long f53587b;
+    public final int f53588c;
     public final boolean[] d;
-    public final Utilities.Callback2 f53555e;
-    public final Context f53556f;
-    public final org.telegram.ui.ActionBar.d6 f53557g;
+    public final Utilities.Callback2 f53589e;
+    public final Context f53590f;
+    public final org.telegram.ui.ActionBar.d6 f53591g;
     public final TLRPC.ChatInvite h;
-    public final String f53558i;
+    public final String f53592i;
 
     public z4(n5 n5Var, long j3, int i10, boolean[] zArr, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.ChatInvite chatInvite, String str) {
-        this.f53552a = n5Var;
-        this.f53553b = j3;
-        this.f53554c = i10;
+        this.f53586a = n5Var;
+        this.f53587b = j3;
+        this.f53588c = i10;
         this.d = zArr;
-        this.f53555e = callback2;
-        this.f53556f = context;
-        this.f53557g = d6Var;
+        this.f53589e = callback2;
+        this.f53590f = context;
+        this.f53591g = d6Var;
         this.h = chatInvite;
-        this.f53558i = str;
+        this.f53592i = str;
     }
 
     @Override
     public final void run(Object obj) {
         Utilities.Callback callback = (Utilities.Callback) obj;
-        n5 n5Var = this.f53552a;
-        long j3 = n5Var.f53001f.amount;
-        long j10 = this.f53553b;
+        n5 n5Var = this.f53586a;
+        long j3 = n5Var.f53035f.amount;
+        long j10 = this.f53587b;
         int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
         boolean[] zArr = this.d;
-        Utilities.Callback2 callback2 = this.f53555e;
+        Utilities.Callback2 callback2 = this.f53589e;
         TLRPC.ChatInvite chatInvite = this.h;
-        String str = this.f53558i;
+        String str = this.f53592i;
         if (i10 < 0) {
-            boolean starsPurchaseAvailable = MessagesController.getInstance(this.f53554c).starsPurchaseAvailable();
-            Context context = this.f53556f;
-            org.telegram.ui.ActionBar.d6 d6Var = this.f53557g;
+            boolean starsPurchaseAvailable = MessagesController.getInstance(this.f53588c).starsPurchaseAvailable();
+            Context context = this.f53590f;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f53591g;
             if (!starsPurchaseAvailable) {
                 if (callback != null) {
                     callback.run(Boolean.FALSE);

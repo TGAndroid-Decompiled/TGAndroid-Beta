@@ -4,28 +4,28 @@ import ai.ea;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 public final class w implements Runnable {
-    public final int f43711a;
-    public final String[] f43712b;
-    public final int f43713c;
+    public final int f43745a;
+    public final String[] f43746b;
+    public final int f43747c;
     public final y0 d;
-    public final ea f43714e;
+    public final ea f43748e;
 
     public w(String[] strArr, int i10, y0 y0Var, ea eaVar, int i11) {
-        this.f43711a = i11;
-        this.f43712b = strArr;
-        this.f43713c = i10;
+        this.f43745a = i11;
+        this.f43746b = strArr;
+        this.f43747c = i10;
         this.d = y0Var;
-        this.f43714e = eaVar;
+        this.f43748e = eaVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f43711a) {
+        switch (this.f43745a) {
             case 0:
-                int i10 = this.f43713c;
+                int i10 = this.f43747c;
                 y0 y0Var = this.d;
-                ea eaVar = this.f43714e;
-                String[] strArr = this.f43712b;
+                ea eaVar = this.f43748e;
+                String[] strArr = this.f43746b;
                 if (strArr[0] != null) {
                     try {
                         JSONObject jSONObject = new JSONObject();
@@ -39,10 +39,10 @@ public final class w implements Runnable {
                 }
                 return;
             default:
-                String[] strArr2 = this.f43712b;
-                int i11 = this.f43713c;
+                String[] strArr2 = this.f43746b;
+                int i11 = this.f43747c;
                 y0 y0Var2 = this.d;
-                ea eaVar2 = this.f43714e;
+                ea eaVar2 = this.f43748e;
                 try {
                     JSONObject jSONObject2 = new JSONObject();
                     jSONObject2.put("status", strArr2[0]);

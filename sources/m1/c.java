@@ -8,17 +8,17 @@ import k1.a0;
 import m2.t;
 import sd.l;
 public final class c {
-    public final String f15922a;
-    public final l f15923b;
-    public final d0 f15924c;
+    public final String f15958a;
+    public final l f15959b;
+    public final d0 f15960c;
     public final Object d;
-    public volatile t f15925e;
+    public volatile t f15961e;
 
     public c(String name, l lVar, d0 d0Var) {
         kotlin.jvm.internal.i.e(name, "name");
-        this.f15922a = name;
-        this.f15923b = lVar;
-        this.f15924c = d0Var;
+        this.f15958a = name;
+        this.f15959b = lVar;
+        this.f15960c = d0Var;
         this.d = new Object();
     }
 
@@ -27,21 +27,21 @@ public final class c {
         Context thisRef = (Context) obj;
         kotlin.jvm.internal.i.e(thisRef, "thisRef");
         kotlin.jvm.internal.i.e(property, "property");
-        t tVar2 = this.f15925e;
+        t tVar2 = this.f15961e;
         if (tVar2 == null) {
             synchronized (this.d) {
                 try {
-                    if (this.f15925e == null) {
+                    if (this.f15961e == null) {
                         Context applicationContext = thisRef.getApplicationContext();
-                        l lVar = this.f15923b;
+                        l lVar = this.f15959b;
                         kotlin.jvm.internal.i.d(applicationContext, "applicationContext");
                         List migrations = (List) lVar.invoke(applicationContext);
-                        d0 d0Var = this.f15924c;
+                        d0 d0Var = this.f15960c;
                         b bVar = new b(applicationContext, this);
                         kotlin.jvm.internal.i.e(migrations, "migrations");
-                        this.f15925e = new t(new a0(new k0(bVar, 2), id.h.b(new bb.i(migrations, null, 1)), new na.d(12), d0Var), 1);
+                        this.f15961e = new t(new a0(new k0(bVar, 2), id.h.b(new bb.i(migrations, null, 1)), new na.d(12), d0Var), 1);
                     }
-                    tVar = this.f15925e;
+                    tVar = this.f15961e;
                     kotlin.jvm.internal.i.b(tVar);
                 } catch (Throwable th2) {
                     throw th2;

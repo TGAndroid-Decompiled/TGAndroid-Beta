@@ -3,21 +3,21 @@ package qb;
 import java.util.ArrayDeque;
 import java.util.Deque;
 public final class n implements Runnable {
-    public final int f46171a;
-    public final Runnable f46172b;
+    public final int f46205a;
+    public final Runnable f46206b;
 
     public n(int i10, Runnable runnable) {
-        this.f46171a = i10;
-        this.f46172b = runnable;
+        this.f46205a = i10;
+        this.f46206b = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f46171a) {
+        switch (this.f46205a) {
             case 0:
-                Deque deque = (Deque) h.f46157b.get();
+                Deque deque = (Deque) h.f46191b.get();
                 n6.m.h(deque);
-                Runnable runnable = this.f46172b;
+                Runnable runnable = this.f46206b;
                 deque.add(runnable);
                 if (deque.size() <= 1) {
                     do {
@@ -29,8 +29,8 @@ public final class n implements Runnable {
                 }
                 return;
             default:
-                h.f46157b.set(new ArrayDeque());
-                this.f46172b.run();
+                h.f46191b.set(new ArrayDeque());
+                this.f46206b.run();
                 return;
         }
     }

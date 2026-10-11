@@ -1,6 +1,6 @@
 package w7;
 public final class z4 implements ia.d {
-    public static final z4 f50274a = new Object();
+    public static final z4 f50308a = new Object();
 
     static {
         sc.v.t(sc.v.m(d.class, new a(1)));

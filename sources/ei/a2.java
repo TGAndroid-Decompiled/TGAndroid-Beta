@@ -42,7 +42,7 @@ public abstract class a2 {
         }
         FrameLayout frameLayout = new FrameLayout(activity);
         FrameLayout frameLayout2 = new FrameLayout(activity);
-        frameLayout2.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20779ci, false)));
+        frameLayout2.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20815ci, false)));
         y9 y9Var = new y9(activity);
         y9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         j9 j9Var = new j9((d6) null);
@@ -50,11 +50,11 @@ public abstract class a2 {
         y9Var.e(user, j9Var);
         frameLayout2.addView(y9Var, x5.e(28, 28, 51));
         y9 y9Var2 = new y9(activity);
-        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21192z9, false), PorterDuff.Mode.SRC_IN));
+        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21228z9, false), PorterDuff.Mode.SRC_IN));
         y9Var2.setAnimatedEmojiDrawable(s5.n(i10, botverifiersettings.icon, null, 3));
         frameLayout2.addView(y9Var2, x5.a(20.0f, 34.0f, 0.0f, 0.0f, 0.0f, 20, 19));
         h5 h5Var = new h5(activity);
-        h5Var.setTextColor(h6.x0(null, h6.f20894j5, false));
+        h5Var.setTextColor(h6.x0(null, h6.f20930j5, false));
         h5Var.setTextSize(13);
         h5Var.setEllipsizeByGradient(true);
         h5Var.l(str, false);
@@ -63,13 +63,13 @@ public abstract class a2 {
         frameLayout.addView(frameLayout2, x5.a(-2.0f, 16.0f, 0.0f, 16.0f, 0.0f, -2, 17));
         final boolean[] zArr = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-        alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.BotRemoveVerificationTitle);
+        alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.BotRemoveVerificationTitle);
         if (i12 >= 0) {
             i11 = R.string.BotRemoveVerificationText;
         } else {
             i11 = R.string.BotRemoveVerificationChatText;
         }
-        alertDialog$Builder.f20368a.T = LocaleController.getString(i11);
+        alertDialog$Builder.f20404a.T = LocaleController.getString(i11);
         alertDialog$Builder.n(frameLayout);
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new org.telegram.ui.ActionBar.z1() {

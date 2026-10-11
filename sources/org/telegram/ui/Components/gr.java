@@ -8,24 +8,24 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class gr extends Drawable {
-    public final Drawable f26808a;
-    public final Paint f26809b;
-    public final float f26810c;
+    public final Drawable f26858a;
+    public final Paint f26859b;
+    public final float f26860c;
 
     public gr(Context context, float f7) {
         Paint paint = new Paint(1);
-        this.f26809b = paint;
-        this.f26808a = context.getResources().getDrawable(R.drawable.msg_filled_menu_groups);
+        this.f26859b = paint;
+        this.f26858a = context.getResources().getDrawable(R.drawable.msg_filled_menu_groups);
         paint.setColor(org.telegram.ui.ActionBar.h6.m1(0.1552f, -16777216));
-        this.f26810c = f7;
+        this.f26860c = f7;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        float f7 = this.f26810c;
-        canvas.drawRoundRect(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, f7, f7, this.f26809b);
-        yf.p.e(this.f26808a, getBounds().exactCenterX(), getBounds().exactCenterY(), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), 17);
-        this.f26808a.draw(canvas);
+        float f7 = this.f26860c;
+        canvas.drawRoundRect(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, f7, f7, this.f26859b);
+        yf.p.e(this.f26858a, getBounds().exactCenterX(), getBounds().exactCenterY(), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), 17);
+        this.f26858a.draw(canvas);
     }
 
     @Override

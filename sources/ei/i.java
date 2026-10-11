@@ -46,7 +46,7 @@ public final class i extends FrameLayout {
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, x5.t(-1, -2, 55, 0, 0, 0, 0), context);
         this.f9102e = h;
         h.setTextSize(1, 14.0f);
-        h.setTextColor(h6.w0(h6.f21189z6, d6Var));
+        h.setTextColor(h6.w0(h6.f21225z6, d6Var));
         linearLayout.addView(h, x5.t(-1, -2, 55, 0, 3, 0, 0));
         ImageView imageView2 = new ImageView(context);
         imageView2.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.M6, d6Var), mode));

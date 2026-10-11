@@ -194,11 +194,11 @@ public final class m implements Window.Callback {
             return false;
         }
         if (kVar != null) {
-            kVar.f15258x = true;
+            kVar.f15294x = true;
         }
         boolean onPreparePanel = this.f10140a.onPreparePanel(i10, view, menu);
         if (kVar != null) {
-            kVar.f15258x = false;
+            kVar.f15294x = false;
         }
         return onPreparePanel;
     }

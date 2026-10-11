@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ca0 implements my {
-    public final int f36653a = 1;
-    public final LaunchActivity f36654b;
-    public final String f36655c;
+    public final int f36687a = 1;
+    public final LaunchActivity f36688b;
+    public final String f36689c;
     public final int d;
-    public final TLRPC.User f36656e;
+    public final TLRPC.User f36690e;
 
     public ca0(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f36654b = launchActivity;
-        this.f36655c = str;
+        this.f36688b = launchActivity;
+        this.f36689c = str;
         this.d = i10;
-        this.f36656e = user;
+        this.f36690e = user;
     }
 
     @Override
     public final boolean C() {
-        switch (this.f36653a) {
+        switch (this.f36687a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class ca0 implements my {
 
     @Override
     public final boolean K(sy syVar) {
-        switch (this.f36653a) {
+        switch (this.f36687a) {
             case 0:
                 return false;
             default:
@@ -47,11 +47,11 @@ public final class ca0 implements my {
 
     @Override
     public final boolean w(sy syVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        int i12 = this.f36653a;
-        TLRPC.User user = this.f36656e;
+        int i12 = this.f36687a;
+        TLRPC.User user = this.f36690e;
         int i13 = this.d;
-        String str = this.f36655c;
-        LaunchActivity launchActivity = this.f36654b;
+        String str = this.f36689c;
+        LaunchActivity launchActivity = this.f36688b;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
@@ -78,7 +78,7 @@ public final class ca0 implements my {
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f20094id = tL_inputGameShortName;
+                tL_inputMediaGame.f20130id = tL_inputGameShortName;
                 tL_inputGameShortName.short_name = str;
                 tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
                 SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j10), tL_inputMediaGame, 0L, 0L);
@@ -99,9 +99,9 @@ public final class ca0 implements my {
     }
 
     public ca0(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f36654b = launchActivity;
-        this.f36656e = user;
-        this.f36655c = str;
+        this.f36688b = launchActivity;
+        this.f36690e = user;
+        this.f36689c = str;
         this.d = i10;
     }
 }

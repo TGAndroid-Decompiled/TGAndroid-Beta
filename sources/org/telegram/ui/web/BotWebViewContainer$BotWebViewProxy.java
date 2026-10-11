@@ -3,17 +3,17 @@ package org.telegram.ui.web;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.cf0;
+import org.telegram.ui.Components.bf0;
 public class BotWebViewContainer$BotWebViewProxy {
-    public b1 f43403a;
+    public b1 f43437a;
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
         try {
-            if (this.f43403a == null) {
+            if (this.f43437a == null) {
                 FileLog.d("webviewproxy.postEvent: no container");
             } else {
-                AndroidUtilities.runOnUIThread(new cf0(this, str, str2, 23));
+                AndroidUtilities.runOnUIThread(new bf0(this, str, str2, 23));
             }
         } catch (Exception e7) {
             FileLog.e(e7);

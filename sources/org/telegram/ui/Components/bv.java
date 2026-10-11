@@ -12,15 +12,15 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 public final class bv extends vh.n {
-    public final ca0 U;
-    public ga0 V;
+    public final ba0 U;
+    public fa0 V;
     public boolean W;
-    public boolean f25026a0;
-    public boolean f25027b0;
+    public boolean f25101a0;
+    public boolean f25102b0;
 
     public bv(Context context) {
         super(context, null, true);
-        this.U = new ca0(this);
+        this.U = new ba0(this);
     }
 
     @Override
@@ -50,12 +50,12 @@ public final class bv extends vh.n {
         canvas.save();
         if (!this.W) {
             float f7 = 0.0f;
-            if (this.f25026a0) {
+            if (this.f25101a0) {
                 paddingLeft = 0.0f;
             } else {
                 paddingLeft = getPaddingLeft();
             }
-            if (!this.f25027b0) {
+            if (!this.f25102b0) {
                 f7 = getPaddingTop();
             }
             canvas.translate(paddingLeft, f7);
@@ -70,27 +70,27 @@ public final class bv extends vh.n {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         CharacterStyle characterStyle;
-        ca0 ca0Var = this.U;
-        if (ca0Var != null) {
+        ba0 ba0Var = this.U;
+        if (ba0Var != null) {
             Layout layout = getLayout();
             ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
             if (a2 != null && motionEvent.getAction() == 0) {
-                ga0 ga0Var = new ga0(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.V = ga0Var;
-                ca0Var.a(ga0Var, null);
+                fa0 fa0Var = new fa0(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
+                this.V = fa0Var;
+                ba0Var.a(fa0Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.V.f26662i);
-                int spanEnd = spannableString.getSpanEnd(this.V.f26662i);
-                z90 b10 = this.V.b();
+                int spanStart = spannableString.getSpanStart(this.V.f26421i);
+                int spanEnd = spannableString.getSpanEnd(this.V.f26421i);
+                y90 b10 = this.V.b();
                 b10.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b10);
-                AndroidUtilities.runOnUIThread(new nq(this, ga0Var, a2), ViewConfiguration.getLongPressTimeout());
+                AndroidUtilities.runOnUIThread(new nq(this, fa0Var, a2), ViewConfiguration.getLongPressTimeout());
                 return true;
             }
             if (motionEvent.getAction() == 1) {
-                ca0Var.d(true);
-                ga0 ga0Var2 = this.V;
-                if (ga0Var2 != null && (characterStyle = ga0Var2.f26662i) == a2) {
+                ba0Var.d(true);
+                fa0 fa0Var2 = this.V;
+                if (fa0Var2 != null && (characterStyle = fa0Var2.f26421i) == a2) {
                     if (characterStyle != null) {
                         ((ClickableSpan) characterStyle).onClick(this);
                     }
@@ -100,7 +100,7 @@ public final class bv extends vh.n {
                 this.V = null;
             }
             if (motionEvent.getAction() == 3) {
-                ca0Var.d(true);
+                ba0Var.d(true);
                 this.V = null;
             }
         }
@@ -117,12 +117,12 @@ public final class bv extends vh.n {
 
     @Override
     public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f25026a0 = z10;
+        this.f25101a0 = z10;
     }
 
     @Override
     public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f25027b0 = z10;
+        this.f25102b0 = z10;
     }
 
     @Override

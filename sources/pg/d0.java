@@ -16,50 +16,50 @@ import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.s21;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.r21;
 import v7.z6;
 public final class d0 {
     public static final is B = new is(0.0d, 0.5d, 0.0d, 1.0d);
     public m A;
-    public final e1 f45643a;
-    public boolean f45644b;
-    public boolean f45645c;
+    public final e1 f45677a;
+    public boolean f45678b;
+    public boolean f45679c;
     public long d;
-    public boolean f45646e;
-    public boolean f45647f;
-    public w0 f45648g;
+    public boolean f45680e;
+    public boolean f45681f;
+    public w0 f45682g;
     public w0 h;
-    public double f45649i;
-    public boolean f45650j;
-    public float f45651k;
-    public boolean f45652l;
-    public int f45654n;
-    public int f45655o;
-    public double f45656p;
-    public double f45657q;
-    public ValueAnimator f45658r;
-    public final m1 f45659s;
-    public Matrix f45660t;
+    public double f45683i;
+    public boolean f45684j;
+    public float f45685k;
+    public boolean f45686l;
+    public int f45688n;
+    public int f45689o;
+    public double f45690p;
+    public double f45691q;
+    public ValueAnimator f45692r;
+    public final m1 f45693s;
+    public Matrix f45694t;
     public long v;
-    public float f45662w;
-    public ValueAnimator f45663x;
-    public boolean f45665z;
-    public final w0[] f45653m = new w0[3];
-    public final float[] f45661u = new float[2];
-    public final z f45664y = new z(this, 1);
+    public float f45696w;
+    public ValueAnimator f45697x;
+    public boolean f45699z;
+    public final w0[] f45687m = new w0[3];
+    public final float[] f45695u = new float[2];
+    public final z f45698y = new z(this, 1);
 
     public d0(e1 e1Var) {
-        this.f45643a = e1Var;
+        this.f45677a = e1Var;
         Context context = e1Var.getContext();
         ii.q1 q1Var = new ii.q1(this, 6);
         final ?? obj = new Object();
-        obj.f45729b = new ArrayList();
-        obj.f45730c = new ArrayList();
-        obj.f45734i = null;
-        obj.f45735j = new AtomicBoolean(false);
-        obj.f45736k = new AtomicBoolean(false);
-        obj.f45737l = new Runnable() {
+        obj.f45763b = new ArrayList();
+        obj.f45764c = new ArrayList();
+        obj.f45768i = null;
+        obj.f45769j = new AtomicBoolean(false);
+        obj.f45770k = new AtomicBoolean(false);
+        obj.f45771l = new Runnable() {
             @Override
             public final void run() {
                 int i10;
@@ -76,16 +76,16 @@ public final class d0 {
                 switch (r2) {
                     case 0:
                         m1 m1Var = obj;
-                        if (!m1Var.f45735j.get()) {
-                            m1Var.f45736k.set(false);
-                            m1Var.f45735j.set(true);
+                        if (!m1Var.f45769j.get()) {
+                            m1Var.f45770k.set(false);
+                            m1Var.f45769j.set(true);
                             long currentTimeMillis = System.currentTimeMillis();
                             synchronized (m1Var) {
                                 try {
-                                    if (m1Var.f45729b.size() < 8) {
-                                        m1Var.f45735j.set(false);
+                                    if (m1Var.f45763b.size() < 8) {
+                                        m1Var.f45769j.set(false);
                                     } else {
-                                        ArrayList f7 = m1.f(m1Var.f45729b);
+                                        ArrayList f7 = m1.f(m1Var.f45763b);
                                         ArrayList arrayList = new ArrayList();
                                         arrayList.add((j1) f7.get(0));
                                         double d11 = 0.0d;
@@ -93,7 +93,7 @@ public final class d0 {
                                             j1 j1Var = (j1) f7.get(i13 - 1);
                                             j1 j1Var2 = (j1) f7.get(i13);
                                             j1Var.getClass();
-                                            d11 += j1Var.a(j1Var2.f45702a, j1Var2.f45703b);
+                                            d11 += j1Var.a(j1Var2.f45736a, j1Var2.f45737b);
                                         }
                                         double d12 = d11 / 47;
                                         int i14 = 1;
@@ -105,13 +105,13 @@ public final class d0 {
                                             j1Var3.getClass();
                                             int i16 = i14;
                                             long j3 = currentTimeMillis;
-                                            double a2 = j1Var3.a(j1Var4.f45702a, j1Var4.f45703b);
+                                            double a2 = j1Var3.a(j1Var4.f45736a, j1Var4.f45737b);
                                             double d14 = d13 + a2;
                                             if (d14 >= d12) {
                                                 double d15 = (d12 - d13) / a2;
                                                 i11 = i16;
                                                 d10 = d12;
-                                                j1 j1Var5 = new j1(((((j1) f7.get(i11)).f45702a - ((j1) f7.get(i15)).f45702a) * d15) + ((j1) f7.get(i15)).f45702a, ((((j1) f7.get(i11)).f45703b - ((j1) f7.get(i15)).f45703b) * d15) + ((j1) f7.get(i15)).f45703b);
+                                                j1 j1Var5 = new j1(((((j1) f7.get(i11)).f45736a - ((j1) f7.get(i15)).f45736a) * d15) + ((j1) f7.get(i15)).f45736a, ((((j1) f7.get(i11)).f45737b - ((j1) f7.get(i15)).f45737b) * d15) + ((j1) f7.get(i15)).f45737b);
                                                 arrayList.add(j1Var5);
                                                 f7.add(i11, j1Var5);
                                                 d13 = 0.0d;
@@ -130,47 +130,47 @@ public final class d0 {
                                         }
                                         ArrayList f10 = m1.f(arrayList);
                                         j1 b10 = m1.b(f10);
-                                        double atan2 = Math.atan2(b10.f45703b - ((j1) f10.get(0)).f45703b, b10.f45702a - ((j1) f10.get(0)).f45702a);
+                                        double atan2 = Math.atan2(b10.f45737b - ((j1) f10.get(0)).f45737b, b10.f45736a - ((j1) f10.get(0)).f45736a);
                                         j1 b11 = m1.b(f10);
                                         double cos = Math.cos(atan2);
                                         double sin = Math.sin(atan2);
                                         int i17 = 0;
                                         while (i17 < f10.size()) {
                                             j1 j1Var6 = (j1) f10.get(i17);
-                                            double d16 = j1Var6.f45702a;
-                                            double d17 = b11.f45702a;
+                                            double d16 = j1Var6.f45736a;
+                                            double d17 = b11.f45736a;
                                             double d18 = d16 - d17;
                                             double d19 = sin;
-                                            double d20 = j1Var6.f45703b;
-                                            double d21 = b11.f45703b;
+                                            double d20 = j1Var6.f45737b;
+                                            double d21 = b11.f45737b;
                                             double d22 = d20 - d21;
-                                            j1Var6.f45703b = (d22 * cos) + (d18 * d19) + d21;
-                                            j1Var6.f45702a = d17 + ((d18 * cos) - (d22 * d19));
+                                            j1Var6.f45737b = (d22 * cos) + (d18 * d19) + d21;
+                                            j1Var6.f45736a = d17 + ((d18 * cos) - (d22 * d19));
                                             i17++;
                                             sin = d19;
                                         }
                                         j1 b12 = m1.b(f10);
-                                        double d23 = -b12.f45702a;
-                                        double d24 = -b12.f45703b;
+                                        double d23 = -b12.f45736a;
+                                        double d24 = -b12.f45737b;
                                         for (int i18 = 0; i18 < f10.size(); i18++) {
                                             j1 j1Var7 = (j1) f10.get(i18);
-                                            j1Var7.f45702a += d23;
-                                            j1Var7.f45703b += d24;
+                                            j1Var7.f45736a += d23;
+                                            j1Var7.f45737b += d24;
                                         }
                                         k1 a10 = m1.a(f10);
-                                        double d25 = a10.f45713c - a10.f45711a;
-                                        double d26 = a10.d - a10.f45712b;
+                                        double d25 = a10.f45747c - a10.f45745a;
+                                        double d26 = a10.d - a10.f45746b;
                                         for (int i19 = 0; i19 < f10.size(); i19++) {
                                             j1 j1Var8 = (j1) f10.get(i19);
-                                            j1Var8.f45702a = (250.0d / d25) * j1Var8.f45702a;
-                                            j1Var8.f45703b = (250.0d / d26) * j1Var8.f45703b;
+                                            j1Var8.f45736a = (250.0d / d25) * j1Var8.f45736a;
+                                            j1Var8.f45737b = (250.0d / d26) * j1Var8.f45737b;
                                         }
                                         j1 b13 = m1.b(f10);
                                         double d27 = Double.MAX_VALUE;
                                         int i20 = -1;
                                         int i21 = -1;
-                                        for (int i22 = 0; i22 < m1Var.f45730c.size(); i22++) {
-                                            ArrayList arrayList2 = ((l1) m1Var.f45730c.get(i22)).f45720b;
+                                        for (int i22 = 0; i22 < m1Var.f45764c.size(); i22++) {
+                                            ArrayList arrayList2 = ((l1) m1Var.f45764c.get(i22)).f45754b;
                                             double sqrt = (Math.sqrt(5.0d) - 1.0d) * 0.5d;
                                             double d28 = -1.5707963267948966d;
                                             double d29 = 1.0d - sqrt;
@@ -206,20 +206,20 @@ public final class d0 {
                                             }
                                             double min = Math.min(d38, d39);
                                             if (min < d31) {
-                                                i20 = ((l1) m1Var.f45730c.get(i22)).f45719a;
+                                                i20 = ((l1) m1Var.f45764c.get(i22)).f45753a;
                                                 d27 = min;
                                                 i21 = i22;
                                             } else {
                                                 d27 = d31;
                                             }
                                         }
-                                        if (1.0d - (d27 / m1.f45727n) < 0.8d) {
+                                        if (1.0d - (d27 / m1.f45761n) < 0.8d) {
                                             i10 = -1;
                                         } else {
                                             i10 = i20;
                                         }
                                         h1 h1Var = null;
-                                        if (i10 >= 0 && i10 < l.f45714b.size() && arrayList.size() >= 1) {
+                                        if (i10 >= 0 && i10 < l.f45748b.size() && arrayList.size() >= 1) {
                                             h1 h1Var2 = new h1(l.p(i10));
                                             if (i10 == 4) {
                                                 int e10 = m1.e(0, arrayList);
@@ -230,24 +230,24 @@ public final class d0 {
                                                     j1 j1Var9 = (j1) arrayList.get(e10);
                                                     j1 j1Var10 = (j1) arrayList.get(e10 / 2);
                                                     j1 j1Var11 = (j1) arrayList.get(0);
-                                                    h1Var2.f45688b = (float) j1Var9.f45702a;
-                                                    h1Var2.f45689c = (float) j1Var9.f45703b;
-                                                    h1Var2.f45693i = (float) j1Var10.f45702a;
-                                                    h1Var2.f45694j = (float) j1Var10.f45703b;
-                                                    h1Var2.d = (float) j1Var11.f45702a;
-                                                    h1Var2.f45690e = (float) j1Var11.f45703b;
-                                                    h1Var2.f45695k = 16.0f;
+                                                    h1Var2.f45722b = (float) j1Var9.f45736a;
+                                                    h1Var2.f45723c = (float) j1Var9.f45737b;
+                                                    h1Var2.f45727i = (float) j1Var10.f45736a;
+                                                    h1Var2.f45728j = (float) j1Var10.f45737b;
+                                                    h1Var2.d = (float) j1Var11.f45736a;
+                                                    h1Var2.f45724e = (float) j1Var11.f45737b;
+                                                    h1Var2.f45729k = 16.0f;
                                                 }
                                             } else {
                                                 j1 b14 = m1.b(arrayList);
-                                                h1Var2.f45688b = (float) b14.f45702a;
-                                                h1Var2.f45689c = (float) b14.f45703b;
+                                                h1Var2.f45722b = (float) b14.f45736a;
+                                                h1Var2.f45723c = (float) b14.f45737b;
                                                 k1 a11 = m1.a(arrayList);
-                                                h1Var2.d = ((float) (a11.f45713c - a11.f45711a)) / 2.0f;
-                                                h1Var2.f45690e = ((float) (a11.d - a11.f45712b)) / 2.0f;
+                                                h1Var2.d = ((float) (a11.f45747c - a11.f45745a)) / 2.0f;
+                                                h1Var2.f45724e = ((float) (a11.d - a11.f45746b)) / 2.0f;
                                                 if (i10 == 2 && (e7 = m1.e(1, arrayList)) > 0) {
                                                     j1 j1Var12 = (j1) arrayList.get(e7);
-                                                    h1Var2.h = (float) Math.atan2(j1Var12.f45703b - h1Var2.f45689c, j1Var12.f45702a - h1Var2.f45688b);
+                                                    h1Var2.h = (float) Math.atan2(j1Var12.f45737b - h1Var2.f45723c, j1Var12.f45736a - h1Var2.f45722b);
                                                 }
                                             }
                                             h1Var = h1Var2;
@@ -271,8 +271,8 @@ public final class d0 {
                                             sb2.append(str2);
                                             Log.i("shapedetector", sb2.toString());
                                         }
-                                        AndroidUtilities.runOnUIThread(new s21(m1Var, h1Var, i21, f10));
-                                        m1Var.f45735j.set(false);
+                                        AndroidUtilities.runOnUIThread(new r21(m1Var, h1Var, i21, f10));
+                                        m1Var.f45769j.set(false);
                                     }
                                 } finally {
                                 }
@@ -288,22 +288,22 @@ public final class d0 {
                                 c10 = 0;
                                 if (open.available() > 5) {
                                     l1 l1Var = new l1();
-                                    l1Var.f45719a = open.read();
+                                    l1Var.f45753a = open.read();
                                     int read = open.read();
                                     int read2 = open.read() - 64;
                                     int read3 = open.read() - 64;
                                     if (open.available() >= read * 2) {
                                         for (int i23 = 0; i23 < read; i23++) {
-                                            l1Var.f45720b.add(new j1((open.read() - read2) - 127, (open.read() - read3) - 127));
+                                            l1Var.f45754b.add(new j1((open.read() - read2) - 127, (open.read() - read3) - 127));
                                         }
-                                        l1Var.f45721c = m1Var2.f45733g.getInt("score" + m1Var2.f45730c.size(), 0);
-                                        m1Var2.f45730c.add(l1Var);
+                                        l1Var.f45755c = m1Var2.f45767g.getInt("score" + m1Var2.f45764c.size(), 0);
+                                        m1Var2.f45764c.add(l1Var);
                                     }
                                 }
                             }
-                            if (m1Var2.h && (string = m1Var2.f45733g.getString("moretemplates", null)) != null) {
+                            if (m1Var2.h && (string = m1Var2.f45767g.getString("moretemplates", null)) != null) {
                                 String[] split = string.split("\\|");
-                                int size = m1Var2.f45730c.size();
+                                int size = m1Var2.f45764c.size();
                                 int i24 = 0;
                                 while (i24 < split.length) {
                                     l1 l1Var2 = new l1();
@@ -313,16 +313,16 @@ public final class d0 {
                                         c11 = c10;
                                         i12 = i24;
                                     } else {
-                                        l1Var2.f45719a = Integer.parseInt(split2[c10]);
+                                        l1Var2.f45753a = Integer.parseInt(split2[c10]);
                                         while (i25 < split2.length) {
-                                            l1Var2.f45720b.add(new j1(Double.parseDouble(split2[i25]), Double.parseDouble(split2[i25 + 1])));
+                                            l1Var2.f45754b.add(new j1(Double.parseDouble(split2[i25]), Double.parseDouble(split2[i25 + 1])));
                                             i25 += 2;
                                             i24 = i24;
                                         }
                                         i12 = i24;
                                         c11 = 0;
-                                        l1Var2.f45721c = m1Var2.f45733g.getInt("score" + (size + i12), 0);
-                                        m1Var2.f45730c.add(l1Var2);
+                                        l1Var2.f45755c = m1Var2.f45767g.getInt("score" + (size + i12), 0);
+                                        m1Var2.f45764c.add(l1Var2);
                                     }
                                     i24 = i12 + 1;
                                     c10 = c11;
@@ -337,13 +337,13 @@ public final class d0 {
                 }
             }
         };
-        obj.f45732f = context;
-        obj.f45731e = q1Var;
+        obj.f45766f = context;
+        obj.f45765e = q1Var;
         SharedPreferences sharedPreferences = context.getSharedPreferences("shapedetector_conf", 0);
-        obj.f45733g = sharedPreferences;
+        obj.f45767g = sharedPreferences;
         obj.h = sharedPreferences.getBoolean("learning", false);
-        obj.f45728a = sharedPreferences.getInt("scoreall", 0);
-        m1.f45726m.postRunnable(new Runnable() {
+        obj.f45762a = sharedPreferences.getInt("scoreall", 0);
+        m1.f45760m.postRunnable(new Runnable() {
             @Override
             public final void run() {
                 int i10;
@@ -360,16 +360,16 @@ public final class d0 {
                 switch (r2) {
                     case 0:
                         m1 m1Var = obj;
-                        if (!m1Var.f45735j.get()) {
-                            m1Var.f45736k.set(false);
-                            m1Var.f45735j.set(true);
+                        if (!m1Var.f45769j.get()) {
+                            m1Var.f45770k.set(false);
+                            m1Var.f45769j.set(true);
                             long currentTimeMillis = System.currentTimeMillis();
                             synchronized (m1Var) {
                                 try {
-                                    if (m1Var.f45729b.size() < 8) {
-                                        m1Var.f45735j.set(false);
+                                    if (m1Var.f45763b.size() < 8) {
+                                        m1Var.f45769j.set(false);
                                     } else {
-                                        ArrayList f7 = m1.f(m1Var.f45729b);
+                                        ArrayList f7 = m1.f(m1Var.f45763b);
                                         ArrayList arrayList = new ArrayList();
                                         arrayList.add((j1) f7.get(0));
                                         double d11 = 0.0d;
@@ -377,7 +377,7 @@ public final class d0 {
                                             j1 j1Var = (j1) f7.get(i13 - 1);
                                             j1 j1Var2 = (j1) f7.get(i13);
                                             j1Var.getClass();
-                                            d11 += j1Var.a(j1Var2.f45702a, j1Var2.f45703b);
+                                            d11 += j1Var.a(j1Var2.f45736a, j1Var2.f45737b);
                                         }
                                         double d12 = d11 / 47;
                                         int i14 = 1;
@@ -389,13 +389,13 @@ public final class d0 {
                                             j1Var3.getClass();
                                             int i16 = i14;
                                             long j3 = currentTimeMillis;
-                                            double a2 = j1Var3.a(j1Var4.f45702a, j1Var4.f45703b);
+                                            double a2 = j1Var3.a(j1Var4.f45736a, j1Var4.f45737b);
                                             double d14 = d13 + a2;
                                             if (d14 >= d12) {
                                                 double d15 = (d12 - d13) / a2;
                                                 i11 = i16;
                                                 d10 = d12;
-                                                j1 j1Var5 = new j1(((((j1) f7.get(i11)).f45702a - ((j1) f7.get(i15)).f45702a) * d15) + ((j1) f7.get(i15)).f45702a, ((((j1) f7.get(i11)).f45703b - ((j1) f7.get(i15)).f45703b) * d15) + ((j1) f7.get(i15)).f45703b);
+                                                j1 j1Var5 = new j1(((((j1) f7.get(i11)).f45736a - ((j1) f7.get(i15)).f45736a) * d15) + ((j1) f7.get(i15)).f45736a, ((((j1) f7.get(i11)).f45737b - ((j1) f7.get(i15)).f45737b) * d15) + ((j1) f7.get(i15)).f45737b);
                                                 arrayList.add(j1Var5);
                                                 f7.add(i11, j1Var5);
                                                 d13 = 0.0d;
@@ -414,47 +414,47 @@ public final class d0 {
                                         }
                                         ArrayList f10 = m1.f(arrayList);
                                         j1 b10 = m1.b(f10);
-                                        double atan2 = Math.atan2(b10.f45703b - ((j1) f10.get(0)).f45703b, b10.f45702a - ((j1) f10.get(0)).f45702a);
+                                        double atan2 = Math.atan2(b10.f45737b - ((j1) f10.get(0)).f45737b, b10.f45736a - ((j1) f10.get(0)).f45736a);
                                         j1 b11 = m1.b(f10);
                                         double cos = Math.cos(atan2);
                                         double sin = Math.sin(atan2);
                                         int i17 = 0;
                                         while (i17 < f10.size()) {
                                             j1 j1Var6 = (j1) f10.get(i17);
-                                            double d16 = j1Var6.f45702a;
-                                            double d17 = b11.f45702a;
+                                            double d16 = j1Var6.f45736a;
+                                            double d17 = b11.f45736a;
                                             double d18 = d16 - d17;
                                             double d19 = sin;
-                                            double d20 = j1Var6.f45703b;
-                                            double d21 = b11.f45703b;
+                                            double d20 = j1Var6.f45737b;
+                                            double d21 = b11.f45737b;
                                             double d22 = d20 - d21;
-                                            j1Var6.f45703b = (d22 * cos) + (d18 * d19) + d21;
-                                            j1Var6.f45702a = d17 + ((d18 * cos) - (d22 * d19));
+                                            j1Var6.f45737b = (d22 * cos) + (d18 * d19) + d21;
+                                            j1Var6.f45736a = d17 + ((d18 * cos) - (d22 * d19));
                                             i17++;
                                             sin = d19;
                                         }
                                         j1 b12 = m1.b(f10);
-                                        double d23 = -b12.f45702a;
-                                        double d24 = -b12.f45703b;
+                                        double d23 = -b12.f45736a;
+                                        double d24 = -b12.f45737b;
                                         for (int i18 = 0; i18 < f10.size(); i18++) {
                                             j1 j1Var7 = (j1) f10.get(i18);
-                                            j1Var7.f45702a += d23;
-                                            j1Var7.f45703b += d24;
+                                            j1Var7.f45736a += d23;
+                                            j1Var7.f45737b += d24;
                                         }
                                         k1 a10 = m1.a(f10);
-                                        double d25 = a10.f45713c - a10.f45711a;
-                                        double d26 = a10.d - a10.f45712b;
+                                        double d25 = a10.f45747c - a10.f45745a;
+                                        double d26 = a10.d - a10.f45746b;
                                         for (int i19 = 0; i19 < f10.size(); i19++) {
                                             j1 j1Var8 = (j1) f10.get(i19);
-                                            j1Var8.f45702a = (250.0d / d25) * j1Var8.f45702a;
-                                            j1Var8.f45703b = (250.0d / d26) * j1Var8.f45703b;
+                                            j1Var8.f45736a = (250.0d / d25) * j1Var8.f45736a;
+                                            j1Var8.f45737b = (250.0d / d26) * j1Var8.f45737b;
                                         }
                                         j1 b13 = m1.b(f10);
                                         double d27 = Double.MAX_VALUE;
                                         int i20 = -1;
                                         int i21 = -1;
-                                        for (int i22 = 0; i22 < m1Var.f45730c.size(); i22++) {
-                                            ArrayList arrayList2 = ((l1) m1Var.f45730c.get(i22)).f45720b;
+                                        for (int i22 = 0; i22 < m1Var.f45764c.size(); i22++) {
+                                            ArrayList arrayList2 = ((l1) m1Var.f45764c.get(i22)).f45754b;
                                             double sqrt = (Math.sqrt(5.0d) - 1.0d) * 0.5d;
                                             double d28 = -1.5707963267948966d;
                                             double d29 = 1.0d - sqrt;
@@ -490,20 +490,20 @@ public final class d0 {
                                             }
                                             double min = Math.min(d38, d39);
                                             if (min < d31) {
-                                                i20 = ((l1) m1Var.f45730c.get(i22)).f45719a;
+                                                i20 = ((l1) m1Var.f45764c.get(i22)).f45753a;
                                                 d27 = min;
                                                 i21 = i22;
                                             } else {
                                                 d27 = d31;
                                             }
                                         }
-                                        if (1.0d - (d27 / m1.f45727n) < 0.8d) {
+                                        if (1.0d - (d27 / m1.f45761n) < 0.8d) {
                                             i10 = -1;
                                         } else {
                                             i10 = i20;
                                         }
                                         h1 h1Var = null;
-                                        if (i10 >= 0 && i10 < l.f45714b.size() && arrayList.size() >= 1) {
+                                        if (i10 >= 0 && i10 < l.f45748b.size() && arrayList.size() >= 1) {
                                             h1 h1Var2 = new h1(l.p(i10));
                                             if (i10 == 4) {
                                                 int e10 = m1.e(0, arrayList);
@@ -514,24 +514,24 @@ public final class d0 {
                                                     j1 j1Var9 = (j1) arrayList.get(e10);
                                                     j1 j1Var10 = (j1) arrayList.get(e10 / 2);
                                                     j1 j1Var11 = (j1) arrayList.get(0);
-                                                    h1Var2.f45688b = (float) j1Var9.f45702a;
-                                                    h1Var2.f45689c = (float) j1Var9.f45703b;
-                                                    h1Var2.f45693i = (float) j1Var10.f45702a;
-                                                    h1Var2.f45694j = (float) j1Var10.f45703b;
-                                                    h1Var2.d = (float) j1Var11.f45702a;
-                                                    h1Var2.f45690e = (float) j1Var11.f45703b;
-                                                    h1Var2.f45695k = 16.0f;
+                                                    h1Var2.f45722b = (float) j1Var9.f45736a;
+                                                    h1Var2.f45723c = (float) j1Var9.f45737b;
+                                                    h1Var2.f45727i = (float) j1Var10.f45736a;
+                                                    h1Var2.f45728j = (float) j1Var10.f45737b;
+                                                    h1Var2.d = (float) j1Var11.f45736a;
+                                                    h1Var2.f45724e = (float) j1Var11.f45737b;
+                                                    h1Var2.f45729k = 16.0f;
                                                 }
                                             } else {
                                                 j1 b14 = m1.b(arrayList);
-                                                h1Var2.f45688b = (float) b14.f45702a;
-                                                h1Var2.f45689c = (float) b14.f45703b;
+                                                h1Var2.f45722b = (float) b14.f45736a;
+                                                h1Var2.f45723c = (float) b14.f45737b;
                                                 k1 a11 = m1.a(arrayList);
-                                                h1Var2.d = ((float) (a11.f45713c - a11.f45711a)) / 2.0f;
-                                                h1Var2.f45690e = ((float) (a11.d - a11.f45712b)) / 2.0f;
+                                                h1Var2.d = ((float) (a11.f45747c - a11.f45745a)) / 2.0f;
+                                                h1Var2.f45724e = ((float) (a11.d - a11.f45746b)) / 2.0f;
                                                 if (i10 == 2 && (e7 = m1.e(1, arrayList)) > 0) {
                                                     j1 j1Var12 = (j1) arrayList.get(e7);
-                                                    h1Var2.h = (float) Math.atan2(j1Var12.f45703b - h1Var2.f45689c, j1Var12.f45702a - h1Var2.f45688b);
+                                                    h1Var2.h = (float) Math.atan2(j1Var12.f45737b - h1Var2.f45723c, j1Var12.f45736a - h1Var2.f45722b);
                                                 }
                                             }
                                             h1Var = h1Var2;
@@ -555,8 +555,8 @@ public final class d0 {
                                             sb2.append(str2);
                                             Log.i("shapedetector", sb2.toString());
                                         }
-                                        AndroidUtilities.runOnUIThread(new s21(m1Var, h1Var, i21, f10));
-                                        m1Var.f45735j.set(false);
+                                        AndroidUtilities.runOnUIThread(new r21(m1Var, h1Var, i21, f10));
+                                        m1Var.f45769j.set(false);
                                     }
                                 } finally {
                                 }
@@ -572,22 +572,22 @@ public final class d0 {
                                 c10 = 0;
                                 if (open.available() > 5) {
                                     l1 l1Var = new l1();
-                                    l1Var.f45719a = open.read();
+                                    l1Var.f45753a = open.read();
                                     int read = open.read();
                                     int read2 = open.read() - 64;
                                     int read3 = open.read() - 64;
                                     if (open.available() >= read * 2) {
                                         for (int i23 = 0; i23 < read; i23++) {
-                                            l1Var.f45720b.add(new j1((open.read() - read2) - 127, (open.read() - read3) - 127));
+                                            l1Var.f45754b.add(new j1((open.read() - read2) - 127, (open.read() - read3) - 127));
                                         }
-                                        l1Var.f45721c = m1Var2.f45733g.getInt("score" + m1Var2.f45730c.size(), 0);
-                                        m1Var2.f45730c.add(l1Var);
+                                        l1Var.f45755c = m1Var2.f45767g.getInt("score" + m1Var2.f45764c.size(), 0);
+                                        m1Var2.f45764c.add(l1Var);
                                     }
                                 }
                             }
-                            if (m1Var2.h && (string = m1Var2.f45733g.getString("moretemplates", null)) != null) {
+                            if (m1Var2.h && (string = m1Var2.f45767g.getString("moretemplates", null)) != null) {
                                 String[] split = string.split("\\|");
-                                int size = m1Var2.f45730c.size();
+                                int size = m1Var2.f45764c.size();
                                 int i24 = 0;
                                 while (i24 < split.length) {
                                     l1 l1Var2 = new l1();
@@ -597,16 +597,16 @@ public final class d0 {
                                         c11 = c10;
                                         i12 = i24;
                                     } else {
-                                        l1Var2.f45719a = Integer.parseInt(split2[c10]);
+                                        l1Var2.f45753a = Integer.parseInt(split2[c10]);
                                         while (i25 < split2.length) {
-                                            l1Var2.f45720b.add(new j1(Double.parseDouble(split2[i25]), Double.parseDouble(split2[i25 + 1])));
+                                            l1Var2.f45754b.add(new j1(Double.parseDouble(split2[i25]), Double.parseDouble(split2[i25 + 1])));
                                             i25 += 2;
                                             i24 = i24;
                                         }
                                         i12 = i24;
                                         c11 = 0;
-                                        l1Var2.f45721c = m1Var2.f45733g.getInt("score" + (size + i12), 0);
-                                        m1Var2.f45730c.add(l1Var2);
+                                        l1Var2.f45755c = m1Var2.f45767g.getInt("score" + (size + i12), 0);
+                                        m1Var2.f45764c.add(l1Var2);
                                     }
                                     i24 = i12 + 1;
                                     c10 = c11;
@@ -621,15 +621,15 @@ public final class d0 {
                 }
             }
         });
-        this.f45659s = obj;
+        this.f45693s = obj;
     }
 
     public final void a(d dVar, boolean z10, y0 y0Var) {
         Object obj;
         d1 d1Var;
-        if (this.f45652l) {
-            e1 e1Var = this.f45643a;
-            if (!e1Var.getPainting().G && this.f45648g != null) {
+        if (this.f45686l) {
+            e1 e1Var = this.f45677a;
+            if (!e1Var.getPainting().G && this.f45682g != null) {
                 if (dVar == null) {
                     obj = e1Var.getCurrentBrush();
                 } else {
@@ -639,47 +639,47 @@ public final class d0 {
                     obj = new Object();
                 }
                 final ?? r42 = obj;
-                this.f45652l = false;
+                this.f45686l = false;
                 if (r42 instanceof d) {
                     e1Var.getPainting().E = false;
                 }
                 s0 painting = e1Var.getPainting();
-                painting.f45793f.f(new p0(painting, 1));
-                this.f45654n = 0;
-                this.f45655o = 0;
-                this.f45650j = false;
-                this.f45644b = false;
-                if (z10 && (d1Var = e1Var.f45667a) != null) {
+                painting.f45827f.f(new p0(painting, 1));
+                this.f45688n = 0;
+                this.f45689o = 0;
+                this.f45684j = false;
+                this.f45678b = false;
+                if (z10 && (d1Var = e1Var.f45701a) != null) {
                     d1Var.f();
                 }
-                ow0 ow0Var = e1Var.getPainting().f45794g;
-                w0 w0Var = this.f45648g;
-                float a2 = z6.a((float) w0Var.f45863a, (float) w0Var.f45864b, 0.0f, 0.0f);
-                w0 w0Var2 = this.f45648g;
-                float max = Math.max(a2, z6.a((float) w0Var2.f45863a, (float) w0Var2.f45864b, ow0Var.f29541a, 0.0f));
-                w0 w0Var3 = this.f45648g;
-                float a10 = z6.a((float) w0Var3.f45863a, (float) w0Var3.f45864b, 0.0f, ow0Var.f29542b);
-                w0 w0Var4 = this.f45648g;
-                final float max2 = Math.max(max, Math.max(a10, z6.a((float) w0Var4.f45863a, (float) w0Var4.f45864b, ow0Var.f29541a, ow0Var.f29542b))) / 0.84f;
-                ValueAnimator valueAnimator = this.f45658r;
+                nw0 nw0Var = e1Var.getPainting().f45828g;
+                w0 w0Var = this.f45682g;
+                float a2 = z6.a((float) w0Var.f45897a, (float) w0Var.f45898b, 0.0f, 0.0f);
+                w0 w0Var2 = this.f45682g;
+                float max = Math.max(a2, z6.a((float) w0Var2.f45897a, (float) w0Var2.f45898b, nw0Var.f29302a, 0.0f));
+                w0 w0Var3 = this.f45682g;
+                float a10 = z6.a((float) w0Var3.f45897a, (float) w0Var3.f45898b, 0.0f, nw0Var.f29303b);
+                w0 w0Var4 = this.f45682g;
+                final float max2 = Math.max(max, Math.max(a10, z6.a((float) w0Var4.f45897a, (float) w0Var4.f45898b, nw0Var.f29302a, nw0Var.f29303b))) / 0.84f;
+                ValueAnimator valueAnimator = this.f45692r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    this.f45658r = null;
+                    this.f45692r = null;
                 }
-                ValueAnimator valueAnimator2 = this.f45663x;
+                ValueAnimator valueAnimator2 = this.f45697x;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
-                    this.f45663x = null;
+                    this.f45697x = null;
                 }
-                w0 w0Var5 = this.f45648g;
-                final w0 w0Var6 = new w0(w0Var5.f45863a, w0Var5.f45864b, 1.0d);
+                w0 w0Var5 = this.f45682g;
+                final w0 w0Var6 = new w0(w0Var5.f45897a, w0Var5.f45898b, 1.0d);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.f45663x = ofFloat;
+                this.f45697x = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
                         int currentColor;
-                        e1 e1Var2 = d0.this.f45643a;
+                        e1 e1Var2 = d0.this.f45677a;
                         float floatValue = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
                         t0 t0Var = new t0(new w0[]{w0Var6});
                         m mVar = r42;
@@ -689,20 +689,20 @@ public final class d0 {
                         } else {
                             currentColor = e1Var2.getCurrentColor();
                         }
-                        t0Var.f45824c = currentColor;
+                        t0Var.f45858c = currentColor;
                         t0Var.d = floatValue * max2;
-                        t0Var.f45825e = mVar;
+                        t0Var.f45859e = mVar;
                         s0 painting2 = e1Var2.getPainting();
                         if (painting2.L != null) {
                             return;
                         }
-                        painting2.f45793f.f(new c8(painting2, t0Var, true, true, null, 4));
+                        painting2.f45827f.f(new c8(painting2, t0Var, true, true, null, 4));
                     }
                 });
-                this.f45663x.addListener(new c0(this, w0Var6, max2, r42, z10, y0Var));
-                this.f45663x.setDuration(450L);
-                this.f45663x.setInterpolator(is.h);
-                this.f45663x.start();
+                this.f45697x.addListener(new c0(this, w0Var6, max2, r42, z10, y0Var));
+                this.f45697x.setDuration(450L);
+                this.f45697x.setInterpolator(is.h);
+                this.f45697x.start();
                 if (z10) {
                     BotWebViewVibrationEffect.IMPACT_HEAVY.vibrate();
                 }
@@ -711,29 +711,29 @@ public final class d0 {
     }
 
     public final void b(t0 t0Var) {
-        e1 e1Var = this.f45643a;
+        e1 e1Var = this.f45677a;
         int currentColor = e1Var.getCurrentColor();
         float currentWeight = e1Var.getCurrentWeight();
         m currentBrush = e1Var.getCurrentBrush();
-        t0Var.f45824c = currentColor;
+        t0Var.f45858c = currentColor;
         t0Var.d = currentWeight;
-        t0Var.f45825e = currentBrush;
-        if (this.f45647f) {
-            this.f45649i = 0.0d;
+        t0Var.f45859e = currentBrush;
+        if (this.f45681f) {
+            this.f45683i = 0.0d;
         }
-        t0Var.f45822a = this.f45649i;
+        t0Var.f45856a = this.f45683i;
         s0 painting = e1Var.getPainting();
-        boolean z10 = this.f45647f;
+        boolean z10 = this.f45681f;
         b0 b0Var = new b0(this, t0Var, 0);
         if (painting.L == null) {
-            painting.f45793f.f(new c8(painting, t0Var, z10, false, b0Var, 4));
+            painting.f45827f.f(new c8(painting, t0Var, z10, false, b0Var, 4));
         }
-        this.f45647f = false;
+        this.f45681f = false;
     }
 
     public final void c(float f7, boolean z10) {
-        int i10 = this.f45654n;
-        w0[] w0VarArr = this.f45653m;
+        int i10 = this.f45688n;
+        w0[] w0VarArr = this.f45687m;
         if (i10 > 2) {
             Vector vector = new Vector();
             w0 w0Var = w0VarArr[0];
@@ -754,17 +754,17 @@ public final class d0 {
                     double d10 = f12 * f12;
                     double d11 = f13 * f13;
                     double d12 = f12;
-                    double d13 = (b11.f45863a * d10) + (w0Var2.f45863a * 2.0d * d12 * d) + (b10.f45863a * d11);
-                    double d14 = (b11.f45864b * d10) + (w0Var2.f45864b * 2.0d * d12 * d) + (b10.f45864b * d11);
-                    double lerp = ((((b11.f45865c * d10) + ((w0Var2.f45865c * ((2.0f * f13) * f12)) + (b10.f45865c * pow))) - 1.0d) * AndroidUtilities.lerp(f7, 1.0f, w7.o.a(this.f45655o / 16.0f, 0.0f, 1.0f))) + 1.0d;
+                    double d13 = (b11.f45897a * d10) + (w0Var2.f45897a * 2.0d * d12 * d) + (b10.f45897a * d11);
+                    double d14 = (b11.f45898b * d10) + (w0Var2.f45898b * 2.0d * d12 * d) + (b10.f45898b * d11);
+                    double lerp = ((((b11.f45899c * d10) + ((w0Var2.f45899c * ((2.0f * f13) * f12)) + (b10.f45899c * pow))) - 1.0d) * AndroidUtilities.lerp(f7, 1.0f, w7.o.a(this.f45689o / 16.0f, 0.0f, 1.0f))) + 1.0d;
                     w0 w0Var4 = new w0(d13, d14, lerp);
-                    if (this.f45645c) {
+                    if (this.f45679c) {
                         w0Var4.d = true;
-                        this.f45645c = false;
+                        this.f45679c = false;
                     }
                     vector.add(w0Var4);
-                    this.f45656p += lerp;
-                    this.f45657q += 1.0d;
+                    this.f45690p += lerp;
+                    this.f45691q += 1.0d;
                     f12 += f11;
                     i11++;
                     f10 = 1.0f;
@@ -778,10 +778,10 @@ public final class d0 {
                 b(new t0(w0VarArr2));
                 System.arraycopy(w0VarArr, 1, w0VarArr, 0, 2);
                 if (z10) {
-                    this.f45654n = 0;
+                    this.f45688n = 0;
                     return;
                 } else {
-                    this.f45654n = 2;
+                    this.f45688n = 2;
                     return;
                 }
             }

@@ -3,38 +3,38 @@ package yh;
 import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 public final class m3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f52950a;
-    public final p3 f52951b;
+    public final int f52984a;
+    public final p3 f52985b;
 
     public m3(p3 p3Var, int i10) {
-        this.f52950a = i10;
-        this.f52951b = p3Var;
+        this.f52984a = i10;
+        this.f52985b = p3Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f52950a) {
+        switch (this.f52984a) {
             case 0:
-                p3 p3Var = this.f52951b;
+                p3 p3Var = this.f52985b;
                 p3Var.getClass();
-                p3Var.f53112s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p3Var.f53146s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 p3Var.d(p3Var.U);
                 return;
             case 1:
-                p3 p3Var2 = this.f52951b;
+                p3 p3Var2 = this.f52985b;
                 p3Var2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float w10 = com.google.android.gms.internal.vision.e2.w((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
-                p3Var2.f53113t0 = w10;
-                FrameLayout frameLayout = p3Var2.f53089b;
+                p3Var2.f53147t0 = w10;
+                FrameLayout frameLayout = p3Var2.f53123b;
                 frameLayout.setScaleX(w10);
-                frameLayout.setScaleY(p3Var2.f53113t0);
+                frameLayout.setScaleY(p3Var2.f53147t0);
                 p3Var2.invalidate();
                 return;
             default:
-                p3 p3Var3 = this.f52951b;
+                p3 p3Var3 = this.f52985b;
                 p3Var3.getClass();
-                p3Var3.f53112s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p3Var3.f53146s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 p3Var3.d(p3Var3.U);
                 return;
         }

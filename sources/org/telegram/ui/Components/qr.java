@@ -12,36 +12,36 @@ import org.telegram.tgnet.tl.TL_bots;
 public final class qr implements Runnable {
     public final nd E;
     public final org.telegram.ui.ActionBar.e3 F;
-    public final boolean[] f30224a;
-    public final int[] f30225b;
-    public final ai.d9 f30226c;
+    public final boolean[] f30300a;
+    public final int[] f30301b;
+    public final ai.d9 f30302c;
     public final String[] d;
-    public final ci.d f30227e;
-    public final org.telegram.ui.Cells.j3 f30228f;
+    public final ci.d f30303e;
+    public final org.telegram.ui.Cells.j3 f30304f;
     public final TreeSet h;
-    public final org.telegram.messenger.video.f f30229n;
-    public final org.telegram.ui.Cells.e9 f30230r;
-    public final org.telegram.ui.ActionBar.d6 f30231s;
+    public final org.telegram.messenger.video.f f30305n;
+    public final org.telegram.ui.Cells.e9 f30306r;
+    public final org.telegram.ui.ActionBar.d6 f30307s;
     public final int[] v;
-    public final Runnable[] f30232w;
-    public final int[] f30233x;
-    public final int f30234y;
+    public final Runnable[] f30308w;
+    public final int[] f30309x;
+    public final int f30310y;
 
     public qr(boolean[] zArr, int[] iArr, ai.d9 d9Var, String[] strArr, ci.d dVar, org.telegram.ui.Cells.j3 j3Var, TreeSet treeSet, org.telegram.messenger.video.f fVar, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.ActionBar.d6 d6Var, int[] iArr2, Runnable[] runnableArr, int[] iArr3, int i10, nd ndVar, org.telegram.ui.ActionBar.e3 e3Var) {
-        this.f30224a = zArr;
-        this.f30225b = iArr;
-        this.f30226c = d9Var;
+        this.f30300a = zArr;
+        this.f30301b = iArr;
+        this.f30302c = d9Var;
         this.d = strArr;
-        this.f30227e = dVar;
-        this.f30228f = j3Var;
+        this.f30303e = dVar;
+        this.f30304f = j3Var;
         this.h = treeSet;
-        this.f30229n = fVar;
-        this.f30230r = e9Var;
-        this.f30231s = d6Var;
+        this.f30305n = fVar;
+        this.f30306r = e9Var;
+        this.f30307s = d6Var;
         this.v = iArr2;
-        this.f30232w = runnableArr;
-        this.f30233x = iArr3;
-        this.f30234y = i10;
+        this.f30308w = runnableArr;
+        this.f30309x = iArr3;
+        this.f30310y = i10;
         this.E = ndVar;
         this.F = e3Var;
     }
@@ -49,15 +49,15 @@ public final class qr implements Runnable {
     @Override
     public final void run() {
         int i10;
-        final boolean[] zArr = this.f30224a;
-        if (!zArr[0] && this.f30225b[0] < 0) {
-            this.f30226c.run();
+        final boolean[] zArr = this.f30300a;
+        if (!zArr[0] && this.f30301b[0] < 0) {
+            this.f30302c.run();
             final String[] strArr = this.d;
             strArr[0] = null;
-            final ci.d dVar = this.f30227e;
+            final ci.d dVar = this.f30303e;
             dVar.setLoading(false);
             dVar.setEnabled(false);
-            String charSequence = this.f30228f.getText().toString();
+            String charSequence = this.f30304f.getText().toString();
             StringBuilder v = a1.g.v(charSequence);
             String str = "bot";
             boolean a2 = tr.a(charSequence, "bot");
@@ -65,22 +65,22 @@ public final class qr implements Runnable {
             v.append((a2 || tr.c(charSequence, treeSet) != null) ? "" : "");
             final String sb2 = v.toString();
             boolean isEmpty = TextUtils.isEmpty(charSequence);
-            final org.telegram.messenger.video.f fVar = this.f30229n;
+            final org.telegram.messenger.video.f fVar = this.f30305n;
             if (isEmpty) {
                 fVar.run();
                 return;
             }
             int length = sb2.length();
-            final org.telegram.ui.Cells.e9 e9Var = this.f30230r;
-            final org.telegram.ui.ActionBar.d6 d6Var = this.f30231s;
+            final org.telegram.ui.Cells.e9 e9Var = this.f30306r;
+            final org.telegram.ui.ActionBar.d6 d6Var = this.f30307s;
             if (length >= 4 && sb2.length() <= 32) {
                 e9Var.setText(LocaleController.getString(R.string.UsernameChecking));
                 e9Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.B6, d6Var));
                 final int[] iArr = this.v;
                 final int i11 = iArr[0];
-                final Runnable[] runnableArr = this.f30232w;
-                final int[] iArr2 = this.f30233x;
-                final int i12 = this.f30234y;
+                final Runnable[] runnableArr = this.f30308w;
+                final int[] iArr2 = this.f30309x;
+                final int i12 = this.f30310y;
                 final nd ndVar = this.E;
                 final org.telegram.ui.ActionBar.e3 e3Var = this.F;
                 Runnable runnable = new Runnable() {
@@ -145,7 +145,7 @@ public final class qr implements Runnable {
                                                 }
                                                 org.telegram.ui.Cells.e9 e9Var3 = e9Var2;
                                                 e9Var3.setText(string);
-                                                e9Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21026q7, d6Var3));
+                                                e9Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21062q7, d6Var3));
                                                 if (d == null && tL_error != null) {
                                                     dVar3.setEnabled(true);
                                                     org.telegram.ui.Cells.c1.p(e3Var2.topBulletinContainer, d6Var3, tL_error, false);
@@ -168,7 +168,7 @@ public final class qr implements Runnable {
                 i10 = R.string.UsernameInvalidLong;
             }
             e9Var.setText(LocaleController.getString(i10));
-            e9Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21026q7, d6Var));
+            e9Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21062q7, d6Var));
         }
     }
 }

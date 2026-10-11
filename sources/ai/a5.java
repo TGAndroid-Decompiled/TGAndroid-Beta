@@ -3,8 +3,8 @@ package ai;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.ll0;
-public final class a5 implements ll0 {
+import org.telegram.ui.Components.kl0;
+public final class a5 implements kl0 {
     public final f6 f642a;
 
     public a5(f6 f6Var) {

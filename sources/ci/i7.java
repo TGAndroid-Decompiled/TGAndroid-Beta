@@ -99,7 +99,7 @@ public final class i7 extends j1.b {
     public final void l(int i10, s0.d dVar) {
         String string;
         String string2;
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47677a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47711a;
         dVar.i("android.widget.Button");
         boolean z10 = false;
         Rect rect = this.f5202o;
@@ -125,7 +125,7 @@ public final class i7 extends j1.b {
                 }
                 accessibilityNodeInfo.setEnabled(z10);
                 if (z10) {
-                    dVar.b(s0.c.f47670c);
+                    dVar.b(s0.c.f47704c);
                     return;
                 }
                 return;
@@ -148,7 +148,7 @@ public final class i7 extends j1.b {
             dVar.j(string2);
             accessibilityNodeInfo.setEnabled(!j7Var.f5276u0);
             if (!j7Var.f5276u0) {
-                dVar.b(s0.c.f47670c);
+                dVar.b(s0.c.f47704c);
                 return;
             }
             return;
@@ -170,7 +170,7 @@ public final class i7 extends j1.b {
         }
         accessibilityNodeInfo.setEnabled(z10);
         if (z10) {
-            dVar.b(s0.c.f47670c);
+            dVar.b(s0.c.f47704c);
         }
     }
 }

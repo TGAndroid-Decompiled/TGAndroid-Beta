@@ -1,96 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
+import android.text.TextPaint;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SvgHelper;
-public final class la0 extends Drawable {
-    public final Bitmap f28278a;
-    public long f28280c;
-    public LinearGradient d;
-    public float f28282f;
-    public float f28283g;
-    public final y9 h;
-    public int f28284i;
-    public int f28285j;
-    public final Paint f28279b = new Paint(2);
-    public final Matrix f28281e = new Matrix();
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class la0 extends View {
+    public final TextPaint f28331a;
+    public final Paint f28332b;
+    public final String f28333c;
+    public final Rect d;
+    public View f28334e;
 
-    public la0(y9 y9Var, String str, int i10, int i11) {
-        this.f28278a = SvgHelper.getBitmapByPathOnly(str, 512, 512, i10, i11);
-        this.h = y9Var;
+    public la0(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f28331a = textPaint;
+        this.f28332b = new Paint(1);
+        this.d = new Rect();
+        this.f28333c = LocaleController.getString(R.string.LoginOrSingInWithGoogle);
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        a();
+    }
+
+    public final void a() {
+        this.f28331a.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21207y6, false));
+        this.f28332b.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ii, false));
+        invalidate();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f28278a;
-        if (bitmap == null) {
-            return;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        super.onDraw(canvas);
+        View view = this.f28334e;
+        Rect rect = this.d;
+        if (view != null) {
+            dp = ((((getWidth() - rect.width()) - AndroidUtilities.dp(8.0f)) - this.f28334e.getPaddingLeft()) - this.f28334e.getPaddingRight()) / 2.0f;
+        } else {
+            dp = AndroidUtilities.dp(64.0f);
         }
-        int i10 = org.telegram.ui.ActionBar.h6.f20857h5;
-        int i11 = org.telegram.ui.ActionBar.h6.f20876i5;
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        int x03 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
-        int i12 = this.f28284i;
-        Paint paint = this.f28279b;
-        Matrix matrix = this.f28281e;
-        if (i12 != x02 || this.f28285j != x03) {
-            this.f28284i = x02;
-            this.f28285j = x03;
-            int averageColor = AndroidUtilities.getAverageColor(x03, x02);
-            paint.setColor(x03);
-            float dp = AndroidUtilities.dp(500.0f);
-            this.f28283g = dp;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{x03, averageColor, x03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
-            this.d = linearGradient;
-            linearGradient.setLocalMatrix(matrix);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
-        }
-        Rect bounds = getBounds();
-        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f28280c - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
-        }
-        this.f28280c = elapsedRealtime;
-        this.f28282f = a1.g.B((float) abs, this.f28283g, 1800.0f, this.f28282f);
-        while (true) {
-            float f7 = this.f28282f;
-            float f10 = this.f28283g * 2.0f;
-            if (f7 >= f10) {
-                this.f28282f = f7 - f10;
-            } else {
-                matrix.setTranslate(f7, 0.0f);
-                this.d.setLocalMatrix(matrix);
-                this.h.invalidate();
-                return;
-            }
-        }
+        Paint paint = this.f28332b;
+        canvas.drawLine((((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f)) - dp, getHeight() / 2.0f, ((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, ((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f) + dp, getHeight() / 2.0f, paint);
+        int height = getHeight();
+        canvas.drawText(this.f28333c, (getWidth() - rect.width()) / 2.0f, (rect.height() + height) / 2.0f, this.f28331a);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onMeasure(int i10, int i11) {
+        View view = this.f28334e;
+        if (view != null) {
+            i10 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(view.getMeasuredWidth()), 1073741824);
+        }
+        super.onMeasure(i10, i11);
+        String str = this.f28333c;
+        this.f28331a.getTextBounds(str, 0, str.length(), this.d);
     }
 
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setMeasureAfter(View view) {
+        this.f28334e = view;
     }
 }

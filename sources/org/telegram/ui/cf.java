@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.text.style.CharacterStyle;
 import org.telegram.messenger.Utilities;
 public final class cf implements Utilities.Callback2 {
-    public final int f36680a;
-    public final Object f36681b;
-    public final Object f36682c;
+    public final int f36714a;
+    public final Object f36715b;
+    public final Object f36716c;
     public final Object d;
-    public final Object f36683e;
-    public final Object f36684f;
+    public final Object f36717e;
+    public final Object f36718f;
 
     public cf(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f36680a = i10;
-        this.f36681b = obj;
+        this.f36714a = i10;
+        this.f36715b = obj;
         this.d = obj2;
-        this.f36682c = obj3;
-        this.f36683e = obj4;
-        this.f36684f = obj5;
+        this.f36716c = obj3;
+        this.f36717e = obj4;
+        this.f36718f = obj5;
     }
 
     @Override
@@ -25,11 +25,11 @@ public final class cf implements Utilities.Callback2 {
     }
 
     public cf(zn znVar, zi ziVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
-        this.f36680a = 1;
-        this.f36681b = znVar;
-        this.f36682c = ziVar;
+        this.f36714a = 1;
+        this.f36715b = znVar;
+        this.f36716c = ziVar;
         this.d = u1Var;
-        this.f36683e = str;
-        this.f36684f = characterStyle;
+        this.f36717e = str;
+        this.f36718f = characterStyle;
     }
 }

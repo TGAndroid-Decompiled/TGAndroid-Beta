@@ -1,15 +1,15 @@
 package ii;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.k80;
+import org.telegram.ui.Components.p80;
 public final class h implements Runnable {
     public final int f12447a;
-    public final q80 f12448b;
+    public final p80 f12448b;
 
-    public h(q80 q80Var, int i10) {
+    public h(p80 p80Var, int i10) {
         this.f12447a = i10;
-        this.f12448b = q80Var;
+        this.f12448b = p80Var;
     }
 
     @Override
@@ -25,44 +25,44 @@ public final class h implements Runnable {
                 this.f12448b.s();
                 return;
             case 3:
-                l80 l80Var = this.f12448b.f30073m;
-                if (l80Var != null) {
-                    AndroidUtilities.hideKeyboard(l80Var.getContentView());
+                k80 k80Var = this.f12448b.f29769m;
+                if (k80Var != null) {
+                    AndroidUtilities.hideKeyboard(k80Var.getContentView());
                     return;
                 }
                 return;
             case 4:
-                l80 l80Var2 = this.f12448b.f30073m;
-                if (l80Var2 != null) {
-                    AndroidUtilities.hideKeyboard(l80Var2.getContentView());
+                k80 k80Var2 = this.f12448b.f29769m;
+                if (k80Var2 != null) {
+                    AndroidUtilities.hideKeyboard(k80Var2.getContentView());
                     return;
                 }
                 return;
             case 5:
-                l80 l80Var3 = this.f12448b.f30073m;
-                if (l80Var3 != null) {
-                    AndroidUtilities.hideKeyboard(l80Var3.getContentView());
+                k80 k80Var3 = this.f12448b.f29769m;
+                if (k80Var3 != null) {
+                    AndroidUtilities.hideKeyboard(k80Var3.getContentView());
                     return;
                 }
                 return;
             case 6:
-                l80 l80Var4 = this.f12448b.f30073m;
-                if (l80Var4 != null) {
-                    AndroidUtilities.hideKeyboard(l80Var4.getContentView());
+                k80 k80Var4 = this.f12448b.f29769m;
+                if (k80Var4 != null) {
+                    AndroidUtilities.hideKeyboard(k80Var4.getContentView());
                     return;
                 }
                 return;
             case 7:
-                l80 l80Var5 = this.f12448b.f30073m;
-                if (l80Var5 != null) {
-                    AndroidUtilities.hideKeyboard(l80Var5.getContentView());
+                k80 k80Var5 = this.f12448b.f29769m;
+                if (k80Var5 != null) {
+                    AndroidUtilities.hideKeyboard(k80Var5.getContentView());
                     return;
                 }
                 return;
             default:
-                l80 l80Var6 = this.f12448b.f30073m;
-                if (l80Var6 != null) {
-                    AndroidUtilities.hideKeyboard(l80Var6.getContentView());
+                k80 k80Var6 = this.f12448b.f29769m;
+                if (k80Var6 != null) {
+                    AndroidUtilities.hideKeyboard(k80Var6.getContentView());
                     return;
                 }
                 return;

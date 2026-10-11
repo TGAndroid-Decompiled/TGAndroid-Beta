@@ -25,7 +25,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.dw0;
+import org.telegram.ui.Components.cw0;
 import z3.n;
 public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, MessagesStorage.StringCallback, e2.h {
     public final int f13685a;
@@ -46,12 +46,12 @@ public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, Message
         n nVar = (n) this.d;
         z3.a aVar = (z3.a) obj;
         e2.d.h(nVar.h);
-        byte[] l32 = na.d.l3(aVar.f53575a, aVar.f53577c);
-        v vVar = nVar.f53600c;
+        byte[] l32 = na.d.l3(aVar.f53609a, aVar.f53611c);
+        v vVar = nVar.f53634c;
         vVar.getClass();
         vVar.H(l32.length, l32);
-        nVar.f53598a.d(l32.length, vVar);
-        long j3 = aVar.f53576b;
+        nVar.f53632a.d(l32.length, vVar);
+        long j3 = aVar.f53610b;
         int i10 = (j3 > (-9223372036854775807L) ? 1 : (j3 == (-9223372036854775807L) ? 0 : -1));
         long j10 = this.f13687c;
         if (i10 == 0) {
@@ -69,7 +69,7 @@ public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, Message
                 j10 = j3 + j11;
             }
         }
-        nVar.f53598a.c(j10, this.f13686b | 1, l32.length, 0, null);
+        nVar.f53632a.c(j10, this.f13686b | 1, l32.length, 0, null);
     }
 
     @Override
@@ -165,12 +165,12 @@ public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, Message
         List list = (List) this.d;
         int i12 = this.f13686b;
         if (i12 == -1) {
-            i11 = b0Var.f16022t.l0();
+            i11 = b0Var.f16058t.l0();
         } else {
             i11 = i12;
         }
         if (i12 == -1) {
-            j3 = b0Var.f16022t.J0();
+            j3 = b0Var.f16058t.J0();
         } else {
             j3 = this.f13687c;
         }
@@ -185,7 +185,7 @@ public final class d implements m, z0, b1, RequestDelegateTimestamp, z1, Message
 
     @Override
     public void run(String str) {
-        dw0.i((dw0) this.d, this.f13687c, this.f13686b, str);
+        cw0.i((cw0) this.d, this.f13687c, this.f13686b, str);
     }
 
     public d(a aVar, int i10, long j3, long j10) {

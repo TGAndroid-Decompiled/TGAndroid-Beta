@@ -9,14 +9,14 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class bi extends sm0 {
+public final class bi extends rm0 {
     public final int V2;
     public final Paint W2;
     public final Paint X2;
     public boolean Y2;
     public boolean Z2;
-    public final Object f24961a3;
-    public final Object f24962b3;
+    public final Object f25008a3;
+    public final Object f25009b3;
 
     public bi(Context context, int i10) {
         super(context, null);
@@ -28,16 +28,16 @@ public final class bi extends sm0 {
                 this.W2 = paint;
                 Paint paint2 = new Paint(1);
                 this.X2 = paint2;
-                this.f24961a3 = new g6(this);
-                this.f24962b3 = new g6(this);
+                this.f25008a3 = new g6(this);
+                this.f25009b3 = new g6(this);
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
                 paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
                 return;
             default:
                 is isVar = is.h;
-                this.f24961a3 = new me.b(this, isVar, 320L);
-                this.f24962b3 = new me.b(this, isVar, 320L);
+                this.f25008a3 = new me.b(this, isVar, 320L);
+                this.f25009b3 = new me.b(this, isVar, 320L);
                 Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
                 LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
@@ -62,12 +62,12 @@ public final class bi extends sm0 {
                 this.Z2 = false;
                 this.Y2 = false;
                 super.dispatchDraw(canvas);
-                ((me.b) this.f24961a3).a(this.Y2, true);
-                ((me.b) this.f24962b3).a(this.Z2, true);
+                ((me.b) this.f25008a3).a(this.Y2, true);
+                ((me.b) this.f25009b3).a(this.Z2, true);
                 return;
             default:
                 super.dispatchDraw(canvas);
-                g6 g6Var = (g6) this.f24961a3;
+                g6 g6Var = (g6) this.f25008a3;
                 float f10 = 1.0f;
                 if (this.Y2) {
                     f7 = 1.0f;
@@ -77,7 +77,7 @@ public final class bi extends sm0 {
                 Paint paint = this.W2;
                 paint.setAlpha((int) (g6Var.d(f7, false) * 255.0f));
                 canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint);
-                g6 g6Var2 = (g6) this.f24962b3;
+                g6 g6Var2 = (g6) this.f25009b3;
                 if (!this.Z2) {
                     f10 = 0.0f;
                 }
@@ -127,7 +127,7 @@ public final class bi extends sm0 {
                     canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((me.b) this.f24961a3).f16365e, AndroidUtilities.dp(8.0f), dp), 0.0f);
+                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((me.b) this.f25008a3).f16401e, AndroidUtilities.dp(8.0f), dp), 0.0f);
                     canvas.drawPaint(this.W2);
                     canvas.restore();
                     canvas.restore();
@@ -137,7 +137,7 @@ public final class bi extends sm0 {
                     canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.y(1.0f, ((me.b) this.f24962b3).f16365e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
+                    canvas.translate(com.google.android.gms.internal.vision.e2.y(1.0f, ((me.b) this.f25009b3).f16401e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
                     canvas.drawPaint(this.X2);
                     canvas.restore();
                     canvas.restore();
@@ -178,7 +178,7 @@ public final class bi extends sm0 {
                 for (int i13 = 0; i13 < childCount; i13++) {
                     View childAt = getChildAt(i13);
                     if (childAt instanceof ti) {
-                        f10 = ((ti) childAt).f31103a.c() + f10;
+                        f10 = ((ti) childAt).f31265a.c() + f10;
                     }
                 }
                 if (size > f10 && childCount > 0) {
@@ -189,7 +189,7 @@ public final class bi extends sm0 {
                 for (int i14 = 0; i14 < childCount; i14++) {
                     View childAt2 = getChildAt(i14);
                     if (childAt2 instanceof ti) {
-                        ((ti) childAt2).f31103a.setAdditionalWidth(i12);
+                        ((ti) childAt2).f31265a.setAdditionalWidth(i12);
                     }
                 }
                 super.onMeasure(i10, i11);

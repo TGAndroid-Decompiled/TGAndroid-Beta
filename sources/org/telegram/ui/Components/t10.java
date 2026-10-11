@@ -28,49 +28,49 @@ public final class t10 extends db {
     public String X;
     public int Y;
     public TL_chatlists.chatlist_ChatlistInvite Z;
-    public TL_chatlists.TL_chatlists_chatlistUpdates f30930a0;
-    public final boolean f30931b0;
-    public String f30932c0;
-    public ArrayList f30933d0;
-    public boolean f30934e0;
-    public CharSequence f30935f0;
-    public ArrayList f30936g0;
-    public ArrayList f30937h0;
-    public ArrayList f30938i0;
-    public ArrayList f30939j0;
-    public FrameLayout f30940k0;
-    public p10 f30941l0;
+    public TL_chatlists.TL_chatlists_chatlistUpdates f30995a0;
+    public final boolean f30996b0;
+    public String f30997c0;
+    public ArrayList f30998d0;
+    public boolean f30999e0;
+    public CharSequence f31000f0;
+    public ArrayList f31001g0;
+    public ArrayList f31002h0;
+    public ArrayList f31003i0;
+    public ArrayList f31004j0;
+    public FrameLayout f31005k0;
+    public p10 f31006l0;
     public View m0;
-    public s10 f30942n0;
-    public int f30943o0;
-    public int f30944p0;
-    public int f30945q0;
-    public int f30946r0;
-    public int f30947s0;
-    public int f30948t0;
-    public int f30949u0;
-    public int f30950v0;
-    public int f30951w0;
-    public int f30952x0;
-    public q10 f30953y0;
-    public int f30954z0;
+    public s10 f31007n0;
+    public int f31008o0;
+    public int f31009p0;
+    public int f31010q0;
+    public int f31011r0;
+    public int f31012s0;
+    public int f31013t0;
+    public int f31014u0;
+    public int f31015v0;
+    public int f31016w0;
+    public int f31017x0;
+    public q10 f31018y0;
+    public int f31019z0;
 
     public t10(org.telegram.ui.ActionBar.m2 m2Var, int i10, ArrayList arrayList) {
         super(m2Var, false);
         MessagesController.DialogFilter dialogFilter;
         TLRPC.Chat chat;
         this.Y = -1;
-        this.f30932c0 = "";
-        this.f30933d0 = new ArrayList();
-        this.f30935f0 = "";
-        this.f30937h0 = new ArrayList();
+        this.f30997c0 = "";
+        this.f30998d0 = new ArrayList();
+        this.f31000f0 = "";
+        this.f31002h0 = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        this.f30938i0 = arrayList2;
-        this.f30954z0 = -1;
+        this.f31003i0 = arrayList2;
+        this.f31019z0 = -1;
         this.C0 = -5;
         this.Y = i10;
-        this.f30931b0 = true;
-        this.f30936g0 = new ArrayList();
+        this.f30996b0 = true;
+        this.f31001g0 = new ArrayList();
         arrayList2.clear();
         if (arrayList != null) {
             arrayList2.addAll(arrayList);
@@ -78,7 +78,7 @@ public final class t10 extends db {
         ArrayList<MessagesController.DialogFilter> arrayList3 = m2Var.getMessagesController().dialogFilters;
         if (arrayList3 != null) {
             for (int i11 = 0; i11 < arrayList3.size(); i11++) {
-                if (arrayList3.get(i11).f17251id == i10) {
+                if (arrayList3.get(i11).f17287id == i10) {
                     dialogFilter = arrayList3.get(i11);
                     break;
                 }
@@ -86,22 +86,22 @@ public final class t10 extends db {
         }
         dialogFilter = null;
         if (dialogFilter != null) {
-            this.f30932c0 = dialogFilter.name;
-            this.f30933d0 = dialogFilter.entities;
-            this.f30934e0 = dialogFilter.title_noanimate;
-            for (int i12 = 0; i12 < this.f30938i0.size(); i12++) {
-                TLRPC.Peer peer = m2Var.getMessagesController().getPeer(((Long) this.f30938i0.get(i12)).longValue());
+            this.f30997c0 = dialogFilter.name;
+            this.f30998d0 = dialogFilter.entities;
+            this.f30999e0 = dialogFilter.title_noanimate;
+            for (int i12 = 0; i12 < this.f31003i0.size(); i12++) {
+                TLRPC.Peer peer = m2Var.getMessagesController().getPeer(((Long) this.f31003i0.get(i12)).longValue());
                 if ((peer instanceof TLRPC.TL_peerChat) || (peer instanceof TLRPC.TL_peerChannel)) {
-                    this.f30936g0.add(peer);
+                    this.f31001g0.add(peer);
                 }
             }
             for (int i13 = 0; i13 < dialogFilter.alwaysShow.size(); i13++) {
                 Long l4 = dialogFilter.alwaysShow.get(i13);
                 long longValue = l4.longValue();
-                if (!this.f30938i0.contains(l4)) {
+                if (!this.f31003i0.contains(l4)) {
                     TLRPC.Peer peer2 = m2Var.getMessagesController().getPeer(longValue);
                     if (((peer2 instanceof TLRPC.TL_peerChat) || (peer2 instanceof TLRPC.TL_peerChannel)) && ((chat = m2Var.getMessagesController().getChat(Long.valueOf(-longValue))) == null || !ChatObject.isNotInChat(chat))) {
-                        this.f30936g0.add(peer2);
+                        this.f31001g0.add(peer2);
                     }
                 }
             }
@@ -114,7 +114,7 @@ public final class t10 extends db {
         ArrayList<MessagesController.DialogFilter> arrayList = m2Var.getMessagesController().dialogFilters;
         if (arrayList != null) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                if (arrayList.get(i11).f17251id == i10) {
+                if (arrayList.get(i11).f17287id == i10) {
                     dialogFilter = arrayList.get(i11);
                     break;
                 }
@@ -124,15 +124,15 @@ public final class t10 extends db {
         zk zkVar = new zk(i10, m2Var, callback, 4);
         if (dialogFilter != null && dialogFilter.isMyChatlist()) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m2Var.getContext());
-            alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.FilterDelete);
-            alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.FilterDeleteAlertLinks);
+            alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.FilterDelete);
+            alertDialog$Builder.f20404a.T = LocaleController.getString(R.string.FilterDeleteAlertLinks);
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new kn(callback));
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new cw(zkVar, 4));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20404a;
             m2Var.showDialog(a2Var);
             TextView textView = (TextView) a2Var.d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21026q7, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21062q7, false));
                 return;
             }
             return;
@@ -142,13 +142,13 @@ public final class t10 extends db {
 
     @Override
     public final CharSequence B() {
-        if (this.f30931b0) {
+        if (this.f30996b0) {
             return LocaleController.getString(R.string.FolderLinkTitleRemove);
         }
         if (this.Z instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
             return LocaleController.getString(R.string.FolderLinkTitleAdd);
         }
-        ArrayList arrayList = this.f30936g0;
+        ArrayList arrayList = this.f31001g0;
         if (arrayList != null && !arrayList.isEmpty()) {
             return LocaleController.getString(R.string.FolderLinkTitleAddChats);
         }
@@ -156,27 +156,27 @@ public final class t10 extends db {
     }
 
     @Override
-    public final void H(uw0 uw0Var) {
+    public final void H(tw0 tw0Var) {
         float f7;
-        sm0 sm0Var = this.d;
-        sm0Var.setOverScrollMode(2);
+        rm0 rm0Var = this.d;
+        rm0Var.setOverScrollMode(2);
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(6.0f);
-        if (this.f30941l0 != null) {
+        if (this.f31006l0 != null) {
             f7 = 68.0f;
         } else {
             f7 = 0.0f;
         }
-        sm0Var.setPadding(dp, 0, dp2, AndroidUtilities.dp(f7));
-        sm0Var.setOnItemClickListener(new j(this, 8));
+        rm0Var.setPadding(dp, 0, dp2, AndroidUtilities.dp(f7));
+        rm0Var.setOnItemClickListener(new j(this, 8));
     }
 
     public final void R(boolean z10) {
         String str;
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(LocaleController.formatPluralString("FilterInviteHeaderChats", this.f30938i0.size(), new Object[0]));
-        if (z10 && this.f30953y0 != null) {
-            str = ", " + ((Object) this.f30953y0.f29952b.getText());
+        sb2.append(LocaleController.formatPluralString("FilterInviteHeaderChats", this.f31003i0.size(), new Object[0]));
+        if (z10 && this.f31018y0 != null) {
+            str = ", " + ((Object) this.f31018y0.f30080b.getText());
         } else {
             str = "";
         }
@@ -186,10 +186,10 @@ public final class t10 extends db {
 
     public final void S(q10 q10Var, boolean z10) {
         int i10;
-        ArrayList arrayList = this.f30936g0;
-        ArrayList arrayList2 = this.f30938i0;
+        ArrayList arrayList = this.f31001g0;
+        ArrayList arrayList2 = this.f31003i0;
         arrayList2.clear();
-        arrayList2.addAll(this.f30937h0);
+        arrayList2.addAll(this.f31002h0);
         int i11 = 0;
         if (!z10) {
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
@@ -205,12 +205,12 @@ public final class t10 extends db {
         } else {
             i10 = R.string.DeselectAll;
         }
-        q10Var.a(LocaleController.getString(i10), new ci.x0(this, q10Var, z10, 19));
+        q10Var.a(LocaleController.getString(i10), new ci.x0(this, q10Var, z10, 20));
         R(true);
         while (true) {
-            sm0 sm0Var = this.d;
-            if (i11 < sm0Var.getChildCount()) {
-                View childAt = sm0Var.getChildAt(i11);
+            rm0 rm0Var = this.d;
+            if (i11 < rm0Var.getChildCount()) {
+                View childAt = rm0Var.getChildAt(i11);
                 if (childAt instanceof org.telegram.ui.Cells.g4) {
                     Object tag = childAt.getTag();
                     if (tag instanceof Long) {
@@ -228,9 +228,9 @@ public final class t10 extends db {
         boolean z10;
         long j3;
         boolean isNotInChat;
-        ArrayList arrayList = this.f30939j0;
-        this.f30935f0 = AndroidUtilities.replaceCharSequence("*", this.f30932c0, "✱");
-        ArrayList arrayList2 = this.f30936g0;
+        ArrayList arrayList = this.f31004j0;
+        this.f31000f0 = AndroidUtilities.replaceCharSequence("*", this.f30997c0, "✱");
+        ArrayList arrayList2 = this.f31001g0;
         if (arrayList2 != null) {
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 TLRPC.Peer peer = (TLRPC.Peer) arrayList2.get(i10);
@@ -240,7 +240,7 @@ public final class t10 extends db {
                         z10 = false;
                     } else {
                         boolean z11 = peer instanceof TLRPC.TL_peerChat;
-                        org.telegram.ui.ActionBar.m2 m2Var = this.f25523n;
+                        org.telegram.ui.ActionBar.m2 m2Var = this.f25736n;
                         if (z11) {
                             j3 = -peer.chat_id;
                             isNotInChat = ChatObject.isNotInChat(m2Var.getMessagesController().getChat(Long.valueOf(-j3)));
@@ -253,109 +253,109 @@ public final class t10 extends db {
                         }
                         z10 = !isNotInChat;
                     }
-                    if (j3 != 0 && !this.f30931b0) {
+                    if (j3 != 0 && !this.f30996b0) {
                         if (z10) {
-                            this.f30937h0.add(Long.valueOf(j3));
+                            this.f31002h0.add(Long.valueOf(j3));
                         }
-                        this.f30938i0.add(Long.valueOf(j3));
+                        this.f31003i0.add(Long.valueOf(j3));
                     }
                 }
             }
         }
-        this.f30943o0 = 1;
+        this.f31008o0 = 1;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
-            int i11 = this.f30943o0;
+            int i11 = this.f31008o0;
             int i12 = i11 + 1;
-            this.f30944p0 = i11;
+            this.f31009p0 = i11;
             int i13 = i11 + 2;
-            this.f30943o0 = i13;
-            this.f30945q0 = i12;
-            this.f30946r0 = i13;
+            this.f31008o0 = i13;
+            this.f31010q0 = i12;
+            this.f31011r0 = i13;
             int size = arrayList2.size() + i13;
-            this.f30943o0 = size;
-            this.f30947s0 = size;
+            this.f31008o0 = size;
+            this.f31012s0 = size;
         } else {
-            this.f30944p0 = -1;
-            this.f30945q0 = -1;
-            this.f30946r0 = -1;
-            this.f30947s0 = -1;
+            this.f31009p0 = -1;
+            this.f31010q0 = -1;
+            this.f31011r0 = -1;
+            this.f31012s0 = -1;
         }
-        int i14 = this.f30943o0;
-        this.f30943o0 = i14 + 1;
-        this.f30948t0 = i14;
+        int i14 = this.f31008o0;
+        this.f31008o0 = i14 + 1;
+        this.f31013t0 = i14;
         if (arrayList != null && !arrayList.isEmpty()) {
-            int i15 = this.f30943o0;
+            int i15 = this.f31008o0;
             int i16 = i15 + 1;
-            this.f30943o0 = i16;
-            this.f30949u0 = i15;
-            this.f30950v0 = i16;
+            this.f31008o0 = i16;
+            this.f31014u0 = i15;
+            this.f31015v0 = i16;
             int size2 = arrayList.size() + i16;
-            this.f30951w0 = size2;
-            this.f30943o0 = size2 + 1;
-            this.f30952x0 = size2;
+            this.f31016w0 = size2;
+            this.f31008o0 = size2 + 1;
+            this.f31017x0 = size2;
         } else {
-            this.f30949u0 = -1;
-            this.f30950v0 = -1;
-            this.f30951w0 = -1;
-            this.f30952x0 = -1;
+            this.f31014u0 = -1;
+            this.f31015v0 = -1;
+            this.f31016w0 = -1;
+            this.f31017x0 = -1;
         }
         Context context = getContext();
         ?? frameLayout = new FrameLayout(context);
         is isVar = is.h;
-        frameLayout.f29574e = new g6(350L, isVar);
+        frameLayout.f29680e = new g6(350L, isVar);
         float f7 = 0.0f;
         frameLayout.h = 0.0f;
-        frameLayout.f29578s = 1.0f;
-        frameLayout.f29580x = 1.0f;
-        frameLayout.f29581y = true;
+        frameLayout.f29684s = 1.0f;
+        frameLayout.f29686x = 1.0f;
+        frameLayout.f29687y = true;
         View view = new View(context);
-        frameLayout.f29575f = view;
+        frameLayout.f29681f = view;
         int i17 = org.telegram.ui.ActionBar.h6.Oh;
         view.setBackground(org.telegram.ui.ActionBar.w5.d(new float[]{8.0f}, 0, org.telegram.ui.ActionBar.w5.b(org.telegram.ui.ActionBar.h6.x0(null, i17, false))));
         frameLayout.addView(view, w7.x5.d(-1.0f, -1));
         frameLayout.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(8.0f), org.telegram.ui.ActionBar.h6.x0(null, i17, false)));
         Paint paint = new Paint(1);
-        frameLayout.f29571a = paint;
+        frameLayout.f29677a = paint;
         int i18 = org.telegram.ui.ActionBar.h6.Sh;
         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
         q6 q6Var = new q6(true, true, false);
-        frameLayout.f29572b = q6Var;
+        frameLayout.f29678b = q6Var;
         q6Var.n(0.3f, 250L, isVar);
         q6Var.setCallback(frameLayout);
         q6Var.w(AndroidUtilities.dp(14.0f));
         q6Var.x(AndroidUtilities.bold());
         q6Var.u(org.telegram.ui.ActionBar.h6.x0(null, i18, false));
         q6Var.t("", true, true);
-        q6Var.f30019b = 1;
+        q6Var.f30134b = 1;
         q6 q6Var2 = new q6(false, false, true);
-        frameLayout.f29573c = q6Var2;
+        frameLayout.f29679c = q6Var2;
         q6Var2.n(0.3f, 250L, isVar);
         q6Var2.setCallback(frameLayout);
         q6Var2.w(AndroidUtilities.dp(12.0f));
         q6Var2.x(AndroidUtilities.bold());
         q6Var2.u(org.telegram.ui.ActionBar.h6.x0(null, i17, false));
         q6Var2.t("", true, true);
-        q6Var2.f30019b = 1;
+        q6Var2.f30134b = 1;
         frameLayout.setWillNotDraw(false);
-        this.f30941l0 = frameLayout;
+        this.f31006l0 = frameLayout;
         frameLayout.setOnClickListener(new f0(this, 15));
-        this.containerView.addView(this.f30941l0, w7.x5.a(48.0f, 16.0f, 10.0f, 16.0f, 10.0f, -1, 87));
+        this.containerView.addView(this.f31006l0, w7.x5.a(48.0f, 16.0f, 10.0f, 16.0f, 10.0f, -1, 87));
         View view2 = new View(getContext());
         this.m0 = view2;
-        view2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20730a7, false));
+        view2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20766a7, false));
         this.containerView.addView(this.m0, w7.x5.a(1.0f / AndroidUtilities.density, 6.0f, 0.0f, 6.0f, 68.0f, -1, 87));
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(6.0f);
-        if (this.f30941l0 != null) {
+        if (this.f31006l0 != null) {
             f7 = 68.0f;
         }
         this.d.setPadding(dp, 0, dp2, AndroidUtilities.dp(f7));
         FrameLayout frameLayout2 = new FrameLayout(getContext());
-        this.f30940k0 = frameLayout2;
+        this.f31005k0 = frameLayout2;
         this.containerView.addView(frameLayout2, w7.x5.a(100.0f, 6.0f, 0.0f, 6.0f, 68.0f, -1, 87));
-        fixNavigationBar(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20857h5, false));
+        fixNavigationBar(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20893h5, false));
         V(false);
-        this.f25521e.setTitle(B());
+        this.f25734e.setTitle(B());
     }
 
     public final void V(boolean z10) {
@@ -364,11 +364,11 @@ public final class t10 extends db {
         int i10;
         int i11;
         TL_chatlists.chatlist_ChatlistInvite chatlist_chatlistinvite = this.Z;
-        ArrayList arrayList = this.f30938i0;
+        ArrayList arrayList = this.f31003i0;
         int size = arrayList.size();
-        p10 p10Var = this.f30941l0;
+        p10 p10Var = this.f31006l0;
         if (p10Var != null) {
-            if (this.f30931b0) {
+            if (this.f30996b0) {
                 if (size > 0) {
                     i11 = R.string.FolderLinkButtonRemoveChats;
                 } else {
@@ -376,18 +376,18 @@ public final class t10 extends db {
                 }
                 p10Var.b(LocaleController.getString(i11), z10);
             } else {
-                ArrayList arrayList2 = this.f30936g0;
+                ArrayList arrayList2 = this.f31001g0;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
                     int i12 = 0;
                     if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-                        this.f30941l0.b(LocaleController.formatSpannable(R.string.FolderLinkButtonAdd, MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(this.f30932c0, this.f30941l0.f29572b.f30017a.getFontMetricsInt(), false), this.f30933d0, this.f30941l0.f29572b.f30017a.getFontMetricsInt())), z10);
-                        p10 p10Var2 = this.f30941l0;
-                        if (this.f30934e0) {
+                        this.f31006l0.b(LocaleController.formatSpannable(R.string.FolderLinkButtonAdd, MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(this.f30997c0, this.f31006l0.f29678b.f30132a.getFontMetricsInt(), false), this.f30998d0, this.f31006l0.f29678b.f30132a.getFontMetricsInt())), z10);
+                        p10 p10Var2 = this.f31006l0;
+                        if (this.f30999e0) {
                             i12 = 26;
                         }
-                        p10Var2.f29572b.f30032p = i12;
+                        p10Var2.f29678b.f30147p = i12;
                     } else {
-                        p10 p10Var3 = this.f30941l0;
+                        p10 p10Var3 = this.f31006l0;
                         if (size > 0) {
                             string = LocaleController.formatPluralString("FolderLinkButtonJoinPlural", size, new Object[0]);
                         } else {
@@ -396,15 +396,15 @@ public final class t10 extends db {
                         p10Var3.b(string, z10);
                     }
                 } else {
-                    this.f30941l0.b(LocaleController.getString(R.string.OK), z10);
+                    this.f31006l0.b(LocaleController.getString(R.string.OK), z10);
                 }
             }
-            p10 p10Var4 = this.f30941l0;
-            q6 q6Var = p10Var4.f29573c;
+            p10 p10Var4 = this.f31006l0;
+            q6 q6Var = p10Var4.f29679c;
             if (z10) {
                 q6Var.a();
             }
-            if (z10 && size != (i10 = p10Var4.f29579w) && size > 0 && i10 > 0) {
+            if (z10 && size != (i10 = p10Var4.f29685w) && size > 0 && i10 > 0) {
                 ValueAnimator valueAnimator = p10Var4.v;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
@@ -418,7 +418,7 @@ public final class t10 extends db {
                 p10Var4.v.setDuration(200L);
                 p10Var4.v.start();
             }
-            p10Var4.f29579w = size;
+            p10Var4.f29685w = size;
             if (size != 0) {
                 f7 = 1.0f;
             } else {
@@ -428,10 +428,10 @@ public final class t10 extends db {
             q6Var.t("" + size, z10, true);
             p10Var4.invalidate();
             if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-                this.f30941l0.setEnabled(!arrayList.isEmpty());
+                this.f31006l0.setEnabled(!arrayList.isEmpty());
             }
         }
-        s10 s10Var = this.f30942n0;
+        s10 s10Var = this.f31007n0;
         if (s10Var != null) {
             s10Var.a();
         }
@@ -439,23 +439,23 @@ public final class t10 extends db {
 
     public final void W() {
         int i10;
-        ArrayList arrayList = this.f30937h0;
-        ArrayList arrayList2 = this.f30936g0;
-        q10 q10Var = this.f30953y0;
+        ArrayList arrayList = this.f31002h0;
+        ArrayList arrayList2 = this.f31001g0;
+        q10 q10Var = this.f31018y0;
         if (q10Var == null) {
             return;
         }
         boolean z10 = false;
-        if (this.f30931b0) {
+        if (this.f30996b0) {
             q10Var.b(LocaleController.formatPluralString("FolderLinkHeaderChatsQuit", arrayList2.size(), new Object[0]), false);
         } else {
             q10Var.b(LocaleController.formatPluralString("FolderLinkHeaderChatsJoin", arrayList2.size(), new Object[0]), false);
         }
         if (arrayList2 != null && arrayList2.size() - arrayList.size() > 1) {
-            if (this.f30938i0.size() >= arrayList2.size() - arrayList.size()) {
+            if (this.f31003i0.size() >= arrayList2.size() - arrayList.size()) {
                 z10 = true;
             }
-            q10 q10Var2 = this.f30953y0;
+            q10 q10Var2 = this.f31018y0;
             if (z10) {
                 i10 = R.string.DeselectAll;
             } else {
@@ -464,14 +464,14 @@ public final class t10 extends db {
             q10Var2.a(LocaleController.getString(i10), new bi.f(25, this, z10));
             return;
         }
-        this.f30953y0.a("", null);
+        this.f31018y0.a("", null);
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        if (this.f30954z0 >= 0) {
-            this.f25523n.getConnectionsManager().cancelRequest(this.f30954z0, true);
+        if (this.f31019z0 >= 0) {
+            this.f25736n.getConnectionsManager().cancelRequest(this.f31019z0, true);
         }
         Utilities.Callback callback = this.B0;
         if (callback != null) {
@@ -481,7 +481,7 @@ public final class t10 extends db {
     }
 
     @Override
-    public final rm0 x(sm0 sm0Var) {
+    public final qm0 x(rm0 rm0Var) {
         return new n10(this);
     }
 }

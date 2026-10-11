@@ -35,7 +35,7 @@ public final class ld1 extends org.telegram.ui.Components.y9 {
         wd1 wd1Var = this.K;
         if (z10) {
             Drawable drawable = this.G;
-            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.dd0)) {
+            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.cd0)) {
                 if (drawable instanceof BitmapDrawable) {
                     if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
                         canvas.save();
@@ -47,8 +47,8 @@ public final class ld1 extends org.telegram.ui.Components.y9 {
                     } else {
                         int measuredHeight = getMeasuredHeight();
                         float max = Math.max(getMeasuredWidth() / this.G.getIntrinsicWidth(), measuredHeight / this.G.getIntrinsicHeight());
-                        int ceil = (int) Math.ceil(this.G.getIntrinsicWidth() * max * wd1Var.f43392y1);
-                        int ceil2 = (int) Math.ceil(this.G.getIntrinsicHeight() * max * wd1Var.f43392y1);
+                        int ceil = (int) Math.ceil(this.G.getIntrinsicWidth() * max * wd1Var.f43426y1);
+                        int ceil2 = (int) Math.ceil(this.G.getIntrinsicHeight() * max * wd1Var.f43426y1);
                         int measuredWidth = (getMeasuredWidth() - ceil) / 2;
                         int i10 = (measuredHeight - ceil2) / 2;
                         this.J = i10;
@@ -62,9 +62,9 @@ public final class ld1 extends org.telegram.ui.Components.y9 {
             }
         }
         if (wd1Var.a2) {
-            if (!wd1Var.f43332c.isFinished() && wd1Var.f43332c.computeScrollOffset()) {
-                if (wd1Var.f43332c.getStartX() < wd1Var.W1 && wd1Var.f43332c.getStartX() > 0) {
-                    wd1Var.X1 = wd1Var.f43332c.getCurrX();
+            if (!wd1Var.f43366c.isFinished() && wd1Var.f43366c.computeScrollOffset()) {
+                if (wd1Var.f43366c.getStartX() < wd1Var.W1 && wd1Var.f43366c.getStartX() > 0) {
+                    wd1Var.X1 = wd1Var.f43366c.getCurrX();
                 }
                 wd1Var.V0();
                 invalidate();
@@ -79,9 +79,9 @@ public final class ld1 extends org.telegram.ui.Components.y9 {
             super.onDraw(canvas);
         }
         if (wd1Var.M1) {
-            float f11 = wd1Var.f43365n1;
+            float f11 = wd1Var.f43399n1;
             if (f11 > 0.0f) {
-                canvas.drawColor(i0.a.k(-16777216, (int) (f11 * 255.0f * wd1Var.f43367o1)));
+                canvas.drawColor(i0.a.k(-16777216, (int) (f11 * 255.0f * wd1Var.f43401o1)));
             }
         }
     }
@@ -90,22 +90,22 @@ public final class ld1 extends org.telegram.ui.Components.y9 {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         wd1 wd1Var = this.K;
-        org.telegram.ui.Components.t91 t91Var = wd1Var.f43383v1;
+        org.telegram.ui.Components.s91 s91Var = wd1Var.f43417v1;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        t91Var.getClass();
-        float a2 = org.telegram.ui.Components.t91.a(measuredWidth, measuredHeight);
-        wd1Var.f43392y1 = a2;
+        s91Var.getClass();
+        float a2 = org.telegram.ui.Components.s91.a(measuredWidth, measuredHeight);
+        wd1Var.f43426y1 = a2;
         if (wd1Var.E1) {
             setScaleX(a2);
-            setScaleY(wd1Var.f43392y1);
+            setScaleY(wd1Var.f43426y1);
         }
-        if (wd1Var.f43328b == 2) {
+        if (wd1Var.f43362b == 2) {
             getMeasuredWidth();
             getMeasuredHeight();
         }
         int measuredWidth2 = getMeasuredWidth() + (getMeasuredHeight() << 16);
-        if (wd1Var.f43331b2 != measuredWidth2) {
+        if (wd1Var.f43365b2 != measuredWidth2) {
             wd1Var.a2 = false;
             Bitmap bitmap = wd1Var.C1;
             if (bitmap != null) {
@@ -127,7 +127,7 @@ public final class ld1 extends org.telegram.ui.Components.y9 {
                 this.v = false;
             }
         }
-        wd1Var.f43331b2 = measuredWidth2;
+        wd1Var.f43365b2 = measuredWidth2;
     }
 
     @Override

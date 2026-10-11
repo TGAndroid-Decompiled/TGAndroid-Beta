@@ -2,10 +2,10 @@ package m4;
 
 import j$.util.Objects;
 public final class i0 implements q {
-    public final n4.z f16135a;
+    public final n4.z f16171a;
 
     public i0(n4.z zVar) {
-        this.f16135a = zVar;
+        this.f16171a = zVar;
     }
 
     public final boolean equals(Object obj) {
@@ -13,13 +13,13 @@ public final class i0 implements q {
             return true;
         }
         if (obj != null && obj.getClass() == i0.class) {
-            return Objects.equals(this.f16135a, ((i0) obj).f16135a);
+            return Objects.equals(this.f16171a, ((i0) obj).f16171a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f16135a);
+        return Objects.hash(this.f16171a);
     }
 
     @Override

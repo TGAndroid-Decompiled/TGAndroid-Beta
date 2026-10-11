@@ -77,19 +77,19 @@ public final class k9 extends og.a {
         if (this != obj) {
             if (obj != null && k9.class == obj.getClass()) {
                 k9 k9Var = (k9) obj;
-                int i10 = this.f17175a;
-                if (i10 == k9Var.f17175a) {
+                int i10 = this.f17211a;
+                if (i10 == k9Var.f17211a) {
                     if (i10 != -1 || (this.f5334o == k9Var.f5334o && this.f5335p == k9Var.f5335p)) {
                         if (i10 != 3 || (this.f5327g == k9Var.f5327g && this.h == k9Var.h && this.f5328i == k9Var.f5328i && this.f5329j == k9Var.f5329j && this.f5330k == k9Var.f5330k && this.f5332m == k9Var.f5332m && this.f5333n == k9Var.f5333n)) {
                             if (i10 != 0 || this.f5324c == k9Var.f5324c) {
                                 if (i10 != 2 || TextUtils.equals(this.f5325e, k9Var.f5325e)) {
-                                    if (this.f17175a != 8 || TextUtils.equals(this.f5325e, k9Var.f5325e)) {
-                                        int i11 = this.f17175a;
+                                    if (this.f17211a != 8 || TextUtils.equals(this.f5325e, k9Var.f5325e)) {
+                                        int i11 = this.f17211a;
                                         if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.f5325e, k9Var.f5325e) && TextUtils.equals(this.f5326f, k9Var.f5326f))) {
-                                            if (this.f17175a != 6 || (TextUtils.equals(this.f5325e, k9Var.f5325e) && this.f5324c == k9Var.f5324c)) {
-                                                if (this.f17175a != 7 || (this.f5324c == k9Var.f5324c && TextUtils.equals(this.f5325e, k9Var.f5325e) && this.f5330k == k9Var.f5330k)) {
-                                                    if (this.f17175a != 9 || (this.f5336q == k9Var.f5336q && this.d == k9Var.d && TextUtils.equals(this.f5325e, k9Var.f5325e) && TextUtils.equals(this.f5326f, k9Var.f5326f))) {
-                                                        if (this.f17175a != 10 || this.f5336q == k9Var.f5336q) {
+                                            if (this.f17211a != 6 || (TextUtils.equals(this.f5325e, k9Var.f5325e) && this.f5324c == k9Var.f5324c)) {
+                                                if (this.f17211a != 7 || (this.f5324c == k9Var.f5324c && TextUtils.equals(this.f5325e, k9Var.f5325e) && this.f5330k == k9Var.f5330k)) {
+                                                    if (this.f17211a != 9 || (this.f5336q == k9Var.f5336q && this.d == k9Var.d && TextUtils.equals(this.f5325e, k9Var.f5325e) && TextUtils.equals(this.f5326f, k9Var.f5326f))) {
+                                                        if (this.f17211a != 10 || this.f5336q == k9Var.f5336q) {
                                                             return true;
                                                         }
                                                         return false;

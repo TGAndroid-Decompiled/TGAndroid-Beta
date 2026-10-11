@@ -26,7 +26,7 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 import org.telegram.ui.Components.x10;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.ib0;
@@ -673,7 +673,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(q80 q80Var) {
+    public void addItemOptions(p80 p80Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {

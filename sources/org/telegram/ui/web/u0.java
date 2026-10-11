@@ -14,12 +14,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d6;
 public final class u0 extends WebViewClient {
-    public final WebView f43662a;
-    public final v0 f43663b;
+    public final WebView f43696a;
+    public final v0 f43697b;
 
     public u0(v0 v0Var, WebView webView) {
-        this.f43663b = v0Var;
-        this.f43662a = webView;
+        this.f43697b = v0Var;
+        this.f43696a = webView;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class u0 extends WebViewClient {
         d6 d6Var;
         Integer valueOf;
         Boolean valueOf2;
-        y0 y0Var = this.f43663b.f43708e;
+        y0 y0Var = this.f43697b.f43742e;
         if (Build.VERSION.SDK_INT >= 26) {
             StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
@@ -56,13 +56,13 @@ public final class u0 extends WebViewClient {
             if (b1Var == null) {
                 d6Var = null;
             } else {
-                d6Var = b1Var.f43433e;
+                d6Var = b1Var.f43467e;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
-            alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20368a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new t0(this, 0));
+            alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20404a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new t0(this, 0));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.f20368a.setOnDismissListener(new g5(this, 8));
+            alertDialog$Builder.f20404a.setOnDismissListener(new g5(this, 8));
             alertDialog$Builder.o();
             return true;
         } catch (Exception e7) {
@@ -73,10 +73,10 @@ public final class u0 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        b1 b1Var = this.f43663b.f43708e.Q;
+        b1 b1Var = this.f43697b.f43742e.Q;
         if (b1Var != null) {
-            b1Var.G(Uri.parse(str), null, !b1Var.f43445o0, false, false);
-            this.f43662a.destroy();
+            b1Var.G(Uri.parse(str), null, !b1Var.f43479o0, false, false);
+            this.f43696a.destroy();
         }
         return true;
     }

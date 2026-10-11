@@ -9,8 +9,8 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.ih0;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.jh0;
 public final class nb extends q6 {
     public final lc A2;
     public boolean f5652z2;
@@ -32,7 +32,7 @@ public final class nb extends q6 {
         lcVar.f5526v1.N0(false);
         lcVar.f5466c1.clearAnimation();
         ViewPropertyAnimator duration = lcVar.f5466c1.animate().alpha(0.0f).setDuration(180L);
-        is isVar = is.f27452g;
+        is isVar = is.f27501g;
         duration.setInterpolator(isVar).start();
         if (lcVar.f5479g0 != 2) {
             lcVar.Y0.clearAnimation();
@@ -48,12 +48,12 @@ public final class nb extends q6 {
             lcVar.f5506p1.setVisibility(0);
             lcVar.f5506p1.setAlpha(0.0f);
             lcVar.f5506p1.clearAnimation();
-            lcVar.f5506p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(is.f27452g).start();
+            lcVar.f5506p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(is.f27501g).start();
             return;
         }
         lcVar.f5506p1.a(false, z11);
         lcVar.f5506p1.clearAnimation();
-        ViewPropertyAnimator interpolator = lcVar.f5506p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(is.f27452g);
+        ViewPropertyAnimator interpolator = lcVar.f5506p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(is.f27501g);
         if (z11) {
             j3 = 500;
         } else {
@@ -93,7 +93,7 @@ public final class nb extends q6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        is isVar = is.f27452g;
+        is isVar = is.f27501g;
         duration.setInterpolator(isVar).start();
         lcVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = lcVar.Y0.animate();
@@ -159,7 +159,7 @@ public final class nb extends q6 {
             zbVar.x(6, z10);
             r6 r6Var = lcVar.f5489j1;
             if (r6Var != null) {
-                ((jh0) r6Var.f5907c).a(lcVar.X0.k(), true);
+                ((ih0) r6Var.f5907c).a(lcVar.X0.k(), true);
             }
         }
         bc bcVar = lcVar.f5466c1;

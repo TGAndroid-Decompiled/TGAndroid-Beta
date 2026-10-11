@@ -3,29 +3,29 @@ package xh;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.m71;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.p61;
 import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.sm0;
-public final class k3 extends q61 {
+import org.telegram.ui.Components.rm0;
+public final class k3 extends p61 {
     static {
-        q61.setup(new q61());
+        p61.setup(new p61());
     }
 
-    public static r61 a(String str) {
-        r61 J = r61.J(k3.class);
-        J.f30361l = str;
+    public static q61 a(String str) {
+        q61 J = q61.J(k3.class);
+        J.f30167l = str;
         return J;
     }
 
     @Override
-    public final void bindView(View view, r61 r61Var, boolean z10, e71 e71Var, m71 m71Var) {
-        ((l3) view).set(r61Var.f30361l);
+    public final void bindView(View view, q61 q61Var, boolean z10, d71 d71Var, l71 l71Var) {
+        ((l3) view).set(q61Var.f30167l);
     }
 
     @Override
-    public final View createView(Context context, sm0 sm0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, rm0 rm0Var, int i10, int i11, d6 d6Var) {
         return new l3(context, d6Var);
     }
 }

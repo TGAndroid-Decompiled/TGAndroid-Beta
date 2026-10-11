@@ -1,6 +1,6 @@
 package x0;
 public final class a {
-    public final String f50539a;
+    public final String f50573a;
 
     public a(int i10) {
         this("androidx.credentials.TYPE_ABORT_ERROR");
@@ -95,6 +95,6 @@ public final class a {
     }
 
     public a(String str) {
-        this.f50539a = str;
+        this.f50573a = str;
     }
 }

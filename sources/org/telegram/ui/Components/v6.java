@@ -18,10 +18,10 @@ public final class v6 extends pb {
         textView.setTextSize(1, 15.0f);
         textView.setTypeface(Typeface.SANS_SERIF);
         addView(textView, w7.x5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(ib0Var.f38646b));
+        qVar.setImageDrawable(launchActivity.getDrawable(ib0Var.f38680b));
         qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
         qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
-        qVar.setForeground(ib0Var.f38647c);
+        qVar.setForeground(ib0Var.f38681c);
         org.telegram.messenger.ai.r(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(ib0Var.d)}, textView);
     }
 }

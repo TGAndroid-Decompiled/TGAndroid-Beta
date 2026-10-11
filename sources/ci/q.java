@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.dk0;
 public final class q extends Drawable {
     public final Paint f5742a;
     public float f5743b;
@@ -15,7 +15,7 @@ public final class q extends Drawable {
     public boolean f5745e;
     public boolean f5746f;
     public boolean f5747g;
-    public final ek0 h;
+    public final dk0 h;
     public final bc f5748i;
     public final bc f5749j;
 
@@ -25,22 +25,22 @@ public final class q extends Drawable {
         this.f5742a = paint;
         this.f5744c = 1.0f;
         this.f5748i = bcVar2;
-        ek0 ek0Var = new ek0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
-        this.h = ek0Var;
-        ek0Var.f26055o0 = true;
+        dk0 dk0Var = new dk0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+        this.h = dk0Var;
+        dk0Var.f25822o0 = true;
         paint.setColor(-2406842);
-        ek0Var.Z = true;
-        ek0Var.Q(-2406842, "Cup Red");
-        ek0Var.Q(-2406842, "Box");
-        ek0Var.o();
+        dk0Var.Z = true;
+        dk0Var.Q(-2406842, "Cup Red");
+        dk0Var.Q(-2406842, "Box");
+        dk0Var.o();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         boolean z10 = this.f5747g;
-        ek0 ek0Var = this.h;
+        dk0 dk0Var = this.h;
         if (z10) {
-            ek0Var.setAlpha((int) (this.f5743b * 255.0f * this.f5744c));
+            dk0Var.setAlpha((int) (this.f5743b * 255.0f * this.f5744c));
         }
         Paint paint = this.f5742a;
         paint.setAlpha((int) (this.f5743b * 255.0f * this.f5744c));
@@ -61,11 +61,11 @@ public final class q extends Drawable {
             }
         }
         this.d = System.currentTimeMillis();
-        ek0Var.setBounds(getBounds());
+        dk0Var.setBounds(getBounds());
         if (this.f5747g) {
-            ek0Var.draw(canvas);
+            dk0Var.draw(canvas);
         }
-        if (!this.f5747g || !ek0Var.u()) {
+        if (!this.f5747g || !dk0Var.u()) {
             canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), AndroidUtilities.dp(5.0f), paint);
         }
         this.f5749j.invalidate();

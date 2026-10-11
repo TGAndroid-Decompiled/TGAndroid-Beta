@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.js;
 import org.telegram.ui.Components.ms;
-import org.telegram.ui.Components.zh0;
+import org.telegram.ui.Components.yh0;
 public final class m4 extends GestureDetector.SimpleOnGestureListener {
     public final int f9222a;
     public final int f9223b;
@@ -23,11 +23,11 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f9222a) {
             case 1:
                 ms msVar = (ms) this.f9224c;
-                js jsVar = msVar.f28851r;
-                if (msVar.f28850n) {
+                js jsVar = msVar.f28930r;
+                if (msVar.f28929n) {
                     msVar.removeCallbacks(jsVar);
                 }
-                msVar.f28850n = true;
+                msVar.f28929n = true;
                 msVar.postDelayed(jsVar, 200L);
                 msVar.h.run();
                 return true;
@@ -85,11 +85,11 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
             default:
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
-                zh0 zh0Var = (zh0) this.f9224c;
-                if (!zh0Var.f33532f && !zh0Var.h && f7 >= 600.0f) {
-                    zh0Var.f33531e = false;
-                    zh0Var.h = false;
-                    zh0Var.a(0.0f, f7 / 6000.0f);
+                yh0 yh0Var = (yh0) this.f9224c;
+                if (!yh0Var.f33264f && !yh0Var.h && f7 >= 600.0f) {
+                    yh0Var.f33263e = false;
+                    yh0Var.h = false;
+                    yh0Var.a(0.0f, f7 / 6000.0f);
                 }
                 return false;
         }

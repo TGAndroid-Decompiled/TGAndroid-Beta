@@ -6,17 +6,17 @@ import org.telegram.messenger.jh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class s1 implements Utilities.Callback2 {
-    public final int f35528a;
-    public final f2 f35529b;
-    public final long f35530c;
+    public final int f35562a;
+    public final f2 f35563b;
+    public final long f35564c;
     public final int d;
-    public final Object f35531e;
+    public final Object f35565e;
 
     public s1(f2 f2Var, Object obj, long j3, int i10, int i11) {
-        this.f35528a = i11;
-        this.f35529b = f2Var;
-        this.f35531e = obj;
-        this.f35530c = j3;
+        this.f35562a = i11;
+        this.f35563b = f2Var;
+        this.f35565e = obj;
+        this.f35564c = j3;
         this.d = i10;
     }
 
@@ -26,20 +26,20 @@ public final class s1 implements Utilities.Callback2 {
         final int i10;
         final TL_wallet.tonConnectRequest tonconnectrequest;
         TL_wallet.tonConnectSession tonconnectsession;
-        switch (this.f35528a) {
+        switch (this.f35562a) {
             case 0:
-                final jh jhVar = (jh) this.f35531e;
+                final jh jhVar = (jh) this.f35565e;
                 final TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                final f2 f2Var = this.f35529b;
-                l0 l0Var = f2Var.f34891b;
+                final f2 f2Var = this.f35563b;
+                l0 l0Var = f2Var.f34925b;
                 byte[] bArr = null;
                 if (tL_error == null && tonconnectpending != null) {
                     ArrayList<TL_wallet.tonConnectRequest> arrayList = tonconnectpending.requests;
                     int size = arrayList.size();
                     int i11 = 0;
                     while (true) {
-                        j3 = this.f35530c;
+                        j3 = this.f35564c;
                         i10 = this.d;
                         if (i11 < size) {
                             TL_wallet.tonConnectRequest tonconnectrequest2 = arrayList.get(i11);
@@ -52,7 +52,7 @@ public final class s1 implements Utilities.Callback2 {
                             tonconnectrequest = null;
                         }
                     }
-                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f20293id == j3 && tonconnectrequest.expires > f2Var.f34894f.getCurrentTime()) {
+                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f20329id == j3 && tonconnectrequest.expires > f2Var.f34928f.getCurrentTime()) {
                         final String r10 = l0Var.r();
                         if (l0Var.w() != null) {
                             bArr = (byte[]) l0Var.w().clone();
@@ -94,13 +94,13 @@ public final class s1 implements Utilities.Callback2 {
                 jhVar.run(null, f2.x(tL_error, "getPending"));
                 return;
             default:
-                Utilities.Callback callback = (Utilities.Callback) this.f35531e;
+                Utilities.Callback callback = (Utilities.Callback) this.f35565e;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                f2 f2Var2 = this.f35529b;
+                f2 f2Var2 = this.f35563b;
                 f2Var2.getClass();
                 if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
-                    f2Var2.d(this.f35530c, this.d, callback);
+                    f2Var2.d(this.f35564c, this.d, callback);
                     return;
                 } else {
                     callback.run(f2.x(tL_error2, "closeSession"));

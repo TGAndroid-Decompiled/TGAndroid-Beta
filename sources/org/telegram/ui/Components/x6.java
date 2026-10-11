@@ -18,15 +18,15 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class x6 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final int f32835a;
-    public final fa0 f32836b;
-    public final Runnable f32837c;
+    public final int f32877a;
+    public final ea0 f32878b;
+    public final Runnable f32879c;
 
     public x6(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, Runnable runnable, org.telegram.ui.cj cjVar) {
         super(context);
         int i11;
-        this.f32835a = i10;
-        this.f32837c = runnable;
+        this.f32877a = i10;
+        this.f32879c = runnable;
         ContactsController.getInstance(i10).loadGlobalPrivacySetting();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -43,18 +43,18 @@ public final class x6 extends FrameLayout implements NotificationCenter.Notifica
         linearLayout.addView(imageView, w7.x5.t(80, 80, 49, 0, i11, 0, 14));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20894j5, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20930j5, d6Var));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
         textView.setText(LocaleController.getString(R.string.ArchiveHintHeader1));
         linearLayout.addView(textView, w7.x5.t(-1, -2, 1, 32, 0, 32, 9));
-        fa0 fa0Var = new fa0(context, null);
-        this.f32836b = fa0Var;
-        fa0Var.setTextSize(1, 14.0f);
-        fa0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21189z6, d6Var));
-        fa0Var.setGravity(1);
+        ea0 ea0Var = new ea0(context, null);
+        this.f32878b = ea0Var;
+        ea0Var.setTextSize(1, 14.0f);
+        ea0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225z6, d6Var));
+        ea0Var.setGravity(1);
         b();
-        linearLayout.addView(fa0Var, w7.x5.t(-1, -2, 1, 32, 0, 32, 25));
+        linearLayout.addView(ea0Var, w7.x5.t(-1, -2, 1, 32, 0, 32, 25));
         linearLayout.addView(a(R.drawable.msg_archive_archive, LocaleController.getString("ArchiveHintSection1"), LocaleController.getString("ArchiveHintSection1Info"), d6Var), w7.x5.t(-1, -2, 7, 32, 0, 32, 16));
         linearLayout.addView(a(R.drawable.msg_archive_hide, LocaleController.getString("ArchiveHintSection2"), LocaleController.getString("ArchiveHintSection2Info"), d6Var), w7.x5.t(-1, -2, 7, 32, 0, 32, 16));
         linearLayout.addView(a(R.drawable.msg_archive_stories, LocaleController.getString("ArchiveHintSection3"), LocaleController.getString("ArchiveHintSection3Info"), d6Var), w7.x5.t(-1, -2, 7, 32, 0, 32, 16));
@@ -69,7 +69,7 @@ public final class x6 extends FrameLayout implements NotificationCenter.Notifica
     public final FrameLayout a(int i10, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         FrameLayout frameLayout = new FrameLayout(getContext());
         ImageView imageView = new ImageView(getContext());
-        int i11 = org.telegram.ui.ActionBar.h6.f20894j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f20930j5;
         imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         imageView.setImageResource(i10);
         frameLayout.addView(imageView, w7.x5.a(24.0f, 0.0f, 8.0f, 0.0f, 0.0f, 24, 51));
@@ -82,7 +82,7 @@ public final class x6 extends FrameLayout implements NotificationCenter.Notifica
         textView.setText(str);
         linearLayout.addView(textView, w7.x5.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
         TextView textView2 = new TextView(getContext());
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21189z6, d6Var));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225z6, d6Var));
         textView2.setTextSize(0, AndroidUtilities.dp(14.0f));
         textView2.setText(str2);
         linearLayout.addView(textView2, w7.x5.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
@@ -93,7 +93,7 @@ public final class x6 extends FrameLayout implements NotificationCenter.Notifica
     public final void b() {
         boolean z10;
         String str;
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.f32835a).getGlobalPrivacySettings();
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(this.f32877a).getGlobalPrivacySettings();
         if (globalPrivacySettings != null) {
             z10 = globalPrivacySettings.keep_archived_unmuted;
         } else {
@@ -106,7 +106,7 @@ public final class x6 extends FrameLayout implements NotificationCenter.Notifica
         }
         String string = LocaleController.getString(str);
         int i10 = org.telegram.ui.ActionBar.h6.gc;
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i10, 0, this.f32837c);
+        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i10, 0, this.f32879c);
         SpannableString spannableString = new SpannableString(">");
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
@@ -116,7 +116,7 @@ public final class x6 extends FrameLayout implements NotificationCenter.Notifica
         erVar.setWidth(AndroidUtilities.dp(11.0f));
         erVar.setTranslateX(-AndroidUtilities.dp(5.0f));
         spannableString.setSpan(erVar, 0, spannableString.length(), 33);
-        this.f32836b.setText(AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString));
+        this.f32878b.setText(AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString));
     }
 
     @Override
@@ -129,14 +129,14 @@ public final class x6 extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f32835a).addObserver(this, NotificationCenter.privacyRulesUpdated);
+        NotificationCenter.getInstance(this.f32877a).addObserver(this, NotificationCenter.privacyRulesUpdated);
         b();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f32835a).removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        NotificationCenter.getInstance(this.f32877a).removeObserver(this, NotificationCenter.privacyRulesUpdated);
     }
 
     @Override

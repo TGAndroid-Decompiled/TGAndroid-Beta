@@ -58,11 +58,11 @@ public final class a extends View {
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
         fr frVar = new fr(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
-        frVar.f26475w = false;
+        frVar.f26552w = false;
         int dp = AndroidUtilities.dp(18.0f);
         int dp2 = AndroidUtilities.dp(18.0f);
-        frVar.f26470e = dp;
-        frVar.f26471f = dp2;
+        frVar.f26547e = dp;
+        frVar.f26548f = dp2;
         if (photoEntry != null && (str2 = photoEntry.thumbPath) != null) {
             imageReceiver.setImage(ImageLocation.getForPath(str2), "30.0_30.0", (ImageLocation) null, (String) null, frVar, (Object) null, 0);
         } else if (photoEntry != null && photoEntry.path != null) {

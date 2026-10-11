@@ -47,21 +47,21 @@ public final class c7 implements Runnable {
                         Bitmap bitmap2 = f7Var.f5074g;
                         String str = f7Var.f5072e;
                         d7 d7Var = null;
-                        if (bitmap2 != null && (nVar = (r8.n) f7Var.f5069a.get()) != null && nVar.f47187b.k()) {
+                        if (bitmap2 != null && (nVar = (r8.n) f7Var.f5069a.get()) != null && nVar.f47221b.k()) {
                             int width2 = bitmap2.getWidth();
                             int height2 = bitmap2.getHeight();
                             la.h hVar = new la.h(24);
                             int width3 = bitmap2.getWidth();
                             int height3 = bitmap2.getHeight();
                             hVar.d = bitmap2;
-                            a3.l lVar = (a3.l) hVar.f15465b;
+                            a3.l lVar = (a3.l) hVar.f15501b;
                             lVar.f155a = width3;
                             lVar.f156b = height3;
                             SparseArray b12 = nVar.b1(hVar);
                             for (int i10 = 0; i10 < b12.size(); i10++) {
                                 r8.m mVar = (r8.m) b12.valueAt(i10);
-                                String str2 = mVar.f47177b;
-                                Point[] pointArr = mVar.f47179e;
+                                String str2 = mVar.f47211b;
+                                Point[] pointArr = mVar.f47213e;
                                 if (str2 != null) {
                                     String trim = str2.trim();
                                     if (!trim.startsWith(str)) {

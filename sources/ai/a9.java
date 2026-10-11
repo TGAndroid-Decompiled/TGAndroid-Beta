@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.cf0;
+import org.telegram.ui.Components.bf0;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.cj;
 import org.telegram.ui.lh1;
@@ -50,7 +50,7 @@ public final class a9 implements Runnable {
         String str = (String) this.f651e;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f652f;
         String str2 = (String) this.h;
-        org.telegram.ui.ActionBar.d6 d6Var = b1Var.f43433e;
+        org.telegram.ui.ActionBar.d6 d6Var = b1Var.f43467e;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
                 ll0.b(false, b1Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, b1Var);
@@ -80,7 +80,7 @@ public final class a9 implements Runnable {
             return;
         }
         int[] iArr = new int[11];
-        Utilities.globalQueue.postRunnable(new cf0(file, iArr, new ye(b1Var, iArr, file, a2Var, str, str2, str3, 10), 21));
+        Utilities.globalQueue.postRunnable(new bf0(file, iArr, new ye(b1Var, iArr, file, a2Var, str, str2, str3, 10), 21));
     }
 
     private final void e() {
@@ -113,7 +113,7 @@ public final class a9 implements Runnable {
         }
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(n5Var.f52997a).sendRequest(tL_payments_canPurchaseStore, new lh1(oVar, hVar, rVar, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
+        ConnectionsManager.getInstance(n5Var.f53031a).sendRequest(tL_payments_canPurchaseStore, new lh1(oVar, hVar, rVar, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
     }
 
     private final void i() {
@@ -123,7 +123,7 @@ public final class a9 implements Runnable {
         TLRPC.InputInvoice inputInvoice = (TLRPC.InputInvoice) this.f651e;
         TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = (TLRPC.TL_payments_paymentFormStars) this.f652f;
         Utilities.Callback callback = (Utilities.Callback) this.h;
-        if (!n5Var.f53000e) {
+        if (!n5Var.f53034e) {
             yh.n5.e("NO_BALANCE");
             runnable.run();
             return;

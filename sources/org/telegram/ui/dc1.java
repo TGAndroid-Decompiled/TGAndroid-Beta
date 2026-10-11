@@ -7,12 +7,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class dc1 extends org.telegram.ui.Cells.na {
-    public final int f36983h3 = 1;
-    public final Object f36984i3;
+    public final int f37017h3 = 1;
+    public final Object f37018i3;
 
     public dc1(Context context, org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, ArrayList arrayList2, org.telegram.ui.ActionBar.z2 z2Var) {
         super(context, m2Var, 2, arrayList, arrayList2);
-        this.f36984i3 = z2Var;
+        this.f37018i3 = z2Var;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class dc1 extends org.telegram.ui.Cells.na {
         CharSequence[] charSequenceArr;
         boolean z11;
         int[] iArr;
-        switch (this.f36983h3) {
+        switch (this.f37017h3) {
             case 0:
-                gc1 gc1Var = ((gc1) this.f36984i3).f38011e.f34557a;
-                ThemeActivity themeActivity = gc1Var.f38011e;
+                gc1 gc1Var = ((gc1) this.f37018i3).f38045e.f34591a;
+                ThemeActivity themeActivity = gc1Var.f38045e;
                 if (themeActivity.getParentActivity() != null) {
-                    if ((g6Var.F == null || g6Var.U) && themeActivity.f34566f != 1) {
+                    if ((g6Var.F == null || g6Var.U) && themeActivity.f34600f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
-                        if (g6Var.f20657b == null) {
+                        if (g6Var.f20693b == null) {
                             charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};
                             iArr = new int[]{0, R.drawable.msg_shareout};
                             z11 = false;
@@ -67,13 +67,13 @@ public final class dc1 extends org.telegram.ui.Cells.na {
                             iArr = new int[]{R.drawable.msg_share, R.drawable.msg_shareout, R.drawable.msg_edit, R.drawable.msg_link, R.drawable.msg_delete};
                         }
                         lg.j jVar = new lg.j(13, gc1Var, g6Var);
-                        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
+                        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20404a;
                         a2Var.P = charSequenceArr;
                         a2Var.Q = iArr;
                         a2Var.M = jVar;
                         themeActivity.showDialog(a2Var);
                         if (z11) {
-                            a2Var.l(a2Var.N0.size() - 1, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21026q7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21007p7, false));
+                            a2Var.l(a2Var.N0.size() - 1, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21062q7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21043p7, false));
                             return;
                         }
                         return;
@@ -89,12 +89,12 @@ public final class dc1 extends org.telegram.ui.Cells.na {
     @Override
     public final void B1() {
         Runnable runnable;
-        switch (this.f36983h3) {
+        switch (this.f37017h3) {
             case 0:
-                ((gc1) this.f36984i3).f38011e.A0(false);
+                ((gc1) this.f37018i3).f38045e.A0(false);
                 return;
             default:
-                runnable = ((org.telegram.ui.ActionBar.z2) this.f36984i3).f21710a.dismissRunnable;
+                runnable = ((org.telegram.ui.ActionBar.z2) this.f37018i3).f21746a.dismissRunnable;
                 runnable.run();
                 return;
         }
@@ -102,6 +102,6 @@ public final class dc1 extends org.telegram.ui.Cells.na {
 
     public dc1(gc1 gc1Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10, ArrayList arrayList, ArrayList arrayList2) {
         super(context, m2Var, i10, arrayList, arrayList2);
-        this.f36984i3 = gc1Var;
+        this.f37018i3 = gc1Var;
     }
 }

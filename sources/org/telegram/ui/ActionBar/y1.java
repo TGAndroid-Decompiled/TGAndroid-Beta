@@ -14,34 +14,34 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.is;
 public final class y1 extends LinearLayout {
-    public boolean f21693a;
-    public final org.telegram.ui.Components.g6 f21694b;
-    public final Paint f21695c;
+    public boolean f21729a;
+    public final org.telegram.ui.Components.g6 f21730b;
+    public final Paint f21731c;
     public final a2 d;
 
     public y1(Context context, a2 a2Var) {
         super(context);
         this.d = a2Var;
         ?? obj = new Object();
-        obj.f26615f = 0L;
-        obj.f26616g = 200L;
-        obj.h = is.f27451f;
-        obj.f26611a = this;
+        obj.f26667f = 0L;
+        obj.f26668g = 200L;
+        obj.h = is.f27500f;
+        obj.f26663a = this;
         obj.d = 0.0f;
-        obj.f26613c = 0.0f;
-        obj.f26614e = false;
-        this.f21694b = obj;
-        this.f21695c = new Paint(1);
+        obj.f26665c = 0.0f;
+        obj.f26666e = false;
+        this.f21730b = obj;
+        this.f21731c = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         a2 a2Var = this.d;
-        Drawable drawable = a2Var.f20414z0;
-        if (a2Var.f20392i0 && !a2Var.T0) {
+        Drawable drawable = a2Var.f20450z0;
+        if (a2Var.f20428i0 && !a2Var.T0) {
             drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             View view = a2Var.V;
-            if (view != null && a2Var.f20393j0) {
+            if (view != null && a2Var.f20429j0) {
                 int bottom = view.getBottom();
                 canvas.save();
                 canvas.clipRect(0, bottom, getMeasuredWidth(), getMeasuredHeight());
@@ -60,10 +60,10 @@ public final class y1 extends LinearLayout {
         float f7;
         a2 a2Var = this.d;
         if (a2Var.T0) {
-            if (a2Var.f20385d0 == 3 && a2Var.f20401r != null) {
+            if (a2Var.f20421d0 == 3 && a2Var.f20437r != null) {
                 dp = AndroidUtilities.dp(18.0f);
-                float scaleX = a2Var.f20401r.getScaleX() * a2Var.f20401r.getWidth();
-                float scaleY = a2Var.f20401r.getScaleY() * a2Var.f20401r.getHeight();
+                float scaleX = a2Var.f20437r.getScaleX() * a2Var.f20437r.getWidth();
+                float scaleY = a2Var.f20437r.getScaleY() * a2Var.f20437r.getHeight();
                 AndroidUtilities.rectTmp.set((getWidth() - scaleX) / 2.0f, (getHeight() - scaleY) / 2.0f, (getWidth() + scaleX) / 2.0f, (getHeight() + scaleY) / 2.0f);
             } else {
                 dp = AndroidUtilities.dp(20.0f);
@@ -74,7 +74,7 @@ public final class y1 extends LinearLayout {
             } else {
                 f7 = 0.0f;
             }
-            float d = this.f21694b.d(f7, false);
+            float d = this.f21730b.d(f7, false);
             Paint paint = a2Var.F0;
             if (paint != null) {
                 paint.setAlpha((int) (d * 255.0f));
@@ -88,7 +88,7 @@ public final class y1 extends LinearLayout {
             RectF rectF = AndroidUtilities.rectTmp;
             canvas.drawRoundRect(rectF, dp, dp, a2Var.G0);
             int i10 = a2Var.U0;
-            Paint paint3 = this.f21695c;
+            Paint paint3 = this.f21731c;
             paint3.setColor(i10);
             paint3.setAlpha((int) ((((a2Var.B0 - 1.0f) * d) + 1.0f) * paint3.getAlpha()));
             canvas.drawRoundRect(rectF, dp, dp, paint3);
@@ -115,30 +115,30 @@ public final class y1 extends LinearLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         a2 a2Var = this.d;
-        int[] iArr = a2Var.f20411x0;
-        if (a2Var.f20385d0 == 3) {
-            int measuredWidth = ((i12 - i10) - a2Var.f20401r.getMeasuredWidth()) / 2;
-            int measuredHeight = ((i13 - i11) - a2Var.f20401r.getMeasuredHeight()) / 2;
-            FrameLayout frameLayout = a2Var.f20401r;
-            frameLayout.layout(measuredWidth, measuredHeight, frameLayout.getMeasuredWidth() + measuredWidth, a2Var.f20401r.getMeasuredHeight() + measuredHeight);
+        int[] iArr = a2Var.f20447x0;
+        if (a2Var.f20421d0 == 3) {
+            int measuredWidth = ((i12 - i10) - a2Var.f20437r.getMeasuredWidth()) / 2;
+            int measuredHeight = ((i13 - i11) - a2Var.f20437r.getMeasuredHeight()) / 2;
+            FrameLayout frameLayout = a2Var.f20437r;
+            frameLayout.layout(measuredWidth, measuredHeight, frameLayout.getMeasuredWidth() + measuredWidth, a2Var.f20437r.getMeasuredHeight() + measuredHeight);
         } else {
             u1 u1Var = a2Var.v;
             if (u1Var != null) {
-                if (a2Var.f20410x == null) {
-                    a2Var.f20410x = new ViewTreeObserver.OnScrollChangedListener() {
+                if (a2Var.f20446x == null) {
+                    a2Var.f20446x = new ViewTreeObserver.OnScrollChangedListener() {
                         @Override
                         public final void onScrollChanged() {
                             boolean z11;
                             a2 a2Var2 = y1.this.d;
                             boolean z12 = false;
-                            if (a2Var2.f20388f != null && a2Var2.v.getScrollY() > a2Var2.f20408w.getTop()) {
+                            if (a2Var2.f20424f != null && a2Var2.v.getScrollY() > a2Var2.f20444w.getTop()) {
                                 z11 = true;
                             } else {
                                 z11 = false;
                             }
                             a2.a(a2Var2, 0, z11);
-                            if (a2Var2.f20405t0 != null) {
-                                if (a2Var2.v.getHeight() + a2Var2.v.getScrollY() < a2Var2.f20408w.getBottom()) {
+                            if (a2Var2.f20441t0 != null) {
+                                if (a2Var2.v.getHeight() + a2Var2.v.getScrollY() < a2Var2.f20444w.getBottom()) {
                                     z12 = true;
                                 }
                             }
@@ -146,9 +146,9 @@ public final class y1 extends LinearLayout {
                             a2Var2.v.invalidate();
                         }
                     };
-                    u1Var.getViewTreeObserver().addOnScrollChangedListener(a2Var.f20410x);
+                    u1Var.getViewTreeObserver().addOnScrollChangedListener(a2Var.f20446x);
                 }
-                a2Var.f20410x.onScrollChanged();
+                a2Var.f20446x.onScrollChanged();
             }
         }
         getLocationOnScreen(iArr);
@@ -179,7 +179,7 @@ public final class y1 extends LinearLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f21693a) {
+        if (this.f21729a) {
             return;
         }
         super.requestLayout();

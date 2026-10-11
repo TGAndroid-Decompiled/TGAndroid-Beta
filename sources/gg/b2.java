@@ -8,7 +8,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cr0;
+import org.telegram.ui.Components.br0;
 public class b2 {
     public a2 f10531a;
     public ArrayList f10539k;
@@ -120,38 +120,38 @@ public class b2 {
                     if (obj instanceof g0) {
                         obj = ((g0) obj).f10608a;
                     }
-                    if (obj instanceof cr0) {
-                        obj = ((cr0) obj).f25307b;
+                    if (obj instanceof br0) {
+                        obj = ((br0) obj).f25074b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;
                     ArrayList arrayList4 = this.f10534e;
                     if (z10) {
                         TLRPC.User user = (TLRPC.User) obj;
-                        TLRPC.User user2 = (TLRPC.User) iVar.f(user.f20179id);
+                        TLRPC.User user2 = (TLRPC.User) iVar.f(user.f20215id);
                         if (user2 != null) {
                             arrayList4.remove(user2);
                             arrayList3.remove(user2);
-                            iVar.l(user2.f20179id);
+                            iVar.l(user2.f20215id);
                         }
-                        long j3 = user.f20179id;
+                        long j3 = user.f20215id;
                         a0.i iVar2 = this.h;
                         TLObject tLObject = (TLObject) iVar2.f(j3);
                         if (tLObject != null) {
                             this.f10536g.remove(tLObject);
-                            iVar2.l(user.f20179id);
+                            iVar2.l(user.f20215id);
                         }
-                        long j10 = user.f20179id;
+                        long j10 = user.f20215id;
                         a0.i iVar3 = this.f10537i;
                         Object f7 = iVar3.f(j10);
                         if (f7 != null) {
                             this.f10538j.remove(f7);
-                            iVar3.l(user.f20179id);
+                            iVar3.l(user.f20215id);
                         }
-                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) iVar.f(-((TLRPC.Chat) obj).f20032id)) != null) {
+                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) iVar.f(-((TLRPC.Chat) obj).f20068id)) != null) {
                         arrayList4.remove(chat);
                         arrayList3.remove(chat);
-                        iVar.l(-chat.f20032id);
+                        iVar.l(-chat.f20068id);
                     }
                 }
             }
@@ -176,7 +176,7 @@ public class b2 {
                 if (user != null) {
                     this.f10534e.remove(user);
                     this.d.remove(user);
-                    iVar.l(user.f20179id);
+                    iVar.l(user.f20215id);
                 }
             }
         }

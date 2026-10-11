@@ -2,30 +2,30 @@ package org.telegram.ui.Components.voip;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class g3 implements Runnable {
-    public final int f31994a;
-    public final l3 f31995b;
-    public final int f31996c;
+    public final int f32058a;
+    public final l3 f32059b;
+    public final int f32060c;
 
     public g3(l3 l3Var, int i10, int i11) {
-        this.f31994a = i11;
-        this.f31995b = l3Var;
-        this.f31996c = i10;
+        this.f32058a = i11;
+        this.f32059b = l3Var;
+        this.f32060c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f31994a) {
+        switch (this.f32058a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new g3(this.f31995b, this.f31996c, 2));
+                AndroidUtilities.runOnUIThread(new g3(this.f32059b, this.f32060c, 2));
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new g3(this.f31995b, this.f31996c, 3));
+                AndroidUtilities.runOnUIThread(new g3(this.f32059b, this.f32060c, 3));
                 return;
             case 2:
-                this.f31995b.c(this.f31996c);
+                this.f32059b.c(this.f32060c);
                 return;
             default:
-                this.f31995b.a(this.f31996c);
+                this.f32059b.a(this.f32060c);
                 return;
         }
     }

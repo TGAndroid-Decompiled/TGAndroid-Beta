@@ -1,68 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class e61 extends f00 {
-    public final n61 Y;
+import android.util.SparseArray;
+import org.telegram.tgnet.TLRPC;
+public final class e61 extends g.o {
+    public final m61 f26001c;
 
-    public e61(n61 n61Var, int i10, d61 d61Var) {
-        super(5, i10, d61Var);
-        this.Y = n61Var;
+    public e61(m61 m61Var) {
+        this.f26001c = m61Var;
     }
 
     @Override
-    public final boolean D1() {
-        n61 n61Var = this.Y;
-        if (n61Var.f28981n.getAdapter() == n61Var.v) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean Y0() {
-        return LocaleController.isRTL;
-    }
-
-    @Override
-    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
-        int i11;
-        View m10;
-        n61 n61Var = this.Y;
-        if (n61Var.N) {
-            return super.o0(i10, eVar, a1Var);
-        }
-        int i12 = 0;
-        if (n61Var.L != null) {
-            return 0;
-        }
-        if (n61Var.M) {
-            while (true) {
-                i11 = 1;
-                if (i12 >= r()) {
-                    break;
-                }
-                d61 d61Var = n61Var.f28981n;
-                View q6 = q(i12);
-                d61Var.getClass();
-                int R = RecyclerView.R(q6);
-                if (R < 1) {
-                    i11 = R;
-                    break;
-                }
-                i12++;
+    public final int i(int i10) {
+        m61 m61Var = this.f26001c;
+        s4.i0 adapter = m61Var.f28761n.getAdapter();
+        l61 l61Var = m61Var.f28763s;
+        if (adapter == l61Var) {
+            if ((l61Var.d.get(i10) instanceof Integer) || i10 >= l61Var.f28217w) {
+                return l61Var.v;
             }
-            if (i11 == 0 && (m10 = n61Var.f28982r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
-                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
-            }
+            return 1;
         }
-        return super.o0(i10, eVar, a1Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
+        gg.f2 f2Var = m61Var.v;
+        SparseArray sparseArray = f2Var.f10602s;
+        if (i10 != f2Var.f10605y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return f2Var.f10598e.a();
     }
 }

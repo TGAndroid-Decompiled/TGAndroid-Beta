@@ -1,64 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-public final class ef0 implements Utilities.Callback {
-    public final int f26001a;
-    public final String[] f26002b;
-    public final Activity f26003c;
-    public final Utilities.Callback d;
+public final class ef0 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f26084a;
+    public final Utilities.Callback f26085b;
+    public final NotificationCenter.NotificationCenterDelegate[] f26086c;
 
-    public ef0(String[] strArr, Activity activity, Utilities.Callback callback, int i10) {
-        this.f26001a = i10;
-        this.f26002b = strArr;
-        this.f26003c = activity;
-        this.d = callback;
+    public ef0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+        this.f26084a = i10;
+        this.f26085b = callback;
+        this.f26086c = notificationCenterDelegateArr;
     }
 
     @Override
-    public final void run(Object obj) {
-        int[] iArr = (int[]) obj;
-        switch (this.f26001a) {
-            case 0:
-                String[] strArr = this.f26002b;
-                int length = strArr.length;
-                boolean z10 = false;
-                int i10 = 0;
-                while (true) {
-                    if (i10 < length) {
-                        if (this.f26003c.checkSelfPermission(strArr[i10]) == 0) {
-                            z10 = true;
-                        } else {
-                            i10++;
-                        }
-                    }
-                }
-                Utilities.Callback callback = this.d;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.activityPermissionsGranted;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.f26084a) {
+                Utilities.Callback callback = this.f26085b;
                 if (callback != null) {
-                    callback.run(Boolean.valueOf(z10));
-                    return;
+                    callback.run(iArr);
                 }
-                return;
-            default:
-                String[] strArr2 = this.f26002b;
-                int length2 = strArr2.length;
-                boolean z11 = false;
-                int i11 = 0;
-                while (true) {
-                    if (i11 < length2) {
-                        if (this.f26003c.checkSelfPermission(strArr2[i11]) == 0) {
-                            i11++;
-                        }
-                    } else {
-                        z11 = true;
-                    }
-                }
-                Utilities.Callback callback2 = this.d;
-                if (callback2 != null) {
-                    callback2.run(Boolean.valueOf(z11));
-                    return;
-                }
-                return;
+                NotificationCenter.getGlobalInstance().removeObserver(this.f26086c[0], i12);
+            }
         }
     }
 }

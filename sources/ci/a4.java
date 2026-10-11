@@ -17,7 +17,7 @@ public final class a4 extends View implements v2 {
         q6Var.u(-1);
         q6Var.w(AndroidUtilities.dp(14.0f));
         q6Var.s(AndroidUtilities.dp(1.4f), AndroidUtilities.dp(0.4f), 1275068416);
-        q6Var.f30019b = 1;
+        q6Var.f30134b = 1;
         q6Var.setCallback(this);
         q6Var.M = AndroidUtilities.displaySize.x;
     }

@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class f0 implements View.OnClickListener {
-    public final int f26175a;
-    public final Object f26176b;
+    public final int f26259a;
+    public final Object f26260b;
 
     public f0(Object obj, int i10) {
-        this.f26175a = i10;
-        this.f26176b = obj;
+        this.f26259a = i10;
+        this.f26260b = obj;
     }
 
     @Override
@@ -15,8 +15,8 @@ public final class f0 implements View.OnClickListener {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f0.onClick(android.view.View):void");
     }
 
-    public f0(q80 q80Var, ai.f fVar) {
-        this.f26175a = 27;
-        this.f26176b = q80Var;
+    public f0(p80 p80Var, ai.f fVar) {
+        this.f26259a = 27;
+        this.f26260b = p80Var;
     }
 }

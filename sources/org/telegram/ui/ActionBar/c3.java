@@ -22,35 +22,35 @@ public abstract class c3 extends FrameLayout {
     public boolean E;
     public final Paint F;
     public final e3 G;
-    public VelocityTracker f20485a;
-    public int f20486b;
-    public int f20487c;
+    public VelocityTracker f20521a;
+    public int f20522b;
+    public int f20523c;
     public int d;
-    public boolean f20488e;
-    public boolean f20489f;
+    public boolean f20524e;
+    public boolean f20525f;
     public AnimatorSet h;
-    public final b2.q0 f20490n;
-    public final Rect f20491r;
-    public final Paint f20492s;
+    public final b2.q0 f20526n;
+    public final Rect f20527r;
+    public final Paint f20528s;
     public boolean v;
-    public int f20493w;
-    public float f20494x;
-    public float f20495y;
+    public int f20529w;
+    public float f20530x;
+    public float f20531y;
 
     public c3(e3 e3Var, Context context) {
         super(context);
         this.G = e3Var;
-        this.f20485a = null;
+        this.f20521a = null;
         this.d = -1;
-        this.f20488e = false;
-        this.f20489f = false;
+        this.f20524e = false;
+        this.f20525f = false;
         this.h = null;
-        this.f20491r = new Rect();
-        this.f20492s = new Paint();
-        this.f20494x = 0.0f;
-        this.f20495y = 0.0f;
+        this.f20527r = new Rect();
+        this.f20528s = new Paint();
+        this.f20530x = 0.0f;
+        this.f20531y = 0.0f;
         this.F = new Paint(1);
-        this.f20490n = new Object();
+        this.f20526n = new Object();
         setWillNotDraw(false);
     }
 
@@ -75,13 +75,13 @@ public abstract class c3 extends FrameLayout {
             e3Var.allowCustomAnimation = z10;
             return;
         }
-        this.f20488e = false;
+        this.f20524e = false;
         this.h = new AnimatorSet();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new a3(this, 4));
         this.h.playTogether(ObjectAnimator.ofFloat(e3Var.containerView, "translationY", 0.0f), ofFloat);
         this.h.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 250.0f));
-        this.h.setInterpolator(is.f27451f);
+        this.h.setInterpolator(is.f27500f);
         this.h.addListener(new b3(this, 3));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         this.h.start();
@@ -102,119 +102,119 @@ public abstract class c3 extends FrameLayout {
         if (!z11) {
             if (!e3Var.onContainerTouchEvent(motionEvent)) {
                 if (!e3Var.canSwipeToBack(motionEvent) && !this.E) {
-                    if (e3Var.canDismissWithTouchOutside() && motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f20489f && !this.f20488e && motionEvent.getPointerCount() == 1)) {
-                        this.f20486b = (int) motionEvent.getX();
+                    if (e3Var.canDismissWithTouchOutside() && motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f20525f && !this.f20524e && motionEvent.getPointerCount() == 1)) {
+                        this.f20522b = (int) motionEvent.getX();
                         int y3 = (int) motionEvent.getY();
-                        this.f20487c = y3;
-                        if (e3Var.isTouchOutside(this.f20486b, y3)) {
+                        this.f20523c = y3;
+                        if (e3Var.isTouchOutside(this.f20522b, y3)) {
                             e3Var.onDismissWithTouchOutside();
                             return true;
                         }
-                        e3Var.onScrollUpBegin(this.f20494x);
+                        e3Var.onScrollUpBegin(this.f20530x);
                         this.d = motionEvent.getPointerId(0);
-                        this.f20488e = true;
+                        this.f20524e = true;
                         a();
-                        VelocityTracker velocityTracker = this.f20485a;
+                        VelocityTracker velocityTracker = this.f20521a;
                         if (velocityTracker != null) {
                             velocityTracker.clear();
                         }
                     } else if (e3Var.canDismissWithSwipe() && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
-                        if (this.f20485a == null) {
-                            this.f20485a = VelocityTracker.obtain();
+                        if (this.f20521a == null) {
+                            this.f20521a = VelocityTracker.obtain();
                         }
-                        float abs = Math.abs((int) (motionEvent.getX() - this.f20486b));
-                        float y10 = ((int) motionEvent.getY()) - this.f20487c;
-                        boolean onScrollUp = e3Var.onScrollUp(this.f20494x + y10);
-                        this.f20485a.addMovement(motionEvent);
+                        float abs = Math.abs((int) (motionEvent.getX() - this.f20522b));
+                        float y10 = ((int) motionEvent.getY()) - this.f20523c;
+                        boolean onScrollUp = e3Var.onScrollUp(this.f20530x + y10);
+                        this.f20521a.addMovement(motionEvent);
                         z13 = e3Var.disableScroll;
-                        if (!z13 && this.f20488e && !this.f20489f && y10 > 0.0f && y10 / 3.0f > Math.abs(abs)) {
+                        if (!z13 && this.f20524e && !this.f20525f && y10 > 0.0f && y10 / 3.0f > Math.abs(abs)) {
                             float abs2 = Math.abs(y10);
                             i11 = e3Var.touchSlop;
                             if (abs2 >= i11) {
-                                this.f20487c = (int) motionEvent.getY();
-                                this.f20488e = false;
-                                this.f20489f = true;
+                                this.f20523c = (int) motionEvent.getY();
+                                this.f20524e = false;
+                                this.f20525f = true;
                                 requestDisallowInterceptTouchEvent(true);
                             }
                         }
-                        if (this.f20489f) {
-                            float f7 = this.f20494x + y10;
-                            this.f20494x = f7;
+                        if (this.f20525f) {
+                            float f7 = this.f20530x + y10;
+                            this.f20530x = f7;
                             if (!onScrollUp) {
-                                this.f20494x = Math.max(f7, 0.0f);
+                                this.f20530x = Math.max(f7, 0.0f);
                             }
-                            e3Var.containerView.setTranslationY(Math.max(this.f20494x, 0.0f));
+                            e3Var.containerView.setTranslationY(Math.max(this.f20530x, 0.0f));
                             e3Var.onContainerViewTranslation();
-                            this.f20487c = (int) motionEvent.getY();
+                            this.f20523c = (int) motionEvent.getY();
                             e3Var.container.invalidate();
                         }
                     } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                        if (this.f20485a == null) {
-                            this.f20485a = VelocityTracker.obtain();
+                        if (this.f20521a == null) {
+                            this.f20521a = VelocityTracker.obtain();
                         }
-                        this.f20485a.computeCurrentVelocity(1000);
-                        e3Var.onScrollUpEnd(this.f20494x);
-                        if (!this.f20489f && this.f20494x <= 0.0f) {
-                            this.f20488e = false;
+                        this.f20521a.computeCurrentVelocity(1000);
+                        e3Var.onScrollUpEnd(this.f20530x);
+                        if (!this.f20525f && this.f20530x <= 0.0f) {
+                            this.f20524e = false;
                         } else {
-                            b(this.f20485a.getXVelocity(), this.f20485a.getYVelocity());
+                            b(this.f20521a.getXVelocity(), this.f20521a.getYVelocity());
                         }
-                        this.f20489f = false;
-                        VelocityTracker velocityTracker2 = this.f20485a;
+                        this.f20525f = false;
+                        VelocityTracker velocityTracker2 = this.f20521a;
                         if (velocityTracker2 != null) {
                             velocityTracker2.recycle();
-                            this.f20485a = null;
+                            this.f20521a = null;
                         }
                         this.d = -1;
                     }
-                } else if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f20489f && !this.f20488e && motionEvent.getPointerCount() == 1)) {
+                } else if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f20525f && !this.f20524e && motionEvent.getPointerCount() == 1)) {
                     this.E = true;
-                    this.f20486b = (int) motionEvent.getX();
-                    this.f20487c = (int) motionEvent.getY();
+                    this.f20522b = (int) motionEvent.getX();
+                    this.f20523c = (int) motionEvent.getY();
                     this.d = motionEvent.getPointerId(0);
-                    this.f20488e = true;
+                    this.f20524e = true;
                     a();
                 } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
-                    float x10 = motionEvent.getX() - this.f20486b;
-                    float y11 = motionEvent.getY() - this.f20487c;
-                    if (this.f20485a == null) {
-                        this.f20485a = VelocityTracker.obtain();
+                    float x10 = motionEvent.getX() - this.f20522b;
+                    float y11 = motionEvent.getY() - this.f20523c;
+                    if (this.f20521a == null) {
+                        this.f20521a = VelocityTracker.obtain();
                     }
-                    this.f20485a.addMovement(motionEvent);
+                    this.f20521a.addMovement(motionEvent);
                     z12 = e3Var.disableScroll;
-                    if (!z12 && this.f20488e && !this.f20489f && x10 > 0.0f && x10 / 3.0f > Math.abs(y11)) {
+                    if (!z12 && this.f20524e && !this.f20525f && x10 > 0.0f && x10 / 3.0f > Math.abs(y11)) {
                         float abs3 = Math.abs(x10);
                         i10 = e3Var.touchSlop;
                         if (abs3 >= i10) {
-                            this.f20486b = (int) motionEvent.getX();
-                            this.f20488e = false;
-                            this.f20489f = true;
+                            this.f20522b = (int) motionEvent.getX();
+                            this.f20524e = false;
+                            this.f20525f = true;
                         }
                     }
-                    if (this.f20489f) {
-                        float f10 = this.f20495y + x10;
-                        this.f20495y = f10;
+                    if (this.f20525f) {
+                        float f10 = this.f20531y + x10;
+                        this.f20531y = f10;
                         e3Var.containerView.setTranslationX(Math.max(f10, 0.0f));
-                        this.f20486b = (int) motionEvent.getX();
+                        this.f20522b = (int) motionEvent.getX();
                         e3Var.container.invalidate();
                     }
                 } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                    if (this.f20485a == null) {
-                        this.f20485a = VelocityTracker.obtain();
+                    if (this.f20521a == null) {
+                        this.f20521a = VelocityTracker.obtain();
                     }
-                    float xVelocity = this.f20485a.getXVelocity();
-                    float yVelocity = this.f20485a.getYVelocity();
-                    if (this.f20495y < e3Var.containerView.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
-                        float max = Math.max(this.f20495y, 0.0f);
-                        this.f20495y = max;
+                    float xVelocity = this.f20521a.getXVelocity();
+                    float yVelocity = this.f20521a.getYVelocity();
+                    if (this.f20531y < e3Var.containerView.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
+                        float max = Math.max(this.f20531y, 0.0f);
+                        this.f20531y = max;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(max, 0.0f);
                         ofFloat.addUpdateListener(new a3(this, 1));
                         ofFloat.addListener(new b3(this, 0));
-                        ofFloat.setInterpolator(is.f27451f);
+                        ofFloat.setInterpolator(is.f27500f);
                         ofFloat.setDuration(220L);
                         ofFloat.start();
                     } else {
-                        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f20495y, getMeasuredWidth());
+                        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f20531y, getMeasuredWidth());
                         ofFloat2.addUpdateListener(new a3(this, 2));
                         ofFloat2.addListener(new b3(this, 1));
                         is isVar = is.h;
@@ -227,12 +227,12 @@ public abstract class c3 extends FrameLayout {
                         ofFloat3.setDuration(320L);
                         ofFloat3.start();
                     }
-                    this.f20488e = false;
-                    this.f20489f = false;
+                    this.f20524e = false;
+                    this.f20525f = false;
                     this.d = -1;
                     this.E = false;
                 }
-                if ((z10 || !this.f20488e) && !this.f20489f && (e3Var.canDismissWithSwipe() || e3Var.canSwipeToBack(motionEvent))) {
+                if ((z10 || !this.f20524e) && !this.f20525f && (e3Var.canDismissWithSwipe() || e3Var.canSwipeToBack(motionEvent))) {
                 }
             }
             return true;
@@ -258,7 +258,7 @@ public abstract class c3 extends FrameLayout {
 
     @Override
     public int getNestedScrollAxes() {
-        return this.f20490n.b();
+        return this.f20526n.b();
     }
 
     @Override
@@ -275,7 +275,7 @@ public abstract class c3 extends FrameLayout {
         int i11;
         int i12;
         float f7;
-        Paint paint = this.f20492s;
+        Paint paint = this.f20528s;
         int alpha = paint.getAlpha();
         e3 e3Var = this.G;
         int i13 = 0;
@@ -405,7 +405,7 @@ public abstract class c3 extends FrameLayout {
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i10) {
         boolean z10;
-        this.f20490n.f3533a = i10;
+        this.f20526n.f3533a = i10;
         e3 e3Var = this.G;
         z10 = e3Var.dismissed;
         if (!z10 && e3Var.allowNestedScroll) {
@@ -431,7 +431,7 @@ public abstract class c3 extends FrameLayout {
     @Override
     public final void onStopNestedScroll(View view) {
         boolean z10;
-        this.f20490n.f3533a = 0;
+        this.f20526n.f3533a = 0;
         e3 e3Var = this.G;
         z10 = e3Var.dismissed;
         if (!z10 && e3Var.allowNestedScroll) {
@@ -446,7 +446,7 @@ public abstract class c3 extends FrameLayout {
 
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z10) {
-        if (this.f20488e && !this.f20489f) {
+        if (this.f20524e && !this.f20525f) {
             d(null, false);
         }
         super.requestDisallowInterceptTouchEvent(z10);

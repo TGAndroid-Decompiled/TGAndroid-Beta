@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rm0;
-public final class e9 extends rm0 {
+import org.telegram.ui.Components.qm0;
+public final class e9 extends qm0 {
     public final f9 f5041c;
 
     public e9(f9 f9Var) {
@@ -14,7 +14,7 @@ public final class e9 extends rm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47752f == 2) {
+        if (d1Var.f47786f == 2) {
             return true;
         }
         return false;

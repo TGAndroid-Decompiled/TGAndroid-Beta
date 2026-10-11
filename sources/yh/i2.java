@@ -14,26 +14,26 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.y9;
 public final class i2 extends FrameLayout {
-    public final y9 f52754a;
-    public final o2 f52755b;
-    public final org.telegram.ui.Components.r6 f52756c;
+    public final y9 f52788a;
+    public final o2 f52789b;
+    public final org.telegram.ui.Components.r6 f52790c;
     public TL_stars.starGiftAttributeBackdrop d;
-    public TL_stars.starGiftAttributePattern f52757e;
-    public float f52758f;
+    public TL_stars.starGiftAttributePattern f52791e;
+    public float f52792f;
 
     public i2(Context context) {
         super(context);
         y9 y9Var = new y9(context);
-        this.f52754a = y9Var;
+        this.f52788a = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(13.0f));
         addView(y9Var, w7.x5.a(26.0f, 0.0f, 11.33f, 0.0f, 0.0f, 26, 49));
         o2 o2Var = new o2(context);
-        this.f52755b = o2Var;
-        o2Var.f53048e = AndroidUtilities.dp(18.0f);
-        o2Var.f53045a.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        this.f52789b = o2Var;
+        o2Var.f53082e = AndroidUtilities.dp(18.0f);
+        o2Var.f53079a.setStrokeWidth(AndroidUtilities.dp(3.0f));
         addView(o2Var, w7.x5.a(48.0f, 0.0f, 0.66f, 0.0f, 0.0f, 48, 49));
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(context, false, false, false);
-        this.f52756c = r6Var;
+        this.f52790c = r6Var;
         r6Var.setTypeface(AndroidUtilities.bold());
         r6Var.setGravity(17);
         r6Var.setTextSize(AndroidUtilities.dp(12.0f));
@@ -45,8 +45,8 @@ public final class i2 extends FrameLayout {
 
     public final void a(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
         this.d = stargiftattributebackdrop;
-        this.f52757e = null;
-        y9 y9Var = this.f52754a;
+        this.f52791e = null;
+        y9 y9Var = this.f52788a;
         y9Var.setScaleX(1.0f);
         y9Var.setScaleY(1.0f);
         if (stargiftattributebackdrop != null) {
@@ -66,8 +66,8 @@ public final class i2 extends FrameLayout {
 
     public final void b(TL_stars.starGiftAttributePattern stargiftattributepattern) {
         this.d = null;
-        this.f52757e = stargiftattributepattern;
-        y9 y9Var = this.f52754a;
+        this.f52791e = stargiftattributepattern;
+        y9 y9Var = this.f52788a;
         if (stargiftattributepattern == null) {
             y9Var.setAlpha(0.25f);
             y9Var.setScaleX(0.75f);
@@ -87,13 +87,13 @@ public final class i2 extends FrameLayout {
     }
 
     public final void c(float f7, boolean z10) {
-        this.f52758f = f7;
-        o2 o2Var = this.f52755b;
+        this.f52792f = f7;
+        o2 o2Var = this.f52789b;
         o2Var.d = f7;
         if (!z10) {
-            o2Var.f53046b.d(f7, true);
+            o2Var.f53080b.d(f7, true);
         }
         o2Var.invalidate();
-        this.f52756c.c(Math.round(f7 * 100.0f) + "%", z10, true);
+        this.f52790c.c(Math.round(f7 * 100.0f) + "%", z10, true);
     }
 }

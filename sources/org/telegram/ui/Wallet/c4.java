@@ -11,29 +11,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.q91;
+import org.telegram.ui.Components.p91;
 import org.telegram.ui.Components.sc;
-public final class c4 extends q91 {
+public final class c4 extends p91 {
     public boolean T;
     public final b4 U;
     public final k0 V;
     public final ArrayList W;
-    public final int f34736a0;
-    public final Rect f34737b0;
-    public final View[] f34738c0;
+    public final int f34770a0;
+    public final Rect f34771b0;
+    public final View[] f34772c0;
 
     public c4(Context context, org.telegram.ui.ActionBar.d6 d6Var, final k0 k0Var, final ArrayList arrayList, int i10, Rect rect, View[] viewArr) {
         super(context, d6Var);
         this.V = k0Var;
         this.W = arrayList;
-        this.f34736a0 = i10;
-        this.f34737b0 = rect;
-        this.f34738c0 = viewArr;
+        this.f34770a0 = i10;
+        this.f34771b0 = rect;
+        this.f34772c0 = viewArr;
         this.U = new NotificationCenter.NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i11, int i12, Object[] objArr) {
                 ArrayList arrayList2;
-                ArrayList arrayList3 = k0.this.f35142c;
+                ArrayList arrayList3 = k0.this.f35176c;
                 int size = arrayList3.size();
                 int i13 = 0;
                 while (i13 < size) {
@@ -65,7 +65,7 @@ public final class c4 extends q91 {
         view.setTranslationX(f7);
         if (getMeasuredWidth() > 0) {
             float clamp = Utilities.clamp(f7 / getMeasuredWidth(), 1.0f, -1.0f);
-            view.setTranslationX(f7 - ((2.0f * clamp) * this.f34737b0.left));
+            view.setTranslationX(f7 - ((2.0f * clamp) * this.f34771b0.left));
             if (clamp > 0.0f) {
                 measuredWidth = 0.0f;
             } else {
@@ -97,26 +97,26 @@ public final class c4 extends q91 {
                     float dp = (-(f11 - e6Var.Q)) * AndroidUtilities.dp(140.0f);
                     e6Var.Q = f11;
                     if (e6Var.O == null) {
-                        o1.k kVar = new o1.k(e6Var, o1.h.f16969m);
+                        o1.k kVar = new o1.k(e6Var, o1.h.f17005m);
                         e6Var.O = kVar;
                         o1.l lVar = new o1.l(0.0f);
                         lVar.a(0.32f);
                         lVar.b(300.0f);
-                        kVar.f16988u = lVar;
+                        kVar.f17024u = lVar;
                         e6Var.O.b(new y5(e6Var, 1));
                     }
                     float max2 = Math.max(-AndroidUtilities.dp(1600.0f), Math.min(AndroidUtilities.dp(1600.0f), e6Var.P + dp));
                     e6Var.P = max2;
                     o1.k kVar2 = e6Var.O;
-                    kVar2.f16977a = max2;
+                    kVar2.f17013a = max2;
                     kVar2.g(0.0f);
                 }
                 if (f10 != 0.0f) {
                     e6Var.U = Math.max(-720.0f, Math.min(720.0f, e6Var.U - (f10 * 300.0f)));
-                    if (!e6Var.W && e6Var.f34865n) {
+                    if (!e6Var.W && e6Var.f34899n) {
                         e6Var.W = true;
                         e6Var.V = 0L;
-                        Choreographer.getInstance().postFrameCallback(e6Var.f34849a0);
+                        Choreographer.getInstance().postFrameCallback(e6Var.f34883a0);
                     }
                 }
             }
@@ -124,9 +124,9 @@ public final class c4 extends q91 {
     }
 
     public final void J() {
-        if (this.f30094b >= this.W.size() - 2) {
+        if (this.f29796b >= this.W.size() - 2) {
             k0 k0Var = this.V;
-            if (!k0Var.f35145g) {
+            if (!k0Var.f35179g) {
                 k0Var.e();
             }
         }
@@ -151,14 +151,14 @@ public final class c4 extends q91 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f34736a0).addObserver(this.U, NotificationCenter.walletTransactionsUpdate);
+        NotificationCenter.getInstance(this.f34770a0).addObserver(this.U, NotificationCenter.walletTransactionsUpdate);
         J();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f34736a0).removeObserver(this.U, NotificationCenter.walletTransactionsUpdate);
+        NotificationCenter.getInstance(this.f34770a0).removeObserver(this.U, NotificationCenter.walletTransactionsUpdate);
     }
 
     @Override
@@ -185,7 +185,7 @@ public final class c4 extends q91 {
             ((Runnable) childAt.getTag()).run();
         }
         J();
-        sc scVar = sc.f30703w;
+        sc scVar = sc.f30825w;
         if (scVar != null) {
             scVar.c(0L, false);
         }
@@ -194,7 +194,7 @@ public final class c4 extends q91 {
     @Override
     public final void w(boolean z10) {
         requestLayout();
-        View view = this.f34738c0[0];
+        View view = this.f34772c0[0];
         if (view != null) {
             view.invalidate();
         }

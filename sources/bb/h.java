@@ -7,7 +7,7 @@ import za.c0;
 import za.s;
 public final class h {
     public static final f f3825c = new Object();
-    public static final m1.c d = p.a(s.f54371b);
+    public static final m1.c d = p.a(s.f54405b);
     public final pb.c f3826a;
     public final d f3827b;
 
@@ -15,7 +15,7 @@ public final class h {
         hVar.a();
         Context context = hVar.f14746a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
-        c0 c0Var = c0.f54288a;
+        c0 c0Var = c0.f54322a;
         za.b a2 = c0.a(hVar);
         pb.c cVar = new pb.c(context);
         aa.a aVar = new aa.a(a2, hVar2);
@@ -27,7 +27,7 @@ public final class h {
 
     public final double a() {
         Double d10;
-        Bundle bundle = (Bundle) this.f3826a.f45578b;
+        Bundle bundle = (Bundle) this.f3826a.f45612b;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {

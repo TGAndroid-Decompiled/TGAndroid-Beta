@@ -15,23 +15,23 @@ import android.widget.FrameLayout;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 public final class e2 extends a2 {
-    public static final int[] f20559n1 = {16842932, 16842933};
-    public int f20560d1;
-    public int f20561e1;
-    public FrameLayout f20562f1;
-    public ViewGroup f20563g1;
-    public View f20564h1;
-    public DialogInterface.OnShowListener f20565i1;
-    public DialogInterface.OnDismissListener f20566j1;
-    public boolean f20567k1;
+    public static final int[] f20595n1 = {16842932, 16842933};
+    public int f20596d1;
+    public int f20597e1;
+    public FrameLayout f20598f1;
+    public ViewGroup f20599g1;
+    public View f20600h1;
+    public DialogInterface.OnShowListener f20601i1;
+    public DialogInterface.OnDismissListener f20602j1;
+    public boolean f20603k1;
     public long l1;
-    public final p f20568m1;
+    public final p f20604m1;
 
     public e2(Context context, int i10, d6 d6Var) {
         super(context, i10, d6Var);
-        this.f20567k1 = false;
+        this.f20603k1 = false;
         this.l1 = 0L;
-        this.f20568m1 = new p(this, 7);
+        this.f20604m1 = new p(this, 7);
     }
 
     public static Activity r(Context context) {
@@ -46,26 +46,26 @@ public final class e2 extends a2 {
 
     @Override
     public final void dismiss() {
-        if (!isShowing() || this.f20567k1) {
+        if (!isShowing() || this.f20603k1) {
             return;
         }
-        this.f20567k1 = true;
-        AndroidUtilities.cancelRunOnUIThread(this.f20568m1);
-        if (this.f20562f1.getVisibility() != 0) {
-            s().removeView(this.f20562f1);
+        this.f20603k1 = true;
+        AndroidUtilities.cancelRunOnUIThread(this.f20604m1);
+        if (this.f20598f1.getVisibility() != 0) {
+            s().removeView(this.f20598f1);
             return;
         }
-        Animation loadAnimation = AnimationUtils.loadAnimation(getContext(), this.f20561e1);
+        Animation loadAnimation = AnimationUtils.loadAnimation(getContext(), this.f20597e1);
         loadAnimation.setAnimationListener(new c2(this, 0));
-        this.f20563g1.clearAnimation();
-        this.f20563g1.startAnimation(loadAnimation);
-        this.f20564h1.animate().setListener(null).cancel();
-        this.f20564h1.animate().setDuration(300L).alpha(0.0f).setListener(new b2(this, 1)).start();
+        this.f20599g1.clearAnimation();
+        this.f20599g1.startAnimation(loadAnimation);
+        this.f20600h1.animate().setListener(null).cancel();
+        this.f20600h1.animate().setDuration(300L).alpha(0.0f).setListener(new b2(this, 1)).start();
     }
 
     @Override
     public final boolean isShowing() {
-        if (s().indexOfChild(this.f20562f1) != -1 && !this.f20567k1) {
+        if (s().indexOfChild(this.f20598f1) != -1 && !this.f20603k1) {
             return true;
         }
         return false;
@@ -86,46 +86,46 @@ public final class e2 extends a2 {
 
     @Override
     public final void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.f20566j1 = onDismissListener;
+        this.f20602j1 = onDismissListener;
     }
 
     @Override
     public final void setOnShowListener(DialogInterface.OnShowListener onShowListener) {
-        this.f20565i1 = onShowListener;
+        this.f20601i1 = onShowListener;
     }
 
     @Override
     public final void show() {
         TypedValue typedValue = new TypedValue();
         getContext().getTheme().resolveAttribute(16842926, typedValue, true);
-        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, f20559n1);
-        this.f20560d1 = obtainStyledAttributes.getResourceId(0, -1);
-        this.f20561e1 = obtainStyledAttributes.getResourceId(1, -1);
+        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, f20595n1);
+        this.f20596d1 = obtainStyledAttributes.getResourceId(0, -1);
+        this.f20597e1 = obtainStyledAttributes.getResourceId(1, -1);
         obtainStyledAttributes.recycle();
-        this.f20391h0 = true;
+        this.f20427h0 = true;
         ViewGroup f7 = f(false);
-        this.f20563g1 = f7;
+        this.f20599g1 = f7;
         f7.setClickable(true);
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
         FrameLayout frameLayout = new FrameLayout(getContext());
         frameLayout.setOnClickListener(new w(this, 1));
         View view = new View(getContext());
-        this.f20564h1 = view;
+        this.f20600h1 = view;
         view.setBackgroundColor(h6.m1(attributes.dimAmount, -16777216));
-        frameLayout.addView(this.f20564h1, new FrameLayout.LayoutParams(-1, -1));
+        frameLayout.addView(this.f20600h1, new FrameLayout.LayoutParams(-1, -1));
         FrameLayout frameLayout2 = new FrameLayout(getContext());
-        frameLayout2.addView(this.f20563g1, new FrameLayout.LayoutParams(-1, -2, 17));
+        frameLayout2.addView(this.f20599g1, new FrameLayout.LayoutParams(-1, -2, 17));
         frameLayout.addView(frameLayout2, new FrameLayout.LayoutParams(attributes.width, -2, 17));
-        this.f20562f1 = frameLayout;
-        s().addView(this.f20562f1);
-        FrameLayout frameLayout3 = this.f20562f1;
-        WeakHashMap weakHashMap = r0.i0.f46856a;
+        this.f20598f1 = frameLayout;
+        s().addView(this.f20598f1);
+        FrameLayout frameLayout3 = this.f20598f1;
+        WeakHashMap weakHashMap = r0.i0.f46890a;
         r0.y.c(frameLayout3);
-        r0.a0.i(this.f20562f1, new n(frameLayout2, 4));
-        this.f20562f1.setVisibility(4);
+        r0.a0.i(this.f20598f1, new n(frameLayout2, 4));
+        this.f20598f1.setVisibility(4);
         long j3 = this.l1;
         int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        p pVar = this.f20568m1;
+        p pVar = this.f20604m1;
         if (i10 == 0) {
             pVar.run();
         } else {

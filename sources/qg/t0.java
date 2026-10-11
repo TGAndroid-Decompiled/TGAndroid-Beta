@@ -7,23 +7,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ai;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.nl0;
 import w7.x5;
 public final class t0 extends j {
-    public final s0 f46635q0;
-    public boolean f46636r0;
-    public int f46637s0;
-    public int f46638t0;
-    public TLRPC.MessageMedia f46639u0;
-    public TL_stories.MediaArea f46640v0;
+    public final s0 f46669q0;
+    public boolean f46670r0;
+    public int f46671s0;
+    public int f46672t0;
+    public TLRPC.MessageMedia f46673u0;
+    public TL_stories.MediaArea f46674v0;
 
     public t0(Context context, PointF pointF, int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f7, int i11) {
         super(context, pointF);
         s0 s0Var = new s0(context, f7);
-        this.f46635q0 = s0Var;
+        this.f46669q0 = s0Var;
         s0Var.setMaxWidth(i11);
         r(i10, messageMedia, mediaArea);
-        s0Var.e(0, this.f46637s0);
+        s0Var.e(0, this.f46671s0);
         addView(s0Var, x5.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -74,7 +74,7 @@ public final class t0 extends j {
     }
 
     public int getColor() {
-        return this.f46637s0;
+        return this.f46671s0;
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class t0 extends j {
     }
 
     @Override
-    public ol0 getSelectionBounds() {
+    public nl0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -94,35 +94,35 @@ public final class t0 extends j {
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
         float y3 = ai.y(dp, 2.0f, getPositionX(), scaleX);
-        return new ol0(y3, ai.y(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + y3) - y3, dp2 * scaleX);
+        return new nl0(y3, ai.y(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + y3) - y3, dp2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f46635q0.J;
+        return this.f46669q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f46635q0.I;
+        return this.f46669q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f46635q0.I;
+        return this.f46669q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f46635q0.J;
+        return this.f46669q0.J;
     }
 
     public int getType() {
-        return this.f46638t0;
+        return this.f46672t0;
     }
 
     public int getTypesCount() {
-        return this.f46635q0.getTypesCount() - (!this.f46636r0 ? 1 : 0);
+        return this.f46669q0.getTypesCount() - (!this.f46670r0 ? 1 : 0);
     }
 
     @Override
@@ -141,8 +141,8 @@ public final class t0 extends j {
         String str;
         String str2;
         String str3;
-        this.f46639u0 = messageMedia;
-        this.f46640v0 = mediaArea;
+        this.f46673u0 = messageMedia;
+        this.f46674v0 = mediaArea;
         String str4 = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
@@ -172,23 +172,23 @@ public final class t0 extends j {
         } else {
             str = "";
         }
-        s0 s0Var = this.f46635q0;
+        s0 s0Var = this.f46669q0;
         s0Var.d(i10, str4);
         s0Var.setText(str);
         m();
     }
 
     public void setColor(int i10) {
-        this.f46636r0 = true;
-        this.f46637s0 = i10;
+        this.f46670r0 = true;
+        this.f46671s0 = i10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f46635q0.setMaxWidth(i10);
+        this.f46669q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f46638t0 = i10;
-        this.f46635q0.e(i10, this.f46637s0);
+        this.f46672t0 = i10;
+        this.f46669q0.e(i10, this.f46671s0);
     }
 }

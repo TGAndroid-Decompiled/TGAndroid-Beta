@@ -25,22 +25,22 @@ public final class z3 extends RadialProgressView {
         switch (this.K) {
             case 0:
                 e4 e4Var = (e4) this.M;
-                org.telegram.ui.Components.y9 y9Var = e4Var.f22016b;
+                org.telegram.ui.Components.y9 y9Var = e4Var.f22052b;
                 if (y9Var.getImageReceiver().hasNotThumb() && y9Var.getAlpha() > 0.0f) {
                     int alpha = (int) (y9Var.getAlpha() * y9Var.getImageReceiver().getCurrentAlpha() * 85.0f);
                     Paint paint = this.L;
                     paint.setAlpha(alpha);
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
                 }
-                e4Var.f22028x.setProgressColor(i0.a.k(-1, (int) (y9Var.getAlpha() * y9Var.getImageReceiver().getCurrentAlpha() * 255.0f)));
+                e4Var.f22064x.setProgressColor(i0.a.k(-1, (int) (y9Var.getAlpha() * y9Var.getImageReceiver().getCurrentAlpha() * 255.0f)));
                 super.onDraw(canvas);
                 return;
             case 1:
                 ProfileActivity profileActivity = (ProfileActivity) this.M;
-                nz0 nz0Var = profileActivity.f34270e0;
+                nz0 nz0Var = profileActivity.f34304e0;
                 if (nz0Var != null && nz0Var.getImageReceiver().hasNotThumb()) {
                     Paint paint2 = this.L;
-                    paint2.setAlpha((int) (profileActivity.f34270e0.getImageReceiver().getCurrentAlpha() * 85.0f));
+                    paint2.setAlpha((int) (profileActivity.f34304e0.getImageReceiver().getCurrentAlpha() * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint2);
                 }
                 super.onDraw(canvas);

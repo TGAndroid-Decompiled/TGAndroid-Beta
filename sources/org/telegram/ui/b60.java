@@ -9,18 +9,18 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class b60 extends Drawable {
-    public final Paint f36279a;
-    public final Paint f36280b;
-    public long f36281c;
+    public final Paint f36313a;
+    public final Paint f36314b;
+    public long f36315c;
     public float d;
-    public int f36282e;
-    public boolean f36283f;
-    public View f36284g;
+    public int f36316e;
+    public boolean f36317f;
+    public View f36318g;
 
     public b60() {
         Paint paint = new Paint(1);
-        this.f36279a = paint;
-        this.f36280b = new Paint(1);
+        this.f36313a = paint;
+        this.f36314b = new Paint(1);
         this.d = 1.0f;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -28,7 +28,7 @@ public final class b60 extends Drawable {
     }
 
     public final void a(ImageView imageView) {
-        this.f36284g = imageView;
+        this.f36318g = imageView;
     }
 
     @Override
@@ -36,40 +36,40 @@ public final class b60 extends Drawable {
         int i10;
         float centerX = getBounds().centerX();
         float centerY = getBounds().centerY();
-        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(10.0f), this.f36279a);
-        if (this.f36283f) {
+        canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(10.0f), this.f36313a);
+        if (this.f36317f) {
             i10 = -1147527;
         } else {
             i10 = -1;
         }
-        Paint paint = this.f36280b;
+        Paint paint = this.f36314b;
         paint.setColor(i10);
         paint.setAlpha((int) (this.d * 255.0f));
         canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(5.0f), paint);
-        if (this.f36283f) {
+        if (this.f36317f) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j3 = elapsedRealtime - this.f36281c;
+            long j3 = elapsedRealtime - this.f36315c;
             if (j3 > 17) {
                 j3 = 17;
             }
-            this.f36281c = elapsedRealtime;
-            int i11 = this.f36282e;
+            this.f36315c = elapsedRealtime;
+            int i11 = this.f36316e;
             if (i11 == 0) {
                 float f7 = (((float) j3) / 2000.0f) + this.d;
                 this.d = f7;
                 if (f7 >= 1.0f) {
                     this.d = 1.0f;
-                    this.f36282e = 1;
+                    this.f36316e = 1;
                 }
             } else if (i11 == 1) {
                 float f10 = this.d - (((float) j3) / 2000.0f);
                 this.d = f10;
                 if (f10 < 0.5f) {
                     this.d = 0.5f;
-                    this.f36282e = 0;
+                    this.f36316e = 0;
                 }
             }
-            this.f36284g.invalidate();
+            this.f36318g.invalidate();
         }
     }
 

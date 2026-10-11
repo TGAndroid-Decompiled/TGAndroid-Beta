@@ -125,7 +125,7 @@ public final class l implements Utilities.Callback {
                 Runnable runnable = (Runnable) obj;
                 rxVar.getClass();
                 ((org.telegram.ui.ActionBar.a2) obj3).dismiss();
-                sy syVar = rxVar.f41524b;
+                sy syVar = rxVar.f41558b;
                 syVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
                 my myVar = syVar.C2;
                 syVar.removeSelfFromStack();

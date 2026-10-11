@@ -3,15 +3,15 @@ package org.telegram.ui.Wallet;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.ea0;
 import org.telegram.ui.d90;
 public final class l implements Utilities.Callback {
-    public final int f35183a;
-    public final Object f35184b;
+    public final int f35217a;
+    public final Object f35218b;
 
     public l(Object obj, int i10) {
-        this.f35183a = i10;
-        this.f35184b = obj;
+        this.f35217a = i10;
+        this.f35218b = obj;
     }
 
     @Override
@@ -19,9 +19,9 @@ public final class l implements Utilities.Callback {
         String str;
         int i10;
         CharSequence formatSpannable;
-        int i11 = this.f35183a;
+        int i11 = this.f35217a;
         boolean z10 = false;
-        Object obj2 = this.f35184b;
+        Object obj2 = this.f35218b;
         switch (i11) {
             case 0:
                 ai.j3 j3Var = (ai.j3) obj2;
@@ -58,17 +58,17 @@ public final class l implements Utilities.Callback {
                 } else {
                     i10 = 24;
                 }
-                if (c7Var.f34773a != i10) {
-                    c7Var.f34773a = i10;
+                if (c7Var.f34807a != i10) {
+                    c7Var.f34807a = i10;
                     c7Var.W(c7Var.getParentActivity());
                     c7Var.Y();
-                    fa0 fa0Var = c7Var.h;
-                    if (c7Var.f34780s != null) {
+                    ea0 ea0Var = c7Var.h;
+                    if (c7Var.f34814s != null) {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
                     } else {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));
                     }
-                    fa0Var.setText(formatSpannable);
+                    ea0Var.setText(formatSpannable);
                     return;
                 }
                 return;

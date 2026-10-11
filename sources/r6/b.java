@@ -7,16 +7,16 @@ import p7.j;
 import w7.d0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(7);
-    public final PendingIntent f47083a;
+    public final PendingIntent f47117a;
 
     public b(PendingIntent pendingIntent) {
-        this.f47083a = pendingIntent;
+        this.f47117a = pendingIntent;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = d0.q(parcel, 20293);
-        d0.k(parcel, 1, this.f47083a, i10);
+        d0.k(parcel, 1, this.f47117a, i10);
         d0.r(parcel, q6);
     }
 }

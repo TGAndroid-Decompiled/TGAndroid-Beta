@@ -12,16 +12,16 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class xg implements yv0, my {
-    public final boolean f44064a;
-    public final int f44065b;
-    public final Object f44066c;
+    public final boolean f44098a;
+    public final int f44099b;
+    public final Object f44100c;
     public final Object d;
 
     public xg(zn znVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f44066c = znVar;
-        this.f44064a = z10;
+        this.f44100c = znVar;
+        this.f44098a = z10;
         this.d = messageObject;
-        this.f44065b = i10;
+        this.f44099b = i10;
     }
 
     @Override
@@ -37,9 +37,9 @@ public final class xg implements yv0, my {
     @Override
     public void a(TLRPC.MessageMedia messageMedia) {
         int i10;
-        zn znVar = (zn) this.f44066c;
+        zn znVar = (zn) this.f44100c;
         MessageObject messageObject = (MessageObject) this.d;
-        if (this.f44064a) {
+        if (this.f44098a) {
             TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
             tL_messages_appendTodoList.peer = znVar.getMessagesController().getInputPeer(messageObject.getDialogId());
             tL_messages_appendTodoList.msg_id = messageObject.getId();
@@ -48,20 +48,20 @@ public final class xg implements yv0, my {
                 int i11 = 0;
                 int i12 = 0;
                 while (true) {
-                    i10 = this.f44065b;
+                    i10 = this.f44099b;
                     if (i11 >= i10) {
                         break;
                     }
-                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20177id);
+                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20213id);
                     i11++;
                 }
                 while (i10 < tL_messageMediaToDo.todo.list.size()) {
                     TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i10);
-                    if (todoItem.f20177id <= i12) {
-                        todoItem.f20177id = i12 + 1;
+                    if (todoItem.f20213id <= i12) {
+                        todoItem.f20213id = i12 + 1;
                     }
                     tL_messages_appendTodoList.list.add(todoItem);
-                    i12 = Math.max(i12, todoItem.f20177id);
+                    i12 = Math.max(i12, todoItem.f20213id);
                     i10++;
                 }
                 TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
@@ -85,13 +85,13 @@ public final class xg implements yv0, my {
 
     @Override
     public boolean w(sy syVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f44066c;
+        LaunchActivity launchActivity = (LaunchActivity) this.f44100c;
         String str = (String) this.d;
         Pattern pattern = LaunchActivity.B1;
         long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
-        bundle.putBoolean("hasUrl", this.f44064a);
+        bundle.putBoolean("hasUrl", this.f44098a);
         if (DialogObject.isEncryptedDialog(j3)) {
             bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j3));
         } else if (DialogObject.isUserDialog(j3)) {
@@ -99,7 +99,7 @@ public final class xg implements yv0, my {
         } else {
             bundle.putLong("chat_id", -j3);
         }
-        int i12 = this.f44065b;
+        int i12 = this.f44099b;
         if (MessagesController.getInstance(i12).checkCanOpenChat(bundle, syVar)) {
             NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
             MediaDataController.getInstance(i12).saveDraft(j3, 0, str, null, null, false, 0L);
@@ -109,9 +109,9 @@ public final class xg implements yv0, my {
     }
 
     public xg(LaunchActivity launchActivity, boolean z10, int i10, String str) {
-        this.f44066c = launchActivity;
-        this.f44064a = z10;
-        this.f44065b = i10;
+        this.f44100c = launchActivity;
+        this.f44098a = z10;
+        this.f44099b = i10;
         this.d = str;
     }
 }

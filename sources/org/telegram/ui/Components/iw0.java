@@ -1,3 +1,22 @@
 package org.telegram.ui.Components;
-public interface iw0 {
+public final class iw0 {
+    public static final iw0 f27519a;
+    public static final iw0 f27520b;
+    public static final iw0[] f27521c;
+
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f27519a = r02;
+        ?? r12 = new Enum("RECORDING", 1);
+        f27520b = r12;
+        f27521c = new iw0[]{r02, r12};
+    }
+
+    public static iw0 valueOf(String str) {
+        return (iw0) Enum.valueOf(iw0.class, str);
+    }
+
+    public static iw0[] values() {
+        return (iw0[]) f27521c.clone();
+    }
 }

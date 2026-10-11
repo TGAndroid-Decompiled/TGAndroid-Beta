@@ -7,8 +7,8 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.Components.bf0;
 import org.telegram.ui.Components.cf0;
-import org.telegram.ui.Components.df0;
 import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.ar0;
 import org.telegram.ui.ga0;
@@ -67,7 +67,7 @@ public final class s3 implements RequestDelegate {
                 }
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new x0((ln) obj, tLObject, z10, 14));
+                AndroidUtilities.runOnUIThread(new x0((ln) obj, tLObject, z10, 15));
                 return;
             case 5:
                 uo uoVar = (uo) obj;
@@ -82,7 +82,7 @@ public final class s3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.t4((ip) obj, tL_error, tLObject, this.f5938b, 14));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new cf0((df0) obj, tL_error, tLObject, z10));
+                AndroidUtilities.runOnUIThread(new bf0((cf0) obj, tL_error, tLObject, z10));
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new ai.t4((l70) obj, tL_error, tLObject, this.f5938b, 23));
@@ -96,7 +96,7 @@ public final class s3 implements RequestDelegate {
             case 11:
                 ar0 ar0Var = (ar0) obj;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new ga0(ar0Var, tLObject, z10, 3));
+                    AndroidUtilities.runOnUIThread(new ga0(ar0Var, tLObject, z10, 4));
                     return;
                 }
                 return;
@@ -104,8 +104,8 @@ public final class s3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.t4((hh1) obj, tL_error, tLObject, this.f5938b, 29));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f35798k0;
-                AndroidUtilities.runOnUIThread(new ga0((WallpapersListActivity) obj, tLObject, z10, 12));
+                int[][] iArr = WallpapersListActivity.f35832k0;
+                AndroidUtilities.runOnUIThread(new ga0((WallpapersListActivity) obj, tLObject, z10, 13));
                 return;
         }
     }

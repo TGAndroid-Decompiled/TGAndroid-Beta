@@ -3,32 +3,32 @@ package org.telegram.ui.web;
 import android.content.DialogInterface;
 import android.webkit.JsResult;
 public final class r0 implements DialogInterface.OnDismissListener {
-    public final int f43636a;
-    public final boolean[] f43637b;
-    public final JsResult f43638c;
+    public final int f43670a;
+    public final boolean[] f43671b;
+    public final JsResult f43672c;
 
     public r0(boolean[] zArr, JsResult jsResult, int i10) {
-        this.f43636a = i10;
-        this.f43637b = zArr;
-        this.f43638c = jsResult;
+        this.f43670a = i10;
+        this.f43671b = zArr;
+        this.f43672c = jsResult;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f43636a) {
+        switch (this.f43670a) {
             case 0:
-                boolean[] zArr = this.f43637b;
+                boolean[] zArr = this.f43671b;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    this.f43638c.cancel();
+                    this.f43672c.cancel();
                     return;
                 }
                 return;
             default:
-                boolean[] zArr2 = this.f43637b;
+                boolean[] zArr2 = this.f43671b;
                 if (!zArr2[0]) {
                     zArr2[0] = true;
-                    this.f43638c.cancel();
+                    this.f43672c.cancel();
                     return;
                 }
                 return;

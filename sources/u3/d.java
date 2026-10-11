@@ -28,12 +28,12 @@ import java.util.UUID;
 import l2.f;
 import z3.k;
 public final class d implements o {
-    public static final byte[] f48885f0 = {49, 10, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 10};
-    public static final byte[] f48886g0;
-    public static final byte[] f48887h0;
-    public static final byte[] f48888i0;
-    public static final UUID f48889j0;
-    public static final Map f48890k0;
+    public static final byte[] f48919f0 = {49, 10, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 48, 48, 10};
+    public static final byte[] f48920g0;
+    public static final byte[] f48921h0;
+    public static final byte[] f48922i0;
+    public static final UUID f48923j0;
+    public static final Map f48924k0;
     public long A;
     public boolean B;
     public long C;
@@ -60,82 +60,82 @@ public final class d implements o {
     public int X;
     public boolean Y;
     public boolean Z;
-    public final b f48891a;
-    public boolean f48892a0;
-    public final e f48893b;
-    public int f48894b0;
-    public final SparseArray f48895c;
-    public byte f48896c0;
+    public final b f48925a;
+    public boolean f48926a0;
+    public final e f48927b;
+    public int f48928b0;
+    public final SparseArray f48929c;
+    public byte f48930c0;
     public final boolean d;
-    public boolean f48897d0;
-    public final boolean f48898e;
-    public q f48899e0;
-    public final k f48900f;
-    public final v f48901g;
+    public boolean f48931d0;
+    public final boolean f48932e;
+    public q f48933e0;
+    public final k f48934f;
+    public final v f48935g;
     public final v h;
-    public final v f48902i;
-    public final v f48903j;
-    public final v f48904k;
-    public final v f48905l;
-    public final v f48906m;
-    public final v f48907n;
-    public final v f48908o;
-    public final v f48909p;
-    public ByteBuffer f48910q;
-    public long f48911r;
-    public long f48912s;
-    public long f48913t;
-    public long f48914u;
+    public final v f48936i;
+    public final v f48937j;
+    public final v f48938k;
+    public final v f48939l;
+    public final v f48940m;
+    public final v f48941n;
+    public final v f48942o;
+    public final v f48943p;
+    public ByteBuffer f48944q;
+    public long f48945r;
+    public long f48946s;
+    public long f48947t;
+    public long f48948u;
     public long v;
-    public boolean f48915w;
-    public c f48916x;
-    public boolean f48917y;
-    public int f48918z;
+    public boolean f48949w;
+    public c f48950x;
+    public boolean f48951y;
+    public int f48952z;
 
     static {
         String str = d0.f8531a;
-        f48886g0 = "Format: Start, End, ReadOrder, Layer, Style, Name, MarginL, MarginR, MarginV, Effect, Text".getBytes(StandardCharsets.UTF_8);
-        f48887h0 = new byte[]{68, 105, 97, 108, 111, 103, 117, 101, 58, 32, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44};
-        f48888i0 = new byte[]{87, 69, 66, 86, 84, 84, 10, 10, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 10};
-        f48889j0 = new UUID(72057594037932032L, -9223371306706625679L);
+        f48920g0 = "Format: Start, End, ReadOrder, Layer, Style, Name, MarginL, MarginR, MarginV, Effect, Text".getBytes(StandardCharsets.UTF_8);
+        f48921h0 = new byte[]{68, 105, 97, 108, 111, 103, 117, 101, 58, 32, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44, 48, 58, 48, 48, 58, 48, 48, 58, 48, 48, 44};
+        f48922i0 = new byte[]{87, 69, 66, 86, 84, 84, 10, 10, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 32, 45, 45, 62, 32, 48, 48, 58, 48, 48, 58, 48, 48, 46, 48, 48, 48, 10};
+        f48923j0 = new UUID(72057594037932032L, -9223371306706625679L);
         HashMap hashMap = new HashMap();
         e2.o(0, hashMap, "htc_video_rotA-000", 90, "htc_video_rotA-090");
         e2.o(180, hashMap, "htc_video_rotA-180", 270, "htc_video_rotA-270");
-        f48890k0 = DesugarCollections.unmodifiableMap(hashMap);
+        f48924k0 = DesugarCollections.unmodifiableMap(hashMap);
     }
 
     public d(k kVar, int i10) {
         boolean z10;
         b bVar = new b();
-        this.f48912s = -1L;
-        this.f48913t = -9223372036854775807L;
-        this.f48914u = -9223372036854775807L;
+        this.f48946s = -1L;
+        this.f48947t = -9223372036854775807L;
+        this.f48948u = -9223372036854775807L;
         this.v = -9223372036854775807L;
         this.C = -1L;
         this.D = -1L;
         this.E = -9223372036854775807L;
-        this.f48891a = bVar;
+        this.f48925a = bVar;
         bVar.d = new f(this, 27);
-        this.f48900f = kVar;
+        this.f48934f = kVar;
         if ((i10 & 1) == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.d = z10;
-        this.f48898e = (i10 & 2) == 0;
-        this.f48893b = new e();
-        this.f48895c = new SparseArray();
-        this.f48902i = new v(4);
-        this.f48903j = new v(ByteBuffer.allocate(4).putInt(-1).array());
-        this.f48904k = new v(4);
-        this.f48901g = new v(p.f9616a);
+        this.f48932e = (i10 & 2) == 0;
+        this.f48927b = new e();
+        this.f48929c = new SparseArray();
+        this.f48936i = new v(4);
+        this.f48937j = new v(ByteBuffer.allocate(4).putInt(-1).array());
+        this.f48938k = new v(4);
+        this.f48935g = new v(p.f9616a);
         this.h = new v(4);
-        this.f48905l = new v();
-        this.f48906m = new v();
-        this.f48907n = new v(8);
-        this.f48908o = new v();
-        this.f48909p = new v();
+        this.f48939l = new v();
+        this.f48940m = new v();
+        this.f48941n = new v(8);
+        this.f48942o = new v();
+        this.f48943p = new v();
         this.O = new int[1];
     }
 
@@ -215,7 +215,7 @@ public final class d implements o {
     }
 
     public final void d(int i10) {
-        if (this.f48916x != null) {
+        if (this.f48950x != null) {
             return;
         }
         throw s0.a(null, "Element " + i10 + " must be in a TrackEntry");
@@ -227,29 +227,29 @@ public final class d implements o {
 
     @Override
     public final void g(q qVar) {
-        if (this.f48898e) {
-            qVar = new m(qVar, this.f48900f);
+        if (this.f48932e) {
+            qVar = new m(qVar, this.f48934f);
         }
-        this.f48899e0 = qVar;
+        this.f48933e0 = qVar;
     }
 
     @Override
     public final void h(long j3, long j10) {
         this.E = -9223372036854775807L;
         this.J = 0;
-        b bVar = this.f48891a;
-        bVar.f48858e = 0;
-        bVar.f48856b.clear();
-        e eVar = bVar.f48857c;
-        eVar.f48920b = 0;
-        eVar.f48921c = 0;
-        e eVar2 = this.f48893b;
-        eVar2.f48920b = 0;
-        eVar2.f48921c = 0;
+        b bVar = this.f48925a;
+        bVar.f48892e = 0;
+        bVar.f48890b.clear();
+        e eVar = bVar.f48891c;
+        eVar.f48954b = 0;
+        eVar.f48955c = 0;
+        e eVar2 = this.f48927b;
+        eVar2.f48954b = 0;
+        eVar2.f48955c = 0;
         k();
         int i10 = 0;
         while (true) {
-            SparseArray sparseArray = this.f48895c;
+            SparseArray sparseArray = this.f48929c;
             if (i10 < sparseArray.size()) {
                 i0 i0Var = ((c) sparseArray.valueAt(i10)).V;
                 if (i0Var != null) {
@@ -270,7 +270,7 @@ public final class d implements o {
     }
 
     public final void j(c3.p pVar, int i10) {
-        v vVar = this.f48902i;
+        v vVar = this.f48936i;
         if (vVar.f8585c >= i10) {
             return;
         }
@@ -290,15 +290,15 @@ public final class d implements o {
         this.X = 0;
         this.Y = false;
         this.Z = false;
-        this.f48892a0 = false;
-        this.f48894b0 = 0;
-        this.f48896c0 = (byte) 0;
-        this.f48897d0 = false;
-        this.f48905l.G(0);
+        this.f48926a0 = false;
+        this.f48928b0 = 0;
+        this.f48930c0 = (byte) 0;
+        this.f48931d0 = false;
+        this.f48939l.G(0);
     }
 
     public final long l(long j3) {
-        long j10 = this.f48913t;
+        long j10 = this.f48947t;
         if (j10 != -9223372036854775807L) {
             String str = d0.f8531a;
             return d0.X(j3, j10, 1000L, RoundingMode.DOWN);
@@ -317,25 +317,25 @@ public final class d implements o {
         boolean z11;
         boolean z12;
         int i11;
-        if ("S_TEXT/UTF8".equals(cVar.f48864c)) {
-            o(pVar, f48885f0, i10);
+        if ("S_TEXT/UTF8".equals(cVar.f48898c)) {
+            o(pVar, f48919f0, i10);
             int i12 = this.W;
             k();
             return i12;
-        } else if (!"S_TEXT/ASS".equals(cVar.f48864c) && !"S_TEXT/SSA".equals(cVar.f48864c)) {
-            if ("S_TEXT/WEBVTT".equals(cVar.f48864c)) {
-                o(pVar, f48888i0, i10);
+        } else if (!"S_TEXT/ASS".equals(cVar.f48898c) && !"S_TEXT/SSA".equals(cVar.f48898c)) {
+            if ("S_TEXT/WEBVTT".equals(cVar.f48898c)) {
+                o(pVar, f48922i0, i10);
                 int i13 = this.W;
                 k();
                 return i13;
             }
             h0 h0Var = cVar.Z;
             boolean z13 = this.Y;
-            v vVar = this.f48905l;
+            v vVar = this.f48939l;
             boolean z14 = true;
             if (!z13) {
-                boolean z15 = cVar.f48868i;
-                v vVar2 = this.f48902i;
+                boolean z15 = cVar.f48902i;
+                v vVar2 = this.f48936i;
                 if (z15) {
                     this.R &= -1073741825;
                     int i14 = 128;
@@ -344,13 +344,13 @@ public final class d implements o {
                         this.V++;
                         byte b10 = vVar2.f8583a[0];
                         if ((b10 & 128) != 128) {
-                            this.f48896c0 = b10;
+                            this.f48930c0 = b10;
                             this.Z = true;
                         } else {
                             throw s0.a(null, "Extension bit is set in signal byte");
                         }
                     }
-                    byte b11 = this.f48896c0;
+                    byte b11 = this.f48930c0;
                     if ((b11 & 1) == 1) {
                         if ((b11 & 2) == 2) {
                             z12 = true;
@@ -358,11 +358,11 @@ public final class d implements o {
                             z12 = false;
                         }
                         this.R |= 1073741824;
-                        if (!this.f48897d0) {
-                            v vVar3 = this.f48907n;
+                        if (!this.f48931d0) {
+                            v vVar3 = this.f48941n;
                             pVar.readFully(vVar3.f8583a, 0, 8);
                             this.V += 8;
-                            this.f48897d0 = true;
+                            this.f48931d0 = true;
                             byte[] bArr = vVar2.f8583a;
                             if (!z12) {
                                 i14 = 0;
@@ -376,71 +376,71 @@ public final class d implements o {
                             this.W += 8;
                         }
                         if (z12) {
-                            if (!this.f48892a0) {
+                            if (!this.f48926a0) {
                                 pVar.readFully(vVar2.f8583a, 0, 1);
                                 this.V++;
                                 vVar2.J(0);
-                                this.f48894b0 = vVar2.x();
-                                this.f48892a0 = true;
+                                this.f48928b0 = vVar2.x();
+                                this.f48926a0 = true;
                             }
-                            int i15 = this.f48894b0 * 4;
+                            int i15 = this.f48928b0 * 4;
                             vVar2.G(i15);
                             pVar.readFully(vVar2.f8583a, 0, i15);
                             this.V += i15;
-                            short s10 = (short) ((this.f48894b0 / 2) + 1);
+                            short s10 = (short) ((this.f48928b0 / 2) + 1);
                             int i16 = (s10 * 6) + 2;
-                            ByteBuffer byteBuffer = this.f48910q;
+                            ByteBuffer byteBuffer = this.f48944q;
                             if (byteBuffer == null || byteBuffer.capacity() < i16) {
-                                this.f48910q = ByteBuffer.allocate(i16);
+                                this.f48944q = ByteBuffer.allocate(i16);
                             }
-                            this.f48910q.position(0);
-                            this.f48910q.putShort(s10);
+                            this.f48944q.position(0);
+                            this.f48944q.putShort(s10);
                             int i17 = 0;
                             int i18 = 0;
                             while (true) {
-                                i11 = this.f48894b0;
+                                i11 = this.f48928b0;
                                 if (i17 >= i11) {
                                     break;
                                 }
                                 int B = vVar2.B();
                                 if (i17 % 2 == 0) {
-                                    this.f48910q.putShort((short) (B - i18));
+                                    this.f48944q.putShort((short) (B - i18));
                                 } else {
-                                    this.f48910q.putInt(B - i18);
+                                    this.f48944q.putInt(B - i18);
                                 }
                                 i17++;
                                 i18 = B;
                             }
                             int i19 = (i10 - this.V) - i18;
                             if (i11 % 2 == 1) {
-                                this.f48910q.putInt(i19);
+                                this.f48944q.putInt(i19);
                             } else {
-                                this.f48910q.putShort((short) i19);
-                                this.f48910q.putInt(0);
+                                this.f48944q.putShort((short) i19);
+                                this.f48944q.putInt(0);
                             }
-                            byte[] array = this.f48910q.array();
-                            v vVar4 = this.f48908o;
+                            byte[] array = this.f48944q.array();
+                            v vVar4 = this.f48942o;
                             vVar4.H(i16, array);
                             h0Var.f(vVar4, i16, 1);
                             this.W += i16;
                         }
                     }
                 } else {
-                    byte[] bArr2 = cVar.f48869j;
+                    byte[] bArr2 = cVar.f48903j;
                     if (bArr2 != null) {
                         vVar.H(bArr2.length, bArr2);
                     }
                 }
-                if ("A_OPUS".equals(cVar.f48864c)) {
+                if ("A_OPUS".equals(cVar.f48898c)) {
                     z11 = z10;
-                } else if (cVar.f48867g > 0) {
+                } else if (cVar.f48901g > 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (z11) {
                     this.R |= 268435456;
-                    this.f48909p.G(0);
+                    this.f48943p.G(0);
                     int i20 = (vVar.f8585c + i10) - this.V;
                     vVar2.G(4);
                     byte[] bArr3 = vVar2.f8583a;
@@ -454,7 +454,7 @@ public final class d implements o {
                 this.Y = true;
             }
             int i21 = i10 + vVar.f8585c;
-            if (!"V_MPEG4/ISO/AVC".equals(cVar.f48864c) && !"V_MPEGH/ISO/HEVC".equals(cVar.f48864c)) {
+            if (!"V_MPEG4/ISO/AVC".equals(cVar.f48898c) && !"V_MPEGH/ISO/HEVC".equals(cVar.f48898c)) {
                 if (cVar.V != null) {
                     if (vVar.f8585c != 0) {
                         z14 = false;
@@ -484,7 +484,7 @@ public final class d implements o {
                 bArr4[0] = 0;
                 bArr4[1] = 0;
                 bArr4[2] = 0;
-                int i24 = cVar.f48862a0;
+                int i24 = cVar.f48896a0;
                 int i25 = 4 - i24;
                 while (this.V < i21) {
                     int i26 = this.X;
@@ -497,7 +497,7 @@ public final class d implements o {
                         this.V += i24;
                         vVar5.J(0);
                         this.X = vVar5.B();
-                        v vVar6 = this.f48901g;
+                        v vVar6 = this.f48935g;
                         vVar6.J(0);
                         h0Var.d(4, vVar6);
                         this.W += 4;
@@ -515,8 +515,8 @@ public final class d implements o {
                     }
                 }
             }
-            if ("A_VORBIS".equals(cVar.f48864c)) {
-                v vVar7 = this.f48903j;
+            if ("A_VORBIS".equals(cVar.f48898c)) {
+                v vVar7 = this.f48937j;
                 vVar7.J(0);
                 h0Var.d(4, vVar7);
                 this.W += 4;
@@ -525,7 +525,7 @@ public final class d implements o {
             k();
             return i27;
         } else {
-            o(pVar, f48887h0, i10);
+            o(pVar, f48921h0, i10);
             int i28 = this.W;
             k();
             return i28;
@@ -534,7 +534,7 @@ public final class d implements o {
 
     public final void o(c3.p pVar, byte[] bArr, int i10) {
         int length = bArr.length + i10;
-        v vVar = this.f48906m;
+        v vVar = this.f48940m;
         byte[] bArr2 = vVar.f8583a;
         if (bArr2.length < length) {
             byte[] copyOf = Arrays.copyOf(bArr, length + i10);

@@ -13,15 +13,15 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.z1;
 import qg.n2;
 public final class e0 implements i0, q3.g, q9.e, pa.a, q9.d, OnFailureListener, androidx.car.app.utils.b, z1 {
-    public final int f45666a;
+    public final int f45700a;
 
     public e0(int i10) {
-        this.f45666a = i10;
+        this.f45700a = i10;
     }
 
     @Override
     public Typeface a() {
-        switch (this.f45666a) {
+        switch (this.f45700a) {
             case 0:
                 return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
             case 1:
@@ -52,7 +52,7 @@ public final class e0 implements i0, q3.g, q9.e, pa.a, q9.d, OnFailureListener, 
 
     @Override
     public void f(a2 a2Var, int i10) {
-        switch (this.f45666a) {
+        switch (this.f45700a) {
             case 19:
                 a2Var.dismiss();
                 return;
@@ -64,12 +64,12 @@ public final class e0 implements i0, q3.g, q9.e, pa.a, q9.d, OnFailureListener, 
 
     @Override
     public void onFailure(Exception exc) {
-        int i10 = n2.f46508r0;
+        int i10 = n2.f46542r0;
     }
 
     @Override
     public Object y0(u5 u5Var) {
-        switch (this.f45666a) {
+        switch (this.f45700a) {
             case 8:
                 return FirebaseInstallationsRegistrar.a(u5Var);
             case 15:
@@ -80,7 +80,7 @@ public final class e0 implements i0, q3.g, q9.e, pa.a, q9.d, OnFailureListener, 
                 return (ScheduledExecutorService) ExecutorsRegistrar.f7880b.get();
             default:
                 q9.n nVar = ExecutorsRegistrar.f7879a;
-                return r9.j.f47214a;
+                return r9.j.f47248a;
         }
     }
 

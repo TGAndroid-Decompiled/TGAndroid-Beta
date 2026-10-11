@@ -16,7 +16,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.p31;
 public final class q0 implements Utilities.Callback3 {
     public final int f1603a;
     public final Object f1604b;
@@ -224,7 +224,7 @@ public final class q0 implements Utilities.Callback3 {
                     TL_wallet.fetchEncryptedSecretPhrasePart fetchencryptedsecretphrasepart = new TL_wallet.fetchEncryptedSecretPhrasePart();
                     fetchencryptedsecretphrasepart.token = secretphraseparts.token;
                     fetchencryptedsecretphrasepart.public_key = key_to_public_key;
-                    ConnectionsManager.getInstance(l0Var2.f35185a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
+                    ConnectionsManager.getInstance(l0Var2.f35219a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj4, Object obj5) {
                             l0 l0Var3 = l0.this;
@@ -278,7 +278,7 @@ public final class q0 implements Utilities.Callback3 {
                                     return;
                                 }
                             }
-                            Utilities.stageQueue.postRunnable(new q31(l0Var3, encryptedsecretphrasepartArr2, j10, kVar, 6));
+                            Utilities.stageQueue.postRunnable(new p31(l0Var3, encryptedsecretphrasepartArr2, j10, kVar, 6));
                         }
                     }, intValue, 0);
                 }

@@ -3,21 +3,21 @@ package xh;
 import java.util.Comparator;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a4 implements Comparator {
-    public final int f51257a;
-    public final g4 f51258b;
+    public final int f51291a;
+    public final g4 f51292b;
 
     public a4(g4 g4Var, int i10) {
-        this.f51257a = i10;
-        this.f51258b = g4Var;
+        this.f51291a = i10;
+        this.f51292b = g4Var;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f51257a) {
+        switch (this.f51291a) {
             case 0:
-                g4 g4Var = this.f51258b;
-                Integer num = (Integer) g4Var.f51343c.f51650n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                Integer num2 = (Integer) g4Var.f51343c.f51650n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                g4 g4Var = this.f51292b;
+                Integer num = (Integer) g4Var.f51377c.f51684n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                Integer num2 = (Integer) g4Var.f51377c.f51684n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                 if (num == null) {
                     return 1;
                 }
@@ -26,9 +26,9 @@ public final class a4 implements Comparator {
                 }
                 return num2.intValue() - num.intValue();
             case 1:
-                g4 g4Var2 = this.f51258b;
-                Integer num3 = (Integer) g4Var2.f51343c.f51651o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f20038id));
-                Integer num4 = (Integer) g4Var2.f51343c.f51651o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f20038id));
+                g4 g4Var2 = this.f51292b;
+                Integer num3 = (Integer) g4Var2.f51377c.f51685o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f20074id));
+                Integer num4 = (Integer) g4Var2.f51377c.f51685o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f20074id));
                 if (num3 == null) {
                     return 1;
                 }
@@ -37,9 +37,9 @@ public final class a4 implements Comparator {
                 }
                 return num4.intValue() - num3.intValue();
             default:
-                g4 g4Var3 = this.f51258b;
-                Integer num5 = (Integer) g4Var3.f51343c.f51649m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f20038id));
-                Integer num6 = (Integer) g4Var3.f51343c.f51649m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f20038id));
+                g4 g4Var3 = this.f51292b;
+                Integer num5 = (Integer) g4Var3.f51377c.f51683m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f20074id));
+                Integer num6 = (Integer) g4Var3.f51377c.f51683m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f20074id));
                 if (num5 == null) {
                     return 1;
                 }

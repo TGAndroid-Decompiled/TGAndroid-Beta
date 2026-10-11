@@ -6,10 +6,10 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.recyclerview.widget.RecyclerView;
 public final class e1 extends r0.b {
     public final int d = 0;
-    public final Object f47778e;
+    public final Object f47812e;
 
     public e1(f1 f1Var) {
-        this.f47778e = f1Var;
+        this.f47812e = f1Var;
     }
 
     @Override
@@ -22,8 +22,8 @@ public final class e1 extends r0.b {
         boolean z10;
         switch (this.d) {
             case 0:
-                this.f46821a.onInitializeAccessibilityNodeInfo(view, dVar.f47677a);
-                f1 f1Var = (f1) this.f47778e;
+                this.f46855a.onInitializeAccessibilityNodeInfo(view, dVar.f47711a);
+                f1 f1Var = (f1) this.f47812e;
                 RecyclerView recyclerView = f1Var.d;
                 RecyclerView recyclerView2 = f1Var.d;
                 if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
@@ -32,11 +32,11 @@ public final class e1 extends r0.b {
                 }
                 return;
             default:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47677a;
-                this.f46821a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47711a;
+                this.f46855a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                 dVar.i(z4.g.class.getName());
-                z4.g gVar = (z4.g) this.f47778e;
-                z4.a aVar = gVar.f53629e;
+                z4.g gVar = (z4.g) this.f47812e;
+                z4.a aVar = gVar.f53663e;
                 if (aVar != null && aVar.b() > 1) {
                     z10 = true;
                 } else {
@@ -58,28 +58,28 @@ public final class e1 extends r0.b {
     public final boolean d(View view, int i10, Bundle bundle) {
         switch (this.d) {
             case 0:
-                f1 f1Var = (f1) this.f47778e;
+                f1 f1Var = (f1) this.f47812e;
                 if (super.d(view, i10, bundle)) {
                     return true;
                 }
                 RecyclerView recyclerView = f1Var.d;
                 RecyclerView recyclerView2 = f1Var.d;
                 if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
-                    pf.e eVar = recyclerView2.getLayoutManager().f47854b.f3140b;
+                    pf.e eVar = recyclerView2.getLayoutManager().f47888b.f3140b;
                 }
                 return false;
             default:
-                z4.g gVar = (z4.g) this.f47778e;
+                z4.g gVar = (z4.g) this.f47812e;
                 if (super.d(view, i10, bundle)) {
                     return true;
                 }
                 if (i10 != 4096) {
                     if (i10 == 8192 && gVar.canScrollHorizontally(-1)) {
-                        gVar.setCurrentItem(gVar.f53631f - 1);
+                        gVar.setCurrentItem(gVar.f53665f - 1);
                         return true;
                     }
                 } else if (gVar.canScrollHorizontally(1)) {
-                    gVar.setCurrentItem(gVar.f53631f + 1);
+                    gVar.setCurrentItem(gVar.f53665f + 1);
                     return true;
                 }
                 return false;
@@ -87,6 +87,6 @@ public final class e1 extends r0.b {
     }
 
     public e1(z4.g gVar) {
-        this.f47778e = gVar;
+        this.f47812e = gVar;
     }
 }

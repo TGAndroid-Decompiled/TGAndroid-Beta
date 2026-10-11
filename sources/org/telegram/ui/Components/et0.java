@@ -1,22 +1,52 @@
 package org.telegram.ui.Components;
-public final class et0 extends s4.s {
-    public final dw0 Q;
 
-    public et0(dw0 dw0Var) {
-        super(3);
-        this.Q = dw0Var;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class et0 extends s4.o0 {
+    public final ys0 f26206a;
+
+    public et0(ys0 ys0Var) {
+        this.f26206a = ys0Var;
     }
 
     @Override
-    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
-        if (this.Q.f25719o1) {
-            i10 = 0;
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
+        boolean z10;
+        boolean z11;
+        if (view instanceof org.telegram.ui.Cells.t7) {
+            org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
+            ys0 ys0Var = this.f26206a;
+            ys0Var.f32556r.getClass();
+            int R = RecyclerView.R(t7Var);
+            int i10 = ys0Var.f32557s.J;
+            boolean z12 = true;
+            if (R < i10) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            t7Var.f23090a0 = z10;
+            int i11 = R % i10;
+            if (i11 == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            t7Var.V = z11;
+            if (i11 != i10 - 1) {
+                z12 = false;
+            }
+            t7Var.W = z12;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
+            return;
         }
-        return super.o0(i10, eVar, a1Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
+        rect.left = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        rect.right = 0;
     }
 }

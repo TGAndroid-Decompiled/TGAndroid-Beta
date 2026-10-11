@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.j90;
+import org.telegram.ui.Components.i90;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.sy;
@@ -36,7 +36,7 @@ public final class b3 implements View.OnClickListener {
                 f6Var.J0.H(new ProfileActivity(bundle, null));
                 return;
             case 1:
-                j90.s((j90) this.f699c, this.f698b);
+                i90.s((i90) this.f699c, this.f698b);
                 return;
             case 2:
                 sy syVar = (sy) this.f699c;
@@ -52,7 +52,7 @@ public final class b3 implements View.OnClickListener {
                 syVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((qh.p) this.f699c).f46789f;
+                Utilities.Callback callback = ((qh.p) this.f699c).f46823f;
                 if (callback != null) {
                     callback.run(Long.valueOf(this.f698b));
                     return;

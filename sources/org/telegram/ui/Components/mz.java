@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.messenger.LiteMode;
-public final class mz extends ay0 {
-    public final int f28879x3;
+public final class mz extends zx0 {
+    public final int f28975x3;
     public final nz y3;
 
     public mz(nz nzVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
         super(context, i10, d6Var);
         this.y3 = nzVar;
-        this.f28879x3 = i11;
+        this.f28975x3 = i11;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class mz extends ay0 {
         super.F1(i10);
         nz nzVar = this.y3;
         b00 b00Var = nzVar.G;
-        mz mzVar = nzVar.f29185r;
+        mz mzVar = nzVar.f29317r;
         boolean z11 = true;
         if (mzVar.getSelectedCategory() == null) {
             z10 = true;
@@ -34,7 +34,7 @@ public final class mz extends ay0 {
         }
         int i11 = b00.O2;
         b00Var.M(z10);
-        int i12 = this.f28879x3;
+        int i12 = this.f28975x3;
         if (i12 == 1 && (fyVar = b00Var.I) != null) {
             if (mzVar.getSelectedCategory() != null) {
                 z11 = false;
@@ -44,7 +44,7 @@ public final class mz extends ay0 {
             if (mzVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            nxVar.f30205o0 = z11;
+            nxVar.f29918o0 = z11;
             nxVar.invalidate();
         }
         nzVar.g(false);

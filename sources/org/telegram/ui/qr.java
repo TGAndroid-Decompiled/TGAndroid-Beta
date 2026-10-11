@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qr implements org.telegram.ui.Cells.a5, gg.a2 {
-    public final rr f41220a;
+    public final rr f41254a;
 
     public qr(rr rrVar) {
-        this.f41220a = rrVar;
+        this.f41254a = rrVar;
     }
 
     @Override
@@ -18,10 +18,10 @@ public final class qr implements org.telegram.ui.Cells.a5, gg.a2 {
     @Override
     public boolean c(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
         int intValue = ((Integer) b5Var.getTag()).intValue();
-        rr rrVar = this.f41220a;
+        rr rrVar = this.f41254a;
         TLObject E = rrVar.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
-            return rrVar.f41499y.h0((TLRPC.ChannelParticipant) E, !z10, b5Var);
+            return rrVar.f41533y.h0((TLRPC.ChannelParticipant) E, !z10, b5Var);
         }
         return false;
     }
@@ -33,16 +33,16 @@ public final class qr implements org.telegram.ui.Cells.a5, gg.a2 {
 
     @Override
     public void h(int i10) {
-        rr rrVar = this.f41220a;
-        sr srVar = rrVar.f41499y;
+        rr rrVar = this.f41254a;
+        sr srVar = rrVar.f41533y;
         if (!rrVar.h.e()) {
-            int i11 = rrVar.f41495r;
+            int i11 = rrVar.f41529r;
             rrVar.l();
-            if (rrVar.f41495r > i11) {
+            if (rrVar.f41529r > i11) {
                 srVar.y0(i11);
             }
-            if (!rrVar.f41496s && rrVar.f41495r == 0 && i10 != 0) {
-                srVar.f41787b.e(false, true);
+            if (!rrVar.f41530s && rrVar.f41529r == 0 && i10 != 0) {
+                srVar.f41821b.e(false, true);
             }
         }
     }

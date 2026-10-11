@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class cu implements du {
-    public final int f25323a;
-    public final Object f25324b;
+    public final int f25472a;
+    public final Object f25473b;
 
     public cu(Object obj, int i10) {
-        this.f25323a = i10;
-        this.f25324b = obj;
+        this.f25472a = i10;
+        this.f25473b = obj;
     }
 
     @Override
     public final void a(int i10, boolean z10) {
-        switch (this.f25323a) {
+        switch (this.f25472a) {
             case 0:
-                ArrayList arrayList = ((fu) this.f25324b).f26493b;
+                ArrayList arrayList = ((fu) this.f25473b).f26574b;
                 int size = arrayList.size();
                 int i11 = 0;
                 while (i11 < size) {
@@ -24,7 +24,7 @@ public final class cu implements du {
                 }
                 return;
             default:
-                ((Runnable) this.f25324b).run();
+                ((Runnable) this.f25473b).run();
                 return;
         }
     }

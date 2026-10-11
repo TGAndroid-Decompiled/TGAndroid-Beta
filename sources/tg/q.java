@@ -2,22 +2,22 @@ package tg;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class q implements Runnable {
-    public final int f48464a;
-    public final u f48465b;
+    public final int f48498a;
+    public final u f48499b;
 
     public q(u uVar, int i10) {
-        this.f48464a = i10;
-        this.f48465b = uVar;
+        this.f48498a = i10;
+        this.f48499b = uVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f48464a) {
+        switch (this.f48498a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new q(this.f48465b, 1));
+                AndroidUtilities.runOnUIThread(new q(this.f48499b, 1));
                 return;
             default:
-                this.f48465b.run(null);
+                this.f48499b.run(null);
                 return;
         }
     }

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.fh;
-import org.telegram.ui.Components.vw0;
+import org.telegram.ui.Components.uw0;
 import org.telegram.ui.cj;
 import org.telegram.ui.zn;
 public final class x5 extends AnimatorListenerAdapter {
@@ -17,9 +17,9 @@ public final class x5 extends AnimatorListenerAdapter {
     public final Object d;
     public final Object f6302e;
 
-    public x5(vw0 vw0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
+    public x5(uw0 uw0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
         this.f6299a = i11;
-        this.f6302e = vw0Var;
+        this.f6302e = uw0Var;
         this.f6301c = viewGroup;
         this.d = viewGroup2;
         this.f6300b = i10;
@@ -55,19 +55,19 @@ public final class x5 extends AnimatorListenerAdapter {
                 zn znVar2 = (zn) this.f6301c;
                 znVar2.U9 = 0.0f;
                 znVar2.fragmentView.invalidate();
-                znVar2.f44989x0.invalidate();
+                znVar2.f45023x0.invalidate();
                 znVar2.T9 = null;
                 znVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
-                znVar.f44701a1.setTranslationY(0.0f);
-                znVar2.f44701a1.setTranslationY(0.0f);
-                znVar2.f44701a1.getAvatarImageView().setTranslationY(0.0f);
-                znVar.f44701a1.getAvatarImageView().setScaleX(1.0f);
-                znVar.f44701a1.getAvatarImageView().setScaleY(1.0f);
-                znVar.f44701a1.getAvatarImageView().setAlpha(1.0f);
-                znVar2.f44701a1.getAvatarImageView().setScaleX(1.0f);
-                znVar2.f44701a1.getAvatarImageView().setScaleY(1.0f);
-                znVar2.f44701a1.getAvatarImageView().setAlpha(1.0f);
+                znVar.f44735a1.setTranslationY(0.0f);
+                znVar2.f44735a1.setTranslationY(0.0f);
+                znVar2.f44735a1.getAvatarImageView().setTranslationY(0.0f);
+                znVar.f44735a1.getAvatarImageView().setScaleX(1.0f);
+                znVar.f44735a1.getAvatarImageView().setScaleY(1.0f);
+                znVar.f44735a1.getAvatarImageView().setAlpha(1.0f);
+                znVar2.f44735a1.getAvatarImageView().setScaleX(1.0f);
+                znVar2.f44735a1.getAvatarImageView().setScaleY(1.0f);
+                znVar2.f44735a1.getAvatarImageView().setAlpha(1.0f);
                 fh fhVar = znVar2.M0;
                 if (fhVar != null) {
                     fhVar.setAlpha(1.0f);
@@ -76,15 +76,15 @@ public final class x5 extends AnimatorListenerAdapter {
                 return;
             default:
                 qg.m0 m0Var = (qg.m0) this.f6302e;
-                m0Var.f46466g1 = m0Var.f46468h1;
-                m0Var.f46468h1 = -1;
-                m0Var.f46464f1.invalidate();
+                m0Var.f46500g1 = m0Var.f46502h1;
+                m0Var.f46502h1 = -1;
+                m0Var.f46498f1.invalidate();
                 View view2 = (View) this.f6301c;
                 if (view2 != null && ((View) this.d) != null) {
                     view2.setVisibility(8);
                 }
-                if (animator == m0Var.f46472j1) {
-                    m0Var.f46472j1 = null;
+                if (animator == m0Var.f46506j1) {
+                    m0Var.f46506j1 = null;
                     return;
                 }
                 return;

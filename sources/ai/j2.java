@@ -68,7 +68,7 @@ public final class j2 extends FrameLayout {
                 obtain2.offsetLocation(motionEvent.getRawX() - motionEvent.getX(), motionEvent.getRawY() - motionEvent.getY());
                 boolean onTouchEvent = n2Var.f1455x.onTouchEvent(obtain2);
                 obtain2.recycle();
-                if (!n2Var.f1455x.isInProgress() && ((GestureDetector) n2Var.f1456y.f15693b).onTouchEvent(motionEvent)) {
+                if (!n2Var.f1455x.isInProgress() && ((GestureDetector) n2Var.f1456y.f15729b).onTouchEvent(motionEvent)) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -77,11 +77,11 @@ public final class j2 extends FrameLayout {
                     n2Var.E = false;
                     n2Var.F = false;
                     o1.k kVar = n2Var.P;
-                    if (!kVar.f16981f) {
+                    if (!kVar.f17017f) {
                         float f10 = n2Var.N;
-                        kVar.f16978b = f10;
-                        kVar.f16979c = true;
-                        o1.l lVar = kVar.f16988u;
+                        kVar.f17014b = f10;
+                        kVar.f17015c = true;
+                        o1.l lVar = kVar.f17024u;
                         int i10 = n2Var.J;
                         float f11 = (i10 / 2.0f) + f10;
                         int i11 = AndroidUtilities.displaySize.x;
@@ -90,14 +90,14 @@ public final class j2 extends FrameLayout {
                         } else {
                             dp = AndroidUtilities.dp(16.0f);
                         }
-                        lVar.f16995i = dp;
+                        lVar.f17031i = dp;
                         n2Var.P.h();
                     }
                     o1.k kVar2 = n2Var.Q;
-                    if (!kVar2.f16981f) {
-                        kVar2.f16978b = n2Var.O;
-                        kVar2.f16979c = true;
-                        kVar2.f16988u.f16995i = w7.o.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
+                    if (!kVar2.f17017f) {
+                        kVar2.f17014b = n2Var.O;
+                        kVar2.f17015c = true;
+                        kVar2.f17024u.f17031i = w7.o.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
                         n2Var.Q.h();
                     }
                 }

@@ -21,7 +21,7 @@ public final class t1 implements wi {
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         yi yiVar = this.f12701a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33228j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33301j0;
         e2 e2Var = this.f12702b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();

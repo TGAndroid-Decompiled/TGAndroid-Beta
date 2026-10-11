@@ -39,7 +39,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.ba0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.jx;
 import org.telegram.ui.sy;
@@ -118,7 +118,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f82b;
-                int i10 = ProfileStoriesView.f34525s0;
+                int i10 = ProfileStoriesView.f34559s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -180,7 +180,7 @@ public final class d implements Runnable {
                 }
                 return;
             case 18:
-                ((ca0) this.f82b).d(true);
+                ((ba0) this.f82b).d(true);
                 return;
             case 19:
                 ((eb) this.f82b).requestLayout();
@@ -251,13 +251,13 @@ public final class d implements Runnable {
                         if (pVar.h != null) {
                             try {
                                 o0.h d = pVar.d();
-                                int i11 = d.f16955e;
+                                int i11 = d.f16991e;
                                 if (i11 == 2) {
                                     synchronized (pVar.d) {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f16510a;
+                                    int i12 = n0.g.f16546a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                                     ob.a aVar = pVar.f2623c;
                                     Context context = pVar.f2621a;
@@ -268,7 +268,7 @@ public final class d implements Runnable {
                                     try {
                                         Typeface b10 = i0.e.f11581a.b(context, hVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e7 = g8.e(pVar.f2621a, d.f16952a);
+                                        MappedByteBuffer e7 = g8.e(pVar.f2621a, d.f16988a);
                                         if (e7 != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
@@ -283,7 +283,7 @@ public final class d implements Runnable {
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f16510a;
+                                                int i13 = n0.g.f16546a;
                                                 throw th2;
                                             }
                                         }

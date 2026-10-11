@@ -2,43 +2,43 @@ package y9;
 
 import java.util.List;
 public final class g0 {
-    public String f52022a;
-    public String f52023b;
-    public String f52024c;
+    public String f52056a;
+    public String f52057b;
+    public String f52058c;
     public Long d;
-    public Long f52025e;
-    public Boolean f52026f;
-    public l1 f52027g;
+    public Long f52059e;
+    public Boolean f52060f;
+    public l1 f52061g;
     public c2 h;
-    public b2 f52028i;
-    public m1 f52029j;
-    public List f52030k;
-    public Integer f52031l;
+    public b2 f52062i;
+    public m1 f52063j;
+    public List f52064k;
+    public Integer f52065l;
 
     public final h0 a() {
         String str;
-        if (this.f52022a == null) {
+        if (this.f52056a == null) {
             str = " generator";
         } else {
             str = "";
         }
-        if (this.f52023b == null) {
+        if (this.f52057b == null) {
             str = str.concat(" identifier");
         }
         if (this.d == null) {
             str = sc.v.v(str, " startedAt");
         }
-        if (this.f52026f == null) {
+        if (this.f52060f == null) {
             str = sc.v.v(str, " crashed");
         }
-        if (this.f52027g == null) {
+        if (this.f52061g == null) {
             str = sc.v.v(str, " app");
         }
-        if (this.f52031l == null) {
+        if (this.f52065l == null) {
             str = sc.v.v(str, " generatorType");
         }
         if (str.isEmpty()) {
-            return new h0(this.f52022a, this.f52023b, this.f52024c, this.d.longValue(), this.f52025e, this.f52026f.booleanValue(), this.f52027g, this.h, this.f52028i, this.f52029j, this.f52030k, this.f52031l.intValue());
+            return new h0(this.f52056a, this.f52057b, this.f52058c, this.d.longValue(), this.f52059e, this.f52060f.booleanValue(), this.f52061g, this.h, this.f52062i, this.f52063j, this.f52064k, this.f52065l.intValue());
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }

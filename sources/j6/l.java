@@ -175,7 +175,7 @@ public final class l implements OnSuccessListener, me.k {
         Iterator it = ((me.l) this.d).iterator();
         while (it.hasNext()) {
             me.g gVar = (me.g) it.next();
-            fArr[((Integer) gVar.f16376a).intValue()] = gVar.c();
+            fArr[((Integer) gVar.f16412a).intValue()] = gVar.c();
         }
         ((sg) this.f14062c).run();
     }

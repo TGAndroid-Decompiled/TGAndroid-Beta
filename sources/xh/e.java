@@ -20,28 +20,28 @@ import org.telegram.ui.Components.r6;
 import w7.x5;
 import yh.p7;
 public final class e extends FrameLayout {
-    public final ci.d f51291a;
-    public final r6 f51292b;
-    public final r6 f51293c;
+    public final ci.d f51325a;
+    public final r6 f51326b;
+    public final r6 f51327c;
     public final GiftAuctionController.Auction d;
-    public final Paint f51294e;
-    public final yf.n f51295f;
+    public final Paint f51328e;
+    public final yf.n f51329f;
     public final er h;
-    public final er[] f51296n;
+    public final er[] f51330n;
 
     public e(Context context, GiftAuctionController.Auction auction) {
         super(context);
         Paint paint = new Paint(1);
-        this.f51294e = paint;
-        this.f51295f = new yf.n(new r5.d(this, 14));
+        this.f51328e = paint;
+        this.f51329f = new yf.n(new r5.d(this, 14));
         this.h = new er(R.drawable.filled_gift_sell_24, 0);
-        this.f51296n = new er[1];
+        this.f51330n = new er[1];
         this.d = auction;
         setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f));
         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, 0.0f, 536870912);
-        paint.setColor(h6.x0(null, h6.f20786d6, false));
+        paint.setColor(h6.x0(null, h6.f20822d6, false));
         ci.d dVar = new ci.d(context, null, true);
-        this.f51291a = dVar;
+        this.f51325a = dVar;
         q6 q6Var = dVar.d;
         q6Var.D = false;
         q6Var.E = true;
@@ -50,12 +50,12 @@ public final class e extends FrameLayout {
         q6Var.H = false;
         ?? imageView = new ImageView(context);
         r6 r6Var = new r6(context, false, false, false);
-        this.f51292b = r6Var;
+        this.f51326b = r6Var;
         r6Var.setTextSize(AndroidUtilities.dp(14.0f));
         r6Var.setTypeface(AndroidUtilities.bold());
         r6Var.setTextColor(h6.x0(null, h6.G6, false));
         r6 r6Var2 = new r6(context, false, false, false);
-        this.f51293c = r6Var2;
+        this.f51327c = r6Var2;
         r6Var2.setTextSize(AndroidUtilities.dp(12.0f));
         TLRPC.Document document = auction.gift.sticker;
         if (document != null) {
@@ -76,22 +76,22 @@ public final class e extends FrameLayout {
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActiveAuctionsActiveRaiseBid));
         spannableStringBuilder.append((CharSequence) "  ");
         spannableStringBuilder.append((CharSequence) formatDurationNoHours);
-        this.f51291a.g(spannableStringBuilder, z10, true);
+        this.f51325a.g(spannableStringBuilder, z10, true);
     }
 
     public final void b(boolean z10) {
         GiftAuctionController.Auction auction = this.d;
         TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
         if (tL_starGiftAuctionState != null) {
-            this.f51292b.c(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z10, true);
+            this.f51326b.c(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z10, true);
         }
         String h = org.telegram.messenger.q.h(auction.auctionUserState.bid_amount, ',', new StringBuilder("⭐️"));
         boolean isOutbid = auction.getBidStatus().isOutbid();
-        er[] erVarArr = this.f51296n;
-        r6 r6Var = this.f51293c;
+        er[] erVarArr = this.f51330n;
+        r6 r6Var = this.f51327c;
         if (isOutbid) {
             r6Var.c(p7.Y0(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, h)), 0.66f, erVarArr), z10, true);
-            r6Var.setTextColor(h6.x0(null, h6.f21026q7, false));
+            r6Var.setTextColor(h6.x0(null, h6.f21062q7, false));
             return;
         }
         r6Var.c(p7.Y0(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, h, Integer.valueOf(auction.getApproximatedMyPlace()))), 0.66f, erVarArr), z10, true);
@@ -100,14 +100,14 @@ public final class e extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.drawRoundRect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), getMeasuredWidth() - AndroidUtilities.dp(14.0f), getMeasuredHeight() - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f51294e);
+        canvas.drawRoundRect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), getMeasuredWidth() - AndroidUtilities.dp(14.0f), getMeasuredHeight() - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f51328e);
         super.dispatchDraw(canvas);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f51295f.b();
+        this.f51329f.b();
     }
 
     @Override

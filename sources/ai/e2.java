@@ -12,7 +12,7 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.cd;
 import org.telegram.ui.Components.cr;
-import org.telegram.ui.Components.ih0;
+import org.telegram.ui.Components.hh0;
 import org.telegram.ui.Components.ms;
 import org.telegram.ui.Components.mv;
 import org.telegram.ui.ExternalActionActivity;
@@ -68,28 +68,28 @@ public final class e2 implements View.OnClickListener {
                 }
                 return;
             case 9:
-                int i14 = cr.f25290e0;
+                int i14 = cr.f25448e0;
                 return;
             case 10:
-                int i15 = ms.f28844s;
+                int i15 = ms.f28923s;
                 return;
             case 11:
                 float[] fArr = FragmentContextView.Q0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 12:
-                ih0 ih0Var = ih0.f27325p0;
-                mv mvVar = ih0Var.U;
+                hh0 hh0Var = hh0.f27101p0;
+                mv mvVar = hh0Var.U;
                 if (mvVar != null) {
                     mvVar.H();
                 } else {
-                    PhotoViewer photoViewer = ih0Var.V;
+                    PhotoViewer photoViewer = hh0Var.V;
                     if (photoViewer != null) {
                         photoViewer.P0();
                         MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                ih0.j(false);
+                hh0.j(false);
                 return;
             case 13:
                 org.telegram.ui.Components.voip.k1.j();
@@ -111,7 +111,7 @@ public final class e2 implements View.OnClickListener {
                 tg.m1.f0(0, null);
                 return;
             case 17:
-                ArrayList arrayList = ExternalActionActivity.f33777x;
+                ArrayList arrayList = ExternalActionActivity.f33811x;
                 return;
             case 18:
                 return;
@@ -143,16 +143,16 @@ public final class e2 implements View.OnClickListener {
                 int i16 = xh.o.A0;
                 return;
             case 25:
-                cd[] cdVarArr = xh.x.f51670p0;
+                cd[] cdVarArr = xh.x.f51704p0;
                 return;
             case 26:
-                int i17 = xh.e0.f51297f0;
+                int i17 = xh.e0.f51331f0;
                 return;
             case 27:
                 int i18 = yh.r0.D0;
                 return;
             default:
-                int i19 = zg.f.f54605e;
+                int i19 = zg.f.f54639e;
                 return;
         }
     }

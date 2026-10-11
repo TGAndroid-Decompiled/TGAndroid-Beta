@@ -5,15 +5,15 @@ import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.Emoji;
 public final class b extends ReplacementSpan {
-    public final Emoji.EmojiSpan f49735a;
+    public final Emoji.EmojiSpan f49769a;
 
     public b(Emoji.EmojiSpan emojiSpan) {
-        this.f49735a = emojiSpan;
+        this.f49769a = emojiSpan;
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return this.f49735a.getSize(paint, charSequence, i10, i11, fontMetricsInt);
+        return this.f49769a.getSize(paint, charSequence, i10, i11, fontMetricsInt);
     }
 
     @Override

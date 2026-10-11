@@ -16,7 +16,7 @@ import sc.v;
 import uc.g;
 import w7.x8;
 public abstract class b {
-    public static final c f50417a = new c();
+    public static final c f50451a = new c();
 
     public static HttpURLConnection a(String str, f2.a aVar) {
         Throwable th2;
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f50417a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f50451a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f50415a;
-            String str2 = aVar.f50416b;
+            String str = aVar.f50449a;
+            String str2 = aVar.f50450b;
             if (str == null) {
                 encode = null;
             } else {

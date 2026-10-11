@@ -4,9 +4,9 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d80;
-import org.telegram.ui.Components.f91;
-import org.telegram.ui.Components.q91;
+import org.telegram.ui.Components.c80;
+import org.telegram.ui.Components.e91;
+import org.telegram.ui.Components.p91;
 import org.telegram.ui.ci1;
 public final class l6 implements ValueAnimator.AnimatorUpdateListener {
     public final int f1332a;
@@ -94,7 +94,7 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 ((org.telegram.ui.Components.y9) this.f1333b).setRoundRadius(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 8:
-                w0 w0Var = ((d80) this.f1333b).f25475e.d;
+                w0 w0Var = ((c80) this.f1333b).f25261e.d;
                 int i11 = w0Var.C1;
                 if (i11 != -1 && (view = w0Var.D1) != null) {
                     w0Var.i1(i11, view);
@@ -103,38 +103,38 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 9:
-                q91 q91Var = (q91) this.f1333b;
-                View[] viewArr = q91Var.f30096e;
-                if (q91Var.f30102x) {
+                p91 p91Var = (p91) this.f1333b;
+                View[] viewArr = p91Var.f29798e;
+                if (p91Var.f29804x) {
                     float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
-                    q91Var.f30095c = abs;
-                    f91 f91Var = q91Var.M;
-                    if (f91Var != null) {
-                        f91Var.e(abs, q91Var.d, q91Var.f30094b);
+                    p91Var.f29797c = abs;
+                    e91 e91Var = p91Var.M;
+                    if (e91Var != null) {
+                        e91Var.e(abs, p91Var.d, p91Var.f29796b);
                     }
                 }
-                q91Var.w(false);
+                p91Var.w(false);
                 return;
             case 10:
                 org.telegram.ui.Components.voip.v1 v1Var = (org.telegram.ui.Components.voip.v1) this.f1333b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v1Var.J = floatValue;
-                org.telegram.ui.Components.voip.u1 u1Var = v1Var.f32362i0;
+                org.telegram.ui.Components.voip.u1 u1Var = v1Var.f32426i0;
                 if (u1Var != null) {
-                    ((ci1) u1Var).f36720b.f42586d0.d(floatValue, v1Var.P);
+                    ((ci1) u1Var).f36754b.f42620d0.d(floatValue, v1Var.P);
                 }
                 v1Var.invalidate();
                 return;
             case 11:
                 rg.p0 p0Var = (rg.p0) this.f1333b;
-                p0Var.f47474n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p0Var.f47508n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 p0Var.e();
                 return;
             case 12:
                 ((rg.n0) this.f1333b).setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                ((s4.u) this.f1333b).f47884x = valueAnimator.getAnimatedFraction();
+                ((s4.u) this.f1333b).f47918x = valueAnimator.getAnimatedFraction();
                 return;
         }
     }

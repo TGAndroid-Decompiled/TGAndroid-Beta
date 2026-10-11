@@ -131,10 +131,10 @@ public final class d extends e {
             mVar.f8450f = e0.r.d(e7);
             rVar.n(mVar);
             PackageManager packageManager = context.getPackageManager();
-            if (u6.b.f48941b == null) {
-                u6.b.f48941b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+            if (u6.b.f48975b == null) {
+                u6.b.f48975b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
             }
-            if (u6.b.f48941b.booleanValue()) {
+            if (u6.b.f48975b.booleanValue()) {
                 rVar.E.icon = context.getApplicationInfo().icon;
                 rVar.f8472j = 2;
                 if (u6.b.f(context)) {

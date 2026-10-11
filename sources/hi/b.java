@@ -20,15 +20,15 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.j6;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.db;
-import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.g5;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.sm0;
 import s4.q0;
 import w7.x5;
 public final class b extends db {
-    public e71 X;
+    public d71 X;
     public boolean Y;
     public final FrameLayout Z;
     public final boolean f11527a0;
@@ -45,8 +45,8 @@ public final class b extends db {
         this.f11527a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.f25521e.setTitle(B());
-        setBackgroundColor(h6.w0(h6.f20730a7, this.resourcesProvider));
+        this.f25734e.setTitle(B());
+        setBackgroundColor(h6.w0(h6.f20766a7, this.resourcesProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
@@ -62,9 +62,9 @@ public final class b extends db {
             }
         }
         frameLayout.addView(i6Var, x5.d(-2.0f, i10));
-        sm0 sm0Var = this.d;
+        rm0 rm0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        sm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
+        rm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
         this.d.p1();
         this.d.setClipToPadding(false);
         this.d.setOnItemClickListener(new g(this, 12));
@@ -118,15 +118,15 @@ public final class b extends db {
         boolean z11;
         if (this.Y != z10) {
             this.Y = z10;
-            sm0 sm0Var = this.d;
-            View U0 = sm0Var.U0(this.f11529c0 + 1);
+            rm0 rm0Var = this.d;
+            View U0 = rm0Var.U0(this.f11529c0 + 1);
             if (U0 instanceof j6) {
                 ((j6) U0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
-            View U02 = sm0Var.U0(this.f11529c0 + 2);
+            View U02 = rm0Var.U0(this.f11529c0 + 2);
             if (U02 instanceof j6) {
                 ((j6) U02).a(z10);
             } else {
@@ -139,10 +139,10 @@ public final class b extends db {
     }
 
     @Override
-    public final rm0 x(sm0 sm0Var) {
-        e71 e71Var = new e71(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
-        this.X = e71Var;
-        e71Var.f25890r = false;
-        return e71Var;
+    public final qm0 x(rm0 rm0Var) {
+        d71 d71Var = new d71(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
+        this.X = d71Var;
+        d71Var.f25649r = false;
+        return d71Var;
     }
 }

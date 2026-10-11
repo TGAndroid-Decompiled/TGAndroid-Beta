@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.Components.b00;
-import org.telegram.ui.Components.uw0;
-public final class r1 extends uw0 {
+import org.telegram.ui.Components.tw0;
+public final class r1 extends tw0 {
     public final int f11365w0;
 
     public r1(Context context, b5 b5Var, int i10) {

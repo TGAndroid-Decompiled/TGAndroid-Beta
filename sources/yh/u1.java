@@ -5,20 +5,20 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class u1 implements Utilities.Callback {
-    public final int f53345a;
-    public final s3 f53346b;
+    public final int f53379a;
+    public final s3 f53380b;
 
     public u1(s3 s3Var, int i10) {
-        this.f53345a = i10;
-        this.f53346b = s3Var;
+        this.f53379a = i10;
+        this.f53380b = s3Var;
     }
 
     @Override
     public final void run(Object obj) {
         TLRPC.Message message;
-        switch (this.f53345a) {
+        switch (this.f53379a) {
             case 0:
-                s3 s3Var = this.f53346b;
+                s3 s3Var = this.f53380b;
                 s3Var.getClass();
                 if (((Boolean) obj).booleanValue()) {
                     s3Var.skipDismissAnimation();
@@ -27,26 +27,26 @@ public final class u1 implements Utilities.Callback {
                 return;
             case 1:
                 TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                s3 s3Var2 = this.f53346b;
+                s3 s3Var2 = this.f53380b;
                 s3Var2.getClass();
                 if (stargiftupgradepreview != null) {
-                    s3Var2.f53263i1 = stargiftupgradepreview.sample_attributes;
-                    s3Var2.f53265j1 = stargiftupgradepreview.prices;
-                    s3Var2.f53267k1 = stargiftupgradepreview.next_prices;
+                    s3Var2.f53297i1 = stargiftupgradepreview.sample_attributes;
+                    s3Var2.f53299j1 = stargiftupgradepreview.prices;
+                    s3Var2.f53301k1 = stargiftupgradepreview.next_prices;
                     s3Var2.c2();
                     return;
                 }
                 return;
             case 2:
-                this.f53346b.dismiss(((Boolean) obj).booleanValue());
+                this.f53380b.dismiss(((Boolean) obj).booleanValue());
                 return;
             default:
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                s3 s3Var3 = this.f53346b;
+                s3 s3Var3 = this.f53380b;
                 s3Var3.L0 = false;
                 s3Var3.M0 = true;
                 if (savedStarGift != null) {
-                    s3Var3.f53259g1 = Boolean.valueOf(savedStarGift.unsaved);
+                    s3Var3.f53293g1 = Boolean.valueOf(savedStarGift.unsaved);
                     MessageObject messageObject = s3Var3.F0;
                     if (messageObject != null && (message = messageObject.messageOwner) != null) {
                         TLRPC.MessageAction messageAction = message.action;

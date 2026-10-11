@@ -76,12 +76,12 @@ import n6.m;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.b81;
 import org.telegram.ui.Components.i00;
-import org.telegram.ui.Components.j81;
+import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.l81;
 import org.telegram.ui.Components.m00;
-import org.telegram.ui.Components.m81;
 import sc.v;
 import z3.d;
-public final class a implements s, j81, d, a0, OnCompleteListener, n5.b {
+public final class a implements s, i81, d, a0, OnCompleteListener, n5.b {
     public static a f382e;
     public final int f383a;
     public Object f384b;
@@ -95,9 +95,9 @@ public final class a implements s, j81, d, a0, OnCompleteListener, n5.b {
     public static final URL a(a aVar) {
         Uri.Builder appendPath = new Uri.Builder().scheme("https").authority((String) aVar.f384b).appendPath("spi").appendPath("v2").appendPath("platforms").appendPath("android").appendPath("gmp");
         za.b bVar = (za.b) aVar.f385c;
-        Uri.Builder appendPath2 = appendPath.appendPath(bVar.f54278a).appendPath("settings");
-        za.a aVar2 = bVar.f54279b;
-        return new URL(appendPath2.appendQueryParameter("build_version", aVar2.f54273c).appendQueryParameter("display_version", aVar2.f54272b).build().toString());
+        Uri.Builder appendPath2 = appendPath.appendPath(bVar.f54312a).appendPath("settings");
+        za.a aVar2 = bVar.f54313b;
+        return new URL(appendPath2.appendQueryParameter("build_version", aVar2.f54307c).appendQueryParameter("display_version", aVar2.f54306b).build().toString());
     }
 
     public static String h(String str, HashMap hashMap) {
@@ -426,7 +426,7 @@ public final class a implements s, j81, d, a0, OnCompleteListener, n5.b {
     }
 
     @Override
-    public void onError(m81 m81Var, Exception exc) {
+    public void onError(l81 l81Var, Exception exc) {
         ha haVar = ((b7) this.d).N;
         if (haVar != null) {
             haVar.run();
@@ -441,11 +441,11 @@ public final class a implements s, j81, d, a0, OnCompleteListener, n5.b {
     public void onStateChanged(boolean z10, int i10) {
         b7 b7Var = (b7) this.d;
         z6 z6Var = b7Var.K;
-        m81 m81Var = b7Var.f4762e;
-        if (m81Var == null) {
+        l81 l81Var = b7Var.f4762e;
+        if (l81Var == null) {
             return;
         }
-        if (m81Var.y()) {
+        if (l81Var.y()) {
             AndroidUtilities.runOnUIThread(z6Var);
         } else {
             AndroidUtilities.cancelRunOnUIThread(z6Var);
@@ -489,8 +489,8 @@ public final class a implements s, j81, d, a0, OnCompleteListener, n5.b {
             int i15 = b7Var.f4764f;
             int i16 = b7Var.h;
             b81Var2.d = i15;
-            b81Var2.f24882e = i16;
-            m00 m00Var = b81Var2.f24880b;
+            b81Var2.f24937e = i16;
+            m00 m00Var = b81Var2.f24935b;
             if (m00Var != null) {
                 m00Var.postRunnable(new i00(m00Var, i15, i16, 0));
             }
@@ -575,9 +575,9 @@ public final class a implements s, j81, d, a0, OnCompleteListener, n5.b {
                 StringBuilder sb3 = new StringBuilder(32);
                 sb3.append((String) this.f384b);
                 sb3.append('{');
-                x xVar = (x) ((x) this.f385c).f16659c;
+                x xVar = (x) ((x) this.f385c).f16695c;
                 while (xVar != null) {
-                    Object obj2 = xVar.f16658b;
+                    Object obj2 = xVar.f16694b;
                     sb3.append(str);
                     if (obj2 != null && obj2.getClass().isArray()) {
                         String deepToString2 = Arrays.deepToString(new Object[]{obj2});
@@ -585,7 +585,7 @@ public final class a implements s, j81, d, a0, OnCompleteListener, n5.b {
                     } else {
                         sb3.append(obj2);
                     }
-                    xVar = (x) xVar.f16659c;
+                    xVar = (x) xVar.f16695c;
                     str = ", ";
                 }
                 sb3.append('}');
@@ -799,7 +799,7 @@ public final class a implements s, j81, d, a0, OnCompleteListener, n5.b {
     }
 
     public a(t0 store, s0 s0Var) {
-        this(store, s0Var, v1.a.f49116b);
+        this(store, s0Var, v1.a.f49150b);
         this.f383a = 3;
         kotlin.jvm.internal.i.e(store, "store");
     }

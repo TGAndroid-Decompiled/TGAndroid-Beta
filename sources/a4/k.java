@@ -140,8 +140,8 @@ public abstract class k implements z3.e {
                         z3.j jVar2 = (z3.j) arrayDeque.pollFirst();
                         long j3 = iVar.f10985e;
                         jVar2.timeUs = j3;
-                        jVar2.f53593a = f7;
-                        jVar2.f53594b = j3;
+                        jVar2.f53627a = f7;
+                        jVar2.f53628b = j3;
                         iVar.clear();
                         arrayDeque3.add(iVar);
                         return jVar2;

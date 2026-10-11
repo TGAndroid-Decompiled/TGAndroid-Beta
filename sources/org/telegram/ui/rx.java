@@ -5,22 +5,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class rx implements i70 {
-    public final org.telegram.ui.ActionBar.a2 f41523a;
-    public final sy f41524b;
+    public final org.telegram.ui.ActionBar.a2 f41557a;
+    public final sy f41558b;
 
     public rx(sy syVar, org.telegram.ui.ActionBar.a2 a2Var) {
-        this.f41524b = syVar;
-        this.f41523a = a2Var;
+        this.f41558b = syVar;
+        this.f41557a = a2Var;
     }
 
     @Override
     public final void a(j70 j70Var, final long j3) {
         final org.telegram.ui.ActionBar.m2[] m2VarArr = {j70Var, null};
         Utilities.Callback callback = new Utilities.Callback(this) {
-            public final rx f40993b;
+            public final rx f41027b;
 
             {
-                this.f40993b = this;
+                this.f41027b = this;
             }
 
             @Override
@@ -28,7 +28,7 @@ public final class rx implements i70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        sy syVar = this.f40993b.f41524b;
+                        sy syVar = this.f41027b.f41558b;
                         Boolean bool = syVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -36,7 +36,7 @@ public final class rx implements i70 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", syVar.G.has_username.booleanValue());
                             ld ldVar = new ld(bundle);
-                            ldVar.f39618t0 = new a5(runnable, 12);
+                            ldVar.f39652t0 = new a5(runnable, 12);
                             syVar.presentFragment(ldVar);
                             m2VarArr[1] = ldVar;
                             return;
@@ -44,18 +44,18 @@ public final class rx implements i70 {
                         runnable.run();
                         return;
                     default:
-                        rx rxVar = this.f40993b;
-                        sy syVar2 = rxVar.f41524b;
+                        rx rxVar = this.f41027b;
+                        sy syVar2 = rxVar.f41558b;
                         syVar2.N4(syVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new org.telegram.ui.Components.voip.i(15, rxVar, m2VarArr));
                         return;
                 }
             }
         };
         Utilities.Callback callback2 = new Utilities.Callback(this) {
-            public final rx f40993b;
+            public final rx f41027b;
 
             {
-                this.f40993b = this;
+                this.f41027b = this;
             }
 
             @Override
@@ -63,7 +63,7 @@ public final class rx implements i70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        sy syVar = this.f40993b.f41524b;
+                        sy syVar = this.f41027b.f41558b;
                         Boolean bool = syVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -71,7 +71,7 @@ public final class rx implements i70 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", syVar.G.has_username.booleanValue());
                             ld ldVar = new ld(bundle);
-                            ldVar.f39618t0 = new a5(runnable, 12);
+                            ldVar.f39652t0 = new a5(runnable, 12);
                             syVar.presentFragment(ldVar);
                             m2VarArr[1] = ldVar;
                             return;
@@ -79,19 +79,19 @@ public final class rx implements i70 {
                         runnable.run();
                         return;
                     default:
-                        rx rxVar = this.f40993b;
-                        sy syVar2 = rxVar.f41524b;
+                        rx rxVar = this.f41027b;
+                        sy syVar2 = rxVar.f41558b;
                         syVar2.N4(syVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new org.telegram.ui.Components.voip.i(15, rxVar, m2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.a2 a2Var = this.f41523a;
+        org.telegram.ui.ActionBar.a2 a2Var = this.f41557a;
         Utilities.doCallbacks(callback, callback2, new iu(this, a2Var, j3, 1), new Utilities.Callback(this) {
-            public final rx f41274b;
+            public final rx f41308b;
 
             {
-                this.f41274b = this;
+                this.f41308b = this;
             }
 
             @Override
@@ -100,7 +100,7 @@ public final class rx implements i70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        sy syVar = this.f41274b.f41524b;
+                        sy syVar = this.f41308b.f41558b;
                         if (syVar.G.bot_admin_rights != null) {
                             TLRPC.User user = syVar.getMessagesController().getUser(Long.valueOf(syVar.H));
                             MessagesController messagesController = syVar.getMessagesController();
@@ -120,7 +120,7 @@ public final class rx implements i70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        sy syVar2 = this.f41274b.f41524b;
+                        sy syVar2 = this.f41308b.f41558b;
                         if (syVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = syVar2.getMessagesController();
                             long j10 = j3;
@@ -132,10 +132,10 @@ public final class rx implements i70 {
                 }
             }
         }, new Utilities.Callback(this) {
-            public final rx f41274b;
+            public final rx f41308b;
 
             {
-                this.f41274b = this;
+                this.f41308b = this;
             }
 
             @Override
@@ -144,7 +144,7 @@ public final class rx implements i70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        sy syVar = this.f41274b.f41524b;
+                        sy syVar = this.f41308b.f41558b;
                         if (syVar.G.bot_admin_rights != null) {
                             TLRPC.User user = syVar.getMessagesController().getUser(Long.valueOf(syVar.H));
                             MessagesController messagesController = syVar.getMessagesController();
@@ -164,7 +164,7 @@ public final class rx implements i70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        sy syVar2 = this.f41274b.f41524b;
+                        sy syVar2 = this.f41308b.f41558b;
                         if (syVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = syVar2.getMessagesController();
                             long j10 = j3;

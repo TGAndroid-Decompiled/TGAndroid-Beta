@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class qu extends org.telegram.ui.Components.gd {
-    public final ru f41259e0;
+    public final ru f41293e0;
 
     public qu(ru ruVar, Context context, int i10, int[] iArr, int[] iArr2) {
         super(context, i10, iArr, 1, iArr2);
-        this.f41259e0 = ruVar;
+        this.f41293e0 = ruVar;
     }
 
     @Override
@@ -17,13 +17,13 @@ public final class qu extends org.telegram.ui.Components.gd {
     @Override
     public final void d(int i10, boolean z10) {
         int i11;
-        tu tuVar = (tu) this.f41259e0.f41511e;
+        tu tuVar = (tu) this.f41293e0.f41545e;
         if (!z10) {
             tuVar.j1();
-        } else if (i10 >= 0 && i10 < tuVar.f42270e3.length) {
+        } else if (i10 >= 0 && i10 < tuVar.f42304e3.length) {
             int i12 = 0;
             while (true) {
-                su[] suVarArr = tuVar.f42270e3;
+                su[] suVarArr = tuVar.f42304e3;
                 i11 = -1;
                 if (i12 < suVarArr.length) {
                     if (suVarArr[i12].d == i10) {
@@ -37,9 +37,9 @@ public final class qu extends org.telegram.ui.Components.gd {
             }
             int i13 = 0;
             while (true) {
-                if (i13 < tuVar.f42266a3.size()) {
-                    ou ouVar = (ou) tuVar.f42266a3.get(i13);
-                    if (ouVar != null && ouVar.f17175a == 2 && ouVar.h == i12) {
+                if (i13 < tuVar.f42300a3.size()) {
+                    ou ouVar = (ou) tuVar.f42300a3.get(i13);
+                    if (ouVar != null && ouVar.f17211a == 2 && ouVar.h == i12) {
                         i11 = i13;
                         break;
                     }

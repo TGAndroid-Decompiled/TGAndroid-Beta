@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class v8 extends s4.t0 {
-    public boolean f42899a;
-    public final i9 f42900b;
+    public boolean f42933a;
+    public final i9 f42934b;
 
     public v8(i9 i9Var) {
-        this.f42900b = i9Var;
+        this.f42934b = i9Var;
     }
 
     @Override
@@ -19,17 +19,17 @@ public final class v8 extends s4.t0 {
         int i12;
         ah.h hVar;
         boolean z10;
-        i9 i9Var = this.f42900b;
+        i9 i9Var = this.f42934b;
         ArrayList arrayList = i9Var.G;
-        int L0 = i9Var.f38616c.L0();
+        int L0 = i9Var.f38650c.L0();
         boolean z11 = false;
         if (L0 == -1) {
             abs = 0;
         } else {
-            abs = Math.abs(i9Var.f38616c.N0() - L0) + 1;
+            abs = Math.abs(i9Var.f38650c.N0() - L0) + 1;
         }
         if (abs > 0) {
-            int size = i9Var.d.W2.f25893x.size();
+            int size = i9Var.d.W2.f25652x.size();
             if (!i9Var.J && !i9Var.H && !arrayList.isEmpty() && abs + L0 >= size - 5) {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.a6(11, this, (e9) hg.c.g(1, arrayList)));
             }
@@ -40,8 +40,8 @@ public final class v8 extends s4.t0 {
         } else {
             i12 = 0;
         }
-        if (i11 != 0 && this.f42899a) {
-            org.telegram.ui.Components.q20 q20Var = i9Var.f38621f;
+        if (i11 != 0 && this.f42933a) {
+            org.telegram.ui.Components.q20 q20Var = i9Var.f38655f;
             if (i11 < 0) {
                 z10 = true;
             } else {
@@ -49,8 +49,8 @@ public final class v8 extends s4.t0 {
             }
             q20Var.e(z10, true);
         }
-        this.f42899a = true;
-        ci.r6 r6Var = i9Var.f38624r;
+        this.f42933a = true;
+        ci.r6 r6Var = i9Var.f38658r;
         if (L0 != 0 || i12 < i9Var.d.getPaddingTop()) {
             z11 = true;
         }

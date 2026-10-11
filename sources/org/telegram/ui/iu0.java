@@ -12,29 +12,29 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.RadialProgressView;
-public final class iu0 extends org.telegram.ui.Components.ug0 {
+public final class iu0 extends org.telegram.ui.Components.tg0 {
     public final Rect M;
     public final PhotoViewer N;
 
     public iu0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.e1 e1Var) {
         super(context);
         this.N = photoViewer;
-        this.f31436a = UserConfig.selectedAccount;
+        this.f31239a = UserConfig.selectedAccount;
         this.v = new ArrayList();
-        this.L = new org.telegram.ui.Components.cd0(this, 10);
-        this.f31437b = photoViewer2;
-        this.f31442r = e1Var;
+        this.L = new org.telegram.ui.Components.yc0(this, 11);
+        this.f31240b = photoViewer2;
+        this.f31245r = e1Var;
         org.telegram.ui.Components.gv gvVar = new org.telegram.ui.Components.gv(this, context, context, 1);
-        this.f31440f = gvVar;
+        this.f31243f = gvVar;
         gvVar.getSettings().setJavaScriptEnabled(true);
         gvVar.getSettings().setDomStorageEnabled(true);
         gvVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
         gvVar.getSettings().setMixedContentMode(0);
         CookieManager.getInstance().setAcceptThirdPartyCookies(gvVar, true);
-        gvVar.setWebViewClient(new org.telegram.ui.Components.qg0(this, 0));
+        gvVar.setWebViewClient(new org.telegram.ui.Components.pg0(this, 0));
         addView(gvVar, w7.x5.e(-1, -1, 51));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f31438c = linearLayout;
+        this.f31241c = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setGravity(17);
         linearLayout.setVisibility(8);
@@ -42,15 +42,15 @@ public final class iu0 extends org.telegram.ui.Components.ug0 {
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTextSize(1, 16.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f21171y6, null, false, textView, 17);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f21207y6, null, false, textView, 17);
         linearLayout.addView(textView, w7.x5.q(-2, -2, 1));
         TextView textView2 = new TextView(context);
-        this.f31439e = textView2;
+        this.f31242e = textView2;
         textView2.setTextSize(1, 16.0f);
-        int i10 = org.telegram.ui.ActionBar.h6.f20971n6;
+        int i10 = org.telegram.ui.ActionBar.h6.f21007n6;
         textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         textView2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
-        int i11 = org.telegram.ui.ActionBar.w5.f21654a;
+        int i11 = org.telegram.ui.ActionBar.w5.f21690a;
         textView2.setBackground(org.telegram.ui.ActionBar.w5.d(new float[]{12.0f}, 0, org.telegram.ui.ActionBar.w5.b(org.telegram.ui.ActionBar.h6.x0(null, i10, false))));
         textView2.setVisibility(8);
         linearLayout.addView(textView2, w7.x5.t(-2, -2, 1, 0, 8, 0, 0));
@@ -60,7 +60,7 @@ public final class iu0 extends org.telegram.ui.Components.ug0 {
         bbVar.setVisibility(4);
         addView(bbVar, w7.x5.d(-1.0f, -1));
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        this.f31441n = radialProgressView;
+        this.f31244n = radialProgressView;
         radialProgressView.setVisibility(4);
         addView(radialProgressView, w7.x5.e(-2, -2, 17));
         this.M = new Rect();

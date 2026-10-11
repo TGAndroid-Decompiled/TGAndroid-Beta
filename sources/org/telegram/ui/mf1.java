@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
-public final class mf1 extends org.telegram.ui.Components.e80 {
+public final class mf1 extends org.telegram.ui.Components.d80 {
     public final long A0;
     public final of1 B0;
 
@@ -15,7 +15,7 @@ public final class mf1 extends org.telegram.ui.Components.e80 {
 
     @Override
     public final boolean Y() {
-        TLRPC.Chat chat = this.B0.f40535b.getMessagesController().getChat(Long.valueOf(this.A0));
+        TLRPC.Chat chat = this.B0.f40569b.getMessagesController().getChat(Long.valueOf(this.A0));
         if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
             return true;
         }

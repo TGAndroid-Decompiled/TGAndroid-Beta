@@ -37,10 +37,10 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.b31;
-import org.telegram.ui.Components.be0;
+import org.telegram.ui.Components.a31;
+import org.telegram.ui.Components.ae0;
 import org.telegram.ui.Components.bq;
-import org.telegram.ui.Components.dd0;
+import org.telegram.ui.Components.cd0;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.s5;
 import org.telegram.ui.Components.y9;
@@ -161,10 +161,10 @@ public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultC
         int i10 = this.f9389b;
         synchronized (li.k.d) {
             try {
-                Spannable spannable = (Spannable) jVar.f15621a.get();
-                if (spannable != null && jVar.f15622b.get(Long.valueOf(j3)) == gVar) {
-                    if ((spannable instanceof li.e) && !((li.e) spannable).f15611a) {
-                        li.k.a(spannable, i10, (com.google.android.gms.internal.play_billing.s0) xVar.f16658b);
+                Spannable spannable = (Spannable) jVar.f15657a.get();
+                if (spannable != null && jVar.f15658b.get(Long.valueOf(j3)) == gVar) {
+                    if ((spannable instanceof li.e) && !((li.e) spannable).f15647a) {
+                        li.k.a(spannable, i10, (com.google.android.gms.internal.play_billing.s0) xVar.f16694b);
                         z10 = true;
                     } else {
                         z10 = false;
@@ -179,22 +179,22 @@ public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultC
     @Override
     public void onComplete(Object obj) {
         int i10;
-        b31 b31Var = (b31) this.d;
+        a31 a31Var = (a31) this.d;
         bq bqVar = (bq) this.f9391e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f9390c) {
-            Drawable drawable = bqVar.f25003b;
-            if (drawable instanceof dd0) {
-                dd0 dd0Var = (dd0) drawable;
+            Drawable drawable = bqVar.f25059b;
+            if (drawable instanceof cd0) {
+                cd0 cd0Var = (cd0) drawable;
                 if (this.f9389b >= 0) {
                     i10 = 100;
                 } else {
                     i10 = -100;
                 }
-                dd0Var.t(b31.e((Bitmap) pair.second), i10);
-                dd0Var.u(b31Var.L);
+                cd0Var.t(a31.e((Bitmap) pair.second), i10);
+                cd0Var.u(a31Var.L);
             }
-            b31Var.invalidate();
+            a31Var.invalidate();
         }
     }
 
@@ -273,7 +273,7 @@ public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultC
         e7.setClipChildren(false);
         e7.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(parentActivity);
-        frameLayout.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20779ci, false)));
+        frameLayout.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20815ci, false)));
         y9 y9Var = new y9(parentActivity);
         y9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         j9 j9Var = new j9((d6) null);
@@ -281,12 +281,12 @@ public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultC
         y9Var.e(user2, j9Var);
         frameLayout.addView(y9Var, x5.e(28, 28, 51));
         y9 y9Var2 = new y9(parentActivity);
-        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21192z9, false), PorterDuff.Mode.SRC_IN));
+        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21228z9, false), PorterDuff.Mode.SRC_IN));
         final v1 v1Var2 = v1Var;
         y9Var2.setAnimatedEmojiDrawable(s5.n(i16, botverifiersettings.icon, null, 3));
         frameLayout.addView(y9Var2, x5.a(20.0f, 34.0f, 0.0f, 0.0f, 0.0f, 20, 19));
         h5 h5Var = new h5(parentActivity);
-        h5Var.setTextColor(h6.x0(null, h6.f20894j5, false));
+        h5Var.setTextColor(h6.x0(null, h6.f20930j5, false));
         h5Var.setTextSize(13);
         h5Var.setEllipsizeByGradient(true);
         h5Var.l(str2, false);
@@ -318,10 +318,10 @@ public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultC
         e7.addView(textView2, x5.k(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
         final int i19 = MessagesController.getInstance(i16).botVerificationDescriptionLengthLimit;
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(parentActivity);
-        final be0 be0Var = new be0(parentActivity, null);
-        be0Var.setForceForceUseCenter(true);
-        be0Var.setText(LocaleController.getString(R.string.BotVerifyDescription));
-        be0Var.setLeftPadding(AndroidUtilities.dp(2.0f));
+        final ae0 ae0Var = new ae0(parentActivity, null);
+        ae0Var.setForceForceUseCenter(true);
+        ae0Var.setText(LocaleController.getString(R.string.BotVerifyDescription));
+        ae0Var.setLeftPadding(AndroidUtilities.dp(2.0f));
         editTextBoldCursor.setTextColor(h6.x0(null, i18, false));
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
@@ -331,20 +331,20 @@ public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultC
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(h6.x0(null, h6.f21109uf, false));
-        editTextBoldCursor.setHandlesColor(h6.x0(null, h6.f21126vf, false));
+        editTextBoldCursor.setHighlightColor(h6.x0(null, h6.f21145uf, false));
+        editTextBoldCursor.setHandlesColor(h6.x0(null, h6.f21162vf, false));
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
             i13 = 3;
         }
         editTextBoldCursor.setGravity(i13);
-        editTextBoldCursor.setOnFocusChangeListener(new w1(be0Var, editTextBoldCursor, 0));
-        be0Var.e(editTextBoldCursor);
-        be0Var.addView(editTextBoldCursor, x5.a(-2.0f, 12.0f, 4.0f, 12.0f, 4.0f, -1, 48));
-        e7.addView(be0Var, x5.n(-1, -2));
+        editTextBoldCursor.setOnFocusChangeListener(new w1(ae0Var, editTextBoldCursor, 0));
+        ae0Var.e(editTextBoldCursor);
+        ae0Var.addView(editTextBoldCursor, x5.a(-2.0f, 12.0f, 4.0f, 12.0f, 4.0f, -1, 48));
+        e7.addView(ae0Var, x5.n(-1, -2));
         editTextBoldCursor.addTextChangedListener(new org.telegram.ui.Cells.i3());
-        editTextBoldCursor.addTextChangedListener(new z1(editTextBoldCursor, i19, be0Var));
+        editTextBoldCursor.addTextChangedListener(new z1(editTextBoldCursor, i19, ae0Var));
         if (!TextUtils.isEmpty(botverifiersettings.custom_description)) {
             editTextBoldCursor.setText(botverifiersettings.custom_description);
             if (!botverifiersettings.can_modify_custom_description) {
@@ -353,7 +353,7 @@ public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultC
                 editTextBoldCursor.setFocusableInTouchMode(false);
             }
         } else if (!botverifiersettings.can_modify_custom_description) {
-            be0Var.setVisibility(8);
+            ae0Var.setVisibility(8);
         }
         if (botverifiersettings.can_modify_custom_description) {
             TextView textView3 = new TextView(parentActivity);
@@ -386,9 +386,9 @@ public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultC
                 boolean z14 = botverifiersettings2.can_modify_custom_description;
                 EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
                 if (z14 && editTextBoldCursor2.getText().length() > i19) {
-                    be0 be0Var2 = be0Var;
-                    be0Var2.a(1.0f);
-                    AndroidUtilities.shakeViewSpring(be0Var2, -6.0f);
+                    ae0 ae0Var2 = ae0Var;
+                    ae0Var2.a(1.0f);
+                    AndroidUtilities.shakeViewSpring(ae0Var2, -6.0f);
                     return;
                 }
                 dVar2.setLoading(true);

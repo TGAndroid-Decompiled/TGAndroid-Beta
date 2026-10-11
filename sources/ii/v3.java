@@ -1,13 +1,13 @@
 package ii;
 
 import android.view.View;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 public interface v3 {
     void B(int i10);
 
     void E();
 
-    q80 J(View view);
+    p80 J(View view);
 
     void L();
 

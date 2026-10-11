@@ -7,21 +7,21 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class lk extends rm0 {
-    public final ArrayList f28355c = new ArrayList();
+public final class lk extends qm0 {
+    public final ArrayList f28441c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public final ArrayList f28356e = new ArrayList();
-    public final Context f28357f;
+    public final ArrayList f28442e = new ArrayList();
+    public final Context f28443f;
     public final sk h;
 
     public lk(sk skVar, Context context) {
         this.h = skVar;
-        this.f28357f = context;
+        this.f28443f = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47752f == 1) {
+        if (d1Var.f47786f == 1) {
             return true;
         }
         return false;
@@ -29,13 +29,13 @@ public final class lk extends rm0 {
 
     public final mk E(int i10) {
         int f7;
-        ArrayList arrayList = this.f28355c;
+        ArrayList arrayList = this.f28441c;
         int size = arrayList.size();
         if (i10 < size) {
             return (mk) arrayList.get(i10);
         }
         if (this.d.isEmpty()) {
-            ArrayList arrayList2 = this.f28356e;
+            ArrayList arrayList2 = this.f28442e;
             if (!arrayList2.isEmpty() && i10 != size && i10 != size + 1 && (f7 = com.google.android.gms.internal.vision.e2.f(2, i10, arrayList)) < arrayList2.size()) {
                 return (mk) arrayList2.get(f7);
             }
@@ -46,9 +46,9 @@ public final class lk extends rm0 {
 
     @Override
     public final int h() {
-        int size = this.f28355c.size();
+        int size = this.f28441c.size();
         if (this.d.isEmpty()) {
-            ArrayList arrayList = this.f28356e;
+            ArrayList arrayList = this.f28442e;
             if (!arrayList.isEmpty()) {
                 size += arrayList.size() + 2;
             }
@@ -61,7 +61,7 @@ public final class lk extends rm0 {
         if (i10 == h() - 1) {
             return 3;
         }
-        int size = this.f28355c.size();
+        int size = this.f28441c.size();
         if (i10 == size) {
             return 2;
         }
@@ -80,8 +80,8 @@ public final class lk extends rm0 {
     @Override
     public final void v(s4.d1 d1Var, int i10) {
         boolean z10;
-        int i11 = d1Var.f47752f;
-        View view = d1Var.f47748a;
+        int i11 = d1Var.f47786f;
+        View view = d1Var.f47782a;
         sk skVar = this.h;
         if (i11 != 0) {
             if (i11 != 1) {
@@ -89,20 +89,20 @@ public final class lk extends rm0 {
             }
             mk E = E(i10);
             org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
-            int i12 = E.f28732a;
+            int i12 = E.f28865a;
             if (i12 != 0) {
-                String str = E.f28733b;
-                String str2 = E.f28734c;
-                if (i10 != this.f28355c.size() - 1) {
+                String str = E.f28866b;
+                String str2 = E.f28867c;
+                if (i10 != this.f28441c.size() - 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 k7Var.d(str, str2, null, null, i12, z10);
             } else {
-                k7Var.d(E.f28733b, E.f28734c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.f28735e, 0, false);
+                k7Var.d(E.f28866b, E.f28867c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.f28868e, 0, false);
             }
-            File file = E.f28736f;
+            File file = E.f28869f;
             if (file != null) {
                 k7Var.b(skVar.R.containsKey(file.toString()), !skVar.U);
                 return;
@@ -112,7 +112,7 @@ public final class lk extends rm0 {
             }
         }
         org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-        if (skVar.f30764c0) {
+        if (skVar.f30885c0) {
             m4Var.setText(LocaleController.getString(R.string.RecentFilesAZ));
         } else {
             m4Var.setText(LocaleController.getString(R.string.RecentFiles));
@@ -123,8 +123,8 @@ public final class lk extends rm0 {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View m4Var;
         View view;
-        org.telegram.ui.ActionBar.d6 d6Var = this.h.f30160a;
-        Context context = this.f28357f;
+        org.telegram.ui.ActionBar.d6 d6Var = this.h.f30244a;
+        Context context = this.f28443f;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

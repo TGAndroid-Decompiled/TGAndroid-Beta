@@ -59,7 +59,7 @@ public final class i9 implements RequestDelegate {
                             storyItem2.attachPath = l9Var.f1352e;
                             storyItem2.firstFramePath = str;
                             storyItem2.justUploaded = !z12;
-                            int i17 = storyItem2.f20269id;
+                            int i17 = storyItem2.f20305id;
                             if (storyItem == null) {
                                 storyItem = storyItem2;
                             } else {
@@ -153,7 +153,7 @@ public final class i9 implements RequestDelegate {
                                         storyItem.dialogId = UserConfig.getInstance(i11).clientUserId;
                                         storyItem.attachPath = l9Var.f1352e;
                                         storyItem.firstFramePath = str;
-                                        storyItem.f20269id = tL_updateStoryID.f20289id;
+                                        storyItem.f20305id = tL_updateStoryID.f20325id;
                                         storyItem.justUploaded = !z10;
                                         i15 = i10 + 1;
                                         z12 = z10;
@@ -180,7 +180,7 @@ public final class i9 implements RequestDelegate {
                         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i22).getInputPeer(j3);
                         tL_stories_deleteStories.peer = inputPeer;
                         if (inputPeer != null) {
-                            tL_stories_deleteStories.f20272id.add(Integer.valueOf(i16));
+                            tL_stories_deleteStories.f20308id.add(Integer.valueOf(i16));
                             ConnectionsManager.getInstance(i22).sendRequest(tL_stories_deleteStories, new i9(l9Var, 1));
                         }
                     } else {

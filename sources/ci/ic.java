@@ -4,7 +4,7 @@ import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.d30;
-import org.telegram.ui.Components.ka1;
+import org.telegram.ui.Components.ja1;
 public final class ic extends d30 {
     public final kc f5213a;
 
@@ -18,7 +18,7 @@ public final class ic extends d30 {
         lc lcVar = this.f5213a.E0;
         if (lcVar.f5476f0 == 0 && (obVar = lcVar.B0) != null && !lcVar.S1 && obVar.isInited() && !lcVar.P1 && !lcVar.O0.f5281x0) {
             t7 t7Var = lcVar.D0;
-            if ((t7Var == null || (!t7Var.f6018x.f24913i && !t7Var.L)) && !lcVar.I() && lcVar.f5507p2 == null) {
+            if ((t7Var == null || (!t7Var.f6018x.f24981i && !t7Var.L)) && !lcVar.I() && lcVar.f5507p2 == null) {
                 return true;
             }
             return false;
@@ -67,14 +67,14 @@ public final class ic extends d30 {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         t7 t7Var;
         ob obVar;
-        ka1 ka1Var;
+        ja1 ja1Var;
         yb ybVar;
         boolean z10;
         boolean z11;
         kc kcVar = this.f5213a;
         lc lcVar = kcVar.E0;
         ValueAnimator valueAnimator = lcVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((t7Var = lcVar.D0) != null && (t7Var.f6018x.f24913i || t7Var.L)) || lcVar.O0.f5281x0 || (((obVar = lcVar.B0) != null && obVar.f4819s) || kcVar.A0 || (((ka1Var = lcVar.V0) != null && (ka1Var.F || ka1Var.G)) || lcVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((t7Var = lcVar.D0) != null && (t7Var.f6018x.f24981i || t7Var.L)) || lcVar.O0.f5281x0 || (((obVar = lcVar.B0) != null && obVar.f4819s) || kcVar.A0 || (((ja1Var = lcVar.V0) != null && (ja1Var.F || ja1Var.G)) || lcVar.H())))) {
             return false;
         }
         boolean z12 = true;

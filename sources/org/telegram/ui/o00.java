@@ -15,7 +15,7 @@ public final class o00 extends og.b {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47752f;
+        int i10 = d1Var.f47786f;
         if (i10 != 8 && i10 != 7) {
             return false;
         }
@@ -28,12 +28,12 @@ public final class o00 extends og.b {
 
     @Override
     public final int h() {
-        return this.d.f41011d0.size();
+        return this.d.f41045d0.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((v00) this.d.f41011d0.get(i10)).f17175a;
+        return ((v00) this.d.f41045d0.get(i10)).f17211a;
     }
 
     @Override
@@ -75,24 +75,24 @@ public final class o00 extends og.b {
     public final void v(s4.d1 d1Var, int i10) {
         boolean z10;
         int i11;
-        int i12 = d1Var.f47752f;
-        View view = d1Var.f47748a;
-        ArrayList arrayList = this.d.f41011d0;
+        int i12 = d1Var.f47786f;
+        View view = d1Var.f47782a;
+        ArrayList arrayList = this.d.f41045d0;
         v00 v00Var = (v00) arrayList.get(i10);
         int i13 = i10 + 1;
-        if (i13 < arrayList.size() && (i11 = ((v00) arrayList.get(i13)).f17175a) != 3 && i11 != 6) {
+        if (i13 < arrayList.size() && (i11 = ((v00) arrayList.get(i13)).f17211a) != 3 && i11 != 6) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (i12 == 7) {
-            ((x00) view).e(v00Var.f42821m, z10);
+            ((x00) view).e(v00Var.f42855m, z10);
         } else if (i12 != 6 && i12 != 3) {
             if (i12 != 0 && i12 == 8) {
                 l00 l00Var = (l00) view;
-                l00Var.f39464a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
-                if (l00Var.f39466c != z10) {
-                    l00Var.f39466c = z10;
+                l00Var.f39498a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
+                if (l00Var.f39500c != z10) {
+                    l00Var.f39500c = z10;
                     l00Var.setWillNotDraw(!z10);
                 }
             }
@@ -115,17 +115,17 @@ public final class o00 extends og.b {
         q00 q00Var = this.d;
         if (i10 == 8) {
             e9Var = new l00(q00Var.getContext());
-            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20857h5, false));
+            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20893h5, false));
         } else if (i10 == 7) {
             Context context = q00Var.getContext();
             i11 = ((org.telegram.ui.ActionBar.e3) q00Var).currentAccount;
-            e9Var = new n00(this, context, i11, q00Var.X.f17251id);
-            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20857h5, false));
+            e9Var = new n00(this, context, i11, q00Var.X.f17287id);
+            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20893h5, false));
         } else if (i10 != 6 && i10 != 3) {
             e9Var = new p00(q00Var, q00Var.getContext());
         } else {
             e9Var = new org.telegram.ui.Cells.e9(q00Var.getContext());
-            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20730a7, false));
+            e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20766a7, false));
         }
         return new s4.d1(e9Var);
     }

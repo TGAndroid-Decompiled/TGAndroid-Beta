@@ -25,9 +25,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.n11;
-import org.telegram.ui.Components.q80;
-import org.telegram.ui.Components.vn0;
+import org.telegram.ui.Components.m11;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.un0;
 public final class wc extends View {
     public final Paint A0;
     public final Paint B0;
@@ -70,7 +70,7 @@ public final class wc extends View {
     public float V;
     public final Paint V0;
     public boolean W;
-    public final vn0 W0;
+    public final un0 W0;
     public boolean X0;
     public final ai.n3 Y0;
     public long Z0;
@@ -114,7 +114,7 @@ public final class wc extends View {
     public boolean f6259o1;
     public final Path f6260p0;
     public VelocityTracker f6261p1;
-    public final n11 f6262q0;
+    public final m11 f6262q0;
     public boolean f6263q1;
     public final ArrayList f6264r;
     public final Drawable f6265r0;
@@ -196,7 +196,7 @@ public final class wc extends View {
         this.U0 = new Matrix();
         Paint paint8 = new Paint(1);
         this.V0 = paint8;
-        this.W0 = new vn0(getContext(), null);
+        this.W0 = new un0(getContext(), null);
         this.Z0 = -1L;
         this.f6228a1 = -1L;
         this.f6231b1 = new org.telegram.ui.Components.g6(0.0f, this, 0L, 340L, isVar);
@@ -228,7 +228,7 @@ public final class wc extends View {
         paint3.setColor(-16777216);
         paint5.setColor(-1);
         paint4.setColor(637534208);
-        this.f6262q0 = new n11(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
+        this.f6262q0 = new m11(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.timeline).mutate();
         this.f6265r0 = mutate;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
@@ -300,8 +300,8 @@ public final class wc extends View {
                 int i12 = wcVar.f6275v1;
                 int i13 = wcVar.f6284y1;
                 int i14 = wcVar.f6281x1;
-                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(wcVar.T, 1.0f, wcVar.f6241f0.f26613c) * ((float) wcVar.R)) + ((float) (wcVar.Q - wcVar.f6240f))) / ((float) min)) * wcVar.f6273u1) + i13 + i14);
-                q80 F = q80.F(viewGroup, d6Var, wcVar);
+                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(wcVar.T, 1.0f, wcVar.f6241f0.f26665c) * ((float) wcVar.R)) + ((float) (wcVar.Q - wcVar.f6240f))) / ((float) min)) * wcVar.f6273u1) + i13 + i14);
+                p80 F = p80.F(viewGroup, d6Var, wcVar);
                 F.q(f8Var);
                 F.o();
                 F.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoryAudioRemove), new mc(wcVar, 1), false);
@@ -363,8 +363,8 @@ public final class wc extends View {
                 int i15 = wcVar.f6275v1;
                 int i16 = wcVar.f6284y1;
                 int i17 = wcVar.f6281x1;
-                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(wcVar.K, 1.0f, wcVar.f6235d0.f26613c) * ((float) wcVar.H)) + ((float) (wcVar.I - wcVar.f6240f))) / ((float) min3)) * wcVar.f6273u1) + i16 + i17);
-                q80 F2 = q80.F(viewGroup, d6Var, wcVar);
+                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(wcVar.K, 1.0f, wcVar.f6235d0.f26665c) * ((float) wcVar.H)) + ((float) (wcVar.I - wcVar.f6240f))) / ((float) min3)) * wcVar.f6273u1) + i16 + i17);
+                p80 F2 = p80.F(viewGroup, d6Var, wcVar);
                 F2.q(f8Var2);
                 F2.o();
                 F2.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoryRoundRemove), new mc(wcVar, 2), false);
@@ -422,7 +422,7 @@ public final class wc extends View {
                         }
                     }
                 };
-                q80 F3 = q80.F(viewGroup, d6Var, wcVar);
+                p80 F3 = p80.F(viewGroup, d6Var, wcVar);
                 F3.q(f8Var3);
                 F3.V(5);
                 F3.U = true;
@@ -437,7 +437,7 @@ public final class wc extends View {
                 f8Var4.f5077c = 1.5f;
                 f8Var4.d(qcVar.f5850i);
                 f8Var4.h = new ai.h3(8, wcVar, qcVar);
-                q80 F4 = q80.F(viewGroup, d6Var, wcVar);
+                p80 F4 = p80.F(viewGroup, d6Var, wcVar);
                 F4.q(f8Var4);
                 F4.V(5);
                 F4.U = true;
@@ -479,7 +479,7 @@ public final class wc extends View {
             if (f7 > 0.0f) {
                 f7 += AndroidUtilities.dp(4.0f);
             }
-            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((qc) arrayList.get(i10)).f5852k.f26613c);
+            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((qc) arrayList.get(i10)).f5852k.f26665c);
         }
         return f7;
     }
@@ -496,7 +496,7 @@ public final class wc extends View {
         if (qcVar == null) {
             return 0.0f;
         }
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), qcVar.f5852k.f26613c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), qcVar.f5852k.f26665c);
     }
 
     public final int c(android.view.MotionEvent r21) {
@@ -505,14 +505,14 @@ public final class wc extends View {
 
     @Override
     public final void computeScroll() {
-        vn0 vn0Var = this.W0;
-        if (vn0Var.b()) {
-            int i10 = vn0Var.f31863j;
+        un0 un0Var = this.W0;
+        if (un0Var.b()) {
+            int i10 = un0Var.f31656j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
             if (this.f6263q1) {
                 this.f6240f = Math.max(0.0f, (((i10 - this.f6284y1) - this.f6281x1) / this.f6273u1) * ((float) min));
             } else if (!this.P) {
-                vn0Var.a();
+                un0Var.a();
                 return;
             } else {
                 int i11 = this.f6284y1;
@@ -705,7 +705,7 @@ public final class wc extends View {
     }
 
     public int getTimelineHeight() {
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f6286z1 + this.f6286z1, getContentHeight(), this.f6247i0.f26613c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f6286z1 + this.f6286z1, getContentHeight(), this.f6247i0.f26665c);
     }
 
     public final void h(float f7) {

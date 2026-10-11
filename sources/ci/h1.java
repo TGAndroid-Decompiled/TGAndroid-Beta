@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.q91;
+import org.telegram.ui.Components.p91;
 import org.telegram.ui.a41;
 import org.telegram.ui.ab1;
 import org.telegram.ui.b41;
@@ -16,7 +16,7 @@ import org.telegram.ui.tp0;
 import org.telegram.ui.z31;
 import org.telegram.ui.zn;
 import org.telegram.ui.zp0;
-public final class h1 extends q91 {
+public final class h1 extends p91 {
     public final int T;
     public final Object U;
 
@@ -115,7 +115,7 @@ public final class h1 extends q91 {
                 return;
             case 7:
                 ab1 ab1Var = (ab1) this.U;
-                ab1Var.m0(ab1Var.f35974i0.getCurrentPosition(), true);
+                ab1Var.m0(ab1Var.f36008i0.getCurrentPosition(), true);
                 ab1Var.n0(0.0f, false);
                 ab1.W(ab1Var);
                 return;
@@ -129,7 +129,7 @@ public final class h1 extends q91 {
         z31 z31Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof a41) && (z31Var = ((a41) getCurrentView()).f35881n) != null) {
+                if ((getCurrentView() instanceof a41) && (z31Var = ((a41) getCurrentView()).f35915n) != null) {
                     AndroidUtilities.hideKeyboard(z31Var);
                     return;
                 }
@@ -173,15 +173,15 @@ public final class h1 extends q91 {
                 zp0 zp0Var = (zp0) this.U;
                 float positionAnimated = zp0Var.I.getPositionAnimated();
                 zp0Var.M.setSelected(positionAnimated);
-                zp0Var.f45043e.setProgressToGradient(1.0f - w7.o.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                zp0Var.f45077e.setProgressToGradient(1.0f - w7.o.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
                 zp0Var.G0();
                 tp0 C0 = zp0Var.C0();
                 d dVar = zp0Var.Q;
                 if (dVar != null && C0 != null && C0 != zp0Var.R) {
                     zp0Var.R = C0;
-                    n6.k kVar = C0.f42228e;
-                    dVar.g((CharSequence) kVar.f16729b, true, true);
-                    zp0Var.Q.f((SpannableStringBuilder) kVar.f16730c, true);
+                    n6.k kVar = C0.f42262e;
+                    dVar.g((CharSequence) kVar.f16765b, true, true);
+                    zp0Var.Q.f((SpannableStringBuilder) kVar.f16766c, true);
                 }
                 zp0Var.D0(1);
                 return;
@@ -193,7 +193,7 @@ public final class h1 extends q91 {
                 return;
             case 7:
                 ab1 ab1Var = (ab1) this.U;
-                float positionAnimated2 = ab1Var.f35974i0.getPositionAnimated();
+                float positionAnimated2 = ab1Var.f36008i0.getPositionAnimated();
                 ab1Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     ab1Var.m0(Math.round(positionAnimated2), true);
@@ -217,9 +217,9 @@ public final class h1 extends q91 {
         switch (this.T) {
             case 10:
                 org.telegram.ui.Wallet.c5 c5Var = (org.telegram.ui.Wallet.c5) this.U;
-                c5Var.f34746f0 = i10;
+                c5Var.f34780f0 = i10;
                 if (i10 == 1) {
-                    c5Var.f34754n0.post(new org.telegram.ui.Wallet.h3(c5Var, 12));
+                    c5Var.f34788n0.post(new org.telegram.ui.Wallet.h3(c5Var, 12));
                     return;
                 }
                 return;
@@ -234,9 +234,9 @@ public final class h1 extends q91 {
             case 3:
                 if (i10 == 0) {
                     zn znVar = (zn) this.U;
-                    if (znVar.f44925s1) {
-                        znVar.f44925s1 = false;
-                        znVar.f44898q1.h.clear();
+                    if (znVar.f44959s1) {
+                        znVar.f44959s1 = false;
+                        znVar.f44932q1.h.clear();
                         return;
                     }
                     return;

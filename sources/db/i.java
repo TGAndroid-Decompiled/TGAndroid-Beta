@@ -18,7 +18,7 @@ public abstract class i {
         try {
             StringWriter stringWriter = new StringWriter();
             lb.b bVar = new lb.b(stringWriter);
-            bVar.f15490n = 1;
+            bVar.f15526n = 1;
             fb.d.l(this, bVar);
             return stringWriter.toString();
         } catch (IOException e7) {

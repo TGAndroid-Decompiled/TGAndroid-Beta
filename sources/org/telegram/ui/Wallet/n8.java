@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 public final class n8 {
-    public static final int[] f35337f = {-16106272, -16754689, -14779393, -13326081, -10235137, -6559233};
-    public final ArrayList f35338a = new ArrayList();
-    public final Random f35339b = new Random();
-    public final Paint f35340c = new Paint(1);
+    public static final int[] f35371f = {-16106272, -16754689, -14779393, -13326081, -10235137, -6559233};
+    public final ArrayList f35372a = new ArrayList();
+    public final Random f35373b = new Random();
+    public final Paint f35374c = new Paint(1);
     public final Path d;
-    public long f35341e;
+    public long f35375e;
 
     public n8() {
         Path path = new Path();
@@ -27,23 +27,23 @@ public final class n8 {
     }
 
     public final m8 a(float f7, float f10, float f11, float f12, float f13, float f14, float f15) {
-        ArrayList arrayList = this.f35338a;
+        ArrayList arrayList = this.f35372a;
         if (arrayList.isEmpty()) {
-            this.f35341e = SystemClock.uptimeMillis();
+            this.f35375e = SystemClock.uptimeMillis();
         }
         ?? obj = new Object();
-        obj.f35296l = 1.0f;
-        obj.f35287a = f7;
-        obj.f35288b = f10;
+        obj.f35330l = 1.0f;
+        obj.f35321a = f7;
+        obj.f35322b = f10;
         double d = f11;
-        obj.f35289c = ((float) Math.cos(d)) * f12;
+        obj.f35323c = ((float) Math.cos(d)) * f12;
         obj.d = ((float) Math.sin(d)) * f12;
-        obj.f35290e = f13;
-        obj.f35291f = f14;
-        obj.f35292g = f15;
-        obj.f35295k = f35337f[this.f35339b.nextInt(6)];
+        obj.f35324e = f13;
+        obj.f35325f = f14;
+        obj.f35326g = f15;
+        obj.f35329k = f35371f[this.f35373b.nextInt(6)];
         obj.h = e(0.0f, 90.0f);
-        obj.f35293i = e(-180.0f, 180.0f);
+        obj.f35327i = e(-180.0f, 180.0f);
         arrayList.add(obj);
         return obj;
     }
@@ -57,35 +57,35 @@ public final class n8 {
 
     public final void c(Canvas canvas) {
         long uptimeMillis = SystemClock.uptimeMillis();
-        float min = Math.min(0.033f, ((float) (uptimeMillis - this.f35341e)) / 1000.0f);
-        this.f35341e = uptimeMillis;
-        ArrayList arrayList = this.f35338a;
+        float min = Math.min(0.033f, ((float) (uptimeMillis - this.f35375e)) / 1000.0f);
+        this.f35375e = uptimeMillis;
+        ArrayList arrayList = this.f35372a;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             m8 m8Var = (m8) arrayList.get(size);
-            float f7 = m8Var.f35294j + min;
-            m8Var.f35294j = f7;
+            float f7 = m8Var.f35328j + min;
+            m8Var.f35328j = f7;
             if (f7 >= 0.0f) {
-                if (f7 >= m8Var.f35291f) {
+                if (f7 >= m8Var.f35325f) {
                     arrayList.remove(size);
                 } else {
-                    float exp = (float) Math.exp((-m8Var.f35292g) * min);
-                    float f10 = m8Var.f35289c * exp;
-                    m8Var.f35289c = f10;
+                    float exp = (float) Math.exp((-m8Var.f35326g) * min);
+                    float f10 = m8Var.f35323c * exp;
+                    m8Var.f35323c = f10;
                     float f11 = m8Var.d * exp;
                     m8Var.d = f11;
-                    m8Var.f35287a = (f10 * min) + m8Var.f35287a;
-                    m8Var.f35288b = (f11 * min) + m8Var.f35288b;
-                    m8Var.h = (m8Var.f35293i * min) + m8Var.h;
-                    float f12 = m8Var.f35294j / m8Var.f35291f;
+                    m8Var.f35321a = (f10 * min) + m8Var.f35321a;
+                    m8Var.f35322b = (f11 * min) + m8Var.f35322b;
+                    m8Var.h = (m8Var.f35327i * min) + m8Var.h;
+                    float f12 = m8Var.f35328j / m8Var.f35325f;
                     float max = Math.max(0.0f, Math.min(1.0f, (f12 - 0.35f) / 0.65f));
-                    float min2 = (1.0f - ((3.0f - (max * 2.0f)) * (max * max))) * Math.min(1.0f, 8.0f * f12) * m8Var.f35296l;
-                    float B = com.google.android.gms.internal.vision.e2.B(f12, 0.5f, 1.0f, m8Var.f35290e);
+                    float min2 = (1.0f - ((3.0f - (max * 2.0f)) * (max * max))) * Math.min(1.0f, 8.0f * f12) * m8Var.f35330l;
+                    float B = com.google.android.gms.internal.vision.e2.B(f12, 0.5f, 1.0f, m8Var.f35324e);
                     int save = canvas.save();
-                    canvas.translate(m8Var.f35287a, m8Var.f35288b);
+                    canvas.translate(m8Var.f35321a, m8Var.f35322b);
                     canvas.rotate(m8Var.h);
                     canvas.scale(B, B);
-                    int i10 = m8Var.f35295k;
-                    Paint paint = this.f35340c;
+                    int i10 = m8Var.f35329k;
+                    Paint paint = this.f35374c;
                     paint.setColor(i10);
                     paint.setAlpha(Math.round(20.4f * min2));
                     canvas.drawCircle(0.0f, 0.0f, 1.4f, paint);
@@ -98,16 +98,16 @@ public final class n8 {
     }
 
     public final boolean d() {
-        return !this.f35338a.isEmpty();
+        return !this.f35372a.isEmpty();
     }
 
     public final float e(float f7, float f10) {
-        return com.google.android.gms.internal.vision.e2.y(f10, f7, this.f35339b.nextFloat(), f7);
+        return com.google.android.gms.internal.vision.e2.y(f10, f7, this.f35373b.nextFloat(), f7);
     }
 
     public final void f() {
         float f7;
-        this.f35338a.clear();
+        this.f35372a.clear();
         float f10 = AndroidUtilities.density;
         for (int i10 = 0; i10 < 48; i10++) {
             for (int i11 = -1; i11 <= 1; i11 += 2) {
@@ -117,9 +117,9 @@ public final class n8 {
                     f7 = 0.0f;
                 }
                 m8 a2 = a(0.0f, (e(-3.0f, 3.0f) * f10) + 0.0f, e(-0.6f, 0.6f) + f7, e(150.0f, 310.0f) * f10, e(1.3f, 3.2f) * f10, e(0.65f, 1.05f), 1.8f);
-                a2.f35295k = -6562049;
-                a2.f35296l = e(0.3f, 1.0f);
-                a2.f35294j = (-i10) * 0.006f;
+                a2.f35329k = -6562049;
+                a2.f35330l = e(0.3f, 1.0f);
+                a2.f35328j = (-i10) * 0.006f;
             }
         }
     }

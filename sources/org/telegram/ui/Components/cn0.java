@@ -3,86 +3,101 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class cn0 extends qx0 {
+public final class cn0 extends Drawable {
+    public long f25389a;
+    public boolean f25390b;
+    public Paint f25391c;
     public float d;
-    public final Paint f25249f;
-    public boolean f25245a = false;
-    public long f25246b = 0;
-    public boolean f25247c = false;
-    public int f25248e = 1;
+    public float f25392e;
+    public float f25393f;
+    public int f25394g;
+    public int h;
+    public int f25395i;
+    public org.telegram.ui.Cells.u1 f25396j;
+    public float f25397k;
+    public int f25398l;
+    public int f25399m;
+    public org.telegram.ui.ActionBar.d6 f25400n;
 
-    public cn0(boolean z10) {
-        if (z10) {
-            this.f25249f = new Paint(1);
+    public final void a() {
+        if (this.f25390b) {
+            return;
         }
+        this.f25389a = System.currentTimeMillis();
+        this.f25390b = true;
+        this.f25396j.invalidate();
     }
 
-    @Override
-    public final void b(int i10) {
-        Paint paint = this.f25249f;
-        if (paint != null) {
-            paint.setColor(i10);
+    public final void b() {
+        if (!this.f25390b) {
+            return;
         }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        this.f25245a = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f25246b = System.currentTimeMillis();
-        this.f25247c = true;
-        invalidateSelf();
+        this.f25390b = false;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f25249f;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f20765c2;
+        Paint paint = this.f25391c;
+        paint.setColor(i0.a.d(this.f25397k, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20919ic, this.f25400n), this.f25398l));
+        int i10 = this.f25399m;
+        if (i10 != 255) {
+            paint.setAlpha((int) ((paint.getAlpha() / 255.0f) * i10));
         }
-        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
-        float dp = AndroidUtilities.dp(6.0f);
-        if (this.f25245a) {
-            f7 = 8.0f;
-        } else {
-            f7 = 9.0f;
+        int i11 = getBounds().left;
+        int i12 = getBounds().top;
+        int i13 = 0;
+        while (i13 < 3) {
+            Canvas canvas2 = canvas;
+            canvas2.drawRect(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp((this.d * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(4.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            canvas2.drawRect(AndroidUtilities.dp(5.0f) + i11, AndroidUtilities.dp((this.f25392e * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(7.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            canvas2.drawRect(AndroidUtilities.dp(8.0f) + i11, AndroidUtilities.dp((this.f25393f * 7.0f) + 2.0f) + i12, AndroidUtilities.dp(10.0f) + i11, AndroidUtilities.dp(10.0f) + i12, paint);
+            i13++;
+            canvas = canvas2;
         }
-        canvas.drawCircle(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(4.0f), paint);
-        if (this.f25247c) {
+        if (this.f25390b) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f25246b;
-            this.f25246b = currentTimeMillis;
+            long j3 = currentTimeMillis - this.f25389a;
+            this.f25389a = currentTimeMillis;
             if (j3 > 50) {
                 j3 = 50;
             }
-            float f10 = this.d;
-            int i10 = this.f25248e;
-            float f11 = (((float) (i10 * j3)) / 400.0f) + f10;
-            this.d = f11;
-            if (i10 > 0 && f11 >= 1.0f) {
-                this.f25248e = -1;
+            float f7 = (float) j3;
+            float f10 = ((f7 / 300.0f) * this.f25394g) + this.d;
+            this.d = f10;
+            if (f10 > 1.0f) {
+                this.f25394g = -1;
                 this.d = 1.0f;
-            } else if (i10 < 0 && f11 <= 0.0f) {
-                this.f25248e = 1;
+            } else if (f10 < 0.0f) {
+                this.f25394g = 1;
                 this.d = 0.0f;
             }
-            a();
+            float f11 = ((f7 / 310.0f) * this.h) + this.f25392e;
+            this.f25392e = f11;
+            if (f11 > 1.0f) {
+                this.h = -1;
+                this.f25392e = 1.0f;
+            } else if (f11 < 0.0f) {
+                this.h = 1;
+                this.f25392e = 0.0f;
+            }
+            float f12 = ((f7 / 320.0f) * this.f25395i) + this.f25393f;
+            this.f25393f = f12;
+            if (f12 > 1.0f) {
+                this.f25395i = -1;
+                this.f25393f = 1.0f;
+            } else if (f12 < 0.0f) {
+                this.f25395i = 1;
+                this.f25393f = 0.0f;
+            }
+            this.f25396j.invalidate();
         }
-    }
-
-    @Override
-    public final void e() {
-        this.f25247c = false;
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(10.0f);
+        return AndroidUtilities.dp(12.0f);
     }
 
     @Override
@@ -92,11 +107,12 @@ public final class cn0 extends qx0 {
 
     @Override
     public final int getOpacity() {
-        return 0;
+        return -2;
     }
 
     @Override
     public final void setAlpha(int i10) {
+        this.f25399m = i10;
     }
 
     @Override

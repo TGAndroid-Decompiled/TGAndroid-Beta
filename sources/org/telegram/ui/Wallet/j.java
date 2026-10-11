@@ -12,29 +12,29 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.au0;
 import org.telegram.ui.uf0;
 public final class j implements Runnable {
-    public final int f35093a;
-    public final int f35094b;
-    public final Object f35095c;
+    public final int f35127a;
+    public final int f35128b;
+    public final Object f35129c;
 
     public j(int i10, Object obj, int i11) {
-        this.f35093a = i11;
-        this.f35094b = i10;
-        this.f35095c = obj;
+        this.f35127a = i11;
+        this.f35128b = i10;
+        this.f35129c = obj;
     }
 
     @Override
     public final void run() {
         CharSequence text;
-        int i10 = this.f35093a;
+        int i10 = this.f35127a;
         boolean z10 = false;
-        int i11 = this.f35094b;
-        Object obj = this.f35095c;
+        int i11 = this.f35128b;
+        Object obj = this.f35129c;
         switch (i10) {
             case 0:
                 l0 l0Var = (l0) obj;
@@ -51,7 +51,7 @@ public final class j implements Runnable {
                 a0 a0Var = new a0(notificationCenter, (uf0) obj, v);
                 notificationCenter.addObserver(a0Var, NotificationCenter.walletUpdate);
                 AndroidUtilities.runOnUIThread(a0Var, 10000L);
-                if (v.f35188e == null && v.f35204w < 0) {
+                if (v.f35222e == null && v.f35238w < 0) {
                     v.U();
                 }
                 v.S();
@@ -59,8 +59,8 @@ public final class j implements Runnable {
                 return;
             case 2:
                 e6 e6Var = (e6) obj;
-                if (e6Var.f34866r && !e6Var.f34869x && i11 == e6Var.f34863k0) {
-                    e6Var.postDelayed(e6Var.f34864l0, 500L);
+                if (e6Var.f34900r && !e6Var.f34903x && i11 == e6Var.f34897k0) {
+                    e6Var.postDelayed(e6Var.f34898l0, 500L);
                     return;
                 }
                 return;
@@ -84,9 +84,9 @@ public final class j implements Runnable {
                 }
             case 4:
                 u8 u8Var = (u8) obj;
-                if (!u8Var.f35615n && i11 == u8Var.I) {
+                if (!u8Var.f35649n && i11 == u8Var.I) {
                     u8Var.K = false;
-                    u8Var.f26922a.W2.N(true);
+                    u8Var.f26675a.W2.N(true);
                     return;
                 }
                 return;
@@ -108,7 +108,7 @@ public final class j implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.P = duration;
-                duration.setInterpolator(is.f27451f);
+                duration.setInterpolator(is.f27500f);
                 jVar.P.addUpdateListener(new qg.f(jVar, 5));
                 jVar.P.addListener(new qg.g(jVar, 2));
                 jVar.P.start();
@@ -117,7 +117,7 @@ public final class j implements Runnable {
                 au0 au0Var = (au0) obj;
                 pg.s1 s1Var = au0Var.K1;
                 au0Var.t0(s1Var, null);
-                pg.u0.e(i11).j(s1Var.f45814c);
+                pg.u0.e(i11).j(s1Var.f45848c);
                 return;
             case 7:
                 qg.n2 n2Var = (qg.n2) obj;
@@ -126,10 +126,10 @@ public final class j implements Runnable {
                 n2Var.h();
                 return;
             case 8:
-                fa0 fa0Var = ((tg.q0) obj).f48469e;
+                ea0 ea0Var = ((tg.q0) obj).f48503e;
                 try {
-                    if (fa0Var.getLayout().getLineForOffset(i11) == 0) {
-                        fa0Var.getEditableText().insert(i11, "\n");
+                    if (ea0Var.getLayout().getLineForOffset(i11) == 0) {
+                        ea0Var.getEditableText().insert(i11, "\n");
                         return;
                     }
                     return;
@@ -146,11 +146,11 @@ public final class j implements Runnable {
                 of.f.s(((yh.g) obj).getParentActivity(), LocaleController.getString(i11));
                 return;
             case 11:
-                ConnectionsManager.getInstance(((yh.n5) obj).f52997a).cancelRequest(i11, true);
+                ConnectionsManager.getInstance(((yh.n5) obj).f53031a).cancelRequest(i11, true);
                 return;
             default:
                 zg.f fVar = (zg.f) obj;
-                if (fVar.f54607b) {
+                if (fVar.f54641b) {
                     Utilities.Callback callback = fVar.d;
                     if (callback != null) {
                         if (i11 < 300) {
@@ -158,11 +158,11 @@ public final class j implements Runnable {
                         }
                         callback.run(Boolean.valueOf(z10));
                         try {
-                            fVar.f54606a.performHapticFeedback(3);
+                            fVar.f54640a.performHapticFeedback(3);
                         } catch (Exception unused3) {
                         }
                     }
-                    fVar.f54608c = true;
+                    fVar.f54642c = true;
                     int max = Math.max(50, i11 - 100);
                     AndroidUtilities.runOnUIThread(new j(fVar, max, 12), max);
                     return;
@@ -172,8 +172,8 @@ public final class j implements Runnable {
     }
 
     public j(Object obj, int i10, int i11) {
-        this.f35093a = i11;
-        this.f35095c = obj;
-        this.f35094b = i10;
+        this.f35127a = i11;
+        this.f35129c = obj;
+        this.f35128b = i10;
     }
 }

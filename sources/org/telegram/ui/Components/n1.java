@@ -5,22 +5,22 @@ import java.util.ArrayList;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
 public final class n1 implements Runnable {
-    public final int f28897a;
-    public final ArrayList f28898b;
+    public final int f28985a;
+    public final ArrayList f28986b;
 
     public n1(ArrayList arrayList, int i10) {
-        this.f28897a = i10;
-        this.f28898b = arrayList;
+        this.f28985a = i10;
+        this.f28986b = arrayList;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.m2 R;
-        switch (this.f28897a) {
+        switch (this.f28985a) {
             case 0:
-                if (this.f28898b != null && (R = LaunchActivity.R()) != 0) {
+                if (this.f28986b != null && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f21313a = true;
+                    obj.f21349a = true;
                     R.showAsSheet(new PrivacyControlActivity(11, false), obj);
                     return;
                 }
@@ -28,7 +28,7 @@ public final class n1 implements Runnable {
             default:
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f28898b;
+                    ArrayList arrayList = this.f28986b;
                     if (i10 < arrayList.size()) {
                         ((View) arrayList.get(i10)).setVisibility(8);
                         if (arrayList.get(i10) instanceof org.telegram.ui.Cells.u1) {

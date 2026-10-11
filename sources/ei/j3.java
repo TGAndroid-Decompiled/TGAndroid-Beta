@@ -14,10 +14,10 @@ import ci.u5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.ue0;
-import org.telegram.ui.Components.uw0;
+import org.telegram.ui.Components.te0;
+import org.telegram.ui.Components.tw0;
 import org.telegram.ui.LaunchActivity;
-public final class j3 extends uw0 implements org.telegram.ui.ActionBar.t3 {
+public final class j3 extends tw0 implements org.telegram.ui.ActionBar.t3 {
     public final k3 A0;
     public final Paint f9128w0;
     public boolean f9129x0;
@@ -41,11 +41,11 @@ public final class j3 extends uw0 implements org.telegram.ui.ActionBar.t3 {
         Paint paint;
         float f7;
         k3 k3Var = this.A0;
-        ue0 ue0Var = k3Var.f9176s0;
+        te0 te0Var = k3Var.f9176s0;
         Rect rect = k3Var.h;
         Rect rect2 = k3Var.f9160f;
         if (!this.f9129x0) {
-            int visibility = ue0Var.getVisibility();
+            int visibility = te0Var.getVisibility();
             Paint paint2 = this.f9128w0;
             if (visibility != 0) {
                 float f10 = k3Var.f9161f0;
@@ -82,7 +82,7 @@ public final class j3 extends uw0 implements org.telegram.ui.ActionBar.t3 {
             if (z10) {
                 canvas.restore();
             }
-            if (ue0Var.getVisibility() != 0) {
+            if (te0Var.getVisibility() != 0) {
                 paint2.setColor(h6.m1(k3Var.N0, k3Var.R));
                 int i11 = rect2.left;
                 if (i11 > 0) {
@@ -236,7 +236,7 @@ public final class j3 extends uw0 implements org.telegram.ui.ActionBar.t3 {
                     canvas2 = canvas;
                 }
                 if (!k3Var.V) {
-                    int w02 = h6.w0(h6.f20786d6, k3Var.E);
+                    int w02 = h6.w0(h6.f20822d6, k3Var.E);
                     paint2.setColor(w02);
                     k3Var.f9182x.setFlickerViewColor(w02);
                     org.telegram.ui.c3 c3Var = k3Var.U0;

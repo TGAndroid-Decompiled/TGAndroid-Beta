@@ -28,7 +28,7 @@ public final class g3 implements b5 {
         uVar.f12709a = 2;
         TL_iv.PageBlock pageBlock = this.f12438b.f12233b;
         if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20038id;
+            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20074id;
         }
         x3Var.X3.remove(uVar);
         x3Var.W2.N(false);

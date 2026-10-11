@@ -20,8 +20,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.gf0;
-import org.telegram.ui.Components.ka0;
+import org.telegram.ui.Components.ff0;
+import org.telegram.ui.Components.ja0;
 public final class p2 extends View {
     public final Paint f5717a;
     public final TextPaint f5718b;
@@ -91,9 +91,9 @@ public final class p2 extends View {
             if (MessagesController.getInstance(i10).storyWeatherPreload) {
                 spannableStringBuilder = replaceEmoji;
                 spannableStringBuilder = replaceEmoji;
-                if (gf0.d("android.permission.ACCESS_COARSE_LOCATION") && kdVar == null) {
+                if (ff0.d("android.permission.ACCESS_COARSE_LOCATION") && kdVar == null) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
-                    spannableStringBuilder2.setSpan(new ka0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
+                    spannableStringBuilder2.setSpan(new ja0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
                     m2VarArr[0] = new m2(this, spannableStringBuilder2);
                     ld.a(false, new ai.h3(1, this, m2VarArr));
                     spannableStringBuilder = spannableStringBuilder2;

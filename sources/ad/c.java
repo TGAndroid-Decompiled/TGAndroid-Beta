@@ -32,10 +32,10 @@ public final class c extends ef.a {
     @Override
     public final h h(ze.d dVar) {
         int i10;
-        int i11 = dVar.f54470e;
-        CharSequence charSequence = dVar.f54467a;
+        int i11 = dVar.f54504e;
+        CharSequence charSequence = dVar.f54501a;
         int length = charSequence.length();
-        if (dVar.f54472g < 4) {
+        if (dVar.f54506g < 4) {
             int i12 = i11;
             while (true) {
                 if (i12 < length) {
@@ -54,6 +54,6 @@ public final class c extends ef.a {
                 return new h(-1, -1, true);
             }
         }
-        return h.a(dVar.f54468b);
+        return h.a(dVar.f54502b);
     }
 }

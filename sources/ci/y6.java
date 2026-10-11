@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.in0;
+import org.telegram.ui.Components.hn0;
 import org.telegram.ui.Components.m50;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.dv0;
@@ -39,7 +39,7 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        zn.h0((zn) this.f6353c, (ArrayList) this.d, this.f6352b, (in0) this.f6354e, z10, i10);
+        zn.h0((zn) this.f6353c, (ArrayList) this.d, this.f6352b, (hn0) this.f6354e, z10, i10);
     }
 
     @Override
@@ -75,14 +75,14 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
         switch (this.f6351a) {
             case 5:
                 r9.f fVar = (r9.f) this.f6353c;
-                return fVar.f47207b.schedule(new r9.d(fVar, (Runnable) this.d, f3Var, 1), this.f6352b, (TimeUnit) this.f6354e);
+                return fVar.f47241b.schedule(new r9.d(fVar, (Runnable) this.d, f3Var, 1), this.f6352b, (TimeUnit) this.f6354e);
             default:
                 final r9.f fVar2 = (r9.f) this.f6353c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f47207b.schedule(new Callable() {
+                return fVar2.f47241b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f47206a.submit(new f2(16, callable, f3Var));
+                        return f.this.f47240a.submit(new f2(16, callable, f3Var));
                     }
                 }, this.f6352b, (TimeUnit) this.f6354e);
         }
@@ -129,7 +129,7 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.f6354e;
-                ProfileActivity profileActivity = ((f01) this.f6353c).f37499b;
+                ProfileActivity profileActivity = ((f01) this.f6353c).f37533b;
                 profileActivity.N1 = true;
                 Bundle i11 = a1.g.i("scrollToTopOnResume", true);
                 long j3 = -this.f6352b;

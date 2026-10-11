@@ -5,15 +5,15 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class uf implements TextWatcher {
-    public boolean f31418a;
-    public boolean f31419b;
-    public String f31420c;
+    public boolean f31568a;
+    public boolean f31569b;
+    public String f31570c;
     public boolean d;
-    public boolean f31421e;
-    public final ChatActivityEnterView f31422f;
+    public boolean f31571e;
+    public final ChatActivityEnterView f31572f;
 
     public uf(ChatActivityEnterView chatActivityEnterView) {
-        this.f31422f = chatActivityEnterView;
+        this.f31572f = chatActivityEnterView;
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class uf implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (!this.d && this.f31422f.F2) {
-            this.f31420c = charSequence.toString();
+        if (!this.d && this.f31572f.F2) {
+            this.f31570c = charSequence.toString();
         }
     }
 
@@ -39,7 +39,7 @@ public final class uf implements TextWatcher {
         boolean z15;
         boolean z16;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f31422f;
+            ChatActivityEnterView chatActivityEnterView = this.f31572f;
             gg ggVar = chatActivityEnterView.U0;
             if (ggVar == null) {
                 currentPage = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
@@ -70,7 +70,7 @@ public final class uf implements TextWatcher {
                 } else {
                     z14 = false;
                 }
-                this.f31421e = z14;
+                this.f31571e = z14;
                 if (!chatActivityEnterView.S && chatActivityEnterView.E0.getMeasuredWidth() > 0) {
                     chatActivityEnterView.A0(chatActivityEnterView.T, chatActivityEnterView.E0.getLineCount());
                 }
@@ -89,13 +89,13 @@ public final class uf implements TextWatcher {
                 }
                 chatActivityEnterView.t1(z16);
             } else {
-                this.f31421e = false;
+                this.f31571e = false;
             }
             if (chatActivityEnterView.S2 == 1) {
                 return;
             }
             if (chatActivityEnterView.B2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.R2 && !chatActivityEnterView.X1 && chatActivityEnterView.Z1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f31419b = true;
+                this.f31569b = true;
             }
             chatActivityEnterView.X1 = false;
             chatActivityEnterView.I(true);
@@ -114,9 +114,9 @@ public final class uf implements TextWatcher {
                 qgVar.r1(charSequence, z11, false);
             }
             if (chatActivityEnterView.S2 != 2 && i12 - i11 > 1) {
-                this.f31418a = true;
+                this.f31568a = true;
             }
-            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f23891h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
+            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f23927h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
                 chatActivityEnterView.C2 = System.currentTimeMillis();
                 qg qgVar2 = chatActivityEnterView.Z2;
                 if (qgVar2 != null) {

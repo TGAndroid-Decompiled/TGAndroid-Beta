@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public final class l implements Iterable {
-    public final j f16392a;
+    public final j f16428a;
 
     public l(k kVar, Interpolator interpolator, long j3) {
-        this.f16392a = new j(new pf.b(27, this, kVar), interpolator, j3);
+        this.f16428a = new j(new pf.b(27, this, kVar), interpolator, j3);
     }
 
     public final void i(Object obj, boolean z10) {
@@ -18,11 +18,11 @@ public final class l implements Iterable {
         } else {
             list = null;
         }
-        this.f16392a.r(list, z10);
+        this.f16428a.r(list, z10);
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f16392a.f16388b.iterator();
+        return this.f16428a.f16424b.iterator();
     }
 }

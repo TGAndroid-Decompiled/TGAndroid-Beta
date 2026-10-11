@@ -1,23 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-public final class l70 extends y90 {
-    public final p70 L;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class l70 implements RequestDelegate {
+    public final int f28223a;
+    public final n70 f28224b;
 
-    public l70(p70 p70Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.e3 e3Var, boolean z10) {
-        super(context, m2Var, e3Var, false, z10);
-        this.L = p70Var;
+    public l70(n70 n70Var, int i10) {
+        this.f28223a = i10;
+        this.f28224b = n70Var;
     }
 
     @Override
-    public final void e(int i10, SpannableStringBuilder spannableStringBuilder) {
-        org.telegram.ui.ActionBar.d6 d6Var;
-        u70 u70Var = this.L.f29637c;
-        org.telegram.ui.ActionBar.c3 c3Var = u70Var.container;
-        d6Var = ((org.telegram.ui.ActionBar.e3) u70Var).resourcesProvider;
-        sc Q = new ad(c3Var, d6Var).Q(i10, 36, spannableStringBuilder);
-        Q.f30719r = false;
-        Q.k(true);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f28223a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f(this.f28224b, tL_error, tLObject, 25));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new bs(21, this.f28224b, tL_error));
+                return;
+        }
     }
 }

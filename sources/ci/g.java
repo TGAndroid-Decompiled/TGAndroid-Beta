@@ -20,7 +20,7 @@ import org.telegram.ui.Components.b00;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.od;
 import org.telegram.ui.Components.su;
-import org.telegram.ui.Components.uw0;
+import org.telegram.ui.Components.tw0;
 import org.telegram.ui.Components.wu;
 public final class g extends av {
     public org.telegram.ui.Components.pa V;
@@ -29,8 +29,8 @@ public final class g extends av {
     public final org.telegram.ui.Components.la f5112b0;
     public final m f5113c0;
 
-    public g(m mVar, Context context, uw0 uw0Var, int i10, ai.d dVar, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.la laVar) {
-        super(context, uw0Var, null, i10, true, dVar);
+    public g(m mVar, Context context, tw0 tw0Var, int i10, ai.d dVar, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.la laVar) {
+        super(context, tw0Var, null, i10, true, dVar);
         this.f5113c0 = mVar;
         this.f5111a0 = d6Var;
         this.f5112b0 = laVar;
@@ -57,12 +57,12 @@ public final class g extends av {
         if (emojiView != null) {
             m mVar = this.f5113c0;
             if (mVar.getEditTextStyle() == 2 || mVar.getEditTextStyle() == 3) {
-                emojiView.f24725w0 = false;
-                emojiView.f24727w2 = false;
+                emojiView.f24794w0 = false;
+                emojiView.f24796w2 = false;
                 emojiView.setShouldDrawBackground(false);
                 if (mVar instanceof od) {
                     emojiView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-                    emojiView.f24660c = 3;
+                    emojiView.f24729c = 3;
                 }
                 emojiView.S();
             }

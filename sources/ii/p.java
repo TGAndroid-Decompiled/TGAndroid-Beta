@@ -8,7 +8,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bz;
-import org.telegram.ui.Components.n61;
+import org.telegram.ui.Components.m61;
 public final class p implements bz {
     public final r f12608a;
 
@@ -141,7 +141,7 @@ public final class p implements bz {
     }
 
     @Override
-    public final void o(n61 n61Var) {
+    public final void o(m61 m61Var) {
     }
 
     @Override

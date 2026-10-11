@@ -27,10 +27,10 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.db;
 import org.telegram.ui.Components.e00;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.oh0;
-import org.telegram.ui.Components.q81;
+import org.telegram.ui.Components.nh0;
+import org.telegram.ui.Components.p81;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.sm0;
 import org.telegram.ui.o60;
 import org.telegram.ui.us;
 public final class r0 extends db {
@@ -41,69 +41,69 @@ public final class r0 extends db {
     public final int X;
     public final LinearLayout Y;
     public final ai.x7[] Z;
-    public final ArrayList f53178a0;
-    public final ArrayList f53179b0;
-    public final ArrayList f53180c0;
-    public final ArrayList f53181d0;
-    public final com.google.android.gms.common.api.internal.r f53182e0;
-    public final com.google.android.gms.common.api.internal.r f53183f0;
-    public final com.google.android.gms.common.api.internal.r f53184g0;
-    public final e00 f53185h0;
-    public final k0 f53186i0;
-    public final q0 f53187j0;
-    public m0 f53188k0;
-    public final FrameLayout f53189l0;
+    public final ArrayList f53212a0;
+    public final ArrayList f53213b0;
+    public final ArrayList f53214c0;
+    public final ArrayList f53215d0;
+    public final com.google.android.gms.common.api.internal.r f53216e0;
+    public final com.google.android.gms.common.api.internal.r f53217f0;
+    public final com.google.android.gms.common.api.internal.r f53218g0;
+    public final e00 f53219h0;
+    public final k0 f53220i0;
+    public final q0 f53221j0;
+    public m0 f53222k0;
+    public final FrameLayout f53223l0;
     public final ImageView m0;
-    public final ImageView f53190n0;
-    public final l0 f53191o0;
-    public final TextView f53192p0;
-    public final View f53193q0;
-    public final ah.n f53194r0;
-    public final ah.h f53195s0;
-    public final fh.d f53196t0;
-    public final ah.c f53197u0;
-    public n0 f53198v0;
-    public final boolean f53199w0;
-    public boolean f53200x0;
-    public final RectF f53201y0;
-    public final PointF f53202z0;
+    public final ImageView f53224n0;
+    public final l0 f53225o0;
+    public final TextView f53226p0;
+    public final View f53227q0;
+    public final ah.n f53228r0;
+    public final ah.h f53229s0;
+    public final fh.d f53230t0;
+    public final ah.c f53231u0;
+    public n0 f53232v0;
+    public final boolean f53233w0;
+    public boolean f53234x0;
+    public final RectF f53235y0;
+    public final PointF f53236z0;
 
     public r0(Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10, String str, ArrayList arrayList, boolean z10) {
         super(context, null, false, false, d6Var);
         int i11;
         this.C0 = 1;
         RectF rectF = new RectF();
-        this.f53201y0 = rectF;
-        this.f53202z0 = new PointF();
+        this.f53235y0 = rectF;
+        this.f53236z0 = new PointF();
         ArrayList arrayList2 = new ArrayList(1);
         this.A0 = arrayList2;
         arrayList2.add(rectF);
         this.X = i10;
-        this.f53199w0 = z10;
-        sm0 sm0Var = this.d;
+        this.f53233w0 = z10;
+        rm0 rm0Var = this.d;
         org.telegram.ui.ActionBar.c3 c3Var = this.container;
-        Objects.requireNonNull(sm0Var);
-        this.f53194r0 = new ah.n(sm0Var, c3Var, new us(sm0Var, 0));
+        Objects.requireNonNull(rm0Var);
+        this.f53228r0 = new ah.n(rm0Var, c3Var, new us(rm0Var, 0));
         ArrayList c10 = zf.d.c(arrayList, TL_stars.starGiftAttributeBackdrop.class);
-        this.f53178a0 = c10;
+        this.f53212a0 = c10;
         com.google.android.gms.common.api.internal.r rVar = new com.google.android.gms.common.api.internal.r(c10);
-        this.f53182e0 = rVar;
+        this.f53216e0 = rVar;
         rVar.f6675b = false;
         ArrayList c11 = zf.d.c(arrayList, TL_stars.starGiftAttributePattern.class);
-        this.f53179b0 = c11;
+        this.f53213b0 = c11;
         com.google.android.gms.common.api.internal.r rVar2 = new com.google.android.gms.common.api.internal.r(c11);
-        this.f53183f0 = rVar2;
+        this.f53217f0 = rVar2;
         rVar2.f6675b = false;
-        this.f53180c0 = zf.d.c(arrayList, TL_stars.starGiftAttributeModel.class);
+        this.f53214c0 = zf.d.c(arrayList, TL_stars.starGiftAttributeModel.class);
         ArrayList arrayList3 = new ArrayList();
-        this.f53181d0 = arrayList3;
+        this.f53215d0 = arrayList3;
         if (z10) {
             int i12 = 0;
-            while (i12 < this.f53180c0.size()) {
-                TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) this.f53180c0.get(i12);
+            while (i12 < this.f53214c0.size()) {
+                TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) this.f53214c0.get(i12);
                 if (stargiftattributemodel.rarity instanceof TL_stars.TL_starGiftAttributeRarity) {
-                    this.f53181d0.add(stargiftattributemodel);
-                    this.f53180c0.remove(i12);
+                    this.f53215d0.add(stargiftattributemodel);
+                    this.f53214c0.remove(i12);
                     i12--;
                 }
                 i12++;
@@ -111,36 +111,36 @@ public final class r0 extends db {
         } else {
             arrayList3.clear();
         }
-        List.EL.sort(this.f53178a0, Comparator$CC.comparingDouble(new q81(4)));
-        List.EL.sort(this.f53179b0, Comparator$CC.comparingDouble(new q81(5)));
-        List.EL.sort(this.f53180c0, Comparator$CC.comparingDouble(new q81(6)));
-        List.EL.sort(this.f53181d0, Comparator$CC.comparingDouble(new q81(6)));
-        com.google.android.gms.common.api.internal.r rVar3 = new com.google.android.gms.common.api.internal.r(this.f53180c0);
-        this.f53184g0 = rVar3;
+        List.EL.sort(this.f53212a0, Comparator$CC.comparingDouble(new p81(4)));
+        List.EL.sort(this.f53213b0, Comparator$CC.comparingDouble(new p81(5)));
+        List.EL.sort(this.f53214c0, Comparator$CC.comparingDouble(new p81(6)));
+        List.EL.sort(this.f53215d0, Comparator$CC.comparingDouble(new p81(6)));
+        com.google.android.gms.common.api.internal.r rVar3 = new com.google.android.gms.common.api.internal.r(this.f53214c0);
+        this.f53218g0 = rVar3;
         rVar3.f6675b = false;
-        ViewParent parent = this.f25521e.getParent();
+        ViewParent parent = this.f25734e.getParent();
         if (parent instanceof ViewGroup) {
-            ((ViewGroup) parent).removeView(this.f25521e);
+            ((ViewGroup) parent).removeView(this.f25734e);
         }
         this.L = false;
         this.K = AndroidUtilities.dp(6.0f);
         this.occupyNavigationBar = true;
-        int i13 = org.telegram.ui.ActionBar.h6.f20876i5;
+        int i13 = org.telegram.ui.ActionBar.h6.f20912i5;
         int themedColor = getThemedColor(i13);
-        int i14 = org.telegram.ui.ActionBar.h6.f20857h5;
+        int i14 = org.telegram.ui.ActionBar.h6.f20893h5;
         setBackgroundColor(i0.a.d(0.1f, themedColor, getThemedColor(i14)));
         fixNavigationBar();
         fh.c cVar = new fh.c();
         cVar.a(i0.a.d(0.1f, getThemedColor(i13), getThemedColor(i14)));
         if (Build.VERSION.SDK_INT >= 31 && SharedConfig.chatBlurEnabled()) {
-            this.f53195s0 = new ah.h(false);
+            this.f53229s0 = new ah.h(false);
             fh.d dVar = new fh.d(cVar);
-            this.f53196t0 = dVar;
+            this.f53230t0 = dVar;
             dVar.v = new Runnable(this) {
-                public final r0 f52794b;
+                public final r0 f52828b;
 
                 {
-                    this.f52794b = this;
+                    this.f52828b = this;
                 }
 
                 @Override
@@ -148,8 +148,8 @@ public final class r0 extends db {
                     switch (r2) {
                         case 0:
                             if (Build.VERSION.SDK_INT >= 31) {
-                                r0 r0Var = this.f52794b;
-                                if (r0Var.f53195s0 != null) {
+                                r0 r0Var = this.f52828b;
+                                if (r0Var.f53229s0 != null) {
                                     r0Var.R(2);
                                     return;
                                 }
@@ -157,49 +157,49 @@ public final class r0 extends db {
                             }
                             return;
                         default:
-                            this.f52794b.onBackPressed();
+                            this.f52828b.onBackPressed();
                             return;
                     }
                 }
             };
             ah.c cVar2 = new ah.c(dVar);
-            this.f53197u0 = cVar2;
+            this.f53231u0 = cVar2;
             cVar2.f547i = LiteMode.isEnabled(262144);
         } else {
-            this.f53195s0 = null;
-            this.f53196t0 = null;
-            this.f53197u0 = new ah.c(cVar);
+            this.f53229s0 = null;
+            this.f53230t0 = null;
+            this.f53231u0 = new ah.c(cVar);
         }
         hh.j jVar = new hh.j(this.container);
-        ah.c cVar3 = this.f53197u0;
+        ah.c cVar3 = this.f53231u0;
         org.telegram.ui.ActionBar.c3 c3Var2 = this.container;
         cVar3.f545f = jVar;
         cVar3.f546g = c3Var2;
         e00 e00Var = new e00(3, false);
-        this.f53185h0 = e00Var;
+        this.f53219h0 = e00Var;
         e00Var.O = new ci.w1(this, 8);
         this.d.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(74.0f));
         this.d.setClipToPadding(false);
         this.d.setLayoutManager(e00Var);
         this.d.setSelectorType(9);
         this.d.setSelectorDrawableColor(0);
-        this.d.j(new oh0(this, 21));
+        this.d.j(new nh0(this, 21));
         ?? jVar2 = new s4.j();
-        this.f53186i0 = jVar2;
+        this.f53220i0 = jVar2;
         jVar2.C = false;
-        jVar2.f47788m = false;
+        jVar2.f47822m = false;
         jVar2.n(280L);
         jVar2.o(is.h);
         jVar2.D = 30L;
         this.d.setItemAnimator(jVar2);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f53189l0 = frameLayout;
+        this.f53223l0 = frameLayout;
         frameLayout.setClipChildren(false);
         l0 l0Var = new l0(this, context, d6Var, new Runnable(this) {
-            public final r0 f52794b;
+            public final r0 f52828b;
 
             {
-                this.f52794b = this;
+                this.f52828b = this;
             }
 
             @Override
@@ -207,8 +207,8 @@ public final class r0 extends db {
                 switch (r2) {
                     case 0:
                         if (Build.VERSION.SDK_INT >= 31) {
-                            r0 r0Var = this.f52794b;
-                            if (r0Var.f53195s0 != null) {
+                            r0 r0Var = this.f52828b;
+                            if (r0Var.f53229s0 != null) {
                                 r0Var.R(2);
                                 return;
                             }
@@ -216,12 +216,12 @@ public final class r0 extends db {
                         }
                         return;
                     default:
-                        this.f52794b.onBackPressed();
+                        this.f52828b.onBackPressed();
                         return;
                 }
             }
         }, new ai.e2(27), new ai.e2(27), new ai.e2(27), new ai.e2(27), new ai.e2(27), new ai.e2(27));
-        this.f53191o0 = l0Var;
+        this.f53225o0 = l0Var;
         l0Var.d(new f4.d(1, 1));
         l0Var.setPreviewingAttributes(arrayList);
         l0Var.removeView(l0Var.O);
@@ -239,7 +239,7 @@ public final class r0 extends db {
         w7.z5.a(imageView);
         frameLayout.addView(imageView, w7.x5.a(32.0f, 12.0f, 14.0f, 0.0f, 0.0f, 32, 51));
         ImageView imageView2 = new ImageView(context);
-        this.f53190n0 = imageView2;
+        this.f53224n0 = imageView2;
         imageView2.setBackground(org.telegram.ui.ActionBar.h6.a0(0, 285212671, 16, 16));
         imageView2.setImageResource(R.drawable.filled_gift_pause_24);
         imageView2.setScaleType(scaleType);
@@ -254,7 +254,7 @@ public final class r0 extends db {
         textView.setGravity(17);
         textView.setTextColor(-1);
         TextView g10 = org.telegram.ui.Cells.c1.g(frameLayout, textView, w7.x5.a(-2.0f, 16.0f, 0.0f, 16.0f, 102.0f, -1, 87), context);
-        this.f53192p0 = g10;
+        this.f53226p0 = g10;
         float f7 = 13.0f;
         g10.setTextSize(1, 13.0f);
         g10.setText(LocaleController.getString(R.string.Gift2PreviewRandomTraits));
@@ -267,7 +267,7 @@ public final class r0 extends db {
         linearLayout.setOrientation(0);
         linearLayout.setClipChildren(false);
         this.Z = new ai.x7[3];
-        this.f53187j0 = new q0(context, d6Var, new ii.q1(this, 25));
+        this.f53221j0 = new q0(context, d6Var, new ii.q1(this, 25));
         int i19 = 0;
         while (true) {
             ai.x7[] x7VarArr = this.Z;
@@ -328,25 +328,25 @@ public final class r0 extends db {
                 i15 = -1;
                 i18 = -1879048193;
             } else {
-                this.f53189l0.addView(this.Y, w7.x5.a(-2.0f, 16.0f, 0.0f, 16.0f, 18.0f, -1, 87));
-                this.containerView.addView(this.f53189l0, w7.x5.e(-1, 315, 55));
-                int d = i0.a.d(0.1f, getThemedColor(org.telegram.ui.ActionBar.h6.f20876i5), getThemedColor(org.telegram.ui.ActionBar.h6.f20857h5));
+                this.f53223l0.addView(this.Y, w7.x5.a(-2.0f, 16.0f, 0.0f, 16.0f, 18.0f, -1, 87));
+                this.containerView.addView(this.f53223l0, w7.x5.e(-1, 315, 55));
+                int d = i0.a.d(0.1f, getThemedColor(org.telegram.ui.ActionBar.h6.f20912i5), getThemedColor(org.telegram.ui.ActionBar.h6.f20893h5));
                 View view = new View(context);
-                this.f53193q0 = view;
+                this.f53227q0 = view;
                 view.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{i0.a.k(d, 160), d & 16777215}));
                 view.setAlpha(0.0f);
                 FrameLayout.LayoutParams e7 = w7.x5.e(-1, 0, 48);
                 e7.height = AndroidUtilities.statusBarHeight;
                 this.containerView.addView(view, e7);
-                this.f53187j0.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-                ch.d c12 = this.f53197u0.c(this.f53187j0, null, false);
+                this.f53221j0.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+                ch.d c12 = this.f53231u0.c(this.f53221j0, null, false);
                 c12.p(AndroidUtilities.dp(4.0f));
                 c12.q(AndroidUtilities.dp(28.0f));
-                c12.o(new dh.b(org.telegram.ui.ActionBar.h6.f20786d6, d6Var));
-                this.f53187j0.setBackground(c12);
-                this.containerView.addView(this.f53187j0, w7.x5.a(64.0f, 0.0f, 0.0f, 0.0f, 5.0f, 268, 81));
-                this.f53198v0 = new n0((TL_stars.starGiftAttributeBackdrop) zf.d.d(arrayList, TL_stars.starGiftAttributeBackdrop.class), (TL_stars.starGiftAttributePattern) zf.d.d(arrayList, TL_stars.starGiftAttributePattern.class), (TL_stars.starGiftAttributeModel) zf.d.d(arrayList, TL_stars.starGiftAttributeModel.class));
-                this.f53188k0.N(false);
+                c12.o(new dh.b(org.telegram.ui.ActionBar.h6.f20822d6, d6Var));
+                this.f53221j0.setBackground(c12);
+                this.containerView.addView(this.f53221j0, w7.x5.a(64.0f, 0.0f, 0.0f, 0.0f, 5.0f, 268, 81));
+                this.f53232v0 = new n0((TL_stars.starGiftAttributeBackdrop) zf.d.d(arrayList, TL_stars.starGiftAttributeBackdrop.class), (TL_stars.starGiftAttributePattern) zf.d.d(arrayList, TL_stars.starGiftAttributePattern.class), (TL_stars.starGiftAttributeModel) zf.d.d(arrayList, TL_stars.starGiftAttributeModel.class));
+                this.f53222k0.N(false);
                 U(false);
                 return;
             }
@@ -381,14 +381,14 @@ public final class r0 extends db {
     public final void R(int i10) {
         ah.h hVar;
         int dp;
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.f53195s0) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.f53229s0) != null) {
             if (w7.g0.a(i10, 2)) {
                 org.telegram.ui.ActionBar.c3 c3Var = this.container;
-                q0 q0Var = this.f53187j0;
-                PointF pointF = this.f53202z0;
+                q0 q0Var = this.f53221j0;
+                PointF pointF = this.f53236z0;
                 hh.j.b(q0Var, c3Var, pointF);
                 float f7 = pointF.x;
-                RectF rectF = this.f53201y0;
+                RectF rectF = this.f53235y0;
                 rectF.left = f7;
                 rectF.top = pointF.y;
                 rectF.right = f7 + q0Var.getMeasuredWidth();
@@ -407,25 +407,25 @@ public final class r0 extends db {
                 }
             }
             if (hVar.f582j != 0) {
-                hVar.e(this.f53194r0, this.container.getWidth(), this.container.getHeight());
+                hVar.e(this.f53228r0, this.container.getWidth(), this.container.getHeight());
             }
         }
     }
 
     public final boolean S(n0 n0Var) {
         if (this.C0 != 1) {
-            int i10 = this.f53187j0.f53143r;
-            n0 n0Var2 = this.f53198v0;
+            int i10 = this.f53221j0.f53177r;
+            n0 n0Var2 = this.f53232v0;
             if (n0Var2 != null) {
                 if (i10 == 1) {
-                    if (n0Var.f52981a != n0Var2.f52981a) {
+                    if (n0Var.f53015a != n0Var2.f53015a) {
                         return false;
                     }
                 } else if (i10 == 2) {
-                    if (n0Var.f52982b != n0Var2.f52982b) {
+                    if (n0Var.f53016b != n0Var2.f53016b) {
                         return false;
                     }
-                } else if (i10 != 0 || n0Var.f52983c != n0Var2.f52983c) {
+                } else if (i10 != 0 || n0Var.f53017c != n0Var2.f53017c) {
                     return false;
                 }
                 return true;
@@ -447,18 +447,18 @@ public final class r0 extends db {
         } else {
             i11 = R.drawable.filled_gift_pause_24;
         }
-        this.f53190n0.setImageResource(i11);
+        this.f53224n0.setImageResource(i11);
         if (i10 == 2) {
             i12 = R.string.Gift2PreviewSelectedTraits;
         } else {
             i12 = R.string.Gift2PreviewRandomTraits;
         }
-        this.f53192p0.setText(LocaleController.getString(i12));
+        this.f53226p0.setText(LocaleController.getString(i12));
         V();
     }
 
     public final void U(boolean z10) {
-        l0 l0Var = this.f53191o0;
+        l0 l0Var = this.f53225o0;
         if (l0Var.getUpgradeImageViewAttribute() != null && l0Var.getUpgradeBackdropAttribute() != null && l0Var.getUpgradePatternAttribute() != null) {
             ai.x7[] x7VarArr = this.Z;
             ((org.telegram.ui.Components.r6) x7VarArr[0].f1912c).c(l0Var.getUpgradeImageViewAttribute().name, z10, true);
@@ -473,21 +473,21 @@ public final class r0 extends db {
     public final void V() {
         p0 p0Var;
         n0 n0Var;
-        sm0 sm0Var = this.d;
-        int childCount = sm0Var.getChildCount();
+        rm0 rm0Var = this.d;
+        int childCount = rm0Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = sm0Var.getChildAt(i10);
+            View childAt = rm0Var.getChildAt(i10);
             if ((childAt instanceof p0) && (n0Var = (p0Var = (p0) childAt).v) != null) {
                 boolean S = S(n0Var);
-                p0Var.f53069c.f(S, true);
-                p0Var.f53073r.a(S, true);
+                p0Var.f53103c.f(S, true);
+                p0Var.f53107r.a(S, true);
             }
         }
     }
 
     @Override
     public final boolean isTouchOutside(float f7, float f10) {
-        FrameLayout frameLayout = this.f53189l0;
+        FrameLayout frameLayout = this.f53223l0;
         if (frameLayout.getVisibility() == 0 && frameLayout.getY() > f10) {
             return true;
         }
@@ -502,9 +502,9 @@ public final class r0 extends db {
         super.mainContainerDispatchDraw(canvas);
         int width = this.container.getWidth();
         int height = this.container.getHeight();
-        if (Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (hVar = this.f53195s0) != null && (dVar = this.f53196t0) != null && !dVar.f9938n && dVar.f(width, height)) {
+        if (Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && (hVar = this.f53229s0) != null && (dVar = this.f53230t0) != null && !dVar.f9938n && dVar.f(width, height)) {
             RecordingCanvas a2 = dVar.a(width, height);
-            a2.drawColor(getThemedColor(org.telegram.ui.ActionBar.h6.f20876i5));
+            a2.drawColor(getThemedColor(org.telegram.ui.ActionBar.h6.f20912i5));
             if (LiteMode.isEnabled(262144)) {
                 i10 = -2;
             } else {
@@ -522,7 +522,7 @@ public final class r0 extends db {
         if (this.B0 != systemBottomInset) {
             this.B0 = systemBottomInset;
             this.d.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(74.0f) + systemBottomInset);
-            q0 q0Var = this.f53187j0;
+            q0 q0Var = this.f53221j0;
             ((ViewGroup.MarginLayoutParams) q0Var.getLayoutParams()).bottomMargin = AndroidUtilities.dp(5.0f) + this.B0;
             q0Var.requestLayout();
         }
@@ -535,15 +535,15 @@ public final class r0 extends db {
     }
 
     @Override
-    public final rm0 x(sm0 sm0Var) {
+    public final qm0 x(rm0 rm0Var) {
         m0 m0Var = new m0(this, this.d, getContext(), this.X, new hi.a(this, 24), this.resourcesProvider);
-        this.f53188k0 = m0Var;
-        m0Var.f25890r = false;
+        this.f53222k0 = m0Var;
+        m0Var.f25649r = false;
         return m0Var;
     }
 
     @Override
-    public final sm0 y(Context context) {
+    public final rm0 y(Context context) {
         return new o60(this, context, this.resourcesProvider, 3);
     }
 }

@@ -50,19 +50,19 @@ public final class rf1 extends s4.j {
     @Override
     public final void z(s4.d1 d1Var) {
         eg1 eg1Var = this.H;
-        View view = eg1Var.f37316b1;
-        if (view == d1Var.f47748a) {
+        View view = eg1Var.f37350b1;
+        if (view == d1Var.f47782a) {
             view.setTranslationX(0.0f);
             if1 if1Var = eg1Var.O;
             if (if1Var != null) {
                 if1Var.F.clear();
             }
-            View view2 = eg1Var.f37316b1;
+            View view2 = eg1Var.f37350b1;
             if (view2 instanceof bg1) {
                 bg1 bg1Var = (bg1) view2;
-                bg1Var.setTopicIcon(bg1Var.f36376c5);
+                bg1Var.setTopicIcon(bg1Var.f36410c5);
             }
-            eg1Var.f37316b1 = null;
+            eg1Var.f37350b1 = null;
         }
     }
 }

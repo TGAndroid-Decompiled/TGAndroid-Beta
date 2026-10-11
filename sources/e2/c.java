@@ -43,22 +43,22 @@ public final class c {
                     this.f8529f = new Object();
                 }
                 c3 c3Var = (c3) this.f8529f;
-                c3Var.f15667c = null;
-                c3Var.f15666b = false;
+                c3Var.f15703c = null;
+                c3Var.f15702b = false;
                 c3Var.d = null;
-                c3Var.f15665a = false;
-                WeakHashMap weakHashMap = i0.f46856a;
+                c3Var.f15701a = false;
+                WeakHashMap weakHashMap = i0.f46890a;
                 ColorStateList c10 = r0.a0.c(view);
                 if (c10 != null) {
-                    c3Var.f15666b = true;
-                    c3Var.f15667c = c10;
+                    c3Var.f15702b = true;
+                    c3Var.f15703c = c10;
                 }
                 PorterDuff.Mode d = r0.a0.d(view);
                 if (d != null) {
-                    c3Var.f15665a = true;
+                    c3Var.f15701a = true;
                     c3Var.d = d;
                 }
-                if (c3Var.f15666b || c3Var.f15665a) {
+                if (c3Var.f15702b || c3Var.f15701a) {
                     m.q.d(background, c3Var, view.getDrawableState());
                     return;
                 }
@@ -103,7 +103,7 @@ public final class c {
     public ColorStateList d() {
         c3 c3Var = (c3) this.f8528e;
         if (c3Var != null) {
-            return (ColorStateList) c3Var.f15667c;
+            return (ColorStateList) c3Var.f15703c;
         }
         return null;
     }
@@ -122,9 +122,9 @@ public final class c {
         Context context = view.getContext();
         int[] iArr = f.a.f9547z;
         la.h R = la.h.R(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) R.f15466c;
+        TypedArray typedArray = (TypedArray) R.f15502c;
         View view2 = (View) this.f8526b;
-        i0.i(view2, view2.getContext(), iArr, attributeSet, (TypedArray) R.f15466c, i10);
+        i0.i(view2, view2.getContext(), iArr, attributeSet, (TypedArray) R.f15502c, i10);
         try {
             if (typedArray.hasValue(0)) {
                 this.f8525a = typedArray.getResourceId(0, -1);
@@ -132,7 +132,7 @@ public final class c {
                 Context context2 = view.getContext();
                 int i12 = this.f8525a;
                 synchronized (qVar) {
-                    i11 = qVar.f15816a.i(context2, i12);
+                    i11 = qVar.f15852a.i(context2, i12);
                 }
                 if (i11 != null) {
                     j(i11);
@@ -164,7 +164,7 @@ public final class c {
         if (qVar != null) {
             Context context = ((View) this.f8526b).getContext();
             synchronized (qVar) {
-                colorStateList = qVar.f15816a.i(context, i10);
+                colorStateList = qVar.f15852a.i(context, i10);
             }
         } else {
             colorStateList = null;
@@ -187,8 +187,8 @@ public final class c {
                 this.d = new Object();
             }
             c3 c3Var = (c3) this.d;
-            c3Var.f15667c = colorStateList;
-            c3Var.f15666b = true;
+            c3Var.f15703c = colorStateList;
+            c3Var.f15702b = true;
         } else {
             this.d = null;
         }
@@ -212,8 +212,8 @@ public final class c {
             this.f8528e = new Object();
         }
         c3 c3Var = (c3) this.f8528e;
-        c3Var.f15667c = colorStateList;
-        c3Var.f15666b = true;
+        c3Var.f15703c = colorStateList;
+        c3Var.f15702b = true;
         b();
     }
 
@@ -223,7 +223,7 @@ public final class c {
         }
         c3 c3Var = (c3) this.f8528e;
         c3Var.d = mode;
-        c3Var.f15665a = true;
+        c3Var.f15701a = true;
         b();
     }
 

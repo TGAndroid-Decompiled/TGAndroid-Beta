@@ -18,7 +18,7 @@ import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.ec;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.PhotoViewer;
@@ -98,14 +98,14 @@ public final class r0 implements Runnable {
                 TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) obj2;
                 TLRPC.User user2 = (TLRPC.User) tLObject;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) obj;
-                int i12 = lVar.f50524k;
-                ArrayList arrayList3 = lVar.f50519e;
-                m2 m2Var2 = lVar.f50521g;
+                int i12 = lVar.f50558k;
+                ArrayList arrayList3 = lVar.f50553e;
+                m2 m2Var2 = lVar.f50555g;
                 if (m2Var2 != null && m2Var2.getParentActivity() != null) {
                     if (tL_error == null) {
                         TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject2;
                         if (!tL_updates.chats.isEmpty()) {
-                            MessagesController.getInstance(i12).loadFullChat(tL_updates.chats.get(0).f20032id, 0, true);
+                            MessagesController.getInstance(i12).loadFullChat(tL_updates.chats.get(0).f20068id, 0, true);
                         }
                         int i13 = 0;
                         while (true) {
@@ -117,11 +117,11 @@ public final class r0 implements Runnable {
                                 }
                             }
                         }
-                        wh.g gVar = lVar.f50520f;
-                        wh.l lVar2 = gVar.f50498c;
+                        wh.g gVar = lVar.f50554f;
+                        wh.l lVar2 = gVar.f50532c;
                         int i14 = 0;
                         while (true) {
-                            arrayList = lVar2.f50518c;
+                            arrayList = lVar2.f50552c;
                             if (i14 < arrayList.size()) {
                                 user = user2;
                                 if (((TLRPC.TL_chatInviteImporter) arrayList.get(i14)).user_id != tL_chatInviteImporter.user_id) {
@@ -135,29 +135,29 @@ public final class r0 implements Runnable {
                         }
                         if (i14 >= 0) {
                             arrayList.remove(i14);
-                            gVar.u((!gVar.f50498c.B ? 1 : 0) + i14);
+                            gVar.u((!gVar.f50532c.B ? 1 : 0) + i14);
                             if (arrayList.isEmpty()) {
                                 gVar.u(1);
                             }
                         }
-                        lVar.f(lVar.f50533t, false, true);
+                        lVar.f(lVar.f50567t, false, true);
                         if (z10) {
                             ec ecVar = new ec(m2Var2.getParentActivity(), m2Var2.getResourceProvider());
                             int dp = AndroidUtilities.dp(15.0f);
-                            y9 y9Var = ecVar.f25968a;
+                            y9 y9Var = ecVar.f26046a;
                             y9Var.setRoundRadius(dp);
                             TLRPC.User user3 = user;
                             y9Var.e(user3, new j9(0, user3));
                             String firstName = UserObject.getFirstName(user3);
-                            if (lVar.f50516a) {
+                            if (lVar.f50550a) {
                                 formatString = LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, firstName);
                             } else {
                                 formatString = LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, firstName);
                             }
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
                             int indexOf = formatString.indexOf(firstName);
-                            spannableStringBuilder.setSpan(new o61(AndroidUtilities.bold()), indexOf, firstName.length() + indexOf, 18);
-                            ecVar.f25969b.setText(spannableStringBuilder);
+                            spannableStringBuilder.setSpan(new n61(AndroidUtilities.bold()), indexOf, firstName.length() + indexOf, 18);
+                            ecVar.f26047b.setText(spannableStringBuilder);
                             if (arrayList3.isEmpty()) {
                                 sc.g(m2Var2, ecVar, 2750).j();
                             } else {
@@ -165,7 +165,7 @@ public final class r0 implements Runnable {
                             }
                         }
                         org.telegram.ui.ActionBar.y o9 = m2Var2.getActionBar().o();
-                        if (TextUtils.isEmpty(lVar.f50533t) && lVar.f50525l) {
+                        if (TextUtils.isEmpty(lVar.f50567t) && lVar.f50559l) {
                             org.telegram.ui.ActionBar.u0 k10 = o9.k(0);
                             if (arrayList3.isEmpty()) {
                                 i10 = 8;

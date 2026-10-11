@@ -18,9 +18,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.s2;
 import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.zn;
-public final class n1 extends rm0 implements NotificationCenter.NotificationCenterDelegate {
+public final class n1 extends qm0 implements NotificationCenter.NotificationCenterDelegate {
     public final Context f10738c;
     public final zn f10740f;
     public int h;
@@ -45,7 +45,7 @@ public final class n1 extends rm0 implements NotificationCenter.NotificationCent
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47752f;
+        int i10 = d1Var.f47786f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -135,16 +135,16 @@ public final class n1 extends rm0 implements NotificationCenter.NotificationCent
         boolean z10;
         int i11;
         int i12;
-        int i13 = d1Var.f47752f;
-        View view = d1Var.f47748a;
+        int i13 = d1Var.f47786f;
+        View view = d1Var.f47782a;
         if (i13 == 0) {
             s2 s2Var = (s2) view;
-            s2Var.f22849s2 = true;
+            s2Var.f22885s2 = true;
             MessageObject messageObject = (MessageObject) E(i10);
             long dialogId = messageObject.getDialogId();
             int i14 = messageObject.messageOwner.date;
             if (this.f10744w) {
-                s2Var.f22841r0 = true;
+                s2Var.f22877r0 = true;
                 long savedDialogId = messageObject.getSavedDialogId();
                 TLRPC.Message message = messageObject.messageOwner;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;

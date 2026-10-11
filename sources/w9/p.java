@@ -11,30 +11,30 @@ import java.util.Locale;
 import y9.o0;
 import y9.p0;
 public final class p {
-    public static final HashMap f50362f;
-    public static final String f50363g;
-    public final Context f50364a;
-    public final u f50365b;
-    public final a f50366c;
+    public static final HashMap f50396f;
+    public static final String f50397g;
+    public final Context f50398a;
+    public final u f50399b;
+    public final a f50400c;
     public final n4.x d;
-    public final da.c f50367e;
+    public final da.c f50401e;
 
     static {
         HashMap hashMap = new HashMap();
-        f50362f = hashMap;
+        f50396f = hashMap;
         e2.o(5, hashMap, "armeabi", 6, "armeabi-v7a");
         e2.o(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f50363g = "Crashlytics Android SDK/18.6.0";
+        f50397g = "Crashlytics Android SDK/18.6.0";
     }
 
     public p(Context context, u uVar, a aVar, n4.x xVar, da.c cVar) {
-        this.f50364a = context;
-        this.f50365b = uVar;
-        this.f50366c = aVar;
+        this.f50398a = context;
+        this.f50399b = uVar;
+        this.f50400c = aVar;
         this.d = xVar;
-        this.f50367e = cVar;
+        this.f50401e = cVar;
     }
 
     public static p0 c(com.google.firebase.messaging.s sVar, int i10) {
@@ -96,10 +96,10 @@ public final class p {
     }
 
     public final List a() {
-        a aVar = this.f50366c;
-        String str = aVar.f50302e;
+        a aVar = this.f50400c;
+        String str = aVar.f50336e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f50300b));
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f50334b));
         }
         throw new NullPointerException("Null name");
     }

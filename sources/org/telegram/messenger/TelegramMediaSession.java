@@ -270,7 +270,7 @@ public class TelegramMediaSession {
                     TLRPC.User user = arrayList4.get(i12);
                     i12++;
                     TLRPC.User user2 = user;
-                    iVar.k(user2, user2.f20179id);
+                    iVar.k(user2, user2.f20215id);
                 }
             }
             if (!arrayList3.isEmpty()) {
@@ -281,7 +281,7 @@ public class TelegramMediaSession {
                     TLRPC.Chat chat = arrayList5.get(i11);
                     i11++;
                     TLRPC.Chat chat2 = chat;
-                    iVar2.k(chat2, chat2.f20032id);
+                    iVar2.k(chat2, chat2.f20068id);
                 }
             }
         } catch (Exception e7) {
@@ -322,7 +322,7 @@ public class TelegramMediaSession {
                     TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(i10).clientUserId);
                     byteBufferValue.reuse();
                     if (MessageObject.isMusicMessage(TLdeserialize)) {
-                        TLdeserialize.f20053id = queryFinalized.intValue(1);
+                        TLdeserialize.f20089id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j3;
                         i11 = i10;
                         try {
@@ -465,7 +465,7 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f20036id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f20072id), Integer.valueOf(i10));
             }
         }
         Collections.sort(arrayList, new qk(hashMap, 0));

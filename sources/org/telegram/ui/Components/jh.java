@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.text.TextUtils;
 public final class jh implements Runnable {
-    public final int f27685a;
-    public final yi f27686b;
+    public final int f27737a;
+    public final yi f27738b;
 
     public jh(yi yiVar, int i10) {
-        this.f27685a = i10;
-        this.f27686b = yiVar;
+        this.f27737a = i10;
+        this.f27738b = yiVar;
     }
 
     @Override
@@ -16,10 +16,10 @@ public final class jh implements Runnable {
         boolean z10;
         long j3;
         boolean J1;
-        switch (this.f27685a) {
+        switch (this.f27737a) {
             case 0:
-                yi yiVar = this.f27686b;
-                if (yiVar.f33205c0) {
+                yi yiVar = this.f27738b;
+                if (yiVar.f33278c0) {
                     avVar = yiVar.S0;
                 } else {
                     avVar = yiVar.H0;
@@ -32,11 +32,11 @@ public final class jh implements Runnable {
                 yiVar.Q1(z10);
                 return;
             case 1:
-                yi.v(this.f27686b);
+                yi.v(this.f27738b);
                 return;
             case 2:
-                yi yiVar2 = this.f27686b;
-                pf pfVar = yiVar2.f33222h0;
+                yi yiVar2 = this.f27738b;
+                pf pfVar = yiVar2.f33295h0;
                 if (pfVar != null) {
                     j3 = pfVar.k();
                 } else {
@@ -47,7 +47,7 @@ public final class jh implements Runnable {
                 yiVar2.Q0 = j10;
                 iiVar.setEffect(j10);
                 qi qiVar = yiVar2.B0;
-                if (qiVar != yiVar2.f33228j0 && qiVar != yiVar2.f33248q0) {
+                if (qiVar != yiVar2.f33301j0 && qiVar != yiVar2.f33321q0) {
                     if (!qiVar.K(0, false, 0, yiVar2.u1(), j10)) {
                         yiVar2.dismiss();
                     }
@@ -55,18 +55,18 @@ public final class jh implements Runnable {
                 } else {
                     J1 = yiVar2.J1(0, false, 0, yiVar2.u1(), j10);
                 }
-                pf pfVar2 = yiVar2.f33222h0;
+                pf pfVar2 = yiVar2.f33295h0;
                 if (pfVar2 != null) {
                     pfVar2.h(!J1);
-                    yiVar2.f33222h0 = null;
+                    yiVar2.f33295h0 = null;
                     return;
                 }
                 return;
             case 3:
-                this.f27686b.I1();
+                this.f27738b.I1();
                 return;
             default:
-                yi.z(this.f27686b);
+                yi.z(this.f27738b);
                 return;
         }
     }

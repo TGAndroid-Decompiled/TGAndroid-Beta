@@ -8,9 +8,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ai;
 public final class n5 extends FrameLayout {
-    public ImageView f22513a;
-    public ImageView f22514b;
-    public TextView f22515c;
+    public ImageView f22549a;
+    public ImageView f22550b;
+    public TextView f22551c;
     public int d;
 
     @Override
@@ -23,9 +23,9 @@ public final class n5 extends FrameLayout {
     }
 
     public void setType(int i10) {
-        TextView textView = this.f22515c;
-        ImageView imageView = this.f22514b;
-        ImageView imageView2 = this.f22513a;
+        TextView textView = this.f22551c;
+        ImageView imageView = this.f22550b;
+        ImageView imageView2 = this.f22549a;
         if (i10 == 0) {
             imageView2.setImageResource(R.drawable.permissions_camera1);
             imageView.setImageResource(R.drawable.permissions_camera2);

@@ -27,9 +27,9 @@ public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
         n2Var.K = (int) (n2Var.m() * n2Var.M);
         AndroidUtilities.runOnUIThread(new f(this, 3));
         o1.k kVar = n2Var.P;
-        kVar.f16978b = n2Var.N;
-        kVar.f16979c = true;
-        o1.l lVar = kVar.f16988u;
+        kVar.f17014b = n2Var.N;
+        kVar.f17015c = true;
+        o1.l lVar = kVar.f17024u;
         float focusX = scaleGestureDetector.getFocusX();
         int i10 = AndroidUtilities.displaySize.x;
         if (focusX >= i10 / 2.0f) {
@@ -37,17 +37,17 @@ public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
         } else {
             dp = AndroidUtilities.dp(16.0f);
         }
-        lVar.f16995i = dp;
+        lVar.f17031i = dp;
         o1.k kVar2 = n2Var.P;
-        if (!kVar2.f16981f) {
+        if (!kVar2.f17017f) {
             kVar2.h();
         }
         o1.k kVar3 = n2Var.Q;
-        kVar3.f16978b = n2Var.O;
-        kVar3.f16979c = true;
-        kVar3.f16988u.f16995i = w7.o.a(scaleGestureDetector.getFocusY() - (n2Var.K / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
+        kVar3.f17014b = n2Var.O;
+        kVar3.f17015c = true;
+        kVar3.f17024u.f17031i = w7.o.a(scaleGestureDetector.getFocusY() - (n2Var.K / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
         o1.k kVar4 = n2Var.Q;
-        if (!kVar4.f16981f) {
+        if (!kVar4.f17017f) {
             kVar4.h();
         }
         return true;
@@ -69,20 +69,20 @@ public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
     @Override
     public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
         n2 n2Var = n2.Z;
-        if (!n2Var.P.f16981f && !n2Var.Q.f16981f) {
+        if (!n2Var.P.f17017f && !n2Var.Q.f17017f) {
             a();
             return;
         }
         ArrayList arrayList = new ArrayList();
         g2 g2Var = new g2(this, arrayList, 0);
         o1.k kVar = n2Var.P;
-        if (!kVar.f16981f) {
+        if (!kVar.f17017f) {
             arrayList.add(kVar);
         } else {
             kVar.a(g2Var);
         }
         o1.k kVar2 = n2Var.Q;
-        if (!kVar2.f16981f) {
+        if (!kVar2.f17017f) {
             arrayList.add(kVar2);
         } else {
             kVar2.a(g2Var);

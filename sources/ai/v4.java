@@ -4,8 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.ll0;
-public final class v4 implements ll0 {
+import org.telegram.ui.Components.kl0;
+public final class v4 implements kl0 {
     public final f6 f1824a;
 
     public v4(f6 f6Var) {

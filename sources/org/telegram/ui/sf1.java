@@ -6,13 +6,13 @@ import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class sf1 extends View {
-    public final HashMap f41730a;
-    public final tf1 f41731b;
+    public final HashMap f41764a;
+    public final tf1 f41765b;
 
     public sf1(tf1 tf1Var, Activity activity) {
         super(activity);
-        this.f41731b = tf1Var;
-        this.f41730a = new HashMap();
+        this.f41765b = tf1Var;
+        this.f41764a = new HashMap();
     }
 
     @Override
@@ -24,16 +24,16 @@ public final class sf1 extends View {
         int dp;
         boolean z10;
         int i15;
-        tf1 tf1Var = this.f41731b;
+        tf1 tf1Var = this.f41765b;
         eg1 eg1Var = tf1Var.d;
         int size = View.MeasureSpec.getSize(i10);
         int dp2 = AndroidUtilities.dp(64.0f);
         int i16 = 0;
         int i17 = 0;
         for (int i18 = 0; i18 < tf1Var.F().size(); i18++) {
-            if (tf1Var.F().get(i18) != null && ((vf1) tf1Var.F().get(i18)).f43006c != null) {
-                String str = ((vf1) tf1Var.F().get(i18)).f43006c.title;
-                HashMap hashMap = this.f41730a;
+            if (tf1Var.F().get(i18) != null && ((vf1) tf1Var.F().get(i18)).f43040c != null) {
+                String str = ((vf1) tf1Var.F().get(i18)).f43040c.title;
+                HashMap hashMap = this.f41764a;
                 Boolean bool = (Boolean) hashMap.get(str);
                 if (bool == null) {
                     int i19 = 50;
@@ -72,10 +72,10 @@ public final class sf1 extends View {
                     i13 = 0;
                 }
                 int dp4 = AndroidUtilities.dp(i13 + 64);
-                if (((vf1) tf1Var.F().get(i18)).f43006c.f20084id == 1) {
+                if (((vf1) tf1Var.F().get(i18)).f43040c.f20120id == 1) {
                     dp2 = dp4;
                 }
-                if (((vf1) tf1Var.F().get(i18)).f43006c.hidden) {
+                if (((vf1) tf1Var.F().get(i18)).f43040c.hidden) {
                     i16++;
                 }
                 i17 += dp4;

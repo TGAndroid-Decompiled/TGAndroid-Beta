@@ -15,8 +15,8 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q91;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.p91;
 import org.telegram.ui.Wallet.e4;
 import yf.p;
 public final class a extends View {
@@ -31,11 +31,11 @@ public final class a extends View {
         this.f10894c = new me.b(this, is.h, 380L);
         this.f10893b = new Paint(1);
         this.d = d6Var;
-        p61 p61Var = new p61(true);
-        this.f10895e = p61Var;
-        p61Var.setCallback(this);
-        p61Var.b(-1);
-        p61Var.f29632i = true;
+        o61 o61Var = new o61(true);
+        this.f10895e = o61Var;
+        o61Var.setCallback(this);
+        o61Var.b(-1);
+        o61Var.f29402i = true;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class a extends View {
         switch (this.f10892a) {
             case 1:
                 super.onAttachedToWindow();
-                ((p61) this.f10895e).d();
+                ((o61) this.f10895e).d();
                 return;
             case 2:
             default:
@@ -62,7 +62,7 @@ public final class a extends View {
         switch (this.f10892a) {
             case 1:
                 super.onDetachedFromWindow();
-                ((p61) this.f10895e).e();
+                ((o61) this.f10895e).e();
                 return;
             case 2:
             default:
@@ -100,10 +100,10 @@ public final class a extends View {
                 Paint paint = this.f10893b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, AndroidUtilities.dp(19.0f), paint);
-                float f7 = ((me.b) this.f10894c).f16365e;
+                float f7 = ((me.b) this.f10894c).f16401e;
                 float f10 = 1.0f - f7;
                 if (f10 > 0.0f) {
-                    p.b(canvas, (p61) this.f10895e, f10 * 1.35f);
+                    p.b(canvas, (o61) this.f10895e, f10 * 1.35f);
                     invalidate();
                 }
                 if (f7 > 0.0f) {
@@ -116,12 +116,12 @@ public final class a extends View {
             case 2:
                 e4 e4Var = (e4) this.f10895e;
                 e4Var.getClass();
-                int themedColor = e4Var.getThemedColor(h6.f20786d6);
+                int themedColor = e4Var.getThemedColor(h6.f20822d6);
                 Paint paint2 = this.f10893b;
                 paint2.setColor(themedColor);
-                e4Var.f34840b0.getLocationInWindow((int[]) this.f10894c);
+                e4Var.f34874b0.getLocationInWindow((int[]) this.f10894c);
                 getLocationInWindow((int[]) this.d);
-                for (View view : ((q91) e4Var.f34840b0).getViewPages()) {
+                for (View view : ((p91) e4Var.f34874b0).getViewPages()) {
                     if (view != null && view.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view.getLeft() + (iArr[0] - iArr2[0]), view.getTop() + (iArr[1] - iArr2[1]));
@@ -166,7 +166,7 @@ public final class a extends View {
         switch (this.f10892a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
-                p.d((p61) this.f10895e, i10 / 2.0f, i11 / 2.0f, 17);
+                p.d((o61) this.f10895e, i10 / 2.0f, i11 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -178,7 +178,7 @@ public final class a extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f10892a) {
             case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((p61) this.f10895e) || ((me.b) this.f10894c).f16366f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((o61) this.f10895e) || ((me.b) this.f10894c).f16402f)) {
                     return false;
                 }
                 return true;
@@ -197,7 +197,7 @@ public final class a extends View {
         this.d = paint3;
         this.f10895e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(h6.w0(h6.f20786d6, d6Var));
+        paint.setColor(h6.w0(h6.f20822d6, d6Var));
         paint3.setColor(h6.w0(h6.wj, d6Var));
     }
 

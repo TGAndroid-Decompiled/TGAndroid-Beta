@@ -12,8 +12,8 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.q71;
 import org.telegram.ui.Components.r71;
-import org.telegram.ui.Components.s71;
 import org.telegram.ui.IUpdateLayout;
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
@@ -175,7 +175,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i10) {
         try {
-            new r71(context, betaUpdate).show();
+            new q71(context, betaUpdate).show();
             return true;
         } catch (Exception e7) {
             FileLog.e(e7);
@@ -228,7 +228,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (!isCustomUpdate()) {
             return null;
         }
-        return new s71(activity, viewGroup);
+        return new r71(activity, viewGroup);
     }
 
     @Override

@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 public final class z1 extends i {
-    public final int f46727n;
-    public RectF f46728r;
+    public final int f46761n;
+    public RectF f46762r;
 
     public z1(j jVar, Context context, int i10) {
         super(jVar, context);
-        this.f46727n = i10;
+        this.f46761n = i10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class z1 extends i {
         float measuredWidth;
         float measuredWidth2;
         float measuredWidth3;
-        switch (this.f46727n) {
+        switch (this.f46761n) {
             case 0:
                 float dp = AndroidUtilities.dp(19.5f);
                 float dp2 = AndroidUtilities.dp(1.0f) + dp;
@@ -70,9 +70,9 @@ public final class z1 extends i {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f46727n) {
+        switch (this.f46761n) {
             case 0:
-                RectF rectF = this.f46728r;
+                RectF rectF = this.f46762r;
                 super.onDraw(canvas);
                 int saveCount = canvas.getSaveCount();
                 float showAlpha = getShowAlpha();
@@ -85,13 +85,13 @@ public final class z1 extends i {
                     float measuredWidth = (getMeasuredWidth() / 2) - dp;
                     float f7 = (2.0f * measuredWidth) + dp;
                     rectF.set(dp, dp, f7, f7);
-                    Paint paint = this.f46347a;
+                    Paint paint = this.f46381a;
                     canvas.drawArc(rectF, 0.0f, 180.0f, false, paint);
                     canvas.drawArc(rectF, 180.0f, 180.0f, false, paint);
                     float f10 = measuredWidth + dp;
-                    Paint paint2 = this.f46349c;
+                    Paint paint2 = this.f46383c;
                     canvas.drawCircle(dp, f10, dpf2, paint2);
-                    Paint paint3 = this.f46348b;
+                    Paint paint3 = this.f46382b;
                     canvas.drawCircle(dp, f10, dpf2 - AndroidUtilities.dp(1.0f), paint3);
                     canvas.drawCircle(f7, f10, dpf2, paint2);
                     canvas.drawCircle(f7, f10, dpf2 - AndroidUtilities.dp(1.0f), paint3);
@@ -100,7 +100,7 @@ public final class z1 extends i {
                 }
                 return;
             case 1:
-                RectF rectF2 = this.f46728r;
+                RectF rectF2 = this.f46762r;
                 super.onDraw(canvas);
                 int saveCount2 = canvas.getSaveCount();
                 float showAlpha2 = getShowAlpha();
@@ -113,13 +113,13 @@ public final class z1 extends i {
                     float measuredWidth2 = (getMeasuredWidth() / 2.0f) - dp2;
                     float f11 = (2.0f * measuredWidth2) + dp2;
                     rectF2.set(dp2, dp2, f11, f11);
-                    Paint paint4 = this.f46347a;
+                    Paint paint4 = this.f46381a;
                     canvas.drawArc(rectF2, 0.0f, 180.0f, false, paint4);
                     canvas.drawArc(rectF2, 180.0f, 180.0f, false, paint4);
                     float f12 = measuredWidth2 + dp2;
-                    Paint paint5 = this.f46349c;
+                    Paint paint5 = this.f46383c;
                     canvas.drawCircle(dp2, f12, dpf22, paint5);
-                    Paint paint6 = this.f46348b;
+                    Paint paint6 = this.f46382b;
                     canvas.drawCircle(dp2, f12, dpf22 - AndroidUtilities.dp(1.0f), paint6);
                     canvas.drawCircle(f11, f12, dpf22, paint5);
                     canvas.drawCircle(f11, f12, dpf22 - AndroidUtilities.dp(1.0f), paint6);
@@ -128,7 +128,7 @@ public final class z1 extends i {
                 }
                 return;
             default:
-                RectF rectF3 = this.f46728r;
+                RectF rectF3 = this.f46762r;
                 super.onDraw(canvas);
                 int saveCount3 = canvas.getSaveCount();
                 float showAlpha3 = getShowAlpha();
@@ -141,13 +141,13 @@ public final class z1 extends i {
                     float measuredWidth3 = (getMeasuredWidth() / 2) - dp3;
                     float f13 = (2.0f * measuredWidth3) + dp3;
                     rectF3.set(dp3, dp3, f13, f13);
-                    Paint paint7 = this.f46347a;
+                    Paint paint7 = this.f46381a;
                     canvas.drawArc(rectF3, 0.0f, 180.0f, false, paint7);
                     canvas.drawArc(rectF3, 180.0f, 180.0f, false, paint7);
                     float f14 = measuredWidth3 + dp3;
-                    Paint paint8 = this.f46349c;
+                    Paint paint8 = this.f46383c;
                     canvas.drawCircle(dp3, f14, dpf23, paint8);
-                    Paint paint9 = this.f46348b;
+                    Paint paint9 = this.f46382b;
                     canvas.drawCircle(dp3, f14, dpf23 - AndroidUtilities.dp(1.0f), paint9);
                     canvas.drawCircle(f13, f14, dpf23, paint8);
                     canvas.drawCircle(f13, f14, dpf23 - AndroidUtilities.dp(1.0f), paint9);
@@ -160,7 +160,7 @@ public final class z1 extends i {
 
     public z1(b2 b2Var, Context context) {
         super(b2Var, context);
-        this.f46727n = 1;
-        this.f46728r = new RectF();
+        this.f46761n = 1;
+        this.f46762r = new RectF();
     }
 }

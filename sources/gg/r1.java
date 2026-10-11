@@ -5,16 +5,16 @@ import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.wt;
 public final class r1 extends TimerTask {
     public final int f10785a;
     public final String f10786b;
-    public final rm0 f10787c;
+    public final qm0 f10787c;
 
-    public r1(rm0 rm0Var, String str, int i10) {
+    public r1(qm0 qm0Var, String str, int i10) {
         this.f10785a = i10;
-        this.f10787c = rm0Var;
+        this.f10787c = qm0Var;
         this.f10786b = str;
     }
 

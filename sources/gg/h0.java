@@ -30,18 +30,18 @@ import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.qa;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.xo0;
 import org.telegram.ui.Components.y9;
-import org.telegram.ui.Components.yo0;
 import org.telegram.ui.ec1;
 import org.telegram.ui.ey;
 import org.telegram.ui.m10;
 import org.telegram.ui.sy;
 import w7.x5;
-public abstract class h0 extends rm0 {
+public abstract class h0 extends qm0 {
     public m10 A0;
     public int B0;
     public int C0;
@@ -125,10 +125,10 @@ public abstract class h0 extends rm0 {
         this.H0 = true;
         this.f10625i0 = jVar;
         this.f10635r0 = syVar;
-        yo0 yo0Var = (yo0) this;
-        y yVar = new y(yo0Var);
+        xo0 xo0Var = (xo0) this;
+        y yVar = new y(xo0Var);
         this.f10626j0 = yVar;
-        yVar.f10531a = new xa.c(yo0Var, 20);
+        yVar.f10531a = new xa.c(xo0Var, 20);
         yVar.f10544p = z10;
         this.f10619e = context;
         this.V = i10;
@@ -155,7 +155,7 @@ public abstract class h0 extends rm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47752f;
+        int i10 = d1Var.f47786f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -206,7 +206,7 @@ public abstract class h0 extends rm0 {
         if (!z11) {
             MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new r2(i10, 1));
         } else {
-            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new y8(28, (yo0) this, sb2));
+            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new y8(28, (xo0) this, sb2));
         }
     }
 
@@ -220,20 +220,20 @@ public abstract class h0 extends rm0 {
             if (((TLRPC.User) obj).bot) {
                 return syVar.A2;
             }
-            return syVar.f42013z2;
+            return syVar.f42047z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return syVar.f42010y2;
+                return syVar.f42044y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (syVar.f41994v2 || syVar.f42000w2) {
+                if (syVar.f42028v2 || syVar.f42034w2) {
                     return true;
                 }
                 return false;
-            } else if (syVar.f41994v2 || syVar.f42005x2) {
+            } else if (syVar.f42028v2 || syVar.f42039x2) {
                 return true;
             } else {
                 return false;
@@ -339,12 +339,12 @@ public abstract class h0 extends rm0 {
                 boolean z10 = tLObject instanceof TLRPC.User;
                 int i14 = this.f10637s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20179id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20215id));
                     if (user != null) {
                         return user;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20032id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20068id))) != null) {
                     return chat;
                 } else {
                     return tLObject;
@@ -500,7 +500,7 @@ public abstract class h0 extends rm0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f10637s0).hints.isEmpty()) {
-            if (this.f10624h0 != 14 || this.f10635r0.f42013z2) {
+            if (this.f10624h0 != 14 || this.f10635r0.f42047z2) {
                 return true;
             }
             return false;
@@ -696,7 +696,7 @@ public abstract class h0 extends rm0 {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f20141q = str;
+                    tL_messages_search.f20177q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -761,7 +761,7 @@ public abstract class h0 extends rm0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f20143q = str;
+                    tL_messages_searchGlobal.f20179q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -928,7 +928,7 @@ public abstract class h0 extends rm0 {
                 if (i11 != 3) {
                     z11 = false;
                 }
-                i6Var.f22247l0 = z11;
+                i6Var.f22283l0 = z11;
                 ec1Var = i6Var;
                 textView = ec1Var;
                 break;
@@ -958,7 +958,7 @@ public abstract class h0 extends rm0 {
                 break;
             case 6:
                 ec1 ec1Var2 = new ec1(context, 2, null);
-                ec1Var2.setSelectorDrawableColor(h6.x0(null, h6.f20877i6, false));
+                ec1Var2.setSelectorDrawableColor(h6.x0(null, h6.f20913i6, false));
                 ec1Var2.setTag(9);
                 ec1Var2.setItemAnimator(null);
                 ec1Var2.setLayoutAnimation(null);
@@ -989,7 +989,7 @@ public abstract class h0 extends rm0 {
                 ?? linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
                 y9 y9Var = new y9(context);
-                y9Var.setImageDrawable(new ek0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+                y9Var.setImageDrawable(new dk0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
                 linearLayout.addView(y9Var, x5.t(120, 120, 1, 0, 27, 0, 0));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 17.0f);

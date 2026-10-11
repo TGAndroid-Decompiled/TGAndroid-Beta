@@ -8,26 +8,26 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class zo implements View.OnClickListener {
-    public final int f45027a;
-    public final ip f45028b;
+    public final int f45061a;
+    public final ip f45062b;
 
     public zo(ip ipVar, int i10) {
-        this.f45027a = i10;
-        this.f45028b = ipVar;
+        this.f45061a = i10;
+        this.f45062b = ipVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f45027a;
-        ip ipVar = this.f45028b;
+        int i10 = this.f45061a;
+        ip ipVar = this.f45062b;
         switch (i10) {
             case 0:
                 TLRPC.Chat currentChannel = ((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ipVar.getParentActivity());
                 String string = LocaleController.getString(R.string.AppName);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20404a;
                 a2Var.R = string;
-                if (ipVar.f38736a0) {
+                if (ipVar.f38770a0) {
                     a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", R.string.RevokeLinkAlertChannel, ipVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
                 } else {
                     a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlert", R.string.RevokeLinkAlert, ipVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
@@ -45,7 +45,7 @@ public final class zo implements View.OnClickListener {
                 return;
             case 2:
                 if (ipVar.V) {
-                    if (!ipVar.f38740c0) {
+                    if (!ipVar.f38774c0) {
                         ipVar.Z();
                         return;
                     }
@@ -56,12 +56,12 @@ public final class zo implements View.OnClickListener {
                 return;
             case 3:
                 yh0 yh0Var = new yh0(ipVar.Z, 0L, 0);
-                yh0Var.g0(ipVar.Y, ipVar.f38751l0);
+                yh0Var.g0(ipVar.Y, ipVar.f38785l0);
                 ipVar.presentFragment(yh0Var);
                 return;
             default:
-                boolean z10 = !ipVar.f38738b0;
-                ipVar.f38738b0 = z10;
+                boolean z10 = !ipVar.f38772b0;
+                ipVar.f38772b0 = z10;
                 ((org.telegram.ui.Cells.w8) view).setChecked(z10);
                 return;
         }

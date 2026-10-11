@@ -1,47 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class ah0 extends FrameLayout {
-    public float f24516a;
-    public float f24517b;
-    public boolean f24518c;
-    public boolean d;
-    public final PipRoundVideoView f24519e;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class ah0 extends org.telegram.ui.k4 {
+    public final int h;
+    public final Object f24609n;
 
-    public ah0(PipRoundVideoView pipRoundVideoView, Activity activity) {
-        super(activity);
-        this.f24519e = pipRoundVideoView;
+    public ah0(Object obj, Context context, int i10) {
+        super(context);
+        this.h = i10;
+        this.f24609n = obj;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.f5 f5Var = org.telegram.ui.ActionBar.h6.f20911k3;
-        if (f5Var != null) {
-            f5Var.setAlpha((int) (getAlpha() * 255.0f));
-            org.telegram.ui.ActionBar.h6.f20911k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
-            org.telegram.ui.ActionBar.h6.f20911k3.draw(canvas);
-            org.telegram.ui.ActionBar.h6.S1.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21049ra, false));
-            org.telegram.ui.ActionBar.h6.S1.setAlpha((int) (getAlpha() * 255.0f));
-            canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), org.telegram.ui.ActionBar.h6.S1);
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        MessageObject playingMessageObject;
+        switch (this.h) {
+            case 0:
+                boolean drawChild = super.drawChild(canvas, view, j3);
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f24609n;
+                if (view == pipRoundVideoView.f24242c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
+                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
+                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.h6.f20946k2);
+                }
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j3);
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.f24516a = motionEvent.getRawX();
-            this.f24517b = motionEvent.getRawY();
-            this.d = true;
+    public void onMeasure(int i10, int i11) {
+        switch (this.h) {
+            case 1:
+                super.onMeasure(i10, i11);
+                ha1 ha1Var = (ha1) this.f24609n;
+                if (ha1Var.f27047f != null) {
+                    ViewGroup.LayoutParams layoutParams = ha1Var.d.getLayoutParams();
+                    layoutParams.width = getMeasuredWidth();
+                    layoutParams.height = getMeasuredHeight();
+                    ImageView imageView = ha1Var.f27045e;
+                    if (imageView != null) {
+                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
+                        layoutParams2.width = getMeasuredWidth();
+                        layoutParams2.height = getMeasuredHeight();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ah0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

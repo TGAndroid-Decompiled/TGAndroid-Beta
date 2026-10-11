@@ -5,15 +5,15 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
 public class q {
-    public final ArrayList f52274a = new ArrayList();
-    public final a0.i f52275b = new a0.i();
-    public final a0.i f52276c = new a0.i();
+    public final ArrayList f52308a = new ArrayList();
+    public final a0.i f52309b = new a0.i();
+    public final a0.i f52310c = new a0.i();
 
     public static void a(q qVar, TL_ephemeral.EphemeralMessage ephemeralMessage, TLRPC.TL_message tL_message, MessageObject messageObject) {
-        a0.i iVar = qVar.f52276c;
+        a0.i iVar = qVar.f52310c;
         long dialogId = MessageObject.getDialogId(tL_message);
-        qVar.f52274a.add(ephemeralMessage);
-        a0.i iVar2 = qVar.f52275b;
+        qVar.f52308a.add(ephemeralMessage);
+        a0.i iVar2 = qVar.f52309b;
         TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) iVar2.f(dialogId);
         if (tL_messages_messages == null) {
             tL_messages_messages = new TLRPC.TL_messages_messages();

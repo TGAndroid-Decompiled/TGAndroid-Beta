@@ -1,17 +1,17 @@
 package yh;
 public final class a8 {
-    public float f52352a;
-    public float f52353b;
-    public float f52354c;
+    public float f52386a;
+    public float f52387b;
+    public float f52388c;
     public float d;
-    public float f52355e;
-    public long f52356f;
-    public long f52357g;
+    public float f52389e;
+    public long f52390f;
+    public long f52391g;
     public float h;
-    public float f52358i;
-    public final b8 f52359j;
+    public float f52392i;
+    public final b8 f52393j;
 
     public a8(b8 b8Var) {
-        this.f52359j = b8Var;
+        this.f52393j = b8Var;
     }
 }

@@ -16,21 +16,21 @@ public final class tx extends jw {
     @Override
     public final void Y(boolean z10) {
         b00 b00Var = this.X;
-        ArrayList arrayList = b00Var.f24702p1;
+        ArrayList arrayList = b00Var.f24771p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f20059id))) {
-                arrayList.add(Long.valueOf(stickerSet.f20059id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f20095id))) {
+                arrayList.add(Long.valueOf(stickerSet.f20095id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f20059id));
+            arrayList.remove(Long.valueOf(stickerSet.f20095id));
         }
         b00Var.T();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f24723v2 = false;
+        this.X.f24792v2 = false;
         super.dismiss();
     }
 }

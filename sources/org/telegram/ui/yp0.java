@@ -20,34 +20,34 @@ public final class yp0 extends FrameLayout {
     public final Path J;
     public int K;
     public final zp0 L;
-    public final o60 f44467a;
-    public final s4.d0 f44468b;
-    public final u7 f44469c;
+    public final o60 f44501a;
+    public final s4.d0 f44502b;
+    public final u7 f44503c;
     public int d;
-    public final org.telegram.ui.Components.g6 f44470e;
-    public final ArrayList f44471f;
+    public final org.telegram.ui.Components.g6 f44504e;
+    public final ArrayList f44505f;
     public lp0 h;
-    public final RectF f44472n;
-    public final RectF f44473r;
-    public final RectF f44474s;
+    public final RectF f44506n;
+    public final RectF f44507r;
+    public final RectF f44508s;
     public final Paint v;
-    public final Paint f44475w;
-    public int f44476x;
-    public int f44477y;
+    public final Paint f44509w;
+    public int f44510x;
+    public int f44511y;
 
     public yp0(zp0 zp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.L = zp0Var;
-        this.f44471f = new ArrayList();
-        this.f44472n = new RectF();
-        this.f44473r = new RectF();
-        this.f44474s = new RectF();
+        this.f44505f = new ArrayList();
+        this.f44506n = new RectF();
+        this.f44507r = new RectF();
+        this.f44508s = new RectF();
         this.v = new Paint(1);
-        this.f44475w = new Paint(1);
+        this.f44509w = new Paint(1);
         this.J = new Path();
         this.K = Integer.MIN_VALUE;
         o60 o60Var = new o60(this, context, d6Var, 1);
-        this.f44467a = o60Var;
+        this.f44501a = o60Var;
         o60Var.setClipToPadding(false);
         o60Var.setClipChildren(false);
         o60Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
@@ -55,32 +55,32 @@ public final class yp0 extends FrameLayout {
         o60Var.setHorizontalScrollBarEnabled(false);
         o60Var.setItemAnimator(null);
         s4.d0 d0Var = new s4.d0(0, false);
-        this.f44468b = d0Var;
+        this.f44502b = d0Var;
         o60Var.setLayoutManager(d0Var);
         u7 u7Var = new u7(this, 5);
-        this.f44469c = u7Var;
+        this.f44503c = u7Var;
         o60Var.setAdapter(u7Var);
         o60Var.setOnItemClickListener(new i(this, 20));
         addView(o60Var, w7.x5.e(-1, -1, 119));
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f44470e = new org.telegram.ui.Components.g6(o60Var, 0L, 320L, org.telegram.ui.Components.is.h);
+        this.f44504e = new org.telegram.ui.Components.g6(o60Var, 0L, 320L, org.telegram.ui.Components.is.h);
     }
 
     public final void a(int i10, boolean z10) {
         int i11 = this.d;
         this.d = i10;
         if (!z10) {
-            this.f44470e.d(i10, true);
+            this.f44504e.d(i10, true);
         }
         b(i11);
         if (i10 != i11) {
             b(i10);
         }
-        ArrayList arrayList = this.f44471f;
+        ArrayList arrayList = this.f44505f;
         boolean isEmpty = arrayList.isEmpty();
-        o60 o60Var = this.f44467a;
+        o60 o60Var = this.f44501a;
         if (!isEmpty) {
             int clamp = Utilities.clamp(i10, arrayList.size() - 1, 0);
             if (z10) {
@@ -94,13 +94,13 @@ public final class yp0 extends FrameLayout {
 
     public final void b(int i10) {
         int i11;
-        View m10 = this.f44468b.m(i10);
+        View m10 = this.f44502b.m(i10);
         if (m10 instanceof TextView) {
             TextView textView = (TextView) m10;
             if (i10 == this.d) {
                 i11 = this.E;
             } else {
-                i11 = this.f44477y;
+                i11 = this.f44511y;
             }
             textView.setTextColor(i11);
             m10.invalidate();

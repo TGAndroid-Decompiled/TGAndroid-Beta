@@ -1,18 +1,18 @@
 package sc;
 public final class a {
-    public final String f47978a;
-    public final int f47979b;
-    public transient String f47980c;
+    public final String f48012a;
+    public final int f48013b;
+    public transient String f48014c;
 
     public a(String str, int i10) {
-        this.f47978a = str;
-        this.f47979b = i10;
+        this.f48012a = str;
+        this.f48013b = i10;
     }
 
     public final String toString() {
-        if (this.f47980c == null) {
-            this.f47980c = String.format("%s:%d", this.f47978a, Integer.valueOf(this.f47979b));
+        if (this.f48014c == null) {
+            this.f48014c = String.format("%s:%d", this.f48012a, Integer.valueOf(this.f48013b));
         }
-        return this.f47980c;
+        return this.f48014c;
     }
 }

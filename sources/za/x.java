@@ -3,22 +3,22 @@ package za;
 import android.util.Log;
 import v7.a8;
 public final class x extends ld.j implements sd.q {
-    public int f54377a;
-    public de.c f54378b;
-    public Throwable f54379c;
+    public int f54411a;
+    public de.c f54412b;
+    public Throwable f54413c;
 
     @Override
     public final Object c(Object obj, Object obj2, ld.c cVar) {
         ?? jVar = new ld.j(3, cVar);
-        jVar.f54378b = (de.c) obj;
-        jVar.f54379c = (Throwable) obj2;
+        jVar.f54412b = (de.c) obj;
+        jVar.f54413c = (Throwable) obj2;
         return jVar.invokeSuspend(hd.i.f11091a);
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
         kd.a aVar = kd.a.f14783a;
-        int i10 = this.f54377a;
+        int i10 = this.f54411a;
         if (i10 != 0) {
             if (i10 == 1) {
                 a8.b(obj);
@@ -27,11 +27,11 @@ public final class x extends ld.j implements sd.q {
             }
         } else {
             a8.b(obj);
-            de.c cVar = this.f54378b;
-            Log.e("FirebaseSessionsRepo", "Error reading stored session data.", this.f54379c);
+            de.c cVar = this.f54412b;
+            Log.e("FirebaseSessionsRepo", "Error reading stored session data.", this.f54413c);
             n1.b bVar = new n1.b(true);
-            this.f54378b = null;
-            this.f54377a = 1;
+            this.f54412b = null;
+            this.f54411a = 1;
             if (cVar.b(bVar, this) == aVar) {
                 return aVar;
             }

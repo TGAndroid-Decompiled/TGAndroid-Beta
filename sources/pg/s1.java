@@ -1,16 +1,16 @@
 package pg;
 public final class s1 {
-    public int f45812a;
-    public float f45813b;
-    public float f45814c;
+    public int f45846a;
+    public float f45847b;
+    public float f45848c;
 
     public s1(float f7, float f10, int i10) {
-        this.f45812a = i10;
-        this.f45813b = f7;
-        this.f45814c = f10;
+        this.f45846a = i10;
+        this.f45847b = f7;
+        this.f45848c = f10;
     }
 
     public final Object clone() {
-        return new s1(this.f45813b, this.f45814c, this.f45812a);
+        return new s1(this.f45847b, this.f45848c, this.f45846a);
     }
 }

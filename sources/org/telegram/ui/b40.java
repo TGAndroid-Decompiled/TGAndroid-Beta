@@ -9,17 +9,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class b40 extends FrameLayout {
-    public final Rect f36255a;
-    public final RectF f36256b;
-    public final Path f36257c;
+    public final Rect f36289a;
+    public final RectF f36290b;
+    public final Path f36291c;
     public final g60 d;
 
     public b40(g60 g60Var, LaunchActivity launchActivity) {
         super(launchActivity);
         this.d = g60Var;
-        this.f36255a = new Rect();
-        this.f36256b = new RectF();
-        this.f36257c = new Path();
+        this.f36289a = new Rect();
+        this.f36290b = new RectF();
+        this.f36291c = new Path();
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class b40 extends FrameLayout {
         View childAt;
         org.telegram.ui.Components.voip.v vVar;
         g60 g60Var = this.d;
-        a40 a40Var = g60Var.f37871b;
-        if (g60Var.f37883d2 != 1.0f) {
-            if (g60Var.X2 != null && g60Var.f37875b3) {
+        a40 a40Var = g60Var.f37905b;
+        if (g60Var.f37917d2 != 1.0f) {
+            if (g60Var.X2 != null && g60Var.f37909b3) {
                 canvas.save();
                 float measuredHeight = (g60Var.X2.getAvatarImageView().getMeasuredHeight() / 2.0f) * (getMeasuredHeight() / g60Var.X2.getAvatarImageView().getMeasuredHeight());
-                float f7 = g60Var.f37883d2;
-                int dp = (int) ((AndroidUtilities.dp(13.0f) * f7) + ((1.0f - g60Var.f37883d2) * measuredHeight));
+                float f7 = g60Var.f37917d2;
+                int dp = (int) ((AndroidUtilities.dp(13.0f) * f7) + ((1.0f - g60Var.f37917d2) * measuredHeight));
                 int i10 = (int) ((1.0f - f7) * measuredHeight);
                 g60Var.X2.getAvatarWavesDrawable().a(canvas, g60Var.X2.getAvatarImageView().getMeasuredHeight() / 2, g60Var.X2.getAvatarImageView().getMeasuredHeight() / 2, this);
                 g60Var.X2.getAvatarImageView().getImageReceiver().setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
@@ -41,31 +41,31 @@ public final class b40 extends FrameLayout {
                 g60Var.X2.getAvatarImageView().getImageReceiver().draw(canvas);
                 g60Var.X2.getAvatarImageView().setRoundRadius(g60Var.X2.getAvatarImageView().getMeasuredHeight() / 2);
                 canvas.restore();
-            } else if (g60Var.f37870a3 != null && g60Var.Z2 == null && g60Var.O2) {
+            } else if (g60Var.f37904a3 != null && g60Var.Z2 == null && g60Var.O2) {
                 canvas.save();
-                float measuredHeight2 = (g60Var.f37870a3.getAvatarImageView().getMeasuredHeight() / 2.0f) * (getMeasuredHeight() / g60Var.f37870a3.getAvatarImageView().getMeasuredHeight());
-                float f10 = g60Var.f37883d2;
-                int dp2 = (int) ((AndroidUtilities.dp(13.0f) * f10) + ((1.0f - g60Var.f37883d2) * measuredHeight2));
+                float measuredHeight2 = (g60Var.f37904a3.getAvatarImageView().getMeasuredHeight() / 2.0f) * (getMeasuredHeight() / g60Var.f37904a3.getAvatarImageView().getMeasuredHeight());
+                float f10 = g60Var.f37917d2;
+                int dp2 = (int) ((AndroidUtilities.dp(13.0f) * f10) + ((1.0f - g60Var.f37917d2) * measuredHeight2));
                 int i11 = (int) ((1.0f - f10) * measuredHeight2);
-                g60Var.f37870a3.getAvatarImageView().getImageReceiver().setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                g60Var.f37870a3.getAvatarImageView().r(dp2, dp2, i11, i11);
-                g60Var.f37870a3.getAvatarImageView().getImageReceiver().draw(canvas);
-                g60Var.f37870a3.getAvatarImageView().setRoundRadius(g60Var.f37870a3.getAvatarImageView().getMeasuredHeight() / 2);
+                g60Var.f37904a3.getAvatarImageView().getImageReceiver().setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                g60Var.f37904a3.getAvatarImageView().r(dp2, dp2, i11, i11);
+                g60Var.f37904a3.getAvatarImageView().getImageReceiver().draw(canvas);
+                g60Var.f37904a3.getAvatarImageView().setRoundRadius(g60Var.f37904a3.getAvatarImageView().getMeasuredHeight() / 2);
                 canvas.restore();
             }
         }
-        a40Var.setAlpha(g60Var.f37883d2);
-        Path path = this.f36257c;
+        a40Var.setAlpha(g60Var.f37917d2);
+        Path path = this.f36291c;
         path.reset();
-        RectF rectF = this.f36256b;
+        RectF rectF = this.f36290b;
         rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
         path.addRoundRect(rectF, new float[]{AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
         canvas.save();
         canvas.clipPath(path);
-        if (a40Var.f31811i1) {
+        if (a40Var.f31605i1) {
             for (int i12 = 0; i12 < a40Var.getChildCount(); i12++) {
                 childAt = a40Var.getChildAt(i12);
-                if (childAt instanceof org.telegram.ui.Components.si0) {
+                if (childAt instanceof org.telegram.ui.Components.ri0) {
                     break;
                 }
             }
@@ -73,7 +73,7 @@ public final class b40 extends FrameLayout {
         childAt = null;
         if (childAt != null && (vVar = g60Var.Z2) != null && vVar.v && !g60Var.F2) {
             canvas.save();
-            Rect rect = this.f36255a;
+            Rect rect = this.f36289a;
             rect.setEmpty();
             a40Var.getChildVisibleRect(childAt, rect, null);
             int i13 = rect.left;

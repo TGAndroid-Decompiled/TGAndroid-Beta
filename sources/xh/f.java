@@ -13,25 +13,25 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.db;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.q61;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.sm0;
 import w7.x5;
 public final class f extends db implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final r61 X;
+    public final q61 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f51306a0;
-    public e71 f51307b0;
+    public boolean f51340a0;
+    public d71 f51341b0;
 
     public f(Context context) {
         super(context, null, false, false, 2, null);
         int i10 = 0;
         this.Y = new LongSparseArray();
         this.Z = new ArrayList();
-        setBackgroundColor(h6.x0(null, h6.f20730a7, false));
+        setBackgroundColor(h6.x0(null, h6.f20766a7, false));
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
@@ -41,10 +41,10 @@ public final class f extends db implements GiftAuctionController.OnActiveAuction
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.X = r61.j(-1, linearLayout);
+        this.X = q61.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f51307b0.N(false);
+        this.f51341b0.N(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -52,7 +52,7 @@ public final class f extends db implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             e eVar = new e(context, auction2);
-            eVar.f51291a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            eVar.f51325a.setOnClickListener(new xg.e(this, context, auction2, 1));
             linearLayout.addView(eVar, x5.n(-1, -2));
             this.Y.put(auction2.giftId, eVar);
         }
@@ -78,7 +78,7 @@ public final class f extends db implements GiftAuctionController.OnActiveAuction
     public final void onActiveAuctionsUpdate(List list) {
         int i10;
         this.Z = new ArrayList(list);
-        this.f25521e.setTitle(B());
+        this.f25734e.setTitle(B());
         Iterator it = list.iterator();
         while (it.hasNext()) {
             GiftAuctionController.Auction auction = (GiftAuctionController.Auction) it.next();
@@ -90,10 +90,10 @@ public final class f extends db implements GiftAuctionController.OnActiveAuction
             }
             e eVar = (e) this.Y.get(auction.giftId);
             if (eVar != null) {
-                eVar.b(this.f51306a0);
+                eVar.b(this.f51340a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                eVar.a(max, this.f51306a0);
-                eVar.f51295f.a(max);
+                eVar.a(max, this.f51340a0);
+                eVar.f51329f.a(max);
             }
         }
     }
@@ -101,14 +101,14 @@ public final class f extends db implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f51306a0 = true;
+        this.f51340a0 = true;
     }
 
     @Override
-    public final rm0 x(sm0 sm0Var) {
-        e71 e71Var = new e71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f51307b0 = e71Var;
-        e71Var.f25890r = false;
-        return e71Var;
+    public final qm0 x(rm0 rm0Var) {
+        d71 d71Var = new d71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
+        this.f51341b0 = d71Var;
+        d71Var.f25649r = false;
+        return d71Var;
     }
 }

@@ -23,8 +23,8 @@ public final class o8 implements TextWatcher {
         if (u8Var.f6081d0 && editable != null) {
             String substring = editable.toString().substring(8);
             u8Var.f6080c0 = true;
-            j3Var.f22289b.setText(substring);
-            org.telegram.ui.Cells.h3 h3Var = j3Var.f22289b;
+            j3Var.f22325b.setText(substring);
+            org.telegram.ui.Cells.h3 h3Var = j3Var.f22325b;
             h3Var.setSelection(0, h3Var.getText().length());
             u8Var.f6080c0 = false;
             u8Var.f6081d0 = false;

@@ -7,17 +7,17 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 public final class b0 extends com.google.android.gms.internal.cast.a0 {
-    public final g f16669a;
+    public final g f16705a;
 
     public b0(g gVar, Looper looper) {
         super(looper, 4);
-        this.f16669a = gVar;
+        this.f16705a = gVar;
     }
 
     @Override
     public final void handleMessage(Message message) {
         Boolean bool;
-        if (this.f16669a.R.get() != message.arg1) {
+        if (this.f16705a.R.get() != message.arg1) {
             int i10 = message.what;
             if (i10 != 2 && i10 != 1 && i10 != 7) {
                 return;
@@ -28,16 +28,16 @@ public final class b0 extends com.google.android.gms.internal.cast.a0 {
             return;
         }
         int i11 = message.what;
-        if ((i11 != 1 && i11 != 7 && i11 != 4 && i11 != 5) || this.f16669a.g()) {
+        if ((i11 != 1 && i11 != 7 && i11 != 4 && i11 != 5) || this.f16705a.g()) {
             int i12 = message.what;
             PendingIntent pendingIntent = null;
             if (i12 == 4) {
-                g gVar = this.f16669a;
+                g gVar = this.f16705a;
                 gVar.O = new k6.a(message.arg2);
                 if (!gVar.P && !TextUtils.isEmpty(gVar.v()) && !TextUtils.isEmpty(null)) {
                     try {
                         Class.forName(gVar.v());
-                        g gVar2 = this.f16669a;
+                        g gVar2 = this.f16705a;
                         if (!gVar2.P) {
                             gVar2.F(3, null);
                             return;
@@ -45,22 +45,22 @@ public final class b0 extends com.google.android.gms.internal.cast.a0 {
                     } catch (ClassNotFoundException unused) {
                     }
                 }
-                g gVar3 = this.f16669a;
+                g gVar3 = this.f16705a;
                 k6.a aVar = gVar3.O;
                 if (aVar == null) {
                     aVar = new k6.a(8);
                 }
                 gVar3.E.a(aVar);
-                this.f16669a.z(aVar);
+                this.f16705a.z(aVar);
                 return;
             } else if (i12 == 5) {
-                g gVar4 = this.f16669a;
+                g gVar4 = this.f16705a;
                 k6.a aVar2 = gVar4.O;
                 if (aVar2 == null) {
                     aVar2 = new k6.a(8);
                 }
                 gVar4.E.a(aVar2);
-                this.f16669a.z(aVar2);
+                this.f16705a.z(aVar2);
                 return;
             } else if (i12 == 3) {
                 Object obj = message.obj;
@@ -68,19 +68,19 @@ public final class b0 extends com.google.android.gms.internal.cast.a0 {
                     pendingIntent = (PendingIntent) obj;
                 }
                 k6.a aVar3 = new k6.a(message.arg2, pendingIntent);
-                this.f16669a.E.a(aVar3);
-                this.f16669a.z(aVar3);
+                this.f16705a.E.a(aVar3);
+                this.f16705a.z(aVar3);
                 return;
             } else if (i12 == 6) {
-                this.f16669a.F(5, null);
-                n nVar = this.f16669a.J;
+                this.f16705a.F(5, null);
+                n nVar = this.f16705a.J;
                 if (nVar != null) {
-                    ((com.google.android.gms.common.api.k) nVar.f16744a).onConnectionSuspended(message.arg2);
+                    ((com.google.android.gms.common.api.k) nVar.f16780a).onConnectionSuspended(message.arg2);
                 }
-                this.f16669a.A(message.arg2);
-                g.E(this.f16669a, 5, 1, null);
+                this.f16705a.A(message.arg2);
+                g.E(this.f16705a, 5, 1, null);
                 return;
-            } else if (i12 == 2 && !this.f16669a.j()) {
+            } else if (i12 == 2 && !this.f16705a.j()) {
                 x xVar2 = (x) message.obj;
                 xVar2.getClass();
                 xVar2.d();
@@ -94,8 +94,8 @@ public final class b0 extends com.google.android.gms.internal.cast.a0 {
                 x xVar3 = (x) message.obj;
                 synchronized (xVar3) {
                     try {
-                        bool = xVar3.f16775a;
-                        if (xVar3.f16776b) {
+                        bool = xVar3.f16811a;
+                        if (xVar3.f16812b) {
                             String obj2 = xVar3.toString();
                             Log.w("GmsClient", "Callback proxy " + obj2 + " being reused. This is not safe.");
                         }
@@ -104,7 +104,7 @@ public final class b0 extends com.google.android.gms.internal.cast.a0 {
                     }
                 }
                 if (bool != null) {
-                    g gVar5 = xVar3.f16779f;
+                    g gVar5 = xVar3.f16815f;
                     int i14 = xVar3.d;
                     if (i14 == 0) {
                         if (!xVar3.b()) {
@@ -113,7 +113,7 @@ public final class b0 extends com.google.android.gms.internal.cast.a0 {
                         }
                     } else {
                         gVar5.F(1, null);
-                        Bundle bundle = xVar3.f16778e;
+                        Bundle bundle = xVar3.f16814e;
                         if (bundle != null) {
                             pendingIntent = (PendingIntent) bundle.getParcelable("pendingIntent");
                         }
@@ -121,7 +121,7 @@ public final class b0 extends com.google.android.gms.internal.cast.a0 {
                     }
                 }
                 synchronized (xVar3) {
-                    xVar3.f16776b = true;
+                    xVar3.f16812b = true;
                 }
                 xVar3.d();
                 return;

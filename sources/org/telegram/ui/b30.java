@@ -4,22 +4,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b30 implements RequestDelegate {
-    public final int f36249a;
-    public final g60 f36250b;
+    public final int f36283a;
+    public final g60 f36284b;
 
     public b30(g60 g60Var, int i10) {
-        this.f36249a = i10;
-        this.f36250b = g60Var;
+        this.f36283a = i10;
+        this.f36284b = g60Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36249a) {
+        switch (this.f36283a) {
             case 0:
-                g60.w(this.f36250b, tLObject);
+                g60.w(this.f36284b, tLObject);
                 return;
             default:
-                g60.u(this.f36250b, tLObject);
+                g60.u(this.f36284b, tLObject);
                 return;
         }
     }

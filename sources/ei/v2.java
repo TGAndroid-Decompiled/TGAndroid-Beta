@@ -2,19 +2,18 @@ package ei;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.f8;
 import org.telegram.ui.Components.gq;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.pi0;
+import org.telegram.ui.Components.oi0;
 import org.telegram.ui.Components.q6;
+import org.telegram.ui.Components.s60;
 import org.telegram.ui.Components.sy;
-import org.telegram.ui.Components.t60;
-import org.telegram.ui.Components.xl0;
-import org.telegram.ui.Components.yt0;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xt0;
 import org.telegram.ui.zq;
 public final class v2 extends AnimatorListenerAdapter {
     public final int f9427a;
@@ -73,16 +72,16 @@ public final class v2 extends AnimatorListenerAdapter {
                 if (!e4Var.c()) {
                     e4Var.b(this.f9428b);
                 }
-                e4Var.f22020d0 = null;
+                e4Var.f22056d0 = null;
                 return;
             case 4:
                 ((q6) this.f9429c).u(this.f9428b);
                 return;
             case 5:
-                ((f8) this.f9429c).f26280a[this.f9428b].setVisibility(8);
+                ((f8) this.f9429c).f26376a[this.f9428b].setVisibility(8);
                 return;
             case 6:
-                ((gq) this.f9429c).f26800a[this.f9428b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(is.f27452g).setStartDelay(0L).setDuration(100L).start();
+                ((gq) this.f9429c).f26851a[this.f9428b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(is.f27501g).setStartDelay(0L).setDuration(100L).start();
                 return;
             case 7:
                 sy syVar = (sy) this.f9429c;
@@ -95,53 +94,52 @@ public final class v2 extends AnimatorListenerAdapter {
                     i10 = 8;
                 }
                 p0Var.setVisibility(i10);
-                TextView textView = syVar.f30898e;
+                TextView textView = syVar.f30969e;
                 if (i13 == 2) {
                     i11 = 0;
                 } else {
                     i11 = 8;
                 }
                 textView.setVisibility(i11);
-                TextView textView2 = syVar.f30899f;
+                TextView textView2 = syVar.f30970f;
                 if (i13 == 3) {
                     i12 = 0;
                 }
                 textView2.setVisibility(i12);
                 return;
             case 8:
-                t60 t60Var = (t60) this.f9429c;
-                FrameLayout frameLayout = t60Var.f31033x;
-                if (this.f9428b == t60Var.f31025r0) {
-                    frameLayout.animate().setListener(null);
-                    frameLayout.setRotationY(0.0f);
-                    t60Var.m0 = false;
-                    FileLog.d("RoundVideo camera flip completed: elapsedMs=" + t60.k(t60Var));
-                    t60Var.x();
+                s60 s60Var = (s60) this.f9429c;
+                if (this.f9428b == s60Var.f30771s0) {
+                    s60Var.f30777x.setRotationY(0.0f);
+                    s60Var.f30767q0 = true;
+                    s60Var.f30751b0 = null;
+                    FileLog.d("RoundVideo camera flip visual animation completed: elapsedMs=" + s60.k(s60Var));
+                    s60.l(s60Var);
                     return;
                 }
                 return;
             case 9:
-                pi0 pi0Var = (pi0) this.f9429c;
-                pi0Var.H = null;
-                pi0Var.P.f31806d1.delete(this.f9428b);
+                oi0 oi0Var = (oi0) this.f9429c;
+                oi0Var.H = null;
+                oi0Var.P.f31600d1.delete(this.f9428b);
                 return;
             case 10:
                 zq zqVar = (zq) this.f9429c;
-                ((xl0) zqVar.d).f32980b.remove(this.f9428b);
-                xl0 xl0Var = (xl0) zqVar.d;
-                xl0Var.d = true;
-                xl0Var.f32979a.invalidate();
+                ((wl0) zqVar.d).f32730b.remove(this.f9428b);
+                wl0 wl0Var = (wl0) zqVar.d;
+                wl0Var.d = true;
+                wl0Var.f32729a.invalidate();
                 return;
             case 11:
-                yt0 yt0Var = (yt0) this.f9429c;
-                yt0Var.f33335e.O1.remove(this.f9428b);
-                yt0Var.f33332a.invalidate();
+                xt0 xt0Var = (xt0) this.f9429c;
+                xt0Var.f33069e.O1.remove(this.f9428b);
+                xt0Var.f33066a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.e1 e1Var = (org.telegram.ui.Components.voip.e1) this.f9429c;
-                e1Var.f31967x = -1;
+                e1Var.f32031x = -1;
                 e1Var.v = this.f9428b;
-                e1Var.f31965s = 0.0f;
+                e1Var.f32029s = 0.0f;
                 e1Var.U = null;
                 e1Var.e();
                 return;
@@ -154,8 +152,8 @@ public final class v2 extends AnimatorListenerAdapter {
             case 7:
                 sy syVar = (sy) this.f9429c;
                 syVar.h.setVisibility(0);
-                syVar.f30898e.setVisibility(0);
-                syVar.f30899f.setVisibility(0);
+                syVar.f30969e.setVisibility(0);
+                syVar.f30970f.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

@@ -7,14 +7,14 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class aw extends View {
-    public ImageReceiver.BackgroundThreadDrawHolder[] f24602a;
-    public ai.m4 f24603b;
-    public b6 f24604c;
+    public ImageReceiver.BackgroundThreadDrawHolder[] f24693a;
+    public ai.m4 f24694b;
+    public b6 f24695c;
     public ValueAnimator d;
-    public float f24605e;
+    public float f24696e;
 
     public TLRPC.Document getDocument() {
-        b6 b6Var = this.f24604c;
+        b6 b6Var = this.f24695c;
         if (b6Var != null) {
             TLRPC.Document document = b6Var.document;
             if (document == null) {
@@ -42,7 +42,7 @@ public final class aw extends View {
                 this.d.cancel();
             }
             if (!z10) {
-                float f7 = this.f24605e;
+                float f7 = this.f24696e;
                 if (f7 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
                     this.d = ofFloat;

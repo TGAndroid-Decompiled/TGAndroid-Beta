@@ -45,27 +45,27 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
     public AnimatorSet O;
     public t2 R;
     public com.google.android.gms.internal.cast.p S;
-    public final m6 f32148a;
-    public final m2 f32149b;
-    public WindowManager f32150c;
+    public final m6 f32212a;
+    public final m2 f32213b;
+    public WindowManager f32214c;
     public WindowManager.LayoutParams d;
-    public qf.e f32151e;
-    public final int f32152f;
+    public qf.e f32215e;
+    public final int f32216f;
     public final int h;
-    public final View f32153n;
-    public final t2 f32154r;
-    public final t2 f32155s;
+    public final View f32217n;
+    public final t2 f32218r;
+    public final t2 f32219s;
     public float v;
-    public ValueAnimator f32156w;
-    public final s0 f32157x = new s0(this, 4);
-    public final float[] f32158y = new float[2];
+    public ValueAnimator f32220w;
+    public final s0 f32221x = new s0(this, 4);
+    public final float[] f32222y = new float[2];
     public final aa N = new aa(6);
     public final j2 P = new j2(this, 0);
     public final j2 Q = new j2(this, 1);
     public final l2 T = new l2(this);
 
     public n2(int i10, int i11, Context context, boolean z10) {
-        this.f32152f = i10;
+        this.f32216f = i10;
         this.h = i11;
         float f7 = i11 * 0.4f;
         int i12 = ((int) ((f7 * 1.05f) - f7)) / 2;
@@ -74,16 +74,16 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
         int i13 = ((int) ((1.05f * f10) - f10)) / 2;
         this.E = i13;
         m6 m6Var = new m6(this, context, context.getDrawable(R.drawable.calls_pip_outershadow), 15);
-        this.f32148a = m6Var;
+        this.f32212a = m6Var;
         m6Var.setWillNotDraw(false);
         m6Var.setPadding(i13, i12, i13, i12);
         m2 m2Var = new m2(this, context);
-        this.f32149b = m2Var;
+        this.f32213b = m2Var;
         t2 t2Var = new t2(context, false, true);
-        this.f32155s = t2Var;
-        t2Var.f32270a0 = 3;
+        this.f32219s = t2Var;
+        t2Var.f32334a0 = 3;
         t2 t2Var2 = new t2(context, false, true);
-        this.f32154r = t2Var2;
+        this.f32218r = t2Var2;
         t2Var2.d.setMirror(true);
         m2Var.addView(t2Var);
         m2Var.addView(t2Var2);
@@ -93,7 +93,7 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
         m6Var.setClipToPadding(false);
         if (z10) {
             View view = new View(context);
-            this.f32153n = view;
+            this.f32217n = view;
             view.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{i0.a.k(-16777216, 76), 0}));
             m2Var.addView(view, -1, AndroidUtilities.dp(60.0f));
             ImageView imageView = new ImageView(context);
@@ -170,7 +170,7 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
             }
             n2 n2Var = V;
             n2Var.M = i10;
-            n2Var.f32150c = windowManager;
+            n2Var.f32214c = windowManager;
             n2Var.d = layoutParams;
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("voippipconfig", 0);
             float f13 = sharedPreferences.getFloat("relativeX", 1.0f);
@@ -184,9 +184,9 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
             float dp2 = AndroidUtilities.dp(16.0f);
             float dp3 = AndroidUtilities.dp(60.0f);
             float dp4 = AndroidUtilities.dp(16.0f);
-            float f17 = n2Var2.f32152f * 0.25f;
+            float f17 = n2Var2.f32216f * 0.25f;
             float f18 = n2Var2.h * 0.25f;
-            m2 m2Var = n2Var2.f32149b;
+            m2 m2Var = n2Var2.f32213b;
             if (m2Var.getMeasuredWidth() != 0) {
                 f17 = m2Var.getMeasuredWidth();
             }
@@ -196,39 +196,39 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
             WindowManager.LayoutParams layoutParams2 = n2Var2.d;
             layoutParams2.x = (int) (((((f15 - dp) - dp2) - f17) * f13) - (n2Var2.E - dp));
             layoutParams2.y = (int) (((((f16 - dp3) - dp4) - f18) * f14) - (n2Var2.F - dp3));
-            AndroidUtilities.updateViewLayout(n2Var2.f32150c, n2Var2.f32148a, layoutParams2);
+            AndroidUtilities.updateViewLayout(n2Var2.f32214c, n2Var2.f32212a, layoutParams2);
             NotificationCenter.getGlobalInstance().addObserver(V, NotificationCenter.didEndCall);
-            windowManager.addView(V.f32148a, layoutParams);
-            V.f32154r.d.init(VideoCapturerDevice.eglBase.getEglBaseContext(), null);
-            V.f32155s.d.init(VideoCapturerDevice.eglBase.getEglBaseContext(), V.T);
+            windowManager.addView(V.f32212a, layoutParams);
+            V.f32218r.d.init(VideoCapturerDevice.eglBase.getEglBaseContext(), null);
+            V.f32219s.d.init(VideoCapturerDevice.eglBase.getEglBaseContext(), V.T);
             if (i13 == 0) {
-                V.f32148a.setScaleX(0.5f);
-                V.f32148a.setScaleY(0.5f);
-                V.f32148a.setAlpha(0.0f);
-                V.f32148a.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).start();
+                V.f32212a.setScaleX(0.5f);
+                V.f32212a.setScaleY(0.5f);
+                V.f32212a.setAlpha(0.0f);
+                V.f32212a.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).start();
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService sharedInstance = VoIPService.getSharedInstance();
                     n2 n2Var3 = V;
-                    sharedInstance.setSinks(n2Var3.f32154r.d, n2Var3.f32155s.d);
+                    sharedInstance.setSinks(n2Var3.f32218r.d, n2Var3.f32219s.d);
                 }
             } else if (i13 == 1) {
-                V.f32148a.setAlpha(0.0f);
+                V.f32212a.setAlpha(0.0f);
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService sharedInstance2 = VoIPService.getSharedInstance();
                     n2 n2Var4 = V;
-                    sharedInstance2.setBackgroundSinks(n2Var4.f32154r.d, n2Var4.f32155s.d);
+                    sharedInstance2.setBackgroundSinks(n2Var4.f32218r.d, n2Var4.f32219s.d);
                 }
             }
             VoIPService sharedInstance3 = VoIPService.getSharedInstance();
             if (sharedInstance3 != null && sharedInstance3.getRemoteVideoState() == 2 && tf.c.a(activity) == 1) {
                 n2 n2Var5 = V;
                 qf.d dVar = new qf.d(activity, n2Var5);
-                dVar.f46231c = "voip-pip";
-                dVar.f46232e = 1;
-                t2 t2Var = n2Var5.f32155s;
-                dVar.f46236j = t2Var.d;
-                dVar.f46237k = t2Var.getPlaceholderView();
-                n2Var5.f32151e = dVar.a();
+                dVar.f46265c = "voip-pip";
+                dVar.f46266e = 1;
+                t2 t2Var = n2Var5.f32219s;
+                dVar.f46270j = t2Var.d;
+                dVar.f46271k = t2Var.getPlaceholderView();
+                n2Var5.f32215e = dVar.a();
             }
         }
     }
@@ -236,16 +236,16 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
     @Override
     public final void a(com.google.android.gms.internal.cast.p pVar) {
         this.S = pVar;
-        t2 t2Var = this.f32155s;
+        t2 t2Var = this.f32219s;
         if (t2Var != null) {
             t2Var.d.clearFirstFrame();
         }
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
-            sharedInstance.setSinks(this.f32154r.d, this.R.d);
+            sharedInstance.setSinks(this.f32218r.d, this.R.d);
         }
-        WindowManager windowManager = this.f32150c;
-        m6 m6Var = this.f32148a;
+        WindowManager windowManager = this.f32214c;
+        m6 m6Var = this.f32212a;
         windowManager.removeView(m6Var);
         m6Var.invalidate();
     }
@@ -253,9 +253,9 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
     @Override
     public final void b(com.google.android.gms.internal.cast.p pVar) {
         this.S = pVar;
-        WindowManager windowManager = this.f32150c;
+        WindowManager windowManager = this.f32214c;
         WindowManager.LayoutParams layoutParams = this.d;
-        m6 m6Var = this.f32148a;
+        m6 m6Var = this.f32212a;
         windowManager.addView(m6Var, layoutParams);
         t2 t2Var = this.R;
         if (t2Var != null) {
@@ -265,7 +265,7 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
         m6Var.invalidate();
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
-            sharedInstance.setSinks(this.f32154r.d, this.f32155s.d);
+            sharedInstance.setSinks(this.f32218r.d, this.f32219s.d);
         }
     }
 
@@ -287,7 +287,7 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
 
     @Override
     public final Bitmap e() {
-        t2 t2Var = this.f32155s;
+        t2 t2Var = this.f32219s;
         if (t2Var != null) {
             s2 s2Var = t2Var.d;
             if (s2Var.isAvailable()) {
@@ -305,13 +305,13 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
 
     @Override
     public final View h() {
-        t2 t2Var = new t2(this.f32155s.getContext(), false, true, false, false);
+        t2 t2Var = new t2(this.f32219s.getContext(), false, true, false, false);
         this.R = t2Var;
         t2Var.d.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
         this.R.d.setEnableHardwareScaler(true);
         this.R.d.setRotateTextureWithScreen(true);
         t2 t2Var2 = this.R;
-        t2Var2.f32270a0 = 1;
+        t2Var2.f32334a0 = 1;
         t2Var2.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new k2(this));
         View view = this.R.h;
         if (view != null) {
@@ -321,41 +321,41 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
     }
 
     public final void j() {
-        this.f32154r.d.release();
-        this.f32155s.d.release();
+        this.f32218r.d.release();
+        this.f32219s.d.release();
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             sharedInstance.unregisterStateListener(this);
         }
-        this.f32148a.setVisibility(8);
-        if (this.f32148a.getParent() != null) {
-            m2 m2Var = this.f32149b;
-            float[] fArr = this.f32158y;
+        this.f32212a.setVisibility(8);
+        if (this.f32212a.getParent() != null) {
+            m2 m2Var = this.f32213b;
+            float[] fArr = this.f32222y;
             int i10 = m2.h;
             m2Var.getClass();
             Point point = AndroidUtilities.displaySize;
-            n2 n2Var = m2Var.f32109f;
+            n2 n2Var = m2Var.f32173f;
             int i11 = n2Var.d.x;
-            m2 m2Var2 = n2Var.f32149b;
+            m2 m2Var2 = n2Var.f32213b;
             float left = m2Var2.getLeft() + i11;
-            float f7 = m2Var.f32106b;
-            fArr[0] = (left - f7) / (((point.x - f7) - m2Var.f32107c) - m2Var2.getMeasuredWidth());
+            float f7 = m2Var.f32170b;
+            fArr[0] = (left - f7) / (((point.x - f7) - m2Var.f32171c) - m2Var2.getMeasuredWidth());
             float top = m2Var2.getTop() + n2Var.d.y;
             float f10 = m2Var.d;
-            fArr[1] = (top - f10) / (((point.y - f10) - m2Var.f32108e) - m2Var2.getMeasuredHeight());
+            fArr[1] = (top - f10) / (((point.y - f10) - m2Var.f32172e) - m2Var2.getMeasuredHeight());
             fArr[0] = Math.min(1.0f, Math.max(0.0f, fArr[0]));
             fArr[1] = Math.min(1.0f, Math.max(0.0f, fArr[1]));
-            ApplicationLoader.applicationContext.getSharedPreferences("voippipconfig", 0).edit().putFloat("relativeX", Math.min(1.0f, Math.max(0.0f, this.f32158y[0]))).putFloat("relativeY", Math.min(1.0f, Math.max(0.0f, this.f32158y[1]))).apply();
+            ApplicationLoader.applicationContext.getSharedPreferences("voippipconfig", 0).edit().putFloat("relativeX", Math.min(1.0f, Math.max(0.0f, this.f32222y[0]))).putFloat("relativeY", Math.min(1.0f, Math.max(0.0f, this.f32222y[1]))).apply();
             try {
-                this.f32150c.removeView(this.f32148a);
+                this.f32214c.removeView(this.f32212a);
             } catch (Throwable th2) {
                 FileLog.e(th2);
             }
         }
-        qf.e eVar = this.f32151e;
+        qf.e eVar = this.f32215e;
         if (eVar != null) {
             eVar.c();
-            this.f32151e = null;
+            this.f32215e = null;
         }
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didEndCall);
     }
@@ -364,7 +364,7 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
         boolean z10;
         boolean z11;
         boolean z12;
-        if (this.f32149b.getMeasuredWidth() != 0) {
+        if (this.f32213b.getMeasuredWidth() != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -385,7 +385,7 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
                 z12 = true;
             }
             this.G = z12;
-            t2 t2Var = this.f32154r;
+            t2 t2Var = this.f32218r;
             t2Var.d.setMirror(sharedInstance.isFrontFaceCamera());
             t2Var.setIsScreencast(sharedInstance.isScreencast());
             t2Var.d(1.0f, false);
@@ -396,7 +396,7 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
             }
             this.v = f7;
         } else if (z13 != this.H) {
-            ValueAnimator valueAnimator = this.f32156w;
+            ValueAnimator valueAnimator = this.f32220w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
@@ -405,10 +405,10 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
                 f7 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f32156w = ofFloat;
-            ofFloat.addUpdateListener(this.f32157x);
-            this.f32156w.setDuration(300L).setInterpolator(is.f27451f);
-            this.f32156w.start();
+            this.f32220w = ofFloat;
+            ofFloat.addUpdateListener(this.f32221x);
+            this.f32220w.setDuration(300L).setInterpolator(is.f27500f);
+            this.f32220w.start();
         }
     }
 
@@ -426,21 +426,21 @@ public final class n2 implements VoIPService.StateListener, sf.a, NotificationCe
     public final void onMediaStateUpdated(int i10, int i11) {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && sharedInstance.getRemoteVideoState() == 2) {
-            Context context = V.f32148a.getContext();
-            if (this.f32151e == null && tf.c.a(context) == 1 && (context instanceof Activity)) {
+            Context context = V.f32212a.getContext();
+            if (this.f32215e == null && tf.c.a(context) == 1 && (context instanceof Activity)) {
                 qf.d dVar = new qf.d((Activity) context, this);
-                dVar.f46231c = "voip-pip";
-                dVar.f46232e = 1;
-                t2 t2Var = this.f32155s;
-                dVar.f46236j = t2Var.d;
-                dVar.f46237k = t2Var.getPlaceholderView();
-                this.f32151e = dVar.a();
+                dVar.f46265c = "voip-pip";
+                dVar.f46266e = 1;
+                t2 t2Var = this.f32219s;
+                dVar.f46270j = t2Var.d;
+                dVar.f46271k = t2Var.getPlaceholderView();
+                this.f32215e = dVar.a();
             }
         } else {
-            qf.e eVar = this.f32151e;
+            qf.e eVar = this.f32215e;
             if (eVar != null) {
                 eVar.c();
-                this.f32151e = null;
+                this.f32215e = null;
             }
         }
         m();

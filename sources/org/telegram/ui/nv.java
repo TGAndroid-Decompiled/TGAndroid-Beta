@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class nv implements Runnable {
-    public final int f40359a;
-    public final sy f40360b;
+    public final int f40393a;
+    public final sy f40394b;
 
     public nv(sy syVar, int i10) {
-        this.f40359a = i10;
-        this.f40360b = syVar;
+        this.f40393a = i10;
+        this.f40394b = syVar;
     }
 
     @Override

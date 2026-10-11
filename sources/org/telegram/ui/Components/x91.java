@@ -1,50 +1,129 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
-import java.io.File;
-import org.telegram.ui.WallpapersListActivity;
-public final class x91 {
-    public String f32857a;
-    public final Activity f32858b;
-    public final org.telegram.ui.ActionBar.m2 f32859c;
-    public final w91 d;
-    public File f32860e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class x91 extends FrameLayout {
+    public static final int f32923f = 0;
+    public final org.telegram.ui.ActionBar.d6 f32924a;
+    public final ym0 f32925b;
+    public final RectF f32926c;
+    public final RectF d;
+    public final Path f32927e;
 
-    public x91(Activity activity, WallpapersListActivity wallpapersListActivity, w91 w91Var) {
-        this.f32858b = activity;
-        this.f32859c = wallpapersListActivity;
-        this.d = w91Var;
+    public x91(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        ym0 ym0Var = new ym0(this);
+        this.f32925b = ym0Var;
+        this.f32926c = new RectF();
+        this.d = new RectF();
+        this.f32927e = new Path();
+        setWillNotDraw(false);
+        this.f32924a = d6Var;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.il, d6Var);
+        ym0Var.B = w02;
+        ym0Var.A = w02;
+        ym0Var.f33436z = w02;
+        ym0Var.f33434x = org.telegram.ui.ActionBar.h6.m1(0.1f, w02);
+        ym0Var.f33421j = false;
+        ym0Var.f33420i = false;
+        ym0Var.k();
     }
 
-    public final void a(int r9, int r10, android.content.Intent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.x91.a(int, int, android.content.Intent):void");
+    @Override
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.f32926c;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        ym0 ym0Var = this.f32925b;
+        float[] fArr = ym0Var.f33417e;
+        float dp = AndroidUtilities.dp(10.0f);
+        fArr[7] = dp;
+        fArr[6] = dp;
+        fArr[1] = dp;
+        fArr[0] = dp;
+        float[] fArr2 = ym0Var.f33417e;
+        float dp2 = AndroidUtilities.dp(10.0f);
+        fArr2[5] = dp2;
+        fArr2[4] = dp2;
+        fArr2[3] = dp2;
+        fArr2[2] = dp2;
+        Path path = this.f32927e;
+        path.rewind();
+        path.addRoundRect(rectF, fArr2, Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        this.f32925b.d(canvas, rectF, 1.0f, false, false);
+        RectF rectF2 = this.d;
+        rectF2.set(0.0f, 0.0f, AndroidUtilities.dp(3.0f), getHeight());
+        ym0Var.e(canvas, rectF2, 1.0f);
+        canvas.restore();
     }
 
-    public final void b() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f32859c;
-        if (m2Var != null) {
-            Activity parentActivity = m2Var.getParentActivity();
-            if (parentActivity != null) {
-                if (Build.VERSION.SDK_INT >= 33) {
-                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
-                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES"}, 4);
-                        return;
-                    }
-                } else if (parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                    parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                    return;
-                }
-            }
-            org.telegram.ui.jq0 jq0Var = new org.telegram.ui.jq0(2, false, false, null);
-            jq0Var.f39108x = false;
-            jq0Var.V = new v91(this);
-            m2Var.presentFragment(jq0Var);
-            return;
+    public void setWebPage(TLRPC.WebPage webPage) {
+        boolean z10;
+        float f7;
+        removeAllViews();
+        if (webPage.photo != null) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        Intent intent = new Intent("android.intent.action.PICK");
-        intent.setType("image/*");
-        this.f32858b.startActivityForResult(intent, 11);
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        linearLayout.setOrientation(1);
+        String str = webPage.site_name;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f32924a;
+        if (str != null) {
+            TextView textView = new TextView(getContext());
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setText(webPage.site_name);
+            textView.setTextSize(1, 14.0f);
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.il, d6Var));
+            textView.setSingleLine(true);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            linearLayout.addView(textView, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        }
+        if (webPage.title != null) {
+            TextView textView2 = new TextView(getContext());
+            textView2.setTypeface(AndroidUtilities.bold());
+            textView2.setText(webPage.title);
+            textView2.setTextSize(1, 14.0f);
+            textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20930j5, d6Var));
+            textView2.setSingleLine(true);
+            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            linearLayout.addView(textView2, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        }
+        if (webPage.description != null) {
+            TextView textView3 = new TextView(getContext());
+            textView3.setText(webPage.description);
+            textView3.setTextSize(1, 13.0f);
+            textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20930j5, d6Var));
+            textView3.setMaxLines(4);
+            textView3.setEllipsize(TextUtils.TruncateAt.END);
+            linearLayout.addView(textView3, w7.x5.n(-1, -2));
+        }
+        if (z10) {
+            f7 = 56.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        addView(linearLayout, w7.x5.a(-2.0f, 0.0f, 0.0f, f7, 0.0f, -1, 51));
+        if (z10) {
+            y9 y9Var = new y9(getContext());
+            y9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
+            y9Var.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20930j5, d6Var))));
+            addView(y9Var, w7.x5.a(48.0f, 0.0f, 5.0f, 0.0f, 1.0f, 48, 53));
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, 40);
+            y9Var.k(ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize, true), webPage.photo), "48_48", ImageLocation.getForObject(closestPhotoSizeWithSize, webPage.photo), "48_48_b", 0L, null, webPage, 1);
+        }
+        setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(6.0f));
     }
 }

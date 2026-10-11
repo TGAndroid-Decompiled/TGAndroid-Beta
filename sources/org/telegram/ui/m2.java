@@ -3,6 +3,6 @@ package org.telegram.ui;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.tl.TL_iv;
 public final class m2 {
-    public TL_iv.PageBlock f39791a;
-    public FrameLayout f39792b;
+    public TL_iv.PageBlock f39825a;
+    public FrameLayout f39826b;
 }

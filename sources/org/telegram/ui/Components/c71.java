@@ -1,5 +1,19 @@
 package org.telegram.ui.Components;
-public final class c71 {
-    public int f25142a;
-    public int f25143b;
+
+import android.view.View;
+public final class c71 extends View {
+    public int f25256a;
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f25256a, 1073741824));
+    }
+
+    public void setHeight(int i10) {
+        if (this.f25256a == i10) {
+            return;
+        }
+        this.f25256a = i10;
+        requestLayout();
+    }
 }

@@ -94,14 +94,14 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.gm0;
 import org.telegram.ui.Components.hm0;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 import org.telegram.ui.Components.qu;
 import org.telegram.ui.Components.sc;
 import org.telegram.ui.bd0;
 import v7.j8;
-public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCompleteListener, Continuation, im0, Utilities.Callback3Return, bd0, p0, qu, k4, e2.n, e2.m, li.n, k0, e2.h, b1 {
+public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, gm0, OnCompleteListener, Continuation, hm0, Utilities.Callback3Return, bd0, p0, qu, k4, e2.n, e2.m, li.n, k0, e2.h, b1 {
     public final int f538a;
     public final Object f539b;
     public final Object f540c;
@@ -118,11 +118,11 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
     }
 
     @Override
-    public q80 a(i1 i1Var) {
-        r rVar = (r) ((pf.b) this.f539b).f45593c;
-        q80 q80Var = new q80(rVar, (d6) this.f540c, i1Var, false, false, true);
-        rVar.H = q80Var;
-        return q80Var;
+    public p80 a(i1 i1Var) {
+        r rVar = (r) ((pf.b) this.f539b).f45627c;
+        p80 p80Var = new p80(rVar, (d6) this.f540c, i1Var, false, false, true);
+        rVar.H = p80Var;
+        return p80Var;
     }
 
     @Override
@@ -153,7 +153,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
             default:
                 m4.r rVar = (m4.r) this.f540c;
                 g1 g1Var2 = (g1) obj;
-                b0 b0Var = (b0) ((c1) this.f539b).f16032a.get();
+                b0 b0Var = (b0) ((c1) this.f539b).f16068a.get();
                 if (b0Var != null && !b0Var.j()) {
                     b0Var.g(rVar, false);
                     return;
@@ -187,7 +187,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
         fa faVar = y9Var.W;
         if (i10 >= 0 && i10 < arrayList2.size()) {
             k9 k9Var = (k9) arrayList2.get(i10);
-            int i15 = k9Var.f17175a;
+            int i15 = k9Var.f17211a;
             int i16 = 0;
             if (i15 == 3) {
                 if (k9Var.f5333n && faVar.F) {
@@ -232,15 +232,15 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
                     } else {
                         TLRPC.Chat chat = k9Var.h;
                         if (chat != null) {
-                            long j3 = chat.f20032id;
+                            long j3 = chat.f20068id;
                             if (fa.e1(faVar, chat) > 200) {
                                 try {
                                     y9Var.performHapticFeedback(3, 1);
                                 } catch (Throwable unused) {
                                 }
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(y9Var.getContext(), 0, fa.K(faVar));
-                                alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.GroupTooLarge);
-                                alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
+                                alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.GroupTooLarge);
+                                alertDialog$Builder.f20404a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
                                 q.p(R.string.OK, alertDialog$Builder, null);
                             } else if (hashMap.containsKey(Long.valueOf(j3))) {
                                 ArrayList arrayList4 = (ArrayList) hashMap.get(Long.valueOf(j3));
@@ -284,7 +284,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
                                 if (y9Var.f6359a == 0) {
                                     faVar.N = 0;
                                 }
-                                long j10 = user.f20179id;
+                                long j10 = user.f20215id;
                                 HashSet hashSet = new HashSet(arrayList3);
                                 if (arrayList3.contains(Long.valueOf(j10))) {
                                     Iterator it = hashMap.entrySet().iterator();
@@ -347,7 +347,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
                                 i14 = R.string.StoryEnabledScreenshots;
                             }
                             sc G = adVar.G(i19, 4, LocaleController.getString(i14));
-                            G.f30711j = 5000;
+                            G.f30833j = 5000;
                             G.k(true);
                             return;
                         }
@@ -359,7 +359,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
                             i13 = R.string.StoryDisabledScreenshots;
                         }
                         sc G2 = adVar2.G(i20, 4, LocaleController.getString(i13));
-                        G2.f30711j = 5000;
+                        G2.f30833j = 5000;
                         G2.k(true);
                     } else if (i18 == 1) {
                         boolean b11 = r8Var.b();
@@ -374,7 +374,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
                                 i12 = R.string.StoryEnableKeep;
                             }
                             sc G3 = adVar3.G(i21, 4, LocaleController.getString(i12));
-                            G3.f30711j = 5000;
+                            G3.f30833j = 5000;
                             G3.k(true);
                         } else {
                             ad adVar4 = new ad(faVar.container, fa.T(faVar));
@@ -385,7 +385,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
                                 i11 = R.string.StoryDisableKeep;
                             }
                             sc G4 = adVar4.G(i22, 4, LocaleController.getString(i11));
-                            G4.f30711j = 5000;
+                            G4.f30833j = 5000;
                             G4.k(true);
                         }
                         y9Var.g(true);
@@ -408,10 +408,10 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
                     } else {
                         clientUserId = UserConfig.getInstance(fa.c1(faVar)).getClientUserId();
                     }
-                    q80 F = q80.F(y9Var, fa.U(faVar), view);
+                    p80 F = p80.F(y9Var, fa.U(faVar), view);
                     F.c(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new ai.j(y9Var, clientUserId, 5), false);
                     F.k();
-                    q80.f(F, faVar.j1().B(clientUserId, true), faVar.v, false, null, new h3(5, y9Var, F));
+                    p80.f(F, faVar.j1().B(clientUserId, true), faVar.v, false, null, new h3(5, y9Var, F));
                     F.Z();
                 } else if (i23 == 5) {
                     a2 a2Var3 = new a2(y9Var.getContext(), 3, fa.V(faVar));
@@ -480,7 +480,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
         switch (this.f538a) {
             case 25:
                 Bundle bundle = (Bundle) this.f540c;
-                b0 b0Var = ((l0) this.f539b).f16162g;
+                b0 b0Var = ((l0) this.f539b).f16198g;
                 if (bundle == null) {
                     Bundle bundle2 = Bundle.EMPTY;
                 }
@@ -489,12 +489,12 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
             default:
                 l0 l0Var = (l0) this.f539b;
                 l0Var.getClass();
-                String str = ((n4.l) this.f540c).f16622a;
+                String str = ((n4.l) this.f540c).f16658a;
                 if (TextUtils.isEmpty(str)) {
                     e2.a.n("MediaSessionLegacyStub", "onRemoveQueueItem(): Media ID shouldn't be null");
                     return;
                 }
-                g1 g1Var = l0Var.f16162g.f16022t;
+                g1 g1Var = l0Var.f16198g.f16058t;
                 if (!g1Var.m0(17)) {
                     e2.a.n("MediaSessionLegacyStub", "Can't remove item by ID without COMMAND_GET_TIMELINE being available");
                     return;
@@ -579,7 +579,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f540c;
                 TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
                 tL_stories_editStory.peer = MessagesController.getInstance(f6Var.C2).getInputPeer(storyItem.dialogId);
-                tL_stories_editStory.f20273id = storyItem.f20269id;
+                tL_stories_editStory.f20309id = storyItem.f20305id;
                 tL_stories_editStory.flags |= 4;
                 tL_stories_editStory.privacy_rules = daVar.f4972b;
                 ConnectionsManager.getInstance(f6Var.C2).sendRequest(tL_stories_editStory, new q3(f6Var, y8Var, storyItem, daVar, 0));
@@ -718,7 +718,7 @@ public final class b implements hh.h, h9, z1, OnFailureListener, q9.d, hm0, OnCo
         q9.a aVar = (q9.a) this.f540c;
         try {
             Trace.beginSection(str);
-            return aVar.f46086f.y0(u5Var);
+            return aVar.f46120f.y0(u5Var);
         } finally {
             Trace.endSection();
         }

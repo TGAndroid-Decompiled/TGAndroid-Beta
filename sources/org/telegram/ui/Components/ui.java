@@ -17,7 +17,7 @@ public final class ui extends t20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.w1(this.f30964r, true);
+        this.J.w1(this.f31038r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

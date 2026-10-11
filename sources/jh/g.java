@@ -15,7 +15,7 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.e1;
 import org.telegram.ui.ActionBar.m1;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.tn0;
+import org.telegram.ui.Components.sn0;
 import org.telegram.ui.e0;
 import org.telegram.ui.qe;
 import org.telegram.ui.qf;
@@ -38,12 +38,12 @@ public final class g implements View.OnLongClickListener {
         qf qfVar;
         boolean z10;
         String string;
-        tn0 tn0Var;
+        sn0 sn0Var;
         switch (this.f14192a) {
             case 0:
                 b bVar = ((h) this.f14194c).f14201n;
                 if (bVar != null) {
-                    zn znVar = ((qe) bVar).f41156b;
+                    zn znVar = ((qe) bVar).f41190b;
                     int i10 = this.f14193b;
                     if (i10 == 2) {
                         qfVar = new qf(znVar, 8);
@@ -74,8 +74,8 @@ public final class g implements View.OnLongClickListener {
                     e1Var.setOnClickListener(new zy0(1, qfVar));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(e1Var);
                     m1 m1Var = new m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                    m1Var.f21372e = true;
-                    m1Var.f21371c = 220;
+                    m1Var.f21408e = true;
+                    m1Var.f21407c = 220;
                     m1Var.setOutsideTouchable(true);
                     m1Var.setClippingEnabled(true);
                     m1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -95,7 +95,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     m1Var.showAtLocation(smVar, 51, (int) width, (int) measuredHeight);
                     znVar.Q8 = m1Var;
-                    znVar.i8(znVar.f44814j1, false);
+                    znVar.i8(znVar.f44848j1, false);
                     znVar.Q8.setOnDismissListener(new e0(znVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
@@ -106,7 +106,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f14194c;
-                if (!scrollSlidingTextTabStrip.f24314n0 && (tn0Var = scrollSlidingTextTabStrip.f24298b) != null && tn0Var.k1(this.f14193b, view)) {
+                if (!scrollSlidingTextTabStrip.f24350n0 && (sn0Var = scrollSlidingTextTabStrip.f24334b) != null && sn0Var.k1(this.f14193b, view)) {
                     return true;
                 }
                 return false;

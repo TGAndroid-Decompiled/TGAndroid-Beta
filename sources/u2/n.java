@@ -2,8 +2,8 @@ package u2;
 
 import java.util.List;
 public final class n implements c1 {
-    public final e9.a1 f48726a;
-    public long f48727b;
+    public final e9.a1 f48760a;
+    public long f48761b;
 
     public n(List list, List list2) {
         boolean z10;
@@ -17,19 +17,19 @@ public final class n implements c1 {
         for (int i10 = 0; i10 < list.size(); i10++) {
             u10.b(new m((c1) list.get(i10), (List) list2.get(i10)));
         }
-        this.f48726a = u10.i();
-        this.f48727b = -9223372036854775807L;
+        this.f48760a = u10.i();
+        this.f48761b = -9223372036854775807L;
     }
 
     @Override
     public final boolean c() {
         int i10 = 0;
         while (true) {
-            e9.a1 a1Var = this.f48726a;
+            e9.a1 a1Var = this.f48760a;
             if (i10 >= a1Var.d) {
                 return false;
             }
-            if (((m) a1Var.get(i10)).f48719a.c()) {
+            if (((m) a1Var.get(i10)).f48753a.c()) {
                 return true;
             }
             i10++;
@@ -41,11 +41,11 @@ public final class n implements c1 {
         int i10 = 0;
         long j3 = Long.MAX_VALUE;
         while (true) {
-            e9.a1 a1Var = this.f48726a;
+            e9.a1 a1Var = this.f48760a;
             if (i10 >= a1Var.d) {
                 break;
             }
-            long d = ((m) a1Var.get(i10)).f48719a.d();
+            long d = ((m) a1Var.get(i10)).f48753a.d();
             if (d != Long.MIN_VALUE) {
                 j3 = Math.min(j3, d);
             }
@@ -70,16 +70,16 @@ public final class n implements c1 {
             int i10 = 0;
             z10 = false;
             while (true) {
-                e9.a1 a1Var = this.f48726a;
+                e9.a1 a1Var = this.f48760a;
                 if (i10 < a1Var.d) {
-                    long d10 = ((m) a1Var.get(i10)).f48719a.d();
+                    long d10 = ((m) a1Var.get(i10)).f48753a.d();
                     if (d10 != Long.MIN_VALUE && d10 <= s0Var.f11885a) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     if (d10 == d || z11) {
-                        z10 |= ((m) a1Var.get(i10)).f48719a.n(s0Var);
+                        z10 |= ((m) a1Var.get(i10)).f48753a.n(s0Var);
                     }
                     i10++;
                 } else {
@@ -96,13 +96,13 @@ public final class n implements c1 {
         long j3 = Long.MAX_VALUE;
         long j10 = Long.MAX_VALUE;
         while (true) {
-            e9.a1 a1Var = this.f48726a;
+            e9.a1 a1Var = this.f48760a;
             if (i10 >= a1Var.d) {
                 break;
             }
             m mVar = (m) a1Var.get(i10);
-            long q6 = mVar.f48719a.q();
-            e9.i0 i0Var = mVar.f48720b;
+            long q6 = mVar.f48753a.q();
+            e9.i0 i0Var = mVar.f48754b;
             if ((i0Var.contains(1) || i0Var.contains(2) || i0Var.contains(4)) && q6 != Long.MIN_VALUE) {
                 j3 = Math.min(j3, q6);
             }
@@ -112,12 +112,12 @@ public final class n implements c1 {
             i10++;
         }
         if (j3 != Long.MAX_VALUE) {
-            this.f48727b = j3;
+            this.f48761b = j3;
             return j3;
         } else if (j10 == Long.MAX_VALUE) {
             return Long.MIN_VALUE;
         } else {
-            long j11 = this.f48727b;
+            long j11 = this.f48761b;
             if (j11 != -9223372036854775807L) {
                 return j11;
             }
@@ -129,7 +129,7 @@ public final class n implements c1 {
     public final void s(long j3) {
         int i10 = 0;
         while (true) {
-            e9.a1 a1Var = this.f48726a;
+            e9.a1 a1Var = this.f48760a;
             if (i10 < a1Var.d) {
                 ((m) a1Var.get(i10)).s(j3);
                 i10++;

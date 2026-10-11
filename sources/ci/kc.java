@@ -12,9 +12,9 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.b00;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.uw0;
-public final class kc extends uw0 {
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.tw0;
+public final class kc extends tw0 {
     public boolean A0;
     public float B0;
     public float C0;
@@ -219,12 +219,12 @@ public final class kc extends uw0 {
             if (b00Var != null) {
                 b00Var.layout(lcVar.Y, (measuredHeight - lcVar.f5461b0) - b00Var.getMeasuredHeight(), measuredWidth - lcVar.f5458a0, measuredHeight - lcVar.f5461b0);
             }
-            ml0 ml0Var = lcVar.f5526v1.Z1;
-            if (ml0Var != null) {
+            ll0 ll0Var = lcVar.f5526v1.Z1;
+            if (ll0Var != null) {
                 int i21 = lcVar.Y;
-                ml0Var.layout(i21, lcVar.Z, ml0Var.getMeasuredWidth() + i21, lcVar.f5526v1.Z1.getMeasuredHeight() + lcVar.Z);
+                ll0Var.layout(i21, lcVar.Z, ll0Var.getMeasuredWidth() + i21, lcVar.f5526v1.Z1.getMeasuredHeight() + lcVar.Z);
                 if (lcVar.f5526v1.Z1.getReactionsWindow() != null) {
-                    mVar = lcVar.f5526v1.Z1.getReactionsWindow().f54538c;
+                    mVar = lcVar.f5526v1.Z1.getReactionsWindow().f54572c;
                 } else {
                     mVar = null;
                 }
@@ -327,11 +327,11 @@ public final class kc extends uw0 {
             if (b00Var != null) {
                 b00Var.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(lcVar.f5526v1.f5818p2.getLayoutParams().height, 1073741824));
             }
-            ml0 ml0Var = lcVar.f5526v1.Z1;
-            if (ml0Var != null) {
-                measureChild(ml0Var, i10, i11);
+            ll0 ll0Var = lcVar.f5526v1.Z1;
+            if (ll0Var != null) {
+                measureChild(ll0Var, i10, i11);
                 if (lcVar.f5526v1.Z1.getReactionsWindow() != null) {
-                    measureChild(lcVar.f5526v1.Z1.getReactionsWindow().f54538c, i10, i11);
+                    measureChild(lcVar.f5526v1.Z1.getReactionsWindow().f54572c, i10, i11);
                 }
             }
         }

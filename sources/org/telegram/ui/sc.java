@@ -16,7 +16,7 @@ public final class sc extends xp0 {
         tc tcVar = this.F;
         TextView textView = tcVar.d;
         if (textView != null) {
-            textView.setTextColor(tcVar.f42152b.h.getTextColor());
+            textView.setTextColor(tcVar.f42186b.h.getTextColor());
         }
     }
 }

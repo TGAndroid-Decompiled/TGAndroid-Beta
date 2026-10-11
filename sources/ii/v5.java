@@ -11,7 +11,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 public final class v5 implements View.OnClickListener {
     public final int f12752a;
     public final f6 f12753b;
@@ -55,12 +55,12 @@ public final class v5 implements View.OnClickListener {
                 if (c6Var2 != null) {
                     a aVar3 = f6Var2.f12423x;
                     x3 x3Var2 = ((f3) c6Var2).f12410a;
-                    if (aVar3 != null && (aVar3.f12233b instanceof TL_iv.pageBlockPreformatted) && (set = li.k.f15623a.f15644x) != null) {
+                    if (aVar3 != null && (aVar3.f12233b instanceof TL_iv.pageBlockPreformatted) && (set = li.k.f15659a.f15680x) != null) {
                         ArrayList arrayList = new ArrayList(set);
                         Collections.sort(arrayList);
                         TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f12233b;
-                        q80 J = x3Var2.f12808f3.J(view);
-                        J.W(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20786d6, x3Var2.f12806e3)));
+                        p80 J = x3Var2.f12808f3.J(view);
+                        J.W(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20822d6, x3Var2.f12806e3)));
                         J.Z = true;
                         J.X = AndroidUtilities.dp(350.0f);
                         J.i(new p2(x3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));

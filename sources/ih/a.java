@@ -65,8 +65,8 @@ public final class a extends FrameLayout implements d {
 
     public final void a() {
         int i10;
-        float f7 = 1.0f - this.f12222a.f16365e;
-        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f12223b.f16365e);
+        float f7 = 1.0f - this.f12222a.f16401e;
+        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f12223b.f16401e);
         ImageView imageView = this.f12224c;
         if (imageView != null) {
             imageView.setAlpha(lerp);
@@ -84,8 +84,8 @@ public final class a extends FrameLayout implements d {
 
     public final void b() {
         int i10;
-        float f7 = this.f12222a.f16365e;
-        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f12223b.f16365e);
+        float f7 = this.f12222a.f16401e;
+        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f12223b.f16401e);
         ImageView imageView = this.d;
         if (imageView != null) {
             imageView.setAlpha(lerp);
@@ -98,7 +98,7 @@ public final class a extends FrameLayout implements d {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.f12225e.f27725c = -1L;
+                this.f12225e.f27809c = -1L;
             }
         }
     }

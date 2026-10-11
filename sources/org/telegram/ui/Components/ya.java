@@ -6,21 +6,21 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class ya extends uw0 {
-    public final boolean f33157w0;
-    public final boolean f33158x0;
-    public final db f33159y0;
+public final class ya extends tw0 {
+    public final boolean f33216w0;
+    public final boolean f33217x0;
+    public final db f33218y0;
 
     public ya(db dbVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f33159y0 = dbVar;
-        this.f33157w0 = z10;
-        this.f33158x0 = z11;
+        this.f33218y0 = dbVar;
+        this.f33216w0 = z10;
+        this.f33217x0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        db dbVar = this.f33159y0;
+        db dbVar = this.f33218y0;
         dbVar.J(canvas, this);
         super.dispatchDraw(canvas);
         dbVar.I(canvas, this);
@@ -31,7 +31,7 @@ public final class ya extends uw0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            db dbVar = this.f33159y0;
+            db dbVar = this.f33218y0;
             drawable = ((org.telegram.ui.ActionBar.e3) dbVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 dbVar.dismiss();
@@ -42,8 +42,8 @@ public final class ya extends uw0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f33158x0) {
-            this.f33159y0.getClass();
+        if (!this.f33217x0) {
+            this.f33218y0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -61,10 +61,10 @@ public final class ya extends uw0 {
         int i13;
         av avVar;
         int size = View.MeasureSpec.getSize(i11);
-        db dbVar = this.f33159y0;
+        db dbVar = this.f33218y0;
         dbVar.h = size;
         dbVar.F(i10, i11);
-        if (this.f33157w0) {
+        if (this.f33216w0) {
             i11 = View.MeasureSpec.makeMeasureSpec(dbVar.h, 1073741824);
         }
         if (dbVar.Q != null) {
@@ -74,7 +74,7 @@ public final class ya extends uw0 {
             av avVar2 = dbVar.Q;
             if (avVar2 != null && !avVar2.N && AndroidUtilities.dp(20.0f) >= 0) {
                 av avVar3 = dbVar.Q;
-                if (!avVar3.f24592e && !avVar3.O) {
+                if (!avVar3.f24682e && !avVar3.O) {
                     avVar3.j();
                 }
             }

@@ -8,8 +8,8 @@ import android.util.Log;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class r {
-    public static final a0.m f16753a = new a0.m(0);
-    public static Locale f16754b;
+    public static final a0.m f16789a = new a0.m(0);
+    public static Locale f16790b;
 
     public static String a(Context context) {
         String packageName = context.getPackageName();
@@ -140,13 +140,13 @@ public abstract class r {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.m mVar = f16753a;
+        a0.m mVar = f16789a;
         synchronized (mVar) {
             try {
-                Locale locale = w7.y.a(context.getResources().getConfiguration()).f16505a.get(0);
-                if (!locale.equals(f16754b)) {
+                Locale locale = w7.y.a(context.getResources().getConfiguration()).f16541a.get(0);
+                if (!locale.equals(f16790b)) {
                     mVar.clear();
-                    f16754b = locale;
+                    f16790b = locale;
                 }
                 String str2 = (String) mVar.get(str);
                 if (str2 != null) {
@@ -167,7 +167,7 @@ public abstract class r {
                         if (TextUtils.isEmpty(string)) {
                             Log.w("GoogleApiAvailability", "Got empty resource: ".concat(str));
                         } else {
-                            f16753a.put(str, string);
+                            f16789a.put(str, string);
                             return string;
                         }
                     }

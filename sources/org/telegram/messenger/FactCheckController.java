@@ -30,9 +30,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.su;
-import org.telegram.ui.Components.uw0;
+import org.telegram.ui.Components.tw0;
 import org.telegram.ui.LaunchActivity;
 public class FactCheckController {
     private static org.telegram.ui.ActionBar.a2 currentDialog;
@@ -467,7 +467,7 @@ public class FactCheckController {
         } else {
             view = null;
         }
-        if (R != null && (R.getFragmentView() instanceof uw0) && ((uw0) R.getFragmentView()).R() > AndroidUtilities.dp(20.0f) && !z10) {
+        if (R != null && (R.getFragmentView() instanceof tw0) && ((tw0) R.getFragmentView()).R() > AndroidUtilities.dp(20.0f) && !z10) {
             z11 = true;
         } else {
             z11 = false;
@@ -486,7 +486,7 @@ public class FactCheckController {
             z12 = true;
         }
         String string = LocaleController.getString(R.string.FactCheckDialog);
-        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder2.f20368a;
+        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder2.f20404a;
         a2Var.R = string;
         final int i10 = MessagesController.getInstance(this.currentAccount).factcheckLengthLimit;
         final su suVar = new su(context, d6Var) {
@@ -501,7 +501,7 @@ public class FactCheckController {
                 q6Var.n(0.2f, 160L, is.h);
                 this.limit.w(AndroidUtilities.dp(15.33f));
                 this.limit.setCallback(this);
-                this.limit.f30019b = 5;
+                this.limit.f30134b = 5;
             }
 
             @Override
@@ -511,7 +511,7 @@ public class FactCheckController {
                 org.telegram.ui.Components.q6 q6Var = this.limit;
                 org.telegram.ui.Components.j5 j5Var = this.limitColor;
                 if (this.limitCount < 0) {
-                    i11 = org.telegram.ui.ActionBar.h6.f21007p7;
+                    i11 = org.telegram.ui.ActionBar.h6.f21043p7;
                 } else {
                     i11 = org.telegram.ui.ActionBar.h6.P5;
                 }
@@ -527,10 +527,10 @@ public class FactCheckController {
                 }
                 menu.removeItem(16908341);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
-                spannableStringBuilder.setSpan(new o61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new n61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 6, spannableStringBuilder);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
-                spannableStringBuilder2.setSpan(new o61(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+                spannableStringBuilder2.setSpan(new n61(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 7, spannableStringBuilder2);
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_link, 8, LocaleController.getString(R.string.CreateLink));
                 menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
@@ -603,12 +603,12 @@ public class FactCheckController {
         });
         MediaDataController.getInstance(this.currentAccount).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
         suVar.setTextSize(1, 18.0f);
-        suVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20894j5, d6Var));
+        suVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20930j5, d6Var));
         suVar.setHintColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Xh, d6Var));
         suVar.setHintText(LocaleController.getString(R.string.FactCheckPlaceholder));
         suVar.setFocusable(true);
         suVar.setInputType(147457);
-        suVar.setLineColors(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20914k6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932l6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21007p7, d6Var));
+        suVar.setLineColors(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20950k6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20968l6, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21043p7, d6Var));
         suVar.setImeOptions(6);
         suVar.setBackgroundDrawable(null);
         suVar.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
@@ -658,7 +658,7 @@ public class FactCheckController {
                         if (z14) {
                             i12 = org.telegram.ui.ActionBar.h6.H5;
                         } else {
-                            i12 = org.telegram.ui.ActionBar.h6.f21026q7;
+                            i12 = org.telegram.ui.ActionBar.h6.f21062q7;
                         }
                         textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
                     }
@@ -678,7 +678,7 @@ public class FactCheckController {
         linearLayout.addView(suVar, w7.x5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder2.c();
         alertDialog$Builder2.n(linearLayout);
-        a2Var.f20377a = AndroidUtilities.dp(292.0f);
+        a2Var.f20413a = AndroidUtilities.dp(292.0f);
         alertDialog$Builder2.k(LocaleController.getString(R.string.Done), new j2(this, suVar, i10, messageObject, z13));
         alertDialog$Builder2.h(LocaleController.getString("Cancel", R.string.Cancel), new b(9));
         if (z11) {
@@ -742,7 +742,7 @@ public class FactCheckController {
             a2VarArr[0].show();
         }
         org.telegram.ui.ActionBar.a2 a2Var2 = a2VarArr[0];
-        a2Var2.f20391h0 = false;
+        a2Var2.f20427h0 = false;
         View d = a2Var2.d(-1);
         if (d instanceof TextView) {
             textViewArr[0] = (TextView) d;

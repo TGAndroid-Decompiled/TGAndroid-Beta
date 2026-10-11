@@ -6,16 +6,16 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class d20 extends FrameLayout {
-    public org.telegram.ui.ActionBar.h5 f36874a;
-    public ImageView f36875b;
+    public org.telegram.ui.ActionBar.h5 f36908a;
+    public ImageView f36909b;
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int dp;
         int measuredWidth;
-        ImageView imageView = this.f36875b;
+        ImageView imageView = this.f36909b;
         int i14 = i12 - i10;
-        org.telegram.ui.ActionBar.h5 h5Var = this.f36874a;
+        org.telegram.ui.ActionBar.h5 h5Var = this.f36908a;
         int textHeight = ((i13 - i11) - h5Var.getTextHeight()) / 2;
         float f7 = 23.0f;
         if (LocaleController.isRTL) {
@@ -43,8 +43,8 @@ public final class d20 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         AndroidUtilities.dp(48.0f);
-        this.f36874a.measure(org.telegram.messenger.ai.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f36875b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        this.f36908a.measure(org.telegram.messenger.ai.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f36909b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

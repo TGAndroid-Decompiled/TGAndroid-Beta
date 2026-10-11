@@ -24,11 +24,11 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.ga0;
+import org.telegram.ui.Components.ba0;
+import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.fa0;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.sk0;
 public class d4 extends View {
     public boolean A0;
@@ -48,13 +48,13 @@ public class d4 extends View {
     public final TextPaint J;
     public final RectF J0;
     public Layout.Alignment K;
-    public ga0 K0;
+    public fa0 K0;
     public StaticLayout L;
     public org.telegram.ui.Components.x5 M;
     public float N;
     public float O;
     public float P;
-    public final ca0 Q;
+    public final ba0 Q;
     public float R;
     public float S;
     public boolean T;
@@ -66,7 +66,7 @@ public class d4 extends View {
     public float f4903b;
     public Paint f4904b0;
     public float f4905c;
-    public ek0 f4906c0;
+    public dk0 f4906c0;
     public long d;
     public float f4907d0;
     public boolean f4908e;
@@ -121,7 +121,7 @@ public class d4 extends View {
         TextPaint textPaint = new TextPaint(1);
         this.J = textPaint;
         this.K = Layout.Alignment.ALIGN_NORMAL;
-        this.Q = new ca0();
+        this.Q = new ba0();
         this.T = true;
         this.U = true;
         is isVar = is.h;
@@ -202,7 +202,7 @@ public class d4 extends View {
             return textPaint.measureText(charSequence.toString());
         }
         Spanned spanned = (Spanned) charSequence;
-        o61[] o61VarArr = (o61[]) spanned.getSpans(0, charSequence.length(), o61.class);
+        n61[] n61VarArr = (n61[]) spanned.getSpans(0, charSequence.length(), n61.class);
         ReplacementSpan[] replacementSpanArr = (ReplacementSpan[]) spanned.getSpans(0, charSequence.length(), ReplacementSpan.class);
         int i10 = 0;
         int i11 = 0;
@@ -216,11 +216,11 @@ public class d4 extends View {
         }
         CharSequence charSequence3 = charSequence;
         TextPaint textPaint3 = textPaint;
-        if (o61VarArr != null && o61VarArr.length != 0) {
+        if (n61VarArr != null && n61VarArr.length != 0) {
             int i12 = 0;
-            for (int i13 = 0; i13 < o61VarArr.length; i13++) {
-                int spanStart2 = spanned.getSpanStart(o61VarArr[i13]);
-                int spanEnd2 = spanned.getSpanEnd(o61VarArr[i13]);
+            for (int i13 = 0; i13 < n61VarArr.length; i13++) {
+                int spanStart2 = spanned.getSpanStart(n61VarArr[i13]);
+                int spanEnd2 = spanned.getSpanEnd(n61VarArr[i13]);
                 int max = Math.max(i12, spanStart2);
                 if (max - i12 > 0) {
                     f7 += textPaint3.measureText(spanned, i12, max);
@@ -228,7 +228,7 @@ public class d4 extends View {
                 i12 = Math.max(max, spanEnd2);
                 if (i12 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(o61VarArr[i13].f29275a);
+                    textPaint3.setTypeface(n61VarArr[i13].f29056a);
                     textPaint3.setTypeface(typeface);
                     f7 = textPaint3.measureText(spanned, max, i12) + f7;
                 }
@@ -447,7 +447,7 @@ public class d4 extends View {
             if (this.I) {
                 f7 = this.P;
             } else {
-                f7 = q6Var.f30022e;
+                f7 = q6Var.f30137e;
             }
             if (this.f4923r) {
                 if (this.f4918n == null) {
@@ -532,21 +532,21 @@ public class d4 extends View {
                 this.f4902a0.draw(canvas);
             }
             float f18 = ((rectF.top + rectF2.top) + (rectF.bottom - rectF2.bottom)) / 2.0f;
-            ek0 ek0Var = this.f4906c0;
-            if (ek0Var != null) {
+            dk0 dk0Var = this.f4906c0;
+            if (dk0Var != null) {
                 if (this.f4913h0) {
                     float f19 = (rectF2.left / 2.0f) + rectF.left + 0.0f;
                     float f20 = this.f4907d0 + f18;
                     f11 = 255.0f;
                     float f21 = this.f4912g0 / 2.0f;
-                    ek0Var.setBounds((int) f19, (int) (f20 - f21), (int) (f19 + this.f4911f0), (int) (f21 + f20));
+                    dk0Var.setBounds((int) f19, (int) (f20 - f21), (int) (f19 + this.f4911f0), (int) (f21 + f20));
                     f13 = this.f4911f0 + this.f4909e0 + 0.0f;
                 } else {
                     f11 = 255.0f;
                     float f22 = (0.0f + rectF.right) - (rectF2.right / 2.0f);
                     float f23 = this.f4907d0 + f18;
                     float f24 = this.f4912g0 / 2.0f;
-                    ek0Var.setBounds((int) (f22 - this.f4911f0), (int) (f23 - f24), (int) f22, (int) (f24 + f23));
+                    dk0Var.setBounds((int) (f22 - this.f4911f0), (int) (f23 - f24), (int) f22, (int) (f24 + f23));
                     f13 = 0.0f;
                 }
                 this.f4906c0.setAlpha((int) (f10 * f11));
@@ -615,7 +615,7 @@ public class d4 extends View {
         invalidate();
         Runnable runnable2 = this.f4917l0;
         if (runnable2 != null) {
-            AndroidUtilities.runOnUIThread(runnable2, g6Var.f26613c * ((float) g6Var.f26616g));
+            AndroidUtilities.runOnUIThread(runnable2, g6Var.f26665c * ((float) g6Var.f26668g));
         }
         this.Q.d(true);
     }
@@ -640,7 +640,7 @@ public class d4 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f30025i;
+            return this.H.f30140i;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -653,7 +653,7 @@ public class d4 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f30017a;
+        return this.H.f30132a;
     }
 
     public final void h(int i10) {
@@ -677,20 +677,20 @@ public class d4 extends View {
         }
     }
 
-    public final void j(ek0 ek0Var) {
-        ek0 ek0Var2 = this.f4906c0;
-        if (ek0Var2 != null) {
-            ek0Var2.setCallback(null);
+    public final void j(dk0 dk0Var) {
+        dk0 dk0Var2 = this.f4906c0;
+        if (dk0Var2 != null) {
+            dk0Var2.setCallback(null);
         }
-        this.f4906c0 = ek0Var;
-        ek0Var.setCallback(this);
-        ek0 ek0Var3 = this.f4906c0;
-        if (com.google.android.gms.internal.vision.e2.t(ek0Var3)) {
-            this.d = Math.max(this.d, ek0Var3.r());
+        this.f4906c0 = dk0Var;
+        dk0Var.setCallback(this);
+        dk0 dk0Var3 = this.f4906c0;
+        if (com.google.android.gms.internal.vision.e2.t(dk0Var3)) {
+            this.d = Math.max(this.d, dk0Var3.r());
         }
-        ek0 ek0Var4 = this.f4906c0;
-        this.f4911f0 = ek0Var4.f26038b;
-        this.f4912g0 = ek0Var4.f26040c;
+        dk0 dk0Var4 = this.f4906c0;
+        this.f4911f0 = dk0Var4.f25805b;
+        this.f4912g0 = dk0Var4.f25807c;
         this.f4913h0 = true;
     }
 
@@ -833,7 +833,7 @@ public class d4 extends View {
             this.f4919n0 = ofFloat;
             ofFloat.addUpdateListener(new ai.a(this, 19));
             this.f4919n0.addListener(new ai.b(this, 14));
-            this.f4919n0.setInterpolator(is.f27455k);
+            this.f4919n0.setInterpolator(is.f27504k);
             this.f4919n0.setDuration(300L);
             this.f4919n0.start();
         }

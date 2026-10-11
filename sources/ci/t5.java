@@ -3,14 +3,14 @@ package ci;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.ll0;
 public final class t5 extends AnimatorListenerAdapter {
     public final int f5997a;
-    public final ml0 f5998b;
+    public final ll0 f5998b;
 
-    public t5(ml0 ml0Var, int i10) {
+    public t5(ll0 ll0Var, int i10) {
         this.f5997a = i10;
-        this.f5998b = ml0Var;
+        this.f5998b = ll0Var;
     }
 
     @Override
@@ -25,11 +25,11 @@ public final class t5 extends AnimatorListenerAdapter {
                 return;
             default:
                 super.onAnimationEnd(animator);
-                ml0 ml0Var = this.f5998b;
-                ml0Var.Q = null;
-                ml0Var.f28778n0 = 0.0f;
-                ml0Var.f28776l0 = null;
-                ml0Var.invalidate();
+                ll0 ll0Var = this.f5998b;
+                ll0Var.Q = null;
+                ll0Var.f28483n0 = 0.0f;
+                ll0Var.f28481l0 = null;
+                ll0Var.invalidate();
                 return;
         }
     }

@@ -5,18 +5,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.o1;
-import org.telegram.ui.Components.fs0;
+import org.telegram.ui.Components.es0;
 public final class n extends o1 {
-    public final xh.m f54699x;
+    public final xh.m f54733x;
 
     public n(xh.m mVar, xh.m mVar2) {
         super(mVar2);
-        this.f54699x = mVar;
+        this.f54733x = mVar;
     }
 
     @Override
     public final boolean b() {
-        q qVar = (q) this.f54699x.f51434b;
+        q qVar = (q) this.f54733x.f51468b;
         b5 parentLayout = qVar.getParentLayout();
         if (!q.U(qVar) && !AndroidUtilities.isTablet() && !q.V(qVar) && !AndroidUtilities.isInMultiwindow && parentLayout != null) {
             return true;
@@ -26,24 +26,24 @@ public final class n extends o1 {
 
     @Override
     public final void e(float f7, float f10, boolean z10) {
-        q qVar = (q) this.f54699x.f51434b;
+        q qVar = (q) this.f54733x.f51468b;
         if (qVar.getParentLayout() != null) {
-            boolean z11 = ((ActionBarLayout) qVar.getParentLayout()).f20336n;
+            boolean z11 = ((ActionBarLayout) qVar.getParentLayout()).f20372n;
         }
     }
 
     @Override
     public final void g(int i10, boolean z10) {
         float f7;
-        q qVar = (q) this.f54699x.f51434b;
-        qVar.f54742w.setVisibility(0);
-        ViewPropertyAnimator animate = qVar.f54742w.animate();
+        q qVar = (q) this.f54733x.f51468b;
+        qVar.f54776w.setVisibility(0);
+        ViewPropertyAnimator animate = qVar.f54776w.animate();
         if (!z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        animate.alpha(f7).withEndAction(new fs0(19, this, z10)).start();
+        animate.alpha(f7).withEndAction(new es0(19, this, z10)).start();
     }
 
     @Override

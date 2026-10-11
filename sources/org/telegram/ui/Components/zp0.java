@@ -1,34 +1,28 @@
 package org.telegram.ui.Components;
+public final class zp0 implements tb {
+    public final sc f33672a;
+    public final hf f33673b;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class zp0 extends FrameLayout {
-    public final hf f33631a;
-
-    public zp0(hf hfVar, Context context) {
-        super(context);
-        this.f33631a = hfVar;
+    public zp0(hf hfVar, sc scVar) {
+        this.f33673b = hfVar;
+        this.f33672a = scVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        hf hfVar = this.f33631a;
-        View contentView = hfVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + hfVar.E, iArr[1] + hfVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
-        }
-        if (!hfVar.A && !hfVar.D) {
-            hfVar.D = true;
-            hfVar.l(new o1.k[0]);
-        }
-        return true;
+    public final void c() {
+        this.f33673b.G.remove(this.f33672a);
+    }
+
+    @Override
+    public final void d() {
+        this.f33673b.G.add(this.f33672a);
+    }
+
+    @Override
+    public final void a(sc scVar) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

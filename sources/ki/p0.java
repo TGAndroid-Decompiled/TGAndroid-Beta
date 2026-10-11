@@ -1,15 +1,25 @@
 package ki;
-
-import java.io.File;
 public final class p0 {
-    public final long f15070a;
-    public final File f15071b;
-    public volatile long f15072c;
-    public volatile boolean d;
-    public volatile boolean f15073e;
+    public static final p0 f15081a;
+    public static final p0 f15082b;
+    public static final p0 f15083c;
+    public static final p0[] d;
 
-    public p0(long j3, File file) {
-        this.f15070a = j3;
-        this.f15071b = file;
+    static {
+        ?? r02 = new Enum("HIGH", 0);
+        f15081a = r02;
+        ?? r12 = new Enum("MEDIUM", 1);
+        f15082b = r12;
+        ?? r32 = new Enum("LOW", 2);
+        f15083c = r32;
+        d = new p0[]{r02, r12, r32};
+    }
+
+    public static p0 valueOf(String str) {
+        return (p0) Enum.valueOf(p0.class, str);
+    }
+
+    public static p0[] values() {
+        return (p0[]) d.clone();
     }
 }

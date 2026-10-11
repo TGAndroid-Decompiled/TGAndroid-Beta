@@ -12,35 +12,35 @@ import org.telegram.ui.et;
 import org.telegram.ui.vb0;
 import org.telegram.ui.ye;
 public final class i1 implements Utilities.Callback2 {
-    public final int f35070a;
-    public final f2 f35071b;
-    public final String f35072c;
+    public final int f35104a;
+    public final f2 f35105b;
+    public final String f35106c;
     public final Object d;
-    public final Object f35073e;
-    public final Object f35074f;
-    public final Object f35075g;
+    public final Object f35107e;
+    public final Object f35108f;
+    public final Object f35109g;
 
     public i1(f2 f2Var, Object obj, TLObject tLObject, String str, byte[] bArr, Object obj2, int i10) {
-        this.f35070a = i10;
-        this.f35071b = f2Var;
+        this.f35104a = i10;
+        this.f35105b = f2Var;
         this.d = obj;
-        this.f35073e = tLObject;
-        this.f35072c = str;
-        this.f35074f = bArr;
-        this.f35075g = obj2;
+        this.f35107e = tLObject;
+        this.f35106c = str;
+        this.f35108f = bArr;
+        this.f35109g = obj2;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         TL_wallet.tonConnectSession tonconnectsession;
-        switch (this.f35070a) {
+        switch (this.f35104a) {
             case 0:
-                f2 f2Var = this.f35071b;
+                f2 f2Var = this.f35105b;
                 vb0 vb0Var = (vb0) this.d;
-                String str = this.f35072c;
-                String str2 = (String) this.f35073e;
-                String str3 = (String) this.f35074f;
-                String str4 = (String) this.f35075g;
+                String str = this.f35106c;
+                String str2 = (String) this.f35107e;
+                String str3 = (String) this.f35108f;
+                String str4 = (String) this.f35109g;
                 TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 f2Var.getClass();
@@ -53,7 +53,7 @@ public final class i1 implements Utilities.Callback2 {
                         i10++;
                         TL_wallet.tonConnectSession tonconnectsession3 = (TL_wallet.tonConnectSession) obj3;
                         int i11 = size;
-                        if (tonconnectsession3.f20293id == tonconnectsession2.f20293id && (tonconnectsession3.manifest != null || tonconnectsession3.manifest_error != null || tonconnectsession3.closed || tonconnectsession3.closing)) {
+                        if (tonconnectsession3.f20329id == tonconnectsession2.f20329id && (tonconnectsession3.manifest != null || tonconnectsession3.manifest_error != null || tonconnectsession3.closed || tonconnectsession3.closing)) {
                             tonconnectsession = tonconnectsession3;
                             f2Var.n(tonconnectsession);
                             vb0Var.run(new a2(tonconnectsession, str, str2, str3, str4), null);
@@ -69,12 +69,12 @@ public final class i1 implements Utilities.Callback2 {
                 vb0Var.run(null, f2.x(tL_error, "createSession"));
                 return;
             case 1:
-                f2 f2Var2 = this.f35071b;
+                f2 f2Var2 = this.f35105b;
                 et etVar = (et) this.d;
-                i0 i0Var = (i0) this.f35073e;
-                TL_wallet.tonConnectSession tonconnectsession4 = (TL_wallet.tonConnectSession) this.f35074f;
-                String str5 = this.f35072c;
-                byte[] bArr = (byte[]) this.f35075g;
+                i0 i0Var = (i0) this.f35107e;
+                TL_wallet.tonConnectSession tonconnectsession4 = (TL_wallet.tonConnectSession) this.f35108f;
+                String str5 = this.f35106c;
+                byte[] bArr = (byte[]) this.f35109g;
                 TL_wallet.tonConnectNextEventId tonconnectnexteventid = (TL_wallet.tonConnectNextEventId) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 f2Var2.getClass();
@@ -86,17 +86,17 @@ public final class i1 implements Utilities.Callback2 {
                     return;
                 }
             case 2:
-                f2 f2Var3 = this.f35071b;
+                f2 f2Var3 = this.f35105b;
                 ai.m0 m0Var = (ai.m0) this.d;
-                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.f35073e;
-                String str6 = this.f35072c;
-                byte[] bArr2 = (byte[]) this.f35074f;
-                JSONArray jSONArray = (JSONArray) this.f35075g;
+                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.f35107e;
+                String str6 = this.f35106c;
+                byte[] bArr2 = (byte[]) this.f35108f;
+                JSONArray jSONArray = (JSONArray) this.f35109g;
                 TL_wallet.tonConnectSession tonconnectsession5 = (TL_wallet.tonConnectSession) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                l0 l0Var = f2Var3.f34891b;
+                l0 l0Var = f2Var3.f34925b;
                 if (tL_error3 == null && tonconnectsession5 != null) {
-                    if (tonconnectsession5.f20293id == tL_urlAuthResultRequest.tc_session_id && tL_urlAuthResultRequest.tc_client_id.equals(tonconnectsession5.dapp_client_id) && !tonconnectsession5.closed && !tonconnectsession5.closing && tonconnectsession5.nonce != null && TextUtils.equals(str6, l0Var.r()) && Arrays.equals(bArr2, l0Var.w())) {
+                    if (tonconnectsession5.f20329id == tL_urlAuthResultRequest.tc_session_id && tL_urlAuthResultRequest.tc_client_id.equals(tonconnectsession5.dapp_client_id) && !tonconnectsession5.closed && !tonconnectsession5.closing && tonconnectsession5.nonce != null && TextUtils.equals(str6, l0Var.r()) && Arrays.equals(bArr2, l0Var.w())) {
                         l0Var.x(new c1(f2Var3, m0Var, tonconnectsession5, str6, bArr2, jSONArray, tL_urlAuthResultRequest), true, false);
                         return;
                     } else {
@@ -107,12 +107,12 @@ public final class i1 implements Utilities.Callback2 {
                 m0Var.run(null, f2.x(tL_error3, "createSession"));
                 return;
             default:
-                f2 f2Var4 = this.f35071b;
+                f2 f2Var4 = this.f35105b;
                 et etVar2 = (et) this.d;
-                TL_wallet.tonConnectSession tonconnectsession6 = (TL_wallet.tonConnectSession) this.f35073e;
-                String str7 = this.f35072c;
-                byte[] bArr3 = (byte[]) this.f35074f;
-                a2 a2Var = (a2) this.f35075g;
+                TL_wallet.tonConnectSession tonconnectsession6 = (TL_wallet.tonConnectSession) this.f35107e;
+                String str7 = this.f35106c;
+                byte[] bArr3 = (byte[]) this.f35108f;
+                a2 a2Var = (a2) this.f35109g;
                 i0 i0Var2 = (i0) obj;
                 String str8 = (String) obj2;
                 f2Var4.getClass();
@@ -130,22 +130,22 @@ public final class i1 implements Utilities.Callback2 {
     }
 
     public i1(f2 f2Var, et etVar, i0 i0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr) {
-        this.f35070a = 1;
-        this.f35071b = f2Var;
+        this.f35104a = 1;
+        this.f35105b = f2Var;
         this.d = etVar;
-        this.f35073e = i0Var;
-        this.f35074f = tonconnectsession;
-        this.f35072c = str;
-        this.f35075g = bArr;
+        this.f35107e = i0Var;
+        this.f35108f = tonconnectsession;
+        this.f35106c = str;
+        this.f35109g = bArr;
     }
 
     public i1(f2 f2Var, vb0 vb0Var, String str, String str2, String str3, String str4) {
-        this.f35070a = 0;
-        this.f35071b = f2Var;
+        this.f35104a = 0;
+        this.f35105b = f2Var;
         this.d = vb0Var;
-        this.f35072c = str;
-        this.f35073e = str2;
-        this.f35074f = str3;
-        this.f35075g = str4;
+        this.f35106c = str;
+        this.f35107e = str2;
+        this.f35108f = str3;
+        this.f35109g = str4;
     }
 }

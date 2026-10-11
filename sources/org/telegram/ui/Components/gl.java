@@ -68,76 +68,76 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
     public org.telegram.ui.ActionBar.a2 Q0;
     public final TextView R;
     public boolean R0;
-    public final fa0 S;
+    public final ea0 S;
     public DecimalFormat S0;
     public final TextView T;
     public final TextView U;
     public final SpannableString V;
     public boolean W;
-    public boolean f26734a0;
-    public float f26735b0;
-    public ValueAnimator f26736c0;
-    public long f26737d0;
-    public boolean f26738e0;
-    public org.telegram.ui.Wallet.o f26739f0;
-    public final FrameLayout f26740g0;
-    public final FrameLayout f26741h0;
-    public o1.k f26742i0;
-    public float f26743j0;
-    public float f26744k0;
-    public final ci.d f26745l0;
+    public boolean f26786a0;
+    public float f26787b0;
+    public ValueAnimator f26788c0;
+    public long f26789d0;
+    public boolean f26790e0;
+    public org.telegram.ui.Wallet.o f26791f0;
+    public final FrameLayout f26792g0;
+    public final FrameLayout f26793h0;
+    public o1.k f26794i0;
+    public float f26795j0;
+    public float f26796k0;
+    public final ci.d f26797l0;
     public boolean m0;
-    public final int f26746n;
-    public final SpannableString f26747n0;
-    public final SpannableString f26748o0;
-    public String f26749p0;
-    public boolean f26750q0;
-    public final TLRPC.User f26751r;
-    public boolean f26752r0;
-    public final FrameLayout f26753s;
-    public int f26754s0;
-    public DecimalFormat f26755t0;
-    public final int[] f26756u0;
+    public final int f26798n;
+    public final SpannableString f26799n0;
+    public final SpannableString f26800o0;
+    public String f26801p0;
+    public boolean f26802q0;
+    public final TLRPC.User f26803r;
+    public boolean f26804r0;
+    public final FrameLayout f26805s;
+    public int f26806s0;
+    public DecimalFormat f26807t0;
+    public final int[] f26808u0;
     public final org.telegram.ui.Wallet.p7 v;
-    public boolean f26757v0;
-    public final org.telegram.ui.ActionBar.u0 f26758w;
-    public float f26759w0;
-    public final org.telegram.ui.ActionBar.u0 f26760x;
-    public float f26761x0;
-    public String f26762y;
-    public boolean f26763y0;
-    public boolean f26764z0;
+    public boolean f26809v0;
+    public final org.telegram.ui.ActionBar.u0 f26810w;
+    public float f26811w0;
+    public final org.telegram.ui.ActionBar.u0 f26812x;
+    public float f26813x0;
+    public String f26814y;
+    public boolean f26815y0;
+    public boolean f26816z0;
 
     public gl(yi yiVar, Context context, int i10, TLRPC.User user, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var, yiVar);
-        this.f26737d0 = -1L;
-        this.f26743j0 = 1.0f;
-        this.f26744k0 = 1.0f;
-        this.f26750q0 = true;
-        this.f26754s0 = 6;
-        this.f26756u0 = new int[2];
-        this.f26746n = i10;
-        this.f26751r = user;
+        this.f26789d0 = -1L;
+        this.f26795j0 = 1.0f;
+        this.f26796k0 = 1.0f;
+        this.f26802q0 = true;
+        this.f26806s0 = 6;
+        this.f26808u0 = new int[2];
+        this.f26798n = i10;
+        this.f26803r = user;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f26753s = frameLayout;
+        this.f26805s = frameLayout;
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
         addView(frameLayout, w7.x5.e(-1, -1, 55));
-        org.telegram.ui.ActionBar.u0 a2 = this.f30161b.f33199a1.o().a(31, R.drawable.ic_ab_other);
-        this.f26758w = a2;
+        org.telegram.ui.ActionBar.u0 a2 = this.f30245b.f33272a1.o().a(31, R.drawable.ic_ab_other);
+        this.f26810w = a2;
         a2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
         a2.e(2, R.drawable.msg_addbot, LocaleController.getString(R.string.WalletDepositFunds));
         a2.e(3, R.drawable.menu_comments, LocaleController.getString(R.string.WalletAddComment));
         a2.setVisibility(8);
-        org.telegram.ui.ActionBar.u0 u0Var = new org.telegram.ui.ActionBar.u0(context, null, 0, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f30160a), false, d6Var);
-        this.f26760x = u0Var;
+        org.telegram.ui.ActionBar.u0 u0Var = new org.telegram.ui.ActionBar.u0(context, null, 0, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f30244a), false, d6Var);
+        this.f26812x = u0Var;
         u0Var.setIcon(R.drawable.ic_ab_other);
         u0Var.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
-        u0Var.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20877i6, this.f30160a), 1, -1));
+        u0Var.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20913i6, this.f30244a), 1, -1));
         u0Var.setOnClickListener(new org.telegram.ui.Cells.sa(this, d6Var, i10, 6));
         org.telegram.ui.Wallet.p7 p7Var = new org.telegram.ui.Wallet.p7(context, new wc(18, this, user), new wc(19, this, d6Var), d6Var);
         this.v = p7Var;
-        p7Var.a(this.f26762y, user);
+        p7Var.a(this.f26814y, user);
         addView(p7Var, w7.x5.a(64.0f, 6.0f, 0.0f, 6.0f, 0.0f, -2, 49));
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setClipChildren(false);
@@ -149,35 +149,35 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final gl f31483b;
+            public final gl f31626b;
 
             {
-                this.f31483b = this;
+                this.f31626b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 1:
-                        this.f31483b.Z();
+                        this.f31626b.Z();
                         return;
                     case 2:
-                        gl.N(this.f31483b);
+                        gl.N(this.f31626b);
                         return;
                     case 3:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 4:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 5:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     default:
-                        gl.P(this.f31483b);
+                        gl.P(this.f31626b);
                         return;
                 }
             }
@@ -186,35 +186,35 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         org.telegram.ui.Wallet.k8 k8Var = new org.telegram.ui.Wallet.k8(context, d6Var);
         this.O = k8Var;
         k8Var.setOnClickListener(new View.OnClickListener(this) {
-            public final gl f31483b;
+            public final gl f31626b;
 
             {
-                this.f31483b = this;
+                this.f31626b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 1:
-                        this.f31483b.Z();
+                        this.f31626b.Z();
                         return;
                     case 2:
-                        gl.N(this.f31483b);
+                        gl.N(this.f31626b);
                         return;
                     case 3:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 4:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 5:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     default:
-                        gl.P(this.f31483b);
+                        gl.P(this.f31626b);
                         return;
                 }
             }
@@ -226,35 +226,35 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         editText.setImeOptions(33554438);
         editText.setOnTouchListener(new wk(this, 0));
         editText.setOnClickListener(new View.OnClickListener(this) {
-            public final gl f31483b;
+            public final gl f31626b;
 
             {
-                this.f31483b = this;
+                this.f31626b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 1:
-                        this.f31483b.Z();
+                        this.f31626b.Z();
                         return;
                     case 2:
-                        gl.N(this.f31483b);
+                        gl.N(this.f31626b);
                         return;
                     case 3:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 4:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 5:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     default:
-                        gl.P(this.f31483b);
+                        gl.P(this.f31626b);
                         return;
                 }
             }
@@ -262,61 +262,61 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         editText.setOnEditorActionListener(new e1(this, 1));
         editText.addTextChangedListener(new el(this));
         SpannableString spannableString = new SpannableString("⇅");
-        this.f26747n0 = spannableString;
+        this.f26799n0 = spannableString;
         er erVar = new er(R.drawable.wallet_currency_exchange, 0);
         erVar.setAlpha(0.72f);
         spannableString.setSpan(erVar, 0, spannableString.length(), 33);
         SpannableString spannableString2 = new SpannableString("G");
-        this.f26748o0 = spannableString2;
+        this.f26800o0 = spannableString2;
         er erVar2 = new er(R.drawable.wallet_gram_small, 0);
         erVar2.recolorDrawable = false;
         spannableString2.setSpan(erVar2, 0, spannableString2.length(), 33);
         r6 r6Var = new r6(context, false, true, true, true, true);
         this.Q = r6Var;
-        r6Var.f30346c.m(0.35f, 320L, 3.5f, is.h);
+        r6Var.f30430c.m(0.35f, 320L, 3.5f, is.h);
         r6Var.setScaleProperty(0.35f);
         r6Var.setText(U(org.telegram.ui.Wallet.l0.v(i10), 0L));
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20786d6, this.f30160a);
-        int i11 = org.telegram.ui.ActionBar.h6.f21189z6;
-        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.v(w02, org.telegram.ui.ActionBar.h6.w0(i11, this.f30160a)));
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20822d6, this.f30244a);
+        int i11 = org.telegram.ui.ActionBar.h6.f21225z6;
+        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.v(w02, org.telegram.ui.ActionBar.h6.w0(i11, this.f30244a)));
         r6Var.setTextSize(AndroidUtilities.dp(14.0f));
         r6Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         r6Var.setGravity(17);
         r6Var.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
         r6Var.setAllowCancel(true);
-        r6Var.setSizeableBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, org.telegram.ui.ActionBar.h6.w0(i11, this.f30160a))));
+        r6Var.setSizeableBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.h6.m1(0.08f, org.telegram.ui.ActionBar.h6.w0(i11, this.f30244a))));
         linearLayout.addView(r6Var, w7.x5.t(-2, 28, 49, 0, 8, 0, 0));
         w7.z5.a(r6Var);
         r6Var.setOnClickListener(new View.OnClickListener(this) {
-            public final gl f31483b;
+            public final gl f31626b;
 
             {
-                this.f31483b = this;
+                this.f31626b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 1:
-                        this.f31483b.Z();
+                        this.f31626b.Z();
                         return;
                     case 2:
-                        gl.N(this.f31483b);
+                        gl.N(this.f31626b);
                         return;
                     case 3:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 4:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 5:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     default:
-                        gl.P(this.f31483b);
+                        gl.P(this.f31626b);
                         return;
                 }
             }
@@ -331,42 +331,42 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         TextView textView = new TextView(context);
         this.N = textView;
         textView.setTextSize(1, 14.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, this.f30160a));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, this.f30244a));
         textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.WalletTapToSetAmount));
         frameLayout3.addView(textView, w7.x5.a(28.0f, 0.0f, 8.0f, 0.0f, 0.0f, -2, 49));
         w7.z5.a(textView);
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final gl f31483b;
+            public final gl f31626b;
 
             {
-                this.f31483b = this;
+                this.f31626b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 1:
-                        this.f31483b.Z();
+                        this.f31626b.Z();
                         return;
                     case 2:
-                        gl.N(this.f31483b);
+                        gl.N(this.f31626b);
                         return;
                     case 3:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 4:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 5:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     default:
-                        gl.P(this.f31483b);
+                        gl.P(this.f31626b);
                         return;
                 }
             }
@@ -383,73 +383,73 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         TextView textView2 = new TextView(context);
         this.R = textView2;
         org.telegram.ui.ActionBar.d5 d5Var = new org.telegram.ui.ActionBar.d5(0, true, false, null);
-        d5Var.f20542x = false;
+        d5Var.f20578x = false;
         Paint.Style style = Paint.Style.STROKE;
-        Paint paint = d5Var.f20524c;
+        Paint paint = d5Var.f20560c;
         paint.setStyle(style);
         paint.setStrokeWidth(Math.max(1.0f, AndroidUtilities.dpf2(0.5f)));
         int i12 = org.telegram.ui.ActionBar.h6.kl;
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(i12, this.f30160a));
-        d5Var.f20541w = Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(i12, this.f30160a));
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(i12, this.f30244a));
+        d5Var.f20577w = Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(i12, this.f30244a));
         textView2.setPadding(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(8.0f));
         textView2.setBackground(d5Var);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, this.f30160a));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, this.f30244a));
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setVisibility(8);
         textView2.setEllipsize(TextUtils.TruncateAt.END);
         textView2.setMaxLines(4);
         linearLayout2.addView(textView2, w7.x5.t(-2, -2, 49, 32, 12, 32, 0));
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final gl f31483b;
+            public final gl f31626b;
 
             {
-                this.f31483b = this;
+                this.f31626b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 1:
-                        this.f31483b.Z();
+                        this.f31626b.Z();
                         return;
                     case 2:
-                        gl.N(this.f31483b);
+                        gl.N(this.f31626b);
                         return;
                     case 3:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 4:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 5:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     default:
-                        gl.P(this.f31483b);
+                        gl.P(this.f31626b);
                         return;
                 }
             }
         });
         w7.z5.b(textView2, 0.02f, 1.2f);
-        fa0 fa0Var = new fa0(context, d6Var);
-        this.S = fa0Var;
-        fa0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21026q7, this.f30160a));
-        fa0Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f30160a));
-        fa0Var.setTextSize(1, 14.0f);
-        fa0Var.setGravity(17);
-        fa0Var.setTypeface(AndroidUtilities.bold());
-        fa0Var.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        ea0 ea0Var = new ea0(context, d6Var);
+        this.S = ea0Var;
+        ea0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21062q7, this.f30244a));
+        ea0Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f30244a));
+        ea0Var.setTextSize(1, 14.0f);
+        ea0Var.setGravity(17);
+        ea0Var.setTypeface(AndroidUtilities.bold());
+        ea0Var.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
         e0(false);
-        linearLayout2.addView(fa0Var, w7.x5.t(-2, -2, 49, 0, 10, 0, 0));
+        linearLayout2.addView(ea0Var, w7.x5.t(-2, -2, 49, 0, 10, 0, 0));
         FrameLayout frameLayout4 = new FrameLayout(context);
-        this.f26740g0 = frameLayout4;
+        this.f26792g0 = frameLayout4;
         frameLayout4.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f));
         FrameLayout frameLayout5 = new FrameLayout(context);
-        this.f26741h0 = frameLayout5;
+        this.f26793h0 = frameLayout5;
         frameLayout4.setClipChildren(false);
         frameLayout4.setClipToPadding(false);
         frameLayout5.setClipChildren(false);
@@ -457,53 +457,53 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         frameLayout4.addView(frameLayout5, w7.x5.d(-1.0f, -1));
         TextView textView3 = new TextView(context);
         this.T = textView3;
-        org.telegram.messenger.ai.o(i11, this.f30160a, textView3, 1, 14.0f);
+        org.telegram.messenger.ai.o(i11, this.f30244a, textView3, 1, 14.0f);
         textView3.setGravity(17);
         frameLayout5.addView(textView3, w7.x5.e(-1, 20, 55));
         TextView textView4 = new TextView(context);
         this.U = textView4;
-        org.telegram.messenger.ai.o(i11, this.f30160a, textView4, 1, 14.0f);
+        org.telegram.messenger.ai.o(i11, this.f30244a, textView4, 1, 14.0f);
         textView4.setGravity(17);
         textView4.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
         textView4.setVisibility(8);
         frameLayout5.addView(textView4, w7.x5.a(-2.0f, 0.0f, 24.0f, 0.0f, 0.0f, -1, 55));
         SpannableString spannableString3 = new SpannableString(LocaleController.getString(R.string.Loading));
         this.V = spannableString3;
-        spannableString3.setSpan(new ka0(AndroidUtilities.dp(80.0f), textView4), 0, spannableString3.length(), 33);
+        spannableString3.setSpan(new ja0(AndroidUtilities.dp(80.0f), textView4), 0, spannableString3.length(), 33);
         ci.d f7 = org.telegram.messenger.ai.f(24, context, d6Var, true);
-        this.f26745l0 = f7;
+        this.f26797l0 = f7;
         f7.setText(LocaleController.getString(R.string.WalletSendGrams));
         f7.setEnabled(false);
         f7.setOnClickListener(new View.OnClickListener(this) {
-            public final gl f31483b;
+            public final gl f31626b;
 
             {
-                this.f31483b = this;
+                this.f31626b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 1:
-                        this.f31483b.Z();
+                        this.f31626b.Z();
                         return;
                     case 2:
-                        gl.N(this.f31483b);
+                        gl.N(this.f31626b);
                         return;
                     case 3:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 4:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     case 5:
-                        this.f31483b.c0();
+                        this.f31626b.c0();
                         return;
                     default:
-                        gl.P(this.f31483b);
+                        gl.P(this.f31626b);
                         return;
                 }
             }
@@ -525,15 +525,15 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         String V;
         EditTextBoldCursor editTextBoldCursor = glVar.P;
         BigDecimal currencyPerGram = glVar.getCurrencyPerGram();
-        if (!glVar.f26752r0 && currencyPerGram.signum() <= 0) {
+        if (!glVar.f26804r0 && currencyPerGram.signum() <= 0) {
             return;
         }
         long gramNanoAmount = glVar.getGramNanoAmount();
-        glVar.f26752r0 = !glVar.f26752r0;
-        glVar.O.d(org.telegram.ui.Wallet.l0.v(glVar.f26746n), glVar.f26752r0);
+        glVar.f26804r0 = !glVar.f26804r0;
+        glVar.O.d(org.telegram.ui.Wallet.l0.v(glVar.f26798n), glVar.f26804r0);
         if (gramNanoAmount <= 0) {
             V = "";
-        } else if (glVar.f26752r0) {
+        } else if (glVar.f26804r0) {
             V = glVar.S(gramNanoAmount, currencyPerGram);
         } else {
             V = V(gramNanoAmount);
@@ -550,7 +550,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         String sb3 = sb2.toString();
         int i14 = 9;
         BigDecimal valueOf = BigDecimal.valueOf(Long.MAX_VALUE, 9);
-        if (glVar.f26752r0) {
+        if (glVar.f26804r0) {
             BigDecimal currencyPerGram = glVar.getCurrencyPerGram();
             valueOf = valueOf.multiply(currencyPerGram);
             i14 = T(currencyPerGram);
@@ -643,7 +643,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
     }
 
     private float getBottomYOnScreen() {
-        return W(this.f26740g0);
+        return W(this.f26792g0);
     }
 
     private char getCurrencyDecimalSeparator() {
@@ -659,14 +659,14 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         if (selectedCurrencyRate != null) {
             return selectedCurrencyRate.exp;
         }
-        if (TextUtils.equals(org.telegram.ui.Wallet.l0.v(this.f26746n).h.g(), "USD")) {
+        if (TextUtils.equals(org.telegram.ui.Wallet.l0.v(this.f26798n).h.g(), "USD")) {
             return 2;
         }
         return 0;
     }
 
     private BigDecimal getCurrencyPerGram() {
-        int i10 = this.f26746n;
+        int i10 = this.f26798n;
         org.telegram.ui.Wallet.f fVar = org.telegram.ui.Wallet.l0.v(i10).h;
         fVar.f();
         double h = fVar.h();
@@ -679,7 +679,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     private long getGramNanoAmount() {
         BigDecimal a02 = a0(this.P.getText().toString());
-        if (this.f26752r0) {
+        if (this.f26804r0) {
             BigDecimal currencyPerGram = getCurrencyPerGram();
             if (currencyPerGram.signum() <= 0) {
                 return 0L;
@@ -705,7 +705,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
     }
 
     private TL_wallet.currencyRate getSelectedCurrencyRate() {
-        org.telegram.ui.Wallet.f fVar = org.telegram.ui.Wallet.l0.v(this.f26746n).h;
+        org.telegram.ui.Wallet.f fVar = org.telegram.ui.Wallet.l0.v(this.f26798n).h;
         TL_wallet.currencyRates f7 = fVar.f();
         if (f7 == null) {
             return null;
@@ -726,7 +726,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     public void setFeeVisibilityProgress(float f7) {
         int i10;
-        this.f26735b0 = f7;
+        this.f26787b0 = f7;
         TextView textView = this.U;
         textView.setAlpha(f7);
         if (f7 > 0.0f) {
@@ -750,24 +750,24 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         int dp;
         int i12;
         int dp2;
-        yi yiVar = this.f30161b;
-        if (yiVar.f33263u1.R() > AndroidUtilities.dp(20.0f)) {
+        yi yiVar = this.f30245b;
+        if (yiVar.f33336u1.R() > AndroidUtilities.dp(20.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f26757v0 = z10;
-        this.f30164f = z10;
+        this.f26809v0 = z10;
+        this.f30248f = z10;
         if (z10) {
             dp = 0;
         } else {
             dp = AndroidUtilities.dp(70.0f);
         }
-        int round = Math.round(AndroidUtilities.dp(32.0f) * this.f26735b0) + AndroidUtilities.dp(92.0f);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f26740g0.getLayoutParams();
+        int round = Math.round(AndroidUtilities.dp(32.0f) * this.f26787b0) + AndroidUtilities.dp(92.0f);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f26792g0.getLayoutParams();
         layoutParams.height = round;
         layoutParams.bottomMargin = dp;
-        if (this.f26757v0) {
+        if (this.f26809v0) {
             i12 = AndroidUtilities.dp(56.0f);
             yiVar.setAllowNestedScroll(false);
         } else {
@@ -782,7 +782,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
             yiVar.setAllowNestedScroll(true);
         }
         int b10 = org.telegram.messenger.q.b(1.0f, i12, 0) + AndroidUtilities.statusBarHeight;
-        FrameLayout frameLayout = this.f26753s;
+        FrameLayout frameLayout = this.f26805s;
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
         if (layoutParams2.topMargin != b10) {
             layoutParams2.topMargin = b10;
@@ -791,7 +791,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         int y3 = org.telegram.messenger.q.y(4.0f, b10 - AndroidUtilities.statusBarHeight, 0);
         org.telegram.ui.Wallet.p7 p7Var = this.v;
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) p7Var.getLayoutParams();
-        if (this.f26757v0) {
+        if (this.f26809v0) {
             dp2 = AndroidUtilities.dp(4.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         } else {
             dp2 = y3 - AndroidUtilities.dp(4.0f);
@@ -826,29 +826,29 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         editTextBoldCursor.setFocusableInTouchMode(true);
         editTextBoldCursor.setShowSoftInputOnFocus(true);
         this.J0 = false;
-        this.f26763y0 = false;
+        this.f26815y0 = false;
         this.H0 = false;
         float f7 = 0.0f;
         this.K.setTranslationY(0.0f);
-        this.f26740g0.setTranslationY(0.0f);
+        this.f26792g0.setTranslationY(0.0f);
         org.telegram.ui.Wallet.p7 p7Var = this.v;
         p7Var.setTranslationY(0.0f);
         p7Var.setAlpha(1.0f);
         this.A0 = false;
-        yi yiVar = this.f30161b;
-        yiVar.f33199a1.setTitle(LocaleController.getString(R.string.WalletSendMoneyTo));
-        yiVar.f33199a1.setDrawGlassTitle(false);
-        this.f26758w.setVisibility(0);
+        yi yiVar = this.f30245b;
+        yiVar.f33272a1.setTitle(LocaleController.getString(R.string.WalletSendMoneyTo));
+        yiVar.f33272a1.setDrawGlassTitle(false);
+        this.f26810w.setVisibility(0);
         editTextBoldCursor.clearFocus();
         Y();
         org.telegram.ui.Wallet.k8 k8Var = this.O;
-        if (k8Var.getDiamondView().f34857f == null) {
+        if (k8Var.getDiamondView().f34891f == null) {
             f7 = 1.0f;
         }
-        this.f26744k0 = f7;
-        this.f26743j0 = f7;
+        this.f26796k0 = f7;
+        this.f26795j0 = f7;
         k0();
-        if (this.f26743j0 < 1.0f) {
+        if (this.f26795j0 < 1.0f) {
             k8Var.getDiamondView().l(new al(this, 3));
         }
     }
@@ -866,11 +866,11 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     public final void R() {
         this.O.getDiamondView().l(null);
-        o1.k kVar = this.f26742i0;
+        o1.k kVar = this.f26794i0;
         if (kVar != null) {
             kVar.c();
         }
-        this.f26743j0 = 1.0f;
+        this.f26795j0 = 1.0f;
         k0();
     }
 
@@ -904,7 +904,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         int length = spannableStringBuilder.length();
         spannableStringBuilder.append(l0Var.l(j3, false));
         d0(spannableStringBuilder, length, spannableStringBuilder.length(), getCurrencyDecimalSeparator());
-        return spannableStringBuilder.append((CharSequence) " ").append((CharSequence) this.f26747n0);
+        return spannableStringBuilder.append((CharSequence) " ").append((CharSequence) this.f26799n0);
     }
 
     public final float W(View view) {
@@ -914,37 +914,37 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
             f7 += view.getY() - view2.getScrollY();
             view = view2;
         }
-        int[] iArr = this.f26756u0;
+        int[] iArr = this.f26808u0;
         view.getLocationOnScreen(iArr);
-        return ((f7 + iArr[1]) + this.f26759w0) - this.f30161b.f33277y0;
+        return ((f7 + iArr[1]) + this.f26811w0) - this.f30245b.f33350y0;
     }
 
     public final float X(View view) {
         if (view.getVisibility() == 0 && view.getAlpha() > 0.0f) {
-            return ((1.0f - view.getScaleY()) * view.getPivotY()) + (W(view) - this.f26741h0.getTranslationY());
+            return ((1.0f - view.getScaleY()) * view.getPivotY()) + (W(view) - this.f26793h0.getTranslationY());
         }
         return Float.POSITIVE_INFINITY;
     }
 
     public final void Y() {
-        if (!this.H && !TextUtils.isEmpty(this.f26762y)) {
-            org.telegram.ui.Wallet.o oVar = this.f26739f0;
+        if (!this.H && !TextUtils.isEmpty(this.f26814y)) {
+            org.telegram.ui.Wallet.o oVar = this.f26791f0;
             byte[] bArr = null;
             if (oVar != null) {
                 oVar.run();
-                this.f26739f0 = null;
+                this.f26791f0 = null;
             }
-            this.f26737d0 = -1L;
+            this.f26789d0 = -1L;
             h0();
-            org.telegram.ui.Wallet.l0 v = org.telegram.ui.Wallet.l0.v(this.f26746n);
-            if (this.f26738e0) {
-                String str = this.f26762y;
+            org.telegram.ui.Wallet.l0 v = org.telegram.ui.Wallet.l0.v(this.f26798n);
+            if (this.f26790e0) {
+                String str = this.f26814y;
                 long max = Math.max(100000000L, getGramNanoAmount());
-                String str2 = this.f26749p0;
-                if (this.f26750q0) {
+                String str2 = this.f26801p0;
+                if (this.f26802q0) {
                     bArr = getPublicKey();
                 }
-                this.f26739f0 = v.h(str, max, str2, bArr, new yk(this, 1));
+                this.f26791f0 = v.h(str, max, str2, bArr, new yk(this, 1));
             }
         }
     }
@@ -959,7 +959,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
     }
 
     public final void b0() {
-        if (this.I0 && !this.f26763y0 && !this.H0 && isAttachedToWindow() && Math.abs(getTranslationY()) < 0.5f && this.K.getHeight() > 0 && this.f26740g0.getHeight() > 0) {
+        if (this.I0 && !this.f26815y0 && !this.H0 && isAttachedToWindow() && Math.abs(getTranslationY()) < 0.5f && this.K.getHeight() > 0 && this.f26792g0.getHeight() > 0) {
             this.B0 = getBottomYOnScreen();
             this.C0 = W(this.v);
             this.A0 = true;
@@ -968,7 +968,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     public final void c0() {
         if (!this.H && !this.K0) {
-            yi yiVar = this.f30161b;
+            yi yiVar = this.f30245b;
             if (!yiVar.isDismissed()) {
                 if (!this.I0) {
                     this.J0 = true;
@@ -989,9 +989,9 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.walletUpdate) {
-            boolean z10 = this.f26738e0;
+            boolean z10 = this.f26790e0;
             g0();
-            if (z10 != this.f26738e0) {
+            if (z10 != this.f26790e0) {
                 Y();
             }
         }
@@ -999,9 +999,9 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        this.f30161b.f33199a1.getAlpha();
+        this.f30245b.f33272a1.getAlpha();
         j0();
-        if (this.f26742i0 != null || this.f26743j0 < 1.0f) {
+        if (this.f26794i0 != null || this.f26795j0 < 1.0f) {
             k0();
         }
         super.dispatchDraw(canvas);
@@ -1011,7 +1011,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
     public final void e0(boolean z10) {
         float f7;
         float f10 = 0.0f;
-        fa0 fa0Var = this.S;
+        ea0 ea0Var = this.S;
         if (z10) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.WalletInsufficientFunds));
@@ -1019,11 +1019,11 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
             int length = spannableStringBuilder.length();
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.WalletDepositFunds));
             spannableStringBuilder.append((CharSequence) " >");
-            spannableStringBuilder.setSpan(new er(R.drawable.settings_arrow, 0).setOverrideColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f30160a)).translate(0.0f, AndroidUtilities.dpf2(0.66f)), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new er(R.drawable.settings_arrow, 0).setOverrideColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f30244a)).translate(0.0f, AndroidUtilities.dpf2(0.66f)), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             spannableStringBuilder.setSpan(new ci.ac(this, 6), length, spannableStringBuilder.length(), 33);
-            fa0Var.setText(spannableStringBuilder);
+            ea0Var.setText(spannableStringBuilder);
         }
-        ViewPropertyAnimator animate = fa0Var.animate();
+        ViewPropertyAnimator animate = ea0Var.animate();
         float f11 = 1.0f;
         if (z10) {
             f10 = 1.0f;
@@ -1061,7 +1061,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         SpannableStringBuilder U;
         String V;
         i0();
-        int i10 = this.f26746n;
+        int i10 = this.f26798n;
         org.telegram.ui.Wallet.l0 v = org.telegram.ui.Wallet.l0.v(i10);
         long t10 = v.t();
         long gramNanoAmount = getGramNanoAmount();
@@ -1069,20 +1069,20 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         int i11 = (gramNanoAmount > 0L ? 1 : (gramNanoAmount == 0L ? 0 : -1));
         EditTextBoldCursor editTextBoldCursor = this.P;
         if (i11 > 0 && gramNanoAmount < j3) {
-            if (this.f26752r0) {
+            if (this.f26804r0) {
                 V = S(j3, getCurrencyPerGram());
             } else {
                 V = V(j3);
             }
             editTextBoldCursor.setText(V);
             editTextBoldCursor.setSelection(V.length());
-            int i12 = -this.f26754s0;
-            this.f26754s0 = i12;
+            int i12 = -this.f26806s0;
+            this.f26806s0 = i12;
             AndroidUtilities.shakeViewSpring(editTextBoldCursor, i12);
             return;
         }
         boolean z13 = false;
-        if (WalletEngine2.isValidAddress(this.f26762y) && gramNanoAmount <= t10) {
+        if (WalletEngine2.isValidAddress(this.f26814y) && gramNanoAmount <= t10) {
             z10 = true;
         } else {
             z10 = false;
@@ -1094,12 +1094,12 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         }
         e0(z11);
         String gramsText = getGramsText();
-        if (this.f26762y == null && this.F) {
+        if (this.f26814y == null && this.F) {
             z12 = true;
         } else {
             z12 = false;
         }
-        ci.d dVar = this.f26745l0;
+        ci.d dVar = this.f26797l0;
         dVar.setLoading(z12);
         if (TextUtils.isEmpty(gramsText)) {
             formatSpannable = LocaleController.getString(R.string.WalletSendGrams);
@@ -1115,23 +1115,23 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         dVar.setEnabled(z13);
         m0(z14, this.I0);
         h0();
-        this.O.d(org.telegram.ui.Wallet.l0.v(i10), this.f26752r0);
-        if (this.f26752r0) {
+        this.O.d(org.telegram.ui.Wallet.l0.v(i10), this.f26804r0);
+        if (this.f26804r0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append((CharSequence) this.f26748o0).append((CharSequence) " ");
+            spannableStringBuilder.append((CharSequence) this.f26800o0).append((CharSequence) " ");
             int length = spannableStringBuilder.length();
-            if (this.f26755t0 == null) {
+            if (this.f26807t0 == null) {
                 DecimalFormat decimalFormat = new DecimalFormat("#,##0.##", new DecimalFormatSymbols(Locale.US));
-                this.f26755t0 = decimalFormat;
+                this.f26807t0 = decimalFormat;
                 decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
             }
-            spannableStringBuilder.append((CharSequence) this.f26755t0.format(BigDecimal.valueOf(gramNanoAmount).movePointLeft(9)));
+            spannableStringBuilder.append((CharSequence) this.f26807t0.format(BigDecimal.valueOf(gramNanoAmount).movePointLeft(9)));
             d0(spannableStringBuilder, length, spannableStringBuilder.length(), '.');
             spannableStringBuilder.append((CharSequence) " ");
             int length2 = spannableStringBuilder.length();
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.GramCurrency));
             spannableStringBuilder.setSpan(new RelativeSizeSpan(0.85714287f), length2, spannableStringBuilder.length(), 33);
-            U = spannableStringBuilder.append((CharSequence) " ").append((CharSequence) this.f26747n0);
+            U = spannableStringBuilder.append((CharSequence) " ").append((CharSequence) this.f26799n0);
         } else {
             U = U(v, gramNanoAmount);
         }
@@ -1145,7 +1145,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     @Override
     public int getCurrentItemTop() {
-        int top = this.f26753s.getTop();
+        int top = this.f26805s.getTop();
         if (top <= 0) {
             top = getListTopPadding();
         }
@@ -1154,7 +1154,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     @Override
     public int getCustomBackground() {
-        return org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20786d6, this.f30160a);
+        return org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20822d6, this.f30244a);
     }
 
     @Override
@@ -1164,7 +1164,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     @Override
     public int getListTopPadding() {
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f26753s.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f26805s.getLayoutParams();
         if (layoutParams == null) {
             return 0;
         }
@@ -1192,7 +1192,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         boolean z10;
         boolean z11;
         float f7;
-        int i10 = this.f26746n;
+        int i10 = this.f26798n;
         org.telegram.ui.Wallet.l0 v = org.telegram.ui.Wallet.l0.v(i10);
         this.T.setText(LocaleController.formatSpannable(R.string.WalletBalanceAmount, org.telegram.ui.Wallet.l0.q(v.t(), true)));
         long j3 = MessagesController.getInstance(i10).config.walletTransferMinNanos.get();
@@ -1201,20 +1201,20 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         } else {
             z10 = false;
         }
-        this.f26738e0 = z10;
-        boolean z12 = this.f26734a0 | (!TextUtils.isEmpty(this.P.getText()));
-        this.f26734a0 = z12;
-        if (this.f26738e0 && z12) {
+        this.f26790e0 = z10;
+        boolean z12 = this.f26786a0 | (!TextUtils.isEmpty(this.P.getText()));
+        this.f26786a0 = z12;
+        if (this.f26790e0 && z12) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (this.W != z11) {
             this.W = z11;
-            ValueAnimator valueAnimator = this.f26736c0;
+            ValueAnimator valueAnimator = this.f26788c0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f26736c0 = null;
+                this.f26788c0 = null;
             }
             if (z11) {
                 f7 = 1.0f;
@@ -1222,17 +1222,17 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
                 f7 = 0.0f;
             }
             if (this.I0 && isAttachedToWindow()) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f26735b0, f7);
-                this.f26736c0 = ofFloat;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f26787b0, f7);
+                this.f26788c0 = ofFloat;
                 ofFloat.setDuration(320L);
-                this.f26736c0.setInterpolator(is.h);
-                this.f26736c0.addUpdateListener(new m6(this, 11));
-                this.f26736c0.start();
+                this.f26788c0.setInterpolator(is.h);
+                this.f26788c0.addUpdateListener(new m6(this, 11));
+                this.f26788c0.start();
             } else {
                 setFeeVisibilityProgress(f7);
             }
         }
-        long j10 = this.f26737d0;
+        long j10 = this.f26789d0;
         int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         TextView textView = this.U;
         if (i11 >= 0) {
@@ -1256,7 +1256,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         float f12;
         LinearLayout linearLayout = this.L;
         if (linearLayout != null && (textView = this.N) != null) {
-            if (getGramNanoAmount() <= 0 && this.R.getVisibility() != 0 && !this.f26757v0) {
+            if (getGramNanoAmount() <= 0 && this.R.getVisibility() != 0 && !this.f26809v0) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -1286,10 +1286,10 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
                     f11 = 0.8f;
                 }
                 ViewPropertyAnimator duration = scaleX.scaleY(f11).withEndAction(new Runnable(this) {
-                    public final gl f25239b;
+                    public final gl f25382b;
 
                     {
-                        this.f25239b = this;
+                        this.f25382b = this;
                     }
 
                     @Override
@@ -1298,7 +1298,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
                         int i11;
                         switch (r3) {
                             case 0:
-                                LinearLayout linearLayout2 = this.f25239b.L;
+                                LinearLayout linearLayout2 = this.f25382b.L;
                                 if (z10) {
                                     i10 = 0;
                                 } else {
@@ -1307,7 +1307,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
                                 linearLayout2.setVisibility(i10);
                                 return;
                             default:
-                                TextView textView2 = this.f25239b.N;
+                                TextView textView2 = this.f25382b.N;
                                 if (!z10) {
                                     i11 = 0;
                                 } else {
@@ -1335,10 +1335,10 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
                     f14 = 0.8f;
                 }
                 scaleX2.scaleY(f14).withEndAction(new Runnable(this) {
-                    public final gl f25239b;
+                    public final gl f25382b;
 
                     {
-                        this.f25239b = this;
+                        this.f25382b = this;
                     }
 
                     @Override
@@ -1347,7 +1347,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
                         int i11;
                         switch (r3) {
                             case 0:
-                                LinearLayout linearLayout2 = this.f25239b.L;
+                                LinearLayout linearLayout2 = this.f25382b.L;
                                 if (z10) {
                                     i10 = 0;
                                 } else {
@@ -1356,7 +1356,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
                                 linearLayout2.setVisibility(i10);
                                 return;
                             default:
-                                TextView textView2 = this.f25239b.N;
+                                TextView textView2 = this.f25382b.N;
                                 if (!z10) {
                                     i11 = 0;
                                 } else {
@@ -1373,7 +1373,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     @Override
     public final boolean j() {
-        if (this.f30161b.f33263u1.R() <= AndroidUtilities.dp(20.0f)) {
+        if (this.f30245b.f33336u1.R() <= AndroidUtilities.dp(20.0f)) {
             return false;
         }
         this.J0 = false;
@@ -1392,9 +1392,9 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         float f7;
         View view = this.K;
         if (view.getHeight() > 0) {
-            FrameLayout frameLayout = this.f26740g0;
+            FrameLayout frameLayout = this.f26792g0;
             if (frameLayout.getHeight() > 0) {
-                View view2 = this.f26753s;
+                View view2 = this.f26805s;
                 float W = W(view2);
                 org.telegram.ui.Wallet.p7 p7Var = this.v;
                 if (p7Var.getVisibility() == 0) {
@@ -1402,7 +1402,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
                 } else {
                     f7 = W;
                 }
-                float max = Math.max(0.0f, Math.min(Math.min(Math.min((W + view2.getHeight()) - ((FrameLayout.LayoutParams) frameLayout.getLayoutParams()).bottomMargin, X(this.T)), X(this.U)), X(this.f26745l0)) - f7);
+                float max = Math.max(0.0f, Math.min(Math.min(Math.min((W + view2.getHeight()) - ((FrameLayout.LayoutParams) frameLayout.getLayoutParams()).bottomMargin, X(this.T)), X(this.U)), X(this.f26797l0)) - f7);
                 float min = Math.min(1.0f, Math.max(0.0f, max - (Math.min(AndroidUtilities.dp(12.0f), max / 4.0f) * 2.0f)) / view.getHeight());
                 view.setPivotX(view.getWidth() / 2.0f);
                 view.setPivotY(view.getHeight() / 2.0f);
@@ -1416,41 +1416,41 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     public final void k0() {
         boolean z10;
-        float max = Math.max(this.f26744k0, Math.max(0.0f, Math.min(1.0f, this.f26743j0)));
-        this.f26744k0 = max;
+        float max = Math.max(this.f26796k0, Math.max(0.0f, Math.min(1.0f, this.f26795j0)));
+        this.f26796k0 = max;
         float f7 = 1.0f - max;
-        float f10 = this.f26743j0;
-        if (this.f26742i0 == null && f10 == 1.0f) {
+        float f10 = this.f26795j0;
+        if (this.f26794i0 == null && f10 == 1.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
         org.telegram.ui.Wallet.k8 k8Var = this.O;
         k8Var.e(f10, max, z10);
-        k8Var.setTranslationY((1.0f - this.f26743j0) * (((this.K.getHeight() / 2.0f) - k8Var.getTop()) - (k8Var.getHeight() / 2.0f)));
-        float f11 = this.f26744k0;
+        k8Var.setTranslationY((1.0f - this.f26795j0) * (((this.K.getHeight() / 2.0f) - k8Var.getTop()) - (k8Var.getHeight() / 2.0f)));
+        float f11 = this.f26796k0;
         r6 r6Var = this.Q;
         r6Var.setAlpha(f11);
         r6Var.setTranslationY(AndroidUtilities.dp(16.0f) * f7);
-        float f12 = this.f26744k0;
+        float f12 = this.f26796k0;
         FrameLayout frameLayout = this.M;
         frameLayout.setAlpha(f12);
         frameLayout.setTranslationY(AndroidUtilities.dp(16.0f) * f7);
-        float f13 = this.f26744k0;
-        FrameLayout frameLayout2 = this.f26741h0;
+        float f13 = this.f26796k0;
+        FrameLayout frameLayout2 = this.f26793h0;
         frameLayout2.setAlpha(f13);
         frameLayout2.setTranslationY(AndroidUtilities.dp(24.0f) * f7);
     }
 
     public final void l0() {
         float f7;
-        if (this.f26763y0 && this.K.getHeight() > 0) {
-            FrameLayout frameLayout = this.f26740g0;
+        if (this.f26815y0 && this.K.getHeight() > 0) {
+            FrameLayout frameLayout = this.f26792g0;
             if (frameLayout.getHeight() > 0) {
-                if (this.f26764z0) {
-                    f7 = this.f26761x0;
+                if (this.f26816z0) {
+                    f7 = this.f26813x0;
                 } else {
-                    f7 = 1.0f - this.f26761x0;
+                    f7 = 1.0f - this.f26813x0;
                 }
                 float f10 = this.F0;
                 float y3 = com.google.android.gms.internal.vision.e2.y(this.G0, f10, f7, f10);
@@ -1466,8 +1466,8 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     @Override
     public final void m(float f7, float f10) {
-        this.f26759w0 = f7;
-        this.f26761x0 = f10;
+        this.f26811w0 = f7;
+        this.f26813x0 = f10;
         l0();
     }
 
@@ -1477,7 +1477,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
             return;
         }
         this.m0 = z10;
-        ci.d dVar = this.f26745l0;
+        ci.d dVar = this.f26797l0;
         dVar.animate().cancel();
         TextView textView = this.T;
         textView.animate().cancel();
@@ -1523,10 +1523,10 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         if (this.H0) {
             this.H0 = false;
             this.K.setTranslationY(0.0f);
-            this.f26740g0.setTranslationY(0.0f);
+            this.f26792g0.setTranslationY(0.0f);
             this.v.setTranslationY(0.0f);
             b0();
-        } else if (this.f26763y0) {
+        } else if (this.f26815y0) {
             l0();
         }
         j0();
@@ -1549,7 +1549,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         R();
         org.telegram.ui.Wallet.x5 x5Var = this.N0;
         if (x5Var != null) {
-            AnimatorSet animatorSet = x5Var.f35708m;
+            AnimatorSet animatorSet = x5Var.f35742m;
             if (!x5Var.v) {
                 if (animatorSet.isStarted()) {
                     animatorSet.cancel();
@@ -1561,8 +1561,8 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         }
         org.telegram.ui.Wallet.y8 y8Var = this.O0;
         if (y8Var != null) {
-            AnimatorSet animatorSet2 = y8Var.f35750m;
-            if (!y8Var.f35756s) {
+            AnimatorSet animatorSet2 = y8Var.f35784m;
+            if (!y8Var.f35790s) {
                 if (animatorSet2.isStarted()) {
                     animatorSet2.cancel();
                 } else {
@@ -1571,10 +1571,10 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
             }
             this.O0 = null;
         }
-        ValueAnimator valueAnimator = this.f26736c0;
+        ValueAnimator valueAnimator = this.f26788c0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f26736c0 = null;
+            this.f26788c0 = null;
         }
         Activity activity = this.I;
         if (activity != null) {
@@ -1588,7 +1588,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         this.L.animate().cancel();
         this.N.animate().cancel();
         this.S.animate().cancel();
-        this.f26745l0.animate().cancel();
+        this.f26797l0.animate().cancel();
         this.T.animate().cancel();
         this.U.animate().cancel();
         ai.j jVar = this.L0;
@@ -1600,13 +1600,13 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         if (a2Var != null) {
             a2Var.dismiss();
         }
-        org.telegram.ui.Wallet.o oVar = this.f26739f0;
+        org.telegram.ui.Wallet.o oVar = this.f26791f0;
         if (oVar != null) {
             oVar.run();
-            this.f26739f0 = null;
+            this.f26791f0 = null;
         }
-        NotificationCenter.getInstance(this.f26746n).removeObserver(this, NotificationCenter.walletUpdate);
-        this.f30161b.f33199a1.o().removeView(this.f26758w);
+        NotificationCenter.getInstance(this.f26798n).removeObserver(this, NotificationCenter.walletUpdate);
+        this.f30245b.f33272a1.o().removeView(this.f26810w);
         AndroidUtilities.hideKeyboard(this.P);
     }
 
@@ -1617,7 +1617,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30161b.getSheetContainer().invalidate();
+        this.f30245b.getSheetContainer().invalidate();
     }
 
     @Override
@@ -1632,7 +1632,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
             }
             this.I = null;
         }
-        this.f30161b.f33199a1.setDrawGlassTitle(true);
+        this.f30245b.f33272a1.setDrawGlassTitle(true);
         this.I0 = false;
         this.J0 = false;
         ai.j jVar = this.L0;
@@ -1644,7 +1644,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         if (a2Var != null) {
             a2Var.dismiss();
         }
-        this.f26758w.setVisibility(8);
+        this.f26810w.setVisibility(8);
         EditTextBoldCursor editTextBoldCursor = this.P;
         AndroidUtilities.hideKeyboard(editTextBoldCursor);
         editTextBoldCursor.clearFocus();
@@ -1653,7 +1653,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
     @Override
     public final void w(int i10) {
         if (i10 == 2) {
-            org.telegram.ui.Wallet.c5.u0(getContext(), this.f26746n, this.f30160a);
+            org.telegram.ui.Wallet.c5.u0(getContext(), this.f26798n, this.f30244a);
         } else if (i10 == 3) {
             Z();
         }
@@ -1661,12 +1661,12 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
 
     @Override
     public final void y() {
-        if (!this.f26763y0) {
+        if (!this.f26815y0) {
             return;
         }
-        this.f26763y0 = false;
+        this.f26815y0 = false;
         float bottomYOnScreen = getBottomYOnScreen();
-        FrameLayout frameLayout = this.f26740g0;
+        FrameLayout frameLayout = this.f26792g0;
         frameLayout.setTranslationY(this.G0 - (bottomYOnScreen - frameLayout.getTranslationY()));
         org.telegram.ui.Wallet.p7 p7Var = this.v;
         p7Var.setTranslationY(this.E0 - (W(p7Var) - p7Var.getTranslationY()));
@@ -1679,15 +1679,15 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
         float f7;
         float bottomYOnScreen;
         float W;
-        this.f26763y0 = true;
+        this.f26815y0 = true;
         this.H0 = false;
-        this.f26764z0 = z10;
+        this.f26816z0 = z10;
         if (z10) {
             f7 = 0.0f;
         } else {
             f7 = 1.0f;
         }
-        this.f26761x0 = f7;
+        this.f26813x0 = f7;
         if (this.A0) {
             bottomYOnScreen = this.B0;
         } else {
@@ -1702,7 +1702,7 @@ public final class gl extends qi implements NotificationCenter.NotificationCente
             W = W(p7Var);
         }
         this.D0 = W;
-        this.G0 = getBottomYOnScreen() - this.f26740g0.getTranslationY();
+        this.G0 = getBottomYOnScreen() - this.f26792g0.getTranslationY();
         this.E0 = W(p7Var) - p7Var.getTranslationY();
         l0();
     }

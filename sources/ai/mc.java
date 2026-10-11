@@ -6,7 +6,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.dk0;
 public final class mc extends lc {
     public final pb f1433a;
     public final TL_stories.TL_mediaAreaSuggestedReaction f1434b;
@@ -26,7 +26,7 @@ public final class mc extends lc {
         if (tL_mediaAreaSuggestedReaction.dark) {
             pbVar.a();
         }
-        e0Var.f54602i = true;
+        e0Var.f54636i = true;
         e0Var.e(zg.n0.d(tL_mediaAreaSuggestedReaction.reaction));
     }
 
@@ -35,14 +35,14 @@ public final class mc extends lc {
         ImageReceiver imageReceiver;
         int i10;
         zg.e0 e0Var = this.f1435c;
-        org.telegram.ui.Components.s5 s5Var = e0Var.f54597b;
+        org.telegram.ui.Components.s5 s5Var = e0Var.f54631b;
         if (s5Var != null) {
-            imageReceiver = s5Var.f30634k;
+            imageReceiver = s5Var.f30739k;
         } else {
-            imageReceiver = e0Var.f54596a;
+            imageReceiver = e0Var.f54630a;
         }
         if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
-            ek0 lottieAnimation = imageReceiver.getLottieAnimation();
+            dk0 lottieAnimation = imageReceiver.getLottieAnimation();
             if (lottieAnimation != null && lottieAnimation.y()) {
                 return;
             }
@@ -50,11 +50,11 @@ public final class mc extends lc {
             double d = pcVar.d;
             TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f1434b;
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaSuggestedReaction.coordinates;
-            float f10 = (float) (((mediaAreaCoordinates.f20266x * d) / 100.0d) + pcVar.f1600b);
+            float f10 = (float) (((mediaAreaCoordinates.f20302x * d) / 100.0d) + pcVar.f1600b);
             double d10 = pcVar.f1601c;
             double d11 = pcVar.f1602e;
-            float f11 = (float) (((mediaAreaCoordinates.f20267y * d11) / 100.0d) + d10);
-            float f12 = ((float) ((d * mediaAreaCoordinates.f20265w) / 100.0d)) / 2.0f;
+            float f11 = (float) (((mediaAreaCoordinates.f20303y * d11) / 100.0d) + d10);
+            float f12 = ((float) ((d * mediaAreaCoordinates.f20301w) / 100.0d)) / 2.0f;
             float f13 = ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / 2.0f;
             pb pbVar = this.f1433a;
             pbVar.setBounds((int) (f10 - f12), (int) (f11 - f13), (int) (f12 + f10), (int) (f13 + f11));
@@ -90,15 +90,15 @@ public final class mc extends lc {
     @Override
     public final void c(View view) {
         zg.e0 e0Var = this.f1435c;
-        if (e0Var.f54600f == view) {
+        if (e0Var.f54634f == view) {
             return;
         }
-        if (e0Var.f54601g) {
+        if (e0Var.f54635g) {
             e0Var.b(false);
-            e0Var.f54600f = view;
+            e0Var.f54634f = view;
             e0Var.b(true);
             return;
         }
-        e0Var.f54600f = view;
+        e0Var.f54634f = view;
     }
 }

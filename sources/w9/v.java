@@ -19,10 +19,10 @@ import org.telegram.ui.hh1;
 import xh.h4;
 import yh.s3;
 public final class v implements Continuation, d9.e, q9.d, z1, GenericProvider, e2.h, Vector.TLDeserializer {
-    public final int f50387a;
+    public final int f50421a;
 
     public v(int i10) {
-        this.f50387a = i10;
+        this.f50421a = i10;
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class v implements Continuation, d9.e, q9.d, z1, GenericProvider, e
 
     @Override
     public void f(a2 a2Var, int i10) {
-        switch (this.f50387a) {
+        switch (this.f50421a) {
             case 3:
                 a2Var.dismiss();
                 return;
@@ -53,7 +53,7 @@ public final class v implements Continuation, d9.e, q9.d, z1, GenericProvider, e
                 s3.e2(new hh1(6, null));
                 return;
             default:
-                int i11 = s3.f53245r1;
+                int i11 = s3.f53279r1;
                 return;
         }
     }
@@ -61,7 +61,7 @@ public final class v implements Continuation, d9.e, q9.d, z1, GenericProvider, e
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = h4.f51354k0;
+        int i10 = h4.f51388k0;
         return 0;
     }
 
@@ -71,10 +71,10 @@ public final class v implements Continuation, d9.e, q9.d, z1, GenericProvider, e
         File file;
         if (task.isSuccessful()) {
             b bVar = (b) task.getResult();
-            t9.b bVar2 = t9.b.f48335a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f50306b);
+            t9.b bVar2 = t9.b.f48369a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f50340b);
             z10 = true;
-            if (bVar.f50307c.delete()) {
+            if (bVar.f50341c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -88,17 +88,17 @@ public final class v implements Continuation, d9.e, q9.d, z1, GenericProvider, e
 
     @Override
     public Object y0(u5 u5Var) {
-        switch (this.f50387a) {
+        switch (this.f50421a) {
             case 2:
                 Set y3 = u5Var.y(xa.a.class);
-                xa.c cVar = xa.c.f51192c;
+                xa.c cVar = xa.c.f51226c;
                 if (cVar == null) {
                     synchronized (xa.c.class) {
                         try {
-                            cVar = xa.c.f51192c;
+                            cVar = xa.c.f51226c;
                             if (cVar == null) {
                                 cVar = new xa.c(0);
-                                xa.c.f51192c = cVar;
+                                xa.c.f51226c = cVar;
                             }
                         } finally {
                         }
@@ -121,6 +121,6 @@ public final class v implements Continuation, d9.e, q9.d, z1, GenericProvider, e
     }
 
     public v(Object obj, int i10) {
-        this.f50387a = i10;
+        this.f50421a = i10;
     }
 }

@@ -13,8 +13,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.p80;
-public final class h1 extends FrameLayout implements p80 {
+import org.telegram.ui.Components.o80;
+public final class h1 extends FrameLayout implements o80 {
     public final TextView E;
     public final TextView F;
     public final er[] G;

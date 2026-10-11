@@ -14,39 +14,39 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class av0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final FrameLayout f36181a;
-    public final ai.x5 f36182b;
-    public final org.telegram.ui.ActionBar.h5[] f36183c;
+    public final FrameLayout f36215a;
+    public final ai.x5 f36216b;
+    public final org.telegram.ui.ActionBar.h5[] f36217c;
     public final org.telegram.ui.Components.r6 d;
-    public AnimatorSet f36184e;
-    public AnimatorSet f36185f;
+    public AnimatorSet f36218e;
+    public AnimatorSet f36219f;
     public boolean h;
-    public ValueAnimator f36186n;
-    public float f36187r;
-    public int f36188s;
+    public ValueAnimator f36220n;
+    public float f36221r;
+    public int f36222s;
 
     public av0(Activity activity) {
         super(activity);
         FrameLayout frameLayout = new FrameLayout(activity);
-        this.f36181a = frameLayout;
+        this.f36215a = frameLayout;
         frameLayout.setPadding(AndroidUtilities.dp(56.0f), 0, 0, 0);
         addView(frameLayout, w7.x5.e(-1, -1, 119));
         ai.x5 x5Var = new ai.x5(activity, 25);
-        this.f36182b = x5Var;
+        this.f36216b = x5Var;
         x5Var.setPivotX(AndroidUtilities.dp(16.0f));
         x5Var.setPadding(AndroidUtilities.dp(16.0f), 0, 0, 0);
         x5Var.setClipToPadding(false);
         frameLayout.addView(x5Var, w7.x5.e(-1, -1, 119));
-        this.f36183c = new org.telegram.ui.ActionBar.h5[2];
+        this.f36217c = new org.telegram.ui.ActionBar.h5[2];
         for (int i10 = 0; i10 < 2; i10++) {
-            this.f36183c[i10] = new org.telegram.ui.ActionBar.h5(activity);
-            this.f36183c[i10].setGravity(19);
-            this.f36183c[i10].setTextColor(-1);
-            this.f36183c[i10].setTextSize(20);
-            this.f36183c[i10].setTypeface(AndroidUtilities.bold());
-            this.f36183c[i10].setDrawablePadding(AndroidUtilities.dp(4.0f));
-            this.f36183c[i10].setScrollNonFitText(true);
-            this.f36182b.addView(this.f36183c[i10], w7.x5.e(-1, -2, 19));
+            this.f36217c[i10] = new org.telegram.ui.ActionBar.h5(activity);
+            this.f36217c[i10].setGravity(19);
+            this.f36217c[i10].setTextColor(-1);
+            this.f36217c[i10].setTextSize(20);
+            this.f36217c[i10].setTypeface(AndroidUtilities.bold());
+            this.f36217c[i10].setDrawablePadding(AndroidUtilities.dp(4.0f));
+            this.f36217c[i10].setScrollNonFitText(true);
+            this.f36216b.addView(this.f36217c[i10], w7.x5.e(-1, -2, 19));
         }
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(activity, true, false, false);
         this.d = r6Var;
@@ -57,7 +57,7 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
         r6Var.setEllipsizeByGradient(true);
         r6Var.setImportantForAccessibility(1);
         r6Var.setAccessibilityLiveRegion(1);
-        this.f36181a.addView(r6Var, w7.x5.a(20.0f, 16.0f, 0.0f, 0.0f, 0.0f, -1, 51));
+        this.f36215a.addView(r6Var, w7.x5.a(20.0f, 16.0f, 0.0f, 0.0f, 0.0f, -1, 51));
     }
 
     public final void a(CharSequence charSequence, boolean z10) {
@@ -74,7 +74,7 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
         org.telegram.ui.Components.r6 r6Var = this.d;
         if (z12 != z13) {
             this.h = z12;
-            AnimatorSet animatorSet = this.f36185f;
+            AnimatorSet animatorSet = this.f36219f;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
@@ -97,7 +97,7 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
             int dp = AndroidUtilities.dp(i10 - i11);
             float f13 = 0.87f;
             float f14 = 0.0f;
-            ai.x5 x5Var = this.f36182b;
+            ai.x5 x5Var = this.f36216b;
             if (z10) {
                 ArrayList arrayList = new ArrayList();
                 if (!isEmpty) {
@@ -124,10 +124,10 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
                 }
                 arrayList.add(ObjectAnimator.ofFloat(x5Var, View.SCALE_Y, f13));
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f36185f = animatorSet2;
+                this.f36219f = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                this.f36185f.setInterpolator(org.telegram.ui.Components.is.h);
-                this.f36185f.start();
+                this.f36219f.setInterpolator(org.telegram.ui.Components.is.h);
+                this.f36219f.start();
             } else {
                 if (!isEmpty) {
                     f7 = 1.0f;
@@ -162,7 +162,7 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
     public final void b(boolean z10) {
         int i10;
         int i11;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = this.f36183c;
+        org.telegram.ui.ActionBar.h5[] h5VarArr = this.f36217c;
         int i12 = 0;
         TextPaint paint = h5VarArr[0].getPaint();
         float dpf2 = AndroidUtilities.dpf2(0.66f);
@@ -190,7 +190,7 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
 
     public final void c(CharSequence charSequence) {
         boolean z10;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = this.f36183c;
+        org.telegram.ui.ActionBar.h5[] h5VarArr = this.f36217c;
         boolean z11 = true;
         h5VarArr[1].setAlpha(0.0f);
         h5VarArr[1].setVisibility(8);
@@ -225,7 +225,7 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
         boolean equals;
         int i10;
         Property property;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = this.f36183c;
+        org.telegram.ui.ActionBar.h5[] h5VarArr = this.f36217c;
         CharSequence text = h5VarArr[0].getText();
         if (text == null) {
             equals = false;
@@ -235,10 +235,10 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
         if (equals) {
             return;
         }
-        AnimatorSet animatorSet = this.f36184e;
+        AnimatorSet animatorSet = this.f36218e;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f36184e = null;
+            this.f36218e = null;
         }
         org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[1];
         org.telegram.ui.ActionBar.h5 h5Var2 = h5VarArr[0];
@@ -246,7 +246,7 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
         h5Var.R = h5Var2.R;
         h5Var.b();
         h5VarArr[1].k(h5VarArr[0].getText());
-        h5VarArr[1].setRightPadding((int) this.f36187r);
+        h5VarArr[1].setRightPadding((int) this.f36221r);
         org.telegram.ui.ActionBar.h5 h5Var3 = h5VarArr[0];
         h5Var3.R = 0.0f;
         h5Var3.b();
@@ -290,18 +290,18 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
         }
         arrayList.add(ObjectAnimator.ofFloat(h5Var5, property3, 0.0f));
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f36184e = animatorSet2;
+        this.f36218e = animatorSet2;
         animatorSet2.playTogether(arrayList);
-        this.f36184e.addListener(new dp0(this, 10));
-        this.f36184e.setDuration(320L);
-        this.f36184e.setInterpolator(org.telegram.ui.Components.is.h);
-        this.f36184e.start();
+        this.f36218e.addListener(new dp0(this, 10));
+        this.f36218e.setDuration(320L);
+        this.f36218e.setInterpolator(org.telegram.ui.Components.is.h);
+        this.f36218e.start();
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.emojiLoaded) {
-            org.telegram.ui.ActionBar.h5[] h5VarArr = this.f36183c;
+            org.telegram.ui.ActionBar.h5[] h5VarArr = this.f36217c;
             h5VarArr[0].invalidate();
             h5VarArr[1].invalidate();
             this.d.invalidate();
@@ -322,7 +322,7 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        this.f36181a.layout(0, AndroidUtilities.statusBarHeight, i12 - i10, i13 - i11);
+        this.f36215a.layout(0, AndroidUtilities.statusBarHeight, i12 - i10, i13 - i11);
     }
 
     @Override
@@ -330,14 +330,14 @@ public final class av0 extends FrameLayout implements NotificationCenter.Notific
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         int i12 = AndroidUtilities.statusBarHeight;
-        int i13 = this.f36188s;
+        int i13 = this.f36222s;
         int i14 = AndroidUtilities.displaySize.y;
         if (i13 != i14) {
-            this.f36188s = i14;
+            this.f36222s = i14;
             this.h = !this.h;
             a(this.d.getText(), false);
         }
-        this.f36181a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - i12, 1073741824));
+        this.f36215a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - i12, 1073741824));
         setMeasuredDimension(size, size2);
     }
 }

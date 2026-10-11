@@ -13,13 +13,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.m71;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.f5;
 import w7.x5;
 public final class u extends org.telegram.ui.ActionBar.m2 {
-    public m71 f9382a;
+    public l71 f9382a;
     public final ArrayList f9383b;
     public final HashMap f9384c;
 
@@ -44,23 +44,23 @@ public final class u extends org.telegram.ui.ActionBar.m2 {
                 spannableStringBuilder.append((CharSequence) UserObject.getUserName(qVar.f9297a));
                 hashMap.put(qVar, spannableStringBuilder);
             }
-            r61 i11 = r61.i(i10, spannableStringBuilder);
+            q61 i11 = q61.i(i10, spannableStringBuilder);
             i11.K(!qVar.f9298b);
             arrayList.add(i11);
         }
         hg.c.n(R.string.PrivacyBiometryBotsInfo, arrayList);
     }
 
-    public static void V(u uVar, r61 r61Var) {
+    public static void V(u uVar, q61 q61Var) {
         int i10;
-        e71 e71Var;
+        d71 d71Var;
         ArrayList arrayList = uVar.f9383b;
-        if (r61Var.f17175a == 4 && (i10 = r61Var.d) >= 0 && i10 < arrayList.size()) {
-            q qVar = (q) arrayList.get(r61Var.d);
+        if (q61Var.f17211a == 4 && (i10 = q61Var.d) >= 0 && i10 < arrayList.size()) {
+            q qVar = (q) arrayList.get(q61Var.d);
             qVar.f9298b = !qVar.f9298b;
             Activity parentActivity = uVar.getParentActivity();
             int i11 = uVar.currentAccount;
-            long j3 = qVar.f9297a.f20179id;
+            long j3 = qVar.f9297a.f20215id;
             boolean z10 = qVar.f9298b;
             WeakHashMap weakHashMap = r.f9313k;
             SharedPreferences sharedPreferences = parentActivity.getSharedPreferences("2botbiometry_" + i11, 0);
@@ -70,9 +70,9 @@ public final class u extends org.telegram.ui.ActionBar.m2 {
                 edit.putString(String.valueOf(j3), "");
             }
             edit.apply();
-            m71 m71Var = uVar.f9382a;
-            if (m71Var != null && (e71Var = m71Var.W2) != null) {
-                e71Var.N(true);
+            l71 l71Var = uVar.f9382a;
+            if (l71Var != null && (d71Var = l71Var.W2) != null) {
+                d71Var.N(true);
             }
         }
     }
@@ -84,10 +84,10 @@ public final class u extends org.telegram.ui.ActionBar.m2 {
         this.actionBar.setTitle(LocaleController.getString(R.string.PrivacyBiometryBots));
         this.actionBar.setActionBarMenuOnItemClick(new t(this, 0));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.w0(h6.f20730a7, this.resourceProvider));
-        m71 m71Var = new m71(this, new bi.v(this, 13), new s(this), new s(this));
-        this.f9382a = m71Var;
-        frameLayout.addView(m71Var, x5.e(-1, -1, 119));
+        frameLayout.setBackgroundColor(h6.w0(h6.f20766a7, this.resourceProvider));
+        l71 l71Var = new l71(this, new bi.v(this, 13), new s(this), new s(this));
+        this.f9382a = l71Var;
+        frameLayout.addView(l71Var, x5.e(-1, -1, 119));
         r.d(getParentActivity(), this.currentAccount, new ai.y1(this, 18));
         this.fragmentView = frameLayout;
         return frameLayout;

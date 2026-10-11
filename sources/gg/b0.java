@@ -11,8 +11,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.j2;
 import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Components.rm0;
-public class b0 extends rm0 {
+import org.telegram.ui.Components.qm0;
+public class b0 extends qm0 {
     public final Context f10526c;
     public final int d;
     public final boolean f10527e;
@@ -41,7 +41,7 @@ public class b0 extends rm0 {
     public void v(s4.d1 d1Var, int i10) {
         TLRPC.Chat chat;
         String str;
-        n4 n4Var = (n4) d1Var.f47748a;
+        n4 n4Var = (n4) d1Var.f47782a;
         int i11 = this.d;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         new TLRPC.TL_dialog();
@@ -86,8 +86,8 @@ public class b0 extends rm0 {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         boolean z10 = this.f10527e;
         n4 n4Var = new n4(this.f10526c, this.h, z10);
-        if (this.f10528f && !n4Var.f22511x) {
-            n4Var.f22511x = true;
+        if (this.f10528f && !n4Var.f22547x) {
+            n4Var.f22547x = true;
             NotificationCenter.getInstance(n4Var.h).listen(n4Var, NotificationCenter.userIsPremiumBlockedUpadted, new j2(n4Var, 1));
         }
         n4Var.setLayoutParams(new s4.q0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));

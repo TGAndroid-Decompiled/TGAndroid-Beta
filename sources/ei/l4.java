@@ -2,11 +2,11 @@ package ei;
 
 import android.view.ViewGroup;
 import java.util.LinkedList;
-import org.telegram.ui.Components.dd0;
+import org.telegram.ui.Components.cd0;
 import org.telegram.ui.Components.jh;
 import org.telegram.ui.Components.ji;
 import org.telegram.ui.Components.rg;
-import org.telegram.ui.Components.ue0;
+import org.telegram.ui.Components.te0;
 import org.telegram.ui.Components.wb;
 import org.telegram.ui.Components.yi;
 public final class l4 implements o1.f {
@@ -62,25 +62,25 @@ public final class l4 implements o1.f {
             case 3:
                 yi yiVar = (yi) ((ji) this.f9209b).d;
                 yiVar.C0.setTranslationY(0.0f);
-                yiVar.C0.l(yiVar.f33244o2);
+                yiVar.C0.l(yiVar.f33317o2);
                 viewGroup = ((org.telegram.ui.ActionBar.e3) yiVar).containerView;
                 viewGroup.invalidate();
                 ((jh) this.f9210c).run();
                 yiVar.e2(0);
                 return;
             default:
-                ue0 ue0Var = (ue0) this.f9209b;
-                dd0 dd0Var = (dd0) this.f9210c;
-                LinkedList linkedList = ue0Var.Q;
-                ue0Var.P = null;
-                dd0Var.D = null;
-                dd0Var.z();
+                te0 te0Var = (te0) this.f9209b;
+                cd0 cd0Var = (cd0) this.f9210c;
+                LinkedList linkedList = te0Var.Q;
+                te0Var.P = null;
+                cd0Var.D = null;
+                cd0Var.z();
                 if (!z10) {
-                    dd0Var.h = 1.0f;
-                    dd0Var.z();
+                    cd0Var.h = 1.0f;
+                    cd0Var.z();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        ue0Var.R.poll();
+                        te0Var.R.poll();
                         return;
                     }
                     return;

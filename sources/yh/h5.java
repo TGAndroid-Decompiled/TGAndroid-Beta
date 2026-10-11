@@ -4,12 +4,12 @@ import j$.util.Objects;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class h5 {
-    public final long f52723a;
-    public final int f52724b;
+    public final long f52757a;
+    public final int f52758b;
 
     public h5(long j3, int i10) {
-        this.f52723a = j3;
-        this.f52724b = i10;
+        this.f52757a = j3;
+        this.f52758b = i10;
     }
 
     public static h5 a(int i10, long j3) {
@@ -30,7 +30,7 @@ public final class h5 {
     public final boolean equals(Object obj) {
         if (obj instanceof h5) {
             h5 h5Var = (h5) obj;
-            if (h5Var.f52723a == this.f52723a && h5Var.f52724b == this.f52724b) {
+            if (h5Var.f52757a == this.f52757a && h5Var.f52758b == this.f52758b) {
                 return true;
             }
         }
@@ -38,6 +38,6 @@ public final class h5 {
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f52723a), Integer.valueOf(this.f52724b));
+        return Objects.hash(Long.valueOf(this.f52757a), Integer.valueOf(this.f52758b));
     }
 }

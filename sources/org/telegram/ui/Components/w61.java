@@ -1,16 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
 import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-public final class w61 extends v61 {
-    public w61(String str) {
-        super(str != null ? str.replace((char) 8238, ' ') : str, (v11) null);
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class w61 extends URLSpan {
+    public final u11 f32645a;
+    public boolean f32646b;
+
+    public w61(String str, u11 u11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f32645a = u11Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        if (this.f32646b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
+        }
+        of.f.p(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setUnderlineText(false);
+        u11 u11Var = this.f32645a;
+        if (u11Var != null) {
+            u11Var.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            textPaint.setUnderlineText(z10);
+        }
     }
 }

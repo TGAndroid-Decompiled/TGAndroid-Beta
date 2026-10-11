@@ -1,18 +1,18 @@
 package org.scilab.forge.jlatexmath;
 public class FixedCharAtom extends CharSymbol {
-    private final CharFont f17217cf;
+    private final CharFont f17253cf;
 
     public FixedCharAtom(CharFont charFont) {
-        this.f17217cf = charFont;
+        this.f17253cf = charFont;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        return new CharBox(teXEnvironment.getTeXFont().getChar(this.f17217cf, teXEnvironment.getStyle()));
+        return new CharBox(teXEnvironment.getTeXFont().getChar(this.f17253cf, teXEnvironment.getStyle()));
     }
 
     @Override
     public CharFont getCharFont(TeXFont teXFont) {
-        return this.f17217cf;
+        return this.f17253cf;
     }
 }

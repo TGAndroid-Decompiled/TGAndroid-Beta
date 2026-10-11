@@ -1,7 +1,7 @@
 package ci;
 
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.qb0;
+import org.telegram.ui.Components.pb0;
 public final class x4 implements o1.f {
     public final int f6296a;
     public final FrameLayout f6297b;
@@ -44,21 +44,21 @@ public final class x4 implements o1.f {
                 }
                 return;
             default:
-                qb0 qb0Var = (qb0) this.f6297b;
+                pb0 pb0Var = (pb0) this.f6297b;
                 if (!z10) {
-                    qb0Var.K = null;
+                    pb0Var.K = null;
                     boolean z11 = this.f6298c;
                     if (z11) {
                         i10 = 8;
                     } else {
                         i10 = 0;
                     }
-                    qb0Var.setVisibility(i10);
-                    if (qb0Var.N && z11) {
-                        qb0Var.N = false;
-                        qb0Var.f30113b.setLayoutManager(qb0Var.getNeededLayoutManager());
-                        qb0Var.I = true;
-                        qb0Var.o(true);
+                    pb0Var.setVisibility(i10);
+                    if (pb0Var.N && z11) {
+                        pb0Var.N = false;
+                        pb0Var.f29829b.setLayoutManager(pb0Var.getNeededLayoutManager());
+                        pb0Var.I = true;
+                        pb0Var.o(true);
                         return;
                     }
                     return;

@@ -13,8 +13,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.ai;
 import org.telegram.ui.ActionBar.w5;
 public final class n1 extends TextView {
-    public boolean f46506a;
-    public Drawable f46507b;
+    public boolean f46540a;
+    public Drawable f46541b;
 
     public n1(Context context) {
         super(context);
@@ -31,20 +31,20 @@ public final class n1 extends TextView {
         canvas.translate(0.0f, AndroidUtilities.dp(-1.0f));
         super.onDraw(canvas);
         canvas.restore();
-        if (this.f46506a) {
+        if (this.f46540a) {
             int A = ai.A(16.0f, getHeight(), 2);
             if (LocaleController.isRTL) {
-                this.f46507b.setBounds(AndroidUtilities.dp(7.0f), A, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(16.0f) + A);
+                this.f46541b.setBounds(AndroidUtilities.dp(7.0f), A, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(16.0f) + A);
             } else {
-                this.f46507b.setBounds(getWidth() - AndroidUtilities.dp(23.0f), A, getWidth() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(16.0f) + A);
+                this.f46541b.setBounds(getWidth() - AndroidUtilities.dp(23.0f), A, getWidth() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(16.0f) + A);
             }
-            this.f46507b.draw(canvas);
+            this.f46541b.draw(canvas);
         }
     }
 
     public void setCurrent(boolean z10) {
         float f7;
-        this.f46506a = z10;
+        this.f46540a = z10;
         if (z10) {
             float f10 = 12.0f;
             if (LocaleController.isRTL) {
@@ -63,9 +63,9 @@ public final class n1 extends TextView {
             setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
             setBackground(w5.d(new float[]{0.0f}, 0, w5.b(-14145495)));
         }
-        if (this.f46506a && this.f46507b == null) {
+        if (this.f46540a && this.f46541b == null) {
             Drawable drawable = getContext().getDrawable(R.drawable.photo_expand);
-            this.f46507b = drawable;
+            this.f46541b = drawable;
             drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         }
         invalidate();

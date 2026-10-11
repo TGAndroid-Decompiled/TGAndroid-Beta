@@ -4,27 +4,27 @@ import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class m01 implements View.OnClickListener {
-    public final int f39787a;
-    public final x01 f39788b;
+    public final int f39821a;
+    public final x01 f39822b;
 
     public m01(x01 x01Var, int i10) {
-        this.f39787a = i10;
-        this.f39788b = x01Var;
+        this.f39821a = i10;
+        this.f39822b = x01Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f39787a) {
+        switch (this.f39821a) {
             case 0:
-                x01 x01Var = this.f39788b;
-                ProfileActivity profileActivity = x01Var.f43916e;
-                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f34271e1));
+                x01 x01Var = this.f39822b;
+                ProfileActivity profileActivity = x01Var.f43950e;
+                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f34305e1));
                 MessagesController messagesController = profileActivity.getMessagesController();
-                ProfileActivity profileActivity2 = x01Var.f43916e;
+                ProfileActivity profileActivity2 = x01Var.f43950e;
                 messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
                 return;
             default:
-                ProfileActivity profileActivity3 = this.f39788b.f43916e;
+                ProfileActivity profileActivity3 = this.f39822b.f43950e;
                 profileActivity3.O4 = !profileActivity3.O4;
                 if (!profileActivity3.N4) {
                     profileActivity3.N4 = true;
@@ -34,7 +34,7 @@ public final class m01 implements View.OnClickListener {
                 profileActivity3.d.m(profileActivity3.O3);
                 int i10 = profileActivity3.U5;
                 if (i10 >= 0) {
-                    profileActivity3.f34254c.h1(i10, profileActivity3.V5 - profileActivity3.f34239a.getPaddingTop());
+                    profileActivity3.f34288c.h1(i10, profileActivity3.V5 - profileActivity3.f34273a.getPaddingTop());
                     return;
                 }
                 return;

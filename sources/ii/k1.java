@@ -11,7 +11,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.b00;
 import org.telegram.ui.Components.bh;
-import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.p80;
 import org.telegram.ui.cj0;
 public final class k1 implements View.OnClickListener {
     public final int f12533a;
@@ -77,7 +77,7 @@ public final class k1 implements View.OnClickListener {
                     e2Var2.A0 = b00Var;
                     b00Var.setVisibility(8);
                     b00 b00Var2 = e2Var2.A0;
-                    b00Var2.f24727w2 = false;
+                    b00Var2.f24796w2 = false;
                     b00Var2.setDelegate(new v1(e2Var2));
                     int indexOfChild = e2Var2.O.indexOfChild(e2Var2.f12358a0);
                     if (indexOfChild < 0) {
@@ -108,12 +108,12 @@ public final class k1 implements View.OnClickListener {
                 return;
             case 6:
                 final e2 e2Var3 = this.f12534b;
-                q80 q80Var = e2Var3.f12389x0;
-                if (q80Var != null) {
-                    q80Var.u();
+                p80 p80Var = e2Var3.f12389x0;
+                if (p80Var != null) {
+                    p80Var.u();
                     e2Var3.f12389x0 = null;
                 }
-                final q80 H = q80.H(e2Var3, view);
+                final p80 H = p80.H(e2Var3, view);
                 H.Q = true;
                 a R2 = e2Var3.P.R2();
                 if (R2 != null && R2.b()) {
@@ -195,10 +195,10 @@ public final class k1 implements View.OnClickListener {
                 return;
             case 7:
                 e2 e2Var4 = this.f12534b;
-                q80 q80Var2 = e2Var4.f12389x0;
+                p80 p80Var2 = e2Var4.f12389x0;
                 TL_iv.pageTableCell pagetablecell = null;
-                if (q80Var2 != null) {
-                    q80Var2.u();
+                if (p80Var2 != null) {
+                    p80Var2.u();
                     e2Var4.f12389x0 = null;
                 }
                 x3 x3Var2 = e2Var4.P;
@@ -226,10 +226,10 @@ public final class k1 implements View.OnClickListener {
                 }
             case 8:
                 e2 e2Var5 = this.f12534b;
-                q80 q80Var3 = e2Var5.f12389x0;
+                p80 p80Var3 = e2Var5.f12389x0;
                 TL_iv.pageBlockMath pageblockmath = null;
-                if (q80Var3 != null) {
-                    q80Var3.u();
+                if (p80Var3 != null) {
+                    p80Var3.u();
                     e2Var5.f12389x0 = null;
                 }
                 a R22 = e2Var5.P.R2();

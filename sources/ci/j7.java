@@ -146,7 +146,7 @@ public final class j7 extends View implements v2 {
         this.T = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
         this.U = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
         this.V = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
-        this.f5261h0 = new org.telegram.ui.Components.g6(this, 0L, 200L, is.f27451f);
+        this.f5261h0 = new org.telegram.ui.Components.g6(this, 0L, 200L, is.f27500f);
         this.m0 = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
         this.f5267n0 = -1.0f;
         this.f5268o0 = true;
@@ -156,7 +156,7 @@ public final class j7 extends View implements v2 {
         this.f5275t0 = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
         this.B0 = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
         this.C0 = new org.telegram.ui.Components.g6(this, 0L, 650L, isVar);
-        this.D0 = new org.telegram.ui.Components.g6(this, 0L, 160L, is.f27453i);
+        this.D0 = new org.telegram.ui.Components.g6(this, 0L, 160L, is.f27502i);
         this.E0 = new org.telegram.ui.Components.g6(this, 0L, 750L, isVar);
         this.F0 = new org.telegram.ui.Components.g6(this, 0L, 650L, isVar);
         this.G0 = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
@@ -215,11 +215,11 @@ public final class j7 extends View implements v2 {
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         fr frVar = new fr(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
         this.f5253c = frVar;
-        frVar.f26475w = false;
+        frVar.f26552w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
-        frVar.f26470e = dp;
-        frVar.f26471f = dp2;
+        frVar.f26547e = dp;
+        frVar.f26548f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -276,7 +276,7 @@ public final class j7 extends View implements v2 {
         } else {
             j3 = 310;
         }
-        this.N.f26616g = j3;
+        this.N.f26668g = j3;
         this.M += f7;
         invalidate();
     }
@@ -441,7 +441,7 @@ public final class j7 extends View implements v2 {
         g7 g7Var2 = this.L0;
         if (action == 0) {
             this.f5279w0 = true;
-            if (bdVar2.f24913i || bdVar3.f24913i) {
+            if (bdVar2.f24981i || bdVar3.f24981i) {
                 z14 = true;
             }
             this.f5281x0 = z14;
@@ -450,7 +450,7 @@ public final class j7 extends View implements v2 {
             if (Math.abs(clamp - this.f5262i0) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(g7Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (bdVar3.f24913i) {
+            if (bdVar3.f24981i) {
                 AndroidUtilities.runOnUIThread(g7Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
@@ -478,10 +478,10 @@ public final class j7 extends View implements v2 {
                 AndroidUtilities.cancelRunOnUIThread(g7Var2);
                 AndroidUtilities.cancelRunOnUIThread(g7Var);
                 boolean z15 = this.f5272r0;
-                if (!z15 && bdVar.f24913i) {
+                if (!z15 && bdVar.f24981i) {
                     ((gb) this.f5249a).c();
                 } else if (z15 && this.f5284z0) {
-                    if (bdVar.f24913i) {
+                    if (bdVar.f24981i) {
                         this.f5284z0 = false;
                         this.G0.d(1.0f, true);
                         a4 a4Var = ((gb) this.f5249a).f5131a.T0;
@@ -493,7 +493,7 @@ public final class j7 extends View implements v2 {
                         this.f5276u0 = true;
                         ((gb) this.f5249a).e(false);
                     }
-                } else if (bdVar2.f24913i) {
+                } else if (bdVar2.f24981i) {
                     if (b()) {
                         ((gb) this.f5249a).a();
                     } else if (!this.f5268o0 && !this.f5272r0 && !this.f5284z0) {
@@ -513,7 +513,7 @@ public final class j7 extends View implements v2 {
                     }
                 }
                 this.f5284z0 = false;
-                if (bdVar3.f24913i) {
+                if (bdVar3.f24981i) {
                     d(180.0f);
                     ((gb) this.f5249a).b();
                 }

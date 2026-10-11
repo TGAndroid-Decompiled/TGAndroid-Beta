@@ -5,28 +5,28 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class x0 implements RequestDelegate {
-    public final int f19754a;
-    public final ChatObject.Call f19755b;
+    public final int f19790a;
+    public final ChatObject.Call f19791b;
 
     public x0(ChatObject.Call call, int i10) {
-        this.f19754a = i10;
-        this.f19755b = call;
+        this.f19790a = i10;
+        this.f19791b = call;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19754a) {
+        switch (this.f19790a) {
             case 0:
-                this.f19755b.lambda$loadGroupCall$11(tLObject, tL_error);
+                this.f19791b.lambda$loadGroupCall$11(tLObject, tL_error);
                 return;
             case 1:
-                this.f19755b.lambda$reloadGroupCall$9(tLObject, tL_error);
+                this.f19791b.lambda$reloadGroupCall$9(tLObject, tL_error);
                 return;
             case 2:
-                this.f19755b.lambda$setTitle$4(tLObject, tL_error);
+                this.f19791b.lambda$setTitle$4(tLObject, tL_error);
                 return;
             default:
-                this.f19755b.lambda$toggleRecord$13(tLObject, tL_error);
+                this.f19791b.lambda$toggleRecord$13(tLObject, tL_error);
                 return;
         }
     }

@@ -2,23 +2,23 @@ package org.telegram.ui;
 
 import android.util.SparseIntArray;
 public final class sn implements Runnable {
-    public final int f41767a;
-    public final xn f41768b;
+    public final int f41801a;
+    public final xn f41802b;
 
     public sn(xn xnVar, int i10) {
-        this.f41767a = i10;
-        this.f41768b = xnVar;
+        this.f41801a = i10;
+        this.f41802b = xnVar;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.b5 b5Var;
         org.telegram.ui.ActionBar.b5 b5Var2;
-        switch (this.f41767a) {
+        switch (this.f41801a) {
             case 0:
                 SparseIntArray sparseIntArray = new SparseIntArray();
-                xn xnVar = this.f41768b;
-                xnVar.f44114e = sparseIntArray;
+                xn xnVar = this.f41802b;
+                xnVar.f44148e = sparseIntArray;
                 zn znVar = xnVar.V;
                 org.telegram.ui.ActionBar.d5 d5Var = (org.telegram.ui.ActionBar.d5) znVar.getThemedDrawable("drawableMsgOut");
                 xnVar.I = d5Var;
@@ -34,10 +34,10 @@ public final class sn implements Runnable {
                 xnVar.k(0.0f);
                 return;
             default:
-                xn xnVar2 = this.f41768b;
+                xn xnVar2 = this.f41802b;
                 xnVar2.I.J = null;
                 xnVar2.J.J = null;
-                xnVar2.f44114e = null;
+                xnVar2.f44148e = null;
                 xnVar2.k(1.0f);
                 return;
         }

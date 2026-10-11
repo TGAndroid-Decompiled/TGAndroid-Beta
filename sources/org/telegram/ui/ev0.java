@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ev0 extends org.telegram.ui.Components.a70 {
+public final class ev0 extends org.telegram.ui.Components.z60 {
     public final fv0 d;
 
     public ev0(fv0 fv0Var) {
@@ -13,42 +13,42 @@ public final class ev0 extends org.telegram.ui.Components.a70 {
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
-        if (this.d.f37787s.Z7 > 0) {
+        if (this.d.f37821s.Z7 > 0) {
             sb2.append(", ");
-            sb2.append(this.d.f37787s.Y7 + 1);
+            sb2.append(this.d.f37821s.Y7 + 1);
             sb2.append(" / ");
-            sb2.append(this.d.f37787s.Z7);
+            sb2.append(this.d.f37821s.Z7);
         }
         sb2.append(", ");
         sb2.append(this.d.h);
         sb2.append(" – ");
-        sb2.append(this.d.f37785n);
+        sb2.append(this.d.f37819n);
         return sb2.toString();
     }
 
     @Override
     public final int i() {
-        return Math.max(0, this.d.f37787s.Z7 - 1);
+        return Math.max(0, this.d.f37821s.Z7 - 1);
     }
 
     @Override
     public final int j() {
-        return this.d.f37787s.Y7;
+        return this.d.f37821s.Y7;
     }
 
     @Override
     public final void k(int i10) {
         int max;
-        if (this.d.f37787s.Z7 > 0 && (max = Math.max(0, Math.min(this.d.f37787s.Z7 - 1, i10))) != this.d.f37787s.Y7) {
+        if (this.d.f37821s.Z7 > 0 && (max = Math.max(0, Math.min(this.d.f37821s.Z7 - 1, i10))) != this.d.f37821s.Y7) {
             fv0 fv0Var = this.d;
-            fv0Var.f37786r = fv0Var.f37787s.Y7;
-            this.d.f37787s.Y7 = max;
-            this.d.f37787s.R0();
+            fv0Var.f37820r = fv0Var.f37821s.Y7;
+            this.d.f37821s.Y7 = max;
+            this.d.f37821s.R0();
             this.d.invalidate();
-            int i11 = this.d.f37787s.Y7;
+            int i11 = this.d.f37821s.Y7;
             fv0 fv0Var2 = this.d;
-            if (i11 != fv0Var2.f37786r) {
-                fv0Var2.f37787s.p2(1);
+            if (i11 != fv0Var2.f37820r) {
+                fv0Var2.f37821s.p2(1);
             }
         }
     }

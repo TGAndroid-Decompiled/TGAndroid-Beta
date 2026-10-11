@@ -15,17 +15,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.hj1;
 public final class tp implements wi {
-    public final cq f31127a;
+    public final cq f31315a;
 
     public tp(cq cqVar) {
-        this.f31127a = cqVar;
+        this.f31315a = cqVar;
     }
 
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        cq cqVar = this.f31127a;
+        cq cqVar = this.f31315a;
         try {
-            HashMap<Object, Object> selectedPhotos = cqVar.Y.f33228j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = cqVar.Y.f33301j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -39,10 +39,10 @@ public final class tp implements wi {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     qp qpVar = new qp(new hj1(file, file, ""), loadBitmap, false, 2);
-                    qpVar.V1 = cqVar.f25270f0;
+                    qpVar.V1 = cqVar.f25431f0;
                     qpVar.F1 = false;
                     qpVar.E1 = false;
-                    qpVar.f43365n1 = 0.2f;
+                    qpVar.f43399n1 = 0.2f;
                     qpVar.c1(cqVar.v.a());
                     qpVar.I1 = new sp(this, 0);
                     cq.s(cqVar, qpVar);
@@ -62,8 +62,8 @@ public final class tp implements wi {
     @Override
     public final void a1(Object obj) {
         qp qpVar = new qp(obj, null, true, 3);
-        cq cqVar = this.f31127a;
-        qpVar.V1 = cqVar.f25270f0;
+        cq cqVar = this.f31315a;
+        qpVar.V1 = cqVar.f25431f0;
         qpVar.c1(cqVar.v.a());
         qpVar.I1 = new sp(this, 1);
         cq.s(cqVar, qpVar);

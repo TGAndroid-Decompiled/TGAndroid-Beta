@@ -8,14 +8,14 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.SharedConfig;
 public abstract class d0 {
-    public static Runnable f54590c;
+    public static Runnable f54624c;
     public static Boolean h;
-    public static final HashSet f54588a = new HashSet();
-    public static volatile boolean f54589b = false;
+    public static final HashSet f54622a = new HashSet();
+    public static volatile boolean f54623b = false;
     public static boolean d = true;
-    public static boolean f54591e = false;
-    public static boolean f54592f = false;
-    public static boolean f54593g = false;
+    public static boolean f54625e = false;
+    public static boolean f54626f = false;
+    public static boolean f54627g = false;
 
     public static void a() {
         gf.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
@@ -24,22 +24,22 @@ public abstract class d0 {
             countDownLatch.countDown();
             cacheOutQueue.f10518b = null;
         }
-        f54589b = false;
-        f54591e = false;
-        f54593g = false;
-        f54590c = null;
-        Iterator it = f54588a.iterator();
+        f54623b = false;
+        f54625e = false;
+        f54627g = false;
+        f54624c = null;
+        Iterator it = f54622a.iterator();
         while (it.hasNext()) {
             ((View) it.next()).invalidate();
         }
-        f54588a.clear();
+        f54622a.clear();
     }
 
     public static boolean b(View view) {
-        if (f54589b) {
-            f54588a.add(view);
+        if (f54623b) {
+            f54622a.add(view);
         }
-        return f54589b;
+        return f54623b;
     }
 
     public static boolean c(View... viewArr) {
@@ -55,14 +55,14 @@ public abstract class d0 {
         if (!h.booleanValue()) {
             return false;
         }
-        if (f54589b) {
-            f54588a.addAll(Arrays.asList(viewArr));
+        if (f54623b) {
+            f54622a.addAll(Arrays.asList(viewArr));
         }
-        return f54589b;
+        return f54623b;
     }
 
     public static boolean d() {
-        if (!f54589b && !f54591e && !f54593g) {
+        if (!f54623b && !f54625e && !f54627g) {
             return false;
         }
         return true;

@@ -6,20 +6,20 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class xg0 extends org.telegram.ui.Components.rm0 {
-    public final Context f44067c;
+public final class xg0 extends org.telegram.ui.Components.qm0 {
+    public final Context f44101c;
     public final yg0 d;
 
     public xg0(yg0 yg0Var, Context context) {
         this.d = yg0Var;
-        this.f44067c = context;
+        this.f44101c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
         int b10 = d1Var.b();
         yg0 yg0Var = this.d;
-        if (b10 != yg0Var.f44391c && b10 != yg0Var.d && b10 != yg0Var.f44392e && b10 != yg0Var.f44393f && b10 != yg0Var.h && b10 != yg0Var.f44395r) {
+        if (b10 != yg0Var.f44425c && b10 != yg0Var.d && b10 != yg0Var.f44426e && b10 != yg0Var.f44427f && b10 != yg0Var.h && b10 != yg0Var.f44429r) {
             return false;
         }
         return true;
@@ -37,11 +37,11 @@ public final class xg0 extends org.telegram.ui.Components.rm0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 != yg0Var.f44391c && i10 != yg0Var.d && i10 != yg0Var.f44392e && i10 != yg0Var.f44393f && i10 != yg0Var.h) {
-            if (i10 == yg0Var.f44394n) {
+        if (i10 != yg0Var.f44425c && i10 != yg0Var.d && i10 != yg0Var.f44426e && i10 != yg0Var.f44427f && i10 != yg0Var.h) {
+            if (i10 == yg0Var.f44428n) {
                 return 2;
             }
-            if (i10 == yg0Var.f44395r) {
+            if (i10 == yg0Var.f44429r) {
                 return 3;
             }
             return 4;
@@ -51,15 +51,15 @@ public final class xg0 extends org.telegram.ui.Components.rm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        int i11 = d1Var.f47752f;
-        View view = d1Var.f47748a;
+        int i11 = d1Var.f47786f;
+        View view = d1Var.f47782a;
         if (i11 != 0) {
             yg0 yg0Var = this.d;
             if (i11 != 1) {
                 if (i11 != 3) {
                     if (i11 == 4) {
                         org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                        if (i10 == yg0Var.f44396s) {
+                        if (i10 == yg0Var.f44430s) {
                             e9Var.setText(LocaleController.getString(R.string.LogOutInfo));
                             return;
                         }
@@ -68,24 +68,24 @@ public final class xg0 extends org.telegram.ui.Components.rm0 {
                     return;
                 }
                 org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) view;
-                if (i10 == yg0Var.f44395r) {
-                    caVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21007p7, false));
+                if (i10 == yg0Var.f44429r) {
+                    caVar.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21043p7, false));
                     caVar.b(LocaleController.getString(R.string.LogOutTitle), false);
                     return;
                 }
                 return;
             }
             org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
-            if (i10 == yg0Var.f44391c) {
+            if (i10 == yg0Var.f44425c) {
                 d9Var.b(R.drawable.msg_contact_add, LocaleController.getString(R.string.AddAnotherAccount), LocaleController.getString(R.string.AddAnotherAccountInfo), true);
                 return;
             } else if (i10 == yg0Var.d) {
                 d9Var.b(R.drawable.msg_permissions, LocaleController.getString(R.string.SetPasscode), LocaleController.getString(R.string.SetPasscodeInfo), true);
                 return;
-            } else if (i10 == yg0Var.f44392e) {
+            } else if (i10 == yg0Var.f44426e) {
                 d9Var.b(R.drawable.msg_clearcache, LocaleController.getString(R.string.ClearCache), LocaleController.getString(R.string.ClearCacheInfo), true);
                 return;
-            } else if (i10 == yg0Var.f44393f) {
+            } else if (i10 == yg0Var.f44427f) {
                 d9Var.b(R.drawable.msg_newphone, LocaleController.getString(R.string.ChangePhoneNumber), LocaleController.getString(R.string.ChangePhoneNumberInfo), true);
                 return;
             } else if (i10 == yg0Var.h) {
@@ -105,16 +105,16 @@ public final class xg0 extends org.telegram.ui.Components.rm0 {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.d9 d9Var;
         View view;
-        Context context = this.f44067c;
+        Context context = this.f44101c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 3) {
                         view = new org.telegram.ui.Cells.e9(context);
-                        view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f20750b7));
+                        view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.f20786b7));
                     } else {
                         FrameLayout caVar = new org.telegram.ui.Cells.ca(context);
-                        caVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20786d6, false));
+                        caVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20822d6, false));
                         d9Var = caVar;
                     }
                 } else {
@@ -124,11 +124,11 @@ public final class xg0 extends org.telegram.ui.Components.rm0 {
             }
             org.telegram.ui.Cells.d9 d9Var2 = new org.telegram.ui.Cells.d9(context);
             d9Var2.setMultilineDetail(true);
-            d9Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20786d6, false));
+            d9Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20822d6, false));
             d9Var = d9Var2;
         } else {
             FrameLayout m4Var = new org.telegram.ui.Cells.m4(context);
-            m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20786d6, false));
+            m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20822d6, false));
             d9Var = m4Var;
         }
         view = d9Var;

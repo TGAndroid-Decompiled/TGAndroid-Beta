@@ -79,12 +79,12 @@ import n2.m;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.n01;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.m01;
 import org.telegram.ui.Components.sk;
-import org.telegram.ui.Components.y71;
+import org.telegram.ui.Components.x71;
 import org.telegram.ui.Components.yi;
-import org.telegram.ui.Components.zz0;
+import org.telegram.ui.Components.yz0;
 import org.telegram.ui.zq0;
 import org.xmlpull.v1.XmlPullParserException;
 import r0.i0;
@@ -93,14 +93,14 @@ import s4.z;
 import v7.s7;
 import v7.v7;
 import w7.i6;
-public class h implements ll0, zq0, n5.b, t0.h {
-    public final int f15464a;
-    public Object f15465b;
-    public Object f15466c;
+public class h implements kl0, zq0, n5.b, t0.h {
+    public final int f15500a;
+    public Object f15501b;
+    public Object f15502c;
     public Object d;
 
     public h(int i10, boolean z10) {
-        this.f15464a = i10;
+        this.f15500a = i10;
     }
 
     public static h R(Context context, AttributeSet attributeSet, int[] iArr, int i10) {
@@ -123,7 +123,7 @@ public class h implements ll0, zq0, n5.b, t0.h {
     public static Object[] w(Object[] objArr, int[] iArr) {
         int length = objArr.length;
         Class<?> componentType = objArr.getClass().getComponentType();
-        zz0 zz0Var = n01.R;
+        yz0 yz0Var = m01.R;
         int i10 = -1;
         for (int i11 : iArr) {
             i10 = Math.max(i10, i11);
@@ -198,15 +198,15 @@ public class h implements ll0, zq0, n5.b, t0.h {
         if (bArr2 != null) {
             bArr = Arrays.copyOf(bArr2, bArr2.length);
         }
-        e2.d.g(eVar.f16555w.isEmpty());
+        e2.d.g(eVar.f16591w.isEmpty());
         eVar.K = bArr;
         return eVar;
     }
 
     public mf.e A(mf.f fVar) {
         InflaterInputStream inflaterInputStream;
-        int i10 = fVar.f16412c;
-        InputStream inputStream = (nf.a) this.f15465b;
+        int i10 = fVar.f16448c;
+        InputStream inputStream = (nf.a) this.f15501b;
         if (fVar.d) {
             g0 g0Var = (g0) this.d;
             g0Var.getClass();
@@ -237,14 +237,14 @@ public class h implements ll0, zq0, n5.b, t0.h {
             inputStream = new ByteArrayInputStream(bArr, 0, i12);
             i10 = i12;
         }
-        if (!fVar.f16414f) {
-            if (fVar.f16413e) {
-                i10 = fVar.f16415g;
+        if (!fVar.f16450f) {
+            if (fVar.f16449e) {
+                i10 = fVar.f16451g;
                 inflaterInputStream = new InflaterInputStream(inputStream);
             } else {
                 inflaterInputStream = inputStream;
             }
-            return new mf.e(inflaterInputStream, fVar.f16411b, i10, (mf.h) this.f15466c, fVar);
+            return new mf.e(inflaterInputStream, fVar.f16447b, i10, (mf.h) this.f15502c, fVar);
         }
         throw new Exception("Frame encryption is not supported");
     }
@@ -254,12 +254,12 @@ public class h implements ll0, zq0, n5.b, t0.h {
         k0Var.f3400b.getClass();
         c0 c0Var = k0Var.f3400b.f3307c;
         if (c0Var == null) {
-            return m.f16568z;
+            return m.f16604z;
         }
-        synchronized (this.f15465b) {
+        synchronized (this.f15501b) {
             try {
-                if (!c0Var.equals((c0) this.f15466c)) {
-                    this.f15466c = c0Var;
+                if (!c0Var.equals((c0) this.f15502c)) {
+                    this.f15502c = c0Var;
                     this.d = x(c0Var);
                 }
                 eVar = (n2.e) this.d;
@@ -272,18 +272,18 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public View C(int i10) {
-        return ((RecyclerView) ((g0) this.f15465b).f14469b).getChildAt(K(i10));
+        return ((RecyclerView) ((g0) this.f15501b).f14469b).getChildAt(K(i10));
     }
 
     public int D() {
-        return ((RecyclerView) ((g0) this.f15465b).f14469b).getChildCount() - ((ArrayList) this.d).size();
+        return ((RecyclerView) ((g0) this.f15501b).f14469b).getChildCount() - ((ArrayList) this.d).size();
     }
 
     public ColorStateList E(int i10) {
         int resourceId;
         ColorStateList a2;
-        TypedArray typedArray = (TypedArray) this.f15466c;
-        if (typedArray.hasValue(i10) && (resourceId = typedArray.getResourceId(i10, 0)) != 0 && (a2 = s7.a((Context) this.f15465b, resourceId)) != null) {
+        TypedArray typedArray = (TypedArray) this.f15502c;
+        if (typedArray.hasValue(i10) && (resourceId = typedArray.getResourceId(i10, 0)) != 0 && (a2 = s7.a((Context) this.f15501b, resourceId)) != null) {
             return a2;
         }
         return typedArray.getColorStateList(i10);
@@ -299,9 +299,9 @@ public class h implements ll0, zq0, n5.b, t0.h {
 
     public Drawable G(int i10) {
         int resourceId;
-        TypedArray typedArray = (TypedArray) this.f15466c;
+        TypedArray typedArray = (TypedArray) this.f15502c;
         if (typedArray.hasValue(i10) && (resourceId = typedArray.getResourceId(i10, 0)) != 0) {
-            return s7.b((Context) this.f15465b, resourceId);
+            return s7.b((Context) this.f15501b, resourceId);
         }
         return typedArray.getDrawable(i10);
     }
@@ -309,11 +309,11 @@ public class h implements ll0, zq0, n5.b, t0.h {
     public Drawable H(int i10) {
         int resourceId;
         Drawable f7;
-        if (((TypedArray) this.f15466c).hasValue(i10) && (resourceId = ((TypedArray) this.f15466c).getResourceId(i10, 0)) != 0) {
+        if (((TypedArray) this.f15502c).hasValue(i10) && (resourceId = ((TypedArray) this.f15502c).getResourceId(i10, 0)) != 0) {
             q a2 = q.a();
-            Context context = (Context) this.f15465b;
+            Context context = (Context) this.f15501b;
             synchronized (a2) {
-                f7 = a2.f15816a.f(resourceId, context, true);
+                f7 = a2.f15852a.f(resourceId, context, true);
             }
             return f7;
         }
@@ -324,12 +324,12 @@ public class h implements ll0, zq0, n5.b, t0.h {
         a0 a0Var2;
         XmlPullParserException xmlPullParserException;
         IOException iOException;
-        int resourceId = ((TypedArray) this.f15466c).getResourceId(i10, 0);
+        int resourceId = ((TypedArray) this.f15502c).getResourceId(i10, 0);
         if (resourceId != 0) {
             if (((TypedValue) this.d) == null) {
                 this.d = new TypedValue();
             }
-            Context context = (Context) this.f15465b;
+            Context context = (Context) this.f15501b;
             TypedValue typedValue = (TypedValue) this.d;
             ThreadLocal threadLocal = j.f10952a;
             if (!context.isRestricted()) {
@@ -429,15 +429,15 @@ public class h implements ll0, zq0, n5.b, t0.h {
             }
             return ByteBuffer.wrap(bArr);
         }
-        return (ByteBuffer) this.f15466c;
+        return (ByteBuffer) this.f15502c;
     }
 
     public int K(int i10) {
-        n nVar = (n) this.f15466c;
+        n nVar = (n) this.f15502c;
         if (i10 < 0) {
             return -1;
         }
-        int childCount = ((RecyclerView) ((g0) this.f15465b).f14469b).getChildCount();
+        int childCount = ((RecyclerView) ((g0) this.f15501b).f14469b).getChildCount();
         int i11 = i10;
         while (i11 < childCount) {
             int z10 = i10 - (i11 - nVar.z(i11));
@@ -453,16 +453,16 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public View L(int i10) {
-        return ((RecyclerView) ((g0) this.f15465b).f14469b).getChildAt(i10);
+        return ((RecyclerView) ((g0) this.f15501b).f14469b).getChildAt(i10);
     }
 
     public int M() {
-        return ((RecyclerView) ((g0) this.f15465b).f14469b).getChildCount();
+        return ((RecyclerView) ((g0) this.f15501b).f14469b).getChildCount();
     }
 
     public boolean N() {
         String trim;
-        ArrayDeque arrayDeque = (ArrayDeque) this.f15466c;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f15502c;
         if (((String) this.d) != null) {
             return true;
         }
@@ -473,7 +473,7 @@ public class h implements ll0, zq0, n5.b, t0.h {
             return true;
         }
         do {
-            String readLine = ((BufferedReader) this.f15465b).readLine();
+            String readLine = ((BufferedReader) this.f15501b).readLine();
             this.d = readLine;
             if (readLine != null) {
                 trim = readLine.trim();
@@ -487,24 +487,24 @@ public class h implements ll0, zq0, n5.b, t0.h {
 
     public void O(View view) {
         ((ArrayList) this.d).add(view);
-        g0 g0Var = (g0) this.f15465b;
+        g0 g0Var = (g0) this.f15501b;
         d1 U = RecyclerView.U(view);
         if (U != null) {
-            View view2 = U.f47748a;
+            View view2 = U.f47782a;
             RecyclerView recyclerView = (RecyclerView) g0Var.f14469b;
-            int i10 = U.f47764s;
+            int i10 = U.f47798s;
             if (i10 != -1) {
-                U.f47763r = i10;
+                U.f47797r = i10;
             } else {
-                WeakHashMap weakHashMap = i0.f46856a;
-                U.f47763r = view2.getImportantForAccessibility();
+                WeakHashMap weakHashMap = i0.f46890a;
+                U.f47797r = view2.getImportantForAccessibility();
             }
             if (recyclerView.b0()) {
-                U.f47764s = 4;
+                U.f47798s = 4;
                 recyclerView.K0.add(U);
                 return;
             }
-            WeakHashMap weakHashMap2 = i0.f46856a;
+            WeakHashMap weakHashMap2 = i0.f46890a;
             view2.setImportantForAccessibility(4);
         }
     }
@@ -523,13 +523,13 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public void S() {
-        ((TypedArray) this.f15466c).recycle();
+        ((TypedArray) this.f15502c).recycle();
     }
 
     public void T() {
         int i10;
-        RecyclerView recyclerView = (RecyclerView) ((g0) this.f15465b).f14469b;
-        ((n) this.f15466c).G();
+        RecyclerView recyclerView = (RecyclerView) ((g0) this.f15501b).f14469b;
+        ((n) this.f15502c).G();
         ArrayList arrayList = (ArrayList) this.d;
         int size = arrayList.size();
         while (true) {
@@ -539,16 +539,16 @@ public class h implements ll0, zq0, n5.b, t0.h {
             }
             d1 U = RecyclerView.U((View) arrayList.get(size));
             if (U != null) {
-                int i11 = U.f47763r;
+                int i11 = U.f47797r;
                 if (recyclerView.b0()) {
-                    U.f47764s = i11;
+                    U.f47798s = i11;
                     recyclerView.K0.add(U);
                 } else {
-                    View view = U.f47748a;
-                    WeakHashMap weakHashMap = i0.f46856a;
+                    View view = U.f47782a;
+                    WeakHashMap weakHashMap = i0.f46890a;
                     view.setImportantForAccessibility(i11);
                 }
-                U.f47763r = 0;
+                U.f47797r = 0;
             }
             arrayList.remove(size);
         }
@@ -562,9 +562,9 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public void U(pf.g gVar) {
-        if (((pf.d) this.f15465b) != null) {
-            for (int i10 = 0; i10 < gVar.f45616a.size(); i10++) {
-                pf.d dVar = (pf.d) this.f15465b;
+        if (((pf.d) this.f15501b) != null) {
+            for (int i10 = 0; i10 < gVar.f45650a.size(); i10++) {
+                pf.d dVar = (pf.d) this.f15501b;
                 dVar.h.remove(gVar.a(i10).d);
                 dVar.h();
             }
@@ -575,18 +575,18 @@ public class h implements ll0, zq0, n5.b, t0.h {
         Long l4;
         char c10;
         r5.a aVar = (r5.a) this.d;
-        Context context = (Context) this.f15465b;
+        Context context = (Context) this.f15501b;
         ComponentName componentName = new ComponentName(context, JobInfoSchedulerService.class);
         JobScheduler jobScheduler = (JobScheduler) context.getSystemService("jobscheduler");
         Adler32 adler32 = new Adler32();
         adler32.update(context.getPackageName().getBytes(Charset.forName("UTF-8")));
-        String str = iVar.f15414a;
-        String str2 = iVar.f15414a;
+        String str = iVar.f15450a;
+        String str2 = iVar.f15450a;
         adler32.update(str.getBytes(Charset.forName("UTF-8")));
         ByteBuffer allocate = ByteBuffer.allocate(4);
-        i5.d dVar = iVar.f15416c;
+        i5.d dVar = iVar.f15452c;
         adler32.update(allocate.putInt(v5.a.a(dVar)).array());
-        byte[] bArr = iVar.f15415b;
+        byte[] bArr = iVar.f15451b;
         if (bArr != null) {
             adler32.update(bArr);
         }
@@ -607,7 +607,7 @@ public class h implements ll0, zq0, n5.b, t0.h {
                 }
             }
         }
-        Cursor rawQuery = ((s5.g) ((s5.d) this.f15466c)).a().rawQuery("SELECT next_request_ms FROM transport_contexts WHERE backend_name = ? and priority = ?", new String[]{str2, String.valueOf(v5.a.a(dVar))});
+        Cursor rawQuery = ((s5.g) ((s5.d) this.f15502c)).a().rawQuery("SELECT next_request_ms FROM transport_contexts WHERE backend_name = ? and priority = ?", new String[]{str2, String.valueOf(v5.a.a(dVar))});
         try {
             if (rawQuery.moveToNext()) {
                 l4 = Long.valueOf(rawQuery.getLong(0));
@@ -618,16 +618,16 @@ public class h implements ll0, zq0, n5.b, t0.h {
             long longValue = l4.longValue();
             JobInfo.Builder builder = new JobInfo.Builder(value, componentName);
             builder.setMinimumLatency(aVar.a(dVar, longValue, i10));
-            Set set = ((r5.b) aVar.f47069b.get(dVar)).f47072c;
-            if (set.contains(r5.c.f47073a)) {
+            Set set = ((r5.b) aVar.f47103b.get(dVar)).f47106c;
+            if (set.contains(r5.c.f47107a)) {
                 builder.setRequiredNetworkType(2);
             } else {
                 builder.setRequiredNetworkType(1);
             }
-            if (set.contains(r5.c.f47075c)) {
+            if (set.contains(r5.c.f47109c)) {
                 builder.setRequiresCharging(true);
             }
-            if (set.contains(r5.c.f47074b)) {
+            if (set.contains(r5.c.f47108b)) {
                 builder.setRequiresDeviceIdle(true);
             }
             PersistableBundle persistableBundle = new PersistableBundle();
@@ -663,25 +663,25 @@ public class h implements ll0, zq0, n5.b, t0.h {
 
     public void X(pf.a aVar) {
         pf.g gVar;
-        pf.g gVar2 = (pf.g) this.f15466c;
+        pf.g gVar2 = (pf.g) this.f15502c;
         if (gVar2 != null && ((pf.a) this.d) == null && aVar != null) {
             k(gVar2);
         }
-        if (((pf.a) this.d) != null && (gVar = (pf.g) this.f15466c) != null && aVar == null) {
+        if (((pf.a) this.d) != null && (gVar = (pf.g) this.f15502c) != null && aVar == null) {
             U(gVar);
         }
         pf.a aVar2 = (pf.a) this.d;
         if (aVar2 != null) {
-            e6.h hVar = aVar2.f45585a;
+            e6.h hVar = aVar2.f45619a;
             n6.m.e("Must be called from the main thread.");
             hVar.f8676i.remove(aVar2);
         }
         if (aVar != null) {
-            aVar.f45585a.p(aVar);
-            pf.g gVar3 = (pf.g) this.f15466c;
+            aVar.f45619a.p(aVar);
+            pf.g gVar3 = (pf.g) this.f15502c;
             if (gVar3 != null) {
                 aVar.d = gVar3;
-                aVar.f45590g = 0;
+                aVar.f45624g = 0;
                 aVar.h = 0;
                 aVar.p();
             }
@@ -690,10 +690,10 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public FileOutputStream Y() {
-        File file = (File) this.f15466c;
+        File file = (File) this.f15502c;
         File file2 = (File) this.d;
         if (file2.exists()) {
-            V(file2, (File) this.f15465b);
+            V(file2, (File) this.f15501b);
         }
         try {
             return new FileOutputStream(file);
@@ -711,20 +711,20 @@ public class h implements ll0, zq0, n5.b, t0.h {
 
     public void Z(View view) {
         if (((ArrayList) this.d).remove(view)) {
-            g0 g0Var = (g0) this.f15465b;
+            g0 g0Var = (g0) this.f15501b;
             d1 U = RecyclerView.U(view);
             if (U != null) {
                 RecyclerView recyclerView = (RecyclerView) g0Var.f14469b;
-                int i10 = U.f47763r;
+                int i10 = U.f47797r;
                 if (recyclerView.b0()) {
-                    U.f47764s = i10;
+                    U.f47798s = i10;
                     recyclerView.K0.add(U);
                 } else {
-                    View view2 = U.f47748a;
-                    WeakHashMap weakHashMap = i0.f46856a;
+                    View view2 = U.f47782a;
+                    WeakHashMap weakHashMap = i0.f46890a;
                     view2.setImportantForAccessibility(i10);
                 }
-                U.f47763r = 0;
+                U.f47797r = 0;
             }
         }
     }
@@ -733,13 +733,13 @@ public class h implements ll0, zq0, n5.b, t0.h {
         h hVar = new h(8, false);
         ((h) this.d).d = hVar;
         this.d = hVar;
-        hVar.f15466c = obj;
-        hVar.f15465b = str;
+        hVar.f15502c = obj;
+        hVar.f15501b = str;
     }
 
     @Override
     public Uri c() {
-        return (Uri) this.f15465b;
+        return (Uri) this.f15501b;
     }
 
     @Override
@@ -759,12 +759,12 @@ public class h implements ll0, zq0, n5.b, t0.h {
 
     @Override
     public Object mo27get() {
-        return new h((Context) ((gd.a) this.f15465b).mo27get(), (s5.d) ((gd.a) this.f15466c).mo27get(), (r5.a) ((qb.b) this.d).mo27get(), 26);
+        return new h((Context) ((gd.a) this.f15501b).mo27get(), (s5.d) ((gd.a) this.f15502c).mo27get(), (r5.a) ((qb.b) this.d).mo27get(), 26);
     }
 
     @Override
     public ClipDescription getDescription() {
-        return (ClipDescription) this.f15466c;
+        return (ClipDescription) this.f15502c;
     }
 
     @Override
@@ -772,9 +772,9 @@ public class h implements ll0, zq0, n5.b, t0.h {
         String str;
         if (!z10) {
             sk skVar = (sk) this.d;
-            HashMap hashMap = (HashMap) this.f15465b;
-            ArrayList arrayList = (ArrayList) this.f15466c;
-            yi yiVar = skVar.f30161b;
+            HashMap hashMap = (HashMap) this.f15501b;
+            ArrayList arrayList = (ArrayList) this.f15502c;
+            yi yiVar = skVar.f30245b;
             if (!hashMap.isEmpty() && skVar.Q != null && !skVar.K) {
                 skVar.K = true;
                 ArrayList arrayList2 = new ArrayList();
@@ -817,11 +817,11 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public void k(pf.g gVar) {
-        if (((pf.d) this.f15465b) == null) {
-            this.f15465b = new pf.d();
+        if (((pf.d) this.f15501b) == null) {
+            this.f15501b = new pf.d();
         }
-        for (int i10 = 0; i10 < gVar.f45616a.size(); i10++) {
-            pf.d dVar = (pf.d) this.f15465b;
+        for (int i10 = 0; i10 < gVar.f45650a.size(); i10++) {
+            pf.d dVar = (pf.d) this.f15501b;
             pf.f a2 = gVar.a(i10);
             dVar.h.put(a2.d, a2);
             dVar.h();
@@ -830,13 +830,13 @@ public class h implements ll0, zq0, n5.b, t0.h {
 
     public void l(View view, int i10, boolean z10) {
         int K;
-        RecyclerView recyclerView = (RecyclerView) ((g0) this.f15465b).f14469b;
+        RecyclerView recyclerView = (RecyclerView) ((g0) this.f15501b).f14469b;
         if (i10 < 0) {
             K = recyclerView.getChildCount();
         } else {
             K = K(i10);
         }
-        ((n) this.f15466c).E(K, z10);
+        ((n) this.f15502c).E(K, z10);
         if (z10) {
             O(view);
         }
@@ -867,13 +867,13 @@ public class h implements ll0, zq0, n5.b, t0.h {
 
     public void p(View view, int i10, ViewGroup.LayoutParams layoutParams, boolean z10) {
         int K;
-        RecyclerView recyclerView = (RecyclerView) ((g0) this.f15465b).f14469b;
+        RecyclerView recyclerView = (RecyclerView) ((g0) this.f15501b).f14469b;
         if (i10 < 0) {
             K = recyclerView.getChildCount();
         } else {
             K = K(i10);
         }
-        ((n) this.f15466c).E(K, z10);
+        ((n) this.f15502c).E(K, z10);
         if (z10) {
             O(view);
         }
@@ -882,7 +882,7 @@ public class h implements ll0, zq0, n5.b, t0.h {
             if (!U.l() && !U.r()) {
                 throw new IllegalArgumentException("Called attach on a child which is not detached: " + U + recyclerView.C());
             }
-            U.f47757l &= -257;
+            U.f47791l &= -257;
         }
         RecyclerView.c(recyclerView, view, K, layoutParams);
     }
@@ -893,9 +893,9 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public String t(int i10, String str, long j3, long j10) {
-        ArrayList arrayList = (ArrayList) this.f15465b;
+        ArrayList arrayList = (ArrayList) this.f15501b;
         ArrayList arrayList2 = (ArrayList) this.d;
-        ArrayList arrayList3 = (ArrayList) this.f15466c;
+        ArrayList arrayList3 = (ArrayList) this.f15502c;
         StringBuilder sb2 = new StringBuilder();
         for (int i11 = 0; i11 < arrayList3.size(); i11++) {
             sb2.append((String) arrayList.get(i11));
@@ -914,10 +914,10 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public String toString() {
-        switch (this.f15464a) {
+        switch (this.f15500a) {
             case 5:
                 StringBuilder sb2 = new StringBuilder("id3v2tag[pos=");
-                nf.a aVar = (nf.a) this.f15465b;
+                nf.a aVar = (nf.a) this.f15501b;
                 sb2.append(aVar.f7925b);
                 sb2.append(", ");
                 sb2.append(aVar.e());
@@ -925,14 +925,14 @@ public class h implements ll0, zq0, n5.b, t0.h {
                 return sb2.toString();
             case 9:
                 StringBuilder sb3 = new StringBuilder(32);
-                sb3.append((String) this.f15465b);
+                sb3.append((String) this.f15501b);
                 sb3.append('{');
-                h hVar = (h) ((h) this.f15466c).d;
+                h hVar = (h) ((h) this.f15502c).d;
                 String str = "";
                 while (hVar != null) {
-                    Object obj = hVar.f15466c;
+                    Object obj = hVar.f15502c;
                     sb3.append(str);
-                    String str2 = (String) hVar.f15465b;
+                    String str2 = (String) hVar.f15501b;
                     if (str2 != null) {
                         sb3.append(str2);
                         sb3.append('=');
@@ -949,22 +949,22 @@ public class h implements ll0, zq0, n5.b, t0.h {
                 sb3.append('}');
                 return sb3.toString();
             case 27:
-                return ((n) this.f15466c).toString() + ", hidden list:" + ((ArrayList) this.d).size();
+                return ((n) this.f15502c).toString() + ", hidden list:" + ((ArrayList) this.d).size();
             default:
                 return super.toString();
         }
     }
 
     public void u() {
-        android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f15465b;
+        android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f15501b;
         if (a0Var != null) {
-            int i10 = ((p4.e) this.d).f45372n.d;
+            int i10 = ((p4.e) this.d).f45406n.d;
             v vVar = a0Var.f2071a;
             vVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();
             builder.setLegacyStreamType(i10);
             vVar.f2095a.setPlaybackToLocal(builder.build());
-            this.f15466c = null;
+            this.f15502c = null;
         }
     }
 
@@ -976,8 +976,8 @@ public class h implements ll0, zq0, n5.b, t0.h {
     public void y(int i10) {
         d1 U;
         int K = K(i10);
-        ((n) this.f15466c).F(K);
-        RecyclerView recyclerView = (RecyclerView) ((g0) this.f15465b).f14469b;
+        ((n) this.f15502c).F(K);
+        RecyclerView recyclerView = (RecyclerView) ((g0) this.f15501b).f14469b;
         View childAt = recyclerView.getChildAt(K);
         if (childAt != null && (U = RecyclerView.U(childAt)) != null) {
             if (U.l() && !U.r()) {
@@ -989,8 +989,8 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public void z(Object obj, ByteArrayOutputStream byteArrayOutputStream) {
-        HashMap hashMap = (HashMap) this.f15465b;
-        f fVar = new f(byteArrayOutputStream, hashMap, (HashMap) this.f15466c, (ia.d) this.d);
+        HashMap hashMap = (HashMap) this.f15501b;
+        f fVar = new f(byteArrayOutputStream, hashMap, (HashMap) this.f15502c, (ia.d) this.d);
         if (obj == null) {
             return;
         }
@@ -1003,61 +1003,61 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public h(Object obj, Object obj2, Object obj3, int i10) {
-        this.f15464a = i10;
-        this.f15465b = obj;
-        this.f15466c = obj2;
+        this.f15500a = i10;
+        this.f15501b = obj;
+        this.f15502c = obj2;
         this.d = obj3;
     }
 
     public h(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f15464a = i10;
+        this.f15500a = i10;
         this.d = obj;
-        this.f15465b = obj2;
-        this.f15466c = obj3;
+        this.f15501b = obj2;
+        this.f15502c = obj3;
     }
 
     public h(String str) {
-        this.f15464a = 9;
+        this.f15500a = 9;
         h hVar = new h(8, false);
-        this.f15466c = hVar;
+        this.f15502c = hVar;
         this.d = hVar;
-        this.f15465b = str;
+        this.f15501b = str;
     }
 
     public h(InputStream inputStream, long j3, int i10, mf.h hVar) {
-        this.f15464a = 5;
+        this.f15500a = 5;
         nf.a aVar = new nf.a(inputStream, j3, i10);
-        this.f15465b = aVar;
+        this.f15501b = aVar;
         this.d = new g0(aVar, 5);
-        this.f15466c = hVar;
+        this.f15502c = hVar;
     }
 
     public h(View view) {
-        this.f15464a = 15;
+        this.f15500a = 15;
         this.d = view;
-        y71 y71Var = new y71(this, view);
-        this.f15465b = y71Var;
-        view.addOnLayoutChangeListener(y71Var);
+        x71 x71Var = new x71(this, view);
+        this.f15501b = x71Var;
+        view.addOnLayoutChangeListener(x71Var);
     }
 
     public h(int i10) {
-        this.f15464a = i10;
+        this.f15500a = i10;
         switch (i10) {
             case 24:
-                this.f15465b = new Object();
-                this.f15466c = null;
+                this.f15501b = new Object();
+                this.f15502c = null;
                 this.d = null;
                 return;
             default:
-                this.f15465b = new Object();
+                this.f15501b = new Object();
                 return;
         }
     }
 
     public h(g0 g0Var) {
-        this.f15464a = 27;
-        this.f15465b = g0Var;
-        this.f15466c = new n(6);
+        this.f15500a = 27;
+        this.f15501b = g0Var;
+        this.f15502c = new n(6);
         this.d = new ArrayList();
     }
 
@@ -1078,9 +1078,9 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public h(File file) {
-        this.f15464a = 22;
-        this.f15465b = file;
-        this.f15466c = new File(file.getPath() + ".new");
+        this.f15500a = 22;
+        this.f15501b = file;
+        this.f15502c = new File(file.getPath() + ".new");
         this.d = new File(file.getPath() + ".bak");
     }
 
@@ -1089,66 +1089,66 @@ public class h implements ll0, zq0, n5.b, t0.h {
     }
 
     public h(r rVar) {
-        this.f15464a = 29;
-        this.f15465b = rVar;
+        this.f15500a = 29;
+        this.f15501b = rVar;
     }
 
     public h(Runnable runnable) {
-        this.f15464a = 25;
+        this.f15500a = 25;
         this.d = new CopyOnWriteArrayList();
-        this.f15465b = new HashMap();
-        this.f15466c = runnable;
+        this.f15501b = new HashMap();
+        this.f15502c = runnable;
     }
 
     public h(Context context, TypedArray typedArray) {
-        this.f15464a = 1;
-        this.f15465b = context;
-        this.f15466c = typedArray;
+        this.f15500a = 1;
+        this.f15501b = context;
+        this.f15502c = typedArray;
     }
 
     public h(byte[] bArr, w wVar) {
-        this.f15464a = 3;
-        this.f15465b = bArr;
-        this.f15466c = null;
+        this.f15500a = 3;
+        this.f15501b = bArr;
+        this.f15502c = null;
         this.d = wVar;
     }
 
     public h(Uri uri, w wVar) {
-        this.f15464a = 3;
-        this.f15465b = null;
-        this.f15466c = uri;
+        this.f15500a = 3;
+        this.f15501b = null;
+        this.f15502c = uri;
         this.d = wVar;
     }
 
     public h(f3 f3Var) {
-        this.f15464a = 10;
-        this.f15464a = 10;
-        this.f15465b = f3Var;
-        this.f15466c = Choreographer.getInstance();
+        this.f15500a = 10;
+        this.f15500a = 10;
+        this.f15501b = f3Var;
+        this.f15502c = Choreographer.getInstance();
         this.d = new o1.a(this, 0);
     }
 
     public h(String str, String str2) {
-        this.f15464a = 21;
-        this.f15465b = str;
-        this.f15466c = str2;
+        this.f15500a = 21;
+        this.f15501b = str;
+        this.f15502c = str2;
         this.d = str2.isEmpty() ? str : a1.g.D(str, "/", str2);
     }
 
     public h(p4.e eVar, android.support.v4.media.session.a0 a0Var) {
-        this.f15464a = 19;
+        this.f15500a = 19;
         this.d = eVar;
-        this.f15465b = a0Var;
+        this.f15501b = a0Var;
     }
 
     public h(ArrayDeque arrayDeque, BufferedReader bufferedReader) {
-        this.f15464a = 18;
-        this.f15466c = arrayDeque;
-        this.f15465b = bufferedReader;
+        this.f15500a = 18;
+        this.f15502c = arrayDeque;
+        this.f15501b = bufferedReader;
     }
 
     public h(Object[] objArr, Object[] objArr2) {
-        this.f15464a = 14;
+        this.f15500a = 14;
         int length = objArr.length;
         int[] iArr = new int[length];
         HashMap hashMap = new HashMap();
@@ -1161,8 +1161,8 @@ public class h implements ll0, zq0, n5.b, t0.h {
             }
             iArr[i10] = num.intValue();
         }
-        this.f15465b = iArr;
-        this.f15466c = w(objArr, iArr);
+        this.f15501b = iArr;
+        this.f15502c = w(objArr, iArr);
         this.d = w(objArr2, iArr);
     }
 

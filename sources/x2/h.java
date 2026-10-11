@@ -20,20 +20,20 @@ public final class h extends p1 {
 
     public h(i iVar) {
         d(iVar);
-        this.F = iVar.f50584o0;
-        this.G = iVar.f50585p0;
-        this.H = iVar.f50586q0;
-        this.I = iVar.f50587r0;
-        this.J = iVar.f50588s0;
-        this.K = iVar.f50589t0;
-        this.L = iVar.f50590u0;
-        SparseArray sparseArray = iVar.f50591v0;
+        this.F = iVar.f50618o0;
+        this.G = iVar.f50619p0;
+        this.H = iVar.f50620q0;
+        this.I = iVar.f50621r0;
+        this.J = iVar.f50622s0;
+        this.K = iVar.f50623t0;
+        this.L = iVar.f50624u0;
+        SparseArray sparseArray = iVar.f50625v0;
         SparseArray sparseArray2 = new SparseArray();
         for (int i10 = 0; i10 < sparseArray.size(); i10++) {
             sparseArray2.put(sparseArray.keyAt(i10), new HashMap((Map) sparseArray.valueAt(i10)));
         }
         this.M = sparseArray2;
-        this.N = iVar.f50592w0.clone();
+        this.N = iVar.f50626w0.clone();
     }
 
     @Override

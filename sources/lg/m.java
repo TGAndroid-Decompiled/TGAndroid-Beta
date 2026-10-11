@@ -3,26 +3,26 @@ package lg;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class m extends AnimatorListenerAdapter {
-    public final boolean f15561a;
-    public final boolean f15562b;
-    public final boolean f15563c;
+    public final boolean f15597a;
+    public final boolean f15598b;
+    public final boolean f15599c;
     public final boolean d;
-    public final p f15564e;
+    public final p f15600e;
 
     public m(p pVar, boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f15564e = pVar;
-        this.f15561a = z10;
-        this.f15562b = z11;
-        this.f15563c = z12;
+        this.f15600e = pVar;
+        this.f15597a = z10;
+        this.f15598b = z11;
+        this.f15599c = z12;
         this.d = z13;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        p pVar = this.f15564e;
+        p pVar = this.f15600e;
         pVar.F = false;
-        if (!this.f15561a) {
-            pVar.e(this.f15562b, this.f15563c, this.d, true);
+        if (!this.f15597a) {
+            pVar.e(this.f15598b, this.f15599c, this.d, true);
         }
     }
 }

@@ -9,13 +9,13 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class vm extends tu0 {
-    public final ArrayList f43086a;
-    public final int[] f43087b = new int[2];
-    public final zn f43088c;
+    public final ArrayList f43120a;
+    public final int[] f43121b = new int[2];
+    public final zn f43122c;
 
     public vm(zn znVar, ArrayList arrayList) {
-        this.f43088c = znVar;
-        this.f43086a = arrayList;
+        this.f43122c = znVar;
+        this.f43120a = arrayList;
     }
 
     @Override
@@ -24,16 +24,16 @@ public final class vm extends tu0 {
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject2;
         RichMessageLayout richMessageLayout;
-        zn znVar = this.f43088c;
-        if (znVar.f44989x0 != null && i10 >= 0) {
-            ArrayList arrayList = this.f43086a;
+        zn znVar = this.f43122c;
+        if (znVar.f45023x0 != null && i10 >= 0) {
+            ArrayList arrayList = this.f43120a;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
-                int childCount = znVar.f44989x0.getChildCount();
+                int childCount = znVar.f45023x0.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = znVar.f44989x0.getChildAt(i11);
+                    View childAt = znVar.f45023x0.getChildAt(i11);
                     boolean z12 = childAt instanceof org.telegram.ui.Cells.u1;
-                    int[] iArr = this.f43087b;
+                    int[] iArr = this.f43121b;
                     if (z12 && (messageObject2 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && (richMessageLayout = messageObject2.richLayout) != null) {
                         int[] iArr2 = new int[2];
                         imageReceiver = richMessageLayout.findMediaImageReceiver(pageBlock, iArr2);
@@ -47,14 +47,14 @@ public final class vm extends tu0 {
                     }
                     if (imageReceiver != null) {
                         dv0 dv0Var = new dv0();
-                        dv0Var.f37114b = iArr[0];
-                        dv0Var.f37115c = iArr[1];
-                        dv0Var.d = znVar.f44989x0;
-                        dv0Var.f37113a = imageReceiver;
-                        dv0Var.f37116e = imageReceiver.getBitmapSafe();
+                        dv0Var.f37148b = iArr[0];
+                        dv0Var.f37149c = iArr[1];
+                        dv0Var.d = znVar.f45023x0;
+                        dv0Var.f37147a = imageReceiver;
+                        dv0Var.f37150e = imageReceiver.getBitmapSafe();
                         dv0Var.h = imageReceiver.getRoundRadius(true);
-                        dv0Var.f37120j = (int) ((znVar.f44933s9 - znVar.f44958u9) - AndroidUtilities.dp(4.0f));
-                        dv0Var.f37119i = (int) (znVar.b9(org.telegram.ui.Components.a41.f24434c) + znVar.v.d() + AndroidUtilities.dp(9.0f) + znVar.Ba + znVar.f44936sc);
+                        dv0Var.f37154j = (int) ((znVar.f44967s9 - znVar.f44992u9) - AndroidUtilities.dp(4.0f));
+                        dv0Var.f37153i = (int) (znVar.b9(org.telegram.ui.Components.z31.f33557c) + znVar.v.d() + AndroidUtilities.dp(9.0f) + znVar.Ba + znVar.f44970sc);
                         return dv0Var;
                     }
                 }

@@ -18,17 +18,17 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 public class o9 extends ba {
     public boolean E0;
-    public int f22603r0;
-    public int f22606u0;
-    public s4.d0 f22611z0;
-    public int f22601p0 = -1;
-    public int f22602q0 = -1;
-    public int f22604s0 = -1;
-    public int f22605t0 = -1;
-    public int f22607v0 = -1;
-    public final SparseArray f22608w0 = new SparseArray();
-    public final SparseArray f22609x0 = new SparseArray();
-    public final SparseIntArray f22610y0 = new SparseIntArray();
+    public int f22639r0;
+    public int f22642u0;
+    public s4.d0 f22647z0;
+    public int f22637p0 = -1;
+    public int f22638q0 = -1;
+    public int f22640s0 = -1;
+    public int f22641t0 = -1;
+    public int f22643v0 = -1;
+    public final SparseArray f22644w0 = new SparseArray();
+    public final SparseArray f22645x0 = new SparseArray();
+    public final SparseIntArray f22646y0 = new SparseIntArray();
     public final ArrayList A0 = new ArrayList();
     public int B0 = -1;
     public int C0 = -1;
@@ -64,8 +64,8 @@ public class o9 extends ba {
     public final void A(int i10, int i11, boolean z10, float f7, float f10, w9 w9Var) {
         n9 n9Var = (n9) w9Var;
         if (z10 && n9Var == this.W && f10 == f7) {
-            if (this.f21860j) {
-                this.f21876u = i10;
+            if (this.f21896j) {
+                this.f21912u = i10;
                 return;
             } else {
                 this.v = i10;
@@ -80,15 +80,15 @@ public class o9 extends ba {
         int i10;
         int d02 = d0((n9) this.W);
         if (this.E0) {
-            i10 = this.f22602q0;
+            i10 = this.f22638q0;
         } else {
-            i10 = this.f22605t0;
+            i10 = this.f22641t0;
         }
-        if (d02 == this.f22601p0 && i10 == this.f22602q0) {
-            this.f22603r0 = this.f21876u;
+        if (d02 == this.f22637p0 && i10 == this.f22638q0) {
+            this.f22639r0 = this.f21912u;
         }
-        if (d02 == this.f22604s0 && i10 == this.f22605t0) {
-            this.f22606u0 = this.v;
+        if (d02 == this.f22640s0 && i10 == this.f22641t0) {
+            this.f22642u0 = this.v;
         }
     }
 
@@ -98,16 +98,16 @@ public class o9 extends ba {
         n9 n9Var2 = (n9) w9Var2;
         int d02 = d0(n9Var);
         if (d02 >= 0) {
-            this.f22604s0 = d02;
-            this.f22601p0 = d02;
-            int i10 = this.f22607v0;
-            this.f22605t0 = i10;
-            this.f22602q0 = i10;
+            this.f22640s0 = d02;
+            this.f22637p0 = d02;
+            int i10 = this.f22643v0;
+            this.f22641t0 = i10;
+            this.f22638q0 = i10;
             ArrayList arrayList = this.A0;
             arrayList.clear();
             n9Var.fillTextLayoutBlocks(arrayList);
             int size = arrayList.size();
-            this.f22610y0.put(d02, size);
+            this.f22646y0.put(d02, size);
             for (int i11 = 0; i11 < size; i11++) {
                 W((z9) arrayList.get(i11), d02, i11);
             }
@@ -119,13 +119,13 @@ public class o9 extends ba {
         n9 n9Var;
         if (x()) {
             this.E0 = false;
-            int i10 = this.f22604s0;
+            int i10 = this.f22640s0;
             if (i10 >= 0) {
-                s4.d0 d0Var = this.f22611z0;
+                s4.d0 d0Var = this.f22647z0;
                 if (d0Var != null) {
                     n9Var = (n9) d0Var.m(i10);
                 } else if (i10 < this.F.getChildCount()) {
-                    n9Var = (n9) this.F.getChildAt(this.f22604s0);
+                    n9Var = (n9) this.F.getChildAt(this.f22640s0);
                 } else {
                     n9Var = null;
                 }
@@ -134,14 +134,14 @@ public class o9 extends ba {
                     return;
                 }
                 this.W = n9Var;
-                if (this.f22601p0 != this.f22604s0) {
-                    this.f21876u = 0;
-                } else if (this.f22602q0 != this.f22605t0) {
-                    this.f21876u = 0;
+                if (this.f22637p0 != this.f22640s0) {
+                    this.f21912u = 0;
+                } else if (this.f22638q0 != this.f22641t0) {
+                    this.f21912u = 0;
                 } else {
-                    this.f21876u = this.f22603r0;
+                    this.f21912u = this.f22639r0;
                 }
-                this.v = this.f22606u0;
+                this.v = this.f22642u0;
                 CharSequence s10 = s(n9Var, false);
                 if (this.v > s10.length()) {
                     this.v = s10.length();
@@ -149,10 +149,10 @@ public class o9 extends ba {
                 ArrayList arrayList = this.A0;
                 arrayList.clear();
                 ((n9) this.W).fillTextLayoutBlocks(arrayList);
-                int i11 = this.f22605t0;
+                int i11 = this.f22641t0;
                 if (i11 >= 0 && i11 < arrayList.size()) {
-                    this.f21844a = ((z9) arrayList.get(this.f22605t0)).getX();
-                    this.f21846b = ((z9) arrayList.get(this.f22605t0)).getY();
+                    this.f21880a = ((z9) arrayList.get(this.f22641t0)).getX();
+                    this.f21882b = ((z9) arrayList.get(this.f22641t0)).getY();
                 }
             }
         }
@@ -163,13 +163,13 @@ public class o9 extends ba {
         n9 n9Var;
         if (x()) {
             this.E0 = true;
-            int i10 = this.f22601p0;
+            int i10 = this.f22637p0;
             if (i10 >= 0) {
-                s4.d0 d0Var = this.f22611z0;
+                s4.d0 d0Var = this.f22647z0;
                 if (d0Var != null) {
                     n9Var = (n9) d0Var.m(i10);
-                } else if (this.f22604s0 < this.F.getChildCount()) {
-                    n9Var = (n9) this.F.getChildAt(this.f22601p0);
+                } else if (this.f22640s0 < this.F.getChildCount()) {
+                    n9Var = (n9) this.F.getChildAt(this.f22637p0);
                 } else {
                     n9Var = null;
                 }
@@ -178,21 +178,21 @@ public class o9 extends ba {
                     return;
                 }
                 this.W = n9Var;
-                if (this.f22601p0 != this.f22604s0) {
+                if (this.f22637p0 != this.f22640s0) {
                     this.v = s(n9Var, false).length();
-                } else if (this.f22602q0 != this.f22605t0) {
+                } else if (this.f22638q0 != this.f22641t0) {
                     this.v = s(n9Var, false).length();
                 } else {
-                    this.v = this.f22606u0;
+                    this.v = this.f22642u0;
                 }
-                this.f21876u = this.f22603r0;
+                this.f21912u = this.f22639r0;
                 ArrayList arrayList = this.A0;
                 arrayList.clear();
                 ((n9) this.W).fillTextLayoutBlocks(arrayList);
-                int i11 = this.f22602q0;
+                int i11 = this.f22638q0;
                 if (i11 >= 0 && i11 < arrayList.size()) {
-                    this.f21844a = ((z9) arrayList.get(this.f22602q0)).getX();
-                    this.f21846b = ((z9) arrayList.get(this.f22602q0)).getY();
+                    this.f21880a = ((z9) arrayList.get(this.f22638q0)).getX();
+                    this.f21882b = ((z9) arrayList.get(this.f22638q0)).getY();
                 }
             }
         }
@@ -204,9 +204,9 @@ public class o9 extends ba {
         if (this.Z) {
             if (i11 > ((n9) this.W).getTop() && i11 < ((n9) this.W).getBottom()) {
                 if (this.E0) {
-                    i12 = this.f22602q0;
+                    i12 = this.f22638q0;
                 } else {
-                    i12 = this.f22605t0;
+                    i12 = this.f22641t0;
                 }
                 int c02 = c0((int) (i10 - ((n9) this.W).getX()), (int) (i11 - ((n9) this.W).getY()), (n9) this.W);
                 if (c02 != i12 && c02 >= 0) {
@@ -241,9 +241,9 @@ public class o9 extends ba {
 
     public final void W(z9 z9Var, int i10, int i11) {
         int i12 = i10 + (i11 << 16);
-        this.f22608w0.put(i12, Y(z9Var.getText()));
+        this.f22644w0.put(i12, Y(z9Var.getText()));
         CharSequence prefix = z9Var.getPrefix();
-        SparseArray sparseArray = this.f22609x0;
+        SparseArray sparseArray = this.f22645x0;
         if (prefix == null) {
             sparseArray.remove(i12);
         } else {
@@ -252,37 +252,37 @@ public class o9 extends ba {
     }
 
     public final void X(int i10, String str) {
-        this.f22608w0.put(i10, Y(str));
-        this.f22609x0.remove(i10);
-        SparseIntArray sparseIntArray = this.f22610y0;
+        this.f22644w0.put(i10, Y(str));
+        this.f22645x0.remove(i10);
+        SparseIntArray sparseIntArray = this.f22646y0;
         sparseIntArray.put(i10, Math.max(1, sparseIntArray.get(i10)));
     }
 
     public final void Z(Canvas canvas, n9 n9Var, int i10) {
         z9 z9Var;
-        int i11 = org.telegram.ui.ActionBar.h6.f21109uf;
-        this.f21869o.setColor(org.telegram.ui.ActionBar.h6.w0(i11, this.f21856g0));
-        this.f21871p.setColor(org.telegram.ui.ActionBar.h6.w0(i11, this.f21856g0));
+        int i11 = org.telegram.ui.ActionBar.h6.f21145uf;
+        this.f21905o.setColor(org.telegram.ui.ActionBar.h6.w0(i11, this.f21892g0));
+        this.f21907p.setColor(org.telegram.ui.ActionBar.h6.w0(i11, this.f21892g0));
         int d02 = d0(n9Var);
         if (d02 >= 0) {
             ArrayList arrayList = this.A0;
             arrayList.clear();
             n9Var.fillTextLayoutBlocks(arrayList);
             if (i10 >= 0 && i10 < arrayList.size() && (z9Var = (z9) arrayList.get(i10)) != null && z9Var.getLayout() != null && z9Var.getLayout().getText() != null) {
-                int i12 = this.f22606u0;
+                int i12 = this.f22642u0;
                 int length = z9Var.getLayout().getText().length();
                 if (i12 > length) {
                     i12 = length;
                 }
-                int i13 = this.f22601p0;
-                if (d02 == i13 && d02 == this.f22604s0) {
-                    int i14 = this.f22602q0;
-                    int i15 = this.f22605t0;
+                int i13 = this.f22637p0;
+                if (d02 == i13 && d02 == this.f22640s0) {
+                    int i14 = this.f22638q0;
+                    int i15 = this.f22641t0;
                     if (i14 == i15 && i14 == i10) {
-                        h(canvas, z9Var.getLayout(), this.f22603r0, i12, true, true, 0.0f);
+                        h(canvas, z9Var.getLayout(), this.f22639r0, i12, true, true, 0.0f);
                         return;
                     } else if (i10 == i14) {
-                        h(canvas, z9Var.getLayout(), this.f22603r0, length, true, false, 0.0f);
+                        h(canvas, z9Var.getLayout(), this.f22639r0, length, true, false, 0.0f);
                         return;
                     } else {
                         int i16 = i12;
@@ -298,14 +298,14 @@ public class o9 extends ba {
                     }
                 }
                 int i17 = i12;
-                if (d02 == i13 && this.f22602q0 == i10) {
-                    h(canvas, z9Var.getLayout(), this.f22603r0, length, true, false, 0.0f);
+                if (d02 == i13 && this.f22638q0 == i10) {
+                    h(canvas, z9Var.getLayout(), this.f22639r0, length, true, false, 0.0f);
                     return;
                 }
-                int i18 = this.f22604s0;
-                if (d02 == i18 && this.f22605t0 == i10) {
+                int i18 = this.f22640s0;
+                if (d02 == i18 && this.f22641t0 == i10) {
                     h(canvas, z9Var.getLayout(), 0, i17, false, true, 0.0f);
-                } else if ((d02 > i13 && d02 < i18) || ((d02 == i13 && i10 > this.f22602q0) || (d02 == i18 && i10 < this.f22605t0))) {
+                } else if ((d02 > i13 && d02 < i18) || ((d02 == i13 && i10 > this.f22638q0) || (d02 == i18 && i10 < this.f22641t0))) {
                     h(canvas, z9Var.getLayout(), 0, length, false, false, 0.0f);
                 }
             }
@@ -315,14 +315,14 @@ public class o9 extends ba {
     public final boolean a0() {
         int i10;
         int length;
-        if (x() && this.W != null && this.f22601p0 == this.f22604s0 && (i10 = this.f22602q0) == this.f22605t0) {
+        if (x() && this.W != null && this.f22637p0 == this.f22640s0 && (i10 = this.f22638q0) == this.f22641t0) {
             if (i10 < 0) {
                 i10 = 0;
             }
             ArrayList arrayList = this.A0;
             arrayList.clear();
             ((n9) this.W).fillTextLayoutBlocks(arrayList);
-            if (!arrayList.isEmpty() && i10 < arrayList.size() && (length = ((z9) arrayList.get(i10)).getLayout().getText().length()) > 0 && (this.f22603r0 > 0 || this.f22606u0 < length)) {
+            if (!arrayList.isEmpty() && i10 < arrayList.size() && (length = ((z9) arrayList.get(i10)).getLayout().getText().length()) > 0 && (this.f22639r0 > 0 || this.f22642u0 < length)) {
                 return j0((n9) this.W, i10, 0, length);
             }
         }
@@ -339,9 +339,9 @@ public class o9 extends ba {
             return false;
         }
         if (this.B0 < 0) {
-            this.B0 = this.f22601p0;
-            this.D0 = this.f22602q0;
-            this.C0 = this.f22603r0;
+            this.B0 = this.f22637p0;
+            this.D0 = this.f22638q0;
+            this.C0 = this.f22639r0;
         }
         h0(n9Var, d02);
         int i15 = this.B0;
@@ -371,12 +371,12 @@ public class o9 extends ba {
             f(false);
             return true;
         }
-        this.f22601p0 = d02;
-        this.f22602q0 = i10;
-        this.f22603r0 = i11;
-        this.f22604s0 = i14;
-        this.f22605t0 = i12;
-        this.f22606u0 = i13;
+        this.f22637p0 = d02;
+        this.f22638q0 = i10;
+        this.f22639r0 = i11;
+        this.f22640s0 = i14;
+        this.f22641t0 = i12;
+        this.f22642u0 = i13;
         N();
         w();
         aa aaVar = this.C;
@@ -391,7 +391,7 @@ public class o9 extends ba {
 
     @Override
     public final boolean c(int i10) {
-        if (this.f22601p0 == this.f22604s0 && this.f22602q0 == this.f22605t0) {
+        if (this.f22637p0 == this.f22640s0 && this.f22638q0 == this.f22641t0) {
             return super.c(i10);
         }
         return true;
@@ -467,17 +467,17 @@ public class o9 extends ba {
 
     @Override
     public final boolean d() {
-        s4.d0 d0Var = this.f22611z0;
+        s4.d0 d0Var = this.f22647z0;
         if (d0Var == null) {
             return true;
         }
         int L0 = d0Var.L0();
-        int N0 = this.f22611z0.N0();
-        int i10 = this.f22601p0;
-        if ((L0 >= i10 && L0 <= this.f22604s0) || (N0 >= i10 && N0 <= this.f22604s0)) {
+        int N0 = this.f22647z0.N0();
+        int i10 = this.f22637p0;
+        if ((L0 >= i10 && L0 <= this.f22640s0) || (N0 >= i10 && N0 <= this.f22640s0)) {
             return true;
         }
-        if (i10 >= L0 && this.f22604s0 <= N0) {
+        if (i10 >= L0 && this.f22640s0 <= N0) {
             return true;
         }
         return false;
@@ -517,11 +517,11 @@ public class o9 extends ba {
         arrayList.clear();
         n9Var.fillTextLayoutBlocks(arrayList);
         if (z10) {
-            i10 = this.f22607v0;
+            i10 = this.f22643v0;
         } else if (this.E0) {
-            i10 = this.f22602q0;
+            i10 = this.f22638q0;
         } else {
-            i10 = this.f22605t0;
+            i10 = this.f22641t0;
         }
         if (!arrayList.isEmpty() && i10 >= 0 && i10 < arrayList.size()) {
             return ((z9) arrayList.get(i10)).getLayout().getText();
@@ -532,12 +532,12 @@ public class o9 extends ba {
     @Override
     public final void f(boolean z10) {
         super.f(z10);
-        this.f22601p0 = -1;
-        this.f22604s0 = -1;
-        this.f22602q0 = -1;
-        this.f22605t0 = -1;
-        this.f22608w0.clear();
-        this.f22610y0.clear();
+        this.f22637p0 = -1;
+        this.f22640s0 = -1;
+        this.f22638q0 = -1;
+        this.f22641t0 = -1;
+        this.f22644w0.clear();
+        this.f22646y0.clear();
         this.B0 = -1;
         this.C0 = -1;
     }
@@ -565,102 +565,102 @@ public class o9 extends ba {
             i11 = -1;
         }
         w();
-        if (this.R && (i12 = this.f22601p0) == this.f22604s0) {
+        if (this.R && (i12 = this.f22637p0) == this.f22640s0) {
             if (d02 == i12) {
-                if (i10 < this.f22602q0) {
-                    this.f22602q0 = i10;
+                if (i10 < this.f22638q0) {
+                    this.f22638q0 = i10;
                     O();
-                    this.f21860j = true;
+                    this.f21896j = true;
                     int i13 = this.v;
-                    this.f22603r0 = i13;
-                    this.f21876u = i13 - 1;
+                    this.f22639r0 = i13;
+                    this.f21912u = i13 - 1;
                 } else {
-                    this.f22605t0 = i10;
+                    this.f22641t0 = i10;
                     N();
-                    this.f21860j = false;
-                    this.f22606u0 = 0;
+                    this.f21896j = false;
+                    this.f22642u0 = 0;
                 }
             } else if (d02 < i12) {
-                this.f22601p0 = d02;
-                this.f22602q0 = i10;
+                this.f22637p0 = d02;
+                this.f22638q0 = i10;
                 O();
-                this.f21860j = true;
+                this.f21896j = true;
                 int i14 = this.v;
-                this.f22603r0 = i14;
-                this.f21876u = i14 - 1;
+                this.f22639r0 = i14;
+                this.f21912u = i14 - 1;
             } else {
-                this.f22604s0 = d02;
-                this.f22605t0 = i10;
+                this.f22640s0 = d02;
+                this.f22641t0 = i10;
                 N();
-                this.f21860j = false;
-                this.f22606u0 = 0;
+                this.f21896j = false;
+                this.f22642u0 = 0;
             }
-        } else if (this.f21860j) {
+        } else if (this.f21896j) {
             if (d02 == i11) {
-                int i15 = this.f22605t0;
-                if (i10 > i15 && d02 >= this.f22604s0) {
-                    this.f22604s0 = d02;
-                    this.f22602q0 = i15;
-                    this.f22605t0 = i10;
-                    this.f22603r0 = this.f22606u0;
+                int i15 = this.f22641t0;
+                if (i10 > i15 && d02 >= this.f22640s0) {
+                    this.f22640s0 = d02;
+                    this.f22638q0 = i15;
+                    this.f22641t0 = i10;
+                    this.f22639r0 = this.f22642u0;
                     N();
-                    this.f22606u0 = 0;
-                    this.f21860j = false;
+                    this.f22642u0 = 0;
+                    this.f21896j = false;
                 } else {
-                    this.f22601p0 = d02;
-                    this.f22602q0 = i10;
+                    this.f22637p0 = d02;
+                    this.f22638q0 = i10;
                     O();
-                    this.f22603r0 = this.v;
+                    this.f22639r0 = this.v;
                 }
-            } else if (d02 <= this.f22604s0) {
-                this.f22601p0 = d02;
-                this.f22602q0 = i10;
+            } else if (d02 <= this.f22640s0) {
+                this.f22637p0 = d02;
+                this.f22638q0 = i10;
                 O();
-                this.f22603r0 = this.v;
+                this.f22639r0 = this.v;
             } else {
-                this.f22604s0 = d02;
-                this.f22602q0 = this.f22605t0;
-                this.f22605t0 = i10;
-                this.f22603r0 = this.f22606u0;
+                this.f22640s0 = d02;
+                this.f22638q0 = this.f22641t0;
+                this.f22641t0 = i10;
+                this.f22639r0 = this.f22642u0;
                 N();
-                this.f22606u0 = 0;
-                this.f21860j = false;
+                this.f22642u0 = 0;
+                this.f21896j = false;
             }
         } else if (d02 == i11) {
-            int i16 = this.f22602q0;
-            if (i10 < i16 && d02 <= this.f22601p0) {
-                this.f22601p0 = d02;
-                this.f22605t0 = i16;
-                this.f22602q0 = i10;
-                this.f22606u0 = this.f22603r0;
+            int i16 = this.f22638q0;
+            if (i10 < i16 && d02 <= this.f22637p0) {
+                this.f22637p0 = d02;
+                this.f22641t0 = i16;
+                this.f22638q0 = i10;
+                this.f22642u0 = this.f22639r0;
                 O();
-                this.f21860j = true;
-                this.f22603r0 = this.v;
+                this.f21896j = true;
+                this.f22639r0 = this.v;
             } else {
-                this.f22604s0 = d02;
-                this.f22605t0 = i10;
+                this.f22640s0 = d02;
+                this.f22641t0 = i10;
                 N();
-                this.f22606u0 = 0;
+                this.f22642u0 = 0;
             }
-        } else if (d02 >= this.f22601p0) {
-            this.f22604s0 = d02;
-            this.f22605t0 = i10;
+        } else if (d02 >= this.f22637p0) {
+            this.f22640s0 = d02;
+            this.f22641t0 = i10;
             N();
-            this.f22606u0 = 0;
+            this.f22642u0 = 0;
         } else {
-            this.f22601p0 = d02;
-            this.f22605t0 = this.f22602q0;
-            this.f22602q0 = i10;
-            this.f22606u0 = this.f22603r0;
+            this.f22637p0 = d02;
+            this.f22641t0 = this.f22638q0;
+            this.f22638q0 = i10;
+            this.f22642u0 = this.f22639r0;
             O();
-            this.f21860j = true;
-            this.f22603r0 = this.v;
+            this.f21896j = true;
+            this.f22639r0 = this.v;
         }
         ArrayList arrayList = this.A0;
         arrayList.clear();
         n9Var2.fillTextLayoutBlocks(arrayList);
         int size = arrayList.size();
-        this.f22610y0.put(d02, size);
+        this.f22646y0.put(d02, size);
         for (int i17 = 0; i17 < size; i17++) {
             W((z9) arrayList.get(i17), d02, i17);
         }
@@ -671,7 +671,7 @@ public class o9 extends ba {
         arrayList.clear();
         n9Var.fillTextLayoutBlocks(arrayList);
         int size = arrayList.size();
-        this.f22610y0.put(i10, size);
+        this.f22646y0.put(i10, size);
         for (int i11 = 0; i11 < size; i11++) {
             W((z9) arrayList.get(i11), i10, i11);
         }
@@ -683,7 +683,7 @@ public class o9 extends ba {
         int i11;
         ArrayList arrayList = this.A0;
         arrayList.clear();
-        r9Var.f22723e = null;
+        r9Var.f22759e = null;
         if (z10) {
             w9Var = this.X;
         } else {
@@ -691,32 +691,32 @@ public class o9 extends ba {
         }
         n9 n9Var = (n9) w9Var;
         if (n9Var == null) {
-            r9Var.f22721b = null;
+            r9Var.f22757b = null;
             return;
         }
         n9Var.fillTextLayoutBlocks(arrayList);
         if (z10) {
-            i11 = this.f22607v0;
+            i11 = this.f22643v0;
         } else if (this.E0) {
-            i11 = this.f22602q0;
+            i11 = this.f22638q0;
         } else {
-            i11 = this.f22605t0;
+            i11 = this.f22641t0;
         }
         if (i11 >= 0 && i11 < arrayList.size()) {
-            r9Var.f22721b = ((z9) arrayList.get(i11)).getLayout();
-            r9Var.f22723e = ((z9) arrayList.get(i11)).getSelectionBounds();
-            r9Var.f22722c = 0.0f;
+            r9Var.f22757b = ((z9) arrayList.get(i11)).getLayout();
+            r9Var.f22759e = ((z9) arrayList.get(i11)).getSelectionBounds();
+            r9Var.f22758c = 0.0f;
             r9Var.d = 0.0f;
             return;
         }
-        r9Var.f22721b = null;
+        r9Var.f22757b = null;
     }
 
     public final void i0(int i10, int i11) {
         int length;
         n9 n9Var;
         if (i10 >= 0 && i11 >= i10) {
-            CharSequence charSequence = (CharSequence) this.f22608w0.get(i11);
+            CharSequence charSequence = (CharSequence) this.f22644w0.get(i11);
             if (charSequence == null) {
                 length = 0;
             } else {
@@ -735,15 +735,15 @@ public class o9 extends ba {
             }
             n9Var = null;
             this.W = n9Var;
-            this.f21876u = 0;
+            this.f21912u = 0;
             this.v = length;
-            this.f22601p0 = i10;
-            this.f22604s0 = i11;
-            this.f22605t0 = 0;
-            this.f22602q0 = 0;
-            this.f22603r0 = 0;
-            this.f22606u0 = length;
-            SparseIntArray sparseIntArray = this.f22610y0;
+            this.f22637p0 = i10;
+            this.f22640s0 = i11;
+            this.f22641t0 = 0;
+            this.f22638q0 = 0;
+            this.f22639r0 = 0;
+            this.f22642u0 = length;
+            SparseIntArray sparseIntArray = this.f22646y0;
             sparseIntArray.put(i10, Math.max(1, sparseIntArray.get(i10)));
             sparseIntArray.put(i11, Math.max(1, sparseIntArray.get(i11)));
             this.B0 = i10;
@@ -773,25 +773,25 @@ public class o9 extends ba {
         int min = Math.min(i11, i12);
         int max = Math.max(i11, i12);
         this.W = n9Var;
-        this.f21876u = min;
+        this.f21912u = min;
         this.v = max;
-        this.f22604s0 = d02;
-        this.f22601p0 = d02;
-        this.f22605t0 = i10;
-        this.f22602q0 = i10;
-        this.f22603r0 = min;
-        this.f22606u0 = max;
+        this.f22640s0 = d02;
+        this.f22637p0 = d02;
+        this.f22641t0 = i10;
+        this.f22638q0 = i10;
+        this.f22639r0 = min;
+        this.f22642u0 = max;
         this.B0 = d02;
         this.C0 = i11;
         this.D0 = i10;
         h0(n9Var, d02);
         ArrayList arrayList = this.A0;
         if (!arrayList.isEmpty() && i10 >= 0 && i10 < arrayList.size()) {
-            this.f21844a = ((z9) arrayList.get(i10)).getX();
-            this.f21846b = ((z9) arrayList.get(i10)).getY();
+            this.f21880a = ((z9) arrayList.get(i10)).getX();
+            this.f21882b = ((z9) arrayList.get(i10)).getY();
         } else if (!arrayList.isEmpty()) {
-            this.f21844a = ((z9) arrayList.get(0)).getX();
-            this.f21846b = ((z9) arrayList.get(0)).getY();
+            this.f21880a = ((z9) arrayList.get(0)).getX();
+            this.f21882b = ((z9) arrayList.get(0)).getY();
         }
         aa aaVar = this.C;
         if (aaVar != null) {
@@ -822,11 +822,11 @@ public class o9 extends ba {
             arrayList.clear();
             n9Var.fillTextLayoutBlocks(arrayList);
             if (z10) {
-                i14 = this.f22607v0;
+                i14 = this.f22643v0;
             } else if (this.E0) {
-                i14 = this.f22602q0;
+                i14 = this.f22638q0;
             } else {
-                i14 = this.f22605t0;
+                i14 = this.f22641t0;
             }
             if (i14 >= 0 && i14 < arrayList.size()) {
                 Layout layout = ((z9) arrayList.get(i14)).getLayout();
@@ -864,25 +864,25 @@ public class o9 extends ba {
 
     public final void k0(View view, int i10, int i11) {
         if (view instanceof n9) {
-            this.f21874s = i10;
-            this.f21875t = i11;
+            this.f21910s = i10;
+            this.f21911t = i11;
             n9 n9Var = (n9) view;
             this.X = n9Var;
             int c02 = c0(i10, i11, n9Var);
-            this.f22607v0 = c02;
+            this.f22643v0 = c02;
             if (c02 < 0) {
                 this.X = null;
                 return;
             }
             ArrayList arrayList = this.A0;
-            this.f21848c = ((z9) arrayList.get(c02)).getX();
-            this.d = ((z9) arrayList.get(this.f22607v0)).getY();
+            this.f21884c = ((z9) arrayList.get(c02)).getX();
+            this.d = ((z9) arrayList.get(this.f22643v0)).getY();
         }
     }
 
     public final void l0() {
         if (this.X != null) {
-            this.f21854f0.run();
+            this.f21890f0.run();
         }
     }
 
@@ -894,9 +894,9 @@ public class o9 extends ba {
             arrayList.clear();
             ((n9) this.W).fillTextLayoutBlocks(arrayList);
             if (this.E0) {
-                i10 = this.f22602q0;
+                i10 = this.f22638q0;
             } else {
-                i10 = this.f22605t0;
+                i10 = this.f22641t0;
             }
             if (i10 >= 0 && i10 < arrayList.size()) {
                 Layout layout = ((z9) arrayList.get(i10)).getLayout();
@@ -917,27 +917,27 @@ public class o9 extends ba {
     public final CharSequence r() {
         q9[] q9VarArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        int i10 = this.f22601p0;
+        int i10 = this.f22637p0;
         while (true) {
-            int i11 = this.f22604s0;
+            int i11 = this.f22640s0;
             if (i10 > i11) {
                 break;
             }
-            int i12 = this.f22601p0;
-            SparseIntArray sparseIntArray = this.f22610y0;
-            SparseArray sparseArray = this.f22608w0;
-            SparseArray sparseArray2 = this.f22609x0;
+            int i12 = this.f22637p0;
+            SparseIntArray sparseIntArray = this.f22646y0;
+            SparseArray sparseArray = this.f22644w0;
+            SparseArray sparseArray2 = this.f22645x0;
             if (i10 == i12) {
-                int i13 = i12 == i11 ? this.f22605t0 : sparseIntArray.get(i10) - 1;
-                for (int i14 = this.f22602q0; i14 <= i13; i14++) {
+                int i13 = i12 == i11 ? this.f22641t0 : sparseIntArray.get(i10) - 1;
+                for (int i14 = this.f22638q0; i14 <= i13; i14++) {
                     int i15 = (i14 << 16) + i10;
                     CharSequence charSequence = (CharSequence) sparseArray.get(i15);
                     if (charSequence != null) {
-                        int i16 = this.f22601p0;
-                        int i17 = this.f22604s0;
-                        if (i16 == i17 && i14 == this.f22605t0 && i14 == this.f22602q0) {
-                            int i18 = this.f22606u0;
-                            int i19 = this.f22603r0;
+                        int i16 = this.f22637p0;
+                        int i17 = this.f22640s0;
+                        if (i16 == i17 && i14 == this.f22641t0 && i14 == this.f22638q0) {
+                            int i18 = this.f22642u0;
+                            int i19 = this.f22639r0;
                             if (i18 >= i19) {
                                 i19 = i18;
                                 i18 = i19;
@@ -949,19 +949,19 @@ public class o9 extends ba {
                                 spannableStringBuilder.append(charSequence.subSequence(i18, i19));
                                 spannableStringBuilder.append('\n');
                             }
-                        } else if (i16 == i17 && i14 == this.f22605t0) {
+                        } else if (i16 == i17 && i14 == this.f22641t0) {
                             CharSequence charSequence2 = (CharSequence) sparseArray2.get(i15);
                             if (charSequence2 != null) {
                                 spannableStringBuilder.append(charSequence2).append(' ');
                             }
-                            int i20 = this.f22606u0;
+                            int i20 = this.f22642u0;
                             if (i20 > charSequence.length()) {
                                 i20 = charSequence.length();
                             }
                             spannableStringBuilder.append(charSequence.subSequence(0, i20));
                             spannableStringBuilder.append('\n');
-                        } else if (i14 == this.f22602q0) {
-                            int i21 = this.f22603r0;
+                        } else if (i14 == this.f22638q0) {
+                            int i21 = this.f22639r0;
                             if (i21 < charSequence.length()) {
                                 spannableStringBuilder.append(charSequence.subSequence(i21, charSequence.length()));
                                 spannableStringBuilder.append('\n');
@@ -977,13 +977,13 @@ public class o9 extends ba {
                     }
                 }
             } else if (i10 == i11) {
-                for (int i22 = 0; i22 <= this.f22605t0; i22++) {
+                for (int i22 = 0; i22 <= this.f22641t0; i22++) {
                     int i23 = (i22 << 16) + i10;
                     CharSequence charSequence4 = (CharSequence) sparseArray.get(i23);
                     if (charSequence4 != null) {
-                        if (this.f22601p0 == this.f22604s0 && i22 == this.f22605t0 && i22 == this.f22602q0) {
-                            int i24 = this.f22606u0;
-                            int i25 = this.f22603r0;
+                        if (this.f22637p0 == this.f22640s0 && i22 == this.f22641t0 && i22 == this.f22638q0) {
+                            int i24 = this.f22642u0;
+                            int i25 = this.f22639r0;
                             if (i25 < charSequence4.length()) {
                                 if (i24 > charSequence4.length()) {
                                     i24 = charSequence4.length();
@@ -991,12 +991,12 @@ public class o9 extends ba {
                                 spannableStringBuilder.append(charSequence4.subSequence(i25, i24));
                                 spannableStringBuilder.append('\n');
                             }
-                        } else if (i22 == this.f22605t0) {
+                        } else if (i22 == this.f22641t0) {
                             CharSequence charSequence5 = (CharSequence) sparseArray2.get(i23);
                             if (charSequence5 != null) {
                                 spannableStringBuilder.append(charSequence5).append(' ');
                             }
-                            int i26 = this.f22606u0;
+                            int i26 = this.f22642u0;
                             if (i26 > charSequence4.length()) {
                                 i26 = charSequence4.length();
                             }
@@ -1014,7 +1014,7 @@ public class o9 extends ba {
                 }
             } else {
                 int i27 = sparseIntArray.get(i10);
-                for (int i28 = this.f22602q0; i28 < i27; i28++) {
+                for (int i28 = this.f22638q0; i28 < i27; i28++) {
                     int i29 = (i28 << 16) + i10;
                     CharSequence charSequence7 = (CharSequence) sparseArray2.get(i29);
                     if (charSequence7 != null) {
@@ -1034,7 +1034,7 @@ public class o9 extends ba {
                     int spanStart = spannableStringBuilder.getSpanStart(u9Var);
                     int spanEnd = spannableStringBuilder.getSpanEnd(u9Var);
                     if (spanStart >= 0 && spanEnd > spanStart) {
-                        CharSequence charSequence8 = u9Var.f23513a;
+                        CharSequence charSequence8 = u9Var.f23549a;
                         if (charSequence8 == null) {
                             charSequence8 = "";
                         }

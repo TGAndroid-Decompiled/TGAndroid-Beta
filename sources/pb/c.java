@@ -91,23 +91,23 @@ import org.json.JSONObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Cells.o9;
 import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.m81;
+import org.telegram.ui.Components.l81;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.lv0;
 import qg.b2;
 import v7.a8;
 public final class c implements lv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, pc, OnCompleteListener, f6.a, n, i1, f5, h1, k2.n, i {
-    public final int f45577a;
-    public final Object f45578b;
+    public final int f45611a;
+    public final Object f45612b;
 
     public c(r rVar, String[] strArr) {
-        this.f45577a = 21;
-        this.f45578b = strArr;
+        this.f45611a = 21;
+        this.f45612b = strArr;
     }
 
     @Override
     public boolean A(k kVar, MenuItem menuItem) {
-        m.k kVar2 = ((ActionMenuView) this.f45578b).P;
+        m.k kVar2 = ((ActionMenuView) this.f45612b).P;
         if (kVar2 != null) {
             Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((g0) kVar2).f14469b).W.d).iterator();
             while (it.hasNext()) {
@@ -122,7 +122,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void B(long j3) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -135,7 +135,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void C(boolean z10) {
         b2 b2Var;
-        lc lcVar = ((zb) ((b7) this.f45578b)).C0;
+        lc lcVar = ((zb) ((b7) this.f45612b)).C0;
         nb nbVar = lcVar.f5526v1;
         if (nbVar != null) {
             b2 b2Var2 = null;
@@ -180,7 +180,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void E(CharSequence charSequence) {
-        d3 d3Var = ((q5) this.f45578b).E;
+        d3 d3Var = ((q5) this.f45612b).E;
         if (d3Var != null && charSequence != null && charSequence.length() > 0) {
             d3Var.f12346a.u4(charSequence.toString());
         }
@@ -193,7 +193,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void G(float f7, int i10) {
         ArrayList arrayList;
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var != null && (arrayList = l8Var.T) != null && i10 >= 0 && i10 < arrayList.size()) {
             ((l8) b7Var.d.T.get(i10)).V = f7;
@@ -202,12 +202,12 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void H(MessageObject messageObject) {
-        ((bc) ((f6) this.f45578b).Q1).f(false);
+        ((bc) ((f6) this.f45612b).Q1).f(false);
     }
 
     @Override
     public void I(float f7) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -219,12 +219,12 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        ((e2) this.f45578b).s0(i10, i11, z10);
+        ((e2) this.f45612b).s0(i10, i11, z10);
     }
 
     @Override
     public void K(float f7) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -236,7 +236,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void L(Editable editable) {
-        q5 q5Var = (q5) this.f45578b;
+        q5 q5Var = (q5) this.f45612b;
         ii.a aVar = q5Var.f12250a;
         if (aVar != null) {
             aVar.f12248s = true;
@@ -252,7 +252,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void M(float f7, int i10) {
         ArrayList arrayList;
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var != null && (arrayList = l8Var.T) != null && i10 >= 0 && i10 < arrayList.size()) {
             ((l8) b7Var.d.T.get(i10)).W = f7;
@@ -266,7 +266,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void O(float f7) {
-        l8 l8Var = ((b7) this.f45578b).d;
+        l8 l8Var = ((b7) this.f45612b).d;
         if (l8Var == null) {
             return;
         }
@@ -276,8 +276,8 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void P(int i10, long j3, long j10) {
-        x xVar = ((FfmpegAudioRenderer) this.f45578b).I;
-        Handler handler = (Handler) xVar.f16658b;
+        x xVar = ((FfmpegAudioRenderer) this.f45612b).I;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new k2.i(xVar, i10, j3, j10, 0));
         }
@@ -285,12 +285,12 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void Q() {
-        ((b7) this.f45578b).q(null);
+        ((b7) this.f45612b).q(null);
     }
 
     @Override
     public void S(float f7) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -303,7 +303,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void T(int i10, long j3) {
         ArrayList arrayList;
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var != null && (arrayList = l8Var.T) != null && i10 >= 0 && i10 < arrayList.size()) {
             ((l8) b7Var.d.T.get(i10)).X = j3;
@@ -312,7 +312,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void V(long j3) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -324,8 +324,8 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void W(Object obj) {
-        int i10 = this.f45577a;
-        Object obj2 = this.f45578b;
+        int i10 = this.f45611a;
+        Object obj2 = this.f45612b;
         switch (i10) {
             case 4:
                 p pVar = (p) obj2;
@@ -367,7 +367,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
         int i11;
         int i12;
         int i13;
-        fc.a aVar = (fc.a) this.f45578b;
+        fc.a aVar = (fc.a) this.f45612b;
         if (iArr.length != 0) {
             int length = iArr.length;
             if (length > 1 && iArr[0] == 0) {
@@ -520,7 +520,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     public Boolean Y() {
-        Bundle bundle = (Bundle) this.f45578b;
+        Bundle bundle = (Bundle) this.f45612b;
         if (bundle.containsKey("firebase_sessions_enabled")) {
             return Boolean.valueOf(bundle.getBoolean("firebase_sessions_enabled"));
         }
@@ -530,7 +530,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void Z() {
         x2.p pVar;
-        FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f45578b;
+        FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f45612b;
         synchronized (ffmpegAudioRenderer.f11643a) {
             pVar = ffmpegAudioRenderer.H;
         }
@@ -541,15 +541,15 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void a(long j3) {
-        x xVar = ((FfmpegAudioRenderer) this.f45578b).I;
-        Handler handler = (Handler) xVar.f16658b;
+        x xVar = ((FfmpegAudioRenderer) this.f45612b).I;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new j(xVar, j3, 13));
         }
     }
 
     public boolean a0() {
-        x0 x0Var = ((j0) this.f45578b).d;
+        x0 x0Var = ((j0) this.f45612b).d;
         if (x0Var != null && x0Var.b()) {
             return true;
         }
@@ -558,8 +558,8 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void accept(Object obj, Object obj2) {
-        int i10 = this.f45577a;
-        Object obj3 = this.f45578b;
+        int i10 = this.f45611a;
+        Object obj3 = this.f45612b;
         switch (i10) {
             case 11:
                 w wVar = (w) obj;
@@ -585,7 +585,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new h(-1, -1, 0, true));
                 Parcel obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i11 = q7.a.f46075a;
+                int i11 = q7.a.f46109a;
                 obtain.writeStrongBinder(fVar3);
                 q7.a.b(obtain, (GetCredentialRequest) obj3);
                 q7.a.b(obtain, gVar);
@@ -606,7 +606,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void b(int i10) {
-        ci.e0 e0Var = ((b7) this.f45578b).E;
+        ci.e0 e0Var = ((b7) this.f45612b).E;
         if (e0Var != null) {
             ArrayList arrayList = e0Var.h;
             int size = arrayList.size();
@@ -632,7 +632,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
             Log.d("FirebaseCrashlytics", "Checking for cached settings...", null);
         }
         try {
-            File file = (File) this.f45578b;
+            File file = (File) this.f45612b;
             if (file.exists()) {
                 fileInputStream = new FileInputStream(file);
                 try {
@@ -671,7 +671,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void c(ii.i1 i1Var) {
-        d3 d3Var = ((q5) this.f45578b).E;
+        d3 d3Var = ((q5) this.f45612b).E;
         if (d3Var != null) {
             x3 x3Var = d3Var.f12346a;
             x3.N1(x3Var, i1Var);
@@ -681,7 +681,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void d() {
-        ((FfmpegAudioRenderer) this.f45578b).f2947f0 = true;
+        ((FfmpegAudioRenderer) this.f45612b).f2947f0 = true;
     }
 
     @Override
@@ -691,7 +691,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void e(float f7) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -703,7 +703,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public boolean f() {
-        q5 q5Var = (q5) this.f45578b;
+        q5 q5Var = (q5) this.f45612b;
         d3 d3Var = q5Var.E;
         if (d3Var != null && q5Var.f12250a != null) {
             return d3Var.f12346a.T4();
@@ -714,8 +714,8 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void f0(Exception exc) {
         e2.a.f("DecoderAudioRenderer", "Audio sink error", exc);
-        x xVar = ((FfmpegAudioRenderer) this.f45578b).I;
-        Handler handler = (Handler) xVar.f16658b;
+        x xVar = ((FfmpegAudioRenderer) this.f45612b).I;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new k2.f(xVar, exc, 1));
         }
@@ -723,7 +723,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void g(float f7) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -740,20 +740,20 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void h(long j3, boolean z10) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         if (!z10) {
             b7Var.m(j3);
             return;
         }
-        m81 m81Var = b7Var.f4762e;
-        if (m81Var != null) {
-            m81Var.L(j3, true);
+        l81 l81Var = b7Var.f4762e;
+        if (l81Var != null) {
+            l81Var.L(j3, true);
         } else if (b7Var.j()) {
             b7Var.E.m(j3, true);
         } else {
-            m81 m81Var2 = b7Var.f4788y;
-            if (m81Var2 != null) {
-                m81Var2.L(j3, false);
+            l81 l81Var2 = b7Var.f4788y;
+            if (l81Var2 != null) {
+                l81Var2.L(j3, false);
             }
         }
     }
@@ -761,7 +761,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void i(int i10, int i11) {
         i2 i2Var;
-        q5 q5Var = (q5) this.f45578b;
+        q5 q5Var = (q5) this.f45612b;
         d3 d3Var = q5Var.E;
         if (d3Var != null && q5Var.f12250a != null && (i2Var = d3Var.f12346a.H3) != null) {
             i2Var.f(i10, i11);
@@ -771,10 +771,10 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void j(Object obj) {
         Bundle extras;
-        switch (this.f45577a) {
+        switch (this.f45611a) {
             case 7:
                 androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-                k0 k0Var = (k0) this.f45578b;
+                k0 k0Var = (k0) this.f45612b;
                 androidx.fragment.app.g0 g0Var = (androidx.fragment.app.g0) k0Var.F.pollFirst();
                 if (g0Var == null) {
                     Log.w("FragmentManager", "No IntentSenders were started for " + this);
@@ -790,7 +790,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
                 l4.x(i10, aVar.f2160a, aVar.f2161b);
                 return;
             default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f45578b;
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f45612b;
                 androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
                 proxyBillingActivityV2.getClass();
                 Intent intent = aVar2.f2161b;
@@ -815,7 +815,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void k0() {
-        ((FfmpegAudioRenderer) this.f45578b).Z = true;
+        ((FfmpegAudioRenderer) this.f45612b).Z = true;
     }
 
     @Override
@@ -837,7 +837,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
             new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, rectF, (Paint) null);
             bitmap2 = createBitmap;
         }
-        ((f6.i) this.f45578b).e(bitmap2, 0);
+        ((f6.i) this.f45612b).e(bitmap2, 0);
     }
 
     @Override
@@ -847,7 +847,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void n(k kVar) {
-        f3 f3Var = ((ActionMenuView) this.f45578b).K;
+        f3 f3Var = ((ActionMenuView) this.f45612b).K;
         if (f3Var != null) {
             f3Var.n(kVar);
         }
@@ -855,7 +855,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void o() {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         b7Var.s(null, null, true);
         lc lcVar = ((zb) b7Var).C0;
         zb zbVar = lcVar.X0;
@@ -892,8 +892,8 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void o0(k2.k kVar) {
-        x xVar = ((FfmpegAudioRenderer) this.f45578b).I;
-        Handler handler = (Handler) xVar.f16658b;
+        x xVar = ((FfmpegAudioRenderer) this.f45612b).I;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new k2.h(xVar, kVar, 0));
         }
@@ -901,8 +901,8 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void onAudioSessionIdChanged(int i10) {
-        x xVar = ((FfmpegAudioRenderer) this.f45578b).I;
-        Handler handler = (Handler) xVar.f16658b;
+        x xVar = ((FfmpegAudioRenderer) this.f45612b).I;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new p8(xVar, i10, 11));
         }
@@ -910,12 +910,12 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void onComplete(Task task) {
-        switch (this.f45577a) {
+        switch (this.f45611a) {
             case 15:
-                d6.c.h((d6.c) ((d6.j) this.f45578b).f8196c, "joinApplication", task);
+                d6.c.h((d6.c) ((d6.j) this.f45612b).f8196c, "joinApplication", task);
                 return;
             default:
-                m mVar = (m) this.f45578b;
+                m mVar = (m) this.f45612b;
                 Exception exception = task.getException();
                 if (exception == null) {
                     if (task.isCanceled()) {
@@ -938,8 +938,8 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
-        x xVar = ((FfmpegAudioRenderer) this.f45578b).I;
-        Handler handler = (Handler) xVar.f16658b;
+        x xVar = ((FfmpegAudioRenderer) this.f45612b).I;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new bi.f(8, xVar, z10));
         }
@@ -947,7 +947,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void p(float f7) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -959,7 +959,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void q(boolean z10) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         if (b7Var.j()) {
             b7Var.E.getClass();
         }
@@ -974,7 +974,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
     @Override
     public void s(float f7, int i10) {
         ArrayList arrayList;
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var != null && (arrayList = l8Var.T) != null && i10 >= 0 && i10 < arrayList.size()) {
             ((l8) b7Var.d.T.get(i10)).P = f7;
@@ -983,12 +983,12 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void t() {
-        ((l0) this.f45578b).f5368e.invalidate();
+        ((l0) this.f45612b).f5368e.invalidate();
     }
 
     @Override
     public Object v2() {
-        Type type = (Type) this.f45578b;
+        Type type = (Type) this.f45612b;
         if (type instanceof ParameterizedType) {
             Type type2 = ((ParameterizedType) type).getActualTypeArguments()[0];
             if (type2 instanceof Class) {
@@ -1001,7 +1001,7 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void w(float f7) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var == null) {
             return;
@@ -1012,14 +1012,14 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void w0(MessageObject messageObject) {
-        ((bc) ((f6) this.f45578b).Q1).f(true);
+        ((bc) ((f6) this.f45612b).Q1).f(true);
     }
 
     @Override
     public void x(ii.i1 i1Var, int i10, int i11) {
         d3 d3Var;
         o9 textSelectionHelper;
-        q5 q5Var = (q5) this.f45578b;
+        q5 q5Var = (q5) this.f45612b;
         if (!q5Var.G && i10 != i11 && (d3Var = q5Var.E) != null && (textSelectionHelper = d3Var.f12346a.getTextSelectionHelper()) != null) {
             if (!textSelectionHelper.x() || textSelectionHelper.W != q5Var) {
                 q5Var.post(new w4(this, i1Var, i11, textSelectionHelper, i10, 4));
@@ -1029,20 +1029,20 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void y(float f7, boolean z10) {
-        b7 b7Var = (b7) this.f45578b;
+        b7 b7Var = (b7) this.f45612b;
         l8 l8Var = b7Var.d;
         if (l8Var != null) {
             l8Var.Z = f7;
             l8Var.f5414j = true;
-            m81 m81Var = b7Var.f4762e;
-            if (m81Var != null && m81Var.p() != -9223372036854775807L) {
+            l81 l81Var = b7Var.f4762e;
+            if (l81Var != null && l81Var.p() != -9223372036854775807L) {
                 b7Var.m(f7 * ((float) b7Var.f4762e.p()));
             }
         }
     }
 
     public void z(l lVar, androidx.biometric.t tVar) {
-        Object obj = this.f45578b;
+        Object obj = this.f45612b;
         androidx.fragment.app.l0 l0Var = (androidx.fragment.app.l0) obj;
         if (l0Var == null) {
             Log.e("BiometricPromptCompat", "Unable to start authentication. Client fragment manager was null.");
@@ -1097,55 +1097,55 @@ public final class c implements lv0, a0, androidx.activity.result.b, WebMessageL
 
     @Override
     public void z0(k2.k kVar) {
-        x xVar = ((FfmpegAudioRenderer) this.f45578b).I;
-        Handler handler = (Handler) xVar.f16658b;
+        x xVar = ((FfmpegAudioRenderer) this.f45612b).I;
+        Handler handler = (Handler) xVar.f16694b;
         if (handler != null) {
             handler.post(new k2.h(xVar, kVar, 1));
         }
     }
 
     public c(Object obj, int i10) {
-        this.f45577a = i10;
-        this.f45578b = obj;
+        this.f45611a = i10;
+        this.f45612b = obj;
     }
 
     public c(Set set) {
-        this.f45577a = 0;
-        this.f45578b = new HashMap();
+        this.f45611a = 0;
+        this.f45612b = new HashMap();
         Iterator it = set.iterator();
         while (it.hasNext()) {
             b bVar = (b) it.next();
             bVar.getClass();
-            ((HashMap) this.f45578b).put(a.class, bVar.f45576a);
+            ((HashMap) this.f45612b).put(a.class, bVar.f45610a);
         }
     }
 
     public c(Context context) {
-        this.f45577a = 9;
+        this.f45611a = 9;
         kotlin.jvm.internal.i.e(context, "context");
         Bundle bundle = context.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData;
-        this.f45578b = bundle == null ? Bundle.EMPTY : bundle;
+        this.f45612b = bundle == null ? Bundle.EMPTY : bundle;
     }
 
     public c(ba.c cVar) {
-        this.f45577a = 16;
-        this.f45578b = new File(cVar.f3800b, "com.crashlytics.settings.json");
+        this.f45611a = 16;
+        this.f45612b = new File(cVar.f3800b, "com.crashlytics.settings.json");
     }
 
     public c() {
-        this.f45577a = 22;
-        this.f45578b = new xa.c(21);
+        this.f45611a = 22;
+        this.f45612b = new xa.c(21);
     }
 
     public c(LaunchActivity launchActivity, Executor executor, v7.l lVar) {
-        this.f45577a = 5;
+        this.f45611a = 5;
         if (launchActivity == null) {
             throw new IllegalArgumentException("FragmentActivity must not be null.");
         }
         if (executor != null) {
             androidx.fragment.app.l0 s10 = launchActivity.s();
             androidx.biometric.x xVar = (androidx.biometric.x) new aa.a(launchActivity).j(androidx.biometric.x.class);
-            this.f45578b = s10;
+            this.f45612b = s10;
             xVar.d = executor;
             xVar.f2326e = lVar;
             return;

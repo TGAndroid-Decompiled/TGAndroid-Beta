@@ -11,8 +11,8 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cd0;
 import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.yc0;
 public final class u extends Drawable {
     public final int f6039a = 1;
     public final Path f6040b;
@@ -31,7 +31,7 @@ public final class u extends Drawable {
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.f6042e = paint3;
-        this.f6044g = new org.telegram.ui.Components.g6(new cd0(this, 1), 320L, is.h, 0);
+        this.f6044g = new org.telegram.ui.Components.g6(new yc0(this, 2), 320L, is.h, 0);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setColor(-1);

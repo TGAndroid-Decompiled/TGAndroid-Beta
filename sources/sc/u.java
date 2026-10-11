@@ -10,62 +10,62 @@ import org.telegram.messenger.h7;
 import org.telegram.ui.Wallet.z0;
 import org.telegram.ui.web.m1;
 public final class u {
-    public final s f48029a;
-    public final q0 f48030b;
-    public final h f48031c;
+    public final s f48063a;
+    public final q0 f48064b;
+    public final h f48065c;
     public final com.google.firebase.messaging.m d;
-    public final p f48032e;
-    public final p f48033f;
+    public final p f48066e;
+    public final p f48067f;
     public m1 h;
-    public z f48035i;
-    public q f48036j;
-    public b0 f48037k;
-    public ArrayList f48038l;
-    public boolean f48039m;
-    public boolean f48041o;
-    public boolean f48042p;
-    public boolean f48043q;
-    public boolean f48044r;
-    public y f48045s;
-    public y f48046t;
-    public o f48047u;
-    public final Object f48034g = new Object();
-    public final Object f48040n = new Object();
+    public z f48069i;
+    public q f48070j;
+    public b0 f48071k;
+    public ArrayList f48072l;
+    public boolean f48073m;
+    public boolean f48075o;
+    public boolean f48076p;
+    public boolean f48077q;
+    public boolean f48078r;
+    public y f48079s;
+    public y f48080t;
+    public o f48081u;
+    public final Object f48068g = new Object();
+    public final Object f48074n = new Object();
 
     public u(boolean z10, String str, String str2, String str3, s sVar) {
         String str4;
-        this.f48029a = sVar;
+        this.f48063a = sVar;
         ?? obj = new Object();
         obj.f3534b = 1;
         obj.f3533a = 1;
-        this.f48030b = obj;
+        this.f48064b = obj;
         ?? obj2 = new Object();
-        obj2.f48000a = str;
-        obj2.f48001b = str2;
-        obj2.f48002c = str3;
+        obj2.f48034a = str;
+        obj2.f48035b = str2;
+        obj2.f48036c = str3;
         if (z10) {
             str4 = "wss";
         } else {
             str4 = "ws";
         }
         URI.create(str4 + "://" + str2 + str3);
-        this.f48031c = obj2;
+        this.f48065c = obj2;
         ?? obj3 = new Object();
         obj3.f7952c = new ArrayList();
         obj3.f7950a = true;
         obj3.f7951b = this;
         this.d = obj3;
-        this.f48032e = new b2.g(this, "PingSender", new ob.a(22));
-        this.f48033f = new b2.g(this, "PongSender", new ob.a(22));
+        this.f48066e = new b2.g(this, "PingSender", new ob.a(22));
+        this.f48067f = new b2.g(this, "PongSender", new ob.a(22));
     }
 
     public final void a() {
-        synchronized (this.f48040n) {
+        synchronized (this.f48074n) {
             try {
-                if (this.f48039m) {
+                if (this.f48073m) {
                     return;
                 }
-                this.f48039m = true;
+                this.f48073m = true;
                 com.google.firebase.messaging.m mVar = this.d;
                 ArrayList arrayList = (ArrayList) mVar.n();
                 int size = arrayList.size();
@@ -76,7 +76,7 @@ public final class u {
                     z0 z0Var = (z0) obj;
                     try {
                         try {
-                            AndroidUtilities.runOnUIThread(new h7(z0Var, (u) mVar.f7951b, z0Var.f35765a, z0Var.f35766b, 15));
+                            AndroidUtilities.runOnUIThread(new h7(z0Var, (u) mVar.f7951b, z0Var.f35799a, z0Var.f35800b, 15));
                         } catch (Throwable unused) {
                             z0Var.getClass();
                         }
@@ -91,8 +91,8 @@ public final class u {
 
     public final void b() {
         s sVar;
-        synchronized (this.f48030b) {
-            q0 q0Var = this.f48030b;
+        synchronized (this.f48064b) {
+            q0 q0Var = this.f48064b;
             if (q0Var.f3533a == 1) {
                 q0Var.f3533a = 2;
             } else {
@@ -101,11 +101,11 @@ public final class u {
         }
         this.d.e();
         try {
-            s sVar2 = this.f48029a;
+            s sVar2 = this.f48063a;
             try {
                 sVar2.a();
-                h(sVar2.f48023g);
-                ArrayList arrayList = this.f48038l;
+                h(sVar2.f48057g);
+                ArrayList arrayList = this.f48072l;
                 o oVar = null;
                 if (arrayList != null) {
                     int size = arrayList.size();
@@ -123,12 +123,12 @@ public final class u {
                         }
                     }
                 }
-                this.f48047u = oVar;
-                this.f48030b.f3533a = 3;
+                this.f48081u = oVar;
+                this.f48064b.f3533a = 3;
                 this.d.e();
                 i();
             } catch (w e7) {
-                Socket socket = sVar.f48023g;
+                Socket socket = sVar.f48057g;
                 if (socket != null) {
                     try {
                         socket.close();
@@ -138,28 +138,28 @@ public final class u {
                 throw e7;
             }
         } catch (w e10) {
-            Socket socket2 = this.f48029a.f48023g;
+            Socket socket2 = this.f48063a.f48057g;
             if (socket2 != null) {
                 try {
                     socket2.close();
                 } catch (Throwable unused2) {
                 }
             }
-            this.f48030b.f3533a = 5;
+            this.f48064b.f3533a = 5;
             this.d.e();
             throw e10;
         }
     }
 
     public final void c() {
-        synchronized (this.f48030b) {
+        synchronized (this.f48064b) {
             try {
-                int c10 = m1.j.c(this.f48030b.f3533a);
+                int c10 = m1.j.c(this.f48064b.f3533a);
                 if (c10 != 0) {
                     if (c10 != 2) {
                         return;
                     }
-                    q0 q0Var = this.f48030b;
+                    q0 q0Var = this.f48064b;
                     q0Var.f3533a = 4;
                     if (q0Var.f3534b == 1) {
                         q0Var.f3534b = 3;
@@ -170,7 +170,7 @@ public final class u {
                     return;
                 }
                 b bVar = new b("FinishThread", this, 4, 1);
-                com.google.firebase.messaging.m mVar = bVar.f47981a.d;
+                com.google.firebase.messaging.m mVar = bVar.f48015a.d;
                 if (mVar != null) {
                     ArrayList arrayList = (ArrayList) mVar.n();
                     int size = arrayList.size();
@@ -198,24 +198,24 @@ public final class u {
 
     public final void d() {
         boolean z10;
-        this.f48032e.stop();
-        this.f48033f.stop();
-        Socket socket = this.f48029a.f48023g;
+        this.f48066e.stop();
+        this.f48067f.stop();
+        Socket socket = this.f48063a.f48057g;
         if (socket != null) {
             try {
                 socket.close();
             } catch (Throwable unused) {
             }
         }
-        synchronized (this.f48030b) {
-            this.f48030b.f3533a = 5;
+        synchronized (this.f48064b) {
+            this.f48064b.f3533a = 5;
         }
         this.d.e();
         com.google.firebase.messaging.m mVar = this.d;
-        y yVar = this.f48045s;
-        y yVar2 = this.f48046t;
+        y yVar = this.f48079s;
+        y yVar2 = this.f48080t;
         int i10 = 0;
-        if (this.f48030b.f3534b == 2) {
+        if (this.f48064b.f3534b == 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -239,9 +239,9 @@ public final class u {
 
     public final void e() {
         boolean z10;
-        synchronized (this.f48034g) {
-            this.f48041o = true;
-            z10 = this.f48042p;
+        synchronized (this.f48068g) {
+            this.f48075o = true;
+            z10 = this.f48076p;
         }
         a();
         if (z10) {
@@ -250,17 +250,17 @@ public final class u {
     }
 
     public final void f() {
-        p pVar = this.f48032e;
+        p pVar = this.f48066e;
         synchronized (pVar) {
         }
         pVar.Z0();
-        this.f48033f.a1();
+        this.f48067f.a1();
     }
 
     public final void finalize() {
         boolean z10;
-        synchronized (this.f48030b) {
-            if (this.f48030b.f3533a == 1) {
+        synchronized (this.f48064b) {
+            if (this.f48064b.f3533a == 1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -274,13 +274,13 @@ public final class u {
 
     public final void g(y yVar) {
         if (yVar != null) {
-            synchronized (this.f48030b) {
+            synchronized (this.f48064b) {
                 try {
-                    int i10 = this.f48030b.f3533a;
+                    int i10 = this.f48064b.f3533a;
                     if (i10 != 3 && i10 != 4) {
                         return;
                     }
-                    b0 b0Var = this.f48037k;
+                    b0 b0Var = this.f48071k;
                     if (b0Var == null) {
                         return;
                     }
@@ -299,11 +299,11 @@ public final class u {
     public final void i() {
         q qVar = new q(this);
         b0 b0Var = new b0(this);
-        synchronized (this.f48034g) {
-            this.f48036j = qVar;
-            this.f48037k = b0Var;
+        synchronized (this.f48068g) {
+            this.f48070j = qVar;
+            this.f48071k = b0Var;
         }
-        com.google.firebase.messaging.m mVar = qVar.f47981a.d;
+        com.google.firebase.messaging.m mVar = qVar.f48015a.d;
         int i10 = 0;
         if (mVar != null) {
             ArrayList arrayList = (ArrayList) mVar.n();
@@ -323,7 +323,7 @@ public final class u {
                 }
             }
         }
-        com.google.firebase.messaging.m mVar2 = b0Var.f47981a.d;
+        com.google.firebase.messaging.m mVar2 = b0Var.f48015a.d;
         if (mVar2 != null) {
             ArrayList arrayList2 = (ArrayList) mVar2.n();
             int size2 = arrayList2.size();
@@ -348,11 +348,11 @@ public final class u {
     public final void j() {
         q qVar;
         b0 b0Var;
-        synchronized (this.f48034g) {
-            qVar = this.f48036j;
-            b0Var = this.f48037k;
-            this.f48036j = null;
-            this.f48037k = null;
+        synchronized (this.f48068g) {
+            qVar = this.f48070j;
+            b0Var = this.f48071k;
+            this.f48070j = null;
+            this.f48071k = null;
         }
         if (qVar != null) {
             qVar.i();

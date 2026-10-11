@@ -65,7 +65,7 @@ public final class q4 extends TextView {
     public void onDraw(Canvas canvas) {
         switch (this.f1614a) {
             case 4:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.h4.f38256r1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.h4.f38290r1);
                 super.onDraw(canvas);
                 return;
             default:

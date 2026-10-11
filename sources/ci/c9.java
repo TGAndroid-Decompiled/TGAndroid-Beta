@@ -29,7 +29,7 @@ public final class c9 extends FrameLayout {
         int i11;
         int i12;
         int i13;
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20857h5, this.f4843c);
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20893h5, this.f4843c);
         Paint paint = this.f4841a;
         paint.setColor(w02);
         f9 f9Var = this.d;
@@ -46,7 +46,7 @@ public final class c9 extends FrameLayout {
         int width = getWidth();
         i11 = ((org.telegram.ui.ActionBar.e3) f9Var).backgroundPaddingLeft;
         rectF.set(i10, lerp, width - i11, AndroidUtilities.dp(14.0f) + getHeight());
-        float dp = (1.0f - g6Var.f26613c) * AndroidUtilities.dp(14.0f);
+        float dp = (1.0f - g6Var.f26665c) * AndroidUtilities.dp(14.0f);
         canvas.drawRoundRect(rectF, dp, dp, paint);
         f9Var.f5090n.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, AndroidUtilities.dp(14.0f) + lerp));
         canvas.save();

@@ -19,28 +19,28 @@ import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.m71;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.q61;
 import w7.x5;
 public final class f extends m2 implements NotificationCenter.NotificationCenterDelegate {
     public long f9959a;
     public TLRPC.Chat f9960b;
     public TLRPC.User f9961c;
     public FrameLayout d;
-    public m71 f9962e;
+    public l71 f9962e;
     public e f9963f;
     public ArrayList h;
     public NotificationCenter.ObserversGroup f9964n;
 
-    public static void U(f fVar, r61 r61Var) {
+    public static void U(f fVar, q61 q61Var) {
         f fVar2;
-        if (r61Var.d == 1) {
+        if (q61Var.d == 1) {
             fVar2 = fVar;
             g5.Q(fVar.getParentActivity(), fVar2, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), fVar.resourceProvider, new c(fVar));
         } else {
             fVar2 = fVar;
         }
-        Object obj = r61Var.G;
+        Object obj = q61Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             fVar2.getMessagesController().getChat(Long.valueOf(-fVar2.f9959a));
@@ -80,14 +80,14 @@ public final class f extends m2 implements NotificationCenter.NotificationCenter
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 3));
         fh.c cVar = new fh.c();
-        cVar.a(getThemedColor(h6.f20786d6));
+        cVar.a(getThemedColor(h6.f20822d6));
         ah.c cVar2 = new ah.c(cVar);
         this.actionBar.setBackground(null);
         this.actionBar.M(cVar2, eh.b.o(this.resourceProvider), false);
         this.actionBar.P0 = true;
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
-        frameLayout.setBackgroundColor(h6.x0(null, h6.f20730a7, false));
+        frameLayout.setBackgroundColor(h6.x0(null, h6.f20766a7, false));
         e eVar = new e(context, this.resourceProvider);
         this.f9963f = eVar;
         eVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
@@ -110,12 +110,12 @@ public final class f extends m2 implements NotificationCenter.NotificationCenter
                 this.f9963f.f9956a.e(chat, new j9(this.f9960b));
             }
         }
-        m71 m71Var = new m71(this, new b(this, 0), new c(this), new c(this));
-        this.f9962e = m71Var;
-        m71Var.setClipToPadding(false);
-        m71 m71Var2 = this.f9962e;
-        m71Var2.W2.f25890r = false;
-        m71Var2.p1();
+        l71 l71Var = new l71(this, new b(this, 0), new c(this), new c(this));
+        this.f9962e = l71Var;
+        l71Var.setClipToPadding(false);
+        l71 l71Var2 = this.f9962e;
+        l71Var2.W2.f25649r = false;
+        l71Var2.p1();
         this.d.addView(this.f9962e, x5.d(-1.0f, -1));
         this.d.addView(this.actionBar, x5.e(-1, -2, 48));
         FrameLayout frameLayout2 = this.d;
@@ -128,7 +128,7 @@ public final class f extends m2 implements NotificationCenter.NotificationCenter
         int i12;
         if (i10 == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j3 = chatFull.f20033id;
+            long j3 = chatFull.f20069id;
             View z12 = this.f9962e.z1((int) (j3 ^ (j3 >>> 32)));
             if (z12 instanceof i6) {
                 i6 i6Var = (i6) z12;

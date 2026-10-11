@@ -27,7 +27,7 @@ public final class q0 implements NotificationCenter.NotificationCenterDelegate {
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileNewChunkAvailable);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.filePreparingFailed);
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.f20053id = 1;
+        tL_message.f20089id = 1;
         tL_message.attachPath = file.getAbsolutePath();
         this.f5752c = new MessageObject(i10, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
         l8Var.s(new ai.y1(this, 7));

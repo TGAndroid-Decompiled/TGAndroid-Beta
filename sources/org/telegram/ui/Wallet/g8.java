@@ -9,17 +9,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.is;
 public final class g8 extends EditTextBoldCursor {
-    public final org.telegram.ui.Components.g6 f35000b;
-    public final org.telegram.ui.Components.g6 f35001c;
+    public final org.telegram.ui.Components.g6 f35034b;
+    public final org.telegram.ui.Components.g6 f35035c;
     public float d;
-    public float f35002e;
-    public final k8 f35003f;
+    public float f35036e;
+    public final k8 f35037f;
 
     public g8(k8 k8Var, Context context) {
         super(context);
-        this.f35003f = k8Var;
-        this.f35000b = new org.telegram.ui.Components.g6(this, 180L, is.h);
-        this.f35001c = new org.telegram.ui.Components.g6(this, 320L, k8.R);
+        this.f35037f = k8Var;
+        this.f35034b = new org.telegram.ui.Components.g6(this, 180L, is.h);
+        this.f35035c = new org.telegram.ui.Components.g6(this, 320L, k8.R);
         this.d = 1.0f;
     }
 
@@ -33,9 +33,9 @@ public final class g8 extends EditTextBoldCursor {
         int round2 = Math.round(((bounds.bottom - lineBaseline) * this.d) + f7);
         int i10 = bounds.left;
         int width = bounds.width();
-        if (this.f35002e > 0.0f) {
+        if (this.f35036e > 0.0f) {
             float f10 = i10;
-            i10 = Math.round((((((((getWidth() + getScrollX()) - getCompoundPaddingLeft()) - getCompoundPaddingRight()) - getPaint().measureText("0")) - width) - f10) * this.f35002e) + f10);
+            i10 = Math.round((((((((getWidth() + getScrollX()) - getCompoundPaddingLeft()) - getCompoundPaddingRight()) - getPaint().measureText("0")) - width) - f10) * this.f35036e) + f10);
         }
         gradientDrawable.setBounds(i10, round, width + i10, round2);
         super.drawCursor(canvas, gradientDrawable);
@@ -50,7 +50,7 @@ public final class g8 extends EditTextBoldCursor {
     public final void onSelectionChanged(int i10, int i11) {
         super.onSelectionChanged(i10, i11);
         if (i10 != i11) {
-            this.f35003f.b();
+            this.f35037f.b();
         }
     }
 
@@ -58,13 +58,13 @@ public final class g8 extends EditTextBoldCursor {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         if (motionEvent.getActionMasked() == 0) {
-            this.f35003f.b();
+            this.f35037f.b();
             if (length() == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f35001c.a(z10);
+            this.f35035c.a(z10);
         }
         return super.onTouchEvent(motionEvent);
     }

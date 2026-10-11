@@ -9,7 +9,7 @@ import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.q61;
 import org.telegram.ui.zn;
 public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.z1 {
     public final int f11147a;
@@ -34,15 +34,15 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.z
 
     @Override
     public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        r61 r61Var = (r61) obj;
+        q61 q61Var = (q61) obj;
         final View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         final d dVar = this.f11148b;
-        if (!dVar.d.h(r61Var)) {
-            int i10 = r61Var.d;
-            if (i10 != 2 && r61Var.f17175a != 17) {
+        if (!dVar.d.h(q61Var)) {
+            int i10 = q61Var.d;
+            if (i10 != 2 && q61Var.f17211a != 17) {
                 if (i10 == 1) {
                     dVar.f11193s = !dVar.f11193s;
                     dVar.f11188c.W2.N(true);

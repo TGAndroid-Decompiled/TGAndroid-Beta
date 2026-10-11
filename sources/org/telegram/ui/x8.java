@@ -3,17 +3,17 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.UndoView;
 public final class x8 implements org.telegram.ui.Components.qb {
-    public final int f44001a;
-    public final Object f44002b;
+    public final int f44035a;
+    public final Object f44036b;
 
     public x8(Object obj, int i10) {
-        this.f44001a = i10;
-        this.f44002b = obj;
+        this.f44035a = i10;
+        this.f44036b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f44001a) {
+        switch (this.f44035a) {
             case 0:
                 return true;
             case 1:
@@ -39,15 +39,15 @@ public final class x8 implements org.telegram.ui.Components.qb {
 
     @Override
     public final void b(org.telegram.ui.Components.sc scVar) {
-        switch (this.f44001a) {
+        switch (this.f44035a) {
             case 0:
             case 1:
                 return;
             case 2:
-                org.telegram.ui.Components.wb wbVar = scVar.f30707e;
-                zn znVar = (zn) this.f44002b;
+                org.telegram.ui.Components.wb wbVar = scVar.f30829e;
+                zn znVar = (zn) this.f44036b;
                 ch.d c10 = znVar.J.c(wbVar, null, true);
-                dh.e eVar = new dh.e(znVar.f44762ea);
+                dh.e eVar = new dh.e(znVar.f44796ea);
                 eVar.f8365e = new d2.c(4);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
                 float dpf22 = AndroidUtilities.dpf2(0.5f);
@@ -60,10 +60,10 @@ public final class x8 implements org.telegram.ui.Components.qb {
             case 3:
                 return;
             case 4:
-                sy syVar = (sy) this.f44002b;
-                UndoView undoView = syVar.f42008y0[0];
+                sy syVar = (sy) this.f44036b;
+                UndoView undoView = syVar.f42042y0[0];
                 if (undoView != null && undoView.getVisibility() == 0) {
-                    syVar.f42008y0[0].e(2, true);
+                    syVar.f42042y0[0].e(2, true);
                     return;
                 }
                 return;
@@ -78,9 +78,9 @@ public final class x8 implements org.telegram.ui.Components.qb {
 
     @Override
     public final void c(float f7) {
-        switch (this.f44001a) {
+        switch (this.f44035a) {
             case 0:
-                i9 i9Var = (i9) this.f44002b;
+                i9 i9Var = (i9) this.f44036b;
                 i9Var.V = Math.max(0.0f, (f7 - i9Var.W) - i9Var.U);
                 i9Var.g0();
                 return;
@@ -88,15 +88,15 @@ public final class x8 implements org.telegram.ui.Components.qb {
             case 2:
                 return;
             case 3:
-                ContactsActivity contactsActivity = (ContactsActivity) this.f44002b;
-                contactsActivity.f33739p0 = Math.max(0.0f, (f7 - contactsActivity.f33740q0) - contactsActivity.f33738o0);
+                ContactsActivity contactsActivity = (ContactsActivity) this.f44036b;
+                contactsActivity.f33773p0 = Math.max(0.0f, (f7 - contactsActivity.f33774q0) - contactsActivity.f33772o0);
                 contactsActivity.i0();
                 return;
             case 4:
-                sy syVar = (sy) this.f44002b;
-                UndoView undoView = syVar.f42008y0[0];
+                sy syVar = (sy) this.f44036b;
+                UndoView undoView = syVar.f42042y0[0];
                 if (undoView == null || undoView.getVisibility() != 0) {
-                    syVar.f41988u1 = Math.max(0.0f, (f7 - syVar.f41917f4) - syVar.f41932i4);
+                    syVar.f42022u1 = Math.max(0.0f, (f7 - syVar.f41951f4) - syVar.f41966i4);
                     syVar.U4();
                     return;
                 }
@@ -112,12 +112,12 @@ public final class x8 implements org.telegram.ui.Components.qb {
 
     @Override
     public final void d(org.telegram.ui.Components.sc scVar) {
-        int i10 = this.f44001a;
+        int i10 = this.f44035a;
     }
 
     @Override
     public final boolean e() {
-        switch (this.f44001a) {
+        switch (this.f44035a) {
             case 0:
                 return true;
             case 1:
@@ -135,7 +135,7 @@ public final class x8 implements org.telegram.ui.Components.qb {
             case 7:
                 return true;
             case 8:
-                if (((ProfileActivity) this.f44002b).f34371s5 == null) {
+                if (((ProfileActivity) this.f44036b).f34405s5 == null) {
                     return true;
                 }
                 return false;
@@ -149,37 +149,37 @@ public final class x8 implements org.telegram.ui.Components.qb {
         int i11;
         int i12;
         bv0 bv0Var;
-        switch (this.f44001a) {
+        switch (this.f44035a) {
             case 0:
-                i9 i9Var = (i9) this.f44002b;
+                i9 i9Var = (i9) this.f44036b;
                 i11 = i9Var.W;
                 i12 = i9Var.U;
                 break;
             case 1:
-                return ((ad) this.f44002b).O.getMeasuredHeight();
+                return ((ad) this.f44036b).O.getMeasuredHeight();
             case 2:
-                zn znVar = (zn) this.f44002b;
+                zn znVar = (zn) this.f44036b;
                 if (i10 == 1) {
                     return 0;
                 }
-                return Math.round(znVar.S.getInputBubbleHeight() + AndroidUtilities.dp(16.0f) + znVar.b9(org.telegram.ui.Components.a41.f24434c) + znVar.v.d());
+                return Math.round(znVar.S.getInputBubbleHeight() + AndroidUtilities.dp(16.0f) + znVar.b9(org.telegram.ui.Components.z31.f33557c) + znVar.v.d());
             case 3:
-                ContactsActivity contactsActivity = (ContactsActivity) this.f44002b;
-                i11 = contactsActivity.f33740q0;
-                i12 = contactsActivity.f33738o0;
+                ContactsActivity contactsActivity = (ContactsActivity) this.f44036b;
+                i11 = contactsActivity.f33774q0;
+                i12 = contactsActivity.f33772o0;
                 break;
             case 4:
-                sy syVar = (sy) this.f44002b;
+                sy syVar = (sy) this.f44036b;
                 if (syVar.X2 != 0) {
-                    return AndroidUtilities.dp(60.0f) + syVar.f41917f4;
+                    return AndroidUtilities.dp(60.0f) + syVar.f41951f4;
                 }
                 return syVar.k3();
             case 5:
-                i12 = ((eh0) this.f44002b).L;
+                i12 = ((eh0) this.f44036b).L;
                 i11 = AndroidUtilities.dp(64.0f);
                 break;
             case 6:
-                PhotoViewer photoViewer = ((vu0) this.f44002b).E0;
+                PhotoViewer photoViewer = ((vu0) this.f44036b).E0;
                 int i13 = 0;
                 if (photoViewer.R4) {
                     at0 at0Var = photoViewer.U1;
@@ -199,31 +199,31 @@ public final class x8 implements org.telegram.ui.Components.qb {
                     }
                     return i13;
                 }
-                ai.x5 x5Var = photoViewer.f33967i0;
+                ai.x5 x5Var = photoViewer.f34001i0;
                 if (x5Var != null && x5Var.getVisibility() == 0) {
-                    i13 = (int) ((photoViewer.f33967i0.getAlpha() * photoViewer.f33967i0.getHeight()) + 0);
+                    i13 = (int) ((photoViewer.f34001i0.getAlpha() * photoViewer.f34001i0.getHeight()) + 0);
                 }
                 org.telegram.ui.Components.n40 n40Var = photoViewer.l1;
                 if (n40Var != null && n40Var.c()) {
-                    if (AndroidUtilities.isTablet() || photoViewer.f33932e0.getMeasuredHeight() > photoViewer.f33932e0.getMeasuredWidth()) {
+                    if (AndroidUtilities.isTablet() || photoViewer.f33966e0.getMeasuredHeight() > photoViewer.f33966e0.getMeasuredWidth()) {
                         return (int) ((photoViewer.l1.getAlpha() * photoViewer.l1.getHeight()) + i13);
                     }
                     return i13;
                 }
                 return i13;
             case 7:
-                return ((PremiumPreviewFragment) this.f44002b).f34172o0.d;
+                return ((PremiumPreviewFragment) this.f44036b).f34206o0.d;
             case 8:
-                ProfileActivity profileActivity = (ProfileActivity) this.f44002b;
-                if (profileActivity.f34371s5 == null) {
-                    return profileActivity.f34323l6 + profileActivity.f34318k6;
+                ProfileActivity profileActivity = (ProfileActivity) this.f44036b;
+                if (profileActivity.f34405s5 == null) {
+                    return profileActivity.f34357l6 + profileActivity.f34352k6;
                 }
-                return profileActivity.f34323l6 + profileActivity.f34318k6 + ((int) (((AndroidUtilities.dp(52.0f) - profileActivity.f34371s5.getTranslationY()) - (profileActivity.f34378t5[1].getTranslationY() * profileActivity.O.g0(9, false))) - (profileActivity.f34378t5[0].getTranslationY() * profileActivity.O.g0(8, true))));
+                return profileActivity.f34357l6 + profileActivity.f34352k6 + ((int) (((AndroidUtilities.dp(52.0f) - profileActivity.f34405s5.getTranslationY()) - (profileActivity.f34412t5[1].getTranslationY() * profileActivity.O.g0(9, false))) - (profileActivity.f34412t5[0].getTranslationY() * profileActivity.O.g0(8, true))));
             default:
-                eg1 eg1Var = (eg1) this.f44002b;
-                v51 v51Var = eg1Var.f37342o0;
+                eg1 eg1Var = (eg1) this.f44036b;
+                v51 v51Var = eg1Var.f37376o0;
                 if (v51Var != null && v51Var.getVisibility() == 0) {
-                    return eg1Var.f37342o0.getMeasuredHeight();
+                    return eg1Var.f37376o0.getMeasuredHeight();
                 }
                 return 0;
         }
@@ -232,7 +232,7 @@ public final class x8 implements org.telegram.ui.Components.qb {
 
     @Override
     public final boolean g(int i10) {
-        switch (this.f44001a) {
+        switch (this.f44035a) {
             case 0:
                 return false;
             case 1:
@@ -270,14 +270,14 @@ public final class x8 implements org.telegram.ui.Components.qb {
         int i14;
         org.telegram.ui.ActionBar.k kVar5;
         PhotoViewer photoViewer;
-        switch (this.f44001a) {
+        switch (this.f44035a) {
             case 0:
                 return 0;
             case 1:
                 return 0;
             case 2:
                 int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
-                zn znVar = (zn) this.f44002b;
+                zn znVar = (zn) this.f44036b;
                 kVar = ((org.telegram.ui.ActionBar.m2) znVar).actionBar;
                 if (kVar != null) {
                     kVar2 = ((org.telegram.ui.ActionBar.m2) znVar).actionBar;
@@ -288,12 +288,12 @@ public final class x8 implements org.telegram.ui.Components.qb {
                     i11 = 0;
                 }
                 max = Math.max(currentActionBarHeight, i11);
-                max2 = (int) Math.max(0.0f, znVar.f44946t9);
+                max2 = (int) Math.max(0.0f, znVar.f44980t9);
                 break;
             case 3:
                 return 0;
             case 4:
-                sy syVar = (sy) this.f44002b;
+                sy syVar = (sy) this.f44036b;
                 kVar4 = ((org.telegram.ui.ActionBar.m2) syVar).actionBar;
                 int i15 = 0;
                 if (kVar4 != null) {
@@ -302,9 +302,9 @@ public final class x8 implements org.telegram.ui.Components.qb {
                 } else {
                     i12 = 0;
                 }
-                qw qwVar = syVar.f42011z0;
+                qw qwVar = syVar.f42045z0;
                 if (qwVar != null && qwVar.getVisibility() == 0) {
-                    i13 = syVar.f42011z0.getMeasuredHeight();
+                    i13 = syVar.f42045z0.getMeasuredHeight();
                 } else {
                     i13 = 0;
                 }
@@ -324,7 +324,7 @@ public final class x8 implements org.telegram.ui.Components.qb {
             case 5:
                 return 0;
             case 6:
-                return org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) (((vu0) this.f44002b).E0.V1.getAlpha() * photoViewer.V1.getEditTextHeight()));
+                return org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) (((vu0) this.f44036b).E0.V1.getAlpha() * photoViewer.V1.getEditTextHeight()));
             case 7:
                 return 0;
             case 8:

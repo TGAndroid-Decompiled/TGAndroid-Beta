@@ -18,7 +18,7 @@ public final class x51 extends s4.s {
             case 0:
                 try {
                     ci.l1 l1Var = new ci.l1(this, recyclerView.getContext(), 3);
-                    l1Var.f47917a = i10;
+                    l1Var.f47951a = i10;
                     w0(l1Var);
                     return;
                 } catch (Exception e7) {
@@ -28,7 +28,7 @@ public final class x51 extends s4.s {
             default:
                 try {
                     ci.l1 l1Var2 = new ci.l1(this, recyclerView.getContext(), 5);
-                    l1Var2.f47917a = i10;
+                    l1Var2.f47951a = i10;
                     w0(l1Var2);
                     return;
                 } catch (Exception e10) {

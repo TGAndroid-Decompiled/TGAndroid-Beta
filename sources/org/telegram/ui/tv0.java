@@ -14,10 +14,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class tv0 implements org.telegram.ui.Components.bz {
-    public final zv0 f42280a;
+    public final zv0 f42314a;
 
     public tv0(zv0 zv0Var) {
-        this.f42280a = zv0Var;
+        this.f42314a = zv0Var;
     }
 
     @Override
@@ -58,9 +58,9 @@ public final class tv0 implements org.telegram.ui.Components.bz {
         } else {
             z10 = false;
         }
-        zv0 zv0Var = this.f42280a;
+        zv0 zv0Var = this.f42314a;
         zv0Var.B0 = z10;
-        zv0Var.f45095e.requestLayout();
+        zv0Var.f45129e.requestLayout();
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class tv0 implements org.telegram.ui.Components.bz {
 
     @Override
     public final boolean k() {
-        EditTextBoldCursor editField = this.f42280a.f45091b0.getEditField();
+        EditTextBoldCursor editField = this.f42314a.f45125b0.getEditField();
         if (editField == null) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class tv0 implements org.telegram.ui.Components.bz {
 
     @Override
     public final void l(String str) {
-        EditTextBoldCursor editField = this.f42280a.f45091b0.getEditField();
+        EditTextBoldCursor editField = this.f42314a.f45125b0.getEditField();
         if (editField == null) {
             return;
         }
@@ -101,12 +101,12 @@ public final class tv0 implements org.telegram.ui.Components.bz {
     @Override
     public final void n() {
         org.telegram.ui.ActionBar.d6 d6Var;
-        zv0 zv0Var = this.f42280a;
+        zv0 zv0Var = this.f42314a;
         Activity parentActivity = zv0Var.getParentActivity();
         d6Var = ((org.telegram.ui.ActionBar.m2) zv0Var).resourceProvider;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(parentActivity, 0, d6Var);
-        alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20404a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new gq0(this, 4));
         hg.c.p(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -119,8 +119,8 @@ public final class tv0 implements org.telegram.ui.Components.bz {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.b6 b6Var;
-        zv0 zv0Var = this.f42280a;
-        EditTextBoldCursor editField = zv0Var.f45091b0.getEditField();
+        zv0 zv0Var = this.f42314a;
+        EditTextBoldCursor editField = zv0Var.f45125b0.getEditField();
         if (editField == null) {
             return;
         }
@@ -135,7 +135,7 @@ public final class tv0 implements org.telegram.ui.Components.bz {
             } else {
                 b6Var = new org.telegram.ui.Components.b6(j3, editField.getPaint().getFontMetricsInt());
             }
-            b6Var.cacheType = zv0Var.R.f24660c;
+            b6Var.cacheType = zv0Var.R.f24729c;
             spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
             editField.setText(editField.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -147,7 +147,7 @@ public final class tv0 implements org.telegram.ui.Components.bz {
 
     @Override
     public final boolean z() {
-        return this.f42280a.B0;
+        return this.f42314a.B0;
     }
 
     @Override
@@ -155,7 +155,7 @@ public final class tv0 implements org.telegram.ui.Components.bz {
     }
 
     @Override
-    public final void o(org.telegram.ui.Components.n61 n61Var) {
+    public final void o(org.telegram.ui.Components.m61 m61Var) {
     }
 
     @Override

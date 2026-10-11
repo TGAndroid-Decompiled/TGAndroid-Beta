@@ -822,7 +822,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             return;
         }
         this.loadingCameras = true;
-        this.threadPool.execute(new x0(this, z10, runnable, 8));
+        this.threadPool.execute(new x0(this, z10, runnable, 9));
     }
 
     public void close(CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable, Runnable runnable2) {

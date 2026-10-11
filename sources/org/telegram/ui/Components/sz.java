@@ -18,15 +18,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.eg1;
 public final class sz implements MediaDataController.KeywordResultCallback, f5, org.telegram.ui.ActionBar.z1, ImageReceiver.ImageReceiverDelegate, MessagesStorage.BooleanCallback, t5.b, s5.e, e2.h, x2.m, org.telegram.ui.my {
-    public final int f30908a;
-    public final Object f30909b;
-    public final Object f30910c;
+    public final int f30977a;
+    public final Object f30978b;
+    public final Object f30979c;
     public final Object d;
 
     public sz(Object obj, Object obj2, Object obj3, int i10) {
-        this.f30908a = i10;
-        this.f30909b = obj;
-        this.f30910c = obj2;
+        this.f30977a = i10;
+        this.f30978b = obj;
+        this.f30979c = obj2;
         this.d = obj3;
     }
 
@@ -41,17 +41,17 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
         int i12;
         int i13;
         long j3;
-        m60 m60Var = (m60) this.f30909b;
-        i60 i60Var = (i60) this.f30910c;
+        m60 m60Var = (m60) this.f30978b;
+        i60 i60Var = (i60) this.f30979c;
         VideoEditedInfo videoEditedInfo = (VideoEditedInfo) this.d;
-        u60 u60Var = m60Var.H0;
-        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, m60Var.f28535a.getAbsolutePath(), 0, true, 0, 0, 0L);
+        t60 t60Var = m60Var.H0;
+        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, m60Var.f28720a.getAbsolutePath(), 0, true, 0, 0, 0L);
         if (i60Var != null) {
-            photoEntry.ttl = i60Var.f27197c;
+            photoEntry.ttl = i60Var.f27344c;
             photoEntry.effectId = i60Var.d;
         }
-        g60 g60Var = u60Var.f31282n;
-        if (!z10 && i60Var != null && !i60Var.f27195a) {
+        g60 g60Var = t60Var.f31106n;
+        if (!z10 && i60Var != null && !i60Var.f27342a) {
             z11 = false;
         } else {
             z11 = true;
@@ -59,7 +59,7 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
         if (i10 != 0) {
             i12 = i10;
         } else if (i60Var != null) {
-            i12 = i60Var.f27196b;
+            i12 = i60Var.f27343b;
         } else {
             i12 = 0;
         }
@@ -69,12 +69,12 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
             i13 = 0;
         }
         if (i60Var != null) {
-            j3 = i60Var.f27198e;
+            j3 = i60Var.f27345e;
         } else {
             j3 = 0;
         }
         g60Var.r(photoEntry, videoEditedInfo, z11, i12, i13, false, j3);
-        u60Var.r(false, false);
+        t60Var.r(false, false);
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
 
     @Override
     public void accept(Object obj) {
-        ((u2.j0) obj).c(((a5.a) this.f30909b).f299b, (u2.f0) this.f30910c, (u2.b0) this.d);
+        ((u2.j0) obj).c(((a5.a) this.f30978b).f299b, (u2.f0) this.f30979c, (u2.b0) this.d);
     }
 
     @Override
@@ -94,8 +94,8 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
 
     @Override
     public e9.a1 b(int i10, b2.l1 l1Var, int[] iArr) {
-        x2.i iVar = (x2.i) this.f30909b;
-        String str = (String) this.f30910c;
+        x2.i iVar = (x2.i) this.f30978b;
+        String str = (String) this.f30979c;
         String str2 = (String) this.d;
         e9.f0 u10 = e9.i0.u();
         for (int i11 = 0; i11 < l1Var.f3415a; i11++) {
@@ -108,23 +108,23 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Bitmap bitmap;
         int i10;
-        b31 b31Var = (b31) this.f30909b;
-        bq bqVar = (bq) this.f30910c;
+        a31 a31Var = (a31) this.f30978b;
+        bq bqVar = (bq) this.f30979c;
         TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z10 && bitmapSafe != null && (bitmap = bitmapSafe.bitmap) != null) {
-            Drawable drawable = bqVar.f25003b;
-            if (drawable instanceof dd0) {
-                dd0 dd0Var = (dd0) drawable;
+            Drawable drawable = bqVar.f25059b;
+            if (drawable instanceof cd0) {
+                cd0 cd0Var = (cd0) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
                 if (wallPaperSettings != null && wallPaperSettings.intensity < 0) {
                     i10 = -100;
                 } else {
                     i10 = 100;
                 }
-                dd0Var.t(b31.e(bitmap), i10);
-                dd0Var.u(b31Var.L);
-                b31Var.invalidate();
+                cd0Var.t(a31.e(bitmap), i10);
+                cd0Var.u(a31Var.L);
+                a31Var.invalidate();
             }
         }
     }
@@ -136,17 +136,17 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f30908a) {
+        switch (this.f30977a) {
             case 2:
-                dw0 dw0Var = (dw0) this.f30909b;
+                cw0 cw0Var = (cw0) this.f30978b;
                 ArrayList arrayList = (ArrayList) this.d;
-                ((ai.v8) this.f30910c).F(arrayList);
-                ad.a0(dw0Var.f25735v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
-                dw0Var.L(false);
+                ((ai.v8) this.f30979c).F(arrayList);
+                ad.a0(cw0Var.f25536v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
+                cw0Var.L(false);
                 return;
             case 5:
-                boolean[] zArr = (boolean[]) this.f30909b;
-                JsPromptResult jsPromptResult = (JsPromptResult) this.f30910c;
+                boolean[] zArr = (boolean[]) this.f30978b;
+                JsPromptResult jsPromptResult = (JsPromptResult) this.f30979c;
                 su suVar = (su) this.d;
                 if (!zArr[0]) {
                     zArr[0] = true;
@@ -155,27 +155,27 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
                 }
                 return;
             default:
-                rg.j0.Q((rg.j0) this.f30909b, (ArrayList) this.f30910c, (TLRPC.User) this.d);
+                rg.j0.Q((rg.j0) this.f30978b, (ArrayList) this.f30979c, (TLRPC.User) this.d);
                 return;
         }
     }
 
     @Override
     public Object i() {
-        q5.a aVar = (q5.a) this.f30909b;
-        l5.i iVar = (l5.i) this.f30910c;
+        q5.a aVar = (q5.a) this.f30978b;
+        l5.i iVar = (l5.i) this.f30979c;
         l5.h hVar = (l5.h) this.d;
         s5.g gVar = (s5.g) aVar.d;
         gVar.getClass();
-        i5.d dVar = iVar.f15416c;
-        String str = hVar.f15409a;
-        String str2 = iVar.f15414a;
+        i5.d dVar = iVar.f15452c;
+        String str = hVar.f15445a;
+        String str2 = iVar.f15450a;
         String c10 = w7.i6.c("SQLiteEventStore");
         if (Log.isLoggable(c10, 3)) {
             Log.d(c10, "Storing event with priority=" + dVar + ", name=" + str + " for destination " + str2);
         }
         ((Long) gVar.c(new sz(gVar, hVar, iVar, 8))).getClass();
-        aVar.f46071a.W(iVar, 1, false);
+        aVar.f46105a.W(iVar, 1, false);
         return null;
     }
 
@@ -186,23 +186,23 @@ public final class sz implements MediaDataController.KeywordResultCallback, f5, 
 
     @Override
     public void run(boolean z10) {
-        TLRPC.Chat chat = (TLRPC.Chat) this.f30909b;
-        org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f30910c;
+        TLRPC.Chat chat = (TLRPC.Chat) this.f30978b;
+        org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f30979c;
         org.telegram.ui.Components.voip.g2.l(chat, null, true, null, m2Var.getParentActivity(), m2Var, (AccountInstance) this.d);
     }
 
     @Override
     public boolean w(org.telegram.ui.sy syVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        return yh.s3.Y((yh.s3) this.f30909b, (TL_stars.TL_starGiftUnique) this.f30910c, (org.telegram.ui.sy) this.d, arrayList);
+        return yh.s3.Y((yh.s3) this.f30978b, (TL_stars.TL_starGiftUnique) this.f30979c, (org.telegram.ui.sy) this.d, arrayList);
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
-        uz uzVar = (uz) this.f30909b;
-        HashMap hashMap = (HashMap) this.f30910c;
+        uz uzVar = (uz) this.f30978b;
+        HashMap hashMap = (HashMap) this.f30979c;
         Runnable runnable = (Runnable) this.d;
-        HashMap hashMap2 = uzVar.f31615f;
-        if (uzVar.f31619w.M != uzVar.f31612b) {
+        HashMap hashMap2 = uzVar.f31755f;
+        if (uzVar.f31759w.M != uzVar.f31752b) {
             return;
         }
         int size = arrayList.size();

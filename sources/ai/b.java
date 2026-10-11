@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import androidx.appcompat.widget.ActionBarOverlayLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.dk0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.k01;
 public final class b extends AnimatorListenerAdapter {
@@ -208,7 +208,7 @@ public final class b extends AnimatorListenerAdapter {
                 ((kg.e) obj).h.setVisibility(8);
                 return;
             case 25:
-                ((CropAreaView) obj).f24128c0 = null;
+                ((CropAreaView) obj).f24164c0 = null;
                 return;
             case 26:
                 ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) obj;
@@ -217,20 +217,20 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 27:
                 org.telegram.ui.h4 h4Var = (org.telegram.ui.h4) obj;
-                Runnable runnable = h4Var.f38265a0;
+                Runnable runnable = h4Var.f38299a0;
                 if (runnable != null) {
                     runnable.run();
-                    h4Var.f38265a0 = null;
+                    h4Var.f38299a0 = null;
                     return;
                 }
                 return;
             case 28:
                 org.telegram.ui.u3 u3Var = (org.telegram.ui.u3) obj;
-                u3Var.f42342w = 1.0f;
+                u3Var.f42376w = 1.0f;
                 u3Var.n();
                 u3Var.i();
                 u3Var.h();
-                u3Var.f42334a.unlock();
+                u3Var.f42368a.unlock();
                 return;
             case 29:
                 org.telegram.ui.p4 p4Var = (org.telegram.ui.p4) obj;
@@ -246,9 +246,9 @@ public final class b extends AnimatorListenerAdapter {
             case 9:
                 super.onAnimationStart(animator);
                 q9 q9Var = (q9) this.f659b;
-                ek0 ek0Var = ((p9) q9Var.f1625a.get(q9Var.d)).f1581c;
-                ek0Var.L = 2;
-                ek0Var.start();
+                dk0 dk0Var = ((p9) q9Var.f1625a.get(q9Var.d)).f1581c;
+                dk0Var.L = 2;
+                dk0Var.start();
                 return;
             case 29:
                 ((org.telegram.ui.p4) this.f659b).setVisibility(0);

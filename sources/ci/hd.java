@@ -20,9 +20,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.fa0;
-import org.telegram.ui.Components.qo0;
-import org.telegram.ui.Components.zy0;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.po0;
+import org.telegram.ui.Components.yy0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.ag0;
@@ -68,7 +68,7 @@ public final class hd implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.a9((int[]) obj5, tLObject, (MessagesController) obj4, (TLRPC.User[]) obj3, (gd) obj2, (ed) obj, 1));
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new ai.a9(tLObject, (String[]) obj5, (FrameLayout) obj4, (fa0) obj3, (org.telegram.ui.ActionBar.e3) obj2, (org.telegram.ui.ActionBar.d6) obj, 4));
+                AndroidUtilities.runOnUIThread(new ai.a9(tLObject, (String[]) obj5, (FrameLayout) obj4, (ea0) obj3, (org.telegram.ui.ActionBar.e3) obj2, (org.telegram.ui.ActionBar.d6) obj, 4));
                 return;
             case 2:
                 AndroidUtilities.runOnUIThread(new ai.a9((zn) obj5, (of.e) obj4, (org.telegram.ui.Cells.u1) obj3, (String) obj2, tLObject, (CharacterStyle) obj, 6));
@@ -83,7 +83,7 @@ public final class hd implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.a9(tL_error, (Context) obj5, (org.telegram.ui.ActionBar.d6) obj4, (d) obj3, (org.telegram.ui.ActionBar.e3) obj2, (Runnable) obj, 7));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new ai.a9((zy0) obj4, tLObject, (EditTextBoldCursor) obj3, (TextView) obj2, (TextView) obj, (int[]) obj5, 8));
+                AndroidUtilities.runOnUIThread(new ai.a9((yy0) obj4, tLObject, (EditTextBoldCursor) obj3, (TextView) obj2, (TextView) obj, (int[]) obj5, 8));
                 return;
             case 7:
                 Pattern pattern = LaunchActivity.B1;
@@ -94,7 +94,7 @@ public final class hd implements RequestDelegate {
                 TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj4;
                 Purchase purchase = (Purchase) obj3;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj2;
-                qo0 qo0Var = (qo0) obj;
+                po0 po0Var = (po0) obj;
                 if (tLObject instanceof TLRPC.Updates) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                     ArrayList findUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateSentPhoneCode.class);
@@ -110,7 +110,7 @@ public final class hd implements RequestDelegate {
                     AndroidUtilities.runOnUIThread(new ag0(eg0Var, 3));
                     return;
                 } else if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new tz(qo0Var, 26));
+                    AndroidUtilities.runOnUIThread(new tz(po0Var, 26));
                     return;
                 } else {
                     return;
@@ -136,9 +136,9 @@ public final class hd implements RequestDelegate {
         }
     }
 
-    public hd(zy0 zy0Var, EditTextBoldCursor editTextBoldCursor, TextView textView, TextView textView2, int[] iArr) {
+    public hd(yy0 yy0Var, EditTextBoldCursor editTextBoldCursor, TextView textView, TextView textView2, int[] iArr) {
         this.f5174a = 6;
-        this.f5176c = zy0Var;
+        this.f5176c = yy0Var;
         this.d = editTextBoldCursor;
         this.f5177e = textView;
         this.f5178f = textView2;

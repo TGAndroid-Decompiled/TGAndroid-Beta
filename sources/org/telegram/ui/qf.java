@@ -10,12 +10,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class qf implements Runnable {
-    public final int f41166a;
-    public final zn f41167b;
+    public final int f41200a;
+    public final zn f41201b;
 
     public qf(zn znVar, int i10) {
-        this.f41166a = i10;
-        this.f41167b = znVar;
+        this.f41200a = i10;
+        this.f41201b = znVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class qf implements Runnable {
         ok okVar;
         View sendButton;
         View sendButton2;
-        int i10 = this.f41166a;
-        zn znVar = this.f41167b;
+        int i10 = this.f41200a;
+        zn znVar = this.f41201b;
         switch (i10) {
             case 0:
                 znVar.D7(true);
@@ -64,8 +64,8 @@ public final class qf implements Runnable {
                 }
                 return;
             case 7:
-                znVar.f44906qa = null;
-                znVar.f44894pa = -1;
+                znVar.f44940qa = null;
+                znVar.f44928pa = -1;
                 View view = znVar.fragmentView;
                 if (view != null) {
                     view.requestLayout();
@@ -73,16 +73,16 @@ public final class qf implements Runnable {
                 }
                 return;
             case 8:
-                ArrayList arrayList = znVar.f44955u6;
+                ArrayList arrayList = znVar.f44989u6;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     MessageObject messageObject = (MessageObject) arrayList.get(i11);
                     if (messageObject.messageOwner.mentioned && !messageObject.isContentUnread()) {
                         messageObject.setContentIsRead();
                     }
                 }
-                znVar.f44842l6 = 0;
+                znVar.f44876l6 = 0;
                 znVar.getMessagesController().markMentionsAsRead(znVar.T5, znVar.d());
-                znVar.f44854m6 = true;
+                znVar.f44888m6 = true;
                 znVar.Ob(false);
                 org.telegram.ui.ActionBar.m1 m1Var = znVar.Q8;
                 if (m1Var != null) {
@@ -91,7 +91,7 @@ public final class qf implements Runnable {
                 }
                 return;
             case 9:
-                ArrayList arrayList2 = znVar.f44955u6;
+                ArrayList arrayList2 = znVar.f44989u6;
                 for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                     ((MessageObject) arrayList2.get(i12)).markReactionsAsRead();
                 }
@@ -105,11 +105,11 @@ public final class qf implements Runnable {
                 }
                 return;
             case 10:
-                ArrayList arrayList3 = znVar.f44955u6;
+                ArrayList arrayList3 = znVar.f44989u6;
                 for (int i13 = 0; i13 < arrayList3.size(); i13++) {
                     ((MessageObject) arrayList3.get(i13)).markPollVotesAsRead();
                 }
-                znVar.f44849m1 = 0;
+                znVar.f44883m1 = 0;
                 znVar.Ec(true);
                 znVar.getMessagesController().markPollVotesAsRead(znVar.T5, znVar.d());
                 org.telegram.ui.ActionBar.m1 m1Var3 = znVar.Q8;
@@ -165,19 +165,19 @@ public final class qf implements Runnable {
                 }
                 return;
             case 23:
-                org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(znVar.getParentActivity(), 3, znVar.f44762ea);
-                znVar.f44895pb = a2Var;
+                org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(znVar.getParentActivity(), 3, znVar.f44796ea);
+                znVar.f44929pb = a2Var;
                 a2Var.setOnShowListener(new of(znVar, 1));
-                znVar.f44895pb.setOnCancelListener(znVar.f44858ma);
-                znVar.f44895pb.q(500L);
+                znVar.f44929pb.setOnCancelListener(znVar.f44892ma);
+                znVar.f44929pb.q(500L);
                 return;
             case 24:
-                rk rkVar = znVar.f44945t8;
+                rk rkVar = znVar.f44979t8;
                 if (rkVar != null && rkVar.getParent() != null) {
-                    znVar.f44989x0.f1();
-                    znVar.f44970v8.setDrawingReady(false);
-                    znVar.f44945t8.setTag(null);
-                    znVar.X0.removeView(znVar.f44945t8);
+                    znVar.f45023x0.f1();
+                    znVar.f45004v8.setDrawingReady(false);
+                    znVar.f44979t8.setTag(null);
+                    znVar.X0.removeView(znVar.f44979t8);
                     return;
                 }
                 return;
@@ -186,15 +186,15 @@ public final class qf implements Runnable {
                 znVar.j9(true);
                 return;
             case 26:
-                znVar.f44903q7 = null;
-                org.telegram.ui.Components.z60 z60Var = znVar.f44716b3;
-                if (z60Var != null) {
-                    org.telegram.ui.Components.w60 cameraContainer = z60Var.getCameraContainer();
+                znVar.f44937q7 = null;
+                org.telegram.ui.Components.y60 y60Var = znVar.f44750b3;
+                if (y60Var != null) {
+                    org.telegram.ui.Components.v60 cameraContainer = y60Var.getCameraContainer();
                     AnimatorSet animatorSet = new AnimatorSet();
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, 0.5f);
                     ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, 0.5f);
                     Property property = View.ALPHA;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(znVar.f44716b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(znVar.f44716b3.getPaint(), org.telegram.ui.Components.u6.f31252b, 0), ObjectAnimator.ofFloat(znVar.f44716b3.getMuteImageView(), property, 0.0f));
+                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(znVar.f44750b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(znVar.f44750b3.getPaint(), org.telegram.ui.Components.u6.f31449b, 0), ObjectAnimator.ofFloat(znVar.f44750b3.getMuteImageView(), property, 0.0f));
                     animatorSet.addListener(new xi(znVar, 0));
                     animatorSet.start();
                     return;
@@ -203,17 +203,17 @@ public final class qf implements Runnable {
             case 27:
                 if (znVar.getParentActivity() != null && znVar.fragmentView != null && (okVar = znVar.Y) != null && (sendButton = okVar.getSendButton()) != null && znVar.Y.getEditField() != null && znVar.Y.getEditField().getText().length() >= 5) {
                     SharedConfig.increaseScheduledOrNoSoundHintShowed();
-                    if (znVar.f44779g2 == null) {
-                        jj jjVar = new jj(4, 0, znVar.getParentActivity(), znVar.f44762ea, false);
-                        znVar.f44779g2 = jjVar;
+                    if (znVar.f44813g2 == null) {
+                        jj jjVar = new jj(4, 0, znVar.getParentActivity(), znVar.f44796ea, false);
+                        znVar.f44813g2 = jjVar;
                         jjVar.a();
-                        znVar.f44779g2.setAlpha(0.0f);
-                        znVar.f44779g2.setVisibility(4);
-                        znVar.f44779g2.setText(LocaleController.getString(R.string.ScheduledOrNoSoundHint));
-                        znVar.X0.addView(znVar.f44779g2, w7.x5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
+                        znVar.f44813g2.setAlpha(0.0f);
+                        znVar.f44813g2.setVisibility(4);
+                        znVar.f44813g2.setText(LocaleController.getString(R.string.ScheduledOrNoSoundHint));
+                        znVar.X0.addView(znVar.f44813g2, w7.x5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
                     }
-                    znVar.f44779g2.f(sendButton, true);
-                    znVar.f44790h2 = true;
+                    znVar.f44813g2.f(sendButton, true);
+                    znVar.f44824h2 = true;
                     return;
                 }
                 return;
@@ -227,17 +227,17 @@ public final class qf implements Runnable {
             default:
                 if (znVar.getParentActivity() != null && znVar.fragmentView != null && znVar.Y != null && znVar.Fa == null && znVar.getMessagesController().getSendPaidMessagesStars(znVar.a()) <= 0 && (sendButton2 = znVar.Y.getSendButton()) != null && znVar.Y.getEditField() != null && znVar.Y.getEditField().getText().length() != 0) {
                     SharedConfig.increaseScheduledHintShowed();
-                    if (znVar.f44802i2 == null) {
-                        org.telegram.ui.Components.a50 a50Var = new org.telegram.ui.Components.a50(4, znVar.getParentActivity(), znVar.f44762ea, false);
-                        znVar.f44802i2 = a50Var;
+                    if (znVar.f44836i2 == null) {
+                        org.telegram.ui.Components.a50 a50Var = new org.telegram.ui.Components.a50(4, znVar.getParentActivity(), znVar.f44796ea, false);
+                        znVar.f44836i2 = a50Var;
                         a50Var.a();
-                        znVar.f44802i2.setAlpha(0.0f);
-                        znVar.f44802i2.setVisibility(4);
-                        znVar.f44802i2.setText(LocaleController.getString(R.string.ScheduledHint));
-                        znVar.X0.addView(znVar.f44802i2, w7.x5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
+                        znVar.f44836i2.setAlpha(0.0f);
+                        znVar.f44836i2.setVisibility(4);
+                        znVar.f44836i2.setText(LocaleController.getString(R.string.ScheduledHint));
+                        znVar.X0.addView(znVar.f44836i2, w7.x5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
                     }
-                    znVar.f44802i2.f(sendButton2, true);
-                    znVar.f44815j2 = true;
+                    znVar.f44836i2.f(sendButton2, true);
+                    znVar.f44849j2 = true;
                     return;
                 }
                 return;

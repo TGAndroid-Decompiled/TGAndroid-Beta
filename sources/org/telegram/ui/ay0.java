@@ -9,27 +9,27 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ay0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f36203a;
-    public final PrivacySettingsActivity f36204b;
+    public final int f36237a;
+    public final PrivacySettingsActivity f36238b;
 
     public ay0(PrivacySettingsActivity privacySettingsActivity, int i10) {
-        this.f36203a = i10;
-        this.f36204b = privacySettingsActivity;
+        this.f36237a = i10;
+        this.f36238b = privacySettingsActivity;
     }
 
     public void a() {
         int i10;
-        switch (this.f36203a) {
+        switch (this.f36237a) {
             case 2:
-                PrivacySettingsActivity privacySettingsActivity = this.f36204b;
-                by0 by0Var = privacySettingsActivity.f34225a;
-                if (by0Var != null && (i10 = privacySettingsActivity.f34235s) >= 0) {
+                PrivacySettingsActivity privacySettingsActivity = this.f36238b;
+                by0 by0Var = privacySettingsActivity.f34259a;
+                if (by0Var != null && (i10 = privacySettingsActivity.f34269s) >= 0) {
                     by0Var.m(i10);
                     return;
                 }
                 return;
             default:
-                PrivacySettingsActivity.U(this.f36204b);
+                PrivacySettingsActivity.U(this.f36238b);
                 return;
         }
     }
@@ -37,9 +37,9 @@ public final class ay0 implements org.telegram.ui.ActionBar.z1 {
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         String string;
-        switch (this.f36203a) {
+        switch (this.f36237a) {
             case 0:
-                PrivacySettingsActivity privacySettingsActivity = this.f36204b;
+                PrivacySettingsActivity privacySettingsActivity = this.f36238b;
                 try {
                     Dialog dialog = privacySettingsActivity.visibleDialog;
                     if (dialog != null) {
@@ -49,22 +49,22 @@ public final class ay0 implements org.telegram.ui.ActionBar.z1 {
                     FileLog.e(e7);
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(privacySettingsActivity.getParentActivity());
-                alertDialog$Builder.f20368a.R = LocaleController.getString("PrivacyPaymentsClearAlertTitle", R.string.PrivacyPaymentsClearAlertTitle);
-                alertDialog$Builder.f20368a.T = LocaleController.getString("PrivacyPaymentsClearAlert", R.string.PrivacyPaymentsClearAlert);
+                alertDialog$Builder.f20404a.R = LocaleController.getString("PrivacyPaymentsClearAlertTitle", R.string.PrivacyPaymentsClearAlertTitle);
+                alertDialog$Builder.f20404a.T = LocaleController.getString("PrivacyPaymentsClearAlert", R.string.PrivacyPaymentsClearAlert);
                 alertDialog$Builder.k(LocaleController.getString("ClearButton", R.string.ClearButton), new ay0(privacySettingsActivity, 1));
                 alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
-                privacySettingsActivity.showDialog(alertDialog$Builder.f20368a);
-                org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f20368a;
+                privacySettingsActivity.showDialog(alertDialog$Builder.f20404a);
+                org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f20404a;
                 privacySettingsActivity.showDialog(a2Var2);
                 TextView textView = (TextView) a2Var2.d(-1);
                 if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21026q7, false));
+                    textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21062q7, false));
                     return;
                 }
                 return;
             case 1:
                 TLRPC.TL_payments_clearSavedInfo tL_payments_clearSavedInfo = new TLRPC.TL_payments_clearSavedInfo();
-                PrivacySettingsActivity privacySettingsActivity2 = this.f36204b;
+                PrivacySettingsActivity privacySettingsActivity2 = this.f36238b;
                 boolean[] zArr = privacySettingsActivity2.Z;
                 tL_payments_clearSavedInfo.credentials = zArr[1];
                 tL_payments_clearSavedInfo.info = zArr[0];
@@ -86,10 +86,10 @@ public final class ay0 implements org.telegram.ui.ActionBar.z1 {
             case 2:
             case 3:
             default:
-                PrivacySettingsActivity privacySettingsActivity3 = this.f36204b;
+                PrivacySettingsActivity privacySettingsActivity3 = this.f36238b;
                 org.telegram.ui.ActionBar.a2 o9 = new AlertDialog$Builder(privacySettingsActivity3.getParentActivity(), 3, null).o();
-                privacySettingsActivity3.f34229c = o9;
-                o9.f20390g0 = false;
+                privacySettingsActivity3.f34263c = o9;
+                o9.f20426g0 = false;
                 if (privacySettingsActivity3.S != privacySettingsActivity3.T) {
                     UserConfig userConfig = privacySettingsActivity3.getUserConfig();
                     boolean z11 = privacySettingsActivity3.T;
@@ -101,11 +101,11 @@ public final class ay0 implements org.telegram.ui.ActionBar.z1 {
                 return;
             case 4:
                 vg0 vg0Var = new vg0();
-                PrivacySettingsActivity privacySettingsActivity4 = this.f36204b;
+                PrivacySettingsActivity privacySettingsActivity4 = this.f36238b;
                 zx0 zx0Var = new zx0(privacySettingsActivity4, 2);
                 vg0Var.F = 3;
-                vg0Var.f43011a = 12;
-                vg0Var.f43017d0 = zx0Var;
+                vg0Var.f43045a = 12;
+                vg0Var.f43051d0 = zx0Var;
                 privacySettingsActivity4.presentFragment(vg0Var);
                 return;
         }

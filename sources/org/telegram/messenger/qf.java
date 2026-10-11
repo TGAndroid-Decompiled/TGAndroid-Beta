@@ -3,35 +3,35 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class qf implements Runnable {
-    public final int f18960a = 0;
-    public final boolean f18961b;
-    public final int f18962c;
+    public final int f18996a = 0;
+    public final boolean f18997b;
+    public final int f18998c;
     public final int d;
-    public final long f18963e;
-    public final Object f18964f;
+    public final long f18999e;
+    public final Object f19000f;
     public final Object h;
 
     public qf(MessagesStorage messagesStorage, long j3, ArrayList arrayList, boolean z10, int i10, int i11) {
-        this.f18964f = messagesStorage;
-        this.f18963e = j3;
+        this.f19000f = messagesStorage;
+        this.f18999e = j3;
         this.h = arrayList;
-        this.f18961b = z10;
-        this.f18962c = i10;
+        this.f18997b = z10;
+        this.f18998c = i10;
         this.d = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18960a) {
+        switch (this.f18996a) {
             case 0:
-                int i10 = this.f18962c;
+                int i10 = this.f18998c;
                 int i11 = this.d;
-                ((MessagesStorage) this.f18964f).lambda$markMessagesAsDeleted$229(this.f18963e, (ArrayList) this.h, this.f18961b, i10, i11);
+                ((MessagesStorage) this.f19000f).lambda$markMessagesAsDeleted$229(this.f18999e, (ArrayList) this.h, this.f18997b, i10, i11);
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f18964f;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f19000f;
                 CharSequence charSequence = (CharSequence) this.h;
-                chatActivityEnterView.f23877f0 = null;
+                chatActivityEnterView.f23913f0 = null;
                 chatActivityEnterView.o0(true);
                 org.telegram.ui.Components.sf sfVar = chatActivityEnterView.E0;
                 if (sfVar != null) {
@@ -39,7 +39,7 @@ public final class qf implements Runnable {
                 }
                 org.telegram.ui.Components.qg qgVar = chatActivityEnterView.Z2;
                 if (qgVar != null) {
-                    qgVar.K(charSequence, this.f18961b, this.f18962c, this.d, this.f18963e);
+                    qgVar.K(charSequence, this.f18997b, this.f18998c, this.d, this.f18999e);
                     return;
                 }
                 return;
@@ -47,11 +47,11 @@ public final class qf implements Runnable {
     }
 
     public qf(ChatActivityEnterView chatActivityEnterView, CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        this.f18964f = chatActivityEnterView;
+        this.f19000f = chatActivityEnterView;
         this.h = charSequence;
-        this.f18961b = z10;
-        this.f18962c = i10;
+        this.f18997b = z10;
+        this.f18998c = i10;
         this.d = i11;
-        this.f18963e = j3;
+        this.f18999e = j3;
     }
 }

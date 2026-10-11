@@ -5,18 +5,18 @@ import java.io.EOFException;
 import java.io.InputStream;
 import k2.g0;
 public final class e {
-    public static final n1 f16406e = new n1(1);
-    public final nf.a f16407a;
-    public final h f16408b;
-    public final f f16409c;
+    public static final n1 f16442e = new n1(1);
+    public final nf.a f16443a;
+    public final h f16444b;
+    public final f f16445c;
     public final g0 d;
 
     public e(InputStream inputStream, long j3, int i10, h hVar, f fVar) {
         nf.a aVar = new nf.a(inputStream, j3, i10);
-        this.f16407a = aVar;
+        this.f16443a = aVar;
         this.d = new g0(aVar, 5);
-        this.f16408b = hVar;
-        this.f16409c = fVar;
+        this.f16444b = hVar;
+        this.f16445c = fVar;
     }
 
     public static String a(byte[] bArr, int i10, b bVar, boolean z10) {
@@ -25,7 +25,7 @@ public final class e {
             for (int i12 = 0; i12 < i10; i12++) {
                 if (bArr[i12] == 0 && (bVar != b.UTF_16 || i11 != 0 || i12 % 2 == 0)) {
                     i11++;
-                    int i13 = bVar.f16404b;
+                    int i13 = bVar.f16440b;
                     if (i11 == i13) {
                         i10 = (i12 + 1) - i13;
                         break;
@@ -36,7 +36,7 @@ public final class e {
             }
         }
         try {
-            String str = new String(bArr, 0, i10, bVar.f16403a.name());
+            String str = new String(bArr, 0, i10, bVar.f16439a.name());
             if (str.length() > 0 && str.charAt(0) == 65279) {
                 return str.substring(1);
             }
@@ -64,17 +64,17 @@ public final class e {
     }
 
     public final String c(int i10, b bVar) {
-        if (i10 <= this.f16407a.e()) {
-            d dVar = (d) f16406e.get();
-            byte[] bArr = dVar.f16405a;
+        if (i10 <= this.f16443a.e()) {
+            d dVar = (d) f16442e.get();
+            byte[] bArr = dVar.f16441a;
             if (i10 > bArr.length) {
                 int length = bArr.length;
                 do {
                     length *= 2;
                 } while (i10 > length);
-                dVar.f16405a = new byte[length];
+                dVar.f16441a = new byte[length];
             }
-            byte[] bArr2 = dVar.f16405a;
+            byte[] bArr2 = dVar.f16441a;
             int i11 = 0;
             while (true) {
                 g0 g0Var = this.d;
@@ -96,24 +96,24 @@ public final class e {
     }
 
     public final String d(int i10, b bVar) {
-        int min = Math.min(i10, (int) this.f16407a.e());
-        d dVar = (d) f16406e.get();
-        byte[] bArr = dVar.f16405a;
+        int min = Math.min(i10, (int) this.f16443a.e());
+        d dVar = (d) f16442e.get();
+        byte[] bArr = dVar.f16441a;
         if (min > bArr.length) {
             int length = bArr.length;
             do {
                 length *= 2;
             } while (min > length);
-            dVar.f16405a = new byte[length];
+            dVar.f16441a = new byte[length];
         }
-        byte[] bArr2 = dVar.f16405a;
+        byte[] bArr2 = dVar.f16441a;
         int i11 = 0;
         for (int i12 = 0; i12 < min; i12++) {
             byte U0 = this.d.U0();
             bArr2[i12] = U0;
             if (U0 == 0 && (bVar != b.UTF_16 || i11 != 0 || i12 % 2 == 0)) {
                 i11++;
-                int i13 = bVar.f16404b;
+                int i13 = bVar.f16440b;
                 if (i11 == i13) {
                     return a(bArr2, (i12 + 1) - i13, bVar, false);
                 }
@@ -126,7 +126,7 @@ public final class e {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("id3v2frame[pos=");
-        nf.a aVar = this.f16407a;
+        nf.a aVar = this.f16443a;
         sb2.append(aVar.f7925b);
         sb2.append(", ");
         sb2.append(aVar.e());

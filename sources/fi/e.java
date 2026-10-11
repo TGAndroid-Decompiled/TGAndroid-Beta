@@ -52,7 +52,7 @@ public final class e extends FrameLayout implements x5 {
         int i10 = h6.G6;
         d6 d6Var = this.f9957b;
         this.f9958c.setTextColor(h6.w0(i10, d6Var));
-        this.d.setTextColor(h6.w0(h6.f21189z6, d6Var));
+        this.d.setTextColor(h6.w0(h6.f21225z6, d6Var));
     }
 
     public int[] getColorKeys() {

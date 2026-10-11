@@ -2,17 +2,17 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class fv implements DialogInterface.OnShowListener {
-    public final mv f26497a;
+    public final mv f26576a;
 
     public fv(mv mvVar) {
-        this.f26497a = mvVar;
+        this.f26576a = mvVar;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        ia1 ia1Var = this.f26497a.f28865c;
-        if (ih0.f27325p0.P && ia1Var.f()) {
-            ia1Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.da(this, 1));
+        ha1 ha1Var = this.f26576a.f28943c;
+        if (hh0.f27101p0.P && ha1Var.f()) {
+            ha1Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.da(this, 1));
         }
     }
 }

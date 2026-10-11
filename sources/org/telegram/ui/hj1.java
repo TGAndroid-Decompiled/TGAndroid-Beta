@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import java.io.File;
 public final class hj1 {
-    public String f38461a;
-    public int f38462b;
-    public int f38463c;
+    public String f38495a;
+    public int f38496b;
+    public int f38497c;
     public File d;
-    public final File f38464e;
+    public final File f38498e;
 
     public hj1(File file, File file2, String str) {
-        this.f38461a = str;
+        this.f38495a = str;
         this.d = file;
-        this.f38464e = file2;
+        this.f38498e = file2;
     }
 }

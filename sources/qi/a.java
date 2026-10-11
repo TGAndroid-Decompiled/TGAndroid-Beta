@@ -2,33 +2,33 @@ package qi;
 
 import android.content.SharedPreferences;
 public final class a {
-    public final String f46802a;
-    public volatile boolean f46803b;
-    public volatile boolean f46804c;
+    public final String f46836a;
+    public volatile boolean f46837b;
+    public volatile boolean f46838c;
     public volatile boolean d;
 
     public a(String str) {
-        this.f46802a = str;
+        this.f46836a = str;
     }
 
     public final void a() {
-        if (this.f46803b) {
+        if (this.f46837b) {
             return;
         }
         synchronized (this) {
-            if (!this.f46803b) {
-                SharedPreferences sharedPreferences = d.f46810a;
-                this.f46804c = sharedPreferences.contains(this.f46802a);
-                this.d = sharedPreferences.getBoolean(this.f46802a, true);
-                this.f46803b = true;
+            if (!this.f46837b) {
+                SharedPreferences sharedPreferences = d.f46844a;
+                this.f46838c = sharedPreferences.contains(this.f46836a);
+                this.d = sharedPreferences.getBoolean(this.f46836a, true);
+                this.f46837b = true;
             }
         }
     }
 
     public final synchronized void b(boolean z10) {
         this.d = z10;
-        this.f46804c = true;
-        this.f46803b = true;
-        d.f46810a.edit().putBoolean(this.f46802a, z10).apply();
+        this.f46838c = true;
+        this.f46837b = true;
+        d.f46844a.edit().putBoolean(this.f46836a, z10).apply();
     }
 }

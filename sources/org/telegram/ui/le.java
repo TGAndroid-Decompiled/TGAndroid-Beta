@@ -17,12 +17,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class le implements Runnable {
-    public final int f39628a;
-    public final zn f39629b;
+    public final int f39662a;
+    public final zn f39663b;
 
     public le(zn znVar, int i10) {
-        this.f39628a = i10;
-        this.f39629b = znVar;
+        this.f39662a = i10;
+        this.f39663b = znVar;
     }
 
     @Override
@@ -32,18 +32,18 @@ public final class le implements Runnable {
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
         int i11;
-        int i12 = this.f39628a;
+        int i12 = this.f39662a;
         TLRPC.ChatTheme chatTheme = null;
         int i13 = 0;
-        zn znVar = this.f39629b;
+        zn znVar = this.f39663b;
         switch (i12) {
             case 0:
                 znVar.L5 = null;
                 if (znVar.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar.getParentActivity(), 0, znVar.f44762ea);
-                    boolean isChannel = ChatObject.isChannel(znVar.f44752e);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
-                    if (isChannel && !znVar.f44752e.megagroup) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(znVar.getParentActivity(), 0, znVar.f44796ea);
+                    boolean isChannel = ChatObject.isChannel(znVar.f44786e);
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20404a;
+                    if (isChannel && !znVar.f44786e.megagroup) {
                         a2Var.T = LocaleController.getString(R.string.JoinByPeekChannelText);
                         a2Var.R = LocaleController.getString(R.string.JoinByPeekChannelTitle);
                     } else {
@@ -63,8 +63,8 @@ public final class le implements Runnable {
                 zn.n0(znVar);
                 return;
             case 3:
-                znVar.ta(null, znVar.f44932s8);
-                znVar.f44932s8 = null;
+                znVar.ta(null, znVar.f44966s8);
+                znVar.f44966s8 = null;
                 return;
             case 4:
                 if (!org.telegram.ui.ActionBar.m2.hasSheets(znVar) && (okVar = znVar.Y) != null) {
@@ -75,7 +75,7 @@ public final class le implements Runnable {
                 return;
             case 5:
                 znVar.t9();
-                AndroidUtilities.forEachViews((RecyclerView) znVar.f44989x0, (Utilities.Callback<View>) new bf(znVar, 6));
+                AndroidUtilities.forEachViews((RecyclerView) znVar.f45023x0, (Utilities.Callback<View>) new bf(znVar, 6));
                 znVar.x7();
                 fk fkVar = znVar.X2;
                 if (fkVar != null) {
@@ -94,22 +94,22 @@ public final class le implements Runnable {
                 return;
             case 6:
                 af1 a02 = af1.a0(-znVar.T5, 0L);
-                a02.f36064y = znVar;
+                a02.f36098y = znVar;
                 znVar.presentFragment(a02);
                 return;
             case 7:
                 znVar.fc(true);
                 return;
             case 8:
-                znVar.f44814j1.d(true);
+                znVar.f44848j1.d(true);
                 return;
             case 9:
                 znVar.getNotificationCenter().onAnimationFinish(znVar.F9);
                 return;
             case 10:
-                int childCount = znVar.f44989x0.getChildCount();
+                int childCount = znVar.f45023x0.getChildCount();
                 while (i13 < childCount) {
-                    View childAt = znVar.f44989x0.getChildAt(i13);
+                    View childAt = znVar.f45023x0.getChildAt(i13);
                     if (childAt instanceof org.telegram.ui.Cells.u1) {
                         org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) childAt;
                         if (u1Var2.getMessageObject().type == 4) {
@@ -124,7 +124,7 @@ public final class le implements Runnable {
                 znVar.Bc(true);
                 return;
             case 12:
-                el elVar = znVar.f44724bb;
+                el elVar = znVar.f44758bb;
                 if (elVar != null) {
                     elVar.requestLayout();
                     return;
@@ -144,7 +144,7 @@ public final class le implements Runnable {
                 znVar.getNotificationCenter().runDelayedNotifications();
                 return;
             case 16:
-                TLRPC.UserFull userFull = znVar.f44707a8;
+                TLRPC.UserFull userFull = znVar.f44741a8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
@@ -172,7 +172,7 @@ public final class le implements Runnable {
                 znVar.Y.F0();
                 return;
             case 21:
-                AndroidUtilities.forEachViews((RecyclerView) znVar.f44989x0, (Utilities.Callback<View>) new ai.i(11));
+                AndroidUtilities.forEachViews((RecyclerView) znVar.f45023x0, (Utilities.Callback<View>) new ai.i(11));
                 mm mmVar = znVar.A0;
                 if (mmVar != null) {
                     mmVar.O(true);
@@ -180,44 +180,44 @@ public final class le implements Runnable {
                 }
                 return;
             case 22:
-                zn znVar2 = this.f39629b;
-                int i14 = znVar2.f44907qb;
+                zn znVar2 = this.f39663b;
+                int i14 = znVar2.f44941qb;
                 if (i14 != 0) {
-                    znVar2.F(i14, znVar2.f44921rb, znVar2.f44947tb, znVar2.f44972vb, znVar2.f44935sb, znVar2.f44960ub);
-                    znVar2.f44907qb = 0;
+                    znVar2.F(i14, znVar2.f44955rb, znVar2.f44981tb, znVar2.f45006vb, znVar2.f44969sb, znVar2.f44994ub);
+                    znVar2.f44941qb = 0;
                     return;
                 }
                 return;
             case 23:
-                if (!znVar.f44840l3 && znVar.f44989x0 != null && znVar.getParentActivity() != null && znVar.fragmentView != null) {
-                    org.telegram.ui.Components.gq gqVar = znVar.f44964v2;
+                if (!znVar.f44874l3 && znVar.f45023x0 != null && znVar.getParentActivity() != null && znVar.fragmentView != null) {
+                    org.telegram.ui.Components.gq gqVar = znVar.f44998v2;
                     if (gqVar == null || gqVar.getTag() == null) {
-                        if (znVar.f44964v2 == null) {
+                        if (znVar.f44998v2 == null) {
                             sm smVar = znVar.X0;
                             int indexOfChild = smVar.indexOfChild(znVar.S);
                             if (indexOfChild != -1) {
                                 i10 = 1;
-                                org.telegram.ui.Components.gq gqVar2 = new org.telegram.ui.Components.gq(znVar.getParentActivity(), znVar.f44762ea);
-                                znVar.f44964v2 = gqVar2;
+                                org.telegram.ui.Components.gq gqVar2 = new org.telegram.ui.Components.gq(znVar.getParentActivity(), znVar.f44796ea);
+                                znVar.f44998v2 = gqVar2;
                                 smVar.addView(gqVar2, indexOfChild + 1, w7.x5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
-                                znVar.f44964v2.setAlpha(0.0f);
-                                znVar.f44964v2.setVisibility(4);
+                                znVar.f44998v2.setAlpha(0.0f);
+                                znVar.f44998v2.setVisibility(4);
                             } else {
                                 return;
                             }
                         } else {
                             i10 = 1;
                         }
-                        int childCount2 = znVar.f44989x0.getChildCount();
+                        int childCount2 = znVar.f45023x0.getChildCount();
                         for (int i15 = 0; i15 < childCount2; i15++) {
-                            View childAt2 = znVar.f44989x0.getChildAt(i15);
+                            View childAt2 = znVar.f45023x0.getChildAt(i15);
                             if ((childAt2 instanceof org.telegram.ui.Cells.u1) && (messageObject = (u1Var = (org.telegram.ui.Cells.u1) childAt2).getMessageObject()) != null && messageObject.isOutOwner() && messageObject.isSent()) {
-                                org.telegram.ui.Components.gq gqVar3 = znVar.f44964v2;
-                                ImageView imageView = gqVar3.f26802c;
-                                org.telegram.ui.Components.rg rgVar = gqVar3.f26803e;
+                                org.telegram.ui.Components.gq gqVar3 = znVar.f44998v2;
+                                ImageView imageView = gqVar3.f26853c;
+                                org.telegram.ui.Components.rg rgVar = gqVar3.f26854e;
                                 if (rgVar != null) {
                                     AndroidUtilities.cancelRunOnUIThread(rgVar);
-                                    gqVar3.f26803e = null;
+                                    gqVar3.f26854e = null;
                                 }
                                 int[] iArr = new int[2];
                                 u1Var.getLocationInWindow(iArr);
@@ -231,7 +231,7 @@ public final class le implements Runnable {
                                     int dp = AndroidUtilities.dp(5.0f) + u1Var.getChecksX();
                                     int measuredWidth = view.getMeasuredWidth();
                                     float measuredHeight = C - gqVar3.getMeasuredHeight();
-                                    gqVar3.f26804f = measuredHeight;
+                                    gqVar3.f26855f = measuredHeight;
                                     gqVar3.setTranslationY(measuredHeight);
                                     int left = u1Var.getLeft() + dp;
                                     int dp2 = AndroidUtilities.dp(15.0f);
@@ -282,7 +282,7 @@ public final class le implements Runnable {
                                     gqVar3.d.setDuration(180L);
                                     gqVar3.d.start();
                                     while (i13 < 2) {
-                                        ViewPropertyAnimator interpolator = gqVar3.f26800a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.is.f27453i);
+                                        ViewPropertyAnimator interpolator = gqVar3.f26851a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.is.f27502i);
                                         if (i13 == 0) {
                                             i11 = 132;
                                         } else {
@@ -305,7 +305,7 @@ public final class le implements Runnable {
                 zn.G0(znVar);
                 return;
             case 25:
-                AndroidUtilities.forEachViews((RecyclerView) znVar.f44989x0, (Utilities.Callback<View>) new ai.i(10));
+                AndroidUtilities.forEachViews((RecyclerView) znVar.f45023x0, (Utilities.Callback<View>) new ai.i(10));
                 mm mmVar2 = znVar.A0;
                 if (mmVar2 != null) {
                     mmVar2.O(false);
@@ -317,15 +317,15 @@ public final class le implements Runnable {
                 return;
             case 27:
                 ok okVar2 = znVar.Y;
-                if (okVar2 != null && znVar.f44883ob != 5) {
+                if (okVar2 != null && znVar.f44917ob != 5) {
                     okVar2.F0();
                     return;
                 }
                 return;
             case 28:
-                org.telegram.ui.Components.gp gpVar = ((org.telegram.ui.Components.gp[]) znVar.f44700a0.f933b)[0];
+                org.telegram.ui.Components.gp gpVar = ((org.telegram.ui.Components.gp[]) znVar.f44734a0.f933b)[0];
                 org.telegram.ui.ActionBar.h5 h5Var = gpVar.d;
-                org.telegram.ui.ActionBar.h5 h5Var2 = gpVar.f26791e;
+                org.telegram.ui.ActionBar.h5 h5Var2 = gpVar.f26848e;
                 znVar.F1 = !znVar.F1;
                 h5Var.setPivotX(0.0f);
                 h5Var2.setPivotX(0.0f);

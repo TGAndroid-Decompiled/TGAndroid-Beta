@@ -14,19 +14,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class d00 extends FrameLayout {
     public static final int h = 0;
-    public final org.telegram.ui.ActionBar.d6 f25368a;
-    public final TextView f25369b;
-    public final View f25370c;
-    public final hk0 d;
-    public boolean f25371e;
-    public int f25372f;
+    public final org.telegram.ui.ActionBar.d6 f25564a;
+    public final TextView f25565b;
+    public final View f25566c;
+    public final gk0 d;
+    public boolean f25567e;
+    public int f25568f;
 
     public d00(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f25368a = d6Var;
+        this.f25564a = d6Var;
         View radialProgressView = new RadialProgressView(context, null);
         addView(radialProgressView, w7.x5.d(-2.0f, -2));
-        this.f25370c = radialProgressView;
+        this.f25566c = radialProgressView;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         linearLayout.setGravity(1);
@@ -40,9 +40,9 @@ public final class d00 extends FrameLayout {
         imageView.setVisibility(8);
         linearLayout.addView((View) imageView, w7.x5.t(150, 150, 17, 0, 0, 0, 20));
         TextView textView = new TextView(context);
-        this.f25369b = textView;
+        this.f25565b = textView;
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20770c7, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20806c7, d6Var));
         textView.setGravity(1);
         textView.setText(LocaleController.getString(R.string.NoResult));
         linearLayout.addView(textView, w7.x5.q(-2, -2, 17));
@@ -59,22 +59,22 @@ public final class d00 extends FrameLayout {
         } else {
             i13 = 8;
         }
-        hk0 hk0Var = this.d;
-        hk0Var.setVisibility(i13);
+        gk0 gk0Var = this.d;
+        gk0Var.setVisibility(i13);
         if (i10 != 0) {
-            hk0Var.f(i10, i11, i12, null);
-            hk0Var.d();
+            gk0Var.f(i10, i11, i12, null);
+            gk0Var.d();
         }
     }
 
     public final void b() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.f25369b, false, 0.9f, true);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f25370c, true, 1.0f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f25565b, false, 0.9f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f25566c, true, 1.0f, true);
     }
 
     public final void c() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.f25369b, true, 0.9f, true);
-        AndroidUtilities.updateViewVisibilityAnimated(this.f25370c, false, 1.0f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f25565b, true, 0.9f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(this.f25566c, false, 1.0f, true);
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class d00 extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int measuredHeight;
         int paddingTop;
-        this.f25371e = true;
+        this.f25567e = true;
         int i14 = i12 - i10;
         int i15 = i13 - i11;
         int childCount = getChildCount();
@@ -94,12 +94,12 @@ public final class d00 extends FrameLayout {
             View childAt = getChildAt(i16);
             if (childAt.getVisibility() != 8) {
                 int measuredWidth = (i14 - childAt.getMeasuredWidth()) / 2;
-                View view = this.f25370c;
+                View view = this.f25566c;
                 if (childAt == view && (view instanceof k10)) {
                     measuredHeight = (i15 - childAt.getMeasuredHeight()) / 2;
                     paddingTop = getPaddingTop();
                 } else {
-                    int i17 = this.f25372f;
+                    int i17 = this.f25568f;
                     if (i17 == 2) {
                         measuredHeight = (AndroidUtilities.dp(100.0f) - childAt.getMeasuredHeight()) / 2;
                         paddingTop = getPaddingTop();
@@ -115,25 +115,25 @@ public final class d00 extends FrameLayout {
                 childAt.layout(measuredWidth, i18, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + i18);
             }
         }
-        this.f25371e = false;
+        this.f25567e = false;
     }
 
     @Override
     public final void requestLayout() {
-        if (!this.f25371e) {
+        if (!this.f25567e) {
             super.requestLayout();
         }
     }
 
     public void setProgressBarColor(int i10) {
-        View view = this.f25370c;
+        View view = this.f25566c;
         if (view instanceof RadialProgressView) {
             ((RadialProgressView) view).setProgressColor(i10);
         }
     }
 
     public void setShowAtCenter(boolean z10) {
-        this.f25372f = z10 ? 1 : 0;
+        this.f25568f = z10 ? 1 : 0;
     }
 
     public void setShowAtTop(boolean z10) {
@@ -143,30 +143,30 @@ public final class d00 extends FrameLayout {
         } else {
             i10 = 0;
         }
-        this.f25372f = i10;
+        this.f25568f = i10;
     }
 
     public void setText(String str) {
-        this.f25369b.setText(str);
+        this.f25565b.setText(str);
     }
 
     public void setTextColor(int i10) {
-        this.f25369b.setTextColor(i10);
+        this.f25565b.setTextColor(i10);
     }
 
     public void setTextSize(int i10) {
-        this.f25369b.setTextSize(1, i10);
+        this.f25565b.setTextSize(1, i10);
     }
 
     public void setTopImage(int i10) {
-        TextView textView = this.f25369b;
+        TextView textView = this.f25565b;
         if (i10 == 0) {
             textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
             return;
         }
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
         if (mutate != null) {
-            mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20770c7, this.f25368a), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20806c7, this.f25564a), PorterDuff.Mode.MULTIPLY));
         }
         textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
         textView.setCompoundDrawablePadding(AndroidUtilities.dp(1.0f));

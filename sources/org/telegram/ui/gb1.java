@@ -2,17 +2,17 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
-public final class gb1 extends org.telegram.ui.Components.k61 {
-    public final StickersActivity f38005b;
+public final class gb1 extends org.telegram.ui.Components.j61 {
+    public final StickersActivity f38039b;
 
     public gb1(StickersActivity stickersActivity) {
-        this.f38005b = stickersActivity;
+        this.f38039b = stickersActivity;
     }
 
     @Override
     public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
         int i10;
-        StickersActivity stickersActivity = this.f38005b;
+        StickersActivity stickersActivity = this.f38039b;
         i10 = ((org.telegram.ui.ActionBar.m2) stickersActivity).currentAccount;
         MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 2, stickersActivity, false, false);
     }
@@ -20,7 +20,7 @@ public final class gb1 extends org.telegram.ui.Components.k61 {
     @Override
     public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
         int i10;
-        StickersActivity stickersActivity = this.f38005b;
+        StickersActivity stickersActivity = this.f38039b;
         i10 = ((org.telegram.ui.ActionBar.m2) stickersActivity).currentAccount;
         MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 0, stickersActivity, false, false);
     }

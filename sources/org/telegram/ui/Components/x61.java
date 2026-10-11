@@ -1,41 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
 import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class x61 extends URLSpan {
-    public final v11 f32838a;
-    public boolean f32839b;
+public final class x61 extends u61 {
+    public final int f32880e;
+    public final u11 f32881f;
 
-    public x61(String str, v11 v11Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f32838a = v11Var;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        if (this.f32839b && (view.getContext() instanceof LaunchActivity)) {
-            ((LaunchActivity) view.getContext()).X0 = true;
-        }
-        of.f.p(view.getContext(), Uri.parse(getURL()), true, true);
+    public x61(String str, int i10, u11 u11Var) {
+        super(str, (u11) null);
+        this.f32880e = i10;
+        this.f32881f = u11Var;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        v11 v11Var = this.f32838a;
-        if (v11Var != null) {
-            v11Var.a(textPaint);
-            if (textPaint.linkColor == color) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            textPaint.setUnderlineText(z10);
+        int i10 = this.f32880e;
+        if (i10 == 3) {
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.J6, false));
+        } else if (i10 == 2) {
+            textPaint.setColor(-1);
+        } else if (i10 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20899hc, false));
+        } else {
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.gc, false));
+        }
+        u11 u11Var = this.f32881f;
+        if (u11Var != null) {
+            u11Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
         }
     }
 }

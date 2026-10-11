@@ -19,7 +19,7 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.sc;
-import org.telegram.ui.Components.vd0;
+import org.telegram.ui.Components.ud0;
 import org.telegram.ui.Wallet.g4;
 import org.telegram.ui.Wallet.k2;
 import org.telegram.ui.aa;
@@ -30,49 +30,49 @@ import org.telegram.ui.m40;
 import org.telegram.ui.o40;
 import org.telegram.ui.q30;
 public final class g implements View.OnClickListener {
-    public final int f19470a;
-    public final Object f19471b;
-    public final Object f19472c;
+    public final int f19506a;
+    public final Object f19507b;
+    public final Object f19508c;
     public final Object d;
-    public final Object f19473e;
-    public final Object f19474f;
+    public final Object f19509e;
+    public final Object f19510f;
     public final Object h;
-    public final Object f19475n;
+    public final Object f19511n;
 
     public g(ci.d dVar, g4 g4Var, Utilities.Callback3 callback3, String[] strArr, boolean[] zArr, k2[] k2VarArr, d6 d6Var) {
-        this.f19470a = 2;
-        this.f19471b = dVar;
-        this.f19472c = g4Var;
+        this.f19506a = 2;
+        this.f19507b = dVar;
+        this.f19508c = g4Var;
         this.d = callback3;
-        this.f19473e = strArr;
+        this.f19509e = strArr;
         this.h = zArr;
-        this.f19475n = k2VarArr;
-        this.f19474f = d6Var;
+        this.f19511n = k2VarArr;
+        this.f19510f = d6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f19470a;
-        Object obj = this.f19474f;
-        Object obj2 = this.f19475n;
+        int i10 = this.f19506a;
+        Object obj = this.f19510f;
+        Object obj2 = this.f19511n;
         Object obj3 = this.h;
-        Object obj4 = this.f19473e;
+        Object obj4 = this.f19509e;
         Object obj5 = this.d;
-        Object obj6 = this.f19472c;
-        Object obj7 = this.f19471b;
+        Object obj6 = this.f19508c;
+        Object obj7 = this.f19507b;
         switch (i10) {
             case 0:
                 ((VideoAds) obj7).lambda$show$17((sc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (d6) obj, (VideoAds.AdLayout) obj3, (e) obj2, view);
                 return;
             case 1:
                 g60 g60Var = (g60) obj7;
-                vd0 vd0Var = (vd0) obj6;
+                ud0 ud0Var = (ud0) obj6;
                 l40 l40Var = (l40) obj5;
                 m40 m40Var = (m40) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
                 AccountInstance accountInstance = (AccountInstance) obj3;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj2;
-                q30 q30Var = g60Var.f37887e1;
+                q30 q30Var = g60Var.f37921e1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 g60Var.X0 = ofFloat;
                 ofFloat.setDuration(600L);
@@ -85,19 +85,19 @@ public final class g implements View.OnClickListener {
                     q30Var.b(LocaleController.getString(R.string.VoipGroupVoiceChat), true);
                 }
                 Calendar calendar = Calendar.getInstance();
-                boolean f7 = g5.f(null, null, 0L, 604800L, 3, vd0Var, l40Var, m40Var);
-                calendar.setTimeInMillis((vd0Var.getValue() * 86400000) + System.currentTimeMillis());
+                boolean f7 = g5.f(null, null, 0L, 604800L, 3, ud0Var, l40Var, m40Var);
+                calendar.setTimeInMillis((ud0Var.getValue() * 86400000) + System.currentTimeMillis());
                 calendar.set(11, l40Var.getValue());
                 calendar.set(12, m40Var.getValue());
                 if (f7) {
                     calendar.set(13, 0);
                 }
-                g60Var.f37912k2 = (int) (calendar.getTimeInMillis() / 1000);
+                g60Var.f37946k2 = (int) (calendar.getTimeInMillis() / 1000);
                 g60Var.M1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = g60Var.f37912k2;
+                creategroupcall.schedule_date = g60Var.f37946k2;
                 creategroupcall.flags |= 2;
                 accountInstance.getConnectionsManager().sendRequest(creategroupcall, new aa(g60Var, chat, inputPeer, 11), 2);
                 return;
@@ -123,13 +123,13 @@ public final class g implements View.OnClickListener {
     }
 
     public g(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f19470a = i10;
-        this.f19471b = obj;
-        this.f19472c = obj2;
+        this.f19506a = i10;
+        this.f19507b = obj;
+        this.f19508c = obj2;
         this.d = obj3;
-        this.f19473e = obj4;
-        this.f19474f = obj5;
+        this.f19509e = obj4;
+        this.f19510f = obj5;
         this.h = obj6;
-        this.f19475n = obj7;
+        this.f19511n = obj7;
     }
 }

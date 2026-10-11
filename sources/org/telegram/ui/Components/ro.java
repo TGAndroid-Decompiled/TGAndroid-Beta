@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class ro implements p8 {
-    public final org.telegram.ui.ActionBar.m1[] f30487a;
-    public final uo f30488b;
+    public final org.telegram.ui.ActionBar.m1[] f30599a;
+    public final uo f30600b;
 
     public ro(uo uoVar, org.telegram.ui.ActionBar.m1[] m1VarArr) {
-        this.f30488b = uoVar;
-        this.f30487a = m1VarArr;
+        this.f30600b = uoVar;
+        this.f30599a = m1VarArr;
     }
 
     @Override
     public final void Q0(int i10, int i11) {
         int i12;
-        org.telegram.ui.zn znVar = this.f30488b.G;
+        org.telegram.ui.zn znVar = this.f30600b.G;
         if (znVar != null) {
             znVar.getMessagesController().setDialogHistoryTTL(znVar.a(), i10);
             TLRPC.ChatFull chatFull = znVar.Z7;
-            TLRPC.UserFull userFull = znVar.f44707a8;
+            TLRPC.UserFull userFull = znVar.f44741a8;
             if (userFull != null || chatFull != null) {
                 znVar.T7();
                 UndoView undoView = znVar.y3;
@@ -37,7 +37,7 @@ public final class ro implements p8 {
 
     @Override
     public final void dismiss() {
-        org.telegram.ui.ActionBar.m1 m1Var = this.f30487a[0];
+        org.telegram.ui.ActionBar.m1 m1Var = this.f30599a[0];
         if (m1Var != null) {
             m1Var.dismiss();
         }

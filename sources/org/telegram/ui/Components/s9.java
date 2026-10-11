@@ -3,32 +3,32 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import org.telegram.messenger.Utilities;
 public final class s9 implements w9 {
-    public final x9 f30672a;
-    public final w7.i0[] f30673b;
-    public final Runnable[] f30674c;
-    public final b70[] d;
+    public final x9 f30798a;
+    public final w7.i0[] f30799b;
+    public final Runnable[] f30800c;
+    public final a70[] d;
 
-    public s9(x9 x9Var, w7.i0[] i0VarArr, Runnable[] runnableArr, b70[] b70VarArr) {
-        this.f30672a = x9Var;
-        this.f30673b = i0VarArr;
-        this.f30674c = runnableArr;
-        this.d = b70VarArr;
+    public s9(x9 x9Var, w7.i0[] i0VarArr, Runnable[] runnableArr, a70[] a70VarArr) {
+        this.f30798a = x9Var;
+        this.f30799b = i0VarArr;
+        this.f30800c = runnableArr;
+        this.d = a70VarArr;
     }
 
     @Override
     public final void dispose() {
-        x9 x9Var = this.f30672a;
-        w7.i0[] i0VarArr = this.f30673b;
-        Runnable[] runnableArr = this.f30674c;
-        b70[] b70VarArr = this.d;
+        x9 x9Var = this.f30798a;
+        w7.i0[] i0VarArr = this.f30799b;
+        Runnable[] runnableArr = this.f30800c;
+        a70[] a70VarArr = this.d;
         i0VarArr[0] = null;
-        if (x9Var.f32854e.contains(runnableArr)) {
+        if (x9Var.f32909e.contains(runnableArr)) {
             Utilities.globalQueue.cancelRunnables(runnableArr);
-            x9Var.f32854e.remove(runnableArr);
+            x9Var.f32909e.remove(runnableArr);
         }
-        for (b70 b70Var : b70VarArr) {
-            Bitmap bitmap = (Bitmap) x9Var.f32852b.remove(b70Var);
-            x9Var.f32853c.remove(b70Var);
+        for (a70 a70Var : a70VarArr) {
+            Bitmap bitmap = (Bitmap) x9Var.f32907b.remove(a70Var);
+            x9Var.f32908c.remove(a70Var);
             if (bitmap != null) {
                 bitmap.recycle();
             }

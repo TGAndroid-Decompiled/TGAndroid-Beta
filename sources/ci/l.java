@@ -51,11 +51,11 @@ public final class l extends Drawable {
         kVar.n(0.3f, 250L, isVar);
         kVar.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar.w(AndroidUtilities.dpf2(12.0f));
-        kVar.f30019b = 17;
+        kVar.f30134b = 17;
         kVar2.n(0.3f, 250L, isVar);
         kVar2.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar2.w(AndroidUtilities.dpf2(12.0f));
-        kVar2.f30019b = 17;
+        kVar2.f30134b = 17;
         e(-1, -15033089, -1);
     }
 
@@ -120,7 +120,7 @@ public final class l extends Drawable {
                 porterDuffXfermode = null;
             }
             this.f5352a.setXfermode(porterDuffXfermode);
-            TextPaint textPaint = this.f5354c.f30017a;
+            TextPaint textPaint = this.f5354c.f30132a;
             if (z10) {
                 porterDuffXfermode2 = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
             }

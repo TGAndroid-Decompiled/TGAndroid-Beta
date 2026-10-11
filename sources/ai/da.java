@@ -13,7 +13,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.sm0;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.LaunchActivity;
 public class da {
     public int A;
@@ -100,7 +100,7 @@ public class da {
                     if (bdVar == null) {
                         this.H = new bd(view, 1.5f, 5.0f);
                     } else {
-                        bdVar.f24907a = view;
+                        bdVar.f24975a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -124,7 +124,7 @@ public class da {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
                 bd bdVar2 = this.H;
                 if (bdVar2 != null) {
-                    bdVar2.f24907a = view;
+                    bdVar2.f24975a = view;
                     bdVar2.c(false);
                 }
                 ca caVar3 = this.Q;
@@ -137,7 +137,7 @@ public class da {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             bd bdVar3 = this.H;
             if (bdVar3 != null) {
-                bdVar3.f24907a = view;
+                bdVar3.f24975a = view;
                 bdVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f858x)) {
@@ -200,7 +200,7 @@ public class da {
             R.getOrCreateStoryViewer().getClass();
             ViewParent parent = this.R.getParent();
             if (parent instanceof RecyclerView) {
-                v9Var = v9.a((sm0) parent);
+                v9Var = v9.a((rm0) parent);
             } else {
                 v9Var = null;
             }

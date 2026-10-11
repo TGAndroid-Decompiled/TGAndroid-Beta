@@ -5,19 +5,19 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 public final class i01 implements ci.cc {
-    public final ProfileActivity f38549a;
+    public final ProfileActivity f38583a;
 
     public i01(ProfileActivity profileActivity) {
-        this.f38549a = profileActivity;
+        this.f38583a = profileActivity;
     }
 
     @Override
     public final ci.gc a(long j3) {
         float f7;
-        ProfileActivity profileActivity = this.f38549a;
+        ProfileActivity profileActivity = this.f38583a;
         if (j3 == profileActivity.a()) {
-            profileActivity.f34270e0.setRoundRadiusForExpand((int) AndroidUtilities.lerp(profileActivity.c4(), 0.0f, profileActivity.f34314k2));
-            nz0 nz0Var = profileActivity.f34270e0;
+            profileActivity.f34304e0.setRoundRadiusForExpand((int) AndroidUtilities.lerp(profileActivity.c4(), 0.0f, profileActivity.f34348k2));
+            nz0 nz0Var = profileActivity.f34304e0;
             boolean isForum = ChatObject.isForum(profileActivity.E2);
             if (nz0Var != null && nz0Var.getRootView() != null) {
                 float scaleX = ((View) nz0Var.getParent()).getScaleX();
@@ -46,11 +46,11 @@ public final class i01 implements ci.cc {
 
     @Override
     public final void b(long j3, ai.j jVar) {
-        ProfileActivity profileActivity = this.f38549a;
-        profileActivity.f34270e0.setHasStories(profileActivity.j4());
-        if (j3 == profileActivity.a() && profileActivity.f34340o2 && profileActivity.f34314k2 > 0.0f) {
-            profileActivity.f34254c.h1(0, profileActivity.T3() - profileActivity.f34239a.getPaddingTop());
-            profileActivity.f34239a.post(new wb0(profileActivity, 14));
+        ProfileActivity profileActivity = this.f38583a;
+        profileActivity.f34304e0.setHasStories(profileActivity.j4());
+        if (j3 == profileActivity.a() && profileActivity.f34374o2 && profileActivity.f34348k2 > 0.0f) {
+            profileActivity.f34288c.h1(0, profileActivity.T3() - profileActivity.f34273a.getPaddingTop());
+            profileActivity.f34273a.post(new wb0(profileActivity, 14));
         }
         AndroidUtilities.runOnUIThread(jVar, 30L);
     }

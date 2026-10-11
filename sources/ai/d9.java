@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.i40;
-import org.telegram.ui.Components.qz0;
+import org.telegram.ui.Components.pz0;
 public final class d9 implements Runnable {
     public final int f834a;
     public final int f835b;
@@ -57,9 +57,9 @@ public final class d9 implements Runnable {
         this.f836c = arrayList;
     }
 
-    public d9(qz0 qz0Var, int i10, String str, ArrayList arrayList) {
+    public d9(pz0 pz0Var, int i10, String str, ArrayList arrayList) {
         this.f834a = 29;
-        this.d = qz0Var;
+        this.d = pz0Var;
         this.f835b = i10;
         this.f837e = str;
         this.f836c = arrayList;

@@ -25,36 +25,36 @@ public final class d5 extends View {
     public SweepGradient G;
     public float H;
     public float I;
-    public final Paint f34811a;
-    public final Paint f34812b;
-    public final Paint f34813c;
+    public final Paint f34845a;
+    public final Paint f34846b;
+    public final Paint f34847c;
     public final Paint d;
-    public final Paint f34814e;
-    public final Paint f34815f;
+    public final Paint f34848e;
+    public final Paint f34849f;
     public final Paint h;
-    public final Paint f34816n;
-    public final Paint f34817r;
-    public final RectF f34818s;
+    public final Paint f34850n;
+    public final Paint f34851r;
+    public final RectF f34852s;
     public final RectF v;
-    public final Matrix f34819w;
-    public Drawable f34820x;
-    public final Path f34821y;
+    public final Matrix f34853w;
+    public Drawable f34854x;
+    public final Path f34855y;
 
     public d5(Context context, int i10, int i11) {
         super(context);
-        this.f34811a = new Paint(1);
-        this.f34812b = new Paint(1);
-        this.f34813c = new Paint(3);
+        this.f34845a = new Paint(1);
+        this.f34846b = new Paint(1);
+        this.f34847c = new Paint(3);
         this.d = new Paint(3);
-        this.f34814e = new Paint(1);
-        this.f34815f = new Paint(1);
+        this.f34848e = new Paint(1);
+        this.f34849f = new Paint(1);
         this.h = new Paint(1);
-        this.f34816n = new Paint(1);
-        this.f34817r = new Paint(1);
-        this.f34818s = new RectF();
+        this.f34850n = new Paint(1);
+        this.f34851r = new Paint(1);
+        this.f34852s = new RectF();
         this.v = new RectF();
-        this.f34819w = new Matrix();
-        this.f34821y = new Path();
+        this.f34853w = new Matrix();
+        this.f34855y = new Path();
         Random random = new Random(3622097293706218323L);
         dc.g[] gVarArr = new dc.g[16];
         for (int i12 = 0; i12 < 16; i12++) {
@@ -76,27 +76,27 @@ public final class d5 extends View {
             gVarArr[i12] = obj;
         }
         this.E = gVarArr;
-        Paint paint = this.f34813c;
+        Paint paint = this.f34847c;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         paint.setColorFilter(new PorterDuffColorFilter(-16748084, mode));
         this.d.setColorFilter(new PorterDuffColorFilter(Color.argb(15, 255, 255, 255), mode));
-        this.f34816n.setColor(-9208960);
-        this.f34817r.setColor(-1);
+        this.f34850n.setColor(-9208960);
+        this.f34851r.setColor(-1);
         this.h.setColor(687865856);
         Paint paint2 = this.h;
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         this.h.setStrokeWidth(1.0f);
-        this.f34811a.setColor(603979776);
-        this.f34811a.setStyle(style);
-        this.f34811a.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.f34811a.setMaskFilter(new BlurMaskFilter(AndroidUtilities.dp(1.0f), BlurMaskFilter.Blur.NORMAL));
+        this.f34845a.setColor(603979776);
+        this.f34845a.setStyle(style);
+        this.f34845a.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        this.f34845a.setMaskFilter(new BlurMaskFilter(AndroidUtilities.dp(1.0f), BlurMaskFilter.Blur.NORMAL));
         float f10 = 336.0f - i11;
         this.v.set(f10 - 50.0f, 73.0f, f10, 111.0f);
         Drawable drawable = getContext().getDrawable(i10);
-        this.f34820x = drawable;
+        this.f34854x = drawable;
         if (drawable != null) {
-            this.f34820x = drawable.mutate();
+            this.f34854x = drawable.mutate();
         }
         invalidate();
     }
@@ -116,15 +116,15 @@ public final class d5 extends View {
     }
 
     public final void a(Canvas canvas, int i10) {
-        Drawable drawable = this.f34820x;
+        Drawable drawable = this.f34854x;
         if (drawable == null) {
             return;
         }
         drawable.setTint(i10);
-        Drawable drawable2 = this.f34820x;
+        Drawable drawable2 = this.f34854x;
         RectF rectF = this.v;
         drawable2.setBounds((int) (rectF.left + 13.0f), (int) (rectF.top + 7.0f), (int) (rectF.right - 13.0f), (int) (rectF.bottom - 7.0f));
-        this.f34820x.draw(canvas);
+        this.f34854x.draw(canvas);
     }
 
     @Override
@@ -134,7 +134,7 @@ public final class d5 extends View {
         dc.g[] gVarArr;
         int i10;
         super.onDraw(canvas);
-        RectF rectF = this.f34818s;
+        RectF rectF = this.f34852s;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         Path path = new Path();
         w7.g6.a(path, getWidth(), getHeight());
@@ -145,7 +145,7 @@ public final class d5 extends View {
         int save2 = canvas.save();
         float f10 = 1.0f;
         canvas.translate(0.0f, -AndroidUtilities.dp(1.0f));
-        canvas.drawRoundRect(rectF2, Math.max(0.0f, ((getWidth() * 0.15f) / 2.0f) - AndroidUtilities.dp(0.5f)), Math.max(0.0f, ((getHeight() * 0.15f) / 1.212122f) - AndroidUtilities.dp(0.5f)), this.f34811a);
+        canvas.drawRoundRect(rectF2, Math.max(0.0f, ((getWidth() * 0.15f) / 2.0f) - AndroidUtilities.dp(0.5f)), Math.max(0.0f, ((getHeight() * 0.15f) / 1.212122f) - AndroidUtilities.dp(0.5f)), this.f34845a);
         canvas.restoreToCount(save2);
         canvas.restoreToCount(save);
         int save3 = canvas.save();
@@ -165,7 +165,7 @@ public final class d5 extends View {
         int length = gVarArr2.length;
         int i11 = 0;
         while (true) {
-            paint = this.f34812b;
+            paint = this.f34846b;
             if (i11 >= length) {
                 break;
             }
@@ -197,7 +197,7 @@ public final class d5 extends View {
                 float f27 = gVar.f8291b;
                 float f28 = gVar.f8292c;
                 float f29 = f28 * 0.15f;
-                Path path2 = this.f34821y;
+                Path path2 = this.f34855y;
                 path2.rewind();
                 path2.moveTo(f26 - f28, f27);
                 float f30 = f26 - f29;
@@ -235,7 +235,7 @@ public final class d5 extends View {
             canvas.translate(0.0f, AndroidUtilities.dp(1.0f));
             canvas.drawBitmap(this.F, (Rect) null, rectF, this.d);
             canvas.restoreToCount(save5);
-            canvas.drawBitmap(this.F, (Rect) null, rectF, this.f34813c);
+            canvas.drawBitmap(this.F, (Rect) null, rectF, this.f34847c);
         }
         float width = getWidth() / 336.0f;
         float height = getHeight() / f34;
@@ -246,8 +246,8 @@ public final class d5 extends View {
         RectF rectF3 = this.v;
         path3.addRoundRect(rectF3, 9.0f, 9.0f, direction);
         canvas.clipPath(path3);
-        canvas.drawRect(rectF3, this.f34814e);
-        canvas.drawRect(rectF3, this.f34815f);
+        canvas.drawRect(rectF3, this.f34848e);
+        canvas.drawRect(rectF3, this.f34849f);
         canvas.restoreToCount(save6);
         int save7 = canvas.save();
         canvas.scale(width, height);
@@ -258,11 +258,11 @@ public final class d5 extends View {
         int save8 = canvas.save();
         canvas.scale(width, height);
         canvas.translate(0.0f, 1.0f);
-        a(canvas, this.f34817r.getColor());
+        a(canvas, this.f34851r.getColor());
         canvas.restoreToCount(save8);
         int save9 = canvas.save();
         canvas.scale(width, height);
-        a(canvas, this.f34816n.getColor());
+        a(canvas, this.f34850n.getColor());
         canvas.restoreToCount(save9);
     }
 
@@ -270,13 +270,13 @@ public final class d5 extends View {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         RectF rectF = this.v;
-        this.f34814e.setShader(new LinearGradient(rectF.left + 5.2f, rectF.top + 3.4f, rectF.right - 4.6f, rectF.bottom - 4.0f, new int[]{-520225025, -524567104}, new float[]{0.0799f, 0.922f}, Shader.TileMode.CLAMP));
+        this.f34848e.setShader(new LinearGradient(rectF.left + 5.2f, rectF.top + 3.4f, rectF.right - 4.6f, rectF.bottom - 4.0f, new int[]{-520225025, -524567104}, new float[]{0.0799f, 0.922f}, Shader.TileMode.CLAMP));
         float centerX = rectF.centerX();
         float centerY = rectF.centerY();
         this.G = new SweepGradient(centerX, centerY, new int[]{16777215, 16777215, 1560281087, 16777215, 0, 520093696, 0, 0}, new float[]{0.0f, 0.06f, 0.25f, 0.44f, 0.56f, 0.75f, 0.94f, 1.0f});
-        Matrix matrix = this.f34819w;
+        Matrix matrix = this.f34853w;
         matrix.setRotate(90.0f, centerX, centerY);
         this.G.setLocalMatrix(matrix);
-        this.f34815f.setShader(this.G);
+        this.f34849f.setShader(this.G);
     }
 }

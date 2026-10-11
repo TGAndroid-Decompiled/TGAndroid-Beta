@@ -14,29 +14,29 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class jj1 extends org.telegram.ui.Components.rm0 {
+public final class jj1 extends org.telegram.ui.Components.qm0 {
     public final WallpapersListActivity E;
-    public final Context f39070c;
+    public final Context f39104c;
     public final ArrayList d = new ArrayList();
-    public final HashMap f39071e = new HashMap();
-    public boolean f39072f = true;
+    public final HashMap f39105e = new HashMap();
+    public boolean f39106f = true;
     public String h;
-    public String f39073n;
-    public String f39074r;
-    public int f39075s;
+    public String f39107n;
+    public String f39108r;
+    public int f39109s;
     public int v;
-    public boolean f39076w;
-    public String f39077x;
-    public org.telegram.ui.Wallet.i f39078y;
+    public boolean f39110w;
+    public String f39111x;
+    public org.telegram.ui.Wallet.i f39112y;
 
     public jj1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.E = wallpapersListActivity;
-        this.f39070c = context;
+        this.f39104c = context;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47752f != 2) {
+        if (d1Var.f47786f != 2) {
             return true;
         }
         return false;
@@ -44,27 +44,27 @@ public final class jj1 extends org.telegram.ui.Components.rm0 {
 
     public final void E(String str, boolean z10) {
         int i10;
-        if (str != null && this.f39073n != null) {
-            str = a1.g.r(this.f39073n, " ", str, new StringBuilder("#color"));
+        if (str != null && this.f39107n != null) {
+            str = a1.g.r(this.f39107n, " ", str, new StringBuilder("#color"));
         }
-        org.telegram.ui.Wallet.i iVar = this.f39078y;
+        org.telegram.ui.Wallet.i iVar = this.f39112y;
         if (iVar != null) {
             AndroidUtilities.cancelRunOnUIThread(iVar);
-            this.f39078y = null;
+            this.f39112y = null;
         }
         boolean isEmpty = TextUtils.isEmpty(str);
-        HashMap hashMap = this.f39071e;
+        HashMap hashMap = this.f39105e;
         ArrayList arrayList = this.d;
         WallpapersListActivity wallpapersListActivity = this.E;
         if (isEmpty) {
             arrayList.clear();
             hashMap.clear();
-            this.f39072f = true;
+            this.f39106f = true;
             this.h = null;
-            if (this.f39075s != 0) {
+            if (this.f39109s != 0) {
                 i10 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).currentAccount;
-                ConnectionsManager.getInstance(i10).cancelRequest(this.f39075s, true);
-                this.f39075s = 0;
+                ConnectionsManager.getInstance(i10).cancelRequest(this.f39109s, true);
+                this.f39109s = 0;
             }
             wallpapersListActivity.N.c();
         } else {
@@ -72,13 +72,13 @@ public final class jj1 extends org.telegram.ui.Components.rm0 {
             if (z10) {
                 arrayList.clear();
                 hashMap.clear();
-                this.f39072f = true;
+                this.f39106f = true;
                 F(str, "", true);
                 this.h = str;
                 l();
             } else {
                 org.telegram.ui.Wallet.i iVar2 = new org.telegram.ui.Wallet.i(20, this, str);
-                this.f39078y = iVar2;
+                this.f39112y = iVar2;
                 AndroidUtilities.runOnUIThread(iVar2, 500L);
             }
         }
@@ -95,21 +95,21 @@ public final class jj1 extends org.telegram.ui.Components.rm0 {
         int i16;
         int i17;
         int i18;
-        int i19 = this.f39075s;
+        int i19 = this.f39109s;
         WallpapersListActivity wallpapersListActivity = this.E;
         if (i19 != 0) {
             i18 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).currentAccount;
-            ConnectionsManager.getInstance(i18).cancelRequest(this.f39075s, true);
-            this.f39075s = 0;
+            ConnectionsManager.getInstance(i18).cancelRequest(this.f39109s, true);
+            this.f39109s = 0;
         }
-        this.f39077x = str;
+        this.f39111x = str;
         i10 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).currentAccount;
         MessagesController messagesController = MessagesController.getInstance(i10);
         i11 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).currentAccount;
         TLObject userOrChat = messagesController.getUserOrChat(MessagesController.getInstance(i11).imageSearchBot);
         if (!(userOrChat instanceof TLRPC.User)) {
-            if (z10 && !this.f39076w) {
-                this.f39076w = true;
+            if (z10 && !this.f39110w) {
+                this.f39110w = true;
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 i16 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).currentAccount;
                 tL_contacts_resolveUsername.username = MessagesController.getInstance(i16).imageSearchBot;
@@ -128,10 +128,10 @@ public final class jj1 extends org.telegram.ui.Components.rm0 {
         int i20 = this.v + 1;
         this.v = i20;
         i13 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).currentAccount;
-        this.f39075s = ConnectionsManager.getInstance(i13).sendRequest(tL_messages_getInlineBotResults, new ai.j8(this, i20, 7));
+        this.f39109s = ConnectionsManager.getInstance(i13).sendRequest(tL_messages_getInlineBotResults, new ai.j8(this, i20, 7));
         i14 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).currentAccount;
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i14);
-        int i21 = this.f39075s;
+        int i21 = this.f39109s;
         i15 = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).classGuid;
         connectionsManager.bindRequestToGuid(i21, i15);
     }
@@ -159,8 +159,8 @@ public final class jj1 extends org.telegram.ui.Components.rm0 {
     public final void v(s4.d1 d1Var, int i10) {
         boolean z10;
         Object obj;
-        int i11 = d1Var.f47752f;
-        View view = d1Var.f47748a;
+        int i11 = d1Var.f47786f;
+        View view = d1Var.f47782a;
         if (i11 != 0) {
             if (i11 == 2) {
                 ((org.telegram.ui.Cells.v3) view).setText(LocaleController.getString(R.string.SearchByColor));
@@ -199,7 +199,7 @@ public final class jj1 extends org.telegram.ui.Components.rm0 {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         FrameLayout mjVar;
         FrameLayout frameLayout;
-        Context context = this.f39070c;
+        Context context = this.f39104c;
         if (i10 != 0) {
             mjVar = null;
             if (i10 != 1) {

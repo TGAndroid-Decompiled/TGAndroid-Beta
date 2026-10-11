@@ -23,13 +23,13 @@ import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.db;
-import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.nd;
+import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.sm0;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.LaunchActivity;
 import w7.x5;
@@ -42,7 +42,7 @@ public final class l0 extends db {
     public final LinearLayout f11304a0;
     public final ci.d f11305b0;
     public final ci.d f11306c0;
-    public e71 f11307d0;
+    public d71 f11307d0;
     public boolean f11308e0;
     public Boolean f11309f0;
 
@@ -74,10 +74,10 @@ public final class l0 extends db {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(UserObject.getUserName(user));
         linearLayout.addView(textView, x5.r(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f25521e.setTitle(UserObject.getUserName(user));
+        this.f25734e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(h6.f21171y6));
+        textView2.setTextColor(getThemedColor(h6.f21207y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, x5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -90,12 +90,12 @@ public final class l0 extends db {
             textView3.setGravity(17);
             linearLayout.addView(textView3, x5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = h6.f20730a7;
+        int i10 = h6.f20766a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
-        sm0 sm0Var = this.d;
+        rm0 rm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        sm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
+        rm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
         this.d.p1();
         this.d.setOnItemClickListener(new ai.g(this, 11));
         FrameLayout frameLayout = new FrameLayout(activity);
@@ -122,14 +122,14 @@ public final class l0 extends db {
         e7.rightMargin += i13;
         this.containerView.addView(frameLayout, e7);
         s4.j jVar = new s4.j();
-        jVar.f47788m = false;
+        jVar.f47822m = false;
         jVar.C = false;
         jVar.o(is.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        e71 e71Var = this.f11307d0;
-        if (e71Var != null) {
-            e71Var.N(false);
+        d71 d71Var = this.f11307d0;
+        if (d71Var != null) {
+            d71Var.N(false);
         }
     }
 
@@ -182,7 +182,7 @@ public final class l0 extends db {
 
     @Override
     public final void D(float f7) {
-        h5 titleTextView = this.f25521e.getTitleTextView();
+        h5 titleTextView = this.f25734e.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f7);
         }
@@ -385,10 +385,10 @@ public final class l0 extends db {
     }
 
     @Override
-    public final rm0 x(sm0 sm0Var) {
-        e71 e71Var = new e71(sm0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
-        this.f11307d0 = e71Var;
-        e71Var.f25890r = false;
-        return e71Var;
+    public final qm0 x(rm0 rm0Var) {
+        d71 d71Var = new d71(rm0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
+        this.f11307d0 = d71Var;
+        d71Var.f25649r = false;
+        return d71Var;
     }
 }

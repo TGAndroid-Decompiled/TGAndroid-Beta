@@ -1,8 +1,8 @@
 package org.telegram.ui.Wallet;
 
 import android.view.View;
-import org.telegram.ui.Components.m71;
-public final class x3 extends m71 {
+import org.telegram.ui.Components.l71;
+public final class x3 extends l71 {
     @Override
     public final boolean t1(View view) {
         if (view instanceof z2) {

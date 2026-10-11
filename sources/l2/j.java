@@ -2,35 +2,35 @@ package l2;
 
 import java.io.IOException;
 public final class j {
-    public final v2.d f15353a;
-    public final m2.m f15354b;
-    public final m2.b f15355c;
+    public final v2.d f15389a;
+    public final m2.m f15390b;
+    public final m2.b f15391c;
     public final i d;
-    public final long f15356e;
-    public final long f15357f;
+    public final long f15392e;
+    public final long f15393f;
 
     public j(long j3, m2.m mVar, m2.b bVar, v2.d dVar, long j10, i iVar) {
-        this.f15356e = j3;
-        this.f15354b = mVar;
-        this.f15355c = bVar;
-        this.f15357f = j10;
-        this.f15353a = dVar;
+        this.f15392e = j3;
+        this.f15390b = mVar;
+        this.f15391c = bVar;
+        this.f15393f = j10;
+        this.f15389a = dVar;
         this.d = iVar;
     }
 
     public final j a(long j3, m2.m mVar) {
         long n10;
         long n11;
-        i c10 = this.f15354b.c();
+        i c10 = this.f15390b.c();
         i c11 = mVar.c();
         if (c10 == null) {
-            return new j(j3, mVar, this.f15355c, this.f15353a, this.f15357f, c10);
+            return new j(j3, mVar, this.f15391c, this.f15389a, this.f15393f, c10);
         } else if (!c10.t()) {
-            return new j(j3, mVar, this.f15355c, this.f15353a, this.f15357f, c11);
+            return new j(j3, mVar, this.f15391c, this.f15389a, this.f15393f, c11);
         } else {
             long w10 = c10.w(j3);
             if (w10 == 0) {
-                return new j(j3, mVar, this.f15355c, this.f15353a, this.f15357f, c11);
+                return new j(j3, mVar, this.f15391c, this.f15389a, this.f15393f, c11);
             }
             e2.d.h(c11);
             long u10 = c10.u();
@@ -41,53 +41,53 @@ public final class j {
             long u11 = c11.u();
             long b11 = c11.b(u11);
             int i10 = (d > b11 ? 1 : (d == b11 ? 0 : -1));
-            long j12 = this.f15357f;
+            long j12 = this.f15393f;
             if (i10 == 0) {
                 n10 = j10 - u11;
             } else if (i10 >= 0) {
                 if (b11 < b10) {
                     n11 = j12 - (c11.n(b10, j3) - u10);
-                    return new j(j3, mVar, this.f15355c, this.f15353a, n11, c11);
+                    return new j(j3, mVar, this.f15391c, this.f15389a, n11, c11);
                 }
                 n10 = c10.n(b11, j3) - u11;
             } else {
                 throw new IOException();
             }
             n11 = n10 + j12;
-            return new j(j3, mVar, this.f15355c, this.f15353a, n11, c11);
+            return new j(j3, mVar, this.f15391c, this.f15389a, n11, c11);
         }
     }
 
     public final long b(long j3) {
         i iVar = this.d;
         e2.d.h(iVar);
-        return iVar.e(this.f15356e, j3) + this.f15357f;
+        return iVar.e(this.f15392e, j3) + this.f15393f;
     }
 
     public final long c(long j3) {
         long b10 = b(j3);
         i iVar = this.d;
         e2.d.h(iVar);
-        return (iVar.A(this.f15356e, j3) + b10) - 1;
+        return (iVar.A(this.f15392e, j3) + b10) - 1;
     }
 
     public final long d() {
         i iVar = this.d;
         e2.d.h(iVar);
-        return iVar.w(this.f15356e);
+        return iVar.w(this.f15392e);
     }
 
     public final long e(long j3) {
         long f7 = f(j3);
         i iVar = this.d;
         e2.d.h(iVar);
-        return iVar.d(j3 - this.f15357f, this.f15356e) + f7;
+        return iVar.d(j3 - this.f15393f, this.f15392e) + f7;
     }
 
     public final long f(long j3) {
         i iVar = this.d;
         e2.d.h(iVar);
-        return iVar.b(j3 - this.f15357f);
+        return iVar.b(j3 - this.f15393f);
     }
 
     public final boolean g(long j3, long j10) {

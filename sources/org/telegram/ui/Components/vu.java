@@ -10,26 +10,26 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class vu extends su {
-    public Drawable f32482c;
+    public Drawable f32548c;
     public final int d;
-    public final av f32483e;
+    public final av f32549e;
 
     public vu(av avVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
         super(context, d6Var);
-        this.f32483e = avVar;
+        this.f32549e = avVar;
         this.d = i10;
-        this.f32482c = null;
+        this.f32548c = null;
     }
 
     @Override
     public final int emojiCacheType() {
-        return this.f32483e.h();
+        return this.f32549e.h();
     }
 
     @Override
     public final void extendActionMode(ActionMode actionMode, Menu menu) {
         boolean z10;
-        av avVar = this.f32483e;
+        av avVar = this.f32549e;
         if (avVar.a()) {
             if (avVar.L == 3) {
                 z10 = true;
@@ -53,16 +53,16 @@ public final class vu extends su {
 
     @Override
     public final void onLineCountChanged(int i10, int i11) {
-        this.f32483e.q(i10, i11);
+        this.f32549e.q(i10, i11);
     }
 
     @Override
     public final void onSelectionChanged(int i10, int i11) {
         boolean z10;
         super.onSelectionChanged(i10, i11);
-        av avVar = this.f32483e;
-        xm0 xm0Var = avVar.f24591c;
-        if (xm0Var != null) {
+        av avVar = this.f32549e;
+        wm0 wm0Var = avVar.f24681c;
+        if (wm0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
                 z10 = true;
@@ -73,15 +73,15 @@ public final class vu extends su {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (avVar.f24594n != z11) {
-                avVar.f24594n = z11;
+            if (avVar.f24684n != z11) {
+                avVar.f24684n = z11;
                 if (z11) {
-                    this.f32482c = xm0Var.d;
-                    xm0Var.a(R.drawable.msg_edit, true);
+                    this.f32548c = wm0Var.d;
+                    wm0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                xm0Var.b(this.f32482c, true);
-                this.f32482c = null;
+                wm0Var.b(this.f32548c, true);
+                this.f32548c = null;
             }
         }
     }
@@ -90,12 +90,12 @@ public final class vu extends su {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i10;
         wu wuVar;
-        av avVar = this.f32483e;
-        if (avVar.f24592e && motionEvent.getAction() == 0) {
+        av avVar = this.f32549e;
+        if (avVar.f24682e && motionEvent.getAction() == 0) {
             avVar.u();
-            if (avVar.f24598x && (wuVar = avVar.d) != null) {
+            if (avVar.f24688x && (wuVar = avVar.d) != null) {
                 wuVar.u(false);
-                avVar.f24598x = false;
+                avVar.f24688x = false;
                 avVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {
@@ -129,7 +129,7 @@ public final class vu extends su {
 
     @Override
     public final void scrollTo(int i10, int i11) {
-        if (this.f32483e.t(i11)) {
+        if (this.f32549e.t(i11)) {
             super.scrollTo(i10, i11);
         }
     }

@@ -16,11 +16,11 @@ public final class zc0 extends gg.t0 {
     @Override
     public final void l() {
         gd0 gd0Var = this.N;
-        org.telegram.ui.ActionBar.u0 u0Var = gd0Var.f38042w;
+        org.telegram.ui.ActionBar.u0 u0Var = gd0Var.f38076w;
         if (u0Var != null) {
             u0Var.setShowSearchProgress(gd0Var.W.J);
         }
-        TextView textView = gd0Var.f38035r;
+        TextView textView = gd0Var.f38069r;
         if (textView != null) {
             textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, gd0Var.W.f10554x)));
         }

@@ -8,15 +8,15 @@ import org.telegram.ui.Components.ik;
 import org.telegram.ui.Components.pl;
 import org.telegram.ui.Components.qi;
 import org.telegram.ui.Components.rj;
-import org.telegram.ui.Components.sm0;
+import org.telegram.ui.Components.rm0;
 import org.telegram.ui.Components.xl;
 import org.telegram.ui.Components.yn;
 public final class f0 extends g00 {
     public final int U;
     public final qi V;
 
-    public f0(qi qiVar, int i10, sm0 sm0Var, int i11) {
-        super(i10, 0, sm0Var);
+    public f0(qi qiVar, int i10, rm0 rm0Var, int i11) {
+        super(i10, 0, rm0Var);
         this.U = i11;
         this.V = qiVar;
     }
@@ -25,7 +25,7 @@ public final class f0 extends g00 {
     public int[] t(View view, Rect rect) {
         switch (this.U) {
             case 4:
-                int C = this.f47864n - C();
+                int C = this.f47898n - C();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int min = Math.min(0, top);
                 int max = Math.max(0, (rect.height() + top) - C);
@@ -43,27 +43,27 @@ public final class f0 extends g00 {
         switch (this.U) {
             case 0:
                 e0 e0Var = new e0(this, recyclerView.getContext());
-                e0Var.f47917a = i10;
+                e0Var.f47951a = i10;
                 w0(e0Var);
                 return;
             case 1:
                 rj rjVar = new rj(this, recyclerView.getContext());
-                rjVar.f47917a = i10;
+                rjVar.f47951a = i10;
                 w0(rjVar);
                 return;
             case 2:
                 ik ikVar = new ik(this, recyclerView.getContext());
-                ikVar.f47917a = i10;
+                ikVar.f47951a = i10;
                 w0(ikVar);
                 return;
             case 3:
                 pl plVar = new pl(this, recyclerView.getContext());
-                plVar.f47917a = i10;
+                plVar.f47951a = i10;
                 w0(plVar);
                 return;
             default:
                 yn ynVar = new yn(this, recyclerView.getContext());
-                ynVar.f47917a = i10;
+                ynVar.f47951a = i10;
                 w0(ynVar);
                 return;
         }

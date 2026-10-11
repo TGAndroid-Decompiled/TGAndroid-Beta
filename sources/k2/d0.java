@@ -626,8 +626,8 @@ public final class d0 implements p {
         eVar.getClass();
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 29 && i10 != -1) {
-            Context context = (Context) bVar.f45592b;
-            Boolean bool = (Boolean) bVar.f45593c;
+            Context context = (Context) bVar.f45626b;
+            Boolean bool = (Boolean) bVar.f45627c;
             if (bool != null) {
                 booleanValue = bool.booleanValue();
             } else {
@@ -638,11 +638,11 @@ public final class d0 implements p {
                     } else {
                         z10 = false;
                     }
-                    bVar.f45593c = Boolean.valueOf(z10);
+                    bVar.f45627c = Boolean.valueOf(z10);
                 } else {
-                    bVar.f45593c = Boolean.FALSE;
+                    bVar.f45627c = Boolean.FALSE;
                 }
-                booleanValue = ((Boolean) bVar.f45593c).booleanValue();
+                booleanValue = ((Boolean) bVar.f45627c).booleanValue();
             }
             String str = sVar.f3643r;
             str.getClass();

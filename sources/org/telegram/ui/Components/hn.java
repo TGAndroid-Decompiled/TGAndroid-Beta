@@ -33,13 +33,13 @@ public final class hn extends qi {
     public int R;
     public boolean S;
     public boolean T;
-    public org.telegram.ui.ActionBar.d6 f27031n;
-    public ai.w0 f27032r;
-    public s4.d0 f27033s;
+    public org.telegram.ui.ActionBar.d6 f27169n;
+    public ai.w0 f27170r;
+    public s4.d0 f27171s;
     public gn v;
-    public UndoView f27034w;
-    public TextView f27035x;
-    public float f27036y;
+    public UndoView f27172w;
+    public TextView f27173x;
+    public float f27174y;
 
     @Override
     public final void C(int r5, int r6) {
@@ -48,11 +48,11 @@ public final class hn extends qi {
 
     @Override
     public final void E(int i10) {
-        yi yiVar = this.f30161b;
+        yi yiVar = this.f30245b;
         if (i10 > 1) {
-            yiVar.f33209d1.K(0);
+            yiVar.f33282d1.K(0);
         } else {
-            yiVar.f33209d1.r(0);
+            yiVar.f33282d1.r(0);
         }
     }
 
@@ -62,14 +62,14 @@ public final class hn extends qi {
         this.Q = true;
         if (qiVar instanceof ChatAttachAlertPhotoLayout) {
             this.P = (ChatAttachAlertPhotoLayout) qiVar;
-            gnVar.f26775c.clear();
+            gnVar.f26825c.clear();
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.P;
             gnVar.h = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             gnVar.d = chatAttachAlertPhotoLayout.getSelectedPhotos();
             gnVar.c();
             gnVar.requestLayout();
-            this.f27033s.h1(0, 0);
-            this.f27032r.post(new wc(23, this, qiVar));
+            this.f27171s.h1(0, 0);
+            this.f27170r.post(new wc(23, this, qiVar));
             postDelayed(new rg(this, 25), 250L);
             gnVar.i(this.P, false);
         } else {
@@ -79,18 +79,18 @@ public final class hn extends qi {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f27035x.animate().alpha(1.0f).setDuration(150L).setInterpolator(is.f27451f);
+        ViewPropertyAnimator interpolator = this.f27173x.animate().alpha(1.0f).setDuration(150L).setInterpolator(is.f27500f);
         this.O = interpolator;
         interpolator.start();
     }
 
     @Override
     public final void J() {
-        this.f27032r.x0(0);
+        this.f27170r.x0(0);
     }
 
     public final void N() {
-        ArrayList arrayList = this.v.f26774b;
+        ArrayList arrayList = this.v.f26824b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -115,8 +115,8 @@ public final class hn extends qi {
                     enVar.v.recycle();
                 }
                 enVar.v = createBitmap;
-                enVar.f26100w = 0.0f;
-                enVar.O.f26397z.invalidate();
+                enVar.f26138w = 0.0f;
+                enVar.O.f26512z.invalidate();
             }
         }
     }
@@ -133,7 +133,7 @@ public final class hn extends qi {
     public final void dispatchDraw(Canvas canvas) {
         Drawable d;
         int i10;
-        org.telegram.ui.xn xnVar = this.f30161b.f33251r;
+        org.telegram.ui.xn xnVar = this.f30245b.f33324r;
         boolean z10 = false;
         if (xnVar != null && (d = xnVar.d()) != null) {
             int currentItemTop = getCurrentItemTop();
@@ -165,16 +165,16 @@ public final class hn extends qi {
 
     @Override
     public int getCurrentItemTop() {
-        ai.w0 w0Var = this.f27032r;
+        ai.w0 w0Var = this.f27170r;
         if (w0Var.getChildCount() <= 0) {
             w0Var.setTopGlowOffset(w0Var.getPaddingTop());
             return Integer.MAX_VALUE;
         }
         View childAt = w0Var.getChildAt(0);
-        cm0 cm0Var = (cm0) w0Var.G(childAt);
+        bm0 bm0Var = (bm0) w0Var.G(childAt);
         int top = childAt.getTop();
         int dp = AndroidUtilities.dp(8.0f);
-        if (top < AndroidUtilities.dp(8.0f) || cm0Var == null || cm0Var.b() != 0) {
+        if (top < AndroidUtilities.dp(8.0f) || bm0Var == null || bm0Var.b() != 0) {
             top = dp;
         }
         w0Var.setTopGlowOffset(top);
@@ -188,7 +188,7 @@ public final class hn extends qi {
 
     @Override
     public int getListTopPadding() {
-        return this.f27032r.getPaddingTop();
+        return this.f27170r.getPaddingTop();
     }
 
     public float getPreviewScale() {
@@ -203,12 +203,12 @@ public final class hn extends qi {
     public int getSelectedItemsCount() {
         an anVar;
         ArrayList arrayList;
-        ArrayList arrayList2 = this.v.f26774b;
+        ArrayList arrayList2 = this.v.f26824b;
         int size = arrayList2.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
             fn fnVar = (fn) arrayList2.get(i11);
-            if (fnVar != null && (anVar = fnVar.f26383k) != null && (arrayList = anVar.f24544g) != null) {
+            if (fnVar != null && (anVar = fnVar.f26498k) != null && (arrayList = anVar.f24633g) != null) {
                 i10 = arrayList.size() + i10;
             }
         }
@@ -222,7 +222,7 @@ public final class hn extends qi {
 
     @Override
     public final boolean j() {
-        this.f30161b.d2(false);
+        this.f30245b.d2(false);
         return true;
     }
 
@@ -239,11 +239,11 @@ public final class hn extends qi {
         }
         if (this.T != z11) {
             this.T = z11;
-            int size = gnVar.f26774b.size();
+            int size = gnVar.f26824b.size();
             for (int i14 = 0; i14 < size; i14++) {
-                fn fnVar = (fn) gnVar.f26774b.get(i14);
-                if (fnVar.f26383k.f24544g.size() == 1) {
-                    fn.a(fnVar, fnVar.f26383k, true);
+                fn fnVar = (fn) gnVar.f26824b.get(i14);
+                if (fnVar.f26498k.f24633g.size() == 1) {
+                    fn.a(fnVar, fnVar.f26498k, true);
                 }
             }
         }
@@ -261,11 +261,11 @@ public final class hn extends qi {
     public final void t() {
         MediaController.PhotoEntry photoEntry;
         this.J = null;
-        UndoView undoView = this.f27034w;
+        UndoView undoView = this.f27172w;
         if (undoView != null) {
             undoView.e(0, false);
         }
-        ArrayList arrayList = this.v.f26774b;
+        ArrayList arrayList = this.v.f26824b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -278,7 +278,7 @@ public final class hn extends qi {
                 Object obj2 = arrayList2.get(i11);
                 i11++;
                 en enVar = (en) obj2;
-                if (enVar.f26084e && (photoEntry = enVar.f26082b) != null) {
+                if (enVar.f26122e && (photoEntry = enVar.f26120b) != null) {
                     photoEntry.isChatPreviewSpoilerRevealed = false;
                 }
             }
@@ -294,13 +294,13 @@ public final class hn extends qi {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f27035x.animate().alpha(0.0f).setDuration(150L).setInterpolator(is.f27454j);
+        ViewPropertyAnimator interpolator = this.f27173x.animate().alpha(0.0f).setDuration(150L).setInterpolator(is.f27503j);
         this.O = interpolator;
         interpolator.start();
-        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (yiVar = this.f30161b).f33228j0) != null) {
-            chatAttachAlertPhotoLayout.f24023c1.setIcon(R.drawable.msg_view_file);
-            yiVar.f33228j0.f24023c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
-            yiVar.f33228j0.f24023c1.setRightIcon(R.drawable.msg_arrowright);
+        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (yiVar = this.f30245b).f33301j0) != null) {
+            chatAttachAlertPhotoLayout.f24059c1.setIcon(R.drawable.msg_view_file);
+            yiVar.f33301j0.f24059c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
+            yiVar.f33301j0.f24059c1.setRightIcon(R.drawable.msg_arrowright);
         }
         this.v.i(this.P, true);
     }
@@ -308,7 +308,7 @@ public final class hn extends qi {
     @Override
     public final void w(int i10) {
         try {
-            this.f30161b.f33228j0.w(i10);
+            this.f30245b.f33301j0.w(i10);
         } catch (Exception unused) {
         }
     }

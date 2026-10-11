@@ -21,7 +21,7 @@ public final class rl extends gg.t0 {
         if (u0Var != null) {
             u0Var.setShowSearchProgress(rlVar.J);
         }
-        TextView textView = xlVar.f32976y;
+        TextView textView = xlVar.f33024y;
         if (textView != null) {
             textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, rlVar.f10554x)));
         }

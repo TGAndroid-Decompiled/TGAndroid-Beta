@@ -17,7 +17,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.ik0;
+import org.telegram.ui.Components.hk0;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.jx;
 public final class a0 extends FrameLayout {
@@ -34,7 +34,7 @@ public final class a0 extends FrameLayout {
     public final da O;
     public float P;
     public float Q;
-    public ik0 R;
+    public hk0 R;
     public o S;
     public final float T;
     public boolean U;
@@ -131,14 +131,14 @@ public final class a0 extends FrameLayout {
             float dp2 = f10 + AndroidUtilities.dp(16.0f);
             paint.setColor(org.telegram.ui.ActionBar.h6.m1(f11, jxVar.f(org.telegram.ui.ActionBar.h6.hl)));
             if (i11 == 0) {
-                paint2.setColor(org.telegram.ui.ActionBar.h6.m1(f11, jxVar.f(org.telegram.ui.ActionBar.h6.f21065s8)));
+                paint2.setColor(org.telegram.ui.ActionBar.h6.m1(f11, jxVar.f(org.telegram.ui.ActionBar.h6.f21101s8)));
             } else {
                 paint2.setColor(org.telegram.ui.ActionBar.h6.m1(f11, jxVar.f(org.telegram.ui.ActionBar.h6.M8)));
             }
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(11.0f), paint2);
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(9.0f), paint);
             if (i11 == 0) {
-                i10 = org.telegram.ui.ActionBar.h6.f21065s8;
+                i10 = org.telegram.ui.ActionBar.h6.f21101s8;
             } else {
                 i10 = org.telegram.ui.ActionBar.h6.M8;
             }

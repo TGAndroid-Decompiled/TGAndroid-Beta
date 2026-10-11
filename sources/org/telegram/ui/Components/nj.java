@@ -5,12 +5,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class nj extends qi {
-    public ai.w0 f29060n;
-    public int f29061r;
-    public bi.l f29062s;
+    public ai.w0 f29170n;
+    public int f29171r;
+    public bi.l f29172s;
     public bb v;
-    public int f29063w;
-    public q0.a f29064x;
+    public int f29173w;
+    public q0.a f29174x;
 
     @Override
     public final void C(int r9, int r10) {
@@ -19,32 +19,32 @@ public final class nj extends qi {
 
     @Override
     public final void G(qi qiVar) {
-        yi yiVar = this.f30161b;
+        yi yiVar = this.f30245b;
         try {
-            yiVar.f33199a1.getTitleTextView().setBuildFullLayout(true);
+            yiVar.f33272a1.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
-        yiVar.f33199a1.setTitle(LocaleController.getString(R.string.SelectColor));
-        this.f29062s.h1(0, 0);
+        yiVar.f33272a1.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.f29172s.h1(0, 0);
     }
 
     @Override
     public final void J() {
-        this.f29060n.x0(0);
+        this.f29170n.x0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        ai.w0 w0Var = this.f29060n;
+        ai.w0 w0Var = this.f29170n;
         if (w0Var.getChildCount() <= 0) {
             w0Var.setTopGlowOffset(w0Var.getPaddingTop());
             return Integer.MAX_VALUE;
         }
         View childAt = w0Var.getChildAt(0);
-        cm0 cm0Var = (cm0) w0Var.G(childAt);
+        bm0 bm0Var = (bm0) w0Var.G(childAt);
         int top = childAt.getTop();
         int dp = AndroidUtilities.dp(7.0f);
-        if (top < AndroidUtilities.dp(7.0f) || cm0Var == null || cm0Var.b() != 0) {
+        if (top < AndroidUtilities.dp(7.0f) || bm0Var == null || bm0Var.b() != 0) {
             top = dp;
         }
         w0Var.setTopGlowOffset(top);
@@ -58,7 +58,7 @@ public final class nj extends qi {
 
     @Override
     public int getListTopPadding() {
-        return this.f29060n.getPaddingTop();
+        return this.f29170n.getPaddingTop();
     }
 
     @Override
@@ -67,13 +67,13 @@ public final class nj extends qi {
     }
 
     public void setDelegate(q0.a aVar) {
-        this.f29064x = aVar;
+        this.f29174x = aVar;
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f30161b.getSheetContainer().invalidate();
+        this.f30245b.getSheetContainer().invalidate();
         invalidate();
     }
 }

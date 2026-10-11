@@ -11,7 +11,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.q61;
 public abstract class c {
     public static void A(n2.g gVar, n2.g gVar2) {
         if (gVar != gVar2) {
@@ -423,7 +423,7 @@ public abstract class c {
     }
 
     public static void n(int i10, ArrayList arrayList) {
-        arrayList.add(r61.B(LocaleController.getString(i10)));
+        arrayList.add(q61.B(LocaleController.getString(i10)));
     }
 
     public static void o(int i10, HashMap hashMap, String str, int i11, String str2) {

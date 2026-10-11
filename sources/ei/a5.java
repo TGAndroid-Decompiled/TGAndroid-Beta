@@ -22,10 +22,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.hk0;
+import org.telegram.ui.Components.gk0;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.n11;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.s5;
 import org.telegram.ui.Components.z6;
 public final class a5 extends Drawable implements z6, NotificationCenter.NotificationCenterDelegate {
@@ -35,7 +35,7 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
     public final ImageReceiver d;
     public int f8945e;
     public final s5[] f8946f;
-    public final n11 h;
+    public final m11 h;
     public final RectF f8947n;
     public final boolean f8948r;
     public final g6 f8949s;
@@ -56,7 +56,7 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         this.f8947n = new RectF();
         this.f8949s = new g6(new z4(this, 1), 320L, is.h, 0);
         this.f8948r = false;
-        int i10 = h6.f20786d6;
+        int i10 = h6.f20822d6;
         paint.setColor(h6.x0(null, i10, false));
         paint2.setColor(h6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), h6.m1(0.18f, -16777216));
@@ -65,14 +65,14 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, j9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         d();
-        this.h = new n11(UserObject.getUserName(user), 14.0f, null);
+        this.h = new m11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override
-    public final void a(hk0 hk0Var) {
-        this.f8951x = hk0Var;
-        this.d.setParentView(hk0Var);
-        this.f8944c.setParentView(hk0Var);
+    public final void a(gk0 gk0Var) {
+        this.f8951x = gk0Var;
+        this.d.setParentView(gk0Var);
+        this.f8944c.setParentView(gk0Var);
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f28902c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f28678c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
         RectF rectF = this.f8947n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
@@ -240,7 +240,7 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         this.f8947n = new RectF();
         this.f8949s = new g6(new z4(this, 1), 320L, is.h, 0);
         this.f8948r = true;
-        int i10 = h6.f20786d6;
+        int i10 = h6.f20822d6;
         paint.setColor(h6.x0(null, i10, false));
         paint2.setColor(h6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), h6.m1(0.18f, -16777216));
@@ -249,8 +249,8 @@ public final class a5 extends Drawable implements z6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, j9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
-        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, h6.f20730a7, 0.35f), 0L, null, null, 0);
-        this.h = new n11(UserObject.getUserName(user), 14.0f, null);
+        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, h6.f20766a7, 0.35f), 0L, null, null, 0);
+        this.h = new m11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override
