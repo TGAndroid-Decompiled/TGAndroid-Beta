@@ -4,14 +4,14 @@ import android.text.Layout;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 public final class z5 {
-    public Layout f33504a;
-    public final ArrayList f33505b = new ArrayList();
+    public Layout f33413a;
+    public final ArrayList f33414b = new ArrayList();
 
     public z5(WeakReference weakReference, Layout layout) {
-        this.f33504a = layout;
+        this.f33413a = layout;
     }
 
     public final void a() {
-        this.f33505b.size();
+        this.f33414b.size();
     }
 }

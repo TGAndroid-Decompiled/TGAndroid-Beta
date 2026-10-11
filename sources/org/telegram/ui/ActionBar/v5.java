@@ -4,38 +4,26 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 public final class v5 extends Drawable {
-    public final RectF f21632a = new RectF();
-    public final View f21633b;
-    public final View f21634c;
-    public final int d;
-    public final Paint f21635e;
-
-    public v5(View view, View view2, int i10, Paint paint) {
-        this.f21633b = view;
-        this.f21634c = view2;
-        this.d = i10;
-        this.f21635e = paint;
-    }
+    public static Paint f21641c;
+    public Paint f21642a;
+    public float f21643b;
 
     @Override
     public final void draw(Canvas canvas) {
+        int dp;
         Rect bounds = getBounds();
-        RectF rectF = this.f21632a;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        i6.s(this.f21633b, this.f21634c, null);
-        float f7 = this.d;
-        Paint paint = this.f21635e;
-        if (paint == null) {
-            paint = i6.T0("paintChatActionBackground");
+        float f7 = this.f21643b;
+        if (Math.abs(f7 - (-1.0f)) < 0.01f) {
+            dp = Math.max(bounds.width(), bounds.height()) / 2;
+        } else if (Math.abs(f7 - (-2.0f)) < 0.01f) {
+            dp = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
+        } else {
+            dp = AndroidUtilities.dp(f7);
         }
-        canvas.drawRoundRect(rectF, f7, f7, paint);
-        if (i6.b1()) {
-            canvas.drawRoundRect(rectF, f7, f7, i6.T0("paintChatActionBackgroundDarken"));
-        }
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), dp, this.f21642a);
     }
 
     @Override

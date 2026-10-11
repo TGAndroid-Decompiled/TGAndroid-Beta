@@ -13,9 +13,9 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class y20 extends LinearLayout {
-    public final ci.d f33083a;
-    public final ci.d f33084b;
-    public final ci.d f33085c;
+    public final ci.d f33076a;
+    public final ci.d f33077b;
+    public final ci.d f33078c;
     public final long d;
 
     public y20(Context context, int i10) {
@@ -24,18 +24,18 @@ public final class y20 extends LinearLayout {
         TLRPC.TL_emojiList a2 = i9.a(i10);
         setOrientation(1);
         y9 y9Var = new y9(context);
-        y9Var.setImageDrawable(new dk0(R.raw.utyan_gallery, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
+        y9Var.setImageDrawable(new ek0(R.raw.utyan_gallery, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
         if (!AndroidUtilities.isTablet()) {
             addView(y9Var, w7.x5.q(110, 110, 49));
         }
         TextView f7 = org.telegram.messenger.q.f(context, 1, 20.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.i6.G6, null, false, f7, 1);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.G6, null, false, f7, 1);
         f7.setText(LocaleController.getString(R.string.GalleryAccessAllowAccess));
         f7.setTypeface(AndroidUtilities.bold());
         addView(f7, w7.x5.t(-2, -2, 49, 0, 15, 0, 7));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 14.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.i6.f20785c7, null, false, textView, 1);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f20770c7, null, false, textView, 1);
         if (UserConfig.getInstance(i10).isPremium()) {
             i11 = R.string.GalleryAccessAllowAccessTextPremium;
         } else {
@@ -46,12 +46,12 @@ public final class y20 extends LinearLayout {
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         addView(textView, w7.x5.t(-2, -2, 49, 0, 0, 0, 14));
         ci.d dVar = new ci.d(context, null, true);
-        this.f33083a = dVar;
+        this.f33076a = dVar;
         dVar.e();
         dVar.g(LocaleController.getString(R.string.GalleryAccessAllowAccessButton), false, true);
         addView(dVar, w7.x5.q(-2, 44, 49));
         ci.d dVar2 = new ci.d(context, null, false);
-        this.f33084b = dVar2;
+        this.f33077b = dVar2;
         dVar2.e();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
         spannableStringBuilder.setSpan(new er(R.drawable.outline_attach_camera_24, 0), 0, 1, 33);
@@ -59,7 +59,7 @@ public final class y20 extends LinearLayout {
         dVar2.g(spannableStringBuilder, false, true);
         addView(dVar2, w7.x5.t(-2, 44, 49, 0, 8, 0, 0));
         ci.d dVar3 = new ci.d(context, null, false);
-        this.f33085c = dVar3;
+        this.f33078c = dVar3;
         dVar3.e();
         dVar3.setVisibility(8);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
@@ -81,11 +81,11 @@ public final class y20 extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824);
-        ci.d dVar = this.f33083a;
+        ci.d dVar = this.f33076a;
         dVar.setUseWrapContent(true);
-        ci.d dVar2 = this.f33084b;
+        ci.d dVar2 = this.f33077b;
         dVar2.setUseWrapContent(true);
-        ci.d dVar3 = this.f33085c;
+        ci.d dVar3 = this.f33078c;
         dVar3.setUseWrapContent(true);
         dVar.measure(makeMeasureSpec, makeMeasureSpec2);
         dVar2.measure(makeMeasureSpec, makeMeasureSpec2);
@@ -107,6 +107,6 @@ public final class y20 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f33085c.setVisibility(i10);
+        this.f33078c.setVisibility(i10);
     }
 }

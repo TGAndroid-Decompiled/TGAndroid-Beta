@@ -7,18 +7,18 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.j9;
 public final class d1 extends View {
-    public final Drawable f11199a;
-    public final ImageReceiver f11200b;
+    public final Drawable f11198a;
+    public final ImageReceiver f11199b;
 
     public d1(e1 e1Var, Context context) {
         super(context);
-        this.f11199a = getContext().getResources().getDrawable(R.drawable.map_pin_photo).mutate();
-        j9 j9Var = new j9((e6) null);
+        this.f11198a = getContext().getResources().getDrawable(R.drawable.map_pin_photo).mutate();
+        j9 j9Var = new j9((d6) null);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f11200b = imageReceiver;
+        this.f11199b = imageReceiver;
         j9Var.r(e1Var.getUserConfig().getCurrentUser());
         imageReceiver.setForUserOrChat(e1Var.getUserConfig().getCurrentUser(), j9Var);
     }
@@ -27,11 +27,11 @@ public final class d1 extends View {
     public final void dispatchDraw(Canvas canvas) {
         int dp = AndroidUtilities.dp(62.0f);
         int dp2 = AndroidUtilities.dp(85.0f);
-        Drawable drawable = this.f11199a;
+        Drawable drawable = this.f11198a;
         drawable.setBounds(0, 0, dp, dp2);
         drawable.draw(canvas);
         int dp3 = AndroidUtilities.dp(62.0f);
-        ImageReceiver imageReceiver = this.f11200b;
+        ImageReceiver imageReceiver = this.f11199b;
         imageReceiver.setRoundRadius(dp3);
         imageReceiver.setImageCoords(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
         imageReceiver.draw(canvas);

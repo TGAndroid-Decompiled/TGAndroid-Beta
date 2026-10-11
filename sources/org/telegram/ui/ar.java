@@ -2,34 +2,34 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class ar extends nq {
-    public final boolean[] f36045d1;
-    public final long f36046e1;
-    public final tr f36047f1;
+    public final boolean[] f36130d1;
+    public final long f36131e1;
+    public final sr f36132f1;
 
-    public ar(tr trVar, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, long j11) {
+    public ar(sr srVar, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, long j11) {
         super(j3, j10, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
-        this.f36047f1 = trVar;
-        this.f36045d1 = zArr;
-        this.f36046e1 = j11;
+        this.f36132f1 = srVar;
+        this.f36130d1 = zArr;
+        this.f36131e1 = j11;
     }
 
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f36045d1[0]) {
-            tr trVar = this.f36047f1;
-            if (org.telegram.ui.Components.ad.a(trVar)) {
-                long j3 = this.f36046e1;
+        if (!z10 && z11 && this.f36130d1[0]) {
+            sr srVar = this.f36132f1;
+            if (org.telegram.ui.Components.ad.a(srVar)) {
+                long j3 = this.f36131e1;
                 if (j3 > 0) {
                     TLRPC.User user = getMessagesController().getUser(Long.valueOf(j3));
                     if (user != null) {
-                        org.telegram.ui.Components.ad.C(trVar, user.first_name).j();
+                        org.telegram.ui.Components.ad.C(srVar, user.first_name).j();
                         return;
                     }
                     return;
                 }
                 TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-j3));
                 if (chat != null) {
-                    org.telegram.ui.Components.ad.C(trVar, chat.title).j();
+                    org.telegram.ui.Components.ad.C(srVar, chat.title).j();
                 }
             }
         }

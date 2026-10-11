@@ -9,7 +9,7 @@ public final class g extends com.google.android.gms.common.api.internal.e {
     public final int f322q;
 
     public g(m mVar, int i10) {
-        super(w5.a.f49928a, mVar);
+        super(w5.a.f49971a, mVar);
         this.f322q = i10;
     }
 
@@ -33,7 +33,7 @@ public final class g extends com.google.android.gms.common.api.internal.e {
                 f fVar = new f(this, 0);
                 GoogleSignInOptions googleSignInOptions = eVar.U;
                 Parcel J0 = kVar.J0();
-                int i10 = i7.f.f12041a;
+                int i10 = i7.f.f12040a;
                 J0.writeStrongBinder(fVar);
                 i7.f.c(J0, googleSignInOptions);
                 kVar.K0(J0, 102);
@@ -44,7 +44,7 @@ public final class g extends com.google.android.gms.common.api.internal.e {
                 f fVar2 = new f(this, 1);
                 GoogleSignInOptions googleSignInOptions2 = eVar2.U;
                 Parcel J02 = kVar2.J0();
-                int i11 = i7.f.f12041a;
+                int i11 = i7.f.f12040a;
                 J02.writeStrongBinder(fVar2);
                 i7.f.c(J02, googleSignInOptions2);
                 kVar2.K0(J02, 103);

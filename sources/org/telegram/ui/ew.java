@@ -1,40 +1,40 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class ew implements Runnable {
-    public final int f37417a = 0;
-    public final ty f37418b;
-    public final ArrayList f37419c;
-    public final int d;
-    public final boolean f37420e;
-    public final HashSet f37421f;
+import android.app.Activity;
+import org.telegram.messenger.Utilities;
+public final class ew implements Utilities.Callback {
+    public final int f37467a;
+    public final Activity f37468b;
 
-    public ew(ty tyVar, int i10, ArrayList arrayList, boolean z10, HashSet hashSet) {
-        this.f37418b = tyVar;
-        this.d = i10;
-        this.f37419c = arrayList;
-        this.f37420e = z10;
-        this.f37421f = hashSet;
+    public ew(Activity activity, int i10) {
+        this.f37467a = i10;
+        this.f37468b = activity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37417a) {
+    public final void run(Object obj) {
+        Boolean bool = (Boolean) obj;
+        switch (this.f37467a) {
             case 0:
-                ty.n0(this.f37418b, this.d, this.f37419c, this.f37420e, this.f37421f);
+                if (bool.booleanValue()) {
+                    if (!org.telegram.ui.Components.gf0.a()) {
+                        org.telegram.ui.Components.gf0.f();
+                        return;
+                    }
+                    this.f37468b.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
+                    return;
+                }
                 return;
             default:
-                this.f37418b.o4(this.f37419c, this.d, false, this.f37420e, this.f37421f);
+                if (bool.booleanValue()) {
+                    if (!org.telegram.ui.Components.gf0.a()) {
+                        org.telegram.ui.Components.gf0.f();
+                        return;
+                    }
+                    this.f37468b.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
+                    return;
+                }
                 return;
         }
-    }
-
-    public ew(ty tyVar, ArrayList arrayList, int i10, boolean z10, HashSet hashSet) {
-        this.f37418b = tyVar;
-        this.f37419c = arrayList;
-        this.d = i10;
-        this.f37420e = z10;
-        this.f37421f = hashSet;
     }
 }

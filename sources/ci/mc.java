@@ -1,21 +1,21 @@
 package ci;
 public final class mc implements Runnable {
-    public final int f5616a;
-    public final wc f5617b;
+    public final int f5615a;
+    public final wc f5616b;
 
     public mc(wc wcVar, int i10) {
-        this.f5616a = i10;
-        this.f5617b = wcVar;
+        this.f5615a = i10;
+        this.f5616b = wcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f5616a) {
+        switch (this.f5615a) {
             case 0:
-                wc wcVar = this.f5617b;
+                wc wcVar = this.f5616b;
                 uc ucVar = wcVar.M;
                 if (ucVar != null) {
-                    long j3 = ucVar.f6106a;
+                    long j3 = ucVar.f6105a;
                     if (j3 > 0) {
                         wcVar.H = j3;
                         return;
@@ -24,14 +24,14 @@ public final class mc implements Runnable {
                 }
                 return;
             case 1:
-                pc pcVar = this.f5617b.f6227a;
+                pc pcVar = this.f5616b.f6226a;
                 if (pcVar != null) {
-                    pcVar.R();
+                    pcVar.Q();
                     return;
                 }
                 return;
             default:
-                pc pcVar2 = this.f5617b.f6227a;
+                pc pcVar2 = this.f5616b.f6226a;
                 if (pcVar2 != null) {
                     pcVar2.o();
                     return;

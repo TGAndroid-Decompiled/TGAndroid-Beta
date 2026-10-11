@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AiTonesController;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -37,7 +36,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_iv;
-public final class e0 extends eb implements NotificationCenter.NotificationCenterDelegate {
+public final class e0 extends db implements NotificationCenter.NotificationCenterDelegate {
     public final org.telegram.ui.Cells.j3 A0;
     public ci.d4 B0;
     public final LinearLayout C0;
@@ -51,8 +50,8 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     public boolean K0;
     public boolean L0;
     public String M0;
-    public dk0 N0;
-    public d71 O0;
+    public ek0 N0;
+    public e71 O0;
     public boolean P0;
     public int Q0;
     public boolean R0;
@@ -61,63 +60,63 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     public CharSequence X;
     public TL_iv.RichMessage Y;
     public boolean Z;
-    public CharSequence f25822a0;
-    public TL_iv.RichMessage f25823b0;
-    public boolean f25824c0;
-    public CharSequence f25825d0;
-    public TL_iv.RichMessage f25826e0;
-    public boolean f25827f0;
-    public CharSequence f25828g0;
-    public TL_iv.RichMessage f25829h0;
-    public CharSequence f25830i0;
-    public Utilities.Callback f25831j0;
-    public Utilities.Callback f25832k0;
-    public long f25833l0;
+    public CharSequence f25761a0;
+    public TL_iv.RichMessage f25762b0;
+    public boolean f25763c0;
+    public CharSequence f25764d0;
+    public TL_iv.RichMessage f25765e0;
+    public boolean f25766f0;
+    public CharSequence f25767g0;
+    public TL_iv.RichMessage f25768h0;
+    public CharSequence f25769i0;
+    public Utilities.Callback f25770j0;
+    public Utilities.Callback f25771k0;
+    public long f25772l0;
     public boolean m0;
-    public Utilities.Callback4 f25834n0;
-    public ge f25835o0;
-    public final boolean[] f25836p0;
-    public final boolean[] f25837q0;
-    public String f25838r0;
-    public String f25839s0;
-    public boolean f25840t0;
-    public final AiTonesController f25841u0;
-    public final FrameLayout f25842v0;
-    public final d0 f25843w0;
-    public final d0 f25844x0;
-    public final ImageView f25845y0;
-    public final FrameLayout f25846z0;
+    public Utilities.Callback4 f25773n0;
+    public ge f25774o0;
+    public final boolean[] f25775p0;
+    public final boolean[] f25776q0;
+    public String f25777r0;
+    public String f25778s0;
+    public boolean f25779t0;
+    public final AiTonesController f25780u0;
+    public final FrameLayout f25781v0;
+    public final d0 f25782w0;
+    public final d0 f25783x0;
+    public final ImageView f25784y0;
+    public final FrameLayout f25785z0;
 
-    public e0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, true, false, 2, e6Var);
-        this.f25836p0 = new boolean[1];
-        this.f25837q0 = new boolean[1];
+    public e0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, null, true, false, 2, d6Var);
+        this.f25775p0 = new boolean[1];
+        this.f25776q0 = new boolean[1];
         this.P0 = true;
         this.Q0 = -1;
         this.S0 = new TLRPC.TL_messages_composeMessageWithAI[3];
         this.T0 = new TLRPC.TL_messages_composeRichMessageWithAI[3];
         AiTonesController tonesController = MessagesController.getInstance(this.currentAccount).getTonesController();
-        this.f25841u0 = tonesController;
+        this.f25780u0 = tonesController;
         tonesController.load();
         tonesController.open = true;
         ImageView imageView = new ImageView(context);
-        this.f25845y0 = imageView;
+        this.f25784y0 = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_close_white);
-        int i10 = org.telegram.ui.ActionBar.i6.G6;
+        int i10 = org.telegram.ui.ActionBar.h6.G6;
         imageView.setColorFilter(getThemedColor(i10));
-        imageView.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.m1(0.1f, getThemedColor(i10)), 1, -1));
-        this.f25983e.addView(imageView, w7.x5.a(54.0f, 0.0f, 0.0f, 8.0f, 0.0f, 54, 85));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.m1(0.1f, getThemedColor(i10)), 1, -1));
+        this.f25521e.addView(imageView, w7.x5.a(54.0f, 0.0f, 0.0f, 8.0f, 0.0f, 54, 85));
         w7.z5.b(imageView, 0.1f, 1.5f);
         imageView.setOnClickListener(new b(this, 8));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f25842v0 = frameLayout;
-        d0 d0Var = new d0(this.currentAccount, context, e6Var, false);
-        this.f25843w0 = d0Var;
+        this.f25781v0 = frameLayout;
+        d0 d0Var = new d0(this.currentAccount, context, d6Var, false);
+        this.f25782w0 = d0Var;
         d0Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         int dp = AndroidUtilities.dp(28.0f);
-        int i11 = org.telegram.ui.ActionBar.i6.f20801d6;
-        d0Var.setBackground(org.telegram.ui.ActionBar.i6.c0(dp, org.telegram.ui.ActionBar.i6.w0(i11, e6Var)));
+        int i11 = org.telegram.ui.ActionBar.h6.f20786d6;
+        d0Var.setBackground(org.telegram.ui.ActionBar.h6.c0(dp, org.telegram.ui.ActionBar.h6.w0(i11, d6Var)));
         d0Var.setRoundRadius(28);
         d0Var.a(R.drawable.outline_ai_translate2, LocaleController.getString(R.string.AIEditorTabTranslate), new e(this, 3));
         d0Var.a(R.drawable.menu_rewrite, LocaleController.getString(R.string.AIEditorTabStyle), new e(this, 3));
@@ -125,50 +124,50 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         d0Var.c(1);
         frameLayout.addView(d0Var, w7.x5.a(-1.0f, 12.0f, 0.0f, 12.0f, 0.0f, -1, 119));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f25846z0 = frameLayout2;
-        org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.ArticleAIPrompt), true, false, MessagesController.getInstance(this.currentAccount).config.aicomposeTonePromptLengthMax.get(), e6Var);
+        this.f25785z0 = frameLayout2;
+        org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.ArticleAIPrompt), true, false, MessagesController.getInstance(this.currentAccount).config.aicomposeTonePromptLengthMax.get(), d6Var);
         this.A0 = j3Var;
-        org.telegram.ui.Cells.h3 h3Var = j3Var.f22301b;
+        org.telegram.ui.Cells.h3 h3Var = j3Var.f22289b;
         h3Var.setImeOptions(6);
         h3Var.setMaxLines(5);
-        j3Var.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.i6.w0(i11, e6Var)));
+        j3Var.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.h6.w0(i11, d6Var)));
         h3Var.addTextChangedListener(new k(this));
         frameLayout2.addView(j3Var, w7.x5.d(-2.0f, -1));
         frameLayout2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
         h3Var.setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(53.0f), AndroidUtilities.dp(15.0f));
-        d0 d0Var2 = new d0(this.currentAccount, context, e6Var, true);
-        this.f25844x0 = d0Var2;
+        d0 d0Var2 = new d0(this.currentAccount, context, d6Var, true);
+        this.f25783x0 = d0Var2;
         d0Var2.setDivider(true);
         d0Var2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         d0Var2.setRoundRadius(12);
-        d0Var2.f25501n = new ci.n5(this, e6Var, context, 1);
+        d0Var2.f25367n = new ci.n5(this, d6Var, context, 1);
         t0();
         d0Var2.c(-1);
-        String D = c51.D();
-        this.f25839s0 = D;
+        String D = d51.D();
+        this.f25778s0 = D;
         if (D == null) {
-            this.f25839s0 = TranslateController.currentLanguage();
+            this.f25778s0 = TranslateController.currentLanguage();
         }
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.v = 0.35f;
-        int i12 = org.telegram.ui.ActionBar.i6.f20745a7;
+        int i12 = org.telegram.ui.ActionBar.h6.f20730a7;
         setBackgroundColor(getThemedColor(i12));
         LinearLayout linearLayout = new LinearLayout(context);
         this.C0 = linearLayout;
         linearLayout.setOrientation(0);
         linearLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        linearLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.i6.m1(0.0f, getThemedColor(i12)), getThemedColor(i12), getThemedColor(i12)}));
-        ci.d dVar = new ci.d(context, e6Var, true);
+        linearLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.h6.m1(0.0f, getThemedColor(i12)), getThemedColor(i12), getThemedColor(i12)}));
+        ci.d dVar = new ci.d(context, d6Var, true);
         dVar.setRoundRadius(24);
         this.E0 = dVar;
         linearLayout.addView(dVar, w7.x5.o(-1, 48, 1.0f, 119));
-        ci.d f7 = org.telegram.messenger.bi.f(24, context, e6Var, true);
+        ci.d f7 = org.telegram.messenger.ai.f(24, context, d6Var, true);
         this.F0 = f7;
         f7.setOnClickListener(new b(this, 9));
-        f7.setOnLongClickListener(new i(this, e6Var, context, 0));
+        f7.setOnLongClickListener(new i(this, d6Var, context, 0));
         linearLayout.addView(f7, w7.x5.t(48, 48, 5, 10, 0, 0, 0));
-        ci.d f10 = org.telegram.messenger.bi.f(24, context, e6Var, true);
+        ci.d f10 = org.telegram.messenger.ai.f(24, context, d6Var, true);
         this.D0 = f10;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.AIEditorLimitButton));
         spannableStringBuilder.append((CharSequence) " ");
@@ -176,7 +175,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         spannableStringBuilder.append((CharSequence) "x50");
         spannableStringBuilder.setSpan(new hg.x1(), length, spannableStringBuilder.length(), 33);
         f10.setText(spannableStringBuilder);
-        f10.setOnClickListener(new org.telegram.ui.sf(8, this, e6Var));
+        f10.setOnClickListener(new org.telegram.ui.rf(8, this, d6Var));
         FrameLayout.LayoutParams e7 = w7.x5.e(-1, -2, 80);
         int i13 = e7.leftMargin;
         int i14 = this.backgroundPaddingLeft;
@@ -198,15 +197,15 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         a10.rightMargin += i18;
         this.containerView.addView(frameLayout3, a10);
         q0(false);
-        rm0 rm0Var = this.d;
+        sm0 sm0Var = this.d;
         int i19 = this.backgroundPaddingLeft;
-        rm0Var.setPadding(i19, 0, i19, AndroidUtilities.dp(66.0f));
+        sm0Var.setPadding(i19, 0, i19, AndroidUtilities.dp(66.0f));
         this.d.setClipToPadding(false);
         this.d.p1();
         this.d.setOnItemClickListener(new j(this, 0));
         this.O = true;
         m mVar = new m(this);
-        mVar.f47742m = false;
+        mVar.f47788m = false;
         mVar.C = false;
         mVar.o(is.h);
         mVar.n(350L);
@@ -217,8 +216,8 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.loadedAiComposeTones);
     }
 
-    public static void Q(e0 e0Var, TL_aicompose.TL_aiComposeTone tL_aiComposeTone, org.telegram.ui.ActionBar.b2 b2Var) {
-        of.e g10 = b2Var.g(-1, true, true);
+    public static void Q(e0 e0Var, TL_aicompose.TL_aiComposeTone tL_aiComposeTone, org.telegram.ui.ActionBar.a2 a2Var) {
+        of.e g10 = a2Var.g(-1, true, true);
         g10.d();
         TL_aicompose.deleteTone deletetone = new TL_aicompose.deleteTone();
         deletetone.tone = TL_aicompose.InputAiComposeTone.from(tL_aiComposeTone);
@@ -239,11 +238,11 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         ci.d4 d4Var3 = e0Var.B0;
         float dp = AndroidUtilities.dp(12.0f);
         float dp2 = AndroidUtilities.dp(4.0f);
-        int m12 = org.telegram.ui.ActionBar.i6.m1(0.25f, -16777216);
+        int m12 = org.telegram.ui.ActionBar.h6.m1(0.25f, -16777216);
         Paint paint = d4Var3.F;
-        d4Var3.f4915i0 = dp;
-        d4Var3.f4916j0 = dp2;
-        d4Var3.f4917k0 = m12;
+        d4Var3.f4914i0 = dp;
+        d4Var3.f4915j0 = dp2;
+        d4Var3.f4916k0 = m12;
         paint.setShadowLayer(dp, 0.0f, dp2, m12);
         e0Var.B0.s(LocaleController.getString(R.string.AIEditorChooseStyle));
         e0Var.B0.l(0.5f, 0.0f);
@@ -255,18 +254,18 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     }
 
     public static void S(e0 e0Var, View view) {
-        e0Var.f25840t0 = !e0Var.f25840t0;
+        e0Var.f25779t0 = !e0Var.f25779t0;
         e0Var.l0();
         if (view instanceof LinearLayout) {
             LinearLayout linearLayout = (LinearLayout) view;
             if (linearLayout.getChildAt(0) instanceof dq) {
-                ((dq) linearLayout.getChildAt(0)).a(e0Var.f25840t0, true);
+                ((dq) linearLayout.getChildAt(0)).a(e0Var.f25779t0, true);
             }
         }
     }
 
     public static void T(e0 e0Var, int i10) {
-        d0 d0Var = e0Var.f25843w0;
+        d0 d0Var = e0Var.f25782w0;
         if (d0Var.getSelectedTab() == i10) {
             return;
         }
@@ -280,14 +279,14 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     }
 
     public static void U(e0 e0Var, TL_aicompose.AiComposeTone aiComposeTone) {
-        e0Var.f25841u0.tones.add(0, aiComposeTone);
+        e0Var.f25780u0.tones.add(0, aiComposeTone);
         e0Var.t0();
         new ad(e0Var.G0, e0Var.resourcesProvider).p(aiComposeTone.emoji_id, LocaleController.formatString(R.string.AIEditorToneCreatedTitle, aiComposeTone.title), LocaleController.getString(R.string.AIEditorToneCreatedText)).j();
     }
 
     public static void V(e0 e0Var, TL_aicompose.AiComposeTone aiComposeTone) {
         int i10;
-        d0 d0Var = e0Var.f25844x0;
+        d0 d0Var = e0Var.f25783x0;
         ci.d4 d4Var = e0Var.B0;
         if (d4Var != null) {
             d4Var.e(true);
@@ -297,7 +296,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             e0Var.O0.N(true);
             AndroidUtilities.runOnUIThread(new c(e0Var, 2), 150L);
         } else if (aiComposeTone == null) {
-            int savedTonesCount = e0Var.f25841u0.getSavedTonesCount() + 1;
+            int savedTonesCount = e0Var.f25780u0.getSavedTonesCount() + 1;
             if (UserConfig.getInstance(e0Var.currentAccount).isPremium()) {
                 i10 = MessagesController.getInstance(e0Var.currentAccount).config.aicomposeToneSavedLimitPremium.get();
             } else {
@@ -308,7 +307,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                 return;
             }
             y yVar = new y(e0Var.getContext(), e0Var.resourcesProvider);
-            yVar.f33065k0 = new e(e0Var, 1);
+            yVar.f33058k0 = new e(e0Var, 1);
             yVar.show();
         } else if (d0Var.getSelectedTone() == aiComposeTone) {
         } else {
@@ -318,7 +317,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         }
     }
 
-    public static void W(e0 e0Var, org.telegram.ui.ActionBar.j5 j5Var, int i10, TLRPC.TL_messages_composeRichMessageWithAI tL_messages_composeRichMessageWithAI, TLRPC.TL_composedRichMessageWithAI tL_composedRichMessageWithAI, TLRPC.TL_error tL_error) {
+    public static void W(e0 e0Var, org.telegram.ui.ActionBar.h5 h5Var, int i10, TLRPC.TL_messages_composeRichMessageWithAI tL_messages_composeRichMessageWithAI, TLRPC.TL_composedRichMessageWithAI tL_composedRichMessageWithAI, TLRPC.TL_error tL_error) {
         FrameLayout frameLayout = e0Var.G0;
         e0Var.Q0 = -1;
         e0Var.R0 = false;
@@ -328,29 +327,29 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             e0Var.q0(true);
         } else if (tL_error != null) {
             org.telegram.ui.Cells.c1.p(frameLayout, e0Var.resourcesProvider, tL_error, false);
-            j5Var.i(null);
+            h5Var.i(null);
             e0Var.J0 = true;
             e0Var.K0 = false;
             e0Var.q0(true);
         } else if (tL_composedRichMessageWithAI == null) {
-            j5Var.i(null);
+            h5Var.i(null);
             e0Var.J0 = true;
             e0Var.K0 = false;
             e0Var.q0(true);
         } else {
-            j5Var.i(null);
+            h5Var.i(null);
             e0Var.K0 = false;
             e0Var.q0(true);
             e0Var.T0[i10] = tL_messages_composeRichMessageWithAI;
             if (i10 == 0) {
                 e0Var.Z = false;
-                e0Var.f25823b0 = tL_composedRichMessageWithAI.result;
+                e0Var.f25762b0 = tL_composedRichMessageWithAI.result;
             } else if (i10 == 1) {
-                e0Var.f25824c0 = false;
-                e0Var.f25826e0 = tL_composedRichMessageWithAI.result;
+                e0Var.f25763c0 = false;
+                e0Var.f25765e0 = tL_composedRichMessageWithAI.result;
             } else if (i10 == 2) {
-                e0Var.f25827f0 = false;
-                e0Var.f25829h0 = tL_composedRichMessageWithAI.result;
+                e0Var.f25766f0 = false;
+                e0Var.f25768h0 = tL_composedRichMessageWithAI.result;
             }
             e0Var.O0.N(true);
         }
@@ -362,18 +361,18 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         e0Var.t0();
     }
 
-    public static boolean Y(e0 e0Var, org.telegram.ui.ActionBar.e6 e6Var, Context context) {
+    public static boolean Y(e0 e0Var, org.telegram.ui.ActionBar.d6 d6Var, Context context) {
         boolean z10;
         int i10;
-        if (e0Var.m0 || (e0Var.f25835o0 == null ? e0Var.f25834n0 == null || e0Var.i0() == null : e0Var.h0() == null)) {
+        if (e0Var.m0 || (e0Var.f25774o0 == null ? e0Var.f25773n0 == null || e0Var.i0() == null : e0Var.h0() == null)) {
             return false;
         }
-        if (e0Var.f25833l0 == UserConfig.getInstance(e0Var.currentAccount).getClientUserId()) {
+        if (e0Var.f25772l0 == UserConfig.getInstance(e0Var.currentAccount).getClientUserId()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        q80 F = q80.F(e0Var.container, e6Var, e0Var.F0);
+        q80 F = q80.F(e0Var.container, d6Var, e0Var.F0);
         F.l(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new c(e0Var, 3), !z10);
         int i11 = R.drawable.msg_calendar2;
         if (z10) {
@@ -381,7 +380,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         } else {
             i10 = R.string.ScheduleMessage;
         }
-        F.c(i11, LocaleController.getString(i10), new org.telegram.messenger.video.f(e0Var, context, e6Var, 11), false);
+        F.c(i11, LocaleController.getString(i10), new org.telegram.messenger.video.f(e0Var, context, d6Var, 11), false);
         F.Z();
         return true;
     }
@@ -391,7 +390,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         q80 F = q80.F(e0Var.container, e0Var.resourcesProvider, view);
         F.X = AndroidUtilities.dp(450.0f);
         int i10 = 0;
-        F.f30121t = false;
+        F.f30084t = false;
         F.Y = true;
         ScrollView scrollView = new ScrollView(e0Var.getContext());
         LinearLayout linearLayout = new LinearLayout(e0Var.getContext());
@@ -400,9 +399,9 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         F.q(scrollView);
         ArrayList<TranslateController.Language> suggestedLanguages = TranslateController.getSuggestedLanguages(null);
         ArrayList<TranslateController.Language> languages = TranslateController.getLanguages();
-        if (!TextUtils.isEmpty(e0Var.f25839s0)) {
+        if (!TextUtils.isEmpty(e0Var.f25778s0)) {
             e0Var2 = e0Var;
-            e0Var2.c0(F, linearLayout, true, c51.B(c51.F(e0Var.f25839s0, null, null)), null);
+            e0Var2.c0(F, linearLayout, true, d51.B(d51.F(e0Var.f25778s0, null, null)), null);
         } else {
             e0Var2 = e0Var;
         }
@@ -412,31 +411,31 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             TranslateController.Language language = suggestedLanguages.get(i11);
             i11++;
             final TranslateController.Language language2 = language;
-            if (!TextUtils.equals(language2.code, e0Var2.f25839s0)) {
+            if (!TextUtils.equals(language2.code, e0Var2.f25778s0)) {
                 e0Var2.c0(F, linearLayout, false, language2.displayName, new Runnable(e0Var2) {
-                    public final e0 f26557b;
+                    public final e0 f26534b;
 
                     {
-                        this.f26557b = e0Var2;
+                        this.f26534b = e0Var2;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                e0 e0Var3 = this.f26557b;
+                                e0 e0Var3 = this.f26534b;
                                 e0Var3.d0();
                                 String str = language2.code;
-                                e0Var3.f25839s0 = str;
-                                c51.J(str);
+                                e0Var3.f25778s0 = str;
+                                d51.J(str);
                                 e0Var3.l0();
                                 return;
                             default:
-                                e0 e0Var4 = this.f26557b;
+                                e0 e0Var4 = this.f26534b;
                                 e0Var4.d0();
                                 String str2 = language2.code;
-                                e0Var4.f25839s0 = str2;
-                                c51.J(str2);
+                                e0Var4.f25778s0 = str2;
+                                d51.J(str2);
                                 e0Var4.l0();
                                 return;
                         }
@@ -444,38 +443,38 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                 });
             }
         }
-        org.telegram.ui.ActionBar.k1 k1Var = new org.telegram.ui.ActionBar.k1(e0Var2.getContext(), e0Var2.resourcesProvider);
-        k1Var.setTag(R.id.fit_width_tag, 1);
-        linearLayout.addView(k1Var, w7.x5.n(-1, 8));
+        org.telegram.ui.ActionBar.j1 j1Var = new org.telegram.ui.ActionBar.j1(e0Var2.getContext(), e0Var2.resourcesProvider);
+        j1Var.setTag(R.id.fit_width_tag, 1);
+        linearLayout.addView(j1Var, w7.x5.n(-1, 8));
         int size2 = languages.size();
         while (i10 < size2) {
             TranslateController.Language language3 = languages.get(i10);
             i10++;
             final TranslateController.Language language4 = language3;
-            e0Var2.c0(F, linearLayout, TextUtils.equals(language4.code, e0Var2.f25839s0), language4.displayName, new Runnable(e0Var2) {
-                public final e0 f26557b;
+            e0Var2.c0(F, linearLayout, TextUtils.equals(language4.code, e0Var2.f25778s0), language4.displayName, new Runnable(e0Var2) {
+                public final e0 f26534b;
 
                 {
-                    this.f26557b = e0Var2;
+                    this.f26534b = e0Var2;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            e0 e0Var3 = this.f26557b;
+                            e0 e0Var3 = this.f26534b;
                             e0Var3.d0();
                             String str = language4.code;
-                            e0Var3.f25839s0 = str;
-                            c51.J(str);
+                            e0Var3.f25778s0 = str;
+                            d51.J(str);
                             e0Var3.l0();
                             return;
                         default:
-                            e0 e0Var4 = this.f26557b;
+                            e0 e0Var4 = this.f26534b;
                             e0Var4.d0();
                             String str2 = language4.code;
-                            e0Var4.f25839s0 = str2;
-                            c51.J(str2);
+                            e0Var4.f25778s0 = str2;
+                            d51.J(str2);
                             e0Var4.l0();
                             return;
                     }
@@ -485,7 +484,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         F.Z();
     }
 
-    public static void a0(e0 e0Var, org.telegram.ui.ActionBar.j5 j5Var, int i10, TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI, TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI, TLRPC.TL_error tL_error) {
+    public static void a0(e0 e0Var, org.telegram.ui.ActionBar.h5 h5Var, int i10, TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI, TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI, TLRPC.TL_error tL_error) {
         FrameLayout frameLayout = e0Var.G0;
         e0Var.Q0 = -1;
         e0Var.R0 = false;
@@ -495,36 +494,36 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             e0Var.q0(true);
         } else if (tL_error != null) {
             org.telegram.ui.Cells.c1.p(frameLayout, e0Var.resourcesProvider, tL_error, false);
-            j5Var.i(null);
+            h5Var.i(null);
             e0Var.J0 = true;
             e0Var.K0 = false;
             e0Var.q0(true);
         } else if (tL_composedMessageWithAI == null) {
-            j5Var.i(null);
+            h5Var.i(null);
             e0Var.J0 = true;
             e0Var.K0 = false;
             e0Var.q0(true);
         } else {
-            j5Var.i(null);
+            h5Var.i(null);
             e0Var.K0 = false;
             e0Var.q0(true);
             e0Var.S0[i10] = tL_messages_composeMessageWithAI;
             if (i10 == 0) {
                 e0Var.Z = false;
-                e0Var.f25822a0 = MessageObject.formatTextWithEntities(tL_composedMessageWithAI.result_text);
+                e0Var.f25761a0 = MessageObject.formatTextWithEntities(tL_composedMessageWithAI.result_text);
             } else if (i10 == 1) {
-                e0Var.f25824c0 = false;
-                e0Var.f25825d0 = MessageObject.formatTextWithEntities(tL_composedMessageWithAI.result_text);
+                e0Var.f25763c0 = false;
+                e0Var.f25764d0 = MessageObject.formatTextWithEntities(tL_composedMessageWithAI.result_text);
             } else if (i10 == 2) {
-                e0Var.f25827f0 = false;
+                e0Var.f25766f0 = false;
                 TLRPC.TL_textWithEntities tL_textWithEntities = tL_composedMessageWithAI.diff_text;
                 if (tL_textWithEntities != null) {
-                    e0Var.f25828g0 = MessageObject.formatTextWithEntities(tL_textWithEntities);
-                    e0Var.f25830i0 = MessageObject.formatTextWithEntities(tL_composedMessageWithAI.result_text);
+                    e0Var.f25767g0 = MessageObject.formatTextWithEntities(tL_textWithEntities);
+                    e0Var.f25769i0 = MessageObject.formatTextWithEntities(tL_composedMessageWithAI.result_text);
                 } else {
                     CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(tL_composedMessageWithAI.result_text);
-                    e0Var.f25830i0 = formatTextWithEntities;
-                    e0Var.f25828g0 = formatTextWithEntities;
+                    e0Var.f25769i0 = formatTextWithEntities;
+                    e0Var.f25767g0 = formatTextWithEntities;
                 }
             }
             e0Var.O0.N(true);
@@ -698,9 +697,9 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     public final CharSequence B() {
         if (this.M0 == null) {
             this.M0 = LocaleController.getString(R.string.AIEditor);
-            dk0 dk0Var = new dk0(R.raw.emoji_stars, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-            this.N0 = dk0Var;
-            dk0Var.J(true);
+            ek0 ek0Var = new ek0(R.raw.emoji_stars, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+            this.N0 = ek0Var;
+            ek0Var.J(true);
             this.N0.K(1);
         }
         return this.M0;
@@ -709,23 +708,23 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     @Override
     public final void D(float f7) {
         float f10 = 1.0f - f7;
-        ImageView imageView = this.f25845y0;
+        ImageView imageView = this.f25784y0;
         imageView.setAlpha(f10);
         imageView.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, f10));
         imageView.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, f10));
     }
 
     public final void c0(q80 q80Var, LinearLayout linearLayout, boolean z10, String str, Runnable runnable) {
-        int i10 = org.telegram.ui.ActionBar.i6.E8;
-        int i11 = org.telegram.ui.ActionBar.i6.F8;
-        org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(1, getContext(), this.resourcesProvider, false, false);
-        f1Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        f1Var.setText(str);
-        f1Var.setChecked(z10);
-        f1Var.c(org.telegram.ui.ActionBar.i6.w0(i10, this.resourcesProvider), org.telegram.ui.ActionBar.i6.w0(i11, this.resourcesProvider));
-        f1Var.setSelectorColor(org.telegram.ui.ActionBar.i6.m1(0.12f, org.telegram.ui.ActionBar.i6.w0(i10, this.resourcesProvider)));
-        f1Var.setOnClickListener(new h(q80Var, z10, runnable, 0));
-        linearLayout.addView(f1Var, w7.x5.n(-1, -2));
+        int i10 = org.telegram.ui.ActionBar.h6.E8;
+        int i11 = org.telegram.ui.ActionBar.h6.F8;
+        org.telegram.ui.ActionBar.e1 e1Var = new org.telegram.ui.ActionBar.e1(1, getContext(), this.resourcesProvider, false, false);
+        e1Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        e1Var.setText(str);
+        e1Var.setChecked(z10);
+        e1Var.c(org.telegram.ui.ActionBar.h6.w0(i10, this.resourcesProvider), org.telegram.ui.ActionBar.h6.w0(i11, this.resourcesProvider));
+        e1Var.setSelectorColor(org.telegram.ui.ActionBar.h6.m1(0.12f, org.telegram.ui.ActionBar.h6.w0(i10, this.resourcesProvider)));
+        e1Var.setOnClickListener(new h(q80Var, z10, runnable, 0));
+        linearLayout.addView(e1Var, w7.x5.n(-1, -2));
     }
 
     public final void d0() {
@@ -734,7 +733,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             this.Q0 = -1;
         }
         this.R0 = false;
-        org.telegram.ui.ActionBar.j5 titleTextView = this.f25983e.getTitleTextView();
+        org.telegram.ui.ActionBar.h5 titleTextView = this.f25521e.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.i(null);
         }
@@ -750,7 +749,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     @Override
     public final void dismiss() {
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.loadedAiComposeTones);
-        AiTonesController aiTonesController = this.f25841u0;
+        AiTonesController aiTonesController = this.f25780u0;
         if (aiTonesController != null) {
             aiTonesController.open = false;
         }
@@ -759,21 +758,21 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
 
     public final TL_iv.RichMessage h0() {
         if (!this.R0) {
-            int selectedTab = this.f25843w0.getSelectedTab();
+            int selectedTab = this.f25782w0.getSelectedTab();
             if (selectedTab == 0) {
                 if (!this.Z) {
-                    return this.f25823b0;
+                    return this.f25762b0;
                 }
                 return null;
             } else if (selectedTab == 2) {
-                if (!this.f25827f0) {
-                    return this.f25829h0;
+                if (!this.f25766f0) {
+                    return this.f25768h0;
                 }
                 return null;
-            } else if (this.f25824c0) {
+            } else if (this.f25763c0) {
                 return null;
             } else {
-                TL_iv.RichMessage richMessage = this.f25826e0;
+                TL_iv.RichMessage richMessage = this.f25765e0;
                 if (richMessage == null) {
                     return this.Y;
                 }
@@ -798,21 +797,21 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             }
             return null;
         } else if (!this.R0) {
-            int selectedTab = this.f25843w0.getSelectedTab();
+            int selectedTab = this.f25782w0.getSelectedTab();
             if (selectedTab == 0) {
                 if (!this.Z) {
-                    return this.f25822a0;
+                    return this.f25761a0;
                 }
                 return null;
             } else if (selectedTab == 2) {
-                if (!this.f25827f0) {
-                    return this.f25830i0;
+                if (!this.f25766f0) {
+                    return this.f25769i0;
                 }
                 return null;
-            } else if (this.f25824c0) {
+            } else if (this.f25763c0) {
                 return null;
             } else {
-                CharSequence charSequence = this.f25825d0;
+                CharSequence charSequence = this.f25764d0;
                 if (charSequence == null) {
                     return this.X;
                 }
@@ -830,13 +829,13 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         return false;
     }
 
-    public final q61 k0(int i10, TL_iv.RichMessage richMessage, boolean z10) {
+    public final r61 k0(int i10, TL_iv.RichMessage richMessage, boolean z10) {
         if (richMessage == null) {
             richMessage = this.Y;
         }
-        q61 of2 = RichMessageLayout.PreviewView.Factory.of(richMessage);
+        r61 of2 = RichMessageLayout.PreviewView.Factory.of(richMessage);
         of2.d = i10;
-        of2.f30057e = z10;
+        of2.f30355e = z10;
         return of2;
     }
 
@@ -851,9 +850,9 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         String str3;
         String str4;
         boolean j02 = j0();
-        ab abVar = this.f25983e;
-        d0 d0Var = this.f25844x0;
-        d0 d0Var2 = this.f25843w0;
+        za zaVar = this.f25521e;
+        d0 d0Var = this.f25783x0;
+        d0 d0Var2 = this.f25782w0;
         if (j02) {
             int selectedTab = d0Var2.getSelectedTab();
             String str5 = "";
@@ -882,7 +881,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                         TLRPC.Photo photo2 = photo;
                         TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
                         String str6 = str5;
-                        tL_inputPhoto.f20061id = photo2.f20066id;
+                        tL_inputPhoto.f20051id = photo2.f20056id;
                         tL_inputPhoto.access_hash = photo2.access_hash;
                         byte[] bArr = photo2.file_reference;
                         if (bArr == null) {
@@ -906,7 +905,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                         i12++;
                         TLRPC.Document document2 = document;
                         TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                        tL_inputDocument.f20054id = document2.f20048id;
+                        tL_inputDocument.f20044id = document2.f20038id;
                         tL_inputDocument.access_hash = document2.access_hash;
                         byte[] bArr2 = document2.file_reference;
                         if (bArr2 == null) {
@@ -919,9 +918,9 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             }
             tL_messages_composeRichMessageWithAI.text = tL_inputRichMessage;
             if (selectedTab == 0) {
-                tL_messages_composeRichMessageWithAI.translate_to_lang = TranslateController.normalizeLanguage(this.f25839s0);
+                tL_messages_composeRichMessageWithAI.translate_to_lang = TranslateController.normalizeLanguage(this.f25778s0);
                 tL_messages_composeRichMessageWithAI.tone = TL_aicompose.InputAiComposeTone.fromDefault(str3);
-                tL_messages_composeRichMessageWithAI.emojify = this.f25840t0;
+                tL_messages_composeRichMessageWithAI.emojify = this.f25779t0;
             } else if (selectedTab == 1) {
                 TL_aicompose.AiComposeTone selectedTone = d0Var.getSelectedTone();
                 if (selectedTone instanceof z) {
@@ -936,7 +935,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                 } else if (selectedTone instanceof TL_aicompose.TL_aiComposeTone) {
                     TL_aicompose.inputAiComposeToneID inputaicomposetoneid = new TL_aicompose.inputAiComposeToneID();
                     TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) selectedTone;
-                    inputaicomposetoneid.f20254id = tL_aiComposeTone.f20253id;
+                    inputaicomposetoneid.f20244id = tL_aiComposeTone.f20243id;
                     inputaicomposetoneid.access_hash = tL_aiComposeTone.access_hash;
                     tL_messages_composeRichMessageWithAI.tone = inputaicomposetoneid;
                 } else if (selectedTone instanceof TL_aicompose.TL_aiComposeToneDefault) {
@@ -944,7 +943,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                     inputaicomposetonedefault.tone = ((TL_aicompose.TL_aiComposeToneDefault) selectedTone).tone;
                     tL_messages_composeRichMessageWithAI.tone = inputaicomposetonedefault;
                 }
-                tL_messages_composeRichMessageWithAI.emojify = this.f25840t0;
+                tL_messages_composeRichMessageWithAI.emojify = this.f25779t0;
             } else if (selectedTab == 2) {
                 tL_messages_composeRichMessageWithAI.proofread = true;
             }
@@ -954,15 +953,15 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                     this.R0 = true;
                     this.J0 = false;
                     q0(true);
-                    org.telegram.ui.ActionBar.j5 titleTextView = abVar.getTitleTextView();
+                    org.telegram.ui.ActionBar.h5 titleTextView = zaVar.getTitleTextView();
                     titleTextView.i(this.N0);
                     this.N0.start();
                     if (selectedTab == 0) {
                         this.Z = true;
                     } else if (selectedTab == 1) {
-                        this.f25824c0 = true;
+                        this.f25763c0 = true;
                     } else if (selectedTab == 2) {
-                        this.f25827f0 = true;
+                        this.f25766f0 = true;
                     }
                     this.Q0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_composeRichMessageWithAI, new Object(), new ei.h1(this, titleTextView, selectedTab, tL_messages_composeRichMessageWithAI, 4));
                     this.O0.N(true);
@@ -986,9 +985,9 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI = new TLRPC.TL_messages_composeMessageWithAI();
         tL_messages_composeMessageWithAI.text = tL_textWithEntities;
         if (selectedTab2 == 0) {
-            tL_messages_composeMessageWithAI.translate_to_lang = TranslateController.normalizeLanguage(this.f25839s0);
+            tL_messages_composeMessageWithAI.translate_to_lang = TranslateController.normalizeLanguage(this.f25778s0);
             tL_messages_composeMessageWithAI.tone = TL_aicompose.InputAiComposeTone.fromDefault(null);
-            tL_messages_composeMessageWithAI.emojify = this.f25840t0;
+            tL_messages_composeMessageWithAI.emojify = this.f25779t0;
         } else if (selectedTab2 == 1) {
             TL_aicompose.AiComposeTone selectedTone2 = d0Var.getSelectedTone();
             if (selectedTone2 instanceof z) {
@@ -1003,7 +1002,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             } else if (selectedTone2 instanceof TL_aicompose.TL_aiComposeTone) {
                 TL_aicompose.inputAiComposeToneID inputaicomposetoneid2 = new TL_aicompose.inputAiComposeToneID();
                 TL_aicompose.TL_aiComposeTone tL_aiComposeTone2 = (TL_aicompose.TL_aiComposeTone) selectedTone2;
-                inputaicomposetoneid2.f20254id = tL_aiComposeTone2.f20253id;
+                inputaicomposetoneid2.f20244id = tL_aiComposeTone2.f20243id;
                 inputaicomposetoneid2.access_hash = tL_aiComposeTone2.access_hash;
                 tL_messages_composeMessageWithAI.tone = inputaicomposetoneid2;
             } else if (selectedTone2 instanceof TL_aicompose.TL_aiComposeToneDefault) {
@@ -1011,7 +1010,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                 inputaicomposetonedefault2.tone = ((TL_aicompose.TL_aiComposeToneDefault) selectedTone2).tone;
                 tL_messages_composeMessageWithAI.tone = inputaicomposetonedefault2;
             }
-            tL_messages_composeMessageWithAI.emojify = this.f25840t0;
+            tL_messages_composeMessageWithAI.emojify = this.f25779t0;
         } else if (selectedTab2 == 2) {
             tL_messages_composeMessageWithAI.proofread = true;
         }
@@ -1023,18 +1022,18 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             this.R0 = true;
             this.J0 = false;
             q0(true);
-            org.telegram.ui.ActionBar.j5 titleTextView2 = abVar.getTitleTextView();
+            org.telegram.ui.ActionBar.h5 titleTextView2 = zaVar.getTitleTextView();
             titleTextView2.i(this.N0);
             this.N0.start();
             int selectedTab3 = d0Var2.getSelectedTab();
             CharSequence charSequence7 = this.X;
-            if (selectedTab3 == 0 && (charSequence5 = this.f25822a0) != null) {
+            if (selectedTab3 == 0 && (charSequence5 = this.f25761a0) != null) {
                 charSequence7 = charSequence5;
             }
-            if (selectedTab3 == 1 && (charSequence4 = this.f25825d0) != null) {
+            if (selectedTab3 == 1 && (charSequence4 = this.f25764d0) != null) {
                 charSequence7 = charSequence4;
             }
-            if (selectedTab3 == 2 && (charSequence3 = this.f25828g0) != null) {
+            if (selectedTab3 == 2 && (charSequence3 = this.f25767g0) != null) {
                 charSequence2 = charSequence3;
             } else {
                 charSequence2 = charSequence7;
@@ -1053,20 +1052,20 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                 int length = spannableStringBuilder.length();
                 spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Loading));
                 ka0 ka0Var = new ka0(null, dp2, 0, null);
-                ka0Var.f27954f = AndroidUtilities.dp(6.0f);
+                ka0Var.f27896f = AndroidUtilities.dp(6.0f);
                 ka0Var.h = 0.5f;
-                ka0Var.f27955n = true;
+                ka0Var.f27897n = true;
                 spannableStringBuilder.setSpan(ka0Var, length, spannableStringBuilder.length(), 33);
             }
             if (selectedTab2 == 0) {
                 this.Z = true;
-                this.f25822a0 = spannableStringBuilder;
+                this.f25761a0 = spannableStringBuilder;
             } else if (selectedTab2 == 1) {
-                this.f25824c0 = true;
-                this.f25825d0 = spannableStringBuilder;
+                this.f25763c0 = true;
+                this.f25764d0 = spannableStringBuilder;
             } else if (selectedTab2 == 2) {
-                this.f25827f0 = true;
-                this.f25828g0 = spannableStringBuilder;
+                this.f25766f0 = true;
+                this.f25767g0 = spannableStringBuilder;
             }
             this.Q0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_composeMessageWithAI, new Object(), new ei.h1(this, titleTextView2, selectedTab2, tL_messages_composeMessageWithAI, 3));
             this.O0.N(true);
@@ -1074,13 +1073,13 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     }
 
     public final void m0(int i10, int i11, boolean z10) {
-        if (this.f25835o0 != null) {
+        if (this.f25774o0 != null) {
             TL_iv.RichMessage h02 = h0();
             if (h02 != null) {
-                this.f25835o0.run(h02, Integer.valueOf(i10), Integer.valueOf(i11), Boolean.valueOf(z10));
+                this.f25774o0.run(h02, Integer.valueOf(i10), Integer.valueOf(i11), Boolean.valueOf(z10));
             }
-        } else if (this.f25834n0 != null && i0() != null) {
-            this.f25834n0.run(i0(), Integer.valueOf(i10), Integer.valueOf(i11), Boolean.valueOf(z10));
+        } else if (this.f25773n0 != null && i0() != null) {
+            this.f25773n0.run(i0(), Integer.valueOf(i10), Integer.valueOf(i11), Boolean.valueOf(z10));
         }
     }
 
@@ -1091,7 +1090,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             spannableStringBuilder = editable.toString();
         } else {
             spannableStringBuilder = new SpannableStringBuilder(editable.toString());
-            Class[] clsArr = {v11.class, CodeHighlighting.Span.class, fx0.class, x61.class, w61.class, t61.class, u61.class, y10.class, s61.class, r61.class, b6.class};
+            Class[] clsArr = {w11.class, li.h.class, gx0.class, y61.class, x61.class, u61.class, v61.class, y10.class, t61.class, s61.class, b6.class};
             for (int i10 = 0; i10 < 11; i10++) {
                 for (Object obj : editable.getSpans(0, editable.length(), clsArr[i10])) {
                     spannableStringBuilder.setSpan(obj, editable.getSpanStart(obj), editable.getSpanEnd(obj), 33);
@@ -1100,7 +1099,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         }
         this.X = spannableStringBuilder;
         if (LanguageDetector.hasSupport()) {
-            LanguageDetector.detectLanguage(editable.toString(), new a(this, 0), new org.telegram.ui.nr(9));
+            LanguageDetector.detectLanguage(editable.toString(), new a(this, 0), new org.telegram.ui.ig(11));
         }
     }
 
@@ -1115,7 +1114,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
                 }
                 e0(richMessage2.blocks.get(i10), sb2);
             }
-            LanguageDetector.detectLanguage(sb2.toString(), new a(this, 1), new org.telegram.ui.nr(10));
+            LanguageDetector.detectLanguage(sb2.toString(), new a(this, 1), new org.telegram.ui.ig(12));
         }
         t0();
     }
@@ -1144,16 +1143,16 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
             dVar.setText(LocaleController.getString(R.string.OK));
             dVar.setOnClickListener(new b(this, 0));
         } else {
-            d0 d0Var = this.f25843w0;
+            d0 d0Var = this.f25782w0;
             if (d0Var != null) {
                 i10 = d0Var.getSelectedTab();
             } else {
                 i10 = 0;
             }
-            if (i10 == 1 && (this.f25844x0.getSelectedTone() instanceof z) && !TextUtils.equals(this.A0.getText().toString(), this.I0)) {
+            if (i10 == 1 && (this.f25783x0.getSelectedTone() instanceof z) && !TextUtils.equals(this.A0.getText().toString(), this.I0)) {
                 dVar.setText(LocaleController.getString(R.string.ArticleAIGenerate));
                 dVar.setOnClickListener(new b(this, 1));
-            } else if (this.f25832k0 == null && this.f25831j0 == null) {
+            } else if (this.f25771k0 == null && this.f25770j0 == null) {
                 dVar.setText(LocaleController.getString(R.string.OK));
                 dVar.setOnClickListener(new b(this, 3));
             } else {
@@ -1215,35 +1214,35 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         float f7;
         String str = this.I0;
         org.telegram.ui.Cells.j3 j3Var = this.A0;
-        boolean equals = TextUtils.equals(str, j3Var.f22301b.getText().toString());
+        boolean equals = TextUtils.equals(str, j3Var.f22289b.getText().toString());
         boolean z10 = !equals;
         if (this.H0 == z10) {
             return;
         }
-        ViewPropertyAnimator animate = j3Var.f22301b.animate();
+        ViewPropertyAnimator animate = j3Var.f22289b.animate();
         this.H0 = z10;
         if (!equals) {
             f7 = 1.0f;
         } else {
             f7 = 0.5f;
         }
-        org.telegram.messenger.bi.s(animate, f7, 320L);
+        org.telegram.messenger.ai.s(animate, f7, 320L);
         this.O0.N(true);
     }
 
     public final void s0() {
-        rm0 rm0Var;
+        sm0 sm0Var;
         View view;
         if (this.B0 == null) {
             return;
         }
         int i10 = 0;
         while (true) {
-            rm0Var = this.d;
-            if (i10 < rm0Var.getChildCount()) {
-                view = rm0Var.getChildAt(i10);
-                q61 G = this.O0.G(RecyclerView.R(view) - 1);
-                if (G != null && G.f30056c == this.f25844x0) {
+            sm0Var = this.d;
+            if (i10 < sm0Var.getChildCount()) {
+                view = sm0Var.getChildAt(i10);
+                r61 G = this.O0.G(RecyclerView.R(view) - 1);
+                if (G != null && G.f30354c == this.f25783x0) {
                     break;
                 }
                 i10++;
@@ -1254,7 +1253,7 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         }
         if (view != null) {
             this.B0.setVisibility(0);
-            this.B0.setTranslationY(view.getY() + rm0Var.getY() + view.getHeight());
+            this.B0.setTranslationY(view.getY() + sm0Var.getY() + view.getHeight());
             return;
         }
         this.B0.setVisibility(4);
@@ -1266,11 +1265,11 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
         int i10;
         int i11;
         super.show();
-        ab abVar = this.f25983e;
-        if (abVar != null) {
-            abVar.setTitle(B());
+        za zaVar = this.f25521e;
+        if (zaVar != null) {
+            zaVar.setTitle(B());
         }
-        if (!this.m0 && (this.f25835o0 != null || this.f25834n0 != null)) {
+        if (!this.m0 && (this.f25774o0 != null || this.f25773n0 != null)) {
             i10 = 0;
         } else {
             i10 = 8;
@@ -1293,14 +1292,14 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     }
 
     public final void t0() {
-        d0 d0Var = this.f25844x0;
+        d0 d0Var = this.f25783x0;
         TL_aicompose.AiComposeTone selectedTone = d0Var.getSelectedTone();
-        d0Var.f25498c.removeAllViews();
+        d0Var.f25364c.removeAllViews();
         if (j0()) {
             d0Var.b(new TL_aicompose.AiComposeTone(), new e(this, 0));
         }
         d0Var.b(null, new e(this, 0));
-        ArrayList<TL_aicompose.AiComposeTone> arrayList = this.f25841u0.tones;
+        ArrayList<TL_aicompose.AiComposeTone> arrayList = this.f25780u0.tones;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -1314,10 +1313,10 @@ public final class e0 extends eb implements NotificationCenter.NotificationCente
     }
 
     @Override
-    public final qm0 x(rm0 rm0Var) {
-        d71 d71Var = new d71(rm0Var, getContext(), this.currentAccount, 0, true, new d(this, 0), this.resourcesProvider);
-        this.O0 = d71Var;
-        d71Var.f25587r = false;
-        return d71Var;
+    public final rm0 x(sm0 sm0Var) {
+        e71 e71Var = new e71(sm0Var, getContext(), this.currentAccount, 0, true, new d(this, 0), this.resourcesProvider);
+        this.O0 = e71Var;
+        e71Var.f25890r = false;
+        return e71Var;
     }
 }

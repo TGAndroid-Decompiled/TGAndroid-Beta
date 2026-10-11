@@ -11,23 +11,23 @@ import com.google.android.gms.internal.play_billing.o1;
 import com.google.android.gms.internal.play_billing.q2;
 import com.google.android.gms.internal.play_billing.s1;
 public final class h0 extends BroadcastReceiver {
-    public boolean f4257a;
-    public final boolean f4258b;
-    public final g f4259c;
+    public boolean f4256a;
+    public final boolean f4257b;
+    public final g f4258c;
 
     public h0(g gVar, boolean z10) {
-        this.f4259c = gVar;
-        this.f4258b = z10;
+        this.f4258c = gVar;
+        this.f4257b = z10;
     }
 
     public final synchronized void a(Context context, IntentFilter intentFilter) {
         int i10;
         try {
-            if (this.f4257a) {
+            if (this.f4256a) {
                 return;
             }
             if (Build.VERSION.SDK_INT >= 33) {
-                if (true != this.f4258b) {
+                if (true != this.f4257b) {
                     i10 = 4;
                 } else {
                     i10 = 2;
@@ -36,7 +36,7 @@ public final class h0 extends BroadcastReceiver {
             } else {
                 context.registerReceiver(this, intentFilter);
             }
-            this.f4257a = true;
+            this.f4256a = true;
         } catch (Throwable th2) {
             throw th2;
         }
@@ -47,11 +47,11 @@ public final class h0 extends BroadcastReceiver {
         int i10;
         try {
             try {
-                if (this.f4257a) {
+                if (this.f4256a) {
                     return;
                 }
                 if (Build.VERSION.SDK_INT >= 33) {
-                    if (true != this.f4258b) {
+                    if (true != this.f4257b) {
                         i10 = 4;
                     } else {
                         i10 = 2;
@@ -62,7 +62,7 @@ public final class h0 extends BroadcastReceiver {
                     h0Var = this;
                     context.registerReceiver(this, intentFilter, "com.google.android.finsky.permission.PLAY_BILLING_LIBRARY_BROADCAST", null);
                 }
-                h0Var.f4257a = true;
+                h0Var.f4256a = true;
             } catch (Throwable th2) {
                 th = th2;
                 throw th;
@@ -77,19 +77,19 @@ public final class h0 extends BroadcastReceiver {
         o1 d;
         try {
             if (bundle.getByteArray("FAILURE_LOGGING_PAYLOAD") != null) {
-                f0 f0Var = (f0) this.f4259c.d;
+                f0 f0Var = (f0) this.f4258c.d;
                 byte[] byteArray = bundle.getByteArray("FAILURE_LOGGING_PAYLOAD");
-                int i11 = o1.f7431a;
+                int i11 = o1.f7430a;
                 synchronized (o1.class) {
-                    int i12 = o1.f7431a;
-                    q2 q2Var = q2.f7448c;
+                    int i12 = o1.f7430a;
+                    q2 q2Var = q2.f7447c;
                     d = s1.d();
-                    int i13 = o1.f7431a;
+                    int i13 = o1.f7430a;
                 }
-                ((pf.b) f0Var).Y(g3.n(byteArray, d), j3, z10);
+                ((pf.b) f0Var).c0(g3.n(byteArray, d), j3, z10);
                 return;
             }
-            ((pf.b) ((f0) this.f4259c.d)).Y(e0.b(23, i10, hVar, null, m3Var), j3, z10);
+            ((pf.b) ((f0) this.f4258c.d)).c0(e0.b(23, i10, hVar, null, m3Var), j3, z10);
         } catch (Throwable unused) {
             com.google.android.gms.internal.play_billing.u.h("BillingBroadcastManager", "Failed parsing Api failure.");
         }

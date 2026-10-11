@@ -22,8 +22,8 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 public final class x30 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, VoIPService.StateListener {
     public final int E;
-    public final gk0 F;
-    public final dk0 G;
+    public final hk0 F;
+    public final ek0 G;
     public long H;
     public final boolean I;
     public final Random J;
@@ -34,29 +34,29 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
     public float O;
     public final OvershootInterpolator P;
     public float Q;
-    public final Paint f32822a;
-    public final da f32823b;
-    public final da f32824c;
+    public final Paint f32812a;
+    public final da f32813b;
+    public final da f32814c;
     public float d;
-    public float f32825e;
-    public float f32826f;
+    public float f32815e;
+    public float f32816f;
     public w30 h;
-    public w30 f32827n;
-    public float f32828r;
-    public boolean f32829s;
+    public w30 f32817n;
+    public float f32818r;
+    public boolean f32819s;
     public float v;
-    public final LinearGradient f32830w;
-    public final Matrix f32831x;
-    public float f32832y;
+    public final LinearGradient f32820w;
+    public final Matrix f32821x;
+    public float f32822y;
 
     public x30(int i10, Context context, boolean z10) {
         super(context);
-        this.f32822a = new Paint(1);
-        this.f32823b = new da(8);
-        this.f32824c = new da(9);
-        this.f32828r = 1.0f;
-        this.f32831x = new Matrix();
-        this.f32832y = 0.0f;
+        this.f32812a = new Paint(1);
+        this.f32813b = new da(8);
+        this.f32814c = new da(9);
+        this.f32818r = 1.0f;
+        this.f32821x = new Matrix();
+        this.f32822y = 0.0f;
         this.J = new Random();
         this.L = new w30[4];
         this.P = new OvershootInterpolator();
@@ -65,21 +65,21 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
         for (int i11 = 0; i11 < 4; i11++) {
             this.L[i11] = new w30(i11);
         }
-        this.f32823b.f25606b = AndroidUtilities.dp(37.0f);
-        this.f32823b.f25605a = AndroidUtilities.dp(32.0f);
-        this.f32824c.f25606b = AndroidUtilities.dp(37.0f);
-        this.f32824c.f25605a = AndroidUtilities.dp(32.0f);
-        this.f32823b.b();
-        this.f32824c.b();
-        dk0 dk0Var = new dk0(R.raw.voice_outlined, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(30.0f), true, null);
-        this.G = dk0Var;
+        this.f32813b.f25499b = AndroidUtilities.dp(37.0f);
+        this.f32813b.f25498a = AndroidUtilities.dp(32.0f);
+        this.f32814c.f25499b = AndroidUtilities.dp(37.0f);
+        this.f32814c.f25498a = AndroidUtilities.dp(32.0f);
+        this.f32813b.b();
+        this.f32814c.b();
+        ek0 ek0Var = new ek0(R.raw.voice_outlined, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(30.0f), true, null);
+        this.G = ek0Var;
         setWillNotDraw(false);
         ?? imageView = new ImageView(context);
         this.F = imageView;
-        imageView.setAnimation(dk0Var);
+        imageView.setAnimation(ek0Var);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        this.f32830w = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f32820w = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
         if (z10) {
             setState(0);
         }
@@ -87,8 +87,8 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
 
     private void setAmplitude(double d) {
         float min = (float) (Math.min(8500.0d, d) / 8500.0d);
-        this.f32825e = min;
-        this.f32826f = (min - this.d) / 265.0f;
+        this.f32815e = min;
+        this.f32816f = (min - this.d) / 265.0f;
     }
 
     public final void a() {
@@ -148,9 +148,9 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
             } else {
                 i10 = 24;
             }
-            dk0 dk0Var = this.G;
-            dk0Var.P(i10);
-            dk0Var.N(dk0Var.f25734f - 1, false, true);
+            ek0 ek0Var = this.G;
+            ek0Var.P(i10);
+            ek0Var.N(ek0Var.f26045f - 1, false, true);
             a();
         }
     }
@@ -169,12 +169,12 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
         } else {
             i10 = 24;
         }
-        dk0 dk0Var = this.G;
-        if (dk0Var.P(i10)) {
+        ek0 ek0Var = this.G;
+        if (ek0Var.P(i10)) {
             if (z10) {
-                dk0Var.M(0);
+                ek0Var.M(0);
             } else {
-                dk0Var.M(12);
+                ek0Var.M(12);
             }
         }
         this.F.d();
@@ -183,12 +183,12 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
 
     @Override
     public final void onCameraFirstFrameAvailable() {
-        org.telegram.messenger.voip.w0.b(this);
+        org.telegram.messenger.voip.v0.b(this);
     }
 
     @Override
     public final void onCameraSwitch(boolean z10) {
-        org.telegram.messenger.voip.w0.c(this, z10);
+        org.telegram.messenger.voip.v0.c(this, z10);
     }
 
     @Override
@@ -212,9 +212,9 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         int i10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        r30 r30Var = r30.f30352d0;
+        r30 r30Var = r30.f30317d0;
         if (r30Var != null) {
-            if (r30Var.f30365w) {
+            if (r30Var.f30330w) {
                 i10 = R.string.AccDescrCloseMenu;
             } else {
                 i10 = R.string.AccDescrOpenMenu2;
@@ -225,17 +225,17 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
 
     @Override
     public final void onMediaStateUpdated(int i10, int i11) {
-        org.telegram.messenger.voip.w0.d(this, i10, i11);
+        org.telegram.messenger.voip.v0.d(this, i10, i11);
     }
 
     @Override
     public final void onScreenOnChange(boolean z10) {
-        org.telegram.messenger.voip.w0.e(this, z10);
+        org.telegram.messenger.voip.v0.e(this, z10);
     }
 
     @Override
     public final void onSignalBarsCountChanged(int i10) {
-        org.telegram.messenger.voip.w0.f(this, i10);
+        org.telegram.messenger.voip.v0.f(this, i10);
     }
 
     @Override
@@ -245,7 +245,7 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
 
     @Override
     public final void onVideoAvailableChange(boolean z10) {
-        org.telegram.messenger.voip.w0.h(this, z10);
+        org.telegram.messenger.voip.v0.h(this, z10);
     }
 
     public void setPinnedProgress(float f7) {
@@ -263,22 +263,22 @@ public final class x30 extends FrameLayout implements NotificationCenter.Notific
     public void setState(int i10) {
         String string;
         w30 w30Var = this.h;
-        if (w30Var != null && w30Var.f32585i == i10) {
+        if (w30Var != null && w30Var.f32567i == i10) {
             return;
         }
-        this.f32827n = w30Var;
+        this.f32817n = w30Var;
         w30 w30Var2 = this.L[i10];
         this.h = w30Var2;
         float f7 = 0.0f;
         if (w30Var != null) {
-            this.f32828r = 0.0f;
+            this.f32818r = 0.0f;
         } else {
-            this.f32828r = 1.0f;
-            int i11 = w30Var2.f32585i;
+            this.f32818r = 1.0f;
+            int i11 = w30Var2.f32567i;
             if (i11 != 3 && i11 != 2) {
                 f7 = 1.0f;
             }
-            this.f32832y = f7;
+            this.f32822y = f7;
         }
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {

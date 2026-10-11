@@ -8,7 +8,7 @@ public interface t0 {
 
     void P1(w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str);
 
-    org.telegram.ui.ActionBar.n2 T0();
+    org.telegram.ui.ActionBar.m2 T0();
 
     void W0(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 

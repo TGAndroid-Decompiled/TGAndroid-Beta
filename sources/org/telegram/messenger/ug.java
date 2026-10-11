@@ -1,71 +1,79 @@
 package org.telegram.messenger;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.CancellationSignal;
-import org.telegram.messenger.MessagesStorage;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.function.Consumer;
 import org.telegram.messenger.NotificationBadge;
-import org.telegram.messenger.PushListenerController;
-import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class ug implements Runnable {
-    public final int f19357a;
-    public final Object f19358b;
+    public final int f19355a;
+    public final Object f19356b;
+    public final Object f19357c;
 
-    public ug(Object obj, int i10) {
-        this.f19357a = i10;
-        this.f19358b = obj;
+    public ug(int i10, Object obj, Object obj2) {
+        this.f19355a = i10;
+        this.f19356b = obj;
+        this.f19357c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f19357a) {
+        switch (this.f19355a) {
             case 0:
-                NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f19358b);
+                ((NotificationBadge.ZukHomeBadger) this.f19356b).lambda$executeBadge$0((Bundle) this.f19357c);
                 return;
             case 1:
-                ((NotificationsSettingsFacade) this.f19358b).lambda$applyDialogNotificationsSettings$0();
+                NotificationsController.lambda$loadTopicsNotificationsExceptions$54((Consumer) this.f19356b, (HashSet) this.f19357c);
                 return;
             case 2:
-                ((CancellationSignal) this.f19358b).cancel();
+                NotificationsController.lambda$showExtraNotifications$46((Uri) this.f19356b, (File) this.f19357c);
                 return;
             case 3:
-                ((ProxyRotationController) this.f19358b).lambda$new$2();
+                ((NotificationsController) this.f19356b).lambda$didReceivedNotification$39((String) this.f19357c);
                 return;
             case 4:
-                ((PushListenerController.GooglePushListenerServiceProvider) this.f19358b).lambda$onRequestPushToken$1();
+                ((NotificationsController) this.f19356b).lambda$processEditedMessages$23((a0.i) this.f19357c);
                 return;
             case 5:
-                ((RichMessageLayout.PreviewView) this.f19358b).lambda$onTouchEvent$0();
+                PasskeysController.lambda$create$2((Utilities.Callback2) this.f19356b, (Throwable) this.f19357c);
                 return;
             case 6:
-                ((RichMessageLayout.RichButtonRowBlock) this.f19358b).invalidate();
+                ((SavedMessagesController) this.f19356b).lambda$deleteCache$13((MessagesStorage) this.f19357c);
                 return;
             case 7:
-                ((RichMessageLayout.RichButtonSpan) this.f19358b).invalidate();
+                ((SecretChatHelper) this.f19356b).lambda$performSendEncryptedRequest$6((TLRPC.Message) this.f19357c);
                 return;
             case 8:
-                RichMessageLayout.RichUnsupportedBlock.lambda$new$0((RichMessageLayout) this.f19358b);
+                ((SendMessagesHelper) this.f19356b).lambda$performSendMessageRequest$93((TLRPC.TL_updateShortSentMessage) this.f19357c);
                 return;
             case 9:
-                ((RichMessageLayout.Text) this.f19358b).lambda$scheduleLongPress$2();
+                ((SendMessagesHelper) this.f19356b).lambda$sendMessage$19((ArrayList) this.f19357c);
                 return;
             case 10:
-                ((SecretChatHelper) this.f19358b).lambda$startSecretChat$25();
+                ((SendMessagesHelper.ImportingStickers) this.f19356b).lambda$onMediaImport$0((String) this.f19357c);
                 return;
             case 11:
-                ((SendMessagesHelper) this.f19358b).lambda$new$0();
+                ((TopicsController) this.f19356b).lambda$processUpdate$22((List) this.f19357c);
                 return;
             case 12:
-                ((MessagesStorage.StringCallback) this.f19358b).run(null);
+                ((TopicsController) this.f19356b).lambda$pinTopic$19((org.telegram.ui.ActionBar.m2) this.f19357c);
                 return;
             case 13:
-                ((SendMessagesHelper.LocationProvider) this.f19358b).lambda$start$0();
+                ((TopicsController) this.f19356b).lambda$onTopicsDeletedServerSide$23((ArrayList) this.f19357c);
                 return;
             case 14:
-                ((TelegramMediaSession) this.f19358b).onAccountSwitched();
+                ((TopicsController) this.f19356b).lambda$updateReadOutbox$26((HashMap) this.f19357c);
                 return;
             default:
-                ((TranslateController) this.f19358b).loadTranslatingDialogsCached();
+                ((UserConfig) this.f19356b).lambda$loadGlobalTTl$3((TLObject) this.f19357c);
                 return;
         }
     }

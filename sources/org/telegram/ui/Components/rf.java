@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.text.TextUtils;
 import android.view.View;
-public final class rf implements fm0 {
-    public final ChatActivityEnterView f30459a;
+public final class rf implements gm0 {
+    public final ChatActivityEnterView f30451a;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f30459a = chatActivityEnterView;
+        this.f30451a = chatActivityEnterView;
     }
 
     @Override
@@ -14,14 +14,14 @@ public final class rf implements fm0 {
         if (view instanceof ei.a0) {
             String command = ((ei.a0) view).getCommand();
             if (!TextUtils.isEmpty(command)) {
-                ChatActivityEnterView chatActivityEnterView = this.f30459a;
+                ChatActivityEnterView chatActivityEnterView = this.f30451a;
                 if (chatActivityEnterView.c()) {
-                    g5.L(chatActivityEnterView.O2, chatActivityEnterView.Q2, new y2(2, this, command), chatActivityEnterView.W3);
+                    g5.L(chatActivityEnterView.O2, chatActivityEnterView.Q2, new y2(this, command, false, 3), chatActivityEnterView.W3);
                     return;
                 }
                 org.telegram.ui.zn znVar = chatActivityEnterView.P2;
                 if (znVar == null || !znVar.h7(view)) {
-                    g5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.ui.pc(15, this, command));
+                    g5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.ui.oc(15, this, command));
                 }
             }
         }

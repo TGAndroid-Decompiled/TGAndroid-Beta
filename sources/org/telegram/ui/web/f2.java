@@ -1,42 +1,49 @@
 package org.telegram.ui.web;
+public final class f2 implements Runnable {
+    public final int f43490a;
+    public final Object f43491b;
+    public final Object f43492c;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class f2 implements Utilities.Callback {
-    public final int f43347a;
-    public final g2 f43348b;
+    public f2(int i10, Object obj, Object obj2) {
+        this.f43490a = i10;
+        this.f43491b = obj;
+        this.f43492c = obj2;
+    }
 
-    public f2(g2 g2Var, int i10) {
-        this.f43347a = i10;
-        this.f43348b = g2Var;
+    private final void a() {
+        pa.a aVar;
+        q9.q qVar = (q9.q) this.f43491b;
+        pa.b bVar = (pa.b) this.f43492c;
+        if (qVar.f46118b == q9.q.d) {
+            synchronized (qVar) {
+                aVar = qVar.f46117a;
+                qVar.f46117a = null;
+                qVar.f46118b = bVar;
+            }
+            aVar.g(bVar);
+            return;
+        }
+        throw new IllegalStateException("provide() can be called only once.");
+    }
+
+    private final void b() {
+        q9.o oVar = (q9.o) this.f43491b;
+        pa.b bVar = (pa.b) this.f43492c;
+        synchronized (oVar) {
+            try {
+                if (oVar.f46112b == null) {
+                    oVar.f46111a.add(bVar);
+                } else {
+                    oVar.f46112b.add(bVar.get());
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
     }
 
     @Override
-    public final void run(Object obj) {
-        i2 i2Var = (i2) obj;
-        switch (this.f43347a) {
-            case 0:
-                g2 g2Var = this.f43348b;
-                g2Var.f43365l = null;
-                g2Var.f43362i = true;
-                TLRPC.TL_webPage tL_webPage = g2Var.f43363j;
-                if (tL_webPage != null) {
-                    i2.o(tL_webPage);
-                }
-                g2Var.f43363j = i2Var.f43400c;
-                g2Var.c();
-                return;
-            default:
-                g2 g2Var2 = this.f43348b;
-                g2Var2.f43365l = null;
-                g2Var2.f43362i = true;
-                TLRPC.TL_webPage tL_webPage2 = g2Var2.f43363j;
-                if (tL_webPage2 != null) {
-                    i2.o(tL_webPage2);
-                }
-                g2Var2.f43363j = i2Var.f43400c;
-                g2Var2.c();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f2.run():void");
     }
 }

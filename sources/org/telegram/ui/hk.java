@@ -4,11 +4,11 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class hk implements pt {
-    public final zn f38411a;
+public final class hk implements ot {
+    public final zn f38465a;
 
     public hk(zn znVar) {
-        this.f38411a = znVar;
+        this.f38465a = znVar;
     }
 
     @Override
@@ -49,15 +49,15 @@ public final class hk implements pt {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            zn znVar = this.f38411a;
+            zn znVar = this.f38465a;
             if (znVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f20062id = inputStickerSet.f20062id;
-                org.telegram.ui.Components.yy0 yy0Var = new org.telegram.ui.Components.yy0(znVar.getParentActivity(), znVar, tL_inputStickerSetID, null, znVar.Y, znVar.f44807ea);
-                yy0Var.setCalcMandatoryInsets(znVar.C9());
-                yy0Var.f33432i0 = z10;
-                znVar.showDialog(yy0Var);
+                tL_inputStickerSetID.f20052id = inputStickerSet.f20052id;
+                org.telegram.ui.Components.zy0 zy0Var = new org.telegram.ui.Components.zy0(znVar.getParentActivity(), znVar, tL_inputStickerSetID, null, znVar.Y, znVar.f44762ea);
+                zy0Var.setCalcMandatoryInsets(znVar.C9());
+                zy0Var.f33700i0 = z10;
+                znVar.showDialog(zy0Var);
             }
         }
     }
@@ -79,17 +79,17 @@ public final class hk implements pt {
 
     @Override
     public final long a() {
-        return this.f38411a.T5;
+        return this.f38465a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f38411a.G6();
+        return this.f38465a.G6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f38411a.R3 == 1) {
+        if (this.f38465a.R3 == 1) {
             return true;
         }
         return false;
@@ -137,7 +137,7 @@ public final class hk implements pt {
 
     @Override
     public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f38411a.Y.d(document, str, obj, null, true, z10, i10, i11);
+        this.f38465a.Y.d(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override
@@ -215,7 +215,7 @@ public final class hk implements pt {
     }
 
     @Override
-    public final void f(CharSequence charSequence, String str, ft ftVar) {
+    public final void f(CharSequence charSequence, String str, et etVar) {
     }
 
     @Override

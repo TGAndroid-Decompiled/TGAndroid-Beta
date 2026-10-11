@@ -1,97 +1,62 @@
 package tg;
 
-import android.view.View;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.r6;
-import org.telegram.ui.Components.ww0;
-public final class u implements f5, ww0, vg.f, vg.k {
-    public final a0 f48458a;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class u implements Utilities.Callback {
+    public final int f48481a;
+    public final z f48482b;
 
-    public u(a0 a0Var) {
-        this.f48458a = a0Var;
+    public u(z zVar, int i10) {
+        this.f48481a = i10;
+        this.f48482b = zVar;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z10) {
-        a0 a0Var = this.f48458a;
-        a0Var.m0 = i10 * 1000;
-        a0Var.b0(false, true);
-    }
-
-    @Override
-    public void g(int i10) {
-        String str;
-        int i11;
-        String string;
-        String str2;
-        String formatPluralString;
-        a0 a0Var = this.f48458a;
-        int i12 = a0Var.f48317h0;
-        int i13 = vg.d.v;
-        if (i12 == 2) {
-            a0Var.f48322n0 = i10;
-        } else {
-            a0Var.f48323o0 = i10;
+    public final void run(Object obj) {
+        switch (this.f48481a) {
+            case 0:
+                Void r42 = (Void) obj;
+                z zVar = this.f48482b;
+                zVar.dismiss();
+                AndroidUtilities.runOnUIThread(new s(zVar, 2), 220L);
+                return;
+            case 1:
+                z zVar2 = this.f48482b;
+                zVar2.f48534q0.b(false);
+                i.j(zVar2.getContext(), (TLRPC.TL_error) obj);
+                return;
+            case 2:
+                z zVar3 = this.f48482b;
+                zVar3.f48531n0 = zVar3.Y.indexOf(Integer.valueOf(((TLRPC.TL_premiumGiftCodeOption) obj).users));
+                zVar3.b0(true, true);
+                zVar3.a0(true);
+                return;
+            case 3:
+                Void r43 = (Void) obj;
+                z zVar4 = this.f48482b;
+                zVar4.dismiss();
+                AndroidUtilities.runOnUIThread(new s(zVar4, 1), 220L);
+                return;
+            case 4:
+                z zVar5 = this.f48482b;
+                zVar5.f48534q0.b(false);
+                i.j(zVar5.getContext(), (TLRPC.TL_error) obj);
+                return;
+            case 5:
+                z zVar6 = this.f48482b;
+                ArrayList arrayList = zVar6.f48524f0;
+                arrayList.clear();
+                arrayList.addAll((List) obj);
+                zVar6.b0(true, true);
+                return;
+            default:
+                z zVar7 = this.f48482b;
+                zVar7.f48534q0.b(false);
+                i.j(zVar7.getContext(), (TLRPC.TL_error) obj);
+                return;
         }
-        a0Var.f48325q0.f49607a.b(a0Var.W(), true);
-        if (a0Var.f48317h0 == 3) {
-            a0Var.b0(true, true);
-        } else {
-            a0Var.b0(false, false);
-        }
-        ug.b bVar = a0Var.f48316g0;
-        int W = a0Var.W();
-        for (int i14 = 0; i14 < bVar.f48956f.getChildCount(); i14++) {
-            View childAt = bVar.f48956f.getChildAt(i14);
-            if (childAt instanceof vg.x) {
-                r6 r6Var = ((vg.x) childAt).f49682r;
-                if (W <= 0) {
-                    formatPluralString = "";
-                } else {
-                    formatPluralString = LocaleController.formatPluralString("BoostingBoostsCountTitle", W, Integer.valueOf(W));
-                }
-                r6Var.a();
-                r6Var.c(formatPluralString, true, true);
-            }
-            if (childAt instanceof vg.g) {
-                vg.g gVar = (vg.g) childAt;
-                int F = bVar.F(gVar.getChat());
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49638w);
-                if (gVar.f49639x) {
-                    if (F >= 1) {
-                        if (isChannelAndNotMegaGroup) {
-                            str2 = "Subscribers";
-                        } else {
-                            str2 = "Members";
-                        }
-                        string = LocaleController.formatPluralString(str2, F, new Object[0]);
-                    } else {
-                        if (isChannelAndNotMegaGroup) {
-                            i11 = R.string.DiscussChannel;
-                        } else {
-                            i11 = R.string.AccDescrGroup;
-                        }
-                        string = LocaleController.getString(i11);
-                    }
-                    gVar.setSubtitle(string);
-                } else {
-                    if (isChannelAndNotMegaGroup) {
-                        str = "BoostingChannelWillReceiveBoost";
-                    } else {
-                        str = "BoostingGroupWillReceiveBoost";
-                    }
-                    gVar.setSubtitle(LocaleController.formatPluralString(str, W, new Object[0]));
-                }
-            }
-        }
-        bVar.m(8);
-        bVar.q(bVar.f48955e.size() - 12, 12);
-    }
-
-    @Override
-    public void l() {
     }
 }

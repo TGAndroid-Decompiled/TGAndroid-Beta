@@ -38,32 +38,32 @@ import u2.f0;
 import u2.j0;
 import u2.t;
 public final class f implements z0, j0, n2.k {
-    public final x f13690a;
-    public final h1 f13691b;
-    public final j1 f13692c;
+    public final x f13689a;
+    public final h1 f13690b;
+    public final j1 f13691c;
     public final n d;
-    public final SparseArray f13693e;
-    public p f13694f;
+    public final SparseArray f13692e;
+    public p f13693f;
     public b1 h;
-    public z f13695n;
-    public boolean f13696r;
+    public z f13694n;
+    public boolean f13695r;
 
     public f(x xVar) {
         xVar.getClass();
-        this.f13690a = xVar;
-        String str = d0.f8532a;
+        this.f13689a = xVar;
+        String str = d0.f8531a;
         Looper myLooper = Looper.myLooper();
-        this.f13694f = new p(myLooper == null ? Looper.getMainLooper() : myLooper, xVar, new o1(25));
+        this.f13693f = new p(myLooper == null ? Looper.getMainLooper() : myLooper, xVar, new o1(25));
         h1 h1Var = new h1();
-        this.f13691b = h1Var;
-        this.f13692c = new j1();
+        this.f13690b = h1Var;
+        this.f13691c = new j1();
         ?? obj = new Object();
-        obj.f7954a = h1Var;
-        g0 g0Var = i0.f8752b;
-        obj.f7955b = a1.f8715e;
-        obj.f7956c = f1.h;
+        obj.f7953a = h1Var;
+        g0 g0Var = i0.f8751b;
+        obj.f7954b = a1.f8714e;
+        obj.f7955c = f1.h;
         this.d = obj;
-        this.f13693e = new SparseArray();
+        this.f13692e = new SparseArray();
     }
 
     @Override
@@ -144,7 +144,7 @@ public final class f implements z0, j0, n2.k {
         } else {
             f0Var2 = f0Var;
         }
-        this.f13690a.getClass();
+        this.f13689a.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (k1Var.equals(this.h.w0()) && i10 == this.h.l0()) {
             z10 = true;
@@ -153,13 +153,13 @@ public final class f implements z0, j0, n2.k {
         }
         long j3 = 0;
         if (f0Var2 != null && f0Var2.b()) {
-            if (z10 && this.h.k0() == f0Var2.f48617b && this.h.O() == f0Var2.f48618c) {
+            if (z10 && this.h.k0() == f0Var2.f48641b && this.h.O() == f0Var2.f48642c) {
                 j3 = this.h.J0();
             }
         } else if (z10) {
             j3 = this.h.a0();
         } else if (!k1Var.p()) {
-            j3 = d0.d0(k1Var.m(i10, this.f13692c, 0L).f3388l);
+            j3 = d0.d0(k1Var.m(i10, this.f13691c, 0L).f3388l);
         }
         return new a(elapsedRealtime, k1Var, i10, f0Var2, j3, this.h.w0(), this.h.l0(), (f0) this.d.d, this.h.J0(), this.h.r());
     }
@@ -170,10 +170,10 @@ public final class f implements z0, j0, n2.k {
         if (f0Var == null) {
             k1Var = null;
         } else {
-            k1Var = (k1) ((k0) this.d.f7956c).get(f0Var);
+            k1Var = (k1) ((k0) this.d.f7955c).get(f0Var);
         }
         if (f0Var != null && k1Var != null) {
-            return m(k1Var, k1Var.g(f0Var.f48616a, this.f13691b).f3329c, f0Var);
+            return m(k1Var, k1Var.g(f0Var.f48640a, this.f13690b).f3329c, f0Var);
         }
         int l02 = this.h.l0();
         k1 w02 = this.h.w0();
@@ -186,7 +186,7 @@ public final class f implements z0, j0, n2.k {
     public final a o(int i10, f0 f0Var) {
         this.h.getClass();
         if (f0Var != null) {
-            if (((k1) ((k0) this.d.f7956c).get(f0Var)) != null) {
+            if (((k1) ((k0) this.d.f7955c).get(f0Var)) != null) {
                 return n(f0Var);
             }
             return m(k1.f3404a, i10, f0Var);
@@ -345,7 +345,7 @@ public final class f implements z0, j0, n2.k {
         b1 b1Var = this.h;
         b1Var.getClass();
         n nVar = this.d;
-        nVar.d = n.p(b1Var, (i0) nVar.f7955b, (f0) nVar.f7957e, (h1) nVar.f7954a);
+        nVar.d = n.p(b1Var, (i0) nVar.f7954b, (f0) nVar.f7956e, (h1) nVar.f7953a);
         nVar.H(b1Var.w0());
         a l4 = l();
         q(l4, 0, new e(l4, i10));
@@ -376,17 +376,17 @@ public final class f implements z0, j0, n2.k {
     }
 
     public final a p() {
-        return n((f0) this.d.f7958f);
+        return n((f0) this.d.f7957f);
     }
 
     public final void q(a aVar, int i10, m mVar) {
-        this.f13693e.put(i10, aVar);
-        this.f13694f.e(i10, mVar);
+        this.f13692e.put(i10, aVar);
+        this.f13693f.e(i10, mVar);
     }
 
     public final void r(i2.f0 f0Var, Looper looper) {
         boolean z10;
-        if (this.h != null && !((i0) this.d.f7955b).isEmpty()) {
+        if (this.h != null && !((i0) this.d.f7954b).isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
@@ -394,21 +394,21 @@ public final class f implements z0, j0, n2.k {
         e2.d.g(z10);
         f0Var.getClass();
         this.h = f0Var;
-        this.f13695n = this.f13690a.a(looper, null);
-        p pVar = this.f13694f;
+        this.f13694n = this.f13689a.a(looper, null);
+        p pVar = this.f13693f;
         ah.b bVar = new ah.b(20, this, f0Var);
-        this.f13694f = new p(pVar.d, looper, pVar.f8562a, bVar, pVar.f8568i);
+        this.f13693f = new p(pVar.d, looper, pVar.f8561a, bVar, pVar.f8567i);
     }
 
     @Override
     public final void onPositionDiscontinuity(b2.a1 a1Var, b2.a1 a1Var2, int i10) {
         if (i10 == 1) {
-            this.f13696r = false;
+            this.f13695r = false;
         }
         b1 b1Var = this.h;
         b1Var.getClass();
         n nVar = this.d;
-        nVar.d = n.p(b1Var, (i0) nVar.f7955b, (f0) nVar.f7957e, (h1) nVar.f7954a);
+        nVar.d = n.p(b1Var, (i0) nVar.f7954b, (f0) nVar.f7956e, (h1) nVar.f7953a);
         a l4 = l();
         q(l4, 11, new s(l4, i10, a1Var, a1Var2));
     }

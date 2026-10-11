@@ -10,8 +10,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 public abstract class d9 {
     public static com.google.android.gms.internal.clearcut.u0 a(Context context, GoogleSignInOptions googleSignInOptions) {
-        n6.l.h(googleSignInOptions);
-        return new com.google.android.gms.common.api.j(context, w5.a.f49928a, googleSignInOptions, new com.google.android.gms.common.api.i(new Object(), Looper.getMainLooper()));
+        n6.m.h(googleSignInOptions);
+        return new com.google.android.gms.common.api.j(context, w5.a.f49971a, googleSignInOptions, new com.google.android.gms.common.api.i(new Object(), Looper.getMainLooper()));
     }
 
     public static Task b(Intent intent) {
@@ -30,13 +30,13 @@ public abstract class d9 {
                 }
                 bVar = new z5.b(null, status);
             } else {
-                bVar = new z5.b(googleSignInAccount2, Status.f6521e);
+                bVar = new z5.b(googleSignInAccount2, Status.f6520e);
             }
         }
-        Status status3 = bVar.f53614a;
-        if (status3.b() && (googleSignInAccount = bVar.f53615b) != null) {
+        Status status3 = bVar.f53657a;
+        if (status3.b() && (googleSignInAccount = bVar.f53658b) != null) {
             return Tasks.forResult(googleSignInAccount);
         }
-        return Tasks.forException(n6.l.m(status3));
+        return Tasks.forException(n6.m.m(status3));
     }
 }

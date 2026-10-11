@@ -5,7 +5,7 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.LaunchActivity;
-public final class y4 extends org.telegram.ui.ActionBar.n2 {
+public final class y4 extends org.telegram.ui.ActionBar.m2 {
     @Override
     public final Context getContext() {
         return AndroidUtilities.findActivity(LaunchActivity.G1);

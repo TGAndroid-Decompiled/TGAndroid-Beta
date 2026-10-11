@@ -1,94 +1,93 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.net.Uri;
 import android.text.TextUtils;
-import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 public final class te implements Runnable {
-    public final int f42028a = 0;
-    public final boolean f42029b;
-    public final Object f42030c;
-    public final boolean d;
-    public final Object f42031e;
-    public final Object f42032f;
-    public final Object h;
-    public final Object f42033n;
+    public final int f42162a;
+    public final zn f42163b;
+    public final String f42164c;
 
-    public te(zn znVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var, boolean z10, boolean z11) {
-        this.f42031e = znVar;
-        this.f42030c = str;
-        this.f42032f = characterStyle;
-        this.h = messageObject;
-        this.f42033n = u1Var;
-        this.f42029b = z10;
-        this.d = z11;
+    public te(zn znVar, String str, int i10) {
+        this.f42162a = i10;
+        this.f42163b = znVar;
+        this.f42164c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f42028a) {
+        switch (this.f42162a) {
             case 0:
-                zn znVar = (zn) this.f42031e;
-                String str = (String) this.f42030c;
-                CharacterStyle characterStyle = (CharacterStyle) this.f42032f;
-                MessageObject messageObject = (MessageObject) this.h;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f42033n;
-                if (str.startsWith("video?")) {
-                    znVar.X7(characterStyle, false, messageObject, u1Var);
-                    return;
-                } else if (this.f42029b && !this.d) {
-                    znVar.getParentActivity();
-                    of.f.n(str);
-                    return;
-                } else {
-                    znVar.O9(messageObject, false, false);
-                    znVar.ea(characterStyle, str, false, u1Var, messageObject);
-                    return;
-                }
+                zn.q1(this.f42163b, this.f42164c);
+                return;
             case 1:
-                wh.l lVar = (wh.l) this.f42031e;
-                Runnable runnable = (Runnable) this.f42032f;
-                String str2 = (String) this.f42030c;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
-                TLObject tLObject = (TLObject) this.f42033n;
-                lVar.f50491w = false;
-                lVar.f50494z = true;
-                if (this.f42029b) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
+                zn.u1(this.f42163b, this.f42164c);
+                return;
+            case 2:
+                h4.f(this.f42164c, r1.currentAccount, r1.X0, null, this.f42163b.f44762ea);
+                return;
+            case 3:
+                zn znVar = this.f42163b;
+                String str = this.f42164c;
+                if (str != null) {
+                    znVar.getClass();
+                    if (str.length() != 0) {
+                        znVar.getMessagesController().sendBotStart(znVar.f44764f, str);
+                        return;
+                    }
                 }
-                wh.l.k(lVar.f50486q, false, false);
-                if (TextUtils.equals(str2, lVar.f50489t) && tL_error == null) {
-                    lVar.f50494z = true;
-                    lVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.d, false);
-                    return;
+                znVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", znVar.T5, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 4:
+                this.f42163b.qa(this.f42164c);
+                return;
+            case 5:
+                this.f42163b.ia(this.f42164c, false);
+                return;
+            case 6:
+                Activity parentActivity = this.f42163b.getParentActivity();
+                of.f.s(parentActivity, "tel:" + this.f42164c);
+                return;
+            case 7:
+                AndroidUtilities.addToClipboard(this.f42164c);
+                org.telegram.messenger.ai.p(R.string.PhoneCopied, org.telegram.ui.Components.ad.a0(this.f42163b));
+                return;
+            case 8:
+                zn.d1(this.f42163b, this.f42164c);
+                return;
+            case 9:
+                Activity parentActivity2 = this.f42163b.getParentActivity();
+                of.f.s(parentActivity2, "tel:" + this.f42164c);
+                return;
+            case 10:
+                AndroidUtilities.addToClipboard(this.f42164c);
+                org.telegram.messenger.ai.p(R.string.PhoneCopied, org.telegram.ui.Components.ad.a0(this.f42163b));
+                return;
+            case 11:
+                zn znVar2 = this.f42163b;
+                znVar2.getClass();
+                znVar2.presentFragment(new org.telegram.ui.Wallet.l8(this.f42164c));
+                return;
+            case 12:
+                zn znVar3 = this.f42163b;
+                String str2 = znVar3.getMessagesController().tonBlockchainExplorerUrl;
+                if (TextUtils.isEmpty(str2)) {
+                    str2 = "https://tonviewer.com/";
+                } else if (!str2.endsWith("/")) {
+                    str2 = str2.concat("/");
                 }
+                Activity parentActivity3 = znVar3.getParentActivity();
+                StringBuilder v = a1.g.v(str2);
+                v.append(Uri.encode(this.f42164c));
+                of.f.u(parentActivity3, v.toString());
                 return;
             default:
-                yh.s3.B0((yh.s3) this.f42031e, (TLObject) this.f42030c, this.f42029b, (TLRPC.Document) this.f42032f, this.d, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f42033n);
+                Activity parentActivity4 = this.f42163b.getParentActivity();
+                of.f.s(parentActivity4, "https://fragment.com/username/" + this.f42164c);
                 return;
         }
-    }
-
-    public te(wh.l lVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
-        this.f42031e = lVar;
-        this.f42029b = z10;
-        this.f42032f = runnable;
-        this.f42030c = str;
-        this.h = tL_error;
-        this.f42033n = tLObject;
-        this.d = z11;
-    }
-
-    public te(yh.s3 s3Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
-        this.f42031e = s3Var;
-        this.f42030c = tLObject;
-        this.f42029b = z10;
-        this.f42032f = document;
-        this.d = z11;
-        this.h = tL_error;
-        this.f42033n = savestargift;
     }
 }

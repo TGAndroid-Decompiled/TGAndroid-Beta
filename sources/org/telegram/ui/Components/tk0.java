@@ -1,4 +1,6 @@
 package org.telegram.ui.Components;
+
+import java.util.ArrayList;
 public interface tk0 {
-    void a(vk0 vk0Var, int i10);
+    void e(ArrayList arrayList);
 }

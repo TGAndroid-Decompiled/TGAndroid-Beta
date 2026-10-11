@@ -18,9 +18,9 @@ public final class yz extends y9 {
         super.onDraw(canvas);
         zz zzVar = this.G;
         b00 b00Var = zzVar.d;
-        boolean z10 = zzVar.f33728c;
-        if (!z10 && MediaDataController.getInstance(b00Var.f24689c1).isStickerPackUnread(z10, ((TLRPC.StickerSetCovered) getTag()).set.f20069id) && b00Var.f24740s1 != null) {
-            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), b00Var.f24740s1);
+        boolean z10 = zzVar.f33717c;
+        if (!z10 && MediaDataController.getInstance(b00Var.f24662c1).isStickerPackUnread(z10, ((TLRPC.StickerSetCovered) getTag()).set.f20059id) && b00Var.f24713s1 != null) {
+            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), b00Var.f24713s1);
         }
     }
 }

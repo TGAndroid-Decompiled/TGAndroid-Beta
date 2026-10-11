@@ -1,81 +1,66 @@
 package org.telegram.ui.web;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import ci.c4;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.fr;
-import org.telegram.ui.Components.l71;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.rm0;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.s5;
 import org.telegram.ui.tk;
-public final class x1 extends p61 {
-    public static final int f43579a = 0;
+import w7.x5;
+public final class x1 extends FrameLayout {
+    public final ImageView f43721a;
+    public final TextView f43722b;
+    public final tk f43723c;
+    public s5 d;
+    public String f43724e;
+    public boolean f43725f;
 
-    static {
-        p61.setup(new p61());
+    public x1(Context context) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f43721a = imageView;
+        addView(imageView, x5.a(32.0f, 16.0f, 0.0f, 0.0f, 0.0f, 32, 19));
+        TextView textView = new TextView(context);
+        this.f43722b = textView;
+        textView.setTextColor(h6.x0(null, h6.G6, false));
+        textView.setTextSize(1, 16.0f);
+        textView.setMaxLines(1);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        addView(textView, x5.a(-2.0f, 68.0f, 7.0f, 54.0f, 0.0f, -1, 55));
+        tk tkVar = new tk(this, context, 7);
+        this.f43723c = tkVar;
+        tkVar.setTextColor(h6.x0(null, h6.f21171y6, false));
+        tkVar.setTextSize(1, 13.0f);
+        tkVar.setMaxLines(1);
+        tkVar.setEllipsize(truncateAt);
+        tkVar.setPivotX(0.0f);
+        addView(tkVar, x5.a(-2.0f, 68.0f, 30.0f, 54.0f, 0.0f, -1, 55));
+        ImageView imageView2 = new ImageView(context);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setImageResource(R.drawable.ic_ab_other);
+        imageView2.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.A6, false), PorterDuff.Mode.SRC_IN));
+        addView(imageView2, x5.a(32.0f, 0.0f, 0.0f, 18.0f, 0.0f, 32, 21));
     }
 
     @Override
-    public final void bindView(View view, q61 q61Var, boolean z10, d71 d71Var, l71 l71Var) {
-        y1 y1Var = (y1) view;
-        CharSequence charSequence = q61Var.f30065n;
-        String str = (String) q61Var.f30063l;
-        long j3 = q61Var.B;
-        ImageView imageView = y1Var.f43594a;
-        y1Var.f43595b.setText(charSequence);
-        tk tkVar = y1Var.f43596c;
-        tkVar.setText(str);
-        if (TextUtils.isEmpty(charSequence)) {
-            tkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
-            tkVar.setScaleX(1.3f);
-            tkVar.setScaleY(1.3f);
-        } else {
-            tkVar.setTranslationY(0.0f);
-            tkVar.setScaleX(1.0f);
-            tkVar.setScaleY(1.0f);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.f43725f) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), h6.f20908k0);
         }
-        y1Var.f43597e = str;
-        if (TextUtils.isEmpty(charSequence)) {
-            if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
-                charSequence = str;
-            } else {
-                charSequence = "";
-            }
-        }
-        String charSequence2 = charSequence.toString();
-        s5 s5Var = y1Var.d;
-        if (s5Var != null) {
-            s5Var.o(imageView);
-            y1Var.d = null;
-        }
-        if (j3 != 0) {
-            s5 n10 = s5.n(UserConfig.selectedAccount, j3, null, 1);
-            y1Var.d = n10;
-            n10.a(imageView);
-            imageView.setImageDrawable(y1Var.d);
-        } else {
-            fr frVar = new fr(i6.c0(AndroidUtilities.dp(6.0f), i6.m1(0.1f, i6.x0(null, i6.G6, false))), new c4(charSequence2));
-            int dp = AndroidUtilities.dp(28.0f);
-            int dp2 = AndroidUtilities.dp(28.0f);
-            frVar.h = dp;
-            frVar.f26500n = dp2;
-            imageView.setImageDrawable(frVar);
-        }
-        y1Var.f43598f = z10;
-        y1Var.invalidate();
     }
 
     @Override
-    public final View createView(Context context, rm0 rm0Var, int i10, int i11, e6 e6Var) {
-        return new y1(context);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

@@ -1,24 +1,24 @@
 package org.telegram.ui.Components;
-public final class qq implements ww0 {
-    public final oq f30263a;
-    public final sq f30264b;
+public final class qq implements xw0 {
+    public final oq f30222a;
+    public final sq f30223b;
 
     public qq(sq sqVar, oq oqVar) {
-        this.f30264b = sqVar;
-        this.f30263a = oqVar;
+        this.f30223b = sqVar;
+        this.f30222a = oqVar;
     }
 
     @Override
     public final void g(int i10) {
-        sq sqVar = this.f30264b;
-        sqVar.f30832r = i10;
+        sq sqVar = this.f30223b;
+        sqVar.f30842r = i10;
         sqVar.r(true);
     }
 
     @Override
     public final void l() {
-        int measuredHeight = this.f30264b.f30828c.getMeasuredHeight();
-        oq oqVar = this.f30263a;
+        int measuredHeight = this.f30223b.f30838c.getMeasuredHeight();
+        oq oqVar = this.f30222a;
         oqVar.y(0 - oqVar.getScrollX(), measuredHeight - oqVar.getScrollY(), false);
     }
 }

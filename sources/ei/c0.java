@@ -15,60 +15,60 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.dk0;
-import org.telegram.ui.Components.nx0;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.ox0;
 public final class c0 extends View {
     public boolean E;
     public int F;
-    public final RectF f8976a;
-    public final Paint f8977b;
-    public final TextPaint f8978c;
+    public final RectF f8975a;
+    public final Paint f8976b;
+    public final TextPaint f8977c;
     public final z d;
-    public final dk0 f8979e;
-    public boolean f8980f;
+    public final ek0 f8978e;
+    public boolean f8979f;
     public float h;
-    public String f8981n;
-    public StaticLayout f8982r;
-    public float f8983s;
+    public String f8980n;
+    public StaticLayout f8981r;
+    public float f8982s;
     public boolean v;
-    public boolean f8984w;
-    public boolean f8985x;
-    public final org.telegram.ui.Cells.z f8986y;
+    public boolean f8983w;
+    public boolean f8984x;
+    public final org.telegram.ui.Cells.z f8985y;
 
     public c0(Context context) {
         super(context);
-        this.f8976a = new RectF();
+        this.f8975a = new RectF();
         Paint paint = new Paint(1);
-        this.f8977b = paint;
+        this.f8976b = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f8978c = textPaint;
+        this.f8977c = textPaint;
         z zVar = new z(this);
         this.d = zVar;
-        dk0 dk0Var = new dk0(R.raw.bot_webview_sheet_to_cross, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
-        this.f8979e = dk0Var;
-        this.f8981n = LocaleController.getString(R.string.BotsMenuTitle);
+        ek0 ek0Var = new ek0(R.raw.bot_webview_sheet_to_cross, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
+        this.f8978e = ek0Var;
+        this.f8980n = LocaleController.getString(R.string.BotsMenuTitle);
         this.E = true;
-        paint.setColor(i6.x0(null, i6.f20791cf, false));
-        int x02 = i6.x0(null, i6.f20828ef, false);
-        zVar.f20569k = x02;
-        zVar.f20568j = x02;
-        dk0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+        paint.setColor(h6.x0(null, h6.f20776cf, false));
+        int x02 = h6.x0(null, h6.f20813ef, false);
+        zVar.f20505k = x02;
+        zVar.f20504j = x02;
+        ek0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
         textPaint.setColor(x02);
-        zVar.f20572n = true;
+        zVar.f20508n = true;
         zVar.h = false;
         zVar.a(0.0f, false);
         zVar.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.bold());
-        zVar.f20561a.setStrokeCap(Paint.Cap.ROUND);
-        zVar.f20570l = true;
+        zVar.f20497a.setStrokeCap(Paint.Cap.ROUND);
+        zVar.f20506l = true;
         int dp = AndroidUtilities.dp(16.0f);
-        int x03 = i6.x0(null, i6.Qh, false);
-        org.telegram.ui.Cells.z j02 = i6.j0(dp, dp, dp, dp, 0, x03, x03);
-        this.f8986y = j02;
+        int x03 = h6.x0(null, h6.Qh, false);
+        org.telegram.ui.Cells.z j02 = h6.j0(dp, dp, dp, dp, 0, x03, x03);
+        this.f8985y = j02;
         j02.setCallback(this);
-        dk0Var.setCallback(this);
-        dk0Var.R(this);
+        ek0Var.setCallback(this);
+        ek0Var.R(this);
         setContentDescription(LocaleController.getString("AccDescrBotMenu", R.string.AccDescrBotMenu));
     }
 
@@ -80,39 +80,39 @@ public final class c0 extends View {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        this.f8986y.setState(getDrawableState());
+        this.f8985y.setState(getDrawableState());
     }
 
     @Override
     public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        this.f8986y.jumpToCurrentState();
+        this.f8985y.jumpToCurrentState();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
         int size = (View.MeasureSpec.getSize(i11) + View.MeasureSpec.getSize(i10)) << 16;
-        if (this.F != size || this.f8982r == null) {
+        if (this.F != size || this.f8981r == null) {
             this.d.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            TextPaint textPaint = this.f8978c;
+            TextPaint textPaint = this.f8977c;
             textPaint.setTextSize(AndroidUtilities.dp(15.0f));
             this.F = size;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(this.f8981n, textPaint.getFontMetricsInt(), false);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(this.f8980n, textPaint.getFontMetricsInt(), false);
             int i12 = (int) (AndroidUtilities.displaySize.x * 0.6f);
-            StaticLayout c10 = nx0.c(replaceEmoji, textPaint, i12, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i12, 1, true);
-            this.f8982r = c10;
+            StaticLayout c10 = ox0.c(replaceEmoji, textPaint, i12, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i12, 1, true);
+            this.f8981r = c10;
             if (c10.getLineCount() > 0) {
-                f7 = this.f8982r.getLineWidth(0);
+                f7 = this.f8981r.getLineWidth(0);
             } else {
                 f7 = 0.0f;
             }
-            this.f8983s = f7;
+            this.f8982s = f7;
         }
         AndroidUtilities.dp(4.0f);
         int dp = AndroidUtilities.dp(40.0f);
-        if (this.f8980f) {
-            dp = org.telegram.messenger.q.C(4.0f, (int) this.f8983s, dp);
+        if (this.f8979f) {
+            dp = org.telegram.messenger.q.C(4.0f, (int) this.f8982s, dp);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
@@ -128,17 +128,17 @@ public final class c0 extends View {
             this.v = z10;
         }
         int i10 = 1;
-        if (this.f8984w) {
-            if (this.f8985x != z10) {
-                dk0 dk0Var = this.f8979e;
-                dk0Var.stop();
-                dk0Var.h = true;
+        if (this.f8983w) {
+            if (this.f8984x != z10) {
+                ek0 ek0Var = this.f8978e;
+                ek0Var.stop();
+                ek0Var.h = true;
                 if (z10) {
-                    i10 = dk0Var.f25732e[0];
+                    i10 = ek0Var.f26043e[0];
                 }
-                dk0Var.P(i10);
-                dk0Var.start();
-                this.f8985x = z10;
+                ek0Var.P(i10);
+                ek0Var.start();
+                this.f8984x = z10;
                 return;
             }
             return;
@@ -152,13 +152,13 @@ public final class c0 extends View {
     }
 
     public void setWebView(boolean z10) {
-        this.f8984w = z10;
+        this.f8983w = z10;
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && this.f8986y != drawable) {
+        if (!super.verifyDrawable(drawable) && this.f8985y != drawable) {
             return false;
         }
         return true;

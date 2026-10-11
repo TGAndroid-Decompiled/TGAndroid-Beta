@@ -1,44 +1,431 @@
 package org.telegram.ui.ActionBar;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class v implements Runnable {
-    public final boolean f21577a;
-    public final n2 f21578b;
-    public final n2 f21579c;
-    public final boolean d;
-    public final ActionBarLayout f21580e;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+public final class v extends FrameLayout {
+    public final ActionBarLayout E;
+    public final Rect f21589a;
+    public boolean f21590b;
+    public int f21591c;
+    public final Paint d;
+    public int f21592e;
+    public boolean f21593f;
+    public int h;
+    public int f21594n;
+    public LinearGradient f21595r;
+    public final Matrix f21596s;
+    public Paint v;
+    public y3 f21597w;
+    public boolean f21598x;
+    public boolean f21599y;
 
-    public v(ActionBarLayout actionBarLayout, boolean z10, n2 n2Var, n2 n2Var2, boolean z11) {
-        this.f21580e = actionBarLayout;
-        this.f21577a = z10;
-        this.f21578b = n2Var;
-        this.f21579c = n2Var2;
-        this.d = z11;
+    public v(Context context, ActionBarLayout actionBarLayout) {
+        super(context);
+        this.E = actionBarLayout;
+        this.f21589a = new Rect();
+        this.d = new Paint();
+        this.f21596s = new Matrix();
+        setWillNotDraw(false);
+    }
+
+    public final void a(Canvas canvas, boolean z10, int i10) {
+        Canvas canvas2;
+        int paddingLeft = getPaddingLeft();
+        int paddingRight = getPaddingRight();
+        int paddingBottom = getPaddingBottom();
+        Paint m0 = h6.m0(i10);
+        y3 y3Var = y3.f21698c;
+        if (paddingLeft > 0 && this.f21597w != y3Var) {
+            canvas2 = canvas;
+            canvas2.drawRect(0.0f, 0.0f, paddingLeft + 1, getHeight(), m0);
+        } else {
+            canvas2 = canvas;
+        }
+        if (paddingRight > 0 && this.f21597w != y3Var) {
+            canvas2.drawRect(getWidth() - (paddingRight + 1), 0.0f, getWidth(), getHeight(), m0);
+        }
+        if (paddingBottom > 0) {
+            if (this.f21597w == y3.f21696a || z10) {
+                canvas2.drawRect(0.0f, getHeight() - (paddingBottom + 1), getWidth(), getHeight(), m0);
+            }
+        }
     }
 
     @Override
-    public final void run() {
-        ActionBarLayout actionBarLayout = this.f21580e;
-        if (actionBarLayout.d == this) {
-            actionBarLayout.d = null;
-            if (this.f21577a) {
-                n2 n2Var = this.f21578b;
-                if (n2Var != null) {
-                    n2Var.onTransitionAnimationStart(false, false);
-                }
-                this.f21579c.onTransitionAnimationStart(true, false);
-                actionBarLayout.d0(true, true, this.d);
-                return;
+    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
+        super.addView(view, i10, layoutParams);
+        WeakHashMap weakHashMap = r0.i0.f46856a;
+        r0.y.c(this);
+    }
+
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.v.b():void");
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int x02;
+        ActionBarLayout actionBarLayout = this.E;
+        if (actionBarLayout.M0) {
+            super.dispatchDraw(canvas);
+            return;
+        }
+        x3 x3Var = actionBarLayout.f20352x;
+        boolean z10 = false;
+        if (x3Var != null) {
+            x02 = x3Var.getInternalNavbarPaint().getColor();
+        } else {
+            x02 = h6.x0(null, h6.f20730a7, false);
+        }
+        if (this == actionBarLayout.f20350w) {
+            org.telegram.ui.Components.g6 g6Var = actionBarLayout.f20312b1;
+            r rVar = actionBarLayout.G;
+            if (rVar != null && rVar.hasSheet()) {
+                z10 = true;
             }
-            Runnable runnable = actionBarLayout.f20328e;
+            float e7 = g6Var.e(z10);
+            if (e7 > 0.0f) {
+                a(canvas, this.f21599y, h6.m1(e7, x02));
+            }
+        } else {
+            m2 lastFragment = actionBarLayout.getLastFragment();
+            if (lastFragment != null && !lastFragment.inPreviewMode) {
+                if (this == actionBarLayout.f20345s && this.f21597w != y3.f21696a) {
+                    int childCount = getChildCount();
+                    int i10 = 0;
+                    while (true) {
+                        if (i10 >= childCount) {
+                            break;
+                        } else if (getChildAt(i10) instanceof j2) {
+                            z10 = true;
+                            break;
+                        } else {
+                            i10++;
+                        }
+                    }
+                }
+                a(canvas, z10, x02);
+            }
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        motionEvent.getAction();
+        ActionBarLayout actionBarLayout = this.E;
+        if (actionBarLayout.h && actionBarLayout.J == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if ((!z10 && !actionBarLayout.f20308a0) || (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5)) {
+            if (z10) {
+                try {
+                    if (this != actionBarLayout.f20345s) {
+                    }
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                }
+            }
+            if (super.dispatchTouchEvent(motionEvent)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        m2 m2Var;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        Drawable drawable;
+        ArrayList<i2> arrayList;
+        ActionBarLayout actionBarLayout = this.E;
+        i2 i2Var = null;
+        if (!actionBarLayout.O0.isEmpty()) {
+            m2Var = (m2) sc.v.h(1, actionBarLayout.O0);
+        } else {
+            m2Var = null;
+        }
+        r rVar = actionBarLayout.G;
+        if (rVar != null && (arrayList = rVar.sheetsStack) != null && !arrayList.isEmpty()) {
+            m2Var = actionBarLayout.G;
+        }
+        if (m2Var != null) {
+            i2Var = m2Var.getLastSheet();
+        }
+        if (i2Var != null && i2Var.isFullyVisible() && i2Var.getWindowView() != view) {
+            return true;
+        }
+        if (view instanceof k) {
+            return super.drawChild(canvas, view, j3);
+        }
+        int childCount = getChildCount();
+        int i14 = 0;
+        while (true) {
+            if (i14 >= childCount) {
+                break;
+            }
+            View childAt = getChildAt(i14);
+            if (childAt != view && (childAt instanceof k) && childAt.getVisibility() == 0) {
+                k kVar = (k) childAt;
+                if (kVar.getCastShadows() && kVar.getShadowAlpha() > 0) {
+                    i11 = childAt.getMeasuredHeight();
+                    i12 = (int) childAt.getY();
+                    i10 = kVar.getShadowAlpha();
+                }
+            } else {
+                i14++;
+            }
+        }
+        i10 = 0;
+        i11 = 0;
+        i12 = 0;
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        if (i11 != 0 && (drawable = ActionBarLayout.f20304p1) != null) {
+            int alpha = drawable.getAlpha();
+            int i15 = i12 + i11;
+            ActionBarLayout.f20304p1.setBounds(0, i15, getMeasuredWidth(), ActionBarLayout.f20304p1.getIntrinsicHeight() + i15);
+            ActionBarLayout.f20304p1.setAlpha(i10);
+            ActionBarLayout.f20304p1.draw(canvas);
+            ActionBarLayout.f20304p1.setAlpha(alpha);
+        }
+        if (this.f21599y && this.f21598x && m2Var != null && (i13 = AndroidUtilities.navigationBarHeight) >= AndroidUtilities.dp(32.0f)) {
+            int i16 = (int) (i13 * 1.33f);
+            int navigationBarColor = m2Var.getNavigationBarColor();
+            if (i16 != this.h || this.f21594n != navigationBarColor || this.v == null) {
+                if (this.v == null) {
+                    this.v = new Paint(1);
+                }
+                this.f21594n = navigationBarColor;
+                this.h = i16;
+                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, i16, new int[]{h6.m1(0.1f, navigationBarColor), h6.m1(1.0f, navigationBarColor)}, new float[]{0.0f, 0.88f}, Shader.TileMode.CLAMP);
+                this.f21595r = linearGradient;
+                this.v.setShader(linearGradient);
+            }
+            Matrix matrix = this.f21596s;
+            matrix.reset();
+            matrix.postTranslate(0.0f, getHeight() - i16);
+            this.f21595r.setLocalMatrix(matrix);
+            canvas.drawRect(0.0f, getHeight() - i16, getWidth(), getHeight(), this.v);
+        }
+        return drawChild;
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        if (Build.VERSION.SDK_INT >= 28) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        if (this.f21591c != 0) {
+            int i10 = h6.f20786d6;
+            int x02 = h6.x0(null, i10, false);
+            int i11 = this.f21592e;
+            Paint paint = this.d;
+            if (i11 != x02) {
+                int x03 = h6.x0(null, i10, false);
+                this.f21592e = x03;
+                paint.setColor(x03);
+            }
+            canvas2 = canvas;
+            canvas2.drawRect(0.0f, (getMeasuredHeight() - this.f21591c) - 3, getMeasuredWidth(), getMeasuredHeight(), paint);
+        } else {
+            canvas2 = canvas;
+        }
+        super.onDraw(canvas2);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        int i15;
+        int childCount = getChildCount();
+        int paddingLeft = getPaddingLeft();
+        boolean z11 = false;
+        int i16 = 0;
+        while (true) {
+            if (i16 < childCount) {
+                View childAt = getChildAt(i16);
+                if (childAt instanceof k) {
+                    i14 = childAt.getMeasuredHeight();
+                    childAt.layout(paddingLeft, 0, childAt.getMeasuredWidth() + paddingLeft, i14);
+                    break;
+                }
+                i16++;
+            } else {
+                i14 = 0;
+                break;
+            }
+        }
+        for (int i17 = 0; i17 < childCount; i17++) {
+            View childAt2 = getChildAt(i17);
+            if (!(childAt2 instanceof k)) {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt2.getLayoutParams();
+                if (childAt2.getTag(R.id.sheet_attached_to_fragment_tag) == null && !childAt2.getFitsSystemWindows() && !(childAt2 instanceof j2)) {
+                    int i18 = layoutParams.leftMargin;
+                    childAt2.layout(paddingLeft + i18, layoutParams.topMargin + i14, childAt2.getMeasuredWidth() + i18 + paddingLeft, childAt2.getMeasuredHeight() + layoutParams.topMargin + i14);
+                } else {
+                    int i19 = layoutParams.leftMargin;
+                    childAt2.layout(paddingLeft + i19, layoutParams.topMargin, childAt2.getMeasuredWidth() + i19 + paddingLeft, childAt2.getMeasuredHeight() + layoutParams.topMargin);
+                }
+            }
+        }
+        View rootView = getRootView();
+        Rect rect = this.f21589a;
+        getWindowVisibleDisplayFrame(rect);
+        int height = rootView.getHeight();
+        if (rect.top != 0) {
+            i15 = AndroidUtilities.statusBarHeight;
+        } else {
+            i15 = 0;
+        }
+        if (((height - i15) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top) > 0) {
+            z11 = true;
+        }
+        this.f21590b = z11;
+        ActionBarLayout actionBarLayout = this.E;
+        Runnable runnable = actionBarLayout.d;
+        if (runnable != null && !actionBarLayout.f20345s.f21590b && !actionBarLayout.v.f21590b) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            actionBarLayout.d.run();
+            actionBarLayout.d = null;
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        int i12;
+        int i13;
+        int i14;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        if (size2 > size) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        boolean z11 = this.f21593f;
+        ActionBarLayout actionBarLayout = this.E;
+        if (z11 != z10 && actionBarLayout.y() && (actionBarLayout.h || actionBarLayout.f20308a0)) {
+            Runnable runnable = actionBarLayout.f20318e;
             if (runnable != null) {
                 AndroidUtilities.cancelRunOnUIThread(runnable);
-                if (actionBarLayout.R0) {
-                    actionBarLayout.f20328e.run();
+                actionBarLayout.f20318e = null;
+            }
+            actionBarLayout.l(true, false);
+        }
+        this.f21593f = z10;
+        int childCount = getChildCount();
+        getWindowVisibleDisplayFrame(this.f21589a);
+        m3 m3Var = actionBarLayout.E;
+        if (m3Var != null) {
+            m3Var.setCurrentAccount(UserConfig.selectedAccount);
+        }
+        int i15 = 0;
+        while (true) {
+            if (i15 < childCount) {
+                View childAt = getChildAt(i15);
+                if (childAt instanceof k) {
+                    childAt.measure(View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
+                    i12 = childAt.getMeasuredHeight();
+                    break;
+                }
+                i15++;
+            } else {
+                i12 = 0;
+                break;
+            }
+        }
+        for (int i16 = 0; i16 < childCount; i16++) {
+            View childAt2 = getChildAt(i16);
+            if (!(childAt2 instanceof k)) {
+                if (childAt2 instanceof j2) {
+                    if (actionBarLayout.v(false) <= 0 && this.f21598x) {
+                        i14 = actionBarLayout.f20338n1.d;
+                    } else {
+                        i14 = 0;
+                    }
+                    measureChildWithMargins(childAt2, i10, 0, i11, i14);
+                } else if (childAt2.getTag(R.id.sheet_attached_to_fragment_tag) == null && !childAt2.getFitsSystemWindows()) {
+                    measureChildWithMargins(childAt2, i10, 0, i11, i12);
                 } else {
-                    AndroidUtilities.runOnUIThread(actionBarLayout.f20328e, 200L);
+                    if (this.f21598x) {
+                        i13 = actionBarLayout.f20338n1.d;
+                    } else {
+                        i13 = 0;
+                    }
+                    measureChildWithMargins(childAt2, i10, 0, i11, i13);
                 }
             }
+        }
+        setMeasuredDimension(size, size2);
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        b();
+    }
+
+    @Override
+    public final void onViewRemoved(View view) {
+        super.onViewRemoved(view);
+        b();
+    }
+
+    public void setDrawNavigationBar(boolean z10) {
+        if (this.f21599y != z10) {
+            this.f21599y = z10;
+            invalidate();
+        }
+    }
+
+    public void setFragmentPanTranslationOffset(int i10) {
+        this.f21591c = i10;
+        invalidate();
+    }
+
+    public void setShouldHandleBottomInsets(y3 y3Var) {
+        boolean z10;
+        if (this.f21597w != y3Var) {
+            this.f21597w = y3Var;
+            if (y3Var != y3.f21696a) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            this.f21598x = z10;
+            WeakHashMap weakHashMap = r0.i0.f46856a;
+            r0.y.c((View) getParent());
         }
     }
 }

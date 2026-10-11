@@ -1,15 +1,30 @@
 package org.telegram.ui;
+public final class ph1 implements Runnable {
+    public final int f40873a;
+    public final qh1 f40874b;
 
-import java.util.ArrayList;
-public final class ph1 {
-    public final int f40852a;
-    public boolean f40854c;
-    public boolean d;
-    public final ArrayList f40855e = new ArrayList();
-    public final ArrayList f40856f = new ArrayList();
-    public final boolean f40853b = true;
+    public ph1(qh1 qh1Var, int i10) {
+        this.f40873a = i10;
+        this.f40874b = qh1Var;
+    }
 
-    public ph1(int i10) {
-        this.f40852a = i10;
+    @Override
+    public final void run() {
+        switch (this.f40873a) {
+            case 0:
+                org.telegram.ui.Components.g71 g71Var = this.f40874b.f26922a;
+                if (g71Var != null) {
+                    g71Var.W2.N(true);
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Components.g71 g71Var2 = this.f40874b.f26922a;
+                if (g71Var2 != null) {
+                    g71Var2.W2.N(true);
+                    return;
+                }
+                return;
+        }
     }
 }

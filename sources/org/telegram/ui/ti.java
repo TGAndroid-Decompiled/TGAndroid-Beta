@@ -5,8 +5,8 @@ import org.telegram.tgnet.TLRPC;
 public final class ti extends org.telegram.ui.Components.zo {
     public final zn M;
 
-    public ti(zn znVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(activity, i10, document, e6Var);
+    public ti(zn znVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(activity, i10, document, d6Var);
         this.M = znVar;
     }
 

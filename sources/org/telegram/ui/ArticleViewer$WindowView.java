@@ -26,27 +26,27 @@ public class ArticleViewer$WindowView extends FrameLayout {
     public int E;
     public int F;
     public boolean G;
-    public final i4 H;
-    public final Paint f21752a;
-    public int f21753b;
-    public boolean f21754c;
+    public final h4 H;
+    public final Paint f21740a;
+    public int f21741b;
+    public boolean f21742c;
     public boolean d;
-    public boolean f21755e;
-    public boolean f21756f;
+    public boolean f21743e;
+    public boolean f21744f;
     public int h;
-    public int f21757n;
-    public int f21758r;
-    public VelocityTracker f21759s;
+    public int f21745n;
+    public int f21746r;
+    public VelocityTracker f21747s;
     public float v;
-    public float f21760w;
-    public int f21761x;
-    public int f21762y;
+    public float f21748w;
+    public int f21749x;
+    public int f21750y;
 
-    public ArticleViewer$WindowView(i4 i4Var, Activity activity) {
+    public ArticleViewer$WindowView(h4 h4Var, Activity activity) {
         super(activity);
-        this.H = i4Var;
-        this.f21752a = new Paint();
-        this.f21760w = 1.0f;
+        this.H = h4Var;
+        this.f21740a = new Paint();
+        this.f21748w = 1.0f;
     }
 
     public final boolean a(MotionEvent motionEvent) {
@@ -54,71 +54,71 @@ public class ArticleViewer$WindowView extends FrameLayout {
         float x10;
         boolean z10;
         boolean z11;
-        m3 m3Var;
-        i4 i4Var = this.H;
-        v3 v3Var = i4Var.K;
-        if (i4Var.f38560v0 == null && !i4Var.T0 && i4Var.P.getVisibility() != 0 && !i4Var.O0.x()) {
-            if (motionEvent != null && motionEvent.getAction() == 0 && !this.d && !this.f21754c) {
-                this.f21753b = motionEvent.getPointerId(0);
-                this.f21754c = true;
-                this.f21757n = (int) motionEvent.getX();
-                this.f21758r = (int) motionEvent.getY();
-                VelocityTracker velocityTracker = this.f21759s;
+        l3 l3Var;
+        h4 h4Var = this.H;
+        u3 u3Var = h4Var.K;
+        if (h4Var.f38286v0 == null && !h4Var.T0 && h4Var.P.getVisibility() != 0 && !h4Var.O0.x()) {
+            if (motionEvent != null && motionEvent.getAction() == 0 && !this.d && !this.f21742c) {
+                this.f21741b = motionEvent.getPointerId(0);
+                this.f21742c = true;
+                this.f21745n = (int) motionEvent.getX();
+                this.f21746r = (int) motionEvent.getY();
+                VelocityTracker velocityTracker = this.f21747s;
                 if (velocityTracker != null) {
                     velocityTracker.clear();
                 }
-            } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f21753b) {
-                if (this.f21759s == null) {
-                    this.f21759s = VelocityTracker.obtain();
+            } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f21741b) {
+                if (this.f21747s == null) {
+                    this.f21747s = VelocityTracker.obtain();
                 }
-                int max = Math.max(0, (int) (motionEvent.getX() - this.f21757n));
-                int abs = Math.abs(((int) motionEvent.getY()) - this.f21758r);
-                this.f21759s.addMovement(motionEvent);
-                m3 m3Var2 = i4Var.f38559u0[0];
-                if (m3Var2 != null && m3Var2.f() && (!i4Var.f38559u0[0].f39798e.b(true) || i4Var.f38559u0[0].f39798e.f9261c)) {
+                int max = Math.max(0, (int) (motionEvent.getX() - this.f21745n));
+                int abs = Math.abs(((int) motionEvent.getY()) - this.f21746r);
+                this.f21747s.addMovement(motionEvent);
+                l3 l3Var2 = h4Var.f38285u0[0];
+                if (l3Var2 != null && l3Var2.f() && (!h4Var.f38285u0[0].f39498e.b(true) || h4Var.f38285u0[0].f39498e.f9260c)) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 this.G = z11;
-                if ((v3Var == null || !v3Var.H) && this.f21754c && !this.d && max >= AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(max) / 3 > abs && this.G) {
+                if ((u3Var == null || !u3Var.H) && this.f21742c && !this.d && max >= AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(max) / 3 > abs && this.G) {
                     b(motionEvent);
                 } else if (this.d) {
-                    i4Var.d = null;
-                    i4Var.f41932f = null;
-                    if (this.f21755e && (m3Var = i4Var.f38559u0[0]) != null) {
-                        m3Var.setTranslationX(max);
-                    } else if (v3Var != null) {
-                        v3Var.I = max / getWidth();
-                        v3Var.f42670c.invalidate();
-                        v3Var.i();
-                        v3Var.h();
+                    h4Var.d = null;
+                    h4Var.f42100f = null;
+                    if (this.f21743e && (l3Var = h4Var.f38285u0[0]) != null) {
+                        l3Var.setTranslationX(max);
+                    } else if (u3Var != null) {
+                        u3Var.I = max / getWidth();
+                        u3Var.f42336c.invalidate();
+                        u3Var.i();
+                        u3Var.h();
                     } else {
-                        k0 k0Var = i4Var.f38546g0;
+                        j0 j0Var = h4Var.f38272g0;
                         float f7 = max;
-                        k0Var.setTranslationX(f7);
+                        j0Var.setTranslationX(f7);
                         setInnerTranslationX(f7);
                     }
                 }
-            } else if (motionEvent != null && motionEvent.getPointerId(0) == this.f21753b && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
-                if (this.f21759s == null) {
-                    this.f21759s = VelocityTracker.obtain();
+            } else if (motionEvent != null && motionEvent.getPointerId(0) == this.f21741b && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6)) {
+                if (this.f21747s == null) {
+                    this.f21747s = VelocityTracker.obtain();
                 }
-                this.f21759s.computeCurrentVelocity(1000);
-                float xVelocity = this.f21759s.getXVelocity();
-                float yVelocity = this.f21759s.getYVelocity();
-                if ((v3Var == null || !v3Var.H) && !this.d && xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity)) {
+                this.f21747s.computeCurrentVelocity(1000);
+                float xVelocity = this.f21747s.getXVelocity();
+                float yVelocity = this.f21747s.getYVelocity();
+                if ((u3Var == null || !u3Var.H) && !this.d && xVelocity >= 3500.0f && xVelocity > Math.abs(yVelocity)) {
                     b(motionEvent);
                 }
                 if (this.d) {
-                    boolean z12 = this.f21755e;
+                    boolean z12 = this.f21743e;
                     if (z12) {
-                        view = i4Var.f38559u0[0];
+                        view = h4Var.f38285u0[0];
                     } else {
-                        view = i4Var.f38546g0;
+                        view = h4Var.f38272g0;
                     }
-                    if (!z12 && v3Var != null) {
-                        x10 = v3Var.I * v3Var.f42670c.getWidth();
+                    if (!z12 && u3Var != null) {
+                        x10 = u3Var.I * u3Var.f42336c.getWidth();
                     } else {
                         x10 = view.getX();
                     }
@@ -131,47 +131,47 @@ public class ArticleViewer$WindowView extends FrameLayout {
                     Property property = View.TRANSLATION_X;
                     if (!z10) {
                         x10 = view.getMeasuredWidth() - x10;
-                        if (this.f21755e) {
-                            animatorSet.playTogether(ObjectAnimator.ofFloat(i4Var.f38559u0[0], property, view.getMeasuredWidth()));
-                        } else if (v3Var != null) {
-                            animatorSet.playTogether(v3Var.d(1.0f));
+                        if (this.f21743e) {
+                            animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f38285u0[0], property, view.getMeasuredWidth()));
+                        } else if (u3Var != null) {
+                            animatorSet.playTogether(u3Var.d(1.0f));
                         } else {
-                            animatorSet.playTogether(ObjectAnimator.ofFloat(i4Var.f38546g0, property, view.getMeasuredWidth()), ObjectAnimator.ofFloat(this, i4.f38517d1, view.getMeasuredWidth()));
+                            animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f38272g0, property, view.getMeasuredWidth()), ObjectAnimator.ofFloat(this, h4.f38243d1, view.getMeasuredWidth()));
                         }
-                    } else if (this.f21755e) {
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(i4Var.f38559u0[0], property, 0.0f));
-                    } else if (v3Var != null) {
-                        animatorSet.playTogether(v3Var.d(0.0f));
+                    } else if (this.f21743e) {
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f38285u0[0], property, 0.0f));
+                    } else if (u3Var != null) {
+                        animatorSet.playTogether(u3Var.d(0.0f));
                     } else {
-                        animatorSet.playTogether(ObjectAnimator.ofFloat(i4Var.f38546g0, property, 0.0f), ObjectAnimator.ofFloat(this, i4.f38517d1, 0.0f));
+                        animatorSet.playTogether(ObjectAnimator.ofFloat(h4Var.f38272g0, property, 0.0f), ObjectAnimator.ofFloat(this, h4.f38243d1, 0.0f));
                     }
                     animatorSet.setDuration(Math.max((int) ((420.0f / view.getMeasuredWidth()) * x10), 250));
                     animatorSet.setInterpolator(org.telegram.ui.Components.is.h);
-                    animatorSet.addListener(new h4(this, z10));
+                    animatorSet.addListener(new g4(this, z10));
                     animatorSet.start();
-                    i4Var.T0 = true;
+                    h4Var.T0 = true;
                 } else {
-                    this.f21754c = false;
+                    this.f21742c = false;
                     this.d = false;
-                    this.f21755e = false;
+                    this.f21743e = false;
                 }
-                VelocityTracker velocityTracker2 = this.f21759s;
+                VelocityTracker velocityTracker2 = this.f21747s;
                 if (velocityTracker2 != null) {
                     velocityTracker2.recycle();
-                    this.f21759s = null;
+                    this.f21747s = null;
                 }
             } else if (motionEvent == null) {
-                this.f21754c = false;
+                this.f21742c = false;
                 this.d = false;
-                this.f21755e = false;
-                VelocityTracker velocityTracker3 = this.f21759s;
+                this.f21743e = false;
+                VelocityTracker velocityTracker3 = this.f21747s;
                 if (velocityTracker3 != null) {
                     velocityTracker3.recycle();
-                    this.f21759s = null;
+                    this.f21747s = null;
                 }
-                org.telegram.ui.Cells.o9 o9Var = i4Var.O0;
+                org.telegram.ui.Cells.o9 o9Var = h4Var.O0;
                 if (o9Var != null && !o9Var.x()) {
-                    i4Var.O0.f(false);
+                    h4Var.O0.f(false);
                 }
             }
             if (this.d && this.G) {
@@ -182,36 +182,36 @@ public class ArticleViewer$WindowView extends FrameLayout {
     }
 
     public final void b(MotionEvent motionEvent) {
-        l0 l0Var;
+        k0 k0Var;
         int color;
-        this.f21754c = false;
+        this.f21742c = false;
         this.d = true;
-        this.f21757n = (int) motionEvent.getX();
-        i4 i4Var = this.H;
-        ArrayList arrayList = i4Var.f38543d0;
-        if (arrayList.size() > 1 && ((l0Var = i4Var.f38547h0) == null || (!l0Var.T && !l0Var.W))) {
-            this.f21755e = true;
-            this.h = i4Var.I0;
-            i4Var.f38559u0[1].setVisibility(0);
-            i4Var.f38559u0[1].setAlpha(1.0f);
-            i4Var.f38559u0[1].setTranslationX(0.0f);
-            m3 m3Var = i4Var.f38559u0[0];
-            if (i4Var.K == null) {
+        this.f21745n = (int) motionEvent.getX();
+        h4 h4Var = this.H;
+        ArrayList arrayList = h4Var.f38269d0;
+        if (arrayList.size() > 1 && ((k0Var = h4Var.f38273h0) == null || (!k0Var.T && !k0Var.W))) {
+            this.f21743e = true;
+            this.h = h4Var.I0;
+            h4Var.f38285u0[1].setVisibility(0);
+            h4Var.f38285u0[1].setAlpha(1.0f);
+            h4Var.f38285u0[1].setTranslationX(0.0f);
+            l3 l3Var = h4Var.f38285u0[0];
+            if (h4Var.K == null) {
                 color = 0;
             } else {
-                color = i4Var.f38551l0.getColor();
+                color = h4Var.f38277l0.getColor();
             }
-            m3Var.setBackgroundColor(color);
-            i4Var.e0(-1, arrayList.get(arrayList.size() - 2), true);
-            if (i4Var.f38546g0.indexOfChild(i4Var.f38559u0[0]) < i4Var.f38546g0.indexOfChild(i4Var.f38559u0[1])) {
-                int indexOfChild = i4Var.f38546g0.indexOfChild(i4Var.f38559u0[0]);
-                i4Var.f38546g0.removeView(i4Var.f38559u0[1]);
-                i4Var.f38546g0.addView(i4Var.f38559u0[1], indexOfChild);
+            l3Var.setBackgroundColor(color);
+            h4Var.e0(-1, arrayList.get(arrayList.size() - 2), true);
+            if (h4Var.f38272g0.indexOfChild(h4Var.f38285u0[0]) < h4Var.f38272g0.indexOfChild(h4Var.f38285u0[1])) {
+                int indexOfChild = h4Var.f38272g0.indexOfChild(h4Var.f38285u0[0]);
+                h4Var.f38272g0.removeView(h4Var.f38285u0[1]);
+                h4Var.f38272g0.addView(h4Var.f38285u0[1], indexOfChild);
             }
         } else {
-            this.f21755e = false;
+            this.f21743e = false;
         }
-        i4Var.k();
+        h4Var.k();
     }
 
     @Override
@@ -220,21 +220,21 @@ public class ArticleViewer$WindowView extends FrameLayout {
         Activity activity;
         DisplayCutout displayCutout;
         List<Rect> boundingRects;
-        i4 i4Var = this.H;
-        if (i4Var.K != null) {
+        h4 h4Var = this.H;
+        if (h4Var.K != null) {
             return super.dispatchApplyWindowInsets(windowInsets);
         }
-        WindowInsets windowInsets2 = i4Var.T;
-        i4Var.T = windowInsets;
-        if ((windowInsets2 == null || !windowInsets2.toString().equals(windowInsets.toString())) && (articleViewer$WindowView = i4Var.f38545f0) != null) {
+        WindowInsets windowInsets2 = h4Var.T;
+        h4Var.T = windowInsets;
+        if ((windowInsets2 == null || !windowInsets2.toString().equals(windowInsets.toString())) && (articleViewer$WindowView = h4Var.f38271f0) != null) {
             articleViewer$WindowView.requestLayout();
         }
-        if (Build.VERSION.SDK_INT >= 28 && (activity = i4Var.L) != null && (displayCutout = activity.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout()) != null && (boundingRects = displayCutout.getBoundingRects()) != null && !boundingRects.isEmpty()) {
+        if (Build.VERSION.SDK_INT >= 28 && (activity = h4Var.L) != null && (displayCutout = activity.getWindow().getDecorView().getRootWindowInsets().getDisplayCutout()) != null && (boundingRects = displayCutout.getBoundingRects()) != null && !boundingRects.isEmpty()) {
             boolean z10 = false;
             if (boundingRects.get(0).height() != 0) {
                 z10 = true;
             }
-            i4Var.U = z10;
+            h4Var.U = z10;
         }
         return super.dispatchApplyWindowInsets(windowInsets);
     }
@@ -243,15 +243,15 @@ public class ArticleViewer$WindowView extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        i4 i4Var = this.H;
-        if (i4Var.T == null && this.f21762y != 0 && this.F != 0) {
-            Paint paint = this.f21752a;
-            paint.setAlpha((int) (i4Var.f38545f0.getAlpha() * 255.0f));
-            int i11 = this.f21761x;
+        h4 h4Var = this.H;
+        if (h4Var.T == null && this.f21750y != 0 && this.F != 0) {
+            Paint paint = this.f21740a;
+            paint.setAlpha((int) (h4Var.f38271f0.getAlpha() * 255.0f));
+            int i11 = this.f21749x;
             if (i11 == 0 && (i10 = this.E) == 0) {
-                canvas.drawRect(i11, i10, i11 + this.f21762y, i10 + this.F, paint);
+                canvas.drawRect(i11, i10, i11 + this.f21750y, i10 + this.F, paint);
             } else {
-                canvas.drawRect(i11 - getTranslationX(), this.E, (this.f21761x + this.f21762y) - getTranslationX(), this.E + this.F, paint);
+                canvas.drawRect(i11 - getTranslationX(), this.E, (this.f21749x + this.f21750y) - getTranslationX(), this.E + this.F, paint);
             }
         }
     }
@@ -259,25 +259,25 @@ public class ArticleViewer$WindowView extends FrameLayout {
     @Override
     public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
         if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-            i4 i4Var = this.H;
-            if (i4Var.f38547h0.V.isFocused()) {
-                i4Var.f38547h0.V.clearFocus();
-                AndroidUtilities.hideKeyboard(i4Var.f38547h0.V);
+            h4 h4Var = this.H;
+            if (h4Var.f38273h0.V.isFocused()) {
+                h4Var.f38273h0.V.clearFocus();
+                AndroidUtilities.hideKeyboard(h4Var.f38273h0.V);
                 return true;
-            } else if (i4Var.f38547h0.f43523b0.isFocused()) {
-                i4Var.f38547h0.f43523b0.clearFocus();
-                AndroidUtilities.hideKeyboard(i4Var.f38547h0.f43523b0);
+            } else if (h4Var.f38273h0.f43667b0.isFocused()) {
+                h4Var.f38273h0.f43667b0.clearFocus();
+                AndroidUtilities.hideKeyboard(h4Var.f38273h0.f43667b0);
                 return true;
-            } else if (i4Var.f38553o0) {
+            } else if (h4Var.f38279o0) {
                 AndroidUtilities.hideKeyboard(this);
                 return true;
             } else {
-                m3 m3Var = i4Var.f38559u0[0];
-                if (m3Var != null && m3Var.f() && i4Var.f38559u0[0].getWebView() != null && i4Var.f38559u0[0].getWebView().canGoBack()) {
-                    i4Var.f38559u0[0].getWebView().goBack();
+                l3 l3Var = h4Var.f38285u0[0];
+                if (l3Var != null && l3Var.f() && h4Var.f38285u0[0].getWebView() != null && h4Var.f38285u0[0].getWebView().canGoBack()) {
+                    h4Var.f38285u0[0].getWebView().goBack();
                     return true;
                 }
-                i4Var.o(true, false);
+                h4Var.o(true, false);
                 return true;
             }
         }
@@ -286,27 +286,27 @@ public class ArticleViewer$WindowView extends FrameLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        m3 m3Var;
+        l3 l3Var;
         ArrayList arrayList;
-        i4 i4Var = this.H;
-        if (i4Var.Q0.f41249n) {
-            motionEvent.offsetLocation(-i4Var.f38546g0.getX(), -i4Var.f38546g0.getY());
-            return i4Var.Q0.g(motionEvent);
+        h4 h4Var = this.H;
+        if (h4Var.Q0.f40976n) {
+            motionEvent.offsetLocation(-h4Var.f38272g0.getX(), -h4Var.f38272g0.getY());
+            return h4Var.Q0.g(motionEvent);
         }
-        org.telegram.ui.Cells.aa n10 = i4Var.O0.n(getContext());
+        org.telegram.ui.Cells.aa n10 = h4Var.O0.n(getContext());
         MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        obtain.offsetLocation(-i4Var.f38546g0.getX(), -i4Var.f38546g0.getY());
-        if (!i4Var.O0.x() || !i4Var.O0.n(getContext()).onTouchEvent(obtain)) {
+        obtain.offsetLocation(-h4Var.f38272g0.getX(), -h4Var.f38272g0.getY());
+        if (!h4Var.O0.x() || !h4Var.O0.n(getContext()).onTouchEvent(obtain)) {
             if (n10.b(motionEvent)) {
-                m3[] m3VarArr = i4Var.f38559u0;
-                if (m3VarArr != null && (m3Var = m3VarArr[0]) != null && m3Var.f() && (arrayList = i4Var.f38543d0) != null && arrayList.size() <= 1) {
+                l3[] l3VarArr = h4Var.f38285u0;
+                if (l3VarArr != null && (l3Var = l3VarArr[0]) != null && l3Var.f() && (arrayList = h4Var.f38269d0) != null && arrayList.size() <= 1) {
                     motionEvent.setAction(1);
                 } else {
                     motionEvent.setAction(3);
                 }
             }
-            if (motionEvent.getAction() == 0 && i4Var.O0.x() && (motionEvent.getY() < i4Var.f38546g0.getTop() || motionEvent.getY() > i4Var.f38546g0.getBottom())) {
-                if (i4Var.O0.n(getContext()).onTouchEvent(obtain)) {
+            if (motionEvent.getAction() == 0 && h4Var.O0.x() && (motionEvent.getY() < h4Var.f38272g0.getTop() || motionEvent.getY() > h4Var.f38272g0.getBottom())) {
+                if (h4Var.O0.n(getContext()).onTouchEvent(obtain)) {
                     return super.dispatchTouchEvent(motionEvent);
                 }
             } else {
@@ -325,20 +325,20 @@ public class ArticleViewer$WindowView extends FrameLayout {
         boolean drawChild = super.drawChild(canvas, view, j3);
         canvas.restoreToCount(save);
         if (i10 != 0) {
-            i4 i4Var = this.H;
-            if (view == i4Var.f38546g0) {
+            h4 h4Var = this.H;
+            if (view == h4Var.f38272g0) {
                 float f7 = measuredWidth - i10;
                 float min = Math.min(0.8f, f7 / measuredWidth);
                 if (min < 0.0f) {
                     min = 0.0f;
                 }
-                i4Var.f38552n0.setColor(((int) (min * 153.0f)) << 24);
-                canvas.drawRect(0.0f, 0.0f, i10, getHeight(), i4Var.f38552n0);
+                h4Var.f38278n0.setColor(((int) (min * 153.0f)) << 24);
+                canvas.drawRect(0.0f, 0.0f, i10, getHeight(), h4Var.f38278n0);
                 float max = Math.max(0.0f, Math.min(f7 / AndroidUtilities.dp(20.0f), 1.0f));
-                Drawable drawable = i4Var.m0;
+                Drawable drawable = h4Var.m0;
                 drawable.setBounds(i10 - drawable.getIntrinsicWidth(), view.getTop(), i10, view.getBottom());
-                i4Var.m0.setAlpha((int) (max * 255.0f));
-                i4Var.m0.draw(canvas);
+                h4Var.m0.setAlpha((int) (max * 255.0f));
+                h4Var.m0.draw(canvas);
             }
         }
         return drawChild;
@@ -346,7 +346,7 @@ public class ArticleViewer$WindowView extends FrameLayout {
 
     @Override
     public float getAlpha() {
-        return this.f21760w;
+        return this.f21748w;
     }
 
     public float getInnerTranslationX() {
@@ -362,14 +362,14 @@ public class ArticleViewer$WindowView extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        i4 i4Var = this.H;
-        i4Var.W = false;
-        VideoPlayerHolderBase videoPlayerHolderBase = i4Var.f41936w;
+        h4 h4Var = this.H;
+        h4Var.W = false;
+        VideoPlayerHolderBase videoPlayerHolderBase = h4Var.f42104w;
         if (videoPlayerHolderBase != null) {
             videoPlayerHolderBase.release(null);
-            i4Var.f41936w = null;
+            h4Var.f42104w = null;
         }
-        i4Var.f41937x = null;
+        h4Var.f42105x = null;
     }
 
     @Override
@@ -377,17 +377,17 @@ public class ArticleViewer$WindowView extends FrameLayout {
         int measuredHeight;
         float f7;
         int systemWindowInsetRight;
-        i4 i4Var = this.H;
-        Paint paint = i4Var.f38562x0;
-        if (i4Var.K == null) {
+        h4 h4Var = this.H;
+        Paint paint = h4Var.f38288x0;
+        if (h4Var.K == null) {
             int measuredWidth = getMeasuredWidth();
             float f10 = measuredWidth;
             float measuredHeight2 = getMeasuredHeight();
-            canvas.drawRect(this.v, 0.0f, f10, measuredHeight2, i4Var.f38551l0);
-            WindowInsets windowInsets = i4Var.T;
+            canvas.drawRect(this.v, 0.0f, f10, measuredHeight2, h4Var.f38277l0);
+            WindowInsets windowInsets = h4Var.T;
             if (windowInsets != null) {
                 canvas.drawRect(this.v, 0.0f, f10, windowInsets.getSystemWindowInsetTop(), paint);
-                if (i4Var.U) {
+                if (h4Var.U) {
                     int systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
                     if (systemWindowInsetLeft != 0) {
                         canvas.drawRect(0.0f, 0.0f, systemWindowInsetLeft, measuredHeight2, paint);
@@ -395,18 +395,18 @@ public class ArticleViewer$WindowView extends FrameLayout {
                     if (windowInsets.getSystemWindowInsetRight() != 0) {
                         f7 = f10;
                         canvas.drawRect(measuredWidth - systemWindowInsetRight, 0.0f, f7, measuredHeight2, paint);
-                        canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f7, measuredHeight2, i4Var.f38563y0);
+                        canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f7, measuredHeight2, h4Var.f38289y0);
                     }
                 }
                 f7 = f10;
-                canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f7, measuredHeight2, i4Var.f38563y0);
+                canvas.drawRect(0.0f, measuredHeight - windowInsets.getStableInsetBottom(), f7, measuredHeight2, h4Var.f38289y0);
             }
         }
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        HashSet hashSet = i4.f38515b1;
+        HashSet hashSet = h4.f38241b1;
         this.H.getClass();
         if (!a(motionEvent) && !super.onInterceptTouchEvent(motionEvent)) {
             return false;
@@ -418,33 +418,33 @@ public class ArticleViewer$WindowView extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         int i15 = i12 - i10;
-        i4 i4Var = this.H;
+        h4 h4Var = this.H;
         int i16 = 0;
-        if (i4Var.N0 != i15) {
+        if (h4Var.N0 != i15) {
             int i17 = 0;
             while (true) {
-                m3[] m3VarArr = i4Var.f38559u0;
-                if (i17 >= m3VarArr.length) {
+                l3[] l3VarArr = h4Var.f38285u0;
+                if (i17 >= l3VarArr.length) {
                     break;
                 }
-                for (Map.Entry entry : m3VarArr[i17].f39797c.f37813n.entrySet()) {
+                for (Map.Entry entry : l3VarArr[i17].f39497c.f37530n.entrySet()) {
                     entry.setValue(-1);
                 }
                 i17++;
             }
-            i4Var.N0 = i15;
+            h4Var.N0 = i15;
         }
-        WindowInsets windowInsets = i4Var.T;
+        WindowInsets windowInsets = h4Var.T;
         if (windowInsets != null) {
             int systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
             if (windowInsets.getSystemWindowInsetRight() != 0) {
-                this.f21761x = i15 - this.f21762y;
+                this.f21749x = i15 - this.f21750y;
                 this.E = 0;
             } else if (windowInsets.getSystemWindowInsetLeft() != 0) {
-                this.f21761x = 0;
+                this.f21749x = 0;
                 this.E = 0;
             } else {
-                this.f21761x = 0;
+                this.f21749x = 0;
                 this.E = (i13 - i11) - this.F;
             }
             i14 = windowInsets.getSystemWindowInsetTop();
@@ -452,10 +452,10 @@ public class ArticleViewer$WindowView extends FrameLayout {
         } else {
             i14 = 0;
         }
-        k0 k0Var = i4Var.f38546g0;
-        k0Var.layout(i16, i14, k0Var.getMeasuredWidth() + i16, i4Var.f38546g0.getMeasuredHeight() + i14);
-        FrameLayout frameLayout = i4Var.P;
-        frameLayout.layout(i16, i14, frameLayout.getMeasuredWidth() + i16, i4Var.P.getMeasuredHeight() + i14);
+        j0 j0Var = h4Var.f38272g0;
+        j0Var.layout(i16, i14, j0Var.getMeasuredWidth() + i16, h4Var.f38272g0.getMeasuredHeight() + i14);
+        FrameLayout frameLayout = h4Var.P;
+        frameLayout.layout(i16, i14, frameLayout.getMeasuredWidth() + i16, h4Var.P.getMeasuredHeight() + i14);
     }
 
     @Override
@@ -463,10 +463,10 @@ public class ArticleViewer$WindowView extends FrameLayout {
         boolean z10;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        i4 i4Var = this.H;
-        if (i4Var.T != null) {
+        h4 h4Var = this.H;
+        if (h4Var.T != null) {
             setMeasuredDimension(size, size2);
-            WindowInsets windowInsets = i4Var.T;
+            WindowInsets windowInsets = h4Var.T;
             if (AndroidUtilities.incorrectDisplaySizeFix) {
                 int i12 = AndroidUtilities.displaySize.y;
                 if (size2 > i12) {
@@ -477,34 +477,34 @@ public class ArticleViewer$WindowView extends FrameLayout {
             int systemWindowInsetBottom = size2 - windowInsets.getSystemWindowInsetBottom();
             size -= windowInsets.getSystemWindowInsetLeft() + windowInsets.getSystemWindowInsetRight();
             if (windowInsets.getSystemWindowInsetRight() != 0) {
-                this.f21762y = windowInsets.getSystemWindowInsetRight();
+                this.f21750y = windowInsets.getSystemWindowInsetRight();
                 this.F = systemWindowInsetBottom;
             } else if (windowInsets.getSystemWindowInsetLeft() != 0) {
-                this.f21762y = windowInsets.getSystemWindowInsetLeft();
+                this.f21750y = windowInsets.getSystemWindowInsetLeft();
                 this.F = systemWindowInsetBottom;
             } else {
-                this.f21762y = size;
+                this.f21750y = size;
                 this.F = windowInsets.getStableInsetBottom();
             }
             size2 = systemWindowInsetBottom - windowInsets.getSystemWindowInsetTop();
         } else {
             setMeasuredDimension(size, size2);
         }
-        if (i4Var.K == null) {
+        if (h4Var.K == null) {
             if (size2 < AndroidUtilities.displaySize.y - AndroidUtilities.dp(100.0f)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            i4Var.f38553o0 = z10;
+            h4Var.f38279o0 = z10;
         }
-        i4Var.f38546g0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        i4Var.P.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        h4Var.f38272g0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        h4Var.P.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        HashSet hashSet = i4.f38515b1;
+        HashSet hashSet = h4.f38241b1;
         this.H.getClass();
         if (!a(motionEvent) && !super.onTouchEvent(motionEvent)) {
             return false;
@@ -521,19 +521,19 @@ public class ArticleViewer$WindowView extends FrameLayout {
     @Override
     public void setAlpha(float f7) {
         boolean z10;
-        i4 i4Var = this.H;
+        h4 h4Var = this.H;
         int i10 = (int) (255.0f * f7);
-        i4Var.f38551l0.setAlpha(i10);
-        i4Var.f38562x0.setAlpha(i10);
-        this.f21760w = f7;
-        ib0 ib0Var = i4Var.U0;
-        if (ib0Var != null) {
-            if (i4Var.V && f7 == 1.0f && this.v == 0.0f) {
+        h4Var.f38277l0.setAlpha(i10);
+        h4Var.f38288x0.setAlpha(i10);
+        this.f21748w = f7;
+        hb0 hb0Var = h4Var.U0;
+        if (hb0Var != null) {
+            if (h4Var.V && f7 == 1.0f && this.v == 0.0f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ib0Var.a(z10);
+            hb0Var.a(z10);
         }
         invalidate();
     }
@@ -541,15 +541,15 @@ public class ArticleViewer$WindowView extends FrameLayout {
     public void setInnerTranslationX(float f7) {
         boolean z10;
         this.v = f7;
-        i4 i4Var = this.H;
-        ib0 ib0Var = i4Var.U0;
-        if (ib0Var != null) {
-            if (i4Var.V && this.f21760w == 1.0f && f7 == 0.0f) {
+        h4 h4Var = this.H;
+        hb0 hb0Var = h4Var.U0;
+        if (hb0Var != null) {
+            if (h4Var.V && this.f21748w == 1.0f && f7 == 0.0f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ib0Var.a(z10);
+            hb0Var.a(z10);
         }
         invalidate();
     }

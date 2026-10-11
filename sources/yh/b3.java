@@ -4,37 +4,37 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.is;
 public final class b3 {
-    public final Runnable f52325a;
-    public a3 f52326b;
-    public a3 f52327c;
+    public final Runnable f52368a;
+    public a3 f52369b;
+    public a3 f52370c;
     public a3 d;
-    public int f52328e;
-    public float f52329f;
-    public final ArrayList f52330g;
+    public int f52371e;
+    public float f52372f;
+    public final ArrayList f52373g;
     public final a3 h;
-    public final a3 f52331i;
-    public final float f52332j;
-    public final int f52333k;
-    public int f52334l;
-    public final org.telegram.ui.Components.g6 f52335m;
-    public int f52336n = -1;
+    public final a3 f52374i;
+    public final float f52375j;
+    public final int f52376k;
+    public int f52377l;
+    public final org.telegram.ui.Components.g6 f52378m;
+    public int f52379n = -1;
 
     public b3(Runnable runnable, ArrayList arrayList, a3 a3Var, a3 a3Var2, float f7, int i10) {
-        this.f52329f = 0.0f;
-        this.f52325a = runnable;
-        this.f52330g = arrayList;
+        this.f52372f = 0.0f;
+        this.f52368a = runnable;
+        this.f52373g = arrayList;
         this.h = a3Var;
-        this.f52331i = a3Var2;
-        this.f52332j = f7;
-        this.f52333k = i10;
+        this.f52374i = a3Var2;
+        this.f52375j = f7;
+        this.f52376k = i10;
         org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(runnable, 300L, is.h);
-        this.f52335m = g6Var;
+        this.f52378m = g6Var;
         g6Var.a(true);
-        this.f52329f = -0.5f;
-        this.f52328e = 1;
-        this.f52334l = i10;
-        this.f52326b = a3Var;
-        this.f52327c = d(false);
+        this.f52372f = -0.5f;
+        this.f52371e = 1;
+        this.f52377l = i10;
+        this.f52369b = a3Var;
+        this.f52370c = d(false);
         this.d = d(false);
     }
 
@@ -43,21 +43,21 @@ public final class b3 {
         if (a3Var != null) {
             a3Var.a();
         }
-        a3 a3Var2 = this.f52331i;
+        a3 a3Var2 = this.f52374i;
         if (a3Var2 != null) {
             a3Var2.a();
         }
     }
 
     public final boolean b(float f7) {
-        if (this.f52327c == this.f52331i && this.f52329f + f7 >= this.f52328e + 0.5f) {
+        if (this.f52370c == this.f52374i && this.f52372f + f7 >= this.f52371e + 0.5f) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f52327c == this.f52331i && this.f52329f >= this.f52328e + 0.5f) {
+        if (this.f52370c == this.f52374i && this.f52372f >= this.f52371e + 0.5f) {
             return true;
         }
         return false;
@@ -66,23 +66,23 @@ public final class b3 {
     public final a3 d(boolean z10) {
         ArrayList arrayList;
         if (z10) {
-            a3 a3Var = this.f52331i;
+            a3 a3Var = this.f52374i;
             if (a3Var.b()) {
-                int i10 = this.f52334l;
+                int i10 = this.f52377l;
                 if (i10 <= 0) {
                     return a3Var;
                 }
-                this.f52334l = i10 - 1;
+                this.f52377l = i10 - 1;
             }
         }
         ArrayList arrayList2 = new ArrayList();
         int i11 = 0;
         while (true) {
-            arrayList = this.f52330g;
+            arrayList = this.f52373g;
             if (i11 >= arrayList.size()) {
                 break;
             }
-            if (i11 != this.f52336n && ((a3) arrayList.get(i11)).b()) {
+            if (i11 != this.f52379n && ((a3) arrayList.get(i11)).b()) {
                 arrayList2.add(Integer.valueOf(i11));
             }
             i11++;
@@ -98,17 +98,17 @@ public final class b3 {
             }
         }
         int intValue = ((Integer) AndroidUtilities.randomOf(arrayList2)).intValue();
-        this.f52336n = intValue;
+        this.f52379n = intValue;
         return (a3) arrayList.get(intValue);
     }
 
     public final void e() {
-        this.f52326b = this.f52327c;
-        this.f52327c = this.f52331i;
+        this.f52369b = this.f52370c;
+        this.f52370c = this.f52374i;
         this.d = null;
-        int i10 = this.f52328e + 1;
-        this.f52328e = i10;
-        this.f52329f = i10 + 0.5f;
+        int i10 = this.f52371e + 1;
+        this.f52371e = i10;
+        this.f52372f = i10 + 0.5f;
     }
 
     public final float f(float f7, boolean z10) {
@@ -118,8 +118,8 @@ public final class b3 {
         float f10;
         a3 a3Var;
         a3 d;
-        int i11 = this.f52334l;
-        int i12 = this.f52333k;
+        int i11 = this.f52377l;
+        int i12 = this.f52376k;
         if (i11 >= i12) {
             j3 = 450;
         } else {
@@ -130,8 +130,8 @@ public final class b3 {
             }
             j3 = i10;
         }
-        org.telegram.ui.Components.g6 g6Var = this.f52335m;
-        g6Var.f26619g = j3;
+        org.telegram.ui.Components.g6 g6Var = this.f52378m;
+        g6Var.f26616g = j3;
         if (i11 >= i12) {
             z11 = true;
         } else {
@@ -143,27 +143,27 @@ public final class b3 {
         } else {
             f10 = 2.0f;
         }
-        float lerp = (f7 * AndroidUtilities.lerp(f10, 7.5f, e7) * this.f52332j) + this.f52329f;
-        this.f52329f = lerp;
+        float lerp = (f7 * AndroidUtilities.lerp(f10, 7.5f, e7) * this.f52375j) + this.f52372f;
+        this.f52372f = lerp;
         int i13 = (lerp > 0.0f ? 1 : (lerp == 0.0f ? 0 : -1));
-        a3 a3Var2 = this.f52331i;
+        a3 a3Var2 = this.f52374i;
         if (i13 >= 0) {
             double d10 = lerp;
-            if (Math.floor(d10) + 1.0d > this.f52328e && (a3Var = this.f52327c) != a3Var2) {
-                this.f52326b = a3Var;
+            if (Math.floor(d10) + 1.0d > this.f52371e && (a3Var = this.f52370c) != a3Var2) {
+                this.f52369b = a3Var;
                 a3 a3Var3 = this.d;
-                this.f52327c = a3Var3;
+                this.f52370c = a3Var3;
                 if (a3Var3 == a3Var2) {
                     d = null;
                 } else {
                     d = d(z10);
                 }
                 this.d = d;
-                this.f52328e = ((int) Math.floor(d10)) + 1;
+                this.f52371e = ((int) Math.floor(d10)) + 1;
             }
         }
-        if (this.f52327c == a3Var2) {
-            return Math.min(lerp, this.f52328e + 0.5f);
+        if (this.f52370c == a3Var2) {
+            return Math.min(lerp, this.f52371e + 0.5f);
         }
         return lerp;
     }

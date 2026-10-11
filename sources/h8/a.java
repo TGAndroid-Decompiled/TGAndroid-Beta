@@ -1,11 +1,11 @@
 package h8;
 
-import n6.l;
+import n6.m;
 public final class a {
-    public final x6.a f11033a;
+    public final x6.a f11032a;
 
     public a(x6.a aVar) {
-        l.h(aVar);
-        this.f11033a = aVar;
+        m.h(aVar);
+        this.f11032a = aVar;
     }
 }

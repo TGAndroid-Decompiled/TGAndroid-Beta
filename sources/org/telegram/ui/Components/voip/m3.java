@@ -1,48 +1,45 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class m3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32165a;
-    public final o3 f32166b;
-
-    public m3(o3 o3Var, int i10) {
-        this.f32165a = i10;
-        this.f32166b = o3Var;
-    }
-
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32165a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o3 o3Var = this.f32166b;
-                o3Var.f32198n = floatValue;
-                o3Var.f32195k.invalidate();
-                if (o3Var.f32198n > 1.0f && o3Var.f32202r == null) {
-                    ValueAnimator ofInt = ValueAnimator.ofInt(AndroidUtilities.dp(12), 0);
-                    o3Var.f32202r = ofInt;
-                    ofInt.addUpdateListener(new m3(o3Var, 2));
-                    o3Var.f32202r.setDuration(350 - valueAnimator.getCurrentPlayTime());
-                    o3Var.f32202r.start();
+import java.util.Random;
+import org.telegram.messenger.LiteMode;
+import org.telegram.ui.Components.da;
+public final class m3 extends da {
+    public final void g(float f7, float f10) {
+        if (LiteMode.isEnabled(this.f25513r)) {
+            int i10 = 0;
+            while (true) {
+                float f11 = i10;
+                float f12 = this.f25509n;
+                if (f11 < f12) {
+                    float[] fArr = this.f25504i;
+                    float f13 = fArr[i10];
+                    float[] fArr2 = this.f25505j;
+                    float f14 = fArr2[i10];
+                    float f15 = (f14 * f7 * 8.2f * 1.0f) + (0.8f * f14) + f13;
+                    fArr[i10] = f15;
+                    if (f15 >= 1.0f) {
+                        fArr[i10] = 0.0f;
+                        float[] fArr3 = this.f25503g;
+                        this.f25501e[i10] = fArr3[i10];
+                        float[] fArr4 = this.h;
+                        this.f25502f[i10] = fArr4[i10];
+                        if (f10 < 1.0f) {
+                            float f16 = 360.0f / f12;
+                            float f17 = this.f25499b;
+                            float f18 = this.f25498a;
+                            Random random = this.f25508m;
+                            fArr3[i10] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f17 - f18) * f10) + f18;
+                            fArr4[i10] = ((((random.nextInt() * f10) % 100.0f) / 100.0f) * 0.05f * f16) + (f16 * f11);
+                            fArr2[i10] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+                        } else {
+                            c(fArr3, fArr4, i10);
+                        }
+                    }
+                    i10++;
+                } else {
                     return;
                 }
-                return;
-            case 1:
-                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                o3 o3Var2 = this.f32166b;
-                o3Var2.f32197m = intValue;
-                o3Var2.f32195k.invalidate();
-                return;
-            default:
-                int intValue2 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                o3 o3Var3 = this.f32166b;
-                if (o3Var3.f32193i <= o3Var3.f32199o / 2) {
-                    intValue2 = -intValue2;
-                }
-                o3Var3.f32200p = intValue2;
-                o3Var3.f32195k.invalidate();
-                return;
+            }
         }
     }
 }

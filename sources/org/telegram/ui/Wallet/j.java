@@ -1,50 +1,179 @@
 package org.telegram.ui.Wallet;
 
+import android.animation.ValueAnimator;
+import android.content.ClipboardManager;
+import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-public final class j implements Utilities.Callback2 {
-    public final int f35107a;
-    public final Object f35108b;
-    public final Object f35109c;
-    public final Object d;
+import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.au0;
+import org.telegram.ui.uf0;
+public final class j implements Runnable {
+    public final int f35093a;
+    public final int f35094b;
+    public final Object f35095c;
 
-    public j(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35107a = i10;
-        this.f35108b = obj;
-        this.d = obj2;
-        this.f35109c = obj3;
+    public j(int i10, Object obj, int i11) {
+        this.f35093a = i11;
+        this.f35094b = i10;
+        this.f35095c = obj;
     }
 
     @Override
-    public final void run(java.lang.Object r22, java.lang.Object r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.j.run(java.lang.Object, java.lang.Object):void");
+    public final void run() {
+        CharSequence text;
+        int i10 = this.f35093a;
+        boolean z10 = false;
+        int i11 = this.f35094b;
+        Object obj = this.f35095c;
+        switch (i10) {
+            case 0:
+                l0 l0Var = (l0) obj;
+                HashSet hashSet = l0Var.A;
+                hashSet.remove(Integer.valueOf(i11));
+                if (hashSet.isEmpty()) {
+                    l0Var.P();
+                    return;
+                }
+                return;
+            case 1:
+                l0 v = l0.v(i11);
+                NotificationCenter notificationCenter = NotificationCenter.getInstance(i11);
+                a0 a0Var = new a0(notificationCenter, (uf0) obj, v);
+                notificationCenter.addObserver(a0Var, NotificationCenter.walletUpdate);
+                AndroidUtilities.runOnUIThread(a0Var, 10000L);
+                if (v.f35188e == null && v.f35204w < 0) {
+                    v.U();
+                }
+                v.S();
+                a0Var.a();
+                return;
+            case 2:
+                e6 e6Var = (e6) obj;
+                if (e6Var.f34866r && !e6Var.f34869x && i11 == e6Var.f34863k0) {
+                    e6Var.postDelayed(e6Var.f34864l0, 500L);
+                    return;
+                }
+                return;
+            case 3:
+                c7 c7Var = (c7) obj;
+                ArrayList arrayList = c7Var.v;
+                try {
+                    ClipboardManager clipboardManager = (ClipboardManager) c7Var.getParentActivity().getSystemService("clipboard");
+                    if (clipboardManager != null && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() != 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
+                        String[] split = text.toString().trim().toLowerCase().split("\\s+");
+                        for (int i12 = 0; i11 < arrayList.size() && i12 < split.length; i12++) {
+                            ((j9) arrayList.get(i11)).setText(split[i12]);
+                            i11++;
+                        }
+                        c7Var.Y();
+                        return;
+                    }
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            case 4:
+                u8 u8Var = (u8) obj;
+                if (!u8Var.f35615n && i11 == u8Var.I) {
+                    u8Var.K = false;
+                    u8Var.f26922a.W2.N(true);
+                    return;
+                }
+                return;
+            case 5:
+                qg.j jVar = (qg.j) obj;
+                jVar.L = i11;
+                jVar.K = true;
+                try {
+                    jVar.performHapticFeedback(3, 2);
+                } catch (Exception unused2) {
+                }
+                ValueAnimator valueAnimator = jVar.P;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                }
+                ValueAnimator valueAnimator2 = jVar.Q;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.cancel();
+                }
+                ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+                jVar.P = duration;
+                duration.setInterpolator(is.f27451f);
+                jVar.P.addUpdateListener(new qg.f(jVar, 5));
+                jVar.P.addListener(new qg.g(jVar, 2));
+                jVar.P.start();
+                return;
+            case 6:
+                au0 au0Var = (au0) obj;
+                pg.s1 s1Var = au0Var.K1;
+                au0Var.t0(s1Var, null);
+                pg.u0.e(i11).j(s1Var.f45814c);
+                return;
+            case 7:
+                qg.n2 n2Var = (qg.n2) obj;
+                n2Var.getClass();
+                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.customStickerCreated, Boolean.FALSE);
+                n2Var.h();
+                return;
+            case 8:
+                fa0 fa0Var = ((tg.q0) obj).f48469e;
+                try {
+                    if (fa0Var.getLayout().getLineForOffset(i11) == 0) {
+                        fa0Var.getEditableText().insert(i11, "\n");
+                        return;
+                    }
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            case 9:
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", UserConfig.getInstance(i11).clientUserId);
+                ((org.telegram.ui.ActionBar.b5) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
+                return;
+            case 10:
+                of.f.s(((yh.g) obj).getParentActivity(), LocaleController.getString(i11));
+                return;
+            case 11:
+                ConnectionsManager.getInstance(((yh.n5) obj).f52997a).cancelRequest(i11, true);
+                return;
+            default:
+                zg.f fVar = (zg.f) obj;
+                if (fVar.f54607b) {
+                    Utilities.Callback callback = fVar.d;
+                    if (callback != null) {
+                        if (i11 < 300) {
+                            z10 = true;
+                        }
+                        callback.run(Boolean.valueOf(z10));
+                        try {
+                            fVar.f54606a.performHapticFeedback(3);
+                        } catch (Exception unused3) {
+                        }
+                    }
+                    fVar.f54608c = true;
+                    int max = Math.max(50, i11 - 100);
+                    AndroidUtilities.runOnUIThread(new j(fVar, max, 12), max);
+                    return;
+                }
+                return;
+        }
     }
 
-    public j(Utilities.Callback callback, k0 k0Var, ConnectionsManager connectionsManager) {
-        this.f35107a = 10;
-        this.d = callback;
-        this.f35108b = k0Var;
-        this.f35109c = connectionsManager;
-    }
-
-    public j(k0 k0Var, Object obj, Object obj2, int i10) {
-        this.f35107a = i10;
-        this.f35108b = k0Var;
-        this.f35109c = obj;
-        this.d = obj2;
-    }
-
-    public j(k0 k0Var, o oVar, String str, String str2) {
-        this.f35107a = 5;
-        this.f35108b = oVar;
-        this.d = str;
-        this.f35109c = str2;
-    }
-
-    public j(m7 m7Var, org.telegram.ui.ActionBar.b2 b2Var, k0 k0Var) {
-        this.f35107a = 11;
-        this.d = m7Var;
-        this.f35109c = b2Var;
-        this.f35108b = k0Var;
+    public j(Object obj, int i10, int i11) {
+        this.f35093a = i11;
+        this.f35095c = obj;
+        this.f35094b = i10;
     }
 }

@@ -1,21 +1,21 @@
 package ii;
-public final class g4 implements org.telegram.ui.ActionBar.a2 {
-    public final int f12441a;
-    public final u3 f12442b;
+public final class g4 implements org.telegram.ui.ActionBar.z1 {
+    public final int f12440a;
+    public final u3 f12441b;
 
     public g4(u3 u3Var, int i10) {
-        this.f12441a = i10;
-        this.f12442b = u3Var;
+        this.f12440a = i10;
+        this.f12441b = u3Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f12441a) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f12440a) {
             case 0:
-                this.f12442b.b();
+                this.f12441b.b();
                 return;
             default:
-                this.f12442b.b();
+                this.f12441b.b();
                 return;
         }
     }

@@ -4,19 +4,19 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ql extends s4.t0 {
-    public final xl f30229a;
+    public final xl f30176a;
 
     public ql(xl xlVar) {
-        this.f30229a = xlVar;
+        this.f30176a = xlVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         boolean z10;
-        bm0 bm0Var;
-        xl xlVar = this.f30229a;
+        cm0 cm0Var;
+        xl xlVar = this.f30176a;
         ai.w0 w0Var = xlVar.P;
-        yi yiVar = xlVar.f30211b;
+        yi yiVar = xlVar.f30161b;
         if (i10 != 0) {
             z10 = true;
         } else {
@@ -29,10 +29,10 @@ public final class ql extends s4.t0 {
         if (i10 == 0) {
             int dp = AndroidUtilities.dp(13.0f);
             int backgroundPaddingTop = yiVar.getBackgroundPaddingTop();
-            if (((yiVar.f33233e2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (bm0Var = (bm0) w0Var.K(0)) != null) {
-                View view = bm0Var.f47702a;
-                if (view.getTop() > xlVar.A0 - xlVar.f32988z0) {
-                    w0Var.v0(0, view.getTop() - (xlVar.A0 - xlVar.f32988z0), null);
+            if (((yiVar.f33214e2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (cm0Var = (cm0) w0Var.K(0)) != null) {
+                View view = cm0Var.f47748a;
+                if (view.getTop() > xlVar.A0 - xlVar.f32978z0) {
+                    w0Var.v0(0, view.getTop() - (xlVar.A0 - xlVar.f32978z0), null);
                 }
             }
         }
@@ -40,11 +40,11 @@ public final class ql extends s4.t0 {
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        xl xlVar = this.f30229a;
+        xl xlVar = this.f30176a;
         xlVar.h0();
         if (xlVar.J != null) {
             xlVar.K += i11;
         }
-        xlVar.f30211b.b2(xlVar, i11);
+        xlVar.f30161b.b2(xlVar, i11);
     }
 }

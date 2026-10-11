@@ -1,17 +1,24 @@
 package org.telegram.ui;
-public final class tf0 implements Runnable {
-    public final int f42042a;
-    public final Object f42043b;
-    public final Object f42044c;
 
-    public tf0(int i10, Object obj, Object obj2) {
-        this.f42042a = i10;
-        this.f42043b = obj;
-        this.f42044c = obj2;
+import android.content.DialogInterface;
+public final class tf0 implements DialogInterface.OnDismissListener {
+    public final int f42180a;
+    public final yf0 f42181b;
+
+    public tf0(yf0 yf0Var, int i10) {
+        this.f42180a = i10;
+        this.f42181b = yf0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.tf0.run():void");
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f42180a) {
+            case 0:
+                this.f42181b.f44382s0.finishFragment();
+                return;
+            default:
+                this.f42181b.f44382s0.finishFragment();
+                return;
+        }
     }
 }

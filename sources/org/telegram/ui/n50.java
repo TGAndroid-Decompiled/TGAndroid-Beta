@@ -5,21 +5,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 public final class n50 implements org.telegram.ui.Components.m50 {
-    public float f40120a;
-    public TLRPC.FileLocation f40121b;
-    public TLRPC.FileLocation f40122c;
+    public float f40127a;
+    public TLRPC.FileLocation f40128b;
+    public TLRPC.FileLocation f40129c;
     public ImageLocation d;
-    public final long f40123e;
-    public final g60 f40124f;
+    public final long f40130e;
+    public final g60 f40131f;
 
     public n50(g60 g60Var, long j3) {
-        this.f40124f = g60Var;
-        this.f40123e = j3;
+        this.f40131f = g60Var;
+        this.f40130e = j3;
     }
 
     @Override
     public final void D(float f7) {
-        this.f40124f.f37835b.O(this.d, f7);
+        this.f40131f.f37871b.O(this.d, f7);
         a(f7);
     }
 
@@ -29,15 +29,15 @@ public final class n50 implements org.telegram.ui.Components.m50 {
     }
 
     public final void a(float f7) {
-        this.f40120a = f7;
-        m50 m50Var = this.f40124f.Q;
+        this.f40127a = f7;
+        m50 m50Var = this.f40131f.Q;
         if (m50Var != null) {
             for (int i10 = 0; i10 < m50Var.getChildCount(); i10++) {
                 View childAt = m50Var.getChildAt(i10);
                 if (childAt instanceof org.telegram.ui.Cells.e4) {
                     org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) childAt;
                     if (e4Var.c()) {
-                        org.telegram.ui.Cells.z3 z3Var = e4Var.f22040x;
+                        org.telegram.ui.Cells.z3 z3Var = e4Var.f22028x;
                         z3Var.setProgress(f7);
                         if (f7 < 1.0f) {
                             AndroidUtilities.updateViewVisibilityAnimated(z3Var, true, 1.0f, true);
@@ -56,7 +56,7 @@ public final class n50 implements org.telegram.ui.Components.m50 {
     }
 
     @Override
-    public final ev0 getCloseIntoObject() {
+    public final dv0 getCloseIntoObject() {
         return null;
     }
 

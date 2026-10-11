@@ -1,0 +1,22 @@
+package org.telegram.ui;
+
+import android.view.ViewGroup;
+public final class gt extends org.telegram.ui.ActionBar.m1 {
+    public final mt f38159o;
+
+    public gt(mt mtVar, ViewGroup viewGroup) {
+        super(viewGroup, -2, -2);
+        this.f38159o = mtVar;
+    }
+
+    @Override
+    public final void dismiss() {
+        d(true);
+        qt qtVar = this.f38159o.f40073a;
+        qtVar.f41243k = null;
+        qtVar.K = false;
+        if (qtVar.R) {
+            qtVar.n();
+        }
+    }
+}

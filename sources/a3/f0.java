@@ -22,10 +22,10 @@ public final class f0 {
         this.f112b = a0Var;
         ?? obj = new Object();
         int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f8569a = 0;
-        obj.f8570b = -1;
-        obj.f8571c = 0;
-        obj.f8572e = new long[highestOneBit];
+        obj.f8568a = 0;
+        obj.f8569b = -1;
+        obj.f8570c = 0;
+        obj.f8571e = new long[highestOneBit];
         obj.d = highestOneBit - 1;
         this.f115f = obj;
         this.f116g = -9223372036854775807L;
@@ -39,15 +39,15 @@ public final class f0 {
         long j11;
         b2.s sVar;
         n4.x xVar = this.f111a;
-        f fVar = (f) xVar.f16617c;
+        f fVar = (f) xVar.f16659c;
         while (true) {
             e2.q qVar = this.f115f;
-            int i10 = qVar.f8571c;
+            int i10 = qVar.f8570c;
             if (i10 == 0) {
                 return;
             }
             if (i10 != 0) {
-                long j12 = ((long[]) qVar.f8572e)[qVar.f8569a];
+                long j12 = ((long[]) qVar.f8571e)[qVar.f8568a];
                 Long l4 = (Long) this.f114e.i(j12);
                 a0 a0Var = this.f112b;
                 if (l4 != null && l4.longValue() != this.f119k) {
@@ -90,7 +90,7 @@ public final class f0 {
                         rVar.f3591x = x1Var.f3690a;
                         rVar.f3592y = x1Var.f3691b;
                         rVar.f3585q = r0.n("video/raw");
-                        xVar.f16616b = new b2.s(rVar);
+                        xVar.f16658b = new b2.s(rVar);
                         fVar.h.execute(new e(xVar, x1Var));
                     }
                     if (z10) {
@@ -108,7 +108,7 @@ public final class f0 {
                     if (z11 && fVar.d != null) {
                         fVar.h.execute(new e(0, xVar));
                     }
-                    b2.s sVar2 = (b2.s) xVar.f16616b;
+                    b2.s sVar2 = (b2.s) xVar.f16658b;
                     if (sVar2 == null) {
                         sVar = new b2.s(new b2.r());
                     } else {

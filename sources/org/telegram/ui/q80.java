@@ -1,25 +1,62 @@
 package org.telegram.ui;
-public final class q80 implements Runnable {
-    public final int f41087a;
-    public final LanguageSelectActivity f41088b;
 
-    public q80(LanguageSelectActivity languageSelectActivity, int i10) {
-        this.f41087a = i10;
-        this.f41088b = languageSelectActivity;
+import android.telephony.PhoneNumberUtils;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.TLRPC;
+public final class q80 implements Predicate {
+    public final int f41065a;
+    public final Object f41066b;
+
+    public q80(Object obj, int i10) {
+        this.f41065a = i10;
+        this.f41066b = obj;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f41065a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f41065a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            case 2:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f41065a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void run() {
-        switch (this.f41087a) {
+    public final boolean test(Object obj) {
+        switch (this.f41065a) {
             case 0:
-                LanguageSelectActivity.Y(this.f41088b);
-                return;
+                String str = (String) this.f41066b;
+                String str2 = (String) obj;
+                if (str2 != null && str2.equals(str)) {
+                    return true;
+                }
+                return false;
             case 1:
-                LanguageSelectActivity.W(this.f41088b);
-                return;
+                return PhoneNumberUtils.compare((String) this.f41066b, (String) obj);
+            case 2:
+                String str3 = (String) this.f41066b;
+                String str4 = (String) obj;
+                if (str4 != null && str4.equals(str3)) {
+                    return true;
+                }
+                return false;
             default:
-                this.f41088b.f33808a.l();
-                return;
+                return zn.P0((zn) this.f41066b, (TLRPC.MessageEntity) obj);
         }
     }
 }

@@ -3,20 +3,20 @@ package bb;
 import android.content.Context;
 import android.os.Bundle;
 import w7.p;
-import za.d0;
+import za.c0;
 import za.s;
 public final class h {
     public static final f f3825c = new Object();
-    public static final m1.c d = p.a(s.f54331b);
+    public static final m1.c d = p.a(s.f54371b);
     public final pb.c f3826a;
     public final d f3827b;
 
     public h(k9.h hVar, jd.h hVar2, jd.h hVar3, qa.d dVar) {
         hVar.a();
-        Context context = hVar.f14747a;
+        Context context = hVar.f14746a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
-        d0 d0Var = d0.f54254a;
-        za.b a2 = d0.a(hVar);
+        c0 c0Var = c0.f54288a;
+        za.b a2 = c0.a(hVar);
         pb.c cVar = new pb.c(context);
         aa.a aVar = new aa.a(a2, hVar2);
         f3825c.getClass();
@@ -27,7 +27,7 @@ public final class h {
 
     public final double a() {
         Double d10;
-        Bundle bundle = (Bundle) this.f3826a.f45588b;
+        Bundle bundle = (Bundle) this.f3826a.f45578b;
         if (bundle.containsKey("firebase_sessions_sampling_rate")) {
             d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
         } else {

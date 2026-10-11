@@ -206,7 +206,7 @@ public class LiteMode {
             SvgHelper.SvgDrawable.updateLiteValues();
         }
         if (i13 > 0) {
-            org.telegram.ui.ActionBar.i6.p1(true);
+            org.telegram.ui.ActionBar.h6.p1(true);
         }
     }
 

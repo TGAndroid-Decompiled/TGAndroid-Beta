@@ -10,21 +10,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.sf;
 import org.telegram.ui.Components.xg;
 import org.telegram.ui.Components.y9;
-import org.telegram.ui.dj0;
-import org.telegram.ui.qi0;
-import org.telegram.ui.wi0;
+import org.telegram.ui.cj0;
+import org.telegram.ui.pi0;
+import org.telegram.ui.vi0;
 public final class f extends AnimatorListenerAdapter {
-    public final int f20574a = 0;
-    public final boolean f20575b;
-    public final boolean f20576c;
+    public final int f20579a = 0;
+    public final boolean f20580b;
+    public final boolean f20581c;
     public final Object d;
-    public final KeyEvent.Callback f20577e;
+    public final KeyEvent.Callback f20582e;
 
     public f(k kVar, ArrayList arrayList, boolean z10, boolean z11) {
-        this.f20577e = kVar;
+        this.f20582e = kVar;
         this.d = arrayList;
-        this.f20575b = z10;
-        this.f20576c = z11;
+        this.f20580b = z10;
+        this.f20581c = z11;
     }
 
     @Override
@@ -33,15 +33,15 @@ public final class f extends AnimatorListenerAdapter {
         sf sfVar;
         org.telegram.ui.Cells.u1 u1Var;
         ViewGroup viewGroup;
-        qi0 qi0Var;
-        switch (this.f20574a) {
+        pi0 pi0Var;
+        switch (this.f20579a) {
             case 0:
                 ArrayList arrayList = (ArrayList) this.d;
-                k kVar = (k) this.f20577e;
+                k kVar = (k) this.f20582e;
                 int i10 = 0;
                 while (true) {
                     int size = arrayList.size();
-                    boolean z10 = this.f20575b;
+                    boolean z10 = this.f20580b;
                     if (i10 < size) {
                         View view = (View) arrayList.get(i10);
                         if (z10) {
@@ -52,17 +52,17 @@ public final class f extends AnimatorListenerAdapter {
                         }
                         i10++;
                     } else {
-                        if (z10 && !this.f20576c) {
-                            j5 j5Var = kVar.f21288n[0];
-                            if (j5Var != null) {
-                                j5Var.setVisibility(8);
+                        if (z10 && !this.f20581c) {
+                            h5 h5Var = kVar.f21285n[0];
+                            if (h5Var != null) {
+                                h5Var.setVisibility(8);
                             }
-                            j5 j5Var2 = kVar.f21288n[1];
-                            if (j5Var2 != null) {
-                                j5Var2.setVisibility(8);
+                            h5 h5Var2 = kVar.f21285n[1];
+                            if (h5Var2 != null) {
+                                h5Var2.setVisibility(8);
                             }
                         }
-                        y9 y9Var = kVar.f21273f;
+                        y9 y9Var = kVar.f21270f;
                         if (y9Var != null && !z10) {
                             y9Var.setVisibility(8);
                             return;
@@ -73,50 +73,50 @@ public final class f extends AnimatorListenerAdapter {
                 break;
             default:
                 Runnable runnable = (Runnable) this.d;
-                dj0 dj0Var = (dj0) this.f20577e;
-                wi0 wi0Var = dj0Var.K;
-                boolean z11 = this.f20575b;
+                cj0 cj0Var = (cj0) this.f20582e;
+                vi0 vi0Var = cj0Var.K;
+                boolean z11 = this.f20580b;
                 if (z11) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                dj0Var.E = f7;
-                dj0Var.f37065x = false;
-                dj0Var.f37067y = false;
-                dj0Var.H.setAlpha(f7);
+                cj0Var.E = f7;
+                cj0Var.f36754x = false;
+                cj0Var.f36756y = false;
+                cj0Var.H.setAlpha(f7);
                 if (z11) {
-                    dj0Var.f37063w = false;
-                    dj0Var.v = false;
+                    cj0Var.f36752w = false;
+                    cj0Var.v = false;
                 }
-                sf sfVar2 = dj0Var.S;
+                sf sfVar2 = cj0Var.S;
                 if (sfVar2 != null) {
                     sfVar2.setAlpha(1.0f);
                 }
-                org.telegram.ui.Cells.u1 u1Var2 = dj0Var.f37057r0;
+                org.telegram.ui.Cells.u1 u1Var2 = cj0Var.f36746r0;
                 if (u1Var2 != null) {
                     u1Var2.setVisibility(0);
                 }
-                xg xgVar = dj0Var.W;
-                if (xgVar != null && !dj0Var.f37058s) {
+                xg xgVar = cj0Var.W;
+                if (xgVar != null && !cj0Var.f36747s) {
                     xgVar.setAlpha(1.0f);
                 }
-                if (!z11 && (qi0Var = dj0Var.X) != null) {
-                    qi0Var.setAlpha(0.0f);
+                if (!z11 && (pi0Var = cj0Var.X) != null) {
+                    pi0Var.setAlpha(0.0f);
                 }
-                if (!this.f20576c && (viewGroup = dj0Var.Z) != null) {
-                    viewGroup.setAlpha(dj0Var.E);
+                if (!this.f20581c && (viewGroup = cj0Var.Z) != null) {
+                    viewGroup.setAlpha(cj0Var.E);
                 }
-                wi0Var.invalidate();
-                wi0Var.setAlpha(dj0Var.E);
-                dj0Var.F.invalidate();
-                dj0Var.G.invalidate();
+                vi0Var.invalidate();
+                vi0Var.setAlpha(cj0Var.E);
+                cj0Var.F.invalidate();
+                cj0Var.G.invalidate();
                 if (runnable != null) {
-                    if (!z11 && (u1Var = dj0Var.f37057r0) != null && u1Var.isAttachedToWindow()) {
-                        dj0Var.f37057r0.post(runnable);
+                    if (!z11 && (u1Var = cj0Var.f36746r0) != null && u1Var.isAttachedToWindow()) {
+                        cj0Var.f36746r0.post(runnable);
                         return;
-                    } else if (!z11 && (sfVar = dj0Var.S) != null && sfVar.isAttachedToWindow()) {
-                        dj0Var.S.post(runnable);
+                    } else if (!z11 && (sfVar = cj0Var.S) != null && sfVar.isAttachedToWindow()) {
+                        cj0Var.S.post(runnable);
                         return;
                     } else {
                         AndroidUtilities.runOnUIThread(runnable);
@@ -127,10 +127,10 @@ public final class f extends AnimatorListenerAdapter {
         }
     }
 
-    public f(dj0 dj0Var, boolean z10, boolean z11, Runnable runnable) {
-        this.f20577e = dj0Var;
-        this.f20575b = z10;
-        this.f20576c = z11;
+    public f(cj0 cj0Var, boolean z10, boolean z11, Runnable runnable) {
+        this.f20582e = cj0Var;
+        this.f20580b = z10;
+        this.f20581c = z11;
         this.d = runnable;
     }
 }

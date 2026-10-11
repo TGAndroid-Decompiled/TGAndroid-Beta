@@ -16,16 +16,16 @@ public final class e extends n implements Comparable {
     public final boolean L;
     public final boolean M;
     public final boolean N;
-    public final int f50525e;
-    public final boolean f50526f;
+    public final int f50569e;
+    public final boolean f50570f;
     public final String h;
-    public final i f50527n;
-    public final boolean f50528r;
-    public final int f50529s;
+    public final i f50571n;
+    public final boolean f50572r;
+    public final int f50573s;
     public final int v;
-    public final int f50530w;
-    public final boolean f50531x;
-    public final boolean f50532y;
+    public final int f50574w;
+    public final boolean f50575x;
+    public final boolean f50576y;
 
     public e(int r8, b2.l1 r9, int r10, x2.i r11, int r12, boolean r13, x2.d r14, int r15) {
         throw new UnsupportedOperationException("Method not decompiled: x2.e.<init>(int, b2.l1, int, x2.i, int, boolean, x2.d, int):void");
@@ -33,7 +33,7 @@ public final class e extends n implements Comparable {
 
     @Override
     public final int a() {
-        return this.f50525e;
+        return this.f50569e;
     }
 
     @Override
@@ -42,11 +42,11 @@ public final class e extends n implements Comparable {
         String str;
         e eVar = (e) nVar;
         b2.s sVar = eVar.d;
-        this.f50527n.getClass();
+        this.f50571n.getClass();
         b2.s sVar2 = this.d;
         int i11 = sVar2.J;
         if (i11 != -1 && i11 == sVar.J) {
-            if ((this.f50531x || ((str = sVar2.f3643r) != null && TextUtils.equals(str, sVar.f3643r))) && (i10 = sVar2.K) != -1 && i10 == sVar.K && this.L == eVar.L && this.M == eVar.M) {
+            if ((this.f50575x || ((str = sVar2.f3643r) != null && TextUtils.equals(str, sVar.f3643r))) && (i10 = sVar2.K) != -1 && i10 == sVar.K && this.L == eVar.L && this.M == eVar.M) {
                 return true;
             }
             return false;
@@ -57,24 +57,24 @@ public final class e extends n implements Comparable {
     @Override
     public final int compareTo(e eVar) {
         y0 a2;
-        boolean z10 = this.f50528r;
-        boolean z11 = this.f50526f;
+        boolean z10 = this.f50572r;
+        boolean z11 = this.f50570f;
         if (z11 && z10) {
-            a2 = p.f50571l;
+            a2 = p.f50615l;
         } else {
-            a2 = p.f50571l.a();
+            a2 = p.f50615l.a();
         }
-        boolean z12 = eVar.f50528r;
+        boolean z12 = eVar.f50572r;
         int i10 = eVar.J;
-        z c10 = z.f8820a.c(z10, z12);
+        z c10 = z.f8819a.c(z10, z12);
         Integer valueOf = Integer.valueOf(this.v);
         Integer valueOf2 = Integer.valueOf(eVar.v);
-        x0 x0Var = x0.f8818c;
-        z b10 = c10.b(valueOf, valueOf2, x0Var).a(this.f50529s, eVar.f50529s).a(this.f50530w, eVar.f50530w).c(this.G, eVar.G).c(this.f50532y, eVar.f50532y).b(Integer.valueOf(this.E), Integer.valueOf(eVar.E), x0Var).a(this.F, eVar.F).c(z11, eVar.f50526f).b(Integer.valueOf(this.K), Integer.valueOf(eVar.K), x0Var);
-        boolean z13 = this.f50527n.B;
+        x0 x0Var = x0.f8817c;
+        z b10 = c10.b(valueOf, valueOf2, x0Var).a(this.f50573s, eVar.f50573s).a(this.f50574w, eVar.f50574w).c(this.G, eVar.G).c(this.f50576y, eVar.f50576y).b(Integer.valueOf(this.E), Integer.valueOf(eVar.E), x0Var).a(this.F, eVar.F).c(z11, eVar.f50570f).b(Integer.valueOf(this.K), Integer.valueOf(eVar.K), x0Var);
+        boolean z13 = this.f50571n.B;
         int i11 = this.J;
         if (z13) {
-            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), p.f50571l.a());
+            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), p.f50615l.a());
         }
         z b11 = b10.c(this.L, eVar.L).c(this.M, eVar.M).c(this.N, eVar.N).b(Integer.valueOf(this.H), Integer.valueOf(eVar.H), a2).b(Integer.valueOf(this.I), Integer.valueOf(eVar.I), a2);
         if (Objects.equals(this.h, eVar.h)) {

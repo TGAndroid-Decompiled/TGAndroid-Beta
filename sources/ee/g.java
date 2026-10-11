@@ -7,27 +7,27 @@ import java.util.Iterator;
 import java.util.List;
 import sd.q;
 public final class g extends ld.c implements de.c {
-    public final de.c f8908a;
-    public final jd.h f8909b;
-    public final int f8910c;
+    public final de.c f8907a;
+    public final jd.h f8908b;
+    public final int f8909c;
     public jd.h d;
-    public ld.c f8911e;
+    public ld.c f8910e;
 
     public g(de.c cVar, jd.h hVar) {
-        super(d.f8905a, jd.i.f14129a);
-        this.f8908a = cVar;
-        this.f8909b = hVar;
-        this.f8910c = ((Number) hVar.fold(0, f.f8907b)).intValue();
+        super(d.f8904a, jd.i.f14128a);
+        this.f8907a = cVar;
+        this.f8908b = hVar;
+        this.f8909c = ((Number) hVar.fold(0, f.f8906b)).intValue();
     }
 
     @Override
     public final Object b(Object obj, ld.c cVar) {
         try {
             Object d = d(cVar, obj);
-            if (d == kd.a.f14784a) {
+            if (d == kd.a.f14783a) {
                 return d;
             }
-            return hd.i.f11092a;
+            return hd.i.f11091a;
         } catch (Throwable th2) {
             this.d = new c(th2, cVar.getContext());
             throw th2;
@@ -44,7 +44,7 @@ public final class g extends ld.c implements de.c {
         if (hVar != context) {
             int i11 = 0;
             if (hVar instanceof c) {
-                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((c) hVar).f8903a + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
+                String str2 = "\n            Flow exception transparency is violated:\n                Previous 'emit' call has thrown exception " + ((c) hVar).f8902a + ", but then emission attempt of value '" + obj + "' has been detected.\n                Emissions from 'catch' blocks are prohibited in order to avoid unspecified behaviour, 'Flow.catch' operator can be used instead.\n                For a more detailed explanation, please refer to Flow documentation.\n            ";
                 kotlin.jvm.internal.i.e(str2, "<this>");
                 List a2 = xd.d.a(new xd.e(str2, 2));
                 List list = a2;
@@ -132,26 +132,26 @@ public final class g extends ld.c implements de.c {
                 StringBuilder sb2 = new StringBuilder(length2);
                 id.g.g(arrayList3, sb2, "\n", "", "", "...", null);
                 throw new IllegalStateException(sb2.toString().toString());
-            } else if (((Number) context.fold(0, new j(this))).intValue() == this.f8910c) {
+            } else if (((Number) context.fold(0, new j(this))).intValue() == this.f8909c) {
                 this.d = context;
             } else {
-                throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f8909b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
+                throw new IllegalStateException(("Flow invariant is violated:\n\t\tFlow was collected in " + this.f8908b + ",\n\t\tbut emission happened in " + context + ".\n\t\tPlease refer to 'flow' documentation or use 'flowOn' instead").toString());
             }
         }
-        this.f8911e = cVar;
-        q qVar = i.f8913a;
-        de.c cVar2 = this.f8908a;
+        this.f8910e = cVar;
+        q qVar = i.f8912a;
+        de.c cVar2 = this.f8907a;
         kotlin.jvm.internal.i.c(cVar2, "null cannot be cast to non-null type kotlinx.coroutines.flow.FlowCollector<kotlin.Any?>");
         Object c10 = qVar.c(cVar2, obj, this);
-        if (!kotlin.jvm.internal.i.a(c10, kd.a.f14784a)) {
-            this.f8911e = null;
+        if (!kotlin.jvm.internal.i.a(c10, kd.a.f14783a)) {
+            this.f8910e = null;
         }
         return c10;
     }
 
     @Override
     public final ld.d getCallerFrame() {
-        ld.c cVar = this.f8911e;
+        ld.c cVar = this.f8910e;
         if (e2.t(cVar)) {
             return cVar;
         }
@@ -162,7 +162,7 @@ public final class g extends ld.c implements de.c {
     public final jd.h getContext() {
         jd.h hVar = this.d;
         if (hVar == null) {
-            return jd.i.f14129a;
+            return jd.i.f14128a;
         }
         return hVar;
     }
@@ -178,10 +178,10 @@ public final class g extends ld.c implements de.c {
         if (a2 != null) {
             this.d = new c(a2, getContext());
         }
-        ld.c cVar = this.f8911e;
+        ld.c cVar = this.f8910e;
         if (cVar != null) {
             cVar.resumeWith(obj);
         }
-        return kd.a.f14784a;
+        return kd.a.f14783a;
     }
 }

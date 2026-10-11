@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class je0 implements Runnable {
-    public final int f27665a;
-    public final ue0 f27666b;
+    public final int f27672a;
+    public final ue0 f27673b;
 
     public je0(ue0 ue0Var, int i10) {
-        this.f27665a = i10;
-        this.f27666b = ue0Var;
+        this.f27672a = i10;
+        this.f27673b = ue0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f27665a;
-        ue0 ue0Var = this.f27666b;
+        int i10 = this.f27672a;
+        ue0 ue0Var = this.f27673b;
         switch (i10) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = ue0Var.f31481r;
-                if (!ue0Var.L && ue0Var.isAttachedToWindow() && ue0Var.f31484x.getVisibility() != 0 && editTextBoldCursor != null) {
+                EditTextBoldCursor editTextBoldCursor = ue0Var.f31413r;
+                if (!ue0Var.L && ue0Var.isAttachedToWindow() && ue0Var.f31416x.getVisibility() != 0 && editTextBoldCursor != null) {
                     editTextBoldCursor.requestFocus();
                     AndroidUtilities.showKeyboard(editTextBoldCursor);
                     return;

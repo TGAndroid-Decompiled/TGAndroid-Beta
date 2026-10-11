@@ -4,43 +4,43 @@ import com.google.android.gms.common.data.DataHolder;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import kotlin.jvm.internal.i;
-import n6.l;
+import n6.m;
 import x8.e;
 import y8.k;
 public class b implements Iterator {
-    public final int f8304a;
-    public int f8305b;
-    public final Object f8306c;
+    public final int f8303a;
+    public int f8304b;
+    public final Object f8305c;
 
     public b(e eVar) {
-        this.f8304a = 3;
-        this.f8306c = eVar;
-        this.f8305b = -1;
+        this.f8303a = 3;
+        this.f8305c = eVar;
+        this.f8304b = -1;
     }
 
     @Override
     public final boolean hasNext() {
-        switch (this.f8304a) {
+        switch (this.f8303a) {
             case 0:
-                if (this.f8305b < ((c) this.f8306c).f8307a) {
+                if (this.f8304b < ((c) this.f8305c).f8306a) {
                     return true;
                 }
                 return false;
             case 1:
-                if (this.f8305b < ((id.c) this.f8306c).i()) {
+                if (this.f8304b < ((id.c) this.f8305c).i()) {
                     return true;
                 }
                 return false;
             case 2:
-                if (this.f8305b < ((Object[]) this.f8306c).length) {
+                if (this.f8304b < ((Object[]) this.f8305c).length) {
                     return true;
                 }
                 return false;
             default:
-                e eVar = (e) this.f8306c;
-                int i10 = this.f8305b;
+                e eVar = (e) this.f8305c;
+                int i10 = this.f8304b;
                 eVar.o();
-                if (i10 < eVar.f51100c.size() - 1) {
+                if (i10 < eVar.f51144c.size() - 1) {
                     return true;
                 }
                 return false;
@@ -51,23 +51,23 @@ public class b implements Iterator {
     public final Object next() {
         int intValue;
         int intValue2;
-        switch (this.f8304a) {
+        switch (this.f8303a) {
             case 0:
-                c cVar = (c) this.f8306c;
-                String[] strArr = cVar.f8309c;
-                int i10 = this.f8305b;
+                c cVar = (c) this.f8305c;
+                String[] strArr = cVar.f8308c;
+                int i10 = this.f8304b;
                 String str = strArr[i10];
-                String str2 = cVar.f8308b[i10];
+                String str2 = cVar.f8307b[i10];
                 if (str == null) {
                     str = "";
                 }
                 ?? obj = new Object();
                 if (str2 != null) {
-                    obj.f8301a = str2.trim();
+                    obj.f8300a = str2.trim();
                     if (str2.length() != 0) {
-                        obj.f8302b = str;
-                        obj.f8303c = cVar;
-                        this.f8305b++;
+                        obj.f8301b = str;
+                        obj.f8302c = cVar;
+                        this.f8304b++;
                         return obj;
                     }
                     throw new IllegalArgumentException("String must not be empty");
@@ -75,74 +75,74 @@ public class b implements Iterator {
                 throw new IllegalArgumentException("Object must not be null");
             case 1:
                 if (hasNext()) {
-                    int i11 = this.f8305b;
-                    this.f8305b = i11 + 1;
-                    return ((id.c) this.f8306c).get(i11);
+                    int i11 = this.f8304b;
+                    this.f8304b = i11 + 1;
+                    return ((id.c) this.f8305c).get(i11);
                 }
                 throw new NoSuchElementException();
             case 2:
                 try {
-                    int i12 = this.f8305b;
-                    this.f8305b = i12 + 1;
-                    return ((Object[]) this.f8306c)[i12];
+                    int i12 = this.f8304b;
+                    this.f8304b = i12 + 1;
+                    return ((Object[]) this.f8305c)[i12];
                 } catch (ArrayIndexOutOfBoundsException e7) {
-                    this.f8305b--;
+                    this.f8304b--;
                     throw new NoSuchElementException(e7.getMessage());
                 }
             default:
                 if (hasNext()) {
-                    e eVar = (e) this.f8306c;
-                    int i13 = this.f8305b;
+                    e eVar = (e) this.f8305c;
+                    int i13 = this.f8304b;
                     int i14 = i13 + 1;
-                    this.f8305b = i14;
-                    DataHolder dataHolder = eVar.f51098a;
+                    this.f8304b = i14;
+                    DataHolder dataHolder = eVar.f51142a;
                     eVar.o();
                     int n10 = eVar.n(i14);
                     int i15 = 0;
-                    if (i14 >= 0 && i14 != eVar.f51100c.size()) {
-                        if (i14 == eVar.f51100c.size() - 1) {
-                            l.h(dataHolder);
-                            intValue = dataHolder.f6742n;
-                            intValue2 = ((Integer) eVar.f51100c.get(i14)).intValue();
+                    if (i14 >= 0 && i14 != eVar.f51144c.size()) {
+                        if (i14 == eVar.f51144c.size() - 1) {
+                            m.h(dataHolder);
+                            intValue = dataHolder.f6741n;
+                            intValue2 = ((Integer) eVar.f51144c.get(i14)).intValue();
                         } else {
-                            intValue = ((Integer) eVar.f51100c.get(i13 + 2)).intValue();
-                            intValue2 = ((Integer) eVar.f51100c.get(i14)).intValue();
+                            intValue = ((Integer) eVar.f51144c.get(i13 + 2)).intValue();
+                            intValue2 = ((Integer) eVar.f51144c.get(i14)).intValue();
                         }
                         i15 = intValue - intValue2;
                         if (i15 == 1) {
                             int n11 = eVar.n(i14);
-                            l.h(dataHolder);
+                            m.h(dataHolder);
                             dataHolder.b(n11);
                             i15 = 1;
                         }
                     }
                     return new k(dataHolder, n10, i15, 0);
                 }
-                throw new NoSuchElementException(hg.c.h(this.f8305b, "Cannot advance the iterator beyond "));
+                throw new NoSuchElementException(hg.c.h(this.f8304b, "Cannot advance the iterator beyond "));
         }
     }
 
     @Override
     public final void remove() {
-        switch (this.f8304a) {
+        switch (this.f8303a) {
             case 0:
-                c cVar = (c) this.f8306c;
-                int i10 = this.f8305b;
+                c cVar = (c) this.f8305c;
+                int i10 = this.f8304b;
                 int i11 = i10 - 1;
-                this.f8305b = i11;
-                int i12 = cVar.f8307a;
+                this.f8304b = i11;
+                int i12 = cVar.f8306a;
                 if (i11 < i12) {
                     int i13 = (i12 - i11) - 1;
                     if (i13 > 0) {
-                        String[] strArr = cVar.f8308b;
+                        String[] strArr = cVar.f8307b;
                         System.arraycopy(strArr, i10, strArr, i11, i13);
-                        String[] strArr2 = cVar.f8309c;
+                        String[] strArr2 = cVar.f8308c;
                         System.arraycopy(strArr2, i10, strArr2, i11, i13);
                     }
-                    int i14 = cVar.f8307a - 1;
-                    cVar.f8307a = i14;
-                    cVar.f8308b[i14] = null;
-                    cVar.f8309c[i14] = null;
+                    int i14 = cVar.f8306a - 1;
+                    cVar.f8306a = i14;
+                    cVar.f8307b[i14] = null;
+                    cVar.f8308c[i14] = null;
                     return;
                 }
                 throw new IllegalArgumentException("Must be false");
@@ -156,19 +156,19 @@ public class b implements Iterator {
     }
 
     public b(Object[] array) {
-        this.f8304a = 2;
+        this.f8303a = 2;
         i.e(array, "array");
-        this.f8306c = array;
+        this.f8305c = array;
     }
 
     public b(id.c cVar) {
-        this.f8304a = 1;
-        this.f8306c = cVar;
+        this.f8303a = 1;
+        this.f8305c = cVar;
     }
 
     public b(c cVar) {
-        this.f8304a = 0;
-        this.f8306c = cVar;
-        this.f8305b = 0;
+        this.f8303a = 0;
+        this.f8305c = cVar;
+        this.f8304b = 0;
     }
 }

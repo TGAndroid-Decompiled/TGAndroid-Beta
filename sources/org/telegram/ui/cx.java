@@ -1,53 +1,75 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class cx extends FragmentContextView {
-    public final int R0;
-    public final ty S0;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class cx extends ChatActivityEnterView {
+    public final sy f36847o5;
 
-    public cx(ty tyVar, Context context, ty tyVar2, int i10) {
-        super(context, tyVar2, true);
-        this.R0 = i10;
-        switch (i10) {
-            case 1:
-                this.S0 = tyVar;
-                super(context, tyVar2, false);
-                return;
-            default:
-                this.S0 = tyVar;
-                return;
-        }
+    public cx(sy syVar, Activity activity, ly lyVar) {
+        super(activity, lyVar, null, false, null);
+        this.f36847o5 = syVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.R0) {
-            case 0:
-                ty tyVar = this.S0;
-                org.telegram.ui.Components.bt btVar = tyVar.J1;
-                FrameLayout frameLayout = tyVar.G1;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                btVar.i(frameLayout, z10, true);
-                return;
-            default:
-                ty tyVar2 = this.S0;
-                org.telegram.ui.Components.bt btVar2 = tyVar2.J1;
-                FrameLayout frameLayout2 = tyVar2.I1;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                btVar2.i(frameLayout2, z11, true);
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int i10;
+        if (motionEvent.getAction() == 0) {
+            sy syVar = this.f36847o5;
+            Activity parentActivity = syVar.getParentActivity();
+            i10 = ((org.telegram.ui.ActionBar.m2) syVar).classGuid;
+            AndroidUtilities.requestAdjustResize(parentActivity, i10);
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final int getMessagesCount() {
+        CharSequence fieldText;
+        sy syVar = this.f36847o5;
+        int i10 = syVar.S0;
+        cx cxVar = syVar.B1;
+        if (cxVar == null) {
+            fieldText = "";
+        } else {
+            fieldText = cxVar.getFieldText();
+        }
+        return Math.max(1, i10 + (!TextUtils.isEmpty(fieldText) ? 1 : 0));
+    }
+
+    @Override
+    public final long getStarsPrice() {
+        sy syVar = this.f36847o5;
+        ArrayList arrayList = syVar.I2;
+        if (arrayList == null) {
+            return 0L;
+        }
+        int size = arrayList.size();
+        int i10 = 0;
+        long j3 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            long longValue = ((Long) obj).longValue();
+            long sendPaidMessagesStars = syVar.getMessagesController().getSendPaidMessagesStars(longValue);
+            if (sendPaidMessagesStars <= 0 && longValue > 0) {
+                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(syVar.getMessagesController().isUserContactBlocked(longValue));
+            }
+            j3 += sendPaidMessagesStars;
+        }
+        return j3;
+    }
+
+    @Override
+    public final void y0(float f7) {
+        sy syVar = this.f36847o5;
+        syVar.f42009y1.setInputBubbleHeight(f7);
+        syVar.p3();
+        syVar.j3();
+        syVar.q3();
     }
 }

@@ -1,94 +1,159 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class vn0 implements Runnable {
-    public final int f31900a = 1;
-    public final co0 f31901b;
-    public final String f31902c;
-    public final ArrayList d;
-    public final ArrayList f31903e;
+import android.content.Context;
+import android.view.ViewConfiguration;
+import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+public final class vn0 {
+    public static final float A;
+    public static final float v = (float) (Math.log(0.75d) / Math.log(0.9d));
+    public static final float f31852w = 0.4f;
+    public static final float f31853x = 1.0f - 0.4f;
+    public static final float[] f31854y = new float[101];
+    public static final float f31855z;
+    public int f31856a;
+    public int f31857b;
+    public int f31858c;
+    public int d;
+    public int f31859e;
+    public int f31860f;
+    public int f31861g;
+    public int h;
+    public int f31862i;
+    public int f31863j;
+    public int f31864k;
+    public long f31865l;
+    public int f31866m;
+    public float f31867n;
+    public float f31868o;
+    public float f31869p;
+    public final Interpolator f31871r;
+    public float f31873t;
+    public final float f31874u;
+    public boolean f31870q = true;
+    public final boolean f31872s = true;
 
-    public vn0(co0 co0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f31901b = co0Var;
-        this.f31902c = str;
-        this.d = arrayList;
-        this.f31903e = arrayList2;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f31900a) {
-            case 0:
-                co0 co0Var = this.f31901b;
-                int i10 = co0Var.d;
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList3 = this.d;
-                    int size = arrayList3.size();
-                    String str = this.f31902c;
-                    if (i11 < size) {
-                        String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
-                        if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
-                            MessageObject messageObject = new MessageObject(i10, ((MessageObject) arrayList3.get(i11)).messageOwner, false, false);
-                            messageObject.mediaExists = ((MessageObject) arrayList3.get(i11)).mediaExists;
-                            messageObject.setQuery(co0Var.K);
-                            arrayList.add(messageObject);
-                        }
-                        i11++;
-                    } else {
-                        int i12 = 0;
-                        while (true) {
-                            ArrayList arrayList4 = this.f31903e;
-                            if (i12 < arrayList4.size()) {
-                                String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList4.get(i12)).getDocument());
-                                if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
-                                    MessageObject messageObject2 = new MessageObject(i10, ((MessageObject) arrayList4.get(i12)).messageOwner, false, false);
-                                    messageObject2.mediaExists = ((MessageObject) arrayList4.get(i12)).mediaExists;
-                                    messageObject2.setQuery(co0Var.K);
-                                    arrayList2.add(messageObject2);
-                                }
-                                i12++;
-                            } else {
-                                AndroidUtilities.runOnUIThread(new vn0(co0Var, str, arrayList, arrayList2));
-                                return;
-                            }
-                        }
-                    }
+    static {
+        float f7;
+        float f10;
+        float f11 = 0.0f;
+        for (int i10 = 0; i10 <= 100; i10++) {
+            float f12 = i10 / 100.0f;
+            float f13 = 1.0f;
+            while (true) {
+                float z10 = com.google.android.gms.internal.vision.e2.z(f13, f11, 2.0f, f11);
+                float f14 = 1.0f - z10;
+                f7 = 3.0f * z10 * f14;
+                f10 = z10 * z10 * z10;
+                float A2 = com.google.android.gms.internal.vision.e2.A(z10, f31853x, f14 * f31852w, f7) + f10;
+                if (Math.abs(A2 - f12) < 1.0E-5d) {
+                    break;
+                } else if (A2 > f12) {
+                    f13 = z10;
+                } else {
+                    f11 = z10;
                 }
-                break;
-            default:
-                co0 co0Var2 = this.f31901b;
-                by0 by0Var = co0Var2.f25341a;
-                if (this.f31902c.equals(co0Var2.L)) {
-                    if (co0Var2.f25347r == 0) {
-                        co0Var2.N.b(0);
-                    }
-                    co0Var2.e(this.d, this.f31903e, true);
-                    if (co0Var2.f25347r == 0) {
-                        by0Var.e(false, true);
-                        fa0 fa0Var = by0Var.f25085e;
-                        by0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
-                        fa0Var.setVisibility(0);
-                        fa0Var.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                        return;
-                    }
-                    return;
-                }
-                return;
+            }
+            f31854y[i10] = f7 + f10;
         }
+        f31854y[100] = 1.0f;
+        f31855z = 8.0f;
+        A = 1.0f;
+        A = 1.0f / e(1.0f);
     }
 
-    public vn0(co0 co0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f31901b = co0Var;
-        this.d = arrayList;
-        this.f31902c = str;
-        this.f31903e = arrayList2;
+    public vn0(Context context, DecelerateInterpolator decelerateInterpolator) {
+        this.f31871r = decelerateInterpolator;
+        this.f31874u = context.getResources().getDisplayMetrics().density * 160.0f * 386.0878f * ViewConfiguration.getScrollFriction();
+    }
+
+    public static float e(float f7) {
+        float y3;
+        float f10 = f7 * f31855z;
+        if (f10 < 1.0f) {
+            y3 = f10 - (1.0f - ((float) Math.exp(-f10)));
+        } else {
+            y3 = com.google.android.gms.internal.vision.e2.y(1.0f, (float) Math.exp(1.0f - f10), 0.63212055f, 0.36787945f);
+        }
+        return y3 * A;
+    }
+
+    public final void a() {
+        this.f31863j = this.d;
+        this.f31864k = this.f31859e;
+        this.f31870q = true;
+    }
+
+    public final boolean b() {
+        float interpolation;
+        if (this.f31870q) {
+            return false;
+        }
+        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.f31865l);
+        int i10 = this.f31866m;
+        if (currentAnimationTimeMillis < i10) {
+            int i11 = this.f31856a;
+            if (i11 != 0) {
+                if (i11 == 1) {
+                    float f7 = currentAnimationTimeMillis / i10;
+                    int i12 = (int) (f7 * 100.0f);
+                    float f10 = i12 / 100.0f;
+                    int i13 = i12 + 1;
+                    float[] fArr = f31854y;
+                    float f11 = fArr[i12];
+                    float y3 = com.google.android.gms.internal.vision.e2.y(fArr[i13], f11, (f7 - f10) / ((i13 / 100.0f) - f10), f11);
+                    int i14 = this.f31857b;
+                    int round = Math.round((this.d - i14) * y3) + i14;
+                    this.f31863j = round;
+                    int min = Math.min(round, this.f31861g);
+                    this.f31863j = min;
+                    this.f31863j = Math.max(min, this.f31860f);
+                    int i15 = this.f31858c;
+                    int round2 = Math.round(y3 * (this.f31859e - i15)) + i15;
+                    this.f31864k = round2;
+                    int min2 = Math.min(round2, this.f31862i);
+                    this.f31864k = min2;
+                    int max = Math.max(min2, this.h);
+                    this.f31864k = max;
+                    if (this.f31863j == this.d && max == this.f31859e) {
+                        this.f31870q = true;
+                    }
+                }
+                return true;
+            }
+            float f12 = currentAnimationTimeMillis * this.f31867n;
+            Interpolator interpolator = this.f31871r;
+            if (interpolator == null) {
+                interpolation = e(f12);
+            } else {
+                interpolation = interpolator.getInterpolation(f12);
+            }
+            this.f31863j = Math.round(this.f31868o * interpolation) + this.f31857b;
+            this.f31864k = Math.round(interpolation * this.f31869p) + this.f31858c;
+            return true;
+        }
+        this.f31863j = this.d;
+        this.f31864k = this.f31859e;
+        this.f31870q = true;
+        return true;
+    }
+
+    public final void c(int r19, int r20, int r21, int r22, int r23, int r24, int r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vn0.c(int, int, int, int, int, int, int, int):void");
+    }
+
+    public final void d(int i10, int i11) {
+        this.f31856a = 0;
+        this.f31870q = false;
+        this.f31866m = i11;
+        this.f31865l = AnimationUtils.currentAnimationTimeMillis();
+        this.f31857b = 0;
+        this.f31858c = 0;
+        this.d = 0;
+        this.f31859e = i10;
+        this.f31868o = 0;
+        this.f31869p = i10;
+        this.f31867n = 1.0f / this.f31866m;
     }
 }

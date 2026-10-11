@@ -2,24 +2,24 @@ package r4;
 
 import java.util.TreeMap;
 public final class b {
-    public final String f46998a;
-    public final String f46999b;
-    public final long f47000c;
+    public final String f47044a;
+    public final String f47045b;
+    public final long f47046c;
     public long d = 0;
-    public int f47001e;
-    public final int f47002f;
-    public final int f47003g;
+    public int f47047e;
+    public final int f47048f;
+    public final int f47049g;
     public int[] h;
-    public final TreeMap f47004i;
+    public final TreeMap f47050i;
 
     public b(String str, String str2, long j3, int i10, int i11, int i12, int[] iArr, TreeMap treeMap) {
-        this.f46998a = str;
-        this.f46999b = str2;
-        this.f47000c = j3;
-        this.f47001e = i10;
-        this.f47002f = i11;
-        this.f47003g = i12;
+        this.f47044a = str;
+        this.f47045b = str2;
+        this.f47046c = j3;
+        this.f47047e = i10;
+        this.f47048f = i11;
+        this.f47049g = i12;
         this.h = iArr;
-        this.f47004i = treeMap;
+        this.f47050i = treeMap;
     }
 }

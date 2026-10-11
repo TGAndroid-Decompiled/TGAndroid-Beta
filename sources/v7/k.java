@@ -3,49 +3,49 @@ package v7;
 import java.util.Arrays;
 import java.util.HashMap;
 public class k implements ja.a {
-    public final int f49289a;
-    public Object f49290b;
-    public Object f49291c;
+    public final int f49332a;
+    public Object f49333b;
+    public Object f49334c;
     public Object d;
 
     public k(int i10, boolean z10) {
-        this.f49289a = i10;
+        this.f49332a = i10;
     }
 
     @Override
     public ja.a a(Class cls, ia.d dVar) {
-        switch (this.f49289a) {
+        switch (this.f49332a) {
             case 0:
-                ((HashMap) this.f49290b).put(cls, dVar);
-                ((HashMap) this.f49291c).remove(cls);
+                ((HashMap) this.f49333b).put(cls, dVar);
+                ((HashMap) this.f49334c).remove(cls);
                 return this;
             case 6:
-                ((HashMap) this.f49290b).put(cls, dVar);
-                ((HashMap) this.f49291c).remove(cls);
+                ((HashMap) this.f49333b).put(cls, dVar);
+                ((HashMap) this.f49334c).remove(cls);
                 return this;
             case 8:
-                ((HashMap) this.f49290b).put(cls, dVar);
-                ((HashMap) this.f49291c).remove(cls);
+                ((HashMap) this.f49333b).put(cls, dVar);
+                ((HashMap) this.f49334c).remove(cls);
                 return this;
             default:
-                ((HashMap) this.f49290b).put(cls, dVar);
-                ((HashMap) this.f49291c).remove(cls);
+                ((HashMap) this.f49333b).put(cls, dVar);
+                ((HashMap) this.f49334c).remove(cls);
                 return this;
         }
     }
 
     public String toString() {
         String str = "";
-        switch (this.f49289a) {
+        switch (this.f49332a) {
             case 2:
                 StringBuilder sb2 = new StringBuilder(32);
-                sb2.append((String) this.f49290b);
+                sb2.append((String) this.f49333b);
                 sb2.append('{');
-                k kVar = (k) ((k) this.f49291c).d;
+                k kVar = (k) ((k) this.f49334c).d;
                 while (kVar != null) {
-                    Object obj = kVar.f49291c;
+                    Object obj = kVar.f49334c;
                     sb2.append(str);
-                    String str2 = (String) kVar.f49290b;
+                    String str2 = (String) kVar.f49333b;
                     if (str2 != null) {
                         sb2.append(str2);
                         sb2.append('=');
@@ -63,13 +63,13 @@ public class k implements ja.a {
                 return sb2.toString();
             case 13:
                 StringBuilder sb3 = new StringBuilder(32);
-                sb3.append((String) this.f49290b);
+                sb3.append((String) this.f49333b);
                 sb3.append('{');
-                k kVar2 = (k) ((k) this.f49291c).d;
+                k kVar2 = (k) ((k) this.f49334c).d;
                 while (kVar2 != null) {
-                    Object obj2 = kVar2.f49291c;
+                    Object obj2 = kVar2.f49334c;
                     sb3.append(str);
-                    String str3 = (String) kVar2.f49290b;
+                    String str3 = (String) kVar2.f49333b;
                     if (str3 != null) {
                         sb3.append(str3);
                         sb3.append('=');
@@ -91,53 +91,53 @@ public class k implements ja.a {
     }
 
     public k(int i10) {
-        this.f49289a = i10;
+        this.f49332a = i10;
         switch (i10) {
             case 6:
-                this.f49290b = new HashMap();
-                this.f49291c = new HashMap();
-                this.d = w7.e.f49971c;
+                this.f49333b = new HashMap();
+                this.f49334c = new HashMap();
+                this.d = w7.e.f50014c;
                 return;
             case 8:
-                this.f49290b = new HashMap();
-                this.f49291c = new HashMap();
-                this.d = x7.d0.f50764c;
+                this.f49333b = new HashMap();
+                this.f49334c = new HashMap();
+                this.d = x7.d0.f50808c;
                 return;
             case 14:
-                this.f49290b = new HashMap();
-                this.f49291c = new HashMap();
-                this.d = z7.x.f54164c;
+                this.f49333b = new HashMap();
+                this.f49334c = new HashMap();
+                this.d = z7.x.f54194c;
                 return;
             default:
-                this.f49290b = new HashMap();
-                this.f49291c = new HashMap();
-                this.d = i.f49257c;
+                this.f49333b = new HashMap();
+                this.f49334c = new HashMap();
+                this.d = i.f49300c;
                 return;
         }
     }
 
     public k(String str, int i10) {
-        this.f49289a = i10;
+        this.f49332a = i10;
         switch (i10) {
             case 13:
                 k kVar = new k(12, false);
-                this.f49291c = kVar;
+                this.f49334c = kVar;
                 this.d = kVar;
-                this.f49290b = str;
+                this.f49333b = str;
                 return;
             default:
                 k kVar2 = new k(1, false);
-                this.f49291c = kVar2;
+                this.f49334c = kVar2;
                 this.d = kVar2;
-                this.f49290b = str;
+                this.f49333b = str;
                 return;
         }
     }
 
     public k(String str, Boolean bool, vc.a aVar, String str2) {
-        this.f49289a = 5;
-        this.f49290b = str;
-        this.f49291c = str2;
+        this.f49332a = 5;
+        this.f49333b = str;
+        this.f49334c = str2;
         this.d = aVar;
     }
 }

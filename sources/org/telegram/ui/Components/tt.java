@@ -5,22 +5,22 @@ import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class tt extends ReplacementSpan {
-    public int f31215b;
-    public final Paint f31214a = new Paint(1);
-    public float f31216c = 3.0f;
+    public int f31149b;
+    public final Paint f31148a = new Paint(1);
+    public float f31150c = 3.0f;
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         int color = paint.getColor();
-        Paint paint2 = this.f31214a;
+        Paint paint2 = this.f31148a;
         if (color != 0) {
             paint2.setColor(paint.getColor());
         }
-        canvas.drawCircle(f7 + (AndroidUtilities.dpf2(this.f31216c) / 2.0f), ((i14 - i12) / 2) + this.f31215b, AndroidUtilities.dpf2(3.0f) / 2.0f, paint2);
+        canvas.drawCircle(f7 + (AndroidUtilities.dpf2(this.f31150c) / 2.0f), ((i14 - i12) / 2) + this.f31149b, AndroidUtilities.dpf2(3.0f) / 2.0f, paint2);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.f31216c);
+        return AndroidUtilities.dp(this.f31150c);
     }
 }

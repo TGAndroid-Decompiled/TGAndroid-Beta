@@ -7,39 +7,39 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 public final class l0 implements d0, c0 {
-    public final d0[] f48678a;
-    public final boolean[] f48679b;
-    public final IdentityHashMap f48680c;
+    public final d0[] f48709a;
+    public final boolean[] f48710b;
+    public final IdentityHashMap f48711c;
     public final t7.t d;
-    public final ArrayList f48681e = new ArrayList();
-    public final HashMap f48682f = new HashMap();
+    public final ArrayList f48712e = new ArrayList();
+    public final HashMap f48713f = new HashMap();
     public c0 h;
-    public o1 f48683n;
-    public d0[] f48684r;
-    public n f48685s;
+    public n1 f48714n;
+    public d0[] f48715r;
+    public n f48716s;
 
     public l0(t7.t tVar, long[] jArr, d0... d0VarArr) {
         this.d = tVar;
-        this.f48678a = d0VarArr;
+        this.f48709a = d0VarArr;
         tVar.getClass();
-        e9.g0 g0Var = e9.i0.f8752b;
-        e9.a1 a1Var = e9.a1.f8715e;
-        this.f48685s = new n(a1Var, a1Var);
-        this.f48680c = new IdentityHashMap();
-        this.f48684r = new d0[0];
-        this.f48679b = new boolean[d0VarArr.length];
+        e9.g0 g0Var = e9.i0.f8751b;
+        e9.a1 a1Var = e9.a1.f8714e;
+        this.f48716s = new n(a1Var, a1Var);
+        this.f48711c = new IdentityHashMap();
+        this.f48715r = new d0[0];
+        this.f48710b = new boolean[d0VarArr.length];
         for (int i10 = 0; i10 < d0VarArr.length; i10++) {
             long j3 = jArr[i10];
             if (j3 != 0) {
-                this.f48679b[i10] = true;
-                this.f48678a[i10] = new n1(d0VarArr[i10], j3);
+                this.f48710b[i10] = true;
+                this.f48709a[i10] = new m1(d0VarArr[i10], j3);
             }
         }
     }
 
     @Override
-    public final void D(d1 d1Var) {
-        d0 d0Var = (d0) d1Var;
+    public final void D(c1 c1Var) {
+        d0 d0Var = (d0) c1Var;
         c0 c0Var = this.h;
         c0Var.getClass();
         c0Var.D(this);
@@ -47,27 +47,27 @@ public final class l0 implements d0, c0 {
 
     @Override
     public final boolean c() {
-        return this.f48685s.c();
+        return this.f48716s.c();
     }
 
     @Override
     public final long d() {
-        return this.f48685s.d();
+        return this.f48716s.d();
     }
 
     @Override
     public final void g() {
-        for (d0 d0Var : this.f48678a) {
+        for (d0 d0Var : this.f48709a) {
             d0Var.g();
         }
     }
 
     @Override
     public final long h(long j3) {
-        long h = this.f48684r[0].h(j3);
+        long h = this.f48715r[0].h(j3);
         int i10 = 1;
         while (true) {
-            d0[] d0VarArr = this.f48684r;
+            d0[] d0VarArr = this.f48715r;
             if (i10 < d0VarArr.length) {
                 if (d0VarArr[i10].h(h) == h) {
                     i10++;
@@ -82,7 +82,7 @@ public final class l0 implements d0, c0 {
 
     @Override
     public final void i(long j3) {
-        for (d0 d0Var : this.f48684r) {
+        for (d0 d0Var : this.f48715r) {
             d0Var.i(j3);
         }
     }
@@ -90,8 +90,8 @@ public final class l0 implements d0, c0 {
     @Override
     public final void k(c0 c0Var, long j3) {
         this.h = c0Var;
-        ArrayList arrayList = this.f48681e;
-        d0[] d0VarArr = this.f48678a;
+        ArrayList arrayList = this.f48712e;
+        d0[] d0VarArr = this.f48709a;
         Collections.addAll(arrayList, d0VarArr);
         for (d0 d0Var : d0VarArr) {
             d0Var.k(this, j3);
@@ -103,11 +103,11 @@ public final class l0 implements d0, c0 {
         d0[] d0VarArr;
         d0[] d0VarArr2;
         long j3 = -9223372036854775807L;
-        for (d0 d0Var : this.f48684r) {
+        for (d0 d0Var : this.f48715r) {
             long l4 = d0Var.l();
             if (l4 != -9223372036854775807L) {
                 if (j3 == -9223372036854775807L) {
-                    for (d0 d0Var2 : this.f48684r) {
+                    for (d0 d0Var2 : this.f48715r) {
                         if (d0Var2 == d0Var) {
                             break;
                         } else if (d0Var2.h(l4) != l4) {
@@ -127,21 +127,21 @@ public final class l0 implements d0, c0 {
 
     @Override
     public final void m(d0 d0Var) {
-        ArrayList arrayList = this.f48681e;
+        ArrayList arrayList = this.f48712e;
         arrayList.remove(d0Var);
         if (!arrayList.isEmpty()) {
             return;
         }
-        d0[] d0VarArr = this.f48678a;
+        d0[] d0VarArr = this.f48709a;
         int i10 = 0;
         for (d0 d0Var2 : d0VarArr) {
-            i10 += d0Var2.p().f48720a;
+            i10 += d0Var2.p().f48738a;
         }
         b2.l1[] l1VarArr = new b2.l1[i10];
         int i11 = 0;
         for (int i12 = 0; i12 < d0VarArr.length; i12++) {
-            o1 p5 = d0VarArr[i12].p();
-            int i13 = p5.f48720a;
+            n1 p5 = d0VarArr[i12].p();
+            int i13 = p5.f48738a;
             int i14 = 0;
             while (i14 < i13) {
                 b2.l1 a2 = p5.a(i14);
@@ -162,13 +162,13 @@ public final class l0 implements d0, c0 {
                     sVarArr[i16] = new b2.s(a10);
                 }
                 b2.l1 l1Var = new b2.l1(i12 + ":" + a2.f3416b, sVarArr);
-                this.f48682f.put(l1Var, a2);
+                this.f48713f.put(l1Var, a2);
                 l1VarArr[i11] = l1Var;
                 i14++;
                 i11++;
             }
         }
-        this.f48683n = new o1(l1VarArr);
+        this.f48714n = new n1(l1VarArr);
         c0 c0Var = this.h;
         c0Var.getClass();
         c0Var.m(this);
@@ -176,7 +176,7 @@ public final class l0 implements d0, c0 {
 
     @Override
     public final boolean n(i2.s0 s0Var) {
-        ArrayList arrayList = this.f48681e;
+        ArrayList arrayList = this.f48712e;
         if (!arrayList.isEmpty()) {
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
@@ -184,13 +184,13 @@ public final class l0 implements d0, c0 {
             }
             return false;
         }
-        return this.f48685s.n(s0Var);
+        return this.f48716s.n(s0Var);
     }
 
     @Override
-    public final long o(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
+    public final long o(x2.r[] rVarArr, boolean[] zArr, a1[] a1VarArr, boolean[] zArr2, long j3) {
         IdentityHashMap identityHashMap;
-        b1 b1Var;
+        a1 a1Var;
         int[] iArr;
         Integer num;
         int intValue;
@@ -200,15 +200,15 @@ public final class l0 implements d0, c0 {
         int i11 = 0;
         while (true) {
             int length = rVarArr.length;
-            identityHashMap = this.f48680c;
+            identityHashMap = this.f48711c;
             if (i11 >= length) {
                 break;
             }
-            b1 b1Var2 = b1VarArr[i11];
-            if (b1Var2 == null) {
+            a1 a1Var2 = a1VarArr[i11];
+            if (a1Var2 == null) {
                 num = null;
             } else {
-                num = (Integer) identityHashMap.get(b1Var2);
+                num = (Integer) identityHashMap.get(a1Var2);
             }
             if (num == null) {
                 intValue = -1;
@@ -227,10 +227,10 @@ public final class l0 implements d0, c0 {
         }
         identityHashMap.clear();
         int length2 = rVarArr.length;
-        b1[] b1VarArr2 = new b1[length2];
-        b1[] b1VarArr3 = new b1[rVarArr.length];
+        a1[] a1VarArr2 = new a1[length2];
+        a1[] a1VarArr3 = new a1[rVarArr.length];
         x2.r[] rVarArr2 = new x2.r[rVarArr.length];
-        d0[] d0VarArr = this.f48678a;
+        d0[] d0VarArr = this.f48709a;
         ArrayList arrayList = new ArrayList(d0VarArr.length);
         long j10 = j3;
         int i12 = 0;
@@ -238,16 +238,16 @@ public final class l0 implements d0, c0 {
             int i13 = i10;
             while (i13 < rVarArr.length) {
                 if (iArr2[i13] == i12) {
-                    b1Var = b1VarArr[i13];
+                    a1Var = a1VarArr[i13];
                 } else {
-                    b1Var = null;
+                    a1Var = null;
                 }
-                b1VarArr3[i13] = b1Var;
+                a1VarArr3[i13] = a1Var;
                 if (iArr3[i13] == i12) {
                     x2.r rVar2 = rVarArr[i13];
                     rVar2.getClass();
                     iArr = iArr2;
-                    b2.l1 l1Var = (b2.l1) this.f48682f.get(rVar2.b());
+                    b2.l1 l1Var = (b2.l1) this.f48713f.get(rVar2.b());
                     l1Var.getClass();
                     rVarArr2[i13] = new k0(rVar2, l1Var);
                 } else {
@@ -260,7 +260,7 @@ public final class l0 implements d0, c0 {
             int[] iArr4 = iArr2;
             d0[] d0VarArr2 = d0VarArr;
             int i14 = i12;
-            long o9 = d0VarArr2[i12].o(rVarArr2, zArr, b1VarArr3, zArr2, j10);
+            long o9 = d0VarArr2[i12].o(rVarArr2, zArr, a1VarArr3, zArr2, j10);
             if (i14 == 0) {
                 j10 = o9;
             } else if (o9 != j10) {
@@ -270,13 +270,13 @@ public final class l0 implements d0, c0 {
             for (int i15 = 0; i15 < rVarArr.length; i15++) {
                 boolean z11 = true;
                 if (iArr3[i15] == i14) {
-                    b1 b1Var3 = b1VarArr3[i15];
-                    b1Var3.getClass();
-                    b1VarArr2[i15] = b1VarArr3[i15];
-                    identityHashMap.put(b1Var3, Integer.valueOf(i14));
+                    a1 a1Var3 = a1VarArr3[i15];
+                    a1Var3.getClass();
+                    a1VarArr2[i15] = a1VarArr3[i15];
+                    identityHashMap.put(a1Var3, Integer.valueOf(i14));
                     z10 = true;
                 } else if (iArr4[i15] == i14) {
-                    if (b1VarArr3[i15] != null) {
+                    if (a1VarArr3[i15] != null) {
                         z11 = false;
                     }
                     e2.d.g(z11);
@@ -291,40 +291,40 @@ public final class l0 implements d0, c0 {
             i10 = 0;
         }
         int i16 = i10;
-        System.arraycopy(b1VarArr2, i16, b1VarArr, i16, length2);
-        this.f48684r = (d0[]) arrayList.toArray(new d0[i16]);
-        AbstractList w10 = e9.q.w(arrayList, new s0.b(15));
+        System.arraycopy(a1VarArr2, i16, a1VarArr, i16, length2);
+        this.f48715r = (d0[]) arrayList.toArray(new d0[i16]);
+        AbstractList w10 = e9.q.w(arrayList, new s0.b(17));
         this.d.getClass();
-        this.f48685s = new n(arrayList, w10);
+        this.f48716s = new n(arrayList, w10);
         return j10;
     }
 
     @Override
-    public final o1 p() {
-        o1 o1Var = this.f48683n;
-        o1Var.getClass();
-        return o1Var;
+    public final n1 p() {
+        n1 n1Var = this.f48714n;
+        n1Var.getClass();
+        return n1Var;
     }
 
     @Override
     public final long q() {
-        return this.f48685s.q();
+        return this.f48716s.q();
     }
 
     @Override
     public final long r(long j3, q1 q1Var) {
         d0 d0Var;
-        d0[] d0VarArr = this.f48684r;
+        d0[] d0VarArr = this.f48715r;
         if (d0VarArr.length > 0) {
             d0Var = d0VarArr[0];
         } else {
-            d0Var = this.f48678a[0];
+            d0Var = this.f48709a[0];
         }
         return d0Var.r(j3, q1Var);
     }
 
     @Override
     public final void s(long j3) {
-        this.f48685s.s(j3);
+        this.f48716s.s(j3);
     }
 }

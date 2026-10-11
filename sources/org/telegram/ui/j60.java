@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class j60 extends org.telegram.ui.Components.voip.l {
+public final class j60 extends org.telegram.ui.Components.voip.m {
     public final l60 h;
 
     public j60(l60 l60Var, Context context) {
@@ -13,7 +13,7 @@ public final class j60 extends org.telegram.ui.Components.voip.l {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         l60 l60Var = this.h;
-        if (l60Var.f39491r && getParticipant() != null) {
+        if (l60Var.f39525r && getParticipant() != null) {
             l60Var.E(this, true);
         }
     }

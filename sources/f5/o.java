@@ -4,35 +4,35 @@ import com.google.android.gms.internal.vision.e2;
 import java.nio.ByteBuffer;
 import w7.s6;
 public final class o extends com.googlecode.mp4parser.c {
-    public static final m2.t f9716n;
-    public static final m2.t f9717r;
-    public static final m2.t f9718s;
+    public static final m2.t f9715n;
+    public static final m2.t f9716r;
+    public static final m2.t f9717s;
     public static final m2.t v;
-    public long f9719e;
-    public long[] f9720f;
+    public long f9718e;
+    public long[] f9719f;
     public int h;
 
     static {
         se.a aVar = new se.a(o.class, "SampleSizeBox.java");
-        f9716n = aVar.e(aVar.d("getSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
+        f9715n = aVar.e(aVar.d("getSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
         aVar.e(aVar.d("setSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "long", "sampleSize", "void"));
         aVar.e(aVar.d("getSampleSizeAtIndex", "com.coremedia.iso.boxes.SampleSizeBox", "int", "index", "long"));
-        f9717r = aVar.e(aVar.d("getSampleCount", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
+        f9716r = aVar.e(aVar.d("getSampleCount", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
         aVar.e(aVar.d("getSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "[J"));
-        f9718s = aVar.e(aVar.d("setSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "[J", "sampleSizes", "void"));
+        f9717s = aVar.e(aVar.d("setSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "[J", "sampleSizes", "void"));
         v = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "java.lang.String"));
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        this.f9719e = e5.b.i(byteBuffer);
+        this.f9718e = e5.b.i(byteBuffer);
         int a2 = s6.a(e5.b.i(byteBuffer));
         this.h = a2;
-        if (this.f9719e == 0) {
-            this.f9720f = new long[a2];
+        if (this.f9718e == 0) {
+            this.f9719f = new long[a2];
             for (int i10 = 0; i10 < this.h; i10++) {
-                this.f9720f[i10] = e5.b.i(byteBuffer);
+                this.f9719f[i10] = e5.b.i(byteBuffer);
             }
         }
     }
@@ -40,10 +40,10 @@ public final class o extends com.googlecode.mp4parser.c {
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt((int) this.f9719e);
-        if (this.f9719e == 0) {
-            byteBuffer.putInt(this.f9720f.length);
-            for (long j3 : this.f9720f) {
+        byteBuffer.putInt((int) this.f9718e);
+        if (this.f9718e == 0) {
+            byteBuffer.putInt(this.f9719f.length);
+            for (long j3 : this.f9719f) {
                 byteBuffer.putInt((int) j3);
             }
             return;
@@ -54,8 +54,8 @@ public final class o extends com.googlecode.mp4parser.c {
     @Override
     public final long getContentSize() {
         int i10;
-        if (this.f9719e == 0) {
-            i10 = this.f9720f.length * 4;
+        if (this.f9718e == 0) {
+            i10 = this.f9719f.length * 4;
         } else {
             i10 = 0;
         }
@@ -68,14 +68,14 @@ public final class o extends com.googlecode.mp4parser.c {
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("SampleSizeBox[sampleSize=");
-        e2.q(se.a.b(f9716n, this, this));
-        sb2.append(this.f9719e);
+        e2.q(se.a.b(f9715n, this, this));
+        sb2.append(this.f9718e);
         sb2.append(";sampleCount=");
-        e2.q(se.a.b(f9717r, this, this));
-        if (this.f9719e > 0) {
+        e2.q(se.a.b(f9716r, this, this));
+        if (this.f9718e > 0) {
             length = this.h;
         } else {
-            length = this.f9720f.length;
+            length = this.f9719f.length;
         }
         return a1.g.s(sb2, length, "]");
     }

@@ -7,7 +7,7 @@ public final class n9 extends g30 {
 
     @Override
     public final void e() {
-        d(org.telegram.ui.ActionBar.i6.x0(null, this.f1485n, false), org.telegram.ui.ActionBar.i6.x0(null, this.f1486o, false), 0, 0);
+        d(org.telegram.ui.ActionBar.h6.x0(null, this.f1485n, false), org.telegram.ui.ActionBar.h6.x0(null, this.f1486o, false), 0, 0);
         super.e();
     }
 }

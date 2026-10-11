@@ -5,23 +5,23 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.mw0;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.nw0;
 public class j4 extends View {
-    public final mw0 f9133a;
-    public final Paint f9134b;
-    public float f9135c;
+    public final nw0 f9132a;
+    public final Paint f9133b;
+    public float f9134c;
     public o1.k d;
 
-    public j4(Context context, e6 e6Var) {
+    public j4(Context context, d6 d6Var) {
         super(context);
-        mw0 mw0Var = new mw0(new d2.c(18), new d2.c(19));
-        mw0Var.f28922c = 100.0f;
-        this.f9133a = mw0Var;
+        nw0 nw0Var = new nw0(new d2.c(18), new d2.c(19));
+        nw0Var.f29165c = 100.0f;
+        this.f9132a = nw0Var;
         Paint paint = new Paint(1);
-        this.f9134b = paint;
-        paint.setColor(i6.w0(i6.Oh, e6Var));
+        this.f9133b = paint;
+        paint.setColor(h6.w0(h6.Oh, d6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -30,21 +30,21 @@ public class j4 extends View {
     @Override
     public final void draw(Canvas canvas) {
         super.draw(canvas);
-        if (this.f9135c > 0.0f) {
-            Paint paint = this.f9134b;
+        if (this.f9134c > 0.0f) {
+            Paint paint = this.f9133b;
             float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f9135c, height, paint);
+            canvas.drawLine(0.0f, height, getWidth() * this.f9134c, height, paint);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        o1.k kVar = new o1.k(this, this.f9133a);
+        o1.k kVar = new o1.k(this, this.f9132a);
         o1.l lVar = new o1.l();
         lVar.b(400.0f);
         lVar.a(1.0f);
-        kVar.f16942u = lVar;
+        kVar.f16988u = lVar;
         this.d = kVar;
     }
 
@@ -56,7 +56,7 @@ public class j4 extends View {
     }
 
     public void setLoadProgress(float f7) {
-        this.f9135c = f7;
+        this.f9134c = f7;
         invalidate();
     }
 
@@ -66,7 +66,7 @@ public class j4 extends View {
             setLoadProgress(f7);
             return;
         }
-        kVar.f16942u.f16949i = f7 * 100.0f;
+        kVar.f16988u.f16995i = f7 * 100.0f;
         kVar.h();
     }
 }

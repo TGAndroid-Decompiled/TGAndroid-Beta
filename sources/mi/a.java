@@ -1,78 +1,250 @@
 package mi;
 
+import a1.g;
 import android.graphics.RectF;
-import hg.c;
+import android.os.Build;
+import android.view.View;
+import hh.j;
 import java.util.ArrayList;
+import java.util.Iterator;
 public final class a {
-    public final ArrayList f16449a = new ArrayList();
-    public int f16450b;
+    public final e f16471a;
 
-    public final RectF a(float f7, float f10, float f11, float f12) {
-        RectF rectF;
-        int i10 = this.f16450b;
-        ArrayList arrayList = this.f16449a;
-        if (i10 < arrayList.size()) {
-            rectF = (RectF) arrayList.get(this.f16450b);
-            rectF.set(f7, f10, f11, f12);
+    public final void a() {
+        boolean z10;
+        int i10;
+        ni.a aVar;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        boolean z15;
+        e eVar = this.f16471a;
+        ArrayList arrayList = eVar.d;
+        ni.a aVar2 = eVar.f16492p;
+        RectF rectF = eVar.f16489m;
+        int width = eVar.f16485i.getWidth();
+        int height = eVar.f16485i.getHeight();
+        if (eVar.f16490n == width && eVar.f16491o == height) {
+            z10 = false;
         } else {
-            rectF = new RectF(f7, f10, f11, f12);
-            arrayList.add(rectF);
+            eVar.f16490n = width;
+            eVar.f16491o = height;
+            z10 = true;
         }
-        this.f16450b++;
-        return rectF;
-    }
-
-    public final RectF b(int i10) {
-        if (i10 >= 0 && i10 < this.f16450b) {
-            return (RectF) this.f16449a.get(i10);
-        }
-        StringBuilder j3 = c.j(i10, "index=", ", size=");
-        j3.append(this.f16450b);
-        throw new IndexOutOfBoundsException(j3.toString());
-    }
-
-    public final void c(int i10) {
-        int i11;
-        if (i10 >= 0 && i10 < (i11 = this.f16450b)) {
-            int i12 = i11 - 1;
-            ArrayList arrayList = this.f16449a;
-            RectF rectF = (RectF) arrayList.get(i10);
-            if (i10 != i12) {
-                arrayList.set(i10, (RectF) arrayList.get(i12));
-                arrayList.set(i12, rectF);
+        int size = arrayList.size();
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            d dVar = (d) obj;
+            View view = dVar.f16473a;
+            RectF rectF2 = dVar.f16477f;
+            RectF rectF3 = dVar.d;
+            RectF rectF4 = dVar.f16475c;
+            RectF rectF5 = dVar.f16476e;
+            ch.d dVar2 = dVar.f16474b;
+            boolean z16 = z10;
+            if (!j.c(view, eVar.f16485i, rectF)) {
+                z10 = z16;
+            } else {
+                if (!rectF4.equals(rectF)) {
+                    rectF4.set(rectF);
+                    dVar.f16478g = true;
+                    dVar2.t(rectF4.left, rectF4.top);
+                    z11 = true;
+                } else {
+                    z11 = z16;
+                }
+                rectF.set(dVar2.getBounds());
+                if (!rectF3.equals(rectF)) {
+                    rectF3.set(rectF);
+                    z12 = true;
+                    dVar.f16478g = true;
+                    z11 = true;
+                } else {
+                    z12 = true;
+                }
+                rectF.offset(rectF4.left, rectF4.top);
+                if (!rectF5.equals(rectF)) {
+                    rectF5.set(rectF);
+                    dVar.f16478g = z12;
+                    z11 = true;
+                }
+                rectF.set(rectF5);
+                rectF.inset(-dVar2.h, -dVar2.f4683i);
+                if (!rectF2.equals(rectF)) {
+                    rectF2.set(rectF);
+                    dVar.f16478g = true;
+                    z11 = true;
+                }
+                View view2 = dVar.f16473a;
+                if (!rectF5.isEmpty() && view2.isAttachedToWindow() && rectF5.intersects(0.0f, 0.0f, width, height) && dVar2.f4686l > 0 && view2.getVisibility() == 0 && view2.getAlpha() > 0.0f && view2.getScaleX() != 0.0f && view2.getScaleY() != 0.0f) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                if (z13 && dVar2.j()) {
+                    z14 = true;
+                } else {
+                    z14 = false;
+                }
+                if (dVar.h == z13 && (!z13 || z14)) {
+                    z15 = z11;
+                } else {
+                    dVar.h = z13;
+                    dVar.f16478g = true;
+                    z15 = true;
+                }
+                z10 = z15;
             }
-            this.f16450b = i12;
-            return;
         }
-        StringBuilder j3 = c.j(i10, "index=", ", size=");
-        j3.append(this.f16450b);
-        throw new IndexOutOfBoundsException(j3.toString());
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof a)) {
-            return false;
-        }
-        a aVar = (a) obj;
-        if (this.f16450b != aVar.f16450b) {
-            return false;
-        }
-        for (int i10 = 0; i10 < this.f16450b; i10++) {
-            if (!((RectF) this.f16449a.get(i10)).equals(aVar.f16449a.get(i10))) {
-                return false;
+        boolean z17 = z10;
+        if (z17) {
+            aVar2.f16917b = 0;
+            int size2 = arrayList.size();
+            int i12 = 0;
+            while (i12 < size2) {
+                Object obj2 = arrayList.get(i12);
+                i12++;
+                d dVar3 = (d) obj2;
+                if (dVar3.h) {
+                    RectF rectF6 = dVar3.f16477f;
+                    aVar2.a(rectF6.left, rectF6.top, rectF6.right, rectF6.bottom);
+                }
+            }
+            ni.b bVar = eVar.f16482e;
+            ni.a aVar3 = eVar.f16493q;
+            bVar.getClass();
+            if (aVar2 != aVar3) {
+                aVar3.f16917b = 0;
+                int i13 = aVar2.f16917b;
+                for (int i14 = 0; i14 < i13; i14++) {
+                    RectF b10 = aVar2.b(i14);
+                    float f7 = b10.left;
+                    float f10 = b10.top;
+                    float f11 = b10.right;
+                    float f12 = b10.bottom;
+                    int i15 = 0;
+                    while (i15 < aVar3.f16917b) {
+                        RectF b11 = aVar3.b(i15);
+                        float f13 = b11.left;
+                        float f14 = b11.right;
+                        float f15 = bVar.f16919a;
+                        if (f11 >= f13 ? !(f14 >= f7 || f7 - f14 <= f15) : f13 - f11 > f15) {
+                            aVar = aVar2;
+                        } else {
+                            float f16 = b11.top;
+                            float f17 = b11.bottom;
+                            aVar = aVar2;
+                            float f18 = bVar.f16920b;
+                            if (f12 >= f16 ? f17 >= f10 || f10 - f17 <= f18 : f16 - f12 <= f18) {
+                                if (f13 < f7) {
+                                    f7 = f13;
+                                }
+                                if (f16 < f10) {
+                                    f10 = f16;
+                                }
+                                if (f14 > f11) {
+                                    f11 = f14;
+                                }
+                                if (f17 > f12) {
+                                    f12 = f17;
+                                }
+                                aVar3.c(i15);
+                                i15 = 0;
+                                aVar2 = aVar;
+                            }
+                        }
+                        i15++;
+                        aVar2 = aVar;
+                    }
+                    aVar3.a(f7, f10, f11, f12);
+                }
+                int i16 = aVar3.f16917b;
+                for (int i17 = 1; i17 < i16; i17++) {
+                    RectF b12 = aVar3.b(i17);
+                    float f19 = b12.left;
+                    float f20 = b12.top;
+                    float f21 = b12.right;
+                    float f22 = b12.bottom;
+                    int i18 = i17 - 1;
+                    while (i18 >= 0) {
+                        RectF b13 = aVar3.b(i18);
+                        float f23 = b13.top;
+                        float f24 = b13.left;
+                        int compare = Float.compare(f23, f20);
+                        if (compare == 0) {
+                            compare = Float.compare(f24, f19);
+                        }
+                        if (compare <= 0) {
+                            break;
+                        }
+                        aVar3.b(i18 + 1).set(b13);
+                        i18--;
+                    }
+                    aVar3.b(i18 + 1).set(f19, f20, f21, f22);
+                }
+            } else {
+                throw new IllegalArgumentException("positions and output must be different arrays");
             }
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        int i10 = 1;
-        for (int i11 = 0; i11 < this.f16450b; i11++) {
-            i10 = (i10 * 31) + ((RectF) this.f16449a.get(i11)).hashCode();
+        ArrayList arrayList2 = eVar.f16495s;
+        if (arrayList2.size() <= 0) {
+            Iterator it = eVar.f16481c.iterator();
+            if (!it.hasNext()) {
+                if (z17) {
+                    i10 = 4;
+                } else {
+                    i10 = 0;
+                }
+                long j3 = eVar.f16488l;
+                long j10 = eVar.h;
+                if (j3 != j10) {
+                    eVar.f16488l = j10;
+                    i10 |= 8;
+                }
+                long j11 = eVar.f16487k;
+                long j12 = eVar.f16484g;
+                if (j11 != j12) {
+                    eVar.f16487k = j12;
+                    i10 |= 2;
+                }
+                long j13 = eVar.f16486j;
+                long j14 = eVar.f16483f;
+                if (j13 != j14) {
+                    eVar.f16486j = j14;
+                    i10 |= 1;
+                }
+                if (i10 != 0) {
+                    c cVar = eVar.f16479a;
+                    if (cVar != null) {
+                        cVar.b(i10);
+                    }
+                    int size3 = arrayList.size();
+                    int i19 = 0;
+                    while (i19 < size3) {
+                        Object obj3 = arrayList.get(i19);
+                        i19++;
+                        d dVar4 = (d) obj3;
+                        boolean z18 = dVar4.h;
+                        ch.d dVar5 = dVar4.f16474b;
+                        if (z18 && dVar4.f16478g) {
+                            dVar4.f16478g = false;
+                            if (Build.VERSION.SDK_INT >= 29 && (dVar5 instanceof ch.e)) {
+                                dVar5.w();
+                            } else {
+                                dVar5.invalidateSelf();
+                            }
+                        }
+                    }
+                    return;
+                }
+                return;
+            }
+            throw g.k(it);
         }
-        return i10;
+        arrayList2.get(0).getClass();
+        throw new ClassCastException();
     }
 }

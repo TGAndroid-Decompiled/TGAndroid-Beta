@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-public final class y30 extends org.telegram.ui.Components.voip.m0 {
+public final class y30 extends org.telegram.ui.Components.voip.n0 {
     public final g60 Q0;
 
     public y30(g60 g60Var, LaunchActivity launchActivity, m50 m50Var, u30 u30Var, ArrayList arrayList, ChatObject.Call call, g60 g60Var2) {
@@ -28,22 +28,22 @@ public final class y30 extends org.telegram.ui.Components.voip.m0 {
         e60 e60Var = g60Var.B1;
         c50 c50Var = g60Var.O;
         m50 m50Var = g60Var.Q;
-        org.telegram.ui.Components.k30 k30Var = g60Var.f37895p2;
+        org.telegram.ui.Components.k30 k30Var = g60Var.f37931p2;
         y30 y30Var = g60Var.a2;
-        u30 u30Var = g60Var.f37882m2;
-        g60Var.f37907s0 = z10;
+        u30 u30Var = g60Var.f37918m2;
+        g60Var.f37943s0 = z10;
         int i10 = 0;
         if (g60.G3) {
-            if (!z10 && y30Var.f32120b) {
-                g60Var.f37891o2.H(g60Var.f37887n2, false, true);
+            if (!z10 && y30Var.f32114b) {
+                g60Var.f37927o2.H(g60Var.f37923n2, false, true);
                 return;
             }
             return;
         }
         if (z10) {
-            g60Var.f37871j0[0].e(1, false);
+            g60Var.f37907j0[0].e(1, false);
             y30Var.K0[0].e(2, false);
-            if (!y30Var.f32120b) {
+            if (!y30Var.f32114b) {
                 m50Var.setVisibility(0);
                 c50Var.setVisibility(0);
                 if (e60Var != null) {
@@ -51,7 +51,7 @@ public final class y30 extends org.telegram.ui.Components.voip.m0 {
                 }
             }
             g60Var.O1(true, false);
-            g60Var.f37849e.requestLayout();
+            g60Var.f37885e.requestLayout();
             if (u30Var.getVisibility() != 0) {
                 u30Var.setVisibility(0);
                 k30Var.F(u30Var, true);
@@ -61,7 +61,7 @@ public final class y30 extends org.telegram.ui.Components.voip.m0 {
                 g60Var.P0(true);
             }
         } else {
-            if (!y30Var.f32120b) {
+            if (!y30Var.f32114b) {
                 u30Var.setVisibility(8);
                 k30Var.F(u30Var, false);
             } else {
@@ -79,7 +79,7 @@ public final class y30 extends org.telegram.ui.Components.voip.m0 {
                     childAt.setScaleY(1.0f);
                     childAt.setTranslationX(0.0f);
                     childAt.setTranslationY(0.0f);
-                    ((org.telegram.ui.Components.j30) childAt).setProgressToFullscreen(y30Var.f32122c);
+                    ((org.telegram.ui.Components.j30) childAt).setProgressToFullscreen(y30Var.f32116c);
                 }
             }
         }
@@ -88,7 +88,7 @@ public final class y30 extends org.telegram.ui.Components.voip.m0 {
             i10 = 8;
         }
         view.setVisibility(i10);
-        if (!g60Var.f37907s0) {
+        if (!g60Var.f37943s0) {
             g60Var.P0(true);
         }
     }
@@ -104,10 +104,10 @@ public final class y30 extends org.telegram.ui.Components.voip.m0 {
         if (y30Var == null) {
             f7 = 0.0f;
         } else {
-            f7 = y30Var.f32122c;
+            f7 = y30Var.f32116c;
         }
-        ((org.telegram.ui.ActionBar.f3) g60Var).navBarColor = AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20919jg, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20864gg, false), Math.max(f10, f7), 1.0f);
-        viewGroup = ((org.telegram.ui.ActionBar.f3) g60Var).containerView;
+        ((org.telegram.ui.ActionBar.e3) g60Var).navBarColor = AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20904jg, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20849gg, false), Math.max(f10, f7), 1.0f);
+        viewGroup = ((org.telegram.ui.ActionBar.e3) g60Var).containerView;
         viewGroup.invalidate();
         g60Var.C1(g60Var.U1);
     }

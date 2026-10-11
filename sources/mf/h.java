@@ -1,38 +1,12 @@
 package mf;
+public final class h {
+    public int f16418a;
+    public int f16419b;
+    public int f16420c;
+    public boolean d;
+    public boolean f16421e;
 
-import java.util.logging.Logger;
-public final class h extends kf.a {
-    public static final Logger f16394s = Logger.getLogger(h.class.getName());
-    public byte f16395r;
-
-    public static boolean b(n nVar) {
-        boolean z10;
-        nVar.mark(3);
-        try {
-            if (nVar.read() == 73 && nVar.read() == 68) {
-                if (nVar.read() == 51) {
-                    z10 = true;
-                    return z10;
-                }
-            }
-            z10 = false;
-            return z10;
-        } finally {
-            nVar.reset();
-        }
-    }
-
-    public static g c(e eVar) {
-        b b10 = eVar.b();
-        eVar.c(3, b.ISO_8859_1);
-        return new g(0, eVar.d(200, b10), eVar.c((int) eVar.f16383a.e(), b10));
-    }
-
-    public static String e(e eVar) {
-        return eVar.c((int) eVar.f16383a.e(), eVar.b());
-    }
-
-    public final void d(mf.e r12) {
-        throw new UnsupportedOperationException("Method not decompiled: mf.h.d(mf.e):void");
+    public final String toString() {
+        return String.format("%s[version=%s, totalTagSize=%d]", h.class.getSimpleName(), Integer.valueOf(this.f16418a), Integer.valueOf(this.f16419b));
     }
 }

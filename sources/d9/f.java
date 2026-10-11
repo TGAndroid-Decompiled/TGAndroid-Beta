@@ -5,16 +5,16 @@ import j$.util.Objects;
 import java.io.IOException;
 import java.util.Iterator;
 public final class f implements n {
-    public String f8212a;
+    public String f8211a;
 
     public f(String str, int i10) {
         switch (i10) {
             case 1:
-                this.f8212a = str;
+                this.f8211a = str;
                 return;
             default:
                 str.getClass();
-                this.f8212a = str;
+                this.f8211a = str;
                 return;
         }
     }
@@ -33,7 +33,7 @@ public final class f implements n {
                 }
                 sb2.append(obj);
                 while (it.hasNext()) {
-                    sb2.append((CharSequence) this.f8212a);
+                    sb2.append((CharSequence) this.f8211a);
                     Object next2 = it.next();
                     Objects.requireNonNull(next2);
                     if (next2 instanceof CharSequence) {
@@ -51,6 +51,6 @@ public final class f implements n {
 
     @Override
     public Object v2() {
-        throw new RuntimeException(this.f8212a);
+        throw new RuntimeException(this.f8211a);
     }
 }

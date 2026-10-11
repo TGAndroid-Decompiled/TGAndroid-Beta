@@ -4,18 +4,18 @@ import android.view.ScaleGestureDetector;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ka1;
 public final class jc extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    public final kc f5295a;
+    public final kc f5294a;
 
     public jc(kc kcVar) {
-        this.f5295a = kcVar;
+        this.f5294a = kcVar;
     }
 
     @Override
     public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
         ob obVar;
-        kc kcVar = this.f5295a;
+        kc kcVar = this.f5294a;
         lc lcVar = kcVar.E0;
-        if (!kcVar.A0 || (obVar = lcVar.B0) == null || lcVar.f5477f0 != 0 || obVar.f4820s || lcVar.A0.getFilledProgress() >= 1.0f) {
+        if (!kcVar.A0 || (obVar = lcVar.B0) == null || lcVar.f5476f0 != 0 || obVar.f4819s || lcVar.A0.getFilledProgress() >= 1.0f) {
             return false;
         }
         float scaleFactor = lcVar.T1 + ((scaleGestureDetector.getScaleFactor() - 1.0f) * 0.75f);
@@ -32,9 +32,9 @@ public final class jc extends ScaleGestureDetector.SimpleOnScaleGestureListener 
 
     @Override
     public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-        kc kcVar = this.f5295a;
+        kc kcVar = this.f5294a;
         lc lcVar = kcVar.E0;
-        if (lcVar.B0 != null && lcVar.f5477f0 == 0 && !lcVar.K0) {
+        if (lcVar.B0 != null && lcVar.f5476f0 == 0 && !lcVar.K0) {
             kcVar.A0 = true;
             return super.onScaleBegin(scaleGestureDetector);
         }
@@ -43,7 +43,7 @@ public final class jc extends ScaleGestureDetector.SimpleOnScaleGestureListener 
 
     @Override
     public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        kc kcVar = this.f5295a;
+        kc kcVar = this.f5294a;
         kcVar.A0 = false;
         kcVar.E0.e(false);
         lc.b(kcVar.E0);

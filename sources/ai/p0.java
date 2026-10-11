@@ -16,13 +16,13 @@ public final class p0 implements Runnable {
     public final Object f1562f;
     public final Object h;
 
-    public p0(int i10, Context context, long j3, long j10, org.telegram.ui.ActionBar.f3[] f3VarArr, org.telegram.ui.ActionBar.e6 e6Var) {
+    public p0(int i10, Context context, long j3, long j10, org.telegram.ui.ActionBar.e3[] e3VarArr, org.telegram.ui.ActionBar.d6 d6Var) {
         this.d = i10;
         this.f1561e = context;
         this.f1559b = j3;
         this.f1560c = j10;
-        this.f1562f = f3VarArr;
-        this.h = e6Var;
+        this.f1562f = e3VarArr;
+        this.h = d6Var;
     }
 
     @Override
@@ -57,8 +57,8 @@ public final class p0 implements Runnable {
                 ((MessagesController) this.f1561e).lambda$deleteSavedDialog$143(this.f1559b, this.f1560c, (TLRPC.InputPeer) this.f1562f, this.d, (int[]) this.h);
                 return;
             case 2:
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f1562f;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.h;
+                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f1562f;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.h;
                 ((q80) this.f1561e).u();
                 int i12 = this.d;
                 MessagesController messagesController = MessagesController.getInstance(i12);
@@ -66,7 +66,7 @@ public final class p0 implements Runnable {
                 long j12 = this.f1560c;
                 boolean isDialogMuted = messagesController.isDialogMuted(j11, j12);
                 NotificationsController.getInstance(i12).muteDialog(j11, j12, !isDialogMuted);
-                if (ad.a(n2Var)) {
+                if (ad.a(m2Var)) {
                     if (!isDialogMuted) {
                         i10 = 3;
                     } else {
@@ -77,7 +77,7 @@ public final class p0 implements Runnable {
                     } else {
                         i11 = 0;
                     }
-                    ad.z(n2Var, i10, i11, e6Var).j();
+                    ad.z(m2Var, i10, i11, d6Var).j();
                     return;
                 }
                 return;
@@ -86,7 +86,7 @@ public final class p0 implements Runnable {
                 int i13 = this.d;
                 yh.o g10 = yh.o.g(i13);
                 long j13 = this.f1559b;
-                g10.f(context2, j13, this.f1560c, new ei.q3((org.telegram.ui.ActionBar.f3[]) this.f1562f, context2, i13, j13, (org.telegram.ui.ActionBar.e6) this.h, 2));
+                g10.f(context2, j13, this.f1560c, new ei.q3((org.telegram.ui.ActionBar.e3[]) this.f1562f, context2, i13, j13, (org.telegram.ui.ActionBar.d6) this.h, 2));
                 return;
         }
     }
@@ -109,12 +109,12 @@ public final class p0 implements Runnable {
         this.h = iArr;
     }
 
-    public p0(q80 q80Var, int i10, long j3, long j10, zn znVar, org.telegram.ui.ActionBar.e6 e6Var) {
+    public p0(q80 q80Var, int i10, long j3, long j10, zn znVar, org.telegram.ui.ActionBar.d6 d6Var) {
         this.f1561e = q80Var;
         this.d = i10;
         this.f1559b = j3;
         this.f1560c = j10;
         this.f1562f = znVar;
-        this.h = e6Var;
+        this.h = d6Var;
     }
 }

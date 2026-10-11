@@ -11,27 +11,27 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.j9;
 public final class v2 extends View {
-    public final h3 f53350a;
-    public final ImageReceiver f53351b;
-    public final Path f53352c;
+    public final h3 f53393a;
+    public final ImageReceiver f53394b;
+    public final Path f53395c;
     public final Paint d;
 
     public v2(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
         super(context);
         Path path = new Path();
-        this.f53352c = path;
+        this.f53395c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         h3 h3Var = new h3(this, starGift, 60, 0.27f);
-        this.f53350a = h3Var;
+        this.f53393a = h3Var;
         h3Var.K = 3;
-        j9 j9Var = new j9((org.telegram.ui.ActionBar.e6) null);
+        j9 j9Var = new j9((org.telegram.ui.ActionBar.d6) null);
         j9Var.p(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f53351b = imageReceiver;
+        this.f53394b = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
         imageReceiver.setForUserOrChat(tLObject, j9Var);
-        paint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.E6, false));
+        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E6, false));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -45,27 +45,27 @@ public final class v2 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f53351b.onAttachedToWindow();
+        this.f53394b.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f53351b.onDetachedFromWindow();
+        this.f53394b.onDetachedFromWindow();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
         int height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
-        h3 h3Var = this.f53350a;
+        h3 h3Var = this.f53393a;
         h3Var.setBounds(width, height, AndroidUtilities.dp(60.0f) + width, AndroidUtilities.dp(60.0f) + height);
         h3Var.draw(canvas);
         canvas.save();
         canvas.translate((getWidth() / 2.0f) - (AndroidUtilities.dp(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.f53352c, this.d);
+        canvas.drawPath(this.f53395c, this.d);
         canvas.restore();
-        ImageReceiver imageReceiver = this.f53351b;
+        ImageReceiver imageReceiver = this.f53394b;
         imageReceiver.setImageCoords(AndroidUtilities.dp(96.0f) + width, height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
         imageReceiver.draw(canvas);
     }
@@ -78,17 +78,17 @@ public final class v2 extends View {
     public v2(Context context, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         super(context);
         Path path = new Path();
-        this.f53352c = path;
+        this.f53395c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         h3 h3Var = new h3(this, tL_starGiftUnique, 60, 0.27f);
-        this.f53350a = h3Var;
+        this.f53393a = h3Var;
         h3Var.K = 3;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f53351b = imageReceiver;
+        this.f53394b = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
         imageReceiver.setImageBitmap(org.telegram.ui.Cells.v6.a(60, "fragment"));
-        paint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.E6, false));
+        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E6, false));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);

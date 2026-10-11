@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
 public final class e5 {
-    public final int f25905a;
-    public final int f25906b;
-    public final int f25907c;
+    public final int f25856a;
+    public final int f25857b;
+    public final int f25858c;
     public final int d;
-    public final int f25908e;
-    public final int f25909f;
-    public final int f25910g;
+    public final int f25859e;
+    public final int f25860f;
+    public final int f25861g;
     public final int h;
 
-    public e5(org.telegram.ui.ActionBar.e6 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e5.<init>(org.telegram.ui.ActionBar.e6):void");
+    public e5(org.telegram.ui.ActionBar.d6 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e5.<init>(org.telegram.ui.ActionBar.d6):void");
     }
 
     public e5(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
-        this.f25905a = i10;
-        this.f25906b = i11;
-        this.f25907c = i12;
+        this.f25856a = i10;
+        this.f25857b = i11;
+        this.f25858c = i12;
         this.d = i13;
-        this.f25908e = i14;
-        this.f25909f = i15;
-        this.f25910g = i16;
+        this.f25859e = i14;
+        this.f25860f = i15;
+        this.f25861g = i16;
         this.h = i17;
     }
 }

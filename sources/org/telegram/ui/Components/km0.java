@@ -1,51 +1,85 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 public final class km0 implements Runnable {
-    public final View f28069a;
-    public final int f28070b;
-    public final float f28071c;
-    public final float d;
-    public final lm0 f28072e;
+    public final int f28041a;
+    public final float f28042b;
+    public final float f28043c;
+    public final Object d;
 
-    public km0(lm0 lm0Var, View view, int i10, float f7, float f10) {
-        this.f28072e = lm0Var;
-        this.f28069a = view;
-        this.f28070b = i10;
-        this.f28071c = f7;
-        this.d = f10;
+    public km0(Object obj, float f7, float f10, int i10) {
+        this.f28041a = i10;
+        this.d = obj;
+        this.f28042b = f7;
+        this.f28043c = f10;
     }
 
     @Override
     public final void run() {
-        mm0 mm0Var = this.f28072e.f28428b;
-        rm0 rm0Var = (rm0) mm0Var.f28850b;
-        if (this == rm0Var.Q1) {
-            rm0Var.Q1 = null;
-        }
-        View view = this.f28069a;
-        if (view != null) {
-            rm0Var.h1(view, 0.0f, 0.0f, false);
-            if (!((rm0) mm0Var.f28850b).P1) {
-                try {
-                    view.playSoundEffect(0);
-                } catch (Exception unused) {
+        View view;
+        int i10 = this.f28041a;
+        float f7 = this.f28043c;
+        float f10 = this.f28042b;
+        Object obj = this.d;
+        switch (i10) {
+            case 0:
+                sm0 sm0Var = (sm0) ((nm0) obj).f29093b;
+                if (sm0Var.f30785c1 != null && (view = sm0Var.L1) != null) {
+                    sm0Var.h1(view, f10, f7, true);
+                    sm0Var.f30785c1 = null;
+                    return;
                 }
-                view.sendAccessibilityEvent(1);
-                int i10 = this.f28070b;
-                if (i10 != -1) {
-                    rm0 rm0Var2 = (rm0) mm0Var.f28850b;
-                    fm0 fm0Var = rm0Var2.T0;
-                    if (fm0Var != null) {
-                        fm0Var.d(i10, view);
-                        return;
-                    }
-                    gm0 gm0Var = rm0Var2.U0;
-                    if (gm0Var != null) {
-                        gm0Var.c(this.f28071c - view.getX(), this.d - view.getY(), i10, view);
-                    }
+                return;
+            default:
+                sg.i iVar = (sg.i) obj;
+                sg.n nVar = iVar.f48156b;
+                ValueAnimator valueAnimator = nVar.W;
+                sg.h hVar = nVar.f48174e0;
+                sg.h hVar2 = nVar.f48172d0;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    nVar.W.cancel();
+                    nVar.W = null;
                 }
-            }
+                AnimatorSet animatorSet = nVar.f48167a0;
+                if (animatorSet != null) {
+                    animatorSet.removeAllListeners();
+                    nVar.f48167a0.cancel();
+                    nVar.f48167a0 = null;
+                }
+                if (Math.abs(nVar.f48168b.d) > 10.0f) {
+                    nVar.l();
+                    return;
+                }
+                AndroidUtilities.cancelRunOnUIThread(nVar.f48169b0);
+                nVar.f48167a0 = new AnimatorSet();
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(nVar.f48168b.d, f10);
+                ofFloat.addUpdateListener(hVar2);
+                long j3 = 220;
+                ofFloat.setDuration(j3);
+                is isVar = is.h;
+                ofFloat.setInterpolator(isVar);
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f10, 0.0f);
+                ofFloat2.addUpdateListener(hVar2);
+                ofFloat2.setStartDelay(j3);
+                ofFloat2.setDuration(600L);
+                ofFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(nVar.f48168b.f48136i, f7);
+                ofFloat3.addUpdateListener(hVar);
+                ofFloat3.setDuration(j3);
+                ofFloat3.setInterpolator(isVar);
+                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f7, 0.0f);
+                ofFloat4.addUpdateListener(hVar);
+                ofFloat4.setStartDelay(j3);
+                ofFloat4.setDuration(600L);
+                ofFloat4.setInterpolator(AndroidUtilities.overshootInterpolator);
+                nVar.f48167a0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+                nVar.f48167a0.addListener(new org.telegram.ui.Wallet.z4(iVar, 14));
+                nVar.f48167a0.start();
+                return;
         }
     }
 }

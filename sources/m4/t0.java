@@ -3,62 +3,62 @@ package m4;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 public final class t0 implements Runnable {
-    public final int f16234a = 0;
-    public final int f16235b;
-    public final int f16236c;
+    public final int f16255a = 0;
+    public final int f16256b;
+    public final int f16257c;
     public final Object d;
-    public final Object f16237e;
-    public final Object f16238f;
+    public final Object f16258e;
+    public final Object f16259f;
     public final Object h;
-    public final Object f16239n;
+    public final Object f16260n;
 
-    public t0(b1 b1Var, r rVar, h1 h1Var, b0 b0Var, int i10, int i11, a1 a1Var) {
-        this.d = b1Var;
-        this.f16237e = rVar;
-        this.f16238f = h1Var;
+    public t0(c1 c1Var, r rVar, i1 i1Var, b0 b0Var, int i10, int i11, b1 b1Var) {
+        this.d = c1Var;
+        this.f16258e = rVar;
+        this.f16259f = i1Var;
         this.h = b0Var;
-        this.f16235b = i10;
-        this.f16236c = i11;
-        this.f16239n = a1Var;
+        this.f16256b = i10;
+        this.f16257c = i11;
+        this.f16260n = b1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f16234a) {
+        switch (this.f16255a) {
             case 0:
-                r rVar = (r) this.f16237e;
-                h1 h1Var = (h1) this.f16238f;
+                r rVar = (r) this.f16258e;
+                i1 i1Var = (i1) this.f16259f;
                 b0 b0Var = (b0) this.h;
-                a1 a1Var = (a1) this.f16239n;
-                oi.f fVar = ((b1) this.d).f16008b;
+                b1 b1Var = (b1) this.f16260n;
+                pi.f fVar = ((c1) this.d).f16033b;
                 if (fVar.A(rVar)) {
-                    int i10 = this.f16235b;
-                    if (h1Var != null) {
-                        if (!fVar.D(rVar, h1Var)) {
-                            b1.N0(b0Var, rVar, i10, new l1(-4));
+                    int i10 = this.f16256b;
+                    if (i1Var != null) {
+                        if (!fVar.D(rVar, i1Var)) {
+                            c1.N0(b0Var, rVar, i10, new m1(-4));
                             return;
                         }
-                    } else if (!fVar.C(rVar, this.f16236c)) {
-                        b1.N0(b0Var, rVar, i10, new l1(-4));
+                    } else if (!fVar.C(rVar, this.f16257c)) {
+                        c1.N0(b0Var, rVar, i10, new m1(-4));
                         return;
                     }
-                    a1Var.h(b0Var, rVar, i10);
+                    b1Var.h(b0Var, rVar, i10);
                     return;
                 }
                 return;
             default:
-                ((MediaDataController) this.d).lambda$toggleStickerSet$108((boolean[]) this.f16237e, (TLRPC.StickerSet) this.f16238f, this.f16235b, this.f16236c, (TLRPC.TL_messages_stickerSet) this.h, (Runnable) this.f16239n);
+                ((MediaDataController) this.d).lambda$toggleStickerSet$108((boolean[]) this.f16258e, (TLRPC.StickerSet) this.f16259f, this.f16256b, this.f16257c, (TLRPC.TL_messages_stickerSet) this.h, (Runnable) this.f16260n);
                 return;
         }
     }
 
     public t0(MediaDataController mediaDataController, boolean[] zArr, TLRPC.StickerSet stickerSet, int i10, int i11, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, Runnable runnable) {
         this.d = mediaDataController;
-        this.f16237e = zArr;
-        this.f16238f = stickerSet;
-        this.f16235b = i10;
-        this.f16236c = i11;
+        this.f16258e = zArr;
+        this.f16259f = stickerSet;
+        this.f16256b = i10;
+        this.f16257c = i11;
         this.h = tL_messages_stickerSet;
-        this.f16239n = runnable;
+        this.f16260n = runnable;
     }
 }

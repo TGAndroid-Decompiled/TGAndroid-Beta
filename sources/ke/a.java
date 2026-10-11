@@ -2,7 +2,7 @@ package ke;
 
 import java.util.concurrent.Executor;
 public final class a implements Executor {
-    public static final a f14792a = new Object();
+    public static final a f14791a = new Object();
 
     @Override
     public final void execute(Runnable runnable) {

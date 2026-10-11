@@ -5,36 +5,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraSessionWrapper;
-public final class im implements hw0 {
-    public File f27408a;
-    public boolean f27409b;
-    public final org.telegram.ui.ActionBar.e6 f27410c;
-    public final org.telegram.ui.ActionBar.d3 d;
-    public final ChatAttachAlertPhotoLayout f27411e;
+public final class im implements iw0 {
+    public File f27391a;
+    public boolean f27392b;
+    public final org.telegram.ui.ActionBar.d6 f27393c;
+    public final org.telegram.ui.ActionBar.c3 d;
+    public final ChatAttachAlertPhotoLayout f27394e;
 
-    public im(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.ActionBar.d3 d3Var) {
-        this.f27411e = chatAttachAlertPhotoLayout;
-        this.f27410c = e6Var;
-        this.d = d3Var;
+    public im(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.ActionBar.c3 c3Var) {
+        this.f27394e = chatAttachAlertPhotoLayout;
+        this.f27393c = d6Var;
+        this.d = c3Var;
     }
 
     public final void a() {
         um umVar;
         boolean z10;
         boolean z11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f27411e;
-        yi yiVar = chatAttachAlertPhotoLayout.f30211b;
-        ShutterButton shutterButton = chatAttachAlertPhotoLayout.f24050k0;
-        if (!chatAttachAlertPhotoLayout.f24065s0 && (umVar = chatAttachAlertPhotoLayout.P) != null && umVar.getCameraSession() != null) {
-            if (shutterButton.getState() == iw0.f27463b) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f27394e;
+        yi yiVar = chatAttachAlertPhotoLayout.f30161b;
+        ShutterButton shutterButton = chatAttachAlertPhotoLayout.f24038k0;
+        if (!chatAttachAlertPhotoLayout.f24053s0 && (umVar = chatAttachAlertPhotoLayout.P) != null && umVar.getCameraSession() != null) {
+            if (shutterButton.getState() == jw0.f27769b) {
                 chatAttachAlertPhotoLayout.l0();
                 CameraController.getInstance().stopVideoRecording(chatAttachAlertPhotoLayout.P.getCameraSession(), false);
-                shutterButton.a(iw0.f27462a);
-            } else if (!chatAttachAlertPhotoLayout.f24072x0) {
-                org.telegram.messenger.bi.q(R.string.GlobalAttachPhotoRestricted, new ad(chatAttachAlertPhotoLayout.P, this.f27410c), null);
+                shutterButton.a(jw0.f27768a);
+            } else if (!chatAttachAlertPhotoLayout.f24060x0) {
+                org.telegram.messenger.ai.q(R.string.GlobalAttachPhotoRestricted, new ad(chatAttachAlertPhotoLayout.P, this.f27393c), null);
             } else {
-                org.telegram.ui.ActionBar.n2 n2Var = yiVar.f33235f0;
-                if ((n2Var instanceof org.telegram.ui.zn) && ((org.telegram.ui.zn) n2Var).v()) {
+                org.telegram.ui.ActionBar.m2 m2Var = yiVar.f33216f0;
+                if ((m2Var instanceof org.telegram.ui.zn) && ((org.telegram.ui.zn) m2Var).v()) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -42,13 +42,13 @@ public final class im implements hw0 {
                 File generatePicturePath = AndroidUtilities.generatePicturePath(z10, null);
                 boolean isSameTakePictureOrientation = chatAttachAlertPhotoLayout.P.getCameraSession().isSameTakePictureOrientation();
                 CameraSessionWrapper cameraSession = chatAttachAlertPhotoLayout.P.getCameraSession();
-                if (!(yiVar.f33235f0 instanceof org.telegram.ui.zn) && yiVar.T0 != 2) {
+                if (!(yiVar.f33216f0 instanceof org.telegram.ui.zn) && yiVar.T0 != 2) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 cameraSession.setFlipFront(z11);
-                chatAttachAlertPhotoLayout.f24065s0 = CameraController.getInstance().takePicture(generatePicturePath, false, chatAttachAlertPhotoLayout.P.getCameraSessionObject(), new ci.ed(this, generatePicturePath, isSameTakePictureOrientation));
+                chatAttachAlertPhotoLayout.f24053s0 = CameraController.getInstance().takePicture(generatePicturePath, false, chatAttachAlertPhotoLayout.P.getCameraSessionObject(), new ci.ed(this, generatePicturePath, isSameTakePictureOrientation));
                 chatAttachAlertPhotoLayout.P.startTakePictureAnimation(true);
             }
         }

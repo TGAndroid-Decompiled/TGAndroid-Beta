@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class l3 extends FrameLayout {
-    public int f22422a;
+    public int f22410a;
 
     public l3(Context context) {
         this(context, 8);
@@ -12,18 +12,18 @@ public final class l3 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f22422a, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f22410a, 1073741824));
     }
 
     public void setHeight(int i10) {
-        if (this.f22422a != i10) {
-            this.f22422a = i10;
+        if (this.f22410a != i10) {
+            this.f22410a = i10;
             requestLayout();
         }
     }
 
     public l3(Context context, int i10) {
         super(context);
-        this.f22422a = i10;
+        this.f22410a = i10;
     }
 }

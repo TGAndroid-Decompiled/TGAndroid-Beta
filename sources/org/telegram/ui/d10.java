@@ -3,95 +3,39 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-public class d10 extends ReplacementSpan {
-    public final TextPaint f36829a;
-    public final Paint f36830b;
-    public StaticLayout f36831c;
-    public float d;
-    public float f36832e;
-    public int f36833f;
-    public final int h;
-    public CharSequence f36834n;
+public final class d10 extends ReplacementSpan {
+    public final org.telegram.ui.ActionBar.d6 f36867a;
+    public final Paint f36868b;
+    public final int f36869c;
+    public final org.telegram.ui.Components.n11 d;
 
-    public d10(int i10) {
-        TextPaint textPaint = new TextPaint(1);
-        this.f36829a = textPaint;
+    public d10(String str, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         Paint paint = new Paint(1);
-        this.f36830b = paint;
-        this.f36834n = "NEW";
-        this.h = i10;
-        textPaint.setTypeface(AndroidUtilities.bold());
+        this.f36868b = paint;
+        this.f36867a = d6Var;
+        this.f36869c = i10;
+        this.d = new org.telegram.ui.Components.n11(str, 9.33f, AndroidUtilities.bold());
         paint.setStyle(Paint.Style.FILL);
-        textPaint.setTextSize(AndroidUtilities.dp(i10 < 0 ? 12.0f : i10));
-    }
-
-    public final void a() {
-        if (this.f36831c == null) {
-            StaticLayout staticLayout = new StaticLayout(this.f36834n, this.f36829a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f36831c = staticLayout;
-            this.d = staticLayout.getLineWidth(0);
-            this.f36832e = this.f36831c.getHeight();
-        }
     }
 
     @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15;
-        float f10;
-        a();
-        int i16 = this.f36833f;
-        if (i16 == 0) {
-            i16 = paint.getColor();
-        }
-        Paint paint2 = this.f36830b;
-        paint2.setColor(i16);
-        if (AndroidUtilities.computePerceivedBrightness(i16) > 0.721f) {
-            i15 = -16777216;
-        } else {
-            i15 = -1;
-        }
-        TextPaint textPaint = this.f36829a;
-        textPaint.setColor(i15);
-        paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
-        textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
-        float dp = f7 + AndroidUtilities.dp(2.0f);
-        float dp2 = (i13 - this.f36832e) + AndroidUtilities.dp(1.0f);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int w02 = org.telegram.ui.ActionBar.h6.w0(this.f36869c, this.f36867a);
+        int m12 = org.telegram.ui.ActionBar.h6.m1(0.15f, w02);
+        Paint paint2 = this.f36868b;
+        paint2.setColor(m12);
+        float f10 = (i14 + i12) / 2.0f;
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(dp, dp2, this.d + dp, this.f36832e + dp2);
-        float dp3 = AndroidUtilities.dp(4.4f);
-        float dp4 = AndroidUtilities.dp(-4.0f);
-        if (this.h == 8) {
-            f10 = -3.66f;
-        } else {
-            f10 = -2.33f;
-        }
-        rectF.inset(dp4, AndroidUtilities.dp(f10));
-        canvas.drawRoundRect(rectF, dp3, dp3, paint2);
-        canvas.save();
-        canvas.translate(dp, dp2);
-        this.f36831c.draw(canvas);
-        canvas.restore();
+        float dp = AndroidUtilities.dp(14.66f) / 2.0f;
+        rectF.set(f7, f10 - dp, this.d.l() + f7 + AndroidUtilities.dp(9.33f), dp + f10);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint2);
+        this.d.c(f7 + AndroidUtilities.dp(4.66f), f10, 1.0f, w02, canvas);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        a();
-        return (int) (AndroidUtilities.dp(10.0f) + this.d);
-    }
-
-    public d10() {
-        TextPaint textPaint = new TextPaint(1);
-        this.f36829a = textPaint;
-        Paint paint = new Paint(1);
-        this.f36830b = paint;
-        this.f36834n = "NEW";
-        textPaint.setTypeface(AndroidUtilities.bold());
-        paint.setStyle(Paint.Style.FILL);
-        textPaint.setTextSize(AndroidUtilities.dp(10.0f));
+        return (int) (this.d.l() + AndroidUtilities.dp(9.33f));
     }
 }

@@ -1,10 +1,10 @@
 package hf;
 public final class c {
-    public int f11141a;
-    public int f11142b;
-    public int f11143c;
+    public int f11140a;
+    public int f11141b;
+    public int f11142c;
     public int d;
-    public String f11144e;
+    public String f11143e;
 
     public final String a(String str, String str2, String str3) {
         StringBuilder sb2 = new StringBuilder(20);
@@ -12,8 +12,8 @@ public final class c {
         int i10 = 0;
         boolean z11 = false;
         boolean z12 = false;
-        for (int i11 = 0; i11 < this.f11144e.length(); i11++) {
-            char charAt = this.f11144e.charAt(i11);
+        for (int i11 = 0; i11 < this.f11143e.length(); i11++) {
+            char charAt = this.f11143e.charAt(i11);
             if (charAt != '#') {
                 if (charAt != '(') {
                     if (charAt != 'c') {
@@ -34,15 +34,15 @@ public final class c {
                 }
                 if (charAt == ' ' && i11 > 0) {
                     int i12 = i11 - 1;
-                    if (this.f11144e.charAt(i12) == 'n') {
+                    if (this.f11143e.charAt(i12) == 'n') {
                         if (str3 == null) {
                         }
                     }
-                    if (this.f11144e.charAt(i12) == 'c' && str2 == null) {
+                    if (this.f11143e.charAt(i12) == 'c' && str2 == null) {
                     }
                 }
                 if (i10 < str.length() || (z12 && charAt == ')')) {
-                    sb2.append(this.f11144e.substring(i11, i11 + 1));
+                    sb2.append(this.f11143e.substring(i11, i11 + 1));
                     if (charAt == ')') {
                         z12 = false;
                     }

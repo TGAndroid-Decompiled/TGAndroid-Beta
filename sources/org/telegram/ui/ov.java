@@ -1,15 +1,36 @@
 package org.telegram.ui;
-public final class ov implements Runnable {
-    public final int f40648a;
-    public final ty f40649b;
 
-    public ov(ty tyVar, int i10) {
-        this.f40648a = i10;
-        this.f40649b = tyVar;
+import android.content.DialogInterface;
+public final class ov implements DialogInterface.OnDismissListener {
+    public final int f40625a;
+    public final sy f40626b;
+
+    public ov(sy syVar, int i10) {
+        this.f40625a = i10;
+        this.f40626b = syVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ov.run():void");
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f40625a) {
+            case 0:
+                sy.h0(this.f40626b);
+                return;
+            case 1:
+                sy syVar = this.f40626b;
+                if (syVar.R3 != null) {
+                    syVar.getMessagesController().removeSuggestion(0L, syVar.R3);
+                    syVar.R3 = null;
+                    syVar.I4();
+                    return;
+                }
+                return;
+            case 2:
+                this.f40626b.Y3(true);
+                return;
+            default:
+                this.f40626b.Y3(true);
+                return;
+        }
     }
 }

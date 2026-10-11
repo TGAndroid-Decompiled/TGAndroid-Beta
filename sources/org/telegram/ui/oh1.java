@@ -1,37 +1,15 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.Editable;
-public final class oh1 extends org.telegram.ui.Cells.j3 {
-    public final int f40580x;
-    public final UserInfoActivity f40581y;
+import java.util.ArrayList;
+public final class oh1 {
+    public final int f40547a;
+    public boolean f40549c;
+    public boolean d;
+    public final ArrayList f40550e = new ArrayList();
+    public final ArrayList f40551f = new ArrayList();
+    public final boolean f40548b = true;
 
-    public oh1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, str, false, false, -1, e6Var);
-        this.f40580x = i10;
-        this.f40581y = userInfoActivity;
-    }
-
-    @Override
-    public final void b(Editable editable) {
-        switch (this.f40580x) {
-            case 0:
-                this.f40581y.b0(true);
-                return;
-            case 1:
-                this.f40581y.b0(true);
-                return;
-            default:
-                UserInfoActivity userInfoActivity = this.f40581y;
-                userInfoActivity.b0(true);
-                userInfoActivity.e0();
-                return;
-        }
-    }
-
-    public oh1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, str, true, false, i10, e6Var);
-        this.f40580x = 2;
-        this.f40581y = userInfoActivity;
+    public oh1(int i10) {
+        this.f40547a = i10;
     }
 }

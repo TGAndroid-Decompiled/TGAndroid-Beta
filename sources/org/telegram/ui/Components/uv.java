@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public final class uv extends jw {
     public final jw W;
 
-    public uv(jw jwVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, ArrayList arrayList) {
-        super(n2Var, context, e6Var, arrayList);
+    public uv(jw jwVar, org.telegram.ui.ActionBar.m2 m2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
+        super(m2Var, context, d6Var, arrayList);
         this.W = jwVar;
     }
 

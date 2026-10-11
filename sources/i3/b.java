@@ -12,48 +12,48 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class b implements o {
-    public final v f11946a = new v(4);
-    public final v f11947b = new v(9);
-    public final v f11948c = new v(11);
+    public final v f11945a = new v(4);
+    public final v f11946b = new v(9);
+    public final v f11947c = new v(11);
     public final v d = new v();
-    public final c f11949e;
-    public q f11950f;
-    public int f11951g;
+    public final c f11948e;
+    public q f11949f;
+    public int f11950g;
     public boolean h;
-    public long f11952i;
-    public int f11953j;
-    public int f11954k;
-    public int f11955l;
-    public long f11956m;
-    public boolean f11957n;
-    public a f11958o;
-    public e f11959p;
+    public long f11951i;
+    public int f11952j;
+    public int f11953k;
+    public int f11954l;
+    public long f11955m;
+    public boolean f11956n;
+    public a f11957o;
+    public e f11958p;
 
     public b() {
         ?? gVar = new g(new n());
-        gVar.f11960b = -9223372036854775807L;
-        gVar.f11961c = new long[0];
+        gVar.f11959b = -9223372036854775807L;
+        gVar.f11960c = new long[0];
         gVar.d = new long[0];
-        this.f11949e = gVar;
-        this.f11951g = 1;
+        this.f11948e = gVar;
+        this.f11950g = 1;
     }
 
     @Override
     public final boolean a(p pVar) {
-        v vVar = this.f11946a;
+        v vVar = this.f11945a;
         l lVar = (l) pVar;
-        lVar.h(vVar.f8584a, 0, 3, false);
+        lVar.i(vVar.f8583a, 0, 3, false);
         vVar.J(0);
         if (vVar.A() == 4607062) {
-            lVar.h(vVar.f8584a, 0, 2, false);
+            lVar.i(vVar.f8583a, 0, 2, false);
             vVar.J(0);
             if ((vVar.D() & 250) == 0) {
-                lVar.h(vVar.f8584a, 0, 4, false);
+                lVar.i(vVar.f8583a, 0, 4, false);
                 vVar.J(0);
                 int j3 = vVar.j();
                 lVar.f4142f = 0;
                 lVar.v(j3, false);
-                lVar.h(vVar.f8584a, 0, 4, false);
+                lVar.i(vVar.f8583a, 0, 4, false);
                 vVar.J(0);
                 if (vVar.j() == 0) {
                     return true;
@@ -64,39 +64,39 @@ public final class b implements o {
     }
 
     public final v b(p pVar) {
-        int i10 = this.f11955l;
+        int i10 = this.f11954l;
         v vVar = this.d;
-        byte[] bArr = vVar.f8584a;
+        byte[] bArr = vVar.f8583a;
         if (i10 > bArr.length) {
             vVar.H(0, new byte[Math.max(bArr.length * 2, i10)]);
         } else {
             vVar.J(0);
         }
-        vVar.I(this.f11955l);
-        pVar.readFully(vVar.f8584a, 0, this.f11955l);
+        vVar.I(this.f11954l);
+        pVar.readFully(vVar.f8583a, 0, this.f11954l);
         return vVar;
     }
 
     @Override
     public final void g(q qVar) {
-        this.f11950f = qVar;
+        this.f11949f = qVar;
     }
 
     @Override
     public final void h(long j3, long j10) {
         if (j3 == 0) {
-            this.f11951g = 1;
+            this.f11950g = 1;
             this.h = false;
         } else {
-            this.f11951g = 3;
+            this.f11950g = 3;
         }
-        this.f11953j = 0;
+        this.f11952j = 0;
     }
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8752b;
-        return a1.f8715e;
+        g0 g0Var = i0.f8751b;
+        return a1.f8714e;
     }
 
     @Override

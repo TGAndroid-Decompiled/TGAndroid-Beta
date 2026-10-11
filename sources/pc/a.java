@@ -3,40 +3,40 @@ package pc;
 import c5.b0;
 import java.io.InputStream;
 public final class a {
-    public static int f45589f;
-    public InputStream f45590a;
-    public int f45591b;
-    public int f45592c;
+    public static int f45579f;
+    public InputStream f45580a;
+    public int f45581b;
+    public int f45582c;
     public int d;
-    public b0 f45593e;
+    public b0 f45583e;
 
     public final int a() {
         char c10;
         if (this.d == 8) {
-            this.f45591b = this.f45592c;
-            this.f45592c = this.f45590a.read();
+            this.f45581b = this.f45582c;
+            this.f45582c = this.f45580a.read();
             this.d = 0;
-            if (this.f45591b == -1) {
+            if (this.f45581b == -1) {
                 return -1;
             }
         }
-        int i10 = this.f45591b;
+        int i10 = this.f45581b;
         int i11 = this.d;
         int i12 = (i10 >> (7 - i11)) & 1;
         this.d = i11 + 1;
-        b0 b0Var = this.f45593e;
+        b0 b0Var = this.f45583e;
         if (i12 == 0) {
             c10 = '0';
         } else {
             c10 = '1';
         }
-        int i13 = b0Var.f4203b;
-        char[] cArr = (char[]) b0Var.f4204c;
+        int i13 = b0Var.f4202b;
+        char[] cArr = (char[]) b0Var.f4203c;
         if (i13 < cArr.length - 1) {
             cArr[i13] = c10;
-            b0Var.f4203b = i13 + 1;
+            b0Var.f4202b = i13 + 1;
         }
-        f45589f++;
+        f45579f++;
         return i12;
     }
 
@@ -89,21 +89,21 @@ public final class a {
 
     public final void f(String str, String str2) {
         StringBuilder sb2 = new StringBuilder();
-        int i10 = f45589f;
-        b0 b0Var = this.f45593e;
-        String valueOf = String.valueOf(i10 - b0Var.f4203b);
+        int i10 = f45579f;
+        b0 b0Var = this.f45583e;
+        String valueOf = String.valueOf(i10 - b0Var.f4202b);
         int length = 8 - valueOf.length();
         sb2.append("@".concat(valueOf));
         for (int i11 = 0; i11 < length; i11++) {
             sb2.append(' ');
         }
         sb2.append(str);
-        int length2 = (100 - sb2.length()) - b0Var.f4203b;
+        int length2 = (100 - sb2.length()) - b0Var.f4202b;
         for (int i12 = 0; i12 < length2; i12++) {
             sb2.append(' ');
         }
         sb2.append(b0Var);
         sb2.append(" (" + str2 + ")");
-        b0Var.f4203b = 0;
+        b0Var.f4202b = 0;
     }
 }

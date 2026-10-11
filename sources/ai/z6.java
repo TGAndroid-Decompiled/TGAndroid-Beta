@@ -14,7 +14,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.wm0;
+import org.telegram.ui.Components.xm0;
 public final class z6 extends FrameLayout {
     public final LinearLayout f2007a;
     public final Paint f2008b;
@@ -26,7 +26,7 @@ public final class z6 extends FrameLayout {
     public final RectF f2012n;
     public float f2013r;
     public int f2014s;
-    public final wm0 v;
+    public final xm0 v;
     public ValueAnimator f2015w;
     public final l7 f2016x;
 
@@ -38,23 +38,23 @@ public final class z6 extends FrameLayout {
         this.f2010e = new RectF();
         this.f2012n = new RectF();
         this.f2013r = 1.0f;
-        int i10 = org.telegram.ui.ActionBar.i6.f20892i6;
+        int i10 = org.telegram.ui.ActionBar.h6.f20877i6;
         d dVar = l7Var.f1341s;
-        paint.setColor(org.telegram.ui.ActionBar.i6.w0(i10, dVar));
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(i10, dVar));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         TextView textView = new TextView(context);
         this.f2009c = textView;
         textView.setText(LocaleController.getString(R.string.AllViewers));
-        int i11 = org.telegram.ui.ActionBar.i6.f20909j5;
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(i11, dVar));
+        int i11 = org.telegram.ui.ActionBar.h6.f20894j5;
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, dVar));
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setText(LocaleController.getString(R.string.Contacts));
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(i11, dVar));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, dVar));
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
@@ -64,15 +64,15 @@ public final class z6 extends FrameLayout {
         LinearLayout linearLayout2 = new LinearLayout(getContext());
         this.f2007a = linearLayout2;
         linearLayout2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
-        linearLayout2.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.i6.w0(i10, dVar)));
+        linearLayout2.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.h6.w0(i10, dVar)));
         linearLayout2.setOrientation(0);
-        wm0 wm0Var = new wm0(getContext());
-        this.v = wm0Var;
-        wm0Var.f32712r = true;
-        wm0Var.a(R.drawable.menu_views_reactions3, false);
+        xm0 xm0Var = new xm0(getContext());
+        this.v = xm0Var;
+        xm0Var.f32991r = true;
+        xm0Var.a(R.drawable.menu_views_reactions3, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setImageDrawable(wm0Var);
+        imageView.setImageDrawable(xm0Var);
         imageView.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
         linearLayout2.addView(imageView, w7.x5.n(26, 26));
         ImageView imageView2 = new ImageView(getContext());
@@ -116,8 +116,8 @@ public final class z6 extends FrameLayout {
                         y6 y6Var = new y6(z6Var, z6Var.getContext(), l7Var4.f1341s);
                         l7Var4.f1338f = y6Var;
                         LinearLayout linearLayout3 = z6Var.f2007a;
-                        y6Var.f29594b = true;
-                        y6Var.f29593a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        y6Var.f29511b = true;
+                        y6Var.f29510a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -158,8 +158,8 @@ public final class z6 extends FrameLayout {
                         y6 y6Var = new y6(z6Var, z6Var.getContext(), l7Var4.f1341s);
                         l7Var4.f1338f = y6Var;
                         LinearLayout linearLayout3 = z6Var.f2007a;
-                        y6Var.f29594b = true;
-                        y6Var.f29593a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        y6Var.f29511b = true;
+                        y6Var.f29510a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -200,8 +200,8 @@ public final class z6 extends FrameLayout {
                         y6 y6Var = new y6(z6Var, z6Var.getContext(), l7Var4.f1341s);
                         l7Var4.f1338f = y6Var;
                         LinearLayout linearLayout3 = z6Var.f2007a;
-                        y6Var.f29594b = true;
-                        y6Var.f29593a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        y6Var.f29511b = true;
+                        y6Var.f29510a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }

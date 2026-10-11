@@ -1,70 +1,38 @@
 package org.telegram.ui.Components;
-public final class kb implements o1.f {
-    public final int f27967a;
-    public final Object f27968b;
 
-    public kb(Object obj, int i10) {
-        this.f27967a = i10;
-        this.f27968b = obj;
+import android.graphics.Rect;
+import android.view.GestureDetector;
+import android.widget.FrameLayout;
+public final class kb extends FrameLayout {
+    public final wb f27909a;
+    public final Rect f27910b;
+    public final GestureDetector f27911c;
+    public boolean d;
+    public boolean f27912e;
+    public float f27913f;
+    public float h;
+    public float f27914n;
+    public boolean f27915r;
+    public boolean f27916s;
+    public boolean v;
+    public boolean f27917w;
+    public final FrameLayout f27918x;
+    public final sc f27919y;
+
+    public kb(sc scVar, wb wbVar, FrameLayout frameLayout) {
+        super(wbVar.getContext());
+        this.f27919y = scVar;
+        this.f27918x = frameLayout;
+        this.f27910b = new Rect();
+        this.f27909a = wbVar;
+        GestureDetector gestureDetector = new GestureDetector(wbVar.getContext(), new hc(this, wbVar));
+        this.f27911c = gestureDetector;
+        gestureDetector.setIsLongpressEnabled(false);
+        addView(wbVar);
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f27967a) {
-            case 0:
-                tc tcVar = (tc) this.f27968b;
-                if (tcVar.d == hVar) {
-                    tcVar.d = null;
-                    return;
-                }
-                return;
-            case 1:
-                gb gbVar = (gb) this.f27968b;
-                if (!z10) {
-                    gbVar.run();
-                    return;
-                }
-                return;
-            case 2:
-                gl glVar = (gl) this.f27968b;
-                glVar.f26765i0 = null;
-                glVar.f26766j0 = 1.0f;
-                glVar.k0();
-                return;
-            case 3:
-                bq0 bq0Var = (bq0) this.f27968b;
-                bq0Var.f25025q = false;
-                bq0Var.dismiss();
-                return;
-            case 4:
-                cq0 cq0Var = (cq0) this.f27968b;
-                cq0Var.f25385s = false;
-                cq0Var.f25384r = false;
-                if (!z10) {
-                    hVar.c();
-                }
-                if (hVar == cq0Var.f25382f) {
-                    cq0Var.f25382f = null;
-                    return;
-                }
-                return;
-            case 5:
-                nr0 nr0Var = (nr0) this.f27968b;
-                nr0Var.E.setVisibility(8);
-                nr0Var.f29224z0.setVisibility(8);
-                kr0 kr0Var = nr0Var.L;
-                kr0Var.f28091f = null;
-                kr0Var.l();
-                nr0Var.B0 = null;
-                nr0Var.M0 = false;
-                return;
-            default:
-                nr0 nr0Var2 = ((uq0) this.f27968b).d;
-                nr0Var2.F.setVisibility(8);
-                nr0Var2.G.setVisibility(8);
-                nr0Var2.f29223y0.setVisibility(8);
-                nr0Var2.B0 = null;
-                return;
-        }
+    public final boolean onTouchEvent(android.view.MotionEvent r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kb.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

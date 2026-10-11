@@ -23,7 +23,7 @@ public final class l1 extends FrameLayout {
         this.f1320a = i1Var;
         i1Var.setOrientation(0);
         addView(i1Var, w7.x5.a(-2.0f, 0.0f, 0.0f, 6.0f, 0.0f, -2, 119));
-        this.f1322c = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
+        this.f1322c = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
         this.f1321b = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(11.0f));

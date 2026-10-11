@@ -7,29 +7,29 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
 public final class k extends og.a {
-    public final TLRPC.Dialog f10700c;
+    public final TLRPC.Dialog f10699c;
     public final TLRPC.RecentMeUrl d;
-    public final TLRPC.TL_contact f10701e;
-    public final boolean f10702f;
-    public final boolean f10703g;
+    public final TLRPC.TL_contact f10700e;
+    public final boolean f10701f;
+    public final boolean f10702g;
     public final boolean h;
-    public final TL_chatlists.TL_chatlists_chatlistUpdates f10704i;
-    public final int f10705j;
-    public final int f10706k;
-    public final String f10707l;
-    public final TLRPC.Chat f10708m;
-    public final TLRPC.User f10709n;
+    public final TL_chatlists.TL_chatlists_chatlistUpdates f10703i;
+    public final int f10704j;
+    public final int f10705k;
+    public final String f10706l;
+    public final TLRPC.Chat f10707m;
+    public final TLRPC.User f10708n;
 
     public k(m mVar, TL_chatlists.TL_chatlists_chatlistUpdates tL_chatlists_chatlistUpdates) {
         super(17, true);
-        this.f10704i = tL_chatlists_chatlistUpdates;
+        this.f10703i = tL_chatlists_chatlistUpdates;
         int i10 = mVar.W;
         mVar.W = i10 + 1;
-        this.f10706k = i10;
+        this.f10705k = i10;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f10700c, this.f10708m, this.d, this.f10701e, this.f10707l);
+        return Objects.hash(this.f10699c, this.f10707m, this.d, this.f10700e, this.f10706l);
     }
 
     public k(m mVar, String str) {
@@ -37,81 +37,81 @@ public final class k extends og.a {
         HashMap hashMap = mVar.Y;
         Integer num = (Integer) hashMap.get(str);
         if (num != null) {
-            this.f10706k = num.intValue();
+            this.f10705k = num.intValue();
         } else {
             int i10 = mVar.W;
             mVar.W = i10 + 1;
-            this.f10706k = i10;
+            this.f10705k = i10;
             hashMap.put(str, Integer.valueOf(i10));
         }
-        this.f10707l = str;
+        this.f10706l = str;
     }
 
     public k(m mVar, TLRPC.User user) {
         super(23, false);
-        this.f10709n = user;
-        long j3 = user.f20189id;
+        this.f10708n = user;
+        long j3 = user.f20179id;
         LongSparseIntArray longSparseIntArray = mVar.X;
         int i10 = longSparseIntArray.get(j3, -1);
         if (i10 >= 0) {
-            this.f10706k = i10;
+            this.f10705k = i10;
             return;
         }
         int i11 = mVar.W;
         mVar.W = i11 + 1;
-        this.f10706k = i11;
-        longSparseIntArray.put(user.f20189id, i11);
+        this.f10705k = i11;
+        longSparseIntArray.put(user.f20179id, i11);
     }
 
     public k(m mVar, TLRPC.Chat chat) {
         super(23, false);
-        this.f10708m = chat;
-        long j3 = chat.f20042id;
+        this.f10707m = chat;
+        long j3 = chat.f20032id;
         LongSparseIntArray longSparseIntArray = mVar.X;
         int i10 = longSparseIntArray.get(-j3, -1);
         if (i10 >= 0) {
-            this.f10706k = i10;
+            this.f10705k = i10;
             return;
         }
         int i11 = mVar.W;
         mVar.W = i11 + 1;
-        this.f10706k = i11;
-        longSparseIntArray.put(-chat.f20042id, i11);
+        this.f10705k = i11;
+        longSparseIntArray.put(-chat.f20032id, i11);
     }
 
     public k(m mVar, int i10, TLRPC.Dialog dialog) {
         super(i10, true);
         LongSparseIntArray longSparseIntArray = mVar.X;
         boolean z10 = true;
-        this.f10700c = dialog;
+        this.f10699c = dialog;
         if (dialog != null) {
-            int i11 = longSparseIntArray.get(dialog.f20046id, -1);
+            int i11 = longSparseIntArray.get(dialog.f20036id, -1);
             if (i11 >= 0) {
-                this.f10706k = i11;
+                this.f10705k = i11;
             } else {
                 int i12 = mVar.W;
                 mVar.W = i12 + 1;
-                this.f10706k = i12;
-                longSparseIntArray.put(dialog.f20046id, i12);
+                this.f10705k = i12;
+                longSparseIntArray.put(dialog.f20036id, i12);
             }
         } else if (i10 == 19) {
-            this.f10706k = 5;
+            this.f10705k = 5;
         } else {
             int i13 = mVar.W;
             mVar.W = i13 + 1;
-            this.f10706k = i13;
+            this.f10705k = i13;
         }
         if (dialog != null) {
             int i14 = mVar.h;
             int i15 = mVar.F;
             if (i14 != 7 && i14 != 8) {
-                this.f10703g = dialog.pinned;
+                this.f10702g = dialog.pinned;
             } else {
                 MessagesController.DialogFilter dialogFilter = MessagesController.getInstance(i15).selectedDialogFilter[mVar.h == 8 ? (char) 1 : (char) 0];
-                this.f10703g = (dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(dialog.f20046id) < 0) ? false : z10;
+                this.f10702g = (dialogFilter == null || dialogFilter.pinnedDialogs.indexOfKey(dialog.f20036id) < 0) ? false : z10;
             }
             this.h = dialog.isFolder;
-            this.f10702f = MessagesController.getInstance(i15).isForum(dialog.f20046id);
+            this.f10701f = MessagesController.getInstance(i15).isForum(dialog.f20036id);
         }
     }
 
@@ -120,49 +120,49 @@ public final class k extends og.a {
         this.d = recentMeUrl;
         int i10 = mVar.W;
         mVar.W = i10 + 1;
-        this.f10706k = i10;
+        this.f10705k = i10;
     }
 
     public k(m mVar, int i10) {
         super(i10, true);
-        this.f10705j = i10;
+        this.f10704j = i10;
         if (i10 == 10) {
-            this.f10706k = 1;
+            this.f10705k = 1;
         } else if (i10 == 19) {
-            this.f10706k = 5;
+            this.f10705k = 5;
         } else {
             int i11 = mVar.W;
             mVar.W = i11 + 1;
-            this.f10706k = i11;
+            this.f10705k = i11;
         }
     }
 
     public k(m mVar, int i10, int i11) {
         super(5, true);
-        this.f10705j = i10;
+        this.f10704j = i10;
         int i12 = mVar.W;
         mVar.W = i12 + 1;
-        this.f10706k = i12;
+        this.f10705k = i12;
     }
 
     public k(m mVar, TLRPC.TL_contact tL_contact) {
         super(6, true);
         LongSparseIntArray longSparseIntArray = mVar.X;
-        this.f10701e = tL_contact;
+        this.f10700e = tL_contact;
         if (tL_contact != null) {
             int i10 = longSparseIntArray.get(tL_contact.user_id, -1);
             if (i10 > 0) {
-                this.f10706k = i10;
+                this.f10705k = i10;
                 return;
             }
             int i11 = mVar.W;
             mVar.W = i11 + 1;
-            this.f10706k = i11;
+            this.f10705k = i11;
             longSparseIntArray.put(tL_contact.user_id, i11);
             return;
         }
         int i12 = mVar.W;
         mVar.W = i12 + 1;
-        this.f10706k = i12;
+        this.f10705k = i12;
     }
 }

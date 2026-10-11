@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class h70 extends rm0 {
+public final class h70 extends sm0 {
     public int V2;
     public final u70 W2;
 
@@ -18,9 +18,9 @@ public final class h70 extends rm0 {
         h70 h70Var = u70Var.V;
         if (this.V2 != View.MeasureSpec.getSize(i11)) {
             this.V2 = View.MeasureSpec.getSize(i11);
-            u70Var.f31387a0 = true;
+            u70Var.f31310a0 = true;
             h70Var.setPadding(0, 0, 0, 0);
-            u70Var.f31387a0 = false;
+            u70Var.f31310a0 = false;
             measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
             int measuredHeight = getMeasuredHeight();
             int i12 = this.V2;
@@ -28,9 +28,9 @@ public final class h70 extends rm0 {
             if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
                 i13 = this.V2 - measuredHeight;
             }
-            u70Var.f31387a0 = true;
+            u70Var.f31310a0 = true;
             h70Var.setPadding(0, i13, 0, 0);
-            u70Var.f31387a0 = false;
+            u70Var.f31310a0 = false;
             measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
         super.onMeasure(i10, i11);
@@ -38,7 +38,7 @@ public final class h70 extends rm0 {
 
     @Override
     public final void requestLayout() {
-        if (this.W2.f31387a0) {
+        if (this.W2.f31310a0) {
             return;
         }
         super.requestLayout();

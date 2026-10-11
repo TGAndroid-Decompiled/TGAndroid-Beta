@@ -13,51 +13,51 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class o90 extends Drawable {
-    public static final Paint f29388j = new Paint();
-    public static TextPaint f29389k;
-    public static TextPaint f29390l;
-    public static TextPaint f29391m;
-    public StaticLayout f29393b;
-    public float f29394c;
+    public static final Paint f29345j = new Paint();
+    public static TextPaint f29346k;
+    public static TextPaint f29347l;
+    public static TextPaint f29348m;
+    public StaticLayout f29350b;
+    public float f29351c;
     public float d;
-    public float f29395e;
-    public final int f29397g;
+    public float f29352e;
+    public final int f29354g;
     public final TextPaint h;
-    public final RectF f29392a = new RectF();
-    public final StringBuilder f29396f = new StringBuilder(5);
-    public float f29398i = 1.0f;
+    public final RectF f29349a = new RectF();
+    public final StringBuilder f29353f = new StringBuilder(5);
+    public float f29355i = 1.0f;
 
-    public o90(int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f29397g = i10;
+    public o90(int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f29354g = i10;
         if (i10 == 0) {
-            if (f29389k == null) {
-                f29389k = new TextPaint(1);
+            if (f29346k == null) {
+                f29346k = new TextPaint(1);
             }
-            f29389k.setTextSize(AndroidUtilities.dp(28.0f));
-            f29388j.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Jh, e6Var));
-            f29389k.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Kh, e6Var));
-            this.h = f29389k;
+            f29346k.setTextSize(AndroidUtilities.dp(28.0f));
+            f29345j.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Jh, d6Var));
+            f29346k.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Kh, d6Var));
+            this.h = f29346k;
         } else if (i10 == 1) {
-            if (f29390l == null) {
-                f29390l = new TextPaint(1);
+            if (f29347l == null) {
+                f29347l = new TextPaint(1);
             }
-            f29390l.setColor(-1);
-            f29390l.setTextSize(AndroidUtilities.dp(13.0f));
-            f29390l.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.h = f29390l;
+            f29347l.setColor(-1);
+            f29347l.setTextSize(AndroidUtilities.dp(13.0f));
+            f29347l.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f29347l;
         } else {
-            if (f29391m == null) {
-                f29391m = new TextPaint(1);
+            if (f29348m == null) {
+                f29348m = new TextPaint(1);
             }
-            f29391m.setColor(-1);
-            f29391m.setTextSize(org.telegram.ui.ActionBar.i6.f20798d3.getTextSize() * 0.75f);
-            f29391m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.h = f29391m;
+            f29348m.setColor(-1);
+            f29348m.setTextSize(org.telegram.ui.ActionBar.h6.f20783d3.getTextSize() * 0.75f);
+            f29348m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f29348m;
         }
     }
 
     public final void a(String str) {
-        StringBuilder sb2 = this.f29396f;
+        StringBuilder sb2 = this.f29353f;
         sb2.setLength(0);
         if (str != null && str.length() > 0) {
             sb2.append(str.substring(0, 1));
@@ -65,11 +65,11 @@ public final class o90 extends Drawable {
         if (sb2.length() > 0) {
             try {
                 StaticLayout staticLayout = new StaticLayout(sb2.toString().toUpperCase(), this.h, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f29393b = staticLayout;
+                this.f29350b = staticLayout;
                 if (staticLayout.getLineCount() > 0) {
-                    this.f29395e = this.f29393b.getLineLeft(0);
-                    this.f29394c = this.f29393b.getLineWidth(0);
-                    this.d = this.f29393b.getLineBottom(0);
+                    this.f29352e = this.f29350b.getLineLeft(0);
+                    this.f29351c = this.f29350b.getLineWidth(0);
+                    this.d = this.f29350b.getLineBottom(0);
                     return;
                 }
                 return;
@@ -78,7 +78,7 @@ public final class o90 extends Drawable {
                 return;
             }
         }
-        this.f29393b = null;
+        this.f29350b = null;
     }
 
     @Override
@@ -87,20 +87,20 @@ public final class o90 extends Drawable {
         if (bounds == null) {
             return;
         }
-        if (this.f29397g == 0) {
-            RectF rectF = this.f29392a;
+        if (this.f29354g == 0) {
+            RectF rectF = this.f29349a;
             rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), f29388j);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), f29345j);
         }
         canvas.save();
-        float f7 = this.f29398i;
+        float f7 = this.f29355i;
         if (f7 != 1.0f) {
             canvas.scale(f7, f7, bounds.centerX(), bounds.centerY());
         }
-        if (this.f29393b != null) {
+        if (this.f29350b != null) {
             float width = bounds.width();
-            canvas.translate(com.google.android.gms.internal.vision.e2.z(width, this.f29394c, 2.0f, bounds.left) - this.f29395e, com.google.android.gms.internal.vision.e2.z(width, this.d, 2.0f, bounds.top));
-            this.f29393b.draw(canvas);
+            canvas.translate(com.google.android.gms.internal.vision.e2.z(width, this.f29351c, 2.0f, bounds.left) - this.f29352e, com.google.android.gms.internal.vision.e2.z(width, this.d, 2.0f, bounds.top));
+            this.f29350b.draw(canvas);
         }
         canvas.restore();
     }
@@ -123,7 +123,7 @@ public final class o90 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         this.h.setAlpha(i10);
-        f29388j.setAlpha(i10);
+        f29345j.setAlpha(i10);
     }
 
     @Override

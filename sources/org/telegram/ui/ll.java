@@ -8,27 +8,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class ll extends FrameLayout {
-    public float f39670a;
-    public float f39671b;
-    public final zn f39672c;
+    public float f39694a;
+    public float f39695b;
+    public final zn f39696c;
 
     public ll(zn znVar, Activity activity) {
         super(activity);
-        this.f39672c = znVar;
-        setOnLongClickListener(new v(this, 2));
+        this.f39696c = znVar;
+        setOnLongClickListener(new u(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        zn znVar = this.f39672c;
-        if (view == znVar.f45060z2) {
+        zn znVar = this.f39696c;
+        if (view == znVar.f45015z2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
-        org.telegram.ui.ActionBar.j5[] j5VarArr = znVar.D2;
-        if (view != j5VarArr[0] && view != j5VarArr[1]) {
+        org.telegram.ui.ActionBar.h5[] h5VarArr = znVar.D2;
+        if (view != h5VarArr[0] && view != h5VarArr[1]) {
             boolean drawChild = super.drawChild(canvas, view, j3);
-            if (view == znVar.f45060z2) {
+            if (view == znVar.f45015z2) {
                 canvas.restore();
             }
             return drawChild;
@@ -43,7 +43,7 @@ public final class ll extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        zn znVar = this.f39672c;
+        zn znVar = this.f39696c;
         if (znVar.A2) {
             int i12 = 0;
             while (true) {
@@ -64,16 +64,16 @@ public final class ll extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f39670a = motionEvent.getY();
+        this.f39694a = motionEvent.getY();
         int action = motionEvent.getAction();
-        zn znVar = this.f39672c;
+        zn znVar = this.f39696c;
         if (action == 1) {
             znVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f39671b - this.f39670a;
+            float f7 = this.f39695b - this.f39694a;
             znVar.movePreviewFragment(f7);
             if (f7 < 0.0f) {
-                this.f39671b = this.f39670a;
+                this.f39695b = this.f39694a;
             }
         }
         return super.onTouchEvent(motionEvent);

@@ -7,37 +7,37 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.fa0;
 import w7.x5;
 public final class x0 extends LinearLayout {
-    public int f47554a;
-    public final TextView f47555b;
-    public final fa0 f47556c;
+    public int f47600a;
+    public final TextView f47601b;
+    public final fa0 f47602c;
     public LinearLayout d;
-    public final l0 f47557e;
-    public final ViewGroup f47558f;
+    public final l0 f47603e;
+    public final ViewGroup f47604f;
     public boolean h;
-    public final y0 f47559n;
+    public final y0 f47605n;
 
     public x0(y0 y0Var, Context context, int i10) {
         super(context);
-        this.f47559n = y0Var;
+        this.f47605n = y0Var;
         setOrientation(1);
         ViewGroup C = y0Var.C(context, i10);
-        this.f47558f = C;
+        this.f47604f = C;
         addView(C);
-        this.f47557e = (l0) C;
+        this.f47603e = (l0) C;
         TextView textView = new TextView(context);
-        this.f47555b = textView;
+        this.f47601b = textView;
         textView.setGravity(1);
-        int i11 = i6.f20909j5;
+        int i11 = h6.f20894j5;
         textView.setTextColor(y0Var.getThemedColor(i11));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         addView(textView, x5.a(-2.0f, 21.0f, 20.0f, 21.0f, 0.0f, -1, 0));
         fa0 fa0Var = new fa0(context, null);
-        this.f47556c = fa0Var;
+        this.f47602c = fa0Var;
         fa0Var.setGravity(1);
         fa0Var.setTextSize(1, 15.0f);
         fa0Var.setTextColor(y0Var.getThemedColor(i11));
@@ -51,12 +51,12 @@ public final class x0 extends LinearLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f47558f) {
+        if (view == this.f47604f) {
             boolean z10 = view instanceof b;
             if (z10) {
                 setTranslationY(0.0f);
             } else {
-                setTranslationY(this.f47559n.L);
+                setTranslationY(this.f47605n.L);
             }
             if (z10) {
                 return super.drawChild(canvas, view, j3);
@@ -72,16 +72,16 @@ public final class x0 extends LinearLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f47555b;
+        TextView textView = this.f47601b;
         textView.setVisibility(0);
-        ViewGroup viewGroup = this.f47558f;
+        ViewGroup viewGroup = this.f47604f;
         boolean z10 = viewGroup instanceof b;
-        y0 y0Var = this.f47559n;
+        y0 y0Var = this.f47605n;
         if (z10) {
             ((b) viewGroup).setTopOffset(y0Var.L);
         }
-        viewGroup.getLayoutParams().height = y0Var.f47571s;
-        fa0 fa0Var = this.f47556c;
+        viewGroup.getLayoutParams().height = y0Var.f47617s;
+        fa0 fa0Var = this.f47602c;
         fa0Var.setVisibility(0);
         ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);

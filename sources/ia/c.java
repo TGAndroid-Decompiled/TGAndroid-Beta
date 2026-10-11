@@ -5,16 +5,16 @@ import java.util.Collections;
 import java.util.Map;
 import n4.x;
 public final class c {
-    public final String f12087a;
-    public final Map f12088b;
+    public final String f12086a;
+    public final Map f12087b;
 
     public c(String str, Map map) {
-        this.f12087a = str;
-        this.f12088b = map;
+        this.f12086a = str;
+        this.f12087b = map;
     }
 
     public static x a(String str) {
-        return new x(str, 20);
+        return new x(str);
     }
 
     public static c c(String str) {
@@ -22,7 +22,7 @@ public final class c {
     }
 
     public final Annotation b(Class cls) {
-        return (Annotation) this.f12088b.get(cls);
+        return (Annotation) this.f12087b.get(cls);
     }
 
     public final boolean equals(Object obj) {
@@ -33,17 +33,17 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f12087a.equals(cVar.f12087a) && this.f12088b.equals(cVar.f12088b)) {
+        if (this.f12086a.equals(cVar.f12086a) && this.f12087b.equals(cVar.f12087b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f12088b.hashCode() + (this.f12087a.hashCode() * 31);
+        return this.f12087b.hashCode() + (this.f12086a.hashCode() * 31);
     }
 
     public final String toString() {
-        return "FieldDescriptor{name=" + this.f12087a + ", properties=" + this.f12088b.values() + "}";
+        return "FieldDescriptor{name=" + this.f12086a + ", properties=" + this.f12087b.values() + "}";
     }
 }

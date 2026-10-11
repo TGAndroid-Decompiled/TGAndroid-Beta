@@ -3,33 +3,33 @@ package ii;
 import android.view.View;
 import org.telegram.ui.Components.q80;
 public interface v3 {
-    void B();
+    void B(int i10);
 
-    q80 E(View view);
+    void E();
 
-    void H();
+    q80 J(View view);
 
-    void J(u3 u3Var, View view);
+    void L();
+
+    void N(u3 u3Var, View view);
 
     void e(w3 w3Var, View view);
 
     boolean f(float f7);
 
-    void i(f6 f6Var, String str);
+    void l(f6 f6Var, String str);
 
-    void k(int i10);
+    void m(int i10);
 
-    void l();
-
-    void m();
+    void n();
 
     void onContentChanged();
 
-    void p(a aVar);
+    void p();
 
-    void q();
+    void q(a aVar);
 
-    void r(i1 i1Var, boolean z10);
+    void w();
 
-    void t(int i10);
+    void x(i1 i1Var, boolean z10);
 }

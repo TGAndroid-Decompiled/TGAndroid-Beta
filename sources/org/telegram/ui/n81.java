@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class n81 implements Utilities.Callback {
-    public final int f40147a;
-    public final SessionsActivity f40148b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class n81 implements org.telegram.ui.ActionBar.z1 {
+    public final int f40149a;
+    public final SessionsActivity f40150b;
 
     public n81(SessionsActivity sessionsActivity, int i10) {
-        this.f40147a = i10;
-        this.f40148b = sessionsActivity;
+        this.f40149a = i10;
+        this.f40150b = sessionsActivity;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f40147a) {
+    public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f40149a) {
             case 0:
-                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
-                SessionsActivity sessionsActivity = this.f40148b;
+                SessionsActivity sessionsActivity = this.f40150b;
                 sessionsActivity.getClass();
-                if (connectedbots != null) {
-                    sessionsActivity.h = connectedbots.connected_bots;
-                    if (sessionsActivity.f34511a != null) {
-                        sessionsActivity.m0();
-                        sessionsActivity.f34511a.l();
-                        return;
-                    }
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    sessionsActivity.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     return;
                 }
-                return;
             default:
-                SessionsActivity.V(this.f40148b, (Boolean) obj);
+                SessionsActivity.W(this.f40150b);
                 return;
         }
     }

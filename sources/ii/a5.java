@@ -1,11 +1,11 @@
 package ii;
 public final class a5 implements Runnable {
-    public final int f12276a;
-    public final c5 f12277b;
+    public final int f12275a;
+    public final c5 f12276b;
 
     public a5(c5 c5Var, int i10) {
-        this.f12276a = i10;
-        this.f12277b = c5Var;
+        this.f12275a = i10;
+        this.f12276b = c5Var;
     }
 
     @Override

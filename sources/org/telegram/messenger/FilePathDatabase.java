@@ -36,13 +36,13 @@ public class FilePathDatabase {
     }
 
     public static class PathData {
-        public final int f17246dc;
-        public final long f17247id;
+        public final int f17241dc;
+        public final long f17242id;
         public final int type;
 
         public PathData(long j3, int i10, int i11) {
-            this.f17247id = j3;
-            this.f17246dc = i10;
+            this.f17242id = j3;
+            this.f17241dc = i10;
             this.type = i11;
         }
     }
@@ -192,7 +192,7 @@ public class FilePathDatabase {
             this.database.beginTransaction();
             for (int i10 = 0; i10 < list.size(); i10++) {
                 SQLiteDatabase sQLiteDatabase = this.database;
-                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((zh.a) list.get(i10)).f54738a.getPath()) + "'").stepThis().dispose();
+                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((zh.a) list.get(i10)).f54781a.getPath()) + "'").stepThis().dispose();
             }
         } catch (Throwable th2) {
             try {
@@ -297,7 +297,7 @@ public class FilePathDatabase {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             long currentTimeMillis = System.currentTimeMillis();
             long[] jArr = new long[1];
-            postToFrontRunnable(new pk(this, arrayList2, jArr, countDownLatch, 7));
+            postToFrontRunnable(new pk(this, arrayList2, jArr, countDownLatch, 6));
             try {
                 countDownLatch.await();
             } catch (InterruptedException e7) {
@@ -317,7 +317,7 @@ public class FilePathDatabase {
 
     public void clear() {
         this.cache.clear();
-        postRunnable(new f1(this, 20));
+        postRunnable(new f1(this, 19));
     }
 
     public void createDatabase(int i10, boolean z10) {
@@ -478,7 +478,7 @@ public class FilePathDatabase {
     public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
-        postRunnable(new pk(this, arrayList, longSparseArray, countDownLatch, 6));
+        postRunnable(new pk(this, arrayList, longSparseArray, countDownLatch, 5));
         try {
             countDownLatch.await();
             return longSparseArray;
@@ -493,12 +493,12 @@ public class FilePathDatabase {
     }
 
     public void removeFiles(List<zh.a> list) {
-        postRunnable(new c2(8, this, list));
+        postRunnable(new f2(7, this, list));
     }
 
     public void saveFileDialogId(File file, FileMeta fileMeta) {
         if (file != null && fileMeta != null) {
-            postRunnable(new g0(this, file, fileMeta, 25));
+            postRunnable(new g0(this, file, fileMeta, 24));
         }
     }
 }

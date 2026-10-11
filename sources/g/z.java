@@ -6,27 +6,27 @@ import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 public final class z extends k.a implements l.i {
-    public final Context f10206c;
+    public final Context f10205c;
     public final l.k d;
-    public n4.x f10207e;
-    public WeakReference f10208f;
+    public n4.x f10206e;
+    public WeakReference f10207f;
     public final a0 h;
 
     public z(a0 a0Var, Context context, n4.x xVar) {
         this.h = a0Var;
-        this.f10206c = context;
-        this.f10207e = xVar;
+        this.f10205c = context;
+        this.f10206e = xVar;
         l.k kVar = new l.k(context);
-        kVar.f15248l = 1;
+        kVar.f15247l = 1;
         this.d = kVar;
-        kVar.f15242e = this;
+        kVar.f15241e = this;
     }
 
     @Override
     public final boolean A(l.k kVar, MenuItem menuItem) {
-        n4.x xVar = this.f10207e;
+        n4.x xVar = this.f10206e;
         if (xVar != null) {
-            return ((oi.f) xVar.f16616b).G(this, menuItem);
+            return ((pi.f) xVar.f16658b).G(this, menuItem);
         }
         return false;
     }
@@ -34,28 +34,28 @@ public final class z extends k.a implements l.i {
     @Override
     public final void a() {
         a0 a0Var = this.h;
-        if (a0Var.f10083i != this) {
+        if (a0Var.f10082i != this) {
             return;
         }
-        if (a0Var.f10090p) {
-            a0Var.f10084j = this;
-            a0Var.f10085k = this.f10207e;
+        if (a0Var.f10089p) {
+            a0Var.f10083j = this;
+            a0Var.f10084k = this.f10206e;
         } else {
-            this.f10207e.X(this);
+            this.f10206e.Q(this);
         }
-        this.f10207e = null;
+        this.f10206e = null;
         a0Var.a(false);
-        ActionBarContextView actionBarContextView = a0Var.f10081f;
+        ActionBarContextView actionBarContextView = a0Var.f10080f;
         if (actionBarContextView.v == null) {
             actionBarContextView.e();
         }
-        a0Var.f10079c.setHideOnContentScrollEnabled(a0Var.f10094t);
-        a0Var.f10083i = null;
+        a0Var.f10078c.setHideOnContentScrollEnabled(a0Var.f10093t);
+        a0Var.f10082i = null;
     }
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f10208f;
+        WeakReference weakReference = this.f10207f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -69,28 +69,28 @@ public final class z extends k.a implements l.i {
 
     @Override
     public final k.h d() {
-        return new k.h(this.f10206c);
+        return new k.h(this.f10205c);
     }
 
     @Override
     public final CharSequence e() {
-        return this.h.f10081f.getSubtitle();
+        return this.h.f10080f.getSubtitle();
     }
 
     @Override
     public final CharSequence f() {
-        return this.h.f10081f.getTitle();
+        return this.h.f10080f.getTitle();
     }
 
     @Override
     public final void g() {
-        if (this.h.f10083i != this) {
+        if (this.h.f10082i != this) {
             return;
         }
         l.k kVar = this.d;
         kVar.w();
         try {
-            this.f10207e.Y(this, kVar);
+            this.f10206e.R(this, kVar);
         } finally {
             kVar.v();
         }
@@ -98,40 +98,40 @@ public final class z extends k.a implements l.i {
 
     @Override
     public final boolean h() {
-        return this.h.f10081f.I;
+        return this.h.f10080f.I;
     }
 
     @Override
     public final void i(View view) {
-        this.h.f10081f.setCustomView(view);
-        this.f10208f = new WeakReference(view);
+        this.h.f10080f.setCustomView(view);
+        this.f10207f = new WeakReference(view);
     }
 
     @Override
     public final void j(int i10) {
-        k(this.h.f10077a.getResources().getString(i10));
+        k(this.h.f10076a.getResources().getString(i10));
     }
 
     @Override
     public final void k(CharSequence charSequence) {
-        this.h.f10081f.setSubtitle(charSequence);
+        this.h.f10080f.setSubtitle(charSequence);
     }
 
     @Override
     public final void l(int i10) {
-        m(this.h.f10077a.getResources().getString(i10));
+        m(this.h.f10076a.getResources().getString(i10));
     }
 
     @Override
     public final void m(CharSequence charSequence) {
-        this.h.f10081f.setTitle(charSequence);
+        this.h.f10080f.setTitle(charSequence);
     }
 
     @Override
     public final void n(l.k kVar) {
-        if (this.f10207e != null) {
+        if (this.f10206e != null) {
             g();
-            m.h hVar = this.h.f10081f.d;
+            m.h hVar = this.h.f10080f.d;
             if (hVar != null) {
                 hVar.l();
             }
@@ -140,7 +140,7 @@ public final class z extends k.a implements l.i {
 
     @Override
     public final void o(boolean z10) {
-        this.f14275b = z10;
-        this.h.f10081f.setTitleOptional(z10);
+        this.f14274b = z10;
+        this.h.f10080f.setTitleOptional(z10);
     }
 }

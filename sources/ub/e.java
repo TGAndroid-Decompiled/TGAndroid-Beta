@@ -5,27 +5,27 @@ import com.google.mlkit.nl.languageid.IdentifiedLanguage;
 import com.google.mlkit.nl.languageid.bundled.internal.ThickLanguageIdentifier;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
-import n6.l;
+import n6.m;
 import qb.i;
 public final class e extends i {
     public ThickLanguageIdentifier d;
-    public final Context f48936e;
-    public final tb.a f48937f;
-    public final boolean f48938g;
+    public final Context f48979e;
+    public final tb.a f48980f;
+    public final boolean f48981g;
 
     public e(Context context, tb.a aVar) {
-        this.f48936e = context;
-        this.f48937f = aVar;
+        this.f48979e = context;
+        this.f48980f = aVar;
         aVar.getClass();
-        this.f48938g = true;
+        this.f48981g = true;
     }
 
     @Override
     public final void b() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f46125a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f46159a.d).get()));
         if (this.d == null) {
-            this.f48937f.getClass();
-            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f48936e);
+            this.f48980f.getClass();
+            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f48979e);
             this.d = thickLanguageIdentifier;
             thickLanguageIdentifier.b();
         }
@@ -33,7 +33,7 @@ public final class e extends i {
 
     @Override
     public final void c() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f46125a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f46159a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();
@@ -48,7 +48,7 @@ public final class e extends i {
         }
         if (!str.isEmpty()) {
             ThickLanguageIdentifier thickLanguageIdentifier = this.d;
-            l.h(thickLanguageIdentifier);
+            m.h(thickLanguageIdentifier);
             ArrayList a2 = thickLanguageIdentifier.a(str);
             int size = a2.size();
             int i10 = 0;
@@ -57,8 +57,8 @@ public final class e extends i {
                     Object obj = a2.get(i10);
                     i10++;
                     IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
-                    if (!"unknown".equals(identifiedLanguage.f8005a)) {
-                        str2 = identifiedLanguage.f8005a;
+                    if (!"unknown".equals(identifiedLanguage.f8004a)) {
+                        str2 = identifiedLanguage.f8004a;
                         break;
                     }
                 } else {

@@ -1,88 +1,36 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class p61 extends FrameLayout {
-    public final TextView f40727a;
-    public final org.telegram.ui.Components.gk0 f40728b;
-    public final ImageView f40729c;
-    public float d;
-    public ValueAnimator f40730e;
-    public final k71 f40731f;
+public final class p61 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40767a;
+    public final s61 f40768b;
 
-    public p61(k71 k71Var, Context context, boolean z10) {
-        super(context);
-        int i10;
-        this.f40731f = k71Var;
-        LinearLayout e7 = org.telegram.messenger.bi.e(context, 0);
-        if (z10) {
-            i10 = 3;
-        } else {
-            i10 = 17;
-        }
-        addView(e7, w7.x5.e(-2, -2, i10));
-        ?? imageView = new ImageView(context);
-        this.f40728b = imageView;
-        imageView.f(R.raw.unlock_icon, 20, 20, null);
-        int i11 = org.telegram.ui.ActionBar.i6.Te;
-        org.telegram.ui.ActionBar.e6 e6Var = k71Var.Z0;
-        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.w0(i11, e6Var));
-        e7.addView((View) imageView, w7.x5.n(20, 20));
-        TextView textView = new TextView(context);
-        this.f40727a = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(i11, e6Var));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 14.0f);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        e7.addView(textView, w7.x5.q(-2, -2, 17));
-        ImageView imageView2 = new ImageView(context);
-        this.f40729c = imageView2;
-        imageView2.setImageResource(R.drawable.msg_close);
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Ve, e6Var), PorterDuff.Mode.MULTIPLY));
-        addView(imageView2, w7.x5.e(24, 24, 21));
-    }
-
-    public final void a(String str, boolean z10) {
-        this.f40727a.setText(str);
-        b(z10);
-    }
-
-    public final void b(boolean z10) {
-        float f7;
-        ValueAnimator valueAnimator = this.f40730e;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f40730e = null;
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        this.d = f7;
-        float dp = (1.0f - this.d) * AndroidUtilities.dp(-8.0f);
-        org.telegram.ui.Components.gk0 gk0Var = this.f40728b;
-        gk0Var.setTranslationX(dp);
-        this.f40727a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
-        gk0Var.setAlpha(this.d);
+    public p61(s61 s61Var, int i10) {
+        this.f40767a = i10;
+        this.f40768b = s61Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40767a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s61 s61Var = this.f40768b;
+                s61Var.N = floatValue;
+                s61Var.V.f38894h0.invalidate();
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s61 s61Var2 = this.f40768b;
+                s61Var2.N = floatValue2;
+                s61Var2.V.f38894h0.invalidate();
+                return;
+            default:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s61 s61Var3 = this.f40768b;
+                s61Var3.N = floatValue3;
+                s61Var3.V.f38894h0.invalidate();
+                return;
+        }
     }
 }

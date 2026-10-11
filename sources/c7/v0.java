@@ -8,22 +8,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class v0 extends o6.a {
     public static final Parcelable.Creator<v0> CREATOR = new r0(14);
-    public final boolean f4546a;
-    public final n7.s0 f4547b;
+    public final boolean f4545a;
+    public final n7.s0 f4546b;
 
     public v0(boolean z10, n7.s0 s0Var) {
-        this.f4546a = z10;
-        this.f4547b = s0Var;
+        this.f4545a = z10;
+        this.f4546b = s0Var;
     }
 
     public final JSONObject b() {
         byte[] u10;
         try {
             JSONObject jSONObject = new JSONObject();
-            if (this.f4546a) {
+            if (this.f4545a) {
                 jSONObject.put("enabled", true);
             }
-            n7.s0 s0Var = this.f4547b;
+            n7.s0 s0Var = this.f4546b;
             if (s0Var == null) {
                 u10 = null;
             } else {
@@ -48,14 +48,14 @@ public final class v0 extends o6.a {
             return false;
         }
         v0 v0Var = (v0) obj;
-        if (this.f4546a != v0Var.f4546a || !n6.l.l(this.f4547b, v0Var.f4547b)) {
+        if (this.f4545a != v0Var.f4545a || !n6.m.l(this.f4546b, v0Var.f4546b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4546a), this.f4547b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4545a), this.f4546b});
     }
 
     public final String toString() {
@@ -67,8 +67,8 @@ public final class v0 extends o6.a {
         byte[] u10;
         int q6 = w7.d0.q(parcel, 20293);
         w7.d0.s(parcel, 1, 4);
-        parcel.writeInt(this.f4546a ? 1 : 0);
-        n7.s0 s0Var = this.f4547b;
+        parcel.writeInt(this.f4545a ? 1 : 0);
+        n7.s0 s0Var = this.f4546b;
         if (s0Var == null) {
             u10 = null;
         } else {

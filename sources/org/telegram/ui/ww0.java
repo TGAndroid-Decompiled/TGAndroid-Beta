@@ -1,26 +1,34 @@
 package org.telegram.ui;
-public final class ww0 implements Runnable {
-    public final int f43806a;
-    public final PremiumPreviewFragment f43807b;
 
-    public ww0(PremiumPreviewFragment premiumPreviewFragment, int i10) {
-        this.f43806a = i10;
-        this.f43807b = premiumPreviewFragment;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
+public final class ww0 implements Comparator {
+    public final int f43882a;
+    public final MessagesController f43883b;
+
+    public ww0(MessagesController messagesController, int i10) {
+        this.f43882a = i10;
+        this.f43883b = messagesController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43806a) {
+    public final int compare(Object obj, Object obj2) {
+        int i10;
+        int i11;
+        jx0 jx0Var = (jx0) obj;
+        jx0 jx0Var2 = (jx0) obj2;
+        switch (this.f43882a) {
             case 0:
-                this.f43807b.j0();
-                return;
-            case 1:
-                PremiumPreviewFragment premiumPreviewFragment = this.f43807b;
-                premiumPreviewFragment.f34163a.postOnAnimation(new ww0(premiumPreviewFragment, 0));
-                return;
+                MessagesController messagesController = this.f43883b;
+                i10 = messagesController.businessFeaturesTypesToPosition.get(jx0Var.f39137a, Integer.MAX_VALUE);
+                i11 = messagesController.businessFeaturesTypesToPosition.get(jx0Var2.f39137a, Integer.MAX_VALUE);
+                break;
             default:
-                this.f43807b.getMediaDataController().loadPremiumPromo(false);
-                return;
+                MessagesController messagesController2 = this.f43883b;
+                i10 = messagesController2.premiumFeaturesTypesToPosition.get(jx0Var.f39137a, Integer.MAX_VALUE);
+                i11 = messagesController2.premiumFeaturesTypesToPosition.get(jx0Var2.f39137a, Integer.MAX_VALUE);
+                break;
         }
+        return i10 - i11;
     }
 }

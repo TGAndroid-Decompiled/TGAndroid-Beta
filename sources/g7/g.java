@@ -6,22 +6,22 @@ import android.os.Parcelable;
 import w7.d0;
 public final class g extends o6.a {
     public static final Parcelable.Creator<g> CREATOR = new e6.i(18);
-    public final String f10396a;
-    public final Bundle f10397b;
+    public final String f10395a;
+    public final Bundle f10396b;
 
     public g(String type, Bundle data) {
         kotlin.jvm.internal.i.e(type, "type");
         kotlin.jvm.internal.i.e(data, "data");
-        this.f10396a = type;
-        this.f10397b = data;
+        this.f10395a = type;
+        this.f10396b = data;
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i10) {
         kotlin.jvm.internal.i.e(dest, "dest");
         int q6 = d0.q(dest, 20293);
-        d0.l(dest, 1, this.f10396a);
-        d0.b(dest, 2, this.f10397b);
+        d0.l(dest, 1, this.f10395a);
+        d0.b(dest, 2, this.f10396b);
         d0.r(dest, q6);
     }
 }

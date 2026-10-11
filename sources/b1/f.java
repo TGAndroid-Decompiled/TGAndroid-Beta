@@ -28,7 +28,7 @@ public final class f implements l {
                 i e7 = (i) obj;
                 kotlin.jvm.internal.i.e(e7, "e");
                 ((Executor) this.f3200b).execute(new h((v0.i) this.f3201c, e7, 1));
-                return hd.i.f11092a;
+                return hd.i.f11091a;
             case 1:
                 CancellationSignal cancellationSignal = (CancellationSignal) this.f3200b;
                 c1.e eVar = (c1.e) this.f3201c;
@@ -38,7 +38,7 @@ public final class f implements l {
                 if (!a1.h.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
                     d.a(eVar.f3992i, intent, "BEGIN_SIGN_IN");
-                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f50722a);
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f50766a);
                     try {
                         context.startActivity(intent);
                     } catch (Exception unused) {
@@ -48,24 +48,24 @@ public final class f implements l {
                         }
                     }
                 }
-                return hd.i.f11092a;
+                return hd.i.f11091a;
             default:
                 CancellationSignal cancellationSignal2 = (CancellationSignal) this.f3200b;
                 d1.e eVar2 = (d1.e) this.f3201c;
-                Context context2 = eVar2.f8044e;
+                Context context2 = eVar2.f8043e;
                 PendingIntent result = (PendingIntent) obj;
                 kotlin.jvm.internal.i.e(result, "result");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.h.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    d.a(eVar2.f8047i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    d.a(eVar2.f8046i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.h.a(cancellationSignal2)) {
-                            Executor executor = eVar2.f8046g;
+                            Executor executor = eVar2.f8045g;
                             if (executor != null) {
                                 executor.execute(new d1.d(eVar2, 0));
                             } else {
@@ -75,7 +75,7 @@ public final class f implements l {
                         }
                     }
                 }
-                return hd.i.f11092a;
+                return hd.i.f11091a;
         }
     }
 }

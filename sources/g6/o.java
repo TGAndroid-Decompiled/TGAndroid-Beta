@@ -5,20 +5,20 @@ import android.os.Looper;
 import com.google.android.gms.internal.cast.a0;
 import java.util.Locale;
 public final class o {
-    public static final Object f10349i = new Object();
-    public final b f10350a;
-    public final long f10351b;
-    public final String f10352c;
-    public n f10355g;
+    public static final Object f10348i = new Object();
+    public final b f10349a;
+    public final long f10350b;
+    public final String f10351c;
+    public n f10354g;
     public r4 h;
-    public long f10353e = -1;
-    public long f10354f = 0;
+    public long f10352e = -1;
+    public long f10353f = 0;
     public final a0 d = new a0(Looper.getMainLooper(), 0);
 
     public o(long j3, String str) {
-        this.f10351b = j3;
-        this.f10352c = str;
-        this.f10350a = new b("RequestTracker", str);
+        this.f10350b = j3;
+        this.f10351c = str;
+        this.f10349a = new b("RequestTracker", str);
     }
 
     public final void a(long j3, n nVar) {
@@ -26,17 +26,17 @@ public final class o {
         long j10;
         long j11;
         long currentTimeMillis = System.currentTimeMillis();
-        Object obj = f10349i;
+        Object obj = f10348i;
         synchronized (obj) {
-            nVar2 = this.f10355g;
-            j10 = this.f10353e;
-            j11 = this.f10354f;
-            this.f10353e = j3;
-            this.f10355g = nVar;
-            this.f10354f = currentTimeMillis;
+            nVar2 = this.f10354g;
+            j10 = this.f10352e;
+            j11 = this.f10353f;
+            this.f10352e = j3;
+            this.f10354g = nVar;
+            this.f10353f = currentTimeMillis;
         }
         if (nVar2 != null) {
-            nVar2.n(this.f10352c, j10, j11, currentTimeMillis);
+            nVar2.s(this.f10351c, j10, j11, currentTimeMillis);
         }
         synchronized (obj) {
             try {
@@ -46,7 +46,7 @@ public final class o {
                 }
                 r4 r4Var2 = new r4(this, 20);
                 this.h = r4Var2;
-                this.d.postDelayed(r4Var2, this.f10351b);
+                this.d.postDelayed(r4Var2, this.f10350b);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -54,7 +54,7 @@ public final class o {
     }
 
     public final void b(long j3, int i10, l lVar) {
-        synchronized (f10349i) {
+        synchronized (f10348i) {
             try {
                 if (c(j3)) {
                     Locale locale = Locale.ROOT;
@@ -68,8 +68,8 @@ public final class o {
 
     public final boolean c(long j3) {
         boolean z10;
-        synchronized (f10349i) {
-            long j10 = this.f10353e;
+        synchronized (f10348i) {
+            long j10 = this.f10352e;
             z10 = false;
             if (j10 != -1 && j10 == j3) {
                 z10 = true;
@@ -80,8 +80,8 @@ public final class o {
 
     public final boolean d() {
         boolean z10;
-        synchronized (f10349i) {
-            if (this.f10353e != -1) {
+        synchronized (f10348i) {
+            if (this.f10352e != -1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -91,18 +91,18 @@ public final class o {
     }
 
     public final void e(String str, int i10, Object obj) {
-        this.f10350a.b(str, new Object[0]);
-        Object obj2 = f10349i;
+        this.f10349a.b(str, new Object[0]);
+        Object obj2 = f10348i;
         synchronized (obj2) {
             try {
-                if (this.f10355g != null) {
+                if (this.f10354g != null) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    n nVar = this.f10355g;
-                    n6.l.h(nVar);
-                    nVar.w(this.f10352c, this.f10353e, i10, obj, this.f10354f, currentTimeMillis);
+                    n nVar = this.f10354g;
+                    n6.m.h(nVar);
+                    nVar.z(this.f10351c, this.f10352e, i10, obj, this.f10353f, currentTimeMillis);
                 }
-                this.f10353e = -1L;
-                this.f10355g = null;
+                this.f10352e = -1L;
+                this.f10354g = null;
                 synchronized (obj2) {
                     r4 r4Var = this.h;
                     if (r4Var != null) {
@@ -116,11 +116,11 @@ public final class o {
     }
 
     public final boolean f(int i10) {
-        synchronized (f10349i) {
+        synchronized (f10348i) {
             try {
                 if (d()) {
                     Locale locale = Locale.ROOT;
-                    long j3 = this.f10353e;
+                    long j3 = this.f10352e;
                     e("clearing request " + j3, i10, null);
                     return true;
                 }

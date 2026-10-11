@@ -5,46 +5,46 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.cl0;
-import org.telegram.ui.ze;
+import org.telegram.ui.bl0;
+import org.telegram.ui.ye;
 public final class z4 implements Utilities.Callback {
-    public final m5 f53509a;
-    public final long f53510b;
-    public final int f53511c;
+    public final n5 f53552a;
+    public final long f53553b;
+    public final int f53554c;
     public final boolean[] d;
-    public final Utilities.Callback2 f53512e;
-    public final Context f53513f;
-    public final org.telegram.ui.ActionBar.e6 f53514g;
+    public final Utilities.Callback2 f53555e;
+    public final Context f53556f;
+    public final org.telegram.ui.ActionBar.d6 f53557g;
     public final TLRPC.ChatInvite h;
-    public final String f53515i;
+    public final String f53558i;
 
-    public z4(m5 m5Var, long j3, int i10, boolean[] zArr, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.ChatInvite chatInvite, String str) {
-        this.f53509a = m5Var;
-        this.f53510b = j3;
-        this.f53511c = i10;
+    public z4(n5 n5Var, long j3, int i10, boolean[] zArr, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.ChatInvite chatInvite, String str) {
+        this.f53552a = n5Var;
+        this.f53553b = j3;
+        this.f53554c = i10;
         this.d = zArr;
-        this.f53512e = callback2;
-        this.f53513f = context;
-        this.f53514g = e6Var;
+        this.f53555e = callback2;
+        this.f53556f = context;
+        this.f53557g = d6Var;
         this.h = chatInvite;
-        this.f53515i = str;
+        this.f53558i = str;
     }
 
     @Override
     public final void run(Object obj) {
         Utilities.Callback callback = (Utilities.Callback) obj;
-        m5 m5Var = this.f53509a;
-        long j3 = m5Var.f52928f.amount;
-        long j10 = this.f53510b;
+        n5 n5Var = this.f53552a;
+        long j3 = n5Var.f53001f.amount;
+        long j10 = this.f53553b;
         int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
         boolean[] zArr = this.d;
-        Utilities.Callback2 callback2 = this.f53512e;
+        Utilities.Callback2 callback2 = this.f53555e;
         TLRPC.ChatInvite chatInvite = this.h;
-        String str = this.f53515i;
+        String str = this.f53558i;
         if (i10 < 0) {
-            boolean starsPurchaseAvailable = MessagesController.getInstance(this.f53511c).starsPurchaseAvailable();
-            Context context = this.f53513f;
-            org.telegram.ui.ActionBar.e6 e6Var = this.f53514g;
+            boolean starsPurchaseAvailable = MessagesController.getInstance(this.f53554c).starsPurchaseAvailable();
+            Context context = this.f53556f;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f53557g;
             if (!starsPurchaseAvailable) {
                 if (callback != null) {
                     callback.run(Boolean.FALSE);
@@ -53,15 +53,15 @@ public final class z4 implements Utilities.Callback {
                     callback2.run("cancelled", 0L);
                     zArr[0] = true;
                 }
-                m5.e0(context, e6Var);
+                n5.e0(context, d6Var);
                 return;
             }
             boolean[] zArr2 = {false};
-            e7 e7Var = new e7(context, e6Var, j10, 1, chatInvite.title, new ze((Object) m5Var, (Object) zArr2, str, (TLObject) chatInvite, (Object) zArr, (Object) callback2, (Object) callback, 13), 0L);
-            e7Var.setOnDismissListener(new cl0(m5Var, callback, zArr2, zArr, callback2, 2));
+            e7 e7Var = new e7(context, d6Var, j10, 1, chatInvite.title, new ye((Object) n5Var, (Object) zArr2, str, (TLObject) chatInvite, (Object) zArr, (Object) callback2, (Object) callback, 13), 0L);
+            e7Var.setOnDismissListener(new bl0(n5Var, callback, zArr2, zArr, callback2, 2));
             e7Var.show();
             return;
         }
-        m5Var.Z(str, chatInvite, new z3(callback, zArr, callback2));
+        n5Var.Z(str, chatInvite, new z3(callback, zArr, callback2));
     }
 }

@@ -19,15 +19,15 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.po0;
+import org.telegram.ui.Components.qo0;
 import org.telegram.ui.Components.td0;
 import org.telegram.ui.Components.vd0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.fg0;
-import org.telegram.ui.k71;
-import org.telegram.ui.rz0;
-import org.telegram.ui.ze;
-public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBar.a2, td0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
+import org.telegram.ui.eg0;
+import org.telegram.ui.j71;
+import org.telegram.ui.qz0;
+import org.telegram.ui.ye;
+public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBar.z1, td0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
     public final Object f1087a;
     public final Object f1088b;
     public final Object f1089c;
@@ -44,16 +44,16 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void a(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ze((Object) ((fg0) this.f1087a), (Object) hVar, (Object) list, (String) this.f1088b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f1089c), (Object) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((po0) this.f1090e), 4));
+        AndroidUtilities.runOnUIThread(new ye((Object) ((eg0) this.f1087a), (Object) hVar, (Object) list, (String) this.f1088b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f1089c), (Object) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((qo0) this.f1090e), 4));
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        org.telegram.ui.ActionBar.n3 n3Var = (org.telegram.ui.ActionBar.n3) this.f1087a;
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        org.telegram.ui.ActionBar.m3 m3Var = (org.telegram.ui.ActionBar.m3) this.f1087a;
         ((boolean[]) this.f1088b)[0] = true;
-        n3Var.h(n3Var.f21432w, (org.telegram.ui.ActionBar.m3) this.f1089c, true);
+        m3Var.h(m3Var.f21385w, (org.telegram.ui.ActionBar.l3) this.f1089c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
-        ((org.telegram.ui.ActionBar.b2[]) this.f1090e)[0].dismiss();
+        ((org.telegram.ui.ActionBar.a2[]) this.f1090e)[0].dismiss();
     }
 
     @Override
@@ -77,8 +77,8 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f34535s0;
-        ((rz0) iVar.f326b).a(canvas, i6Var, i6Var2);
+        int i10 = ProfileStoriesView.f34525s0;
+        ((qz0) iVar.f326b).a(canvas, i6Var, i6Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
     }
@@ -93,37 +93,37 @@ public final class h6 implements ec, OnFailureListener, org.telegram.ui.ActionBa
         kotlin.jvm.internal.i.e(e7, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.i.e(request, "request");
-        for (v0.p pVar : request.f49067a) {
+        for (v0.p pVar : request.f49110a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
-        new c1.e(aVar.f9554e).g(request, cancellationSignal, executor, iVar);
+        new c1.e(aVar.f9553e).g(request, cancellationSignal, executor, iVar);
     }
 
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ze((yh.m5) this.f1087a, list, (g90) this.f1088b, (TLRPC.TL_inputStorePaymentStarsGift) this.f1089c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.f1090e, 15));
+        AndroidUtilities.runOnUIThread(new ye((yh.n5) this.f1087a, list, (g90) this.f1088b, (TLRPC.TL_inputStorePaymentStarsGift) this.f1089c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.f1090e, 15));
     }
 
     @Override
-    public void r(vd0 vd0Var, int i10) {
+    public void q(vd0 vd0Var, int i10) {
         org.telegram.ui.Components.g5.b((ci.d) this.f1087a, (vd0) this.f1088b, (vd0) this.f1089c, (vd0) this.d, (vd0) this.f1090e);
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
         TLRPC.TL_availableReaction tL_availableReaction;
-        k71 k71Var = (k71) this.f1087a;
+        j71 j71Var = (j71) this.f1087a;
         LinkedHashSet linkedHashSet = (LinkedHashSet) this.f1088b;
         HashMap hashMap = (HashMap) this.f1089c;
         ArrayList arrayList2 = (ArrayList) this.d;
         Runnable runnable = (Runnable) this.f1090e;
-        k71Var.getClass();
+        j71Var.getClass();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             try {
                 if (((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.startsWith("animated_")) {
                     linkedHashSet.add(Long.valueOf(Long.parseLong(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.substring(9))));
                 } else {
-                    int i11 = k71Var.W;
+                    int i11 = j71Var.W;
                     if ((i11 == 1 || i11 == 11 || i11 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji)) != null) {
                         arrayList2.add(zg.n0.c(tL_availableReaction));
                     }

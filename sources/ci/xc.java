@@ -18,41 +18,41 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.is;
 public class xc extends View implements v2 {
-    public final Path f6326a;
-    public final Paint f6327b;
-    public final Paint f6328c;
+    public final Path f6325a;
+    public final Paint f6326b;
+    public final Paint f6327c;
     public boolean d;
-    public final org.telegram.ui.Components.g6 f6329e;
-    public Drawable f6330f;
+    public final org.telegram.ui.Components.g6 f6328e;
+    public Drawable f6329f;
     public Bitmap h;
-    public int f6331n;
-    public ValueAnimator f6332r;
+    public int f6330n;
+    public ValueAnimator f6331r;
 
     public xc(Context context) {
         super(context);
-        this.f6326a = new Path();
+        this.f6325a = new Path();
         Paint paint = new Paint(1);
-        this.f6327b = paint;
+        this.f6326b = paint;
         Paint paint2 = new Paint(3);
-        this.f6328c = paint2;
-        this.f6329e = new org.telegram.ui.Components.g6(this, 0L, 380L, is.h);
+        this.f6327c = paint2;
+        this.f6328e = new org.telegram.ui.Components.g6(this, 0L, 380L, is.h);
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
 
     public final void a(u uVar, boolean z10) {
-        if (this.f6330f == uVar) {
+        if (this.f6329f == uVar) {
             return;
         }
-        ValueAnimator valueAnimator = this.f6332r;
+        ValueAnimator valueAnimator = this.f6331r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f6332r = null;
+            this.f6331r = null;
         }
         if (z10) {
-            this.f6332r = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            this.f6332r.addUpdateListener(new ai.y4(this, new AtomicBoolean(), uVar, 2));
-            this.f6332r.start();
+            this.f6331r = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+            this.f6331r.addUpdateListener(new ai.y4(this, new AtomicBoolean(), uVar, 2));
+            this.f6331r.start();
             return;
         }
         setDrawable(uVar);
@@ -67,39 +67,39 @@ public class xc extends View implements v2 {
             } else {
                 f7 = 0.0f;
             }
-            this.f6329e.d(f7, true);
+            this.f6328e.d(f7, true);
         }
         invalidate();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f6330f != null) {
-            float e7 = this.f6329e.e(this.d);
-            int intrinsicWidth = this.f6330f.getIntrinsicWidth();
-            int intrinsicHeight = this.f6330f.getIntrinsicHeight();
+        if (this.f6329f != null) {
+            float e7 = this.f6328e.e(this.d);
+            int intrinsicWidth = this.f6329f.getIntrinsicWidth();
+            int intrinsicHeight = this.f6329f.getIntrinsicHeight();
             Rect rect = AndroidUtilities.rectTmp2;
             rect.set((getWidth() - intrinsicWidth) / 2, (getHeight() - intrinsicHeight) / 2, (getWidth() + intrinsicWidth) / 2, (getHeight() + intrinsicHeight) / 2);
             if (e7 <= 0.0f) {
-                this.f6330f.setBounds(rect);
-                this.f6330f.draw(canvas);
+                this.f6329f.setBounds(rect);
+                this.f6329f.draw(canvas);
             } else if (e7 < 1.0f) {
                 canvas.save();
-                Path path = this.f6326a;
+                Path path = this.f6325a;
                 path.rewind();
                 path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * e7, Path.Direction.CW);
                 canvas.clipPath(path, Region.Op.DIFFERENCE);
-                this.f6330f.setBounds(rect);
-                this.f6330f.draw(canvas);
+                this.f6329f.setBounds(rect);
+                this.f6329f.draw(canvas);
                 canvas.restore();
             }
             if (e7 > 0.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * e7, this.f6327b);
+                canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * e7, this.f6326b);
                 canvas.save();
                 Bitmap bitmap = this.h;
                 if (bitmap != null) {
-                    canvas.drawBitmap(bitmap, (Rect) null, rect, this.f6328c);
+                    canvas.drawBitmap(bitmap, (Rect) null, rect, this.f6327c);
                 }
                 canvas.restore();
                 canvas.restore();
@@ -110,8 +110,8 @@ public class xc extends View implements v2 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.h == null && this.f6331n != 0) {
-            this.h = BitmapFactory.decodeResource(getResources(), this.f6331n);
+        if (this.h == null && this.f6330n != 0) {
+            this.h = BitmapFactory.decodeResource(getResources(), this.f6330n);
         }
     }
 
@@ -126,7 +126,7 @@ public class xc extends View implements v2 {
     }
 
     public void setDrawable(int i10) {
-        this.f6330f = getContext().getResources().getDrawable(i10).mutate();
+        this.f6329f = getContext().getResources().getDrawable(i10).mutate();
         Bitmap bitmap = this.h;
         if (bitmap != null) {
             bitmap.recycle();
@@ -140,11 +140,11 @@ public class xc extends View implements v2 {
 
     @Override
     public void setInvert(float f7) {
-        Drawable drawable = this.f6330f;
+        Drawable drawable = this.f6329f;
         if (drawable != null) {
             drawable.setColorFilter(new PorterDuffColorFilter(i0.a.d(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
         }
-        this.f6327b.setColor(i0.a.d(f7, -1, -16777216));
+        this.f6326b.setColor(i0.a.d(f7, -1, -16777216));
         invalidate();
     }
 
@@ -155,7 +155,7 @@ public class xc extends View implements v2 {
     }
 
     public void setDrawable(Drawable drawable) {
-        this.f6330f = drawable;
+        this.f6329f = drawable;
         Bitmap bitmap = this.h;
         if (bitmap != null) {
             bitmap.recycle();

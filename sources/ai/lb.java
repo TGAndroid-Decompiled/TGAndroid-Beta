@@ -45,7 +45,7 @@ public class lb extends View {
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = new Matrix();
-        org.telegram.ui.Cells.z g02 = org.telegram.ui.ActionBar.i6.g0(1174405119, 2, -1);
+        org.telegram.ui.Cells.z g02 = org.telegram.ui.ActionBar.h6.g0(1174405119, 2, -1);
         this.f1369n = g02;
         this.f1370r = new bd(this);
         this.f1371s = false;
@@ -107,7 +107,7 @@ public class lb extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                bdVar.f24926f = new ev(1, view);
+                bdVar.f24911f = new ev(1, view);
             }
             bdVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());

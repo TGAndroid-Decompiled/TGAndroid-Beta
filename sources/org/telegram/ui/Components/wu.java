@@ -8,8 +8,8 @@ public final class wu extends b00 {
     public boolean R2;
     public final av S2;
 
-    public wu(av avVar, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, Context context, boolean z11, boolean z12, org.telegram.ui.ActionBar.e6 e6Var, boolean z13) {
-        super(n2Var, z10, false, false, context, z11, null, null, z12, e6Var, false, z13);
+    public wu(av avVar, org.telegram.ui.ActionBar.m2 m2Var, boolean z10, Context context, boolean z11, boolean z12, org.telegram.ui.ActionBar.d6 d6Var, boolean z13) {
+        super(m2Var, z10, false, false, context, z11, null, null, z12, d6Var, false, z13);
         this.S2 = avVar;
     }
 
@@ -30,15 +30,15 @@ public final class wu extends b00 {
         av avVar = this.S2;
         if (avVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && avVar.f24646x) {
+            if (!this.Q2 && avVar.f24598x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.bi.t(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f21459w, 250L);
+                org.telegram.messenger.ai.t(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f21407w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = avVar.f24646x;
+            this.Q2 = avVar.f24598x;
             this.P2 = i15;
         }
     }

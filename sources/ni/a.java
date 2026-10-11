@@ -1,32 +1,78 @@
 package ni;
 
-import ai.h7;
-import android.util.SparseArray;
-import j$.util.Comparator$CC;
+import android.graphics.RectF;
+import hg.c;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 public final class a {
-    public SparseArray f16871a;
+    public final ArrayList f16916a = new ArrayList();
+    public int f16917b;
 
-    public final void a(HashMap hashMap) {
-        if (this.f16871a == null) {
-            this.f16871a = new SparseArray(hashMap.size());
-            ArrayList arrayList = new ArrayList(hashMap.entrySet());
-            Collections.sort(arrayList, Comparator$CC.comparingInt(new h7(4)));
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                Map.Entry entry = (Map.Entry) obj;
-                this.f16871a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
+    public final RectF a(float f7, float f10, float f11, float f12) {
+        RectF rectF;
+        int i10 = this.f16917b;
+        ArrayList arrayList = this.f16916a;
+        if (i10 < arrayList.size()) {
+            rectF = (RectF) arrayList.get(this.f16917b);
+            rectF.set(f7, f10, f11, f12);
+        } else {
+            rectF = new RectF(f7, f10, f11, f12);
+            arrayList.add(rectF);
+        }
+        this.f16917b++;
+        return rectF;
+    }
+
+    public final RectF b(int i10) {
+        if (i10 >= 0 && i10 < this.f16917b) {
+            return (RectF) this.f16916a.get(i10);
+        }
+        StringBuilder j3 = c.j(i10, "index=", ", size=");
+        j3.append(this.f16917b);
+        throw new IndexOutOfBoundsException(j3.toString());
+    }
+
+    public final void c(int i10) {
+        int i11;
+        if (i10 >= 0 && i10 < (i11 = this.f16917b)) {
+            int i12 = i11 - 1;
+            ArrayList arrayList = this.f16916a;
+            RectF rectF = (RectF) arrayList.get(i10);
+            if (i10 != i12) {
+                arrayList.set(i10, (RectF) arrayList.get(i12));
+                arrayList.set(i12, rectF);
             }
+            this.f16917b = i12;
             return;
         }
-        for (Map.Entry entry2 : hashMap.entrySet()) {
-            this.f16871a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
+        StringBuilder j3 = c.j(i10, "index=", ", size=");
+        j3.append(this.f16917b);
+        throw new IndexOutOfBoundsException(j3.toString());
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (!(obj instanceof a)) {
+            return false;
+        }
+        a aVar = (a) obj;
+        if (this.f16917b != aVar.f16917b) {
+            return false;
+        }
+        for (int i10 = 0; i10 < this.f16917b; i10++) {
+            if (!((RectF) this.f16916a.get(i10)).equals(aVar.f16916a.get(i10))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int i10 = 1;
+        for (int i11 = 0; i11 < this.f16917b; i11++) {
+            i10 = (i10 * 31) + ((RectF) this.f16916a.get(i11)).hashCode();
+        }
+        return i10;
     }
 }

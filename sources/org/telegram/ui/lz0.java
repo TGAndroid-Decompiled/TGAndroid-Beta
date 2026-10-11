@@ -1,78 +1,51 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class lz0 extends s4.t0 {
-    public final int f39758a;
-    public final ProfileActivity f39759b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class lz0 implements kq {
+    public final TLRPC.Chat f39777a;
+    public final nq f39778b;
+    public final ProfileActivity f39779c;
 
-    public lz0(ProfileActivity profileActivity, int i10) {
-        this.f39758a = i10;
-        this.f39759b = profileActivity;
+    public lz0(ProfileActivity profileActivity, TLRPC.Chat chat, nq nqVar) {
+        this.f39779c = profileActivity;
+        this.f39777a = chat;
+        this.f39778b = nqVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        switch (this.f39758a) {
-            case 0:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f39759b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            default:
-                ProfileActivity profileActivity = this.f39759b;
-                boolean z11 = true;
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
-                }
-                if (profileActivity.F0 && i10 != 2) {
-                    profileActivity.F0 = false;
-                }
-                org.telegram.ui.ActionBar.v0 v0Var = profileActivity.U0;
-                if (v0Var != null) {
-                    if (i10 != 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    profileActivity.f34425z1 = z10;
-                    if (z10 || profileActivity.f34357p2) {
-                        z11 = false;
-                    }
-                    v0Var.setEnabled(z11);
-                }
-                k01 k01Var = profileActivity.O;
-                boolean z12 = profileActivity.f34249a.I1;
-                k01Var.getClass();
-                return;
+    public final void a(TLRPC.User user) {
+        int i10;
+        ProfileActivity profileActivity = this.f39779c;
+        UndoView undoView = profileActivity.M;
+        long j3 = -profileActivity.f34279f1;
+        if (profileActivity.E2.megagroup) {
+            i10 = 10;
+        } else {
+            i10 = 9;
         }
+        undoView.m(j3, user, i10);
     }
 
     @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f39758a) {
-            case 1:
-                ProfileActivity profileActivity = this.f39759b;
-                org.telegram.ui.Components.a50 a50Var = profileActivity.X;
-                boolean z10 = true;
-                if (a50Var != null) {
-                    a50Var.b(true);
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = this.f39779c;
+        profileActivity.removeSelfFromStack();
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f34271e1));
+        if (user != null && (chat = this.f39777a) != null && profileActivity.f34271e1 != 0) {
+            nq nqVar = this.f39778b;
+            if (nqVar.Q && nqVar.getParentLayout() != null) {
+                for (org.telegram.ui.ActionBar.m2 m2Var : nqVar.getParentLayout().getFragmentStack()) {
+                    if (m2Var instanceof ub) {
+                        ub ubVar = (ub) m2Var;
+                        ubVar.V0();
+                        AndroidUtilities.runOnUIThread(new nf0(ubVar, user, chat, 25));
+                        return;
+                    }
                 }
-                profileActivity.A3();
-                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f34264c.N0() > profileActivity.f34401v4 - 8) {
-                    profileActivity.R3(false);
-                }
-                k01 k01Var = profileActivity.O;
-                if (k01Var.getY() > 0.0f) {
-                    z10 = false;
-                }
-                k01Var.setPinnedToTop(z10);
-                profileActivity.U4();
-                return;
-            default:
-                return;
+            }
         }
     }
 }

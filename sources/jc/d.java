@@ -2,16 +2,16 @@ package jc;
 
 import java.util.Arrays;
 public abstract class d {
-    public static final int[][] f14113a = {new int[]{1, 1, 1, 1, 1, 1, 1}, new int[]{1, 0, 0, 0, 0, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 0, 0, 0, 0, 1}, new int[]{1, 1, 1, 1, 1, 1, 1}};
-    public static final int[][] f14114b = {new int[]{1, 1, 1, 1, 1}, new int[]{1, 0, 0, 0, 1}, new int[]{1, 0, 1, 0, 1}, new int[]{1, 0, 0, 0, 1}, new int[]{1, 1, 1, 1, 1}};
-    public static final int[][] f14115c = {new int[]{-1, -1, -1, -1, -1, -1, -1}, new int[]{6, 18, -1, -1, -1, -1, -1}, new int[]{6, 22, -1, -1, -1, -1, -1}, new int[]{6, 26, -1, -1, -1, -1, -1}, new int[]{6, 30, -1, -1, -1, -1, -1}, new int[]{6, 34, -1, -1, -1, -1, -1}, new int[]{6, 22, 38, -1, -1, -1, -1}, new int[]{6, 24, 42, -1, -1, -1, -1}, new int[]{6, 26, 46, -1, -1, -1, -1}, new int[]{6, 28, 50, -1, -1, -1, -1}, new int[]{6, 30, 54, -1, -1, -1, -1}, new int[]{6, 32, 58, -1, -1, -1, -1}, new int[]{6, 34, 62, -1, -1, -1, -1}, new int[]{6, 26, 46, 66, -1, -1, -1}, new int[]{6, 26, 48, 70, -1, -1, -1}, new int[]{6, 26, 50, 74, -1, -1, -1}, new int[]{6, 30, 54, 78, -1, -1, -1}, new int[]{6, 30, 56, 82, -1, -1, -1}, new int[]{6, 30, 58, 86, -1, -1, -1}, new int[]{6, 34, 62, 90, -1, -1, -1}, new int[]{6, 28, 50, 72, 94, -1, -1}, new int[]{6, 26, 50, 74, 98, -1, -1}, new int[]{6, 30, 54, 78, 102, -1, -1}, new int[]{6, 28, 54, 80, 106, -1, -1}, new int[]{6, 32, 58, 84, 110, -1, -1}, new int[]{6, 30, 58, 86, 114, -1, -1}, new int[]{6, 34, 62, 90, 118, -1, -1}, new int[]{6, 26, 50, 74, 98, 122, -1}, new int[]{6, 30, 54, 78, 102, 126, -1}, new int[]{6, 26, 52, 78, 104, 130, -1}, new int[]{6, 30, 56, 82, 108, 134, -1}, new int[]{6, 34, 60, 86, 112, 138, -1}, new int[]{6, 30, 58, 86, 114, 142, -1}, new int[]{6, 34, 62, 90, 118, 146, -1}, new int[]{6, 30, 54, 78, 102, 126, 150}, new int[]{6, 24, 50, 76, 102, 128, 154}, new int[]{6, 28, 54, 80, 106, 132, 158}, new int[]{6, 32, 58, 84, 110, 136, 162}, new int[]{6, 26, 54, 82, 110, 138, 166}, new int[]{6, 30, 58, 86, 114, 142, 170}};
+    public static final int[][] f14112a = {new int[]{1, 1, 1, 1, 1, 1, 1}, new int[]{1, 0, 0, 0, 0, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 1, 1, 1, 0, 1}, new int[]{1, 0, 0, 0, 0, 0, 1}, new int[]{1, 1, 1, 1, 1, 1, 1}};
+    public static final int[][] f14113b = {new int[]{1, 1, 1, 1, 1}, new int[]{1, 0, 0, 0, 1}, new int[]{1, 0, 1, 0, 1}, new int[]{1, 0, 0, 0, 1}, new int[]{1, 1, 1, 1, 1}};
+    public static final int[][] f14114c = {new int[]{-1, -1, -1, -1, -1, -1, -1}, new int[]{6, 18, -1, -1, -1, -1, -1}, new int[]{6, 22, -1, -1, -1, -1, -1}, new int[]{6, 26, -1, -1, -1, -1, -1}, new int[]{6, 30, -1, -1, -1, -1, -1}, new int[]{6, 34, -1, -1, -1, -1, -1}, new int[]{6, 22, 38, -1, -1, -1, -1}, new int[]{6, 24, 42, -1, -1, -1, -1}, new int[]{6, 26, 46, -1, -1, -1, -1}, new int[]{6, 28, 50, -1, -1, -1, -1}, new int[]{6, 30, 54, -1, -1, -1, -1}, new int[]{6, 32, 58, -1, -1, -1, -1}, new int[]{6, 34, 62, -1, -1, -1, -1}, new int[]{6, 26, 46, 66, -1, -1, -1}, new int[]{6, 26, 48, 70, -1, -1, -1}, new int[]{6, 26, 50, 74, -1, -1, -1}, new int[]{6, 30, 54, 78, -1, -1, -1}, new int[]{6, 30, 56, 82, -1, -1, -1}, new int[]{6, 30, 58, 86, -1, -1, -1}, new int[]{6, 34, 62, 90, -1, -1, -1}, new int[]{6, 28, 50, 72, 94, -1, -1}, new int[]{6, 26, 50, 74, 98, -1, -1}, new int[]{6, 30, 54, 78, 102, -1, -1}, new int[]{6, 28, 54, 80, 106, -1, -1}, new int[]{6, 32, 58, 84, 110, -1, -1}, new int[]{6, 30, 58, 86, 114, -1, -1}, new int[]{6, 34, 62, 90, 118, -1, -1}, new int[]{6, 26, 50, 74, 98, 122, -1}, new int[]{6, 30, 54, 78, 102, 126, -1}, new int[]{6, 26, 52, 78, 104, 130, -1}, new int[]{6, 30, 56, 82, 108, 134, -1}, new int[]{6, 34, 60, 86, 112, 138, -1}, new int[]{6, 30, 58, 86, 114, 142, -1}, new int[]{6, 34, 62, 90, 118, 146, -1}, new int[]{6, 30, 54, 78, 102, 126, 150}, new int[]{6, 24, 50, 76, 102, 128, 154}, new int[]{6, 28, 54, 80, 106, 132, 158}, new int[]{6, 32, 58, 84, 110, 136, 162}, new int[]{6, 26, 54, 82, 110, 138, 166}, new int[]{6, 30, 58, 86, 114, 142, 170}};
     public static final int[][] d = {new int[]{8, 0}, new int[]{8, 1}, new int[]{8, 2}, new int[]{8, 3}, new int[]{8, 4}, new int[]{8, 5}, new int[]{8, 7}, new int[]{8, 8}, new int[]{7, 8}, new int[]{5, 8}, new int[]{4, 8}, new int[]{3, 8}, new int[]{2, 8}, new int[]{1, 8}, new int[]{0, 8}};
 
     public static int a(b bVar, boolean z10) {
         int i10;
         byte b10;
-        int i11 = bVar.f14109b;
-        int i12 = bVar.f14110c;
+        int i11 = bVar.f14108b;
+        int i12 = bVar.f14109c;
         if (z10) {
             i10 = i12;
         } else {
@@ -20,7 +20,7 @@ public abstract class d {
         if (!z10) {
             i11 = i12;
         }
-        byte[][] bArr = bVar.f14108a;
+        byte[][] bArr = bVar.f14107a;
         int i13 = 0;
         for (int i14 = 0; i14 < i10; i14++) {
             byte b11 = -1;
@@ -61,13 +61,13 @@ public abstract class d {
         int i19;
         int i20;
         int i21;
-        byte[][] bArr2 = bVar.f14108a;
-        int i22 = bVar.f14109b;
-        int i23 = bVar.f14110c;
+        byte[][] bArr2 = bVar.f14107a;
+        int i22 = bVar.f14108b;
+        int i23 = bVar.f14109c;
         for (byte[] bArr3 : bArr2) {
             Arrays.fill(bArr3, (byte) -1);
         }
-        int length = f14113a[0].length;
+        int length = f14112a[0].length;
         e(0, 0, bVar);
         int i24 = i22 - length;
         e(i24, 0, bVar);
@@ -83,13 +83,13 @@ public abstract class d {
         f(7, i27, bVar);
         if (bVar.a(8, i26) != 0) {
             bVar.b(8, i26, 1);
-            int i28 = fVar.f11079a;
+            int i28 = fVar.f11078a;
             if (i28 < 2) {
                 i11 = 0;
                 i12 = 1;
             } else {
                 i11 = 0;
-                int[] iArr = f14115c[i28 - 1];
+                int[] iArr = f14114c[i28 - 1];
                 i12 = 1;
                 int length2 = iArr.length;
                 int i29 = 0;
@@ -110,7 +110,7 @@ public abstract class d {
                                     if (i35 >= 5) {
                                         break;
                                     }
-                                    int[] iArr2 = f14114b[i35];
+                                    int[] iArr2 = f14113b[i35];
                                     int i36 = i35;
                                     int i37 = 0;
                                     for (int i38 = 5; i37 < i38; i38 = 5) {
@@ -152,25 +152,25 @@ public abstract class d {
             }
             dc.a aVar2 = new dc.a();
             if (i10 >= 0 && i10 < 8) {
-                int i44 = (cVar.f11063a << 3) | i10;
+                int i44 = (cVar.f11062a << 3) | i10;
                 aVar2.b(i44, 5);
                 aVar2.b(c(i44, 1335), 10);
                 dc.a aVar3 = new dc.a();
                 aVar3.b(21522, 15);
-                if (aVar2.f8271b == aVar3.f8271b) {
+                if (aVar2.f8270b == aVar3.f8270b) {
                     int i45 = i11;
                     while (true) {
-                        int[] iArr3 = aVar2.f8270a;
+                        int[] iArr3 = aVar2.f8269a;
                         if (i45 >= iArr3.length) {
                             break;
                         }
-                        iArr3[i45] = iArr3[i45] ^ aVar3.f8270a[i45];
+                        iArr3[i45] = iArr3[i45] ^ aVar3.f8269a[i45];
                         i45++;
                     }
-                    if (aVar2.f8271b == 15) {
+                    if (aVar2.f8270b == 15) {
                         int i46 = i11;
                         while (true) {
-                            int i47 = aVar2.f8271b;
+                            int i47 = aVar2.f8270b;
                             if (i46 >= i47) {
                                 break;
                             }
@@ -194,7 +194,7 @@ public abstract class d {
                             dc.a aVar4 = new dc.a();
                             aVar4.b(i28, 6);
                             aVar4.b(c(i28, 7973), 12);
-                            if (aVar4.f8271b == 18) {
+                            if (aVar4.f8270b == 18) {
                                 int i49 = 17;
                                 for (int i50 = i11; i50 < 6; i50++) {
                                     for (int i51 = i11; i51 < 3; i51++) {
@@ -208,7 +208,7 @@ public abstract class d {
                                     }
                                 }
                             } else {
-                                throw new Exception("should not happen but we got: " + aVar4.f8271b);
+                                throw new Exception("should not happen but we got: " + aVar4.f8270b);
                             }
                         }
                         int i53 = i40 - 1;
@@ -223,7 +223,7 @@ public abstract class d {
                                 for (int i57 = i11; i57 < 2; i57++) {
                                     int i58 = i53 - i57;
                                     if (g(bVar.a(i58, i54))) {
-                                        if (i55 < aVar.f8271b) {
+                                        if (i55 < aVar.f8270b) {
                                             boolean d12 = aVar.d(i55);
                                             i55++;
                                             i14 = d12;
@@ -286,12 +286,12 @@ public abstract class d {
                             i54 += i56;
                             i53 -= 2;
                         }
-                        if (i55 == aVar.f8271b) {
+                        if (i55 == aVar.f8270b) {
                             return;
                         }
-                        throw new Exception("Not all bits consumed: " + i55 + '/' + aVar.f8271b);
+                        throw new Exception("Not all bits consumed: " + i55 + '/' + aVar.f8270b);
                     }
-                    throw new Exception("should not happen but we got: " + aVar2.f8271b);
+                    throw new Exception("should not happen but we got: " + aVar2.f8270b);
                 }
                 throw new IllegalArgumentException("Sizes don't match");
             }
@@ -326,7 +326,7 @@ public abstract class d {
 
     public static void e(int i10, int i11, b bVar) {
         for (int i12 = 0; i12 < 7; i12++) {
-            int[] iArr = f14113a[i12];
+            int[] iArr = f14112a[i12];
             for (int i13 = 0; i13 < 7; i13++) {
                 bVar.b(i10 + i13, i11 + i12, iArr[i13]);
             }

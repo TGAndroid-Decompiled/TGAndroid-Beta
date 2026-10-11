@@ -1,456 +1,242 @@
 package qg;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.net.Uri;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.car.app.IStartCarApp;
-import androidx.car.app.notification.CarAppNotificationBroadcastReceiver;
-import ci.u5;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.firebase.FirebaseCommonRegistrar;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicBoolean;
+import ci.l8;
+import com.google.mlkit.vision.segmentation.subject.internal.zzd;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.ai;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Cells.c6;
-import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.gm0;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.ss0;
-import org.telegram.ui.Components.tc;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.fg1;
-import org.telegram.ui.ip0;
-import org.telegram.ui.k61;
-import org.telegram.ui.ny;
-import org.telegram.ui.ty;
-import org.telegram.ui.uo0;
-import org.telegram.ui.vg1;
-import xh.g4;
-import xh.h4;
-import yh.s3;
-public final class x1 implements OnFailureListener, t5.b, org.telegram.ui.ActionBar.a2, s5.e, uo0, ny, c3.r, e2.h, androidx.car.app.utils.b, q9.d, yh.g2, Utilities.Callback5, gm0, vg1, k61 {
-    public final int f46664a;
-    public final Object f46665b;
-    public final Object f46666c;
+import org.telegram.ui.Components.g6;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.ow0;
+import w7.x5;
+public final class x1 extends j {
+    public final Bitmap A0;
+    public boolean B0;
+    public boolean C0;
+    public final Rect D0;
+    public final Rect E0;
+    public final Paint F0;
+    public MediaController.CropState G0;
+    public final TLObject f46701q0;
+    public final String f46702r0;
+    public final int f46703s0;
+    public boolean f46704t0;
+    public final g6 f46705u0;
+    public final ow0 f46706v0;
+    public final int f46707w0;
+    public boolean f46708x0;
+    public final g6 f46709y0;
+    public final ai.f0 f46710z0;
 
-    public x1(int i10, Object obj, Object obj2) {
-        this.f46664a = i10;
-        this.f46665b = obj;
-        this.f46666c = obj2;
-    }
-
-    @Override
-    public boolean C() {
-        switch (this.f46664a) {
-            case 9:
-                return false;
-            default:
-                return false;
+    public x1(Context context, PointF pointF, ow0 ow0Var, String str, int i10) {
+        super(context, pointF);
+        this.f46703s0 = -1;
+        this.f46704t0 = false;
+        this.f46708x0 = false;
+        new Rect();
+        new RectF();
+        new Paint(3);
+        this.D0 = new Rect();
+        this.E0 = new Rect();
+        this.F0 = new Paint(3);
+        setRotation(0.0f);
+        setScale(1.0f);
+        this.f46702r0 = str;
+        this.f46706v0 = ow0Var;
+        ai.f0 f0Var = new ai.f0(this, context);
+        this.f46710z0 = f0Var;
+        addView(f0Var, x5.d(-1.0f, -1));
+        is isVar = is.h;
+        this.f46705u0 = new g6(f0Var, 0L, 500L, isVar);
+        this.f46709y0 = new g6(f0Var, 0L, 350L, isVar);
+        this.f46707w0 = i10;
+        Bitmap q6 = l8.q(new m4.w(str, 22), 1920, 1920, 0, false);
+        this.A0 = q6;
+        if (q6 != null) {
+            s(q6);
         }
+        k();
+    }
+
+    private String getImageFilter() {
+        Point point = AndroidUtilities.displaySize;
+        int round = Math.round((Math.min(point.x, point.y) * 0.8f) / AndroidUtilities.density);
+        return a1.g.l(round, round, "_");
     }
 
     @Override
-    public boolean K(ty tyVar) {
-        switch (this.f46664a) {
-            case 9:
-                return false;
-            default:
-                return false;
+    public final i a() {
+        return new p0(this, getContext());
+    }
+
+    public int getAnchor() {
+        return this.f46703s0;
+    }
+
+    public ow0 getBaseSize() {
+        return this.f46706v0;
+    }
+
+    public int getContentHeight() {
+        Bitmap bitmap = this.A0;
+        if (bitmap == null) {
+            return 1;
         }
+        return bitmap.getHeight();
     }
 
-    @Override
-    public boolean Y0(View view) {
-        return false;
-    }
-
-    @Override
-    public void a(int i10) {
-        switch (this.f46664a) {
-            case 7:
-                tg.v vVar = (tg.v) this.f46665b;
-                tg.v vVar2 = (tg.v) this.f46666c;
-                if (i10 == 1) {
-                    vVar.run(null);
-                    return;
-                } else if (i10 != 3) {
-                    vVar2.run(null);
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                Utilities.Callback callback = (Utilities.Callback) this.f46665b;
-                Utilities.Callback callback2 = (Utilities.Callback) this.f46666c;
-                if (i10 == 1) {
-                    callback.run(null);
-                    return;
-                } else if (i10 != 3) {
-                    callback2.run(null);
-                    return;
-                } else {
-                    return;
-                }
+    public int getContentWidth() {
+        Bitmap bitmap = this.A0;
+        if (bitmap == null) {
+            return 1;
         }
+        return bitmap.getWidth();
+    }
+
+    public int getOrientation() {
+        return this.f46707w0;
+    }
+
+    public Bitmap getSegmentedOutBitmap() {
+        return null;
     }
 
     @Override
-    public void accept(Object obj) {
-        a5.a aVar = (a5.a) this.f46665b;
-        ((u2.j0) obj).d(aVar.f299b, (u2.f0) aVar.f300c, (u2.b0) this.f46666c);
+    public ol0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (getScale() * getMeasuredHeight());
+        float scale2 = getScale() * getMeasuredWidth();
+        getMeasuredHeight();
+        getScale();
+        AndroidUtilities.dp(64.0f);
+        float y3 = ai.y(dp, 2.0f, getPositionX(), scaleX);
+        return new ol0(y3, ai.y(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + y3) - y3, dp2 * scaleX);
     }
 
     @Override
-    public Object apply(Object obj) {
-        i5.d[] values;
-        s5.g gVar = (s5.g) this.f46665b;
-        l5.i iVar = (l5.i) this.f46666c;
-        SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        s5.a aVar = gVar.d;
-        ArrayList d = gVar.d(sQLiteDatabase, iVar, aVar.f47879b);
-        for (i5.d dVar : i5.d.values()) {
-            if (dVar != iVar.f15417c) {
-                int size = aVar.f47879b - d.size();
-                if (size <= 0) {
-                    break;
-                }
-                d.addAll(gVar.d(sQLiteDatabase, iVar.b(dVar), size));
-            }
+    public final void k() {
+        ow0 ow0Var = this.f46706v0;
+        float f7 = ow0Var.f29541a / 2.0f;
+        float f10 = ow0Var.f29542b / 2.0f;
+        MediaController.CropState cropState = this.G0;
+        if (cropState != null) {
+            f7 *= cropState.cropPw;
+            f10 *= cropState.cropPh;
         }
-        HashMap hashMap = new HashMap();
-        StringBuilder sb2 = new StringBuilder("event_id IN (");
-        for (int i10 = 0; i10 < d.size(); i10++) {
-            sb2.append(((s5.b) d.get(i10)).f47882a);
-            if (i10 < d.size() - 1) {
-                sb2.append(',');
-            }
+        setX(getPositionX() - f7);
+        setY(getPositionY() - f10);
+        m();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        ow0 ow0Var = this.f46706v0;
+        float f7 = ow0Var.f29541a;
+        float f10 = ow0Var.f29542b;
+        MediaController.CropState cropState = this.G0;
+        if (cropState != null) {
+            f7 *= cropState.cropPw;
+            f10 *= cropState.cropPh;
         }
-        sb2.append(')');
-        Cursor query = sQLiteDatabase.query("event_metadata", new String[]{"event_id", "name", "value"}, sb2.toString(), null, null, null, null);
-        while (query.moveToNext()) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) f7, 1073741824), View.MeasureSpec.makeMeasureSpec((int) f10, 1073741824));
+    }
+
+    public final String q(int i10) {
+        TLObject tLObject = this.f46701q0;
+        if (tLObject instanceof TLRPC.Photo) {
             try {
-                long j3 = query.getLong(0);
-                Set set = (Set) hashMap.get(Long.valueOf(j3));
-                if (set == null) {
-                    set = new HashSet();
-                    hashMap.put(Long.valueOf(j3), set);
-                }
-                set.add(new s5.f(query.getString(1), query.getString(2)));
-            } catch (Throwable th2) {
-                query.close();
-                throw th2;
+                return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
+            } catch (Exception unused) {
             }
         }
-        query.close();
-        ListIterator listIterator = d.listIterator();
-        while (listIterator.hasNext()) {
-            s5.b bVar = (s5.b) listIterator.next();
-            long j10 = bVar.f47882a;
-            if (hashMap.containsKey(Long.valueOf(j10))) {
-                com.google.firebase.messaging.n c10 = bVar.f47884c.c();
-                for (s5.f fVar : (Set) hashMap.get(Long.valueOf(j10))) {
-                    c10.c(fVar.f47885a, fVar.f47886b);
-                }
-                listIterator.set(new s5.b(j10, bVar.f47883b, c10.g()));
-            }
-        }
-        return d;
+        return this.f46702r0;
     }
 
-    @Override
-    public void b(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z10) {
-        xh.o2 o2Var = (xh.o2) this.f46665b;
-        ss0 ss0Var = o2Var.f51479a;
-        o2Var.f51482e.f52486l.remove((TL_stars.SavedStarGift) this.f46666c);
-        o2Var.f(true);
-        int i10 = o2Var.f51480b;
-        if (j3 == UserConfig.getInstance(i10).getClientUserId()) {
-            ad a02 = ad.a0(ss0Var.f51555a);
-            TLRPC.Document document = tL_starGiftUnique.getDocument();
-            String string = LocaleController.getString(R.string.BoughtResoldGiftTitle);
-            int i11 = R.string.BoughtResoldGiftText;
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(tL_starGiftUnique.title);
-            sb2.append(" #");
-            tc O = a02.O(document, string, LocaleController.formatString(i11, org.telegram.messenger.q.h(tL_starGiftUnique.num, ',', sb2)));
-            O.f31104r = false;
-            O.j();
-        } else {
-            tc O2 = ad.a0(ss0Var.f51555a).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i10, j3)));
-            O2.f31104r = false;
-            O2.j();
+    public final void r(boolean z10) {
+        boolean z11 = !this.f46704t0;
+        this.f46704t0 = z11;
+        if (!z10) {
+            this.f46705u0.f(z11, true);
         }
-        LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity != null) {
-            launchActivity.f33859x0.c(true);
+        ai.f0 f0Var = this.f46710z0;
+        if (f0Var != null) {
+            f0Var.invalidate();
         }
     }
 
-    @Override
-    public void c(float f7, float f10, int i10, View view) {
-        h4.R((h4) this.f46665b, (g4) this.f46666c, i10);
-    }
-
-    @Override
-    public void call() {
-        int i10 = CarAppNotificationBroadcastReceiver.f2398a;
-        ((IStartCarApp) this.f46665b).startCarApp((Intent) this.f46666c);
-    }
-
-    @Override
-    public c3.o[] d(Uri uri, Map map) {
-        c3.o aVar;
-        u2.p pVar = (u2.p) this.f46665b;
-        b2.s sVar = (b2.s) this.f46666c;
-        if (pVar.f48725c.D1(sVar)) {
-            aVar = new z3.h(pVar.f48725c.s0(sVar), null);
-        } else {
-            aVar = new k3.a(sVar);
-        }
-        return new c3.o[]{aVar};
-    }
-
-    @Override
-    public void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f46664a) {
-            case 20:
-                ((yh.g) this.f46665b).h0(false, 0L, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46666c);
-                return;
-            default:
-                ((s3) this.f46665b).N1(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f46666c);
-                return;
+    public final void s(Bitmap bitmap) {
+        if (!this.C0 && !this.B0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
+            ac.d dVar = new ac.d();
+            dVar.f409a = true;
+            zzd a2 = i8.d.a(new ac.e(dVar));
+            this.B0 = true;
+            a2.g(vb.a.a(bitmap, this.f46707w0)).addOnSuccessListener(new m4.w(this, 23)).addOnFailureListener(new q9.p(1, this, bitmap));
         }
     }
 
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f46664a) {
-            case 3:
-                rg.j0.R((rg.j0) this.f46665b, (ArrayList) this.f46666c);
-                return;
-            case 5:
-                ((AtomicBoolean) this.f46665b).set(true);
-                ((tg.t0) this.f46666c).run();
-                return;
-            case 6:
-                ((tg.v) this.f46665b).run((TLRPC.TL_premiumGiftCodeOption) this.f46666c);
-                return;
-            case 15:
-                xh.o oVar = (xh.o) this.f46665b;
-                c6 c6Var = (c6) this.f46666c;
-                try {
-                    int parseInt = Integer.parseInt(c6Var.getText().toString().trim());
-                    oVar.Y(parseInt);
-                    oVar.f51446c0.setValue(parseInt);
-                    b2Var.dismiss();
-                    return;
-                } catch (Throwable th2) {
-                    AndroidUtilities.shakeView(c6Var);
-                    FileLog.e(th2);
-                    return;
-                }
-            case 16:
-                xh.a2 a2Var = (xh.a2) this.f46665b;
-                Utilities.Callback callback = (Utilities.Callback) this.f46666c;
-                String obj = a2Var.getText().toString();
-                if (obj.length() > 0 && obj.length() <= 12) {
-                    callback.run(obj);
-                    b2Var.dismiss();
-                    return;
-                }
-                AndroidUtilities.shakeView(a2Var);
-                return;
-            default:
-                s3 s3Var = (s3) this.f46665b;
-                of.e g10 = b2Var.g(i10, true, true);
-                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                x1 x1Var = new x1(22, s3Var, twoStepVerificationActivity);
-                twoStepVerificationActivity.Z = 2;
-                twoStepVerificationActivity.f34611b0 = x1Var;
-                twoStepVerificationActivity.f34609a0 = s3Var.D1();
-                g10.d();
-                twoStepVerificationActivity.s0(new tg.q(s3Var, (tg.m1[]) this.f46666c, g10, twoStepVerificationActivity, 17));
-                return;
+    public final void t(boolean z10) {
+        boolean z11 = !this.f46708x0;
+        this.f46708x0 = z11;
+        if (!z10) {
+            this.f46709y0.f(z11, true);
+        }
+        ai.f0 f0Var = this.f46710z0;
+        if (f0Var != null) {
+            f0Var.invalidate();
         }
     }
 
-    @Override
-    public Object i() {
-        switch (this.f46664a) {
-            case 1:
-                Iterable iterable = (Iterable) this.f46666c;
-                s5.g gVar = (s5.g) ((s5.d) ((da.c) this.f46665b).f8234c);
-                gVar.getClass();
-                if (iterable.iterator().hasNext()) {
-                    gVar.a().compileStatement("DELETE FROM events WHERE _id in " + s5.g.g(iterable)).execute();
-                    return null;
-                }
-                return null;
-            default:
-                da.c cVar = (da.c) this.f46665b;
-                for (Map.Entry entry : ((HashMap) this.f46666c).entrySet()) {
-                    ((s5.g) ((s5.c) cVar.f8238i)).e(((Integer) entry.getValue()).intValue(), o5.c.INVALID_PAYLOD, (String) entry.getKey());
-                }
-                return null;
-        }
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        y1 y1Var = (y1) this.f46665b;
-        Bitmap bitmap = (Bitmap) this.f46666c;
-        y1Var.B0 = false;
-        FileLog.e(exc);
-        if (Build.VERSION.SDK_INT >= 24 && (exc instanceof mb.a) && exc.getMessage() != null && exc.getMessage().contains("segmentation optional module to be downloaded") && y1Var.isAttachedToWindow()) {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.w1(9, y1Var, bitmap), 2000L);
-        } else {
-            y1Var.C0 = true;
-        }
-    }
-
-    @Override
-    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean z10;
-        boolean z11;
-        xh.r2 r2Var = (xh.r2) this.f46665b;
-        ci.d dVar = (ci.d) this.f46666c;
-        View view = (View) obj2;
-        Integer num = (Integer) obj3;
-        Float f7 = (Float) obj4;
-        Float f10 = (Float) obj5;
-        r2Var.getClass();
-        long j3 = ((TL_stars.SavedStarGift) ((q61) obj).G).gift.f20269id;
-        if (r2Var.f51543b == j3) {
-            r2Var.f51543b = 0L;
-        } else {
-            r2Var.f51543b = j3;
-        }
-        if (r2Var.f51543b != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        dVar.setEnabled(z10);
-        if (view.getParent() instanceof ViewGroup) {
-            ViewGroup viewGroup = (ViewGroup) view.getParent();
-            for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
-                View childAt = viewGroup.getChildAt(i10);
-                if (childAt instanceof ip0) {
-                    ip0 ip0Var = (ip0) childAt;
-                    if (r2Var.f51543b == ip0Var.getGiftId()) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    ip0Var.b(z11, true);
-                }
-            }
-        }
-    }
-
-    @Override
-    public boolean w(ty tyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
-        switch (this.f46664a) {
-            case 9:
-                tg.g0 g0Var = (tg.g0) this.f46665b;
-                String str = (String) this.f46666c;
-                long j3 = 0;
-                for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    j3 = ((MessagesStorage.TopicKey) arrayList.get(i12)).dialogId;
-                    g0Var.f25985n.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j3, null, null, null, true, null, null, null, true, 0, 0, null, false));
-                }
-                tyVar.finishFragment();
-                tg.i.h(j3);
-                return true;
-            default:
-                ug.e eVar = (ug.e) this.f46665b;
-                String str2 = (String) this.f46666c;
-                long j10 = 0;
-                int i13 = 0;
-                while (i13 < arrayList.size()) {
-                    j10 = ((MessagesStorage.TopicKey) arrayList.get(i13)).dialogId;
-                    eVar.f48967e.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
-                    i13++;
-                    eVar = eVar;
-                }
-                tyVar.finishFragment();
-                tg.i.h(j10);
-                return true;
-        }
-    }
-
-    @Override
-    public Object y0(u5 u5Var) {
-        String valueOf;
-        String str = (String) this.f46665b;
-        Context context = (Context) u5Var.a(Context.class);
-        switch (((j2.e) this.f46666c).f13689a) {
-            case 9:
-                ApplicationInfo applicationInfo = context.getApplicationInfo();
-                if (applicationInfo != null) {
-                    valueOf = String.valueOf(applicationInfo.targetSdkVersion);
-                    break;
-                }
-                valueOf = "";
-                break;
-            case 10:
-                valueOf = FirebaseCommonRegistrar.a(context);
-                break;
-            case 11:
-                int i10 = Build.VERSION.SDK_INT;
-                if (context.getPackageManager().hasSystemFeature("android.hardware.type.television")) {
-                    valueOf = "tv";
-                    break;
-                } else if (context.getPackageManager().hasSystemFeature("android.hardware.type.watch")) {
-                    valueOf = "watch";
-                    break;
-                } else if (context.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
-                    valueOf = "auto";
-                    break;
-                } else {
-                    if (i10 >= 26 && context.getPackageManager().hasSystemFeature("android.hardware.type.embedded")) {
-                        valueOf = "embedded";
-                        break;
-                    }
-                    valueOf = "";
-                    break;
-                }
-            default:
-                String installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
-                if (installerPackageName != null) {
-                    valueOf = FirebaseCommonRegistrar.b(installerPackageName);
-                    break;
-                }
-                valueOf = "";
-                break;
-        }
-        return new xa.a(str, valueOf);
-    }
-
-    @Override
-    public void n0(View view, float f7, float f10) {
+    public x1(Context context, PointF pointF, ow0 ow0Var, TLObject tLObject) {
+        super(context, pointF);
+        this.f46703s0 = -1;
+        this.f46704t0 = false;
+        this.f46708x0 = false;
+        new Rect();
+        new RectF();
+        new Paint(3);
+        this.D0 = new Rect();
+        this.E0 = new Rect();
+        this.F0 = new Paint(3);
+        setRotation(0.0f);
+        setScale(1.0f);
+        this.f46701q0 = tLObject;
+        this.f46706v0 = ow0Var;
+        ai.f0 f0Var = new ai.f0(this, context);
+        this.f46710z0 = f0Var;
+        addView(f0Var, x5.d(-1.0f, -1));
+        is isVar = is.h;
+        this.f46705u0 = new g6(f0Var, 0L, 500L, isVar);
+        this.f46709y0 = new g6(f0Var, 0L, 350L, isVar);
+        k();
     }
 }

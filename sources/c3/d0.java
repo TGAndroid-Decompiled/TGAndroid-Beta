@@ -30,7 +30,7 @@ public final class d0 implements o {
         }
         e2.d.g(z10);
         e2.v vVar = new e2.v(i10);
-        ((l) pVar).h(vVar.f8584a, 0, i10, false);
+        ((l) pVar).i(vVar.f8583a, 0, i10, false);
         if (vVar.D() == i11) {
             return true;
         }
@@ -63,8 +63,8 @@ public final class d0 implements o {
 
     @Override
     public final List i() {
-        e9.g0 g0Var = e9.i0.f8752b;
-        return a1.f8715e;
+        e9.g0 g0Var = e9.i0.f8751b;
+        return a1.f8714e;
     }
 
     @Override

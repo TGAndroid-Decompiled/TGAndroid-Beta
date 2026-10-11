@@ -23,20 +23,20 @@ public class fa0 extends TextView {
     public boolean F;
     public PorterDuffColorFilter G;
     public int H;
-    public final boolean f26369a;
-    public final ca0 f26370b;
-    public final org.telegram.ui.ActionBar.e6 f26371c;
+    public final boolean f26317a;
+    public final ca0 f26318b;
+    public final org.telegram.ui.ActionBar.d6 f26319c;
     public x5 d;
-    public ga0 f26372e;
-    public ea0 f26373f;
+    public ga0 f26320e;
+    public ea0 f26321f;
     public ea0 h;
-    public boolean f26374n;
-    public boolean f26375r;
-    public boolean f26376s;
+    public boolean f26322n;
+    public boolean f26323r;
+    public boolean f26324s;
     public CharacterStyle v;
-    public int f26377w;
-    public boolean f26378x;
-    public Object f26379y;
+    public int f26325w;
+    public boolean f26326x;
+    public Object f26327y;
 
     public fa0(Context context) {
         this(context, null);
@@ -67,7 +67,7 @@ public class fa0 extends TextView {
     }
 
     public int c() {
-        return org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Ld, this.f26371c);
+        return org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, this.f26319c);
     }
 
     public int getTextPaddingTop() {
@@ -80,8 +80,8 @@ public class fa0 extends TextView {
 
     @Override
     public final void invalidate() {
-        if (!this.f26378x) {
-            this.f26378x = true;
+        if (!this.f26326x) {
+            this.f26326x = true;
             try {
                 if (J == null) {
                     Field declaredField = TextView.class.getDeclaredField("mEditor");
@@ -104,10 +104,10 @@ public class fa0 extends TextView {
         if (isHardwareAccelerated()) {
             try {
                 if (K != null) {
-                    if (this.f26379y == null) {
-                        this.f26379y = I.get(this);
+                    if (this.f26327y == null) {
+                        this.f26327y = I.get(this);
                     }
-                    Object obj = this.f26379y;
+                    Object obj = this.f26327y;
                     if (obj != null) {
                         K.invoke(obj, null);
                     }
@@ -136,7 +136,7 @@ public class fa0 extends TextView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        int i12 = this.f26377w;
+        int i12 = this.f26325w;
         if (i12 > 0) {
             i10 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10));
         }
@@ -147,19 +147,19 @@ public class fa0 extends TextView {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         CharacterStyle characterStyle;
-        ca0 ca0Var = this.f26370b;
+        ca0 ca0Var = this.f26318b;
         if (ca0Var != null) {
             Layout layout = getLayout();
             ClickableSpan b10 = b((int) motionEvent.getX(), (int) motionEvent.getY());
             if (b10 != null && motionEvent.getAction() == 0) {
-                ga0 ga0Var = new ga0(b10, this.f26371c, motionEvent.getX(), motionEvent.getY(), 0);
+                ga0 ga0Var = new ga0(b10, this.f26319c, motionEvent.getX(), motionEvent.getY(), 0);
                 ga0Var.d(c());
-                this.f26372e = ga0Var;
+                this.f26320e = ga0Var;
                 ca0Var.a(ga0Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.f26372e.f26673i);
-                int spanEnd = spannableString.getSpanEnd(this.f26372e.f26673i);
-                z90 b11 = this.f26372e.b();
+                int spanStart = spannableString.getSpanStart(this.f26320e.f26662i);
+                int spanEnd = spannableString.getSpanEnd(this.f26320e.f26662i);
+                z90 b11 = this.f26320e.b();
                 b11.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b11);
                 AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.f(this, ga0Var, b10, 28), ViewConfiguration.getLongPressTimeout());
@@ -167,40 +167,40 @@ public class fa0 extends TextView {
             }
             if (motionEvent.getAction() == 1) {
                 ca0Var.d(true);
-                ga0 ga0Var2 = this.f26372e;
-                if (ga0Var2 != null && (characterStyle = ga0Var2.f26673i) == b10) {
-                    ea0 ea0Var = this.f26373f;
+                ga0 ga0Var2 = this.f26320e;
+                if (ga0Var2 != null && (characterStyle = ga0Var2.f26662i) == b10) {
+                    ea0 ea0Var = this.f26321f;
                     if (ea0Var != null) {
                         ea0Var.a((ClickableSpan) characterStyle);
                     } else if (characterStyle != null) {
                         ((ClickableSpan) characterStyle).onClick(this);
                     }
-                    this.f26372e = null;
+                    this.f26320e = null;
                     return true;
                 }
-                this.f26372e = null;
+                this.f26320e = null;
             }
             if (motionEvent.getAction() == 3) {
                 ca0Var.d(true);
-                this.f26372e = null;
+                this.f26320e = null;
             }
         }
-        if (this.f26372e != null || super.onTouchEvent(motionEvent)) {
+        if (this.f26320e != null || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
     }
 
     public void setDisablePaddingsOffset(boolean z10) {
-        this.f26374n = z10;
+        this.f26322n = z10;
     }
 
     public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f26375r = z10;
+        this.f26323r = z10;
     }
 
     public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f26376s = z10;
+        this.f26324s = z10;
     }
 
     public void setEmojiColor(int i10) {
@@ -211,14 +211,14 @@ public class fa0 extends TextView {
 
     public void setLoading(CharacterStyle characterStyle) {
         if (this.v != characterStyle) {
-            ca0 ca0Var = this.f26370b;
+            ca0 ca0Var = this.f26318b;
             ca0Var.e();
             this.v = characterStyle;
             ja0 i10 = ca0.i(getLayout(), characterStyle, getPaddingTop());
             if (i10 != null) {
-                int d = d(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Ld, this.f26371c));
-                i10.g(org.telegram.ui.ActionBar.i6.m1(0.8f, d), org.telegram.ui.ActionBar.i6.m1(1.3f, d), org.telegram.ui.ActionBar.i6.m1(1.0f, d), org.telegram.ui.ActionBar.i6.m1(4.0f, d));
-                i10.f27651x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                int d = d(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, this.f26319c));
+                i10.g(org.telegram.ui.ActionBar.h6.m1(0.8f, d), org.telegram.ui.ActionBar.h6.m1(1.3f, d), org.telegram.ui.ActionBar.h6.m1(1.0f, d), org.telegram.ui.ActionBar.h6.m1(4.0f, d));
+                i10.f27659x.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
                 ca0Var.b(i10, null);
             }
         }
@@ -226,7 +226,7 @@ public class fa0 extends TextView {
 
     @Override
     public void setMaxWidth(int i10) {
-        this.f26377w = i10;
+        this.f26325w = i10;
     }
 
     public void setOnLinkLongPressListener(ea0 ea0Var) {
@@ -234,7 +234,7 @@ public class fa0 extends TextView {
     }
 
     public void setOnLinkPressListener(ea0 ea0Var) {
-        this.f26373f = ea0Var;
+        this.f26321f = ea0Var;
     }
 
     @Override
@@ -243,22 +243,22 @@ public class fa0 extends TextView {
         this.d = b6.update(a(), this, this.d, getLayout());
     }
 
-    public fa0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public fa0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.E = false;
         this.F = true;
-        this.f26369a = false;
-        this.f26370b = new ca0(this);
-        this.f26371c = e6Var;
+        this.f26317a = false;
+        this.f26318b = new ca0(this);
+        this.f26319c = d6Var;
     }
 
-    public fa0(Context context, ca0 ca0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+    public fa0(Context context, ca0 ca0Var, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.E = false;
         this.F = true;
-        this.f26369a = true;
-        this.f26370b = ca0Var;
-        this.f26371c = e6Var;
+        this.f26317a = true;
+        this.f26318b = ca0Var;
+        this.f26319c = d6Var;
     }
 
     public int d(int i10) {

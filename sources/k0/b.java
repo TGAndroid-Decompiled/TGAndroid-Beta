@@ -10,10 +10,10 @@ import javax.crypto.Cipher;
 import javax.crypto.Mac;
 import pb.c;
 public final class b {
-    public final Context f14320a;
+    public final Context f14319a;
 
     public b(Context context) {
-        this.f14320a = context;
+        this.f14319a = context;
     }
 
     public static FingerprintManager b(Context context) {
@@ -53,7 +53,7 @@ public final class b {
         } else {
             cancellationSignal = null;
         }
-        FingerprintManager b10 = b(this.f14320a);
+        FingerprintManager b10 = b(this.f14319a);
         if (b10 != null) {
             if (aVar != null) {
                 Mac mac = (Mac) aVar.d;

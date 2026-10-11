@@ -8,12 +8,12 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bz;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.n61;
 public final class p implements bz {
-    public final r f12609a;
+    public final r f12608a;
 
     public p(r rVar) {
-        this.f12609a = rVar;
+        this.f12608a = rVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class p implements bz {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        r rVar = this.f12609a;
-        if (i10 != 0 && (focusedEditTextOrNull = rVar.f12650r.getFocusedEditTextOrNull()) != null) {
+        r rVar = this.f12608a;
+        if (i10 != 0 && (focusedEditTextOrNull = rVar.f12649r.getFocusedEditTextOrNull()) != null) {
             rVar.F = focusedEditTextOrNull;
             rVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        rVar.f12654y = z10;
+        rVar.f12653y = z10;
         rVar.V();
     }
 
@@ -69,7 +69,7 @@ public final class p implements bz {
 
     @Override
     public final boolean k() {
-        i1 P = r.P(this.f12609a);
+        i1 P = r.P(this.f12608a);
         if (P == null || P.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class p implements bz {
 
     @Override
     public final void l(String str) {
-        r rVar = this.f12609a;
+        r rVar = this.f12608a;
         i1 P = r.P(rVar);
         if (P != null) {
             int Q = r.Q(rVar, P);
@@ -104,7 +104,7 @@ public final class p implements bz {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.b6 b6Var;
-        r rVar = this.f12609a;
+        r rVar = this.f12608a;
         i1 P = r.P(rVar);
         if (P != null) {
             int Q = r.Q(rVar, P);
@@ -133,7 +133,7 @@ public final class p implements bz {
 
     @Override
     public final boolean z() {
-        return this.f12609a.f12654y;
+        return this.f12608a.f12653y;
     }
 
     @Override
@@ -141,7 +141,7 @@ public final class p implements bz {
     }
 
     @Override
-    public final void o(m61 m61Var) {
+    public final void o(n61 n61Var) {
     }
 
     @Override

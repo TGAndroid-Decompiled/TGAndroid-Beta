@@ -1,6 +1,6 @@
 package df;
 
-import org.telegram.ui.ActionBar.b5;
+import n7.z0;
 public interface b {
-    a c(b5 b5Var);
+    a C(z0 z0Var);
 }

@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class va implements Runnable {
-    public final int f19419a;
-    public final MessagesController f19420b;
-    public final TLRPC.TL_help_peerColors f19421c;
+    public final int f19417a;
+    public final MessagesController f19418b;
+    public final TLRPC.TL_help_peerColors f19419c;
 
     public va(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
-        this.f19419a = i10;
-        this.f19420b = messagesController;
-        this.f19421c = tL_help_peerColors;
+        this.f19417a = i10;
+        this.f19418b = messagesController;
+        this.f19419c = tL_help_peerColors;
     }
 
     @Override
     public final void run() {
-        switch (this.f19419a) {
+        switch (this.f19417a) {
             case 0:
-                this.f19420b.lambda$checkPeerColors$493(this.f19421c);
+                this.f19418b.lambda$checkPeerColors$493(this.f19419c);
                 return;
             default:
-                this.f19420b.lambda$checkPeerColors$495(this.f19421c);
+                this.f19418b.lambda$checkPeerColors$495(this.f19419c);
                 return;
         }
     }

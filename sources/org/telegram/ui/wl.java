@@ -4,25 +4,25 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-public final class wl extends uu0 {
-    public final MessageObject f43747a;
-    public final MediaController.PhotoEntry f43748b;
-    public final zn f43749c;
+public final class wl extends tu0 {
+    public final MessageObject f43822a;
+    public final MediaController.PhotoEntry f43823b;
+    public final zn f43824c;
 
     public wl(zn znVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f43749c = znVar;
-        this.f43747a = messageObject;
-        this.f43748b = photoEntry;
+        this.f43824c = znVar;
+        this.f43822a = messageObject;
+        this.f43823b = photoEntry;
     }
 
     @Override
-    public final ev0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return zn.E1(this.f43749c, this.f43747a, null, i10, z10, true);
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return zn.E1(this.f43824c, this.f43822a, null, i10, z10, true);
     }
 
     @Override
     public final boolean O() {
-        zn znVar = this.f43749c;
+        zn znVar = this.f43824c;
         if (znVar.Y != null && znVar.C9()) {
             znVar.Y.N();
             return true;
@@ -32,8 +32,8 @@ public final class wl extends uu0 {
 
     @Override
     public final MessageObject U() {
-        MessageObject messageObject = this.f43749c.p5;
-        MessageObject messageObject2 = this.f43747a;
+        MessageObject messageObject = this.f43824c.p5;
+        MessageObject messageObject2 = this.f43822a;
         if (messageObject == messageObject2) {
             return messageObject2;
         }
@@ -42,7 +42,7 @@ public final class wl extends uu0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        this.f43749c.Y.d1(charSequence, false);
+        this.f43824c.Y.d1(charSequence, false);
     }
 
     @Override
@@ -52,11 +52,11 @@ public final class wl extends uu0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        zn znVar = this.f43749c;
-        if (znVar.p5 != this.f43747a) {
+        zn znVar = this.f43824c;
+        if (znVar.p5 != this.f43822a) {
             return;
         }
-        MediaController.PhotoEntry photoEntry = this.f43748b;
+        MediaController.PhotoEntry photoEntry = this.f43823b;
         if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null) {
             znVar.Y.b0();
         } else {

@@ -2,64 +2,44 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class nc extends qb {
-    public final gk0 f29095a;
-    public final r6 f29096b;
-    public final r6 f29097c;
-    public final int d;
+public final class nc extends pb {
+    public final y9 f29029a;
+    public final fa0 f29030b;
+    public final fa0 f29031c;
 
-    public nc(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        int i10 = org.telegram.ui.ActionBar.i6.Hi;
-        this.d = getThemedColor(i10);
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.i6.Fi));
-        ?? imageView = new ImageView(context);
-        this.f29095a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, w7.x5.h(56.0f, 48.0f, 8388627));
+    public nc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        int i10 = org.telegram.ui.ActionBar.h6.Hi;
+        getThemedColor(i10);
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.h6.Fi));
+        y9 y9Var = new y9(context);
+        this.f29029a = y9Var;
+        addView(y9Var, w7.x5.i(32.0f, 32.0f, 8388627, 12.0f, 0.0f, 12.0f, 0.0f));
         int themedColor = getThemedColor(i10);
-        getThemedColor(org.telegram.ui.ActionBar.i6.Gi);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.x5.i(-1.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
-        r6 r6Var = new r6(context, true, true, true);
-        this.f29096b = r6Var;
-        r6Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        r6Var.setTextColor(themedColor);
-        r6Var.setTextSize(AndroidUtilities.dp(14.0f));
-        r6Var.setTypeface(AndroidUtilities.bold());
-        r6Var.setEllipsizeByGradient(true);
-        linearLayout.addView(r6Var, w7.x5.n(-1, 20));
-        r6 r6Var2 = new r6(context, true, true, true);
-        this.f29097c = r6Var2;
-        r6Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        r6Var2.setTextColor(themedColor);
-        r6Var2.setTypeface(Typeface.SANS_SERIF);
-        r6Var2.setTextSize(AndroidUtilities.dp(13.0f));
-        r6Var2.setEllipsizeByGradient(true);
-        linearLayout.addView(r6Var2, w7.x5.n(-1, 18));
-    }
-
-    public final void c(int i10, String... strArr) {
-        gk0 gk0Var = this.f29095a;
-        gk0Var.f(i10, 32, 32, null);
-        for (String str : strArr) {
-            gk0Var.h(this.d, str);
-        }
+        int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.h6.Gi);
+        LinearLayout e7 = org.telegram.messenger.ai.e(context, 1);
+        addView(e7, w7.x5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+        fa0 fa0Var = new fa0(context, null);
+        this.f29030b = fa0Var;
+        fa0Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        fa0Var.setTextColor(themedColor);
+        fa0Var.setTextSize(1, 14.0f);
+        fa0Var.setTypeface(AndroidUtilities.bold());
+        e7.addView(fa0Var);
+        fa0 fa0Var2 = new fa0(context, null);
+        this.f29031c = fa0Var2;
+        fa0Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        fa0Var2.setTextColor(themedColor);
+        fa0Var2.setLinkTextColor(themedColor2);
+        fa0Var2.setTypeface(Typeface.SANS_SERIF);
+        fa0Var2.setTextSize(1, 13.0f);
+        e7.addView(fa0Var2);
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f29096b.getText()) + ".\n" + ((Object) this.f29097c.getText());
-    }
-
-    @Override
-    public final void onShow() {
-        super.onShow();
-        this.f29095a.d();
+        return ((Object) this.f29030b.getText()) + ".\n" + ((Object) this.f29031c.getText());
     }
 }

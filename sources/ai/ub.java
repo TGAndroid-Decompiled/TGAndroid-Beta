@@ -54,7 +54,7 @@ public final class ub implements GestureDetector.OnGestureListener {
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         float f11;
-        org.telegram.ui.Components.tc tcVar;
+        org.telegram.ui.Components.sc scVar;
         kc kcVar = this.f1812a;
         if (!kcVar.f1276j0) {
             return false;
@@ -88,9 +88,9 @@ public final class ub implements GestureDetector.OnGestureListener {
                 kcVar.f1265e0 = f12 + f10;
             }
             yb ybVar = kcVar.f1294s;
-            org.telegram.ui.Components.tc tcVar2 = org.telegram.ui.Components.tc.f31088w;
-            if (tcVar2 != null && tcVar2.h == ybVar) {
-                tcVar2.b();
+            org.telegram.ui.Components.sc scVar2 = org.telegram.ui.Components.sc.f30703w;
+            if (scVar2 != null && scVar2.h == ybVar) {
+                scVar2.b();
             }
             if (kcVar.f1283n0.getCurrentPeerView() != null) {
                 kcVar.f1283n0.getCurrentPeerView().invalidate();
@@ -108,9 +108,9 @@ public final class ub implements GestureDetector.OnGestureListener {
                 f11 = 0.3f;
                 kcVar.W -= f10 * f11;
                 yb ybVar2 = kcVar.f1294s;
-                tcVar = org.telegram.ui.Components.tc.f31088w;
-                if (tcVar != null && tcVar.h == ybVar2) {
-                    tcVar.b();
+                scVar = org.telegram.ui.Components.sc.f30703w;
+                if (scVar != null && scVar.h == ybVar2) {
+                    scVar.b();
                 }
                 kc.k(kcVar);
                 return true;
@@ -119,9 +119,9 @@ public final class ub implements GestureDetector.OnGestureListener {
         f11 = 0.6f;
         kcVar.W -= f10 * f11;
         yb ybVar22 = kcVar.f1294s;
-        tcVar = org.telegram.ui.Components.tc.f31088w;
-        if (tcVar != null) {
-            tcVar.b();
+        scVar = org.telegram.ui.Components.sc.f30703w;
+        if (scVar != null) {
+            scVar.b();
         }
         kc.k(kcVar);
         return true;

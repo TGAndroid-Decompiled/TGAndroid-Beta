@@ -3,32 +3,32 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 public final class cv extends CharacterStyle {
-    public final int f25414a;
-    public int f25415b;
+    public final int f25328a;
+    public int f25329b;
 
     public cv(int i10, int i11) {
-        this.f25414a = i11;
-        this.f25415b = i10;
+        this.f25328a = i11;
+        this.f25329b = i10;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f25414a) {
+        switch (this.f25328a) {
             case 0:
-                textPaint.setAlpha((int) ((this.f25415b / 255.0f) * textPaint.getAlpha()));
+                textPaint.setAlpha((int) ((this.f25329b / 255.0f) * textPaint.getAlpha()));
                 return;
             default:
-                textPaint.setColor(org.telegram.ui.ActionBar.i6.m1(textPaint.getAlpha() / 255.0f, this.f25415b));
+                textPaint.setColor(org.telegram.ui.ActionBar.h6.m1(textPaint.getAlpha() / 255.0f, this.f25329b));
                 return;
         }
     }
 
     public cv(boolean z10) {
-        this.f25414a = 0;
+        this.f25328a = 0;
     }
 
     public cv() {
-        this.f25414a = 0;
-        this.f25415b = 0;
+        this.f25328a = 0;
+        this.f25329b = 0;
     }
 }

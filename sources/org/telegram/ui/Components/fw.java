@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.R;
 public final class fw implements Runnable {
-    public final int f26528a;
-    public final gw f26529b;
+    public final int f26498a;
+    public final gw f26499b;
 
     public fw(gw gwVar, int i10) {
-        this.f26528a = i10;
-        this.f26529b = gwVar;
+        this.f26498a = i10;
+        this.f26499b = gwVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f26528a) {
+        switch (this.f26498a) {
             case 0:
-                this.f26529b.f26857f.dismiss();
+                this.f26499b.f26836f.dismiss();
                 return;
             default:
-                jw jwVar = this.f26529b.f26857f;
+                jw jwVar = this.f26499b.f26836f;
                 jwVar.dismiss();
-                org.telegram.ui.ActionBar.n2 n2Var = jwVar.f27799c;
-                if (n2Var != null && n2Var.getParentActivity() != null) {
-                    org.telegram.messenger.bi.q(R.string.AddEmojiNotFound, ad.a0(n2Var), null);
+                org.telegram.ui.ActionBar.m2 m2Var = jwVar.f27759c;
+                if (m2Var != null && m2Var.getParentActivity() != null) {
+                    org.telegram.messenger.ai.q(R.string.AddEmojiNotFound, ad.a0(m2Var), null);
                     return;
                 }
                 return;

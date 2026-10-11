@@ -13,19 +13,19 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bg0;
 import org.telegram.ui.Components.dg0;
-import org.telegram.ui.Components.nl0;
-import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.ow0;
 public final class xb extends FrameLayout {
-    public final Rect f6323a;
-    public final Rect f6324b;
-    public RenderNode f6325c;
+    public final Rect f6322a;
+    public final Rect f6323b;
+    public RenderNode f6324c;
     public final lc d;
 
     public xb(lc lcVar, Activity activity) {
         super(activity);
         this.d = lcVar;
-        this.f6323a = new Rect();
-        this.f6324b = new Rect();
+        this.f6322a = new Rect();
+        this.f6323b = new Rect();
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class xb extends FrameLayout {
         RecordingCanvas recordingCanvas;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 31 && canvas.isHardwareAccelerated() && !AndroidUtilities.makingGlobalBlurBitmap) {
-            if (this.f6325c == null) {
-                this.f6325c = new RenderNode("StoryRecorder.PreviewView");
+            if (this.f6324c == null) {
+                this.f6324c = new RenderNode("StoryRecorder.PreviewView");
             }
-            this.f6325c.setPosition(0, 0, getWidth(), getHeight());
-            recordingCanvas = this.f6325c.beginRecording();
+            this.f6324c.setPosition(0, 0, getWidth(), getHeight());
+            recordingCanvas = this.f6324c.beginRecording();
             z10 = true;
         } else {
             z10 = false;
@@ -46,12 +46,12 @@ public final class xb extends FrameLayout {
         }
         super.dispatchDraw(recordingCanvas);
         if (z10 && i10 >= 31) {
-            this.f6325c.endRecording();
-            org.telegram.ui.Components.ma maVar = this.d.f5513r0;
-            if (maVar != null) {
-                maVar.g(this, this.f6325c);
+            this.f6324c.endRecording();
+            org.telegram.ui.Components.la laVar = this.d.f5512r0;
+            if (laVar != null) {
+                laVar.g(this, this.f6324c);
             }
-            canvas.drawRenderNode(this.f6325c);
+            canvas.drawRenderNode(this.f6324c);
         }
     }
 
@@ -71,9 +71,9 @@ public final class xb extends FrameLayout {
             int i14 = i12 - i10;
             int i15 = i13 - i11;
             int dp = AndroidUtilities.dp(40.0f);
-            Rect rect = this.f6323a;
+            Rect rect = this.f6322a;
             rect.set(0, i15 - AndroidUtilities.dp(120.0f), dp, i15);
-            Rect rect2 = this.f6324b;
+            Rect rect2 = this.f6323b;
             rect2.set(i14 - AndroidUtilities.dp(40.0f), i15 - AndroidUtilities.dp(120.0f), i14, i15);
             setSystemGestureExclusionRects(Arrays.asList(rect, rect2));
         }
@@ -85,23 +85,23 @@ public final class xb extends FrameLayout {
         lc lcVar = this.d;
         dg0 dg0Var = lcVar.F1;
         if (dg0Var != null) {
-            nl0 nl0Var = dg0Var.f25695e;
-            nl0Var.f29146a = 0.0f;
-            nl0Var.f29147b = 0.0f;
-            nl0Var.f29148c = dg0Var.getMeasuredWidth();
-            nl0Var.d = lcVar.F1.getMeasuredHeight();
+            ol0 ol0Var = dg0Var.f25595e;
+            ol0Var.f29425a = 0.0f;
+            ol0Var.f29426b = 0.0f;
+            ol0Var.f29427c = dg0Var.getMeasuredWidth();
+            ol0Var.d = lcVar.F1.getMeasuredHeight();
         }
         bg0 bg0Var = lcVar.E1;
         if (bg0Var != null) {
-            nw0 nw0Var = bg0Var.d;
-            nw0Var.f29260a = bg0Var.getMeasuredWidth();
-            nw0Var.f29261b = lcVar.E1.getMeasuredHeight();
+            ow0 ow0Var = bg0Var.d;
+            ow0Var.f29541a = bg0Var.getMeasuredWidth();
+            ow0Var.f29542b = lcVar.E1.getMeasuredHeight();
         }
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ?? r02 = this.d.f5528v2;
+        ?? r02 = this.d.f5527v2;
         if (r02 != 0) {
             r02.m(motionEvent);
             return true;

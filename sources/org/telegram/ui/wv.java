@@ -1,26 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class wv implements Utilities.Callback {
-    public final int f43804a;
-    public final ty f43805b;
+import android.animation.ValueAnimator;
+public final class wv implements ValueAnimator.AnimatorUpdateListener {
+    public final int f43878a;
+    public final sy f43879b;
+    public final float f43880c;
 
-    public wv(ty tyVar, int i10) {
-        this.f43804a = i10;
-        this.f43805b = tyVar;
+    public wv(sy syVar, float f7, int i10) {
+        this.f43878a = i10;
+        this.f43879b = syVar;
+        this.f43880c = f7;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f43804a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f43878a) {
             case 0:
-                ty tyVar = this.f43805b;
-                tyVar.O1 = (Long) obj;
-                tyVar.R4();
+                sy.V(this.f43879b, this.f43880c, valueAnimator);
                 return;
             default:
-                ty.a0(this.f43805b, (TL_account.TL_birthday) obj);
+                sy.B0(this.f43879b, this.f43880c, valueAnimator);
                 return;
         }
     }

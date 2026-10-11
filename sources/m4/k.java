@@ -7,10 +7,10 @@ import android.os.Build;
 import android.os.Bundle;
 import m.f3;
 public abstract class k {
-    public static final int f16132a = 0;
+    public static final int f16148a = 0;
 
     static {
-        int i10 = e9.m0.f8770c;
+        int i10 = e9.m0.f8769c;
         Object[] objArr = new Object[32];
         objArr[0] = "android.media.metadata.TITLE";
         objArr[1] = "android.media.metadata.ARTIST";
@@ -91,8 +91,8 @@ public abstract class k {
             fVar.A("android.media.metadata.ART_URI", uri2.toString());
         }
         if (bitmap != null) {
-            fVar.v("android.media.metadata.DISPLAY_ICON", bitmap);
-            fVar.v("android.media.metadata.ALBUM_ART", bitmap);
+            fVar.w("android.media.metadata.DISPLAY_ICON", bitmap);
+            fVar.w("android.media.metadata.ALBUM_ART", bitmap);
         }
         if (num != null && num.intValue() != -1) {
             fVar.y(a(num.intValue()), "android.media.metadata.BT_FOLDER_TYPE");
@@ -128,13 +128,13 @@ public abstract class k {
                 }
             }
         }
-        return new n4.m((Bundle) fVar.f15335b);
+        return new n4.m((Bundle) fVar.f15334b);
     }
 
     public static b2.c1 c(n4.g0 g0Var) {
         if (g0Var != null) {
-            float f7 = g0Var.f16572b;
-            int i10 = g0Var.f16571a;
+            float f7 = g0Var.f16614b;
+            int i10 = g0Var.f16613a;
             boolean z10 = true;
             switch (i10) {
                 case 1:
@@ -226,11 +226,11 @@ public abstract class k {
         } else {
             f3Var = new f3(2);
         }
-        AudioAttributes.Builder builder = (AudioAttributes.Builder) f3Var.f15672b;
+        AudioAttributes.Builder builder = (AudioAttributes.Builder) f3Var.f15693b;
         builder.setContentType(eVar.f3277a);
         builder.setFlags(eVar.f3278b);
         f3Var.q(eVar.f3279c);
-        AudioAttributes audioAttributes = f3Var.f().f16546a;
+        AudioAttributes audioAttributes = f3Var.f().f16588a;
         audioAttributes.getClass();
         int flags = audioAttributes.getFlags();
         int usage = audioAttributes.getUsage();

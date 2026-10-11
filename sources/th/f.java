@@ -29,81 +29,81 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.k;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.db;
 import org.telegram.ui.Components.e40;
-import org.telegram.ui.Components.eb;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.nh0;
+import org.telegram.ui.Components.oh0;
 import org.telegram.ui.Components.q20;
-import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.sm0;
 import org.telegram.ui.Components.t20;
 import org.telegram.ui.Components.x20;
-import org.telegram.ui.t5;
+import org.telegram.ui.s5;
 import r0.a0;
 import s4.j;
-import tg.u0;
+import tg.t0;
 import w7.x5;
 import w7.z5;
-public final class f extends eb implements me.d {
-    public static final int f48509r0 = 0;
+public final class f extends db implements me.d {
+    public static final int f48555r0 = 0;
     public final me.e X;
     public final me.b Y;
     public final HashMap Z;
-    public final ArrayList f48510a0;
-    public final ArrayList f48511b0;
-    public String f48512c0;
-    public d71 f48513d0;
-    public final ci.d f48514e0;
-    public final o f48515f0;
-    public final t5 f48516g0;
-    public final x20 f48517h0;
-    public final v3 f48518i0;
-    public final HashMap f48519j0;
-    public t f48520k0;
-    public int f48521l0;
+    public final ArrayList f48556a0;
+    public final ArrayList f48557b0;
+    public String f48558c0;
+    public e71 f48559d0;
+    public final ci.d f48560e0;
+    public final o f48561f0;
+    public final s5 f48562g0;
+    public final x20 f48563h0;
+    public final v3 f48564i0;
+    public final HashMap f48565j0;
+    public t f48566k0;
+    public int f48567l0;
     public final int m0;
-    public final FrameLayout f48522n0;
-    public HashSet f48523o0;
-    public final Rect f48524p0;
-    public e40 f48525q0;
+    public final FrameLayout f48568n0;
+    public HashSet f48569o0;
+    public final Rect f48570p0;
+    public e40 f48571q0;
 
-    public f(Context context, e6 e6Var) {
-        super(context, e6Var, true);
+    public f(Context context, d6 d6Var) {
+        super(context, d6Var, true);
         String country;
         is isVar = is.h;
         this.X = new me.e(3, this, isVar, 350L);
         this.Y = new me.b(4, this, isVar, 320L, false);
         this.Z = new HashMap();
-        this.f48510a0 = new ArrayList();
-        this.f48511b0 = new ArrayList();
-        this.f48519j0 = new HashMap();
-        this.f48524p0 = new Rect();
+        this.f48556a0 = new ArrayList();
+        this.f48557b0 = new ArrayList();
+        this.f48565j0 = new HashMap();
+        this.f48570p0 = new Rect();
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
-        this.f25988w = false;
+        this.f25526w = false;
         this.m0 = MessagesController.getInstance(this.currentAccount).config.pollCountriesMax.get();
         AndroidUtilities.enableEdgeToEdge(getWindow());
-        rm0 rm0Var = this.d;
+        sm0 sm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        rm0Var.setPadding(i10, 0, i10, AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight);
+        sm0Var.setPadding(i10, 0, i10, AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
-        this.d.j(new nh0(this, 16));
-        this.d.setOnItemClickListener(new c(context, e6Var, this));
-        ci.d dVar = new ci.d(context, e6Var, true);
-        this.f48514e0 = dVar;
+        this.d.j(new oh0(this, 16));
+        this.d.setOnItemClickListener(new c(context, d6Var, this));
+        ci.d dVar = new ci.d(context, d6Var, true);
+        this.f48560e0 = dVar;
         dVar.e();
         dVar.setCountFilled(true);
         dVar.setText(LocaleController.getString(R.string.Save));
         dVar.setOnClickListener(new a(this, 0));
         o oVar = new o(this, context);
-        this.f48515f0 = oVar;
-        oVar.setTextColor(getThemedColor(i6.Sh));
+        this.f48561f0 = oVar;
+        oVar.setTextColor(getThemedColor(h6.Sh));
         oVar.setText(LocaleController.getString(R.string.Save));
         oVar.setTypeface(AndroidUtilities.bold());
         oVar.setTextSize(1, 14.0f);
@@ -111,43 +111,43 @@ public final class f extends eb implements me.d {
         oVar.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         oVar.setVisibility(8);
         z5.a(oVar);
-        this.f25983e.o().addView(oVar, x5.t(-2, 48, 16, 12, 0, 12, 0));
+        this.f25521e.o().addView(oVar, x5.t(-2, 48, 16, 12, 0, 12, 0));
         oVar.setOnClickListener(new a(this, 1));
-        t20 t20Var = new t20(context, e6Var);
+        t20 t20Var = new t20(context, d6Var);
         String string = LocaleController.getString(R.string.PollV2SearchHint);
-        g2 g2Var = t20Var.f30958r;
+        g2 g2Var = t20Var.f30964r;
         g2Var.setHint(string);
         g2Var.addTextChangedListener(new h2(this, 20));
         x20 x20Var = new x20(context, this.currentAccount);
-        this.f48517h0 = x20Var;
+        this.f48563h0 = x20Var;
         x20Var.setDelegate(new b(this));
-        t5 t5Var = new t5(context, e6Var, this);
-        this.f48516g0 = t5Var;
+        s5 s5Var = new s5(context, d6Var, this);
+        this.f48562g0 = s5Var;
         int i11 = this.backgroundPaddingLeft;
-        t5Var.setPadding(i11, 0, i11, 0);
-        t5Var.addView(t20Var, x5.a(40.0f, 10.0f, 0.0f, 10.0f, 0.0f, -1, 48));
-        t5Var.addView(x20Var, x5.a(144.0f, -3.0f, 40.0f, -3.0f, 0.0f, -1, 48));
-        v3 v3Var = new v3(context, 18, e6Var);
-        this.f48518i0 = v3Var;
+        s5Var.setPadding(i11, 0, i11, 0);
+        s5Var.addView(t20Var, x5.a(40.0f, 10.0f, 0.0f, 10.0f, 0.0f, -1, 48));
+        s5Var.addView(x20Var, x5.a(144.0f, -3.0f, 40.0f, -3.0f, 0.0f, -1, 48));
+        v3 v3Var = new v3(context, 18, d6Var);
+        this.f48564i0 = v3Var;
         v3Var.setTranslationY(AndroidUtilities.dp(48.0f));
         v3Var.c(LocaleController.getString(R.string.SearchCountriesTitle), LocaleController.getString(R.string.DeselectAll), new a(this, 2));
-        t5Var.addView(v3Var, x5.e(-1, 32, 48));
-        this.containerView.addView(t5Var, x5.e(-1, 216, 48));
+        s5Var.addView(v3Var, x5.e(-1, 32, 48));
+        this.containerView.addView(s5Var, x5.e(-1, 216, 48));
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setPadding(AndroidUtilities.dp(10.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(10.0f) + AndroidUtilities.navigationBarHeight);
         frameLayout.addView(dVar, x5.d(48.0f, -1));
         this.containerView.addView(frameLayout, x5.e(-1, -2, 80));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f48522n0 = frameLayout2;
+        this.f48568n0 = frameLayout2;
         frameLayout2.setTranslationY((-AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(68.0f));
         this.containerView.addView(frameLayout2, x5.e(-1, 150, 80));
         j jVar = new j();
         jVar.n(350L);
         jVar.o(isVar);
         jVar.C = false;
-        jVar.f47742m = false;
+        jVar.f47788m = false;
         this.d.setItemAnimator(jVar);
-        this.d.i(new d(this, e6Var));
+        this.d.i(new d(this, d6Var));
         q1 q1Var = new q1(this, 15);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_help_getCountriesList tL_help_getCountriesList = new TLRPC.TL_help_getCountriesList();
@@ -162,13 +162,13 @@ public final class f extends eb implements me.d {
     }
 
     public static void Q(f fVar, Pair pair) {
-        HashMap hashMap = fVar.f48519j0;
+        HashMap hashMap = fVar.f48565j0;
         HashMap hashMap2 = fVar.Z;
         hashMap2.putAll((Map) pair.first);
-        ArrayList arrayList = fVar.f48510a0;
+        ArrayList arrayList = fVar.f48556a0;
         arrayList.addAll((Collection) pair.second);
-        Map.EL.forEach(hashMap2, new u0(fVar, 1));
-        HashSet hashSet = fVar.f48523o0;
+        Map.EL.forEach(hashMap2, new t0(fVar, 1));
+        HashSet hashSet = fVar.f48569o0;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
@@ -192,13 +192,13 @@ public final class f extends eb implements me.d {
                 if (tL_help_country != null) {
                     e40 e40Var = new e40(fVar.getContext(), tL_help_country);
                     e40Var.setOnClickListener(new a(fVar, 3));
-                    fVar.f48517h0.a(e40Var);
+                    fVar.f48563h0.a(e40Var);
                     hashMap.put(tL_help_country.iso2, e40Var);
                 }
             }
         }
-        fVar.f48513d0.N(true);
-        fVar.f48514e0.b(hashMap.size(), true);
+        fVar.f48559d0.N(true);
+        fVar.f48560e0.b(hashMap.size(), true);
     }
 
     @Override
@@ -208,62 +208,62 @@ public final class f extends eb implements me.d {
 
     public final void R() {
         boolean z10;
-        int dp = AndroidUtilities.dp(56.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.X.f16349e);
+        int dp = AndroidUtilities.dp(56.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.X.f16373e);
         int measuredHeight = (this.containerView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(34.0f);
-        Rect rect = this.f48524p0;
+        Rect rect = this.f48570p0;
         if (rect.top == dp && rect.bottom == measuredHeight) {
             z10 = false;
         } else {
             z10 = true;
         }
         rect.set(0, dp, this.containerView.getMeasuredWidth(), measuredHeight);
-        rm0 rm0Var = this.d;
-        rm0Var.setClipBounds(rect);
+        sm0 sm0Var = this.d;
+        sm0Var.setClipBounds(rect);
         if (z10) {
-            rm0Var.invalidate();
+            sm0Var.invalidate();
         }
     }
 
     public final void S() {
-        rm0 rm0Var;
+        sm0 sm0Var;
         float f7 = AndroidUtilities.displaySize.y;
         int i10 = 0;
         while (true) {
-            rm0Var = this.d;
-            if (i10 >= rm0Var.getChildCount()) {
+            sm0Var = this.d;
+            if (i10 >= sm0Var.getChildCount()) {
                 break;
             }
-            View childAt = rm0Var.getChildAt(i10);
+            View childAt = sm0Var.getChildAt(i10);
             if (RecyclerView.R(childAt) >= 1 && childAt.getY() < f7) {
                 f7 = childAt.getY();
             }
             i10++;
         }
         float max = Math.max(k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7 + AndroidUtilities.dp(8.0f));
-        t5 t5Var = this.f48516g0;
-        if (t5Var.getTranslationY() != max) {
-            t5Var.setTranslationY(max);
-            rm0Var.invalidate();
+        s5 s5Var = this.f48562g0;
+        if (s5Var.getTranslationY() != max) {
+            s5Var.setTranslationY(max);
+            sm0Var.invalidate();
         }
     }
 
     public final void T(View view) {
         e40 e40Var = (e40) view;
-        if (e40Var.f25904y) {
-            this.f48525q0 = null;
-            this.f48517h0.c(e40Var);
+        if (e40Var.f25838y) {
+            this.f48571q0 = null;
+            this.f48563h0.c(e40Var);
             String countryIso2 = e40Var.getCountryIso2();
-            HashMap hashMap = this.f48519j0;
+            HashMap hashMap = this.f48565j0;
             hashMap.remove(countryIso2);
-            this.f48514e0.b(hashMap.size(), true);
-            this.f48513d0.N(true);
+            this.f48560e0.b(hashMap.size(), true);
+            this.f48559d0.N(true);
             return;
         }
-        e40 e40Var2 = this.f48525q0;
+        e40 e40Var2 = this.f48571q0;
         if (e40Var2 != null) {
             e40Var2.a();
         }
-        this.f48525q0 = e40Var;
+        this.f48571q0 = e40Var;
         e40Var.b();
     }
 
@@ -271,10 +271,10 @@ public final class f extends eb implements me.d {
     public final void n(int i10, float f7, float f10, me.e eVar) {
         if (i10 == 3) {
             R();
-            this.f48518i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
-            this.f48516g0.invalidate();
+            this.f48564i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
+            this.f48562g0.invalidate();
         } else if (i10 == 4) {
-            q20.d(this.f48515f0, f7);
+            q20.d(this.f48561f0, f7);
         }
     }
 
@@ -286,11 +286,11 @@ public final class f extends eb implements me.d {
     }
 
     @Override
-    public final qm0 x(rm0 rm0Var) {
-        d71 d71Var = new d71(rm0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 8), this.resourcesProvider);
-        this.f48513d0 = d71Var;
-        d71Var.f25587r = false;
-        return d71Var;
+    public final rm0 x(sm0 sm0Var) {
+        e71 e71Var = new e71(sm0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 8), this.resourcesProvider);
+        this.f48559d0 = e71Var;
+        e71Var.f25890r = false;
+        return e71Var;
     }
 
     @Override

@@ -16,7 +16,7 @@ public final class d0 implements Choreographer.FrameCallback, Handler.Callback {
         HandlerThread handlerThread = new HandlerThread("ExoPlayer:FrameReleaseChoreographer");
         handlerThread.start();
         Looper looper = handlerThread.getLooper();
-        String str = e2.d0.f8532a;
+        String str = e2.d0.f8531a;
         Handler handler = new Handler(looper, this);
         this.f85b = handler;
         handler.sendEmptyMessage(1);

@@ -16,20 +16,20 @@ import e9.i0;
 import java.util.ArrayList;
 import java.util.List;
 public final class h implements o {
-    public final m f53541a;
-    public final s f53542b;
-    public final ArrayList f53543c;
-    public h0 f53545f;
-    public int f53546g;
+    public final m f53584a;
+    public final s f53585b;
+    public final ArrayList f53586c;
+    public h0 f53588f;
+    public int f53589g;
     public int h;
-    public long[] f53547i;
-    public long f53548j;
-    public byte[] f53544e = d0.f8533b;
+    public long[] f53590i;
+    public long f53591j;
+    public byte[] f53587e = d0.f8532b;
     public final v d = new v();
 
     public h(m mVar, s sVar) {
         s sVar2;
-        this.f53541a = mVar;
+        this.f53584a = mVar;
         if (sVar != null) {
             r a2 = sVar.a();
             a2.f3585q = r0.n("application/x-media3-cues");
@@ -39,11 +39,11 @@ public final class h implements o {
         } else {
             sVar2 = null;
         }
-        this.f53542b = sVar2;
-        this.f53543c = new ArrayList();
+        this.f53585b = sVar2;
+        this.f53586c = new ArrayList();
         this.h = 0;
-        this.f53547i = d0.f8534c;
-        this.f53548j = -9223372036854775807L;
+        this.f53590i = d0.f8533c;
+        this.f53591j = -9223372036854775807L;
     }
 
     @Override
@@ -52,14 +52,14 @@ public final class h implements o {
     }
 
     public final void b(g gVar) {
-        e2.d.h(this.f53545f);
-        byte[] bArr = gVar.f53540b;
+        e2.d.h(this.f53588f);
+        byte[] bArr = gVar.f53583b;
         int length = bArr.length;
         v vVar = this.d;
         vVar.getClass();
         vVar.H(bArr.length, bArr);
-        this.f53545f.d(length, vVar);
-        this.f53545f.c(gVar.f53539a, 1, length, 0, null);
+        this.f53588f.d(length, vVar);
+        this.f53588f.c(gVar.f53582a, 1, length, 0, null);
     }
 
     @Override
@@ -72,8 +72,8 @@ public final class h implements o {
         }
         e2.d.g(z10);
         h0 f22 = qVar.f2(0, 3);
-        this.f53545f = f22;
-        s sVar = this.f53542b;
+        this.f53588f = f22;
+        s sVar = this.f53585b;
         if (sVar != null) {
             f22.b(sVar);
             qVar.k1();
@@ -92,7 +92,7 @@ public final class h implements o {
             z10 = false;
         }
         e2.d.g(z10);
-        this.f53548j = j10;
+        this.f53591j = j10;
         if (this.h == 2) {
             this.h = 1;
         }
@@ -103,8 +103,8 @@ public final class h implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8752b;
-        return a1.f8715e;
+        g0 g0Var = i0.f8751b;
+        return a1.f8714e;
     }
 
     @Override
@@ -117,7 +117,7 @@ public final class h implements o {
         if (this.h == 5) {
             return;
         }
-        this.f53541a.reset();
+        this.f53584a.reset();
         this.h = 5;
     }
 

@@ -7,35 +7,35 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class i50 implements org.telegram.ui.Components.kl0 {
-    public final Path f38574a = new Path();
-    public final Paint f38575b;
-    public final g60 f38576c;
+public final class i50 implements org.telegram.ui.Components.ll0 {
+    public final Path f38581a = new Path();
+    public final Paint f38582b;
+    public final g60 f38583c;
 
     public i50(g60 g60Var) {
-        this.f38576c = g60Var;
+        this.f38583c = g60Var;
         Paint paint = new Paint(1);
-        this.f38575b = paint;
+        this.f38582b = paint;
         paint.setColor(-14603467);
     }
 
     @Override
     public final void m(View view, zg.n0 n0Var, boolean z10, boolean z11) {
         TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-        String str = n0Var.f54661f;
+        String str = n0Var.f54704f;
         if (str == null) {
             str = "👍";
         }
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         tL_textWithEntities.text = str;
-        long j3 = n0Var.f54662g;
+        long j3 = n0Var.f54705g;
         if (j3 != 0) {
             tL_messageEntityCustomEmoji.document_id = j3;
             tL_messageEntityCustomEmoji.offset = 0;
             tL_messageEntityCustomEmoji.length = str.length();
             tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
         }
-        g60 g60Var = this.f38576c;
+        g60 g60Var = this.f38583c;
         g60Var.B1(tL_textWithEntities);
         g40 g40Var = g60Var.H;
         if (g40Var.m()) {
@@ -44,7 +44,7 @@ public final class i50 implements org.telegram.ui.Components.kl0 {
             g40Var.d();
         }
         zg.a0 reactionsWindow = g60Var.K.getReactionsWindow();
-        if (reactionsWindow != null && !reactionsWindow.f54507q) {
+        if (reactionsWindow != null && !reactionsWindow.f54550q) {
             g60Var.K.getReactionsWindow().e();
             g60Var.K.n();
         }
@@ -63,18 +63,18 @@ public final class i50 implements org.telegram.ui.Components.kl0 {
     @Override
     public final void r(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
         int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        Paint paint = this.f38575b;
+        Paint paint = this.f38582b;
         if (i11 > 0) {
             canvas.drawRoundRect(rectF, f7, f7, paint);
         } else {
             canvas.drawRect(rectF, paint);
         }
         if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            g60 g60Var = this.f38576c;
+            g60 g60Var = this.f38583c;
             if (g60Var.Q2 != null) {
                 canvas.save();
                 if (i11 > 0) {
-                    Path path = this.f38574a;
+                    Path path = this.f38581a;
                     path.rewind();
                     path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                     path.close();

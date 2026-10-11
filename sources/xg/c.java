@@ -9,38 +9,38 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.bi;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.g2;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.voip.o;
+import org.telegram.messenger.ai;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.f2;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.voip.p;
 import w7.x5;
 public class c extends FrameLayout {
-    public final e6 f51170a;
-    public final ImageView f51171b;
-    public final TextView f51172c;
+    public final d6 f51213a;
+    public final ImageView f51214b;
+    public final TextView f51215c;
     public Runnable d;
-    public final g2 f51173e;
-    public final Paint f51174f;
+    public final f2 f51216e;
+    public final Paint f51217f;
 
-    public c(Context context, e6 e6Var) {
+    public c(Context context, d6 d6Var) {
         super(context);
         int i10;
         float f7;
         float f10;
-        this.f51174f = new Paint(1);
-        this.f51170a = e6Var;
+        this.f51217f = new Paint(1);
+        this.f51213a = d6Var;
         TextView textView = new TextView(context);
-        this.f51172c = textView;
-        bi.k(20.0f, 1, textView);
+        this.f51215c = textView;
+        ai.k(20.0f, 1, textView);
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         textView.setGravity(i10);
-        int i11 = i6.f20909j5;
-        textView.setTextColor(i6.w0(i11, e6Var));
+        int i11 = h6.f20894j5;
+        textView.setTextColor(h6.w0(i11, d6Var));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             f7 = 16.0f;
@@ -54,22 +54,22 @@ public class c extends FrameLayout {
         }
         addView(textView, x5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, 23));
         ImageView imageView = new ImageView(context);
-        this.f51171b = imageView;
-        g2 g2Var = new g2(false);
-        this.f51173e = g2Var;
-        imageView.setImageDrawable(g2Var);
-        g2Var.a(i6.w0(i11, e6Var));
-        g2Var.b(i6.w0(i11, e6Var));
-        g2Var.f20644k = 220.0f;
+        this.f51214b = imageView;
+        f2 f2Var = new f2(false);
+        this.f51216e = f2Var;
+        imageView.setImageDrawable(f2Var);
+        f2Var.a(h6.w0(i11, d6Var));
+        f2Var.b(h6.w0(i11, d6Var));
+        f2Var.f20595k = 220.0f;
         addView(imageView, x5.a(24.0f, 16.0f, 0.0f, 16.0f, 0.0f, 24, (LocaleController.isRTL ? 5 : 3) | 16));
-        imageView.setOnClickListener(new o(this, 14));
+        imageView.setOnClickListener(new p(this, 14));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int w02 = i6.w0(i6.f20802d7, this.f51170a);
-        Paint paint = this.f51174f;
+        int w02 = h6.w0(h6.f20787d7, this.f51213a);
+        Paint paint = this.f51217f;
         paint.setColor(w02);
         canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
     }
@@ -84,7 +84,7 @@ public class c extends FrameLayout {
     }
 
     public void setBackImage(int i10) {
-        this.f51171b.setImageResource(i10);
+        this.f51214b.setImageResource(i10);
     }
 
     public void setCloseImageVisible(boolean z10) {
@@ -96,7 +96,7 @@ public class c extends FrameLayout {
         } else {
             i10 = 8;
         }
-        this.f51171b.setVisibility(i10);
+        this.f51214b.setVisibility(i10);
         boolean z11 = LocaleController.isRTL;
         if (!z11 && z10) {
             f7 = 53.0f;
@@ -108,7 +108,7 @@ public class c extends FrameLayout {
         } else {
             f10 = 22.0f;
         }
-        this.f51172c.setLayoutParams(x5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, 23));
+        this.f51215c.setLayoutParams(x5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, 23));
     }
 
     public void setOnCloseClickListener(Runnable runnable) {
@@ -116,6 +116,6 @@ public class c extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f51172c.setText(charSequence);
+        this.f51215c.setText(charSequence);
     }
 }

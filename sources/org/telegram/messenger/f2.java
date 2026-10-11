@@ -1,99 +1,117 @@
 package org.telegram.messenger;
-public final class f2 implements Runnable {
-    public final int f17804a;
-    public final MessagesStorage f17805b;
 
-    public f2(MessagesStorage messagesStorage, int i10) {
-        this.f17804a = i10;
-        this.f17805b = messagesStorage;
+import android.util.SparseArray;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
+public final class f2 implements Runnable {
+    public final int f17802a;
+    public final Object f17803b;
+    public final Object f17804c;
+
+    public f2(int i10, Object obj, Object obj2) {
+        this.f17802a = i10;
+        this.f17803b = obj;
+        this.f17804c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f17804a) {
+        switch (this.f17802a) {
             case 0:
-                FactCheckController.f(this.f17805b);
+                ((FactCheckController) this.f17803b).lambda$applyFactCheck$14((TLRPC.Updates) this.f17804c);
                 return;
             case 1:
-                this.f17805b.lambda$saveDialogFilter$73();
+                FactCheckController.lambda$saveToDatabase$6((MessagesStorage) this.f17803b, (TLRPC.TL_factCheck) this.f17804c);
                 return;
             case 2:
-                this.f17805b.lambda$clearLocalDatabase$43();
+                ((FileLoadOperation) this.f17803b).lambda$start$12((boolean[]) this.f17804c);
                 return;
             case 3:
-                this.f17805b.lambda$fixNotificationSettings$9();
+                ((FileLoadOperation) this.f17803b).lambda$addPart$3((ArrayList) this.f17804c);
                 return;
             case 4:
-                this.f17805b.lambda$getWallpapers$81();
+                ((FileLoader) this.f17803b).lambda$uploadFile$19((NotificationCenter.NotificationCenterDelegate[]) this.f17804c);
                 return;
             case 5:
-                this.f17805b.lambda$loadUnreadMessages$77();
+                ((FileLoader) this.f17803b).lambda$checkCurrentDownloadsFiles$17((ArrayList) this.f17804c);
                 return;
             case 6:
-                this.f17805b.lambda$updateMutedDialogsFiltersCounters$36();
+                FileLog.lambda$e$3((String) this.f17803b, (Throwable) this.f17804c);
                 return;
             case 7:
-                this.f17805b.lambda$openDatabase$1();
+                ((FilePathDatabase) this.f17803b).lambda$removeFiles$6((List) this.f17804c);
                 return;
             case 8:
-                this.f17805b.lambda$openDatabase$2();
+                ((FileRefController) this.f17803b).lambda$onRequestComplete$47((TLRPC.User) this.f17804c);
                 return;
             case 9:
-                this.f17805b.lambda$updateFiltersReadCounter$119();
+                ((FileRefController) this.f17803b).lambda$onRequestComplete$50((TLRPC.TL_messages_stickerSet) this.f17804c);
                 return;
             case 10:
-                this.f17805b.lambda$clearLocalDatabase$44();
+                ((GiftAuctionController) this.f17803b).lambda$sendBid$7((TLRPC.TL_payments_paymentResult) this.f17804c);
                 return;
             case 11:
-                this.f17805b.lambda$checkSQLException$8();
+                ((ImageLoader) this.f17803b).lambda$checkMediaPaths$1((Runnable) this.f17804c);
                 return;
             case 12:
-                this.f17805b.lambda$fullReset$62();
+                ImageLoader.lambda$checkMediaPaths$0((SparseArray) this.f17803b, (Runnable) this.f17804c);
                 return;
             case 13:
-                this.f17805b.lambda$new$0();
+                ((MediaController) this.f17803b).lambda$playEmojiSound$17((File) this.f17804c);
                 return;
             case 14:
-                this.f17805b.lambda$resetAllUnreadCounters$250();
+                MediaController.lambda$playEmojiSound$18((AccountInstance) this.f17803b, (TLRPC.TL_document) this.f17804c);
                 return;
             case 15:
-                this.f17805b.lambda$reset$61();
+                ((MediaController) this.f17803b).lambda$processMediaObserver$6((ArrayList) this.f17804c);
                 return;
             case 16:
-                this.f17805b.lambda$updateDbToLastVersion$3();
+                ((MediaController) this.f17803b).lambda$startAudioAgain$7((MessageObject) this.f17804c);
                 return;
             case 17:
-                this.f17805b.lambda$updateDbToLastVersion$4();
+                MediaDataController.lambda$loadReplyMessagesForMessages$172((AtomicInteger) this.f17803b, (Runnable) this.f17804c);
                 return;
             case 18:
-                this.f17805b.lambda$deleteDialog$89();
+                MediaDataController.lambda$fillWithAnimatedEmoji$229((boolean[]) this.f17803b, (u6) this.f17804c);
                 return;
             case 19:
-                this.f17805b.lambda$loadDialogFilters$67();
+                ((MediaDataController) this.f17803b).lambda$loadGroupStickerSet$44((TLRPC.StickerSet) this.f17804c);
                 return;
             case 20:
-                this.f17805b.lambda$clearSentMedia$163();
+                ((MediaDataController) this.f17803b).lambda$loadHints$147((TLRPC.TL_contacts_topPeers) this.f17804c);
                 return;
             case 21:
-                this.f17805b.lambda$fullReset$63();
+                ((MessageObject) this.f17803b).lambda$loadAnimatedEmojiDocument$0((TLRPC.Document) this.f17804c);
                 return;
             case 22:
-                this.f17805b.lambda$loadPendingTasks$33();
+                ((MessagesController) this.f17803b).lambda$processUpdateArray$415((TL_update.TL_updateChannel) this.f17804c);
                 return;
             case 23:
-                this.f17805b.lambda$deleteAllStoryPushMessages$40();
+                ((MessagesController) this.f17803b).lambda$createChat$256((TLRPC.TL_messages_invitedUsers) this.f17804c);
                 return;
             case 24:
-                this.f17805b.lambda$cleanup$5();
+                ((MessagesController) this.f17803b).lambda$processMessageIDUpdate$376((TL_update.TL_updateMessageID) this.f17804c);
                 return;
             case 25:
-                this.f17805b.lambda$deleteAllStoryReactionPushMessages$41();
+                ((MessagesController) this.f17803b).lambda$createChat$259((TLRPC.Updates) this.f17804c);
                 return;
             case 26:
-                this.f17805b.lambda$getContacts$151();
+                MessagesController.lambda$addUserToChat$298((Utilities.Callback) this.f17803b, (Runnable) this.f17804c);
+                return;
+            case 27:
+                ((MessagesController) this.f17803b).lambda$checkChatInviter$370((TLRPC.TL_channels_channelParticipant) this.f17804c);
+                return;
+            case 28:
+                ((MessagesController) this.f17803b).lambda$checkTosUpdate$161((TLRPC.TL_help_termsOfServiceUpdate) this.f17804c);
                 return;
             default:
-                this.f17805b.lambda$broadcastQuickRepliesMessagesChange$223();
+                ((MessagesController) this.f17803b).lambda$processUpdateArray$395((TL_update.TL_updateServiceNotification) this.f17804c);
                 return;
         }
     }

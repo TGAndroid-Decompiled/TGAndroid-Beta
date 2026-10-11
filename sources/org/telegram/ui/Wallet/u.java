@@ -1,73 +1,79 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.cf;
 public final class u implements Utilities.Callback3 {
-    public final int f35591a = 0;
-    public final k0 f35592b;
-    public final Object f35593c;
-    public final Object d;
-    public final Object f35594e;
+    public final l0 f35588a;
+    public final o6 f35589b;
+    public final SendMessagesHelper f35590c;
+    public final MessageObject d;
+    public final TL_wallet.walletTransaction f35591e;
+    public final String f35592f;
+    public final k0 f35593g;
+    public final long h;
+    public final TLRPC.User f35594i;
 
-    public u(k0 k0Var, Utilities.Callback callback, byte[] bArr, h0 h0Var) {
-        this.f35592b = k0Var;
-        this.f35593c = callback;
-        this.d = bArr;
-        this.f35594e = h0Var;
+    public u(l0 l0Var, o6 o6Var, SendMessagesHelper sendMessagesHelper, MessageObject messageObject, TL_wallet.walletTransaction wallettransaction, String str, k0 k0Var, long j3, TLRPC.User user) {
+        this.f35588a = l0Var;
+        this.f35589b = o6Var;
+        this.f35590c = sendMessagesHelper;
+        this.d = messageObject;
+        this.f35591e = wallettransaction;
+        this.f35592f = str;
+        this.f35593g = k0Var;
+        this.h = j3;
+        this.f35594i = user;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3) {
-        switch (this.f35591a) {
-            case 0:
-                Utilities.Callback callback = (Utilities.Callback) this.f35593c;
-                byte[] bArr = (byte[]) this.d;
-                h0 h0Var = (h0) this.f35594e;
-                TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
-                k0 k0Var = this.f35592b;
-                int i10 = k0Var.f35155a;
-                if (tL_error == null || !"WALLET_PROOF_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    if (tL_error != null) {
-                        String str = tL_error.text;
-                        if (str == null) {
-                            str = "NULL_ERROR";
-                        }
-                        callback.run(str);
-                        return;
-                    }
-                    k0Var.g0(walletState);
-                    new p0(k0.u(), k0Var.r(), i10).p(UserConfig.getInstance(i10).getClientUserId(), bArr, h0Var, callback);
-                    k0Var.O();
-                    return;
-                }
-                return;
-            default:
-                t8 t8Var = (t8) this.f35593c;
-                TLRPC.User user = (TLRPC.User) this.d;
-                String str2 = (String) this.f35594e;
-                String str3 = (String) obj;
-                Boolean bool = (Boolean) obj2;
-                Utilities.Callback callback2 = (Utilities.Callback) obj3;
-                String str4 = t8Var.f35583e;
-                k0 k0Var2 = this.f35592b;
-                if (!k0.b(str4, k0Var2.r())) {
-                    callback2.run("WALLET_CHANGED");
-                    return;
-                } else {
-                    k0Var2.Z(user, str2, 0L, str3, null, t8Var.d, null, new a7(4, t8Var, callback2), null);
-                    return;
-                }
+        TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj;
+        String str = (String) obj2;
+        String str2 = (String) obj3;
+        l0 l0Var = this.f35588a;
+        int i10 = l0Var.f35185a;
+        o6 o6Var = this.f35589b;
+        SendMessagesHelper sendMessagesHelper = this.f35590c;
+        MessageObject messageObject = this.d;
+        boolean z10 = false;
+        if (sendtransfer == null) {
+            o6Var.run();
+            sendMessagesHelper.completeSendingGramTransfer(messageObject, null, false);
+            if (str2 == null) {
+                str2 = "NULL_ERROR";
+            }
+            l0.i("failed sending: ".concat(str2));
+            return;
         }
-    }
-
-    public u(t8 t8Var, k0 k0Var, TLRPC.User user, String str) {
-        this.f35593c = t8Var;
-        this.f35592b = k0Var;
-        this.d = user;
-        this.f35594e = str;
+        TL_wallet.walletTransaction wallettransaction = this.f35591e;
+        if (str != null) {
+            wallettransaction.comment = str;
+            wallettransaction.comment_encrypted = true;
+        }
+        if (l0.b(l0Var.r(), this.f35592f)) {
+            sendtransfer.data_gasless = null;
+        }
+        wallettransaction.comment_encrypted_preparing = false;
+        sendMessagesHelper.updateSendingGramTransferComment(messageObject, wallettransaction.comment, wallettransaction.comment_encrypted);
+        if (sendtransfer.data_gasless != null) {
+            z10 = true;
+        }
+        wallettransaction.gasless = z10;
+        wallettransaction.gaslessMessageBodyHash = sendtransfer.gaslessMessageBodyHash;
+        wallettransaction.normalMessageBodyHash = sendtransfer.normalMessageBodyHash;
+        k0 k0Var = this.f35593g;
+        k0Var.h();
+        k0Var.f();
+        sendtransfer.random_id = this.h;
+        sendtransfer.user_id = MessagesController.getInstance(i10).getInputUser(this.f35594i);
+        l0Var.P();
+        l0.E("prepared sendTransfer, sending");
+        ConnectionsManager.getInstance(i10).sendRequestTyped(sendtransfer, new Object(), new cf(l0Var, wallettransaction, sendMessagesHelper, messageObject, o6Var, 4));
     }
 }

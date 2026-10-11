@@ -396,10 +396,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f17259id;
+        private int f17254id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f17259id = i10;
+            this.f17254id = i10;
             this.args = objArr;
         }
     }
@@ -943,7 +943,7 @@ public class NotificationCenter {
                 }
             }
             if (j3 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new wg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j3)));
+                AndroidUtilities.runOnUIThread(new vg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j3)));
             }
         }
     }
@@ -1035,7 +1035,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new wg(this, 1);
+        this.checkForExpiredNotifications = new vg(this, 1);
     }
 
     public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
@@ -1093,12 +1093,12 @@ public class NotificationCenter {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with View with destroyed Context");
                                 valueAt.remove(size);
                             }
-                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.n2) {
-                            if (((org.telegram.ui.ActionBar.n2) notificationCenterDelegate).isFinished) {
+                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.m2) {
+                            if (((org.telegram.ui.ActionBar.m2) notificationCenterDelegate).isFinished) {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BaseFragment");
                                 valueAt.remove(size);
                             }
-                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.f3) && ((org.telegram.ui.ActionBar.f3) notificationCenterDelegate).isDismissed()) {
+                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.e3) && ((org.telegram.ui.ActionBar.e3) notificationCenterDelegate).isDismissed()) {
                             FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BottomSheet");
                             valueAt.remove(size);
                         }
@@ -1220,7 +1220,7 @@ public class NotificationCenter {
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
             return new ei.l3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
         }
-        return new w1(18);
+        return new w1(17);
     }
 
     public void onAnimationFinish(int i10) {
@@ -1395,7 +1395,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f17259id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f17254id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }
@@ -1517,9 +1517,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            wg wgVar = new wg(this, 1);
-            this.checkForExpiredNotifications = wgVar;
-            AndroidUtilities.runOnUIThread(wgVar, 5017L);
+            vg vgVar = new vg(this, 1);
+            this.checkForExpiredNotifications = vgVar;
+            AndroidUtilities.runOnUIThread(vgVar, 5017L);
         }
         return this.animationInProgressPointer;
     }

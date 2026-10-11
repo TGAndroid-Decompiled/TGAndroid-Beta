@@ -2,20 +2,20 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class j extends og.a {
-    public final CharSequence f38827c;
+    public final CharSequence f38804c;
     public final int d;
 
     public j(int i10, int i11, String str) {
         super(i10, false);
         this.d = i11;
-        this.f38827c = str;
+        this.f38804c = str;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && j.class == obj.getClass()) {
                 j jVar = (j) obj;
-                if (this.d == jVar.d && Objects.equals(this.f38827c, jVar.f38827c)) {
+                if (this.d == jVar.d && Objects.equals(this.f38804c, jVar.f38804c)) {
                     return true;
                 }
                 return false;

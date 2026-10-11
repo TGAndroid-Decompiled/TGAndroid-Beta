@@ -19,9 +19,9 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.kw0;
 import org.telegram.ui.Components.lw0;
-public final class w1 implements NativeInstance.AudioLevelsCallback, kw0, lw0, org.telegram.ui.ActionBar.a2, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
+import org.telegram.ui.Components.mw0;
+public final class w1 implements NativeInstance.AudioLevelsCallback, lw0, mw0, org.telegram.ui.ActionBar.z1, d9.e, i5.e, GenericProvider, Utilities.Callback2Return, Continuation, q9.d {
     public final int f1842a;
 
     public w1(int i10) {
@@ -121,7 +121,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, kw0, lw0, o
                 b2.r rVar = new b2.r();
                 if (bundle4 != null) {
                     ClassLoader classLoader = e2.d.class.getClassLoader();
-                    String str5 = e2.d0.f8532a;
+                    String str5 = e2.d0.f8531a;
                     bundle4.setClassLoader(classLoader);
                 }
                 String string5 = bundle4.getString(b2.s.V);
@@ -138,7 +138,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, kw0, lw0, o
                 rVar.f3572b = string6;
                 ArrayList parcelableArrayList = bundle4.getParcelableArrayList(b2.s.A0);
                 if (parcelableArrayList == null) {
-                    i10 = e9.a1.f8715e;
+                    i10 = e9.a1.f8714e;
                 } else {
                     e9.f0 u10 = e9.i0.u();
                     for (int i19 = 0; i19 < parcelableArrayList.size(); i19++) {
@@ -223,8 +223,8 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, kw0, lw0, o
                 bundle8.getClass();
                 ArrayList parcelableArrayList2 = bundle8.getParcelableArrayList(b2.l1.f3413f);
                 if (parcelableArrayList2 == null) {
-                    e9.g0 g0Var = e9.i0.f8752b;
-                    j3 = e9.a1.f8715e;
+                    e9.g0 g0Var = e9.i0.f8751b;
+                    j3 = e9.a1.f8714e;
                 } else {
                     j3 = e2.d.j(new w1(14), parcelableArrayList2);
                 }
@@ -247,7 +247,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, kw0, lw0, o
             default:
                 wa.e eVar = (wa.e) obj;
                 eVar.getClass();
-                la.h hVar = com.google.firebase.messaging.q.f7966a;
+                la.h hVar = com.google.firebase.messaging.q.f7965a;
                 hVar.getClass();
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
@@ -256,8 +256,8 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, kw0, lw0, o
                 }
                 return byteArrayOutputStream.toByteArray();
             case 20:
-                ca.a.f4564b.getClass();
-                return z9.a.f54225a.T((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
+                ca.a.f4563b.getClass();
+                return z9.a.f54270a.T((y9.e2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
@@ -281,13 +281,13 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, kw0, lw0, o
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         switch (this.f1842a) {
             case 5:
-                b2Var.dismiss();
+                a2Var.dismiss();
                 return;
             default:
-                b2Var.dismiss();
+                a2Var.dismiss();
                 return;
         }
     }
@@ -306,7 +306,7 @@ public final class w1 implements NativeInstance.AudioLevelsCallback, kw0, lw0, o
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = ci.v3.f6127j0;
+        MediaController.AlbumEntry albumEntry = ci.v3.f6126j0;
         return 0;
     }
 

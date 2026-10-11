@@ -1,34 +1,88 @@
 package org.telegram.ui.Components.voip;
 
-import android.widget.TextView;
-import org.telegram.messenger.bi;
-public final class m implements Runnable {
-    public final int f32116a;
-    public final u f32117b;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ai;
+import org.telegram.ui.g60;
+import org.telegram.ui.l60;
+public abstract class m extends FrameLayout {
+    public int f32096a;
+    public l60 f32097b;
+    public v f32098c;
+    public ChatObject.VideoParticipant d;
+    public boolean f32099e;
+    public final boolean f32100f;
 
-    public m(u uVar, int i10) {
-        this.f32116a = i10;
-        this.f32117b = uVar;
+    public m(Context context, boolean z10) {
+        super(context);
+        this.f32100f = z10;
+    }
+
+    public float getItemHeight() {
+        int measuredHeight;
+        l60 l60Var = this.f32097b;
+        if (l60Var != null) {
+            measuredHeight = l60Var.F();
+        } else {
+            measuredHeight = getMeasuredHeight();
+        }
+        return measuredHeight;
+    }
+
+    public ChatObject.VideoParticipant getParticipant() {
+        return this.d;
+    }
+
+    public v getRenderer() {
+        return this.f32098c;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32116a) {
-            case 0:
-                this.f32117b.requestLayout();
-                return;
-            default:
-                u uVar = this.f32117b;
-                TextView textView = uVar.O;
-                p pVar = uVar.f32316a;
-                if (!pVar.d.isFirstFrameRendered()) {
-                    pVar.animate().cancel();
-                    pVar.animate().alpha(0.0f).setDuration(150L).start();
-                    textView.animate().cancel();
-                    bi.s(textView.animate(), 1.0f, 150L);
-                    return;
-                }
-                return;
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f32099e = true;
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f32099e = false;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int i12;
+        float f10;
+        if (this.f32100f) {
+            ((View) getParent()).getMeasuredWidth();
+            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f32097b.F(), 1073741824));
+            return;
         }
+        if (g60.F3) {
+            f7 = 3.0f;
+        } else {
+            f7 = 2.0f;
+        }
+        int B = ai.B(14.0f, 2, AndroidUtilities.displaySize.x);
+        if (g60.F3) {
+            i12 = -AndroidUtilities.dp(90.0f);
+        } else {
+            i12 = 0;
+        }
+        float f11 = B + i12;
+        if (g60.G3) {
+            f10 = f11 / 2.0f;
+        } else {
+            f10 = f11 / f7;
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (f10 + AndroidUtilities.dp(4.0f)), 1073741824));
+    }
+
+    public void setRenderer(v vVar) {
+        this.f32098c = vVar;
     }
 }

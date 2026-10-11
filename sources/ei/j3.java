@@ -12,17 +12,17 @@ import android.view.View;
 import ci.a9;
 import ci.u5;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.tc;
-import org.telegram.ui.Components.tw0;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.ue0;
+import org.telegram.ui.Components.uw0;
 import org.telegram.ui.LaunchActivity;
-public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
+public final class j3 extends uw0 implements org.telegram.ui.ActionBar.t3 {
     public final k3 A0;
-    public final Paint f9129w0;
-    public boolean f9130x0;
-    public final RectF f9131y0;
-    public final Path f9132z0;
+    public final Paint f9128w0;
+    public boolean f9129x0;
+    public final RectF f9130y0;
+    public final Path f9131z0;
 
     public j3(k3 k3Var, Context context) {
         super(context, null);
@@ -30,9 +30,9 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
         setClipChildren(false);
         setClipToPadding(false);
         setWillNotDraw(false);
-        this.f9129w0 = new Paint(1);
-        this.f9131y0 = new RectF();
-        this.f9132z0 = new Path();
+        this.f9128w0 = new Paint(1);
+        this.f9130y0 = new RectF();
+        this.f9131z0 = new Path();
     }
 
     @Override
@@ -41,16 +41,16 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
         Paint paint;
         float f7;
         k3 k3Var = this.A0;
-        ue0 ue0Var = k3Var.f9177s0;
+        ue0 ue0Var = k3Var.f9176s0;
         Rect rect = k3Var.h;
-        Rect rect2 = k3Var.f9161f;
-        if (!this.f9130x0) {
+        Rect rect2 = k3Var.f9160f;
+        if (!this.f9129x0) {
             int visibility = ue0Var.getVisibility();
-            Paint paint2 = this.f9129w0;
+            Paint paint2 = this.f9128w0;
             if (visibility != 0) {
-                float f10 = k3Var.f9162f0;
+                float f10 = k3Var.f9161f0;
                 if (f10 < 1.0f && f10 > 0.0f) {
-                    paint2.setColor(i6.m1(k3Var.N0, k3Var.R));
+                    paint2.setColor(h6.m1(k3Var.N0, k3Var.R));
                     int i10 = rect2.left;
                     if (i10 > 0) {
                         canvas.drawRect(0.0f, 0.0f, i10, getHeight(), paint2);
@@ -66,14 +66,14 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
                     }
                 }
             }
-            if (k3Var.f9176s != null && !AndroidUtilities.isTablet()) {
+            if (k3Var.f9175s != null && !AndroidUtilities.isTablet()) {
                 canvas.save();
-                canvas.translate((1.0f - k3Var.f9162f0) * rect.left, 0.0f);
-                u5 u5Var = k3Var.f9176s;
-                int lerp = AndroidUtilities.lerp((getWidth() - rect.left) - rect.right, getWidth(), k3Var.f9162f0);
+                canvas.translate((1.0f - k3Var.f9161f0) * rect.left, 0.0f);
+                u5 u5Var = k3Var.f9175s;
+                int lerp = AndroidUtilities.lerp((getWidth() - rect.left) - rect.right, getWidth(), k3Var.f9161f0);
                 getHeight();
-                u5Var.j(canvas, true, false, lerp, 1.0f - k3Var.f9162f0);
-                canvas.translate((1.0f - k3Var.f9162f0) * (-rect.left), 0.0f);
+                u5Var.j(canvas, true, false, lerp, 1.0f - k3Var.f9161f0);
+                canvas.translate((1.0f - k3Var.f9161f0) * (-rect.left), 0.0f);
                 z10 = true;
             } else {
                 z10 = false;
@@ -83,30 +83,30 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
                 canvas.restore();
             }
             if (ue0Var.getVisibility() != 0) {
-                paint2.setColor(i6.m1(k3Var.N0, k3Var.R));
+                paint2.setColor(h6.m1(k3Var.N0, k3Var.R));
                 int i11 = rect2.left;
                 if (i11 > 0) {
                     paint = paint2;
-                    canvas.drawRect(0.0f, 0.0f, (1.0f - k3Var.f9162f0) * i11, getHeight(), paint);
+                    canvas.drawRect(0.0f, 0.0f, (1.0f - k3Var.f9161f0) * i11, getHeight(), paint);
                 } else {
                     paint = paint2;
                 }
                 if (rect2.top > 0) {
-                    canvas.drawRect(0.0f, 0.0f, getWidth(), (1.0f - k3Var.f9162f0) * rect2.top, paint);
+                    canvas.drawRect(0.0f, 0.0f, getWidth(), (1.0f - k3Var.f9161f0) * rect2.top, paint);
                 }
                 if (rect2.bottom > 0) {
                     float height = getHeight();
                     float f11 = rect2.bottom;
-                    g3 g3Var = k3Var.f9168l0;
+                    g3 g3Var = k3Var.f9167l0;
                     if (g3Var != null && g3Var.getTotalHeight() > 0) {
                         f7 = 1.0f;
                     } else {
-                        f7 = 1.0f - k3Var.f9162f0;
+                        f7 = 1.0f - k3Var.f9161f0;
                     }
                     canvas.drawRect(0.0f, height - (f11 * f7), getWidth(), getHeight(), paint);
                 }
                 if (rect2.right > 0) {
-                    canvas.drawRect(com.google.android.gms.internal.vision.e2.b(1.0f, k3Var.f9162f0, rect2.right, getWidth()), 0.0f, getWidth(), getHeight(), paint);
+                    canvas.drawRect(com.google.android.gms.internal.vision.e2.b(1.0f, k3Var.f9161f0, rect2.right, getWidth()), 0.0f, getWidth(), getHeight(), paint);
                 }
             }
         }
@@ -114,19 +114,19 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.n3 n3Var;
+        org.telegram.ui.ActionBar.m3 m3Var;
         k3 k3Var = this.A0;
         Rect rect = k3Var.h;
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity != null) {
-            n3Var = launchActivity.P();
+            m3Var = launchActivity.P();
         } else {
-            n3Var = null;
+            m3Var = null;
         }
-        if (n3Var != null && rect != null) {
-            int i10 = (int) ((1.0f - k3Var.f9162f0) * ((int) n3Var.G));
+        if (m3Var != null && rect != null) {
+            int i10 = (int) ((1.0f - k3Var.f9161f0) * ((int) m3Var.G));
             if (motionEvent.getY() >= (getHeight() - rect.bottom) - i10 && motionEvent.getY() <= getHeight() - rect.bottom && !AndroidUtilities.isTablet()) {
-                return n3Var.j(motionEvent.getX(), motionEvent.getY() - ((getHeight() - rect.bottom) - i10), motionEvent.getAction());
+                return m3Var.j(motionEvent.getX(), motionEvent.getY() - ((getHeight() - rect.bottom) - i10), motionEvent.getAction());
             }
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -142,21 +142,21 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
         Paint paint = k3Var.N;
         h3 h3Var = k3Var.W;
         Drawable drawable = k3Var.Y;
-        if (this.f9130x0) {
+        if (this.f9129x0) {
             return;
         }
         super.draw(canvas);
         if (AndroidUtilities.isTablet()) {
             f7 = 0.0f;
         } else {
-            f7 = k3Var.f9154b;
+            f7 = k3Var.f9153b;
         }
-        paint.setColor(k3Var.f9152a);
-        paint.setAlpha((int) ((1.0f - k3Var.f9162f0) * (1.0f - (Math.min(0.5f, f7) / 0.5f)) * paint.getAlpha()));
+        paint.setColor(k3Var.f9151a);
+        paint.setAlpha((int) ((1.0f - k3Var.f9161f0) * (1.0f - (Math.min(0.5f, f7) / 0.5f)) * paint.getAlpha()));
         canvas.save();
         float f10 = 1.0f - f7;
         if (AndroidUtilities.isTablet()) {
-            lerp = AndroidUtilities.lerp(a3Var.getTranslationY() + AndroidUtilities.dp(12.0f), AndroidUtilities.statusBarHeight / 2.0f, k3Var.f9154b);
+            lerp = AndroidUtilities.lerp(a3Var.getTranslationY() + AndroidUtilities.dp(12.0f), AndroidUtilities.statusBarHeight / 2.0f, k3Var.f9153b);
         } else {
             lerp = AndroidUtilities.lerp(a3Var.getTranslationY(), (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2.0f) + AndroidUtilities.statusBarHeight, f7) + AndroidUtilities.dp(12.0f);
         }
@@ -173,9 +173,9 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         boolean z10;
         k3 k3Var = this.A0;
-        if (view == k3Var.v && k3Var.f9164h0 && k3Var.f9166j0 > 0 && k3Var.f9165i0 > 0) {
+        if (view == k3Var.v && k3Var.f9163h0 && k3Var.f9165j0 > 0 && k3Var.f9164i0 > 0) {
             canvas.save();
-            canvas.clipRect(view.getX(), view.getY(), view.getX() + AndroidUtilities.lerp(k3Var.f9165i0, view.getWidth(), k3Var.f9163g0), view.getY() + AndroidUtilities.lerp(k3Var.f9166j0, view.getHeight(), k3Var.f9163g0));
+            canvas.clipRect(view.getX(), view.getY(), view.getX() + AndroidUtilities.lerp(k3Var.f9164i0, view.getWidth(), k3Var.f9162g0), view.getY() + AndroidUtilities.lerp(k3Var.f9165j0, view.getHeight(), k3Var.f9162g0));
             z10 = true;
         } else {
             z10 = false;
@@ -195,7 +195,7 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
     @Override
     public RectF getRect() {
         a3 a3Var = this.A0.v;
-        RectF rectF = this.f9131y0;
+        RectF rectF = this.f9130y0;
         rectF.set(a3Var.getLeft(), a3Var.getTranslationY() + AndroidUtilities.dp(24.0f), a3Var.getRight(), getHeight());
         return rectF;
     }
@@ -203,13 +203,13 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        tc.a(this, new a9(3));
+        sc.a(this, new a9(3));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        tc.h(this);
+        sc.h(this);
     }
 
     @Override
@@ -221,53 +221,53 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
         Paint paint = k3Var.T;
         Paint paint2 = k3Var.P;
         a3 a3Var = k3Var.v;
-        if (!this.f9130x0) {
+        if (!this.f9129x0) {
             super.onDraw(canvas);
-            if (k3Var.f9177s0.getVisibility() != 0) {
+            if (k3Var.f9176s0.getVisibility() != 0) {
                 canvas.save();
-                u5 u5Var = k3Var.f9176s;
+                u5 u5Var = k3Var.f9175s;
                 float f7 = 1.0f;
                 if (u5Var != null) {
                     int width = getWidth();
                     getHeight();
                     canvas2 = canvas;
-                    u5Var.j(canvas2, false, false, width, 1.0f - k3Var.f9162f0);
+                    u5Var.j(canvas2, false, false, width, 1.0f - k3Var.f9161f0);
                 } else {
                     canvas2 = canvas;
                 }
                 if (!k3Var.V) {
-                    int w02 = i6.w0(i6.f20801d6, k3Var.E);
+                    int w02 = h6.w0(h6.f20786d6, k3Var.E);
                     paint2.setColor(w02);
-                    k3Var.f9183x.setFlickerViewColor(w02);
-                    org.telegram.ui.d3 d3Var = k3Var.U0;
-                    if (d3Var != null) {
+                    k3Var.f9182x.setFlickerViewColor(w02);
+                    org.telegram.ui.c3 c3Var = k3Var.U0;
+                    if (c3Var != null) {
                         if (AndroidUtilities.computePerceivedBrightness(paint2.getColor()) <= 0.721f) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        d3Var.b(z10, false);
+                        c3Var.b(z10, false);
                         k3Var.U0.setBackgroundColor(paint2.getColor());
                     }
                 }
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                 canvas2.drawRect(rectF, k3Var.O);
-                org.telegram.ui.ActionBar.n3 n3Var = k3Var.f9174r;
-                if (n3Var != null) {
-                    i10 = (int) n3Var.G;
+                org.telegram.ui.ActionBar.m3 m3Var = k3Var.f9173r;
+                if (m3Var != null) {
+                    i10 = (int) m3Var.G;
                 } else {
                     i10 = 0;
                 }
                 paint.setColor(k3Var.Q);
                 float dp = AndroidUtilities.dp(16.0f);
                 if (!AndroidUtilities.isTablet()) {
-                    f7 = 1.0f - k3Var.f9154b;
+                    f7 = 1.0f - k3Var.f9153b;
                 }
                 float f10 = dp * f7;
-                rectF.set(AndroidUtilities.lerp(a3Var.getLeft(), 0, k3Var.f9162f0), AndroidUtilities.lerp(a3Var.getTranslationY(), 0.0f, k3Var.f9154b), a3Var.getRight(), a3Var.getTranslationY() + AndroidUtilities.dp(24.0f) + f10);
+                rectF.set(AndroidUtilities.lerp(a3Var.getLeft(), 0, k3Var.f9161f0), AndroidUtilities.lerp(a3Var.getTranslationY(), 0.0f, k3Var.f9153b), a3Var.getRight(), a3Var.getTranslationY() + AndroidUtilities.dp(24.0f) + f10);
                 canvas2.drawRoundRect(rectF, f10, f10, paint);
-                rectF.set(AndroidUtilities.lerp(a3Var.getLeft(), 0, k3Var.f9162f0), a3Var.getTranslationY() + AndroidUtilities.dp(24.0f), AndroidUtilities.lerp(a3Var.getRight(), getWidth(), k3Var.f9162f0), getHeight() - i10);
+                rectF.set(AndroidUtilities.lerp(a3Var.getLeft(), 0, k3Var.f9161f0), a3Var.getTranslationY() + AndroidUtilities.dp(24.0f), AndroidUtilities.lerp(a3Var.getRight(), getWidth(), k3Var.f9161f0), getHeight() - i10);
                 canvas2.drawRect(rectF, paint2);
                 canvas2.restore();
             }
@@ -278,7 +278,7 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         k3 k3Var = this.A0;
         a3 a3Var = k3Var.v;
-        if (motionEvent.getAction() == 0 && (motionEvent.getY() <= AndroidUtilities.lerp(a3Var.getTranslationY() + AndroidUtilities.dp(24.0f), 0.0f, k3Var.f9154b) || motionEvent.getX() > a3Var.getRight() || motionEvent.getX() < a3Var.getLeft())) {
+        if (motionEvent.getAction() == 0 && (motionEvent.getY() <= AndroidUtilities.lerp(a3Var.getTranslationY() + AndroidUtilities.dp(24.0f), 0.0f, k3Var.f9153b) || motionEvent.getX() > a3Var.getRight() || motionEvent.getX() < a3Var.getLeft())) {
             k3Var.k(true);
             return true;
         }
@@ -287,13 +287,13 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
 
     @Override
     public void setDrawingFromOverlay(boolean z10) {
-        if (this.f9130x0 != z10) {
-            this.f9130x0 = z10;
+        if (this.f9129x0 != z10) {
+            this.f9129x0 = z10;
             invalidate();
             k3 k3Var = this.A0;
             k3Var.H();
             LaunchActivity launchActivity = LaunchActivity.G1;
-            if (launchActivity != null && k3Var.f9158d0) {
+            if (launchActivity != null && k3Var.f9157d0) {
                 launchActivity.z0(k3Var.R);
             }
         }
@@ -303,16 +303,16 @@ public final class j3 extends tw0 implements org.telegram.ui.ActionBar.u3 {
     public final float x(Canvas canvas, RectF rectF, float f7, RectF rectF2, float f10) {
         k3 k3Var = this.A0;
         a3 a3Var = k3Var.v;
-        RectF rectF3 = this.f9131y0;
+        RectF rectF3 = this.f9130y0;
         rectF3.set(a3Var.getLeft(), a3Var.getTranslationY() + AndroidUtilities.dp(24.0f), a3Var.getRight(), getHeight());
         AndroidUtilities.lerpCentered(rectF3, rectF, f7, rectF2);
         canvas.save();
-        Path path = this.f9132z0;
+        Path path = this.f9131z0;
         path.rewind();
         float dp = AndroidUtilities.dp(16.0f);
         float f11 = 1.0f;
         if (!AndroidUtilities.isTablet()) {
-            f11 = 1.0f - k3Var.f9154b;
+            f11 = 1.0f - k3Var.f9153b;
         }
         float lerp = AndroidUtilities.lerp(dp * f11, AndroidUtilities.dp(18.0f), f7);
         path.addRoundRect(rectF2, lerp, lerp, Path.Direction.CW);

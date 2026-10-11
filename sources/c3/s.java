@@ -3,41 +3,41 @@ package c3;
 import android.animation.ObjectAnimator;
 import org.telegram.ui.Components.bu;
 import org.telegram.ui.Components.dm;
-import org.telegram.ui.Components.gb;
+import org.telegram.ui.Components.fb;
+import org.telegram.ui.Components.hb;
 import org.telegram.ui.Components.ib;
-import org.telegram.ui.Components.jb;
 import org.telegram.ui.Components.rg;
+import org.telegram.ui.Components.vb;
 import org.telegram.ui.Components.wb;
-import org.telegram.ui.Components.xb;
-public final class s implements wb {
+public final class s implements vb {
     public long f4150a;
 
-    public boolean a(mf.n nVar) {
-        if (nVar.f7926b == this.f4150a && mf.a.c(nVar)) {
+    public boolean a(mf.m mVar) {
+        if (mVar.f7925b == this.f4150a && mf.a.c(mVar)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public void d(xb xbVar, ib ibVar, gb gbVar, jb jbVar) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(xbVar, xb.IN_OUT_OFFSET_Y2, xbVar.getHeight());
+    public void c(wb wbVar, hb hbVar, fb fbVar, ib ibVar) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(wbVar, wb.IN_OUT_OFFSET_Y2, wbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(bu.f25058c);
-        ofFloat.addListener(new ai.z(ibVar, gbVar, 17));
-        ofFloat.addUpdateListener(new ai.x(12, jbVar, xbVar));
+        ofFloat.setInterpolator(bu.f25023c);
+        ofFloat.addListener(new ai.z(hbVar, fbVar, 17));
+        ofFloat.addUpdateListener(new ai.x(12, ibVar, wbVar));
         ofFloat.start();
     }
 
     @Override
-    public void z(xb xbVar, ib ibVar, rg rgVar, dm dmVar) {
-        xbVar.setInOutOffset(xbVar.getMeasuredHeight());
-        dmVar.accept(Float.valueOf(xbVar.getTranslationY()));
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(xbVar, xb.IN_OUT_OFFSET_Y2, 0.0f);
+    public void y(wb wbVar, hb hbVar, rg rgVar, dm dmVar) {
+        wbVar.setInOutOffset(wbVar.getMeasuredHeight());
+        dmVar.accept(Float.valueOf(wbVar.getTranslationY()));
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(wbVar, wb.IN_OUT_OFFSET_Y2, 0.0f);
         ofFloat.setDuration(this.f4150a);
         ofFloat.setInterpolator(bu.d);
-        ofFloat.addListener(new ai.z(ibVar, rgVar, 16));
-        ofFloat.addUpdateListener(new ai.x(13, dmVar, xbVar));
+        ofFloat.addListener(new ai.z(hbVar, rgVar, 16));
+        ofFloat.addUpdateListener(new ai.x(13, dmVar, wbVar));
         ofFloat.start();
     }
 }

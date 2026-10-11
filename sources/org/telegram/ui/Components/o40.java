@@ -12,12 +12,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class o40 extends eb {
+public final class o40 extends db {
     public final LinearLayout X;
-    public d71 Y;
+    public e71 Y;
 
-    public o40(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.dq dqVar) {
-        super(activity, null, false, false, 1, e6Var);
+    public o40(Activity activity, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.dq dqVar) {
+        super(activity, null, false, false, 1, d6Var);
         fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(activity);
         this.X = linearLayout;
@@ -25,11 +25,11 @@ public final class o40 extends eb {
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(activity);
-        org.telegram.ui.l01 Q = Q(activity, AndroidUtilities.dp(60.0f), user);
-        org.telegram.ui.l01 Q2 = Q(activity, AndroidUtilities.dp(60.0f), tLObject);
+        org.telegram.ui.k01 Q = Q(activity, AndroidUtilities.dp(60.0f), user);
+        org.telegram.ui.k01 Q2 = Q(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21203z6, e6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21189z6, d6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -43,9 +43,9 @@ public final class o40 extends eb {
         TextView textView = new TextView(activity);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
-        org.telegram.messenger.bi.j(20.0f, R.string.GuardBotReplaceTitle, 1, textView);
-        int i10 = org.telegram.ui.ActionBar.i6.G6;
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        org.telegram.messenger.ai.j(20.0f, R.string.GuardBotReplaceTitle, 1, textView);
+        int i10 = org.telegram.ui.ActionBar.h6.G6;
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         linearLayout.addView(textView, w7.x5.t(-1, -2, 17, 20, 0, 20, 6));
         String shortName = DialogObject.getShortName(user);
         String shortName2 = DialogObject.getShortName(tLObject);
@@ -53,34 +53,34 @@ public final class o40 extends eb {
         textView2.setGravity(17);
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GuardBotReplaceMessage, shortName, shortName2)));
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         textView2.setLineSpacing(AndroidUtilities.dp(2.66f), 1.0f);
         linearLayout.addView(textView2, w7.x5.t(-1, -2, 17, 24, 0, 24, 29));
-        ci.d dVar = new ci.d(activity, e6Var, true);
+        ci.d dVar = new ci.d(activity, d6Var, true);
         dVar.e();
         dVar.g(LocaleController.formatString(R.string.GuardBotReplaceUseNew, shortName2), false, true);
         dVar.setOnClickListener(new vt(6, this, dqVar));
         linearLayout.addView(dVar, w7.x5.k(14.0f, 0.0f, 14.0f, 10.0f, -1, 48));
-        ci.d dVar2 = new ci.d(activity, e6Var, true);
+        ci.d dVar2 = new ci.d(activity, d6Var, true);
         dVar2.e();
         dVar2.d();
         dVar2.g(LocaleController.formatString(R.string.GuardBotReplaceKeepCurrent, shortName), false, true);
         dVar2.setOnClickListener(new f0(this, 23));
         linearLayout.addView(dVar2, w7.x5.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        rm0 rm0Var = this.d;
+        sm0 sm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        rm0Var.setPadding(i11, 0, i11, 0);
+        sm0Var.setPadding(i11, 0, i11, 0);
         this.Y.N(false);
     }
 
-    public static org.telegram.ui.l01 Q(Context context, int i10, TLObject tLObject) {
-        org.telegram.ui.l01 l01Var = new org.telegram.ui.l01(context);
-        l01Var.setRoundRadius(i10 / 2);
-        j9 j9Var = new j9((org.telegram.ui.ActionBar.e6) null);
+    public static org.telegram.ui.k01 Q(Context context, int i10, TLObject tLObject) {
+        org.telegram.ui.k01 k01Var = new org.telegram.ui.k01(context);
+        k01Var.setRoundRadius(i10 / 2);
+        j9 j9Var = new j9((org.telegram.ui.ActionBar.d6) null);
         j9Var.p(tLObject);
-        l01Var.setImageDrawable(j9Var);
-        l01Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
-        return l01Var;
+        k01Var.setImageDrawable(j9Var);
+        k01Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
+        return k01Var;
     }
 
     @Override
@@ -89,10 +89,10 @@ public final class o40 extends eb {
     }
 
     @Override
-    public final qm0 x(rm0 rm0Var) {
-        d71 d71Var = new d71(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
-        this.Y = d71Var;
-        d71Var.f25587r = false;
-        return d71Var;
+    public final rm0 x(sm0 sm0Var) {
+        e71 e71Var = new e71(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
+        this.Y = e71Var;
+        e71Var.f25890r = false;
+        return e71Var;
     }
 }

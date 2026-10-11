@@ -2,10 +2,10 @@ package e3;
 
 import b2.s;
 public final class g implements a {
-    public final s f8630a;
+    public final s f8629a;
 
     public g(s sVar) {
-        this.f8630a = sVar;
+        this.f8629a = sVar;
     }
 
     @Override

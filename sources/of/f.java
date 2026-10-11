@@ -13,29 +13,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import n6.t;
+import n6.k;
+import n7.z0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.b5;
+import org.telegram.ui.ActionBar.l3;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.ActionBar.m3;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.ActionBar.n3;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.gz;
-import org.telegram.ui.i4;
+import org.telegram.ui.fz;
+import org.telegram.ui.h4;
 import org.telegram.ui.web.y0;
-import org.telegram.ui.z2;
+import org.telegram.ui.y2;
 public abstract class f {
-    public static b5 f17124a;
-    public static t f17125b;
-    public static a9.d f17126c;
+    public static z0 f17170a;
+    public static k f17171b;
+    public static a9.d f17172c;
     public static String d;
-    public static WeakReference f17127e;
-    public static Pattern f17128f;
+    public static WeakReference f17173e;
+    public static Pattern f17174f;
 
     public static java.lang.String a(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: of.f.a(java.lang.String):java.lang.String");
@@ -63,25 +63,25 @@ public abstract class f {
         return null;
     }
 
-    public static b5 c() {
-        t tVar = f17125b;
-        b5 b5Var = null;
-        if (tVar == null) {
-            f17124a = null;
-        } else if (f17124a == null) {
+    public static z0 c() {
+        k kVar = f17171b;
+        z0 z0Var = null;
+        if (kVar == null) {
+            f17170a = null;
+        } else if (f17170a == null) {
             na.d dVar = new na.d(16);
-            wf.e eVar = (wf.e) tVar.f16721b;
+            wf.e eVar = (wf.e) kVar.f16729b;
             wf.b bVar = new wf.b(dVar);
             try {
                 if (((wf.c) eVar).F0(bVar)) {
-                    b5Var = new b5(bVar, (ComponentName) tVar.f16722c, false, 23);
+                    z0Var = new z0(24, bVar, (ComponentName) kVar.f16730c);
                 }
             } catch (RemoteException unused) {
             }
-            f17124a = b5Var;
-            new WeakReference(b5Var);
+            f17170a = z0Var;
+            new WeakReference(z0Var);
         }
-        return f17124a;
+        return f17170a;
     }
 
     public static boolean d(android.content.Context r8, java.lang.String r9) {
@@ -89,8 +89,8 @@ public abstract class f {
     }
 
     public static boolean e() {
-        gz sheetFragment;
-        n2 U = LaunchActivity.U();
+        fz sheetFragment;
+        m2 U = LaunchActivity.U();
         if (U != null && (U.getParentLayout() instanceof ActionBarLayout) && (sheetFragment = ((ActionBarLayout) U.getParentLayout()).getSheetFragment()) != null && sheetFragment.getArticleViewer() != null) {
             return true;
         }
@@ -229,16 +229,16 @@ public abstract class f {
 
     public static boolean j(String str) {
         boolean matches;
-        if (f17128f == null) {
-            f17128f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        if (f17174f == null) {
+            f17174f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            matches = f17128f.matcher(hostAuthority).matches();
+            matches = f17174f.matcher(hostAuthority).matches();
         } else {
             Uri parse = Uri.parse(str);
             if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
-                matches = f17128f.matcher(parse.getScheme()).matches();
+                matches = f17174f.matcher(parse.getScheme()).matches();
             } else {
                 return false;
             }
@@ -310,24 +310,24 @@ public abstract class f {
     }
 
     public static void n(String str) {
-        n3 P;
-        m3 m3Var;
+        m3 P;
+        l3 l3Var;
         String openURL;
-        org.telegram.ui.m3[] m3VarArr;
-        org.telegram.ui.m3 m3Var2;
+        org.telegram.ui.l3[] l3VarArr;
+        org.telegram.ui.l3 l3Var2;
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity != null && (P = launchActivity.P()) != null) {
             if (!TextUtils.isEmpty(str)) {
-                ArrayList<m3> tabs = P.getTabs();
+                ArrayList<l3> tabs = P.getTabs();
                 for (int i10 = 0; i10 < tabs.size(); i10++) {
-                    m3Var = tabs.get(i10);
-                    i4 i4Var = m3Var.J;
-                    if (i4Var != null && !i4Var.f38543d0.isEmpty()) {
-                        Object g10 = hg.c.g(1, m3Var.J.f38543d0);
-                        if (g10 instanceof z2) {
-                            y0 y0Var = ((z2) g10).f21380b;
-                            if (y0Var == null && (m3VarArr = m3Var.J.f38559u0) != null && (m3Var2 = m3VarArr[0]) != null) {
-                                y0Var = m3Var2.getWebView();
+                    l3Var = tabs.get(i10);
+                    h4 h4Var = l3Var.J;
+                    if (h4Var != null && !h4Var.f38269d0.isEmpty()) {
+                        Object g10 = hg.c.g(1, l3Var.J.f38269d0);
+                        if (g10 instanceof y2) {
+                            y0 y0Var = ((y2) g10).f21331b;
+                            if (y0Var == null && (l3VarArr = l3Var.J.f38285u0) != null && (l3Var2 = l3VarArr[0]) != null) {
+                                y0Var = l3Var2.getWebView();
                             }
                             if (y0Var != null) {
                                 if (y0Var.canGoBack()) {
@@ -335,8 +335,8 @@ public abstract class f {
                                 } else {
                                     openURL = y0Var.getOpenURL();
                                 }
-                                if (TextUtils.equals(n3.p(openURL), n3.p(str))) {
-                                    P.e(m3Var);
+                                if (TextUtils.equals(m3.p(openURL), m3.p(str))) {
+                                    P.e(l3Var);
                                     break;
                                 }
                             } else {
@@ -348,12 +348,12 @@ public abstract class f {
                     }
                 }
             }
-            m3Var = null;
-            if (m3Var != null) {
+            l3Var = null;
+            if (l3Var != null) {
                 return;
             }
         }
-        n2 U = LaunchActivity.U();
+        m2 U = LaunchActivity.U();
         if (U != null && U.getArticleViewer() != null) {
             U.getArticleViewer().N(null, null, null, str);
             return;
@@ -454,24 +454,24 @@ public abstract class f {
 
     public static void x(Activity activity) {
         Activity activity2;
-        if (f17126c == null) {
+        if (f17172c == null) {
             return;
         }
-        WeakReference weakReference = f17127e;
+        WeakReference weakReference = f17173e;
         if (weakReference == null) {
             activity2 = null;
         } else {
             activity2 = (Activity) weakReference.get();
         }
         if (activity2 == activity) {
-            f17127e.clear();
+            f17173e.clear();
         }
         try {
-            activity.unbindService(f17126c);
+            activity.unbindService(f17172c);
         } catch (Exception unused) {
         }
-        f17125b = null;
-        f17124a = null;
+        f17171b = null;
+        f17170a = null;
     }
 
     public static boolean y(String str) {

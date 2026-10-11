@@ -4,17 +4,17 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.messenger.Utilities;
 public final class z9 implements TextWatcher {
-    public final ca f6429a;
+    public final ca f6428a;
 
     public z9(ca caVar) {
-        this.f6429a = caVar;
+        this.f6428a = caVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         Utilities.Callback callback;
-        ca caVar = this.f6429a;
-        if (!caVar.h && (callback = caVar.f4850n) != null && editable != null) {
+        ca caVar = this.f6428a;
+        if (!caVar.h && (callback = caVar.f4849n) != null && editable != null) {
             callback.run(editable.toString());
         }
     }

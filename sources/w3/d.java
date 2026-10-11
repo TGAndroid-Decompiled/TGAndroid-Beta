@@ -1,19 +1,19 @@
 package w3;
 
-import org.telegram.ui.Components.cr0;
-import org.telegram.ui.Components.tc;
+import org.telegram.ui.Components.dr0;
+import org.telegram.ui.Components.sc;
 import yh.s3;
-public final class d implements cr0 {
-    public final Object f49813a;
+public final class d implements dr0 {
+    public final Object f49856a;
 
     public d(Object obj) {
-        this.f49813a = obj;
+        this.f49856a = obj;
     }
 
     public StringBuilder a() {
-        ef.a aVar = (ef.a) this.f49813a;
+        ef.a aVar = (ef.a) this.f49856a;
         if (aVar instanceof ze.m) {
-            StringBuilder sb2 = ((ze.m) aVar).f54481b.f54466b;
+            StringBuilder sb2 = ((ze.m) aVar).f54524b.f54509b;
             if (sb2.length() != 0) {
                 return sb2;
             }
@@ -24,8 +24,8 @@ public final class d implements cr0 {
 
     @Override
     public void q0() {
-        tc k10 = ((s3) this.f49813a).getBulletinFactory().k(false);
-        k10.f31106t = true;
+        sc k10 = ((s3) this.f49856a).getBulletinFactory().k(false);
+        k10.f30721t = true;
         k10.j();
     }
 

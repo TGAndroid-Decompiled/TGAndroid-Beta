@@ -1,36 +1,73 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class iu implements Runnable {
-    public final int f38800a;
-    public final DataSettingsActivity f38801b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.tgnet.tl.TL_stories;
+public final class iu implements Utilities.Callback {
+    public final int f38781a;
+    public final long f38782b;
+    public final Object f38783c;
+    public final Object d;
 
-    public iu(DataSettingsActivity dataSettingsActivity, int i10) {
-        this.f38800a = i10;
-        this.f38801b = dataSettingsActivity;
+    public iu(Object obj, Object obj2, long j3, int i10) {
+        this.f38781a = i10;
+        this.f38783c = obj;
+        this.d = obj2;
+        this.f38782b = j3;
     }
 
     @Override
-    public final void run() {
+    public final void run(Object obj) {
+        boolean z10;
         int i10;
-        switch (this.f38800a) {
+        switch (this.f38781a) {
             case 0:
-                this.f38801b.getMediaDataController().clearAllDrafts(true);
-                return;
-            case 1:
-                DataSettingsActivity dataSettingsActivity = this.f38801b;
-                dataSettingsActivity.X = true;
-                if (dataSettingsActivity.f33776a != null && (i10 = dataSettingsActivity.f33783s) >= 0) {
+                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f38783c;
+                Long l4 = (Long) obj;
+                AndroidUtilities.cancelRunOnUIThread((hu) this.d);
+                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f38782b <= 120) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                dataSettingsActivity.W = z10;
+                dataSettingsActivity.Y = l4.longValue();
+                dataSettingsActivity.X = false;
+                if (dataSettingsActivity.f33766a != null && (i10 = dataSettingsActivity.f33773s) >= 0) {
                     dataSettingsActivity.n0(i10);
                     return;
                 }
                 return;
+            case 1:
+                Runnable runnable = (Runnable) obj;
+                ((org.telegram.ui.ActionBar.a2) this.d).q(150L);
+                sy syVar = ((rx) this.f38783c).f41524b;
+                Boolean bool = syVar.G.bot_participant;
+                if (bool != null && bool.booleanValue()) {
+                    syVar.getMessagesController().addUserToChat(this.f38782b, syVar.getMessagesController().getUser(Long.valueOf(syVar.H)), 0, null, syVar, false, runnable, new nf(8, runnable));
+                    return;
+                }
+                runnable.run();
+                return;
+            case 2:
+                ProfileActivity.k0((ProfileActivity) this.f38783c, (Context) this.d, this.f38782b, (TL_payments.connectedBotStarRef) obj);
+                return;
             default:
-                y6.m0 = null;
-                DataSettingsActivity dataSettingsActivity2 = this.f38801b;
-                iu iuVar = new iu(dataSettingsActivity2, 1);
-                AndroidUtilities.runOnUIThread(iuVar, 100L);
-                y6.j0(new ju(dataSettingsActivity2, iuVar, System.currentTimeMillis(), 0));
+                yh.s3 s3Var = (yh.s3) this.f38783c;
+                MessagesController messagesController = (MessagesController) this.d;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < messagesController.channelEmojiStatusLevelMin) {
+                    ChannelBoostsController boostsController = messagesController.getBoostsController();
+                    long j3 = this.f38782b;
+                    boostsController.userCanBoostChannel(j3, tL_premium_boostsStatus, new ai.l(s3Var, tL_premium_boostsStatus, j3, messagesController, 10));
+                    return;
+                }
+                s3Var.f53266k0.setLoading(false);
+                s3Var.t2(true);
                 return;
         }
     }

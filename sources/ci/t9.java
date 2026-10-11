@@ -12,37 +12,37 @@ public final class t9 extends s4.j {
     public final void M() {
         ViewGroup viewGroup;
         y9 y9Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y9Var.W).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
-        y9Var.f6363e.invalidate();
+        y9Var.f6362e.invalidate();
     }
 
     @Override
     public final void O() {
         ViewGroup viewGroup;
         y9 y9Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y9Var.W).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
-        y9Var.f6363e.invalidate();
+        y9Var.f6362e.invalidate();
     }
 
     @Override
     public final void P(s4.d1 d1Var) {
         ViewGroup viewGroup;
         y9 y9Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y9Var.W).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
-        y9Var.f6363e.invalidate();
-        y9Var.f6364f.invalidate();
+        y9Var.f6362e.invalidate();
+        y9Var.f6363f.invalidate();
     }
 
     @Override
     public final void Q() {
         ViewGroup viewGroup;
         y9 y9Var = this.F;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) y9Var.W).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
-        y9Var.f6363e.invalidate();
+        y9Var.f6362e.invalidate();
     }
 
     @Override

@@ -9,24 +9,24 @@ import android.os.RemoteException;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class h8 {
-    public static Context f49253a;
-    public static i8.e f49254b;
+    public static Context f49296a;
+    public static i8.e f49297b;
 
     public static i8.e a(Context context) {
         Class cls;
         Class cls2;
         i8.e aVar;
-        n6.l.h(context);
+        n6.m.h(context);
         Log.d("h8", "preferredRenderer: ".concat("null"));
-        i8.e eVar = f49254b;
+        i8.e eVar = f49297b;
         if (eVar == null) {
-            AtomicBoolean atomicBoolean = k6.g.f14709a;
+            AtomicBoolean atomicBoolean = k6.g.f14708a;
             int b10 = k6.g.b(context, 13400000);
             if (b10 == 0) {
                 Log.i("h8", "Making Creator dynamically");
                 ClassLoader classLoader = b(context).getClassLoader();
                 try {
-                    n6.l.h(classLoader);
+                    n6.m.h(classLoader);
                     try {
                         IBinder iBinder = (IBinder) classLoader.loadClass("com.google.android.gms.maps.internal.CreatorImpl").newInstance();
                         if (iBinder == null) {
@@ -39,7 +39,7 @@ public abstract class h8 {
                                 aVar = new a9.a(iBinder, "com.google.android.gms.maps.internal.ICreator", 9);
                             }
                         }
-                        f49254b = aVar;
+                        f49297b = aVar;
                         try {
                             Context b11 = b(context);
                             b11.getClass();
@@ -48,7 +48,7 @@ public abstract class h8 {
                             s7.b.c(N0, bVar);
                             N0.writeInt(12451000);
                             aVar.R0(N0, 6);
-                            return f49254b;
+                            return f49297b;
                         } catch (RemoteException e7) {
                             throw new RuntimeException(e7);
                         }
@@ -68,32 +68,32 @@ public abstract class h8 {
 
     public static Context b(Context context) {
         Context context2;
-        Context context3 = f49253a;
+        Context context3 = f49296a;
         if (context3 == null) {
             context.getApplicationContext();
             try {
-                context2 = y6.e.c(context, y6.e.f51767b, "com.google.android.gms.maps_dynamite").f51777a;
+                context2 = y6.e.c(context, y6.e.f51810b, "com.google.android.gms.maps_dynamite").f51820a;
             } catch (Exception e7) {
                 try {
                     if (!"com.google.android.gms.maps_dynamite".equals("com.google.android.gms.maps_dynamite")) {
                         try {
                             Log.d("h8", "Attempting to load maps_dynamite again.");
-                            context2 = y6.e.c(context, y6.e.f51767b, "com.google.android.gms.maps_dynamite").f51777a;
+                            context2 = y6.e.c(context, y6.e.f51810b, "com.google.android.gms.maps_dynamite").f51820a;
                         } catch (Exception e10) {
                             Log.e("h8", "Failed to load maps module, use pre-Chimera", e10);
-                            AtomicBoolean atomicBoolean = k6.g.f14709a;
+                            AtomicBoolean atomicBoolean = k6.g.f14708a;
                             context2 = context.createPackageContext("com.google.android.gms", 3);
                         }
                     } else {
                         Log.e("h8", "Failed to load maps module, use pre-Chimera", e7);
-                        AtomicBoolean atomicBoolean2 = k6.g.f14709a;
+                        AtomicBoolean atomicBoolean2 = k6.g.f14708a;
                         context2 = context.createPackageContext("com.google.android.gms", 3);
                     }
                 } catch (PackageManager.NameNotFoundException unused) {
                     context2 = null;
                 }
             }
-            f49253a = context2;
+            f49296a = context2;
             return context2;
         }
         return context3;

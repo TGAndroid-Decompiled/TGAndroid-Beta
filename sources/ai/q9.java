@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.bi;
-import org.telegram.ui.Components.dk0;
+import org.telegram.messenger.ai;
+import org.telegram.ui.Components.ek0;
 public final class q9 extends FrameLayout {
     public final ArrayList f1625a;
     public ValueAnimator f1626b;
@@ -45,7 +45,7 @@ public final class q9 extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
-        bi.j(20.0f, R.string.StoriesIntroHeader, 1, textView);
+        ai.j(20.0f, R.string.StoriesIntroHeader, 1, textView);
         linearLayout.addView(textView, w7.x5.n(-2, -2));
         TextView textView2 = new TextView(context);
         textView2.setTextColor(-1761607681);
@@ -92,7 +92,7 @@ public final class q9 extends FrameLayout {
         TextView textView3 = new TextView(context);
         textView3.setTextColor(-1);
         textView3.setTypeface(AndroidUtilities.bold());
-        bi.j(14.0f, R.string.StoriesIntroDismiss, 1, textView3);
+        ai.j(14.0f, R.string.StoriesIntroDismiss, 1, textView3);
         linearLayout.addView(textView3, w7.x5.k(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
         addView(linearLayout, w7.x5.e(-1, -2, 17));
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), AndroidUtilities.makeBlurBitmap(ybVar, 12.0f, 10));
@@ -131,16 +131,16 @@ public final class q9 extends FrameLayout {
         ArrayList arrayList = this.f1625a;
         if (i10 != -1) {
             p9 p9Var = (p9) arrayList.get(i10);
-            dk0 dk0Var = p9Var.f1581c;
-            dk0Var.M(0);
-            dk0Var.stop();
+            ek0 ek0Var = p9Var.f1581c;
+            ek0Var.M(0);
+            ek0Var.stop();
             p9Var.f1584n = 0.0f;
             p9Var.invalidate();
         }
         p9 p9Var2 = (p9) arrayList.get(this.d);
-        dk0 dk0Var2 = p9Var2.f1581c;
-        dk0Var2.M(0);
-        dk0Var2.stop();
+        ek0 ek0Var2 = p9Var2.f1581c;
+        ek0Var2.M(0);
+        ek0Var2.stop();
         p9Var2.f1584n = 0.0f;
         p9Var2.invalidate();
         c();

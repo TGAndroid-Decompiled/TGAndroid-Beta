@@ -1,13 +1,28 @@
 package org.telegram.ui;
-public final class mk0 extends s4.j {
-    public final NotificationsCustomSettingsActivity F;
 
-    public mk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
-        this.F = notificationsCustomSettingsActivity;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class mk0 extends org.telegram.ui.Cells.r8 {
+    public ImageView R;
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int dp;
+        super.onLayout(z10, i10, i11, i12, i13);
+        int i14 = i12 - i10;
+        if (LocaleController.isRTL) {
+            dp = AndroidUtilities.dp(17.0f);
+        } else {
+            dp = i14 - AndroidUtilities.dp(41.0f);
+        }
+        int A = org.telegram.messenger.ai.A(24.0f, i13 - i11, 2);
+        this.R.layout(dp, A, AndroidUtilities.dp(24.0f) + dp, AndroidUtilities.dp(24.0f) + A);
     }
 
     @Override
-    public final void P(s4.d1 d1Var) {
-        this.F.f33865a.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.R.measure(i10, i11);
     }
 }

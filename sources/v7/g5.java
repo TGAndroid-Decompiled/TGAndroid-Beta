@@ -7,7 +7,7 @@ public abstract class g5 {
         if (status.b()) {
             taskCompletionSource.setResult(obj);
         } else {
-            taskCompletionSource.setException(n6.l.m(status));
+            taskCompletionSource.setException(n6.m.m(status));
         }
     }
 
@@ -15,7 +15,7 @@ public abstract class g5 {
         if (status.b()) {
             taskCompletionSource.trySetResult(obj);
         } else {
-            taskCompletionSource.trySetException(n6.l.m(status));
+            taskCompletionSource.trySetException(n6.m.m(status));
         }
     }
 }

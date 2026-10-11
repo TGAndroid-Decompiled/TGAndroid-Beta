@@ -1,22 +1,26 @@
 package ci;
 public final class lb implements pc {
-    public final bi.v f5457a;
+    public final bi.v f5456a;
 
     public lb(bi.v vVar) {
-        this.f5457a = vVar;
+        this.f5456a = vVar;
     }
 
     @Override
-    public final void B(float f7, boolean z10) {
-        this.f5457a.run(Boolean.FALSE, Float.valueOf(f7));
+    public final void y(float f7, boolean z10) {
+        this.f5456a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override
-    public final void C(long j3) {
+    public final void B(long j3) {
     }
 
     @Override
-    public final void G(boolean z10) {
+    public final void C(boolean z10) {
+    }
+
+    @Override
+    public final void I(float f7) {
     }
 
     @Override
@@ -24,15 +28,11 @@ public final class lb implements pc {
     }
 
     @Override
-    public final void M(float f7) {
+    public final void O(float f7) {
     }
 
     @Override
-    public final void Q(float f7) {
-    }
-
-    @Override
-    public final void T(float f7) {
+    public final void S(float f7) {
     }
 
     @Override
@@ -60,11 +60,11 @@ public final class lb implements pc {
     }
 
     @Override
-    public final void y(float f7) {
+    public final void w(float f7) {
     }
 
     @Override
-    public final void R() {
+    public final void Q() {
     }
 
     @Override
@@ -72,15 +72,15 @@ public final class lb implements pc {
     }
 
     @Override
-    public final void I(float f7, int i10) {
+    public final void G(float f7, int i10) {
     }
 
     @Override
-    public final void O(float f7, int i10) {
+    public final void M(float f7, int i10) {
     }
 
     @Override
-    public final void U(int i10, long j3) {
+    public final void T(int i10, long j3) {
     }
 
     @Override
@@ -88,6 +88,6 @@ public final class lb implements pc {
     }
 
     @Override
-    public final void u(float f7, int i10) {
+    public final void s(float f7, int i10) {
     }
 }

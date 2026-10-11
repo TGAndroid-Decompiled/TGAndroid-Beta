@@ -28,7 +28,7 @@ public final class i2 extends fe.s {
         if (this.threadLocalIsSet) {
             hd.d dVar = (hd.d) this.f467e.get();
             if (dVar != null) {
-                fe.a.f((jd.h) dVar.f11084a, dVar.f11085b);
+                fe.a.f((jd.h) dVar.f11083a, dVar.f11084b);
             }
             this.f467e.remove();
         }
@@ -37,7 +37,7 @@ public final class i2 extends fe.s {
         jd.h context = cVar.getContext();
         i2 i2Var = null;
         Object k10 = fe.a.k(context, null);
-        if (k10 != fe.a.f9887f) {
+        if (k10 != fe.a.f9886f) {
             i2Var = g0.v(cVar, context, k10);
         }
         try {

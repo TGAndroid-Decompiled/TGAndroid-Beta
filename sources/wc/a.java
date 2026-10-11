@@ -1,10 +1,10 @@
 package wc;
 public final class a {
-    public final String f50371a;
-    public final String f50372b;
+    public final String f50415a;
+    public final String f50416b;
 
     public a(String str, String str2) {
-        this.f50371a = str;
-        this.f50372b = str2;
+        this.f50415a = str;
+        this.f50416b = str2;
     }
 }

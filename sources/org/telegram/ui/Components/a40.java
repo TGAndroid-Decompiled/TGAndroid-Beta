@@ -7,16 +7,16 @@ import android.graphics.RectF;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class a40 extends TextView {
-    public final Paint[] f24468a;
-    public final org.telegram.ui.f50 f24469b;
+    public final Paint[] f24430a;
+    public final org.telegram.ui.f50 f24431b;
 
     public a40(org.telegram.ui.f50 f50Var, Context context) {
         super(context);
-        this.f24469b = f50Var;
-        this.f24468a = new Paint[f50Var.f25543e.length];
+        this.f24431b = f50Var;
+        this.f24430a = new Paint[f50Var.f25428e.length];
         int i10 = 0;
         while (true) {
-            Paint[] paintArr = this.f24468a;
+            Paint[] paintArr = this.f24430a;
             if (i10 < paintArr.length) {
                 paintArr[i10] = new Paint(1);
                 i10++;
@@ -31,12 +31,12 @@ public final class a40 extends TextView {
         int i10;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        org.telegram.ui.f50 f50Var = this.f24469b;
+        org.telegram.ui.f50 f50Var = this.f24431b;
         int i11 = f50Var.h;
-        Paint[] paintArr = this.f24468a;
+        Paint[] paintArr = this.f24430a;
         paintArr[i11].setAlpha(255);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[f50Var.h]);
-        float f7 = f50Var.f25544f;
+        float f7 = f50Var.f25429f;
         if (f7 > 0.0f && (i10 = f50Var.h + 1) < paintArr.length) {
             paintArr[i10].setAlpha((int) (f7 * 255.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[f50Var.h + 1]);

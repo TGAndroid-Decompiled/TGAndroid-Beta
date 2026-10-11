@@ -1,63 +1,49 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class w8 extends s4.t0 {
-    public boolean f43154a;
-    public final j9 f43155b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class w8 extends FragmentContextView {
+    public final int R0 = 1;
+    public final org.telegram.ui.ActionBar.m2 S0;
 
-    public w8(j9 j9Var) {
-        this.f43155b = j9Var;
+    public w8(i9 i9Var, Context context, i9 i9Var2, u8 u8Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i9Var2, u8Var, false, d6Var);
+        this.S0 = i9Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        int i12;
-        ah.h hVar;
+    public final void setVisibility(int i10) {
         boolean z10;
-        j9 j9Var = this.f43155b;
-        ArrayList arrayList = j9Var.G;
-        int L0 = j9Var.f38914c.L0();
-        boolean z11 = false;
-        if (L0 == -1) {
-            abs = 0;
-        } else {
-            abs = Math.abs(j9Var.f38914c.N0() - L0) + 1;
+        boolean z11;
+        switch (this.R0) {
+            case 0:
+                i9 i9Var = (i9) this.S0;
+                org.telegram.ui.Components.bt btVar = i9Var.M;
+                FrameLayout frameLayout = i9Var.N;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                btVar.i(frameLayout, z10, true);
+                return;
+            default:
+                eg1 eg1Var = (eg1) this.S0;
+                org.telegram.ui.Components.bt btVar2 = eg1Var.U0;
+                FrameLayout frameLayout2 = eg1Var.F0;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                btVar2.i(frameLayout2, z11, true);
+                return;
         }
-        if (abs > 0) {
-            int size = j9Var.d.W2.f25590x.size();
-            if (!j9Var.J && !j9Var.H && !arrayList.isEmpty() && abs + L0 >= size - 5) {
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(12, this, (f9) hg.c.g(1, arrayList)));
-            }
-        }
-        View childAt = recyclerView.getChildAt(0);
-        if (childAt != null) {
-            i12 = childAt.getTop();
-        } else {
-            i12 = 0;
-        }
-        if (i11 != 0 && this.f43154a) {
-            org.telegram.ui.Components.q20 q20Var = j9Var.f38919f;
-            if (i11 < 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            q20Var.e(z10, true);
-        }
-        this.f43154a = true;
-        ci.r6 r6Var = j9Var.f38922r;
-        if (L0 != 0 || i12 < j9Var.d.getPaddingTop()) {
-            z11 = true;
-        }
-        r6Var.b(z11, true);
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = j9Var.Y) != null) {
-            hVar.f(i10, i11);
-            j9Var.f0();
-        }
+    }
+
+    public w8(eg1 eg1Var, Context context, eg1 eg1Var2) {
+        super(context, eg1Var2, null, false, null);
+        this.S0 = eg1Var;
     }
 }

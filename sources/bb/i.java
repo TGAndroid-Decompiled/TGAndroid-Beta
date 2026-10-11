@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import k1.t;
 import sd.p;
-import za.a0;
 import za.m;
+import za.z;
 public final class i extends ld.j implements p {
     public final int f3828a;
     public int f3829b;
@@ -37,9 +37,9 @@ public final class i extends ld.j implements p {
             case 4:
                 return new i((m) this.f3830c, (jd.h) this.d, cVar, 4);
             case 5:
-                return new i((a0) this.f3830c, (String) this.d, cVar, 5);
+                return new i((z) this.f3830c, (String) this.d, cVar, 5);
             default:
-                return new i((oi.f) this.f3830c, (ArrayList) this.d, cVar, 6);
+                return new i((pi.f) this.f3830c, (ArrayList) this.d, cVar, 6);
         }
     }
 
@@ -47,19 +47,19 @@ public final class i extends ld.j implements p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f3828a) {
             case 0:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
             case 1:
-                return ((i) create((t) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
+                return ((i) create((t) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
             case 2:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
             case 3:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
             case 4:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
             case 5:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
             default:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
+                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
         }
     }
 

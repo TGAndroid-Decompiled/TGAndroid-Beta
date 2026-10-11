@@ -5,8 +5,8 @@ import android.view.View;
 public final class ka extends f6 {
     public final la f1248e4;
 
-    public ka(la laVar, Context context, kc kcVar, c6 c6Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, kcVar, c6Var, e6Var);
+    public ka(la laVar, Context context, kc kcVar, c6 c6Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, kcVar, c6Var, d6Var);
         this.f1248e4 = laVar;
     }
 

@@ -1,110 +1,68 @@
 package org.telegram.ui;
 
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class zl0 implements View.OnClickListener {
-    public final int f44735a;
-    public final nn0 f44736b;
+public final class zl0 implements View.OnTouchListener {
+    public final int f44693a;
+    public final mn0 f44694b;
 
-    public zl0(nn0 nn0Var, int i10) {
-        this.f44735a = i10;
-        this.f44736b = nn0Var;
+    public zl0(mn0 mn0Var, int i10) {
+        this.f44693a = i10;
+        this.f44694b = mn0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f44735a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        int i10 = this.f44693a;
+        mn0 mn0Var = this.f44694b;
+        switch (i10) {
             case 0:
-                nn0 nn0Var = this.f44736b;
-                nn0Var.S0 = 2;
-                nn0Var.C1();
-                return;
+                if (mn0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    yt ytVar = new yt(null, false);
+                    ytVar.f44498r = new nw(25, mn0Var, view);
+                    mn0Var.presentFragment(ytVar);
+                }
+                return true;
             case 1:
-                this.f44736b.c1();
-                return;
+                if (mn0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(mn0Var.getParentActivity());
+                    String string = LocaleController.getString(R.string.PassportSelectGender);
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
+                    a2Var.R = string;
+                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new sv(mn0Var, 2));
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
+                    mn0Var.showDialog(a2Var);
+                }
+                return true;
             case 2:
-                nn0 nn0Var2 = this.f44736b;
-                nn0Var2.S0 = 3;
-                nn0Var2.C1();
-                return;
-            case 3:
-                nn0 nn0Var3 = this.f44736b;
-                nn0Var3.S0 = 1;
-                nn0Var3.C1();
-                return;
-            case 4:
-                nn0 nn0Var4 = this.f44736b;
-                nn0Var4.S0 = 4;
-                nn0Var4.C1();
-                return;
-            case 5:
-                nn0 nn0Var5 = this.f44736b;
-                if (nn0Var5.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                    nn0Var5.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
-                    return;
+                if (mn0Var.getParentActivity() == null) {
+                    return false;
                 }
-                v9 v9Var = new v9(0);
-                v9Var.M = new km0(nn0Var5);
-                nn0Var5.presentFragment(v9Var);
-                return;
-            case 6:
-                nn0 nn0Var6 = this.f44736b;
-                nn0Var6.f40298f = true;
-                nn0Var6.L.callOnClick();
-                nn0Var6.f40298f = false;
-                return;
-            case 7:
-                nn0 nn0Var7 = this.f44736b;
-                nn0Var7.S0 = 0;
-                nn0Var7.C1();
-                return;
-            case 8:
-                nn0 nn0Var8 = this.f44736b;
-                nn0Var8.S0 = 4;
-                nn0Var8.C1();
-                return;
-            case 9:
-                this.f44736b.c1();
-                return;
-            case 10:
-                nn0.b0(this.f44736b);
-                return;
-            case 11:
-                nn0.c0(this.f44736b);
-                return;
-            case 12:
-                this.f44736b.B1();
-                return;
-            case 13:
-                nn0 nn0Var9 = this.f44736b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(nn0Var9.getParentActivity());
-                alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
-                alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new bm0(nn0Var9, 5));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
-                nn0Var9.showDialog(b2Var);
-                TextView textView = (TextView) b2Var.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21041q7, false));
-                    return;
+                if (motionEvent.getAction() == 1) {
+                    yt ytVar2 = new yt(null, false);
+                    ytVar2.f44498r = new am0(mn0Var, 2);
+                    mn0Var.presentFragment(ytVar2);
                 }
-                return;
-            case 14:
-                this.f44736b.B1();
-                return;
-            case 15:
-                nn0.V(this.f44736b);
-                return;
+                return true;
             default:
-                nn0 nn0Var10 = this.f44736b;
-                nn0Var10.f40298f = true;
-                nn0Var10.L.callOnClick();
-                nn0Var10.f40298f = false;
-                return;
+                if (mn0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    yt ytVar3 = new yt(null, false);
+                    ytVar3.f44498r = new am0(mn0Var, 3);
+                    mn0Var.presentFragment(ytVar3);
+                }
+                return true;
         }
     }
 }

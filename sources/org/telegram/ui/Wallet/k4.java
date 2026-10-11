@@ -1,32 +1,27 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.view.View;
+import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-public final class k4 extends View {
-    public final int f35191a;
-    public final b5 f35192b;
+import org.telegram.ui.Components.bt;
+public final class k4 extends bt {
+    public final ii.d2 G;
 
-    public k4(b5 b5Var, Context context, int i10) {
+    public k4(c5 c5Var, Context context) {
         super(context);
-        this.f35191a = i10;
-        this.f35192b = b5Var;
+        this.G = new ii.d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), c5Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20786d6)), AndroidUtilities.dpf2(2.67f), AndroidUtilities.dpf2(0.67f));
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f35191a) {
-            case 0:
-                int size = View.MeasureSpec.getSize(i10);
-                b5 b5Var = this.f35192b;
-                b5Var.f34708a0.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - AndroidUtilities.dp(24.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                setMeasuredDimension(size, AndroidUtilities.dp(36.0f) + b5Var.f34708a0.getMeasuredHeight());
-                return;
-            default:
-                b5 b5Var2 = this.f35192b;
-                b5Var2.d.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
-                setMeasuredDimension(View.MeasureSpec.getSize(i10), b5Var2.d.getMeasuredHeight());
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int ceil = (int) Math.ceil(getMetadata().f16386g.f16393a);
+        if (ceil > 0) {
+            int width = getWidth();
+            ii.d2 d2Var = this.G;
+            d2Var.setBounds(0, 0, width, ceil);
+            d2Var.setAlpha((int) (getMetadata().f16383c.f16393a * 255.0f));
+            d2Var.draw(canvas);
         }
+        super.dispatchDraw(canvas);
     }
 }

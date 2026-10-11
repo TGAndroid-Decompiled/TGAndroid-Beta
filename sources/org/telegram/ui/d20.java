@@ -1,49 +1,50 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.LocaleController;
 public final class d20 extends FrameLayout {
-    public TextView f36848a;
-    public TextView f36849b;
-    public org.telegram.ui.Components.dj0 f36850c;
-    public boolean d;
-    public TLRPC.TL_dialogFilterSuggested f36851e;
-
-    public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
-        return this.f36851e;
-    }
+    public org.telegram.ui.ActionBar.h5 f36874a;
+    public ImageView f36875b;
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.d) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int dp;
+        int measuredWidth;
+        ImageView imageView = this.f36875b;
+        int i14 = i12 - i10;
+        org.telegram.ui.ActionBar.h5 h5Var = this.f36874a;
+        int textHeight = ((i13 - i11) - h5Var.getTextHeight()) / 2;
+        float f7 = 23.0f;
+        if (LocaleController.isRTL) {
+            int measuredWidth2 = getMeasuredWidth() - h5Var.getMeasuredWidth();
+            if (imageView.getVisibility() == 0) {
+                f7 = 64.0f;
+            }
+            dp = measuredWidth2 - AndroidUtilities.dp(f7);
+        } else {
+            if (imageView.getVisibility() == 0) {
+                f7 = 64.0f;
+            }
+            dp = AndroidUtilities.dp(f7);
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setText(this.f36850c.getText());
-        accessibilityNodeInfo.setClassName("android.widget.Button");
+        h5Var.layout(dp, textHeight, h5Var.getMeasuredWidth() + dp, h5Var.getMeasuredHeight() + textHeight);
+        if (!LocaleController.isRTL) {
+            measuredWidth = AndroidUtilities.dp(20.0f);
+        } else {
+            measuredWidth = (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
+        }
+        imageView.layout(measuredWidth, 0, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight());
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
-        measureChildWithMargins(this.f36850c, i10, 0, i11, 0);
-        TextView textView = this.f36848a;
-        org.telegram.ui.Components.dj0 dj0Var = this.f36850c;
-        measureChildWithMargins(textView, i10, dj0Var.getMeasuredWidth(), i11, 0);
-        measureChildWithMargins(this.f36849b, i10, dj0Var.getMeasuredWidth(), i11, 0);
-    }
-
-    public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f36850c.setOnClickListener(onClickListener);
+        int size = View.MeasureSpec.getSize(i10);
+        AndroidUtilities.dp(48.0f);
+        this.f36874a.measure(org.telegram.messenger.ai.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f36875b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

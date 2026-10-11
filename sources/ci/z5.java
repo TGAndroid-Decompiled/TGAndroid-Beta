@@ -66,7 +66,7 @@ public final class z5 extends zn {
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.e6 getResourceProvider() {
+    public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
         return this.Rc.G1;
     }
 

@@ -1,61 +1,447 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.SurfaceView;
-import android.view.TextureView;
+import android.animation.AnimatorSet;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-public final class tt0 extends l4 {
-    public final PhotoViewer h;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_fragment;
+public final class tt0 implements Runnable {
+    public final int f42262a;
+    public final Object f42263b;
+    public final Object f42264c;
 
-    public tt0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.h = photoViewer;
+    public tt0(int i10, Object obj, Object obj2) {
+        this.f42262a = i10;
+        this.f42263b = obj;
+        this.f42264c = obj2;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.h.T8) {
-            return;
+    public final void run() {
+        int i10;
+        org.telegram.messenger.o8 o8Var;
+        ArrayList arrayList;
+        int i11;
+        String str;
+        String str2;
+        int i12;
+        String[] strArr;
+        String str3;
+        SpannableStringBuilder spannableStringBuilder;
+        String str4;
+        int i13 = this.f42262a;
+        long j3 = 0;
+        boolean z10 = true;
+        Object obj = this.f42264c;
+        Object obj2 = this.f42263b;
+        switch (i13) {
+            case 0:
+                vt0 vt0Var = (vt0) obj2;
+                qg.w0 w0Var = (qg.w0) obj;
+                w0Var.f46676e.h();
+                w0Var.f46675c.postRunnable(new s21(14));
+                try {
+                    vt0Var.f43138b.f33932e0.removeView(w0Var);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            case 1:
+                ci.m6 m6Var = (ci.m6) obj;
+                PhotoViewer photoViewer = ((zs0) obj2).f45065b;
+                if (photoViewer.C3 != null) {
+                    ImageView imageView = photoViewer.f34104x3;
+                    if (imageView != null) {
+                        imageView.setVisibility(0);
+                        photoViewer.f34104x3.setImageBitmap(photoViewer.C3);
+                    }
+                    ((ImageReceiver) m6Var.f5599b).setImageBitmap(photoViewer.C3);
+                    return;
+                }
+                return;
+            case 2:
+                ((fu0) obj2).f37778r.f33998l7.lock();
+                ((AnimatorSet) obj).start();
+                return;
+            case 3:
+                dv0 dv0Var = (dv0) obj;
+                ((fu0) obj2).f37778r.f34058s4 = false;
+                if (!dv0Var.f37129s) {
+                    dv0Var.f37113a.setVisible(false, true);
+                    return;
+                }
+                return;
+            case 4:
+                lw0 lw0Var = (lw0) obj2;
+                lw0Var.getClass();
+                AndroidUtilities.addToClipboard((String) obj);
+                lw0Var.c(true);
+                return;
+            case 5:
+                lw0 lw0Var2 = (lw0) obj2;
+                lw0Var2.getClass();
+                AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(((TLRPC.PollAnswer) obj).text, false));
+                lw0Var2.c(true);
+                return;
+            case 6:
+                lw0 lw0Var3 = (lw0) obj2;
+                SendMessagesHelper.getInstance(lw0Var3.H.currentAccount).deletePollOption(lw0Var3.H, (byte[]) obj);
+                lw0Var3.c(true);
+                return;
+            case 7:
+                PrivacyControlActivity.W((PrivacyControlActivity) obj2, (TLObject) obj);
+                return;
+            case 8:
+                PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) obj2;
+                boolean[] zArr = (boolean[]) obj;
+                privacyControlActivity.getClass();
+                zArr[0] = true;
+                if (zArr[1]) {
+                    privacyControlActivity.x0();
+                    return;
+                }
+                return;
+            case 9:
+                PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) obj2;
+                privacySettingsActivity.d = (TL_account.Password) obj;
+                privacySettingsActivity.y0();
+                return;
+            case 10:
+                PrivacySettingsActivity privacySettingsActivity2 = (PrivacySettingsActivity) obj2;
+                boolean z11 = !privacySettingsActivity2.V;
+                privacySettingsActivity2.V = z11;
+                ((org.telegram.ui.Cells.w8) obj).setChecked(z11);
+                return;
+            case 11:
+                ((fy0) obj2).getMessagesController().unblockPeer(((Long) obj).longValue());
+                return;
+            case 12:
+                ProfileActivity profileActivity = (ProfileActivity) obj2;
+                NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
+                int i14 = NotificationCenter.closeChats;
+                notificationCenter.removeObserver(profileActivity, i14);
+                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i14, new Object[0]);
+                Bundle bundle = new Bundle();
+                bundle.putInt("enc_id", ((TLRPC.EncryptedChat) ((Object[]) obj)[0]).f20040id);
+                profileActivity.presentFragment(new zn(bundle), true);
+                return;
+            case 13:
+                ProfileActivity profileActivity2 = (ProfileActivity) obj2;
+                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) obj;
+                long j10 = profileActivity2.A2;
+                if (j10 != 0) {
+                    TLRPC.User user = profileActivity2.getMessagesController().getUser(Long.valueOf(j10));
+                    profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f34279f1, user);
+                    if (profileActivity2.E2 != null && user != null && org.telegram.ui.Components.ad.a(profileActivity2)) {
+                        org.telegram.ui.Components.ad.D(profileActivity2, user, profileActivity2.E2.title).j();
+                    }
+                    if (profileActivity2.f34382u2.participants.participants.remove(chatParticipant)) {
+                        profileActivity2.e5(true, false);
+                        return;
+                    }
+                    return;
+                }
+                NotificationCenter notificationCenter2 = profileActivity2.getNotificationCenter();
+                int i15 = NotificationCenter.closeChats;
+                notificationCenter2.removeObserver(profileActivity2, i15);
+                if (AndroidUtilities.isTablet()) {
+                    i10 = 0;
+                    profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, Long.valueOf(-profileActivity2.f34279f1));
+                } else {
+                    i10 = 0;
+                    profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, new Object[0]);
+                }
+                profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f34279f1, profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.getUserConfig().getClientUserId())));
+                profileActivity2.J1 = i10;
+                profileActivity2.finishFragment();
+                return;
+            case 14:
+                AndroidUtilities.addToClipboard("https://" + ((ProfileActivity) obj2).getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername((TLRPC.Chat) obj));
+                return;
+            case 15:
+                ProfileActivity profileActivity3 = (ProfileActivity) obj2;
+                profileActivity3.getClass();
+                org.telegram.ui.Components.sc.e();
+                of.f.s(profileActivity3.getParentActivity(), ((TL_fragment.TL_collectibleInfo) obj).url);
+                return;
+            case 16:
+                ProfileActivity profileActivity4 = (ProfileActivity) obj2;
+                profileActivity4.E2 = profileActivity4.getMessagesStorage().getChat(profileActivity4.f34279f1);
+                ((CountDownLatch) obj).countDown();
+                return;
+            case 17:
+                ProfileActivity profileActivity5 = (ProfileActivity) obj2;
+                profileActivity5.getClass();
+                profileActivity5.G2 = ((TLRPC.TL_channels_channelParticipant) ((TLObject) obj)).participant;
+                return;
+            case 18:
+                ProfileActivity profileActivity6 = (ProfileActivity) obj2;
+                profileActivity6.getClass();
+                ((org.telegram.ui.Cells.r8) ((View) obj)).setChecked(profileActivity6.f34368s2.g());
+                return;
+            case 19:
+                ProfileActivity profileActivity7 = (ProfileActivity) obj2;
+                if (!((boolean[]) obj)[0] && (o8Var = profileActivity7.f34407x5) != null) {
+                    o8Var.run();
+                }
+                profileActivity7.f34407x5 = null;
+                return;
+            case 20:
+                iz0 iz0Var = (iz0) obj2;
+                a0.i iVar = (a0.i) obj;
+                ProfileActivity profileActivity8 = iz0Var.f38803b1.f39153c;
+                Activity parentActivity = profileActivity8.getParentActivity();
+                h01 h01Var = profileActivity8.f34328m5;
+                int m10 = iVar.m();
+                if (iVar.m() == 1) {
+                    j3 = ((TLRPC.Dialog) iVar.n(0)).f20036id;
+                }
+                org.telegram.ui.Components.ad.x(parentActivity, h01Var, m10, j3, iz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), iz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
+                return;
+            case 21:
+                xz0 xz0Var = (xz0) obj2;
+                a0.i iVar2 = (a0.i) obj;
+                ProfileActivity profileActivity9 = xz0Var.f44207b1;
+                Activity parentActivity2 = profileActivity9.getParentActivity();
+                h01 h01Var2 = profileActivity9.f34328m5;
+                int m11 = iVar2.m();
+                if (iVar2.m() == 1) {
+                    j3 = ((TLRPC.Dialog) iVar2.n(0)).f20036id;
+                }
+                org.telegram.ui.Components.ad.x(parentActivity2, h01Var2, m11, j3, xz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), xz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
+                return;
+            case 22:
+                ((x01) obj2).f43916e.presentFragment(ProfileActivity.m4(((Long) obj).longValue()));
+                return;
+            case 23:
+                ?? m2Var = new org.telegram.ui.ActionBar.m2(null);
+                m2Var.d = (org.telegram.ui.ActionBar.d6) obj;
+                ((org.telegram.ui.ActionBar.m2) obj2).presentFragment((org.telegram.ui.ActionBar.m2) m2Var);
+                return;
+            case 24:
+                h11 h11Var = (h11) obj2;
+                String str5 = (String) obj;
+                ArrayList arrayList2 = h11Var.d;
+                org.telegram.ui.ActionBar.m2 m2Var2 = h11Var.f38214e;
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                ArrayList arrayList5 = new ArrayList();
+                String[] split = str5.split(" ");
+                String[] strArr2 = new String[split.length];
+                for (int i16 = 0; i16 < split.length; i16++) {
+                    String translitString = LocaleController.getInstance().getTranslitString(split[i16]);
+                    strArr2[i16] = translitString;
+                    if (translitString.equals(split[i16])) {
+                        strArr2[i16] = null;
+                    }
+                }
+                int i17 = 0;
+                while (true) {
+                    g11[] g11VarArr = h11Var.f38213c;
+                    boolean z12 = z10;
+                    if (i17 < g11VarArr.length) {
+                        g11 g11Var = g11VarArr[i17];
+                        if (g11Var != null) {
+                            String str6 = g11Var.f37843a;
+                            String str7 = " " + str6.toLowerCase();
+                            int i18 = 0;
+                            SpannableStringBuilder spannableStringBuilder2 = null;
+                            while (i18 < split.length) {
+                                if (split[i18].length() != 0) {
+                                    String str8 = split[i18];
+                                    i12 = i17;
+                                    int indexOf = str7.indexOf(" " + str8);
+                                    if (indexOf < 0 && (str4 = strArr2[i18]) != null) {
+                                        indexOf = str7.indexOf(" ".concat(str4));
+                                    } else {
+                                        str4 = str8;
+                                    }
+                                    if (indexOf >= 0) {
+                                        String str9 = str4;
+                                        if (spannableStringBuilder2 == null) {
+                                            spannableStringBuilder = new SpannableStringBuilder(str6);
+                                        } else {
+                                            spannableStringBuilder = spannableStringBuilder2;
+                                        }
+                                        str2 = str7;
+                                        strArr = strArr2;
+                                        str3 = str5;
+                                        spannableStringBuilder.setSpan(new ForegroundColorSpan(m2Var2.getThemedColor(org.telegram.ui.ActionBar.h6.q6)), indexOf, str9.length() + indexOf, 33);
+                                    } else {
+                                        i17 = i12 + 1;
+                                        z10 = z12;
+                                        str5 = str5;
+                                        strArr2 = strArr2;
+                                    }
+                                } else {
+                                    str2 = str7;
+                                    i12 = i17;
+                                    strArr = strArr2;
+                                    str3 = str5;
+                                    spannableStringBuilder = spannableStringBuilder2;
+                                }
+                                if (spannableStringBuilder != null && i18 == split.length - 1) {
+                                    if (g11Var.f37847f == 502) {
+                                        int i19 = 0;
+                                        while (true) {
+                                            if (i19 < 4) {
+                                                if (UserConfig.getInstance(i19).isClientActivated()) {
+                                                    i19++;
+                                                }
+                                            } else {
+                                                i19 = -1;
+                                            }
+                                        }
+                                        if (i19 < 0) {
+                                        }
+                                    }
+                                    arrayList3.add(g11Var);
+                                    arrayList5.add(spannableStringBuilder);
+                                }
+                                i18++;
+                                spannableStringBuilder2 = spannableStringBuilder;
+                                i17 = i12;
+                                str5 = str3;
+                                str7 = str2;
+                                strArr2 = strArr;
+                            }
+                        }
+                        i12 = i17;
+                        i17 = i12 + 1;
+                        z10 = z12;
+                        str5 = str5;
+                        strArr2 = strArr2;
+                    } else {
+                        String[] strArr3 = strArr2;
+                        String str10 = str5;
+                        if (h11Var.E != null) {
+                            int size = arrayList2.size();
+                            int i20 = 0;
+                            while (i20 < size) {
+                                MessagesController.FaqSearchResult faqSearchResult = (MessagesController.FaqSearchResult) arrayList2.get(i20);
+                                String str11 = " " + faqSearchResult.title.toLowerCase();
+                                int i21 = 0;
+                                SpannableStringBuilder spannableStringBuilder3 = null;
+                                while (true) {
+                                    if (i21 < split.length) {
+                                        if (split[i21].length() != 0) {
+                                            String str12 = split[i21];
+                                            int indexOf2 = str11.indexOf(" " + str12);
+                                            arrayList = arrayList2;
+                                            if (indexOf2 < 0 && (str = strArr3[i21]) != null) {
+                                                indexOf2 = str11.indexOf(" ".concat(str));
+                                                str12 = str;
+                                            }
+                                            if (indexOf2 >= 0) {
+                                                if (spannableStringBuilder3 == null) {
+                                                    spannableStringBuilder3 = new SpannableStringBuilder(faqSearchResult.title);
+                                                }
+                                                i11 = size;
+                                                spannableStringBuilder3.setSpan(new ForegroundColorSpan(m2Var2.getThemedColor(org.telegram.ui.ActionBar.h6.q6)), indexOf2, str12.length() + indexOf2, 33);
+                                            }
+                                        } else {
+                                            arrayList = arrayList2;
+                                            i11 = size;
+                                        }
+                                        if (spannableStringBuilder3 != null && i21 == split.length - 1) {
+                                            arrayList4.add(faqSearchResult);
+                                            arrayList5.add(spannableStringBuilder3);
+                                        }
+                                        i21++;
+                                        arrayList2 = arrayList;
+                                        size = i11;
+                                    } else {
+                                        arrayList = arrayList2;
+                                    }
+                                }
+                                i20++;
+                                arrayList2 = arrayList;
+                                size = size;
+                            }
+                        }
+                        AndroidUtilities.runOnUIThread(new f90(h11Var, str10, arrayList3, arrayList4, arrayList5, 22));
+                        return;
+                    }
+                }
+                break;
+            case 25:
+                h11 h11Var2 = (h11) obj2;
+                ArrayList<MessagesController.FaqSearchResult> arrayList6 = (ArrayList) obj;
+                h11Var2.d.addAll(arrayList6);
+                int i22 = h11Var2.f38215f;
+                MessagesController.getInstance(i22).faqSearchArray = arrayList6;
+                MessagesController.getInstance(i22).faqWebPage = h11Var2.E;
+                if (!h11Var2.f38219w) {
+                    h11Var2.l();
+                    return;
+                }
+                return;
+            case 26:
+                l11 l11Var = (l11) obj2;
+                l11Var.f39484f.add((n11) obj);
+                l11Var.a();
+                return;
+            case 27:
+                ((d31) obj2).d0(34, (Bitmap) obj, true);
+                return;
+            case 28:
+                x21 x21Var = (x21) obj2;
+                TLRPC.TL_exportedContactToken tL_exportedContactToken = (TLRPC.TL_exportedContactToken) obj;
+                if (tL_exportedContactToken == null) {
+                    x21Var.getClass();
+                    return;
+                }
+                int i23 = x21Var.J;
+                if (i23 != 0 && i23 < tL_exportedContactToken.expires) {
+                    try {
+                        Vibrator vibrator = (Vibrator) x21Var.getContext().getSystemService("vibrator");
+                        if (vibrator != null) {
+                            vibrator.vibrate(100L);
+                        }
+                    } catch (Exception unused) {
+                        try {
+                            x21Var.performHapticFeedback(0, 2);
+                        } catch (Exception unused2) {
+                        }
+                    }
+                }
+                x21Var.J = tL_exportedContactToken.expires;
+                x21Var.c(tL_exportedContactToken.url, null, false, true);
+                return;
+            default:
+                a41 a41Var = (a41) ((View[]) obj2)[0];
+                a41Var.f35877b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
+                a41Var.f35878c = null;
+                a41Var.d = null;
+                a41Var.f35880f.W2.N(false);
+                return;
         }
-        super.draw(canvas);
     }
 
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        PhotoViewer photoViewer = this.h;
-        if (view == photoViewer.E3 && photoViewer.f33963g4) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        PhotoViewer photoViewer = this.h;
-        ImageView imageView = photoViewer.f34114x3;
-        if (imageView != null) {
-            ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-            layoutParams.width = getMeasuredWidth();
-            layoutParams.height = getMeasuredHeight();
-        }
-        TextureView textureView = photoViewer.B2;
-        if (textureView instanceof org.telegram.ui.Components.a81) {
-            textureView.setPivotX(textureView.getMeasuredWidth() / 2);
-            photoViewer.E2.setPivotX(photoViewer.B2.getMeasuredWidth() / 2);
-        } else {
-            if (textureView != null) {
-                textureView.setPivotX(0.0f);
-            }
-            SurfaceView surfaceView = photoViewer.C2;
-            if (surfaceView != null) {
-                surfaceView.setPivotX(0.0f);
-            }
-            photoViewer.E2.setPivotX(0.0f);
-        }
-        photoViewer.z0();
+    public tt0(org.telegram.ui.Components.or0 or0Var, a0.i iVar, int i10, int i11) {
+        this.f42262a = i11;
+        this.f42263b = or0Var;
+        this.f42264c = iVar;
     }
 }

@@ -1,90 +1,164 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class oo0 extends WebViewClient {
-    public final Context f40628a;
-    public final vo0 f40629b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class oo0 implements TextWatcher {
+    public final String[] f40590a = {"34", "37"};
+    public final String[] f40591b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public final String[] f40592c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+    public int d = -1;
+    public int f40593e;
+    public final uo0 f40594f;
 
-    public oo0(vo0 vo0Var, Context context) {
-        this.f40629b = vo0Var;
-        this.f40628a = context;
+    public oo0(uo0 uo0Var) {
+        this.f40594f = uo0Var;
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        vo0 vo0Var = this.f40629b;
-        vo0Var.f42998z0 = false;
-        vo0Var.H0(true, false);
-        vo0Var.K0();
-    }
-
-    @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        vo0 vo0Var = this.f40629b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(vo0Var.getParentActivity())) {
-                return true;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vo0Var.getParentActivity(), 0, vo0Var.Y0);
-            alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20378a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new tk0(this, 10));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e7) {
-            FileLog.e(e7);
-            return false;
-        }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
+    public final void afterTextChanged(Editable editable) {
+        int i10;
         boolean z10;
-        vo0 vo0Var = this.f40629b;
-        vo0Var.f42996y = !str.equals(vo0Var.f42994x);
-        try {
-            parse = Uri.parse(str);
-        } catch (Exception unused) {
+        int i11;
+        int i12;
+        String[] strArr;
+        int i13;
+        String str;
+        uo0 uo0Var = this.f40594f;
+        if (uo0Var.f42717o0) {
+            return;
         }
-        if ("t.me".equals(parse.getHost())) {
-            vo0Var.t0();
-            return true;
+        int i14 = 0;
+        EditTextBoldCursor editTextBoldCursor = uo0Var.f42706f[0];
+        int selectionStart = editTextBoldCursor.getSelectionStart();
+        String obj = editTextBoldCursor.getText().toString();
+        int i15 = 3;
+        int i16 = 1;
+        if (this.d == 3) {
+            obj = obj.substring(0, this.f40593e) + obj.substring(this.f40593e + 1);
+            selectionStart--;
         }
-        if (!vo0.f42956h1.contains(parse.getScheme())) {
-            if (!vo0.f42955g1.contains(parse.getScheme())) {
-                try {
-                    if (vo0Var.getParentActivity() != null) {
-                        z10 = true;
+        StringBuilder sb2 = new StringBuilder(obj.length());
+        int i17 = 0;
+        while (i17 < obj.length()) {
+            int i18 = i17 + 1;
+            String substring = obj.substring(i17, i18);
+            if ("0123456789".contains(substring)) {
+                sb2.append(substring);
+            }
+            i17 = i18;
+        }
+        uo0Var.f42717o0 = true;
+        String str2 = null;
+        int i19 = 100;
+        if (sb2.length() > 0) {
+            String sb3 = sb2.toString();
+            int i20 = 0;
+            while (true) {
+                if (i20 < i15) {
+                    if (i20 != 0) {
+                        if (i20 != i16) {
+                            strArr = this.f40591b;
+                            i13 = 14;
+                            str = "xxxx xxxx xxxx xx";
+                        } else {
+                            strArr = this.f40590a;
+                            i13 = 15;
+                            str = "xxxx xxxx xxxx xxx";
+                        }
                     } else {
-                        z10 = false;
+                        strArr = this.f40592c;
+                        i13 = 16;
+                        str = "xxxx xxxx xxxx xxxx";
                     }
-                    if (z10) {
-                        vo0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
+                    i10 = i16;
+                    for (int i21 = i14; i21 < strArr.length; i21++) {
+                        String str3 = strArr[i21];
+                        if (sb3.length() <= str3.length()) {
+                            if (str3.startsWith(sb3)) {
+                                i19 = i13;
+                                str2 = str;
+                                break;
+                            }
+                        } else if (sb3.startsWith(str3)) {
+                            i19 = i13;
+                            str2 = str;
+                            break;
+                        }
                     }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f40628a);
-                    alertDialog$Builder.f20378a.R = vo0Var.f42983p0;
-                    alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.o();
+                    if (str2 != null) {
+                        break;
+                    }
+                    i20++;
+                    i16 = i10;
+                    i14 = 0;
+                    i15 = 3;
+                } else {
+                    i10 = i16;
+                    break;
                 }
             }
-            return super.shouldOverrideUrlLoading(webView, str);
+            if (sb2.length() > i19) {
+                sb2.setLength(i19);
+            }
+        } else {
+            i10 = 1;
         }
-        return true;
+        if (str2 != null) {
+            if (sb2.length() == i19) {
+                uo0Var.f42706f[i10].requestFocus();
+            }
+            editTextBoldCursor.setTextColor(uo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
+            int i22 = 0;
+            while (true) {
+                if (i22 >= sb2.length()) {
+                    break;
+                } else if (i22 < str2.length()) {
+                    if (str2.charAt(i22) == ' ') {
+                        sb2.insert(i22, ' ');
+                        i22++;
+                        if (selectionStart == i22 && (i12 = this.d) != 2 && i12 != 3) {
+                            selectionStart++;
+                        }
+                    }
+                    i22++;
+                } else {
+                    sb2.insert(i22, ' ');
+                    if (selectionStart == i22 + 1 && (i11 = this.d) != 2 && i11 != 3) {
+                        selectionStart++;
+                    }
+                }
+            }
+        }
+        if (!sb2.toString().equals(editable.toString())) {
+            z10 = false;
+            editable.replace(0, editable.length(), sb2);
+        } else {
+            z10 = false;
+        }
+        if (selectionStart >= 0) {
+            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+        }
+        uo0Var.f42717o0 = z10;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        if (i11 == 0 && i12 == 1) {
+            this.d = 1;
+        } else if (i11 == 1 && i12 == 0) {
+            if (charSequence.charAt(i10) == ' ' && i10 > 0) {
+                this.d = 3;
+                this.f40593e = i10 - 1;
+                return;
+            }
+            this.d = 2;
+        } else {
+            this.d = -1;
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

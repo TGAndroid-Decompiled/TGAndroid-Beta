@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.support.LongSparseIntArray;
-public final class m50 extends org.telegram.ui.Components.rm0 {
+public final class m50 extends org.telegram.ui.Components.sm0 {
     public final LongSparseIntArray V2;
     public final g60 W2;
 
@@ -37,9 +37,9 @@ public final class m50 extends org.telegram.ui.Components.rm0 {
         HashSet hashSet2 = u50Var.H;
         if (u50Var.G == null) {
             hashSet2.clear();
-            hashSet2.addAll(u50Var.f47764q);
+            hashSet2.addAll(u50Var.f47810q);
             hashSet.clear();
-            hashSet.addAll(u50Var.f47763p);
+            hashSet.addAll(u50Var.f47809p);
             u50Var.J = 0.0f;
             u50Var.K = Float.MAX_VALUE;
             if (hashSet2.isEmpty() && hashSet.isEmpty()) {
@@ -50,7 +50,7 @@ public final class m50 extends org.telegram.ui.Components.rm0 {
             for (int i15 = 0; i15 < childCount; i15++) {
                 View childAt = m50Var.getChildAt(i15);
                 s4.d1 G = m50Var.G(childAt);
-                if (G != null && (i14 = G.f47706f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
+                if (G != null && (i14 = G.f47752f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
                     u50Var.J = Math.max(u50Var.J, childAt.getY() + childAt.getMeasuredHeight());
                     u50Var.K = Math.min(u50Var.K, Math.max(0.0f, childAt.getY()));
                 }
@@ -66,14 +66,14 @@ public final class m50 extends org.telegram.ui.Components.rm0 {
         if (getVisibility() != i10) {
             for (int i11 = 0; i11 < getChildCount(); i11++) {
                 View childAt = getChildAt(i11);
-                if (childAt instanceof org.telegram.ui.Components.voip.l) {
-                    org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) childAt;
+                if (childAt instanceof org.telegram.ui.Components.voip.m) {
+                    org.telegram.ui.Components.voip.m mVar = (org.telegram.ui.Components.voip.m) childAt;
                     if (childAt.isAttachedToWindow() && i10 == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    g60.O(this.W2, lVar, z10);
+                    g60.O(this.W2, mVar, z10);
                 }
             }
         }

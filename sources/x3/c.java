@@ -6,15 +6,15 @@ import b2.s;
 import c3.u;
 import e2.v;
 import java.util.Arrays;
-import n6.t;
-import u2.x0;
+import n6.k;
+import u2.w0;
 public final class c extends i {
-    public u f50602n;
-    public x0 f50603o;
+    public u f50646n;
+    public w0 f50647o;
 
     @Override
     public final long b(v vVar) {
-        byte[] bArr = vVar.f8584a;
+        byte[] bArr = vVar.f8583a;
         if (bArr[0] == -1) {
             int i10 = (bArr[2] & 255) >> 4;
             if (i10 == 6 || i10 == 7) {
@@ -29,38 +29,38 @@ public final class c extends i {
     }
 
     @Override
-    public final boolean c(v vVar, long j3, t tVar) {
-        byte[] bArr = vVar.f8584a;
-        u uVar = this.f50602n;
+    public final boolean c(v vVar, long j3, k kVar) {
+        byte[] bArr = vVar.f8583a;
+        u uVar = this.f50646n;
         if (uVar == null) {
             u uVar2 = new u(bArr, 17);
-            this.f50602n = uVar2;
-            r a2 = uVar2.c(Arrays.copyOfRange(bArr, 9, vVar.f8586c), null).a();
+            this.f50646n = uVar2;
+            r a2 = uVar2.c(Arrays.copyOfRange(bArr, 9, vVar.f8585c), null).a();
             a2.f3584p = r0.n("audio/ogg");
-            tVar.f16721b = new s(a2);
+            kVar.f16729b = new s(a2);
             return true;
         }
         byte b10 = bArr[0];
         if ((b10 & Byte.MAX_VALUE) == 3) {
             pf.b u10 = c3.b.u(vVar);
             u uVar3 = new u(uVar.f4154a, uVar.f4155b, uVar.f4156c, uVar.d, uVar.f4157e, uVar.f4159g, uVar.h, uVar.f4161j, u10, uVar.f4163l);
-            this.f50602n = uVar3;
+            this.f50646n = uVar3;
             ?? obj = new Object();
-            obj.f48804c = uVar3;
+            obj.f48819c = uVar3;
             obj.d = u10;
-            obj.f48802a = -1L;
-            obj.f48803b = -1L;
-            this.f50603o = obj;
+            obj.f48817a = -1L;
+            obj.f48818b = -1L;
+            this.f50647o = obj;
             return true;
         } else if (b10 != -1) {
             return true;
         } else {
-            x0 x0Var = this.f50603o;
-            if (x0Var != null) {
-                x0Var.f48802a = j3;
-                tVar.f16722c = x0Var;
+            w0 w0Var = this.f50647o;
+            if (w0Var != null) {
+                w0Var.f48817a = j3;
+                kVar.f16730c = w0Var;
             }
-            ((s) tVar.f16721b).getClass();
+            ((s) kVar.f16729b).getClass();
             return false;
         }
     }
@@ -69,8 +69,8 @@ public final class c extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f50602n = null;
-            this.f50603o = null;
+            this.f50646n = null;
+            this.f50647o = null;
         }
     }
 }

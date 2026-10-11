@@ -1,69 +1,93 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-public final class vl0 extends org.telegram.ui.Components.p61 {
-    public static final int f42945a = 0;
+public final class vl0 extends FrameLayout {
+    public final int f43079a;
+    public final org.telegram.ui.ActionBar.d6 f43080b;
+    public final FrameLayout f43081c;
+    public final org.telegram.ui.Components.y9 d;
+    public final TextView f43082e;
+    public final TextView f43083f;
+    public final ImageView h;
+    public boolean f43084n;
+    public String f43085r;
 
-    static {
-        org.telegram.ui.Components.p61.setup(new org.telegram.ui.Components.p61());
+    public vl0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f43079a = i10;
+        this.f43080b = d6Var;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f43081c = frameLayout;
+        addView(frameLayout, w7.x5.a(36.0f, 18.5f, 0.0f, 0.0f, 0.0f, 36, 19));
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.d = y9Var;
+        y9Var.setImageResource(R.drawable.msg2_permissions);
+        int i11 = org.telegram.ui.ActionBar.h6.G6;
+        int m12 = org.telegram.ui.ActionBar.h6.m1(0.3f, org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        y9Var.setColorFilter(new PorterDuffColorFilter(m12, mode));
+        frameLayout.addView(y9Var, w7.x5.e(36, 36, 17));
+        TextView b10 = w7.b6.b(context, 15.0f, i11, true, null);
+        this.f43082e = b10;
+        b10.setSingleLine();
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        b10.setEllipsize(truncateAt);
+        addView(b10, w7.x5.a(-2.0f, 72.0f, 8.0f, 46.0f, 0.0f, -1, 55));
+        int i12 = org.telegram.ui.ActionBar.h6.f21171y6;
+        TextView b11 = w7.b6.b(context, 13.0f, i12, false, null);
+        this.f43083f = b11;
+        b11.setSingleLine();
+        b11.setEllipsize(truncateAt);
+        addView(b11, w7.x5.a(-2.0f, 72.0f, 31.0f, 46.0f, 0.0f, -1, 55));
+        ImageView imageView = new ImageView(context);
+        this.h = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.ic_ab_other);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i12, false), mode));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20877i6, d6Var), 1, -1));
+        addView(imageView, w7.x5.a(32.0f, 0.0f, 0.0f, 13.0f, 0.0f, 32, 21));
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.q61 q61Var, boolean z10, org.telegram.ui.Components.d71 d71Var, org.telegram.ui.Components.l71 l71Var) {
-        wl0 wl0Var = (wl0) view;
-        TL_account.Passkey passkey = (TL_account.Passkey) q61Var.G;
-        View.OnClickListener onClickListener = q61Var.D;
-        TextView textView = wl0Var.f43754f;
-        TextView textView2 = wl0Var.f43753e;
-        org.telegram.ui.ActionBar.e6 e6Var = wl0Var.f43751b;
-        FrameLayout frameLayout = wl0Var.f43752c;
-        org.telegram.ui.Components.y9 y9Var = wl0Var.d;
-        wl0Var.f43756r = passkey.f20247id;
-        long j3 = passkey.software_emoji_id;
-        if (j3 != 0) {
-            y9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.s5.n(wl0Var.f43750a, j3, null, 3));
-            frameLayout.setBackground(null);
-            y9Var.setColorFilter(null);
-            y9Var.setScaleX(1.0f);
-            y9Var.setScaleY(1.0f);
-        } else {
-            int dp = AndroidUtilities.dp(4.0f);
-            int i10 = org.telegram.ui.ActionBar.i6.G6;
-            frameLayout.setBackground(org.telegram.ui.ActionBar.i6.c0(dp, org.telegram.ui.ActionBar.i6.m1(0.04f, org.telegram.ui.ActionBar.i6.w0(i10, e6Var))));
-            y9Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.m1(0.3f, org.telegram.ui.ActionBar.i6.w0(i10, e6Var)), PorterDuff.Mode.SRC_IN));
-            y9Var.setImageResource(R.drawable.msg2_permissions);
-            y9Var.setScaleX(0.666f);
-            y9Var.setScaleY(0.666f);
-            y9Var.setAnimatedEmojiDrawable(null);
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        super.onDraw(canvas);
+        if (this.f43084n) {
+            Paint U0 = org.telegram.ui.ActionBar.h6.U0("paintDivider", this.f43080b);
+            if (U0 == null) {
+                U0 = org.telegram.ui.ActionBar.h6.f20908k0;
+            }
+            Paint paint = U0;
+            float f10 = 72.0f;
+            if (LocaleController.isRTL) {
+                f7 = 0.0f;
+            } else {
+                f7 = 72.0f;
+            }
+            float dp = AndroidUtilities.dp(f7);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width = getWidth();
+            if (!LocaleController.isRTL) {
+                f10 = 0.0f;
+            }
+            canvas.drawRect(dp, measuredHeight, width - AndroidUtilities.dp(f10), getMeasuredHeight(), paint);
         }
-        if (TextUtils.isEmpty(passkey.name)) {
-            textView2.setText(LocaleController.getString(R.string.PasskeyUnknown));
-        } else {
-            textView2.setText(passkey.name);
-        }
-        int i11 = passkey.last_usage_date;
-        if (i11 != 0) {
-            textView.setText(LocaleController.formatString(R.string.PasskeyLastUsedOn, LocaleController.formatDateTime(i11, false)));
-        } else {
-            textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
-        }
-        wl0Var.h.setOnClickListener(onClickListener);
-        wl0Var.f43755n = z10;
-        wl0Var.setWillNotDraw(!z10);
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.rm0 rm0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new wl0(context, i10, e6Var);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

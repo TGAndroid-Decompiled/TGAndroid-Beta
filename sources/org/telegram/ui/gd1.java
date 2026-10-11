@@ -1,18 +1,28 @@
 package org.telegram.ui;
-public final class gd1 extends xd1 {
-    public final zn f38027k2;
-    public final boolean f38028l2;
+public final class gd1 implements nd1 {
+    public boolean f38049a;
+    public final zn f38050b;
 
-    public gd1(Object obj, zn znVar, boolean z10) {
-        super(obj, null, true);
-        this.f38027k2 = znVar;
-        this.f38028l2 = z10;
+    public gd1(zn znVar, boolean z10) {
+        this.f38050b = znVar;
+        this.f38049a = z10;
     }
 
     @Override
-    public final void onFragmentClosed() {
-        super.onFragmentClosed();
-        xn xnVar = this.f38027k2.f44807ea;
-        xnVar.i(xnVar.f44116f, xnVar.h, false, Boolean.valueOf(this.f38028l2), false);
+    public final boolean T0() {
+        return true;
+    }
+
+    @Override
+    public final boolean a() {
+        return this.f38049a;
+    }
+
+    @Override
+    public final void l1(boolean z10) {
+        boolean z11 = !this.f38049a;
+        this.f38049a = z11;
+        xn xnVar = this.f38050b.f44762ea;
+        xnVar.i(xnVar.f44115f, xnVar.h, z10, Boolean.valueOf(z11), false);
     }
 }

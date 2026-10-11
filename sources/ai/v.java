@@ -2,13 +2,13 @@ package ai;
 
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.ui.kx;
+import org.telegram.ui.jx;
 public final class v extends og.b {
     public final boolean d;
-    public final kx f1813e;
+    public final jx f1813e;
 
-    public v(kx kxVar, boolean z10) {
-        this.f1813e = kxVar;
+    public v(jx jxVar, boolean z10) {
+        this.f1813e = jxVar;
         this.d = z10;
     }
 
@@ -21,25 +21,25 @@ public final class v extends og.b {
     public final int h() {
         ArrayList arrayList;
         boolean z10 = this.d;
-        kx kxVar = this.f1813e;
+        jx jxVar = this.f1813e;
         if (z10) {
-            arrayList = kxVar.f693y;
+            arrayList = jxVar.f693y;
         } else {
-            arrayList = kxVar.f691x;
+            arrayList = jxVar.f691x;
         }
         return arrayList.size();
     }
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        a0 a0Var = (a0) d1Var.f47702a;
+        a0 a0Var = (a0) d1Var.f47748a;
         a0Var.f622b = i10;
         boolean z10 = this.d;
-        kx kxVar = this.f1813e;
+        jx jxVar = this.f1813e;
         if (z10) {
-            a0Var.setDialogId(((w) kxVar.f693y.get(i10)).f1841c);
+            a0Var.setDialogId(((w) jxVar.f693y.get(i10)).f1841c);
         } else {
-            a0Var.setDialogId(((w) kxVar.f691x.get(i10)).f1841c);
+            a0Var.setDialogId(((w) jxVar.f691x.get(i10)).f1841c);
         }
     }
 

@@ -1,93 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
+import android.widget.LinearLayout;
 import org.telegram.tgnet.TLRPC;
-public interface pt {
-    MessageObject A();
+public final class pt extends LinearLayout {
+    public final org.telegram.ui.Components.y9 f40954a;
+    public final org.telegram.ui.ActionBar.h5 f40955b;
+    public final org.telegram.ui.ActionBar.d6 f40956c;
+    public TLRPC.StickerSetCovered d;
 
-    boolean B();
-
-    void C(TLRPC.Document document);
-
-    boolean D();
-
-    boolean E(TLRPC.Document document);
-
-    void F(TLRPC.Document document);
-
-    String G(boolean z10);
-
-    void H(TLRPC.Document document);
-
-    boolean I();
-
-    boolean J();
-
-    void K();
-
-    void L();
-
-    void M(TLRPC.InputStickerSet inputStickerSet, boolean z10);
-
-    boolean N(TLRPC.Document document);
-
-    void O(String str);
-
-    Boolean P(TLRPC.Document document);
-
-    boolean Q();
-
-    long a();
-
-    boolean b();
-
-    boolean c();
-
-    TLRPC.TL_messageMediaPoll d();
-
-    boolean e(TLRPC.Document document);
-
-    void f(CharSequence charSequence, String str, ft ftVar);
-
-    boolean g();
-
-    TLRPC.PollAnswer h();
-
-    boolean i();
-
-    org.telegram.ui.Components.q80 j(ci.m6 m6Var);
-
-    void k(SendMessagesHelper.ImportingSticker importingSticker);
-
-    boolean l();
-
-    boolean m(int i10);
-
-    void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11);
-
-    void o(String str);
-
-    void p(TLRPC.Document document);
-
-    boolean q();
-
-    void r(TLRPC.Document document);
-
-    void s();
-
-    void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10);
-
-    void u();
-
-    void v(TLRPC.Document document);
-
-    void w(TLRPC.StickerSet stickerSet, String str);
-
-    void x(TLObject tLObject, Object obj);
-
-    boolean y();
-
-    void z(String str);
+    public pt(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f40956c = d6Var;
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.f40954a = y9Var;
+        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
+        this.f40955b = h5Var;
+        h5Var.setTextSize(16);
+        h5Var.setTextColor(-1);
+        setOrientation(0);
+        addView(y9Var, w7.x5.t(24, 24, 17, 17, 0, 17, 0));
+        addView(h5Var, w7.x5.t(-2, -2, 17, 0, 0, 12, 0));
+    }
 }

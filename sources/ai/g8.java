@@ -5,7 +5,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ky0;
+import org.telegram.ui.Components.ly0;
 public final class g8 implements RequestDelegate {
     public final int f1057a;
     public final Utilities.Callback f1058b;
@@ -22,7 +22,7 @@ public final class g8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new a1.f(14, this.f1058b, tL_error));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ky0(tLObject, this.f1058b, 1));
+                AndroidUtilities.runOnUIThread(new ly0(tLObject, this.f1058b, 1));
                 return;
         }
     }

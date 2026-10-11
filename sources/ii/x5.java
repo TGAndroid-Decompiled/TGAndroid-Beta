@@ -3,63 +3,63 @@ package ii;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.zd;
+import org.telegram.ui.yd;
 public final class x5 implements View.OnFocusChangeListener {
-    public final int f12840a;
-    public final Object f12841b;
+    public final int f12839a;
+    public final Object f12840b;
 
     public x5(Object obj, int i10) {
-        this.f12840a = i10;
-        this.f12841b = obj;
+        this.f12839a = i10;
+        this.f12840b = obj;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
         float f7;
-        switch (this.f12840a) {
+        switch (this.f12839a) {
             case 0:
-                f6.a((f6) this.f12841b, z10);
+                f6.a((f6) this.f12840b, z10);
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f12841b).f45856c;
+                EditTextBoldCursor editTextBoldCursor = ((pg.v) this.f12840b).f45846c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;
                 }
                 return;
             case 2:
-                EditTextBoldCursor editTextBoldCursor2 = ((pg.w) this.f12841b).d;
+                EditTextBoldCursor editTextBoldCursor2 = ((pg.w) this.f12840b).d;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor2.getText())) {
                     editTextBoldCursor2.setText("0");
                     return;
                 }
                 return;
             case 3:
-                zd zdVar = ((yh.g) this.f12841b).M;
+                yd ydVar = ((yh.g) this.f12840b).M;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                zdVar.b(f7, f7, true);
+                ydVar.b(f7, f7, true);
                 return;
             case 4:
-                yh.y yVar = (yh.y) this.f12841b;
-                yVar.f53429c0.c(z10, !TextUtils.isEmpty(yVar.f53430d0.getText()));
+                yh.y yVar = (yh.y) this.f12840b;
+                yVar.f53472c0.c(z10, !TextUtils.isEmpty(yVar.f53473d0.getText()));
                 return;
             case 5:
-                yh.c0 c0Var = (yh.c0) this.f12841b;
-                c0Var.f52371f.c(z10, !TextUtils.isEmpty(c0Var.h.getText()));
+                yh.c0 c0Var = (yh.c0) this.f12840b;
+                c0Var.f52414f.c(z10, !TextUtils.isEmpty(c0Var.h.getText()));
                 return;
             case 6:
-                yh.h0 h0Var = (yh.h0) this.f12841b;
-                h0Var.f52646b.c(z10, !TextUtils.isEmpty(h0Var.f52647c.getText()));
+                yh.h0 h0Var = (yh.h0) this.f12840b;
+                h0Var.f52690b.c(z10, !TextUtils.isEmpty(h0Var.f52691c.getText()));
                 return;
             default:
-                zg.o oVar = (zg.o) this.f12841b;
+                zg.o oVar = (zg.o) this.f12840b;
                 if (z10) {
                     oVar.n(true);
-                    Runnable runnable = oVar.f54532e;
+                    Runnable runnable = oVar.f54575e;
                     if (runnable != null) {
                         runnable.run();
                         return;

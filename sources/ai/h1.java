@@ -52,7 +52,7 @@ public final class h1 extends FrameLayout implements p80 {
         this.h = d1Var;
         d1Var.setOrientation(0);
         addView(d1Var, w7.x5.a(-2.0f, 0.0f, 0.5f, 0.0f, 0.5f, -2, 51));
-        this.f1079x = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
+        this.f1079x = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
         this.f1078w = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
@@ -74,7 +74,7 @@ public final class h1 extends FrameLayout implements p80 {
         linearLayout2.addView(nVar, w7.x5.p(-2, -2, 1.0f, 51, 0, 0, 16, 0));
         vh.n nVar2 = new vh.n(context);
         this.f1077s = nVar2;
-        nVar2.setTextColor(org.telegram.ui.ActionBar.i6.m1(0.55f, -1));
+        nVar2.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.55f, -1));
         nVar2.setTextSize(1, 12.0f);
         nVar2.setGravity(5);
         linearLayout2.addView(nVar2, w7.x5.p(-2, -2, 0.0f, 53, 0, 0, 0, 0));
@@ -82,7 +82,7 @@ public final class h1 extends FrameLayout implements p80 {
         this.f1080y = nVar3;
         nVar3.setTextColor(-1);
         nVar3.setTextSize(1, 14.0f);
-        nVar3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), org.telegram.ui.ActionBar.i6.m1(0.6f, -16777216));
+        nVar3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), org.telegram.ui.ActionBar.h6.m1(0.6f, -16777216));
         NotificationCenter.listenEmojiLoading(nVar3);
         linearLayout.addView(nVar3, w7.x5.n(-2, -2));
         TextView textView = new TextView(context);
@@ -110,7 +110,7 @@ public final class h1 extends FrameLayout implements p80 {
     public final void b(Canvas canvas, float f7) {
         d1 d1Var = this.h;
         if (d1Var.getBackground() == null) {
-            int m12 = org.telegram.ui.ActionBar.i6.m1(f7 * 0.5f, -16777216);
+            int m12 = org.telegram.ui.ActionBar.h6.m1(f7 * 0.5f, -16777216);
             Paint paint = this.L;
             paint.setColor(m12);
             RectF rectF = AndroidUtilities.rectTmp;

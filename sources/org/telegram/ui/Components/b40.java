@@ -6,26 +6,26 @@ import android.graphics.drawable.Drawable;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageView;
 public final class b40 extends ImageView {
-    public final int f24863a;
-    public final int f24864b;
-    public final Object f24865c;
+    public final int f24846a;
+    public final int f24847b;
+    public final Object f24848c;
 
     public b40(Object obj, Context context, int i10, int i11) {
         super(context);
-        this.f24863a = i11;
-        this.f24865c = obj;
-        this.f24864b = i10;
+        this.f24846a = i11;
+        this.f24848c = obj;
+        this.f24847b = i10;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f24863a) {
+        switch (this.f24846a) {
             case 1:
                 super.onDraw(canvas);
-                org.telegram.ui.y10 y10Var = (org.telegram.ui.y10) this.f24865c;
-                ja0 ja0Var = y10Var.f44254s;
-                if (y10Var.f44253r) {
-                    int i10 = this.f24864b / 2;
+                org.telegram.ui.x10 x10Var = (org.telegram.ui.x10) this.f24848c;
+                ja0 ja0Var = x10Var.f43935s;
+                if (x10Var.f43934r) {
+                    int i10 = this.f24847b / 2;
                     ja0Var.setBounds(i10, i10, getWidth() - i10, getHeight() - i10);
                     ja0Var.draw(canvas);
                     return;
@@ -39,11 +39,11 @@ public final class b40 extends ImageView {
 
     @Override
     public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        switch (this.f24863a) {
+        switch (this.f24846a) {
             case 0:
                 super.onInitializeAccessibilityEvent(accessibilityEvent);
                 if (accessibilityEvent.getEventType() == 32768) {
-                    ((c40) this.f24865c).f25176c.f25541b.x(this.f24864b, true);
+                    ((c40) this.f24848c).f25117c.f25426b.x(this.f24847b, true);
                     return;
                 }
                 return;
@@ -55,9 +55,9 @@ public final class b40 extends ImageView {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f24863a) {
+        switch (this.f24846a) {
             case 1:
-                if (drawable != ((org.telegram.ui.y10) this.f24865c).f44254s && !super.verifyDrawable(drawable)) {
+                if (drawable != ((org.telegram.ui.x10) this.f24848c).f43935s && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;

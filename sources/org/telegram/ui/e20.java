@@ -1,50 +1,95 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class e20 extends FrameLayout {
-    public org.telegram.ui.ActionBar.j5 f37175a;
-    public ImageView f37176b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class e20 extends s4.w {
+    public final FiltersSetupActivity d;
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp;
-        int measuredWidth;
-        ImageView imageView = this.f37176b;
-        int i14 = i12 - i10;
-        org.telegram.ui.ActionBar.j5 j5Var = this.f37175a;
-        int textHeight = ((i13 - i11) - j5Var.getTextHeight()) / 2;
-        float f7 = 23.0f;
-        if (LocaleController.isRTL) {
-            int measuredWidth2 = getMeasuredWidth() - j5Var.getMeasuredWidth();
-            if (imageView.getVisibility() == 0) {
-                f7 = 64.0f;
-            }
-            dp = measuredWidth2 - AndroidUtilities.dp(f7);
-        } else {
-            if (imageView.getVisibility() == 0) {
-                f7 = 64.0f;
-            }
-            dp = AndroidUtilities.dp(f7);
-        }
-        j5Var.layout(dp, textHeight, j5Var.getMeasuredWidth() + dp, j5Var.getMeasuredHeight() + textHeight);
-        if (!LocaleController.isRTL) {
-            measuredWidth = AndroidUtilities.dp(20.0f);
-        } else {
-            measuredWidth = (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
-        }
-        imageView.layout(measuredWidth, 0, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight());
+    public e20(FiltersSetupActivity filtersSetupActivity) {
+        this.d = filtersSetupActivity;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        AndroidUtilities.dp(48.0f);
-        this.f37175a.measure(org.telegram.messenger.bi.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f37176b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
+    public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
+        super.a(recyclerView, d1Var);
+        View view = d1Var.f47748a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
+        if (d1Var.f47752f != 2) {
+            return s4.w.l(0, 0);
+        }
+        return s4.w.l(3, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
+        MessagesController.DialogFilter dialogFilter;
+        MessagesController.DialogFilter dialogFilter2;
+        if (d1Var.f47752f != d1Var2.f47752f) {
+            return false;
+        }
+        b20 b20Var = this.d.f33789b;
+        int b10 = d1Var.b();
+        int b11 = d1Var2.b();
+        FiltersSetupActivity filtersSetupActivity = b20Var.f36245e;
+        int i10 = filtersSetupActivity.f33794r;
+        ArrayList arrayList = filtersSetupActivity.f33793n;
+        if (b10 >= i10 && b11 >= i10) {
+            z10 z10Var = (z10) arrayList.get(b10);
+            z10 z10Var2 = (z10) arrayList.get(b11);
+            if (z10Var != null && z10Var2 != null && (dialogFilter = z10Var.d) != null && (dialogFilter2 = z10Var2.d) != null) {
+                int i11 = dialogFilter.order;
+                dialogFilter.order = dialogFilter2.order;
+                dialogFilter2.order = i11;
+                ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
+                try {
+                    arrayList2.set(b10 - filtersSetupActivity.f33794r, z10Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f33794r, z10Var.d);
+                } catch (Exception unused) {
+                }
+                filtersSetupActivity.f33791e = true;
+                filtersSetupActivity.Z(true);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(s4.d1 d1Var, int i10) {
+        Boolean bool;
+        if (i10 != 0) {
+            this.d.f33788a.I0(false);
+            d1Var.f47748a.setPressed(true);
+        } else {
+            AndroidUtilities.cancelRunOnUIThread(new tz(this, 5));
+            AndroidUtilities.runOnUIThread(new tz(this, 5), 320L);
+        }
+        if (d1Var != null) {
+            View view = d1Var.f47748a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
+        }
+    }
+
+    @Override
+    public final void q(s4.d1 d1Var) {
     }
 }

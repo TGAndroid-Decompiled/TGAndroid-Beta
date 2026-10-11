@@ -30,7 +30,7 @@ public final class r1 extends fe.b {
             kVar = this.f493c;
         }
         if (kVar != null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = fe.k.f9902a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = fe.k.f9901a;
             while (!atomicReferenceFieldUpdater.compareAndSet(kVar2, this, kVar)) {
                 if (atomicReferenceFieldUpdater.get(kVar2) != this) {
                     return;
@@ -50,6 +50,6 @@ public final class r1 extends fe.b {
         if (this.d.u() == this.f494e) {
             return null;
         }
-        return fe.a.f9886e;
+        return fe.a.f9885e;
     }
 }

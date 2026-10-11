@@ -18,7 +18,7 @@ public final class jx extends og.d {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.X2.f24720m2.h++;
+        this.X2.f24693m2.h++;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class jx extends og.d {
         int i12;
         ah.h hVar;
         b00 b00Var = this.X2;
-        wz wzVar = b00Var.f24763z0;
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = b00Var.f24713j2) != null) {
+        wz wzVar = b00Var.f24736z0;
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = b00Var.f24686j2) != null) {
             hVar.f(i10, i11);
         }
         if (b00Var.C0 != null) {
@@ -40,8 +40,8 @@ public final class jx extends og.d {
             nxVar.setUnderlineHeight(i12);
         }
         if (wzVar != null && getAdapter() == wzVar && wzVar.d == 0) {
-            wz wzVar2 = wzVar.O.f31677w;
-            if (!wzVar2.Q.G0.F && !wzVar2.f32789y) {
+            wz wzVar2 = wzVar.O.f31619w;
+            if (!wzVar2.Q.G0.F && !wzVar2.f32770y) {
                 if (b00Var.E0.N0() + 50 > wzVar.h()) {
                     uz uzVar = wzVar.O;
                     Objects.requireNonNull(uzVar);
@@ -54,11 +54,11 @@ public final class jx extends og.d {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         b00 b00Var = this.X2;
-        if (!b00Var.f24698f) {
-            org.telegram.ui.rt q6 = org.telegram.ui.rt.q();
+        if (!b00Var.f24671f) {
+            org.telegram.ui.qt q6 = org.telegram.ui.qt.q();
             jx jxVar = b00Var.D0;
             b00Var.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, jxVar, b00Var.f24704g2, this.f30511n2);
+            boolean r10 = q6.r(motionEvent, jxVar, b00Var.f24677g2, this.f30807n2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -70,7 +70,7 @@ public final class jx extends og.d {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         b00 b00Var = this.X2;
-        if (b00Var.I0 && b00Var.f24760y0.h() > 0) {
+        if (b00Var.I0 && b00Var.f24733y0.h() > 0) {
             this.W2 = true;
             b00Var.E0.h1(0, 0);
             b00Var.I0 = false;

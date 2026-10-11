@@ -25,5 +25,5 @@ public interface eh {
 
     void p();
 
-    tw0 z();
+    uw0 z();
 }

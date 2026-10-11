@@ -6,12 +6,12 @@ import android.view.MotionEvent;
 import o1.l;
 import org.telegram.messenger.AndroidUtilities;
 public final class f extends GestureDetector.SimpleOnGestureListener {
-    public float f16426a;
-    public float f16427b;
-    public final i f16428c;
+    public float f16448a;
+    public float f16449b;
+    public final i f16450c;
 
     public f(i iVar) {
-        this.f16428c = iVar;
+        this.f16450c = iVar;
     }
 
     @Override
@@ -23,19 +23,19 @@ public final class f extends GestureDetector.SimpleOnGestureListener {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         DisplayMetrics displayMetrics;
         float f11;
-        i iVar = this.f16428c;
-        if (iVar.f16441f && !iVar.f16442n) {
-            l lVar = iVar.f16439c.f16942u;
-            if ((f7 / 7.0f) + ((float) lVar.f16949i) >= iVar.getWidth() / 2.0f) {
+        i iVar = this.f16450c;
+        if (iVar.f16463f && !iVar.f16464n) {
+            l lVar = iVar.f16461c.f16988u;
+            if ((f7 / 7.0f) + ((float) lVar.f16995i) >= iVar.getWidth() / 2.0f) {
                 displayMetrics = iVar.getResources().getDisplayMetrics();
                 f11 = 2.1474836E9f;
             } else {
                 displayMetrics = iVar.getResources().getDisplayMetrics();
                 f11 = -2.1474836E9f;
             }
-            lVar.f16949i = i.a(displayMetrics, f11);
-            iVar.d.f16942u.f16949i = i.b(iVar.getResources().getDisplayMetrics(), (f10 / 10.0f) + ((float) iVar.d.f16942u.f16949i));
-            iVar.f16439c.h();
+            lVar.f16995i = i.a(displayMetrics, f11);
+            iVar.d.f16988u.f16995i = i.b(iVar.getResources().getDisplayMetrics(), (f10 / 10.0f) + ((float) iVar.d.f16988u.f16995i));
+            iVar.f16461c.h();
             iVar.d.h();
             iVar.h = true;
             return true;
@@ -45,29 +45,29 @@ public final class f extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        i iVar = this.f16428c;
+        i iVar = this.f16450c;
         int i10 = iVar.F;
-        if (!iVar.f16442n) {
-            AndroidUtilities.cancelRunOnUIThread(iVar.f16443r);
+        if (!iVar.f16464n) {
+            AndroidUtilities.cancelRunOnUIThread(iVar.f16465r);
         }
-        if (!iVar.f16441f && (Math.abs(f7) >= i10 || Math.abs(f10) >= i10)) {
-            this.f16426a = (float) iVar.f16439c.f16942u.f16949i;
-            this.f16427b = (float) iVar.d.f16942u.f16949i;
-            iVar.f16441f = true;
+        if (!iVar.f16463f && (Math.abs(f7) >= i10 || Math.abs(f10) >= i10)) {
+            this.f16448a = (float) iVar.f16461c.f16988u.f16995i;
+            this.f16449b = (float) iVar.d.f16988u.f16995i;
+            iVar.f16463f = true;
         }
-        if (iVar.f16441f && !iVar.f16442n) {
-            iVar.f16439c.f16942u.f16949i = (motionEvent2.getRawX() + this.f16426a) - motionEvent.getRawX();
-            iVar.d.f16942u.f16949i = (motionEvent2.getRawY() + this.f16427b) - motionEvent.getRawY();
-            iVar.f16439c.h();
+        if (iVar.f16463f && !iVar.f16464n) {
+            iVar.f16461c.f16988u.f16995i = (motionEvent2.getRawX() + this.f16448a) - motionEvent.getRawX();
+            iVar.d.f16988u.f16995i = (motionEvent2.getRawY() + this.f16449b) - motionEvent.getRawY();
+            iVar.f16461c.h();
             iVar.d.h();
         }
-        return iVar.f16441f;
+        return iVar.f16463f;
     }
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        i iVar = this.f16428c;
-        if (!iVar.f16442n && !iVar.f16444s) {
+        i iVar = this.f16450c;
+        if (!iVar.f16464n && !iVar.f16466s) {
             iVar.c(true);
             return true;
         }

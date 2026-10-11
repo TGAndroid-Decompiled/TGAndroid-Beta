@@ -2,29 +2,16 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
 public final class r0 extends AnimatorListenerAdapter {
-    public final int f41276a;
-    public final Runnable f41277b;
+    public final h4 f41291a;
 
-    public r0(int i10, Runnable runnable) {
-        this.f41276a = i10;
-        this.f41277b = runnable;
+    public r0(h4 h4Var) {
+        this.f41291a = h4Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f41276a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                Runnable runnable = this.f41277b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                this.f41277b.run();
-                return;
-        }
+        AndroidUtilities.runOnUIThread(new mu0(this, 6));
     }
 }

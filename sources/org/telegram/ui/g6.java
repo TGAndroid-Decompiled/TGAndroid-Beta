@@ -1,16 +1,13 @@
 package org.telegram.ui;
+public final class g6 extends s4.j {
+    public final x6 F;
 
-import android.content.Context;
-public final class g6 extends org.telegram.ui.Components.nd0 {
-    public final y6 D0;
-
-    public g6(y6 y6Var, Context context) {
-        super(context);
-        this.D0 = y6Var;
+    public g6(x6 x6Var) {
+        this.F = x6Var;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.g6.dispatchDraw(android.graphics.Canvas):void");
+    public final void P(s4.d1 d1Var) {
+        this.F.f43975b.invalidate();
     }
 }

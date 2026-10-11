@@ -35,7 +35,7 @@ public interface bz {
 
     void n();
 
-    void o(m61 m61Var);
+    void o(n61 n61Var);
 
     float p();
 

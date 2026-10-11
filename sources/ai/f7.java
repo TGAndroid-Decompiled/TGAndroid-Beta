@@ -17,9 +17,9 @@ import org.telegram.ui.Components.bd0;
 import org.telegram.ui.Components.c90;
 import org.telegram.ui.Components.fa0;
 import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.dc1;
-public final class f7 extends qm0 {
+import org.telegram.ui.Components.rm0;
+import org.telegram.ui.cc1;
+public final class f7 extends rm0 {
     public final ArrayList f1030c = new ArrayList();
     public final l7 d;
 
@@ -29,7 +29,7 @@ public final class f7 extends qm0 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47706f == 1) {
+        if (d1Var.f47752f == 1) {
             return true;
         }
         return false;
@@ -138,11 +138,11 @@ public final class f7 extends qm0 {
         TLRPC.Message message2;
         l7 l7Var = this.d;
         int i16 = l7Var.v;
-        if (d1Var.f47706f == 1 && i10 >= 0) {
+        if (d1Var.f47752f == 1 && i10 >= 0) {
             ArrayList arrayList = this.f1030c;
             if (i10 < arrayList.size()) {
                 a7 a7Var = (a7) arrayList.get(i10);
-                org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) d1Var.f47702a;
+                org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) d1Var.f47748a;
                 TL_stories.StoryView storyView = a7Var.f644b;
                 TL_stories.StoryReaction storyReaction = a7Var.f645c;
                 if (storyView != null) {
@@ -175,7 +175,7 @@ public final class f7 extends qm0 {
                 boolean remove = l7Var.F.f1240p.remove(Long.valueOf(j3));
                 if (storyView != null) {
                     TLRPC.Reaction reaction3 = storyView.reaction;
-                    if (reaction3 != null && (str2 = zg.n0.d(reaction3).f54661f) != null && str2.equals("❤")) {
+                    if (reaction3 != null && (str2 = zg.n0.d(reaction3).f54704f) != null && str2.equals("❤")) {
                         j11 = 0;
                         z11 = true;
                     } else {
@@ -224,7 +224,7 @@ public final class f7 extends qm0 {
                     } else {
                         z12 = true;
                     }
-                    o6Var.f22594a = z12;
+                    o6Var.f22582a = z12;
                     if (l7Var.d(storyView)) {
                         f7 = 1.0f;
                     } else {
@@ -238,7 +238,7 @@ public final class f7 extends qm0 {
                     if (storyReaction instanceof TL_stories.TL_storyReaction) {
                         TL_stories.TL_storyReaction tL_storyReaction = (TL_stories.TL_storyReaction) storyReaction;
                         TLRPC.Reaction reaction4 = tL_storyReaction.reaction;
-                        if (reaction4 != null && (str = zg.n0.d(reaction4).f54661f) != null && str.equals("❤")) {
+                        if (reaction4 != null && (str = zg.n0.d(reaction4).f54704f) != null && str.equals("❤")) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -279,7 +279,7 @@ public final class f7 extends qm0 {
                     if (i12 != 1 && i12 != 11 && i12 != i11) {
                         z13 = false;
                     }
-                    o6Var.f22594a = z13;
+                    o6Var.f22582a = z13;
                     o6Var.a(1.0f, false);
                 }
             }
@@ -313,7 +313,7 @@ public final class f7 extends qm0 {
                 k10 k10Var = new k10(l7Var.getContext(), dVar);
                 k10Var.setIsSingleCell(true);
                 k10Var.setViewType(28);
-                k10Var.f27857w = false;
+                k10Var.f27811w = false;
                 fa0Var = k10Var;
                 break;
             case 5:
@@ -344,7 +344,7 @@ public final class f7 extends qm0 {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString(R.string.ExpiredViewsStub)));
                     boolean premiumFeaturesBlocked = MessagesController.getInstance(i12).premiumFeaturesBlocked();
-                    fa0 fa0Var2 = e7Var.f25085e;
+                    fa0 fa0Var2 = e7Var.f25351e;
                     if (!premiumFeaturesBlocked) {
                         spannableStringBuilder.append((CharSequence) "\n\n");
                         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ExpiredViewsStubPremiumDescription), new Runnable() {
@@ -377,9 +377,9 @@ public final class f7 extends qm0 {
                         ((LinearLayout.LayoutParams) fa0Var2.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
                         TextView textView = new TextView(e7Var.getContext());
                         textView.setText(string);
-                        int i13 = org.telegram.ui.ActionBar.i6.Sh;
-                        org.telegram.ui.ActionBar.e6 e6Var = e7Var.f25087n;
-                        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(i13, e6Var));
+                        int i13 = org.telegram.ui.ActionBar.h6.Sh;
+                        org.telegram.ui.ActionBar.d6 d6Var = e7Var.f25353n;
+                        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i13, d6Var));
                         textView.setPadding(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f));
                         textView.setGravity(17);
                         textView.setTypeface(AndroidUtilities.bold());
@@ -387,14 +387,14 @@ public final class f7 extends qm0 {
                         x5 x5Var = new x5(e7Var.getContext(), 19);
                         x5Var.setOnClickListener(new c90(runnable, 18));
                         int dp = AndroidUtilities.dp(8.0f);
-                        int w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, e6Var);
-                        int k10 = i0.a.k(org.telegram.ui.ActionBar.i6.w0(i13, e6Var), 30);
-                        x5Var.setBackground(org.telegram.ui.ActionBar.i6.j0(dp, dp, dp, dp, w02, k10, k10));
+                        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, d6Var);
+                        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(i13, d6Var), 30);
+                        x5Var.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, w02, k10, k10));
                         w7.z5.b(x5Var, 0.05f, 1.5f);
                         x5Var.addView(textView);
-                        dc1 dc1Var = e7Var.f25082a;
-                        dc1Var.setClipChildren(false);
-                        dc1Var.addView(x5Var, w7.x5.t(-2, -2, 1, 0, 28, 0, 4));
+                        cc1 cc1Var = e7Var.f25348a;
+                        cc1Var.setClipChildren(false);
+                        cc1Var.addView(x5Var, w7.x5.t(-2, -2, 1, 0, 28, 0, 4));
                     }
                     fa0Var2.setText(spannableStringBuilder);
                 } else {
@@ -416,15 +416,15 @@ public final class f7 extends qm0 {
                 k10Var2.setIgnoreHeightCheck(true);
                 k10Var2.setItemsCount(20);
                 k10Var2.setViewType(28);
-                k10Var2.f27857w = false;
+                k10Var2.f27811w = false;
                 fa0Var = k10Var2;
                 break;
             case 11:
             case 12:
                 fa0 fa0Var3 = new fa0(l7Var.getContext(), null);
                 fa0Var3.setTextSize(1, 13.0f);
-                fa0Var3.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21185y6, dVar));
-                fa0Var3.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.J6, dVar));
+                fa0Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21171y6, dVar));
+                fa0Var3.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.J6, dVar));
                 int dp2 = AndroidUtilities.dp(16.0f);
                 int dp3 = AndroidUtilities.dp(21.0f);
                 fa0Var3.setPadding(dp3, dp2, dp3, dp2);

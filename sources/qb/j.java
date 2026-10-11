@@ -13,9 +13,9 @@ import java.util.concurrent.ExecutionException;
 import k2.g0;
 import w7.n7;
 public abstract class j {
-    public static final k6.c[] f46128a = new k6.c[0];
-    public static final k6.c f46129b;
-    public static final k6.c f46130c;
+    public static final k6.c[] f46162a = new k6.c[0];
+    public static final k6.c f46163b;
+    public static final k6.c f46164c;
     public static final t7.l d;
 
     static {
@@ -25,12 +25,12 @@ public abstract class j {
         k6.c cVar4 = new k6.c("vision.ica", 1L);
         k6.c cVar5 = new k6.c("vision.ocr", 1L);
         k6.c cVar6 = new k6.c("mlkit.langid", 1L);
-        f46129b = cVar6;
+        f46163b = cVar6;
         k6.c cVar7 = new k6.c("mlkit.nlclassifier", 1L);
         k6.c cVar8 = new k6.c("tflite_dynamite", 1L);
         k6.c cVar9 = new k6.c("mlkit.barcode.ui", 1L);
         k6.c cVar10 = new k6.c("mlkit.smartreply", 1L);
-        f46130c = new k6.c("mlkit.segmentation.subject", 1L);
+        f46164c = new k6.c("mlkit.segmentation.subject", 1L);
         a5.a aVar = new a5.a(20, (byte) 0);
         aVar.B("barcode", cVar);
         aVar.B("custom_ica", cVar2);
@@ -76,7 +76,7 @@ public abstract class j {
 
     public static boolean a(Context context, k6.c[] cVarArr) {
         try {
-            return ((r6.a) Tasks.await(new com.google.android.gms.common.api.j(context, s6.g.f47903k, com.google.android.gms.common.api.b.f6528t, com.google.android.gms.common.api.i.f6537c).f(new r(cVarArr, 1)).addOnFailureListener(new Object()))).f47035a;
+            return ((r6.a) Tasks.await(new com.google.android.gms.common.api.j(context, s6.g.f47949k, com.google.android.gms.common.api.b.f6527t, com.google.android.gms.common.api.i.f6536c).f(new r(cVarArr, 1)).addOnFailureListener(new Object()))).f47081a;
         } catch (InterruptedException | ExecutionException e7) {
             Log.e("OptionalModuleUtils", "Failed to complete the task of features availability check", e7);
             return false;
@@ -84,17 +84,17 @@ public abstract class j {
     }
 
     public static void b(Context context) {
-        t7.b bVar = t7.d.f48251b;
+        t7.b bVar = t7.d.f48297b;
         Object[] objArr = {"ica"};
         n7.a(1, objArr);
         t7.g gVar = new t7.g(1, objArr);
-        k6.e.f14707b.getClass();
+        k6.e.f14706b.getClass();
         if (k6.e.a(context) >= 221500000) {
             int i10 = gVar.d;
             k6.c[] cVarArr = new k6.c[i10];
             for (int i11 = 0; i11 < i10; i11++) {
                 k6.c cVar = (k6.c) d.get(gVar.get(i11));
-                n6.l.h(cVar);
+                n6.m.h(cVar);
                 cVarArr[i11] = cVar;
             }
             c(context, cVarArr);
@@ -112,17 +112,17 @@ public abstract class j {
         Task e7;
         ArrayList arrayList = new ArrayList();
         arrayList.add(new r(cVarArr, 0));
-        n6.l.a("APIs must not be empty.", !arrayList.isEmpty());
-        ?? jVar = new com.google.android.gms.common.api.j(context, s6.g.f47903k, com.google.android.gms.common.api.b.f6528t, com.google.android.gms.common.api.i.f6537c);
+        n6.m.a("APIs must not be empty.", !arrayList.isEmpty());
+        ?? jVar = new com.google.android.gms.common.api.j(context, s6.g.f47949k, com.google.android.gms.common.api.b.f6527t, com.google.android.gms.common.api.i.f6536c);
         s6.a b10 = s6.a.b(arrayList, true);
-        if (b10.f47897a.isEmpty()) {
+        if (b10.f47943a.isEmpty()) {
             e7 = Tasks.forResult(new r6.c(0, false));
         } else {
             v e10 = w.e();
-            e10.d = new k6.c[]{k7.b.f14727c};
-            e10.f6695b = true;
-            e10.f6694a = 27304;
-            e10.f6696c = new g0((s6.g) jVar, b10);
+            e10.d = new k6.c[]{k7.b.f14726c};
+            e10.f6694b = true;
+            e10.f6693a = 27304;
+            e10.f6695c = new g0((s6.g) jVar, b10);
             e7 = jVar.e(0, e10.a());
         }
         e7.addOnFailureListener(new rb.a(19));

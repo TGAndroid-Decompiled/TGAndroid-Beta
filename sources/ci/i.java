@@ -13,8 +13,8 @@ public final class i extends qb0 {
     public final int V;
     public final KeyEvent.Callback W;
 
-    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, j3, 0L, n2Var, e6Var);
+    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, j3, 0L, m2Var, d6Var);
         this.V = i10;
         this.W = callback;
     }
@@ -24,11 +24,11 @@ public final class i extends qb0 {
         switch (this.V) {
             case 0:
                 m mVar = (m) this.W;
-                Paint paint = mVar.f5553e;
-                RectF rectF = mVar.f5581z0;
+                Paint paint = mVar.f5552e;
+                RectF rectF = mVar.f5580z0;
                 rectF.set(rect);
                 if (mVar.g()) {
-                    mVar.h(mVar.T, canvas, mVar.f5581z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
+                    mVar.h(mVar.T, canvas, mVar.f5580z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
                     return;
                 }
                 Paint c10 = mVar.T.c(1.0f);
@@ -61,7 +61,7 @@ public final class i extends qb0 {
     public void i() {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((yi) this.W).f33247j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((yi) this.W).f33228j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;
@@ -76,7 +76,7 @@ public final class i extends qb0 {
     public void n(boolean z10) {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((yi) this.W).f33247j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((yi) this.W).f33228j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;

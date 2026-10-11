@@ -2,27 +2,27 @@ package gb;
 
 import j$.util.concurrent.ConcurrentHashMap;
 public final class j implements db.v {
-    public static final i f10476c = new i(0);
+    public static final i f10475c = new i(0);
     public static final i d = new i(0);
-    public final n4.x f10477a;
-    public final ConcurrentHashMap f10478b = new ConcurrentHashMap();
+    public final n4.x f10476a;
+    public final ConcurrentHashMap f10477b = new ConcurrentHashMap();
 
     public j(n4.x xVar) {
-        this.f10477a = xVar;
+        this.f10476a = xVar;
     }
 
     public final db.u a(n4.x xVar, db.g gVar, kb.a aVar, eb.a aVar2, boolean z10) {
         db.o oVar;
         i iVar;
         db.u uVar;
-        Object v22 = xVar.S(new kb.a(aVar2.value())).v2();
+        Object v22 = xVar.I(new kb.a(aVar2.value())).v2();
         boolean nullSafe = aVar2.nullSafe();
         if (v22 instanceof db.u) {
             uVar = (db.u) v22;
         } else if (v22 instanceof db.v) {
             db.v vVar = (db.v) v22;
             if (z10) {
-                db.v vVar2 = (db.v) this.f10478b.putIfAbsent(aVar.f14779a, vVar);
+                db.v vVar2 = (db.v) this.f10477b.putIfAbsent(aVar.f14778a, vVar);
                 if (vVar2 != null) {
                     vVar = vVar2;
                 }
@@ -38,7 +38,7 @@ public final class j implements db.v {
                 }
                 db.o oVar2 = oVar;
                 if (z10) {
-                    iVar = f10476c;
+                    iVar = f10475c;
                 } else {
                     iVar = d;
                 }
@@ -46,7 +46,7 @@ public final class j implements db.v {
                 nullSafe = false;
                 uVar = a0Var;
             } else {
-                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + v22.getClass().getName() + " as a @JsonAdapter for " + fb.d.k(aVar.f14780b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
+                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + v22.getClass().getName() + " as a @JsonAdapter for " + fb.d.k(aVar.f14779b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
             }
         }
         if (uVar != null && nullSafe) {
@@ -57,10 +57,10 @@ public final class j implements db.v {
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
-        eb.a aVar2 = (eb.a) aVar.f14779a.getAnnotation(eb.a.class);
+        eb.a aVar2 = (eb.a) aVar.f14778a.getAnnotation(eb.a.class);
         if (aVar2 == null) {
             return null;
         }
-        return a(this.f10477a, gVar, aVar, aVar2, true);
+        return a(this.f10476a, gVar, aVar, aVar2, true);
     }
 }

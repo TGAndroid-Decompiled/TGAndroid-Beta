@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class di extends AnimatorListenerAdapter {
-    public final yn f37025a;
-    public final boolean f37026b;
-    public final org.telegram.ui.ActionBar.j5 f37027c;
+    public final yn f37020a;
+    public final boolean f37021b;
+    public final org.telegram.ui.ActionBar.h5 f37022c;
     public final boolean d;
-    public final ai.q4 f37028e;
-    public final boolean f37029f;
+    public final ai.q4 f37023e;
+    public final boolean f37024f;
     public final zn h;
 
-    public di(zn znVar, yn ynVar, boolean z10, org.telegram.ui.ActionBar.j5 j5Var, boolean z11, ai.q4 q4Var, boolean z12) {
+    public di(zn znVar, yn ynVar, boolean z10, org.telegram.ui.ActionBar.h5 h5Var, boolean z11, ai.q4 q4Var, boolean z12) {
         this.h = znVar;
-        this.f37025a = ynVar;
-        this.f37026b = z10;
-        this.f37027c = j5Var;
+        this.f37020a = ynVar;
+        this.f37021b = z10;
+        this.f37022c = h5Var;
         this.d = z11;
-        this.f37028e = q4Var;
-        this.f37029f = z12;
+        this.f37023e = q4Var;
+        this.f37024f = z12;
     }
 
     @Override
@@ -35,18 +35,18 @@ public final class di extends AnimatorListenerAdapter {
         znVar.D2[0].setTranslationX(0.0f);
         znVar.D2[1].setTranslationX(0.0f);
         znVar.F2.setTranslationX(znVar.G2 + 0.0f);
-        yn ynVar = this.f37025a;
+        yn ynVar = this.f37020a;
         ynVar.setTranslationY(0.0f);
-        boolean z10 = this.f37026b;
+        boolean z10 = this.f37021b;
         if (!z10) {
             ynVar.setTranslationY(0.0f);
         }
-        org.telegram.ui.ActionBar.j5 j5Var = this.f37027c;
+        org.telegram.ui.ActionBar.h5 h5Var = this.f37022c;
         if (!z10) {
-            j5Var.setTranslationY(0.0f);
+            h5Var.setTranslationY(0.0f);
         }
         boolean z11 = this.d;
-        ai.q4 q4Var = this.f37028e;
+        ai.q4 q4Var = this.f37023e;
         if (!z11) {
             q4Var.setTranslationY(0.0f);
         }
@@ -58,11 +58,11 @@ public final class di extends AnimatorListenerAdapter {
         znVar.B2[0].setAlpha(1.0f);
         znVar.B2[0].setScaleX(1.0f);
         znVar.B2[0].setScaleY(1.0f);
-        org.telegram.ui.ActionBar.j5[] j5VarArr = znVar.D2;
-        org.telegram.ui.ActionBar.j5 j5Var2 = j5VarArr[0];
-        j5VarArr[1] = j5Var2;
-        j5VarArr[0] = j5Var;
-        j5Var2.setVisibility(4);
+        org.telegram.ui.ActionBar.h5[] h5VarArr = znVar.D2;
+        org.telegram.ui.ActionBar.h5 h5Var2 = h5VarArr[0];
+        h5VarArr[1] = h5Var2;
+        h5VarArr[0] = h5Var;
+        h5Var2.setVisibility(4);
         ai.q4[] q4VarArr = znVar.E2;
         ai.q4 q4Var2 = q4VarArr[0];
         q4VarArr[1] = q4Var2;
@@ -75,7 +75,7 @@ public final class di extends AnimatorListenerAdapter {
             ynVarArr[0] = ynVar;
             ynVar2.setVisibility(4);
         }
-        if (this.f37029f) {
+        if (this.f37024f) {
             znVar.B2[1].setImageBitmap(null);
             znVar.B2[1].setVisibility(4);
         }

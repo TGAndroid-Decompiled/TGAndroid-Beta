@@ -1,31 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class if0 implements Runnable {
-    public final int f38670a;
-    public final kf0 f38671b;
+import android.content.Intent;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class if0 implements NotificationCenter.NotificationCenterDelegate {
+    public final jf0 f38675a;
 
-    public if0(kf0 kf0Var, int i10) {
-        this.f38670a = i10;
-        this.f38671b = kf0Var;
+    public if0(jf0 jf0Var) {
+        this.f38675a = jf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38670a) {
-            case 0:
-                kf0 kf0Var = this.f38671b;
-                org.telegram.ui.Components.gk0 gk0Var = kf0Var.h;
-                gk0Var.getAnimatedDrawable().N(0, false, false);
-                gk0Var.d();
-                EditTextBoldCursor editTextBoldCursor = kf0Var.f39309b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                return;
-            default:
-                this.f38671b.f39309b.requestFocus();
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        jf0 jf0Var = this.f38675a;
+        int intValue = ((Integer) objArr[0]).intValue();
+        ((Integer) objArr[1]).getClass();
+        Intent intent = (Intent) objArr[2];
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
+        if (intValue == 200) {
+            try {
+                jf0Var.f39036y = (GoogleSignInAccount) w7.d9.b(intent).getResult(com.google.android.gms.common.api.f.class);
+                jf0Var.h(null);
+            } catch (com.google.android.gms.common.api.f e7) {
+                FileLog.e(e7);
+            }
         }
     }
 }

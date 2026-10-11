@@ -27,7 +27,7 @@ public final class aa implements Runnable {
                 return;
             case 1:
                 try {
-                    int i10 = n0.g.f16468a;
+                    int i10 = n0.g.f16510a;
                     Trace.beginSection("EmojiCompat.EmojiCompatInitializer.run");
                     if (androidx.emoji2.text.l.f2604j == null) {
                         z10 = false;
@@ -38,26 +38,26 @@ public final class aa implements Runnable {
                     Trace.endSection();
                     return;
                 } catch (Throwable th2) {
-                    int i11 = n0.g.f16468a;
+                    int i11 = n0.g.f16510a;
                     Trace.endSection();
                     throw th2;
                 }
             case 2:
                 return;
             case 3:
-                org.telegram.ui.ActionBar.i6.f20904j = false;
-                org.telegram.ui.ActionBar.i6.l(false);
+                org.telegram.ui.ActionBar.h6.f20889j = false;
+                org.telegram.ui.ActionBar.h6.l(false);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.i6.f20922k = false;
-                org.telegram.ui.ActionBar.i6.l(true);
+                org.telegram.ui.ActionBar.h6.f20907k = false;
+                org.telegram.ui.ActionBar.h6.l(true);
                 return;
             case 5:
                 return;
             case 6:
-                org.telegram.ui.Components.voip.m2 m2Var = org.telegram.ui.Components.voip.m2.V;
-                if (m2Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(m2Var.f32155b.f32115f.N);
+                org.telegram.ui.Components.voip.n2 n2Var = org.telegram.ui.Components.voip.n2.V;
+                if (n2Var != null) {
+                    AndroidUtilities.cancelRunOnUIThread(n2Var.f32149b.f32109f.N);
                     return;
                 }
                 return;
@@ -66,7 +66,7 @@ public final class aa implements Runnable {
         }
     }
 
-    public aa(org.telegram.ui.u2 u2Var) {
+    public aa(org.telegram.ui.t2 t2Var) {
         this.f653a = 5;
     }
 

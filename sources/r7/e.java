@@ -4,16 +4,16 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import v7.g5;
 public final class e extends com.google.android.gms.common.api.internal.i {
-    public final Object f47045b;
-    public final TaskCompletionSource f47046c;
+    public final Object f47091b;
+    public final TaskCompletionSource f47092c;
 
     public e(Boolean bool, TaskCompletionSource taskCompletionSource) {
-        this.f47045b = bool;
-        this.f47046c = taskCompletionSource;
+        this.f47091b = bool;
+        this.f47092c = taskCompletionSource;
     }
 
     @Override
     public final void H(Status status) {
-        g5.a(status, this.f47045b, this.f47046c);
+        g5.a(status, this.f47091b, this.f47092c);
     }
 }

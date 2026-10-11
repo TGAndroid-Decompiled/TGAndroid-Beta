@@ -1,43 +1,12 @@
 package tg;
 
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.le;
-import org.telegram.ui.web.w1;
-import org.telegram.ui.zn;
-public final class y implements Utilities.Callback {
-    public final a0 f48474a;
-    public final TL_stories.TL_prepaidStarsGiveaway f48475b;
-    public final long f48476c;
-    public final long d;
-    public final TL_stories.PrepaidGiveaway f48477e;
-
-    public y(a0 a0Var, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j3, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f48474a = a0Var;
-        this.f48475b = tL_prepaidStarsGiveaway;
-        this.f48476c = j3;
-        this.d = j10;
-        this.f48477e = prepaidGiveaway;
-    }
-
+public final class y extends s4.t0 {
     @Override
-    public final void run(Object obj) {
-        Void r62 = (Void) obj;
-        a0 a0Var = this.f48474a;
-        a0Var.dismiss();
-        if (this.f48475b != null) {
-            n2 U = LaunchActivity.U();
-            if (U != null) {
-                zn W9 = zn.W9(this.f48476c);
-                W9.whenFullyVisible(new le(W9, this.d, 6));
-                U.presentFragment(W9);
-                return;
-            }
-            return;
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            AndroidUtilities.hideKeyboard(recyclerView);
         }
-        AndroidUtilities.runOnUIThread(new w1(27, a0Var, this.f48477e), 220L);
     }
 }

@@ -15,16 +15,16 @@ public final class c extends ld.j implements p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        hd.i iVar = hd.i.f11092a;
+        hd.i iVar = hd.i.f11091a;
         ((c) create((String) obj, (jd.c) obj2)).invokeSuspend(iVar);
         return iVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        kd.a aVar = kd.a.f14784a;
+        kd.a aVar = kd.a.f14783a;
         a8.b(obj);
         Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f3813a));
-        return hd.i.f11092a;
+        return hd.i.f11091a;
     }
 }

@@ -16,21 +16,21 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPOutputStream;
-import n6.l;
+import n6.m;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.ui.Cells.c1;
 import sc.v;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset f47923e = Charset.forName("UTF-8");
-    public final Context f47924a;
-    public final pa.b f47925b;
-    public final d f47926c = new d();
+    public static final Charset f47969e = Charset.forName("UTF-8");
+    public final Context f47970a;
+    public final pa.b f47971b;
+    public final d f47972c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f47924a = context;
-        this.f47925b = bVar;
+        this.f47970a = context;
+        this.f47971b = bVar;
     }
 
     public static URL a(String str) {
@@ -46,7 +46,7 @@ public final class c {
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f47923e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f47969e));
             try {
                 StringBuilder sb2 = new StringBuilder();
                 while (true) {
@@ -83,7 +83,7 @@ public final class c {
     }
 
     public static long d(String str) {
-        l.a("Invalid Expiration Timestamp.", d.matcher(str).matches());
+        m.a("Invalid Expiration Timestamp.", d.matcher(str).matches());
         if (str != null && str.length() != 0) {
             return Long.parseLong(str.substring(0, str.length() - 1));
         }
@@ -92,7 +92,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f47923e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f47969e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         String str = null;
@@ -134,7 +134,7 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f47923e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f47969e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {

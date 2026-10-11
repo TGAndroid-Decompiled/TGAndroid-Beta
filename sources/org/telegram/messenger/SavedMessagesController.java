@@ -50,7 +50,7 @@ public class SavedMessagesController {
             SavedDialog savedDialog = new SavedDialog();
             savedDialog.dialogId = MessageObject.getSavedDialogId(UserConfig.getInstance(i10).getClientUserId(), message);
             savedDialog.pinned = false;
-            savedDialog.top_message_id = message.f20063id;
+            savedDialog.top_message_id = message.f20053id;
             savedDialog.message = new MessageObject(i10, message, null, null, null, null, null, false, false, 0L, false, false, z10);
             return savedDialog;
         }
@@ -68,7 +68,7 @@ public class SavedMessagesController {
             while (true) {
                 if (i11 < arrayList.size()) {
                     message = arrayList.get(i11);
-                    if (savedDialog.top_message_id == message.f20063id) {
+                    if (savedDialog.top_message_id == message.f20053id) {
                         break;
                     }
                     i11++;
@@ -123,7 +123,7 @@ public class SavedMessagesController {
         }
         this.saving = true;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new vg(7, this, messagesStorage));
+        messagesStorage.getStorageQueue().postRunnable(new ug(6, this, messagesStorage));
     }
 
     private ArrayList<Long> getCurrentPinnedOrder(ArrayList<SavedDialog> arrayList) {
@@ -377,7 +377,7 @@ public class SavedMessagesController {
     }
 
     public void lambda$loadDialogs$3(ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new zh(this, tLObject, arrayList, tL_error, 0));
+        AndroidUtilities.runOnUIThread(new pk(this, tLObject, arrayList, tL_error, 29));
     }
 
     public void lambda$saveCache$10() {
@@ -443,7 +443,7 @@ public class SavedMessagesController {
     }
 
     public static void openSavedMessages() {
-        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+        org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
         if (R == null) {
             return;
         }
@@ -453,7 +453,7 @@ public class SavedMessagesController {
     }
 
     public static void openSavedMessagesReminders() {
-        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+        org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
         if (R == null) {
             return;
         }
@@ -545,7 +545,7 @@ public class SavedMessagesController {
         this.saving = true;
         ArrayList arrayList = new ArrayList(this.allDialogs);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new j8(this, messagesStorage, arrayList, 23));
+        messagesStorage.getStorageQueue().postRunnable(new j8(this, messagesStorage, arrayList, 22));
     }
 
     private void saveCacheSchedule() {
@@ -587,7 +587,7 @@ public class SavedMessagesController {
                 }
             }
         }
-        Collections.sort(arrayList, new ai(1));
+        Collections.sort(arrayList, new zh(1));
         this.allDialogs.addAll(arrayList);
         if (z10) {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.savedMessagesDialogsUpdate, new Object[0]);
@@ -844,10 +844,10 @@ public class SavedMessagesController {
                 }
                 if (str2 != null) {
                     String translitSafe2 = AndroidUtilities.translitSafe(str2.toLowerCase());
-                    if (!translitSafe2.startsWith(translitSafe) && !bi.w(" ", translitSafe, translitSafe2)) {
+                    if (!translitSafe2.startsWith(translitSafe) && !ai.w(" ", translitSafe, translitSafe2)) {
                         if (str3 != null) {
                             String translitSafe3 = AndroidUtilities.translitSafe(str3.toLowerCase());
-                            if (translitSafe3.startsWith(translitSafe) || bi.w(" ", translitSafe, translitSafe3)) {
+                            if (translitSafe3.startsWith(translitSafe) || ai.w(" ", translitSafe, translitSafe3)) {
                                 arrayList.add(savedDialog);
                             }
                         }
@@ -998,9 +998,9 @@ public class SavedMessagesController {
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             TLRPC.Message message = arrayList.get(i12);
             long savedDialogId = MessageObject.getSavedDialogId(clientUserId, message);
-            if (savedDialogId == clientUserId || (message.f20063id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
+            if (savedDialogId == clientUserId || (message.f20053id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
                 TLRPC.Message message2 = (TLRPC.Message) iVar.f(savedDialogId);
-                if (message2 == null || message2.f20063id < message.f20063id) {
+                if (message2 == null || message2.f20053id < message.f20053id) {
                     iVar.k(message, savedDialogId);
                 }
                 Integer num = (Integer) iVar2.f(savedDialogId);
@@ -1023,12 +1023,12 @@ public class SavedMessagesController {
                     SavedDialog savedDialog = this.cachedDialogs.get(i14);
                     if (savedDialog.dialogId == j3) {
                         int i15 = savedDialog.top_message_id;
-                        int i16 = message3.f20063id;
+                        int i16 = message3.f20053id;
                         if (i15 < i16 || (i16 < 0 && message3.date > savedDialog.getDate())) {
-                            if (savedDialog.top_message_id < message3.f20063id) {
+                            if (savedDialog.top_message_id < message3.f20053id) {
                                 int i17 = 0;
                                 for (int i18 = 0; i18 < arrayList.size(); i18++) {
-                                    if (arrayList.get(i18).f20063id > savedDialog.top_message_id) {
+                                    if (arrayList.get(i18).f20053id > savedDialog.top_message_id) {
                                         i17++;
                                     }
                                 }
@@ -1068,12 +1068,12 @@ public class SavedMessagesController {
                     SavedDialog savedDialog2 = this.loadedDialogs.get(i19);
                     if (savedDialog2.dialogId == j3) {
                         int i20 = savedDialog2.top_message_id;
-                        int i21 = message3.f20063id;
+                        int i21 = message3.f20053id;
                         if (i20 < i21 || (i21 < 0 && message3.date > savedDialog2.getDate())) {
-                            if (savedDialog2.top_message_id < message3.f20063id) {
+                            if (savedDialog2.top_message_id < message3.f20053id) {
                                 int i22 = 0;
                                 for (int i23 = 0; i23 < arrayList.size(); i23++) {
-                                    if (arrayList.get(i23).f20063id > savedDialog2.top_message_id) {
+                                    if (arrayList.get(i23).f20053id > savedDialog2.top_message_id) {
                                         i22++;
                                     }
                                 }
@@ -1175,7 +1175,7 @@ public class SavedMessagesController {
             i11++;
         }
         Collections.sort(arrayList, new p(29));
-        Collections.sort(arrayList4, new ai(0));
+        Collections.sort(arrayList4, new zh(0));
         arrayList.addAll(0, arrayList4);
         return true;
     }

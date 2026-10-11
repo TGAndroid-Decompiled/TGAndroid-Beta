@@ -9,7 +9,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
-public class aa0 extends org.telegram.ui.ActionBar.j5 {
+public class aa0 extends org.telegram.ui.ActionBar.h5 {
     public final ca0 M0;
     public final Paint N0;
     public ga0 O0;
@@ -55,7 +55,7 @@ public class aa0 extends org.telegram.ui.ActionBar.j5 {
                 z90 b10 = this.O0.b();
                 b10.e(null, 0, 0.0f, 0.0f);
                 b10.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
-                AndroidUtilities.runOnUIThread(new as(25, this, ga0Var), ViewConfiguration.getLongPressTimeout());
+                AndroidUtilities.runOnUIThread(new bs(24, this, ga0Var), ViewConfiguration.getLongPressTimeout());
                 return true;
             } else if (motionEvent.getAction() == 1) {
                 ca0Var.d(true);

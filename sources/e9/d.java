@@ -15,24 +15,24 @@ import java.util.SortedMap;
 import x7.ra;
 import z7.ed;
 import z7.l9;
-import z7.lg;
+import z7.mg;
 public class d extends AbstractMap {
-    public final int f8724a;
-    public final transient Map f8725b;
-    public transient AbstractSet f8726c;
+    public final int f8723a;
+    public final transient Map f8724b;
+    public transient AbstractSet f8725c;
     public transient AbstractCollection d;
-    public final Serializable f8727e;
+    public final Serializable f8726e;
 
     public d(Serializable serializable, Map map, int i10) {
-        this.f8724a = i10;
-        this.f8727e = serializable;
-        this.f8725b = map;
+        this.f8723a = i10;
+        this.f8726e = serializable;
+        this.f8724b = map;
     }
 
     public e0 a(Map.Entry entry) {
         l lVar;
         Object key = entry.getKey();
-        v0 v0Var = (v0) this.f8727e;
+        v0 v0Var = (v0) this.f8726e;
         List list = (List) ((Collection) entry.getValue());
         if (list instanceof RandomAccess) {
             lVar = new l(v0Var, key, list, (l) null);
@@ -44,10 +44,10 @@ public class d extends AbstractMap {
 
     @Override
     public final void clear() {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                v0 v0Var = (v0) this.f8727e;
-                if (this.f8725b == v0Var.d) {
+                v0 v0Var = (v0) this.f8726e;
+                if (this.f8724b == v0Var.d) {
                     v0Var.b();
                     return;
                 }
@@ -58,9 +58,9 @@ public class d extends AbstractMap {
                 }
                 return;
             case 1:
-                x7.f fVar = (x7.f) this.f8727e;
-                x7.j jVar = fVar.f50794c;
-                if (this.f8725b == jVar) {
+                x7.f fVar = (x7.f) this.f8726e;
+                x7.j jVar = fVar.f50838c;
+                if (this.f8724b == jVar) {
                     for (Collection collection : jVar.values()) {
                         collection.clear();
                     }
@@ -75,8 +75,8 @@ public class d extends AbstractMap {
                 }
                 return;
             default:
-                z7.d dVar = ((lg) this.f8727e).f54007c;
-                if (this.f8725b == dVar) {
+                z7.d dVar = ((mg) this.f8726e).f54070c;
+                if (this.f8724b == dVar) {
                     for (Collection collection2 : dVar.values()) {
                         collection2.clear();
                     }
@@ -94,9 +94,9 @@ public class d extends AbstractMap {
 
     @Override
     public final boolean containsKey(Object obj) {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                Map map = this.f8725b;
+                Map map = this.f8724b;
                 map.getClass();
                 try {
                     return map.containsKey(obj);
@@ -104,7 +104,7 @@ public class d extends AbstractMap {
                     return false;
                 }
             case 1:
-                Map map2 = this.f8725b;
+                Map map2 = this.f8724b;
                 map2.getClass();
                 try {
                     return map2.containsKey(obj);
@@ -112,7 +112,7 @@ public class d extends AbstractMap {
                     return false;
                 }
             default:
-                Map map3 = this.f8725b;
+                Map map3 = this.f8724b;
                 map3.getClass();
                 try {
                     return map3.containsKey(obj);
@@ -124,28 +124,28 @@ public class d extends AbstractMap {
 
     @Override
     public final Set entrySet() {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                b bVar = (b) this.f8726c;
+                b bVar = (b) this.f8725c;
                 if (bVar == null) {
                     b bVar2 = new b(this);
-                    this.f8726c = bVar2;
+                    this.f8725c = bVar2;
                     return bVar2;
                 }
                 return bVar;
             case 1:
-                ra raVar = (ra) this.f8726c;
+                ra raVar = (ra) this.f8725c;
                 if (raVar == null) {
                     ra raVar2 = new ra(this);
-                    this.f8726c = raVar2;
+                    this.f8725c = raVar2;
                     return raVar2;
                 }
                 return raVar;
             default:
-                l9 l9Var = (l9) this.f8726c;
+                l9 l9Var = (l9) this.f8725c;
                 if (l9Var == null) {
                     l9 l9Var2 = new l9(this);
-                    this.f8726c = l9Var2;
+                    this.f8725c = l9Var2;
                     return l9Var2;
                 }
                 return l9Var;
@@ -154,19 +154,19 @@ public class d extends AbstractMap {
 
     @Override
     public final boolean equals(Object obj) {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                if (this != obj && !this.f8725b.equals(obj)) {
+                if (this != obj && !this.f8724b.equals(obj)) {
                     return false;
                 }
                 return true;
             case 1:
-                if (this != obj && !this.f8725b.equals(obj)) {
+                if (this != obj && !this.f8724b.equals(obj)) {
                     return false;
                 }
                 return true;
             default:
-                if (this != obj && !this.f8725b.equals(obj)) {
+                if (this != obj && !this.f8724b.equals(obj)) {
                     return false;
                 }
                 return true;
@@ -181,9 +181,9 @@ public class d extends AbstractMap {
         l lVar2;
         Object obj4;
         l lVar3;
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                Map map = this.f8725b;
+                Map map = this.f8724b;
                 map.getClass();
                 try {
                     obj2 = map.get(obj);
@@ -194,7 +194,7 @@ public class d extends AbstractMap {
                 if (collection == null) {
                     return null;
                 }
-                v0 v0Var = (v0) this.f8727e;
+                v0 v0Var = (v0) this.f8726e;
                 List list = (List) collection;
                 if (list instanceof RandomAccess) {
                     lVar = new l(v0Var, obj, list, (l) null);
@@ -203,7 +203,7 @@ public class d extends AbstractMap {
                 }
                 return lVar;
             case 1:
-                Map map2 = this.f8725b;
+                Map map2 = this.f8724b;
                 map2.getClass();
                 try {
                     obj3 = map2.get(obj);
@@ -214,7 +214,7 @@ public class d extends AbstractMap {
                 if (collection2 == null) {
                     return null;
                 }
-                x7.f fVar = (x7.f) this.f8727e;
+                x7.f fVar = (x7.f) this.f8726e;
                 fVar.getClass();
                 List list2 = (List) collection2;
                 if (list2 instanceof RandomAccess) {
@@ -224,7 +224,7 @@ public class d extends AbstractMap {
                 }
                 return lVar2;
             default:
-                Map map3 = this.f8725b;
+                Map map3 = this.f8724b;
                 map3.getClass();
                 try {
                     obj4 = map3.get(obj);
@@ -235,13 +235,13 @@ public class d extends AbstractMap {
                 if (collection3 == null) {
                     return null;
                 }
-                lg lgVar = (lg) this.f8727e;
-                lgVar.getClass();
+                mg mgVar = (mg) this.f8726e;
+                mgVar.getClass();
                 List list3 = (List) collection3;
                 if (list3 instanceof RandomAccess) {
-                    lVar3 = new l(lgVar, obj, list3, (l) null);
+                    lVar3 = new l(mgVar, obj, list3, (l) null);
                 } else {
-                    lVar3 = new l(lgVar, obj, list3, (l) null);
+                    lVar3 = new l(mgVar, obj, list3, (l) null);
                 }
                 return lVar3;
         }
@@ -249,23 +249,23 @@ public class d extends AbstractMap {
 
     @Override
     public final int hashCode() {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                return this.f8725b.hashCode();
+                return this.f8724b.hashCode();
             case 1:
-                return this.f8725b.hashCode();
+                return this.f8724b.hashCode();
             default:
-                return this.f8725b.hashCode();
+                return this.f8724b.hashCode();
         }
     }
 
     @Override
     public Set keySet() {
         Set eVar;
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                v0 v0Var = (v0) this.f8727e;
-                Set set = v0Var.f8779a;
+                v0 v0Var = (v0) this.f8726e;
+                Set set = v0Var.f8778a;
                 if (set == null) {
                     Map map = v0Var.d;
                     if (map instanceof NavigableMap) {
@@ -276,24 +276,24 @@ public class d extends AbstractMap {
                         eVar = new e(v0Var, map);
                     }
                     set = eVar;
-                    v0Var.f8779a = set;
+                    v0Var.f8778a = set;
                 }
                 return set;
             case 1:
-                x7.f fVar = (x7.f) this.f8727e;
-                x7.a aVar = fVar.f50779a;
+                x7.f fVar = (x7.f) this.f8726e;
+                x7.a aVar = fVar.f50823a;
                 if (aVar == null) {
-                    x7.a aVar2 = new x7.a(fVar, fVar.f50794c);
-                    fVar.f50779a = aVar2;
+                    x7.a aVar2 = new x7.a(fVar, fVar.f50838c);
+                    fVar.f50823a = aVar2;
                     return aVar2;
                 }
                 return aVar;
             default:
-                lg lgVar = (lg) this.f8727e;
-                ed edVar = lgVar.f53997a;
+                mg mgVar = (mg) this.f8726e;
+                ed edVar = mgVar.f54054a;
                 if (edVar == null) {
-                    ed edVar2 = new ed(lgVar, lgVar.f54007c);
-                    lgVar.f53997a = edVar2;
+                    ed edVar2 = new ed(mgVar, mgVar.f54070c);
+                    mgVar.f54054a = edVar2;
                     return edVar2;
                 }
                 return edVar;
@@ -302,21 +302,21 @@ public class d extends AbstractMap {
 
     @Override
     public final Object remove(Object obj) {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                v0 v0Var = (v0) this.f8727e;
-                Collection collection = (Collection) this.f8725b.remove(obj);
+                v0 v0Var = (v0) this.f8726e;
+                Collection collection = (Collection) this.f8724b.remove(obj);
                 if (collection == null) {
                     return null;
                 }
                 Collection c10 = v0Var.c();
                 c10.addAll(collection);
-                v0Var.f8814e -= collection.size();
+                v0Var.f8813e -= collection.size();
                 collection.clear();
                 return c10;
             case 1:
-                x7.f fVar = (x7.f) this.f8727e;
-                Collection collection2 = (Collection) this.f8725b.remove(obj);
+                x7.f fVar = (x7.f) this.f8726e;
+                Collection collection2 = (Collection) this.f8724b.remove(obj);
                 if (collection2 == null) {
                     return null;
                 }
@@ -327,12 +327,12 @@ public class d extends AbstractMap {
                 collection2.clear();
                 return arrayList;
             default:
-                lg lgVar = (lg) this.f8727e;
-                Collection collection3 = (Collection) this.f8725b.remove(obj);
+                mg mgVar = (mg) this.f8726e;
+                Collection collection3 = (Collection) this.f8724b.remove(obj);
                 if (collection3 == null) {
                     return null;
                 }
-                lgVar.getClass();
+                mgVar.getClass();
                 ArrayList arrayList2 = new ArrayList(3);
                 arrayList2.addAll(collection3);
                 collection3.size();
@@ -343,31 +343,31 @@ public class d extends AbstractMap {
 
     @Override
     public final int size() {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                return this.f8725b.size();
+                return this.f8724b.size();
             case 1:
-                return this.f8725b.size();
+                return this.f8724b.size();
             default:
-                return this.f8725b.size();
+                return this.f8724b.size();
         }
     }
 
     @Override
     public final String toString() {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
-                return this.f8725b.toString();
+                return this.f8724b.toString();
             case 1:
-                return this.f8725b.toString();
+                return this.f8724b.toString();
             default:
-                return this.f8725b.toString();
+                return this.f8724b.toString();
         }
     }
 
     @Override
     public final Collection values() {
-        switch (this.f8724a) {
+        switch (this.f8723a) {
             case 0:
                 n nVar = (n) this.d;
                 if (nVar == null) {

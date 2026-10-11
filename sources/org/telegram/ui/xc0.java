@@ -1,32 +1,34 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class xc0 extends org.telegram.ui.Components.cw0 {
-    public final hd0 f43965f2;
+import androidx.recyclerview.widget.RecyclerView;
+public final class xc0 extends s4.t0 {
+    public final gd0 f44040a;
 
-    public xc0(hd0 hd0Var, Context context, org.telegram.ui.Components.uv0 uv0Var, hd0 hd0Var2, wc0 wc0Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 0L, uv0Var, 0, null, null, null, 8, 0, hd0Var2, wc0Var, 0, e6Var, null);
-        this.f43965f2 = hd0Var;
+    public xc0(gd0 gd0Var) {
+        this.f44040a = gd0Var;
     }
 
     @Override
-    public final int B0() {
-        return 32;
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        if (i10 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        gd0 gd0Var = this.f44040a;
+        gd0Var.Q = z10;
+        if (!z10 && gd0Var.L != null) {
+            gd0Var.L = null;
+        }
     }
 
     @Override
-    public final boolean N() {
-        return true;
-    }
-
-    @Override
-    public final int S0() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.f43965f2.M0;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        gd0 gd0Var = this.f44040a;
+        gd0Var.z0(false);
+        if (gd0Var.L != null) {
+            gd0Var.N += i11;
+        }
     }
 }

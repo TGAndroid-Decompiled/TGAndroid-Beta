@@ -5,17 +5,17 @@ import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationResult;
 import k2.g0;
 public final class i extends b8.b implements g8.n {
-    public static final int f47052c = 0;
-    public final androidx.activity.n f47053b;
+    public static final int f47098c = 0;
+    public final androidx.activity.n f47099b;
 
     public i(androidx.activity.n nVar) {
         super("com.google.android.gms.location.ILocationCallback", 9);
-        this.f47053b = nVar;
+        this.f47099b = nVar;
     }
 
     @Override
     public final boolean J0(Parcel parcel, int i10) {
-        androidx.activity.n nVar = this.f47053b;
+        androidx.activity.n nVar = this.f47099b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -34,16 +34,16 @@ public final class i extends b8.b implements g8.n {
     }
 
     public final void K0() {
-        this.f47053b.e().a(new g0(this, 21));
+        this.f47099b.e().a(new g0(this, 21));
     }
 
     public final void L0(com.google.android.gms.common.api.internal.p pVar) {
-        androidx.activity.n nVar = this.f47053b;
+        androidx.activity.n nVar = this.f47099b;
         synchronized (nVar) {
             com.google.android.gms.common.api.internal.p pVar2 = (com.google.android.gms.common.api.internal.p) nVar.f2148c;
             if (pVar2 != pVar) {
-                pVar2.f6654b = null;
-                pVar2.f6655c = null;
+                pVar2.f6653b = null;
+                pVar2.f6654c = null;
                 nVar.f2148c = pVar;
             }
         }

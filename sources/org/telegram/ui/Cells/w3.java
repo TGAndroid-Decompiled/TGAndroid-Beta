@@ -11,22 +11,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public abstract class w3 extends FrameLayout {
-    public org.telegram.ui.Components.y9 f23663a;
-    public org.telegram.ui.ActionBar.j5 f23664b;
-    public org.telegram.ui.ActionBar.j5 f23665c;
+    public org.telegram.ui.Components.y9 f23651a;
+    public org.telegram.ui.ActionBar.h5 f23652b;
+    public org.telegram.ui.ActionBar.h5 f23653c;
     public ImageView d;
-    public org.telegram.ui.Components.j9 f23666e;
-    public TLRPC.User f23667f;
+    public org.telegram.ui.Components.j9 f23654e;
+    public TLRPC.User f23655f;
     public Paint h;
-    public int f23668n;
-    public boolean f23669r;
+    public int f23656n;
+    public boolean f23657r;
 
     public final void a(int i10, int i11) {
-        this.f23668n = i10;
+        this.f23656n = i10;
         ImageView imageView = this.d;
         imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f23665c.setTextColor(i11);
-        org.telegram.ui.ActionBar.i6.C1(imageView.getDrawable(), i11 & 620756991, true);
+        this.f23653c.setTextColor(i11);
+        org.telegram.ui.ActionBar.h6.C1(imageView.getDrawable(), i11 & 620756991, true);
     }
 
     @Override
@@ -34,7 +34,7 @@ public abstract class w3 extends FrameLayout {
         Canvas canvas2;
         float dp;
         int i10;
-        if (this.f23669r) {
+        if (this.f23657r) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -57,11 +57,11 @@ public abstract class w3 extends FrameLayout {
     }
 
     public CharSequence getName() {
-        return this.f23664b.getText();
+        return this.f23652b.getText();
     }
 
     public TLRPC.User getUser() {
-        return this.f23667f;
+        return this.f23655f;
     }
 
     @Override
@@ -75,7 +75,7 @@ public abstract class w3 extends FrameLayout {
     }
 
     public void setDrawDivider(boolean z10) {
-        this.f23669r = z10;
+        this.f23657r = z10;
         invalidate();
     }
 }

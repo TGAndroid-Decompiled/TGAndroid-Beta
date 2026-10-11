@@ -6,12 +6,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class vn implements bz {
-    public final Utilities.Callback f31898a;
-    public final sn f31899b;
+    public final Utilities.Callback f31850a;
+    public final sn f31851b;
 
     public vn(Utilities.Callback callback, sn snVar) {
-        this.f31898a = callback;
-        this.f31899b = snVar;
+        this.f31850a = callback;
+        this.f31851b = snVar;
     }
 
     @Override
@@ -56,8 +56,8 @@ public final class vn implements bz {
 
     @Override
     public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f31898a.run(new rh.h(document, obj));
-        this.f31899b.dismiss(true);
+        this.f31850a.run(new rh.h(document, obj));
+        this.f31851b.dismiss(true);
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class vn implements bz {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f31898a.run(new rh.h(document, null));
-        this.f31899b.dismiss(true);
+        this.f31850a.run(new rh.h(document, null));
+        this.f31851b.dismiss(true);
     }
 
     @Override
@@ -93,7 +93,7 @@ public final class vn implements bz {
     }
 
     @Override
-    public final void o(m61 m61Var) {
+    public final void o(n61 n61Var) {
     }
 
     @Override

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.concurrent.atomic.AtomicReference;
-public final class ml extends org.telegram.ui.ActionBar.j5 {
+public final class ml extends org.telegram.ui.ActionBar.h5 {
     public final int M0;
     public final Object N0;
 
@@ -16,12 +16,12 @@ public final class ml extends org.telegram.ui.ActionBar.j5 {
 
     @Override
     public boolean k(CharSequence charSequence) {
-        org.telegram.ui.ActionBar.j5 j5Var;
+        org.telegram.ui.ActionBar.h5 h5Var;
         switch (this.M0) {
             case 1:
                 AtomicReference atomicReference = (AtomicReference) this.N0;
-                if (atomicReference != null && (j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get()) != null) {
-                    j5Var.k(charSequence);
+                if (atomicReference != null && (h5Var = (org.telegram.ui.ActionBar.h5) atomicReference.get()) != null) {
+                    h5Var.k(charSequence);
                 }
                 return l(charSequence, false);
             default:
@@ -34,7 +34,7 @@ public final class ml extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((yp0) this.N0).f44437s.a();
+                ((xp0) this.N0).f44158s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class ml extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((yp0) this.N0).f44437s.b();
+                ((xp0) this.N0).f44158s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class ml extends org.telegram.ui.ActionBar.j5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f34340n != null) {
+                    if (profileActivity.h != null || profileActivity.f34330n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f34340n != null) {
+                        if (profileActivity.f34330n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f34340n);
+                            sb2.append(profileActivity.f34330n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -107,25 +107,25 @@ public final class ml extends org.telegram.ui.ActionBar.j5 {
 
     @Override
     public void setTranslationY(float f7) {
-        org.telegram.ui.ActionBar.j5 j5Var;
+        org.telegram.ui.ActionBar.h5 h5Var;
         switch (this.M0) {
             case 0:
                 super.setTranslationY(f7);
                 zn znVar = (zn) this.N0;
                 if (this == znVar.D2[0] && znVar.H2[1] != null) {
                     if (znVar.O4 && f7 < 0.0f) {
-                        znVar.f45060z2.setTranslationY(f7 / 2.0f);
+                        znVar.f45015z2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {
-                        znVar.f45060z2.setTranslationY(0.0f);
+                        znVar.f45015z2.setTranslationY(0.0f);
                         return;
                     }
                 }
                 return;
             case 1:
                 AtomicReference atomicReference = (AtomicReference) this.N0;
-                if (atomicReference != null && (j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get()) != null) {
-                    j5Var.setTranslationY(f7);
+                if (atomicReference != null && (h5Var = (org.telegram.ui.ActionBar.h5) atomicReference.get()) != null) {
+                    h5Var.setTranslationY(f7);
                 }
                 super.setTranslationY(f7);
                 return;

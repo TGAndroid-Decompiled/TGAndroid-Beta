@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.l01;
+import org.telegram.ui.k01;
 import org.telegram.ui.zn;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
     public final int f618a;
@@ -87,11 +87,11 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f619b;
-                l01 l01Var = profileStoriesView.h;
+                k01 k01Var = profileStoriesView.h;
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 profileStoriesView.G = floatValue5;
-                l01Var.R = floatValue5;
-                l01Var.invalidate();
+                k01Var.R = floatValue5;
+                k01Var.invalidate();
                 profileStoriesView.invalidate();
                 return;
             case 10:
@@ -135,18 +135,18 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 15:
                 ci.m mVar = (ci.m) this.f619b;
-                mVar.f5565o0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ci.g gVar = mVar.f5555f;
-                gVar.getEditText().setTranslationX(AndroidUtilities.lerp(mVar.getEditTextLeft() + AndroidUtilities.dp(-26.0f), AndroidUtilities.dp(2.0f), mVar.f5565o0));
-                FrameLayout frameLayout = mVar.f5570s;
-                frameLayout.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), mVar.f5565o0));
-                frameLayout.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, mVar.f5565o0));
-                gVar.getEmojiButton().setAlpha(mVar.f5565o0);
-                mVar.f5568r.setAlpha((float) Math.pow(mVar.f5565o0, 16.0d));
-                mVar.u(mVar.f5565o0);
+                mVar.f5564o0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ci.g gVar = mVar.f5554f;
+                gVar.getEditText().setTranslationX(AndroidUtilities.lerp(mVar.getEditTextLeft() + AndroidUtilities.dp(-26.0f), AndroidUtilities.dp(2.0f), mVar.f5564o0));
+                FrameLayout frameLayout = mVar.f5569s;
+                frameLayout.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), mVar.f5564o0));
+                frameLayout.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, mVar.f5564o0));
+                gVar.getEmojiButton().setAlpha(mVar.f5564o0);
+                mVar.f5567r.setAlpha((float) Math.pow(mVar.f5564o0, 16.0d));
+                mVar.u(mVar.f5564o0);
                 ci.i iVar = mVar.M;
                 if (iVar != null) {
-                    iVar.setAlpha((float) Math.pow(mVar.f5565o0, 4.0d));
+                    iVar.setAlpha((float) Math.pow(mVar.f5564o0, 4.0d));
                 }
                 gVar.getEditText().invalidate();
                 mVar.invalidate();
@@ -154,7 +154,7 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
             case 16:
                 ci.y yVar = (ci.y) this.f619b;
                 yVar.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yVar.f6333a.invalidate();
+                yVar.f6332a.invalidate();
                 return;
             case 17:
                 ci.w2 w2Var = (ci.w2) this.f619b;
@@ -163,12 +163,12 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 w2Var.i();
                 return;
             case 18:
-                ((ci.z3) this.f619b).f6416b.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((ci.z3) this.f619b).f6415b.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 19:
                 ci.d4 d4Var = (ci.d4) this.f619b;
                 d4Var.getClass();
-                d4Var.f4921o0 = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                d4Var.f4920o0 = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 d4Var.invalidate();
                 return;
             case 20:
@@ -177,7 +177,7 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
             case 21:
                 ci.u6 u6Var = (ci.u6) this.f619b;
                 u6Var.getClass();
-                u6Var.f6074n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u6Var.f6073n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 u6Var.e();
                 return;
             case 22:
@@ -190,7 +190,7 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 ci.o7 o7Var = (ci.o7) this.f619b;
                 float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 o7Var.E = floatValue7;
-                ci.n7 n7Var = o7Var.f5680a;
+                ci.n7 n7Var = o7Var.f5679a;
                 n7Var.setScaleX(1.0f - floatValue7);
                 n7Var.setScaleY(1.0f - o7Var.E);
                 o7Var.invalidate();
@@ -198,15 +198,15 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
             case 24:
                 ci.x8 x8Var = (ci.x8) this.f619b;
                 float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x8Var.f6317r = floatValue8;
-                Utilities.Callback callback = x8Var.f6320x;
+                x8Var.f6316r = floatValue8;
+                Utilities.Callback callback = x8Var.f6319x;
                 if (callback != null) {
                     callback.run(Float.valueOf(Utilities.clamp(floatValue8, 1.0f, -1.0f)));
                 }
-                x8Var.f6311a.invalidate();
+                x8Var.f6310a.invalidate();
                 return;
             case 25:
-                ((ci.y9) this.f619b).f6369x.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((ci.y9) this.f619b).f6368x.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 26:
                 ci.ca caVar = (ci.ca) this.f619b;
@@ -215,13 +215,13 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 27:
                 ig.h hVar = (ig.h) this.f619b;
-                hVar.f12206f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                hVar.f12207g.f12208a.invalidate();
+                hVar.f12205f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hVar.f12206g.f12207a.invalidate();
                 return;
             case 28:
                 ii.w4 w4Var = (ii.w4) this.f619b;
                 w4Var.getClass();
-                w4Var.f12772a0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w4Var.f12771a0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 w4Var.requestLayout();
                 w4Var.invalidate();
                 return;

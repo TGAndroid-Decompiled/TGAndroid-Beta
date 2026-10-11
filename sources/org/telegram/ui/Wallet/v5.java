@@ -1,34 +1,16 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.yi;
-public final class v5 extends AnimatorListenerAdapter {
-    public final yi f35636a;
-    public final d6 f35637b;
-    public final w5 f35638c;
+import android.content.Context;
+public final class v5 extends sg.s {
+    public final x5 f35639x;
 
-    public v5(w5 w5Var, yi yiVar, d6 d6Var) {
-        this.f35638c = w5Var;
-        this.f35636a = yiVar;
-        this.f35637b = d6Var;
+    public v5(x5 x5Var, Context context, t5 t5Var) {
+        super(context, t5Var);
+        this.f35639x = x5Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        this.f35638c.a(false);
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f35638c.a(true);
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        if (this.f35636a != null) {
-            AndroidUtilities.hideKeyboard(this.f35637b);
-        }
+    public final void a() {
+        this.f35639x.f35714s = true;
     }
 }

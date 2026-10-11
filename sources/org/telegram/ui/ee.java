@@ -1,31 +1,74 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-public final class ee extends FrameLayout {
-    public final org.telegram.ui.Components.l71 f37283a;
-    public final org.telegram.ui.ActionBar.e6 f37284b;
-    public final int f37285c;
-    public final int d;
-    public final ai.p8 f37286e;
-    public final ge f37287f;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ee extends org.telegram.ui.Components.h91 {
+    public final Context f37273a;
+    public final int f37274b;
+    public final int f37275c;
+    public final org.telegram.ui.ActionBar.d6 d;
+    public final ArrayList f37276e = new ArrayList();
+    public final fe f37277f;
 
-    public ee(ge geVar, Context context, int i10, int i11, int i12, ai.p8 p8Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f37287f = geVar;
-        this.d = i10;
-        this.f37285c = i11;
-        this.f37284b = e6Var;
-        this.f37286e = p8Var;
-        org.telegram.ui.Components.l71 l71Var = new org.telegram.ui.Components.l71(context, i11, i12, true, new b5(this, 3), new z0(this, 13), null, e6Var);
-        this.f37283a = l71Var;
-        addView(l71Var, w7.x5.d(-1.0f, -1));
-        l71Var.setOnScrollListener(new ii.n3(1, this, p8Var));
+    public ee(fe feVar, Context context, int i10, long j3, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f37277f = feVar;
+        this.f37273a = context;
+        this.f37274b = i10;
+        this.f37275c = i11;
+        this.d = d6Var;
+        i();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f37283a.W2.N(false);
+    public final View d(int i10) {
+        return new de(this.f37277f, this.f37273a, i10, this.f37274b, this.f37275c, new ai.p8(this, i10, 18), this.d);
+    }
+
+    @Override
+    public final int e() {
+        return this.f37276e.size();
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        int h = h(i10);
+        if (h != 0) {
+            if (h != 1) {
+                return "";
+            }
+            return LocaleController.getString(R.string.MonetizationTransactionsTON);
+        }
+        return LocaleController.getString(R.string.MonetizationTransactionsStars);
+    }
+
+    @Override
+    public final int h(int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f37276e;
+            if (i10 < arrayList.size()) {
+                return ((org.telegram.ui.Components.r61) arrayList.get(i10)).f30374z;
+            }
+            return 1;
+        }
+        return 1;
+    }
+
+    public final void i() {
+        ArrayList arrayList = this.f37276e;
+        arrayList.clear();
+        fe feVar = this.f37277f;
+        if (!feVar.h.isEmpty()) {
+            arrayList.add(org.telegram.ui.Components.r61.C(1));
+        }
+        if (!feVar.f37652n.isEmpty()) {
+            arrayList.add(org.telegram.ui.Components.r61.C(0));
+        }
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

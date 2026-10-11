@@ -3,15 +3,15 @@ package ii;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class e3 {
-    public final x3 f12394a;
+    public final x3 f12393a;
 
     public e3(x3 x3Var) {
-        this.f12394a = x3Var;
+        this.f12393a = x3Var;
     }
 
     public final void a(a aVar) {
         a aVar2;
-        x3 x3Var = this.f12394a;
+        x3 x3Var = this.f12393a;
         ArrayList arrayList = x3Var.j3;
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf >= 0 && x3.y3(aVar)) {
@@ -33,7 +33,7 @@ public final class e3 {
             } else {
                 aVar2 = null;
             }
-            if (aVar2 != null && !aVar2.f12239i && !x3.y3(aVar2) && !x3.F3(aVar2.f12234b)) {
+            if (aVar2 != null && !aVar2.f12238i && !x3.y3(aVar2) && !x3.F3(aVar2.f12233b)) {
                 aVar3 = aVar2;
             }
             if (arrayList.isEmpty()) {

@@ -20,30 +20,30 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.Components.voip.o;
+import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.voip.p;
 import org.telegram.ui.Components.y9;
-import org.telegram.ui.vy0;
+import org.telegram.ui.uy0;
 import s4.d1;
-import u2.p0;
+import tg.c1;
 import vg.c0;
 import vg.d0;
 import vg.r;
 import vg.t;
-public abstract class e extends qm0 {
-    public final e6 f48966c;
+public abstract class e extends rm0 {
+    public final d6 f49009c;
     public boolean d;
-    public n2 f48967e;
-    public TLRPC.TL_payments_checkedGiftCode f48968f;
+    public m2 f49010e;
+    public TLRPC.TL_payments_checkedGiftCode f49011f;
     public String h;
-    public FrameLayout f48969n;
+    public FrameLayout f49012n;
 
-    public e(e6 e6Var) {
-        this.f48966c = e6Var;
+    public e(d6 d6Var) {
+        this.f49009c = d6Var;
     }
 
     @Override
@@ -89,8 +89,8 @@ public abstract class e extends qm0 {
         char c10;
         String formatPluralString;
         String string;
-        int i14 = d1Var.f47706f;
-        View view = d1Var.f47702a;
+        int i14 = d1Var.f47752f;
+        View view = d1Var.f47748a;
         if (i14 != 0) {
             if (i14 != 1) {
                 if (i14 != 2) {
@@ -98,15 +98,15 @@ public abstract class e extends qm0 {
                         if (i14 == 4) {
                             vg.a aVar = (vg.a) view;
                             aVar.setOkStyle(this.d);
-                            aVar.setOnClickListener(new vy0(26, this, aVar));
-                            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.f48968f;
+                            aVar.setOnClickListener(new uy0(26, this, aVar));
+                            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.f49011f;
                             if (tL_payments_checkedGiftCode.boost != null || tL_payments_checkedGiftCode.flags == -1) {
-                                aVar.f49610e = false;
-                                ci.d dVar = aVar.f49607a;
+                                aVar.f49653e = false;
+                                ci.d dVar = aVar.f49650a;
                                 dVar.setShowZero(false);
                                 dVar.setEnabled(true);
                                 dVar.g(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
-                                aVar.setOnClickListener(new o(this, 13));
+                                aVar.setOnClickListener(new p(this, 13));
                                 return;
                             }
                             return;
@@ -115,10 +115,10 @@ public abstract class e extends qm0 {
                     }
                     d0 d0Var = (d0) view;
                     d0Var.setTextGravity(17);
-                    d0Var.setTextColor(i6.x0(null, i6.G6, false));
+                    d0Var.setTextColor(h6.x0(null, h6.G6, false));
                     d0Var.setTopPadding(14);
                     d0Var.setBottomPadding(15);
-                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.f48968f;
+                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.f49011f;
                     if (tL_payments_checkedGiftCode2.boost != null) {
                         String str = this.h;
                         if (str != null && !str.isEmpty()) {
@@ -134,32 +134,32 @@ public abstract class e extends qm0 {
                         } else {
                             string = LocaleController.getString(R.string.BoostingSendLinkToFriends);
                         }
-                        d0Var.setText(AndroidUtilities.replaceSingleTag(string, i6.gc, 0, new c(this, 1), this.f48966c));
+                        d0Var.setText(AndroidUtilities.replaceSingleTag(string, h6.gc, 0, new c(this, 1), this.f49009c));
                         return;
                     } else {
-                        Date date = new Date(this.f48968f.used_date * 1000);
+                        Date date = new Date(this.f49011f.used_date * 1000);
                         d0Var.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
                         return;
                     }
                 }
                 c0 c0Var = (c0) view;
-                final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.f48968f;
+                final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.f49011f;
                 final q1 q1Var = new q1(this, 17);
                 y9 y9Var = c0Var.h;
-                FrameLayout frameLayout = c0Var.f49633w;
-                y9 y9Var2 = c0Var.f49629f;
-                TextView textView = c0Var.f49625a;
-                TextView textView2 = c0Var.f49626b;
-                e6 e6Var = c0Var.f49630n;
+                FrameLayout frameLayout = c0Var.f49676w;
+                y9 y9Var2 = c0Var.f49672f;
+                TextView textView = c0Var.f49668a;
+                TextView textView2 = c0Var.f49669b;
+                d6 d6Var = c0Var.f49673n;
                 Date date2 = new Date(tL_payments_checkedGiftCode3.date * 1000);
-                c0Var.f49628e.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
+                c0Var.f49671e.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
                 TextView textView3 = c0Var.d;
                 if (tL_payments_checkedGiftCode3.via_giveaway) {
-                    i11 = i6.f20965m5;
+                    i11 = h6.f20950m5;
                 } else {
-                    i11 = i6.f20909j5;
+                    i11 = h6.f20894j5;
                 }
-                textView3.setTextColor(i6.w0(i11, e6Var));
+                textView3.setTextColor(h6.w0(i11, d6Var));
                 TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode3.from_id)));
                 boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
                 if (tL_payments_checkedGiftCode3.via_giveaway) {
@@ -167,7 +167,7 @@ public abstract class e extends qm0 {
                     spannableStringBuilder.append((CharSequence) "**");
                     spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.BoostingGiveaway));
                     spannableStringBuilder.append((CharSequence) "**");
-                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), i6.gc, 0, new Runnable() {
+                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), h6.gc, 0, new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
@@ -179,8 +179,8 @@ public abstract class e extends qm0 {
                                     return;
                             }
                         }
-                    }, e6Var));
-                    textView3.setOnClickListener(new vy0(28, q1Var, tL_payments_checkedGiftCode3));
+                    }, d6Var));
+                    textView3.setOnClickListener(new uy0(28, q1Var, tL_payments_checkedGiftCode3));
                 } else {
                     if (isChannelAndNotMegaGroup) {
                         i12 = R.string.BoostingYouWereSelected;
@@ -200,7 +200,7 @@ public abstract class e extends qm0 {
                     c10 = 0;
                     formatPluralString = LocaleController.formatPluralString("Months", i15, new Object[0]);
                 }
-                TextView textView4 = c0Var.f49627c;
+                TextView textView4 = c0Var.f49670c;
                 int i16 = R.string.BoostingTelegramPremiumFor;
                 String str2 = formatPluralString;
                 Object[] objArr = new Object[i13];
@@ -211,9 +211,9 @@ public abstract class e extends qm0 {
                     spannableStringBuilder2.append((CharSequence) "**");
                     spannableStringBuilder2.append((CharSequence) chat.title);
                     spannableStringBuilder2.append((CharSequence) "**");
-                    textView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), i6.gc, 0, new p0(6, q1Var, chat), e6Var), textView.getPaint().getFontMetricsInt(), false));
+                    textView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), h6.gc, 0, new c1(8, q1Var, chat), d6Var), textView.getPaint().getFontMetricsInt(), false));
                     y9Var2.e(chat, new j9(chat));
-                    frameLayout.setOnClickListener(new vy0(29, q1Var, chat));
+                    frameLayout.setOnClickListener(new uy0(29, q1Var, chat));
                 } else {
                     final TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode3.from_id.user_id));
                     textView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user), textView.getPaint().getFontMetricsInt(), false));
@@ -237,7 +237,7 @@ public abstract class e extends qm0 {
                     spannableStringBuilder3.append((CharSequence) "**");
                     spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.BoostingIncompleteGiveaway));
                     spannableStringBuilder3.append((CharSequence) "**");
-                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), i6.gc, 0, new Runnable() {
+                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), h6.gc, 0, new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
@@ -249,9 +249,9 @@ public abstract class e extends qm0 {
                                     return;
                             }
                         }
-                    }, e6Var));
+                    }, d6Var));
                     textView2.setText(LocaleController.getString(R.string.BoostingNoRecipient));
-                    textView2.setTextColor(i6.w0(i6.f20909j5, e6Var));
+                    textView2.setTextColor(h6.w0(h6.f20894j5, d6Var));
                     ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).leftMargin = 0;
                     ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).rightMargin = 0;
                     y9Var.setVisibility(8);
@@ -262,7 +262,7 @@ public abstract class e extends qm0 {
                         spannableStringBuilder4.append((CharSequence) "**");
                         spannableStringBuilder4.append((CharSequence) UserObject.getFirstName(user2));
                         spannableStringBuilder4.append((CharSequence) "**");
-                        textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), i6.gc, 0, new Runnable() {
+                        textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), h6.gc, 0, new Runnable() {
                             @Override
                             public final void run() {
                                 switch (r3) {
@@ -274,9 +274,9 @@ public abstract class e extends qm0 {
                                         return;
                                 }
                             }
-                        }, e6Var), textView2.getPaint().getFontMetricsInt(), false));
+                        }, d6Var), textView2.getPaint().getFontMetricsInt(), false));
                         y9Var.e(user2, new j9(0, user2));
-                        c0Var.f49634x.setOnClickListener(new View.OnClickListener() {
+                        c0Var.f49677x.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
                                 switch (r3) {
@@ -292,18 +292,18 @@ public abstract class e extends qm0 {
                     }
                 }
                 if (tL_payments_checkedGiftCode3.boost != null) {
-                    c0Var.f49635y.setVisibility(8);
+                    c0Var.f49678y.setVisibility(8);
                     return;
                 }
                 return;
             }
             t tVar = (t) view;
             tVar.setSlug(this.h);
-            if (this.f48968f.boost != null && this.h == null) {
+            if (this.f49011f.boost != null && this.h == null) {
                 tVar.a(new c(this, 0));
             }
             String str3 = this.h;
-            if ((str3 == null || str3.isEmpty()) && this.f48968f.to_id == -1) {
+            if ((str3 == null || str3.isEmpty()) && this.f49011f.to_id == -1) {
                 tVar.a(new c(this, 0));
                 return;
             }
@@ -311,20 +311,20 @@ public abstract class e extends qm0 {
         }
         r rVar = (r) view;
         if (this.d) {
-            rVar.f49661c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+            rVar.f49704c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
             rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllows", R.string.BoostingLinkAllows, new Object[0])));
         } else {
-            rVar.f49661c.setText(LocaleController.formatString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink, new Object[0]));
+            rVar.f49704c.setText(LocaleController.formatString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink, new Object[0]));
             rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkUsed", R.string.BoostingLinkUsed, new Object[0])));
         }
-        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode4 = this.f48968f;
+        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode4 = this.f49011f;
         if (tL_payments_checkedGiftCode4.boost != null) {
             long j3 = tL_payments_checkedGiftCode4.to_id;
             final q1 q1Var2 = new q1(this, 17);
-            rVar.f49661c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+            rVar.f49704c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
             final TLRPC.User user3 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j3));
-            rVar.d.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user3) + "**", i6.gc, 2, new Runnable() {
+            rVar.d.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user3) + "**", h6.gc, 2, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r3) {
@@ -336,10 +336,10 @@ public abstract class e extends qm0 {
                             return;
                     }
                 }
-            }, rVar.f49662e)));
+            }, rVar.f49705e)));
         }
-        if (this.f48968f.to_id == -1) {
-            rVar.f49661c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+        if (this.f49011f.to_id == -1) {
+            rVar.f49704c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
             rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllowsAnyone", R.string.BoostingLinkAllowsAnyone, new Object[0])));
         }
     }
@@ -348,28 +348,28 @@ public abstract class e extends qm0 {
     public final d1 x(ViewGroup viewGroup, int i10) {
         View tVar;
         Context context = viewGroup.getContext();
-        e6 e6Var = this.f48966c;
+        d6 d6Var = this.f49009c;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
                         if (i10 != 5) {
-                            tVar = new r(context, e6Var);
+                            tVar = new r(context, d6Var);
                         } else {
                             tVar = new View(context);
                         }
                     } else {
-                        tVar = new vg.a(context, e6Var);
+                        tVar = new vg.a(context, d6Var);
                         tVar.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
                     }
                 } else {
-                    tVar = new d0(context, e6Var);
+                    tVar = new d0(context, d6Var);
                 }
             } else {
-                tVar = new c0(context, e6Var);
+                tVar = new c0(context, d6Var);
             }
         } else {
-            tVar = new t(context, e6Var);
+            tVar = new t(context, d6Var);
         }
         return e2.k(tVar, tVar, -1, -2);
     }

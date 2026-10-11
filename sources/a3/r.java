@@ -20,8 +20,8 @@ public final class r implements o0 {
     public r(w wVar, Context context) {
         this.f204f = wVar;
         e2.d0.K(context);
-        e9.g0 g0Var = e9.i0.f8752b;
-        this.f200a = a1.f8715e;
+        e9.g0 g0Var = e9.i0.f8751b;
+        this.f200a = a1.f8714e;
         this.d = -9223372036854775807L;
         this.f203e = w.f207o;
     }
@@ -119,7 +119,7 @@ public final class r implements o0 {
 
     @Override
     public final void g(a6.i iVar) {
-        this.f203e = i9.q.f12075a;
+        this.f203e = i9.q.f12074a;
     }
 
     @Override
@@ -145,7 +145,7 @@ public final class r implements o0 {
     public final void k() {
         w wVar = this.f204f;
         wVar.getClass();
-        int i10 = e2.w.f8587c.f8588a;
+        int i10 = e2.w.f8586c.f8587a;
         wVar.f215j = null;
     }
 
@@ -242,7 +242,7 @@ public final class r implements o0 {
         }
         e2.z zVar = wVar.f214i;
         if (zVar != null) {
-            zVar.f8593a.removeCallbacksAndMessages(null);
+            zVar.f8592a.removeCallbacksAndMessages(null);
         }
         wVar.f215j = null;
         wVar.f217l = 2;
@@ -256,7 +256,7 @@ public final class r implements o0 {
             return;
         }
         wVar2.f215j = Pair.create(surface, wVar);
-        int i10 = wVar.f8588a;
+        int i10 = wVar.f8587a;
     }
 
     @Override

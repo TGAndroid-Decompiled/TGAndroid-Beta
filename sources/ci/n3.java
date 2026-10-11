@@ -10,18 +10,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.zl0;
-public final class n3 extends zl0 {
-    public final v3 f5632c;
+import org.telegram.ui.Components.am0;
+import org.telegram.ui.Components.sm0;
+public final class n3 extends am0 {
+    public final v3 f5631c;
 
     public n3(v3 v3Var) {
-        this.f5632c = v3Var;
+        this.f5631c = v3Var;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47706f == 2) {
+        if (d1Var.f47752f == 2) {
             return true;
         }
         return false;
@@ -31,20 +31,20 @@ public final class n3 extends zl0 {
     public final String F(int i10) {
         MediaController.PhotoEntry photoEntry;
         int i11 = i10 - 2;
-        v3 v3Var = this.f5632c;
-        if (v3Var.f6133c0) {
+        v3 v3Var = this.f5631c;
+        if (v3Var.f6132c0) {
             if (i11 == 0) {
                 return null;
             }
             i11 = i10 - 3;
-        } else if (v3Var.f6134d0) {
-            if (i11 >= 0 && i11 < v3Var.f6131b0.size()) {
-                return LocaleController.formatYearMont(((l8) v3Var.f6131b0.get(i11)).d / 1000, true);
+        } else if (v3Var.f6133d0) {
+            if (i11 >= 0 && i11 < v3Var.f6130b0.size()) {
+                return LocaleController.formatYearMont(((l8) v3Var.f6130b0.get(i11)).d / 1000, true);
             }
-            i11 -= v3Var.f6131b0.size();
+            i11 -= v3Var.f6130b0.size();
         }
-        ArrayList arrayList = v3Var.f6138f0;
-        if (arrayList == null || i11 < 0 || i11 >= arrayList.size() || (photoEntry = (MediaController.PhotoEntry) v3Var.f6138f0.get(i11)) == null) {
+        ArrayList arrayList = v3Var.f6137f0;
+        if (arrayList == null || i11 < 0 || i11 >= arrayList.size() || (photoEntry = (MediaController.PhotoEntry) v3Var.f6137f0.get(i11)) == null) {
             return null;
         }
         long j3 = photoEntry.dateTaken;
@@ -55,26 +55,26 @@ public final class n3 extends zl0 {
     }
 
     @Override
-    public final void G(rm0 rm0Var, float f7, int[] iArr) {
+    public final void G(sm0 sm0Var, float f7, int[] iArr) {
         int i10;
         int k10 = k();
-        v3 v3Var = this.f5632c;
-        e3 e3Var = v3Var.f6135e;
+        v3 v3Var = this.f5631c;
+        e3 e3Var = v3Var.f6134e;
         float f10 = e3Var.J;
-        int width = (int) (((int) (((rm0Var.getWidth() - rm0Var.getPaddingLeft()) - rm0Var.getPaddingRight()) / f10)) * v3Var.O);
+        int width = (int) (((int) (((sm0Var.getWidth() - sm0Var.getPaddingLeft()) - sm0Var.getPaddingRight()) / f10)) * v3Var.O);
         int ceil = (int) Math.ceil(k10 / f10);
-        float lerp = (AndroidUtilities.lerp(0, Math.max(0, i10 - ((AndroidUtilities.displaySize.y - rm0Var.getPaddingTop()) - rm0Var.getPaddingBottom())), f7) / (ceil * width)) * ceil;
+        float lerp = (AndroidUtilities.lerp(0, Math.max(0, i10 - ((AndroidUtilities.displaySize.y - sm0Var.getPaddingTop()) - sm0Var.getPaddingBottom())), f7) / (ceil * width)) * ceil;
         int round = Math.round(lerp);
         iArr[0] = Math.max(0, e3Var.J * round) + 2;
-        iArr[1] = rm0Var.getPaddingTop() + ((int) ((lerp - round) * width));
+        iArr[1] = sm0Var.getPaddingTop() + ((int) ((lerp - round) * width));
     }
 
     @Override
-    public final float H(rm0 rm0Var) {
+    public final float H(sm0 sm0Var) {
         v3 v3Var;
         int k10 = k();
-        float f7 = this.f5632c.f6135e.J;
-        return (Math.max(0, rm0Var.computeVerticalScrollOffset() - v3Var.getPadding()) - rm0Var.getPaddingTop()) / ((((int) Math.ceil(k10 / f7)) * ((int) (((int) (((rm0Var.getWidth() - rm0Var.getPaddingLeft()) - rm0Var.getPaddingRight()) / f7)) * v3Var.O))) - (AndroidUtilities.displaySize.y - rm0Var.getPaddingTop()));
+        float f7 = this.f5631c.f6134e.J;
+        return (Math.max(0, sm0Var.computeVerticalScrollOffset() - v3Var.getPadding()) - sm0Var.getPaddingTop()) / ((((int) Math.ceil(k10 / f7)) * ((int) (((int) (((sm0Var.getWidth() - sm0Var.getPaddingLeft()) - sm0Var.getPaddingRight()) / f7)) * v3Var.O))) - (AndroidUtilities.displaySize.y - sm0Var.getPaddingTop()));
     }
 
     @Override
@@ -96,18 +96,18 @@ public final class n3 extends zl0 {
     @Override
     public final int k() {
         int size;
-        v3 v3Var = this.f5632c;
-        ArrayList arrayList = v3Var.f6138f0;
+        v3 v3Var = this.f5631c;
+        ArrayList arrayList = v3Var.f6137f0;
         if (arrayList == null) {
             size = 0;
         } else {
             size = arrayList.size();
         }
-        if (v3Var.f6133c0) {
+        if (v3Var.f6132c0) {
             return size + 1;
         }
-        if (v3Var.f6134d0) {
-            return v3Var.f6131b0.size() + size;
+        if (v3Var.f6133d0) {
+            return v3Var.f6130b0.size() + size;
         }
         return size;
     }
@@ -118,18 +118,18 @@ public final class n3 extends zl0 {
         boolean z11;
         boolean z12;
         String str;
-        v3 v3Var = this.f5632c;
-        ArrayList arrayList = v3Var.f6140h0;
-        ArrayList arrayList2 = v3Var.f6131b0;
-        int i11 = d1Var.f47706f;
-        View view = d1Var.f47702a;
+        v3 v3Var = this.f5631c;
+        ArrayList arrayList = v3Var.f6139h0;
+        ArrayList arrayList2 = v3Var.f6130b0;
+        int i11 = d1Var.f47752f;
+        View view = d1Var.f47748a;
         int i12 = -1;
         if (i11 == 0) {
             r3 r3Var = (r3) view;
             if (i10 == 0) {
                 i12 = v3Var.getPadding();
             }
-            r3Var.f5892a = i12;
+            r3Var.f5891a = i12;
         } else if (i11 == 2) {
             q3 q3Var = (q3) view;
             boolean z13 = true;
@@ -148,14 +148,14 @@ public final class n3 extends zl0 {
             q3Var.M = new m3(this, q3Var, 0);
             q3Var.N = new m3(this, q3Var, 1);
             int i13 = i10 - 2;
-            if (v3Var.f6133c0) {
+            if (v3Var.f6132c0) {
                 if (i13 == 0) {
                     q3Var.f(-1, false, false);
                     q3Var.e(arrayList2.size(), (l8) arrayList2.get(0));
                     return;
                 }
                 i13 = i10 - 3;
-            } else if (v3Var.f6134d0) {
+            } else if (v3Var.f6133d0) {
                 if (i13 >= 0 && i13 < arrayList2.size()) {
                     q3Var.f(-1, false, false);
                     q3Var.e(0, (l8) arrayList2.get(i13));
@@ -163,9 +163,9 @@ public final class n3 extends zl0 {
                 }
                 i13 -= arrayList2.size();
             }
-            ArrayList arrayList3 = v3Var.f6138f0;
+            ArrayList arrayList3 = v3Var.f6137f0;
             if (arrayList3 != null && i13 >= 0 && i13 < arrayList3.size()) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) v3Var.f6138f0.get(i13);
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) v3Var.f6137f0.get(i13);
                 if (arrayList.isEmpty() && !v3Var.Q) {
                     z12 = false;
                 } else {
@@ -208,7 +208,7 @@ public final class n3 extends zl0 {
         float f7;
         float f10;
         ai.x5 x5Var;
-        v3 v3Var = this.f5632c;
+        v3 v3Var = this.f5631c;
         if (i10 == 0) {
             x5Var = new r3(v3Var, v3Var.getContext());
         } else if (i10 == 1) {
@@ -232,10 +232,10 @@ public final class n3 extends zl0 {
                 f10 = 0.0f;
             }
             x5Var2.addView(textView, w7.x5.a(-1.0f, 0.0f, 0.0f, f10, 0.0f, -1, 119));
-            v3Var.f6141i0 = x5Var2;
+            v3Var.f6140i0 = x5Var2;
             x5Var = x5Var2;
         } else {
-            x5Var = new q3(v3Var.getContext(), v3Var.f6130b, v3Var.O, v3Var.M);
+            x5Var = new q3(v3Var.getContext(), v3Var.f6129b, v3Var.O, v3Var.M);
         }
         return new s4.d1(x5Var);
     }
@@ -243,10 +243,10 @@ public final class n3 extends zl0 {
     @Override
     public final void y(s4.d1 d1Var) {
         boolean z10;
-        v3 v3Var = this.f5632c;
-        ArrayList arrayList = v3Var.f6140h0;
-        if (d1Var.f47706f == 2) {
-            q3 q3Var = (q3) d1Var.f47702a;
+        v3 v3Var = this.f5631c;
+        ArrayList arrayList = v3Var.f6139h0;
+        if (d1Var.f47752f == 2) {
+            q3 q3Var = (q3) d1Var.f47748a;
             Object obj = q3Var.S;
             if (obj instanceof MediaController.PhotoEntry) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;

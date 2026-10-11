@@ -5,16 +5,16 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public abstract class t implements Iterator {
-    public final int f8798a = 0;
-    public int f8799b;
-    public int f8800c;
+    public final int f8797a = 0;
+    public int f8798b;
+    public int f8799c;
     public int d;
-    public final AbstractMap f8801e;
+    public final AbstractMap f8800e;
 
     public t(x7.j jVar) {
-        this.f8801e = jVar;
-        this.f8799b = jVar.f50862e;
-        this.f8800c = jVar.isEmpty() ? -1 : 0;
+        this.f8800e = jVar;
+        this.f8798b = jVar.f50906e;
+        this.f8799c = jVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 
@@ -24,19 +24,19 @@ public abstract class t implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        switch (this.f8798a) {
+        switch (this.f8797a) {
             case 0:
-                if (this.f8800c >= 0) {
+                if (this.f8799c >= 0) {
                     return true;
                 }
                 return false;
             case 1:
-                if (this.f8800c >= 0) {
+                if (this.f8799c >= 0) {
                     return true;
                 }
                 return false;
             default:
-                if (this.f8800c >= 0) {
+                if (this.f8799c >= 0) {
                     return true;
                 }
                 return false;
@@ -45,53 +45,53 @@ public abstract class t implements Iterator {
 
     @Override
     public final Object next() {
-        switch (this.f8798a) {
+        switch (this.f8797a) {
             case 0:
-                v vVar = (v) this.f8801e;
-                if (vVar.f8810e == this.f8799b) {
+                v vVar = (v) this.f8800e;
+                if (vVar.f8809e == this.f8798b) {
                     if (hasNext()) {
-                        int i10 = this.f8800c;
+                        int i10 = this.f8799c;
                         this.d = i10;
                         Object a2 = a(i10);
-                        int i11 = this.f8800c + 1;
-                        if (i11 >= vVar.f8811f) {
+                        int i11 = this.f8799c + 1;
+                        if (i11 >= vVar.f8810f) {
                             i11 = -1;
                         }
-                        this.f8800c = i11;
+                        this.f8799c = i11;
                         return a2;
                     }
                     throw new NoSuchElementException();
                 }
                 throw new ConcurrentModificationException();
             case 1:
-                x7.j jVar = (x7.j) this.f8801e;
-                if (jVar.f50862e == this.f8799b) {
+                x7.j jVar = (x7.j) this.f8800e;
+                if (jVar.f50906e == this.f8798b) {
                     if (hasNext()) {
-                        int i12 = this.f8800c;
+                        int i12 = this.f8799c;
                         this.d = i12;
                         Object b10 = b(i12);
-                        int i13 = this.f8800c + 1;
-                        if (i13 >= jVar.f50863f) {
+                        int i13 = this.f8799c + 1;
+                        if (i13 >= jVar.f50907f) {
                             i13 = -1;
                         }
-                        this.f8800c = i13;
+                        this.f8799c = i13;
                         return b10;
                     }
                     throw new NoSuchElementException();
                 }
                 throw new ConcurrentModificationException();
             default:
-                z7.d dVar = (z7.d) this.f8801e;
-                if (dVar.f53668e == this.f8799b) {
+                z7.d dVar = (z7.d) this.f8800e;
+                if (dVar.f53714e == this.f8798b) {
                     if (hasNext()) {
-                        int i14 = this.f8800c;
+                        int i14 = this.f8799c;
                         this.d = i14;
                         Object b11 = b(i14);
-                        int i15 = this.f8800c + 1;
-                        if (i15 >= dVar.f53669f) {
+                        int i15 = this.f8799c + 1;
+                        if (i15 >= dVar.f53715f) {
                             i15 = -1;
                         }
-                        this.f8800c = i15;
+                        this.f8799c = i15;
                         return b11;
                     }
                     throw new NoSuchElementException();
@@ -105,11 +105,11 @@ public abstract class t implements Iterator {
         boolean z10;
         boolean z11;
         boolean z12;
-        switch (this.f8798a) {
+        switch (this.f8797a) {
             case 0:
-                v vVar = (v) this.f8801e;
-                int i10 = vVar.f8810e;
-                int i11 = this.f8799b;
+                v vVar = (v) this.f8800e;
+                int i10 = vVar.f8809e;
+                int i11 = this.f8798b;
                 if (i10 == i11) {
                     int i12 = this.d;
                     if (i12 >= 0) {
@@ -118,9 +118,9 @@ public abstract class t implements Iterator {
                         z10 = false;
                     }
                     if (z10) {
-                        this.f8799b = i11 + 32;
+                        this.f8798b = i11 + 32;
                         vVar.remove(vVar.i()[i12]);
-                        this.f8800c--;
+                        this.f8799c--;
                         this.d = -1;
                         return;
                     }
@@ -128,9 +128,9 @@ public abstract class t implements Iterator {
                 }
                 throw new ConcurrentModificationException();
             case 1:
-                x7.j jVar = (x7.j) this.f8801e;
-                int i13 = jVar.f50862e;
-                int i14 = this.f8799b;
+                x7.j jVar = (x7.j) this.f8800e;
+                int i13 = jVar.f50906e;
+                int i14 = this.f8798b;
                 if (i13 == i14) {
                     int i15 = this.d;
                     if (i15 >= 0) {
@@ -139,11 +139,11 @@ public abstract class t implements Iterator {
                         z11 = false;
                     }
                     if (z11) {
-                        this.f8799b = i14 + 32;
-                        Object[] objArr = jVar.f50861c;
+                        this.f8798b = i14 + 32;
+                        Object[] objArr = jVar.f50905c;
                         objArr.getClass();
                         jVar.remove(objArr[i15]);
-                        this.f8800c--;
+                        this.f8799c--;
                         this.d = -1;
                         return;
                     }
@@ -151,9 +151,9 @@ public abstract class t implements Iterator {
                 }
                 throw new ConcurrentModificationException();
             default:
-                z7.d dVar = (z7.d) this.f8801e;
-                int i16 = dVar.f53668e;
-                int i17 = this.f8799b;
+                z7.d dVar = (z7.d) this.f8800e;
+                int i16 = dVar.f53714e;
+                int i17 = this.f8798b;
                 if (i16 == i17) {
                     int i18 = this.d;
                     if (i18 >= 0) {
@@ -162,11 +162,11 @@ public abstract class t implements Iterator {
                         z12 = false;
                     }
                     if (z12) {
-                        this.f8799b = i17 + 32;
-                        Object[] objArr2 = dVar.f53667c;
+                        this.f8798b = i17 + 32;
+                        Object[] objArr2 = dVar.f53713c;
                         objArr2.getClass();
                         dVar.remove(objArr2[i18]);
-                        this.f8800c--;
+                        this.f8799c--;
                         this.d = -1;
                         return;
                     }
@@ -177,16 +177,16 @@ public abstract class t implements Iterator {
     }
 
     public t(z7.d dVar) {
-        this.f8801e = dVar;
-        this.f8799b = dVar.f53668e;
-        this.f8800c = dVar.isEmpty() ? -1 : 0;
+        this.f8800e = dVar;
+        this.f8798b = dVar.f53714e;
+        this.f8799c = dVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 
     public t(v vVar) {
-        this.f8801e = vVar;
-        this.f8799b = vVar.f8810e;
-        this.f8800c = vVar.isEmpty() ? -1 : 0;
+        this.f8800e = vVar;
+        this.f8798b = vVar.f8809e;
+        this.f8799c = vVar.isEmpty() ? -1 : 0;
         this.d = -1;
     }
 }

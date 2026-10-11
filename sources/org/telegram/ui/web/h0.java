@@ -3,21 +3,21 @@ package org.telegram.ui.web;
 import android.webkit.ValueCallback;
 import java.util.HashMap;
 public final class h0 implements ValueCallback {
-    public final int f43376a;
+    public final int f43520a;
 
     public h0(int i10) {
-        this.f43376a = i10;
+        this.f43520a = i10;
     }
 
     @Override
     public final void onReceiveValue(Object obj) {
         String str = (String) obj;
-        switch (this.f43376a) {
+        switch (this.f43520a) {
             case 0:
                 int i10 = y0.V;
                 return;
             default:
-                HashMap hashMap = i2.f43396e;
+                HashMap hashMap = i2.f43540e;
                 return;
         }
     }

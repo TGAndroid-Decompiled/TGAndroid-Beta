@@ -5,8 +5,8 @@ import android.view.View;
 import java.util.List;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.ActionBar.e3;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.e40;
 import org.telegram.ui.g60;
 import s4.d1;
@@ -33,24 +33,24 @@ public final class f extends j {
         h hVar = this.F;
         e eVar = hVar.S0;
         int b10 = d1Var.b();
-        List list = eVar.f15598c;
+        List list = eVar.f15597c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f15598c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f15597c.get(b10);
         }
         if (groupCallMessage != null && (n0Var = groupCallMessage.visibleReaction) != null) {
-            View view = d1Var.f47702a;
+            View view = d1Var.f47748a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                g60 g60Var = ((e40) gVar).f37195a;
+                g60 g60Var = ((e40) gVar).f37198a;
                 Context context = g60Var.getContext();
-                ll0 ll0Var = g60Var.K;
-                i10 = ((f3) g60Var).currentAccount;
-                j0 j0Var = new j0(context, null, ll0Var, (c) view, null, 0.0f, 0.0f, n0Var, i10, 1, false);
+                ml0 ml0Var = g60Var.K;
+                i10 = ((e3) g60Var).currentAccount;
+                j0 j0Var = new j0(context, null, ml0Var, (c) view, null, 0.0f, 0.0f, n0Var, i10, 1, false);
                 j0.B = j0Var;
-                j0Var.f54602i.setTag(R.id.parent_tag, 1);
-                g60Var.container.addView(j0Var.f54602i);
-                j0Var.f54612s = true;
-                j0Var.f54617y = System.currentTimeMillis();
+                j0Var.f54645i.setTag(R.id.parent_tag, 1);
+                g60Var.container.addView(j0Var.f54645i);
+                j0Var.f54655s = true;
+                j0Var.f54660y = System.currentTimeMillis();
             }
         }
     }

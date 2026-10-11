@@ -1,46 +1,48 @@
 package org.telegram.ui.Wallet;
 
-import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class k3 implements View.OnClickListener {
-    public final int f35189a;
-    public final Object f35190b;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.r61;
+public final class k3 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5, Utilities.Callback5Return {
+    public final c5 f35155a;
 
-    public k3(Object obj, int i10) {
-        this.f35189a = i10;
-        this.f35190b = obj;
+    public k3(c5 c5Var) {
+        this.f35155a = c5Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f35189a) {
-            case 0:
-                of.f.u((Activity) this.f35190b, "https://fragment.com/");
-                return;
-            case 1:
-                ((z3) this.f35190b).dismiss();
-                return;
-            case 2:
-                ((Runnable) this.f35190b).run();
-                return;
-            case 3:
-                d6 d6Var = (d6) this.f35190b;
-                if (!d6Var.f34839x && d6Var.f34836r && !d6Var.h.b()) {
-                    d6Var.h.setProgress(0.0f);
-                    d6Var.h.d();
-                    return;
-                }
-                return;
-            case 4:
-                org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) this.f35190b;
-                a2Var.c(!a2Var.b(), true);
-                return;
-            default:
-                f8 f8Var = ((j8) this.f35190b).f35143b;
-                f8Var.requestFocus();
-                AndroidUtilities.showKeyboard(f8Var);
-                return;
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        c5 c5Var = this.f35155a;
+        c5Var.getClass();
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+            c5Var.getParentActivity().startActivity(intent);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        r61 r61Var = (r61) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        this.f35155a.getClass();
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        this.f35155a.W((r61) obj, (View) obj2);
     }
 }

@@ -1,61 +1,19 @@
 package org.telegram.ui;
-public final class zb0 implements Runnable {
-    public final int f44577a;
-    public final ec0 f44578b;
-    public final String f44579c;
 
-    public zb0(ec0 ec0Var, String str, int i10) {
-        this.f44577a = i10;
-        this.f44578b = ec0Var;
-        this.f44579c = str;
+import org.telegram.tgnet.RequestDelegate;
+public final class zb0 implements RequestDelegate {
+    public final int f44631a;
+    public final Object f44632b;
+    public final Object f44633c;
+
+    public zb0(int i10, Object obj, Object obj2) {
+        this.f44631a = i10;
+        this.f44632b = obj;
+        this.f44633c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44577a) {
-            case 0:
-                ec0 ec0Var = this.f44578b;
-                if (ec0Var.a()) {
-                    ec0Var.w(this.f44579c);
-                    return;
-                }
-                return;
-            case 1:
-                this.f44578b.w(this.f44579c);
-                return;
-            case 2:
-                ec0 ec0Var2 = this.f44578b;
-                ec0Var2.getClass();
-                String str = this.f44579c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    ec0Var2.x("turnPasswordOffRow");
-                }
-                if ("change".equalsIgnoreCase(str)) {
-                    ec0Var2.x("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str)) {
-                    ec0Var2.x("emailRow");
-                    return;
-                }
-                return;
-            default:
-                ec0 ec0Var3 = this.f44578b;
-                ec0Var3.getClass();
-                String str2 = this.f44579c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    ec0Var3.x("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    ec0Var3.x("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str2)) {
-                    ec0Var3.x("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str2)) {
-                    ec0Var3.x("fingerprintRow");
-                    return;
-                }
-                return;
-        }
+    public final void run(org.telegram.tgnet.TLObject r10, org.telegram.tgnet.TLRPC.TL_error r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zb0.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

@@ -1,36 +1,32 @@
 package n6;
+public final class n implements l {
+    public static n f16742b;
+    public static final o f16743c = new o(0, 0, 0, false, false);
+    public Object f16744a;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class n extends o6.a {
-    public static final Parcelable.Creator<n> CREATOR = new m8.h(17);
-    public final int f16700a;
-    public final boolean f16701b;
-    public final boolean f16702c;
-    public final int d;
-    public final int f16703e;
+    public n(Object obj) {
+        this.f16744a = obj;
+    }
 
-    public n(int i10, int i11, int i12, boolean z10, boolean z11) {
-        this.f16700a = i10;
-        this.f16701b = z10;
-        this.f16702c = z11;
-        this.d = i11;
-        this.f16703e = i12;
+    public static synchronized n a() {
+        n nVar;
+        synchronized (n.class) {
+            try {
+                if (f16742b == null) {
+                    f16742b = new Object();
+                }
+                nVar = f16742b;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return nVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.d0.q(parcel, 20293);
-        w7.d0.s(parcel, 1, 4);
-        parcel.writeInt(this.f16700a);
-        w7.d0.s(parcel, 2, 4);
-        parcel.writeInt(this.f16701b ? 1 : 0);
-        w7.d0.s(parcel, 3, 4);
-        parcel.writeInt(this.f16702c ? 1 : 0);
-        w7.d0.s(parcel, 4, 4);
-        parcel.writeInt(this.d);
-        w7.d0.s(parcel, 5, 4);
-        parcel.writeInt(this.f16703e);
-        w7.d0.r(parcel, q6);
+    public Object b(com.google.android.gms.common.api.q qVar) {
+        m8.d dVar = (m8.d) this.f16744a;
+        dVar.f3314a = qVar;
+        return dVar;
     }
 }

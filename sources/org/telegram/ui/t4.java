@@ -1,315 +1,226 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
-public final class t4 extends AnimatorListenerAdapter {
-    public final int f41882a;
-    public final Object f41883b;
+import org.telegram.ui.Components.RadialProgress2;
+public final class t4 extends FrameLayout {
+    public final int f42056a = 0;
+    public int f42057b;
+    public boolean f42058c;
+    public Object d;
+    public final Object f42059e;
+    public Object f42060f;
+    public Object h;
 
-    public t4(Object obj, int i10) {
-        this.f41882a = i10;
-        this.f41883b = obj;
+    public t4(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f42057b = AndroidUtilities.dp(64.0f);
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.d = y9Var;
+        y9Var.setAspectFit(true);
+        y9Var.setRoundRadius(AndroidUtilities.dp(12.0f));
+        addView(y9Var, w7.x5.d(-1.0f, -1));
+        RadialProgress2 radialProgress2 = new RadialProgress2(this, d6Var);
+        this.f42059e = radialProgress2;
+        radialProgress2.E = 0.0f;
+        radialProgress2.setIcon(10, false, false);
+        radialProgress2.setColors(1107296256, 1107296256, -1, -1);
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        float f7;
-        switch (this.f41882a) {
-            case 11:
-                org.telegram.ui.Cells.q7 q7Var = (org.telegram.ui.Cells.q7) this.f41883b;
-                AnimatorSet animatorSet = q7Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    q7Var.h = null;
-                    return;
-                }
-                return;
-            case 24:
-                nq nqVar = (nq) this.f41883b;
-                org.telegram.ui.Components.hs hsVar = nqVar.h;
-                if (nqVar.H) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                hsVar.b(f7);
-                nqVar.h.invalidateSelf();
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationEnd(Animator animator) {
-        switch (this.f41882a) {
+    public final void dispatchDraw(Canvas canvas) {
+        org.telegram.ui.Components.va0 va0Var;
+        int i10 = this.f42056a;
+        float f7 = 1.0f;
+        Object obj = this.f42059e;
+        switch (i10) {
             case 0:
-                u4 u4Var = (u4) this.f41883b;
-                u4Var.f42368c = false;
-                u4Var.invalidate();
-                return;
-            case 1:
-                ((v5) this.f41883b).f42691f0.setVisibility(8);
-                return;
-            case 2:
-            case 24:
-            default:
-                super.onAnimationEnd(animator);
-                return;
-            case 3:
-                ((v9) this.f41883b).v = null;
-                return;
-            case 4:
-                org.telegram.ui.Cells.j jVar = (org.telegram.ui.Cells.j) this.f41883b;
-                ((t01) jVar).f41857c0.f44235e.f34264c.f47693r = false;
-                FrameLayout frameLayout = jVar.J;
-                if (frameLayout.getBackground() == null) {
-                    frameLayout.setBackground(jVar.K);
-                    return;
-                }
-                return;
-            case 5:
-                org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) this.f41883b;
-                Button button = wVar.f23579n;
-                org.telegram.ui.Components.dj0 dj0Var = wVar.f23578f;
-                if (button == dj0Var) {
-                    wVar.f23577e.setVisibility(4);
-                    return;
-                } else {
-                    dj0Var.setVisibility(4);
-                    return;
-                }
-            case 6:
-                super.onAnimationEnd(animator);
-                ((org.telegram.ui.Cells.e0) this.f41883b).f22022x = null;
-                return;
-            case 7:
-                ((org.telegram.ui.Cells.g4) this.f41883b).G = null;
-                return;
-            case 8:
-                org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) this.f41883b;
-                if (animator.equals(t5Var.f23057n)) {
-                    t5Var.f23057n = null;
-                    return;
-                }
-                return;
-            case 9:
-                ai.r4 r4Var = (ai.r4) this.f41883b;
-                if (animator.equals(((org.telegram.ui.Cells.v5) r4Var.f1654b).d)) {
-                    ((org.telegram.ui.Cells.v5) r4Var.f1654b).d = null;
-                    return;
-                }
-                return;
-            case 10:
-                AndroidUtilities.runOnUIThread(((org.telegram.ui.Cells.v5) this.f41883b).f23549e, 1000L);
-                return;
-            case 11:
-                org.telegram.ui.Cells.q7 q7Var = (org.telegram.ui.Cells.q7) this.f41883b;
-                AnimatorSet animatorSet = q7Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    q7Var.h = null;
-                    return;
-                }
-                return;
-            case 12:
-                org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) this.f41883b;
-                t7Var.f23082n.isMediaSpoilersRevealedInSharedMedia = true;
-                t7Var.invalidate();
-                return;
-            case 13:
-                super.onAnimationEnd(animator);
-                org.telegram.ui.Cells.da daVar = (org.telegram.ui.Cells.da) this.f41883b;
-                ((org.telegram.ui.Cells.ea) daVar.f22000b).f22058a.getTransitionParams().j();
-                ((org.telegram.ui.Cells.ea) daVar.f22000b).f22058a.getTransitionParams().f22956g = false;
-                ((org.telegram.ui.Cells.ea) daVar.f22000b).f22058a.getTransitionParams().K1 = 1.0f;
-                return;
-            case 14:
-                i3 i3Var = (i3) this.f41883b;
-                if (animator.equals(((vb) i3Var.f38510b).R)) {
-                    ((vb) i3Var.f38510b).R = null;
-                    return;
-                }
-                return;
-            case 15:
-                vb vbVar = (vb) this.f41883b;
-                if (animator.equals(vbVar.R)) {
-                    vbVar.R = null;
-                    return;
-                }
-                return;
-            case 16:
-                ((cc) this.f41883b).I.setVisibility(8);
-                return;
-            case 17:
-                bd bdVar = (bd) this.f41883b;
-                lc lcVar = bdVar.m0;
-                if (lcVar != null) {
-                    if (lcVar.getParent() != null) {
-                        ((ViewGroup) bdVar.m0.getParent()).removeView(bdVar.m0);
+                RadialProgress2 radialProgress2 = (RadialProgress2) obj;
+                super.dispatchDraw(canvas);
+                if (this.f42058c) {
+                    Drawable drawable = ((org.telegram.ui.Components.y9) this.d).getImageReceiver().getDrawable();
+                    if ((drawable instanceof org.telegram.ui.Components.f6) && ((org.telegram.ui.Components.f6) drawable).d[4] > 0) {
+                        ValueAnimator valueAnimator = (ValueAnimator) this.h;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                            if (radialProgress2.f24254c) {
+                                va0Var = radialProgress2.f24259j;
+                            } else {
+                                va0Var = radialProgress2.f24258i;
+                            }
+                            if (va0Var.f31731w < 1.0f) {
+                                radialProgress2.o(1.0f, true);
+                            }
+                            ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ValueAnimator) this.h).getAnimatedValue()).floatValue(), 0.0f);
+                            this.f42060f = ofFloat;
+                            ofFloat.addListener(new s4(this, 0));
+                            ((ValueAnimator) this.f42060f).addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                                public final t4 f41317b;
+
+                                {
+                                    this.f41317b = this;
+                                }
+
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                                    switch (r2) {
+                                        case 0:
+                                            this.f41317b.invalidate();
+                                            return;
+                                        default:
+                                            this.f41317b.invalidate();
+                                            return;
+                                    }
+                                }
+                            });
+                            ((ValueAnimator) this.f42060f).setDuration(250L);
+                            ((ValueAnimator) this.f42060f).start();
+                        } else {
+                            this.f42058c = false;
+                        }
+                    } else if (((ValueAnimator) this.h) == null) {
+                        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        this.h = ofFloat2;
+                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                            public final t4 f41317b;
+
+                            {
+                                this.f41317b = this;
+                            }
+
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                                switch (r2) {
+                                    case 0:
+                                        this.f41317b.invalidate();
+                                        return;
+                                    default:
+                                        this.f41317b.invalidate();
+                                        return;
+                                }
+                            }
+                        });
+                        ((ValueAnimator) this.h).setStartDelay(250L);
+                        ((ValueAnimator) this.h).setDuration(250L);
+                        ((ValueAnimator) this.h).start();
                     }
-                    bdVar.m0 = null;
-                }
-                bdVar.f36310o0 = null;
-                super.onAnimationEnd(animator);
-                return;
-            case 18:
-                ci ciVar = (ci) this.f41883b;
-                if (ciVar.f36720a) {
-                    ciVar.d.setTranslationY(0.0f);
-                }
-                if (ciVar.f36721b) {
-                    ciVar.f36723e.setTranslationY(0.0f);
-                }
-                if (ciVar.f36724f) {
-                    ciVar.h.setTranslationY(0.0f);
-                }
-                org.telegram.ui.Components.y9 y9Var = ciVar.f36722c;
-                if (y9Var != null) {
-                    y9Var.setTranslationY(0.0f);
-                }
-                ciVar.f36725n.H2[1] = null;
-                return;
-            case 19:
-                ok okVar = (ok) this.f41883b;
-                okVar.setAnimatedTop(0);
-                View view = okVar.G1;
-                if (view != null && view.getVisibility() == 0) {
-                    okVar.G1.setTranslationY(((1.0f - okVar.getTopViewEnterProgress()) * okVar.G1.getLayoutParams().height) + okVar.T1);
-                }
-                okVar.f40595r5.f44938p9 = null;
-                return;
-            case 20:
-                org.telegram.ui.Components.a50 a50Var = ((xi) this.f41883b).f44088b.f44800e2;
-                if (a50Var != null) {
-                    a50Var.setVisibility(8);
+                    ValueAnimator valueAnimator2 = (ValueAnimator) this.f42060f;
+                    if (valueAnimator2 != null) {
+                        radialProgress2.E = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                        radialProgress2.draw(canvas);
+                        return;
+                    }
+                    ValueAnimator valueAnimator3 = (ValueAnimator) this.h;
+                    if (valueAnimator3 != null) {
+                        radialProgress2.E = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
+                        radialProgress2.draw(canvas);
+                        return;
+                    }
                     return;
                 }
                 return;
-            case 21:
-                ai.z zVar = (ai.z) this.f41883b;
-                org.telegram.ui.Components.z60 z60Var = ((mm) ((gm) zVar.f1996c).f38094c).Q.f44761b3;
-                if (z60Var != null) {
-                    z60Var.setIsMessageTransition(false);
-                    ((mm) ((gm) zVar.f1996c).f38094c).Q.f44761b3.c(true);
-                    ((mm) ((gm) zVar.f1996c).f38094c).Q.f44761b3.setVisibility(4);
-                    return;
+            default:
+                Paint paint = (Paint) obj;
+                wd1 wd1Var = (wd1) this.h;
+                wc1 wc1Var = wd1Var.f43325a;
+                if (this.f42058c) {
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                    org.telegram.ui.ActionBar.h6.s(this, wd1Var.f43388x0, wc1Var);
+                    Paint F = wc1Var.F("paintChatActionBackground");
+                    ColorFilter colorFilter = F.getColorFilter();
+                    F.setColorFilter((ColorMatrixColorFilter) this.f42060f);
+                    ld1 ld1Var = wd1Var.f43388x0;
+                    if (ld1Var != null && (ld1Var.getBackground() instanceof org.telegram.ui.Components.dd0) && wd1Var.l1 < 0.0f) {
+                        f7 = 0.33f;
+                    }
+                    int alpha = F.getAlpha();
+                    F.setAlpha((int) (alpha * f7));
+                    canvas.drawRect(rectF, F);
+                    F.setAlpha(alpha);
+                    F.setColorFilter(colorFilter);
+                    if (wd1Var.M1) {
+                        float f10 = wd1Var.f43365n1;
+                        if (f10 > 0.0f) {
+                            canvas.drawColor(i0.a.k(-16777216, (int) (f10 * 255.0f * wd1Var.f43367o1)));
+                        }
+                    }
+                    canvas.save();
+                    if (((LinearGradient) this.d) == null || this.f42057b != getHeight()) {
+                        int height = getHeight();
+                        this.f42057b = height;
+                        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, height, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                        this.d = linearGradient;
+                        paint.setShader(linearGradient);
+                    }
+                    canvas.drawRect(rectF, paint);
+                    canvas.restore();
+                    canvas.restore();
                 }
-                return;
-            case 22:
-                lm lmVar = (lm) this.f41883b;
-                mm mmVar = lmVar.f39676b;
-                ArrayList arrayList = mmVar.Q.f44913n6;
-                org.telegram.ui.Cells.u1 u1Var = lmVar.f39675a;
-                arrayList.remove(u1Var);
-                View view2 = mmVar.Q.fragmentView;
-                if (view2 != null) {
-                    view2.invalidate();
-                    mmVar.Q.f45034x0.invalidate();
-                }
-                u1Var.setAlpha(1.0f);
-                u1Var.getTransitionParams().f23027x0 = false;
-                return;
-            case 23:
-                xp xpVar = (xp) this.f41883b;
-                xpVar.L = 0.0f;
-                xpVar.K = 1.0f;
-                View view3 = xpVar.f44134a0;
-                if (view3 != null) {
-                    view3.invalidate();
-                }
-                xpVar.T.invalidate();
-                cj cjVar = xpVar.Y;
-                if (cjVar != null) {
-                    cjVar.run();
-                    xpVar.Y = null;
-                    return;
-                }
-                return;
-            case 25:
-                zq zqVar = (zq) this.f41883b;
-                View view4 = zqVar.f45089b;
-                view4.setAlpha(1.0f);
-                s4.p0.x0(view4);
-                ((tr) zqVar.d).f42102c.removeView(view4);
-                return;
-            case 26:
-                org.telegram.ui.Components.j6 j6Var = (org.telegram.ui.Components.j6) this.f41883b;
-                j6Var.d = null;
-                j6Var.f27560b.clear();
-                return;
-            case 27:
-                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) this.f41883b;
-                animatedPhoneNumberEditText.f23848n = null;
-                animatedPhoneNumberEditText.f23847f.clear();
-                return;
-            case 28:
-                super.onAnimationEnd(animator);
-                org.telegram.ui.Components.q6 q6Var = (org.telegram.ui.Components.q6) this.f41883b;
-                q6Var.b();
-                q6Var.f30043o = null;
-                q6Var.f30038j = 0.0f;
-                q6Var.f30041m = 0.0f;
-                q6Var.f30040l = 0.0f;
-                q6Var.f30039k = 0.0f;
-                q6Var.f30046r = 0.0f;
-                q6Var.f30045q = 0.0f;
-                q6Var.invalidateSelf();
-                Runnable runnable = q6Var.f30032b0;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                q6Var.f30048t = null;
-                CharSequence charSequence = q6Var.f30049u;
-                if (charSequence != null) {
-                    q6Var.t(charSequence, true, q6Var.v);
-                    q6Var.f30049u = null;
-                    q6Var.v = false;
-                    return;
-                }
-                org.telegram.ui.Components.rg rgVar = q6Var.I;
-                if (rgVar != null) {
-                    rgVar.run();
-                    return;
-                }
-                return;
-            case 29:
-                org.telegram.ui.Components.y9 y9Var2 = (org.telegram.ui.Components.y9) this.f41883b;
-                y9Var2.setVisibility(8);
-                y9Var2.setImageDrawable(null);
-                y9Var2.setAlpha(1.0f);
+                super.dispatchDraw(canvas);
                 return;
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f41882a) {
-            case 2:
-                g8 g8Var = (g8) this.f41883b;
-                for (int i10 = 0; i10 < g8Var.f37959b.getChildCount(); i10++) {
-                    d8.a((d8) g8Var.f37959b.getChildAt(i10), g8Var.P, g8Var.Q);
-                }
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f42056a) {
+            case 0:
+                super.onLayout(z10, i10, i11, i12, i13);
+                int width = getWidth() / 2;
+                int height = getHeight() / 2;
+                int i14 = this.f42057b;
+                ((RadialProgress2) this.f42059e).q(width - i14, height - i14, width + i14, height + i14);
                 return;
-            case 3:
             default:
-                super.onAnimationStart(animator);
-                return;
-            case 4:
-                ((t01) ((org.telegram.ui.Cells.j) this.f41883b)).f41857c0.f44235e.f34264c.f47693r = true;
+                super.onLayout(z10, i10, i11, i12, i13);
                 return;
         }
     }
 
-    public t4(zq zqVar, s4.p0 p0Var) {
-        this.f41882a = 25;
-        this.f41883b = zqVar;
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f42056a) {
+            case 1:
+                super.onMeasure(i10, i11);
+                for (int i12 = 0; i12 < getChildCount(); i12++) {
+                    View childAt = getChildAt(i12);
+                    if (childAt.getMeasuredWidth() > AndroidUtilities.dp(420.0f)) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(420.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getMeasuredHeight(), 1073741824));
+                    }
+                }
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    public t4(wd1 wd1Var, Context context, boolean z10) {
+        super(context);
+        this.h = wd1Var;
+        this.f42058c = z10;
+        Paint paint = new Paint(3);
+        this.f42059e = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        ColorMatrix colorMatrix = new ColorMatrix();
+        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.4f);
+        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.65f);
+        this.f42060f = new ColorMatrixColorFilter(colorMatrix);
     }
 }

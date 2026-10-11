@@ -104,9 +104,9 @@ public final class b {
     public final void d(a2 a2Var, String str, boolean z10) {
         String str2;
         c cVar = this.f3797b;
-        int i10 = this.f3798c.d().f8227a.f6763a;
+        int i10 = this.f3798c.d().f8226a.f6762a;
         f3794g.getClass();
-        String T = z9.a.f54225a.T(a2Var);
+        String T = z9.a.f54270a.T(a2Var);
         String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f3796a.getAndIncrement()));
         if (z10) {
             str2 = "_";

@@ -6,25 +6,25 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.bu0;
+import org.telegram.ui.au0;
 public final class j0 extends i1 {
-    public final Path f46351e3;
-    public final bu0 f46352f3;
+    public final Path f46393e3;
+    public final au0 f46394f3;
 
-    public j0(bu0 bu0Var, Context context) {
+    public j0(au0 au0Var, Context context) {
         super(context);
-        this.f46352f3 = bu0Var;
-        this.f46351e3 = new Path();
+        this.f46394f3 = au0Var;
+        this.f46393e3 = new Path();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         ViewGroup barView;
-        bu0 bu0Var = this.f46352f3;
-        barView = bu0Var.getBarView();
+        au0 au0Var = this.f46394f3;
+        barView = au0Var.getBarView();
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.lerp(barView.getLeft() - getLeft(), 0, bu0Var.N1), AndroidUtilities.lerp(barView.getTop() - getTop(), 0, bu0Var.N1), AndroidUtilities.lerp(barView.getRight() - getLeft(), getWidth(), bu0Var.N1), AndroidUtilities.lerp(barView.getBottom() - getTop(), getHeight(), bu0Var.N1));
-        Path path = this.f46351e3;
+        rectF.set(AndroidUtilities.lerp(barView.getLeft() - getLeft(), 0, au0Var.N1), AndroidUtilities.lerp(barView.getTop() - getTop(), 0, au0Var.N1), AndroidUtilities.lerp(barView.getRight() - getLeft(), getWidth(), au0Var.N1), AndroidUtilities.lerp(barView.getBottom() - getTop(), getHeight(), au0Var.N1));
+        Path path = this.f46393e3;
         path.rewind();
         path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
         canvas.save();

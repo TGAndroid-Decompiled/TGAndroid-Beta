@@ -10,31 +10,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.j20;
+import org.telegram.ui.i20;
 public final class i3 extends View {
     public float E;
     public final Camera F;
-    public final j20 G;
+    public final i20 G;
     public final RectF H;
-    public d3 f52715a;
-    public d3 f52716b;
-    public d3 f52717c;
+    public d3 f52759a;
+    public d3 f52760b;
+    public d3 f52761c;
     public float d;
-    public float f52718e;
-    public float f52719f;
+    public float f52762e;
+    public float f52763f;
     public boolean h;
-    public boolean f52720n;
-    public boolean f52721r;
-    public c3 f52722s;
+    public boolean f52764n;
+    public boolean f52765r;
+    public c3 f52766s;
     public c3 v;
-    public c3 f52723w;
-    public float f52724x;
-    public float f52725y;
+    public c3 f52767w;
+    public float f52768x;
+    public float f52769y;
 
     public i3(Context context) {
         super(context);
         this.F = new Camera();
-        this.G = new j20();
+        this.G = new i20();
         this.H = new RectF();
     }
 
@@ -44,7 +44,7 @@ public final class i3 extends View {
         float f14;
         if (c3Var != null) {
             Matrix matrix = c3Var.d;
-            Paint paint = c3Var.f52383c;
+            Paint paint = c3Var.f52426c;
             if (paint != null) {
                 float f15 = (f7 - 0.5f) / 1.5f;
                 float clamp01 = Utilities.clamp01(1.0f - Math.abs(f15));
@@ -55,17 +55,17 @@ public final class i3 extends View {
                 canvas.saveLayerAlpha(f17, 0.0f, f18, f11, 255, 31);
                 matrix.reset();
                 matrix.postTranslate(f16, Math.min(AndroidUtilities.dp(176.0f), f11) / 2.0f);
-                c3Var.f52384e.setLocalMatrix(matrix);
+                c3Var.f52427e.setLocalMatrix(matrix);
                 paint.setAlpha((int) (clamp01 * 255.0f));
                 canvas.drawRect(f17, 0.0f, f18, f11, paint);
                 canvas.save();
                 float dp = AndroidUtilities.dp(90.0f);
                 RectF rectF = this.H;
                 rectF.set(f17, 0.0f, f17 + dp, f11);
-                j20 j20Var = this.G;
-                j20Var.b(canvas, rectF, 0, 1.0f);
+                i20 i20Var = this.G;
+                i20Var.b(canvas, rectF, 0, 1.0f);
                 rectF.set(f18 - dp, 0.0f, f18, f11);
-                j20Var.b(canvas, rectF, 2, 1.0f);
+                i20Var.b(canvas, rectF, 2, 1.0f);
                 canvas.restore();
                 canvas.restore();
                 for (int i10 = 0; i10 < iArr.length; i10++) {
@@ -75,7 +75,7 @@ public final class i3 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr[i10] = org.telegram.ui.ActionBar.i6.v(iArr[i10], org.telegram.ui.ActionBar.i6.m1(clamp01 * f14, c3Var.f52386g));
+                    iArr[i10] = org.telegram.ui.ActionBar.h6.v(iArr[i10], org.telegram.ui.ActionBar.h6.m1(clamp01 * f14, c3Var.f52429g));
                 }
                 for (int i11 = 0; i11 < iArr2.length; i11++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -84,7 +84,7 @@ public final class i3 extends View {
                     } else {
                         f13 = 0.0f;
                     }
-                    iArr2[i11] = org.telegram.ui.ActionBar.i6.v(iArr2[i11], org.telegram.ui.ActionBar.i6.m1(clamp01 * f13, c3Var.f52385f));
+                    iArr2[i11] = org.telegram.ui.ActionBar.h6.v(iArr2[i11], org.telegram.ui.ActionBar.h6.m1(clamp01 * f13, c3Var.f52428f));
                 }
                 for (int i12 = 0; i12 < iArr3.length; i12++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i12;
@@ -93,7 +93,7 @@ public final class i3 extends View {
                     } else {
                         f12 = 0.0f;
                     }
-                    iArr3[i12] = org.telegram.ui.ActionBar.i6.v(iArr3[i12], org.telegram.ui.ActionBar.i6.m1(clamp01 * f12, c3Var.h));
+                    iArr3[i12] = org.telegram.ui.ActionBar.h6.v(iArr3[i12], org.telegram.ui.ActionBar.h6.m1(clamp01 * f12, c3Var.h));
                 }
             }
         }
@@ -140,26 +140,26 @@ public final class i3 extends View {
 
     public final void c() {
         boolean z10;
-        if (this.f52715a == null && this.f52716b == null && this.f52717c == null && this.f52722s == null && this.v == null && this.f52723w == null) {
+        if (this.f52759a == null && this.f52760b == null && this.f52761c == null && this.f52766s == null && this.v == null && this.f52767w == null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f52717c = null;
-        this.f52716b = null;
-        this.f52715a = null;
-        this.f52719f = 0.0f;
-        this.f52718e = 0.0f;
+        this.f52761c = null;
+        this.f52760b = null;
+        this.f52759a = null;
+        this.f52763f = 0.0f;
+        this.f52762e = 0.0f;
         this.d = 0.0f;
-        this.f52721r = false;
-        this.f52720n = false;
+        this.f52765r = false;
+        this.f52764n = false;
         this.h = false;
-        this.f52723w = null;
+        this.f52767w = null;
         this.v = null;
-        this.f52722s = null;
+        this.f52766s = null;
         this.E = 0.0f;
-        this.f52725y = 0.0f;
-        this.f52724x = 0.0f;
+        this.f52769y = 0.0f;
+        this.f52768x = 0.0f;
         if (z10) {
             invalidate();
         }
@@ -167,8 +167,8 @@ public final class i3 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f52715a, this.d, this.h);
-        b(canvas, this.f52716b, this.f52718e, this.f52720n);
-        b(canvas, this.f52717c, this.f52719f, this.f52721r);
+        b(canvas, this.f52759a, this.d, this.h);
+        b(canvas, this.f52760b, this.f52762e, this.f52764n);
+        b(canvas, this.f52761c, this.f52763f, this.f52765r);
     }
 }

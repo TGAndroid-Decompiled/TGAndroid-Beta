@@ -4,13 +4,13 @@ import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 public final class a extends FilterInputStream {
-    public int f14782a;
-    public int f14783b;
+    public int f14781a;
+    public int f14782b;
 
     public a(InputStream inputStream) {
         super(inputStream);
-        this.f14782a = -1;
-        this.f14783b = -1;
+        this.f14781a = -1;
+        this.f14782b = -1;
     }
 
     @Override
@@ -21,13 +21,13 @@ public final class a extends FilterInputStream {
     @Override
     public final int read() {
         int read = super.read();
-        if (read == 3 && this.f14782a == 0 && this.f14783b == 0) {
-            this.f14782a = -1;
-            this.f14783b = -1;
+        if (read == 3 && this.f14781a == 0 && this.f14782b == 0) {
+            this.f14781a = -1;
+            this.f14782b = -1;
             read = super.read();
         }
-        this.f14782a = this.f14783b;
-        this.f14783b = read;
+        this.f14781a = this.f14782b;
+        this.f14782b = read;
         return read;
     }
 

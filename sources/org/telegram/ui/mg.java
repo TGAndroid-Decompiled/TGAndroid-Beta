@@ -1,19 +1,19 @@
 package org.telegram.ui;
 public final class mg implements q0.a {
-    public final int f39947a;
-    public final zn f39948b;
+    public final int f39933a;
+    public final zn f39934b;
 
     public mg(zn znVar, int i10) {
-        this.f39947a = i10;
-        this.f39948b = znVar;
+        this.f39933a = i10;
+        this.f39934b = znVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f39947a) {
+        switch (this.f39933a) {
             case 0:
                 Integer num = (Integer) obj;
-                zn znVar = this.f39948b;
+                zn znVar = this.f39934b;
                 znVar.getClass();
                 if (num.intValue() == 0) {
                     znVar.l1 = 0;
@@ -26,16 +26,16 @@ public final class mg implements q0.a {
                 return;
             case 1:
                 Integer num2 = (Integer) obj;
-                zn znVar2 = this.f39948b;
+                zn znVar2 = this.f39934b;
                 znVar2.getClass();
                 if (num2.intValue() == 0) {
-                    znVar2.f44894m1 = 0;
+                    znVar2.f44849m1 = 0;
                     znVar2.Ec(true);
                     znVar2.getMessagesController().markPollVotesAsRead(znVar2.T5, znVar2.d());
                     return;
                 }
-                int i10 = znVar2.f44894m1 - 1;
-                znVar2.f44894m1 = i10;
+                int i10 = znVar2.f44849m1 - 1;
+                znVar2.f44849m1 = i10;
                 if (i10 <= 0) {
                     znVar2.getMessagesController().markPollVotesAsRead(znVar2.T5, znVar2.d());
                 }
@@ -43,7 +43,7 @@ public final class mg implements q0.a {
                 znVar2.F(num2.intValue(), 0, 0, 0, false, true);
                 return;
             default:
-                zn znVar3 = this.f39948b;
+                zn znVar3 = this.f39934b;
                 znVar3.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 znVar3.f7 = booleanValue;

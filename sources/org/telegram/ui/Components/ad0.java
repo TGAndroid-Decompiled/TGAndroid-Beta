@@ -26,22 +26,22 @@ import org.telegram.tgnet.tl.TL_account;
 public final class ad0 extends FrameLayout {
     public boolean E;
     public float F;
-    public final int f24537a;
-    public final int f24538b;
-    public final org.telegram.ui.ActionBar.e6 f24539c;
+    public final int f24495a;
+    public final int f24496b;
+    public final org.telegram.ui.ActionBar.d6 f24497c;
     public final LinearLayout d;
-    public final TextView f24540e;
-    public final TextView f24541f;
+    public final TextView f24498e;
+    public final TextView f24499f;
     public final TextView h;
-    public final long f24542n;
-    public final int f24543r;
-    public final int f24544s;
+    public final long f24500n;
+    public final int f24501r;
+    public final int f24502s;
     public final int v;
-    public final int f24545w;
-    public final Runnable f24546x;
-    public final int f24547y;
+    public final int f24503w;
+    public final Runnable f24504x;
+    public final int f24505y;
 
-    public ad0(Context context, int i10, MessageObject messageObject, Runnable runnable, org.telegram.ui.ActionBar.e6 e6Var) {
+    public ad0(Context context, int i10, MessageObject messageObject, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         int i11;
         int i12;
@@ -50,21 +50,21 @@ public final class ad0 extends FrameLayout {
         TLRPC.MessageFwdHeader messageFwdHeader;
         this.E = false;
         this.F = -1.0f;
-        this.f24538b = i10;
+        this.f24496b = i10;
         int i15 = messageObject.currentAccount;
-        this.f24537a = i15;
-        this.f24539c = e6Var;
-        this.f24546x = runnable;
-        this.f24547y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
-        this.f24542n = messageObject.getDialogId();
-        this.f24543r = messageObject.getId();
+        this.f24495a = i15;
+        this.f24497c = d6Var;
+        this.f24504x = runnable;
+        this.f24505y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
+        this.f24500n = messageObject.getDialogId();
+        this.f24501r = messageObject.getId();
         TLRPC.Message message = messageObject.messageOwner;
         if (message == null) {
             i11 = 0;
         } else {
             i11 = message.date;
         }
-        this.f24544s = i11;
+        this.f24502s = i11;
         if (message == null) {
             i12 = 0;
         } else {
@@ -76,7 +76,7 @@ public final class ad0 extends FrameLayout {
         } else {
             i13 = 0;
         }
-        this.f24545w = i13;
+        this.f24503w = i13;
         ImageView imageView = new ImageView(context);
         addView(imageView, w7.x5.a(24.0f, 11.0f, 0.0f, 0.0f, 0.0f, 24, 19));
         if (i10 == 1) {
@@ -93,14 +93,14 @@ public final class ad0 extends FrameLayout {
             i14 = R.drawable.msg_seen;
         }
         Drawable mutate = context.getDrawable(i14).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.F8, e6Var), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.F8, d6Var), PorterDuff.Mode.MULTIPLY));
         imageView.setImageDrawable(mutate);
         TextView textView = new TextView(context);
         this.h = textView;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("loading text ");
-        spannableStringBuilder.setSpan(new ka0(textView, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(2.0f), e6Var), 0, spannableStringBuilder.length() - 1, 17);
-        int i16 = org.telegram.ui.ActionBar.i6.f20909j5;
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.m1(0.7f, org.telegram.ui.ActionBar.i6.w0(i16, e6Var)));
+        spannableStringBuilder.setSpan(new ka0(textView, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(2.0f), d6Var), 0, spannableStringBuilder.length() - 1, 17);
+        int i16 = org.telegram.ui.ActionBar.h6.f20894j5;
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.7f, org.telegram.ui.ActionBar.h6.w0(i16, d6Var)));
         textView.setText(spannableStringBuilder);
         textView.setTextSize(1, 13.0f);
         addView(textView, w7.x5.a(-2.0f, 40.0f, -1.0f, 8.0f, 0.0f, 96, 19));
@@ -110,18 +110,18 @@ public final class ad0 extends FrameLayout {
         linearLayout.setAlpha(0.0f);
         addView(linearLayout, w7.x5.a(-2.0f, 38.0f, 0.0f, 8.0f, 0.0f, -1, 19));
         TextView textView2 = new TextView(context);
-        this.f24540e = textView2;
-        org.telegram.messenger.bi.o(i16, e6Var, textView2, 1, 14.0f);
+        this.f24498e = textView2;
+        org.telegram.messenger.ai.o(i16, d6Var, textView2, 1, 14.0f);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView2, w7.x5.t(-2, -2, 19, 0, -1, 0, 0), context);
-        this.f24541f = h;
-        h.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.i6.m1(0.75f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20802d7, e6Var))));
-        org.telegram.messenger.bi.o(i16, e6Var, h, 1, 11.0f);
+        this.f24499f = h;
+        h.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.h6.m1(0.75f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20787d7, d6Var))));
+        org.telegram.messenger.ai.o(i16, d6Var, h, 1, 11.0f);
         h.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.33f));
         linearLayout.addView(h, w7.x5.t(-2, -2, 19, 4, 0, 0, 0));
         a();
     }
 
-    public static void b(final Context context, final int i10, long j3, final boolean z10, Runnable runnable, final Runnable runnable2, final org.telegram.ui.ActionBar.e6 e6Var) {
+    public static void b(final Context context, final int i10, long j3, final boolean z10, Runnable runnable, final Runnable runnable2, final org.telegram.ui.ActionBar.d6 d6Var) {
         int i11;
         int i12;
         String str;
@@ -130,10 +130,10 @@ public final class ad0 extends FrameLayout {
         int i15;
         int i16;
         int i17;
-        final org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, context, e6Var, false);
-        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20872h5, e6Var));
+        final org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, context, d6Var, false);
+        e3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20857h5, d6Var));
         boolean premiumFeaturesBlocked = MessagesController.getInstance(i10).premiumFeaturesBlocked();
-        LinearLayout e7 = org.telegram.messenger.bi.e(context, 1);
+        LinearLayout e7 = org.telegram.messenger.ai.e(context, 1);
         e7.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         ?? imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -145,13 +145,13 @@ public final class ad0 extends FrameLayout {
         imageView.f(i11, 70, 70, null);
         imageView.d();
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.i6.K(AndroidUtilities.dp(80.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, e6Var)));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(80.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, d6Var)));
         e7.addView((View) imageView, w7.x5.t(80, 80, 1, 0, 16, 0, 16));
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
-        int i18 = org.telegram.ui.ActionBar.i6.f20909j5;
-        org.telegram.messenger.bi.o(i18, e6Var, textView, 1, 20.0f);
+        int i18 = org.telegram.ui.ActionBar.h6.f20894j5;
+        org.telegram.messenger.ai.o(i18, d6Var, textView, 1, 20.0f);
         if (z10) {
             i12 = R.string.PremiumLastSeenHeader1;
         } else {
@@ -161,7 +161,7 @@ public final class ad0 extends FrameLayout {
         e7.addView(textView, w7.x5.t(-1, -2, 1, 12, 0, 12, 0));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
-        org.telegram.messenger.bi.o(i18, e6Var, textView2, 1, 14.0f);
+        org.telegram.messenger.ai.o(i18, d6Var, textView2, 1, 14.0f);
         if (j3 > 0) {
             str = UserObject.getFirstName(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
         } else {
@@ -179,9 +179,9 @@ public final class ad0 extends FrameLayout {
         } else {
             i13 = R.string.PremiumReadText1;
         }
-        org.telegram.messenger.bi.r(i13, new Object[]{str2}, textView2);
+        org.telegram.messenger.ai.r(i13, new Object[]{str2}, textView2);
         e7.addView(textView2, w7.x5.t(-1, -2, 1, 32, 9, 32, 19));
-        final ci.d f7 = org.telegram.messenger.bi.f(24, context, e6Var, true);
+        final ci.d f7 = org.telegram.messenger.ai.f(24, context, d6Var, true);
         if (z10) {
             i14 = R.string.PremiumLastSeenButton1;
         } else {
@@ -196,13 +196,13 @@ public final class ad0 extends FrameLayout {
                 dVar.setLoading(true);
                 boolean z11 = z10;
                 int i19 = i10;
-                org.telegram.ui.ActionBar.f3 f3Var2 = f3Var;
+                org.telegram.ui.ActionBar.e3 e3Var2 = e3Var;
                 Runnable runnable3 = runnable2;
                 if (z11) {
                     TL_account.setPrivacy setprivacy = new TL_account.setPrivacy();
                     setprivacy.key = new TLRPC.TL_inputPrivacyKeyStatusTimestamp();
                     setprivacy.rules.add(new TLRPC.TL_inputPrivacyValueAllowAll());
-                    ConnectionsManager.getInstance(i19).sendRequest(setprivacy, new ai.t5(dVar, f3Var2, runnable3, 11));
+                    ConnectionsManager.getInstance(i19).sendRequest(setprivacy, new ai.t5(dVar, e3Var2, runnable3, 11));
                     return;
                 }
                 TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
@@ -212,21 +212,21 @@ public final class ad0 extends FrameLayout {
                     setglobalprivacysettings.settings = new TLRPC.TL_globalPrivacySettings();
                 }
                 setglobalprivacysettings.settings.hide_read_marks = false;
-                ConnectionsManager.getInstance(i19).sendRequest(setglobalprivacysettings, new ci.hd(context, e6Var, dVar, f3Var2, runnable3, 5));
+                ConnectionsManager.getInstance(i19).sendRequest(setglobalprivacysettings, new ci.hd(context, d6Var, dVar, e3Var2, runnable3, 5));
             }
         });
         if (!premiumFeaturesBlocked) {
-            zc0 zc0Var = new zc0(context, e6Var);
+            zc0 zc0Var = new zc0(context, d6Var);
             zc0Var.setGravity(17);
             zc0Var.setAlignment(Layout.Alignment.ALIGN_CENTER);
-            zc0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21203z6, e6Var));
+            zc0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21189z6, d6Var));
             zc0Var.l(" " + LocaleController.getString(R.string.PremiumOr) + " ", false);
             zc0Var.setTextSize(14);
             e7.addView(zc0Var, w7.x5.t(270, -2, 1, 12, 17, 12, 17));
             TextView textView3 = new TextView(context);
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setGravity(17);
-            textView3.setTextColor(org.telegram.ui.ActionBar.i6.w0(i18, e6Var));
+            textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(i18, d6Var));
             textView3.setTextSize(1, 20.0f);
             if (z10) {
                 i15 = R.string.PremiumLastSeenHeader2;
@@ -237,16 +237,16 @@ public final class ad0 extends FrameLayout {
             e7.addView(textView3, w7.x5.t(-1, -2, 1, 12, 0, 12, 0));
             TextView textView4 = new TextView(context);
             textView4.setGravity(17);
-            org.telegram.messenger.bi.o(i18, e6Var, textView4, 1, 14.0f);
+            org.telegram.messenger.ai.o(i18, d6Var, textView4, 1, 14.0f);
             if (z10) {
                 i16 = R.string.PremiumLastSeenText2;
             } else {
                 i16 = R.string.PremiumReadText2;
             }
-            org.telegram.messenger.bi.r(i16, new Object[]{str2}, textView4);
+            org.telegram.messenger.ai.r(i16, new Object[]{str2}, textView4);
             e7.addView(textView4, w7.x5.t(-1, -2, 1, 32, 9, 32, 19));
-            rg.p0 p0Var = new rg.p0(context, e6Var, true);
-            p0Var.setOnClickListener(new yc0(z10, f3Var, runnable));
+            rg.p0 p0Var = new rg.p0(context, d6Var, true);
+            p0Var.setOnClickListener(new yc0(z10, e3Var, runnable));
             if (z10) {
                 i17 = R.string.PremiumLastSeenButton2;
             } else {
@@ -255,24 +255,24 @@ public final class ad0 extends FrameLayout {
             p0Var.b(LocaleController.getString(i17), false, false);
             e7.addView(p0Var, w7.x5.t(-1, 48, 1, 0, 0, 0, 4));
         }
-        f3Var.setCustomView(e7);
-        f3Var.show();
+        e3Var.setCustomView(e7);
+        e3Var.show();
     }
 
     public final void a() {
         String formatPmEditedDate;
-        TextView textView = this.f24540e;
-        int i10 = this.f24537a;
-        TextView textView2 = this.f24541f;
+        TextView textView = this.f24498e;
+        int i10 = this.f24495a;
+        TextView textView2 = this.f24499f;
         TextView textView3 = this.h;
         LinearLayout linearLayout = this.d;
-        int i11 = this.f24538b;
+        int i11 = this.f24496b;
         if (i11 == 1) {
             linearLayout.setAlpha(1.0f);
             textView3.setAlpha(0.0f);
             textView2.setVisibility(8);
             if (AppGlobalConfig.getInstance(i10).messagePrimaryEditedDate.get()) {
-                formatPmEditedDate = LocaleController.formatPmSentDate(this.f24544s);
+                formatPmEditedDate = LocaleController.formatPmSentDate(this.f24502s);
             } else {
                 formatPmEditedDate = LocaleController.formatPmEditedDate(this.v);
             }
@@ -281,26 +281,26 @@ public final class ad0 extends FrameLayout {
             linearLayout.setAlpha(1.0f);
             textView3.setAlpha(0.0f);
             textView2.setVisibility(8);
-            textView.setText(LocaleController.formatPmFwdDate(this.f24545w));
+            textView.setText(LocaleController.formatPmFwdDate(this.f24503w));
         } else {
             setOnClickListener(null);
             linearLayout.setAlpha(0.0f);
             textView3.setAlpha(1.0f);
             textView2.setVisibility(0);
             TLRPC.TL_messages_getOutboxReadDate tL_messages_getOutboxReadDate = new TLRPC.TL_messages_getOutboxReadDate();
-            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f24542n);
-            tL_messages_getOutboxReadDate.msg_id = this.f24543r;
+            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f24500n);
+            tL_messages_getOutboxReadDate.msg_id = this.f24501r;
             ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getOutboxReadDate, new y1(this, 8));
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        xb xbVar;
+        wb wbVar;
         super.onDetachedFromWindow();
-        tc tcVar = tc.f31088w;
-        if (tcVar != null && (xbVar = tcVar.f31092e) != null && xbVar.getParent() != null && (tcVar.f31092e.getParent().getParent() instanceof nb)) {
-            tcVar.b();
+        sc scVar = sc.f30703w;
+        if (scVar != null && (wbVar = scVar.f30707e) != null && wbVar.getParent() != null && (scVar.f30707e.getParent().getParent() instanceof mb)) {
+            scVar.b();
         }
     }
 
@@ -312,19 +312,19 @@ public final class ad0 extends FrameLayout {
         int mode = View.MeasureSpec.getMode(i10);
         if (this.F < 0.0f) {
             this.F = 0.0f;
-            int i12 = this.f24538b;
-            TextView textView = this.f24540e;
+            int i12 = this.f24496b;
+            TextView textView = this.f24498e;
             if (i12 == 0) {
                 long currentTimeMillis = System.currentTimeMillis();
                 float max = Math.max(this.F, AndroidUtilities.dp(144.0f));
                 this.F = max;
                 float max2 = Math.max(max, textView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)) + AndroidUtilities.dp(48.0f));
                 this.F = max2;
-                float max3 = Math.max(max2, textView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.f24541f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
+                float max3 = Math.max(max2, textView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.f24499f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
                 this.F = max3;
                 float max4 = Math.max(max3, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + ((float) AndroidUtilities.dp(48.0f)));
                 this.F = max4;
-                int i13 = this.f24547y;
+                int i13 = this.f24505y;
                 if (i13 > 86400) {
                     f7 = 48.0f;
                     this.F = Math.max(max4, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + AndroidUtilities.dp(48.0f));

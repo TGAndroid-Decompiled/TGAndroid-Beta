@@ -1,67 +1,74 @@
 package qg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.is;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
 public final class l2 {
-    public boolean f46385b;
-    public int f46386c;
-    public Bitmap d;
-    public Bitmap f46387e;
-    public Bitmap f46388f;
-    public Bitmap f46389g;
-    public float f46391j;
-    public float f46392k;
-    public int f46395n;
-    public float[] f46396o;
-    public final Paint f46399r;
-    public final Paint f46400s;
-    public final o2 f46401t;
-    public final g6 f46384a = new g6(0.0f, (View) null, 0, 320, is.h);
-    public final RectF h = new RectF();
-    public final RectF f46390i = new RectF();
-    public final Path f46393l = new Path();
-    public final Path f46394m = new Path();
-    public final Paint f46397p = new Paint(1);
-    public final Paint f46398q = new Paint(1);
+    public String f46434a;
+    public String f46435b;
+    public String f46436c;
+    public CharSequence d;
+    public TLRPC.TL_inputStickerSetItem f46437e;
+    public TLRPC.TL_messageMediaDocument f46438f;
+    public TLRPC.InputFile f46439g;
+    public boolean h;
+    public long f46440i;
+    public TLRPC.StickerSet f46441j;
+    public TLRPC.Document f46442k;
+    public String f46443l;
+    public Utilities.Callback2 f46444m;
+    public Utilities.Callback f46445n;
+    public boolean f46446o;
+    public ArrayList f46447p;
+    public ArrayList f46448q;
+    public MessageObject f46449r;
+    public VideoEditedInfo f46450s;
+    public float f46451t;
+    public float f46452u;
 
-    public l2(o2 o2Var) {
-        this.f46401t = o2Var;
-        new Paint(1);
-        this.f46399r = new Paint(1);
-        this.f46400s = new Paint(1);
-    }
-
-    public final Bitmap a() {
-        Bitmap bitmap = this.f46389g;
-        if (bitmap != null) {
-            return bitmap;
+    public final void a() {
+        ArrayList arrayList = this.f46448q;
+        ArrayList arrayList2 = this.f46447p;
+        int size = arrayList2.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList2.get(i11);
+            i11++;
+            try {
+                ((File) obj).delete();
+            } catch (Exception e7) {
+                FileLog.e(e7);
+            }
         }
-        return this.f46388f;
-    }
-
-    public final Bitmap b() {
-        Bitmap bitmap = this.f46387e;
-        if (bitmap != null) {
-            return bitmap;
+        arrayList2.clear();
+        int size2 = arrayList.size();
+        while (i10 < size2) {
+            Object obj2 = arrayList.get(i10);
+            i10++;
+            try {
+                ((File) obj2).delete();
+            } catch (Exception e10) {
+                FileLog.e(e10);
+            }
         }
-        return this.d;
+        arrayList.clear();
     }
 
-    public final Bitmap c() {
-        Bitmap createBitmap = Bitmap.createBitmap(b().getWidth(), b().getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        canvas.drawColor(-16777216);
-        Paint paint = new Paint(3);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        canvas.drawBitmap(b(), 0.0f, 0.0f, paint);
-        return createBitmap;
+    public final float b() {
+        float f7;
+        if (this.f46444m == null) {
+            f7 = 0.9f;
+        } else {
+            f7 = 1.0f;
+        }
+        if (this.f46450s == null) {
+            return f7 * this.f46452u;
+        }
+        return com.google.android.gms.internal.vision.e2.A(this.f46452u, 0.5f, this.f46451t * 0.5f, f7);
     }
 }

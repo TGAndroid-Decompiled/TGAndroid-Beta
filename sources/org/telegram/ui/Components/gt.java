@@ -2,32 +2,32 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class gt implements Runnable {
-    public final int f26839a;
-    public final ht f26840b;
+    public final int f26819a;
+    public final ht f26820b;
 
     public gt(ht htVar, int i10) {
-        this.f26839a = i10;
-        this.f26840b = htVar;
+        this.f26819a = i10;
+        this.f26820b = htVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f26839a) {
+        switch (this.f26819a) {
             case 0:
-                ht htVar = this.f26840b;
-                htVar.f27142c = false;
-                htVar.f27141b.run();
+                ht htVar = this.f26820b;
+                htVar.f27073c = false;
+                htVar.f27072b.run();
                 ArrayList arrayList = htVar.h;
-                if (arrayList.isEmpty() || System.currentTimeMillis() - htVar.f27144f > 3600000) {
+                if (arrayList.isEmpty() || System.currentTimeMillis() - htVar.f27075f > 3600000) {
                     arrayList.clear();
-                    htVar.f27143e = false;
-                    htVar.f27145g = null;
+                    htVar.f27074e = false;
+                    htVar.f27076g = null;
                     htVar.a();
                     return;
                 }
                 return;
             default:
-                this.f26840b.f27146i = false;
+                this.f26820b.f27077i = false;
                 return;
         }
     }

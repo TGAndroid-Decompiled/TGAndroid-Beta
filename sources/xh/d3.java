@@ -7,7 +7,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.i10;
-import org.telegram.ui.Components.tc;
+import org.telegram.ui.Components.sc;
 import org.telegram.ui.zn;
 public final class d3 extends zn {
     public boolean Qc;
@@ -26,10 +26,10 @@ public final class d3 extends zn {
         super.onBecomeFullyVisible();
         if (!this.Qc) {
             this.Qc = true;
-            tc O = ad.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
-            O.f31104r = false;
+            sc O = ad.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
+            O.f30719r = false;
             O.j();
-            i10 i10Var = this.f44902m9;
+            i10 i10Var = this.f44857m9;
             if (i10Var != null) {
                 i10Var.c(true);
             }

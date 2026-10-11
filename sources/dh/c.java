@@ -3,47 +3,47 @@ package dh;
 import b2.z0;
 import e2.h;
 import e2.m;
-import m4.f1;
-import org.telegram.ui.ActionBar.e6;
+import m4.g1;
+import org.telegram.ui.ActionBar.d6;
 public final class c implements d, m, h {
-    public final int f8360a;
-    public final int f8361b;
-    public final int f8362c;
+    public final int f8359a;
+    public final int f8360b;
+    public final int f8361c;
 
     public c(int i10, int i11, int i12) {
-        this.f8360a = i12;
-        this.f8361b = i10;
-        this.f8362c = i11;
+        this.f8359a = i12;
+        this.f8360b = i10;
+        this.f8361c = i11;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f8360a) {
+        switch (this.f8359a) {
             case 3:
-                ((f1) obj).M(this.f8361b, this.f8362c);
+                ((g1) obj).M(this.f8360b, this.f8361c);
                 return;
             default:
-                ((f1) obj).q0(this.f8361b, this.f8362c);
+                ((g1) obj).q0(this.f8360b, this.f8361c);
                 return;
         }
     }
 
     @Override
-    public int g(e6 e6Var, boolean z10) {
+    public int g(d6 d6Var, boolean z10) {
         if (z10) {
-            return this.f8361b;
+            return this.f8360b;
         }
-        return this.f8362c;
+        return this.f8361c;
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f8360a) {
+        switch (this.f8359a) {
             case 1:
-                ((z0) obj).onSurfaceSizeChanged(this.f8361b, this.f8362c);
+                ((z0) obj).onSurfaceSizeChanged(this.f8360b, this.f8361c);
                 return;
             default:
-                ((z0) obj).onSurfaceSizeChanged(this.f8361b, this.f8362c);
+                ((z0) obj).onSurfaceSizeChanged(this.f8360b, this.f8361c);
                 return;
         }
     }

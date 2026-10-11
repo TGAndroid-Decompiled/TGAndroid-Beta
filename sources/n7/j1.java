@@ -1,3 +1,5 @@
 package n7;
-public interface j1 {
+public final class j1 {
+    public static final j1 f16818b = new j1();
+    public final f f16819a = new f(new Object());
 }

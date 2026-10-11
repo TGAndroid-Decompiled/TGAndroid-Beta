@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 public final class l extends Drawable {
     public dh.a f604a;
     public int f605b;
@@ -34,8 +34,8 @@ public final class l extends Drawable {
         if (aVar == null) {
             return;
         }
-        this.f605b = i6.m1(this.d, aVar.d());
-        this.f606c = i6.m1(this.d, this.f604a.m());
+        this.f605b = h6.m1(this.d, aVar.d());
+        this.f606c = h6.m1(this.d, this.f604a.m());
         int i10 = this.f605b;
         Paint paint = this.h;
         paint.setColor(i10);

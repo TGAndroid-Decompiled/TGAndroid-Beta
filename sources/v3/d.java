@@ -16,27 +16,27 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class d implements o {
-    public final int f49127a;
-    public final long f49128b;
-    public final v f49129c;
+    public final int f49170a;
+    public final long f49171b;
+    public final v f49172c;
     public final z d;
-    public final w f49130e;
-    public final i f49131f;
-    public final n f49132g;
+    public final w f49173e;
+    public final i f49174f;
+    public final n f49175g;
     public q h;
-    public h0 f49133i;
-    public h0 f49134j;
-    public int f49135k;
-    public p0 f49136l;
-    public long f49137m;
-    public long f49138n;
-    public long f49139o;
-    public long f49140p;
-    public int f49141q;
-    public f f49142r;
-    public boolean f49143s;
-    public boolean f49144t;
-    public long f49145u;
+    public h0 f49176i;
+    public h0 f49177j;
+    public int f49178k;
+    public p0 f49179l;
+    public long f49180m;
+    public long f49181n;
+    public long f49182o;
+    public long f49183p;
+    public int f49184q;
+    public f f49185r;
+    public boolean f49186s;
+    public boolean f49187t;
+    public long f49188u;
 
     public d(int i10) {
         this(i10, -9223372036854775807L);
@@ -48,17 +48,17 @@ public final class d implements o {
     }
 
     public final void b() {
-        f fVar = this.f49142r;
+        f fVar = this.f49185r;
         if ((fVar instanceof a) && ((k) fVar).f()) {
-            long j3 = this.f49140p;
-            if (j3 != -1 && j3 != this.f49142r.d()) {
-                a aVar = (a) this.f49142r;
-                this.f49142r = new a(this.f49140p, aVar.f49120i, aVar.f49121j, aVar.f49122k, aVar.h);
+            long j3 = this.f49183p;
+            if (j3 != -1 && j3 != this.f49185r.d()) {
+                a aVar = (a) this.f49185r;
+                this.f49185r = new a(this.f49183p, aVar.f49163i, aVar.f49164j, aVar.f49165k, aVar.h);
                 q qVar = this.h;
                 qVar.getClass();
-                qVar.d2(this.f49142r);
-                this.f49133i.getClass();
-                this.f49142r.l();
+                qVar.d2(this.f49185r);
+                this.f49176i.getClass();
+                this.f49185r.l();
             }
         }
     }
@@ -75,19 +75,19 @@ public final class d implements o {
     public final void g(q qVar) {
         this.h = qVar;
         h0 f22 = qVar.f2(0, 1);
-        this.f49133i = f22;
-        this.f49134j = f22;
+        this.f49176i = f22;
+        this.f49177j = f22;
         this.h.k1();
     }
 
     @Override
     public final void h(long j3, long j10) {
-        this.f49135k = 0;
-        this.f49137m = -9223372036854775807L;
-        this.f49138n = 0L;
-        this.f49141q = 0;
-        this.f49145u = j10;
-        if (!(this.f49142r instanceof b)) {
+        this.f49178k = 0;
+        this.f49180m = -9223372036854775807L;
+        this.f49181n = 0L;
+        this.f49184q = 0;
+        this.f49188u = j10;
+        if (!(this.f49185r instanceof b)) {
             return;
         }
         throw null;
@@ -95,8 +95,8 @@ public final class d implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8752b;
-        return a1.f8715e;
+        g0 g0Var = i0.f8751b;
+        return a1.f8714e;
     }
 
     @Override
@@ -105,17 +105,17 @@ public final class d implements o {
     }
 
     public d(int i10, long j3) {
-        this.f49127a = i10;
-        this.f49128b = j3;
-        this.f49129c = new v(10);
+        this.f49170a = i10;
+        this.f49171b = j3;
+        this.f49172c = new v(10);
         this.d = new Object();
-        this.f49130e = new w();
-        this.f49137m = -9223372036854775807L;
-        this.f49131f = new i(8);
+        this.f49173e = new w();
+        this.f49180m = -9223372036854775807L;
+        this.f49174f = new i(8);
         n nVar = new n();
-        this.f49132g = nVar;
-        this.f49134j = nVar;
-        this.f49140p = -1L;
+        this.f49175g = nVar;
+        this.f49177j = nVar;
+        this.f49183p = -1L;
     }
 
     @Override

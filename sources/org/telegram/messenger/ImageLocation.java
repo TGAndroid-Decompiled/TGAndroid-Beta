@@ -156,7 +156,7 @@ public class ImageLocation {
         }
         if (stickerSet.access_hash != 0) {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetShortName.f20062id = stickerSet.f20069id;
+            tL_inputStickerSetShortName.f20052id = stickerSet.f20059id;
             tL_inputStickerSetShortName.access_hash = stickerSet.access_hash;
         } else {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
@@ -228,7 +228,7 @@ public class ImageLocation {
     public String getKey(Object obj, Object obj2, boolean z10) {
         int i10;
         if (this.secureDocument != null) {
-            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f20177id;
+            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f20167id;
         }
         TLRPC.PhotoSize photoSize = this.photoSize;
         if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -241,7 +241,7 @@ public class ImageLocation {
             }
             org.telegram.ui.web.h2 h2Var = this.instantFile;
             if (h2Var != null) {
-                return Utilities.MD5(h2Var.f43381b);
+                return Utilities.MD5(h2Var.f43525b);
             }
             TLRPC.Document document = this.document;
             if (document != null) {
@@ -250,9 +250,9 @@ public class ImageLocation {
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append(this.document.dc_id);
                     sb2.append("_");
-                    sb2.append(this.document.f20048id);
+                    sb2.append(this.document.f20038id);
                     sb2.append("_");
-                    sb2.append(org.telegram.ui.ActionBar.i6.r0(themeDocument.themeSettings));
+                    sb2.append(org.telegram.ui.ActionBar.h6.r0(themeDocument.themeSettings));
                     sb2.append("_");
                     sb2.append(themeDocument.themeSettings.accent_color);
                     sb2.append("_");
@@ -269,8 +269,8 @@ public class ImageLocation {
                     }
                     sb2.append(i11);
                     return sb2.toString();
-                } else if (document.f20048id != 0 && document.dc_id != 0) {
-                    return this.document.dc_id + "_" + this.document.f20048id;
+                } else if (document.f20038id != 0 && document.dc_id != 0) {
+                    return this.document.dc_id + "_" + this.document.f20038id;
                 } else {
                     return null;
                 }
@@ -350,11 +350,11 @@ public class ImageLocation {
                 return null;
             }
             tL_inputPeerChat = new TLRPC.TL_inputPeerChannel();
-            tL_inputPeerChat.channel_id = chat.f20042id;
+            tL_inputPeerChat.channel_id = chat.f20032id;
             tL_inputPeerChat.access_hash = chat.access_hash;
         } else {
             tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
-            tL_inputPeerChat.chat_id = chat.f20042id;
+            tL_inputPeerChat.chat_id = chat.f20032id;
         }
         TLRPC.InputPeer inputPeer = tL_inputPeerChat;
         int i12 = chat.photo.dc_id;
@@ -434,14 +434,14 @@ public class ImageLocation {
                 if (photo != null) {
                     imageLocation.file_reference = photo.file_reference;
                     imageLocation.access_hash = photo.access_hash;
-                    imageLocation.photoId = photo.f20066id;
+                    imageLocation.photoId = photo.f20056id;
                     imageLocation.thumbSize = str;
                     return imageLocation;
                 }
                 if (document != null) {
                     imageLocation.file_reference = document.file_reference;
                     imageLocation.access_hash = document.access_hash;
-                    imageLocation.documentId = document.f20048id;
+                    imageLocation.documentId = document.f20038id;
                     imageLocation.thumbSize = str;
                 }
                 return imageLocation;

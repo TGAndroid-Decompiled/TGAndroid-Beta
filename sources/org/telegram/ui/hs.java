@@ -1,51 +1,32 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
 public final class hs implements Runnable {
-    public final int f38439a;
-    public final qs f38440b;
-    public final TLRPC.User f38441c;
+    public final int f38497a;
+    public final ps f38498b;
 
-    public hs(qs qsVar, TLRPC.User user, int i10) {
-        this.f38439a = i10;
-        this.f38440b = qsVar;
-        this.f38441c = user;
+    public hs(ps psVar, int i10) {
+        this.f38497a = i10;
+        this.f38498b = psVar;
     }
 
     @Override
     public final void run() {
-        String str;
-        switch (this.f38439a) {
+        switch (this.f38497a) {
             case 0:
-                qs qsVar = this.f38440b;
-                TLRPC.User user = this.f38441c;
-                if (user != null && qsVar.M == null && qsVar.N == null) {
-                    if (user.phone == null && (str = qsVar.L) != null) {
-                        user.phone = hf.b.d(str, false);
-                    }
-                    qsVar.f41217b.setText(user.first_name);
-                    org.telegram.ui.Cells.h3 h3Var = qsVar.f41217b.f22301b;
-                    h3Var.setSelection(h3Var.length());
-                    qsVar.f41218c.setText(user.last_name);
-                }
-                TLRPC.UserFull userFull = qsVar.getMessagesController().getUserFull(qsVar.H);
-                if (userFull != null) {
-                    TLRPC.TL_textWithEntities tL_textWithEntities = userFull.note;
-                    if (tL_textWithEntities != null) {
-                        qsVar.d.setText(tL_textWithEntities);
-                    } else {
-                        qsVar.d.setText("");
-                    }
-                }
-                if (qsVar.J) {
-                    qsVar.d.f22301b.requestFocus();
-                    AndroidUtilities.showKeyboard(qsVar.d.f22301b);
+                ps psVar = this.f38498b;
+                if (psVar.J) {
+                    psVar.d.f22289b.requestFocus();
+                    AndroidUtilities.showKeyboard(psVar.d.f22289b);
                     return;
                 }
                 return;
+            case 1:
+                ps.Z(this.f38498b);
+                return;
             default:
-                qs.V(this.f38440b, this.f38441c);
+                ps psVar2 = this.f38498b;
+                psVar2.presentFragment(zn.W9(psVar2.H), true);
                 return;
         }
     }

@@ -38,11 +38,11 @@ public final class b extends f implements Handler.Callback {
         if (looper == null) {
             handler = null;
         } else {
-            String str = d0.f8532a;
+            String str = d0.f8531a;
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f47635a;
+        this.I = a.f47681a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -76,7 +76,7 @@ public final class b extends f implements Handler.Callback {
                         l3.a aVar2 = this.L;
                         aVar2.clear();
                         aVar2.b(c10.length);
-                        aVar2.f10985c.put(c10);
+                        aVar2.f10984c.put(c10);
                         aVar2.c();
                         p0 a11 = a10.a(aVar2);
                         if (a11 != null) {
@@ -111,9 +111,9 @@ public final class b extends f implements Handler.Callback {
 
     public final void E(p0 p0Var) {
         c0 c0Var = this.J;
-        f0 f0Var = c0Var.f11620a;
-        n0 n0Var = f0Var.f11669i0;
-        p pVar = f0Var.f11676m;
+        f0 f0Var = c0Var.f11619a;
+        n0 n0Var = f0Var.f11668i0;
+        p pVar = f0Var.f11675m;
         m0 a2 = n0Var.a();
         int i10 = 0;
         while (true) {
@@ -124,7 +124,7 @@ public final class b extends f implements Handler.Callback {
             o0VarArr[i10].b(a2);
             i10++;
         }
-        f0Var.f11669i0 = new n0(a2);
+        f0Var.f11668i0 = new n0(a2);
         n0 d12 = f0Var.d1();
         if (!d12.equals(f0Var.O)) {
             f0Var.O = d12;
@@ -194,28 +194,28 @@ public final class b extends f implements Handler.Callback {
             if (!this.N && this.Q == null) {
                 l3.a aVar = this.L;
                 aVar.clear();
-                x xVar = this.f11646c;
-                xVar.u();
+                x xVar = this.f11645c;
+                xVar.e();
                 int w10 = w(xVar, aVar, 0);
                 if (w10 == -4) {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
-                    } else if (aVar.f10986e >= this.f11652w) {
-                        aVar.f15390r = this.P;
+                    } else if (aVar.f10985e >= this.f11651w) {
+                        aVar.f15389r = this.P;
                         aVar.c();
                         l lVar = this.M;
-                        String str = d0.f8532a;
+                        String str = d0.f8531a;
                         p0 a2 = lVar.a(aVar);
                         if (a2 != null) {
                             ArrayList arrayList = new ArrayList(a2.f3507a.length);
                             C(a2, arrayList);
                             if (!arrayList.isEmpty()) {
-                                this.Q = new p0(D(aVar.f10986e), (o0[]) arrayList.toArray(new o0[0]));
+                                this.Q = new p0(D(aVar.f10985e), (o0[]) arrayList.toArray(new o0[0]));
                             }
                         }
                     }
                 } else if (w10 == -5) {
-                    s sVar = (s) xVar.f16617c;
+                    s sVar = (s) xVar.f16659c;
                     sVar.getClass();
                     this.P = sVar.f3647w;
                 }

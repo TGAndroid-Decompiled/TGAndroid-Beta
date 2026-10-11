@@ -4,8 +4,8 @@ import android.content.Context;
 public final class sn extends yi {
     public final Runnable S2;
 
-    public sn(Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var, Runnable runnable) {
-        super(context, n2Var, false, false, true, e6Var);
+    public sn(Context context, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var, Runnable runnable) {
+        super(context, m2Var, false, false, true, d6Var);
         this.S2 = runnable;
     }
 

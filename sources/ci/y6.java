@@ -13,40 +13,40 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hn0;
+import org.telegram.ui.Components.in0;
 import org.telegram.ui.Components.m50;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ev0;
-import org.telegram.ui.g01;
+import org.telegram.ui.dv0;
+import org.telegram.ui.f01;
 import org.telegram.ui.g60;
-import org.telegram.ui.ty;
-import org.telegram.ui.web.w1;
+import org.telegram.ui.sy;
+import org.telegram.ui.web.f2;
 import org.telegram.ui.zn;
-public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.a2, t5.b, r9.g, m50 {
-    public final int f6352a;
-    public final long f6353b;
-    public final Object f6354c;
+public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram.ui.ActionBar.z1, t5.b, r9.g, m50 {
+    public final int f6351a;
+    public final long f6352b;
+    public final Object f6353c;
     public final Object d;
-    public final Object f6355e;
+    public final Object f6354e;
 
     public y6(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f6352a = i10;
-        this.f6354c = obj;
+        this.f6351a = i10;
+        this.f6353c = obj;
         this.d = obj2;
-        this.f6353b = j3;
-        this.f6355e = obj3;
+        this.f6352b = j3;
+        this.f6354e = obj3;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        zn.h0((zn) this.f6354c, (ArrayList) this.d, this.f6353b, (hn0) this.f6355e, z10, i10);
+        zn.h0((zn) this.f6353c, (ArrayList) this.d, this.f6352b, (in0) this.f6354e, z10, i10);
     }
 
     @Override
     public void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        zn znVar = (zn) this.f6354c;
+        zn znVar = (zn) this.f6353c;
         TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
-        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f6355e;
+        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f6354e;
         if (inputFile == null && inputFile2 == null && videoSize == null) {
             fileLocationArr[0] = photoSize2.location;
             fileLocationArr2[0] = photoSize.location;
@@ -67,33 +67,33 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
             tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
             tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        znVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ai.ga(znVar, fileLocationArr, str, fileLocationArr2, this.f6353b));
+        znVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ai.ga(znVar, fileLocationArr, str, fileLocationArr2, this.f6352b));
     }
 
     @Override
     public ScheduledFuture a(final m.f3 f3Var) {
-        switch (this.f6352a) {
+        switch (this.f6351a) {
             case 5:
-                r9.f fVar = (r9.f) this.f6354c;
-                return fVar.f47161b.schedule(new r9.d(fVar, (Runnable) this.d, f3Var, 1), this.f6353b, (TimeUnit) this.f6355e);
+                r9.f fVar = (r9.f) this.f6353c;
+                return fVar.f47207b.schedule(new r9.d(fVar, (Runnable) this.d, f3Var, 1), this.f6352b, (TimeUnit) this.f6354e);
             default:
-                final r9.f fVar2 = (r9.f) this.f6354c;
+                final r9.f fVar2 = (r9.f) this.f6353c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f47161b.schedule(new Callable() {
+                return fVar2.f47207b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f47160a.submit(new w1(14, callable, f3Var));
+                        return f.this.f47206a.submit(new f2(16, callable, f3Var));
                     }
-                }, this.f6353b, (TimeUnit) this.f6355e);
+                }, this.f6352b, (TimeUnit) this.f6354e);
         }
     }
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
-        b7 b7Var = (b7) this.f6354c;
+        b7 b7Var = (b7) this.f6353c;
         l8 l8Var = (l8) this.d;
-        long j3 = this.f6353b;
-        String str = (String) this.f6355e;
+        long j3 = this.f6352b;
+        String str = (String) this.f6354e;
         if (l8Var.K) {
             String str2 = l8Var.N;
             if (str2 != null) {
@@ -115,26 +115,26 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f6352a) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f6351a) {
             case 2:
-                ChatObject.Call call = (ChatObject.Call) this.f6354c;
-                Runnable runnable = (Runnable) this.f6355e;
+                ChatObject.Call call = (ChatObject.Call) this.f6353c;
+                Runnable runnable = (Runnable) this.f6354e;
                 boolean z10 = false;
-                org.telegram.ui.Cells.a2 a2Var = ((org.telegram.ui.Cells.a2[]) this.d)[0];
-                if (a2Var != null && a2Var.b()) {
+                org.telegram.ui.Cells.a2 a2Var2 = ((org.telegram.ui.Cells.a2[]) this.d)[0];
+                if (a2Var2 != null && a2Var2.b()) {
                     z10 = true;
                 }
-                g60.x1(call, z10, this.f6353b, runnable);
+                g60.x1(call, z10, this.f6352b, runnable);
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) this.f6355e;
-                ProfileActivity profileActivity = ((g01) this.f6354c).f37782b;
+                TLRPC.User user = (TLRPC.User) this.f6354e;
+                ProfileActivity profileActivity = ((f01) this.f6353c).f37499b;
                 profileActivity.N1 = true;
                 Bundle i11 = a1.g.i("scrollToTopOnResume", true);
-                long j3 = -this.f6353b;
+                long j3 = -this.f6352b;
                 i11.putLong("chat_id", j3);
-                if (profileActivity.getMessagesController().checkCanOpenChat(i11, (ty) this.d)) {
+                if (profileActivity.getMessagesController().checkCanOpenChat(i11, (sy) this.d)) {
                     zn znVar = new zn(i11);
                     NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
                     int i12 = NotificationCenter.closeChats;
@@ -149,7 +149,7 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
     }
 
     @Override
-    public ev0 getCloseIntoObject() {
+    public dv0 getCloseIntoObject() {
         return null;
     }
 
@@ -160,10 +160,10 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
 
     @Override
     public Object i() {
-        da.c cVar = (da.c) this.f6354c;
+        da.c cVar = (da.c) this.f6353c;
         Iterable iterable = (Iterable) this.d;
-        l5.i iVar = (l5.i) this.f6355e;
-        s5.g gVar = (s5.g) ((s5.d) cVar.f8234c);
+        l5.i iVar = (l5.i) this.f6354e;
+        s5.g gVar = (s5.g) ((s5.d) cVar.f8233c);
         gVar.getClass();
         if (iterable.iterator().hasNext()) {
             String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + s5.g.g(iterable);
@@ -182,7 +182,7 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
                 a2.endTransaction();
             }
         }
-        gVar.c(new ai.z1(((u5.a) cVar.f8237g).Z() + this.f6353b, iVar));
+        gVar.c(new ai.z1(((u5.a) cVar.f8236g).Z() + this.f6352b, iVar));
         return null;
     }
 
@@ -192,19 +192,19 @@ public final class y6 implements j8, org.telegram.ui.Components.f5, org.telegram
     }
 
     public y6(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f6352a = i10;
-        this.f6354c = obj;
+        this.f6351a = i10;
+        this.f6353c = obj;
         this.d = obj2;
-        this.f6355e = obj3;
-        this.f6353b = j3;
+        this.f6354e = obj3;
+        this.f6352b = j3;
     }
 
-    public y6(g01 g01Var, long j3, ty tyVar, TLRPC.User user) {
-        this.f6352a = 3;
-        this.f6354c = g01Var;
-        this.f6353b = j3;
-        this.d = tyVar;
-        this.f6355e = user;
+    public y6(f01 f01Var, long j3, sy syVar, TLRPC.User user) {
+        this.f6351a = 3;
+        this.f6353c = f01Var;
+        this.f6352b = j3;
+        this.d = syVar;
+        this.f6354e = user;
     }
 
     @Override

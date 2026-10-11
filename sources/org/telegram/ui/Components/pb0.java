@@ -4,15 +4,15 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class pb0 extends rm0 {
+public final class pb0 extends sm0 {
     public boolean V2;
     public boolean W2;
     public int X2;
     public int Y2;
     public final qb0 Z2;
 
-    public pb0(qb0 qb0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public pb0(qb0 qb0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
         this.Z2 = qb0Var;
         setOnScrollListener(new ai.r(this, 28));
         i(new ob0(this));
@@ -29,21 +29,21 @@ public final class pb0 extends rm0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         qb0 qb0Var = this.Z2;
-        gg.j1 j1Var = qb0Var.f30167f;
-        gg.p1 p1Var = qb0Var.f30166e;
-        if (!qb0Var.f30165c.f47695t ? this.W2 || p1Var == null || p1Var.f10767e == null || !p1Var.f10768f || motionEvent.getY() >= p1Var.f10767e.getBottom() : this.W2 || p1Var == null || p1Var.f10767e == null || !p1Var.f10768f || motionEvent.getY() <= p1Var.f10767e.getTop()) {
-            if (!this.V2 && org.telegram.ui.rt.q().r(motionEvent, qb0Var.f30164b, null, this.f30511n2)) {
+        gg.j1 j1Var = qb0Var.f30116f;
+        gg.p1 p1Var = qb0Var.f30115e;
+        if (!qb0Var.f30114c.f47741t ? this.W2 || p1Var == null || p1Var.f10766e == null || !p1Var.f10767f || motionEvent.getY() >= p1Var.f10766e.getBottom() : this.W2 || p1Var == null || p1Var.f10766e == null || !p1Var.f10767f || motionEvent.getY() <= p1Var.f10766e.getTop()) {
+            if (!this.V2 && org.telegram.ui.qt.q().r(motionEvent, qb0Var.f30113b, null, this.f30807n2)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (((j1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && j1Var.N()) {
-                if (j1Var.f10682n0 == null) {
-                    gg.f1 f1Var = new gg.f1(j1Var, j1Var.f10673f, j1Var.f10681n, j1Var.f10686r, 0);
-                    j1Var.f10682n0 = f1Var;
+                if (j1Var.f10681n0 == null) {
+                    gg.f1 f1Var = new gg.f1(j1Var, j1Var.f10672f, j1Var.f10680n, j1Var.f10685r, 0);
+                    j1Var.f10681n0 = f1Var;
                     f1Var.a();
                 }
-                j1Var.f10682n0.b();
+                j1Var.f10681n0.b();
             }
             if (super.onInterceptTouchEvent(motionEvent) || z10) {
                 return true;
@@ -100,10 +100,10 @@ public final class pb0 extends rm0 {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i11);
         qb0 qb0Var = this.Z2;
-        gg.p1 p1Var = qb0Var.f30166e;
+        gg.p1 p1Var = qb0Var.f30115e;
         if (p1Var != null) {
             p1Var.d = Integer.valueOf(size);
-            ci.bb bbVar = p1Var.f10767e;
+            ci.bb bbVar = p1Var.f10766e;
             if (bbVar != null) {
                 bbVar.requestLayout();
             }
@@ -116,12 +116,12 @@ public final class pb0 extends rm0 {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         qb0 qb0Var = this.Z2;
-        gg.p1 p1Var = qb0Var.f30166e;
-        if (qb0Var.f30165c.f47695t) {
-            if (!this.W2 && p1Var != null && p1Var.f10767e != null && p1Var.f10768f && motionEvent.getY() > p1Var.f10767e.getTop()) {
+        gg.p1 p1Var = qb0Var.f30115e;
+        if (qb0Var.f30114c.f47741t) {
+            if (!this.W2 && p1Var != null && p1Var.f10766e != null && p1Var.f10767f && motionEvent.getY() > p1Var.f10766e.getTop()) {
                 return false;
             }
-        } else if (!this.W2 && p1Var != null && p1Var.f10767e != null && p1Var.f10768f && motionEvent.getY() < p1Var.f10767e.getBottom()) {
+        } else if (!this.W2 && p1Var != null && p1Var.f10766e != null && p1Var.f10767f && motionEvent.getY() < p1Var.f10766e.getBottom()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);

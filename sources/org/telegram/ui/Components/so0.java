@@ -1,30 +1,51 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class so0 extends jt {
-    public final org.telegram.ui.dy f30822i0;
+public final class so0 extends cy0 {
+    public final int K;
+    public final org.telegram.ui.cy L;
 
-    public so0(org.telegram.ui.dy dyVar, rm0 rm0Var, Context context, int i10, int i11) {
-        super(rm0Var, context, i10, i11, false, null);
-        this.f30822i0 = dyVar;
+    public so0(org.telegram.ui.cy cyVar, Context context, k10 k10Var, int i10) {
+        super(context, k10Var, 1, null);
+        this.K = i10;
+        this.L = cyVar;
     }
 
     @Override
-    public final void N(boolean z10) {
-        boolean z11;
-        ArrayList arrayList;
-        super.N(z10);
-        ro0 ro0Var = this.f30822i0.f26137l0;
-        if (!this.Z && !this.f27781a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
-            z11 = false;
-        } else {
-            z11 = true;
+    public final void setVisibility(int i10) {
+        switch (this.K) {
+            case 0:
+                if (this.L.M0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i10);
+                    return;
+                }
+            case 1:
+                if (this.L.M0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i10);
+                    return;
+                }
+            case 2:
+                if (this.L.M0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i10);
+                    return;
+                }
+            default:
+                if (this.L.M0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i10);
+                    return;
+                }
         }
-        ro0Var.e(z11, z10);
-        ro0Var.d.setText(LocaleController.getString(R.string.NoResult));
-        ro0Var.f25085e.setVisibility(8);
     }
 }

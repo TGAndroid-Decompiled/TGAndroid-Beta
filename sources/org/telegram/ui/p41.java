@@ -1,120 +1,71 @@
 package org.telegram.ui;
 
-import android.util.LongSparseArray;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SaveToGallerySettingsHelper;
-import org.telegram.tgnet.TLRPC;
-public final class p41 implements View.OnClickListener {
-    public final int f40711a;
-    public final Object f40712b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class p41 implements org.telegram.ui.Components.lp0 {
+    public final org.telegram.ui.Components.mp0 f40743a;
+    public final s41 f40744b;
+    public final s41 f40745c;
+    public final s41 d;
+    public final q41 f40746e;
 
-    public p41(Object obj, int i10) {
-        this.f40711a = i10;
-        this.f40712b = obj;
+    public p41(q41 q41Var, org.telegram.ui.Components.mp0 mp0Var, s41 s41Var, s41 s41Var2, s41 s41Var3) {
+        this.f40746e = q41Var;
+        this.f40743a = mp0Var;
+        this.f40744b = s41Var;
+        this.f40745c = s41Var2;
+        this.d = s41Var3;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Cells.a2 a2Var;
-        float f7;
-        switch (this.f40711a) {
-            case 0:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f40712b;
-                if (saveToGallerySettingsActivity.d) {
-                    LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f34441a);
-                    SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f34443c;
-                    saveGalleryExceptions.put(dialogException.dialogId, dialogException);
-                    saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f34441a, saveGalleryExceptions);
-                }
-                saveToGallerySettingsActivity.finishFragment();
-                return;
-            case 1:
-                ((u41) this.f40712b).dismiss();
-                return;
-            case 2:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f40712b;
-                MessageObject messageObject = secretMediaViewer.f34469h0;
-                if (messageObject != null) {
-                    TLRPC.Message message = messageObject.messageOwner;
-                    if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                        ci.d4 d4Var = secretMediaViewer.f34488r;
-                        if (d4Var.V) {
-                            d4Var.e(true);
-                            return;
-                        } else {
-                            secretMediaViewer.l();
-                            return;
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 3:
-                u71 u71Var = (u71) this.f40712b;
-                if (u71Var.f42396a0 instanceof TLRPC.User) {
-                    ci.d dVar = u71Var.f42403h0;
-                    if (!dVar.N) {
-                        dVar.setLoading(true);
-                        u71Var.U((TLRPC.User) u71Var.f42396a0, null, null);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                SessionsActivity sessionsActivity = ((v81) this.f40712b).d;
-                if (sessionsActivity.getParentActivity() != null) {
-                    if (sessionsActivity.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                        sessionsActivity.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
-                        return;
-                    }
-                    v9.e0(sessionsActivity.getParentActivity(), false, 2, new t81(sessionsActivity));
-                    return;
-                }
-                return;
-            case 5:
-                ((me1) this.f40712b).c(true);
-                return;
-            case 6:
-                ((me1) ((iw0) this.f40712b).f38818c).c(true);
-                return;
-            case 7:
-                ue1 ue1Var = (ue1) this.f40712b;
-                ArrayList arrayList = ue1Var.f42460f;
-                HashSet hashSet = ue1Var.f42464w;
-                if (!hashSet.isEmpty()) {
-                    TLRPC.User user = ue1Var.getMessagesController().getUser(Long.valueOf(ue1Var.getUserConfig().getClientUserId()));
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i10)).f20042id))) {
-                            arrayList2.add((TLRPC.Chat) arrayList.get(i10));
-                        }
-                    }
-                    for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                        TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i11);
-                        ue1Var.getMessagesController().putChat(chat, false);
-                        ue1Var.getMessagesController().deleteParticipantFromChat(chat.f20042id, user);
-                    }
-                    ue1Var.finishFragment();
-                    return;
-                }
-                return;
-            default:
-                oj1 oj1Var = (oj1) this.f40712b;
-                oj1Var.f40590a.c(!a2Var.b(), true);
-                oj1Var.f40592c.setEnabled(oj1Var.f40590a.b());
-                ViewPropertyAnimator animate = oj1Var.f40592c.animate();
-                if (oj1Var.f40590a.b()) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.5f;
-                }
-                animate.alpha(f7).start();
-                return;
+    public final void X(float f7, boolean z10) {
+        long j3;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f40746e.d;
+        boolean isAttachedToWindow = this.f40743a.isAttachedToWindow();
+        if (f7 > 0.7f) {
+            j3 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
+        } else {
+            j3 = (((float) 104333312) * (f7 / 0.7f)) + 524288.0f;
         }
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        s41 s41Var = this.d;
+        s41 s41Var2 = this.f40744b;
+        s41 s41Var3 = this.f40745c;
+        if (i10 >= 0) {
+            s41Var2.e(false, isAttachedToWindow);
+            s41Var3.e(false, isAttachedToWindow);
+            s41Var.e(true, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(s41Var3, false, 0.8f, isAttachedToWindow);
+        } else if (f7 == 0.0f) {
+            s41Var2.e(true, isAttachedToWindow);
+            s41Var3.e(false, isAttachedToWindow);
+            s41Var.e(false, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(s41Var3, false, 0.8f, isAttachedToWindow);
+        } else {
+            s41Var3.c(LocaleController.formatString("UpToFileSize", R.string.UpToFileSize, AndroidUtilities.formatFileSize(j3, true, false)), false, true);
+            s41Var2.e(false, isAttachedToWindow);
+            s41Var3.e(true, isAttachedToWindow);
+            s41Var.e(false, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(s41Var3, true, 0.8f, isAttachedToWindow);
+        }
+        if (z10) {
+            saveToGallerySettingsActivity.X().limitVideo = j3;
+            saveToGallerySettingsActivity.Y();
+        }
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        return null;
+    }
+
+    @Override
+    public final int i0() {
+        return 0;
+    }
+
+    @Override
+    public final void z() {
     }
 }

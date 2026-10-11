@@ -18,15 +18,15 @@ public final class i0 {
         this.f3337a = 0;
         this.f3338b = 0;
         this.f3342g = new HashSet();
-        hashSet.add(q9.r.a(cls));
+        hashSet.add(q9.s.a(cls));
         for (Class cls2 : clsArr) {
             r6.a(cls2, "Null interface");
-            ((HashSet) this.f3339c).add(q9.r.a(cls2));
+            ((HashSet) this.f3339c).add(q9.s.a(cls2));
         }
     }
 
     public void a(q9.j jVar) {
-        if (!((HashSet) this.f3339c).contains(jVar.f46071a)) {
+        if (!((HashSet) this.f3339c).contains(jVar.f46102a)) {
             ((HashSet) this.f3340e).add(jVar);
             return;
         }

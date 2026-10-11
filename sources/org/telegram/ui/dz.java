@@ -1,42 +1,32 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-public final class dz implements ImageReceiver.ImageReceiverDelegate {
-    public final ez f37155a;
-    public final boolean f37156b;
-    public final MessageObject f37157c;
-    public final fz d;
+import org.telegram.tgnet.TLRPC;
+public final class dz {
+    public float f37144a;
+    public float f37145b;
+    public boolean f37146c;
+    public float d;
+    public float f37147e;
+    public float f37148f;
+    public float f37149g;
+    public boolean h;
+    public boolean f37150i;
+    public zg.d f37151j;
+    public long f37152k;
+    public boolean f37153l;
+    public boolean f37154m;
+    public boolean f37155n;
+    public float f37156o;
+    public int f37157p;
+    public TLRPC.Document f37158q;
+    public final ImageReceiver f37159r;
+    public String f37160s;
 
-    public dz(fz fzVar, ez ezVar, boolean z10, MessageObject messageObject) {
-        this.d = fzVar;
-        this.f37155a = ezVar;
-        this.f37156b = z10;
-        this.f37157c = messageObject;
-    }
-
-    @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ez ezVar = this.f37155a;
-        if (ezVar.f37446r.getLottieAnimation() != null) {
-            ezVar.f37446r.getLottieAnimation().N(0, false, true);
-        }
-    }
-
-    @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.i5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        MessageObject messageObject;
-        if (this.f37156b && (messageObject = this.f37157c) != null && messageObject.isAnimatedAnimatedEmoji() && imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().f25756x == null) {
-            try {
-                this.d.G.performHapticFeedback(3, 1);
-            } catch (Exception unused) {
-            }
-        }
+    public dz() {
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.f37159r = imageReceiver;
+        imageReceiver.setAllowLoadingOnAttachedOnly(true);
+        imageReceiver.setAllowDrawWhileCacheGenerating(true);
     }
 }

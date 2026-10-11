@@ -49,8 +49,8 @@ public final class j0 {
 
     public j0(f2.p pVar, f2.r rVar) {
         this.f4130a = 1;
-        int i10 = rVar.f9620a;
-        ByteBuffer byteBuffer = rVar.f9621b;
+        int i10 = rVar.f9619a;
+        ByteBuffer byteBuffer = rVar.f9620b;
         e2.d.b(i10 == 6 || i10 == 3);
         int min = Math.min(4, byteBuffer.remaining());
         byte[] bArr = new byte[min];

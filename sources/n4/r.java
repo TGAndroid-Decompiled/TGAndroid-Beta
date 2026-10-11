@@ -6,27 +6,27 @@ import android.os.Bundle;
 import android.os.RemoteCallbackList;
 import java.util.List;
 public class r {
-    public final MediaSession f16597a;
-    public final q f16598b;
-    public final w f16599c;
-    public final Bundle f16600e;
-    public f0 f16602g;
+    public final MediaSession f16639a;
+    public final q f16640b;
+    public final w f16641c;
+    public final Bundle f16642e;
+    public f0 f16644g;
     public List h;
-    public m f16603i;
-    public int f16604j;
-    public int f16605k;
-    public p f16606l;
-    public z f16607m;
+    public m f16645i;
+    public int f16646j;
+    public int f16647k;
+    public p f16648l;
+    public z f16649m;
     public final Object d = new Object();
-    public final RemoteCallbackList f16601f = new RemoteCallbackList();
+    public final RemoteCallbackList f16643f = new RemoteCallbackList();
 
     public r(Context context, String str, Bundle bundle) {
         MediaSession a2 = a(context, str, bundle);
-        this.f16597a = a2;
+        this.f16639a = a2;
         q qVar = new q(this);
-        this.f16598b = qVar;
-        this.f16599c = new w(a2.getSessionToken(), qVar);
-        this.f16600e = bundle;
+        this.f16640b = qVar;
+        this.f16641c = new w(a2.getSessionToken(), qVar);
+        this.f16642e = bundle;
         a2.setFlags(3);
     }
 
@@ -37,7 +37,7 @@ public class r {
     public final p b() {
         p pVar;
         synchronized (this.d) {
-            pVar = this.f16606l;
+            pVar = this.f16648l;
         }
         return pVar;
     }
@@ -45,14 +45,14 @@ public class r {
     public z c() {
         z zVar;
         synchronized (this.d) {
-            zVar = this.f16607m;
+            zVar = this.f16649m;
         }
         return zVar;
     }
 
     public void d(z zVar) {
         synchronized (this.d) {
-            this.f16607m = zVar;
+            this.f16649m = zVar;
         }
     }
 }

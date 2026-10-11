@@ -6,35 +6,35 @@ import android.graphics.drawable.GradientDrawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class r9 implements Runnable {
-    public final int f30427a = 0;
-    public final x9 f30428b;
-    public final Runnable[] f30429c;
+    public final int f30395a = 0;
+    public final x9 f30396b;
+    public final Runnable[] f30397c;
     public final b70 d;
-    public final int f30430e;
-    public final w7.i0[] f30431f;
+    public final int f30398e;
+    public final w7.i0[] f30399f;
 
     public r9(x9 x9Var, b70 b70Var, Runnable[] runnableArr, int i10, w7.i0[] i0VarArr) {
-        this.f30428b = x9Var;
+        this.f30396b = x9Var;
         this.d = b70Var;
-        this.f30429c = runnableArr;
-        this.f30430e = i10;
-        this.f30431f = i0VarArr;
+        this.f30397c = runnableArr;
+        this.f30398e = i10;
+        this.f30399f = i0VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f30427a) {
+        switch (this.f30395a) {
             case 0:
-                x9 x9Var = this.f30428b;
+                x9 x9Var = this.f30396b;
                 b70 b70Var = this.d;
-                Runnable[] runnableArr = this.f30429c;
-                int i10 = this.f30430e;
-                w7.i0[] i0VarArr = this.f30431f;
+                Runnable[] runnableArr = this.f30397c;
+                int i10 = this.f30398e;
+                w7.i0[] i0VarArr = this.f30399f;
                 try {
                     GradientDrawable.Orientation orientation = x9Var.getOrientation();
-                    int[] iArr = x9Var.f32874a;
-                    int i11 = b70Var.f24881a;
-                    int i12 = b70Var.f24882b;
+                    int[] iArr = x9Var.f32851a;
+                    int i11 = b70Var.f24871a;
+                    int i12 = b70Var.f24872b;
                     Rect e7 = x9.e(orientation, i11, i12);
                     Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
                     Utilities.drawDitheredGradient(createBitmap, iArr, e7.left, e7.top, e7.right, e7.bottom);
@@ -45,16 +45,16 @@ public final class r9 implements Runnable {
                     throw th2;
                 }
             default:
-                x9.a(this.f30428b, this.f30429c, null, this.d, this.f30430e, this.f30431f);
+                x9.a(this.f30396b, this.f30397c, null, this.d, this.f30398e, this.f30399f);
                 return;
         }
     }
 
     public r9(x9 x9Var, Runnable[] runnableArr, b70 b70Var, int i10, w7.i0[] i0VarArr) {
-        this.f30428b = x9Var;
-        this.f30429c = runnableArr;
+        this.f30396b = x9Var;
+        this.f30397c = runnableArr;
         this.d = b70Var;
-        this.f30430e = i10;
-        this.f30431f = i0VarArr;
+        this.f30398e = i10;
+        this.f30399f = i0VarArr;
     }
 }

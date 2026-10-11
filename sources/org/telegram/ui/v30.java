@@ -14,7 +14,7 @@ public final class v30 extends s4.j {
         g60 g60Var = this.F;
         g60Var.Q.invalidate();
         g60Var.a2.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.f3) g60Var).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) g60Var).containerView;
         viewGroup.invalidate();
         g60.K0(g60Var);
     }

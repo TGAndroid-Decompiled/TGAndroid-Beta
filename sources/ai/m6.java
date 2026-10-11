@@ -10,7 +10,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.g30;
-import org.telegram.ui.Components.nx0;
+import org.telegram.ui.Components.ox0;
 public final class m6 {
     public final ImageReceiver f1396a;
     public int f1397b;
@@ -72,12 +72,12 @@ public final class m6 {
         int i10 = (int) (n6Var.J + 1.0f);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
         TextPaint textPaint = this.d;
-        StaticLayout c10 = nx0.c(spannableStringBuilder, textPaint, i10, alignment, 0.0f, null, Integer.MAX_VALUE, 1, true);
+        StaticLayout c10 = ox0.c(spannableStringBuilder, textPaint, i10, alignment, 0.0f, null, Integer.MAX_VALUE, 1, true);
         this.f1398c = c10;
         if (c10.getLineCount() > 1) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
             n6.a(n6Var, spannableStringBuilder2, this.f1399e.f1708a.views, true);
-            this.f1398c = nx0.c(spannableStringBuilder2, textPaint, (int) (n6Var.J + 1.0f), alignment, 0.0f, null, Integer.MAX_VALUE, 2, true);
+            this.f1398c = ox0.c(spannableStringBuilder2, textPaint, (int) (n6Var.J + 1.0f), alignment, 0.0f, null, Integer.MAX_VALUE, 2, true);
         }
     }
 }

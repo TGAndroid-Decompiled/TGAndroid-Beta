@@ -15,16 +15,16 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 import v7.r6;
 public final class e extends DefaultHandler implements y2.n {
-    public static final Pattern f15932b = Pattern.compile("(\\d+)(?:/(\\d+))?");
-    public static final Pattern f15933c = Pattern.compile("CC([1-4])=.*");
+    public static final Pattern f15953b = Pattern.compile("(\\d+)(?:/(\\d+))?");
+    public static final Pattern f15954c = Pattern.compile("CC([1-4])=.*");
     public static final Pattern d = Pattern.compile("([1-9]|[1-5][0-9]|6[0-3])=.*");
-    public static final int[] f15934e = {2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2};
-    public static final int[] f15935f = {-1, 1, 2, 3, 4, 5, 6, 8, 2, 3, 4, 7, 8, 24, 8, 12, 10, 12, 14, 12, 14};
-    public final XmlPullParserFactory f15936a;
+    public static final int[] f15955e = {2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2};
+    public static final int[] f15956f = {-1, 1, 2, 3, 4, 5, 6, 8, 2, 3, 4, 7, 8, 24, 8, 12, 10, 12, 14, 12, 14};
+    public final XmlPullParserFactory f15957a;
 
     public e() {
         try {
-            this.f15936a = XmlPullParserFactory.newInstance();
+            this.f15957a = XmlPullParserFactory.newInstance();
         } catch (XmlPullParserException e7) {
             throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e7);
         }
@@ -35,7 +35,7 @@ public final class e extends DefaultHandler implements y2.n {
         if (i10 >= 0) {
             i11 = i10 + 1;
         } else {
-            String str = d0.f8532a;
+            String str = d0.f8531a;
             i11 = (int) ((((j11 - j3) + j10) - 1) / j10);
         }
         for (int i12 = 0; i12 < i11; i12++) {
@@ -111,16 +111,16 @@ public final class e extends DefaultHandler implements y2.n {
         ArrayList arrayList2 = new ArrayList();
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             b bVar = (b) arrayList.get(i12);
-            String l4 = e2.a.l(bVar.f15912a, str2);
+            String l4 = e2.a.l(bVar.f15933a, str2);
             if (attributeValue3 == null) {
                 str = l4;
             } else {
                 str = attributeValue3;
             }
             if (z10) {
-                i10 = bVar.f15914c;
+                i10 = bVar.f15935c;
                 i11 = bVar.d;
-                str = bVar.f15913b;
+                str = bVar.f15934b;
             }
             arrayList2.add(new b(i10, i11, l4, str));
         }
@@ -181,7 +181,7 @@ public final class e extends DefaultHandler implements y2.n {
         if (attributeValue == null) {
             return j3;
         }
-        Matcher matcher = d0.f8535e.matcher(attributeValue);
+        Matcher matcher = d0.f8534e.matcher(attributeValue);
         if (matcher.matches()) {
             boolean isEmpty = TextUtils.isEmpty(matcher.group(1));
             String group = matcher.group(3);
@@ -235,7 +235,7 @@ public final class e extends DefaultHandler implements y2.n {
     public static float j(XmlPullParser xmlPullParser, float f7) {
         String attributeValue = xmlPullParser.getAttributeValue(null, "frameRate");
         if (attributeValue != null) {
-            Matcher matcher = f15932b.matcher(attributeValue);
+            Matcher matcher = f15953b.matcher(attributeValue);
             if (matcher.matches()) {
                 int parseInt = Integer.parseInt(matcher.group(1));
                 String group = matcher.group(2);
@@ -248,7 +248,7 @@ public final class e extends DefaultHandler implements y2.n {
         return f7;
     }
 
-    public static m2.c k(org.xmlpull.v1.XmlPullParser r163, android.net.Uri r164) {
+    public static m2.c k(org.xmlpull.v1.XmlPullParser r168, android.net.Uri r169) {
         throw new UnsupportedOperationException("Method not decompiled: m2.e.k(org.xmlpull.v1.XmlPullParser, android.net.Uri):m2.c");
     }
 
@@ -387,7 +387,7 @@ public final class e extends DefaultHandler implements y2.n {
     public static int n(ArrayList arrayList) {
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (r6.a("http://dashif.org/guidelines/trickmode", ((f) arrayList.get(i11)).f15937a)) {
+            if (r6.a("http://dashif.org/guidelines/trickmode", ((f) arrayList.get(i11)).f15958a)) {
                 i10 = 16384;
             }
         }
@@ -399,7 +399,7 @@ public final class e extends DefaultHandler implements y2.n {
         long j10;
         long j11;
         if (rVar != null) {
-            j3 = rVar.f15973b;
+            j3 = rVar.f15994b;
         } else {
             j3 = 1;
         }
@@ -411,7 +411,7 @@ public final class e extends DefaultHandler implements y2.n {
         long j12 = j3;
         long j13 = 0;
         if (rVar != null) {
-            j10 = rVar.f15974c;
+            j10 = rVar.f15995c;
         } else {
             j10 = 0;
         }
@@ -426,7 +426,7 @@ public final class e extends DefaultHandler implements y2.n {
             j11 = 0;
         }
         if (rVar != null) {
-            j13 = rVar.f15971e;
+            j13 = rVar.f15992e;
         }
         String attributeValue3 = xmlPullParser.getAttributeValue(null, "indexRange");
         if (attributeValue3 != null) {
@@ -437,7 +437,7 @@ public final class e extends DefaultHandler implements y2.n {
         long j15 = j13;
         long j16 = j11;
         if (rVar != null) {
-            jVar = rVar.f15972a;
+            jVar = rVar.f15993a;
         }
         while (true) {
             xmlPullParser.next();
@@ -462,7 +462,7 @@ public final class e extends DefaultHandler implements y2.n {
         long j18;
         long j19 = 1;
         if (oVar != null) {
-            j14 = oVar.f15973b;
+            j14 = oVar.f15994b;
         } else {
             j14 = 1;
         }
@@ -473,7 +473,7 @@ public final class e extends DefaultHandler implements y2.n {
         }
         long j20 = j14;
         if (oVar != null) {
-            j15 = oVar.f15974c;
+            j15 = oVar.f15995c;
         } else {
             j15 = 0;
         }
@@ -483,7 +483,7 @@ public final class e extends DefaultHandler implements y2.n {
         }
         long j21 = j15;
         if (oVar != null) {
-            j16 = oVar.f15961e;
+            j16 = oVar.f15982e;
         } else {
             j16 = -9223372036854775807L;
         }
@@ -529,13 +529,13 @@ public final class e extends DefaultHandler implements y2.n {
         } while (!e2.d.l(xmlPullParser, "SegmentList"));
         if (oVar != null) {
             if (jVar == null) {
-                jVar = oVar.f15972a;
+                jVar = oVar.f15993a;
             }
             if (list2 == null) {
-                list2 = oVar.f15962f;
+                list2 = oVar.f15983f;
             }
             if (list == null) {
-                list = oVar.f15965j;
+                list = oVar.f15986j;
             }
         }
         return new o(jVar, j20, j21, j23, j22, list2, j18, list, d0.P(j13), d0.P(j3));
@@ -552,7 +552,7 @@ public final class e extends DefaultHandler implements y2.n {
         la.h hVar2;
         long j20 = 1;
         if (pVar != null) {
-            j14 = pVar.f15973b;
+            j14 = pVar.f15994b;
         } else {
             j14 = 1;
         }
@@ -563,7 +563,7 @@ public final class e extends DefaultHandler implements y2.n {
         }
         long j21 = j14;
         if (pVar != null) {
-            j15 = pVar.f15974c;
+            j15 = pVar.f15995c;
         } else {
             j15 = 0;
         }
@@ -573,7 +573,7 @@ public final class e extends DefaultHandler implements y2.n {
         }
         long j22 = j15;
         if (pVar != null) {
-            j16 = pVar.f15961e;
+            j16 = pVar.f15982e;
         } else {
             j16 = -9223372036854775807L;
         }
@@ -594,8 +594,8 @@ public final class e extends DefaultHandler implements y2.n {
         while (true) {
             if (i10 < list.size()) {
                 f fVar = (f) list.get(i10);
-                if (r6.a("http://dashif.org/guidelines/last-segment-number", fVar.f15937a)) {
-                    j17 = Long.parseLong(fVar.f15938b);
+                if (r6.a("http://dashif.org/guidelines/last-segment-number", fVar.f15958a)) {
+                    j17 = Long.parseLong(fVar.f15959b);
                     break;
                 }
                 i10++;
@@ -616,13 +616,13 @@ public final class e extends DefaultHandler implements y2.n {
             j19 = j18;
         }
         if (pVar != null) {
-            hVar = pVar.f15967k;
+            hVar = pVar.f15988k;
         } else {
             hVar = null;
         }
         la.h s10 = s(xmlPullParser, "media", hVar);
         if (pVar != null) {
-            hVar2 = pVar.f15966j;
+            hVar2 = pVar.f15987j;
         } else {
             hVar2 = null;
         }
@@ -640,10 +640,10 @@ public final class e extends DefaultHandler implements y2.n {
         } while (!e2.d.l(xmlPullParser, "SegmentTemplate"));
         if (pVar != null) {
             if (jVar == null) {
-                jVar = pVar.f15972a;
+                jVar = pVar.f15993a;
             }
             if (list2 == null) {
-                list2 = pVar.f15962f;
+                list2 = pVar.f15983f;
             }
         }
         return new p(jVar, j21, j22, j24, j25, j23, list2, j19, s11, s10, d0.P(j13), d0.P(j3));
@@ -694,7 +694,7 @@ public final class e extends DefaultHandler implements y2.n {
             }
         } while (!e2.d.l(xmlPullParser, "SegmentTimeline"));
         if (z10) {
-            String str = d0.f8532a;
+            String str = d0.f8531a;
             a(arrayList, j12, j13, i10, d0.X(j10, j3, 1000L, RoundingMode.DOWN));
         }
         return arrayList;
@@ -787,7 +787,7 @@ public final class e extends DefaultHandler implements y2.n {
     @Override
     public final Object t2(Uri uri, g2.k kVar) {
         try {
-            XmlPullParser newPullParser = this.f15936a.newPullParser();
+            XmlPullParser newPullParser = this.f15957a.newPullParser();
             newPullParser.setInput(kVar, null);
             if (newPullParser.next() == 2 && "MPD".equals(newPullParser.getName())) {
                 return k(newPullParser, uri);

@@ -4,11 +4,11 @@ import android.os.Handler;
 import java.lang.ref.WeakReference;
 import p4.m0;
 public final class c extends Handler {
-    public final int f10108a;
-    public WeakReference f10109b;
+    public final int f10107a;
+    public WeakReference f10108b;
 
     public c(int i10) {
-        this.f10108a = i10;
+        this.f10107a = i10;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class c extends Handler {
     }
 
     public c(m0 m0Var) {
-        this.f10108a = 2;
-        this.f10109b = new WeakReference(m0Var);
+        this.f10107a = 2;
+        this.f10108b = new WeakReference(m0Var);
     }
 }

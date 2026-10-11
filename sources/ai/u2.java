@@ -47,8 +47,8 @@ public final class u2 extends AnimatorListenerAdapter {
                 lcVar.L = null;
                 lcVar.I = f7;
                 lcVar.j();
-                lcVar.f5512r.invalidate();
-                lcVar.f5499n.invalidate();
+                lcVar.f5511r.invalidate();
+                lcVar.f5498n.invalidate();
                 runnable.run();
                 lcVar.P.unlock();
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
@@ -59,13 +59,13 @@ public final class u2 extends AnimatorListenerAdapter {
                     runnable2.run();
                     lcVar.Q = null;
                 }
-                lcVar.f5512r.invalidate();
-                lcVar.f5483h0.invalidate();
+                lcVar.f5511r.invalidate();
+                lcVar.f5482h0.invalidate();
                 return;
             case 3:
                 p50 p50Var = (p50) obj;
                 p50Var.h = f7;
-                p50Var.f40713a.invalidate();
+                p50Var.f40749a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -73,7 +73,7 @@ public final class u2 extends AnimatorListenerAdapter {
                 return;
             default:
                 yh.w3 w3Var = (yh.w3) obj;
-                w3Var.f53385y = f7;
+                w3Var.f53428y = f7;
                 w3Var.invalidate();
                 if (animator == w3Var.E && runnable != null) {
                     runnable.run();

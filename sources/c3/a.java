@@ -12,9 +12,9 @@ public final class a {
 
     public c5.h a() {
         ?? obj = new Object();
-        obj.f4254a = this.f4051b;
-        obj.f4255b = this.f4052c;
-        obj.f4256c = this.f4050a;
+        obj.f4253a = this.f4051b;
+        obj.f4254b = this.f4052c;
+        obj.f4255c = this.f4050a;
         return obj;
     }
 }

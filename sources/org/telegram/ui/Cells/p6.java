@@ -10,18 +10,18 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.ca0;
 import org.telegram.ui.Components.fa0;
 public final class p6 extends FrameLayout {
-    public final ca0 f22660a;
-    public final fa0 f22661b;
-    public final CheckBoxSquare f22662c;
+    public final ca0 f22648a;
+    public final fa0 f22649b;
+    public final CheckBoxSquare f22650c;
 
-    public p6(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public p6(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         int i10;
         int i11;
         float f7;
         float f10;
         CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
-        this.f22662c = checkBoxSquare;
+        this.f22650c = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
         checkBoxSquare.setFocusable(false);
         checkBoxSquare.setFocusableInTouchMode(false);
@@ -33,11 +33,11 @@ public final class p6 extends FrameLayout {
         }
         addView(checkBoxSquare, w7.x5.a(18.0f, 21.0f, 0.0f, 21.0f, 0.0f, 18, i10 | 16));
         ca0 ca0Var = new ca0(this);
-        this.f22660a = ca0Var;
-        fa0 fa0Var = new fa0(context, ca0Var, e6Var);
-        this.f22661b = fa0Var;
-        fa0Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
-        fa0Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.J6, e6Var));
+        this.f22648a = ca0Var;
+        fa0 fa0Var = new fa0(context, ca0Var, d6Var);
+        this.f22649b = fa0Var;
+        fa0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+        fa0Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.J6, d6Var));
         fa0Var.setTextSize(1, 15.0f);
         fa0Var.setMaxLines(2);
         if (LocaleController.isRTL) {
@@ -64,20 +64,20 @@ public final class p6 extends FrameLayout {
     }
 
     public CheckBoxSquare getCheckBox() {
-        return this.f22662c;
+        return this.f22650c;
     }
 
     public TextView getTextView() {
-        return this.f22661b;
+        return this.f22649b;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        ca0 ca0Var = this.f22660a;
+        ca0 ca0Var = this.f22648a;
         if (ca0Var != null) {
             canvas.save();
-            fa0 fa0Var = this.f22661b;
+            fa0 fa0Var = this.f22649b;
             canvas.translate(fa0Var.getLeft(), fa0Var.getTop());
             if (ca0Var.f(canvas)) {
                 invalidate();
@@ -87,10 +87,10 @@ public final class p6 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        this.f22662c.a(z10, true);
+        this.f22650c.a(z10, true);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f22661b.setText(charSequence);
+        this.f22649b.setText(charSequence);
     }
 }

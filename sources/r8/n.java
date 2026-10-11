@@ -10,17 +10,17 @@ import com.google.android.gms.internal.vision.g3;
 import com.google.android.gms.internal.vision.u2;
 import java.nio.ByteBuffer;
 public final class n extends b2.g {
-    public final u2 f47141b;
+    public final u2 f47187b;
 
     public n(u2 u2Var) {
         super(3);
-        this.f47141b = u2Var;
+        this.f47187b = u2Var;
     }
 
     @Override
     public final void U0() {
         super.U0();
-        this.f47141b.l();
+        this.f47187b.l();
     }
 
     public final SparseArray b1(la.h hVar) {
@@ -28,7 +28,7 @@ public final class n extends b2.g {
         if (hVar != null) {
             g3 b10 = g3.b(hVar);
             Bitmap bitmap = (Bitmap) hVar.d;
-            u2 u2Var = this.f47141b;
+            u2 u2Var = this.f47187b;
             if (bitmap != null) {
                 if (!u2Var.k()) {
                     mVarArr = new m[0];
@@ -36,9 +36,9 @@ public final class n extends b2.g {
                     try {
                         x6.b bVar = new x6.b(bitmap);
                         e3 e3Var = (e3) u2Var.m();
-                        n6.l.h(e3Var);
+                        n6.m.h(e3Var);
                         Parcel F0 = e3Var.F0();
-                        int i10 = com.google.android.gms.internal.vision.a.f7499a;
+                        int i10 = com.google.android.gms.internal.vision.a.f7498a;
                         F0.writeStrongBinder(bVar);
                         com.google.android.gms.internal.vision.a.a(F0, b10);
                         Parcel O0 = e3Var.O0(F0, 2);
@@ -55,16 +55,16 @@ public final class n extends b2.g {
                 }
             } else {
                 ByteBuffer J = hVar.J();
-                n6.l.h(J);
+                n6.m.h(J);
                 if (!u2Var.k()) {
                     mVarArr = new m[0];
                 } else {
                     try {
                         x6.b bVar2 = new x6.b(J);
                         e3 e3Var2 = (e3) u2Var.m();
-                        n6.l.h(e3Var2);
+                        n6.m.h(e3Var2);
                         Parcel F02 = e3Var2.F0();
-                        int i11 = com.google.android.gms.internal.vision.a.f7499a;
+                        int i11 = com.google.android.gms.internal.vision.a.f7498a;
                         F02.writeStrongBinder(bVar2);
                         com.google.android.gms.internal.vision.a.a(F02, b10);
                         Parcel O02 = e3Var2.O0(F02, 1);
@@ -79,7 +79,7 @@ public final class n extends b2.g {
             }
             SparseArray sparseArray = new SparseArray(mVarArr.length);
             for (m mVar : mVarArr) {
-                sparseArray.append(mVar.f47131b.hashCode(), mVar);
+                sparseArray.append(mVar.f47177b.hashCode(), mVar);
             }
             return sparseArray;
         }

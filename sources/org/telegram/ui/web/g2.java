@@ -5,33 +5,33 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class g2 {
-    public final int f43356a;
-    public boolean f43357b;
-    public boolean f43358c;
+    public final int f43500a;
+    public boolean f43501b;
+    public boolean f43502c;
     public String d;
-    public float f43359e;
-    public boolean f43360f;
-    public boolean f43361g;
+    public float f43503e;
+    public boolean f43504f;
+    public boolean f43505g;
     public TLRPC.WebPage h;
-    public boolean f43362i;
-    public TLRPC.TL_webPage f43363j;
-    public int f43364k;
-    public q0 f43365l;
-    public final ArrayList f43366m = new ArrayList();
+    public boolean f43506i;
+    public TLRPC.TL_webPage f43507j;
+    public int f43508k;
+    public t0 f43509l;
+    public final ArrayList f43510m = new ArrayList();
 
     public g2(int i10) {
-        this.f43356a = i10;
+        this.f43500a = i10;
     }
 
     public final void a() {
-        q0 q0Var;
-        if (!this.f43358c) {
-            this.f43358c = true;
-            if (!this.f43361g) {
-                ConnectionsManager.getInstance(this.f43356a).cancelRequest(this.f43364k, true);
+        t0 t0Var;
+        if (!this.f43502c) {
+            this.f43502c = true;
+            if (!this.f43505g) {
+                ConnectionsManager.getInstance(this.f43500a).cancelRequest(this.f43508k, true);
             }
-            if (!this.f43362i && (q0Var = this.f43365l) != null) {
-                q0Var.run();
+            if (!this.f43506i && (t0Var = this.f43509l) != null) {
+                t0Var.run();
             }
         }
     }
@@ -41,7 +41,7 @@ public final class g2 {
         if (!SharedConfig.onlyLocalInstantView && (webPage = this.h) != null) {
             return webPage;
         }
-        TLRPC.TL_webPage tL_webPage = this.f43363j;
+        TLRPC.TL_webPage tL_webPage = this.f43507j;
         if (tL_webPage != null) {
             return tL_webPage;
         }
@@ -49,7 +49,7 @@ public final class g2 {
     }
 
     public final void c() {
-        ArrayList arrayList = this.f43366m;
+        ArrayList arrayList = this.f43510m;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -60,22 +60,22 @@ public final class g2 {
     }
 
     public final void d(y0 y0Var) {
-        if (this.f43358c) {
+        if (this.f43502c) {
             return;
         }
-        TLRPC.TL_webPage tL_webPage = this.f43363j;
+        TLRPC.TL_webPage tL_webPage = this.f43507j;
         if (tL_webPage != null) {
             i2.o(tL_webPage);
-            this.f43363j = null;
+            this.f43507j = null;
         }
-        this.f43362i = false;
+        this.f43506i = false;
         this.d = y0Var.getUrl();
-        this.f43359e = y0Var.getProgress();
-        this.f43360f = y0Var.f43584b;
-        q0 q0Var = this.f43365l;
-        if (q0Var != null) {
-            q0Var.run();
+        this.f43503e = y0Var.getProgress();
+        this.f43504f = y0Var.f43730b;
+        t0 t0Var = this.f43509l;
+        if (t0Var != null) {
+            t0Var.run();
         }
-        this.f43365l = i2.e(y0Var, new f2(this, 1));
+        this.f43509l = i2.e(y0Var, new e2(this, 1));
     }
 }

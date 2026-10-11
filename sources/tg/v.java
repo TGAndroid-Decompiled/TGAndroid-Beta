@@ -1,61 +1,31 @@
 package tg;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class v implements Utilities.Callback {
-    public final int f48461a;
-    public final a0 f48462b;
+import android.content.DialogInterface;
+public final class v implements DialogInterface.OnDismissListener {
+    public final int f48485a;
+    public final z f48486b;
 
-    public v(a0 a0Var, int i10) {
-        this.f48461a = i10;
-        this.f48462b = a0Var;
+    public v(z zVar, int i10) {
+        this.f48485a = i10;
+        this.f48486b = zVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f48461a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f48485a) {
             case 0:
-                Void r42 = (Void) obj;
-                a0 a0Var = this.f48462b;
-                a0Var.dismiss();
-                AndroidUtilities.runOnUIThread(new t(a0Var, 2), 220L);
-                return;
-            case 1:
-                a0 a0Var2 = this.f48462b;
-                a0Var2.f48325q0.b(false);
-                i.j(a0Var2.getContext(), (TLRPC.TL_error) obj);
-                return;
-            case 2:
-                a0 a0Var3 = this.f48462b;
-                a0Var3.f48322n0 = a0Var3.Y.indexOf(Integer.valueOf(((TLRPC.TL_premiumGiftCodeOption) obj).users));
-                a0Var3.b0(true, true);
-                a0Var3.a0(true);
-                return;
-            case 3:
-                Void r43 = (Void) obj;
-                a0 a0Var4 = this.f48462b;
-                a0Var4.dismiss();
-                AndroidUtilities.runOnUIThread(new t(a0Var4, 1), 220L);
-                return;
-            case 4:
-                a0 a0Var5 = this.f48462b;
-                a0Var5.f48325q0.b(false);
-                i.j(a0Var5.getContext(), (TLRPC.TL_error) obj);
-                return;
-            case 5:
-                a0 a0Var6 = this.f48462b;
-                ArrayList arrayList = a0Var6.f48315f0;
-                arrayList.clear();
-                arrayList.addAll((List) obj);
-                a0Var6.b0(true, true);
+                vg.r rVar = this.f48486b.f48525g0.f49001r;
+                if (rVar != null) {
+                    rVar.setPaused(false);
+                    return;
+                }
                 return;
             default:
-                a0 a0Var7 = this.f48462b;
-                a0Var7.f48325q0.b(false);
-                i.j(a0Var7.getContext(), (TLRPC.TL_error) obj);
+                vg.r rVar2 = this.f48486b.f48525g0.f49001r;
+                if (rVar2 != null) {
+                    rVar2.setPaused(false);
+                    return;
+                }
                 return;
         }
     }

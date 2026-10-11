@@ -12,78 +12,77 @@ import android.widget.TextView;
 import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.bi;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.z5;
+import org.telegram.messenger.ai;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.x5;
 import org.telegram.ui.Components.rc0;
-import w7.x5;
-public final class j extends LinearLayout implements z5 {
-    public final e6 f10923a;
-    public final rc0 f10924b;
-    public final FrameLayout f10925c;
+public final class j extends LinearLayout implements x5 {
+    public final d6 f10922a;
+    public final rc0 f10923b;
+    public final FrameLayout f10924c;
     public final ImageView d;
-    public final TextView f10926e;
-    public final TextView f10927f;
+    public final TextView f10925e;
+    public final TextView f10926f;
     public final boolean h;
-    public boolean f10928n;
+    public boolean f10927n;
 
-    public j(Context context, e6 e6Var, boolean z10) {
+    public j(Context context, d6 d6Var, boolean z10) {
         super(context);
         int i10;
         int i11;
         int i12;
         int i13;
-        this.f10923a = e6Var;
+        this.f10922a = d6Var;
         this.h = z10;
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f10925c = frameLayout;
+        this.f10924c = frameLayout;
         rc0 rc0Var = new rc0(1);
-        this.f10924b = rc0Var;
+        this.f10923b = rc0Var;
         frameLayout.setBackground(rc0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        frameLayout.addView(imageView, x5.e(24, 24, 17));
-        LinearLayout e7 = bi.e(context, 1);
+        frameLayout.addView(imageView, w7.x5.e(24, 24, 17));
+        LinearLayout e7 = ai.e(context, 1);
         TextView textView = new TextView(context);
-        this.f10926e = textView;
+        this.f10925e = textView;
         textView.setTextSize(1, 16.0f);
-        TextView h = e2.h(e7, textView, x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f10927f = h;
+        TextView h = e2.h(e7, textView, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
+        this.f10926f = h;
         h.setGravity(17);
         h.setMinWidth(AndroidUtilities.dp(20.66f));
         h.setPadding(AndroidUtilities.dp(6.33f), 0, AndroidUtilities.dp(6.33f), 0);
         h.setTextSize(1, 16.0f);
         if (LocaleController.isRTL) {
-            addView(h, x5.j(13.33f, 0.0f));
+            addView(h, w7.x5.j(13.33f, 0.0f));
             if (z10) {
                 i12 = 12;
             } else {
                 i12 = 16;
             }
-            addView(e7, x5.p(0, -2, 1.0f, 23, 20, 0, i12, 0));
+            addView(e7, w7.x5.p(0, -2, 1.0f, 23, 20, 0, i12, 0));
             if (z10) {
                 i13 = 9;
             } else {
                 i13 = 14;
             }
-            addView(frameLayout, x5.t(28, 28, 21, 0, 0, i13, 0));
+            addView(frameLayout, w7.x5.t(28, 28, 21, 0, 0, i13, 0));
         } else {
             if (z10) {
                 i10 = 9;
             } else {
                 i10 = 14;
             }
-            addView(frameLayout, x5.t(28, 28, 19, i10, 0, 0, 0));
+            addView(frameLayout, w7.x5.t(28, 28, 19, i10, 0, 0, 0));
             if (z10) {
                 i11 = 12;
             } else {
                 i11 = 16;
             }
-            addView(e7, x5.p(0, -2, 1.0f, 23, i11, 0, 20, 0));
-            addView(h, x5.j(0.0f, 13.33f));
+            addView(e7, w7.x5.p(0, -2, 1.0f, 23, i11, 0, 20, 0));
+            addView(h, w7.x5.j(0.0f, 13.33f));
         }
         e();
         setUnreadMode(true);
@@ -97,14 +96,14 @@ public final class j extends LinearLayout implements z5 {
         } else {
             i13 = 8;
         }
-        this.f10925c.setVisibility(i13);
+        this.f10924c.setVisibility(i13);
         if (i12 == 0) {
             f7 = AndroidUtilities.dp(2.0f);
         } else {
             f7 = 0.0f;
         }
-        this.f10926e.setTranslationX(f7);
-        this.f10924b.b(i10, i11);
+        this.f10925e.setTranslationX(f7);
+        this.f10923b.b(i10, i11);
         this.d.setImageResource(i12);
         setTitle(charSequence);
         setValue(charSequence2);
@@ -116,29 +115,29 @@ public final class j extends LinearLayout implements z5 {
         int i10;
         ShapeDrawable shapeDrawable;
         boolean q6;
-        int i11 = i6.G6;
-        e6 e6Var = this.f10923a;
-        this.f10926e.setTextColor(i6.w0(i11, e6Var));
-        if (this.f10928n) {
-            i10 = i6.W8;
+        int i11 = h6.G6;
+        d6 d6Var = this.f10922a;
+        this.f10925e.setTextColor(h6.w0(i11, d6Var));
+        if (this.f10927n) {
+            i10 = h6.W8;
         } else {
-            i10 = i6.f20986n6;
+            i10 = h6.f20971n6;
         }
-        int w02 = i6.w0(i10, e6Var);
-        TextView textView = this.f10927f;
+        int w02 = h6.w0(i10, d6Var);
+        TextView textView = this.f10926f;
         textView.setTextColor(w02);
-        if (this.f10928n) {
-            shapeDrawable = i6.c0(AndroidUtilities.dp(10.33f), i6.w0(i6.U8, e6Var));
+        if (this.f10927n) {
+            shapeDrawable = h6.c0(AndroidUtilities.dp(10.33f), h6.w0(h6.U8, d6Var));
         } else {
             shapeDrawable = null;
         }
         textView.setBackground(shapeDrawable);
-        if (e6Var != null) {
-            q6 = e6Var.a();
+        if (d6Var != null) {
+            q6 = d6Var.a();
         } else {
-            q6 = i6.I.q();
+            q6 = h6.I.q();
         }
-        this.f10924b.f30448b = q6;
+        this.f10923b.f30440b = q6;
     }
 
     public int[] getColorKeys() {
@@ -158,21 +157,21 @@ public final class j extends LinearLayout implements z5 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f10926e.setText(charSequence);
+        this.f10925e.setText(charSequence);
     }
 
     public void setUnreadMode(boolean z10) {
         float f7;
         Typeface typeface;
         int i10;
-        if (this.f10928n != z10) {
-            this.f10928n = z10;
+        if (this.f10927n != z10) {
+            this.f10927n = z10;
             if (z10) {
                 f7 = 13.0f;
             } else {
                 f7 = 16.0f;
             }
-            TextView textView = this.f10927f;
+            TextView textView = this.f10926f;
             textView.setTextSize(1, f7);
             ShapeDrawable shapeDrawable = null;
             if (z10) {
@@ -182,14 +181,14 @@ public final class j extends LinearLayout implements z5 {
             }
             textView.setTypeface(typeface);
             if (z10) {
-                i10 = i6.W8;
+                i10 = h6.W8;
             } else {
-                i10 = i6.f20986n6;
+                i10 = h6.f20971n6;
             }
-            e6 e6Var = this.f10923a;
-            textView.setTextColor(i6.w0(i10, e6Var));
+            d6 d6Var = this.f10922a;
+            textView.setTextColor(h6.w0(i10, d6Var));
             if (z10) {
-                shapeDrawable = i6.c0(AndroidUtilities.dp(10.33f), i6.w0(i6.U8, e6Var));
+                shapeDrawable = h6.c0(AndroidUtilities.dp(10.33f), h6.w0(h6.U8, d6Var));
             }
             textView.setBackground(shapeDrawable);
         }
@@ -202,7 +201,7 @@ public final class j extends LinearLayout implements z5 {
         } else {
             i10 = 8;
         }
-        TextView textView = this.f10927f;
+        TextView textView = this.f10926f;
         textView.setVisibility(i10);
         textView.setText(charSequence);
     }

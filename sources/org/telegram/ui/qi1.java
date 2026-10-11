@@ -1,24 +1,40 @@
 package org.telegram.ui;
 
-import org.webrtc.RendererCommon;
-public final class qi1 implements RendererCommon.RendererEvents {
-    public final wi1 f41178a;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.LinearLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.voip.VoIPServiceState;
+public final class qi1 extends LinearLayout {
+    public final ui1 f41189a;
 
-    public qi1(wi1 wi1Var) {
-        this.f41178a = wi1Var;
+    public qi1(ui1 ui1Var, Activity activity) {
+        super(activity);
+        this.f41189a = ui1Var;
     }
 
     @Override
-    public final void onFirstFrameRendered() {
-        wi1 wi1Var = this.f41178a;
-        com.google.android.gms.internal.cast.p pVar = wi1Var.l1;
-        if (pVar != null) {
-            pVar.run();
-            wi1Var.l1 = null;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        VoIPServiceState sharedState = VoIPService.getSharedState();
+        CharSequence text = this.f41189a.E.getText();
+        if (sharedState != null && !TextUtils.isEmpty(text)) {
+            StringBuilder sb2 = new StringBuilder(text);
+            sb2.append(", ");
+            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
+                sb2.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
+            } else {
+                sb2.append(LocaleController.getString(R.string.VoipInCallBranding));
+            }
+            long callDuration = sharedState.getCallDuration();
+            if (callDuration > 0) {
+                sb2.append(", ");
+                sb2.append(LocaleController.formatDuration((int) (callDuration / 1000)));
+            }
+            accessibilityNodeInfo.setText(sb2);
         }
-    }
-
-    @Override
-    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

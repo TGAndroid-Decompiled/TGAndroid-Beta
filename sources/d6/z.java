@@ -2,20 +2,20 @@ package d6;
 
 import android.os.Parcel;
 public final class z extends b8.b {
-    public final h f8204b;
-    public final Class f8205c;
+    public final h f8203b;
+    public final Class f8204c;
 
     public z(h hVar) {
         super("com.google.android.gms.cast.framework.ISessionManagerListener", 1);
-        this.f8204b = hVar;
-        this.f8205c = c.class;
+        this.f8203b = hVar;
+        this.f8204c = c.class;
     }
 
     @Override
     public final boolean I0(int i10, Parcel parcel, Parcel parcel2) {
         boolean z10 = false;
-        Class cls = this.f8205c;
-        h hVar = this.f8204b;
+        Class cls = this.f8204c;
+        h hVar = this.f8203b;
         switch (i10) {
             case 1:
                 x6.b bVar = new x6.b(hVar);
@@ -27,7 +27,7 @@ public final class z extends b8.b {
                 com.google.android.gms.internal.cast.v.b(parcel);
                 f fVar = (f) x6.b.L0(K0);
                 if (cls.isInstance(fVar) && hVar != null) {
-                    hVar.o((f) cls.cast(fVar));
+                    hVar.u((f) cls.cast(fVar));
                 }
                 parcel2.writeNoException();
                 return true;
@@ -37,7 +37,7 @@ public final class z extends b8.b {
                 com.google.android.gms.internal.cast.v.b(parcel);
                 f fVar2 = (f) x6.b.L0(K02);
                 if (cls.isInstance(fVar2) && hVar != null) {
-                    hVar.x((f) cls.cast(fVar2), readString);
+                    hVar.D((f) cls.cast(fVar2), readString);
                 }
                 parcel2.writeNoException();
                 return true;
@@ -47,7 +47,7 @@ public final class z extends b8.b {
                 com.google.android.gms.internal.cast.v.b(parcel);
                 f fVar3 = (f) x6.b.L0(K03);
                 if (cls.isInstance(fVar3) && hVar != null) {
-                    hVar.g((f) cls.cast(fVar3), readInt);
+                    hVar.k((f) cls.cast(fVar3), readInt);
                 }
                 parcel2.writeNoException();
                 return true;
@@ -56,7 +56,7 @@ public final class z extends b8.b {
                 com.google.android.gms.internal.cast.v.b(parcel);
                 f fVar4 = (f) x6.b.L0(K04);
                 if (cls.isInstance(fVar4) && hVar != null) {
-                    hVar.v((f) cls.cast(fVar4));
+                    hVar.A((f) cls.cast(fVar4));
                 }
                 parcel2.writeNoException();
                 return true;
@@ -66,7 +66,7 @@ public final class z extends b8.b {
                 com.google.android.gms.internal.cast.v.b(parcel);
                 f fVar5 = (f) x6.b.L0(K05);
                 if (cls.isInstance(fVar5) && hVar != null) {
-                    hVar.j((f) cls.cast(fVar5), readInt2);
+                    hVar.r((f) cls.cast(fVar5), readInt2);
                 }
                 parcel2.writeNoException();
                 return true;
@@ -82,14 +82,14 @@ public final class z extends b8.b {
                 return true;
             case 8:
                 x6.a K07 = x6.b.K0(parcel.readStrongBinder());
-                int i11 = com.google.android.gms.internal.cast.v.f7022a;
+                int i11 = com.google.android.gms.internal.cast.v.f7021a;
                 if (parcel.readInt() != 0) {
                     z10 = true;
                 }
                 com.google.android.gms.internal.cast.v.b(parcel);
                 f fVar7 = (f) x6.b.L0(K07);
                 if (cls.isInstance(fVar7) && hVar != null) {
-                    hVar.h((f) cls.cast(fVar7), z10);
+                    hVar.o((f) cls.cast(fVar7), z10);
                 }
                 parcel2.writeNoException();
                 return true;
@@ -99,7 +99,7 @@ public final class z extends b8.b {
                 com.google.android.gms.internal.cast.v.b(parcel);
                 f fVar8 = (f) x6.b.L0(K08);
                 if (cls.isInstance(fVar8) && hVar != null) {
-                    hVar.u((f) cls.cast(fVar8), readInt3);
+                    hVar.v((f) cls.cast(fVar8), readInt3);
                 }
                 parcel2.writeNoException();
                 return true;
@@ -109,7 +109,7 @@ public final class z extends b8.b {
                 com.google.android.gms.internal.cast.v.b(parcel);
                 f fVar9 = (f) x6.b.L0(K09);
                 if (cls.isInstance(fVar9) && hVar != null) {
-                    hVar.y((f) cls.cast(fVar9), readInt4);
+                    hVar.F((f) cls.cast(fVar9), readInt4);
                 }
                 parcel2.writeNoException();
                 return true;

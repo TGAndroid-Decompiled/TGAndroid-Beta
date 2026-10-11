@@ -6,36 +6,36 @@ import c3.h0;
 import c3.o;
 import c3.q;
 import c3.s;
-import org.telegram.ui.ActionBar.b5;
+import n7.z0;
 public final class d implements q {
-    public static final s f49086s = new Object();
-    public final o f49087a;
-    public final int f49088b;
-    public final b2.s f49089c;
+    public static final s f49129s = new Object();
+    public final o f49130a;
+    public final int f49131b;
+    public final b2.s f49132c;
     public final SparseArray d = new SparseArray();
-    public boolean f49090e;
-    public b5 f49091f;
+    public boolean f49133e;
+    public z0 f49134f;
     public long h;
-    public b0 f49092n;
-    public b2.s[] f49093r;
+    public b0 f49135n;
+    public b2.s[] f49136r;
 
     public d(o oVar, int i10, b2.s sVar) {
-        this.f49087a = oVar;
-        this.f49088b = i10;
-        this.f49089c = sVar;
+        this.f49130a = oVar;
+        this.f49131b = i10;
+        this.f49132c = sVar;
     }
 
-    public final void a(b5 b5Var, long j3, long j10) {
-        this.f49091f = b5Var;
+    public final void a(z0 z0Var, long j3, long j10) {
+        this.f49134f = z0Var;
         this.h = j10;
-        boolean z10 = this.f49090e;
-        o oVar = this.f49087a;
+        boolean z10 = this.f49133e;
+        o oVar = this.f49130a;
         if (!z10) {
             oVar.g(this);
             if (j3 != -9223372036854775807L) {
                 oVar.h(0L, j3);
             }
-            this.f49090e = true;
+            this.f49133e = true;
             return;
         }
         if (j3 == -9223372036854775807L) {
@@ -47,15 +47,15 @@ public final class d implements q {
             SparseArray sparseArray = this.d;
             if (i10 < sparseArray.size()) {
                 c cVar = (c) sparseArray.valueAt(i10);
-                if (b5Var == null) {
-                    cVar.f49084e = cVar.f49083c;
+                if (z0Var == null) {
+                    cVar.f49127e = cVar.f49126c;
                 } else {
-                    cVar.f49085f = j10;
-                    h0 w10 = b5Var.w(cVar.f49081a);
-                    cVar.f49084e = w10;
+                    cVar.f49128f = j10;
+                    h0 D = z0Var.D(cVar.f49124a);
+                    cVar.f49127e = D;
                     b2.s sVar = cVar.d;
                     if (sVar != null) {
-                        w10.b(sVar);
+                        D.b(sVar);
                     }
                 }
                 i10++;
@@ -67,7 +67,7 @@ public final class d implements q {
 
     @Override
     public final void d2(b0 b0Var) {
-        this.f49092n = b0Var;
+        this.f49135n = b0Var;
     }
 
     @Override
@@ -77,29 +77,29 @@ public final class d implements q {
         SparseArray sparseArray = this.d;
         c cVar = (c) sparseArray.get(i10);
         if (cVar == null) {
-            if (this.f49093r == null) {
+            if (this.f49136r == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             e2.d.g(z10);
-            if (i11 == this.f49088b) {
-                sVar = this.f49089c;
+            if (i11 == this.f49131b) {
+                sVar = this.f49132c;
             } else {
                 sVar = null;
             }
             cVar = new c(i10, i11, sVar);
-            b5 b5Var = this.f49091f;
+            z0 z0Var = this.f49134f;
             long j3 = this.h;
-            if (b5Var == null) {
-                cVar.f49084e = cVar.f49083c;
+            if (z0Var == null) {
+                cVar.f49127e = cVar.f49126c;
             } else {
-                cVar.f49085f = j3;
-                h0 w10 = b5Var.w(i11);
-                cVar.f49084e = w10;
+                cVar.f49128f = j3;
+                h0 D = z0Var.D(i11);
+                cVar.f49127e = D;
                 b2.s sVar2 = cVar.d;
                 if (sVar2 != null) {
-                    w10.b(sVar2);
+                    D.b(sVar2);
                 }
             }
             sparseArray.put(i10, cVar);
@@ -116,6 +116,6 @@ public final class d implements q {
             e2.d.h(sVar);
             sVarArr[i10] = sVar;
         }
-        this.f49093r = sVarArr;
+        this.f49136r = sVarArr;
     }
 }

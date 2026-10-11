@@ -9,19 +9,19 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.fc1;
-public final class mn implements fm0 {
-    public final int f28851a = 1;
-    public final org.telegram.ui.ActionBar.e6 f28852b;
-    public final Object f28853c;
+import org.telegram.ui.ec1;
+public final class mn implements gm0 {
+    public final int f28800a = 1;
+    public final org.telegram.ui.ActionBar.d6 f28801b;
+    public final Object f28802c;
     public final Object d;
-    public final Object f28854e;
+    public final Object f28803e;
 
-    public mn(lo loVar, org.telegram.ui.ActionBar.e6 e6Var, yi yiVar, Context context) {
-        this.f28853c = loVar;
-        this.f28852b = e6Var;
+    public mn(lo loVar, org.telegram.ui.ActionBar.d6 d6Var, yi yiVar, Context context) {
+        this.f28802c = loVar;
+        this.f28801b = d6Var;
         this.d = yiVar;
-        this.f28854e = context;
+        this.f28803e = context;
     }
 
     @Override
@@ -29,55 +29,55 @@ public final class mn implements fm0 {
         boolean z10;
         boolean z11;
         boolean z12;
-        switch (this.f28851a) {
+        switch (this.f28800a) {
             case 0:
-                lo loVar = (lo) this.f28853c;
+                lo loVar = (lo) this.f28802c;
                 yi yiVar = (yi) this.d;
-                Context context = (Context) this.f28854e;
-                a50 a50Var = loVar.f28473y;
+                Context context = (Context) this.f28803e;
+                a50 a50Var = loVar.f28412y;
                 boolean[] zArr = loVar.L;
                 c2.a aVar = loVar.N0;
                 xn xnVar = loVar.v;
-                jo joVar = loVar.f28462r;
-                fc1 fc1Var = loVar.f28464s;
+                jo joVar = loVar.f28401r;
+                ec1 ec1Var = loVar.f28403s;
                 int i11 = loVar.L0;
-                org.telegram.ui.ActionBar.e6 e6Var = this.f28852b;
+                org.telegram.ui.ActionBar.d6 d6Var = this.f28801b;
                 if (i10 == i11) {
-                    th.f fVar = new th.f(loVar.getContext(), e6Var);
-                    fVar.f48520k0 = new m2.t(loVar, 7);
+                    th.f fVar = new th.f(loVar.getContext(), d6Var);
+                    fVar.f48566k0 = new m2.t(loVar, 7);
                     ArrayList arrayList = loVar.P0;
-                    fVar.f48512c0 = null;
-                    fVar.f48523o0 = new HashSet(arrayList);
+                    fVar.f48558c0 = null;
+                    fVar.f48569o0 = new HashSet(arrayList);
                     fVar.show();
                     return;
                 } else if (i10 == loVar.I0) {
-                    q80 F = q80.F(yiVar.container, e6Var, view);
+                    q80 F = q80.F(yiVar.container, d6Var, view);
                     int i12 = 0;
                     while (true) {
                         int[] iArr = loVar.T0;
                         if (i12 < iArr.length) {
                             int i13 = iArr[i12];
-                            b31 a2 = b31.a(i13);
-                            int i14 = org.telegram.ui.ActionBar.i6.F8;
-                            a2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i14, loVar.f30210a), PorterDuff.Mode.SRC_IN));
-                            F.b(0, a2, LocaleController.formatPluralString("Hours", i13 / 3600, new Object[0]), i14, org.telegram.ui.ActionBar.i6.E8, new zk(loVar, i13, view, 1));
+                            c31 a2 = c31.a(i13);
+                            int i14 = org.telegram.ui.ActionBar.h6.F8;
+                            a2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i14, loVar.f30160a), PorterDuff.Mode.SRC_IN));
+                            F.b(0, a2, LocaleController.formatPluralString("Hours", i13 / 3600, new Object[0]), i14, org.telegram.ui.ActionBar.h6.E8, new zk(loVar, i13, view, 1));
                             i12++;
                         } else {
-                            F.c(R.drawable.msg_customize, LocaleController.getString(R.string.PollV2PollDurationOptionCustom), new org.telegram.ui.ActionBar.n5(loVar, context, view, e6Var, 20), false);
-                            F.f30121t = false;
-                            F.f30120s = 0;
+                            F.c(R.drawable.msg_customize, LocaleController.getString(R.string.PollV2PollDurationOptionCustom), new org.telegram.ui.ActionBar.l5(loVar, context, view, d6Var, 19), false);
+                            F.f30084t = false;
+                            F.f30083s = 0;
                             F.Z();
                             return;
                         }
                     }
-                } else if (i10 == loVar.f28467u0) {
+                } else if (i10 == loVar.f28406u0) {
                     loVar.S();
                     return;
                 } else {
                     boolean z13 = view instanceof org.telegram.ui.Cells.w8;
                     if (z13 || (view instanceof org.telegram.ui.Cells.a6)) {
-                        boolean z14 = loVar.f28438c0;
-                        zn znVar = loVar.f28471x;
+                        boolean z14 = loVar.f28377c0;
+                        zn znVar = loVar.f28410x;
                         if (znVar != null) {
                             znVar.f();
                         }
@@ -93,14 +93,14 @@ public final class mn implements fm0 {
                                     aVar2.f3993a = z11;
                                     int i16 = aVar.f3994b;
                                     lo loVar2 = (lo) aVar.f3995c;
-                                    jo joVar2 = loVar2.f28462r;
+                                    jo joVar2 = loVar2.f28401r;
                                     if (i10 == i16) {
-                                        fc1Var.setItemAnimator(xnVar);
+                                        ec1Var.setItemAnimator(xnVar);
                                         int i17 = aVar.f3994b;
                                         if (i17 >= 0) {
-                                            s4.d1 K = loVar2.f28464s.K(i17);
+                                            s4.d1 K = loVar2.f28403s.K(i17);
                                             if (K != null) {
-                                                View view2 = K.f47702a;
+                                                View view2 = K.f47748a;
                                                 if (view2 instanceof org.telegram.ui.Cells.a6) {
                                                     ((org.telegram.ui.Cells.a6) view2).setDivider(z11);
                                                 }
@@ -125,16 +125,16 @@ public final class mn implements fm0 {
                         }
                         if (!z10) {
                             if (i10 == loVar.B0) {
-                                z11 = loVar.f28434a0;
-                                loVar.f28434a0 = !z11;
+                                z11 = loVar.f28373a0;
+                                loVar.f28373a0 = !z11;
                                 loVar.U();
                             } else {
-                                int i18 = loVar.f28474y0;
+                                int i18 = loVar.f28413y0;
                                 if (i10 == i18) {
-                                    z11 = !loVar.f28444f0;
-                                    loVar.f28444f0 = z11;
+                                    z11 = !loVar.f28383f0;
+                                    loVar.f28383f0 = z11;
                                 } else if (i10 == loVar.C0) {
-                                    if (!loVar.f28438c0 && !loVar.f28434a0) {
+                                    if (!loVar.f28377c0 && !loVar.f28373a0) {
                                         loVar.T = !loVar.T;
                                     }
                                     z11 = loVar.T;
@@ -148,14 +148,14 @@ public final class mn implements fm0 {
                                         int i19 = loVar.I0;
                                         loVar.k0();
                                         if (i19 < 0) {
-                                            s4.d1 K2 = fc1Var.K(loVar.H0);
+                                            s4.d1 K2 = ec1Var.K(loVar.H0);
                                             if (K2 != null) {
-                                                View view3 = K2.f47702a;
+                                                View view3 = K2.f47748a;
                                                 if (view3 instanceof org.telegram.ui.Cells.a6) {
                                                     ((org.telegram.ui.Cells.a6) view3).setDivider(true);
                                                 }
                                             }
-                                            fc1Var.setItemAnimator(xnVar);
+                                            ec1Var.setItemAnimator(xnVar);
                                             joVar.s(loVar.I0, 3);
                                         }
                                     } else {
@@ -163,11 +163,11 @@ public final class mn implements fm0 {
                                         loVar.V = 0;
                                         int i20 = loVar.I0;
                                         loVar.k0();
-                                        fc1Var.setItemAnimator(xnVar);
+                                        ec1Var.setItemAnimator(xnVar);
                                         joVar.t(i20, 3);
-                                        s4.d1 K3 = fc1Var.K(loVar.H0);
+                                        s4.d1 K3 = ec1Var.K(loVar.H0);
                                         if (K3 != null) {
-                                            View view4 = K3.f47702a;
+                                            View view4 = K3.f47748a;
                                             if (view4 instanceof org.telegram.ui.Cells.a6) {
                                                 ((org.telegram.ui.Cells.a6) view4).setDivider(false);
                                             }
@@ -182,23 +182,23 @@ public final class mn implements fm0 {
                                 } else if (i10 == loVar.D0) {
                                     z11 = !loVar.R;
                                     loVar.R = z11;
-                                } else if (i10 == loVar.f28475z0) {
-                                    z11 = !loVar.f28446g0;
-                                    loVar.f28446g0 = z11;
+                                } else if (i10 == loVar.f28414z0) {
+                                    z11 = !loVar.f28385g0;
+                                    loVar.f28385g0 = z11;
                                     loVar.k0();
-                                    int i21 = loVar.f28474y0;
+                                    int i21 = loVar.f28413y0;
                                     if (i21 >= 0 && i18 < 0) {
-                                        fc1Var.setItemAnimator(xnVar);
-                                        joVar.o(loVar.f28474y0);
+                                        ec1Var.setItemAnimator(xnVar);
+                                        joVar.o(loVar.f28413y0);
                                     } else if (i18 >= 0 && i21 < 0) {
-                                        fc1Var.setItemAnimator(xnVar);
+                                        ec1Var.setItemAnimator(xnVar);
                                         joVar.u(i18);
                                     }
                                 } else if (i10 == loVar.F0) {
-                                    boolean z16 = loVar.f28436b0;
+                                    boolean z16 = loVar.f28375b0;
                                     z11 = !z16;
-                                    loVar.f28436b0 = z11;
-                                    if (z16 && loVar.f28438c0) {
+                                    loVar.f28375b0 = z11;
+                                    if (z16 && loVar.f28377c0) {
                                         boolean z17 = false;
                                         for (int i22 = 0; i22 < zArr.length; i22++) {
                                             if (z17) {
@@ -208,48 +208,48 @@ public final class mn implements fm0 {
                                             }
                                         }
                                     }
-                                    int childCount = fc1Var.getChildCount();
+                                    int childCount = ec1Var.getChildCount();
                                     for (int i23 = 0; i23 < childCount; i23++) {
-                                        s4.d1 T = fc1Var.T(fc1Var.getChildAt(i23));
-                                        if (T.f47706f == 5) {
-                                            ((org.telegram.ui.Cells.d6) T.f47702a).f21975a.a(loVar.f28436b0, true);
+                                        s4.d1 T = ec1Var.T(ec1Var.getChildAt(i23));
+                                        if (T.f47752f == 5) {
+                                            ((org.telegram.ui.Cells.d6) T.f47748a).f21963a.a(loVar.f28375b0, true);
                                         }
                                     }
                                 } else if (i10 == loVar.J0) {
                                     z11 = !loVar.W;
                                     loVar.W = z11;
                                 } else if (i10 == loVar.G0) {
-                                    if (!loVar.f28442e0) {
-                                        fc1Var.setItemAnimator(xnVar);
-                                        z11 = !loVar.f28438c0;
-                                        loVar.f28438c0 = z11;
-                                        int i24 = loVar.f28459o0;
+                                    if (!loVar.f28381e0) {
+                                        ec1Var.setItemAnimator(xnVar);
+                                        z11 = !loVar.f28377c0;
+                                        loVar.f28377c0 = z11;
+                                        int i24 = loVar.f28398o0;
                                         loVar.k0();
-                                        if (loVar.f28438c0) {
-                                            joVar.s(loVar.f28459o0, 3);
+                                        if (loVar.f28377c0) {
+                                            joVar.s(loVar.f28398o0, 3);
                                         } else {
                                             joVar.t(i24, 3);
                                         }
                                         joVar.m(loVar.A0);
-                                        if (loVar.f28438c0) {
+                                        if (loVar.f28377c0) {
                                             loVar.R = false;
                                             int i25 = loVar.D0;
                                             if (i25 >= 0) {
-                                                s4.d1 K4 = fc1Var.K(i25);
+                                                s4.d1 K4 = ec1Var.K(i25);
                                                 if (K4 != null) {
-                                                    ((org.telegram.ui.Cells.a6) K4.f47702a).setChecked(false);
+                                                    ((org.telegram.ui.Cells.a6) K4.f47748a).setChecked(false);
                                                 } else {
                                                     joVar.m(loVar.D0);
                                                 }
                                             }
                                         } else {
                                             int i26 = loVar.D0;
-                                            if (i26 >= 0 && fc1Var.K(i26) == null) {
+                                            if (i26 >= 0 && ec1Var.K(i26) == null) {
                                                 joVar.m(loVar.D0);
                                             }
                                         }
                                         loVar.U();
-                                        if (loVar.f28438c0 && !loVar.f28436b0) {
+                                        if (loVar.f28377c0 && !loVar.f28375b0) {
                                             boolean z18 = false;
                                             for (int i27 = 0; i27 < zArr.length; i27++) {
                                                 if (z18) {
@@ -265,22 +265,22 @@ public final class mn implements fm0 {
                                 }
                             }
                         }
-                        if (loVar.f28440d0 && !loVar.f28438c0) {
+                        if (loVar.f28379d0 && !loVar.f28377c0) {
                             a50Var.b(true);
                         }
-                        fc1Var.getChildCount();
-                        for (int i28 = loVar.f28466t0; i28 < loVar.f28466t0 + loVar.M; i28++) {
-                            s4.d1 K5 = fc1Var.K(i28);
+                        ec1Var.getChildCount();
+                        for (int i28 = loVar.f28405t0; i28 < loVar.f28405t0 + loVar.M; i28++) {
+                            s4.d1 K5 = ec1Var.K(i28);
                             if (K5 != null) {
-                                View view5 = K5.f47702a;
+                                View view5 = K5.f47748a;
                                 if (view5 instanceof org.telegram.ui.Cells.d6) {
-                                    org.telegram.ui.Cells.d6 d6Var = (org.telegram.ui.Cells.d6) view5;
-                                    d6Var.m(loVar.f28438c0, true);
-                                    d6Var.f21981r.a(zArr[i28 - loVar.f28466t0], z14);
-                                    if (d6Var.getTop() > AndroidUtilities.dp(40.0f) && i10 == loVar.G0 && !loVar.f28440d0) {
+                                    org.telegram.ui.Cells.d6 d6Var2 = (org.telegram.ui.Cells.d6) view5;
+                                    d6Var2.m(loVar.f28377c0, true);
+                                    d6Var2.f21969r.a(zArr[i28 - loVar.f28405t0], z14);
+                                    if (d6Var2.getTop() > AndroidUtilities.dp(40.0f) && i10 == loVar.G0 && !loVar.f28379d0) {
                                         a50Var.setText(LocaleController.getString(R.string.PollTapToSelect));
-                                        a50Var.f(d6Var.getCheckBox(), true);
-                                        loVar.f28440d0 = true;
+                                        a50Var.f(d6Var2.getCheckBox(), true);
+                                        loVar.f28379d0 = true;
                                     }
                                 }
                             }
@@ -297,15 +297,15 @@ public final class mn implements fm0 {
                 }
                 break;
             default:
-                jw.p((jw) this.f28853c, (ArrayList) this.d, (org.telegram.ui.ActionBar.n2) this.f28854e, this.f28852b, view, i10);
+                jw.p((jw) this.f28802c, (ArrayList) this.d, (org.telegram.ui.ActionBar.m2) this.f28803e, this.f28801b, view, i10);
                 return;
         }
     }
 
-    public mn(jw jwVar, ArrayList arrayList, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f28853c = jwVar;
+    public mn(jw jwVar, ArrayList arrayList, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f28802c = jwVar;
         this.d = arrayList;
-        this.f28854e = n2Var;
-        this.f28852b = e6Var;
+        this.f28803e = m2Var;
+        this.f28801b = d6Var;
     }
 }

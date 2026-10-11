@@ -5,9 +5,9 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.q80;
-import org.telegram.ui.ft;
-import org.telegram.ui.pt;
-public final class r1 implements pt {
+import org.telegram.ui.et;
+import org.telegram.ui.ot;
+public final class r1 implements ot {
     @Override
     public final MessageObject A() {
         return null;
@@ -192,7 +192,7 @@ public final class r1 implements pt {
     }
 
     @Override
-    public final void f(CharSequence charSequence, String str, ft ftVar) {
+    public final void f(CharSequence charSequence, String str, et etVar) {
     }
 
     @Override

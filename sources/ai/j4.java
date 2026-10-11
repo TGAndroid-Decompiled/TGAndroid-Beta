@@ -42,11 +42,11 @@ public final class j4 implements jk {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
             intent.setType("*/*");
-            org.telegram.ui.ActionBar.n2 n2Var = this.f1181a.J0.f1267f;
-            if (n2Var.getParentActivity() == null) {
+            org.telegram.ui.ActionBar.m2 m2Var = this.f1181a.J0.f1267f;
+            if (m2Var.getParentActivity() == null) {
                 return;
             }
-            n2Var.getParentActivity().startActivityForResult(intent, 21);
+            m2Var.getParentActivity().startActivityForResult(intent, 21);
         } catch (Exception e7) {
             FileLog.e(e7);
         }

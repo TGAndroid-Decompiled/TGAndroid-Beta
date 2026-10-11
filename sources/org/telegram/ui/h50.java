@@ -4,10 +4,10 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class h50 extends s4.o {
-    public final g60 f38257b;
+    public final g60 f38297b;
 
     public h50(g60 g60Var) {
-        this.f38257b = g60Var;
+        this.f38297b = g60Var;
     }
 
     @Override
@@ -22,11 +22,11 @@ public final class h50 extends s4.o {
         int i14;
         int i15;
         int i16;
-        g60 g60Var = this.f38257b;
+        g60 g60Var = this.f38297b;
         a60 a60Var = g60Var.P;
-        int i17 = a60Var.f35893w;
+        int i17 = a60Var.f35897w;
         if (i17 >= 0) {
-            int i18 = g60Var.f37866h3;
+            int i18 = g60Var.f37902h3;
             if (i10 == i18 && i11 == i17) {
                 return true;
             }
@@ -34,9 +34,9 @@ public final class h50 extends s4.o {
                 return false;
             }
         }
-        int i19 = a60Var.f35894x;
+        int i19 = a60Var.f35898x;
         if (i19 >= 0) {
-            int i20 = g60Var.f37918u3;
+            int i20 = g60Var.f37954u3;
             if (i10 == i20 && i11 == i19) {
                 return true;
             }
@@ -44,9 +44,9 @@ public final class h50 extends s4.o {
                 return false;
             }
         }
-        int i21 = a60Var.f35895y;
+        int i21 = a60Var.f35899y;
         if (i21 >= 0) {
-            int i22 = g60Var.f37922v3;
+            int i22 = g60Var.f37958v3;
             if (i10 == i22 && i11 == i21) {
                 return true;
             }
@@ -56,7 +56,7 @@ public final class h50 extends s4.o {
         }
         int i23 = a60Var.K;
         if (i23 >= 0) {
-            int i24 = g60Var.f37862g3;
+            int i24 = g60Var.f37898g3;
             if (i10 == i24 && i11 == i23) {
                 return true;
             }
@@ -66,7 +66,7 @@ public final class h50 extends s4.o {
         }
         int i25 = a60Var.J;
         if (i25 >= 0) {
-            int i26 = g60Var.f37914t3;
+            int i26 = g60Var.f37950t3;
             if (i10 == i26 && i11 == i25) {
                 return true;
             }
@@ -75,7 +75,7 @@ public final class h50 extends s4.o {
             }
         }
         int i27 = a60Var.I;
-        if (i27 >= 0 && i27 == i11 && i10 == g60Var.f37910s3) {
+        if (i27 >= 0 && i27 == i11 && i10 == g60Var.f37946s3) {
             return true;
         }
         int i28 = g60Var.I0;
@@ -83,23 +83,23 @@ public final class h50 extends s4.o {
             return true;
         }
         if (i10 != i28 - 1 && i11 != a60Var.F - 1) {
-            if (i11 >= a60Var.G && i11 < a60Var.H && i10 >= (i16 = g60Var.f37900q3) && i10 < g60Var.f37905r3) {
-                return ((ChatObject.VideoParticipant) g60Var.E0.get(i10 - i16)).equals((ChatObject.VideoParticipant) g60Var.f37897q0.get(i11 - g60Var.P.G));
+            if (i11 >= a60Var.G && i11 < a60Var.H && i10 >= (i16 = g60Var.f37936q3) && i10 < g60Var.f37941r3) {
+                return ((ChatObject.VideoParticipant) g60Var.E0.get(i10 - i16)).equals((ChatObject.VideoParticipant) g60Var.f37933q0.get(i11 - g60Var.P.G));
             }
-            if (i11 >= a60Var.d && i11 < a60Var.f35888e && i10 >= (i15 = g60Var.f37870i3) && i10 < g60Var.j3) {
+            if (i11 >= a60Var.d && i11 < a60Var.f35892e && i10 >= (i15 = g60Var.f37906i3) && i10 < g60Var.j3) {
                 TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) g60Var.D0.get(i10 - i15);
-                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(g60Var.f37833a1.visibleParticipants.get(i11 - g60Var.P.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
+                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(g60Var.f37869a1.visibleParticipants.get(i11 - g60Var.P.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
                     return false;
                 }
                 return true;
-            } else if (i11 >= a60Var.f35889f && i11 < a60Var.h && i10 >= (i14 = g60Var.f37877k3) && i10 < g60Var.f37880l3) {
-                return ((Long) g60Var.F0.get(i10 - i14)).equals(g60Var.f37833a1.invitedUsers.get(i11 - g60Var.P.f35889f));
+            } else if (i11 >= a60Var.f35893f && i11 < a60Var.h && i10 >= (i14 = g60Var.f37913k3) && i10 < g60Var.f37916l3) {
+                return ((Long) g60Var.F0.get(i10 - i14)).equals(g60Var.f37869a1.invitedUsers.get(i11 - g60Var.P.f35893f));
             } else {
-                if (i11 >= a60Var.f35890n && i11 < a60Var.f35891r && i10 >= (i13 = g60Var.f37883m3) && i10 < g60Var.f37888n3) {
-                    return ((Long) g60Var.G0.get(i10 - i13)).equals(g60Var.f37833a1.shadyJoinParticipants.get(i11 - g60Var.P.f35890n));
+                if (i11 >= a60Var.f35894n && i11 < a60Var.f35895r && i10 >= (i13 = g60Var.f37919m3) && i10 < g60Var.f37924n3) {
+                    return ((Long) g60Var.G0.get(i10 - i13)).equals(g60Var.f37869a1.shadyJoinParticipants.get(i11 - g60Var.P.f35894n));
                 }
-                if (i11 >= a60Var.f35892s && i11 < a60Var.v && i10 >= (i12 = g60Var.f37892o3) && i10 < g60Var.f37896p3) {
-                    return ((Long) g60Var.H0.get(i10 - i12)).equals(g60Var.f37833a1.shadyLeftParticipants.get(i11 - g60Var.P.f35892s));
+                if (i11 >= a60Var.f35896s && i11 < a60Var.v && i10 >= (i12 = g60Var.f37928o3) && i10 < g60Var.f37932p3) {
+                    return ((Long) g60Var.H0.get(i10 - i12)).equals(g60Var.f37869a1.shadyLeftParticipants.get(i11 - g60Var.P.f35896s));
                 }
             }
         }
@@ -108,11 +108,11 @@ public final class h50 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f38257b.P.F;
+        return this.f38297b.P.F;
     }
 
     @Override
     public final int e() {
-        return this.f38257b.I0;
+        return this.f38297b.I0;
     }
 }

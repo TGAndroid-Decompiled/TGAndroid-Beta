@@ -1,63 +1,44 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
+import java.util.Comparator;
+import org.telegram.messenger.SavedMessagesController;
+import org.telegram.messenger.SecretChatHelper;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
-public final class zh implements Runnable {
-    public final int f20016a;
-    public final Object f20017b;
-    public final Object f20018c;
-    public final Object d;
-    public final Object f20019e;
+public final class zh implements Comparator {
+    public final int f20012a;
 
-    public zh(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f20016a = i10;
-        this.f20018c = obj;
-        this.f20017b = obj2;
-        this.d = obj3;
-        this.f20019e = obj4;
+    public zh(int i10) {
+        this.f20012a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20016a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$updatePinnedOrder$5;
+        int lambda$updateAllDialogs$0;
+        int lambda$resendMessages$13;
+        int lambda$checkSecretHoles$16;
+        int lambda$saveProxyList$4;
+        int lambda$sortTopics$9;
+        switch (this.f20012a) {
             case 0:
-                ((SavedMessagesController) this.f20018c).lambda$loadDialogs$2((TLObject) this.f20017b, (ArrayList) this.d, (TLRPC.TL_error) this.f20019e);
-                return;
+                lambda$updatePinnedOrder$5 = SavedMessagesController.lambda$updatePinnedOrder$5((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
+                return lambda$updatePinnedOrder$5;
             case 1:
-                ((SendMessagesHelper) this.f20018c).lambda$performSendDelayedMessage$60((TLObject) this.f20017b, (SendMessagesHelper.DelayedMessage) this.d, (String) this.f20019e);
-                return;
+                lambda$updateAllDialogs$0 = SavedMessagesController.lambda$updateAllDialogs$0((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
+                return lambda$updateAllDialogs$0;
             case 2:
-                ((SendMessagesHelper) this.f20018c).lambda$sendMessage$22((TLRPC.TL_messages_forwardMessages) this.f20017b, (ArrayList) this.d, (sj) this.f20019e);
-                return;
+                lambda$resendMessages$13 = SecretChatHelper.lambda$resendMessages$13((TLRPC.Message) obj, (TLRPC.Message) obj2);
+                return lambda$resendMessages$13;
             case 3:
-                ((SendMessagesHelper) this.f20018c).lambda$didReceivedNotification$4((SendMessagesHelper.DelayedMessage) this.f20017b, (File) this.d, (MessageObject) this.f20019e);
-                return;
+                lambda$checkSecretHoles$16 = SecretChatHelper.lambda$checkSecretHoles$16((SecretChatHelper.TL_decryptedMessageHolder) obj, (SecretChatHelper.TL_decryptedMessageHolder) obj2);
+                return lambda$checkSecretHoles$16;
             case 4:
-                ((UnconfirmedAuthController) this.f20018c).lambda$readCache$0((ArrayList) this.d, (HashSet) this.f20017b, (ArrayList) this.f20019e);
-                return;
+                lambda$saveProxyList$4 = SharedConfig.lambda$saveProxyList$4((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
+                return lambda$saveProxyList$4;
             default:
-                ((UserNameResolver) this.f20018c).lambda$resolve$0((String) this.d, (TLRPC.TL_error) this.f20019e, (TLObject) this.f20017b);
-                return;
+                lambda$sortTopics$9 = TopicsController.lambda$sortTopics$9((TLRPC.TL_forumTopic) obj, (TLRPC.TL_forumTopic) obj2);
+                return lambda$sortTopics$9;
         }
-    }
-
-    public zh(String str, UserNameResolver userNameResolver, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f20016a = 5;
-        this.f20018c = userNameResolver;
-        this.d = str;
-        this.f20019e = tL_error;
-        this.f20017b = tLObject;
-    }
-
-    public zh(UnconfirmedAuthController unconfirmedAuthController, ArrayList arrayList, HashSet hashSet, ArrayList arrayList2) {
-        this.f20016a = 4;
-        this.f20018c = unconfirmedAuthController;
-        this.d = arrayList;
-        this.f20017b = hashSet;
-        this.f20019e = arrayList2;
     }
 }

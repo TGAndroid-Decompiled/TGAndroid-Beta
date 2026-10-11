@@ -1,30 +1,37 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hz0 implements RequestDelegate {
-    public final int f38465a;
-    public final kz0 f38466b;
+import android.content.DialogInterface;
+import org.telegram.messenger.SharedConfig;
+public final class hz0 implements DialogInterface.OnClickListener {
+    public final int f38531a;
+    public final int f38532b;
 
-    public hz0(kz0 kz0Var, int i10) {
-        this.f38465a = i10;
-        this.f38466b = kz0Var;
+    public hz0(int i10, int i11) {
+        this.f38531a = i11;
+        this.f38532b = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38465a) {
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        switch (this.f38531a) {
             case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                kz0 kz0Var = this.f38466b;
-                kz0Var.f39425c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new hz0(kz0Var, 1));
-                return;
+                int i11 = 2 - i10;
+                if (i11 == this.f38532b) {
+                    SharedConfig.overrideDevicePerformanceClass(-1);
+                    return;
+                } else {
+                    SharedConfig.overrideDevicePerformanceClass(i11);
+                    return;
+                }
             default:
-                this.f38466b.f39425c.getMessagesController().loadAppConfig();
-                return;
+                int i12 = 2 - i10;
+                if (i12 == this.f38532b) {
+                    SharedConfig.overrideDevicePerformanceClass(-1);
+                    return;
+                } else {
+                    SharedConfig.overrideDevicePerformanceClass(i12);
+                    return;
+                }
         }
     }
 }

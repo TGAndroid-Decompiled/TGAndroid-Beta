@@ -1,34 +1,78 @@
 package org.telegram.ui;
-public final class zg1 implements org.telegram.ui.ActionBar.a2 {
-    public final int f44672a;
-    public final ih1 f44673b;
 
-    public zg1(ih1 ih1Var, int i10) {
-        this.f44672a = i10;
-        this.f44673b = ih1Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class zg1 implements Runnable {
+    public final int f44662a;
+    public final hh1 f44663b;
+
+    public zg1(hh1 hh1Var, int i10) {
+        this.f44662a = i10;
+        this.f44663b = hh1Var;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f44672a) {
+    public final void run() {
+        switch (this.f44662a) {
             case 0:
-                this.f44673b.finishFragment();
+                hh1 hh1Var = this.f44663b;
+                EditTextBoldCursor editTextBoldCursor = hh1Var.f38428n;
+                if (editTextBoldCursor != null && editTextBoldCursor.getVisibility() == 0) {
+                    hh1Var.f38428n.requestFocus();
+                    AndroidUtilities.showKeyboard(hh1Var.f38428n);
+                    return;
+                }
                 return;
             case 1:
-                ih1 ih1Var = this.f44673b;
-                ih1Var.B0();
-                ih1Var.finishFragment();
+                hh1 hh1Var2 = this.f44663b;
+                be0 be0Var = hh1Var2.f38431w;
+                if (be0Var != null && be0Var.getVisibility() == 0) {
+                    hh1Var2.f38431w.f36450f[0].requestFocus();
+                    return;
+                }
                 return;
             case 2:
-                ih1 ih1Var2 = this.f44673b;
-                ih1Var2.R = "";
-                ih1Var2.E0(false);
-                return;
+                int i10 = 0;
+                while (true) {
+                    ds[] dsVarArr = this.f44663b.f38431w.f36450f;
+                    if (i10 < dsVarArr.length) {
+                        dsVarArr[i10].i(0.0f);
+                        i10++;
+                    } else {
+                        return;
+                    }
+                }
             case 3:
-                ih1.a0(this.f44673b);
+                hh1 hh1Var3 = this.f44663b;
+                EditTextBoldCursor editTextBoldCursor2 = hh1Var3.f38428n;
+                if (editTextBoldCursor2 != null) {
+                    if (editTextBoldCursor2.length() != 0) {
+                        hh1Var3.f38423f0[2].P(49);
+                        hh1Var3.f38423f0[2].T(0.0f, false);
+                        hh1Var3.f38413a.d();
+                        return;
+                    }
+                    hh1Var3.F0(true);
+                    return;
+                }
+                return;
+            case 4:
+                hh1 hh1Var4 = this.f44663b;
+                if (hh1Var4.f38424g0 != null) {
+                    hh1Var4.F0(false);
+                    return;
+                }
+                return;
+            case 5:
+                hh1.f0(this.f44663b);
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new zg1(this.f44663b, 7), 150L);
                 return;
             default:
-                ih1.X(this.f44673b);
+                for (ds dsVar : this.f44663b.f38431w.f36450f) {
+                    dsVar.i(0.0f);
+                }
                 return;
         }
     }

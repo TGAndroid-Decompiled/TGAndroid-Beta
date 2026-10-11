@@ -20,25 +20,25 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import v7.s7;
 public final class h extends MenuInflater {
-    public static final Class[] f14311e;
-    public static final Class[] f14312f;
-    public final Object[] f14313a;
-    public final Object[] f14314b;
-    public final Context f14315c;
+    public static final Class[] f14310e;
+    public static final Class[] f14311f;
+    public final Object[] f14312a;
+    public final Object[] f14313b;
+    public final Context f14314c;
     public Object d;
 
     static {
         Class[] clsArr = {Context.class};
-        f14311e = clsArr;
-        f14312f = clsArr;
+        f14310e = clsArr;
+        f14311f = clsArr;
     }
 
     public h(Context context) {
         super(context);
-        this.f14315c = context;
+        this.f14314c = context;
         Object[] objArr = {context};
-        this.f14313a = objArr;
-        this.f14314b = objArr;
+        this.f14312a = objArr;
+        this.f14313b = objArr;
     }
 
     public static Object a(Object obj) {
@@ -82,7 +82,7 @@ public final class h extends MenuInflater {
         String str = null;
         while (!z11) {
             if (eventType != 1) {
-                Menu menu2 = gVar.f14288a;
+                Menu menu2 = gVar.f14287a;
                 if (eventType != i10) {
                     if (eventType == 3) {
                         String name2 = xmlPullParser.getName();
@@ -95,21 +95,21 @@ public final class h extends MenuInflater {
                             z11 = z11;
                             z12 = z12;
                         } else if (name2.equals("group")) {
-                            gVar.f14289b = 0;
-                            gVar.f14290c = 0;
+                            gVar.f14288b = 0;
+                            gVar.f14289c = 0;
                             gVar.d = 0;
-                            gVar.f14291e = 0;
-                            gVar.f14292f = true;
-                            gVar.f14293g = true;
+                            gVar.f14290e = 0;
+                            gVar.f14291f = true;
+                            gVar.f14292g = true;
                         } else if (name2.equals("item")) {
                             if (!gVar.h) {
-                                n nVar = gVar.f14310z;
-                                if (nVar != null && nVar.f15286a.hasSubMenu()) {
+                                n nVar = gVar.f14309z;
+                                if (nVar != null && nVar.f15285a.hasSubMenu()) {
                                     gVar.h = true;
-                                    gVar.b(menu2.addSubMenu(gVar.f14289b, gVar.f14294i, gVar.f14295j, gVar.f14296k).getItem());
+                                    gVar.b(menu2.addSubMenu(gVar.f14288b, gVar.f14293i, gVar.f14294j, gVar.f14295k).getItem());
                                 } else {
                                     gVar.h = true;
-                                    gVar.b(menu2.add(gVar.f14289b, gVar.f14294i, gVar.f14295j, gVar.f14296k));
+                                    gVar.b(menu2.add(gVar.f14288b, gVar.f14293i, gVar.f14294j, gVar.f14295k));
                                 }
                             }
                         } else if (name2.equals("menu")) {
@@ -123,65 +123,65 @@ public final class h extends MenuInflater {
                     if (!z12) {
                         String name3 = xmlPullParser.getName();
                         boolean equals = name3.equals("group");
-                        Context context = this.f14315c;
+                        Context context = this.f14314c;
                         if (equals) {
-                            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f9539p);
-                            gVar.f14289b = obtainStyledAttributes.getResourceId(1, 0);
-                            gVar.f14290c = obtainStyledAttributes.getInt(3, 0);
+                            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, f.a.f9538p);
+                            gVar.f14288b = obtainStyledAttributes.getResourceId(1, 0);
+                            gVar.f14289c = obtainStyledAttributes.getInt(3, 0);
                             gVar.d = obtainStyledAttributes.getInt(4, 0);
-                            gVar.f14291e = obtainStyledAttributes.getInt(5, 0);
-                            gVar.f14292f = obtainStyledAttributes.getBoolean(2, true);
-                            gVar.f14293g = obtainStyledAttributes.getBoolean(0, true);
+                            gVar.f14290e = obtainStyledAttributes.getInt(5, 0);
+                            gVar.f14291f = obtainStyledAttributes.getBoolean(2, true);
+                            gVar.f14292g = obtainStyledAttributes.getBoolean(0, true);
                             obtainStyledAttributes.recycle();
                         } else {
                             if (name3.equals("item")) {
-                                TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f9540q);
-                                gVar.f14294i = obtainStyledAttributes2.getResourceId(2, 0);
-                                gVar.f14295j = (obtainStyledAttributes2.getInt(5, gVar.f14290c) & (-65536)) | (obtainStyledAttributes2.getInt(6, gVar.d) & 65535);
-                                gVar.f14296k = obtainStyledAttributes2.getText(7);
-                                gVar.f14297l = obtainStyledAttributes2.getText(8);
-                                gVar.f14298m = obtainStyledAttributes2.getResourceId(0, 0);
+                                TypedArray obtainStyledAttributes2 = context.obtainStyledAttributes(attributeSet, f.a.f9539q);
+                                gVar.f14293i = obtainStyledAttributes2.getResourceId(2, 0);
+                                gVar.f14294j = (obtainStyledAttributes2.getInt(5, gVar.f14289c) & (-65536)) | (obtainStyledAttributes2.getInt(6, gVar.d) & 65535);
+                                gVar.f14295k = obtainStyledAttributes2.getText(7);
+                                gVar.f14296l = obtainStyledAttributes2.getText(8);
+                                gVar.f14297m = obtainStyledAttributes2.getResourceId(0, 0);
                                 String string = obtainStyledAttributes2.getString(9);
                                 if (string == null) {
                                     charAt = 0;
                                 } else {
                                     charAt = string.charAt(0);
                                 }
-                                gVar.f14299n = charAt;
-                                gVar.f14300o = obtainStyledAttributes2.getInt(16, 4096);
+                                gVar.f14298n = charAt;
+                                gVar.f14299o = obtainStyledAttributes2.getInt(16, 4096);
                                 String string2 = obtainStyledAttributes2.getString(10);
                                 if (string2 == null) {
                                     charAt2 = 0;
                                 } else {
                                     charAt2 = string2.charAt(0);
                                 }
-                                gVar.f14301p = charAt2;
-                                gVar.f14302q = obtainStyledAttributes2.getInt(20, 4096);
+                                gVar.f14300p = charAt2;
+                                gVar.f14301q = obtainStyledAttributes2.getInt(20, 4096);
                                 if (obtainStyledAttributes2.hasValue(11)) {
-                                    gVar.f14303r = obtainStyledAttributes2.getBoolean(11, false) ? 1 : 0;
+                                    gVar.f14302r = obtainStyledAttributes2.getBoolean(11, false) ? 1 : 0;
                                 } else {
-                                    gVar.f14303r = gVar.f14291e;
+                                    gVar.f14302r = gVar.f14290e;
                                 }
-                                gVar.f14304s = obtainStyledAttributes2.getBoolean(3, false);
-                                gVar.f14305t = obtainStyledAttributes2.getBoolean(4, gVar.f14292f);
-                                gVar.f14306u = obtainStyledAttributes2.getBoolean(1, gVar.f14293g);
+                                gVar.f14303s = obtainStyledAttributes2.getBoolean(3, false);
+                                gVar.f14304t = obtainStyledAttributes2.getBoolean(4, gVar.f14291f);
+                                gVar.f14305u = obtainStyledAttributes2.getBoolean(1, gVar.f14292g);
                                 gVar.v = obtainStyledAttributes2.getInt(21, -1);
-                                gVar.f14309y = obtainStyledAttributes2.getString(12);
-                                gVar.f14307w = obtainStyledAttributes2.getResourceId(13, 0);
-                                gVar.f14308x = obtainStyledAttributes2.getString(15);
+                                gVar.f14308y = obtainStyledAttributes2.getString(12);
+                                gVar.f14306w = obtainStyledAttributes2.getResourceId(13, 0);
+                                gVar.f14307x = obtainStyledAttributes2.getString(15);
                                 String string3 = obtainStyledAttributes2.getString(14);
                                 if (string3 != null) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
-                                if (z10 && gVar.f14307w == 0 && gVar.f14308x == null) {
-                                    gVar.f14310z = (n) gVar.a(string3, f14312f, this.f14314b);
+                                if (z10 && gVar.f14306w == 0 && gVar.f14307x == null) {
+                                    gVar.f14309z = (n) gVar.a(string3, f14311f, this.f14313b);
                                 } else {
                                     if (z10) {
                                         Log.w("SupportMenuInflater", "Ignoring attribute 'actionProviderClass'. Action view already specified.");
                                     }
-                                    gVar.f14310z = null;
+                                    gVar.f14309z = null;
                                 }
                                 gVar.A = obtainStyledAttributes2.getText(17);
                                 gVar.B = obtainStyledAttributes2.getText(22);
@@ -203,7 +203,7 @@ public final class h extends MenuInflater {
                                 xmlPullParser2 = xmlPullParser;
                             } else if (name3.equals("menu")) {
                                 gVar.h = true;
-                                SubMenu addSubMenu = menu2.addSubMenu(gVar.f14289b, gVar.f14294i, gVar.f14295j, gVar.f14296k);
+                                SubMenu addSubMenu = menu2.addSubMenu(gVar.f14288b, gVar.f14293i, gVar.f14294j, gVar.f14295k);
                                 gVar.b(addSubMenu.getItem());
                                 xmlPullParser2 = xmlPullParser;
                                 b(xmlPullParser2, attributeSet, addSubMenu);
@@ -241,7 +241,7 @@ public final class h extends MenuInflater {
         try {
             try {
                 try {
-                    xmlResourceParser = this.f14315c.getResources().getLayout(i10);
+                    xmlResourceParser = this.f14314c.getResources().getLayout(i10);
                     b(xmlResourceParser, Xml.asAttributeSet(xmlResourceParser), menu);
                     xmlResourceParser.close();
                 } catch (IOException e7) {

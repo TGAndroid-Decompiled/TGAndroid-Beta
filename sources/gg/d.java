@@ -3,14 +3,14 @@ package gg;
 import java.util.Comparator;
 import org.telegram.messenger.MessagesController;
 public final class d implements Comparator {
-    public final int f10565a;
-    public final MessagesController f10566b;
-    public final int f10567c;
+    public final int f10564a;
+    public final MessagesController f10565b;
+    public final int f10566c;
 
     public d(MessagesController messagesController, int i10, int i11) {
-        this.f10565a = i11;
-        this.f10566b = messagesController;
-        this.f10567c = i10;
+        this.f10564a = i11;
+        this.f10565b = messagesController;
+        this.f10566c = i10;
     }
 
     @Override

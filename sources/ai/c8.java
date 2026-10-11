@@ -27,9 +27,9 @@ import org.telegram.messenger.jk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.ow0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.k71;
+import org.telegram.ui.j71;
 public final class c8 implements Runnable {
     public final int f780a;
     public final boolean f781b;
@@ -125,7 +125,7 @@ public final class c8 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i15 = i11; i15 < arrayList2.size(); i15++) {
                             if (arrayList2.get(i15) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = z9Var.f(arrayList2.get(i15).f20279id, peerDialogId);
+                                TL_stories.StoryItem f7 = z9Var.f(arrayList2.get(i15).f20269id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i15, f7);
                                 }
@@ -181,12 +181,12 @@ public final class c8 implements Runnable {
                 ProfileActivity.m0((ProfileActivity) obj3, (TLRPC.User) obj2, (String) obj, z12, z11);
                 return;
             case 3:
-                final k71 k71Var = (k71) obj3;
+                final j71 j71Var = (j71) obj3;
                 final String str = (String) obj2;
                 String[] strArr = (String[]) obj;
                 final LinkedHashSet linkedHashSet = new LinkedHashSet();
                 final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                final HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(k71Var.V).getReactionsMap();
+                final HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(j71Var.V).getReactionsMap();
                 final ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
                 boolean fullyConsistsOfEmojis = Emoji.fullyConsistsOfEmojis(str);
@@ -199,7 +199,7 @@ public final class c8 implements Runnable {
                     @Override
                     public final void run(Object obj4) {
                         Runnable runnable = (Runnable) obj4;
-                        final k71 k71Var2 = k71.this;
+                        final j71 j71Var2 = j71.this;
                         final String str2 = str;
                         final boolean z15 = z13;
                         final ArrayList arrayList8 = arrayList4;
@@ -213,94 +213,94 @@ public final class c8 implements Runnable {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                k71 k71Var3 = k71.this;
-                                m51 m51Var = k71Var3.I1;
-                                if (m51Var != null) {
-                                    AndroidUtilities.cancelRunOnUIThread(m51Var);
-                                    k71Var3.I1 = null;
+                                j71 j71Var3 = j71.this;
+                                l51 l51Var = j71Var3.I1;
+                                if (l51Var != null) {
+                                    AndroidUtilities.cancelRunOnUIThread(l51Var);
+                                    j71Var3.I1 = null;
                                 }
-                                String str3 = k71Var3.f39217z1;
+                                String str3 = j71Var3.f38935z1;
                                 String str4 = str2;
                                 if (str4 != str3) {
                                     return;
                                 }
-                                k71Var3.f39215y1 = true;
-                                k71Var3.z(true, z15);
-                                b61 b61Var = k71Var3.f39172f0;
-                                if (b61Var != null) {
-                                    b61Var.d(true);
+                                j71Var3.f38933y1 = true;
+                                j71Var3.z(true, z15);
+                                a61 a61Var = j71Var3.f38890f0;
+                                if (a61Var != null) {
+                                    a61Var.d(true);
                                 }
-                                ArrayList arrayList12 = k71Var3.A1;
+                                ArrayList arrayList12 = j71Var3.A1;
                                 if (arrayList12 == null) {
-                                    k71Var3.A1 = new ArrayList();
+                                    j71Var3.A1 = new ArrayList();
                                 } else {
                                     arrayList12.clear();
                                 }
-                                ArrayList arrayList13 = k71Var3.D1;
+                                ArrayList arrayList13 = j71Var3.D1;
                                 if (arrayList13 == null) {
-                                    k71Var3.D1 = new ArrayList();
+                                    j71Var3.D1 = new ArrayList();
                                 } else {
                                     arrayList13.clear();
                                 }
-                                ArrayList arrayList14 = k71Var3.C1;
+                                ArrayList arrayList14 = j71Var3.C1;
                                 if (arrayList14 == null) {
-                                    k71Var3.C1 = new ArrayList();
+                                    j71Var3.C1 = new ArrayList();
                                 } else {
                                     arrayList14.clear();
                                 }
-                                ArrayList arrayList15 = k71Var3.B1;
+                                ArrayList arrayList15 = j71Var3.B1;
                                 if (arrayList15 == null) {
-                                    k71Var3.B1 = new ArrayList();
+                                    j71Var3.B1 = new ArrayList();
                                 } else {
                                     arrayList15.clear();
                                 }
                                 int i17 = 0;
-                                k71Var3.f39178i0.u0(0);
-                                int i18 = k71Var3.W;
+                                j71Var3.f38896i0.u0(0);
+                                int i18 = j71Var3.W;
                                 if (i18 == 1 || i18 == 14 || i18 == 11 || i18 == 2) {
                                     ArrayList arrayList16 = arrayList8;
                                     if (!arrayList16.isEmpty()) {
-                                        k71Var3.A1.addAll(arrayList16);
+                                        j71Var3.A1.addAll(arrayList16);
                                     } else {
                                         TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) hashMap2.get(str4);
                                         if (tL_availableReaction != null) {
-                                            k71Var3.A1.add(zg.n0.c(tL_availableReaction));
+                                            j71Var3.A1.add(zg.n0.c(tL_availableReaction));
                                         }
                                     }
                                     ArrayList arrayList17 = arrayList9;
                                     if (!arrayList17.isEmpty()) {
-                                        k71Var3.B1.addAll(arrayList17);
+                                        j71Var3.B1.addAll(arrayList17);
                                     }
                                 }
                                 Iterator it = linkedHashSet3.iterator();
                                 while (it.hasNext()) {
                                     Long l4 = (Long) it.next();
                                     l4.getClass();
-                                    ArrayList arrayList18 = k71Var3.A1;
+                                    ArrayList arrayList18 = j71Var3.A1;
                                     ?? obj5 = new Object();
                                     long longValue2 = l4.longValue();
-                                    obj5.f54662g = longValue2;
+                                    obj5.f54705g = longValue2;
                                     obj5.h = longValue2;
                                     arrayList18.add(obj5);
                                 }
                                 Iterator it2 = linkedHashSet4.iterator();
                                 while (it2.hasNext()) {
-                                    k71Var3.A1.add(zg.n0.b((String) it2.next()));
+                                    j71Var3.A1.add(zg.n0.b((String) it2.next()));
                                 }
-                                k71Var3.D1.addAll(arrayList10);
+                                j71Var3.D1.addAll(arrayList10);
                                 ArrayList arrayList19 = arrayList11;
                                 int size = arrayList19.size();
                                 while (i17 < size) {
                                     Object obj6 = arrayList19.get(i17);
                                     i17++;
-                                    k71Var3.C1.addAll((ArrayList) obj6);
+                                    j71Var3.C1.addAll((ArrayList) obj6);
                                 }
-                                k71Var3.f39193q0.E(true ^ z16);
+                                j71Var3.f38911q0.E(true ^ z16);
                             }
                         });
                     }
                 };
-                int i17 = k71Var.W;
+                int i17 = j71Var.W;
                 if (i17 == 13) {
                     Utilities.doCallbacks(new Utilities.Callback() {
                         @Override
@@ -308,10 +308,10 @@ public final class c8 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(k71Var.V).getEmojiSuggestions(k71.a2, str, false, new ls0(8, linkedHashSet2, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(j71Var.V).getEmojiSuggestions(j71.a2, str, false, new js0(9, linkedHashSet2, runnable), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(k71Var.V).getAnimatedEmojiByKeywords(str, new t51(linkedHashSet2, runnable, 0));
+                                    MediaDataController.getInstance(j71Var.V).getAnimatedEmojiByKeywords(str, new s51(linkedHashSet2, runnable, 0));
                                     return;
                             }
                         }
@@ -327,7 +327,7 @@ public final class c8 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(k71Var.V).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(j71Var.V).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i18 = 0; i18 < availableEffects.effects.size(); i18++) {
                                                 try {
@@ -347,8 +347,8 @@ public final class c8 implements Runnable {
                                         runnable.run();
                                         return;
                                     default:
-                                        k71 k71Var2 = k71Var;
-                                        MediaDataController.getInstance(k71Var2.V).getEmojiSuggestions(k71.a2, str, false, new a1.d(k71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
+                                        j71 j71Var2 = j71Var;
+                                        MediaDataController.getInstance(j71Var2.V).getEmojiSuggestions(j71.a2, str, false, new a1.d(j71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -362,7 +362,7 @@ public final class c8 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(k71Var.V).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(j71Var.V).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i18 = 0; i18 < availableEffects.effects.size(); i18++) {
                                                 try {
@@ -382,8 +382,8 @@ public final class c8 implements Runnable {
                                         runnable.run();
                                         return;
                                     default:
-                                        k71 k71Var2 = k71Var;
-                                        MediaDataController.getInstance(k71Var2.V).getEmojiSuggestions(k71.a2, str, false, new a1.d(k71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
+                                        j71 j71Var2 = j71Var;
+                                        MediaDataController.getInstance(j71Var2.V).getEmojiSuggestions(j71.a2, str, false, new a1.d(j71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -398,14 +398,14 @@ public final class c8 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(k71Var.V).getEmojiSuggestions(k71.a2, str, false, new ls0(8, linkedHashSet, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(j71Var.V).getEmojiSuggestions(j71.a2, str, false, new js0(9, linkedHashSet, runnable), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(k71Var.V).getAnimatedEmojiByKeywords(str, new t51(linkedHashSet, runnable, 0));
+                                    MediaDataController.getInstance(j71Var.V).getAnimatedEmojiByKeywords(str, new s51(linkedHashSet, runnable, 0));
                                     return;
                             }
                         }
-                    }, new f4(k71Var, strArr, str, linkedHashSet, 12), new jk(k71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new f4((Object) k71Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.z(k71Var, str, arrayList7, 12), callback2);
+                    }, new f4(j71Var, strArr, str, linkedHashSet, 12), new jk(j71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new f4((Object) j71Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.y(j71Var, str, arrayList7, 12), callback2);
                     return;
                 }
             case 4:
@@ -419,11 +419,11 @@ public final class c8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.s0 s0Var = ((pg.c1) obj3).f45652y.f45679c;
-                nw0 nw0Var = s0Var.f45804g;
-                n6.t h = s0Var.h(new RectF(0.0f, 0.0f, nw0Var.f29260a, nw0Var.f29261b), false, z12, z11);
+                pg.s0 s0Var = ((pg.c1) obj3).f45642y.f45669c;
+                ow0 ow0Var = s0Var.f45794g;
+                n6.k h = s0Var.h(new RectF(0.0f, 0.0f, ow0Var.f29541a, ow0Var.f29542b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f16721b;
+                    bitmapArr[0] = (Bitmap) h.f16729b;
                 }
                 countDownLatch.countDown();
                 return;

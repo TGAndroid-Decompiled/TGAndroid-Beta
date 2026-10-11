@@ -1,8 +1,8 @@
 package cc;
 public final class g extends d {
-    public final byte[] f4595c;
+    public final byte[] f4594c;
     public final int d;
-    public final int f4596e;
+    public final int f4595e;
 
     public g(int i10, int i11, int[] iArr) {
         super(i10, i11);
@@ -13,9 +13,9 @@ public final class g extends d {
                 int i14 = iArr[i13];
                 bArr[i13] = (byte) (((((i14 >> 16) & 255) + ((i14 >> 7) & 510)) + (i14 & 255)) / 4);
             }
-            this.f4595c = bArr;
+            this.f4594c = bArr;
             this.d = i10;
-            this.f4596e = i11;
+            this.f4595e = i11;
             return;
         }
         throw new IllegalArgumentException("Pixel array length is less than width * height");
@@ -23,11 +23,11 @@ public final class g extends d {
 
     @Override
     public final byte[] a() {
-        byte[] bArr = this.f4595c;
-        int i10 = this.f4589a;
-        int i11 = this.f4590b;
+        byte[] bArr = this.f4594c;
+        int i10 = this.f4588a;
+        int i11 = this.f4589b;
         int i12 = this.d;
-        if (i10 == i12 && i11 == this.f4596e) {
+        if (i10 == i12 && i11 == this.f4595e) {
             return bArr;
         }
         int i13 = i10 * i11;
@@ -46,12 +46,12 @@ public final class g extends d {
 
     @Override
     public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f4590b) {
-            int i11 = this.f4589a;
+        if (i10 >= 0 && i10 < this.f4589b) {
+            int i11 = this.f4588a;
             if (bArr == null || bArr.length < i11) {
                 bArr = new byte[i11];
             }
-            System.arraycopy(this.f4595c, i10 * this.d, bArr, 0, i11);
+            System.arraycopy(this.f4594c, i10 * this.d, bArr, 0, i11);
             return bArr;
         }
         throw new IllegalArgumentException(hg.c.h(i10, "Requested row is outside the image: "));

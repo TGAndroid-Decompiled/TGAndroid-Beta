@@ -1,122 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class ic extends GestureDetector.SimpleOnGestureListener {
-    public final xb f27342a;
-    public final lb f27343b;
+public final class ic extends FrameLayout {
+    public final g6 f27270a;
+    public final g6 f27271b;
+    public final Paint f27272c;
+    public final RectF d;
+    public final long f27273e;
+    public final jc f27274f;
 
-    public ic(lb lbVar, xb xbVar) {
-        this.f27343b = lbVar;
-        this.f27342a = xbVar;
+    public ic(jc jcVar, Activity activity) {
+        super(activity);
+        this.f27274f = jcVar;
+        is isVar = is.h;
+        this.f27270a = new g6(this, 320L, isVar);
+        this.f27271b = new g6(this, 320L, isVar);
+        Paint paint = new Paint(1);
+        this.f27272c = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(268435455);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.d = new RectF();
+        this.f27273e = System.currentTimeMillis();
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        lb lbVar = this.f27343b;
-        if (lbVar.f28294s) {
-            return false;
-        }
-        xb xbVar = this.f27342a;
-        lbVar.v = xb.access$1400(xbVar, true);
-        lbVar.f28295w = xb.access$1400(xbVar, false);
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        boolean z10 = false;
-        if (Math.abs(f7) <= 2000.0f) {
-            return false;
-        }
-        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        lb lbVar = this.f27343b;
-        if ((i10 < 0 && lbVar.v) || (f7 > 0.0f && lbVar.f28295w)) {
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        int i10;
+        jc jcVar = this.f27274f;
+        float d = this.f27270a.d(jcVar.f27664a, false);
+        if (jcVar.f27664a >= 1.0f) {
             z10 = true;
+        } else {
+            z10 = false;
         }
-        float signum = Math.signum(f7);
-        xb xbVar = this.f27342a;
-        o1.k kVar = new o1.k(xbVar, o1.h.f16923m, signum * xbVar.getWidth() * 2.0f);
-        if (!z10) {
-            kVar.a(new o1.f(this) {
-                public final ic f26687b;
-
-                {
-                    this.f26687b = this;
-                }
-
-                @Override
-                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
-                    switch (r2) {
-                        case 0:
-                            this.f26687b.f27343b.f28297y.b();
-                            return;
-                        default:
-                            this.f26687b.f27343b.f28297y.b();
-                            return;
-                    }
-                }
-            });
-            kVar.b(new m7(xbVar, 2));
+        float e7 = this.f27271b.e(z10);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        RectF rectF = this.d;
+        rectF.set(width - AndroidUtilities.dpf2(13.0f), height - AndroidUtilities.dpf2(13.0f), AndroidUtilities.dpf2(13.0f) + width, AndroidUtilities.dpf2(13.0f) + height);
+        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.f27273e)) * 0.45f) % 5400.0f;
+        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
+        for (int i11 = 0; i11 < 4; i11++) {
+            u1.a aVar = jq.h;
+            aVar.getInterpolation((currentTimeMillis - (i11 * 1350)) / 667.0f);
+            max += aVar.getInterpolation((currentTimeMillis - (i10 + 667)) / 667.0f) * 250.0f;
         }
-        kVar.f16942u.a(1.0f);
-        kVar.f16942u.b(100.0f);
-        kVar.f16931a = f7;
-        kVar.h();
-        if (z10) {
-            o1.k kVar2 = new o1.k(xbVar, o1.h.f16930t, 0.0f);
-            kVar2.a(new o1.f(this) {
-                public final ic f26687b;
-
-                {
-                    this.f26687b = this;
-                }
-
-                @Override
-                public final void a(o1.h hVar, boolean z11, float f11, float f12) {
-                    switch (r2) {
-                        case 0:
-                            this.f26687b.f27343b.f28297y.b();
-                            return;
-                        default:
-                            this.f26687b.f27343b.f28297y.b();
-                            return;
-                    }
-                }
-            });
-            kVar2.b(new Object());
-            kVar.f16942u.a(1.0f);
-            kVar.f16942u.b(10.0f);
-            kVar.f16931a = f7;
-            kVar2.h();
+        int m12 = org.telegram.ui.ActionBar.h6.m1((1.0f - e7) * 1.0f, -1);
+        Paint paint = this.f27272c;
+        paint.setColor(m12);
+        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, d) * (-360.0f), false, paint);
+        if (d < 1.0f && e7 < 1.0f) {
+            invalidate();
         }
-        lbVar.f28294s = true;
-        return true;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        lb lbVar = this.f27343b;
-        float f11 = lbVar.h + f7;
-        lbVar.h = f11;
-        float f12 = lbVar.f28292n + f10;
-        lbVar.f28292n = f12;
-        if (Utilities.dist(0.0f, 0.0f, f11, f12) > AndroidUtilities.touchSlop) {
-            lbVar.f28293r = true;
-        }
-        if (!lbVar.d) {
-            return false;
-        }
-        float f13 = lbVar.f28291f - f7;
-        lbVar.f28291f = f13;
-        xb xbVar = this.f27342a;
-        xbVar.setTranslationX(f13);
-        float f14 = lbVar.f28291f;
-        if (f14 == 0.0f || ((f14 < 0.0f && lbVar.v) || (f14 > 0.0f && lbVar.f28295w))) {
-            xbVar.setAlpha(1.0f - (Math.abs(f14) / xbVar.getWidth()));
-        }
-        return true;
+        super.onDraw(canvas);
     }
 }

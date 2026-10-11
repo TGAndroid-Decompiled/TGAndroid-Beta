@@ -1,71 +1,82 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.is;
-public final class f8 extends EditTextBoldCursor {
-    public final org.telegram.ui.Components.g6 f34971b;
-    public final org.telegram.ui.Components.g6 f34972c;
-    public float d;
-    public float f34973e;
-    public final j8 f34974f;
+public final class f8 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34955a;
+    public final float f34956b;
+    public final float f34957c;
+    public final float d;
+    public final float f34958e;
+    public final int f34959f;
+    public final KeyEvent.Callback f34960g;
 
-    public f8(j8 j8Var, Context context) {
-        super(context);
-        this.f34974f = j8Var;
-        this.f34971b = new org.telegram.ui.Components.g6(this, 180L, is.h);
-        this.f34972c = new org.telegram.ui.Components.g6(this, 320L, j8.R);
-        this.d = 1.0f;
+    public f8(KeyEvent.Callback callback, float f7, float f10, float f11, float f12, int i10, int i11) {
+        this.f34955a = i11;
+        this.f34960g = callback;
+        this.f34956b = f7;
+        this.f34957c = f10;
+        this.d = f11;
+        this.f34958e = f12;
+        this.f34959f = i10;
     }
 
     @Override
-    public final void drawCursor(Canvas canvas, GradientDrawable gradientDrawable) {
-        gradientDrawable.setCornerRadius(AndroidUtilities.dpf2(1.5f));
-        int lineBaseline = getLayout().getLineBaseline(0);
-        Rect bounds = gradientDrawable.getBounds();
-        float f7 = lineBaseline;
-        int round = Math.round(((bounds.top - lineBaseline) * this.d) + f7);
-        int round2 = Math.round(((bounds.bottom - lineBaseline) * this.d) + f7);
-        int i10 = bounds.left;
-        int width = bounds.width();
-        if (this.f34973e > 0.0f) {
-            float f10 = i10;
-            i10 = Math.round((((((((getWidth() + getScrollX()) - getCompoundPaddingLeft()) - getCompoundPaddingRight()) - getPaint().measureText("0")) - width) - f10) * this.f34973e) + f10);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34955a) {
+            case 0:
+                k8 k8Var = (k8) this.f34960g;
+                k8Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                is isVar = is.h;
+                float interpolation = isVar.getInterpolation(floatValue);
+                float interpolation2 = isVar.getInterpolation(Math.min(1.0f, (floatValue * 320.0f) / 120.0f));
+                e6 e6Var = k8Var.f35174c;
+                float f7 = this.f34957c;
+                float f10 = this.f34956b;
+                e6Var.setAlpha(((f7 - f10) * interpolation2) + f10);
+                TextView textView = k8Var.f35175e;
+                float f11 = this.f34958e;
+                float f12 = this.d;
+                textView.setAlpha(((f11 - f12) * interpolation2) + f12);
+                FrameLayout frameLayout = k8Var.d;
+                ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
+                int i10 = this.f34959f;
+                layoutParams.width = Math.round(((k8Var.f35181x - i10) * interpolation) + i10);
+                frameLayout.requestLayout();
+                return;
+            default:
+                wh.k kVar = (wh.k) this.f34960g;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar.f50514x = floatValue2;
+                float f13 = this.f34956b;
+                float y3 = com.google.android.gms.internal.vision.e2.y(1.0f, f13, floatValue2, f13);
+                wh.j jVar = kVar.f50515y;
+                jVar.setScaleX(y3);
+                jVar.setScaleY(y3);
+                jVar.setTranslationX((1.0f - kVar.f50514x) * this.f34957c);
+                jVar.setTranslationY((1.0f - kVar.f50514x) * this.d);
+                int i11 = (int) ((1.0f - kVar.f50514x) * this.f34958e);
+                kVar.h.N(i11, i11);
+                float a2 = w7.o.a((kVar.f50514x * 2.0f) - 1.0f, 0.0f, 1.0f);
+                kVar.f50507c.setAlpha((int) (a2 * 255.0f));
+                kVar.d.setAlpha(a2);
+                kVar.f50508e.setAlpha(a2);
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = kVar.f50509f;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - kVar.f50514x) * this.f34959f);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a2);
+                BitmapDrawable bitmapDrawable = kVar.f50513w;
+                if (bitmapDrawable != null) {
+                    bitmapDrawable.setAlpha((int) (kVar.f50514x * 255.0f));
+                }
+                kVar.f50510n.setAlpha(a2);
+                return;
         }
-        gradientDrawable.setBounds(i10, round, width + i10, round2);
-        super.drawCursor(canvas, gradientDrawable);
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.f8.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onSelectionChanged(int i10, int i11) {
-        super.onSelectionChanged(i10, i11);
-        if (i10 != i11) {
-            this.f34974f.b();
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        if (motionEvent.getActionMasked() == 0) {
-            this.f34974f.b();
-            if (length() == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.f34972c.a(z10);
-        }
-        return super.onTouchEvent(motionEvent);
     }
 }

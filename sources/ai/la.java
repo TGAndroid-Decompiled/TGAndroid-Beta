@@ -6,20 +6,20 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.u60;
 public final class la extends z4.a {
     public final ArrayList f1360c = new ArrayList();
     public final Context d;
     public final kc f1361e;
-    public final org.telegram.ui.ActionBar.e6 f1362f;
+    public final org.telegram.ui.ActionBar.d6 f1362f;
     public final ac f1363g;
 
-    public la(ac acVar, Context context, kc kcVar, org.telegram.ui.ActionBar.e6 e6Var) {
+    public la(ac acVar, Context context, kc kcVar, org.telegram.ui.ActionBar.d6 d6Var) {
         this.f1363g = acVar;
         this.d = context;
         this.f1361e = kcVar;
-        this.f1362f = e6Var;
+        this.f1362f = d6Var;
     }
 
     @Override
@@ -58,13 +58,13 @@ public final class la extends z4.a {
                 kaVar.f952b2.N0();
                 kaVar.f952b2.setAlpha(1.0f - kaVar.f962d4);
             }
-            ll0 ll0Var = kaVar.f967f2;
-            if (ll0Var != null) {
-                ll0Var.n();
+            ml0 ml0Var = kaVar.f967f2;
+            if (ml0Var != null) {
+                ml0Var.n();
             }
-            ll0 ll0Var2 = kaVar.f1002r3;
-            if (ll0Var2 != null) {
-                ll0Var2.n();
+            ml0 ml0Var2 = kaVar.f1002r3;
+            if (ml0Var2 != null) {
+                ml0Var2.n();
             }
             u60 u60Var = kaVar.J2;
             if (u60Var != null) {

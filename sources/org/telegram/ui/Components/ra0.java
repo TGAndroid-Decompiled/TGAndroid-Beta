@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import java.util.regex.Pattern;
 public final class ra0 extends fd.h {
-    public static final Pattern f30439e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+    public static final Pattern f30432e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
 
     @Override
     public final cf.p b() {
-        String a2 = a(f30439e);
+        String a2 = a(f30432e);
         if (a2 == null) {
             return null;
         }

@@ -13,9 +13,9 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.dw0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.z90;
+import org.telegram.ui.y90;
 import org.telegram.ui.zn;
 public final class b8 implements Runnable {
     public final int f721a;
@@ -73,17 +73,17 @@ public final class b8 implements Runnable {
                 }
                 return;
             case 7:
-                cw0.n((cw0) this.d, this.f723c, this.f722b);
+                dw0.n((dw0) this.d, this.f723c, this.f722b);
                 return;
             default:
                 Long l4 = (Long) this.d;
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != null) {
                     zn W9 = zn.W9(l4.longValue());
                     U.presentFragment(W9);
                     TLRPC.Chat chat = MessagesController.getInstance(this.f722b).getChat(Long.valueOf(-l4.longValue()));
                     if (chat != null) {
-                        AndroidUtilities.runOnUIThread(new z90(W9, this.f723c, chat, 1), 250L);
+                        AndroidUtilities.runOnUIThread(new y90(W9, this.f723c, chat, 1), 250L);
                         return;
                     }
                     return;

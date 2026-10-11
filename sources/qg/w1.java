@@ -19,33 +19,33 @@ public final class w1 extends View {
     public Runnable I;
     public boolean J;
     public v1 K;
-    public final Paint f46642a;
-    public final Paint f46643b;
-    public final Path f46644c;
+    public final Paint f46684a;
+    public final Paint f46685b;
+    public final Path f46686c;
     public final f3 d;
-    public final RectF f46645e;
-    public boolean f46646f;
+    public final RectF f46687e;
+    public boolean f46688f;
     public boolean h;
-    public float f46647n;
-    public float f46648r;
-    public long f46649s;
+    public float f46689n;
+    public float f46690r;
+    public long f46691s;
     public boolean v;
-    public final g6 f46650w;
-    public final g6 f46651x;
-    public final g6 f46652y;
+    public final g6 f46692w;
+    public final g6 f46693x;
+    public final g6 f46694y;
 
     public w1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f46642a = paint;
+        this.f46684a = paint;
         Paint paint2 = new Paint(1);
-        this.f46643b = paint2;
-        this.f46644c = new Path();
-        this.f46645e = new RectF();
+        this.f46685b = paint2;
+        this.f46686c = new Path();
+        this.f46687e = new RectF();
         this.v = true;
-        this.f46650w = new g6(this);
-        this.f46651x = new g6(this);
-        this.f46652y = new g6(this);
+        this.f46692w = new g6(this);
+        this.f46693x = new g6(this);
+        this.f46694y = new g6(this);
         this.H = new pg.s1(1.0f, 0.016773745f, -1);
         this.J = true;
         this.d = new f3(context, new u1(this));
@@ -59,9 +59,9 @@ public final class w1 extends View {
         if (z10) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((f7 - f11) - AndroidUtilities.dp(6.0f), (f10 - f11) - AndroidUtilities.dp(6.0f), f7 + f11 + AndroidUtilities.dp(6.0f), f10 + f11 + AndroidUtilities.dp(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f46648r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f46690r * 255.0f), 31);
         }
-        canvas.drawCircle(f7, f10, f11, this.f46643b);
+        canvas.drawCircle(f7, f10, f11, this.f46685b);
         if (z10) {
             canvas.restore();
         }
@@ -82,22 +82,22 @@ public final class w1 extends View {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         int height = (int) (getHeight() * 0.3f);
-        this.f46645e.set(0.0f, (getHeight() - height) / 2.0f, AndroidUtilities.dp(32.0f), (getHeight() + height) / 2.0f);
+        this.f46687e.set(0.0f, (getHeight() - height) / 2.0f, AndroidUtilities.dp(32.0f), (getHeight() + height) / 2.0f);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f15672b).onTouchEvent(motionEvent);
+        boolean onTouchEvent = ((GestureDetector) this.d.f15693b).onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f46646f = false;
+        this.f46688f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f7) {
-        this.H.f45824c = f7;
+        this.H.f45814c = f7;
         invalidate();
     }
 

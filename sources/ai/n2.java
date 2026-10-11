@@ -15,10 +15,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.ao;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.nw0;
 public final class n2 implements NotificationCenter.NotificationCenterDelegate, sf.a {
-    public static final mw0 X = new mw0(new w1(1), new w1(2));
-    public static final mw0 Y = new mw0(new w1(3), new w1(4));
+    public static final nw0 X = new nw0(new w1(1), new w1(2));
+    public static final nw0 Y = new nw0(new w1(3), new w1(4));
     public static final n2 Z;
     public boolean E;
     public boolean F;
@@ -80,11 +80,11 @@ public final class n2 implements NotificationCenter.NotificationCenterDelegate, 
         qf.e eVar = this.L;
         if (eVar != null && eVar.h.b()) {
             WindowManager.LayoutParams layoutParams = this.f1448c;
-            int width = this.L.h.f48302a.width();
+            int width = this.L.h.f48348a.width();
             this.J = width;
             layoutParams.width = width;
             WindowManager.LayoutParams layoutParams2 = this.f1448c;
-            int height = this.L.h.f48302a.height();
+            int height = this.L.h.f48348a.height();
             this.K = height;
             layoutParams2.height = height;
         }
@@ -154,7 +154,7 @@ public final class n2 implements NotificationCenter.NotificationCenterDelegate, 
         if (this.f1453s) {
             this.f1452r.animate().cancel();
             ViewPropertyAnimator duration = this.f1452r.animate().alpha(0.0f).setDuration(150L);
-            is isVar = is.f27443f;
+            is isVar = is.f27451f;
             duration.setInterpolator(isVar).start();
             this.f1451n.animate().cancel();
             this.f1451n.animate().alpha(0.0f).setDuration(150L).setInterpolator(isVar).start();
@@ -176,9 +176,9 @@ public final class n2 implements NotificationCenter.NotificationCenterDelegate, 
         AndroidUtilities.updateViewLayout(this.f1447b, this.d, this.f1448c);
         o1.k kVar = this.P;
         float f10 = this.N;
-        kVar.f16932b = f10;
-        kVar.f16933c = true;
-        o1.l lVar = kVar.f16942u;
+        kVar.f16978b = f10;
+        kVar.f16979c = true;
+        o1.l lVar = kVar.f16988u;
         float B = a1.g.B(n(), this.M, 2.0f, f10);
         float f11 = AndroidUtilities.displaySize.x;
         if (B >= f11 / 2.0f) {
@@ -186,12 +186,12 @@ public final class n2 implements NotificationCenter.NotificationCenterDelegate, 
         } else {
             dp = AndroidUtilities.dp(16.0f);
         }
-        lVar.f16949i = dp;
+        lVar.f16995i = dp;
         this.P.h();
         o1.k kVar2 = this.Q;
-        kVar2.f16932b = this.O;
-        kVar2.f16933c = true;
-        kVar2.f16942u.f16949i = w7.o.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
+        kVar2.f16978b = this.O;
+        kVar2.f16979c = true;
+        kVar2.f16988u.f16995i = w7.o.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
         this.Q.h();
     }
 
@@ -210,7 +210,7 @@ public final class n2 implements NotificationCenter.NotificationCenterDelegate, 
             }
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(is.f27443f);
+            animatorSet.setInterpolator(is.f27451f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(this.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.1f));
             animatorSet.addListener(new n(2, this, z10));
             animatorSet.start();
@@ -263,7 +263,7 @@ public final class n2 implements NotificationCenter.NotificationCenterDelegate, 
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
         this.I = duration;
-        duration.setInterpolator(is.f27443f);
+        duration.setInterpolator(is.f27451f);
         this.I.addUpdateListener(new a(this, 6));
         this.I.addListener(new b(this, 3));
         this.I.start();

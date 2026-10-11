@@ -1,56 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-public final class r21 implements Runnable {
-    public final int f30347a;
-    public final int f30348b;
-    public final Object f30349c;
-    public final Object d;
-    public final Object f30350e;
+import org.telegram.messenger.AndroidUtilities;
+public final class r21 extends rm0 {
+    public Context f30315c;
+    public ArrayList d;
 
-    public r21(int i10, Object obj, Object obj2, TLObject tLObject, int i11) {
-        this.f30347a = i11;
-        this.f30348b = i10;
-        this.f30349c = obj;
-        this.d = obj2;
-        this.f30350e = tLObject;
+    @Override
+    public final boolean D(s4.d1 d1Var) {
+        return true;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r21.run():void");
+    public final int h() {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty()) {
+            return 0;
+        }
+        return arrayList.size() + 1;
     }
 
-    public r21(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f30347a = i11;
-        this.f30349c = obj;
-        this.f30348b = i10;
-        this.d = obj2;
-        this.f30350e = obj3;
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
     }
 
-    public r21(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f30347a = i11;
-        this.f30349c = obj;
-        this.d = obj2;
-        this.f30348b = i10;
-        this.f30350e = obj3;
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        int c10;
+        if (d1Var.f47752f == 0) {
+            boolean z10 = true;
+            org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) ((ArrayList) this.d.get(i10 - 1)).get(0);
+            if (j6Var.f21247f == org.telegram.ui.ActionBar.h6.Nd) {
+                c10 = 0;
+            } else {
+                c10 = j6Var.c();
+            }
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f47748a;
+            z8Var.f23810a.setText(org.telegram.ui.ActionBar.e5.i(j6Var.f21247f));
+            z8Var.f23811b = c10;
+            if (c10 != 0) {
+                z10 = false;
+            }
+            z8Var.setWillNotDraw(z10);
+            z8Var.invalidate();
+        }
     }
 
-    public r21(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f30347a = i11;
-        this.f30349c = obj;
-        this.d = obj2;
-        this.f30350e = obj3;
-        this.f30348b = i10;
-    }
-
-    public r21(pg.m1 m1Var, pg.h1 h1Var, int i10, ArrayList arrayList) {
-        this.f30347a = 17;
-        this.f30349c = m1Var;
-        this.f30350e = h1Var;
-        this.f30348b = i10;
-        this.d = arrayList;
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        View z8Var;
+        Context context = this.f30315c;
+        if (i10 != 0) {
+            z8Var = new View(context);
+            z8Var.setLayoutParams(new s4.q0(-1, AndroidUtilities.dp(56.0f)));
+        } else {
+            z8Var = new org.telegram.ui.Cells.z8(context);
+            z8Var.setLayoutParams(new s4.q0(-1, -2));
+        }
+        return new s4.d1(z8Var);
     }
 }

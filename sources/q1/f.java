@@ -7,18 +7,18 @@ import android.util.SparseArray;
 import android.widget.TextView;
 import w7.o6;
 public final class f extends o6 {
-    public final TextView f45955a;
-    public final d f45956b;
-    public boolean f45957c = true;
+    public final TextView f45986a;
+    public final d f45987b;
+    public boolean f45988c = true;
 
     public f(TextView textView) {
-        this.f45955a = textView;
-        this.f45956b = new d(textView);
+        this.f45986a = textView;
+        this.f45987b = new d(textView);
     }
 
     @Override
     public final InputFilter[] a(InputFilter[] inputFilterArr) {
-        if (!this.f45957c) {
+        if (!this.f45988c) {
             SparseArray sparseArray = new SparseArray(1);
             for (int i10 = 0; i10 < inputFilterArr.length; i10++) {
                 InputFilter inputFilter = inputFilterArr[i10];
@@ -43,7 +43,7 @@ public final class f extends o6 {
         int length2 = inputFilterArr.length;
         int i13 = 0;
         while (true) {
-            d dVar = this.f45956b;
+            d dVar = this.f45987b;
             if (i13 < length2) {
                 if (inputFilterArr[i13] == dVar) {
                     return inputFilterArr;
@@ -67,21 +67,21 @@ public final class f extends o6 {
 
     @Override
     public final void c(boolean z10) {
-        this.f45957c = z10;
+        this.f45988c = z10;
         d();
-        TextView textView = this.f45955a;
+        TextView textView = this.f45986a;
         textView.setFilters(a(textView.getFilters()));
     }
 
     public final void d() {
-        TextView textView = this.f45955a;
+        TextView textView = this.f45986a;
         TransformationMethod transformationMethod = textView.getTransformationMethod();
-        if (this.f45957c) {
+        if (this.f45988c) {
             if (!(transformationMethod instanceof j) && !(transformationMethod instanceof PasswordTransformationMethod)) {
                 transformationMethod = new j(transformationMethod);
             }
         } else if (transformationMethod instanceof j) {
-            transformationMethod = ((j) transformationMethod).f45963a;
+            transformationMethod = ((j) transformationMethod).f45994a;
         }
         textView.setTransformationMethod(transformationMethod);
     }

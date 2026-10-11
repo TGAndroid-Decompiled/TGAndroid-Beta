@@ -7,42 +7,42 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class i extends l {
     public static final Parcelable.Creator<i> CREATOR = new r0(15);
-    public final n7.s0 f4482a;
-    public final n7.s0 f4483b;
-    public final n7.s0 f4484c;
+    public final n7.s0 f4481a;
+    public final n7.s0 f4482b;
+    public final n7.s0 f4483c;
     public final n7.s0 d;
-    public final n7.s0 f4485e;
+    public final n7.s0 f4484e;
 
     public i(byte[] bArr, byte[] bArr2, byte[] bArr3, byte[] bArr4, byte[] bArr5) {
         n7.s0 t10;
-        n6.l.h(bArr);
+        n6.m.h(bArr);
         n7.s0 t11 = n7.s0.t(bArr.length, bArr);
-        n6.l.h(bArr2);
+        n6.m.h(bArr2);
         n7.s0 t12 = n7.s0.t(bArr2.length, bArr2);
-        n6.l.h(bArr3);
+        n6.m.h(bArr3);
         n7.s0 t13 = n7.s0.t(bArr3.length, bArr3);
-        n6.l.h(bArr4);
+        n6.m.h(bArr4);
         n7.s0 t14 = n7.s0.t(bArr4.length, bArr4);
         if (bArr5 == null) {
             t10 = null;
         } else {
             t10 = n7.s0.t(bArr5.length, bArr5);
         }
-        this.f4482a = t11;
-        this.f4483b = t12;
-        this.f4484c = t13;
+        this.f4481a = t11;
+        this.f4482b = t12;
+        this.f4483c = t13;
         this.d = t14;
-        this.f4485e = t10;
+        this.f4484e = t10;
     }
 
     public final JSONObject b() {
         byte[] u10;
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("clientDataJSON", u6.b.c(this.f4483b.u()));
-            jSONObject.put("authenticatorData", u6.b.c(this.f4484c.u()));
+            jSONObject.put("clientDataJSON", u6.b.c(this.f4482b.u()));
+            jSONObject.put("authenticatorData", u6.b.c(this.f4483c.u()));
             jSONObject.put("signature", u6.b.c(this.d.u()));
-            n7.s0 s0Var = this.f4485e;
+            n7.s0 s0Var = this.f4484e;
             if (s0Var != null) {
                 if (s0Var == null) {
                     u10 = null;
@@ -61,7 +61,7 @@ public final class i extends l {
     public final boolean equals(Object obj) {
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (n6.l.l(this.f4482a, iVar.f4482a) && n6.l.l(this.f4483b, iVar.f4483b) && n6.l.l(this.f4484c, iVar.f4484c) && n6.l.l(this.d, iVar.d) && n6.l.l(this.f4485e, iVar.f4485e)) {
+            if (n6.m.l(this.f4481a, iVar.f4481a) && n6.m.l(this.f4482b, iVar.f4482b) && n6.m.l(this.f4483c, iVar.f4483c) && n6.m.l(this.d, iVar.d) && n6.m.l(this.f4484e, iVar.f4484e)) {
                 return true;
             }
             return false;
@@ -70,22 +70,22 @@ public final class i extends l {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4482a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4483b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4484c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4485e}))});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4481a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4482b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4483c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4484e}))});
     }
 
     public final String toString() {
         byte[] u10;
         la.h hVar = new la.h(getClass().getSimpleName());
         n7.k0 k0Var = n7.m0.d;
-        byte[] u11 = this.f4482a.u();
+        byte[] u11 = this.f4481a.u();
         hVar.a0(k0Var.c(u11.length, u11), "keyHandle");
-        byte[] u12 = this.f4483b.u();
+        byte[] u12 = this.f4482b.u();
         hVar.a0(k0Var.c(u12.length, u12), "clientDataJSON");
-        byte[] u13 = this.f4484c.u();
+        byte[] u13 = this.f4483c.u();
         hVar.a0(k0Var.c(u13.length, u13), "authenticatorData");
         byte[] u14 = this.d.u();
         hVar.a0(k0Var.c(u14.length, u14), "signature");
-        n7.s0 s0Var = this.f4485e;
+        n7.s0 s0Var = this.f4484e;
         if (s0Var == null) {
             u10 = null;
         } else {
@@ -101,11 +101,11 @@ public final class i extends l {
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] u10;
         int q6 = w7.d0.q(parcel, 20293);
-        w7.d0.c(parcel, 2, this.f4482a.u());
-        w7.d0.c(parcel, 3, this.f4483b.u());
-        w7.d0.c(parcel, 4, this.f4484c.u());
+        w7.d0.c(parcel, 2, this.f4481a.u());
+        w7.d0.c(parcel, 3, this.f4482b.u());
+        w7.d0.c(parcel, 4, this.f4483c.u());
         w7.d0.c(parcel, 5, this.d.u());
-        n7.s0 s0Var = this.f4485e;
+        n7.s0 s0Var = this.f4484e;
         if (s0Var == null) {
             u10 = null;
         } else {

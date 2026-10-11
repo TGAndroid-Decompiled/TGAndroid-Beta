@@ -9,24 +9,24 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.wallet.FullWallet;
 import com.google.android.gms.wallet.MaskedWallet;
-import n6.l;
+import n6.m;
 import v7.g5;
 import v8.t;
 public final class a extends Binder implements j, IInterface {
-    public final int f8699a;
-    public final TaskCompletionSource f8700b;
+    public final int f8698a;
+    public final TaskCompletionSource f8699b;
 
     public a(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f8699a = i10;
+        this.f8698a = i10;
         attachInterface(this, "com.google.android.gms.wallet.internal.IWalletServiceCallbacks");
-        this.f8700b = taskCompletionSource;
+        this.f8699b = taskCompletionSource;
     }
 
     @Override
     public void I(int i10, boolean z10) {
-        switch (this.f8699a) {
+        switch (this.f8698a) {
             case 1:
-                g5.a(new Status(i10, null, null, null), Boolean.valueOf(z10), this.f8700b);
+                g5.a(new Status(i10, null, null, null), Boolean.valueOf(z10), this.f8699b);
                 return;
             default:
                 return;
@@ -35,16 +35,16 @@ public final class a extends Binder implements j, IInterface {
 
     @Override
     public void O(Status status, v8.i iVar) {
-        switch (this.f8699a) {
+        switch (this.f8698a) {
             case 0:
-                int i10 = v8.a.f49476c;
+                int i10 = v8.a.f49519c;
                 boolean b10 = status.b();
-                TaskCompletionSource taskCompletionSource = this.f8700b;
+                TaskCompletionSource taskCompletionSource = this.f8699b;
                 if (b10) {
                     taskCompletionSource.setResult(iVar);
                     return;
                 } else {
-                    taskCompletionSource.setException(l.m(status));
+                    taskCompletionSource.setException(m.m(status));
                     return;
                 }
             default:
@@ -54,9 +54,9 @@ public final class a extends Binder implements j, IInterface {
 
     @Override
     public void j0(Status status, boolean z10) {
-        switch (this.f8699a) {
+        switch (this.f8698a) {
             case 1:
-                g5.a(status, Boolean.valueOf(z10), this.f8700b);
+                g5.a(status, Boolean.valueOf(z10), this.f8699b);
                 return;
             default:
                 return;
@@ -86,7 +86,7 @@ public final class a extends Binder implements j, IInterface {
                 return true;
             case 3:
                 int readInt = parcel.readInt();
-                int i12 = c.f8701a;
+                int i12 = c.f8700a;
                 if (parcel.readInt() != 0) {
                     z10 = true;
                 }
@@ -102,7 +102,7 @@ public final class a extends Binder implements j, IInterface {
                 return false;
             case 6:
                 parcel.readInt();
-                int i13 = c.f8701a;
+                int i13 = c.f8700a;
                 parcel.readInt();
                 Bundle bundle5 = (Bundle) c.a(parcel, Bundle.CREATOR);
                 return true;

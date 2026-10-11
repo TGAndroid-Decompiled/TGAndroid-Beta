@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.kx;
-public final class q extends rm0 {
+import org.telegram.ui.Components.sm0;
+import org.telegram.ui.jx;
+public final class q extends sm0 {
     public final int V2;
-    public final kx W2;
+    public final jx W2;
 
-    public q(kx kxVar, Context context, int i10) {
+    public q(jx jxVar, Context context, int i10) {
         super(context, null);
         this.V2 = i10;
-        this.W2 = kxVar;
+        this.W2 = jxVar;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class q extends rm0 {
         boolean z10;
         switch (this.V2) {
             case 1:
-                kx kxVar = this.W2;
-                ArrayList arrayList = kxVar.P;
+                jx jxVar = this.W2;
+                ArrayList arrayList = jxVar.P;
                 arrayList.clear();
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
@@ -42,13 +42,13 @@ public final class q extends rm0 {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (R != kxVar.f693y.size() - 1) {
+                    if (R != jxVar.f693y.size() - 1) {
                         z11 = false;
                     }
                     a0Var.f624c = z11;
                     arrayList.add(a0Var);
                 }
-                Collections.sort(arrayList, kxVar.f690w0);
+                Collections.sort(arrayList, jxVar.f690w0);
                 while (i10 < arrayList.size()) {
                     a0 a0Var2 = (a0) arrayList.get(i10);
                     int save = canvas.save();
@@ -77,8 +77,8 @@ public final class q extends rm0 {
         switch (this.V2) {
             case 0:
                 if (motionEvent.getAction() == 0) {
-                    kx kxVar = this.W2;
-                    if (kxVar.f665c0 > 0.2f || kxVar.getAlpha() == 0.0f) {
+                    jx jxVar = this.W2;
+                    if (jxVar.f665c0 > 0.2f || jxVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }

@@ -1,25 +1,55 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class hg1 implements u11 {
-    public final TLRPC.TL_forumTopic f38372a;
-    public final ig1 f38373b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class hg1 implements org.telegram.ui.Components.gm0 {
+    public final kg1 f38408a;
 
-    public hg1(ig1 ig1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f38373b = ig1Var;
-        this.f38372a = tL_forumTopic;
+    public hg1(kg1 kg1Var) {
+        this.f38408a = kg1Var;
     }
 
     @Override
-    public final void a0() {
-        lg1 lg1Var = this.f38373b.f38680a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f38372a;
-        lg1.U(lg1Var, tL_forumTopic.f20094id);
-        AndroidUtilities.runOnUIThread(new n31(22, this, tL_forumTopic), 300L);
-    }
-
-    @Override
-    public final void v(vk0 vk0Var) {
+    public final void d(int i10, View view) {
+        kg1 kg1Var = this.f38408a;
+        ArrayList arrayList = kg1Var.d;
+        if (((jg1) arrayList.get(i10)).f17175a == 1) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -kg1Var.f39336c);
+            bundle.putBoolean("for_select", true);
+            eg1 eg1Var = new eg1(bundle);
+            eg1Var.A0 = kg1Var.f39337e;
+            eg1Var.v = new fg1(this);
+            kg1Var.presentFragment(eg1Var);
+        }
+        if (((jg1) arrayList.get(i10)).f17175a == 2) {
+            TLRPC.TL_forumTopic tL_forumTopic = ((jg1) arrayList.get(i10)).f39052c;
+            Bundle bundle2 = new Bundle();
+            bundle2.putLong("dialog_id", kg1Var.f39336c);
+            bundle2.putLong("topic_id", tL_forumTopic.f20084id);
+            bundle2.putBoolean("exception", false);
+            u11 u11Var = new u11(bundle2, null);
+            u11Var.f42319r = new gg1(this, tL_forumTopic);
+            kg1Var.presentFragment(u11Var);
+        }
+        if (((jg1) arrayList.get(i10)).f17175a == 4) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kg1Var.getParentActivity());
+            alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle);
+            alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new fg1(this));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
+            kg1Var.showDialog(a2Var);
+            TextView textView = (TextView) a2Var.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21026q7, false));
+            }
+        }
     }
 }

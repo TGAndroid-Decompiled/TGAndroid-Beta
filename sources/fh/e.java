@@ -3,7 +3,7 @@ package fh;
 import android.graphics.Canvas;
 import ch.f;
 public final class e implements a {
-    public a f9942a;
+    public a f9941a;
 
     @Override
     public final ch.d l() {
@@ -12,7 +12,7 @@ public final class e implements a {
 
     @Override
     public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
-        a aVar = this.f9942a;
+        a aVar = this.f9941a;
         if (aVar != null) {
             aVar.v(canvas, f7, f10, f11, f12);
         }

@@ -11,7 +11,7 @@ public final class i extends z3.i implements Comparable {
             }
             return -1;
         }
-        long j3 = this.f10986e - iVar.f10986e;
+        long j3 = this.f10985e - iVar.f10985e;
         if (j3 == 0) {
             j3 = this.f288s - iVar.f288s;
             if (j3 == 0) {

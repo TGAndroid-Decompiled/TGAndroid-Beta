@@ -13,7 +13,7 @@ public final class c {
     public qe.b f544e;
     public hh.j f545f;
     public ViewGroup f546g;
-    public li.e h;
+    public mi.e h;
     public boolean f547i;
 
     public c(fh.a aVar) {
@@ -38,14 +38,14 @@ public final class c {
         int i10 = this.f542b;
         int i11 = this.f543c;
         l4.h = i10;
-        l4.f4684i = i11;
+        l4.f4683i = i11;
         qe.b bVar = this.f544e;
         if (bVar != null && view != null) {
             bVar.add(view);
         }
-        li.e eVar2 = this.h;
+        mi.e eVar2 = this.h;
         if (eVar2 != null && view != null) {
-            eVar2.d.add(new li.d(view, l4));
+            eVar2.d.add(new mi.d(view, l4));
         }
         if (this.f545f != null && this.f546g != null && view != null) {
             this.f545f.d(view, this.f546g, new b(0, l4, new WeakReference(view)), z10);

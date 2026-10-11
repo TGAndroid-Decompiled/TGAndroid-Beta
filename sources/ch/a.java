@@ -11,14 +11,14 @@ import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.y60;
 import yf.e0;
 public final class a implements gh.f, y60 {
-    public final int f4660a;
-    public final boolean f4661b;
-    public final Object f4662c;
+    public final int f4659a;
+    public final boolean f4660b;
+    public final Object f4661c;
 
     public a(int i10, Object obj, boolean z10) {
-        this.f4662c = obj;
-        this.f4660a = i10;
-        this.f4661b = z10;
+        this.f4661c = obj;
+        this.f4659a = i10;
+        this.f4660b = z10;
     }
 
     @Override
@@ -26,30 +26,30 @@ public final class a implements gh.f, y60 {
         Paint paint;
         float f7;
         Path.Direction direction;
-        d dVar = (d) this.f4662c;
+        d dVar = (d) this.f4661c;
         float[] fArr2 = d.E;
-        c cVar = dVar.f4685j;
+        c cVar = dVar.f4684j;
         Path path = new Path();
         Path.Direction direction2 = Path.Direction.CW;
         path.addRoundRect(rectF, fArr, direction2);
         Paint paint2 = new Paint(1);
         paint2.setStyle(Paint.Style.FILL);
-        paint2.setColor(this.f4660a);
-        float f10 = dVar.f4689n;
+        paint2.setColor(this.f4659a);
+        float f10 = dVar.f4688n;
         if (f10 > 0.0f) {
-            paint2.setShadowLayer(f10, 0.0f, dVar.f4690o, dVar.d);
+            paint2.setShadowLayer(f10, 0.0f, dVar.f4689o, dVar.d);
         }
         canvas.drawPath(path, paint2);
-        if (dVar.f4689n > 0.0f) {
+        if (dVar.f4688n > 0.0f) {
             paint2.clearShadowLayer();
             canvas.drawPath(path, paint2);
         }
-        if (this.f4661b) {
-            float[] copyOf = Arrays.copyOf(cVar.f4666b, 8);
+        if (this.f4660b) {
+            float[] copyOf = Arrays.copyOf(cVar.f4665b, 8);
             boolean c10 = e0.c(copyOf);
             float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
             Paint paint3 = new Paint(1);
-            if (Color.alpha(dVar.f4682f) > 0 && copyOf[0] > 0.0f) {
+            if (Color.alpha(dVar.f4681f) > 0 && copyOf[0] > 0.0f) {
                 Arrays.fill(fArr2, 0.0f);
                 fArr2[0] = copyOf[0];
                 fArr2[1] = copyOf[1];
@@ -70,15 +70,15 @@ public final class a implements gh.f, y60 {
                 direction = direction2;
                 float f13 = rectF.left;
                 float f14 = rectF.top;
-                path2.addRoundRect(f13, cVar.f4671i + f14, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f14, rectF.bottom), fArr2, Path.Direction.CCW);
-                paint.setColor(dVar.f4682f);
+                path2.addRoundRect(f13, cVar.f4670i + f14, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f14, rectF.bottom), fArr2, Path.Direction.CCW);
+                paint.setColor(dVar.f4681f);
                 canvas.drawPath(path2, paint);
             } else {
                 paint = paint3;
                 f7 = 0.0f;
                 direction = direction2;
             }
-            if (Color.alpha(dVar.f4683g) > 0 && copyOf[4] > f7) {
+            if (Color.alpha(dVar.f4682g) > 0 && copyOf[4] > f7) {
                 Arrays.fill(fArr2, f7);
                 fArr2[4] = copyOf[4];
                 fArr2[5] = copyOf[5];
@@ -92,8 +92,8 @@ public final class a implements gh.f, y60 {
                 }
                 Path path3 = new Path();
                 path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom, fArr2, direction);
-                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom - cVar.f4672j, fArr2, Path.Direction.CCW);
-                paint.setColor(dVar.f4683g);
+                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom - cVar.f4671j, fArr2, Path.Direction.CCW);
+                paint.setColor(dVar.f4682g);
                 canvas.drawPath(path3, paint);
             }
         }
@@ -102,11 +102,11 @@ public final class a implements gh.f, y60 {
     @Override
     public void b(ArrayList arrayList, boolean z10, boolean z11) {
         char c10;
-        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f4662c;
+        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f4661c;
         boolean[] zArr = privacyControlActivity.E;
         int i10 = privacyControlActivity.T;
-        int i11 = this.f4660a;
-        boolean z12 = this.f4661b;
+        int i11 = this.f4659a;
+        boolean z12 = this.f4660b;
         int i12 = 0;
         boolean z13 = true;
         if (i11 == i10) {
@@ -121,7 +121,7 @@ public final class a implements gh.f, y60 {
                 i12++;
             }
         } else {
-            boolean[] zArr2 = privacyControlActivity.f34232y;
+            boolean[] zArr2 = privacyControlActivity.f34222y;
             int i14 = privacyControlActivity.I;
             if (i14 == 2) {
                 c10 = 0;
@@ -140,6 +140,6 @@ public final class a implements gh.f, y60 {
             }
         }
         privacyControlActivity.E0();
-        privacyControlActivity.f34199a.l();
+        privacyControlActivity.f34189a.l();
     }
 }

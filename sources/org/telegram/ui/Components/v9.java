@@ -2,37 +2,37 @@ package org.telegram.ui.Components;
 
 import android.graphics.drawable.GradientDrawable;
 public abstract class v9 {
-    public static final int[] f31753a;
+    public static final int[] f31708a;
 
     static {
         int[] iArr = new int[GradientDrawable.Orientation.values().length];
-        f31753a = iArr;
+        f31708a = iArr;
         try {
             iArr[GradientDrawable.Orientation.TOP_BOTTOM.ordinal()] = 1;
         } catch (NoSuchFieldError unused) {
         }
         try {
-            f31753a[GradientDrawable.Orientation.TR_BL.ordinal()] = 2;
+            f31708a[GradientDrawable.Orientation.TR_BL.ordinal()] = 2;
         } catch (NoSuchFieldError unused2) {
         }
         try {
-            f31753a[GradientDrawable.Orientation.RIGHT_LEFT.ordinal()] = 3;
+            f31708a[GradientDrawable.Orientation.RIGHT_LEFT.ordinal()] = 3;
         } catch (NoSuchFieldError unused3) {
         }
         try {
-            f31753a[GradientDrawable.Orientation.BR_TL.ordinal()] = 4;
+            f31708a[GradientDrawable.Orientation.BR_TL.ordinal()] = 4;
         } catch (NoSuchFieldError unused4) {
         }
         try {
-            f31753a[GradientDrawable.Orientation.BOTTOM_TOP.ordinal()] = 5;
+            f31708a[GradientDrawable.Orientation.BOTTOM_TOP.ordinal()] = 5;
         } catch (NoSuchFieldError unused5) {
         }
         try {
-            f31753a[GradientDrawable.Orientation.BL_TR.ordinal()] = 6;
+            f31708a[GradientDrawable.Orientation.BL_TR.ordinal()] = 6;
         } catch (NoSuchFieldError unused6) {
         }
         try {
-            f31753a[GradientDrawable.Orientation.LEFT_RIGHT.ordinal()] = 7;
+            f31708a[GradientDrawable.Orientation.LEFT_RIGHT.ordinal()] = 7;
         } catch (NoSuchFieldError unused7) {
         }
     }

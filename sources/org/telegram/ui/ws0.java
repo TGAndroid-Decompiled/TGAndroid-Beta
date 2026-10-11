@@ -1,22 +1,11 @@
 package org.telegram.ui;
-public final class ws0 extends org.telegram.ui.Cells.y9 {
-    public final int f43795q0 = 0;
 
-    public ws0(ai.xa xaVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(xaVar, e6Var);
-    }
+import android.view.View;
+public final class ws0 extends zu0 {
+    public final PhotoViewer f43870t;
 
-    @Override
-    public final int o() {
-        switch (this.f43795q0) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    public ws0(ai.d dVar) {
-        super(null, dVar);
+    public ws0(PhotoViewer photoViewer, View view) {
+        super(photoViewer, view);
+        this.f43870t = photoViewer;
     }
 }

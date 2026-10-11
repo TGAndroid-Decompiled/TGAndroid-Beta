@@ -11,24 +11,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class a80 extends qm0 {
-    public ArrayList f24504c = new ArrayList();
+public final class a80 extends rm0 {
+    public ArrayList f24461c = new ArrayList();
     public ArrayList d = new ArrayList();
-    public final gg.b2 f24505e;
-    public int f24506f;
+    public final gg.b2 f24462e;
+    public int f24463f;
     public Runnable h;
-    public final e80 f24507n;
+    public final e80 f24464n;
 
     public a80(e80 e80Var) {
-        this.f24507n = e80Var;
+        this.f24464n = e80Var;
         gg.b2 b2Var = new gg.b2(false);
-        this.f24505e = b2Var;
-        b2Var.f10532a = new cw(this, 8);
+        this.f24462e = b2Var;
+        b2Var.f10531a = new cw(this, 8);
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47706f == 1) {
+        if (d1Var.f47752f == 1) {
             return true;
         }
         return false;
@@ -36,16 +36,16 @@ public final class a80 extends qm0 {
 
     @Override
     public final int h() {
-        int size = this.f24504c.size();
-        gg.b2 b2Var = this.f24505e;
+        int size = this.f24461c.size();
+        gg.b2 b2Var = this.f24462e;
         int size2 = b2Var.d.size();
-        int size3 = b2Var.f10535e.size();
+        int size3 = b2Var.f10534e.size();
         int i10 = size + size2;
         if (size3 != 0) {
             i10 += size3 + 1;
         }
         int i11 = i10 + 2;
-        this.f24506f = i11;
+        this.f24463f = i11;
         return i11;
     }
 
@@ -54,10 +54,10 @@ public final class a80 extends qm0 {
         if (i10 == 0) {
             return 2;
         }
-        if (i10 == this.f24506f - 1) {
+        if (i10 == this.f24463f - 1) {
             return 4;
         }
-        if (i10 - 1 != this.f24505e.d.size() + this.f24504c.size()) {
+        if (i10 - 1 != this.f24462e.d.size() + this.f24461c.size()) {
             return 1;
         }
         return 0;
@@ -77,14 +77,14 @@ public final class a80 extends qm0 {
             if (i10 != 2) {
                 if (i10 != 4) {
                     ?? frameLayout = new FrameLayout(context);
-                    frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.e7, false));
+                    frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.e7, false));
                     Drawable drawable = frameLayout.getResources().getDrawable(R.drawable.shadowdown);
-                    frameLayout.f22082a = drawable;
-                    drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Zh, false), PorterDuff.Mode.MULTIPLY));
+                    frameLayout.f22070a = drawable;
+                    drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Zh, false), PorterDuff.Mode.MULTIPLY));
                     TextView textView = new TextView(frameLayout.getContext());
-                    frameLayout.f22083b = textView;
+                    frameLayout.f22071b = textView;
                     com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
-                    textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20756ai, false));
+                    textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20741ai, false));
                     int i12 = 3;
                     if (LocaleController.isRTL) {
                         i11 = 5;

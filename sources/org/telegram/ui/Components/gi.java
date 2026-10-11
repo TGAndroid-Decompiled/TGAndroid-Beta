@@ -8,8 +8,8 @@ import org.telegram.messenger.AndroidUtilities;
 public final class gi extends av {
     public final yi V;
 
-    public gi(yi yiVar, Context context, oi oiVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, oiVar, null, 1, true, e6Var);
+    public gi(yi yiVar, Context context, oi oiVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, oiVar, null, 1, true, d6Var);
         this.V = yiVar;
     }
 
@@ -18,8 +18,8 @@ public final class gi extends av {
         super.f();
         b00 emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f24752w0 = false;
-            emojiView.f24754w2 = false;
+            emojiView.f24725w0 = false;
+            emojiView.f24727w2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
         }
@@ -27,9 +27,9 @@ public final class gi extends av {
 
     @Override
     public final void i(Menu menu) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.V.f33235f0;
-        if (n2Var instanceof org.telegram.ui.zn) {
-            org.telegram.ui.zn.n8(menu, ((org.telegram.ui.zn) n2Var).h, true, true, true, true);
+        org.telegram.ui.ActionBar.m2 m2Var = this.V.f33216f0;
+        if (m2Var instanceof org.telegram.ui.zn) {
+            org.telegram.ui.zn.n8(menu, ((org.telegram.ui.zn) m2Var).h, true, true, true, true);
         }
     }
 
@@ -37,7 +37,7 @@ public final class gi extends av {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         yi yiVar = this.V;
         gi giVar = yiVar.S0;
-        if (!yiVar.f33293x1) {
+        if (!yiVar.f33274x1) {
             if (motionEvent.getX() > giVar.getEditText().getLeft() && motionEvent.getX() < giVar.getEditText().getRight() && motionEvent.getY() > giVar.getEditText().getTop() && motionEvent.getY() < giVar.getEditText().getBottom()) {
                 yiVar.w1(giVar.getEditText(), true);
             } else {
@@ -58,7 +58,7 @@ public final class gi extends av {
         boolean z10;
         yi yiVar = this.V;
         yiVar.f2();
-        if (yiVar.f33224c0) {
+        if (yiVar.f33205c0) {
             if (i11 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
             } else {

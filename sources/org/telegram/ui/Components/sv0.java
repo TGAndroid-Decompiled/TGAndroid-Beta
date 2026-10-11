@@ -1,89 +1,150 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.util.SparseArray;
-import android.view.View;
 import java.util.ArrayList;
-import java.util.HashSet;
-public abstract class sv0 extends uu0 {
-    public final HashSet f30869d3;
-    public final ArrayList f30870e3;
-    public final ArrayList f30871f3;
-    public final ArrayList f30872g3;
-    public TextPaint f30873h3;
-    public StaticLayout f30874i3;
-    public float j3;
-    public float f30875k3;
-    public ai.sc f30876l3;
-    public int f30877m3;
-    public final ArrayList f30878n3;
+import java.util.HashMap;
+import org.telegram.messenger.MessageObject;
+public final class sv0 {
+    public boolean f30872g;
+    public boolean h;
+    public int f30875k;
+    public int f30877m;
+    public int f30878n;
+    public boolean f30879o;
+    public int f30880p;
+    public boolean f30882r;
+    public int f30884t;
+    public int f30885u;
+    public boolean v;
+    public boolean f30886w;
+    public final ArrayList f30867a = new ArrayList();
+    public final SparseArray[] f30868b = {new SparseArray(), new SparseArray()};
+    public final ArrayList f30869c = new ArrayList();
+    public final HashMap d = new HashMap();
+    public final ArrayList f30870e = new ArrayList();
+    public final int[] f30871f = {0, 0};
+    public final boolean[] f30873i = {false, true};
+    public final int[] f30874j = {0, 0};
+    public boolean f30876l = true;
+    public int f30881q = 0;
+    public final ArrayList f30883s = new ArrayList();
+    public s4.v0 f30887x = new s4.v0();
 
-    public sv0(Context context) {
-        super(context, null);
-        this.f30869d3 = new HashSet();
-        this.f30870e3 = new ArrayList();
-        this.f30871f3 = new ArrayList();
-        this.f30872g3 = new ArrayList();
-        this.f30878n3 = new ArrayList();
-    }
-
-    public abstract boolean A1();
-
-    public abstract boolean B1();
-
-    public boolean C1() {
+    public final boolean a(MessageObject messageObject, int i10, boolean z10, boolean z11) {
+        SparseArray[] sparseArrayArr = this.f30868b;
+        if (sparseArrayArr[i10].indexOfKey(messageObject.getId()) >= 0) {
+            return false;
+        }
+        String str = messageObject.monthKey;
+        HashMap hashMap = this.d;
+        ArrayList arrayList = (ArrayList) hashMap.get(str);
+        if (arrayList == null) {
+            arrayList = new ArrayList();
+            hashMap.put(messageObject.monthKey, arrayList);
+            ArrayList arrayList2 = this.f30869c;
+            if (z10) {
+                arrayList2.add(0, messageObject.monthKey);
+            } else {
+                arrayList2.add(messageObject.monthKey);
+            }
+        }
+        ArrayList arrayList3 = this.f30867a;
+        if (z10) {
+            arrayList.add(0, messageObject);
+            arrayList3.add(0, messageObject);
+        } else {
+            arrayList.add(messageObject);
+            arrayList3.add(messageObject);
+        }
+        sparseArrayArr[i10].put(messageObject.getId(), messageObject);
+        int[] iArr = this.f30874j;
+        if (!z11) {
+            if (messageObject.getId() > 0) {
+                iArr[i10] = Math.min(messageObject.getId(), iArr[i10]);
+                this.f30875k = Math.max(messageObject.getId(), this.f30875k);
+            }
+        } else {
+            iArr[i10] = Math.max(messageObject.getId(), iArr[i10]);
+            this.f30875k = Math.min(messageObject.getId(), this.f30875k);
+        }
+        if (!this.v && messageObject.isVideo()) {
+            this.v = true;
+        }
+        if (!this.f30886w && messageObject.isPhoto()) {
+            this.f30886w = true;
+        }
         return true;
     }
 
-    @Override
-    public void dispatchDraw(android.graphics.Canvas r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sv0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        zl0 movingAdapter = getMovingAdapter();
-        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.t7)) {
-            return true;
+    public final MessageObject b(int i10, int i11) {
+        SparseArray[] sparseArrayArr = this.f30868b;
+        MessageObject messageObject = (MessageObject) sparseArrayArr[i11].get(i10);
+        if (messageObject == null) {
+            return null;
         }
-        return super.drawChild(canvas, view, j3);
+        String str = messageObject.monthKey;
+        HashMap hashMap = this.d;
+        ArrayList arrayList = (ArrayList) hashMap.get(str);
+        if (arrayList == null) {
+            return null;
+        }
+        arrayList.remove(messageObject);
+        this.f30867a.remove(messageObject);
+        sparseArrayArr[i11].remove(messageObject.getId());
+        if (arrayList.isEmpty()) {
+            hashMap.remove(messageObject.monthKey);
+            this.f30869c.remove(messageObject.monthKey);
+        }
+        int[] iArr = this.f30871f;
+        int i12 = iArr[i11] - 1;
+        iArr[i11] = i12;
+        if (i12 < 0) {
+            iArr[i11] = 0;
+        }
+        return messageObject;
     }
 
-    public int getAnimateToColumnsCount() {
-        return 3;
+    public final ArrayList c() {
+        if (this.f30882r) {
+            return this.f30883s;
+        }
+        return this.f30867a;
     }
 
-    public float getChangeColumnsProgress() {
-        return 0.0f;
+    public final int d() {
+        if (this.f30882r) {
+            return this.f30884t;
+        }
+        return this.f30877m;
     }
 
-    public int getColumnsCount() {
-        return 3;
+    public final int e() {
+        int[] iArr = this.f30871f;
+        return iArr[0] + iArr[1];
     }
 
-    public SparseArray<Float> getMessageAlphaEnter() {
-        return null;
+    public final void f(int i10, int i11, int i12) {
+        SparseArray[] sparseArrayArr = this.f30868b;
+        MessageObject messageObject = (MessageObject) sparseArrayArr[i10].get(i11);
+        if (messageObject != null) {
+            sparseArrayArr[i10].remove(i11);
+            sparseArrayArr[i10].put(i12, messageObject);
+            messageObject.messageOwner.f20053id = i12;
+            int[] iArr = this.f30874j;
+            iArr[i10] = Math.min(i12, iArr[i10]);
+        }
     }
 
-    public zl0 getMovingAdapter() {
-        return null;
-    }
-
-    public int getPinchCenterPosition() {
-        return 0;
-    }
-
-    public zl0 getSupportingAdapter() {
-        return null;
-    }
-
-    public uu0 getSupportingListView() {
-        return null;
-    }
-
-    public void z1(org.telegram.ui.Cells.t7 t7Var) {
+    public final void g(boolean z10) {
+        if (this.f30882r != z10) {
+            this.f30882r = z10;
+            if (z10) {
+                this.f30884t = this.f30877m;
+                this.f30885u = this.f30878n;
+                ArrayList arrayList = this.f30883s;
+                arrayList.clear();
+                arrayList.addAll(this.f30867a);
+            }
+        }
     }
 }

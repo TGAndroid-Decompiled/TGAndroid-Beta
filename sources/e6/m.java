@@ -3,25 +3,25 @@ package e6;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class m extends p {
-    public final int f8685r;
-    public final double f8686s;
-    public final h f8687t;
+    public final int f8684r;
+    public final double f8685s;
+    public final h f8686t;
 
     public m(h hVar, double d, int i10) {
         super(hVar, false);
-        this.f8685r = i10;
-        this.f8687t = hVar;
-        this.f8686s = d;
+        this.f8684r = i10;
+        this.f8686t = hVar;
+        this.f8685s = d;
     }
 
     @Override
     public final void n() {
-        switch (this.f8685r) {
+        switch (this.f8684r) {
             case 0:
-                g6.m mVar = this.f8687t.f8673c;
+                g6.m mVar = this.f8686t.f8672c;
                 g6.n o9 = o();
                 mVar.getClass();
-                double d = this.f8686s;
+                double d = this.f8685s;
                 if (!Double.isInfinite(d) && !Double.isNaN(d)) {
                     JSONObject jSONObject = new JSONObject();
                     long b10 = mVar.b();
@@ -35,27 +35,27 @@ public final class m extends p {
                     } catch (JSONException unused) {
                     }
                     mVar.c(b10, jSONObject.toString());
-                    mVar.f10341n.a(b10, o9);
+                    mVar.f10340n.a(b10, o9);
                     return;
                 }
                 throw new IllegalArgumentException("Volume cannot be " + d);
             default:
-                g6.m mVar2 = this.f8687t.f8673c;
+                g6.m mVar2 = this.f8686t.f8672c;
                 g6.n o10 = o();
-                double d10 = this.f8686s;
-                if (mVar2.f10334f != null) {
+                double d10 = this.f8685s;
+                if (mVar2.f10333f != null) {
                     JSONObject jSONObject3 = new JSONObject();
                     long b11 = mVar2.b();
                     try {
                         jSONObject3.put("requestId", b11);
                         jSONObject3.put("type", "SET_PLAYBACK_RATE");
                         jSONObject3.put("playbackRate", d10);
-                        n6.l.i(mVar2.f10334f, "mediaStatus should not be null");
-                        jSONObject3.put("mediaSessionId", mVar2.f10334f.f4408b);
+                        n6.m.i(mVar2.f10333f, "mediaStatus should not be null");
+                        jSONObject3.put("mediaSessionId", mVar2.f10333f.f4407b);
                     } catch (JSONException unused2) {
                     }
                     mVar2.c(b11, jSONObject3.toString());
-                    mVar2.f10348u.a(b11, o10);
+                    mVar2.f10347u.a(b11, o10);
                     return;
                 }
                 throw new Exception();

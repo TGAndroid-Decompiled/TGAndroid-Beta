@@ -24,7 +24,7 @@ public final class y5 extends r2 {
         if (num.intValue() == 3) {
             int i10 = 0;
             for (int i11 = 0; i11 < j6Var.getChildCount(); i11++) {
-                if (j6Var.getChildAt(i11) instanceof qg.b2) {
+                if (j6Var.getChildAt(i11) instanceof qg.a2) {
                     i10++;
                 }
             }
@@ -34,7 +34,7 @@ public final class y5 extends r2 {
                     this.container.performHapticFeedback(3);
                 } catch (Exception unused) {
                 }
-                new org.telegram.ui.Components.ad(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.i6.gc, 0, new androidx.fragment.app.a0(this, 10), this.resourcesProvider), R.raw.star_premium_2).k(true);
+                new org.telegram.ui.Components.ad(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.h6.gc, 0, new androidx.fragment.app.a0(this, 10), this.resourcesProvider), R.raw.star_premium_2).k(true);
                 return false;
             } else if (i10 >= MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium) {
                 try {
@@ -62,7 +62,7 @@ public final class y5 extends r2 {
             while (true) {
                 if (i10 >= j6Var.getChildCount()) {
                     break;
-                } else if (j6Var.getChildAt(i10) instanceof qg.x2) {
+                } else if (j6Var.getChildAt(i10) instanceof qg.w2) {
                     z10 = true;
                     break;
                 } else {
@@ -77,18 +77,18 @@ public final class y5 extends r2 {
     @Override
     public final boolean o0(Runnable runnable) {
         lc lcVar = ((nb) this.I).A2;
-        Activity activity = lcVar.f5461b;
+        Activity activity = lcVar.f5460b;
         if (activity != null) {
             if (Build.VERSION.SDK_INT >= 33) {
                 if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
                     activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    lcVar.f5540y2 = (ai.p8) runnable;
+                    lcVar.f5539y2 = (ai.p8) runnable;
                     return false;
                 }
                 return true;
             } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                lcVar.f5540y2 = (ai.p8) runnable;
+                lcVar.f5539y2 = (ai.p8) runnable;
                 return false;
             } else {
                 return true;

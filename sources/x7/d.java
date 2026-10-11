@@ -2,11 +2,11 @@ package x7;
 
 import java.util.Map;
 public abstract class d implements Map.Entry {
-    public final int f50762a;
+    public final int f50806a;
 
     @Override
     public final boolean equals(Object obj) {
-        switch (this.f50762a) {
+        switch (this.f50806a) {
             case 0:
                 if (!(obj instanceof Map.Entry)) {
                     return false;
@@ -32,7 +32,7 @@ public abstract class d implements Map.Entry {
     public final int hashCode() {
         int hashCode;
         int hashCode2;
-        switch (this.f50762a) {
+        switch (this.f50806a) {
             case 0:
                 Object key = getKey();
                 Object value = getValue();
@@ -63,7 +63,7 @@ public abstract class d implements Map.Entry {
     }
 
     public final String toString() {
-        switch (this.f50762a) {
+        switch (this.f50806a) {
             case 0:
                 return getKey() + "=" + getValue();
             default:
@@ -72,6 +72,6 @@ public abstract class d implements Map.Entry {
     }
 
     public d(int i10, boolean z10) {
-        this.f50762a = i10;
+        this.f50806a = i10;
     }
 }

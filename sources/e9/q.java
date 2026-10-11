@@ -15,7 +15,7 @@ import java.util.SortedSet;
 import v7.t6;
 import v7.v7;
 public abstract class q {
-    public final int f8788a = 2;
+    public final int f8787a = 2;
 
     public static int c(int i10) {
         if (i10 < 3) {
@@ -92,16 +92,16 @@ public abstract class q {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof j1) {
                 j1 j1Var = (j1) sortedSet;
-                d9.g gVar2 = j1Var.f8759b;
+                d9.g gVar2 = j1Var.f8758b;
                 gVar2.getClass();
-                return new j1((SortedSet) j1Var.f8758a, new d9.h(Arrays.asList(gVar2, gVar)));
+                return new j1((SortedSet) j1Var.f8757a, new d9.h(Arrays.asList(gVar2, gVar)));
             }
             return new j1(sortedSet, gVar);
         } else if (set instanceof j1) {
             j1 j1Var2 = (j1) set;
-            d9.g gVar3 = j1Var2.f8759b;
+            d9.g gVar3 = j1Var2.f8758b;
             gVar3.getClass();
-            return new j1(j1Var2.f8758a, new d9.h(Arrays.asList(gVar3, gVar)));
+            return new j1(j1Var2.f8757a, new d9.h(Arrays.asList(gVar3, gVar)));
         } else {
             set.getClass();
             return new j1(set, gVar);
@@ -223,7 +223,7 @@ public abstract class q {
     public abstract Object g();
 
     public String toString() {
-        switch (this.f8788a) {
+        switch (this.f8787a) {
             case 2:
                 return g().toString();
             default:

@@ -20,36 +20,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.bi;
+import org.telegram.messenger.ai;
 import org.telegram.ui.Components.is;
 public final class t6 extends View {
-    public final Paint f6000a;
-    public final Paint f6001b;
-    public final StaticLayout f6002c;
+    public final Paint f5999a;
+    public final Paint f6000b;
+    public final StaticLayout f6001c;
     public final float d;
-    public final float f6003e;
-    public final int f6004f;
+    public final float f6002e;
+    public final int f6003f;
     public final int h;
-    public final boolean f6005n;
-    public final org.telegram.ui.Components.g6 f6006r;
-    public boolean f6007s;
+    public final boolean f6004n;
+    public final org.telegram.ui.Components.g6 f6005r;
+    public boolean f6006s;
     public float v;
-    public ValueAnimator f6008w;
-    public final u6 f6009x;
+    public ValueAnimator f6007w;
+    public final u6 f6008x;
 
     public t6(u6 u6Var, Context context, String str, boolean z10) {
         super(context);
         CharSequence upperCase;
         float f7;
-        this.f6009x = u6Var;
+        this.f6008x = u6Var;
         TextPaint textPaint = new TextPaint(1);
         Paint paint = new Paint(1);
-        this.f6000a = paint;
+        this.f5999a = paint;
         Paint paint2 = new Paint(1);
-        this.f6001b = paint2;
-        this.f6006r = new org.telegram.ui.Components.g6(this, 0L, 220L, is.h);
-        this.f6007s = true;
-        this.f6005n = z10;
+        this.f6000b = paint2;
+        this.f6005r = new org.telegram.ui.Components.g6(this, 0L, 220L, is.h);
+        this.f6006s = true;
+        this.f6004n = z10;
         paint.setColor(-15098625);
         paint2.setColor(1610612736);
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -70,7 +70,7 @@ public final class t6 extends View {
             upperCase = str.toUpperCase();
         }
         StaticLayout staticLayout = new StaticLayout(upperCase, textPaint, AndroidUtilities.dp(180.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f6002c = staticLayout;
+        this.f6001c = staticLayout;
         if (staticLayout.getLineCount() > 0) {
             f7 = staticLayout.getLineLeft(0);
         } else {
@@ -78,11 +78,11 @@ public final class t6 extends View {
         }
         this.d = f7;
         float lineWidth = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
-        this.f6003e = lineWidth;
+        this.f6002e = lineWidth;
         int dp = AndroidUtilities.dp(48.0f) + ((int) lineWidth);
-        this.f6004f = dp;
+        this.f6003f = dp;
         if (!z10) {
-            this.f6004f = Math.max(AndroidUtilities.dp(80.0f), dp);
+            this.f6003f = Math.max(AndroidUtilities.dp(80.0f), dp);
         }
         this.h = AndroidUtilities.dp(40.0f);
         setOnClickListener(new ai.v0(this, 11));
@@ -101,12 +101,12 @@ public final class t6 extends View {
                 invalidate();
             }
         }
-        if (this.f6007s) {
+        if (this.f6006s) {
             f7 = 1.0f;
         } else {
             f7 = 0.5f;
         }
-        float d = this.f6006r.d(f7, false);
+        float d = this.f6005r.d(f7, false);
         int saveCount = canvas.getSaveCount();
         if (d < 1.0f) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (d * 255.0f), 31);
@@ -114,19 +114,19 @@ public final class t6 extends View {
         float f12 = ((1.0f - this.v) * 0.1f) + 0.9f;
         canvas.save();
         canvas.scale(f12, f12, getWidth() / 2.0f, getHeight() / 2.0f);
-        canvas.drawRect(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(4.0f), getWidth() - AndroidUtilities.dp(25.0f), getHeight() - AndroidUtilities.dp(4.0f), this.f6001b);
+        canvas.drawRect(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(4.0f), getWidth() - AndroidUtilities.dp(25.0f), getHeight() - AndroidUtilities.dp(4.0f), this.f6000b);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), getWidth() - AndroidUtilities.dp(10.0f), getHeight() - AndroidUtilities.dp(4.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), this.f6000a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), this.f5999a);
         canvas.save();
-        float f13 = (this.f6004f - this.f6003e) / 2.0f;
-        if (this.f6005n) {
+        float f13 = (this.f6003f - this.f6002e) / 2.0f;
+        if (this.f6004n) {
             f10 = 3.0f;
         }
         float dp = (f13 + AndroidUtilities.dp(f10)) - this.d;
         int height = getHeight();
-        StaticLayout staticLayout = this.f6002c;
+        StaticLayout staticLayout = this.f6001c;
         canvas.translate(dp, (height - staticLayout.getHeight()) / 2.0f);
         staticLayout.draw(canvas);
         canvas.restore();
@@ -141,7 +141,7 @@ public final class t6 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f6004f, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f6003f, 1073741824), View.MeasureSpec.makeMeasureSpec(this.h, 1073741824));
     }
 
     @Override
@@ -150,20 +150,20 @@ public final class t6 extends View {
         if (isPressed() != z10) {
             super.setPressed(z10);
             invalidate();
-            if (z10 && (valueAnimator = this.f6008w) != null) {
+            if (z10 && (valueAnimator = this.f6007w) != null) {
                 valueAnimator.removeAllListeners();
-                this.f6008w.cancel();
+                this.f6007w.cancel();
             }
             if (!z10) {
                 float f7 = this.v;
                 if (f7 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.f6008w = ofFloat;
+                    this.f6007w = ofFloat;
                     ofFloat.addUpdateListener(new ai.a(this, 22));
-                    this.f6008w.addListener(new ai.b(this, 16));
-                    bi.l(1.5f, this.f6008w);
-                    this.f6008w.setDuration(350L);
-                    this.f6008w.start();
+                    this.f6007w.addListener(new ai.b(this, 16));
+                    ai.l(1.5f, this.f6007w);
+                    this.f6007w.setDuration(350L);
+                    this.f6007w.start();
                 }
             }
         }

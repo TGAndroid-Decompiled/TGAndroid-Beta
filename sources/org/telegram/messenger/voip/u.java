@@ -1,105 +1,25 @@
 package org.telegram.messenger.voip;
-public final class u implements Runnable {
-    public final int f19630a;
-    public final VoIPService f19631b;
+
+import org.telegram.messenger.Utilities;
+public final class u implements Utilities.Callback2 {
+    public final int f19621a;
+    public final VoIPService f19622b;
 
     public u(VoIPService voIPService, int i10) {
-        this.f19630a = i10;
-        this.f19631b = voIPService;
+        this.f19621a = i10;
+        this.f19622b = voIPService;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19630a) {
+    public final void run(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        Boolean bool2 = (Boolean) obj2;
+        switch (this.f19621a) {
             case 0:
-                this.f19631b.lambda$updateConnectionState$83();
-                return;
-            case 1:
-                this.f19631b.lambda$playConnectedSound$88();
-                return;
-            case 2:
-                this.f19631b.lambda$playStartRecordSound$120();
-                return;
-            case 3:
-                this.f19631b.lambda$playAllowTalkSound$121();
-                return;
-            case 4:
-                this.f19631b.lambda$getConnectionAndStartCall$106();
-                return;
-            case 5:
-                this.f19631b.lambda$callFailed$115();
-                return;
-            case 6:
-                this.f19631b.lambda$callFailed$116();
-                return;
-            case 7:
-                this.f19631b.lambda$callEnded$123();
-                return;
-            case 8:
-                this.f19631b.lambda$callEnded$124();
-                return;
-            case 9:
-                this.f19631b.lambda$callEnded$125();
-                return;
-            case 10:
-                this.f19631b.lambda$callEnded$126();
-                return;
-            case 11:
-                this.f19631b.lambda$onCallUpdated$16();
-                return;
-            case 12:
-                this.f19631b.lambda$onCallUpdated$17();
-                return;
-            case 13:
-                this.f19631b.lambda$onCallUpdated$18();
-                return;
-            case 14:
-                this.f19631b.lambda$setMicMute$0();
-                return;
-            case 15:
-                this.f19631b.lambda$endConnectionServiceCall$127();
-                return;
-            case 16:
-                this.f19631b.lambda$switchToSpeaker$92();
-                return;
-            case 17:
-                this.f19631b.lambda$convertToConferenceCall$30();
-                return;
-            case 18:
-                this.f19631b.lambda$initiateActualEncryptedCall$84();
-                return;
-            case 19:
-                this.f19631b.lambda$loadResources$109();
-                return;
-            case 20:
-                this.f19631b.lambda$setupCaptureDevice$14();
-                return;
-            case 21:
-                this.f19631b.lambda$startOutgoingCall$8();
-                return;
-            case 22:
-                this.f19631b.lambda$onStartCommand$2();
-                return;
-            case 23:
-                this.f19631b.lambda$onStartCommand$3();
-                return;
-            case 24:
-                this.f19631b.lambda$declineIncomingCall$104();
-                return;
-            case 25:
-                this.f19631b.callFailed();
-                return;
-            case 26:
-                this.f19631b.lambda$startGroupCheckShortpoll$65();
-                return;
-            case 27:
-                this.f19631b.lambda$onDestroy$99();
-                return;
-            case 28:
-                this.f19631b.lambda$onConnectionStateChanged$117();
+                this.f19622b.lambda$switchToSpeaker$91(bool, bool2);
                 return;
             default:
-                this.f19631b.lambda$startConnectingSound$89();
+                this.f19622b.lambda$toggleSpeakerphoneOrShowRouteSheet$95(bool, bool2);
                 return;
         }
     }

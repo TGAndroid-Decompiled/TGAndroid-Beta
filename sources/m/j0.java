@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.SpinnerAdapter;
 public final class j0 implements ListAdapter, SpinnerAdapter {
-    public SpinnerAdapter f15713a;
-    public ListAdapter f15714b;
+    public SpinnerAdapter f15734a;
+    public ListAdapter f15735b;
 
     @Override
     public final boolean areAllItemsEnabled() {
-        ListAdapter listAdapter = this.f15714b;
+        ListAdapter listAdapter = this.f15735b;
         if (listAdapter != null) {
             return listAdapter.areAllItemsEnabled();
         }
@@ -20,7 +20,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final int getCount() {
-        SpinnerAdapter spinnerAdapter = this.f15713a;
+        SpinnerAdapter spinnerAdapter = this.f15734a;
         if (spinnerAdapter == null) {
             return 0;
         }
@@ -29,7 +29,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final View getDropDownView(int i10, View view, ViewGroup viewGroup) {
-        SpinnerAdapter spinnerAdapter = this.f15713a;
+        SpinnerAdapter spinnerAdapter = this.f15734a;
         if (spinnerAdapter == null) {
             return null;
         }
@@ -38,7 +38,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final Object getItem(int i10) {
-        SpinnerAdapter spinnerAdapter = this.f15713a;
+        SpinnerAdapter spinnerAdapter = this.f15734a;
         if (spinnerAdapter == null) {
             return null;
         }
@@ -47,7 +47,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final long getItemId(int i10) {
-        SpinnerAdapter spinnerAdapter = this.f15713a;
+        SpinnerAdapter spinnerAdapter = this.f15734a;
         if (spinnerAdapter == null) {
             return -1L;
         }
@@ -71,7 +71,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final boolean hasStableIds() {
-        SpinnerAdapter spinnerAdapter = this.f15713a;
+        SpinnerAdapter spinnerAdapter = this.f15734a;
         if (spinnerAdapter != null && spinnerAdapter.hasStableIds()) {
             return true;
         }
@@ -88,7 +88,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final boolean isEnabled(int i10) {
-        ListAdapter listAdapter = this.f15714b;
+        ListAdapter listAdapter = this.f15735b;
         if (listAdapter != null) {
             return listAdapter.isEnabled(i10);
         }
@@ -97,7 +97,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final void registerDataSetObserver(DataSetObserver dataSetObserver) {
-        SpinnerAdapter spinnerAdapter = this.f15713a;
+        SpinnerAdapter spinnerAdapter = this.f15734a;
         if (spinnerAdapter != null) {
             spinnerAdapter.registerDataSetObserver(dataSetObserver);
         }
@@ -105,7 +105,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
-        SpinnerAdapter spinnerAdapter = this.f15713a;
+        SpinnerAdapter spinnerAdapter = this.f15734a;
         if (spinnerAdapter != null) {
             spinnerAdapter.unregisterDataSetObserver(dataSetObserver);
         }

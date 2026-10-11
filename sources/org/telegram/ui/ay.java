@@ -1,26 +1,32 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage;
-public final class ay implements org.telegram.ui.Components.f5 {
-    public final ty f36117a;
+import android.animation.ValueAnimator;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ay implements ValueAnimator.AnimatorUpdateListener {
+    public int f36200a;
+    public final float f36201b;
+    public final float f36202c;
+    public final sy d;
 
-    public ay(ty tyVar) {
-        this.f36117a = tyVar;
+    public ay(sy syVar, float f7, boolean z10, float f10) {
+        this.d = syVar;
+        this.f36201b = f7;
+        this.f36202c = f10;
+        this.f36200a = (int) f7;
     }
 
     @Override
-    public final void J(int i10, int i11, boolean z10) {
-        ty tyVar = this.f36117a;
-        ArrayList arrayList = tyVar.I2;
-        tyVar.K2 = i10;
-        tyVar.L2 = i11;
-        if (tyVar.C2 != null && !arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList();
-            for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                arrayList2.add(MessagesStorage.TopicKey.of(((Long) arrayList.get(i12)).longValue(), 0L));
-            }
-            tyVar.C2.w(tyVar, arrayList2, tyVar.B1.getFieldText(), false, z10, i10, i11, null);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        ((Float) valueAnimator.getAnimatedValue()).getClass();
+        int lerp = (int) AndroidUtilities.lerp(this.f36201b, this.f36202c, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        int i10 = lerp - this.f36200a;
+        this.f36200a = lerp;
+        sy syVar = this.d;
+        syVar.f41907e0[0].f41530a.scrollBy(0, i10);
+        View view = syVar.fragmentView;
+        if (view != null) {
+            view.invalidate();
         }
     }
 }

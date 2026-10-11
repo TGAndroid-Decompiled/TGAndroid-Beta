@@ -1,34 +1,21 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
-public final class nz implements DialogInterface.OnCancelListener {
-    public final int f40426a;
-    public final int f40427b;
-    public final int[] f40428c;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class nz implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final ExternalActionActivity f40375a;
 
-    public nz(int i10, int i11, int[] iArr) {
-        this.f40426a = i11;
-        this.f40427b = i10;
-        this.f40428c = iArr;
+    public nz(ExternalActionActivity externalActionActivity) {
+        this.f40375a = externalActionActivity;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f40426a;
-        int[] iArr = this.f40428c;
-        int i11 = this.f40427b;
-        switch (i10) {
-            case 0:
-                ArrayList arrayList = ExternalActionActivity.f33787x;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                return;
-            default:
-                Pattern pattern = LaunchActivity.B1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                return;
+    public final void onGlobalLayout() {
+        ExternalActionActivity externalActionActivity = this.f40375a;
+        externalActionActivity.f();
+        ActionBarLayout actionBarLayout = externalActionActivity.f33781c;
+        if (actionBarLayout != null) {
+            actionBarLayout.getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
         }
     }
 }

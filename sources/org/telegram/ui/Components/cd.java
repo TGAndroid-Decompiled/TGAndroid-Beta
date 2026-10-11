@@ -16,8 +16,8 @@ public class cd extends fa0 {
     public dd N;
     public dd O;
 
-    public cd(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public cd(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
         this.L = new Path();
         this.M = new RectF();
     }

@@ -29,7 +29,7 @@ public final class i4 implements wi {
         String str2;
         f6 f6Var = this.f1135a;
         if (f6Var.J0.m0 && (storyItem = f6Var.O1.f822a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f33247j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f33228j0.getSelectedPhotos().isEmpty())) {
                 h4 h4Var = f6Var.I2;
                 if (h4Var != null) {
                     h4Var.dismissWithButtonClick(i10);
@@ -41,8 +41,8 @@ public final class i4 implements wi {
             if (i10 != 8) {
                 f6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = f6Var.I2.f33247j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f33247j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = f6Var.I2.f33228j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f33228j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;

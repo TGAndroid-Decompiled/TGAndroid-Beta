@@ -11,16 +11,16 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class u10 extends Drawable {
-    public final Drawable f31295a;
-    public final Path f31296b;
-    public boolean f31297c = true;
+    public final Drawable f31202a;
+    public final Path f31203b;
+    public boolean f31204c = true;
     public final Paint d;
-    public final Paint f31298e;
+    public final Paint f31205e;
 
     public u10(Context context, int i10, int i11) {
-        this.f31295a = context.getResources().getDrawable(i10);
+        this.f31202a = context.getResources().getDrawable(i10);
         if (i11 >= 0) {
-            this.f31296b = new Path();
+            this.f31203b = new Path();
             Paint paint = new Paint(1);
             this.d = paint;
             paint.setStyle(Paint.Style.STROKE);
@@ -30,16 +30,16 @@ public final class u10 extends Drawable {
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeJoin(Paint.Join.ROUND);
             Paint paint2 = new Paint(1);
-            this.f31298e = paint2;
+            this.f31205e = paint2;
             paint2.setStyle(Paint.Style.FILL);
-            int[] iArr = org.telegram.ui.ActionBar.i6.f21061r8;
-            paint2.setColor(org.telegram.ui.ActionBar.i6.x0(null, iArr[i11 % iArr.length], false));
+            int[] iArr = org.telegram.ui.ActionBar.h6.f21047r8;
+            paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, iArr[i11 % iArr.length], false));
             paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
             return;
         }
-        this.f31296b = null;
+        this.f31203b = null;
         this.d = null;
-        this.f31298e = null;
+        this.f31205e = null;
     }
 
     public final int a(float f7) {
@@ -52,13 +52,13 @@ public final class u10 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.f31295a;
-        Path path = this.f31296b;
+        Drawable drawable = this.f31202a;
+        Path path = this.f31203b;
         if (path != null) {
             canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
             drawable.setBounds(getBounds());
             drawable.draw(canvas);
-            boolean z10 = this.f31297c;
+            boolean z10 = this.f31204c;
             Paint paint = this.d;
             if (z10) {
                 path.rewind();
@@ -68,11 +68,11 @@ public final class u10 extends Drawable {
                 path.lineTo(a(0.8974f), b(0.9102f));
                 path.lineTo(a(0.4871f), b(0.9102f));
                 path.close();
-                this.f31297c = false;
+                this.f31204c = false;
                 paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
             }
             canvas.drawPath(path, paint);
-            canvas.drawPath(path, this.f31298e);
+            canvas.drawPath(path, this.f31205e);
             canvas.restore();
             return;
         }
@@ -82,32 +82,32 @@ public final class u10 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f31295a.getIntrinsicHeight();
+        return this.f31202a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f31295a.getIntrinsicWidth();
+        return this.f31202a.getIntrinsicWidth();
     }
 
     @Override
     public final int getOpacity() {
-        return this.f31295a.getOpacity();
+        return this.f31202a.getOpacity();
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f31295a.setAlpha(i10);
+        this.f31202a.setAlpha(i10);
     }
 
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
         super.setBounds(i10, i11, i12, i13);
-        this.f31297c = true;
+        this.f31204c = true;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f31295a.setColorFilter(colorFilter);
+        this.f31202a.setColorFilter(colorFilter);
     }
 }

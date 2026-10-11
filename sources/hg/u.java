@@ -14,63 +14,63 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.j5;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.ActionBar.h6;
 import w7.x5;
 public final class u extends FrameLayout {
-    public final j5 f11380a;
-    public final vh.n f11381b;
-    public final j5 f11382c;
-    public final e6 d;
-    public boolean f11383e;
-    public TL_account.TL_businessChatLink f11384f;
+    public final h5 f11379a;
+    public final vh.n f11380b;
+    public final h5 f11381c;
+    public final d6 d;
+    public boolean f11382e;
+    public TL_account.TL_businessChatLink f11383f;
 
-    public u(Context context, e6 e6Var) {
+    public u(Context context, d6 d6Var) {
         super(context);
         int i10;
         int i11;
-        this.d = e6Var;
+        this.d = d6Var;
         setWillNotDraw(false);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         imageView.setImageResource(R.drawable.msg_limit_links);
         imageView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f));
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(i6.K(AndroidUtilities.dp(36.0f), i6.x0(null, i6.Oh, false)));
+        imageView.setBackground(h6.K(AndroidUtilities.dp(36.0f), h6.x0(null, h6.Oh, false)));
         imageView.setOnClickListener(new ai.v0(this, 25));
         addView(imageView, x5.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
-        j5 j5Var = new j5(context);
-        this.f11380a = j5Var;
-        j5Var.setTextSize(15);
-        j5Var.setTextColor(i6.x0(null, i6.G6, false));
+        h5 h5Var = new h5(context);
+        this.f11379a = h5Var;
+        h5Var.setTextSize(15);
+        h5Var.setTextColor(h6.x0(null, h6.G6, false));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
             i10 = 3;
         }
-        j5Var.setGravity(i10);
-        addView(j5Var, x5.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
-        j5 j5Var2 = new j5(context);
-        this.f11382c = j5Var2;
-        j5Var2.setTextSize(14);
-        int i12 = i6.f21203z6;
-        j5Var2.setTextColor(i6.x0(null, i12, false));
+        h5Var.setGravity(i10);
+        addView(h5Var, x5.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
+        h5 h5Var2 = new h5(context);
+        this.f11381c = h5Var2;
+        h5Var2.setTextSize(14);
+        int i12 = h6.f21189z6;
+        h5Var2.setTextColor(h6.x0(null, i12, false));
         if (LocaleController.isRTL) {
             i11 = 3;
         } else {
             i11 = 5;
         }
-        j5Var2.setGravity(i11);
-        addView(j5Var2, x5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
+        h5Var2.setGravity(i11);
+        addView(h5Var2, x5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
         vh.n nVar = new vh.n(context);
-        this.f11381b = nVar;
+        this.f11380b = nVar;
         nVar.setTextSize(1, 13.0f);
         nVar.setMaxLines(1);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
-        nVar.setTextColor(i6.w0(i12, e6Var));
+        nVar.setTextColor(h6.w0(i12, d6Var));
         nVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        nVar.f49780r = false;
+        nVar.f49823r = false;
         nVar.setUseAlphaForEmoji(false);
         NotificationCenter.listenEmojiLoading(nVar);
         addView(nVar, x5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
@@ -80,10 +80,10 @@ public final class u extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float f7;
         super.onDraw(canvas);
-        if (this.f11383e) {
-            Paint U0 = i6.U0("paintDivider", this.d);
+        if (this.f11382e) {
+            Paint U0 = h6.U0("paintDivider", this.d);
             if (U0 == null) {
-                U0 = i6.f20923k0;
+                U0 = h6.f20908k0;
             }
             Paint paint = U0;
             float f10 = 64.0f;
@@ -106,17 +106,17 @@ public final class u extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         boolean z11 = LocaleController.isRTL;
-        j5 j5Var = this.f11382c;
-        j5 j5Var2 = this.f11380a;
+        h5 h5Var = this.f11381c;
+        h5 h5Var2 = this.f11379a;
         if (z11) {
-            j5Var2.setPadding(j5Var.getTextWidth(), 0, 0, 0);
+            h5Var2.setPadding(h5Var.getTextWidth(), 0, 0, 0);
         } else {
-            j5Var2.setPadding(0, 0, j5Var.getTextWidth(), 0);
+            h5Var2.setPadding(0, 0, h5Var.getTextWidth(), 0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.f11383e ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.f11382e ? 1 : 0), 1073741824));
     }
 }

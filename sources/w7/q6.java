@@ -19,38 +19,38 @@ public abstract class q6 {
             i11++;
             q9.a aVar = (q9.a) obj;
             q9.h hVar = new q9.h(aVar);
-            for (q9.r rVar : aVar.f46052b) {
-                if (aVar.f46054e == 0) {
+            for (q9.s sVar : aVar.f46083b) {
+                if (aVar.f46085e == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                q9.i iVar = new q9.i(rVar, !z11);
+                q9.i iVar = new q9.i(sVar, !z11);
                 if (!hashMap.containsKey(iVar)) {
                     hashMap.put(iVar, new HashSet());
                 }
                 Set set = (Set) hashMap.get(iVar);
                 if (!set.isEmpty() && z11) {
-                    throw new IllegalArgumentException("Multiple components provide " + rVar + ".");
+                    throw new IllegalArgumentException("Multiple components provide " + sVar + ".");
                 }
                 set.add(hVar);
             }
         }
         for (Set<q9.h> set2 : hashMap.values()) {
             for (q9.h hVar2 : set2) {
-                for (q9.j jVar : hVar2.f46066a.f46053c) {
-                    if (jVar.f46073c == 0) {
-                        q9.r rVar2 = jVar.f46071a;
-                        if (jVar.f46072b == 2) {
+                for (q9.j jVar : hVar2.f46097a.f46084c) {
+                    if (jVar.f46104c == 0) {
+                        q9.s sVar2 = jVar.f46102a;
+                        if (jVar.f46103b == 2) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        Set<q9.h> set3 = (Set) hashMap.get(new q9.i(rVar2, z10));
+                        Set<q9.h> set3 = (Set) hashMap.get(new q9.i(sVar2, z10));
                         if (set3 != null) {
                             for (q9.h hVar3 : set3) {
-                                hVar2.f46067b.add(hVar3);
-                                hVar3.f46068c.add(hVar2);
+                                hVar2.f46098b.add(hVar3);
+                                hVar3.f46099c.add(hVar2);
                             }
                         }
                     }
@@ -65,7 +65,7 @@ public abstract class q6 {
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
             q9.h hVar4 = (q9.h) it.next();
-            if (hVar4.f46068c.isEmpty()) {
+            if (hVar4.f46099c.isEmpty()) {
                 hashSet2.add(hVar4);
             }
         }
@@ -73,11 +73,11 @@ public abstract class q6 {
             q9.h hVar5 = (q9.h) hashSet2.iterator().next();
             hashSet2.remove(hVar5);
             i10++;
-            Iterator it2 = hVar5.f46067b.iterator();
+            Iterator it2 = hVar5.f46098b.iterator();
             while (it2.hasNext()) {
                 q9.h hVar6 = (q9.h) it2.next();
-                hVar6.f46068c.remove(hVar5);
-                if (hVar6.f46068c.isEmpty()) {
+                hVar6.f46099c.remove(hVar5);
+                if (hVar6.f46099c.isEmpty()) {
                     hashSet2.add(hVar6);
                 }
             }
@@ -89,8 +89,8 @@ public abstract class q6 {
         Iterator it3 = hashSet.iterator();
         while (it3.hasNext()) {
             q9.h hVar7 = (q9.h) it3.next();
-            if (!hVar7.f46068c.isEmpty() && !hVar7.f46067b.isEmpty()) {
-                arrayList2.add(hVar7.f46066a);
+            if (!hVar7.f46099c.isEmpty() && !hVar7.f46098b.isEmpty()) {
+                arrayList2.add(hVar7.f46097a);
             }
         }
         throw new RuntimeException("Dependency cycle detected: " + Arrays.toString(arrayList2.toArray()));

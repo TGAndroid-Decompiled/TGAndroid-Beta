@@ -13,6 +13,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
 import m.q3;
+import n6.m;
 import n6.v;
 public final class a extends n6.g implements com.google.android.gms.common.api.c {
     public final boolean U;
@@ -38,12 +39,12 @@ public final class a extends n6.g implements com.google.android.gms.common.api.c
             this.V.getClass();
             Account account = new Account("<<default account>>", "com.google");
             if ("<<default account>>".equals(account.name)) {
-                googleSignInAccount = a6.b.a(this.f16658n).b();
+                googleSignInAccount = a6.b.a(this.f16700n).b();
             } else {
                 googleSignInAccount = null;
             }
             Integer num = this.X;
-            n6.l.h(num);
+            m.h(num);
             v vVar = new v(2, account, num.intValue(), googleSignInAccount);
             e eVar = (e) u();
             g gVar = new g(1, vVar);
@@ -86,7 +87,7 @@ public final class a extends n6.g implements com.google.android.gms.common.api.c
     @Override
     public final Bundle t() {
         q3 q3Var = this.V;
-        boolean equals = this.f16658n.getPackageName().equals((String) q3Var.d);
+        boolean equals = this.f16700n.getPackageName().equals((String) q3Var.d);
         Bundle bundle = this.W;
         if (!equals) {
             bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) q3Var.d);

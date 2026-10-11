@@ -5,48 +5,48 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import ci.g2;
-import org.telegram.ui.ActionBar.g5;
+import org.telegram.ui.ActionBar.e5;
 public final class g0 implements TextWatcher {
-    public final g5 f52201a;
-    public final EditText f52202b;
-    public String f52203c;
+    public final e5 f52244a;
+    public final EditText f52245b;
+    public String f52246c;
     public boolean d;
-    public boolean f52204e;
+    public boolean f52247e;
 
-    public g0(g2 g2Var, g5 g5Var) {
-        this.f52201a = g5Var;
-        this.f52202b = g2Var;
+    public g0(g2 g2Var, e5 e5Var) {
+        this.f52244a = e5Var;
+        this.f52245b = g2Var;
     }
 
     public final void a() {
-        this.f52204e = true;
+        this.f52247e = true;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj = editable.toString();
-        boolean isEmpty = TextUtils.isEmpty(this.f52203c);
+        boolean isEmpty = TextUtils.isEmpty(this.f52246c);
         boolean isEmpty2 = TextUtils.isEmpty(obj);
         if (isEmpty && !isEmpty2) {
             b(true);
         }
-        this.f52203c = obj;
-        this.f52201a.q(this.f52202b);
-        if (!isEmpty && isEmpty2 && !this.f52204e) {
+        this.f52246c = obj;
+        this.f52244a.q(this.f52245b);
+        if (!isEmpty && isEmpty2 && !this.f52247e) {
             b(false);
         }
     }
 
     public final void b(boolean z10) {
         if (this.d != z10) {
-            g5 g5Var = this.f52201a;
-            if (!g5Var.c()) {
+            e5 e5Var = this.f52244a;
+            if (!e5Var.c()) {
                 return;
             }
             if (z10) {
-                g5Var.n();
+                e5Var.n();
             } else {
-                g5Var.m();
+                e5Var.m();
             }
             this.d = z10;
         }

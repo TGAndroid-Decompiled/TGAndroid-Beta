@@ -1,44 +1,164 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.SavedMessagesController;
-import org.telegram.messenger.SecretChatHelper;
-import org.telegram.messenger.SharedConfig;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.opengl.GLUtils;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.OvershootInterpolator;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import javax.microedition.khronos.egl.EGL10;
 import org.telegram.tgnet.TLRPC;
-public final class ai implements Comparator {
-    public final int f17357a;
-
-    public ai(int i10) {
-        this.f17357a = i10;
+import org.telegram.ui.Components.is;
+import org.telegram.ui.ThemeActivity;
+public abstract class ai {
+    public static int A(float f7, int i10, int i11) {
+        return (i10 - AndroidUtilities.dp(f7)) / i11;
     }
 
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$updatePinnedOrder$5;
-        int lambda$updateAllDialogs$0;
-        int lambda$resendMessages$13;
-        int lambda$checkSecretHoles$16;
-        int lambda$saveProxyList$4;
-        int lambda$sortTopics$9;
-        switch (this.f17357a) {
-            case 0:
-                lambda$updatePinnedOrder$5 = SavedMessagesController.lambda$updatePinnedOrder$5((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
-                return lambda$updatePinnedOrder$5;
-            case 1:
-                lambda$updateAllDialogs$0 = SavedMessagesController.lambda$updateAllDialogs$0((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
-                return lambda$updateAllDialogs$0;
-            case 2:
-                lambda$resendMessages$13 = SecretChatHelper.lambda$resendMessages$13((TLRPC.Message) obj, (TLRPC.Message) obj2);
-                return lambda$resendMessages$13;
-            case 3:
-                lambda$checkSecretHoles$16 = SecretChatHelper.lambda$checkSecretHoles$16((SecretChatHelper.TL_decryptedMessageHolder) obj, (SecretChatHelper.TL_decryptedMessageHolder) obj2);
-                return lambda$checkSecretHoles$16;
-            case 4:
-                lambda$saveProxyList$4 = SharedConfig.lambda$saveProxyList$4((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
-                return lambda$saveProxyList$4;
-            default:
-                lambda$sortTopics$9 = TopicsController.lambda$sortTopics$9((TLRPC.TL_forumTopic) obj, (TLRPC.TL_forumTopic) obj2);
-                return lambda$sortTopics$9;
+    public static int B(float f7, int i10, int i11) {
+        return i11 - (AndroidUtilities.dp(f7) * i10);
+    }
+
+    public static int C(float f7, int i10, int i11) {
+        return View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7) + i10, i11);
+    }
+
+    public static int D(float f7, int i10, int i11) {
+        return (i10 - AndroidUtilities.dp(f7)) + i11;
+    }
+
+    public static int a(org.telegram.ui.d3 d3Var) {
+        int boundLeft = d3Var.getBoundLeft();
+        int boundRight = d3Var.getBoundRight();
+        if (boundLeft >= 0 && boundRight >= 0 && boundRight >= boundLeft) {
+            return boundRight - boundLeft;
         }
+        return -1;
+    }
+
+    public static float b(float f7, float f10, float f11, float f12) {
+        return f12 - ((f7 / f10) * f11);
+    }
+
+    public static int c(float f7, int i10, int i11) {
+        return View.MeasureSpec.makeMeasureSpec(i10 - AndroidUtilities.dp(f7), i11);
+    }
+
+    public static Bundle d(int i10, String str, String str2, boolean z10) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(str, z10);
+        bundle.putInt(str2, i10);
+        return bundle;
+    }
+
+    public static LinearLayout e(Context context, int i10) {
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(i10);
+        return linearLayout;
+    }
+
+    public static ci.d f(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        ci.d dVar = new ci.d(context, d6Var, z10);
+        dVar.setRoundRadius(i10);
+        return dVar;
+    }
+
+    public static String g(StringBuilder sb2, String str, hf.b bVar) {
+        sb2.append(str);
+        return bVar.b(sb2.toString());
+    }
+
+    public static FloatBuffer h(ByteBuffer byteBuffer) {
+        return byteBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer();
+    }
+
+    public static org.telegram.ui.ActionBar.e3 i(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(i10, context, d6Var, z10);
+        e3Var.fixNavigationBar();
+        return e3Var;
+    }
+
+    public static void j(float f7, int i10, int i11, TextView textView) {
+        textView.setText(LocaleController.getString(i10));
+        textView.setTextSize(i11, f7);
+    }
+
+    public static void k(float f7, int i10, TextView textView) {
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(i10, f7);
+    }
+
+    public static void l(float f7, ValueAnimator valueAnimator) {
+        valueAnimator.setInterpolator(new OvershootInterpolator(f7));
+    }
+
+    public static void m(int i10, TextView textView, int i11) {
+        textView.setText(LocaleController.getString(i10));
+        textView.setGravity(i11);
+    }
+
+    public static void n(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
+        m2Var.presentFragment(new ThemeActivity(i10));
+    }
+
+    public static void o(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11, float f7) {
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        textView.setTextSize(i11, f7);
+    }
+
+    public static void p(int i10, org.telegram.ui.Components.ad adVar) {
+        adVar.i(LocaleController.getString(i10)).j();
+    }
+
+    public static void q(int i10, org.telegram.ui.Components.ad adVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        adVar.t(LocaleController.getString(i10), d6Var).j();
+    }
+
+    public static void r(int i10, Object[] objArr, TextView textView) {
+        textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, objArr)));
+    }
+
+    public static void s(ViewPropertyAnimator viewPropertyAnimator, float f7, long j3) {
+        viewPropertyAnimator.alpha(f7).setDuration(j3).start();
+    }
+
+    public static void t(ViewPropertyAnimator viewPropertyAnimator, is isVar, long j3) {
+        viewPropertyAnimator.setInterpolator(isVar).setDuration(j3).start();
+    }
+
+    public static void u(TextView textView, int i10, int i11, float f7, int i12) {
+        textView.setTextColor(i10);
+        textView.setTextSize(i11, f7);
+        textView.setLines(i12);
+    }
+
+    public static void v(EGL10 egl10, StringBuilder sb2) {
+        sb2.append(GLUtils.getEGLErrorString(egl10.eglGetError()));
+        FileLog.e(sb2.toString());
+    }
+
+    public static boolean w(String str, String str2, String str3) {
+        return str3.contains(str + str2);
+    }
+
+    public static boolean x(TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument) {
+        if (tL_inputMediaUploadedDocument != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static float y(float f7, float f10, float f11, float f12) {
+        return (f11 - (f7 / f10)) * f12;
+    }
+
+    public static int z(float f7, int i10, int i11) {
+        return i11 - (AndroidUtilities.dp(f7) + i10);
     }
 }

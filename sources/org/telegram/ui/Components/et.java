@@ -9,54 +9,54 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class et implements Runnable {
-    public final int f26165a;
-    public final Context f26166b;
-    public final org.telegram.ui.ActionBar.e6 f26167c;
+    public final int f26131a;
+    public final Context f26132b;
+    public final org.telegram.ui.ActionBar.d6 f26133c;
 
-    public et(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f26165a = i10;
-        this.f26166b = context;
-        this.f26167c = e6Var;
+    public et(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f26131a = i10;
+        this.f26132b = context;
+        this.f26133c = d6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f26165a) {
+        switch (this.f26131a) {
             case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = new org.telegram.ui.ActionBar.b2[1];
+                org.telegram.ui.ActionBar.a2[] a2VarArr = new org.telegram.ui.ActionBar.a2[1];
                 String string = LocaleController.getString(R.string.AppsTabInfoText);
-                ct ctVar = new ct(b2VarArr, 0);
-                org.telegram.ui.ActionBar.e6 e6Var = this.f26167c;
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, e6Var, ctVar));
+                ct ctVar = new ct(a2VarArr, 0);
+                org.telegram.ui.ActionBar.d6 d6Var = this.f26133c;
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, d6Var, ctVar));
                 Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
                 while (true) {
                     boolean find = matcher.find();
-                    Context context = this.f26166b;
+                    Context context = this.f26132b;
                     if (find) {
-                        replaceTags.setSpan(new org.telegram.ui.o0(b2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
+                        replaceTags.setSpan(new org.telegram.ui.n0(a2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
                     } else {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
                         String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
-                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
-                        b2Var.R = string2;
-                        b2Var.T = replaceTags;
+                        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
+                        a2Var.R = string2;
+                        a2Var.T = replaceTags;
                         alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);
-                        b2VarArr[0] = alertDialog$Builder.o();
+                        a2VarArr[0] = alertDialog$Builder.o();
                         return;
                     }
                 }
             case 1:
-                org.telegram.ui.Wallet.b5.t0(this.f26166b, this.f26167c);
+                org.telegram.ui.Wallet.c5.t0(this.f26132b, this.f26133c);
                 return;
             default:
-                new yh.f7(this.f26166b, this.f26167c).show();
+                new yh.f7(this.f26132b, this.f26133c).show();
                 return;
         }
     }
 
-    public et(jt jtVar, org.telegram.ui.ActionBar.e6 e6Var, Context context) {
-        this.f26165a = 0;
-        this.f26167c = e6Var;
-        this.f26166b = context;
+    public et(jt jtVar, org.telegram.ui.ActionBar.d6 d6Var, Context context) {
+        this.f26131a = 0;
+        this.f26133c = d6Var;
+        this.f26132b = context;
     }
 }

@@ -1,72 +1,30 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.support.SparseLongArray;
-public final class ec extends bc implements NotificationCenter.NotificationCenterDelegate {
-    public final cc d;
-    public SparseLongArray f26004e;
-    public final org.telegram.ui.ActionBar.n2 f26005f;
-    public final int h;
-    public tc f26006n;
+public class ec extends pb {
+    public final y9 f25968a;
+    public final TextView f25969b;
 
-    public ec(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(n2Var.getContext(), n2Var.getResourceProvider());
-        this.f26005f = n2Var;
-        this.h = i10;
-        this.f24917b.setLayoutParams(w7.x5.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
-        this.f24916a.setLayoutParams(w7.x5.h(56.0f, 48.0f, 8388659));
-        cc ccVar = new cc(this, n2Var, getContext(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
-        this.d = ccVar;
-        ccVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(0.0f));
-        this.d.setDelegate(new dc(this));
-        this.d.setTop(true);
-        this.d.setClipChildren(false);
-        this.d.setClipToPadding(false);
-        this.d.setVisibility(0);
-        this.d.setBubbleOffset(-AndroidUtilities.dp(80.0f));
-        this.d.setHint(LocaleController.getString(R.string.SavedTagReactionsHint));
-        addView(this.d, w7.x5.a(92.5f, 0.0f, 36.0f, 0.0f, 0.0f, -2, 1));
-        this.d.p(null, null, true);
+    public ec(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        y9 y9Var = new y9(getContext());
+        this.f25968a = y9Var;
+        TextView textView = new TextView(getContext());
+        this.f25969b = textView;
+        addView(y9Var, w7.x5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        textView.setGravity(8388611);
+        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.Hi));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(Typeface.SANS_SERIF);
+        addView(textView, w7.x5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.savedMessagesForwarded) {
-            this.f26004e = (SparseLongArray) objArr[0];
-        }
-    }
-
-    public final void f() {
-        if (this.d.getReactionsWindow() != null) {
-            this.d.e();
-            if (this.d.getReactionsWindow().f54493a != null) {
-                this.d.getReactionsWindow().f54493a.animate().alpha(0.0f).setDuration(180L).start();
-            }
-        }
-    }
-
-    @Override
-    public int getMeasuredBackgroundHeight() {
-        return AndroidUtilities.dp(30.0f) + this.f24917b.getMeasuredHeight();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(UserConfig.selectedAccount).addObserver(this, NotificationCenter.savedMessagesForwarded);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, NotificationCenter.savedMessagesForwarded);
-    }
-
-    public void setBulletin(tc tcVar) {
-        this.f26006n = tcVar;
+    public CharSequence getAccessibilityText() {
+        return this.f25969b.getText();
     }
 }

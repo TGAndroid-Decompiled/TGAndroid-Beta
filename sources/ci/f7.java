@@ -11,23 +11,23 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
 public final class f7 {
-    public final ia f5072c;
+    public final ia f5071c;
     public d7 d;
-    public CameraView f5074f;
-    public Bitmap f5075g;
-    public final AtomicReference f5070a = new AtomicReference();
-    public final AtomicBoolean f5071b = new AtomicBoolean(false);
+    public CameraView f5073f;
+    public Bitmap f5074g;
+    public final AtomicReference f5069a = new AtomicReference();
+    public final AtomicBoolean f5070b = new AtomicBoolean(false);
     public final c7 h = new c7(this, 0);
-    public final String f5073e = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix;
+    public final String f5072e = MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix;
 
     public f7(Context context, ia iaVar) {
-        this.f5072c = iaVar;
+        this.f5071c = iaVar;
         Utilities.globalQueue.postRunnable(new ai.ca(22, this, context));
     }
 
     public final void a(CameraView cameraView) {
-        this.f5074f = cameraView;
-        if (this.f5070a.get() != null && !this.f5071b.get()) {
+        this.f5073f = cameraView;
+        if (this.f5069a.get() != null && !this.f5070b.get()) {
             Utilities.globalQueue.cancelRunnable(this.h);
             Utilities.globalQueue.postRunnable(this.h, b());
         }
@@ -48,7 +48,7 @@ public final class f7 {
     }
 
     public final void c(boolean z10) {
-        if (this.f5071b.getAndSet(z10) != z10) {
+        if (this.f5070b.getAndSet(z10) != z10) {
             if (z10) {
                 Utilities.globalQueue.cancelRunnable(this.h);
                 if (this.d != null) {

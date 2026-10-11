@@ -19,24 +19,24 @@ public abstract class c {
                         throw new Exception(String.format("[%s] Bad compression type '11' at the bit index '%d'.", c.class.getSimpleName(), Integer.valueOf(iArr[0])));
                     }
                 } else {
-                    b(b0Var, iArr, b0Var2, g.f47950f, f.f47949f);
+                    b(b0Var, iArr, b0Var2, g.f47996f, f.f47995f);
                 }
             } else {
                 int i10 = ((iArr[0] + 7) & (-8)) / 8;
                 int h = ((b0Var.h(i10 + 1) & 255) * 256) + (b0Var.h(i10) & 255);
                 int i11 = i10 + 4;
                 b0Var2.getClass();
-                byte[] array = ((ByteBuffer) b0Var.f4204c).array();
-                int capacity = ((ByteBuffer) b0Var2.f4204c).capacity();
-                int i12 = b0Var2.f4203b + h;
+                byte[] array = ((ByteBuffer) b0Var.f4203c).array();
+                int capacity = ((ByteBuffer) b0Var2.f4203c).capacity();
+                int i12 = b0Var2.f4202b + h;
                 if (capacity < i12) {
                     b0Var2.g(i12 + 1024);
                 }
-                ((ByteBuffer) b0Var2.f4204c).put(array, i11, h);
-                b0Var2.f4203b += h;
+                ((ByteBuffer) b0Var2.f4203c).put(array, i11, h);
+                b0Var2.f4202b += h;
                 iArr[0] = (i11 + h) * 8;
             }
-            if (b0Var.f4203b <= iArr[0] / 8) {
+            if (b0Var.f4202b <= iArr[0] / 8) {
                 j3 = true;
                 continue;
             }
@@ -50,11 +50,11 @@ public abstract class c {
                 return;
             }
             if (k10 >= 0 && k10 <= 255) {
-                b0Var2.l(k10);
+                b0Var2.m(k10);
             } else {
                 int f7 = d.f(b0Var, iArr, k10);
                 int d = d.d(b0Var, iArr, a0Var2);
-                int i10 = b0Var2.f4203b;
+                int i10 = b0Var2.f4202b;
                 byte[] bArr = new byte[f7];
                 int i11 = i10 - d;
                 int i12 = 0;

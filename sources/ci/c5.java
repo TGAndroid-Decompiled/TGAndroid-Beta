@@ -6,22 +6,22 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.ha0;
+import org.telegram.ui.ga0;
 public final class c5 implements q0.a {
-    public final int f4836a;
-    public final Object f4837b;
+    public final int f4835a;
+    public final Object f4836b;
 
     public c5(Object obj, int i10) {
-        this.f4836a = i10;
-        this.f4837b = obj;
+        this.f4835a = i10;
+        this.f4836b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
         String responseCodeString;
-        int i10 = this.f4836a;
+        int i10 = this.f4835a;
         boolean z10 = false;
-        Object obj2 = this.f4837b;
+        Object obj2 = this.f4836b;
         switch (i10) {
             case 0:
                 q6.a0((nb) obj2, (Integer) obj);
@@ -29,10 +29,10 @@ public final class c5 implements q0.a {
             case 1:
                 ei.k3 k3Var = (ei.k3) obj2;
                 Float f7 = (Float) obj;
-                k3Var.f9185y.setLoadProgressAnimated(f7.floatValue());
+                k3Var.f9184y.setLoadProgressAnimated(f7.floatValue());
                 if (f7.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(is.f27443f);
+                    duration.setInterpolator(is.f27451f);
                     duration.addUpdateListener(new ei.d2(k3Var, 1));
                     duration.addListener(new ai.b(k3Var, 21));
                     duration.start();
@@ -45,7 +45,7 @@ public final class c5 implements q0.a {
                 p4Var.I.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(is.f27443f);
+                    duration2.setInterpolator(is.f27451f);
                     duration2.addUpdateListener(new ei.h4(p4Var, 0));
                     duration2.addListener(new ai.b(p4Var, 22));
                     duration2.start();
@@ -61,14 +61,14 @@ public final class c5 implements q0.a {
                 return;
             case 5:
                 xh.z4 z4Var = (xh.z4) obj2;
-                if (((c5.h) obj).f4254a == 0) {
+                if (((c5.h) obj).f4253a == 0) {
                     AndroidUtilities.runOnUIThread(new xh.p4(z4Var, 1));
                     return;
                 }
                 return;
             default:
                 Utilities.Callback2 callback2 = (Utilities.Callback2) obj2;
-                int i11 = ((c5.h) obj).f4254a;
+                int i11 = ((c5.h) obj).f4253a;
                 if (i11 == 0) {
                     z10 = true;
                 }
@@ -78,7 +78,7 @@ public final class c5 implements q0.a {
                     responseCodeString = BillingController.getResponseCodeString(i11);
                 }
                 FileLog.d("StarsController.buy onResult " + z10 + " " + responseCodeString);
-                AndroidUtilities.runOnUIThread(new ha0(callback2, z10, responseCodeString, 15));
+                AndroidUtilities.runOnUIThread(new ga0(callback2, z10, responseCodeString, 15));
                 return;
         }
     }

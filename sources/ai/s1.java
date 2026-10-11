@@ -97,14 +97,14 @@ public final class s1 implements Runnable {
                 pg.l lVar = (pg.l) this.d;
                 int i16 = this.f1689b;
                 if (q6Var.O0.getCurrentBrush() instanceof pg.l) {
-                    q6Var.f5793c1 = true;
+                    q6Var.f5792c1 = true;
                 }
                 q6Var.b(lVar);
-                qg.r1 r1Var = q6Var.f5809k1;
+                qg.r1 r1Var = q6Var.f5808k1;
                 int i17 = r1Var.d + 1;
                 r1Var.a(i17);
-                AndroidUtilities.updateImageViewImageAnimated(r1Var.f46574a[i17], i16);
-                r1Var.f46577e = true;
+                AndroidUtilities.updateImageViewImageAnimated(r1Var.f46609a[i17], i16);
+                r1Var.f46612e = true;
                 return;
             case 6:
                 AndroidUtilities.runOnUIThread(new p8(this.f1689b, ((MessagesStorage) this.f1690c).getUsers(new ArrayList<>((HashSet) this.d)), 5));
@@ -120,10 +120,10 @@ public final class s1 implements Runnable {
                     e2.o oVar = (e2.o) it.next();
                     if (!oVar.d) {
                         if (i18 != -1) {
-                            oVar.f8560b.b(i18);
+                            oVar.f8559b.b(i18);
                         }
-                        oVar.f8561c = true;
-                        mVar.invoke(oVar.f8559a);
+                        oVar.f8560c = true;
+                        mVar.invoke(oVar.f8558a);
                     }
                 }
                 return;
@@ -147,8 +147,8 @@ public final class s1 implements Runnable {
                 int i20 = this.f1689b;
                 if (tLObject2 instanceof TLRPC.TL_webViewResultUrl) {
                     TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject2;
-                    p4Var.f9296x = tL_webViewResultUrl.query_id;
-                    p4Var.f9292n.t(i20, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
+                    p4Var.f9295x = tL_webViewResultUrl.query_id;
+                    p4Var.f9291n.t(i20, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
                     AndroidUtilities.runOnUIThread(p4Var.U);
                     return;
                 }
@@ -157,35 +157,35 @@ public final class s1 implements Runnable {
                 gg.h0 h0Var = (gg.h0) this.f1690c;
                 int i21 = this.f1689b;
                 String str = (String) this.d;
-                int i22 = h0Var.f10638s0;
-                h0Var.f10635r = null;
-                if (i21 == h0Var.f10619d0) {
-                    if (h0Var.f10630n >= 0) {
-                        ConnectionsManager.getInstance(i22).cancelRequest(h0Var.f10630n, true);
+                int i22 = h0Var.f10637s0;
+                h0Var.f10634r = null;
+                if (i21 == h0Var.f10618d0) {
+                    if (h0Var.f10629n >= 0) {
+                        ConnectionsManager.getInstance(i22).cancelRequest(h0Var.f10629n, true);
                     }
                     TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
                     tL_channels_searchPosts.flags = 1 | tL_channels_searchPosts.flags;
                     tL_channels_searchPosts.hashtag = str;
                     tL_channels_searchPosts.limit = 3;
                     tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                    h0Var.f10630n = ConnectionsManager.getInstance(i22).sendRequest(tL_channels_searchPosts, new gg.u(h0Var, i21, str, 0));
+                    h0Var.f10629n = ConnectionsManager.getInstance(i22).sendRequest(tL_channels_searchPosts, new gg.u(h0Var, i21, str, 0));
                     return;
                 }
                 return;
             case 12:
                 hg.z zVar = (hg.z) this.f1690c;
-                zVar.f11462b.add(this.f1689b, (TL_account.TL_businessChatLink) this.d);
-                NotificationCenter.getInstance(zVar.f11461a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                zVar.f11461b.add(this.f1689b, (TL_account.TL_businessChatLink) this.d);
+                NotificationCenter.getInstance(zVar.f11460a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                 return;
             case 13:
                 Pair pair = (Pair) this.d;
-                ((i2.d1) this.f1690c).f11631b.h.a(((Integer) pair.first).intValue(), (u2.f0) pair.second, this.f1689b);
+                ((i2.d1) this.f1690c).f11630b.h.a(((Integer) pair.first).intValue(), (u2.f0) pair.second, this.f1689b);
                 return;
             case 14:
                 int i23 = this.f1689b;
                 ii.t5 m10 = ((ii.q5) this.f1690c).getGrid().m((TL_iv.pageTableCell) this.d);
                 if (m10 != null) {
-                    ii.i1 i1Var = m10.f12708a;
+                    ii.i1 i1Var = m10.f12707a;
                     i1Var.r();
                     i1Var.setSelection(Math.max(0, Math.min(i23, i1Var.length())));
                     return;
@@ -194,16 +194,16 @@ public final class s1 implements Runnable {
             case 15:
                 ii.a aVar = (ii.a) this.d;
                 int i24 = this.f1689b;
-                ii.f6 f6Var = ((ii.z5) this.f1690c).f12882a;
-                if (f6Var.f12425y != null) {
-                    ii.f6.f(aVar.f12234b, "");
-                    ((ii.f3) f6Var.f12425y).c(aVar, i24);
+                ii.f6 f6Var = ((ii.z5) this.f1690c).f12881a;
+                if (f6Var.f12424y != null) {
+                    ii.f6.f(aVar.f12233b, "");
+                    ((ii.f3) f6Var.f12424y).c(aVar, i24);
                     return;
                 }
                 return;
             case 16:
                 n2.j jVar = (n2.j) this.f1690c;
-                this.d.a(jVar.f16522a, jVar.f16523b, this.f1689b);
+                this.d.a(jVar.f16564a, jVar.f16565b, this.f1689b);
                 return;
             case 17:
                 ((View) this.d).postOnAnimation(new p8((nh.a) this.f1690c, this.f1689b, 12));
@@ -220,33 +220,33 @@ public final class s1 implements Runnable {
             case 21:
                 int i25 = this.f1689b;
                 Context context = (Context) this.f1690c;
-                org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) this.d;
+                org.telegram.ui.ActionBar.e3[] e3VarArr = (org.telegram.ui.ActionBar.e3[]) this.d;
                 String str2 = MessagesController.getInstance(i25).freezeAppealUrl;
                 if (!str2.startsWith("http://") && !str2.startsWith("https://")) {
                     str2 = "https://".concat(str2);
                 }
                 of.f.s(context, str2);
-                f3VarArr[0].dismiss();
+                e3VarArr[0].dismiss();
                 return;
             case 22:
-                org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f1690c;
+                org.telegram.ui.h4 h4Var = (org.telegram.ui.h4) this.f1690c;
                 String str3 = (String) this.d;
                 int i26 = this.f1689b;
-                HashMap hashMap = new HashMap(i4Var.f38559u0[0].f39797c.f37816w);
-                ArrayList arrayList2 = new ArrayList(i4Var.f38559u0[0].f39797c.f37817x);
-                i4Var.V0 = null;
-                Utilities.searchQueue.postRunnable(new ei.l3(i4Var, arrayList2, hashMap, str3, i26, 14));
+                HashMap hashMap = new HashMap(h4Var.f38285u0[0].f39497c.f37533w);
+                ArrayList arrayList2 = new ArrayList(h4Var.f38285u0[0].f39497c.f37534x);
+                h4Var.V0 = null;
+                Utilities.searchQueue.postRunnable(new ei.l3(h4Var, arrayList2, hashMap, str3, i26, 14));
                 return;
             case 23:
-                org.telegram.ui.i4 i4Var2 = (org.telegram.ui.i4) this.f1690c;
+                org.telegram.ui.h4 h4Var2 = (org.telegram.ui.h4) this.f1690c;
                 int i27 = this.f1689b;
                 of.e eVar = (of.e) this.d;
-                if (i4Var2.H0 == i27 && i4Var2.F0 != 0) {
-                    ConnectionsManager.getInstance(i4Var2.X).cancelRequest(i4Var2.F0, false);
-                    i4Var2.F0 = 0;
+                if (h4Var2.H0 == i27 && h4Var2.F0 != 0) {
+                    ConnectionsManager.getInstance(h4Var2.X).cancelRequest(h4Var2.F0, false);
+                    h4Var2.F0 = 0;
                 }
-                if (i4Var2.M0 == eVar) {
-                    i4Var2.M0 = null;
+                if (h4Var2.M0 == eVar) {
+                    h4Var2.M0 = null;
                     return;
                 }
                 return;
@@ -254,22 +254,22 @@ public final class s1 implements Runnable {
                 int i28 = this.f1689b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f1690c;
                 MessagesController.getInstance(i28).putUsers(tL_chatInviteJoinResultWebView.users, false);
-                BotGuardHelper.getInstance(i28).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20042id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+                BotGuardHelper.getInstance(i28).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20032id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
                 return;
             case 25:
-                org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f1690c;
-                g4Var.J = this.f1689b;
-                g4Var.I = (int[]) this.d;
-                g4Var.L.f0();
+                org.telegram.ui.f4 f4Var = (org.telegram.ui.f4) this.f1690c;
+                f4Var.J = this.f1689b;
+                f4Var.I = (int[]) this.d;
+                f4Var.L.f0();
                 return;
             case 26:
                 int i29 = this.f1689b;
-                org.telegram.ui.ActionBar.f3[] f3VarArr2 = (org.telegram.ui.ActionBar.f3[]) this.f1690c;
+                org.telegram.ui.ActionBar.e3[] e3VarArr2 = (org.telegram.ui.ActionBar.e3[]) this.f1690c;
                 TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
                 Uri parse = Uri.parse((String) this.d);
                 tL_inputGroupCallSlug.slug = parse.getPathSegments().get(parse.getPathSegments().size() - 1);
-                org.telegram.ui.Components.voip.f2.g(LaunchActivity.G1, i29, tL_inputGroupCallSlug, false, null, null);
-                f3VarArr2[0].dismiss();
+                org.telegram.ui.Components.voip.g2.g(LaunchActivity.G1, i29, tL_inputGroupCallSlug, false, null, null);
+                e3VarArr2[0].dismiss();
                 return;
             case 27:
                 ((zn) this.f1690c).Oa((ArrayList) this.d, this.f1689b, false, false);
@@ -277,7 +277,7 @@ public final class s1 implements Runnable {
             case 28:
                 int i30 = this.f1689b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                ((zn) this.f1690c).f45034x0.v0(0, i30, null);
+                ((zn) this.f1690c).f44989x0.v0(0, i30, null);
                 if (!AndroidUtilities.showKeyboard(editTextBoldCursor)) {
                     editTextBoldCursor.clearFocus();
                     editTextBoldCursor.requestFocus();
@@ -289,7 +289,7 @@ public final class s1 implements Runnable {
                 int i31 = this.f1689b;
                 dmVar.getClass();
                 MessageObject messageObject = ((org.telegram.ui.Cells.w0) this.d).getMessageObject();
-                mm mmVar = dmVar.f37094a;
+                mm mmVar = dmVar.f37050a;
                 zn znVar = mmVar.Q;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == mmVar.Q.L6) {
@@ -316,16 +316,16 @@ public final class s1 implements Runnable {
         this.f1689b = i10;
     }
 
-    public s1(String str, int i10, org.telegram.ui.ActionBar.f3[] f3VarArr) {
+    public s1(String str, int i10, org.telegram.ui.ActionBar.e3[] e3VarArr) {
         this.f1688a = 26;
         this.d = str;
         this.f1689b = i10;
-        this.f1690c = f3VarArr;
+        this.f1690c = e3VarArr;
     }
 
-    public s1(org.telegram.ui.g4 g4Var, int i10, int[] iArr, int[] iArr2) {
+    public s1(org.telegram.ui.f4 f4Var, int i10, int[] iArr, int[] iArr2) {
         this.f1688a = 25;
-        this.f1690c = g4Var;
+        this.f1690c = f4Var;
         this.f1689b = i10;
         this.d = iArr2;
     }

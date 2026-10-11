@@ -1,8 +1,8 @@
 package n2;
 
-import m4.q0;
+import m4.p0;
 public interface l {
-    public static final q0 f16525u = new q0(18);
+    public static final p0 f16567u = new p0(20);
 
     void release();
 }

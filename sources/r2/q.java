@@ -1,8 +1,8 @@
 package r2;
 public final class q extends Exception {
-    public final String f46950a;
-    public final boolean f46951b;
-    public final p f46952c;
+    public final String f46996a;
+    public final boolean f46997b;
+    public final p f46998c;
     public final String d;
 
     public q(b2.s sVar, u uVar, boolean z10, int i10) {
@@ -11,9 +11,9 @@ public final class q extends Exception {
 
     public q(String str, Throwable th2, String str2, boolean z10, p pVar, String str3) {
         super(str, th2);
-        this.f46950a = str2;
-        this.f46951b = z10;
-        this.f46952c = pVar;
+        this.f46996a = str2;
+        this.f46997b = z10;
+        this.f46998c = pVar;
         this.d = str3;
     }
 }

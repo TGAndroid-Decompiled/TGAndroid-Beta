@@ -13,11 +13,11 @@ public final class m0 implements Utilities.Callback2 {
     }
 
     @Override
-    public final void run(java.lang.Object r20, java.lang.Object r21) {
+    public final void run(java.lang.Object r21, java.lang.Object r22) {
         throw new UnsupportedOperationException("Method not decompiled: ai.m0.run(java.lang.Object, java.lang.Object):void");
     }
 
-    public m0(org.telegram.ui.Wallet.k0 k0Var, String str, Utilities.Callback callback) {
+    public m0(org.telegram.ui.Wallet.l0 l0Var, String str, Utilities.Callback callback) {
         this.f1377a = 19;
         this.f1378b = str;
         this.f1379c = callback;

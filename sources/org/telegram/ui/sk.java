@@ -4,8 +4,8 @@ import android.content.Context;
 public final class sk extends jh.e {
     public final zn L;
 
-    public sk(zn znVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, kj kjVar, ah.c cVar) {
-        super(cVar, context, kjVar, e6Var);
+    public sk(zn znVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, kj kjVar, ah.c cVar) {
+        super(cVar, context, kjVar, d6Var);
         this.L = znVar;
     }
 

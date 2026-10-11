@@ -1,186 +1,62 @@
 package org.telegram.ui.ActionBar;
 
-import android.widget.TextView;
-import java.util.ArrayList;
+import ai.aa;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_chatlists;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.eb0;
-import org.telegram.ui.Components.j40;
-import org.telegram.ui.Components.j90;
-import org.telegram.ui.Components.t10;
-import org.telegram.ui.Components.uz;
-import org.telegram.ui.Components.wz;
-import org.telegram.ui.Components.y90;
-import org.telegram.ui.f10;
-import org.telegram.ui.sr;
-public final class n5 implements Runnable {
-    public final int f21439a;
-    public final Object f21440b;
-    public final Object f21441c;
-    public final Object d;
-    public final Object f21442e;
-
-    public n5(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f21439a = i10;
-        this.f21440b = obj;
-        this.f21441c = obj2;
-        this.d = obj3;
-        this.f21442e = obj4;
-    }
-
-    private final void a() {
-        uz uzVar = (uz) this.f21440b;
-        TLRPC.TL_messages_getStickers tL_messages_getStickers = (TLRPC.TL_messages_getStickers) this.f21441c;
-        TLObject tLObject = (TLObject) this.d;
-        Runnable runnable = (Runnable) this.f21442e;
-        ArrayList arrayList = uzVar.f31676s;
-        wz wzVar = uzVar.f31677w;
-        if (wzVar.M != uzVar.f31670b) {
-            return;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.MediaController;
+public final class n5 implements SensorEventListener {
+    @Override
+    public final void onSensorChanged(SensorEvent sensorEvent) {
+        float f7 = sensorEvent.values[0];
+        if (f7 <= 0.0f) {
+            f7 = 0.1f;
         }
-        wzVar.L = 0;
-        if (tL_messages_getStickers.emoticon.equals(uzVar.f31669a)) {
-            if (!(tLObject instanceof TLRPC.TL_messages_stickers)) {
-                runnable.run();
-                return;
+        if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
+            if (f7 > 500.0f) {
+                h6.h = 1.0f;
+            } else {
+                h6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
             }
-            TLRPC.TL_messages_stickers tL_messages_stickers = (TLRPC.TL_messages_stickers) tLObject;
-            int size = arrayList.size();
-            int size2 = tL_messages_stickers.stickers.size();
-            for (int i10 = 0; i10 < size2; i10++) {
-                TLRPC.Document document = tL_messages_stickers.stickers.get(i10);
-                if (uzVar.v.indexOfKey(document.f20048id) < 0) {
-                    arrayList.add(document);
-                }
-            }
-            if (size != arrayList.size()) {
-                uzVar.f31673f.put(arrayList, wzVar.N);
-                if (size == 0) {
-                    uzVar.h.add(arrayList);
-                }
-            }
-        }
-        runnable.run();
-    }
-
-    private final void b() {
-        t10 t10Var = (t10) this.f21441c;
-        TLObject tLObject = (TLObject) this.f21442e;
-        Utilities.Callback callback = (Utilities.Callback) this.f21440b;
-        int i10 = -1;
-        t10Var.f30939z0 = -1;
-        n2 n2Var = t10Var.f25985n;
-        f10.r0((TLRPC.TL_error) this.d, n2Var, ad.a0(n2Var));
-        int i11 = 0;
-        if (tLObject != null) {
-            if (tLObject instanceof TLRPC.Updates) {
-                TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                ArrayList<TLRPC.Update> arrayList = updates.updates;
-                if (arrayList.isEmpty()) {
-                    TLRPC.Update update = updates.update;
-                    if (update instanceof TL_update.TL_updateDialogFilter) {
-                        i10 = ((TL_update.TL_updateDialogFilter) update).f20297id;
+            long j3 = 1800;
+            if (h6.h <= h6.f21019q) {
+                if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
+                    if (h6.f20889j) {
+                        h6.f20889j = false;
+                        AndroidUtilities.cancelRunOnUIThread(h6.f20927l);
                     }
-                } else {
-                    while (true) {
-                        if (i11 >= arrayList.size()) {
-                            break;
-                        } else if (arrayList.get(i11) instanceof TL_update.TL_updateDialogFilter) {
-                            i10 = ((TL_update.TL_updateDialogFilter) arrayList.get(i11)).f20297id;
-                            break;
-                        } else {
-                            i11++;
+                    if (!h6.f20907k) {
+                        h6.f20907k = true;
+                        aa aaVar = h6.f20945m;
+                        if (Math.abs(h6.f20870i - SystemClock.elapsedRealtime()) < 12000) {
+                            j3 = 12000;
                         }
+                        AndroidUtilities.runOnUIThread(aaVar, j3);
+                        return;
                     }
+                    return;
                 }
-            }
-            if (t10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInvite) {
-                n2Var.getMessagesController().loadRemoteFilters(true, new ei.q4(t10Var, callback, i10, 3));
                 return;
             }
-            if (t10Var.f30915a0 != null) {
-                n2Var.getMessagesController().checkChatlistFolderUpdate(t10Var.Y, true);
+            if (h6.f20907k) {
+                h6.f20907k = false;
+                AndroidUtilities.cancelRunOnUIThread(h6.f20945m);
             }
-            t10Var.A0 = true;
-            t10Var.dismiss();
-            callback.run(Integer.valueOf(i10));
-            return;
-        }
-        t10Var.f30926l0.a(false);
-    }
-
-    private final void c() {
-        j40.O((j40) this.f21440b, (TLRPC.TL_error) this.f21441c, (TLObject) this.d, (TLRPC.TL_channels_getParticipants) this.f21442e);
-    }
-
-    private final void e() {
-        j90.p((j90) this.f21440b, (TLRPC.TL_error) this.f21441c, (TLRPC.Updates) this.d, (TLRPC.TL_messages_importChatInvite) this.f21442e);
-    }
-
-    private final void f() {
-        y90 y90Var = (y90) this.f21440b;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) this.f21441c;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-        TLObject tLObject = (TLObject) this.f21442e;
-        y90Var.f33156y = false;
-        y90Var.K = tL_chatInviteExported.link;
-        if (tL_error == null) {
-            TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters = (TLRPC.TL_messages_chatInviteImporters) tLObject;
-            if (tL_chatInviteExported.importers == null) {
-                tL_chatInviteExported.importers = new ArrayList<>(3);
+            if (!h6.f20889j) {
+                h6.f20889j = true;
+                aa aaVar2 = h6.f20927l;
+                if (Math.abs(h6.f20870i - SystemClock.elapsedRealtime()) < 12000) {
+                    j3 = 12000;
+                }
+                AndroidUtilities.runOnUIThread(aaVar2, j3);
             }
-            tL_chatInviteExported.importers.clear();
-            for (int i10 = 0; i10 < tL_messages_chatInviteImporters.users.size(); i10++) {
-                tL_chatInviteExported.importers.addAll(tL_messages_chatInviteImporters.users);
-            }
-            y90Var.d(tL_chatInviteExported.usage, tL_chatInviteExported.importers, true);
         }
-    }
-
-    private final void g() {
-        eb0 eb0Var = (eb0) this.f21440b;
-        ArrayList arrayList = (ArrayList) this.d;
-        boolean[] zArr = (boolean[]) this.f21442e;
-        ((boolean[]) this.f21441c)[0] = true;
-        AndroidUtilities.cancelRunOnUIThread(eb0Var.U);
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            ((TL_stories.StoryItem) arrayList.get(i10)).pinned = zArr[i10];
-        }
-        eb0Var.getMessagesController().getStoriesController().n0(eb0Var.f25996e, arrayList, false);
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.n5.run():void");
-    }
-
-    public n5(sr srVar, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f21439a = 15;
-        this.f21440b = srVar;
-        this.d = str;
-        this.f21441c = arrayList;
-        this.f21442e = arrayList2;
-    }
-
-    public n5(t10 t10Var, TLRPC.TL_error tL_error, TLObject tLObject, Utilities.Callback callback) {
-        this.f21439a = 23;
-        this.f21441c = t10Var;
-        this.d = tL_error;
-        this.f21442e = tLObject;
-        this.f21440b = callback;
-    }
-
-    public n5(int[] iArr, int[] iArr2, String[] strArr, TextView textView) {
-        this.f21439a = 18;
-        this.f21440b = iArr;
-        this.f21441c = iArr2;
-        this.f21442e = strArr;
-        this.d = textView;
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

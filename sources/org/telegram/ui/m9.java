@@ -1,34 +1,32 @@
 package org.telegram.ui;
-public final class m9 implements o1.f {
-    public final int f39834a;
-    public final Object f39835b;
 
-    public m9(Object obj, int i10) {
-        this.f39834a = i10;
-        this.f39835b = obj;
+import android.animation.ValueAnimator;
+public final class m9 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39838a;
+    public final u9 f39839b;
+
+    public m9(u9 u9Var, int i10) {
+        this.f39838a = i10;
+        this.f39839b = u9Var;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f39834a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f39838a) {
             case 0:
-                v9 v9Var = (v9) this.f39835b;
-                o1.k kVar = v9Var.f42772y;
-                if (kVar != null) {
-                    kVar.c();
-                    v9Var.f42772y = null;
-                    return;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u9 u9Var = this.f39839b;
+                u9Var.Z = floatValue;
+                u9Var.f42411a.setAlpha(1.0f - floatValue);
+                if (u9Var.X == 3) {
+                    u9Var.f42413b.setAlpha(1.0f - u9Var.Z);
                 }
-                return;
-            case 1:
-                ro0 ro0Var = (ro0) this.f39835b;
-                if (hVar == ro0Var.f41511c) {
-                    ro0Var.f41511c = null;
-                    return;
-                }
+                u9Var.f42425s.setAlpha(1.0f - u9Var.Z);
+                u9Var.f42426w = (u9Var.Z * 0.25f) + 0.5f;
+                u9Var.fragmentView.invalidate();
                 return;
             default:
-                ((pu0) this.f39835b).D();
+                this.f39839b.f42425s.invalidate();
                 return;
         }
     }

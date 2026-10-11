@@ -6,19 +6,19 @@ import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Iterator;
 public final class e implements com.google.android.gms.common.api.q, Iterable, Closeable {
-    public final DataHolder f51098a;
-    public boolean f51099b = false;
-    public ArrayList f51100c;
+    public final DataHolder f51142a;
+    public boolean f51143b = false;
+    public ArrayList f51144c;
     public final Status d;
 
     public e(DataHolder dataHolder) {
-        this.f51098a = dataHolder;
-        this.d = new Status(dataHolder.f6740e, null, null, null);
+        this.f51142a = dataHolder;
+        this.d = new Status(dataHolder.f6739e, null, null, null);
     }
 
     @Override
     public final void close() {
-        DataHolder dataHolder = this.f51098a;
+        DataHolder dataHolder = this.f51142a;
         if (dataHolder != null) {
             dataHolder.close();
         }
@@ -35,8 +35,8 @@ public final class e implements com.google.android.gms.common.api.q, Iterable, C
     }
 
     public final int n(int i10) {
-        if (i10 >= 0 && i10 < this.f51100c.size()) {
-            return ((Integer) this.f51100c.get(i10)).intValue();
+        if (i10 >= 0 && i10 < this.f51144c.size()) {
+            return ((Integer) this.f51144c.get(i10)).intValue();
         }
         throw new IllegalArgumentException(hg.c.i(i10, "Position ", " is out of bounds for this buffer"));
     }
@@ -44,26 +44,26 @@ public final class e implements com.google.android.gms.common.api.q, Iterable, C
     public final void o() {
         synchronized (this) {
             try {
-                if (!this.f51099b) {
-                    DataHolder dataHolder = this.f51098a;
-                    n6.l.h(dataHolder);
-                    int i10 = dataHolder.f6742n;
+                if (!this.f51143b) {
+                    DataHolder dataHolder = this.f51142a;
+                    n6.m.h(dataHolder);
+                    int i10 = dataHolder.f6741n;
                     ArrayList arrayList = new ArrayList();
-                    this.f51100c = arrayList;
+                    this.f51144c = arrayList;
                     if (i10 > 0) {
                         arrayList.add(0);
-                        int b10 = this.f51098a.b(0);
-                        DataHolder dataHolder2 = this.f51098a;
+                        int b10 = this.f51142a.b(0);
+                        DataHolder dataHolder2 = this.f51142a;
                         dataHolder2.c(0, "path");
-                        String string = dataHolder2.d[b10].getString(0, dataHolder2.f6739c.getInt("path"));
+                        String string = dataHolder2.d[b10].getString(0, dataHolder2.f6738c.getInt("path"));
                         for (int i11 = 1; i11 < i10; i11++) {
-                            int b11 = this.f51098a.b(i11);
-                            DataHolder dataHolder3 = this.f51098a;
+                            int b11 = this.f51142a.b(i11);
+                            DataHolder dataHolder3 = this.f51142a;
                             dataHolder3.c(i11, "path");
-                            String string2 = dataHolder3.d[b11].getString(i11, dataHolder3.f6739c.getInt("path"));
+                            String string2 = dataHolder3.d[b11].getString(i11, dataHolder3.f6738c.getInt("path"));
                             if (string2 != null) {
                                 if (!string2.equals(string)) {
-                                    this.f51100c.add(Integer.valueOf(i11));
+                                    this.f51144c.add(Integer.valueOf(i11));
                                     string = string2;
                                 }
                             } else {
@@ -71,7 +71,7 @@ public final class e implements com.google.android.gms.common.api.q, Iterable, C
                             }
                         }
                     }
-                    this.f51099b = true;
+                    this.f51143b = true;
                 }
             } catch (Throwable th2) {
                 throw th2;

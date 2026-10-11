@@ -51,7 +51,7 @@ public abstract class v7 {
     public static int[] f(Collection collection) {
         if (collection instanceof h9.b) {
             h9.b bVar = (h9.b) collection;
-            return Arrays.copyOfRange(bVar.f11051a, bVar.f11052b, bVar.f11053c);
+            return Arrays.copyOfRange(bVar.f11050a, bVar.f11051b, bVar.f11052c);
         }
         Object[] array = collection.toArray();
         int length = array.length;
@@ -79,9 +79,9 @@ public abstract class v7 {
                 int i11 = i10 + 1;
                 char charAt = str.charAt(i10);
                 if (charAt < 128) {
-                    b10 = h9.c.f11054a[charAt];
+                    b10 = h9.c.f11053a[charAt];
                 } else {
-                    byte[] bArr = h9.c.f11054a;
+                    byte[] bArr = h9.c.f11053a;
                     b10 = -1;
                 }
                 if (b10 >= 0 && b10 < 10) {
@@ -93,9 +93,9 @@ public abstract class v7 {
                             int i12 = i11 + 1;
                             char charAt2 = str.charAt(i11);
                             if (charAt2 < 128) {
-                                b11 = h9.c.f11054a[charAt2];
+                                b11 = h9.c.f11053a[charAt2];
                             } else {
-                                byte[] bArr2 = h9.c.f11054a;
+                                byte[] bArr2 = h9.c.f11053a;
                                 b11 = -1;
                             }
                             if (b11 < 0 || b11 >= 10 || j3 < j11) {

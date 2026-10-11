@@ -8,38 +8,38 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.s5;
-import org.telegram.ui.k71;
-import org.telegram.ui.t61;
+import org.telegram.ui.j71;
+import org.telegram.ui.s61;
 import org.telegram.ui.zn;
-public final class w extends k71 {
-    public final ll0 f54721d2;
-    public final n2 f54722e2;
-    public final a0 f54723f2;
+public final class w extends j71 {
+    public final ml0 f54764d2;
+    public final m2 f54765e2;
+    public final a0 f54766f2;
 
-    public w(a0 a0Var, n2 n2Var, Context context, int i10, boolean z10, e6 e6Var, ll0 ll0Var, n2 n2Var2) {
-        super(n2Var, context, false, null, i10, z10, e6Var, 16);
-        this.f54723f2 = a0Var;
-        this.f54721d2 = ll0Var;
-        this.f54722e2 = n2Var2;
+    public w(a0 a0Var, m2 m2Var, Context context, int i10, boolean z10, d6 d6Var, ml0 ml0Var, m2 m2Var2) {
+        super(m2Var, context, false, null, i10, z10, d6Var, 16);
+        this.f54766f2 = a0Var;
+        this.f54764d2 = ml0Var;
+        this.f54765e2 = m2Var2;
     }
 
     @Override
     public final void m() {
-        this.f54723f2.f54493a.invalidate();
+        this.f54766f2.f54536a.invalidate();
     }
 
     @Override
     public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
         long longValue;
-        xh.m mVar = this.f54723f2.f54495c;
-        ll0 ll0Var = this.f54721d2;
-        n2 n2Var = this.f54722e2;
-        if (n2Var != null && !ll0Var.A0 && ll0Var.getWindowType() != 13 && !UserConfig.getInstance(n2Var.getCurrentAccount()).isPremium()) {
+        xh.m mVar = this.f54766f2.f54538c;
+        ml0 ml0Var = this.f54764d2;
+        m2 m2Var = this.f54765e2;
+        if (m2Var != null && !ml0Var.A0 && ml0Var.getWindowType() != 13 && !UserConfig.getInstance(m2Var.getCurrentAccount()).isPremium()) {
             try {
                 mVar.performHapticFeedback(3);
             } catch (Exception unused) {
@@ -51,48 +51,48 @@ public final class w extends k71 {
                 s5.h(UserConfig.selectedAccount).e(document);
             }
             if (l4 == null) {
-                longValue = document.f20048id;
+                longValue = document.f20038id;
             } else {
                 longValue = l4.longValue();
             }
             ?? obj = new Object();
-            obj.f54662g = longValue;
+            obj.f54705g = longValue;
             obj.h = longValue;
-            ll0Var.l(view, obj, false);
+            ml0Var.l(view, obj, false);
             AndroidUtilities.hideKeyboard(mVar);
         }
     }
 
     @Override
     public final void q() {
-        a0 a0Var = this.f54723f2;
+        a0 a0Var = this.f54766f2;
         if (!a0Var.v) {
             a0Var.v = true;
             if (!a0Var.d) {
-                a0Var.f54494b.updateViewLayout(a0Var.f54495c, a0Var.b(true));
+                a0Var.f54537b.updateViewLayout(a0Var.f54538c, a0Var.b(true));
             }
-            n2 n2Var = this.f54722e2;
-            if (n2Var instanceof zn) {
-                ((zn) n2Var).U9();
+            m2 m2Var = this.f54765e2;
+            if (m2Var instanceof zn) {
+                ((zn) m2Var).U9();
             }
-            ll0 ll0Var = this.f54721d2;
-            if (ll0Var.getDelegate() != null) {
-                ll0Var.getDelegate().q();
+            ml0 ml0Var = this.f54764d2;
+            if (ml0Var.getDelegate() != null) {
+                ml0Var.getDelegate().q();
             }
         }
     }
 
     @Override
-    public final void r(t61 t61Var, n0 n0Var) {
-        this.f54721d2.l(t61Var, n0Var, false);
-        AndroidUtilities.hideKeyboard(this.f54723f2.f54495c);
+    public final void r(s61 s61Var, n0 n0Var) {
+        this.f54764d2.l(s61Var, n0Var, false);
+        AndroidUtilities.hideKeyboard(this.f54766f2.f54538c);
     }
 
     @Override
     public final boolean u() {
-        ll0 ll0Var = this.f54721d2;
-        if (ll0Var.getDelegate() != null) {
-            return ll0Var.getDelegate().q();
+        ml0 ml0Var = this.f54764d2;
+        if (ml0Var.getDelegate() != null) {
+            return ml0Var.getDelegate().q();
         }
         return false;
     }

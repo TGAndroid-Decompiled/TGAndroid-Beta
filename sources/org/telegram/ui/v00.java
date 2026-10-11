@@ -1,13 +1,94 @@
 package org.telegram.ui;
 
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class v00 extends FrameLayout {
-    public org.telegram.ui.Components.gk0 f42637a;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class v00 extends og.a {
+    public View.OnClickListener f42813c;
+    public CharSequence d;
+    public String f42814e;
+    public boolean f42815f;
+    public boolean f42816g;
+    public long h;
+    public String f42817i;
+    public int f42818j;
+    public int f42819k;
+    public boolean f42820l;
+    public TL_chatlists.TL_exportedChatlistInvite f42821m;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(156.0f), 1073741824));
+    public static v00 b(int i10, String str, boolean z10) {
+        ?? aVar = new og.a(4, false);
+        aVar.f42819k = i10;
+        aVar.d = str;
+        aVar.f42820l = z10;
+        return aVar;
+    }
+
+    public static v00 c(int i10, String str, String str2, boolean z10) {
+        ?? aVar = new og.a(1, false);
+        aVar.f42816g = z10;
+        aVar.d = str;
+        aVar.f42817i = str2;
+        aVar.f42818j = i10;
+        return aVar;
+    }
+
+    public static v00 d(String str) {
+        int i10;
+        if (TextUtils.isEmpty(str)) {
+            i10 = 3;
+        } else {
+            i10 = 6;
+        }
+        ?? aVar = new og.a(i10, false);
+        aVar.d = str;
+        return aVar;
+    }
+
+    public final boolean equals(Object obj) {
+        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite;
+        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2;
+        if (this != obj) {
+            if (obj != null && v00.class == obj.getClass()) {
+                v00 v00Var = (v00) obj;
+                int i10 = this.f17175a;
+                if (i10 == v00Var.f17175a) {
+                    if (i10 == 11) {
+                        if (!TextUtils.equals(this.d, v00Var.d) || !TextUtils.equals(this.f42814e, v00Var.f42814e)) {
+                            return false;
+                        }
+                    } else if ((i10 != 0 && i10 != 1 && i10 != 3 && i10 != 4) || TextUtils.equals(this.d, v00Var.d)) {
+                        int i11 = this.f17175a;
+                        if (i11 == 0) {
+                            if (this.f42815f != v00Var.f42815f) {
+                                return false;
+                            }
+                        } else if (i11 == 1) {
+                            if (this.h != v00Var.h || !TextUtils.equals(this.f42817i, v00Var.f42817i) || this.f42818j != v00Var.f42818j) {
+                                return false;
+                            }
+                        } else if (i11 == 7 && (tL_exportedChatlistInvite = this.f42821m) != (tL_exportedChatlistInvite2 = v00Var.f42821m)) {
+                            if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
+                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f42821m;
+                                boolean z10 = tL_exportedChatlistInvite3.revoked;
+                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = v00Var.f42821m;
+                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f42821m.peers.size() != v00Var.f42821m.peers.size()) {
+                                    return false;
+                                }
+                            } else {
+                                return false;
+                            }
+                        }
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 }

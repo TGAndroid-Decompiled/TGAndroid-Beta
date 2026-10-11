@@ -6,30 +6,30 @@ import android.content.Intent;
 import android.os.Parcelable;
 import com.google.firebase.iid.FirebaseInstanceIdReceiver;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.m2;
 public final class g implements Runnable {
-    public final int f14044a = 0;
-    public final boolean f14045b;
-    public final Object f14046c;
+    public final int f14043a = 0;
+    public final boolean f14044b;
+    public final Object f14045c;
     public final Object d;
-    public final Object f14047e;
+    public final Object f14046e;
 
     public g(FirebaseInstanceIdReceiver firebaseInstanceIdReceiver, Intent intent, Context context, boolean z10, BroadcastReceiver.PendingResult pendingResult) {
-        this.f14046c = intent;
+        this.f14045c = intent;
         this.d = context;
-        this.f14045b = z10;
-        this.f14047e = pendingResult;
+        this.f14044b = z10;
+        this.f14046e = pendingResult;
     }
 
     @Override
     public final void run() {
         Intent intent;
         int a2;
-        switch (this.f14044a) {
+        switch (this.f14043a) {
             case 0:
-                Intent intent2 = (Intent) this.f14046c;
+                Intent intent2 = (Intent) this.f14045c;
                 Context context = (Context) this.d;
-                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.f14047e;
+                BroadcastReceiver.PendingResult pendingResult = (BroadcastReceiver.PendingResult) this.f14046e;
                 try {
                     Parcelable parcelableExtra = intent2.getParcelableExtra("wrapped_intent");
                     if (parcelableExtra instanceof Intent) {
@@ -42,7 +42,7 @@ public final class g implements Runnable {
                     } else {
                         a2 = FirebaseInstanceIdReceiver.a(context, intent2);
                     }
-                    if (this.f14045b) {
+                    if (this.f14044b) {
                         pendingResult.setResultCode(a2);
                     }
                     pendingResult.finish();
@@ -52,25 +52,25 @@ public final class g implements Runnable {
                     throw th2;
                 }
             default:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f14047e;
-                if (actionBarLayout.f20328e == this) {
-                    actionBarLayout.f20328e = null;
-                    n2 n2Var = (n2) this.f14046c;
-                    if (n2Var != null) {
-                        n2Var.onTransitionAnimationStart(false, false);
+                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f14046e;
+                if (actionBarLayout.f20318e == this) {
+                    actionBarLayout.f20318e = null;
+                    m2 m2Var = (m2) this.f14045c;
+                    if (m2Var != null) {
+                        m2Var.onTransitionAnimationStart(false, false);
                     }
-                    ((n2) this.d).onTransitionAnimationStart(true, false);
-                    actionBarLayout.d0(true, true, this.f14045b);
+                    ((m2) this.d).onTransitionAnimationStart(true, false);
+                    actionBarLayout.d0(true, true, this.f14044b);
                     return;
                 }
                 return;
         }
     }
 
-    public g(ActionBarLayout actionBarLayout, n2 n2Var, n2 n2Var2, boolean z10) {
-        this.f14047e = actionBarLayout;
-        this.f14046c = n2Var;
-        this.d = n2Var2;
-        this.f14045b = z10;
+    public g(ActionBarLayout actionBarLayout, m2 m2Var, m2 m2Var2, boolean z10) {
+        this.f14046e = actionBarLayout;
+        this.f14045c = m2Var;
+        this.d = m2Var2;
+        this.f14044b = z10;
     }
 }

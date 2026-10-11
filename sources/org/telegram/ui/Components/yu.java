@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class yu implements bz {
-    public final av f33407a;
+    public final av f33336a;
 
     public yu(av avVar) {
-        this.f33407a = avVar;
+        this.f33336a = avVar;
     }
 
     @Override
@@ -51,18 +51,18 @@ public final class yu implements bz {
     @Override
     public final void i(int i10) {
         boolean z10;
-        av avVar = this.f33407a;
+        av avVar = this.f33336a;
         if (avVar.b()) {
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            avVar.f24646x = z10;
+            avVar.f24598x = z10;
             avVar.y();
-            tw0 tw0Var = avVar.f24641f;
-            if (tw0Var != null) {
-                tw0Var.S();
+            uw0 uw0Var = avVar.f24593f;
+            if (uw0Var != null) {
+                uw0Var.S();
             }
         }
     }
@@ -74,7 +74,7 @@ public final class yu implements bz {
 
     @Override
     public final boolean k() {
-        vu vuVar = this.f33407a.f24637a;
+        vu vuVar = this.f33336a.f24589a;
         if (vuVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class yu implements bz {
 
     @Override
     public final void l(String str) {
-        vu vuVar = this.f33407a.f24637a;
+        vu vuVar = this.f33336a.f24589a;
         int selectionEnd = vuVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class yu implements bz {
 
     @Override
     public final void n() {
-        av avVar = this.f33407a;
+        av avVar = this.f33336a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(avVar.getContext(), 0, avVar.M);
-        alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 29));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.n2 n2Var = avVar.h;
-        if (n2Var != null) {
-            n2Var.showDialog(alertDialog$Builder.f20378a);
+        org.telegram.ui.ActionBar.m2 m2Var = avVar.h;
+        if (m2Var != null) {
+            m2Var.showDialog(alertDialog$Builder.f20368a);
         } else {
             alertDialog$Builder.o();
         }
@@ -122,19 +122,19 @@ public final class yu implements bz {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f33407a.h;
-        if (n2Var == null) {
-            new rg.y0((org.telegram.ui.ActionBar.n2) new ai.z3(this, 4), 11, false).show();
+        org.telegram.ui.ActionBar.m2 m2Var = this.f33336a.h;
+        if (m2Var == null) {
+            new rg.y0((org.telegram.ui.ActionBar.m2) new ai.z3(this, 4), 11, false).show();
         } else {
-            n2Var.showDialog(new rg.y0(n2Var, 11, false));
+            m2Var.showDialog(new rg.y0(m2Var, 11, false));
         }
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         b6 b6Var;
-        av avVar = this.f33407a;
-        vu vuVar = avVar.f24637a;
+        av avVar = this.f33336a;
+        vu vuVar = avVar.f24589a;
         int selectionEnd = vuVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -146,7 +146,7 @@ public final class yu implements bz {
             } else {
                 b6Var = new b6(j3, vuVar.getPaint().getFontMetricsInt());
             }
-            b6Var.cacheType = avVar.d.f24687c;
+            b6Var.cacheType = avVar.d.f24660c;
             spannableString.setSpan(b6Var, 0, spannableString.length(), 33);
             vuVar.setText(vuVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -160,7 +160,7 @@ public final class yu implements bz {
 
     @Override
     public final boolean z() {
-        return this.f33407a.f24646x;
+        return this.f33336a.f24598x;
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class yu implements bz {
     }
 
     @Override
-    public final void o(m61 m61Var) {
+    public final void o(n61 n61Var) {
     }
 
     @Override

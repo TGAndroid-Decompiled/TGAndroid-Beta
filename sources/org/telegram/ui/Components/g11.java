@@ -1,18 +1,19 @@
 package org.telegram.ui.Components;
 
+import java.io.File;
 import org.telegram.tgnet.TLRPC;
 public final class g11 {
-    public final long f26573a;
-    public final TLRPC.InputFile f26574b;
-    public final TLRPC.InputEncryptedFile f26575c;
-    public final byte[] d;
-    public final byte[] f26576e;
+    public final File f26565a;
+    public long f26566b;
+    public long f26567c;
+    public boolean d;
+    public boolean f26568e;
+    public TLRPC.InputFile f26569f;
+    public TLRPC.InputEncryptedFile f26570g;
+    public byte[] h;
+    public byte[] f26571i;
 
-    public g11(long j3, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
-        this.f26573a = j3;
-        this.f26574b = inputFile;
-        this.f26575c = inputEncryptedFile;
-        this.d = bArr;
-        this.f26576e = bArr2;
+    public g11(File file) {
+        this.f26565a = file;
     }
 }

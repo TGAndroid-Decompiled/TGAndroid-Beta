@@ -3,24 +3,24 @@ package pg;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class r0 extends AnimatorListenerAdapter {
-    public final int f45777a;
-    public final s0 f45778b;
+    public final int f45767a;
+    public final s0 f45768b;
 
     public r0(s0 s0Var, int i10) {
-        this.f45777a = i10;
-        this.f45778b = s0Var;
+        this.f45767a = i10;
+        this.f45768b = s0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f45777a) {
+        switch (this.f45767a) {
             case 0:
-                s0 s0Var = this.f45778b;
+                s0 s0Var = this.f45768b;
                 s0Var.K = null;
-                s0Var.f45803f.f(new org.telegram.ui.web.q0(this, 10));
+                s0Var.f45793f.f(new org.telegram.ui.web.t0(this, 9));
                 return;
             default:
-                this.f45778b.f45803f.f(new org.telegram.ui.web.q0(this, 11));
+                this.f45768b.f45793f.f(new org.telegram.ui.web.t0(this, 10));
                 return;
         }
     }

@@ -55,14 +55,14 @@ public enum gb implements u {
     LOW_MEMORY(603),
     UNKNOWN_ERROR(9999);
     
-    public final int f53799a;
+    public final int f53844a;
 
     gb(int i10) {
-        this.f53799a = i10;
+        this.f53844a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f53799a;
+        return this.f53844a;
     }
 }

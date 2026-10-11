@@ -10,26 +10,26 @@ public class f00 extends s4.s {
     public int S;
     public int T;
     public final int U;
-    public final rm0 V;
+    public final sm0 V;
     public boolean W;
     public boolean X;
 
-    public f00(int i10, int i11, rm0 rm0Var) {
+    public f00(int i10, int i11, sm0 sm0Var) {
         super(i10);
         this.Q = new SparseArray();
         this.R = -1;
         this.W = true;
         this.X = true;
-        this.V = rm0Var;
+        this.V = sm0Var;
         this.U = i11;
     }
 
     public final void B1() {
-        rm0 rm0Var;
+        sm0 sm0Var;
         s4.i0 adapter;
         int i10;
-        rm0 rm0Var2;
-        if (this.S > 0 && D1() && (adapter = (rm0Var = this.V).getAdapter()) != null) {
+        sm0 sm0Var2;
+        if (this.S > 0 && D1() && (adapter = (sm0Var = this.V).getAdapter()) != null) {
             int i11 = this.J;
             boolean z10 = true;
             int h = adapter.h() - 1;
@@ -48,41 +48,41 @@ public class f00 extends s4.s {
                         i13 = i15;
                     }
                     if (!z11) {
-                        rm0Var2 = rm0Var;
+                        sm0Var2 = sm0Var;
                     } else {
                         int j3 = adapter.j(i12);
                         SparseArray sparseArray = this.Q;
                         s4.d1 d1Var = (s4.d1) sparseArray.get(j3, null);
                         if (d1Var == null) {
-                            d1Var = adapter.e(rm0Var, j3);
-                            View view = d1Var.f47702a;
+                            d1Var = adapter.e(sm0Var, j3);
+                            View view = d1Var.f47748a;
                             sparseArray.put(j3, d1Var);
                             if (view.getLayoutParams() == null) {
                                 view.setLayoutParams(n());
                             }
                         }
-                        View view2 = d1Var.f47702a;
+                        View view2 = d1Var.f47748a;
                         if (this.W) {
                             adapter.v(d1Var, i12);
                         }
                         s4.q0 q0Var = (s4.q0) view2.getLayoutParams();
-                        rm0Var2 = rm0Var;
-                        view2.measure(s4.p0.s(d(), this.T, this.f47815k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), s4.p0.s(this.X, this.S, this.f47816l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
+                        sm0Var2 = sm0Var;
+                        view2.measure(s4.p0.s(d(), this.T, this.f47861k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), s4.p0.s(this.X, this.S, this.f47862l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
                         i14 += view2.getMeasuredHeight();
-                        if (i14 >= (this.S - i10) - rm0Var2.getPaddingBottom()) {
+                        if (i14 >= (this.S - i10) - sm0Var2.getPaddingBottom()) {
                             break;
                         }
                         z11 = false;
                     }
                     i12++;
-                    rm0Var = rm0Var2;
+                    sm0Var = sm0Var2;
                     z10 = true;
                 } else {
-                    rm0Var2 = rm0Var;
+                    sm0Var2 = sm0Var;
                     break;
                 }
             }
-            this.R = Math.max(0, ((this.S - i14) - i10) - rm0Var2.getPaddingBottom());
+            this.R = Math.max(0, ((this.S - i14) - i10) - sm0Var2.getPaddingBottom());
         }
     }
 

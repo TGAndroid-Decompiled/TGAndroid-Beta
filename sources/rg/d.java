@@ -11,34 +11,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.bi;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.messenger.ai;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.t3;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.w51;
+import org.telegram.ui.Components.rm0;
+import org.telegram.ui.v51;
 import w7.x5;
-public final class d extends qm0 {
-    public final e6 f47269c;
+public final class d extends rm0 {
+    public final d6 f47315c;
     public final int d;
-    public final int f47270e;
-    public final ArrayList f47271f;
+    public final int f47316e;
+    public final ArrayList f47317f;
     public final a1 h;
-    public int f47272n;
-    public c f47273r;
-    public final boolean f47274s;
+    public int f47318n;
+    public c f47319r;
+    public final boolean f47320s;
 
-    public d(int i10, e6 e6Var) {
+    public d(int i10, d6 d6Var) {
         ArrayList arrayList = new ArrayList();
-        this.f47271f = arrayList;
-        this.f47274s = true;
-        this.f47269c = e6Var;
-        a1 a1Var = new a1(i6.Lj, i6.Mj, i6.Nj, i6.Oj, e6Var);
+        this.f47317f = arrayList;
+        this.f47320s = true;
+        this.f47315c = d6Var;
+        a1 a1Var = new a1(h6.Lj, h6.Mj, h6.Nj, h6.Oj, d6Var);
         this.h = a1Var;
-        a1Var.f47231o = 0.0f;
-        a1Var.f47232p = 0.0f;
-        a1Var.f47233q = 1.0f;
+        a1Var.f47277o = 0.0f;
+        a1Var.f47278p = 0.0f;
+        a1Var.f47279q = 1.0f;
         MessagesController messagesController = MessagesController.getInstance(i10);
         arrayList.add(new e(messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, LocaleController.getString(R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString(R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium))));
         arrayList.add(new e(messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, LocaleController.getString(R.string.PinChatsLimitTitle), LocaleController.formatString(R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium))));
@@ -52,7 +52,7 @@ public final class d extends qm0 {
         arrayList.add(new e(3, 4, LocaleController.getString(R.string.ConnectedAccountsLimitTitle), LocaleController.formatString(R.string.ConnectedAccountsLimitSubtitle, 4)));
         arrayList.add(new e(messagesController.recommendedChannelsLimitDefault, messagesController.recommendedChannelsLimitPremium, LocaleController.getString(R.string.SimilarChannelsLimitTitle), LocaleController.formatString(R.string.SimilarChannelsLimitSubtitle, Integer.valueOf(messagesController.recommendedChannelsLimitPremium))));
         this.d = 1;
-        this.f47270e = 1;
+        this.f47316e = 1;
         this.d = arrayList.size() + 1;
     }
 
@@ -79,14 +79,14 @@ public final class d extends qm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        if (d1Var.f47706f == 0) {
-            f fVar = (f) d1Var.f47702a;
-            int i11 = i10 - this.f47270e;
-            ArrayList arrayList = this.f47271f;
+        if (d1Var.f47752f == 0) {
+            f fVar = (f) d1Var.f47748a;
+            int i11 = i10 - this.f47316e;
+            ArrayList arrayList = this.f47317f;
             fVar.a((e) arrayList.get(i11));
-            LimitPreviewView limitPreviewView = fVar.f47289c;
-            limitPreviewView.F = ((e) arrayList.get(i11)).f47279e;
-            limitPreviewView.f24243c = this.f47272n;
+            LimitPreviewView limitPreviewView = fVar.f47335c;
+            limitPreviewView.F = ((e) arrayList.get(i11)).f47325e;
+            limitPreviewView.f24231c = this.f47318n;
         }
     }
 
@@ -94,31 +94,31 @@ public final class d extends qm0 {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         t3 t3Var;
         Context context = viewGroup.getContext();
-        e6 e6Var = this.f47269c;
+        d6 d6Var = this.f47315c;
         if (i10 != 1) {
             if (i10 != 2) {
-                ?? fVar = new f(context, e6Var);
-                fVar.f47289c.setParentViewForGradien(this.f47273r);
-                fVar.f47289c.setStaticGradinet(this.h);
+                ?? fVar = new f(context, d6Var);
+                fVar.f47335c.setParentViewForGradien(this.f47319r);
+                fVar.f47335c.setStaticGradinet(this.h);
                 t3Var = fVar;
             } else {
                 t3Var = new t3(context, 16);
             }
-        } else if (this.f47274s) {
-            ?? w51Var = new w51(context, 10);
-            LinearLayout e7 = bi.e(context, 0);
+        } else if (this.f47320s) {
+            ?? v51Var = new v51(context, 10);
+            LinearLayout e7 = ai.e(context, 0);
             ImageView imageView = new ImageView(context);
-            imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f47250a));
+            imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f47296a));
             e7.addView(imageView, x5.a(28.0f, 0.0f, 0.0f, 8.0f, 0.0f, 40, 16));
             TextView textView = new TextView(context);
             textView.setText(LocaleController.getString(R.string.DoubledLimits));
             textView.setGravity(17);
             textView.setTextSize(1, 20.0f);
-            textView.setTextColor(i6.w0(i6.G6, e6Var));
+            textView.setTextColor(h6.w0(h6.G6, d6Var));
             textView.setTypeface(AndroidUtilities.bold());
             e7.addView(textView, x5.e(-2, -2, 16));
-            w51Var.addView(e7, x5.e(-2, -2, 17));
-            t3Var = w51Var;
+            v51Var.addView(e7, x5.e(-2, -2, 17));
+            t3Var = v51Var;
         } else {
             t3Var = new t3(context, 64);
         }

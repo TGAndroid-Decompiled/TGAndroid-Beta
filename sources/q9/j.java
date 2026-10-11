@@ -2,26 +2,26 @@ package q9;
 
 import w7.r6;
 public final class j {
-    public final r f46071a;
-    public final int f46072b;
-    public final int f46073c;
+    public final s f46102a;
+    public final int f46103b;
+    public final int f46104c;
 
     public j(int i10, int i11, Class cls) {
-        this(r.a(cls), i10, i11);
+        this(s.a(cls), i10, i11);
     }
 
     public static j a(Class cls) {
         return new j(1, 0, cls);
     }
 
-    public static j b(r rVar) {
-        return new j(rVar, 1, 0);
+    public static j b(s sVar) {
+        return new j(sVar, 1, 0);
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (this.f46071a.equals(jVar.f46071a) && this.f46072b == jVar.f46072b && this.f46073c == jVar.f46073c) {
+            if (this.f46102a.equals(jVar.f46102a) && this.f46103b == jVar.f46103b && this.f46104c == jVar.f46104c) {
                 return true;
             }
             return false;
@@ -30,16 +30,16 @@ public final class j {
     }
 
     public final int hashCode() {
-        return ((((this.f46071a.hashCode() ^ 1000003) * 1000003) ^ this.f46072b) * 1000003) ^ this.f46073c;
+        return ((((this.f46102a.hashCode() ^ 1000003) * 1000003) ^ this.f46103b) * 1000003) ^ this.f46104c;
     }
 
     public final String toString() {
         String str;
         String str2;
         StringBuilder sb2 = new StringBuilder("Dependency{anInterface=");
-        sb2.append(this.f46071a);
+        sb2.append(this.f46102a);
         sb2.append(", type=");
-        int i10 = this.f46072b;
+        int i10 = this.f46103b;
         if (i10 == 1) {
             str = "required";
         } else if (i10 == 0) {
@@ -49,7 +49,7 @@ public final class j {
         }
         sb2.append(str);
         sb2.append(", injection=");
-        int i11 = this.f46073c;
+        int i11 = this.f46104c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 == 2) {
@@ -66,10 +66,10 @@ public final class j {
         return a1.g.t(sb2, str2, "}");
     }
 
-    public j(r rVar, int i10, int i11) {
-        r6.a(rVar, "Null dependency anInterface.");
-        this.f46071a = rVar;
-        this.f46072b = i10;
-        this.f46073c = i11;
+    public j(s sVar, int i10, int i11) {
+        r6.a(sVar, "Null dependency anInterface.");
+        this.f46102a = sVar;
+        this.f46103b = i10;
+        this.f46104c = i11;
     }
 }

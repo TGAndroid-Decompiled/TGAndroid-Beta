@@ -2,44 +2,44 @@ package dh;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 public class b implements a {
-    public final e6 f8355a;
-    public final int f8356b;
-    public final float f8357c;
+    public final d6 f8354a;
+    public final int f8355b;
+    public final float f8356c;
     public int d;
-    public int f8358e;
-    public int f8359f;
+    public int f8357e;
+    public int f8358f;
     public int h;
 
-    public b(int i10, e6 e6Var) {
-        this(e6Var, i10, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
+    public b(int i10, d6 d6Var) {
+        this(d6Var, i10, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
     public boolean a() {
-        if (AndroidUtilities.computePerceivedBrightness(i6.w0(this.f8356b, this.f8355a)) < 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(h6.w0(this.f8355b, this.f8354a)) < 0.721f) {
             return true;
         }
         return false;
     }
 
     public final void b() {
-        this.d = i6.m1(this.f8357c, i6.w0(this.f8356b, this.f8355a));
+        this.d = h6.m1(this.f8356c, h6.w0(this.f8355b, this.f8354a));
         if (a()) {
-            this.f8359f = 687865855;
+            this.f8358f = 687865855;
             this.h = 352321535;
-            this.f8358e = 0;
+            this.f8357e = 0;
             return;
         }
-        this.f8359f = -1;
+        this.f8358f = -1;
         this.h = -1;
-        this.f8358e = 536870912;
+        this.f8357e = 536870912;
     }
 
     @Override
     public int d() {
-        return this.f8359f;
+        return this.f8358f;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class b implements a {
 
     @Override
     public int q() {
-        return this.f8358e;
+        return this.f8357e;
     }
 
     @Override
@@ -57,10 +57,10 @@ public class b implements a {
         return this.d;
     }
 
-    public b(e6 e6Var, int i10, float f7) {
-        this.f8355a = e6Var;
-        this.f8356b = i10;
-        this.f8357c = f7;
+    public b(d6 d6Var, int i10, float f7) {
+        this.f8354a = d6Var;
+        this.f8355b = i10;
+        this.f8356c = f7;
         b();
     }
 }

@@ -14,36 +14,36 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.is;
 public final class l extends Drawable {
-    public final Paint f5353a;
-    public final Paint f5354b;
-    public final k f5355c;
+    public final Paint f5352a;
+    public final Paint f5353b;
+    public final k f5354c;
     public final k d;
-    public boolean f5356e;
-    public final org.telegram.ui.Components.g6 f5357f;
-    public final Path f5358g;
+    public boolean f5355e;
+    public final org.telegram.ui.Components.g6 f5356f;
+    public final Path f5357g;
     public final int h;
-    public float f5359i;
-    public float f5360j;
-    public float f5361k;
-    public int f5362l;
-    public boolean f5363m;
-    public float f5364n;
-    public float f5365o;
+    public float f5358i;
+    public float f5359j;
+    public float f5360k;
+    public int f5361l;
+    public boolean f5362m;
+    public float f5363n;
+    public float f5364o;
 
     public l(int i10) {
         Paint paint = new Paint(1);
-        this.f5353a = paint;
-        this.f5354b = new Paint(1);
+        this.f5352a = paint;
+        this.f5353b = new Paint(1);
         k kVar = new k(this, 0);
-        this.f5355c = kVar;
+        this.f5354c = kVar;
         k kVar2 = new k(this, 1);
         this.d = kVar2;
-        this.f5356e = false;
+        this.f5355e = false;
         androidx.fragment.app.a0 a0Var = new androidx.fragment.app.a0(this, 6);
         is isVar = is.h;
-        this.f5357f = new org.telegram.ui.Components.g6(a0Var, 350L, isVar, 0);
-        this.f5358g = new Path();
-        this.f5359i = 21.0f;
+        this.f5356f = new org.telegram.ui.Components.g6(a0Var, 350L, isVar, 0);
+        this.f5357g = new Path();
+        this.f5358i = 21.0f;
         this.h = i10;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
@@ -51,28 +51,28 @@ public final class l extends Drawable {
         kVar.n(0.3f, 250L, isVar);
         kVar.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar.w(AndroidUtilities.dpf2(12.0f));
-        kVar.f30031b = 17;
+        kVar.f30019b = 17;
         kVar2.n(0.3f, 250L, isVar);
         kVar2.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar2.w(AndroidUtilities.dpf2(12.0f));
-        kVar2.f30031b = 17;
+        kVar2.f30019b = 17;
         e(-1, -15033089, -1);
     }
 
     public final void a(Canvas canvas, float f7) {
-        float dpf2 = AndroidUtilities.dpf2(this.f5359i) / 2.0f;
-        float e7 = this.f5357f.e(this.f5356e);
+        float dpf2 = AndroidUtilities.dpf2(this.f5358i) / 2.0f;
+        float e7 = this.f5356f.e(this.f5355e);
         int i10 = (e7 > 0.0f ? 1 : (e7 == 0.0f ? 0 : -1));
         if (i10 > 0) {
-            Paint paint = this.f5354b;
+            Paint paint = this.f5353b;
             paint.setAlpha((int) (f7 * 255.0f * e7));
-            canvas.drawCircle(this.f5364n, this.f5365o, AndroidUtilities.dpf2(11.33f) * e7, paint);
+            canvas.drawCircle(this.f5363n, this.f5364o, AndroidUtilities.dpf2(11.33f) * e7, paint);
         }
-        Paint paint2 = this.f5353a;
-        paint2.setAlpha((int) ((1.0f - e7) * Color.alpha(this.f5362l) * f7));
+        Paint paint2 = this.f5352a;
+        paint2.setAlpha((int) ((1.0f - e7) * Color.alpha(this.f5361l) * f7));
         RectF rectF = AndroidUtilities.rectTmp;
-        float f10 = this.f5364n;
-        float f11 = this.f5365o;
+        float f10 = this.f5363n;
+        float f11 = this.f5364o;
         rectF.set(f10 - dpf2, f11 - dpf2, f10 + dpf2, f11 + dpf2);
         canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
         int i11 = this.h;
@@ -89,17 +89,17 @@ public final class l extends Drawable {
             f13 = f16;
         }
         canvas.save();
-        canvas.translate(this.f5360j + 0.0f, this.f5361k);
+        canvas.translate(this.f5359j + 0.0f, this.f5360k);
         Rect rect = AndroidUtilities.rectTmp2;
-        rect.set((int) (this.f5364n - AndroidUtilities.dp(20.0f)), (int) (this.f5365o - AndroidUtilities.dp(20.0f)), (int) (this.f5364n + AndroidUtilities.dp(20.0f)), (int) (this.f5365o + AndroidUtilities.dp(20.0f)));
-        k kVar = this.f5355c;
+        rect.set((int) (this.f5363n - AndroidUtilities.dp(20.0f)), (int) (this.f5364o - AndroidUtilities.dp(20.0f)), (int) (this.f5363n + AndroidUtilities.dp(20.0f)), (int) (this.f5364o + AndroidUtilities.dp(20.0f)));
+        k kVar = this.f5354c;
         kVar.setBounds(rect);
-        kVar.B = (int) (Color.alpha(this.f5362l) * f7);
+        kVar.B = (int) (Color.alpha(this.f5361l) * f7);
         kVar.draw(canvas);
         if (i10 > 0) {
-            Path path = this.f5358g;
+            Path path = this.f5357g;
             path.rewind();
-            path.addCircle(this.f5364n, this.f5365o + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(11.33f) * e7, Path.Direction.CW);
+            path.addCircle(this.f5363n, this.f5364o + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(11.33f) * e7, Path.Direction.CW);
             canvas.clipPath(path);
             k kVar2 = this.d;
             kVar2.setBounds(rect);
@@ -111,16 +111,16 @@ public final class l extends Drawable {
 
     public final void b(boolean z10) {
         PorterDuffXfermode porterDuffXfermode;
-        if (this.f5363m != z10) {
-            this.f5363m = z10;
+        if (this.f5362m != z10) {
+            this.f5362m = z10;
             PorterDuffXfermode porterDuffXfermode2 = null;
             if (z10) {
                 porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
             } else {
                 porterDuffXfermode = null;
             }
-            this.f5353a.setXfermode(porterDuffXfermode);
-            TextPaint textPaint = this.f5355c.f30029a;
+            this.f5352a.setXfermode(porterDuffXfermode);
+            TextPaint textPaint = this.f5354c.f30017a;
             if (z10) {
                 porterDuffXfermode2 = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
             }
@@ -130,15 +130,15 @@ public final class l extends Drawable {
 
     public final void c(float f7) {
         this.d.w(AndroidUtilities.dpf2(f7));
-        this.f5355c.w(AndroidUtilities.dpf2(f7));
+        this.f5354c.w(AndroidUtilities.dpf2(f7));
     }
 
     public final void d(int i10, boolean z10, boolean z11) {
-        this.f5355c.t("" + i10, z11, true);
+        this.f5354c.t("" + i10, z11, true);
         this.d.t("" + i10, z11, true);
-        this.f5356e = z10;
+        this.f5355e = z10;
         if (!z11) {
-            this.f5357f.f(z10, true);
+            this.f5356f.f(z10, true);
         }
         invalidateSelf();
     }
@@ -149,11 +149,11 @@ public final class l extends Drawable {
     }
 
     public final void e(int i10, int i11, int i12) {
-        this.f5362l = i10;
-        this.f5353a.setColor(i10);
-        this.f5355c.u(i10);
+        this.f5361l = i10;
+        this.f5352a.setColor(i10);
+        this.f5354c.u(i10);
         this.d.u(i12);
-        this.f5354b.setColor(i11);
+        this.f5353b.setColor(i11);
     }
 
     @Override
@@ -174,15 +174,15 @@ public final class l extends Drawable {
     @Override
     public final void setBounds(Rect rect) {
         super.setBounds(rect);
-        this.f5364n = getBounds().centerX();
-        this.f5365o = getBounds().centerY();
+        this.f5363n = getBounds().centerX();
+        this.f5364o = getBounds().centerY();
     }
 
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
         super.setBounds(i10, i11, i12, i13);
-        this.f5364n = getBounds().centerX();
-        this.f5365o = getBounds().centerY();
+        this.f5363n = getBounds().centerX();
+        this.f5364o = getBounds().centerY();
     }
 
     @Override

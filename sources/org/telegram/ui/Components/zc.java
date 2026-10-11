@@ -8,46 +8,46 @@ public final class zc {
     public static final zc H;
     public static final zc I;
     public static final zc[] J;
-    public static final zc f33567e;
-    public static final zc f33568f;
+    public static final zc f33479e;
+    public static final zc f33480f;
     public static final zc h;
-    public static final zc f33569n;
-    public static final zc f33570r;
-    public static final zc f33571s;
+    public static final zc f33481n;
+    public static final zc f33482r;
+    public static final zc f33483s;
     public static final zc v;
-    public static final zc f33572w;
-    public static final zc f33573x;
-    public static final zc f33574y;
-    public final String f33575a;
-    public final int f33576b;
-    public final boolean f33577c;
+    public static final zc f33484w;
+    public static final zc f33485x;
+    public static final zc f33486y;
+    public final String f33487a;
+    public final int f33488b;
+    public final boolean f33489c;
     public final yc d;
 
     static {
         int i10 = R.string.PhotoSavedHint;
         yc ycVar = yc.SAVED_TO_GALLERY;
         zc zcVar = new zc("PHOTO", 0, "PhotoSavedHint", i10, ycVar);
-        f33567e = zcVar;
+        f33479e = zcVar;
         zc zcVar2 = new zc("PHOTOS", 1, "PhotosSavedHint", ycVar);
-        f33568f = zcVar2;
+        f33480f = zcVar2;
         zc zcVar3 = new zc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, ycVar);
         h = zcVar3;
         zc zcVar4 = new zc("VIDEOS", 3, "VideosSavedHint", ycVar);
-        f33569n = zcVar4;
+        f33481n = zcVar4;
         zc zcVar5 = new zc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, ycVar);
-        f33570r = zcVar5;
+        f33482r = zcVar5;
         zc zcVar6 = new zc("LIVEPHOTOS", 5, "LivePhotosSavedHint", ycVar);
-        f33571s = zcVar6;
+        f33483s = zcVar6;
         zc zcVar7 = new zc("MEDIA", 6, "MediaSavedHint", ycVar);
         v = zcVar7;
         int i11 = R.string.PhotoSavedToDownloadsHintLinked;
         yc ycVar2 = yc.SAVED_TO_DOWNLOADS;
         zc zcVar8 = new zc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, ycVar2);
-        f33572w = zcVar8;
+        f33484w = zcVar8;
         zc zcVar9 = new zc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, ycVar2);
-        f33573x = zcVar9;
+        f33485x = zcVar9;
         zc zcVar10 = new zc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, yc.SAVED_TO_GIFS);
-        f33574y = zcVar10;
+        f33486y = zcVar10;
         zc zcVar11 = new zc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, ycVar2);
         E = zcVar11;
         int i12 = R.string.AudioSavedHint;
@@ -64,10 +64,10 @@ public final class zc {
     }
 
     public zc(String str, int i10, String str2, int i11, yc ycVar) {
-        this.f33575a = str2;
-        this.f33576b = i11;
+        this.f33487a = str2;
+        this.f33488b = i11;
         this.d = ycVar;
-        this.f33577c = false;
+        this.f33489c = false;
     }
 
     public static zc valueOf(String str) {
@@ -79,9 +79,9 @@ public final class zc {
     }
 
     public zc(String str, int i10, String str2, yc ycVar) {
-        this.f33575a = str2;
+        this.f33487a = str2;
         this.d = ycVar;
-        this.f33576b = 0;
-        this.f33577c = true;
+        this.f33488b = 0;
+        this.f33489c = true;
     }
 }

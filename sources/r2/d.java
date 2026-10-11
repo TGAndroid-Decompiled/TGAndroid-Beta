@@ -2,9 +2,9 @@ package r2;
 
 import android.media.MediaCodec;
 public final class d {
-    public int f46907a;
-    public int f46908b;
-    public final MediaCodec.CryptoInfo f46909c = new MediaCodec.CryptoInfo();
+    public int f46953a;
+    public int f46954b;
+    public final MediaCodec.CryptoInfo f46955c = new MediaCodec.CryptoInfo();
     public long d;
-    public int f46910e;
+    public int f46956e;
 }

@@ -1,5 +1,23 @@
 package org.telegram.ui;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 public final class i1 {
-    public int[] f38475a;
-    public float[] f38476b;
+    public final ArrayList f38550a = new ArrayList();
+    public final HashMap f38551b = new HashMap();
+    public final int f38552c = 1000;
+    public final j1 d;
+
+    public i1(j1 j1Var) {
+        this.d = j1Var;
+    }
+
+    public final float a(float[] fArr, int i10, int i11) {
+        float f7 = 0.0f;
+        while (i10 < i11) {
+            f7 += fArr[i10];
+            i10++;
+        }
+        return this.f38552c / f7;
+    }
 }

@@ -1,25 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class xv implements ValueAnimator.AnimatorUpdateListener {
-    public final int f44197a;
-    public final ty f44198b;
-    public final float f44199c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+public final class xv implements MessagesStorage.IntCallback {
+    public final int f44188a;
+    public final sy f44189b;
 
-    public xv(ty tyVar, float f7, int i10) {
-        this.f44197a = i10;
-        this.f44198b = tyVar;
-        this.f44199c = f7;
+    public xv(sy syVar, int i10) {
+        this.f44188a = i10;
+        this.f44189b = syVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f44197a) {
+    public final void run(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.f44188a) {
             case 0:
-                ty.V(this.f44198b, this.f44199c, valueAnimator);
+                sy syVar = this.f44189b;
+                syVar.getClass();
+                if (i10 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                syVar.U1 = z10;
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", syVar.U1).apply();
+                syVar.h3(false);
                 return;
             default:
-                ty.B0(this.f44198b, this.f44199c, valueAnimator);
+                sy syVar2 = this.f44189b;
+                syVar2.getClass();
+                if (i10 != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                syVar2.U1 = z11;
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", syVar2.U1).commit();
+                syVar2.h3(false);
                 return;
         }
     }

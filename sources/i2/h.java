@@ -2,11 +2,11 @@ package i2;
 
 import android.text.TextUtils;
 public final class h {
-    public final String f11717a;
-    public final b2.s f11718b;
-    public final b2.s f11719c;
+    public final String f11716a;
+    public final b2.s f11717b;
+    public final b2.s f11718c;
     public final int d;
-    public final int f11720e;
+    public final int f11719e;
 
     public h(String str, b2.s sVar, b2.s sVar2, int i10, int i11) {
         boolean z10;
@@ -17,13 +17,13 @@ public final class h {
         }
         e2.d.b(z10);
         if (!TextUtils.isEmpty(str)) {
-            this.f11717a = str;
+            this.f11716a = str;
             sVar.getClass();
-            this.f11718b = sVar;
+            this.f11717b = sVar;
             sVar2.getClass();
-            this.f11719c = sVar2;
+            this.f11718c = sVar2;
             this.d = i10;
-            this.f11720e = i11;
+            this.f11719e = i11;
             return;
         }
         throw new IllegalArgumentException();
@@ -35,7 +35,7 @@ public final class h {
         }
         if (obj != null && h.class == obj.getClass()) {
             h hVar = (h) obj;
-            if (this.d == hVar.d && this.f11720e == hVar.f11720e && this.f11717a.equals(hVar.f11717a) && this.f11718b.equals(hVar.f11718b) && this.f11719c.equals(hVar.f11719c)) {
+            if (this.d == hVar.d && this.f11719e == hVar.f11719e && this.f11716a.equals(hVar.f11716a) && this.f11717b.equals(hVar.f11717b) && this.f11718c.equals(hVar.f11718c)) {
                 return true;
             }
         }
@@ -43,7 +43,7 @@ public final class h {
     }
 
     public final int hashCode() {
-        int h = a1.g.h((((527 + this.d) * 31) + this.f11720e) * 31, 31, this.f11717a);
-        return this.f11719c.hashCode() + ((this.f11718b.hashCode() + h) * 31);
+        int h = a1.g.h((((527 + this.d) * 31) + this.f11719e) * 31, 31, this.f11716a);
+        return this.f11718c.hashCode() + ((this.f11717b.hashCode() + h) * 31);
     }
 }

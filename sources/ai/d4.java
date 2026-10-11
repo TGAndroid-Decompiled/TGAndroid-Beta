@@ -10,8 +10,8 @@ import org.telegram.ui.Components.qb0;
 public final class d4 extends qb0 {
     public final f6 V;
 
-    public d4(f6 f6Var, Context context, long j3, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, j3, 0L, n2Var, e6Var);
+    public d4(f6 f6Var, Context context, long j3, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, j3, 0L, m2Var, d6Var);
         this.V = f6Var;
     }
 
@@ -23,7 +23,7 @@ public final class d4 extends qb0 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7954a);
+        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7953a);
         canvas.drawRoundRect(rectF, f7, f7, f6Var.f989n2);
         if (rectF.top < getMeasuredHeight() - 1) {
             canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, f6Var.B0.F("paintDivider"));

@@ -34,7 +34,7 @@ public final class i6 {
         TLRPC.Photo photo;
         ArrayList<TLRPC.PhotoSize> arrayList;
         TLRPC.Document document;
-        org.telegram.ui.Components.j9 j9Var = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
+        org.telegram.ui.Components.j9 j9Var = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.d6) null);
         ImageReceiver imageReceiver = new ImageReceiver();
         this.f1141b = imageReceiver;
         this.f1142c = 0;
@@ -46,11 +46,11 @@ public final class i6 {
         this.h = new org.telegram.ui.Components.g6(profileStoriesView, 420L, isVar);
         this.f1150m = new RectF();
         this.f1151n = new RectF();
-        this.f1140a = storyItem.f20279id;
+        this.f1140a = storyItem.f20269id;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(200.0f));
         imageReceiver.setParentView(profileStoriesView);
         this.f1149l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-        if (profileStoriesView.f34562x) {
+        if (profileStoriesView.f34552x) {
             imageReceiver.onAttachedToWindow();
         }
         g30[] g30VarArr = ja.f1195a;

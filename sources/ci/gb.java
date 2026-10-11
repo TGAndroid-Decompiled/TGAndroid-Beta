@@ -8,14 +8,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.camera.CameraController;
 public final class gb implements h7 {
-    public final lc f5132a;
+    public final lc f5131a;
 
     public gb(lc lcVar) {
-        this.f5132a = lcVar;
+        this.f5131a = lcVar;
     }
 
     public final void a() {
-        lc lcVar = this.f5132a;
+        lc lcVar = this.f5131a;
         ArrayList<l8> content = lcVar.A0.getContent();
         int i10 = 0;
         if (content.size() == 1) {
@@ -32,31 +32,31 @@ public final class gb implements h7 {
         if (dbVar != null) {
             dbVar.a(i10);
         }
-        ga.a(lcVar.f5465c, lcVar.K1);
+        ga.a(lcVar.f5464c, lcVar.K1);
         lcVar.J(1, true);
     }
 
     public final void b() {
         ArrayList arrayList;
-        lc lcVar = this.f5132a;
+        lc lcVar = this.f5131a;
         ob obVar = lcVar.B0;
         if (obVar != null && !lcVar.S1 && !lcVar.P1 && obVar.isInited()) {
-            lc lcVar2 = this.f5132a;
-            if (lcVar2.f5477f0 == 0) {
-                d4 d4Var = lcVar2.f5497m1;
+            lc lcVar2 = this.f5131a;
+            if (lcVar2.f5476f0 == 0) {
+                d4 d4Var = lcVar2.f5496m1;
                 if (d4Var != null) {
                     d4Var.e(true);
                 }
-                if (this.f5132a.p0() && (arrayList = this.f5132a.f5525u2) != null && !arrayList.isEmpty()) {
-                    lc lcVar3 = this.f5132a;
-                    ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) lcVar3.f5525u2.get(lcVar3.f5522t2)).commit();
+                if (this.f5131a.p0() && (arrayList = this.f5131a.f5524u2) != null && !arrayList.isEmpty()) {
+                    lc lcVar3 = this.f5131a;
+                    ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) lcVar3.f5524u2.get(lcVar3.f5521t2)).commit();
                 }
-                this.f5132a.B0.switchCamera();
-                lc.Z(this.f5132a.B0.isFrontface());
-                if (this.f5132a.p0()) {
-                    this.f5132a.f5516s.c(null);
+                this.f5131a.B0.switchCamera();
+                lc.Z(this.f5131a.B0.isFrontface());
+                if (this.f5131a.p0()) {
+                    this.f5131a.f5515s.c(null);
                 } else {
-                    this.f5132a.f5516s.d();
+                    this.f5131a.f5515s.d();
                 }
             }
         }
@@ -64,9 +64,9 @@ public final class gb implements h7 {
 
     public final void c() {
         boolean z10;
-        lc lcVar = this.f5132a;
-        if (lcVar.f5477f0 == 0 && !lcVar.P1 && !lcVar.Q1) {
-            Activity activity = lcVar.f5461b;
+        lc lcVar = this.f5131a;
+        if (lcVar.f5476f0 == 0 && !lcVar.P1 && !lcVar.Q1) {
+            Activity activity = lcVar.f5460b;
             if (activity != null) {
                 boolean z11 = false;
                 if (Build.VERSION.SDK_INT >= 33) {
@@ -96,8 +96,8 @@ public final class gb implements h7 {
 
     public final void d() {
         ob obVar;
-        lc lcVar = this.f5132a;
-        if (!lcVar.P1 && !lcVar.S1 && lcVar.f5477f0 == 0 && (obVar = lcVar.B0) != null && obVar.isInited()) {
+        lc lcVar = this.f5131a;
+        if (!lcVar.P1 && !lcVar.S1 && lcVar.f5476f0 == 0 && (obVar = lcVar.B0) != null && obVar.isInited()) {
             lcVar.W0.e(true);
             File file = lcVar.G1;
             if (file != null) {
@@ -111,17 +111,17 @@ public final class gb implements h7 {
             if (f7Var != null) {
                 f7Var.c(true);
             }
-            lcVar.G1 = l8.w(lcVar.f5465c, "jpg");
+            lcVar.G1 = l8.w(lcVar.f5464c, "jpg");
             lcVar.P1 = true;
             lcVar.o();
-            lcVar.f5468c2 = false;
-            if (lcVar.B0.isFrontface() && lcVar.f5522t2 == 1) {
+            lcVar.f5467c2 = false;
+            if (lcVar.B0.isFrontface() && lcVar.f5521t2 == 1) {
                 lc.a(lcVar);
             }
             if (lcVar.p0()) {
-                w2 w2Var = lcVar.f5516s;
+                w2 w2Var = lcVar.f5515s;
                 ai.y1 y1Var = new ai.y1(this, 17);
-                w2Var.h(w2Var.f6196p);
+                w2Var.h(w2Var.f6195p);
                 w2Var.e(1.0f, 320L, new s2(w2Var, y1Var, 0));
                 return;
             }
@@ -131,7 +131,7 @@ public final class gb implements h7 {
 
     public final void e(boolean z10) {
         long j3;
-        lc lcVar = this.f5132a;
+        lc lcVar = this.f5131a;
         if (!lcVar.R1 && lcVar.Q1) {
             lcVar.R1 = true;
             eb ebVar = new eb(this, 0);
@@ -146,13 +146,13 @@ public final class gb implements h7 {
 
     public final void f(Runnable runnable, boolean z10) {
         ob obVar;
-        lc lcVar = this.f5132a;
-        if (!lcVar.Q1 && !lcVar.R1 && !lcVar.S1 && lcVar.f5477f0 == 0 && (obVar = lcVar.B0) != null && obVar.getCameraSession() != null) {
+        lc lcVar = this.f5131a;
+        if (!lcVar.Q1 && !lcVar.R1 && !lcVar.S1 && lcVar.f5476f0 == 0 && (obVar = lcVar.B0) != null && obVar.getCameraSession() != null) {
             d4 d4Var = lcVar.l1;
             if (d4Var != null) {
                 d4Var.e(true);
             }
-            d4 d4Var2 = lcVar.f5497m1;
+            d4 d4Var2 = lcVar.f5496m1;
             if (d4Var2 != null) {
                 d4Var2.e(true);
             }
@@ -170,14 +170,14 @@ public final class gb implements h7 {
                 }
                 lcVar.G1 = null;
             }
-            lcVar.G1 = l8.x(lcVar.f5465c, true);
+            lcVar.G1 = l8.x(lcVar.f5464c, true);
             lcVar.o();
-            lcVar.f5468c2 = false;
-            if (lcVar.B0.isFrontface() && lcVar.f5522t2 == 1) {
+            lcVar.f5467c2 = false;
+            if (lcVar.B0.isFrontface() && lcVar.f5521t2 == 1) {
                 lc.a(lcVar);
             }
             if (lcVar.p0()) {
-                lcVar.f5516s.c(new fb(this, z10, runnable));
+                lcVar.f5515s.c(new fb(this, z10, runnable));
             } else {
                 g(runnable, z10);
             }
@@ -186,7 +186,7 @@ public final class gb implements h7 {
 
     public final void g(Runnable runnable, boolean z10) {
         boolean z11;
-        lc lcVar = this.f5132a;
+        lc lcVar = this.f5131a;
         if (lcVar.B0 != null) {
             CameraController.getInstance().recordVideo(lcVar.B0.getCameraSessionObject(), lcVar.G1, false, new a1.c(this, 20), new fb(this, runnable, z10), lcVar.B0, true);
             boolean z12 = true;
@@ -204,8 +204,8 @@ public final class gb implements h7 {
                 if (lcVar.O1 != 1) {
                     z12 = false;
                 }
-                j7Var.f5268n0 = -1.0f;
-                j7Var.f5269o0 = z12;
+                j7Var.f5267n0 = -1.0f;
+                j7Var.f5268o0 = z12;
                 j7Var.invalidate();
             }
         }

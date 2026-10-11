@@ -1,56 +1,116 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.ViewGroup;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-public final class qc extends org.telegram.ui.Components.qm0 {
-    public final Context f41122c;
-    public final org.telegram.ui.ActionBar.e6 d;
-    public final int f41123e;
-    public final sc f41124f;
+public final class qc extends View {
+    public final Paint f41137a;
+    public final Paint f41138b;
+    public final Paint f41139c;
+    public final Paint d;
+    public final Path f41140e;
+    public final Path f41141f;
+    public boolean h;
+    public boolean f41142n;
+    public final org.telegram.ui.Components.bd f41143r;
+    public boolean f41144s;
+    public final org.telegram.ui.Components.g6 v;
+    public final rc f41145w;
 
-    public qc(sc scVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        this.f41124f = scVar;
-        this.f41122c = context;
-        this.d = e6Var;
-        this.f41123e = i10;
+    public qc(rc rcVar, Context context) {
+        super(context);
+        this.f41145w = rcVar;
+        Paint paint = new Paint(1);
+        this.f41137a = paint;
+        this.f41138b = new Paint(1);
+        this.f41139c = new Paint(1);
+        this.d = new Paint(1);
+        this.f41140e = new Path();
+        this.f41141f = new Path();
+        this.f41143r = new org.telegram.ui.Components.bd(this);
+        this.v = new org.telegram.ui.Components.g6(this, 0L, 320L, org.telegram.ui.Components.is.h);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
-    @Override
-    public final boolean D(s4.d1 d1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f41123e).peerColors;
-        if (peerColors == null) {
-            return 0;
-        }
-        return peerColors.colors.size();
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        boolean z10;
-        rc rcVar = (rc) d1Var.f47702a;
-        rcVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20801d6, this.d));
-        if (i10 == this.f41124f.f41712e) {
-            z10 = true;
+    public final void a(MessagesController.PeerColor peerColor) {
+        boolean q6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f41145w.f41408a;
+        if (d6Var != null) {
+            q6 = d6Var.a();
         } else {
-            z10 = false;
+            q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
-        rcVar.f41428s = z10;
-        rcVar.v.f(z10, true);
-        rcVar.invalidate();
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f41123e).peerColors;
-        if (peerColors != null && i10 >= 0 && i10 < peerColors.colors.size()) {
-            rcVar.a(peerColors.colors.get(i10));
+        Paint paint = this.f41139c;
+        Paint paint2 = this.f41138b;
+        if (q6 && peerColor.hasColor2() && !peerColor.hasColor3()) {
+            paint2.setColor(peerColor.getColor(1, d6Var));
+            paint.setColor(peerColor.getColor(0, d6Var));
+        } else {
+            paint2.setColor(peerColor.getColor(0, d6Var));
+            paint.setColor(peerColor.getColor(1, d6Var));
         }
+        this.d.setColor(peerColor.getColor(2, d6Var));
+        this.h = peerColor.hasColor2();
+        this.f41142n = peerColor.hasColor3();
     }
 
     @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new rc(this.f41124f, this.f41122c));
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        float a2 = this.f41143r.a(0.05f);
+        canvas.scale(a2, a2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        canvas.save();
+        canvas.clipPath(this.f41140e);
+        canvas.drawPaint(this.f41138b);
+        if (this.h) {
+            canvas.drawPath(this.f41141f, this.f41139c);
+        }
+        canvas.restore();
+        if (this.f41142n) {
+            canvas.save();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getMeasuredWidth() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() - AndroidUtilities.dp(12.4f)) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredWidth()) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredHeight()) / 2.0f);
+            canvas.rotate(45.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.d);
+            canvas.restore();
+        }
+        float e7 = this.v.e(this.f41144s);
+        if (e7 > 0.0f) {
+            float dpf2 = AndroidUtilities.dpf2(2.0f);
+            Paint paint = this.f41137a;
+            paint.setStrokeWidth(dpf2);
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.lerp((paint.getStrokeWidth() * 0.5f) + AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f) - (paint.getStrokeWidth() * 2.0f), e7), paint);
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+        Path path = this.f41140e;
+        path.rewind();
+        path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(20.0f), Path.Direction.CW);
+        Path path2 = this.f41141f;
+        path2.rewind();
+        path2.moveTo(getMeasuredWidth(), 0.0f);
+        path2.lineTo(getMeasuredWidth(), getMeasuredHeight());
+        path2.lineTo(0.0f, getMeasuredHeight());
+        path2.close();
+    }
+
+    @Override
+    public final void setBackgroundColor(int i10) {
+        this.f41137a.setColor(i10);
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
+        super.setPressed(z10);
+        this.f41143r.c(z10);
     }
 }

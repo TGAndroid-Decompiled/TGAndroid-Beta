@@ -20,37 +20,37 @@ import java.util.List;
 import z3.l;
 import z3.m;
 public final class a implements m {
-    public final v f10307a = new v();
-    public final boolean f10308b;
-    public final int f10309c;
+    public final v f10306a = new v();
+    public final boolean f10307b;
+    public final int f10308c;
     public final int d;
-    public final String f10310e;
-    public final float f10311f;
+    public final String f10309e;
+    public final float f10310f;
     public final int h;
 
     public a(List list) {
         if (list.size() == 1 && (((byte[]) list.get(0)).length == 48 || ((byte[]) list.get(0)).length == 53)) {
             byte[] bArr = (byte[]) list.get(0);
-            this.f10309c = bArr[24];
+            this.f10308c = bArr[24];
             this.d = ((bArr[26] & 255) << 24) | ((bArr[27] & 255) << 16) | ((bArr[28] & 255) << 8) | (bArr[29] & 255);
-            this.f10310e = "Serif".equals(new String(bArr, 43, bArr.length - 43, StandardCharsets.UTF_8)) ? "serif" : "sans-serif";
+            this.f10309e = "Serif".equals(new String(bArr, 43, bArr.length - 43, StandardCharsets.UTF_8)) ? "serif" : "sans-serif";
             int i10 = bArr[25] * 20;
             this.h = i10;
             boolean z10 = (bArr[0] & 32) != 0;
-            this.f10308b = z10;
+            this.f10307b = z10;
             if (z10) {
-                this.f10311f = d0.g(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i10, 0.0f, 0.95f);
+                this.f10310f = d0.g(((bArr[11] & 255) | ((bArr[10] & 255) << 8)) / i10, 0.0f, 0.95f);
                 return;
             } else {
-                this.f10311f = 0.85f;
+                this.f10310f = 0.85f;
                 return;
             }
         }
-        this.f10309c = 0;
+        this.f10308c = 0;
         this.d = -1;
-        this.f10310e = "sans-serif";
-        this.f10308b = false;
-        this.f10311f = 0.85f;
+        this.f10309e = "sans-serif";
+        this.f10307b = false;
+        this.f10310f = 0.85f;
         this.h = -1;
     }
 
@@ -111,7 +111,7 @@ public final class a implements m {
         boolean z12;
         boolean z13;
         int i13;
-        v vVar = this.f10307a;
+        v vVar = this.f10306a;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
         int i14 = 1;
@@ -127,30 +127,30 @@ public final class a implements m {
         if (D == 0) {
             v = "";
         } else {
-            int i17 = vVar.f8585b;
+            int i17 = vVar.f8584b;
             Charset F = vVar.F();
-            int i18 = D - (vVar.f8585b - i17);
+            int i18 = D - (vVar.f8584b - i17);
             if (F == null) {
                 F = StandardCharsets.UTF_8;
             }
             v = vVar.v(i18, F);
         }
         if (v.isEmpty()) {
-            g0 g0Var = i0.f8752b;
-            hVar.accept(new z3.a(-9223372036854775807L, -9223372036854775807L, a1.f8715e));
+            g0 g0Var = i0.f8751b;
+            hVar.accept(new z3.a(-9223372036854775807L, -9223372036854775807L, a1.f8714e));
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(v);
-        b(spannableStringBuilder, this.f10309c, 0, 0, spannableStringBuilder.length(), 16711680);
+        b(spannableStringBuilder, this.f10308c, 0, 0, spannableStringBuilder.length(), 16711680);
         a(spannableStringBuilder, this.d, -1, 0, spannableStringBuilder.length(), 16711680);
         int length = spannableStringBuilder.length();
-        String str = this.f10310e;
+        String str = this.f10309e;
         if (str != "sans-serif") {
             spannableStringBuilder.setSpan(new TypefaceSpan(str), 0, length, 16711713);
         }
-        float f7 = this.f10311f;
+        float f7 = this.f10310f;
         while (vVar.a() >= 8) {
-            int i19 = vVar.f8585b;
+            int i19 = vVar.f8584b;
             int j3 = vVar.j();
             int j10 = vVar.j();
             if (j10 == 1937013100) {
@@ -189,7 +189,7 @@ public final class a implements m {
                     } else {
                         i13 = i21;
                         int i22 = D4;
-                        b(spannableStringBuilder, x10, this.f10309c, D3, i22, 0);
+                        b(spannableStringBuilder, x10, this.f10308c, D3, i22, 0);
                         a(spannableStringBuilder, j11, this.d, D3, i22, 0);
                     }
                     i20 = i13 + 1;
@@ -198,7 +198,7 @@ public final class a implements m {
                     i16 = 2;
                 }
                 i12 = i16;
-            } else if (j10 == 1952608120 && this.f10308b) {
+            } else if (j10 == 1952608120 && this.f10307b) {
                 i12 = 2;
                 if (vVar.a() >= 2) {
                     z11 = true;
@@ -219,7 +219,7 @@ public final class a implements m {
     }
 
     @Override
-    public final z3.d s(int i10, int i11, byte[] bArr) {
+    public final z3.d t(int i10, int i11, byte[] bArr) {
         return sc.v.a(this, bArr, i11);
     }
 

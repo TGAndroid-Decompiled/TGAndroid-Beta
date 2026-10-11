@@ -6,16 +6,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.bi;
+import org.telegram.messenger.ai;
 public final class n5 extends FrameLayout {
-    public ImageView f22525a;
-    public ImageView f22526b;
-    public TextView f22527c;
+    public ImageView f22513a;
+    public ImageView f22514b;
+    public TextView f22515c;
     public int d;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.d, 1073741824), bi.C(2.0f, this.d, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.d, 1073741824), ai.C(2.0f, this.d, 1073741824));
     }
 
     public void setItemSize(int i10) {
@@ -23,9 +23,9 @@ public final class n5 extends FrameLayout {
     }
 
     public void setType(int i10) {
-        TextView textView = this.f22527c;
-        ImageView imageView = this.f22526b;
-        ImageView imageView2 = this.f22525a;
+        TextView textView = this.f22515c;
+        ImageView imageView = this.f22514b;
+        ImageView imageView2 = this.f22513a;
         if (i10 == 0) {
             imageView2.setImageResource(R.drawable.permissions_camera1);
             imageView.setImageResource(R.drawable.permissions_camera2);

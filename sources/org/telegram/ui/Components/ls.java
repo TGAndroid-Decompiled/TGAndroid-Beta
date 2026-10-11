@@ -7,37 +7,37 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ls extends View {
-    public final TextPaint f28531a;
-    public final TextPaint f28532b;
-    public final String f28533c;
+    public final TextPaint f28446a;
+    public final TextPaint f28447b;
+    public final String f28448c;
     public final String d;
-    public final Rect f28534e;
+    public final Rect f28449e;
 
     public ls(Context context, String str, String str2) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f28531a = textPaint;
+        this.f28446a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f28532b = textPaint2;
-        this.f28534e = new Rect();
-        this.f28533c = str;
+        this.f28447b = textPaint2;
+        this.f28449e = new Rect();
+        this.f28448c = str;
         this.d = str2;
         textPaint.setTextSize(AndroidUtilities.dp(24.0f));
         textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.G6, false));
-        textPaint2.setColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.H6, false));
+        textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        textPaint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f28532b;
+        TextPaint textPaint = this.f28447b;
         String str = this.d;
         float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f28531a;
-        String str2 = this.f28533c;
+        TextPaint textPaint2 = this.f28446a;
+        String str2 = this.f28448c;
         float measureText2 = textPaint2.measureText(str2);
         int length = str2.length();
-        Rect rect = this.f28534e;
+        Rect rect = this.f28449e;
         textPaint2.getTextBounds(str2, 0, length, rect);
         textPaint.getTextBounds(str, 0, str.length(), rect);
         canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);

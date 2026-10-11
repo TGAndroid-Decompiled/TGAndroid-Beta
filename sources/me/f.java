@@ -2,13 +2,13 @@ package me;
 public interface f {
     void a();
 
-    void e(boolean z10);
+    void g(boolean z10);
 
-    boolean g();
+    boolean h();
 
-    boolean h(float f7);
+    boolean i(float f7);
 
     void j();
 
-    void p();
+    void y();
 }

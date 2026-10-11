@@ -19,7 +19,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.nc1;
+import org.telegram.ui.mc1;
 public class f8 extends View {
     public final Path E;
     public final Path F;
@@ -35,39 +35,39 @@ public class f8 extends View {
     public int P;
     public final TextPaint Q;
     public int R;
-    public final int f5076a;
-    public float f5077b;
-    public float f5078c;
+    public final int f5075a;
+    public float f5076b;
+    public float f5077c;
     public float d;
-    public boolean f5079e;
-    public final org.telegram.ui.Components.g6 f5080f;
+    public boolean f5078e;
+    public final org.telegram.ui.Components.g6 f5079f;
     public Utilities.Callback h;
-    public final Paint f5081n;
-    public final Paint f5082r;
-    public final Paint f5083s;
+    public final Paint f5080n;
+    public final Paint f5081r;
+    public final Paint f5082s;
     public final Paint v;
-    public final Paint f5084w;
-    public final org.telegram.ui.Components.q6 f5085x;
-    public final org.telegram.ui.Components.q6 f5086y;
+    public final Paint f5083w;
+    public final org.telegram.ui.Components.q6 f5084x;
+    public final org.telegram.ui.Components.q6 f5085y;
 
     public f8(Context context, int i10) {
         super(context);
-        this.f5077b = 0.0f;
-        this.f5078c = 1.0f;
+        this.f5076b = 0.0f;
+        this.f5077c = 1.0f;
         is isVar = is.h;
-        this.f5080f = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
+        this.f5079f = new org.telegram.ui.Components.g6(this, 0L, 320L, isVar);
         Paint paint = new Paint(1);
-        this.f5081n = paint;
+        this.f5080n = paint;
         Paint paint2 = new Paint(1);
-        this.f5082r = paint2;
+        this.f5081r = paint2;
         Paint paint3 = new Paint(1);
-        this.f5083s = paint3;
+        this.f5082s = paint3;
         Paint paint4 = new Paint(1);
         this.v = paint4;
         Paint paint5 = new Paint(1);
-        this.f5084w = paint5;
+        this.f5083w = paint5;
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(false, true, true);
-        this.f5085x = q6Var;
+        this.f5084x = q6Var;
         this.E = new Path();
         this.F = new Path();
         this.G = new Path();
@@ -76,7 +76,7 @@ public class f8 extends View {
         this.J = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
         this.K = new org.telegram.ui.Components.g6(this, 0L, 350L, isVar);
         this.Q = new TextPaint(1);
-        this.f5076a = i10;
+        this.f5075a = i10;
         q6Var.x(AndroidUtilities.bold());
         q6Var.n(0.3f, 40L, isVar);
         q6Var.setCallback(this);
@@ -84,7 +84,7 @@ public class f8 extends View {
         q6Var.M = AndroidUtilities.displaySize.x;
         if (i10 == 0) {
             q6Var.w(AndroidUtilities.dp(15.0f));
-            this.f5086y = null;
+            this.f5085y = null;
             paint2.setColor(-1);
             paint3.setColor(-1);
             paint4.setColor(-1);
@@ -93,9 +93,9 @@ public class f8 extends View {
             paint5.setStrokeCap(Paint.Cap.ROUND);
         } else {
             q6Var.w(AndroidUtilities.dp(14.0f));
-            q6Var.f30031b = 5;
+            q6Var.f30019b = 5;
             org.telegram.ui.Components.q6 q6Var2 = new org.telegram.ui.Components.q6(false, true, true);
-            this.f5086y = q6Var2;
+            this.f5085y = q6Var2;
             q6Var2.M = AndroidUtilities.displaySize.x;
             q6Var2.w(AndroidUtilities.dp(14.0f));
             q6Var2.x(AndroidUtilities.bold());
@@ -116,26 +116,26 @@ public class f8 extends View {
     }
 
     public final void a(float f7) {
-        this.f5079e = true;
-        float f10 = this.f5077b;
-        this.d = (f7 - f10) / (this.f5078c - f10);
+        this.f5078e = true;
+        float f10 = this.f5076b;
+        this.d = (f7 - f10) / (this.f5077c - f10);
         e(f7);
     }
 
     public final void b() {
-        this.f5077b = 0.0f;
-        this.f5078c = 0.9f;
+        this.f5076b = 0.0f;
+        this.f5077c = 0.9f;
     }
 
-    public final void c(nc1 nc1Var) {
-        this.h = nc1Var;
+    public final void c(mc1 mc1Var) {
+        this.h = mc1Var;
     }
 
     public final void d(float f7) {
-        float f10 = this.f5077b;
-        float f11 = (f7 - f10) / (this.f5078c - f10);
+        float f10 = this.f5076b;
+        float f11 = (f7 - f10) / (this.f5077c - f10);
         this.d = f11;
-        this.f5080f.d(f11, true);
+        this.f5079f.d(f11, true);
         e(f7);
     }
 
@@ -154,32 +154,32 @@ public class f8 extends View {
         path.addRoundRect(rectF, f11, f11, Path.Direction.CW);
         canvas.clipPath(path);
         boolean z11 = false;
-        if (this.f5079e) {
-            f7 = this.f5080f.d(this.d, false);
+        if (this.f5078e) {
+            f7 = this.f5079f.d(this.d, false);
         } else {
             f7 = this.d;
         }
         float f12 = f7;
         canvas.saveLayerAlpha(0.0f, 0.0f, this.O, this.P, 255, 31);
-        int i10 = this.f5076a;
-        org.telegram.ui.Components.q6 q6Var = this.f5085x;
+        int i10 = this.f5075a;
+        org.telegram.ui.Components.q6 q6Var = this.f5084x;
         if (i10 == 0) {
             q6Var.setBounds(AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(1.0f), this.O, this.P - AndroidUtilities.dp(1.0f));
             q6Var.draw(canvas);
         } else {
             int c10 = (this.O - ((int) q6Var.c())) - AndroidUtilities.dp(6.0f);
             int dp = this.P - AndroidUtilities.dp(1.0f);
-            org.telegram.ui.Components.q6 q6Var2 = this.f5086y;
+            org.telegram.ui.Components.q6 q6Var2 = this.f5085y;
             q6Var2.setBounds(AndroidUtilities.dp(12.33f), -AndroidUtilities.dp(1.0f), c10, dp);
             q6Var2.draw(canvas);
             q6Var.setBounds(this.O - AndroidUtilities.dp(111.0f), -AndroidUtilities.dp(1.0f), this.O - AndroidUtilities.dp(11.0f), this.P - AndroidUtilities.dp(1.0f));
             q6Var.draw(canvas);
         }
         if (i10 == 0) {
-            canvas.drawPath(this.F, this.f5082r);
-            canvas.drawPath(this.G, this.f5083s);
-            float f13 = this.f5078c;
-            float f14 = this.f5077b;
+            canvas.drawPath(this.F, this.f5081r);
+            canvas.drawPath(this.G, this.f5082s);
+            float f13 = this.f5077c;
+            float f14 = this.f5076b;
             float f15 = f13 - f14;
             if (f15 != 0.0f) {
                 f10 = (f15 * this.d) + f14;
@@ -205,13 +205,13 @@ public class f8 extends View {
             float e10 = this.K.e(z11);
             canvas.save();
             canvas.translate((1.0f - e10) * (-AndroidUtilities.dpf2(0.66f)), 0.0f);
-            Paint paint2 = this.f5084w;
+            Paint paint2 = this.f5083w;
             paint2.setAlpha((int) (e10 * 255.0f));
             canvas.drawPath(this.I, paint2);
             canvas.restore();
         }
         canvas.save();
-        canvas.drawRect(0.0f, 0.0f, this.O * f12, this.P, this.f5081n);
+        canvas.drawRect(0.0f, 0.0f, this.O * f12, this.P, this.f5080n);
         canvas.restore();
         canvas.restore();
         canvas.restore();
@@ -227,10 +227,10 @@ public class f8 extends View {
         float x10 = motionEvent.getX();
         if (motionEvent.getAction() == 0) {
             this.M = System.currentTimeMillis();
-            this.f5079e = false;
+            this.f5078e = false;
         } else if (motionEvent.getAction() == 2 || motionEvent.getAction() == 1) {
-            float f10 = this.f5078c;
-            float f11 = this.f5077b;
+            float f10 = this.f5077c;
+            float f11 = this.f5076b;
             float f12 = 0.0f;
             if (f10 - f11 != 0.0f) {
                 f7 = com.google.android.gms.internal.vision.e2.y(f10, f11, this.d, f11);
@@ -238,16 +238,16 @@ public class f8 extends View {
                 f7 = 0.0f;
             }
             if (motionEvent.getAction() == 1 && System.currentTimeMillis() - this.M < ViewConfiguration.getTapTimeout()) {
-                this.f5080f.d(this.d, true);
+                this.f5079f.d(this.d, true);
                 this.d = x10 / this.O;
-                this.f5079e = true;
+                this.f5078e = true;
             } else {
                 this.d = Utilities.clamp(((x10 - this.L) / this.O) + this.d, 1.0f, 0.0f);
-                this.f5079e = false;
+                this.f5078e = false;
                 z10 = true;
             }
-            float f13 = this.f5078c;
-            float f14 = this.f5077b;
+            float f13 = this.f5077c;
+            float f14 = this.f5076b;
             if (f13 - f14 != 0.0f) {
                 f12 = com.google.android.gms.internal.vision.e2.y(f13, f14, this.d, f14);
             }
@@ -274,10 +274,10 @@ public class f8 extends View {
     public final void e(float f7) {
         long j3;
         String str = Math.round(100.0f * f7) + "%";
-        org.telegram.ui.Components.q6 q6Var = this.f5085x;
-        if (!TextUtils.equals(q6Var.f30037i, str)) {
+        org.telegram.ui.Components.q6 q6Var = this.f5084x;
+        if (!TextUtils.equals(q6Var.f30025i, str)) {
             q6Var.a();
-            if (this.f5079e) {
+            if (this.f5078e) {
                 j3 = 320;
             } else {
                 j3 = 40;
@@ -285,8 +285,8 @@ public class f8 extends View {
             q6Var.n(0.3f, j3, is.h);
             q6Var.t(str, true, true);
         }
-        if (this.f5076a == 1) {
-            this.f5081n.setColor(w2.f(f7));
+        if (this.f5075a == 1) {
+            this.f5080n.setColor(w2.f(f7));
         }
         invalidate();
     }
@@ -296,9 +296,9 @@ public class f8 extends View {
         this.N = AndroidUtilities.dp(12.0f);
         TextPaint textPaint = this.Q;
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        this.f5085x.w(AndroidUtilities.dp(15.0f));
+        this.f5084x.w(AndroidUtilities.dp(15.0f));
         int i12 = this.R;
-        int i13 = this.f5076a;
+        int i13 = this.f5075a;
         if (i12 > 0) {
             this.O = i12;
             this.P = AndroidUtilities.dp(48.0f);
@@ -313,7 +313,7 @@ public class f8 extends View {
         if (i13 == 0) {
             float dp = AndroidUtilities.dp(25.0f);
             float f7 = this.P / 2.0f;
-            this.f5082r.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(1.33f)));
+            this.f5081r.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(1.33f)));
             Path path = this.F;
             path.rewind();
             path.moveTo(dp - AndroidUtilities.dpf2(8.66f), f7 - AndroidUtilities.dpf2(2.9f));
@@ -321,7 +321,7 @@ public class f8 extends View {
             path.lineTo(dp - AndroidUtilities.dpf2(3.0f), AndroidUtilities.dpf2(2.9f) + f7);
             path.lineTo(dp - AndroidUtilities.dpf2(8.66f), AndroidUtilities.dpf2(2.9f) + f7);
             path.close();
-            this.f5083s.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(2.66f)));
+            this.f5082s.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(2.66f)));
             Path path2 = this.G;
             path2.rewind();
             path2.moveTo(dp - AndroidUtilities.dpf2(7.5f), f7);
@@ -335,7 +335,7 @@ public class f8 extends View {
             path3.arcTo(rectF, -60.0f, 120.0f);
             path3.close();
             Paint.Style style = Paint.Style.STROKE;
-            Paint paint = this.f5084w;
+            Paint paint = this.f5083w;
             paint.setStyle(style);
             paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             Path path4 = this.I;
@@ -347,7 +347,7 @@ public class f8 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f5085x && drawable != this.f5086y && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f5084x && drawable != this.f5085y && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

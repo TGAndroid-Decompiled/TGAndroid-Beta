@@ -15,15 +15,15 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.q80;
 import org.telegram.ui.Components.xg;
 import org.telegram.ui.Components.yi;
-import org.telegram.ui.dj0;
+import org.telegram.ui.cj0;
 import org.telegram.ui.zn;
 public final class l5 implements View.OnLongClickListener {
-    public final int f5388a;
-    public final Object f5389b;
+    public final int f5387a;
+    public final Object f5388b;
 
     public l5(Object obj, int i10) {
-        this.f5388a = i10;
-        this.f5389b = obj;
+        this.f5387a = i10;
+        this.f5388b = obj;
     }
 
     @Override
@@ -35,19 +35,19 @@ public final class l5 implements View.OnLongClickListener {
         boolean z11;
         int i10;
         int e10;
-        switch (this.f5388a) {
+        switch (this.f5387a) {
             case 0:
-                q6 q6Var = (q6) this.f5389b;
+                q6 q6Var = (q6) this.f5388b;
                 int i11 = q6Var.F1;
                 if (q6Var.I1 != null) {
                     pg.u0 e11 = pg.u0.e(i11);
-                    e11.f45852k = !e11.f45852k;
-                    e11.f45844a.edit().putBoolean("fill_shapes", e11.f45852k).apply();
-                    boolean z12 = pg.u0.e(i11).f45852k;
+                    e11.f45842k = !e11.f45842k;
+                    e11.f45834a.edit().putBoolean("fill_shapes", e11.f45842k).apply();
+                    boolean z12 = pg.u0.e(i11).f45842k;
                     for (int i12 = 0; i12 < q6Var.I1.getItemsCount(); i12++) {
                         View childAt = q6Var.I1.L.getChildAt(i12);
                         if (childAt instanceof n6) {
-                            pg.l lVar = (pg.l) pg.l.f45724b.get(i12);
+                            pg.l lVar = (pg.l) pg.l.f45714b.get(i12);
                             if (z12) {
                                 e7 = lVar.m();
                             } else {
@@ -59,50 +59,50 @@ public final class l5 implements View.OnLongClickListener {
                 }
                 return true;
             case 1:
-                lc lcVar = (lc) this.f5389b;
-                Activity activity = lcVar.f5461b;
+                lc lcVar = (lc) this.f5388b;
+                Activity activity = lcVar.f5460b;
                 ob obVar = lcVar.B0;
                 if (obVar == null || !obVar.isFrontface()) {
                     return false;
                 }
                 lcVar.o();
                 lcVar.E0.setSelected(true);
-                lcVar.f5516s.e(0.85f, 240L, null);
-                q80 F = q80.F(lcVar.f5512r, lcVar.f5458a, lcVar.E0);
+                lcVar.f5515s.e(0.85f, 240L, null);
+                q80 F = q80.F(lcVar.f5511r, lcVar.f5457a, lcVar.E0);
                 f8 f8Var = new f8(activity, 1);
-                f8Var.d(lcVar.f5516s.f6195o);
+                f8Var.d(lcVar.f5515s.f6194o);
                 f8Var.h = new ia(lcVar, 21);
                 F.q(f8Var);
                 F.o();
                 f8 f8Var2 = new f8(activity, 2);
-                f8Var2.f5077b = 0.65f;
-                f8Var2.f5078c = 1.0f;
-                f8Var2.d(lcVar.f5516s.f6196p);
+                f8Var2.f5076b = 0.65f;
+                f8Var2.f5077c = 1.0f;
+                f8Var2.d(lcVar.f5515s.f6195p);
                 f8Var2.h = new ia(lcVar, 0);
                 F.q(f8Var2);
-                F.f30115p = new ha(lcVar, 1);
-                F.f30120s = 0;
+                F.f30078p = new ha(lcVar, 1);
+                F.f30083s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(46.0f), -AndroidUtilities.dp(4.0f));
                 F.P(-1155851493);
                 F.Z();
                 return true;
             case 2:
-                if (((ii.i1) this.f5389b).length() != 0) {
+                if (((ii.i1) this.f5388b).length() != 0) {
                     return true;
                 }
                 return false;
             case 3:
-                return ii.e2.W((ii.e2) this.f5389b, view);
+                return ii.e2.W((ii.e2) this.f5388b, view);
             case 4:
-                ii.r rVar = ((ii.m) this.f5389b).f12561a;
-                ii.c4 c4Var = rVar.f12651s;
-                org.telegram.ui.ActionBar.e6 e6Var = rVar.f30210a;
-                yi yiVar = rVar.f30211b;
-                ii.x3 x3Var = rVar.f12650r;
-                int i13 = rVar.f12649n;
+                ii.r rVar = ((ii.m) this.f5388b).f12560a;
+                ii.c4 c4Var = rVar.f12650s;
+                org.telegram.ui.ActionBar.d6 d6Var = rVar.f30160a;
+                yi yiVar = rVar.f30161b;
+                ii.x3 x3Var = rVar.f12649r;
+                int i13 = rVar.f12648n;
                 if (!UserConfig.getInstance(i13).isPremium()) {
-                    new rg.y0(yiVar.f33235f0, rVar.getContext(), rVar.f12649n, 43, true).show();
+                    new rg.y0(yiVar.f33216f0, rVar.getContext(), rVar.f12648n, 43, true).show();
                     return true;
                 }
                 if (x3Var.l3() && !x3Var.n3()) {
@@ -113,28 +113,28 @@ public final class l5 implements View.OnLongClickListener {
                     } else {
                         ArrayList<TL_iv.PageBlock> a32 = x3Var.a3();
                         if (!a32.isEmpty()) {
-                            org.telegram.ui.ActionBar.n2 n2Var = yiVar.f33235f0;
-                            if (n2Var instanceof zn) {
-                                znVar = (zn) n2Var;
+                            org.telegram.ui.ActionBar.m2 m2Var = yiVar.f33216f0;
+                            if (m2Var instanceof zn) {
+                                znVar = (zn) m2Var;
                             } else {
                                 znVar = null;
                             }
-                            dj0 dj0Var = rVar.O;
-                            if (dj0Var != null) {
-                                dj0Var.h(false);
+                            cj0 cj0Var = rVar.O;
+                            if (cj0Var != null) {
+                                cj0Var.h(false);
                                 rVar.O = null;
                             }
-                            dj0 dj0Var2 = new dj0(rVar.getContext(), e6Var);
-                            rVar.O = dj0Var2;
-                            dj0Var2.setOnDismissListener(new ai.g5(rVar, 4));
+                            cj0 cj0Var2 = new cj0(rVar.getContext(), d6Var);
+                            rVar.O = cj0Var2;
+                            cj0Var2.setOnDismissListener(new ai.g5(rVar, 4));
                             long p12 = yiVar.p1();
                             if (znVar != null) {
-                                messageObject = znVar.f44912n5;
+                                messageObject = znVar.f44867n5;
                             } else {
                                 messageObject = null;
                             }
                             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                            tL_message.f20063id = 0;
+                            tL_message.f20053id = 0;
                             tL_message.out = true;
                             tL_message.peer_id = MessagesController.getInstance(i13).getPeer(p12);
                             tL_message.from_id = MessagesController.getInstance(i13).getPeer(UserConfig.getInstance(i13).getClientUserId());
@@ -164,16 +164,16 @@ public final class l5 implements View.OnLongClickListener {
                             sendButton.setScaleY(1.0f);
                             xg r10 = rVar.O.r(sendButton, true, new ai.v0(rVar, 27));
                             if (r10 != null) {
-                                r10.setBackground(new ii.d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, e6Var))));
-                                dj0 dj0Var3 = rVar.O;
+                                r10.setBackground(new ii.d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, d6Var))));
+                                cj0 cj0Var3 = rVar.O;
                                 int dp = AndroidUtilities.dp(44.0f);
                                 z10 = true;
-                                dj0Var3.m0 = true;
-                                dj0Var3.Y = dp;
+                                cj0Var3.m0 = true;
+                                cj0Var3.Y = dp;
                             } else {
                                 z10 = true;
                             }
-                            q80 F2 = q80.F(rVar, e6Var, sendButton);
+                            q80 F2 = q80.F(rVar, d6Var, sendButton);
                             if (znVar != null && UserObject.isUserSelf(znVar.i())) {
                                 z11 = z10;
                             } else {
@@ -207,20 +207,20 @@ public final class l5 implements View.OnLongClickListener {
                 }
                 return false;
             case 5:
-                ((lg.f) this.f5389b).f15525c.callOnClick();
+                ((lg.f) this.f5388b).f15524c.callOnClick();
                 return true;
             default:
-                qg.m0 m0Var = (qg.m0) this.f5389b;
+                qg.m0 m0Var = (qg.m0) this.f5388b;
                 int i15 = m0Var.P1;
                 if (m0Var.S1 != null) {
                     pg.u0 e12 = pg.u0.e(i15);
-                    e12.f45852k = !e12.f45852k;
-                    e12.f45844a.edit().putBoolean("fill_shapes", e12.f45852k).apply();
-                    boolean z13 = pg.u0.e(i15).f45852k;
+                    e12.f45842k = !e12.f45842k;
+                    e12.f45834a.edit().putBoolean("fill_shapes", e12.f45842k).apply();
+                    boolean z13 = pg.u0.e(i15).f45842k;
                     for (int i16 = 0; i16 < m0Var.S1.getItemsCount(); i16++) {
                         View childAt2 = m0Var.S1.L.getChildAt(i16);
                         if (childAt2 instanceof qg.l0) {
-                            pg.l lVar2 = (pg.l) pg.l.f45724b.get(i16);
+                            pg.l lVar2 = (pg.l) pg.l.f45714b.get(i16);
                             if (z13) {
                                 e10 = lVar2.m();
                             } else {

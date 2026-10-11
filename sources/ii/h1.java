@@ -20,7 +20,7 @@ public interface h1 {
 
     boolean r(i1 i1Var);
 
-    void t();
+    void u();
 
     void x(i1 i1Var, int i10, int i11);
 }

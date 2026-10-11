@@ -7,23 +7,23 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public final class r0 extends AbstractList implements RandomAccess, Serializable {
-    public final List f8792a;
-    public final d9.e f8793b;
+    public final List f8791a;
+    public final d9.e f8792b;
 
     public r0(List list, d9.e eVar) {
         list.getClass();
-        this.f8792a = list;
-        this.f8793b = eVar;
+        this.f8791a = list;
+        this.f8792b = eVar;
     }
 
     @Override
     public final Object get(int i10) {
-        return this.f8793b.apply(this.f8792a.get(i10));
+        return this.f8792b.apply(this.f8791a.get(i10));
     }
 
     @Override
     public final boolean isEmpty() {
-        return this.f8792a.isEmpty();
+        return this.f8791a.isEmpty();
     }
 
     @Override
@@ -33,21 +33,21 @@ public final class r0 extends AbstractList implements RandomAccess, Serializable
 
     @Override
     public final ListIterator listIterator(int i10) {
-        return new q0(this, this.f8792a.listIterator(i10), 0);
+        return new q0(this, this.f8791a.listIterator(i10), 0);
     }
 
     @Override
     public final Object remove(int i10) {
-        return this.f8793b.apply(this.f8792a.remove(i10));
+        return this.f8792b.apply(this.f8791a.remove(i10));
     }
 
     @Override
     public final void removeRange(int i10, int i11) {
-        this.f8792a.subList(i10, i11).clear();
+        this.f8791a.subList(i10, i11).clear();
     }
 
     @Override
     public final int size() {
-        return this.f8792a.size();
+        return this.f8791a.size();
     }
 }

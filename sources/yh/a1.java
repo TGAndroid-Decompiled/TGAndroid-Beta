@@ -5,23 +5,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.bi;
+import org.telegram.messenger.ai;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.i10;
+import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.sz;
-import org.telegram.ui.Components.tc;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ty;
+import org.telegram.ui.sy;
 public final class a1 implements Runnable {
-    public final int f52283a;
-    public final s3 f52284b;
+    public final int f52326a;
+    public final s3 f52327b;
 
     public a1(s3 s3Var, int i10) {
-        this.f52283a = i10;
-        this.f52284b = s3Var;
+        this.f52326a = i10;
+        this.f52327b = s3Var;
     }
 
     @Override
@@ -31,8 +31,8 @@ public final class a1 implements Runnable {
         TL_stars.StarGift starGift;
         TLRPC.Document document;
         a3 a3Var;
-        int i10 = this.f52283a;
-        s3 s3Var = this.f52284b;
+        int i10 = this.f52326a;
+        s3 s3Var = this.f52327b;
         switch (i10) {
             case 0:
                 s3.q0(s3Var);
@@ -50,7 +50,7 @@ public final class a1 implements Runnable {
                 s3.Z(s3Var);
                 return;
             case 5:
-                s3Var.f53223k0.setLoading(false);
+                s3Var.f53266k0.setLoading(false);
                 s3Var.s2(0, true, null);
                 return;
             case 6:
@@ -82,12 +82,12 @@ public final class a1 implements Runnable {
                 return;
             case 15:
                 s3Var.dismiss();
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 TL_stars.TL_starGiftUnique L1 = s3Var.L1();
                 if (U != null && L1 != null) {
-                    ty tyVar = new ty(bi.d(4, "onlySelect", "dialogsType", true));
-                    tyVar.C2 = new sz(s3Var, L1, tyVar, 13);
-                    U.presentFragment(tyVar);
+                    sy syVar = new sy(ai.d(4, "onlySelect", "dialogsType", true));
+                    syVar.C2 = new sz(s3Var, L1, syVar, 13);
+                    U.presentFragment(syVar);
                     return;
                 }
                 return;
@@ -116,11 +116,11 @@ public final class a1 implements Runnable {
                 } else {
                     str = "";
                 }
-                tc M = s3Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
-                M.f31096j = 5000;
-                M.f31106t = true;
+                sc M = s3Var.getBulletinFactory().M(LocaleController.getString(R.string.Gift2UpgradedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2UpgradedText, str)), R.raw.gift_upgrade);
+                M.f30711j = 5000;
+                M.f30721t = true;
                 M.j();
-                i10 i10Var = s3Var.f53203a0;
+                i10 i10Var = s3Var.f53246a0;
                 if (i10Var != null) {
                     i10Var.c(true);
                     return;
@@ -133,18 +133,18 @@ public final class a1 implements Runnable {
                 s3Var.getBulletinFactory().Q(R.raw.copy, 36, LocaleController.getString(R.string.WalletAddressCopied)).k(false);
                 return;
             case 23:
-                p3 p3Var = s3Var.f53213f0;
-                ci.d dVar = s3Var.f53223k0;
+                p3 p3Var = s3Var.f53256f0;
+                ci.d dVar = s3Var.f53266k0;
                 b3 b3Var = s3Var.N0.h;
-                if (b3Var != null && (a3Var = b3Var.f52327c) != null) {
+                if (b3Var != null && (a3Var = b3Var.f52370c) != null) {
                     imageReceiver = ((d3) a3Var).d;
                 } else {
                     imageReceiver = null;
                 }
                 y9 y9Var = p3Var.d[0];
                 if (imageReceiver != null && y9Var != null && y9Var.getImageReceiver() != null) {
-                    dk0 lottieAnimation = imageReceiver.getLottieAnimation();
-                    dk0 lottieAnimation2 = y9Var.getImageReceiver().getLottieAnimation();
+                    ek0 lottieAnimation = imageReceiver.getLottieAnimation();
+                    ek0 lottieAnimation2 = y9Var.getImageReceiver().getLottieAnimation();
                     if (lottieAnimation2 != null && lottieAnimation != null) {
                         lottieAnimation2.T(lottieAnimation.t(), false);
                     } else if (lottieAnimation2 == null && lottieAnimation != null) {
@@ -152,9 +152,9 @@ public final class a1 implements Runnable {
                         y9Var.setImageDrawable(lottieAnimation);
                     }
                 }
-                p3Var.f53046b.setAlpha(1.0f);
-                p3Var.f53048c.setAlpha(0.0f);
-                if (s3Var.f53235r0 && s3Var.Z != null && s3Var.E0 != null && s3Var.H1() >= 0 && s3Var.E0.b(s3Var.H1()) >= 0) {
+                p3Var.f53089b.setAlpha(1.0f);
+                p3Var.f53091c.setAlpha(0.0f);
+                if (s3Var.f53278r0 && s3Var.Z != null && s3Var.E0 != null && s3Var.H1() >= 0 && s3Var.E0.b(s3Var.H1()) >= 0) {
                     dVar.setFilled(false);
                     int b10 = s3Var.E0.b(s3Var.H1());
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -176,7 +176,7 @@ public final class a1 implements Runnable {
                 return;
             default:
                 s3Var.getClass();
-                new rg.y0((org.telegram.ui.ActionBar.n2) new ai.z3(s3Var, 12), 12, false).show();
+                new rg.y0((org.telegram.ui.ActionBar.m2) new ai.z3(s3Var, 12), 12, false).show();
                 return;
         }
     }

@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 public final class c {
-    public final int f46867a;
-    public final int f46868b;
-    public final long f46869c;
+    public final int f46913a;
+    public final int f46914b;
+    public final long f46915c;
     public final byte[] d;
 
     public c(int i10, int i11, byte[] bArr) {
@@ -26,8 +26,8 @@ public final class c {
         ByteBuffer wrap = ByteBuffer.wrap(new byte[g.F[5]]);
         wrap.order(byteOrder);
         e eVar2 = eVarArr[0];
-        wrap.putInt((int) eVar2.f46873a);
-        wrap.putInt((int) eVar2.f46874b);
+        wrap.putInt((int) eVar2.f46919a);
+        wrap.putInt((int) eVar2.f46920b);
         return new c(5, 1, wrap.array());
     }
 
@@ -66,7 +66,7 @@ public final class c {
                 e[] eVarArr = (e[]) g10;
                 if (eVarArr.length == 1) {
                     e eVar = eVarArr[0];
-                    return eVar.f46873a / eVar.f46874b;
+                    return eVar.f46919a / eVar.f46920b;
                 }
                 throw new NumberFormatException("There are more than one component");
             } else {
@@ -142,9 +142,9 @@ public final class c {
             } else if (g10 instanceof e[]) {
                 e[] eVarArr = (e[]) g10;
                 while (i10 < eVarArr.length) {
-                    sb2.append(eVarArr[i10].f46873a);
+                    sb2.append(eVarArr[i10].f46919a);
                     sb2.append('/');
-                    sb2.append(eVarArr[i10].f46874b);
+                    sb2.append(eVarArr[i10].f46920b);
                     i10++;
                     if (i10 != eVarArr.length) {
                         sb2.append(",");
@@ -164,15 +164,15 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("(");
-        sb2.append(g.E[this.f46867a]);
+        sb2.append(g.E[this.f46913a]);
         sb2.append(", data length:");
         return a1.g.o(this.d.length, ")", sb2);
     }
 
     public c(long j3, byte[] bArr, int i10, int i11) {
-        this.f46867a = i10;
-        this.f46868b = i11;
-        this.f46869c = j3;
+        this.f46913a = i10;
+        this.f46914b = i11;
+        this.f46915c = j3;
         this.d = bArr;
     }
 }

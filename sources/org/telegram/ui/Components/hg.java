@@ -9,23 +9,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class hg implements org.telegram.ui.cv0 {
-    public boolean f27000a;
-    public final Object f27001b;
-    public final Object f27002c;
+public final class hg implements org.telegram.ui.bv0 {
+    public boolean f26983a;
+    public final Object f26984b;
+    public final Object f26985c;
     public final MediaController.PhotoEntry d;
-    public final jg f27003e;
+    public final jg f26986e;
 
     public hg(jg jgVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
-        this.f27003e = jgVar;
-        this.f27001b = obj;
-        this.f27002c = obj2;
+        this.f26986e = jgVar;
+        this.f26984b = obj;
+        this.f26985c = obj2;
         this.d = photoEntry;
     }
 
     @Override
     public final boolean A() {
-        return this.f27000a;
+        return this.f26983a;
     }
 
     @Override
@@ -34,13 +34,13 @@ public final class hg implements org.telegram.ui.cv0 {
     }
 
     @Override
-    public final org.telegram.ui.ev0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final org.telegram.ui.dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         return null;
     }
 
     @Override
     public final void F(boolean z10) {
-        this.f27000a = z10;
+        this.f26983a = z10;
     }
 
     @Override
@@ -137,8 +137,8 @@ public final class hg implements org.telegram.ui.cv0 {
     public final void d() {
         ci.g gVar;
         od f12 = PhotoViewer.t1().f1();
-        if (f12 != null && (gVar = f12.f5555f) != null) {
-            vu vuVar = gVar.f24637a;
+        if (f12 != null && (gVar = f12.f5554f) != null) {
+            vu vuVar = gVar.f24589a;
             vuVar.requestFocus();
             AndroidUtilities.showKeyboard(vuVar);
         }
@@ -171,7 +171,7 @@ public final class hg implements org.telegram.ui.cv0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.f27003e.B(null, this.f27001b, null, this.f27002c, z10, i11, i12, this.d, this.f27000a);
+        this.f26986e.B(null, this.f26984b, null, this.f26985c, z10, i11, i12, this.d, this.f26983a);
     }
 
     @Override

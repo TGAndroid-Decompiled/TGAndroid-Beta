@@ -1,5 +1,6 @@
 package y6;
 
+import a3.l;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -15,25 +16,25 @@ import android.util.Log;
 import com.google.android.gms.common.api.internal.n1;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import n6.l;
+import n6.m;
 import t7.t;
 public final class e {
     public static Boolean d = null;
-    public static String f51769e = null;
-    public static boolean f51770f = false;
-    public static int f51771g = -1;
+    public static String f51812e = null;
+    public static boolean f51813f = false;
+    public static int f51814g = -1;
     public static Boolean h;
-    public static j f51775l;
-    public static k f51776m;
-    public final Context f51777a;
-    public static final ThreadLocal f51772i = new ThreadLocal();
-    public static final n1 f51773j = new n1(3);
-    public static final t f51774k = new Object();
-    public static final na.d f51767b = new na.d(27);
-    public static final ob.a f51768c = new ob.a(27);
+    public static j f51818l;
+    public static k f51819m;
+    public final Context f51820a;
+    public static final ThreadLocal f51815i = new ThreadLocal();
+    public static final n1 f51816j = new n1(3);
+    public static final t f51817k = new Object();
+    public static final na.d f51810b = new na.d(27);
+    public static final ob.a f51811c = new ob.a(27);
 
     public e(Context context) {
-        this.f51777a = context;
+        this.f51820a = context;
     }
 
     public static int a(Context context, String str) {
@@ -42,7 +43,7 @@ public final class e {
             Class<?> loadClass = classLoader.loadClass("com.google.android.gms.dynamite.descriptors." + str + ".ModuleDescriptor");
             Field declaredField = loadClass.getDeclaredField("MODULE_ID");
             Field declaredField2 = loadClass.getDeclaredField("MODULE_VERSION");
-            if (!l.l(declaredField.get(null), str)) {
+            if (!m.l(declaredField.get(null), str)) {
                 String valueOf = String.valueOf(declaredField.get(null));
                 Log.e("DynamiteModule", "Module descriptor id '" + valueOf + "' didn't match expected id '" + str + "'");
                 return 0;
@@ -68,16 +69,16 @@ public final class e {
         x6.a V02;
         Context applicationContext = context.getApplicationContext();
         if (applicationContext != null) {
-            ThreadLocal threadLocal = f51772i;
+            ThreadLocal threadLocal = f51815i;
             i iVar = (i) threadLocal.get();
             ?? obj = new Object();
             threadLocal.set(obj);
-            n1 n1Var = f51773j;
+            n1 n1Var = f51816j;
             Long l4 = (Long) n1Var.get();
             long longValue = l4.longValue();
             try {
                 n1Var.set(Long.valueOf(SystemClock.uptimeMillis()));
-                a3.l q6 = dVar.q(context, str, f51774k);
+                l q6 = dVar.q(context, str, f51817k);
                 j3 = longValue;
                 try {
                     Log.i("DynamiteModule", "Considering local module " + str + ":" + q6.f155a + " and remote module " + str + ":" + q6.f156b);
@@ -107,16 +108,16 @@ public final class e {
                                             if (bool.booleanValue()) {
                                                 Log.i("DynamiteModule", "Selected remote version of " + str + ", version >= " + i11);
                                                 synchronized (e.class) {
-                                                    kVar = f51776m;
+                                                    kVar = f51819m;
                                                 }
                                                 if (kVar != null) {
                                                     i iVar2 = (i) threadLocal.get();
-                                                    if (iVar2 != null && iVar2.f51780a != null) {
+                                                    if (iVar2 != null && iVar2.f51823a != null) {
                                                         Context applicationContext2 = context.getApplicationContext();
-                                                        Cursor cursor = iVar2.f51780a;
+                                                        Cursor cursor = iVar2.f51823a;
                                                         new x6.b(null);
                                                         synchronized (e.class) {
-                                                            if (f51771g >= 2) {
+                                                            if (f51814g >= 2) {
                                                                 z10 = true;
                                                             } else {
                                                                 z10 = false;
@@ -151,7 +152,7 @@ public final class e {
                                                     if (readInt >= 3) {
                                                         i iVar3 = (i) threadLocal.get();
                                                         if (iVar3 != null) {
-                                                            V0 = h10.W0(new x6.b(context), str, i11, new x6.b(iVar3.f51780a));
+                                                            V0 = h10.W0(new x6.b(context), str, i11, new x6.b(iVar3.f51823a));
                                                         } else {
                                                             throw new Exception("No cached result cursor holder");
                                                         }
@@ -197,15 +198,15 @@ public final class e {
                                 throw new Exception("VersionPolicy returned invalid code:" + i10);
                             }
                             if (j3 == 0) {
-                                f51773j.remove();
+                                f51816j.remove();
                             } else {
-                                f51773j.set(l4);
+                                f51816j.set(l4);
                             }
-                            Cursor cursor2 = obj.f51780a;
+                            Cursor cursor2 = obj.f51823a;
                             if (cursor2 != null) {
                                 cursor2.close();
                             }
-                            f51772i.set(iVar);
+                            f51815i.set(iVar);
                             return eVar;
                         }
                     }
@@ -213,15 +214,15 @@ public final class e {
                 } catch (Throwable th3) {
                     th = th3;
                     if (j3 == 0) {
-                        f51773j.remove();
+                        f51816j.remove();
                     } else {
-                        f51773j.set(l4);
+                        f51816j.set(l4);
                     }
-                    Cursor cursor3 = obj.f51780a;
+                    Cursor cursor3 = obj.f51823a;
                     if (cursor3 != null) {
                         cursor3.close();
                     }
-                    f51772i.set(iVar);
+                    f51815i.set(iVar);
                     throw th;
                 }
             } catch (Throwable th4) {
@@ -253,7 +254,7 @@ public final class e {
                     kVar = new a9.a(iBinder, "com.google.android.gms.dynamite.IDynamiteLoaderV2", 7);
                 }
             }
-            f51776m = kVar;
+            f51819m = kVar;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e7) {
             throw new Exception("Failed to instantiate dynamite loader", e7);
         }
@@ -275,13 +276,13 @@ public final class e {
                 i10 = 0;
             }
             ProviderInfo resolveContentProvider = packageManager.resolveContentProvider("com.google.android.gms.chimera", i10);
-            if (k6.e.f14707b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
+            if (k6.e.f14706b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
                 z10 = true;
             }
             h = Boolean.valueOf(z10);
             if (z10 && (applicationInfo = resolveContentProvider.applicationInfo) != null && (applicationInfo.flags & 129) == 0) {
                 Log.i("DynamiteModule", "Non-system-image GmsCore APK, forcing V1");
-                f51770f = true;
+                f51813f = true;
             }
         }
         if (!z10) {
@@ -293,7 +294,7 @@ public final class e {
     public static j h(Context context) {
         j jVar;
         synchronized (e.class) {
-            j jVar2 = f51775l;
+            j jVar2 = f51818l;
             if (jVar2 != null) {
                 return jVar2;
             }
@@ -310,7 +311,7 @@ public final class e {
                     }
                 }
                 if (jVar != 0) {
-                    f51775l = jVar;
+                    f51818l = jVar;
                     return jVar;
                 }
             } catch (Exception e7) {
@@ -322,7 +323,7 @@ public final class e {
 
     public final IBinder b(String str) {
         try {
-            return (IBinder) this.f51777a.getClassLoader().loadClass(str).newInstance();
+            return (IBinder) this.f51820a.getClassLoader().loadClass(str).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e7) {
             throw new Exception("Failed to instantiate module class: ".concat(str), e7);
         }

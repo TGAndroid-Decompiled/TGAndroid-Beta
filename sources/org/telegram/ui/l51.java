@@ -1,63 +1,64 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
-public final class l51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39482a;
-    public final k71 f39483b;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.NotificationCenter;
+public final class l51 implements Runnable {
+    public final int f39515a;
+    public final j71 f39516b;
 
-    public l51(k71 k71Var, int i10) {
-        this.f39482a = i10;
-        this.f39483b = k71Var;
+    public l51(j71 j71Var, int i10) {
+        this.f39515a = i10;
+        this.f39516b = j71Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39482a) {
+    public final void run() {
+        switch (this.f39515a) {
             case 0:
-                k71 k71Var = this.f39483b;
-                k71Var.getClass();
-                k71Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                j71 j71Var = this.f39516b;
+                j71Var.getClass();
+                HashSet hashSet = zg.d0.f54588a;
+                gf.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
+                if (cacheOutQueue.f10518b == null) {
+                    cacheOutQueue.f10518b = new CountDownLatch(1);
+                }
+                zg.d0.f54589b = true;
+                zg.d0.f54591e = false;
+                zg.d0.f54593g = false;
+                AndroidUtilities.runOnUIThread(new l51(j71Var, 2), 0L);
                 return;
             case 1:
-                this.f39483b.m();
+                j71 j71Var2 = this.f39516b;
+                ArrayList arrayList = j71Var2.A1;
+                if (arrayList != null) {
+                    arrayList.clear();
+                }
+                ArrayList arrayList2 = j71Var2.B1;
+                if (arrayList2 != null) {
+                    arrayList2.clear();
+                }
+                ArrayList arrayList3 = j71Var2.D1;
+                if (arrayList3 != null) {
+                    arrayList3.clear();
+                }
+                j71Var2.f38911q0.E(true);
                 return;
             case 2:
-                k71 k71Var2 = this.f39483b;
-                View view = k71Var2.f39201t0;
-                if (view != null) {
-                    view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                }
-                int v = org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G8, k71Var2.Z0), i0.a.k(-16777216, (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f)));
-                View view2 = k71Var2.m0;
-                if (view2 != null) {
-                    view2.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
-                }
-                org.telegram.ui.Components.ao aoVar = k71Var2.f39187n0;
-                if (aoVar != null) {
-                    aoVar.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
-                    return;
-                }
+                this.f39516b.U1.start();
+                return;
+            case 3:
+                this.f39516b.B(true, true, true);
                 return;
             default:
-                k71 k71Var3 = this.f39483b;
-                e61 e61Var = k71Var3.f39158a0;
-                float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k71Var3.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(8.0f));
-                View view3 = k71Var3.m0;
-                if (view3 != null) {
-                    view3.setAlpha(floatValue);
-                }
-                org.telegram.ui.Components.ao aoVar2 = k71Var3.f39187n0;
-                if (aoVar2 != null) {
-                    aoVar2.setAlpha(floatValue * floatValue);
-                }
-                e61Var.setAlpha(floatValue);
-                e61Var.invalidate();
-                k71Var3.invalidate();
+                j71 j71Var3 = this.f39516b;
+                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
+                l51 l51Var = j71Var3.R1;
+                globalInstance.removeDelayed(l51Var);
+                NotificationCenter.getGlobalInstance().doOnIdle(l51Var);
                 return;
         }
     }

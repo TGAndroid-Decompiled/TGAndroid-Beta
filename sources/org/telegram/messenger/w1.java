@@ -4,15 +4,15 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SvgHelper;
 public final class w1 implements Runnable {
-    public final int f19659a;
+    public final int f19652a;
 
     public w1(int i10) {
-        this.f19659a = i10;
+        this.f19652a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19659a) {
+        switch (this.f19652a) {
             case 0:
                 ContactsController.MyContentObserver.lambda$new$0();
                 return;
@@ -41,48 +41,45 @@ public final class w1 implements Runnable {
                 BotGuardHelper.a();
                 return;
             case 9:
-                CodeHighlighting.lambda$prepare$2();
-                return;
-            case 10:
                 Emoji.lambda$static$0();
                 return;
-            case 11:
+            case 10:
                 KeepAliveJob.b();
                 return;
-            case 12:
+            case 11:
                 KeepAliveJob.a();
                 return;
-            case 13:
+            case 12:
                 LocaleController.lambda$applyLanguage$9();
                 return;
-            case 14:
+            case 13:
                 LocationController.lambda$setLastKnownLocation$10();
                 return;
-            case 15:
+            case 14:
                 LocationSharingService.lambda$onCreate$0();
                 return;
-            case 16:
+            case 15:
                 MediaDataController.lambda$cleanup$1();
                 return;
-            case 17:
-                org.telegram.ui.ActionBar.i6.E(false);
+            case 16:
+                org.telegram.ui.ActionBar.h6.E(false);
                 return;
-            case 18:
+            case 17:
                 NotificationCenter.lambda$listen$3();
                 return;
-            case 19:
+            case 18:
                 NotificationsController.lambda$dismissNotification$38();
                 return;
-            case 20:
+            case 19:
                 SharedConfig.saveConfig();
                 return;
-            case 21:
+            case 20:
                 SharedConfig.lambda$checkSdCard$0();
                 return;
-            case 22:
+            case 21:
                 SharedConfig.lambda$checkSdCard$2();
                 return;
-            case 23:
+            case 22:
                 SharedConfig.lambda$checkSaveToGalleryFiles$5();
                 return;
             default:

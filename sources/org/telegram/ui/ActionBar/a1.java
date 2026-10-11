@@ -1,46 +1,54 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.hd;
-import org.telegram.ui.Components.l10;
-public final class a1 extends l10 {
-    public final b1 f20383e;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class a1 extends b1 {
+    public final z0 f20374e0;
+    public String f20375f0;
 
-    public a1(b1 b1Var) {
-        super(false);
-        this.f20383e = b1Var;
+    public a1(Context context, d6 d6Var) {
+        super(context, d6Var);
+        this.f20375f0 = null;
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+        setImportantForAccessibility(1);
+        z0 z0Var = new z0(this);
+        this.f20374e0 = z0Var;
+        setAccessibilityDelegate(z0Var);
+    }
+
+    public final void d(float f7, boolean z10) {
+        c((f7 - 0.2f) / 2.8f, z10);
+    }
+
+    public float getSpeed() {
+        return (getValue() * 2.8f) + 0.2f;
     }
 
     @Override
-    public final CharSequence d() {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(hd.a(this.f20383e.getSpeed()));
-        sb2.append("x  ");
-        return org.telegram.messenger.q.g(R.string.AccDescrSpeedSlider, sb2);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f20374e0.e(this, accessibilityNodeInfo);
     }
 
     @Override
-    public final float h() {
-        return 0.2f;
+    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f20374e0.g(this, i10, bundle)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setLabel(String str) {
+        this.f20375f0 = str;
     }
 
     @Override
-    public final float i() {
-        return 3.0f;
-    }
-
-    @Override
-    public final float j() {
-        return 0.2f;
-    }
-
-    @Override
-    public final float k() {
-        return this.f20383e.getSpeed();
-    }
-
-    @Override
-    public final void l(float f7) {
-        this.f20383e.d(f7, true);
+    public void setStops(float[] fArr) {
+        for (int i10 = 0; i10 < fArr.length; i10++) {
+            fArr[i10] = (fArr[i10] - 0.2f) / 2.8f;
+        }
+        super.setStops(fArr);
     }
 }

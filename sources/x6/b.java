@@ -3,13 +3,13 @@ package x6;
 import android.os.IBinder;
 import android.os.IInterface;
 import java.lang.reflect.Field;
-import n6.l;
+import n6.m;
 public final class b extends b8.b implements a {
-    public final Object f50731b;
+    public final Object f50775b;
 
     public b(Object obj) {
         super("com.google.android.gms.dynamic.IObjectWrapper", 7);
-        this.f50731b = obj;
+        this.f50775b = obj;
     }
 
     public static a K0(IBinder iBinder) {
@@ -25,7 +25,7 @@ public final class b extends b8.b implements a {
 
     public static Object L0(a aVar) {
         if (aVar instanceof b) {
-            return ((b) aVar).f50731b;
+            return ((b) aVar).f50775b;
         }
         IBinder asBinder = aVar.asBinder();
         Field[] declaredFields = asBinder.getClass().getDeclaredFields();
@@ -38,7 +38,7 @@ public final class b extends b8.b implements a {
             }
         }
         if (i10 == 1) {
-            l.h(field);
+            m.h(field);
             if (!field.isAccessible()) {
                 field.setAccessible(true);
                 try {

@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class z50 extends org.telegram.ui.Components.voip.l {
+public final class z50 extends org.telegram.ui.Components.voip.m {
     public final a60 h;
 
     public z50(a60 a60Var, Context context) {

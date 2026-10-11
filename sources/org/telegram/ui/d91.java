@@ -1,90 +1,83 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class d91 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f36952a;
-    public final org.telegram.ui.Components.j9 f36953b;
-    public final org.telegram.ui.Components.y9 f36954c;
-    public final org.telegram.ui.ActionBar.j5 d;
-    public final TextView f36955e;
-    public final ImageView f36956f;
-    public final org.telegram.ui.Components.q5 h;
-    public final org.telegram.ui.Components.q5 f36957n;
+public final class d91 extends org.telegram.ui.Components.q61 {
+    static {
+        org.telegram.ui.Components.q61.setup(new org.telegram.ui.Components.q61());
+    }
 
-    public d91(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f36952a = e6Var;
-        setOrientation(0);
-        this.f36953b = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
-        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f36954c = y9Var;
-        y9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.d = j5Var;
-        j5Var.setTextSize(15);
-        j5Var.setTypeface(AndroidUtilities.bold());
-        j5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G6, e6Var));
-        this.h = new org.telegram.ui.Components.q5(AndroidUtilities.dp(24.0f), 7, j5Var, false);
-        this.f36957n = new org.telegram.ui.Components.q5(AndroidUtilities.dp(24.0f), 7, j5Var, false);
-        j5Var.addOnAttachStateChangeListener(new f5(this, 4));
-        TextView textView = new TextView(context);
-        this.f36955e = textView;
-        textView.setPadding(AndroidUtilities.dp(6.66f), 0, AndroidUtilities.dp(6.66f), 0);
-        textView.setTextSize(1, 11.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Sh, e6Var));
-        textView.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, e6Var)));
-        ImageView imageView = new ImageView(context);
-        this.f36956f = imageView;
-        imageView.setImageResource(R.drawable.msg_arrowright);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20966m6, e6Var), PorterDuff.Mode.SRC_IN));
-        if (LocaleController.isRTL) {
-            j5Var.setGravity(21);
-            imageView.setScaleX(-1.0f);
-            addView(imageView, w7.x5.p(24, 24, 0.0f, 19, 12, 0, 0, 0));
-            addView(textView, w7.x5.p(-2, 20, 0.0f, 16, 0, 0, 0, 0));
-            addView(j5Var, w7.x5.p(0, -1, 1.0f, 119, 18, 0, 0, 0));
-            addView(y9Var, w7.x5.t(28, 28, 21, 18, 0, 18, 0));
-            return;
+    public static org.telegram.ui.Components.r61 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        org.telegram.ui.Components.r61 J = org.telegram.ui.Components.r61.J(d91.class);
+        J.d = i10;
+        J.f30360k = i13;
+        J.f30361l = charSequence;
+        J.f30362m = charSequence2;
+        J.f30363n = charSequence3;
+        J.B = (i11 & 4294967295L) | (i12 << 32);
+        return J;
+    }
+
+    @Override
+    public final void bindView(View view, org.telegram.ui.Components.r61 r61Var, boolean z10, org.telegram.ui.Components.e71 e71Var, org.telegram.ui.Components.m71 m71Var) {
+        boolean z11;
+        int i10;
+        float f7;
+        long j3 = r61Var.B;
+        int i11 = (int) j3;
+        int i12 = (int) (j3 >>> 32);
+        e91 e91Var = (e91) view;
+        int i13 = r61Var.f30360k;
+        CharSequence charSequence = r61Var.f30361l;
+        CharSequence charSequence2 = r61Var.f30362m;
+        CharSequence charSequence3 = r61Var.f30363n;
+        TextView textView = e91Var.f37248e;
+        TextView textView2 = e91Var.f37249f;
+        int i14 = 0;
+        if (i11 == 0 && i12 == 0) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
-        j5Var.setGravity(19);
-        addView(y9Var, w7.x5.t(28, 28, 19, 18, 0, 18, 0));
-        addView(j5Var, w7.x5.p(0, -1, 1.0f, 119, 0, 0, 18, 0));
-        addView(textView, w7.x5.p(-2, 20, 0.0f, 16, 0, 0, 0, 0));
-        addView(imageView, w7.x5.p(24, 24, 0.0f, 21, 0, 0, 12, 0));
+        e91Var.f37250n = z11;
+        FrameLayout frameLayout = e91Var.f37247c;
+        if (i13 != 0) {
+            i10 = 0;
+        } else {
+            i10 = 8;
+        }
+        frameLayout.setVisibility(i10);
+        float f10 = 0.0f;
+        if (i13 == 0) {
+            f7 = AndroidUtilities.dp(2.0f);
+        } else {
+            f7 = 0.0f;
+        }
+        textView.setTranslationX(f7);
+        if (i13 == 0) {
+            f10 = AndroidUtilities.dp(2.0f);
+        }
+        textView2.setTranslationX(f10);
+        e91Var.f37246b.b(i11, i12);
+        e91Var.d.setImageResource(i13);
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        e91Var.f37251r = !isEmpty;
+        if (isEmpty) {
+            i14 = 8;
+        }
+        textView2.setVisibility(i14);
+        textView2.setText(charSequence2);
+        e91Var.setValue(charSequence3);
+        e91Var.e();
     }
 
     @Override
-    public final void e() {
-        int i10 = org.telegram.ui.ActionBar.i6.G6;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f36952a;
-        this.d.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
-        this.f36955e.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Oh, e6Var)));
-        this.f36956f.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20966m6, e6Var), PorterDuff.Mode.SRC_IN));
-        this.f36957n.k(Integer.valueOf(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21214zh, e6Var)));
-    }
-
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-    }
-
-    public void set(int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d91.set(int):void");
+    public final View createView(Context context, org.telegram.ui.Components.sm0 sm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new e91(context, d6Var);
     }
 }

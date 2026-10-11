@@ -142,7 +142,7 @@ public abstract class x0 extends y0 implements l0 {
             w0 w0Var = (w0) f516n.get(this);
             if (w0Var != null) {
                 synchronized (w0Var) {
-                    if (fe.x.f9921b.get(w0Var) > 0) {
+                    if (fe.x.f9920b.get(w0Var) > 0) {
                         v0Var = w0Var.d(0);
                     } else {
                         v0Var = null;

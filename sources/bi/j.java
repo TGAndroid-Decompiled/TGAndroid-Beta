@@ -3,10 +3,10 @@ package bi;
 import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sv0;
-import org.telegram.ui.Components.uu0;
-import org.telegram.ui.Components.zl0;
-public final class j extends sv0 {
+import org.telegram.ui.Components.am0;
+import org.telegram.ui.Components.tv0;
+import org.telegram.ui.Components.vu0;
+public final class j extends tv0 {
     public final u f3904o3;
 
     public j(u uVar, Context context) {
@@ -39,10 +39,10 @@ public final class j extends sv0 {
         u uVar = this.f3904o3;
         r rVar = uVar.J;
         if (uVar.f3924b) {
-            uu0 uu0Var = uVar.f3929r;
+            vu0 vu0Var = uVar.f3929r;
             int i13 = 0;
-            for (int i14 = 0; i14 < uu0Var.getChildCount(); i14++) {
-                int bottom2 = uu0Var.getChildAt(i14).getBottom() - uu0Var.getPaddingTop();
+            for (int i14 = 0; i14 < vu0Var.getChildCount(); i14++) {
+                int bottom2 = vu0Var.getChildAt(i14).getBottom() - vu0Var.getPaddingTop();
                 if (bottom2 > i13) {
                     i13 = bottom2;
                 }
@@ -72,21 +72,21 @@ public final class j extends sv0 {
     }
 
     @Override
-    public final zl0 getMovingAdapter() {
+    public final am0 getMovingAdapter() {
         u uVar = this.f3904o3;
-        if (uVar.G.f47870y == 0 && !uVar.W.G.C1) {
+        if (uVar.G.f47916y == 0 && !uVar.W.G.C1) {
             return uVar.v;
         }
         return null;
     }
 
     @Override
-    public final zl0 getSupportingAdapter() {
+    public final am0 getSupportingAdapter() {
         return this.f3904o3.f3931w;
     }
 
     @Override
-    public final uu0 getSupportingListView() {
+    public final vu0 getSupportingListView() {
         return this.f3904o3.f3929r;
     }
 }

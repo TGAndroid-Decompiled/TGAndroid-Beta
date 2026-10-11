@@ -5,19 +5,19 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import j$.util.Objects;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.sm0;
 public final class w7 implements bh.a {
-    public final int f6214a;
-    public final Object f6215b;
+    public final int f6213a;
+    public final Object f6214b;
 
     public w7(Object obj, int i10) {
-        this.f6214a = i10;
-        this.f6215b = obj;
+        this.f6213a = i10;
+        this.f6214b = obj;
     }
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f6214a) {
+        switch (this.f6213a) {
             case 0:
             default:
                 aVar.f536a = true;
@@ -28,22 +28,22 @@ public final class w7 implements bh.a {
     @Override
     public final void f(Canvas canvas, RectF rectF) {
         View[] viewPages;
-        switch (this.f6214a) {
+        switch (this.f6213a) {
             case 0:
-                d8 d8Var = (d8) this.f6215b;
-                rm0 rm0Var = d8Var.d;
-                gh.d.b(rm0Var, canvas, rectF, rm0Var, d8Var.getContainerView(), 255);
+                d8 d8Var = (d8) this.f6214b;
+                sm0 sm0Var = d8Var.d;
+                gh.d.b(sm0Var, canvas, rectF, sm0Var, d8Var.getContainerView(), 255);
                 return;
             default:
-                xh.s2 s2Var = (xh.s2) this.f6215b;
+                xh.s2 s2Var = (xh.s2) this.f6214b;
                 for (View view : s2Var.h.getViewPages()) {
                     if (view instanceof xh.o2) {
                         xh.o2 o2Var = (xh.o2) view;
                         if (o2Var.h == null) {
-                            xh.j2 j2Var = o2Var.f51483f;
+                            xh.j2 j2Var = o2Var.f51526f;
                             ViewGroup viewGroup = s2Var.S;
                             Objects.requireNonNull(j2Var);
-                            o2Var.h = new ah.n(j2Var, viewGroup, new org.telegram.ui.u8(j2Var, 0));
+                            o2Var.h = new ah.n(j2Var, viewGroup, new org.telegram.ui.t8(j2Var, 0));
                         }
                         o2Var.h.f(canvas, rectF);
                     }

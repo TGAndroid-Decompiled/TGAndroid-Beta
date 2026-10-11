@@ -5,25 +5,25 @@ import android.view.View;
 import i2.f0;
 import org.telegram.ui.LaunchActivity;
 public final class d {
-    public final Activity f46195a;
-    public final sf.a f46196b;
-    public String f46197c;
+    public final Activity f46229a;
+    public final sf.a f46230b;
+    public String f46231c;
     public int d;
-    public int f46198e = 0;
-    public boolean f46199f = false;
-    public f0 f46200g;
+    public int f46232e = 0;
+    public boolean f46233f = false;
+    public f0 f46234g;
     public int h;
-    public int f46201i;
-    public View f46202j;
-    public View f46203k;
+    public int f46235i;
+    public View f46236j;
+    public View f46237k;
 
     public d(Activity activity, sf.a aVar) {
-        this.f46195a = activity;
-        this.f46196b = aVar;
+        this.f46229a = activity;
+        this.f46230b = aVar;
     }
 
     public final e a() {
-        Activity activity = this.f46195a;
+        Activity activity = this.f46229a;
         if (activity instanceof rf.a) {
             return new e(((LaunchActivity) ((rf.a) activity)).m0, this);
         }

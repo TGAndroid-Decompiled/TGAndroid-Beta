@@ -1,34 +1,58 @@
 package pi;
 
-import android.content.SharedPreferences;
+import android.text.TextUtils;
+import java.net.IDN;
+import java.util.Locale;
 public final class a {
-    public final String f45927a;
-    public volatile boolean f45928b;
-    public volatile boolean f45929c;
-    public volatile boolean d;
+    public int f45917a;
+    public String f45918b;
+    public int f45919c;
+    public String d;
+    public String f45920e;
+    public String f45921f;
 
-    public a(String str) {
-        this.f45927a = str;
-    }
-
-    public final void a() {
-        if (this.f45928b) {
-            return;
-        }
-        synchronized (this) {
-            if (!this.f45928b) {
-                SharedPreferences sharedPreferences = d.f45935a;
-                this.f45929c = sharedPreferences.contains(this.f45927a);
-                this.d = sharedPreferences.getBoolean(this.f45927a, true);
-                this.f45928b = true;
+    public final b a() {
+        String str;
+        String str2;
+        if (this.f45917a == 3) {
+            String str3 = this.f45918b;
+            if (TextUtils.isEmpty(str3)) {
+                str3 = "";
+            } else {
+                int indexOf = str3.indexOf(47);
+                if (indexOf >= 0) {
+                    str = str3.substring(0, indexOf);
+                } else {
+                    str = str3;
+                }
+                if (indexOf >= 0) {
+                    str2 = str3.substring(indexOf + 1);
+                } else {
+                    str2 = null;
+                }
+                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && b.f45922g.matcher(str2).matches()))) {
+                    try {
+                        String lowerCase = IDN.toASCII(str, 3).toLowerCase(Locale.US);
+                        if (str2 == null) {
+                            str3 = lowerCase;
+                        } else {
+                            str3 = lowerCase + '/' + str2;
+                        }
+                    } catch (IllegalArgumentException unused) {
+                    }
+                }
+            }
+            this.f45918b = str3;
+            if (str3 != null && str3.indexOf(47) >= 0) {
+                String b10 = b.b(this.f45921f);
+                if (b10 == null) {
+                    b10 = this.f45921f.toLowerCase(Locale.US);
+                }
+                this.f45921f = b10;
+            } else {
+                this.f45921f = this.f45921f.toLowerCase(Locale.US);
             }
         }
-    }
-
-    public final synchronized void b(boolean z10) {
-        this.d = z10;
-        this.f45929c = true;
-        this.f45928b = true;
-        d.f45935a.edit().putBoolean(this.f45927a, z10).apply();
+        return new b(this);
     }
 }

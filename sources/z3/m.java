@@ -6,5 +6,5 @@ public interface m {
 
     void reset();
 
-    d s(int i10, int i11, byte[] bArr);
+    d t(int i10, int i11, byte[] bArr);
 }

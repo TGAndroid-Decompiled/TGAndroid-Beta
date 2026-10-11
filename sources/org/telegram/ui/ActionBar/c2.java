@@ -1,37 +1,52 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.content.DialogInterface;
-public final class c2 extends AnimatorListenerAdapter {
-    public final int f20505a;
-    public final f2 f20506b;
+import android.view.animation.Animation;
+public final class c2 implements Animation.AnimationListener {
+    public final int f20483a;
+    public final Object f20484b;
 
-    public c2(f2 f2Var, int i10) {
-        this.f20505a = i10;
-        this.f20506b = f2Var;
+    public c2(Object obj, int i10) {
+        this.f20483a = i10;
+        this.f20484b = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f20505a) {
+    public final void onAnimationEnd(Animation animation) {
+        switch (this.f20483a) {
             case 0:
-                f2 f2Var = this.f20506b;
-                DialogInterface.OnShowListener onShowListener = f2Var.f20596i1;
-                if (onShowListener != null) {
-                    onShowListener.onShow(f2Var);
-                    return;
-                }
+                ((e2) this.f20484b).f20563g1.setAlpha(0.0f);
                 return;
             default:
-                f2 f2Var2 = this.f20506b;
-                f2Var2.s().removeView(f2Var2.f20593f1);
-                DialogInterface.OnDismissListener onDismissListener = f2Var2.f20597j1;
-                if (onDismissListener != null) {
-                    onDismissListener.onDismiss(f2Var2);
-                    return;
-                }
+                ((t4) this.f20484b).f21506f.post(new p(this, 12));
                 return;
         }
+    }
+
+    @Override
+    public final void onAnimationRepeat(Animation animation) {
+        int i10 = this.f20483a;
+    }
+
+    @Override
+    public final void onAnimationStart(Animation animation) {
+        switch (this.f20483a) {
+            case 0:
+                return;
+            default:
+                t4 t4Var = (t4) this.f20484b;
+                t4Var.f21508i.setEnabled(false);
+                t4Var.f21507g.setVisibility(0);
+                t4Var.h.setVisibility(0);
+                return;
+        }
+    }
+
+    private final void a(Animation animation) {
+    }
+
+    private final void b(Animation animation) {
+    }
+
+    private final void c(Animation animation) {
     }
 }

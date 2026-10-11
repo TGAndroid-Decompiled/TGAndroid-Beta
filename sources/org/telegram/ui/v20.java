@@ -1,46 +1,170 @@
 package org.telegram.ui;
 
-import java.util.Calendar;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.media.AudioRecordingConfiguration;
+import android.media.MediaRoute2Info;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FlagSecureReason;
+import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class v20 implements org.telegram.ui.Components.rd0 {
-    public final int f42663a;
-    public final long f42664b;
-    public final Calendar f42665c;
-    public final int d;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+public final class v20 implements org.telegram.ui.Components.rd0, GenericProvider, FlagSecureReason.FlagSecureCondition, org.telegram.ui.ActionBar.z1, Utilities.Callback2Return, org.telegram.ui.Components.xw0, g2.g, pg.i0 {
+    public final int f42860a;
 
-    public v20(long j3, Calendar calendar, int i10, int i11) {
-        this.f42663a = i11;
-        this.f42664b = j3;
-        this.f42665c = calendar;
-        this.d = i10;
+    public v20(int i10) {
+        this.f42860a = i10;
+    }
+
+    public static AudioRecordingConfiguration b(Object obj) {
+        return (AudioRecordingConfiguration) obj;
+    }
+
+    public static MediaRoute2Info c(Object obj) {
+        return (MediaRoute2Info) obj;
     }
 
     @Override
-    public final String i(int i10) {
-        switch (this.f42663a) {
+    public Typeface a() {
+        return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
+    }
+
+    @Override
+    public g2.h createDataSource() {
+        return new g2.b(ApplicationLoader.applicationContext);
+    }
+
+    @Override
+    public String e(int i10) {
+        switch (this.f42860a) {
             case 0:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                long j3 = (i10 * 86400000) + this.f42664b;
-                Calendar calendar = this.f42665c;
-                calendar.setTimeInMillis(j3);
-                if (calendar.get(1) == this.d) {
-                    return LocaleController.getInstance().getFormatterWeek().format(j3) + " " + LocaleController.getInstance().getFormatterScheduleDay().format(j3);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(j3);
+                return String.format("%02d", Integer.valueOf(i10));
+            case 1:
+                return String.format("%02d", Integer.valueOf(i10));
             default:
                 if (i10 == 0) {
-                    return LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
+                    return LocaleController.getString(R.string.AutoLockDisabled);
                 }
-                long j10 = (i10 * 86400000) + this.f42664b;
-                Calendar calendar2 = this.f42665c;
-                calendar2.setTimeInMillis(j10);
-                if (calendar2.get(1) == this.d) {
-                    return LocaleController.getInstance().getFormatterScheduleDay().format(j10);
+                if (i10 == 1) {
+                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0]));
                 }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(j10);
+                if (i10 == 2) {
+                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0]));
+                }
+                if (i10 == 3) {
+                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0]));
+                }
+                if (i10 == 4) {
+                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0]));
+                }
+                return "";
         }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f42860a) {
+            case 6:
+                a2Var.dismiss();
+                return;
+            case 7:
+            case 11:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            default:
+                a2Var.dismiss();
+                return;
+            case 8:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                return;
+            case 9:
+                a2Var.dismiss();
+                return;
+            case 10:
+                a2Var.dismiss();
+                return;
+            case 12:
+                a2Var.dismiss();
+                return;
+            case 13:
+                a2Var.dismiss();
+                return;
+            case 19:
+                a2Var.dismiss();
+                return;
+            case 20:
+                a2Var.dismiss();
+                return;
+            case 21:
+                a2Var.dismiss();
+                return;
+            case 22:
+                a2Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public void g(int i10) {
+        SharedConfig.proxyRotationTimeout = i10;
+        SharedConfig.saveConfig();
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        Void r82 = (Void) obj;
+        switch (this.f42860a) {
+            case 2:
+                int dp = AndroidUtilities.dp(150.0f);
+                Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20786d6, false));
+                Paint paint = new Paint(1);
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);
+                return createBitmap;
+            case 3:
+                Paint paint2 = new Paint(1);
+                paint2.setColor(-14509328);
+                int dp2 = AndroidUtilities.dp(150.0f);
+                Bitmap createBitmap2 = Bitmap.createBitmap(dp2, dp2, Bitmap.Config.ARGB_8888);
+                float f7 = dp2 / 2.0f;
+                new Canvas(createBitmap2).drawCircle(f7, f7, f7, paint2);
+                return createBitmap2;
+            default:
+                Pattern pattern = LaunchActivity.B1;
+                return new eh0();
+        }
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj2;
+        if (((Integer) obj).intValue() == 0) {
+            return yh.p7.Y0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+        }
+        return LocaleController.formatNumber(num.intValue(), ',');
+    }
+
+    @Override
+    public boolean run() {
+        Pattern pattern = LaunchActivity.B1;
+        return SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture;
+    }
+
+    @Override
+    public void l() {
     }
 }

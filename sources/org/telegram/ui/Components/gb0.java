@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
-public abstract class gb0 extends u71 {
+public abstract class gb0 extends v71 {
     public final int T;
     public final fb0 U;
     public final k10 V;
-    public final by0 W;
-    public final by0 X;
+    public final cy0 W;
+    public final cy0 X;
     public float Y;
     public boolean Z;
 
-    public gb0(org.telegram.ui.ActionBar.n2 n2Var, long j3) {
-        super(n2Var.getParentActivity(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
+    public gb0(org.telegram.ui.ActionBar.m2 m2Var, long j3) {
+        super(m2Var.getParentActivity(), m2Var.getCurrentAccount(), m2Var.getResourceProvider());
         this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.i6.f20745a7;
+        int i10 = org.telegram.ui.ActionBar.h6.f20730a7;
         setBackgroundColor(getThemedColor(i10));
         this.L = i10;
         this.K = i10;
@@ -28,18 +28,18 @@ public abstract class gb0 extends u71 {
         fixNavigationBar(getThemedColor(i10));
         this.G = false;
         this.H = false;
-        fb0 fb0Var = new fb0((wh.b) this, n2Var, this.container, j3);
+        fb0 fb0Var = new fb0((wh.b) this, m2Var, this.container, j3);
         this.U = fb0Var;
         fb0Var.B = false;
         setDimBehindAlpha(75);
-        this.f31416w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        wh.g gVar = fb0Var.f50476f;
-        this.f31412f = gVar;
-        this.f31411e = gVar;
+        this.f31700w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        wh.g gVar = fb0Var.f50520f;
+        this.f31696f = gVar;
+        this.f31695e = gVar;
         this.d.setAdapter(gVar);
         this.d.p1();
         ai.w0 w0Var = this.d;
-        fb0Var.f50485p = w0Var;
+        fb0Var.f50529p = w0Var;
         w0Var.setOnItemClickListener(new ai.g(fb0Var, 18));
         s4.t0 onScrollListener = w0Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -51,10 +51,10 @@ public abstract class gb0 extends u71 {
         k10 b10 = fb0Var.b();
         this.V = b10;
         this.containerView.addView(b10, indexOfChild, w7.x5.d(-1.0f, -1));
-        by0 a2 = fb0Var.a();
+        cy0 a2 = fb0Var.a();
         this.W = a2;
         this.containerView.addView(a2, indexOfChild, w7.x5.d(-1.0f, -1));
-        by0 c10 = fb0Var.c();
+        cy0 c10 = fb0Var.c();
         this.X = c10;
         this.containerView.addView(c10, indexOfChild, w7.x5.d(-1.0f, -1));
         fb0Var.e();
@@ -62,31 +62,31 @@ public abstract class gb0 extends u71 {
 
     @Override
     public final void F(MotionEvent motionEvent, ci.g2 g2Var) {
-        org.telegram.ui.ActionBar.n2 n2Var;
+        org.telegram.ui.ActionBar.m2 m2Var;
         long j3;
         int action = motionEvent.getAction();
         fb0 fb0Var = this.U;
         if (action == 0) {
-            this.Y = this.f31418y;
+            this.Y = this.f31702y;
             fb0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f31418y - this.Y) < this.T && !this.Z) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f31702y - this.Y) < this.T && !this.Z) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
-                n2Var = (org.telegram.ui.ActionBar.n2) launchActivity.O().getFragmentStack().get(launchActivity.O().getFragmentStack().size() - 1);
+                m2Var = (org.telegram.ui.ActionBar.m2) launchActivity.O().getFragmentStack().get(launchActivity.O().getFragmentStack().size() - 1);
             } else {
-                n2Var = null;
+                m2Var = null;
             }
-            if (n2Var instanceof org.telegram.ui.zn) {
-                boolean U9 = ((org.telegram.ui.zn) n2Var).U9();
+            if (m2Var instanceof org.telegram.ui.zn) {
+                boolean U9 = ((org.telegram.ui.zn) m2Var).U9();
                 this.Z = true;
-                as asVar = new as(28, this, g2Var);
+                bs bsVar = new bs(27, this, g2Var);
                 if (U9) {
                     j3 = 200;
                 } else {
                     j3 = 0;
                 }
-                AndroidUtilities.runOnUIThread(asVar, j3);
+                AndroidUtilities.runOnUIThread(bsVar, j3);
             } else {
                 this.Z = true;
                 setFocusable(true);
@@ -108,7 +108,7 @@ public abstract class gb0 extends u71 {
     @Override
     public final void J(int i10) {
         super.J(i10);
-        this.V.setTranslationY(this.f31410c.getMeasuredHeight() + i10);
+        this.V.setTranslationY(this.f31694c.getMeasuredHeight() + i10);
         float f7 = i10;
         this.W.setTranslationY(f7);
         this.X.setTranslationY(f7);
@@ -124,8 +124,8 @@ public abstract class gb0 extends u71 {
             } else {
                 i10 = 0;
             }
-            if (this.f31418y != i10) {
-                this.f31418y = i10;
+            if (this.f31702y != i10) {
+                this.f31702y = i10;
                 J(i10);
                 return;
             }
@@ -136,7 +136,7 @@ public abstract class gb0 extends u71 {
 
     @Override
     public final void onBackPressed() {
-        wh.k kVar = this.U.f50488s;
+        wh.k kVar = this.U.f50532s;
         if (kVar != null) {
             kVar.e(false);
         } else {
@@ -147,10 +147,10 @@ public abstract class gb0 extends u71 {
     @Override
     public final void show() {
         fb0 fb0Var = this.U;
-        if (fb0Var.f50473b && this.f31418y == 0) {
-            this.f31418y = AndroidUtilities.dp(8.0f);
+        if (fb0Var.f50517b && this.f31702y == 0) {
+            this.f31702y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        fb0Var.f50473b = false;
+        fb0Var.f50517b = false;
     }
 }

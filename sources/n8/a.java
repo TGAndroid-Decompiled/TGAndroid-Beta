@@ -1,15 +1,15 @@
 package n8;
 
 import java.util.Arrays;
-import n6.l;
+import n6.m;
 public final class a implements com.google.android.gms.common.api.b {
-    public static final a f16826a = new Object();
+    public static final a f16871a = new Object();
 
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
-        if ((obj instanceof a) && l.l(null, null) && l.l(null, null) && l.l(null, null) && l.l(null, null) && l.l(null, null)) {
+        if ((obj instanceof a) && m.l(null, null) && m.l(null, null) && m.l(null, null) && m.l(null, null) && m.l(null, null)) {
             return true;
         }
         return false;

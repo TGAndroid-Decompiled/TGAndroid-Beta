@@ -4,20 +4,20 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ro extends org.telegram.ui.ActionBar.j {
-    public final int f41507a;
-    public final Object f41508b;
+    public final int f41480a;
+    public final Object f41481b;
 
     public ro(Object obj, int i10) {
-        this.f41507a = i10;
-        this.f41508b = obj;
+        this.f41480a = i10;
+        this.f41481b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Runnable runnable;
-        switch (this.f41507a) {
+        switch (this.f41480a) {
             case 0:
-                uo uoVar = (uo) this.f41508b;
+                uo uoVar = (uo) this.f41481b;
                 if (i10 == -1) {
                     if (uoVar.e0(true)) {
                         uoVar.finishFragment();
@@ -31,13 +31,13 @@ public final class ro extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 1:
-                ip ipVar = (ip) this.f41508b;
+                ip ipVar = (ip) this.f41481b;
                 if (i10 == -1) {
                     ipVar.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    org.telegram.ui.Components.hs hsVar = ipVar.f38774r;
-                    if (hsVar == null || hsVar.f27135c <= 0.0f) {
+                    org.telegram.ui.Components.hs hsVar = ipVar.f38757r;
+                    if (hsVar == null || hsVar.f27067c <= 0.0f) {
                         ipVar.Y();
                         return;
                     }
@@ -47,18 +47,18 @@ public final class ro extends org.telegram.ui.ActionBar.j {
                 }
             case 2:
                 if (i10 == -1) {
-                    ((up) this.f41508b).finishFragment();
+                    ((up) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 3:
                 if (i10 == -1) {
-                    ((bq) this.f41508b).finishFragment();
+                    ((bq) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 4:
-                nq nqVar = (nq) this.f41508b;
+                nq nqVar = (nq) this.f41481b;
                 if (i10 == -1) {
                     if (nqVar.m0(true)) {
                         nqVar.finishFragment();
@@ -72,21 +72,21 @@ public final class ro extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 5:
-                tr trVar = (tr) this.f41508b;
+                sr srVar = (sr) this.f41481b;
                 if (i10 == -1) {
-                    if (trVar.g0(true)) {
-                        trVar.finishFragment();
+                    if (srVar.g0(true)) {
+                        srVar.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    trVar.u0();
+                    srVar.u0();
                     return;
                 } else {
                     return;
                 }
             case 6:
-                org.telegram.ui.Components.l8 l8Var = (org.telegram.ui.Components.l8) this.f41508b;
+                org.telegram.ui.Components.l8 l8Var = (org.telegram.ui.Components.l8) this.f41481b;
                 if (i10 == -1) {
                     l8Var.dismiss();
                     return;
@@ -96,12 +96,12 @@ public final class ro extends org.telegram.ui.ActionBar.j {
                 }
             case 7:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.eb) this.f41508b).dismiss();
+                    ((org.telegram.ui.Components.db) this.f41481b).dismiss();
                     return;
                 }
                 return;
             case 8:
-                org.telegram.ui.Components.yi yiVar = (org.telegram.ui.Components.yi) this.f41508b;
+                org.telegram.ui.Components.yi yiVar = (org.telegram.ui.Components.yi) this.f41481b;
                 if (i10 == -1) {
                     if (!yiVar.B0.j()) {
                         yiVar.dismiss();
@@ -113,98 +113,98 @@ public final class ro extends org.telegram.ui.ActionBar.j {
                 return;
             case 9:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.t40) this.f41508b).finishFragment();
+                    ((org.telegram.ui.Components.t40) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 10:
-                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.ng0) this.f41508b).f29121r) != null) {
+                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.ng0) this.f41481b).f29055r) != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                     return;
                 }
                 return;
             case 11:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.th0) this.f41508b).dismiss();
+                    ((org.telegram.ui.Components.uh0) this.f41481b).dismiss();
                     return;
                 }
                 return;
             case 12:
-                ((org.telegram.ui.Components.nr0) this.f41508b).onBackPressed();
+                ((org.telegram.ui.Components.or0) this.f41481b).onBackPressed();
                 return;
             case 13:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.g71) this.f41508b).finishFragment();
+                    ((org.telegram.ui.Components.h71) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 14:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.voip.x0) this.f41508b).b(false, false);
+                    ((org.telegram.ui.Components.voip.y0) this.f41481b).b(false, false);
                     return;
                 }
                 return;
             case 15:
                 if (i10 == -1) {
-                    ((pi1) this.f41508b).a(false, false);
+                    ((ni1) this.f41481b).a(false, false);
                     return;
                 }
                 return;
             case 16:
                 if (i10 == -1) {
-                    ((zt) this.f41508b).finishFragment();
+                    ((yt) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 17:
                 if (i10 == -1) {
-                    ((DataAutoDownloadActivity) this.f41508b).finishFragment();
+                    ((DataAutoDownloadActivity) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 18:
                 if (i10 == -1) {
-                    ((DataSettingsActivity) this.f41508b).finishFragment();
+                    ((DataSettingsActivity) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 19:
                 if (i10 == -1) {
-                    ((yu) this.f41508b).finishFragment();
+                    ((xu) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 20:
                 if (i10 == -1) {
-                    ((mv) this.f41508b).finishFragment();
+                    ((lv) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 21:
                 if (i10 == -1) {
-                    ((lz) this.f41508b).finishFragment();
+                    ((kz) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 22:
-                c00 c00Var = (c00) this.f41508b;
+                b00 b00Var = (b00) this.f41481b;
                 if (i10 == -1) {
-                    if (c00Var.W(true)) {
-                        c00Var.finishFragment();
+                    if (b00Var.W(true)) {
+                        b00Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    if (Math.abs(c00Var.T - 1.0f) < 0.1f) {
-                        c00Var.c0();
+                    if (Math.abs(b00Var.T - 1.0f) < 0.1f) {
+                        b00Var.c0();
                         return;
-                    } else if (Math.abs(c00Var.T - 0.5f) < 0.1f) {
-                        for (int i11 = 0; i11 < c00Var.f36517a.getChildCount(); i11++) {
-                            View childAt = c00Var.f36517a.getChildAt(i11);
-                            c00Var.f36517a.getClass();
-                            if (RecyclerView.R(childAt) == c00Var.L && (childAt instanceof org.telegram.ui.Components.q10)) {
-                                int i12 = -c00Var.f36524s;
-                                c00Var.f36524s = i12;
+                    } else if (Math.abs(b00Var.T - 0.5f) < 0.1f) {
+                        for (int i11 = 0; i11 < b00Var.f36217a.getChildCount(); i11++) {
+                            View childAt = b00Var.f36217a.getChildAt(i11);
+                            b00Var.f36217a.getClass();
+                            if (RecyclerView.R(childAt) == b00Var.L && (childAt instanceof org.telegram.ui.Components.q10)) {
+                                int i12 = -b00Var.f36224s;
+                                b00Var.f36224s = i12;
                                 AndroidUtilities.shakeViewSpring(childAt, i12);
                                 return;
                             }
@@ -217,33 +217,33 @@ public final class ro extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 23:
-                f10 f10Var = (f10) this.f41508b;
+                e10 e10Var = (e10) this.f41481b;
                 if (i10 == -1) {
-                    if (f10Var.h0(true)) {
-                        f10Var.finishFragment();
+                    if (e10Var.h0(true)) {
+                        e10Var.finishFragment();
                         return;
                     }
                     return;
                 } else if (i10 == 1) {
-                    f10Var.q0();
+                    e10Var.q0();
                     return;
                 } else {
                     return;
                 }
             case 24:
                 if (i10 == -1) {
-                    ((FiltersSetupActivity) this.f41508b).finishFragment();
+                    ((FiltersSetupActivity) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 25:
                 if (i10 == -1) {
-                    ((p20) this.f41508b).finishFragment();
+                    ((o20) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 26:
-                c70 c70Var = (c70) this.f41508b;
+                c70 c70Var = (c70) this.f41481b;
                 if (i10 == -1) {
                     if (c70Var.f0(true)) {
                         c70Var.finishFragment();
@@ -258,19 +258,19 @@ public final class ro extends org.telegram.ui.ActionBar.j {
                 }
             case 27:
                 if (i10 == -1) {
-                    ((j70) this.f41508b).finishFragment();
+                    ((j70) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             case 28:
                 if (i10 == -1) {
-                    ((l70) this.f41508b).finishFragment();
+                    ((l70) this.f41481b).finishFragment();
                     return;
                 }
                 return;
             default:
                 if (i10 == -1) {
-                    ((s70) this.f41508b).finishFragment();
+                    ((s70) this.f41481b).finishFragment();
                     return;
                 }
                 return;

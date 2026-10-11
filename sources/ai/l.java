@@ -22,10 +22,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ir0;
-import org.telegram.ui.ny;
-import org.telegram.ui.sx;
-import org.telegram.ui.ty;
+import org.telegram.ui.hr0;
+import org.telegram.ui.my;
+import org.telegram.ui.rx;
+import org.telegram.ui.sy;
 import org.telegram.ui.uo;
 public final class l implements Utilities.Callback {
     public final int f1311a;
@@ -54,11 +54,11 @@ public final class l implements Utilities.Callback {
             case 0:
                 b0 b0Var = (b0) obj4;
                 a0 a0Var = (a0) obj2;
-                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
+                ((org.telegram.ui.ActionBar.a2) obj3).dismiss();
                 if (((Boolean) obj).booleanValue()) {
                     ci.lc D = ci.lc.D(b0Var.f668e0.getParentActivity(), b0Var.f669f);
                     D.N = j3;
-                    ci.bc bcVar = D.f5467c1;
+                    ci.bc bcVar = D.f5466c1;
                     if (bcVar != null) {
                         bcVar.setDialogId(j3);
                     }
@@ -90,7 +90,7 @@ public final class l implements Utilities.Callback {
                     callback2.run(Boolean.FALSE);
                     return;
                 }
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (m9Var2.j(j3)) {
                     jVar = new j(m9Var2, j3, 3);
                 } else {
@@ -117,28 +117,28 @@ public final class l implements Utilities.Callback {
                 ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f1312b, (TLRPC.TL_textWithEntities) obj);
                 return;
             case 6:
-                uo.Y((uo) obj4, (org.telegram.ui.ActionBar.b2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f1312b, (ChannelBoostsController.CanApplyBoost) obj);
+                uo.Y((uo) obj4, (org.telegram.ui.ActionBar.a2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f1312b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             case 7:
-                sx sxVar = (sx) obj4;
-                org.telegram.ui.ActionBar.n2[] n2VarArr = (org.telegram.ui.ActionBar.n2[]) obj2;
+                rx rxVar = (rx) obj4;
+                org.telegram.ui.ActionBar.m2[] m2VarArr = (org.telegram.ui.ActionBar.m2[]) obj2;
                 Runnable runnable = (Runnable) obj;
-                sxVar.getClass();
-                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                ty tyVar = sxVar.f41828b;
-                tyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
-                ny nyVar = tyVar.C2;
-                tyVar.removeSelfFromStack();
-                if (n2VarArr[1] != null) {
-                    n2VarArr[0].removeSelfFromStack();
-                    n2VarArr[1].finishFragment();
+                rxVar.getClass();
+                ((org.telegram.ui.ActionBar.a2) obj3).dismiss();
+                sy syVar = rxVar.f41524b;
+                syVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
+                my myVar = syVar.C2;
+                syVar.removeSelfFromStack();
+                if (m2VarArr[1] != null) {
+                    m2VarArr[0].removeSelfFromStack();
+                    m2VarArr[1].finishFragment();
                 } else {
-                    n2VarArr[0].finishFragment();
+                    m2VarArr[0].finishFragment();
                 }
-                if (nyVar != null) {
+                if (myVar != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(-j3, 0L));
-                    nyVar.w(tyVar, arrayList, null, false, tyVar.J2, tyVar.K2, tyVar.L2, null);
+                    myVar.w(syVar, arrayList, null, false, syVar.J2, syVar.K2, syVar.L2, null);
                     return;
                 }
                 return;
@@ -149,7 +149,7 @@ public final class l implements Utilities.Callback {
                 Bitmap bitmap = (Bitmap) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 if (bitmap == null) {
-                    AndroidUtilities.runOnUIThread(new ir0(photoViewer, 16));
+                    AndroidUtilities.runOnUIThread(new hr0(photoViewer, 16));
                     return;
                 }
                 try {
@@ -167,7 +167,7 @@ public final class l implements Utilities.Callback {
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
-                    AndroidUtilities.runOnUIThread(new ir0(photoViewer, 17));
+                    AndroidUtilities.runOnUIThread(new hr0(photoViewer, 17));
                     return;
                 }
             case 9:

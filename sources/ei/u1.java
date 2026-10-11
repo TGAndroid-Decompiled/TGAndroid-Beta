@@ -8,6 +8,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.Spannable;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
@@ -32,33 +33,34 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.j5;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h5;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a31;
-import org.telegram.ui.Components.ae0;
+import org.telegram.ui.Components.b31;
+import org.telegram.ui.Components.be0;
 import org.telegram.ui.Components.bq;
 import org.telegram.ui.Components.dd0;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.s5;
 import org.telegram.ui.Components.y9;
-import org.telegram.ui.fg1;
-import org.telegram.ui.ny;
-import org.telegram.ui.ty;
+import org.telegram.ui.eg1;
+import org.telegram.ui.my;
+import org.telegram.ui.sy;
 import w7.x5;
-public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallback {
-    public final int f9389a = 1;
-    public final int f9390b;
-    public final long f9391c;
+public final class u1 implements my, org.telegram.ui.ActionBar.z1, li.n, ResultCallback {
+    public final int f9388a;
+    public final int f9389b;
+    public final long f9390c;
     public final Object d;
-    public final Object f9392e;
+    public final Object f9391e;
 
     public u1(int i10, long j3, TLRPC.TL_attachMenuBot tL_attachMenuBot, Runnable runnable) {
-        this.f9390b = i10;
-        this.f9391c = j3;
+        this.f9388a = 1;
+        this.f9389b = i10;
+        this.f9390c = j3;
         this.d = tL_attachMenuBot;
-        this.f9392e = runnable;
+        this.f9391e = runnable;
     }
 
     @Override
@@ -67,16 +69,16 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
     }
 
     @Override
-    public boolean K(ty tyVar) {
+    public boolean K(sy syVar) {
         return false;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11 = this.f9389a;
-        Object obj = this.f9392e;
-        int i12 = this.f9390b;
-        long j3 = this.f9391c;
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        int i11 = this.f9388a;
+        Object obj = this.f9391e;
+        int i12 = this.f9389b;
+        long j3 = this.f9390c;
         Object obj2 = this.d;
         switch (i11) {
             case 1:
@@ -110,7 +112,7 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
                             str2 = "";
                         }
                         if (str.equals(obj3) && str2.equals(obj4)) {
-                            b2Var.dismiss();
+                            a2Var.dismiss();
                             return;
                         }
                         TL_account.updateProfile updateprofile = new TL_account.updateProfile();
@@ -135,7 +137,7 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
                         String obj5 = editText.getText().toString();
                         String str3 = chat.title;
                         if (str3 != null && str3.equals(obj5)) {
-                            b2Var.dismiss();
+                            a2Var.dismiss();
                             return;
                         }
                         chat.title = obj5;
@@ -143,7 +145,7 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
                         MessagesController.getInstance(i12).changeChatTitle(j10, obj5);
                         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 3, Long.valueOf(j3));
                     }
-                    b2Var.dismiss();
+                    a2Var.dismiss();
                     return;
                 }
                 return;
@@ -151,24 +153,48 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
     }
 
     @Override
+    public void k(n4.x xVar) {
+        boolean z10;
+        li.j jVar = (li.j) this.d;
+        long j3 = this.f9390c;
+        li.g gVar = (li.g) this.f9391e;
+        int i10 = this.f9389b;
+        synchronized (li.k.d) {
+            try {
+                Spannable spannable = (Spannable) jVar.f15621a.get();
+                if (spannable != null && jVar.f15622b.get(Long.valueOf(j3)) == gVar) {
+                    if ((spannable instanceof li.e) && !((li.e) spannable).f15611a) {
+                        li.k.a(spannable, i10, (com.google.android.gms.internal.play_billing.s0) xVar.f16658b);
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    AndroidUtilities.runOnUIThread(new li.a(jVar, j3, gVar, i10, z10, xVar));
+                }
+            } finally {
+            }
+        }
+    }
+
+    @Override
     public void onComplete(Object obj) {
         int i10;
-        a31 a31Var = (a31) this.d;
-        bq bqVar = (bq) this.f9392e;
+        b31 b31Var = (b31) this.d;
+        bq bqVar = (bq) this.f9391e;
         Pair pair = (Pair) obj;
-        if (pair != null && ((Long) pair.first).longValue() == this.f9391c) {
-            Drawable drawable = bqVar.f25020b;
+        if (pair != null && ((Long) pair.first).longValue() == this.f9390c) {
+            Drawable drawable = bqVar.f25003b;
             if (drawable instanceof dd0) {
                 dd0 dd0Var = (dd0) drawable;
-                if (this.f9390b >= 0) {
+                if (this.f9389b >= 0) {
                     i10 = 100;
                 } else {
                     i10 = -100;
                 }
-                dd0Var.t(a31.e((Bitmap) pair.second), i10);
-                dd0Var.u(a31Var.L);
+                dd0Var.t(b31.e((Bitmap) pair.second), i10);
+                dd0Var.u(b31Var.L);
             }
-            a31Var.invalidate();
+            b31Var.invalidate();
         }
     }
 
@@ -178,7 +204,7 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
     }
 
     @Override
-    public boolean w(ty tyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
+    public boolean w(sy syVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
         int i12;
         String str;
         String str2;
@@ -189,20 +215,20 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         int i13;
         int i14;
         int i15;
-        ty tyVar2 = (ty) this.d;
-        final TL_bots.botVerifierSettings botverifiersettings = (TL_bots.botVerifierSettings) this.f9392e;
+        sy syVar2 = (sy) this.d;
+        final TL_bots.botVerifierSettings botverifiersettings = (TL_bots.botVerifierSettings) this.f9391e;
         if (arrayList.isEmpty()) {
             return false;
         }
         final long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-        Activity parentActivity = tyVar2.getParentActivity();
-        final int i16 = this.f9390b;
-        v1 v1Var = new v1(fg1Var, tyVar2, j3, i16);
+        Activity parentActivity = syVar2.getParentActivity();
+        final int i16 = this.f9389b;
+        v1 v1Var = new v1(eg1Var, syVar2, j3, i16);
         if (parentActivity == null) {
             return true;
         }
         MessagesController messagesController = MessagesController.getInstance(i16);
-        final long j10 = this.f9391c;
+        final long j10 = this.f9390c;
         messagesController.getUser(Long.valueOf(j10));
         int i17 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i17 >= 0) {
@@ -238,8 +264,8 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
             user2 = chat2;
         }
         boolean z13 = z12;
-        final org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(z13 ? 1 : 0, parentActivity, (e6) null, z13);
-        f3Var.fixNavigationBar();
+        final org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(z13 ? 1 : 0, parentActivity, (d6) null, z13);
+        e3Var.fixNavigationBar();
         LinearLayout e7 = org.telegram.messenger.q.e(parentActivity, z13 ? 1 : 0);
         TLRPC.User user4 = user;
         TLRPC.Chat chat3 = chat;
@@ -247,29 +273,29 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         e7.setClipChildren(false);
         e7.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(parentActivity);
-        frameLayout.setBackground(i6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), i6.x0(null, i6.f20794ci, false)));
+        frameLayout.setBackground(h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), h6.x0(null, h6.f20779ci, false)));
         y9 y9Var = new y9(parentActivity);
         y9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
-        j9 j9Var = new j9((e6) null);
+        j9 j9Var = new j9((d6) null);
         j9Var.p(user2);
         y9Var.e(user2, j9Var);
         frameLayout.addView(y9Var, x5.e(28, 28, 51));
         y9 y9Var2 = new y9(parentActivity);
-        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(i6.x0(null, i6.f21206z9, false), PorterDuff.Mode.SRC_IN));
+        y9Var2.setEmojiColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21192z9, false), PorterDuff.Mode.SRC_IN));
         final v1 v1Var2 = v1Var;
         y9Var2.setAnimatedEmojiDrawable(s5.n(i16, botverifiersettings.icon, null, 3));
         frameLayout.addView(y9Var2, x5.a(20.0f, 34.0f, 0.0f, 0.0f, 0.0f, 20, 19));
-        j5 j5Var = new j5(parentActivity);
-        j5Var.setTextColor(i6.x0(null, i6.f20909j5, false));
-        j5Var.setTextSize(13);
-        j5Var.setEllipsizeByGradient(true);
-        j5Var.l(str2, false);
-        j5Var.setWidthWrapContent(true);
-        frameLayout.addView(j5Var, x5.a(-2.0f, 57.0f, 0.0f, 10.0f, 0.0f, -2, 19));
+        h5 h5Var = new h5(parentActivity);
+        h5Var.setTextColor(h6.x0(null, h6.f20894j5, false));
+        h5Var.setTextSize(13);
+        h5Var.setEllipsizeByGradient(true);
+        h5Var.l(str2, false);
+        h5Var.setWidthWrapContent(true);
+        frameLayout.addView(h5Var, x5.a(-2.0f, 57.0f, 0.0f, 10.0f, 0.0f, -2, 19));
         e7.addView(frameLayout, x5.t(-2, -2, 1, 16, 0, 16, 0));
         TextView textView = new TextView(parentActivity);
-        int i18 = i6.G6;
-        textView.setTextColor(i6.x0(null, i18, false));
+        int i18 = h6.G6;
+        textView.setTextColor(h6.x0(null, i18, false));
         textView.setTextSize(1, 20.0f);
         textView.setGravity(17);
         if (UserObject.isBot(user4)) {
@@ -284,7 +310,7 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         textView.setTypeface(AndroidUtilities.bold());
         e7.addView(textView, x5.k(24.0f, 21.0f, 24.0f, 8.33f, -1, -2));
         TextView textView2 = new TextView(parentActivity);
-        textView2.setTextColor(i6.x0(null, i18, false));
+        textView2.setTextColor(h6.x0(null, i18, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(17);
         NotificationCenter.listenEmojiLoading(textView2);
@@ -292,11 +318,11 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         e7.addView(textView2, x5.k(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
         final int i19 = MessagesController.getInstance(i16).botVerificationDescriptionLengthLimit;
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(parentActivity);
-        final ae0 ae0Var = new ae0(parentActivity, null);
-        ae0Var.setForceForceUseCenter(true);
-        ae0Var.setText(LocaleController.getString(R.string.BotVerifyDescription));
-        ae0Var.setLeftPadding(AndroidUtilities.dp(2.0f));
-        editTextBoldCursor.setTextColor(i6.x0(null, i18, false));
+        final be0 be0Var = new be0(parentActivity, null);
+        be0Var.setForceForceUseCenter(true);
+        be0Var.setText(LocaleController.getString(R.string.BotVerifyDescription));
+        be0Var.setLeftPadding(AndroidUtilities.dp(2.0f));
+        editTextBoldCursor.setTextColor(h6.x0(null, i18, false));
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.setBackground(null);
@@ -305,20 +331,20 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(i6.x0(null, i6.f21123uf, false));
-        editTextBoldCursor.setHandlesColor(i6.x0(null, i6.f21140vf, false));
+        editTextBoldCursor.setHighlightColor(h6.x0(null, h6.f21109uf, false));
+        editTextBoldCursor.setHandlesColor(h6.x0(null, h6.f21126vf, false));
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
             i13 = 3;
         }
         editTextBoldCursor.setGravity(i13);
-        editTextBoldCursor.setOnFocusChangeListener(new w1(ae0Var, editTextBoldCursor, 0));
-        ae0Var.e(editTextBoldCursor);
-        ae0Var.addView(editTextBoldCursor, x5.a(-2.0f, 12.0f, 4.0f, 12.0f, 4.0f, -1, 48));
-        e7.addView(ae0Var, x5.n(-1, -2));
+        editTextBoldCursor.setOnFocusChangeListener(new w1(be0Var, editTextBoldCursor, 0));
+        be0Var.e(editTextBoldCursor);
+        be0Var.addView(editTextBoldCursor, x5.a(-2.0f, 12.0f, 4.0f, 12.0f, 4.0f, -1, 48));
+        e7.addView(be0Var, x5.n(-1, -2));
         editTextBoldCursor.addTextChangedListener(new org.telegram.ui.Cells.i3());
-        editTextBoldCursor.addTextChangedListener(new z1(editTextBoldCursor, i19, ae0Var));
+        editTextBoldCursor.addTextChangedListener(new z1(editTextBoldCursor, i19, be0Var));
         if (!TextUtils.isEmpty(botverifiersettings.custom_description)) {
             editTextBoldCursor.setText(botverifiersettings.custom_description);
             if (!botverifiersettings.can_modify_custom_description) {
@@ -327,11 +353,11 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
                 editTextBoldCursor.setFocusableInTouchMode(false);
             }
         } else if (!botverifiersettings.can_modify_custom_description) {
-            ae0Var.setVisibility(8);
+            be0Var.setVisibility(8);
         }
         if (botverifiersettings.can_modify_custom_description) {
             TextView textView3 = new TextView(parentActivity);
-            textView3.setTextColor(i6.x0(null, i6.B6, false));
+            textView3.setTextColor(h6.x0(null, h6.B6, false));
             textView3.setTextSize(1, 12.0f);
             if (i12 >= 0) {
                 i15 = R.string.BotVerifyDescriptionInfo;
@@ -348,7 +374,7 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         final ci.d dVar = new ci.d(parentActivity, null, true);
         dVar.g(textView.getText(), false, true);
         e7.addView(dVar, x5.n(i14, 48));
-        f3Var.customView = e7;
+        e3Var.customView = e7;
         dVar.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -360,9 +386,9 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
                 boolean z14 = botverifiersettings2.can_modify_custom_description;
                 EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
                 if (z14 && editTextBoldCursor2.getText().length() > i19) {
-                    ae0 ae0Var2 = ae0Var;
-                    ae0Var2.a(1.0f);
-                    AndroidUtilities.shakeViewSpring(ae0Var2, -6.0f);
+                    be0 be0Var2 = be0Var;
+                    be0Var2.a(1.0f);
+                    AndroidUtilities.shakeViewSpring(be0Var2, -6.0f);
                     return;
                 }
                 dVar2.setLoading(true);
@@ -380,20 +406,21 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
                 if (!TextUtils.isEmpty(setcustomverification.custom_description)) {
                     setcustomverification.flags |= 4;
                 }
-                ConnectionsManager.getInstance(i20).sendRequest(setcustomverification, new t5(dVar2, f3Var, v1Var2, 2));
+                ConnectionsManager.getInstance(i20).sendRequest(setcustomverification, new t5(dVar2, e3Var, v1Var2, 2));
             }
         });
-        f3Var.smoothKeyboardAnimationEnabled = true;
-        f3Var.smoothKeyboardByBottom = true;
-        f3Var.show();
+        e3Var.smoothKeyboardAnimationEnabled = true;
+        e3Var.smoothKeyboardByBottom = true;
+        e3Var.show();
         return true;
     }
 
     public u1(EditText editText, long j3, int i10, EditText editText2) {
+        this.f9388a = 3;
         this.d = editText;
-        this.f9391c = j3;
-        this.f9390b = i10;
-        this.f9392e = editText2;
+        this.f9390c = j3;
+        this.f9389b = i10;
+        this.f9391e = editText2;
     }
 
     @Override
@@ -401,17 +428,19 @@ public final class u1 implements ny, org.telegram.ui.ActionBar.a2, ResultCallbac
         org.telegram.tgnet.l.b(this, tL_error);
     }
 
-    public u1(a31 a31Var, long j3, bq bqVar, int i10) {
-        this.d = a31Var;
-        this.f9391c = j3;
-        this.f9392e = bqVar;
-        this.f9390b = i10;
+    public u1(Object obj, long j3, Object obj2, int i10, int i11) {
+        this.f9388a = i11;
+        this.d = obj;
+        this.f9390c = j3;
+        this.f9391e = obj2;
+        this.f9389b = i10;
     }
 
-    public u1(ty tyVar, int i10, long j3, TL_bots.botVerifierSettings botverifiersettings) {
-        this.d = tyVar;
-        this.f9390b = i10;
-        this.f9391c = j3;
-        this.f9392e = botverifiersettings;
+    public u1(sy syVar, int i10, long j3, TL_bots.botVerifierSettings botverifiersettings) {
+        this.f9388a = 0;
+        this.d = syVar;
+        this.f9389b = i10;
+        this.f9390c = j3;
+        this.f9391e = botverifiersettings;
     }
 }

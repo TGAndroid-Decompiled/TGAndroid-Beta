@@ -9,28 +9,28 @@ import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
 import java.net.SocketTimeoutException;
 public final class e0 extends c {
-    public final int f10241a;
-    public final byte[] f10242b;
-    public final DatagramPacket f10243c;
+    public final int f10240a;
+    public final byte[] f10241b;
+    public final DatagramPacket f10242c;
     public Uri d;
-    public DatagramSocket f10244e;
-    public MulticastSocket f10245f;
+    public DatagramSocket f10243e;
+    public MulticastSocket f10244f;
     public InetAddress h;
-    public boolean f10246n;
-    public int f10247r;
+    public boolean f10245n;
+    public int f10246r;
 
     public e0() {
         super(true);
-        this.f10241a = 8000;
+        this.f10240a = 8000;
         byte[] bArr = new byte[2000];
-        this.f10242b = bArr;
-        this.f10243c = new DatagramPacket(bArr, 0, 2000);
+        this.f10241b = bArr;
+        this.f10242c = new DatagramPacket(bArr, 0, 2000);
     }
 
     @Override
     public final void close() {
         this.d = null;
-        MulticastSocket multicastSocket = this.f10245f;
+        MulticastSocket multicastSocket = this.f10244f;
         if (multicastSocket != null) {
             try {
                 InetAddress inetAddress = this.h;
@@ -38,17 +38,17 @@ public final class e0 extends c {
                 multicastSocket.leaveGroup(inetAddress);
             } catch (IOException unused) {
             }
-            this.f10245f = null;
+            this.f10244f = null;
         }
-        DatagramSocket datagramSocket = this.f10244e;
+        DatagramSocket datagramSocket = this.f10243e;
         if (datagramSocket != null) {
             datagramSocket.close();
-            this.f10244e = null;
+            this.f10243e = null;
         }
         this.h = null;
-        this.f10247r = 0;
-        if (this.f10246n) {
-            this.f10246n = false;
+        this.f10246r = 0;
+        if (this.f10245n) {
+            this.f10245n = false;
             transferEnded();
         }
     }
@@ -60,7 +60,7 @@ public final class e0 extends c {
 
     @Override
     public final long open(m mVar) {
-        Uri uri = mVar.f10267a;
+        Uri uri = mVar.f10266a;
         this.d = uri;
         String host = uri.getHost();
         host.getClass();
@@ -71,14 +71,14 @@ public final class e0 extends c {
             InetSocketAddress inetSocketAddress = new InetSocketAddress(this.h, port);
             if (this.h.isMulticastAddress()) {
                 MulticastSocket multicastSocket = new MulticastSocket(inetSocketAddress);
-                this.f10245f = multicastSocket;
+                this.f10244f = multicastSocket;
                 multicastSocket.joinGroup(this.h);
-                this.f10244e = this.f10245f;
+                this.f10243e = this.f10244f;
             } else {
-                this.f10244e = new DatagramSocket(inetSocketAddress);
+                this.f10243e = new DatagramSocket(inetSocketAddress);
             }
-            this.f10244e.setSoTimeout(this.f10241a);
-            this.f10246n = true;
+            this.f10243e.setSoTimeout(this.f10240a);
+            this.f10245n = true;
             transferStarted(mVar);
             return -1L;
         } catch (IOException e7) {
@@ -93,15 +93,15 @@ public final class e0 extends c {
         if (i11 == 0) {
             return 0;
         }
-        int i12 = this.f10247r;
-        DatagramPacket datagramPacket = this.f10243c;
+        int i12 = this.f10246r;
+        DatagramPacket datagramPacket = this.f10242c;
         if (i12 == 0) {
             try {
-                DatagramSocket datagramSocket = this.f10244e;
+                DatagramSocket datagramSocket = this.f10243e;
                 datagramSocket.getClass();
                 datagramSocket.receive(datagramPacket);
                 int length = datagramPacket.getLength();
-                this.f10247r = length;
+                this.f10246r = length;
                 bytesTransferred(length);
             } catch (SocketTimeoutException e7) {
                 throw new j(e7, 2002);
@@ -110,10 +110,10 @@ public final class e0 extends c {
             }
         }
         int length2 = datagramPacket.getLength();
-        int i13 = this.f10247r;
+        int i13 = this.f10246r;
         int min = Math.min(i13, i11);
-        System.arraycopy(this.f10242b, length2 - i13, bArr, i10, min);
-        this.f10247r -= min;
+        System.arraycopy(this.f10241b, length2 - i13, bArr, i10, min);
+        this.f10246r -= min;
         return min;
     }
 }

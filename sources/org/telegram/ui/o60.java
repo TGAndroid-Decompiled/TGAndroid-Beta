@@ -8,12 +8,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class o60 extends org.telegram.ui.Components.rm0 {
+public final class o60 extends org.telegram.ui.Components.sm0 {
     public final int V2;
     public final Object W2;
 
-    public o60(Object obj, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, e6Var);
+    public o60(Object obj, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
         this.V2 = i10;
         this.W2 = obj;
     }
@@ -35,11 +35,11 @@ public final class o60 extends org.telegram.ui.Components.rm0 {
         switch (this.V2) {
             case 2:
                 i11 = ((SessionsActivity) this.W2).terminateAllSessionsRow;
-                org.telegram.ui.ActionBar.e6 e6Var = this.f30511n2;
+                org.telegram.ui.ActionBar.d6 d6Var = this.f30807n2;
                 if (i10 == i11) {
-                    return Integer.valueOf(org.telegram.ui.ActionBar.i6.m1(0.1f, org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21022p7, e6Var)));
+                    return Integer.valueOf(org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21007p7, d6Var)));
                 }
-                return Integer.valueOf(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20892i6, e6Var));
+                return Integer.valueOf(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20877i6, d6Var));
             default:
                 return super.W0(i10);
         }
@@ -54,25 +54,25 @@ public final class o60 extends org.telegram.ui.Components.rm0 {
             case 0:
                 super.dispatchDraw(canvas);
                 q60 q60Var = (q60) this.W2;
-                if (q60Var.f41073z0 != null && q60Var.A0 >= 1.0f) {
+                if (q60Var.f41049z0 != null && q60Var.A0 >= 1.0f) {
                     canvas.save();
-                    int measuredHeight = q60Var.f41073z0.getMeasuredHeight();
-                    kVar = ((org.telegram.ui.ActionBar.n2) q60Var).actionBar;
+                    int measuredHeight = q60Var.f41049z0.getMeasuredHeight();
+                    kVar = ((org.telegram.ui.ActionBar.m2) q60Var).actionBar;
                     canvas.translate(0.0f, -(measuredHeight - kVar.getMeasuredHeight()));
-                    q60Var.f41073z0.draw(canvas);
+                    q60Var.f41049z0.draw(canvas);
                     canvas.restore();
                     return;
                 }
                 return;
             case 1:
-                zp0 zp0Var = (zp0) this.W2;
-                Paint paint = zp0Var.f45085w;
-                RectF rectF = zp0Var.f45084s;
-                RectF rectF2 = zp0Var.f45083r;
-                RectF rectF3 = zp0Var.f45082n;
-                s4.d0 d0Var = zp0Var.f45078b;
-                if (!zp0Var.f45081f.isEmpty()) {
-                    float d = zp0Var.f45080e.d(zp0Var.d, false);
+                yp0 yp0Var = (yp0) this.W2;
+                Paint paint = yp0Var.f44475w;
+                RectF rectF = yp0Var.f44474s;
+                RectF rectF2 = yp0Var.f44473r;
+                RectF rectF3 = yp0Var.f44472n;
+                s4.d0 d0Var = yp0Var.f44468b;
+                if (!yp0Var.f44471f.isEmpty()) {
+                    float d = yp0Var.f44470e.d(yp0Var.d, false);
                     double d10 = d;
                     int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
                     int clamp2 = Utilities.clamp((int) Math.ceil(d10), arrayList.size() - 1, 0);
@@ -90,7 +90,7 @@ public final class o60 extends org.telegram.ui.Components.rm0 {
                         }
                         rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
                         AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
-                        paint.setColor(zp0Var.f45086x);
+                        paint.setColor(yp0Var.f44476x);
                         float height = rectF.height() / 2.0f;
                         canvas.drawRoundRect(rectF, height, height, paint);
                         super.dispatchDraw(canvas);
@@ -110,9 +110,9 @@ public final class o60 extends org.telegram.ui.Components.rm0 {
         switch (this.V2) {
             case 1:
                 super.invalidate();
-                kp0 kp0Var = ((zp0) this.W2).F;
-                if (kp0Var != null) {
-                    kp0Var.run();
+                jp0 jp0Var = ((yp0) this.W2).F;
+                if (jp0Var != null) {
+                    jp0Var.run();
                     return;
                 }
                 return;

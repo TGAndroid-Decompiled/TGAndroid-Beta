@@ -27,12 +27,12 @@ public final class fa {
         this.f1041g = new org.telegram.ui.Components.j5(evVar, 350L, isVar);
         g30 g30Var = new g30();
         this.f1038c = g30Var;
-        g30Var.f26589a = true;
-        g30Var.f26590b = true;
+        g30Var.f26583a = true;
+        g30Var.f26584b = true;
         b(false);
-        g30Var.f26591c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        g30Var.f26591c.setStyle(Paint.Style.STROKE);
-        g30Var.f26591c.setStrokeCap(Paint.Cap.ROUND);
+        g30Var.f26585c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+        g30Var.f26585c.setStyle(Paint.Style.STROKE);
+        g30Var.f26585c.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public final Paint a(RectF rectF) {
@@ -41,16 +41,16 @@ public final class fa {
         g30 g30Var = this.f1038c;
         g30Var.d(a2, a10, 0, 0);
         g30Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return g30Var.f26591c;
+        return g30Var.f26585c;
     }
 
     public final void b(boolean z10) {
-        d(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.hk, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.ik, false), z10);
+        d(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hk, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.ik, false), z10);
     }
 
     public final void c(MessagesController.PeerColor peerColor, boolean z10) {
         if (peerColor != null) {
-            d(peerColor.getStoryColor1(org.telegram.ui.ActionBar.i6.I.q()), peerColor.getStoryColor2(org.telegram.ui.ActionBar.i6.I.q()), z10);
+            d(peerColor.getStoryColor1(org.telegram.ui.ActionBar.h6.I.q()), peerColor.getStoryColor2(org.telegram.ui.ActionBar.h6.I.q()), z10);
         } else {
             b(z10);
         }

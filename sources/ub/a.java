@@ -4,16 +4,16 @@ import v7.c9;
 import v7.w8;
 import v7.z8;
 public final class a {
-    public final z8 f48926a;
-    public final e f48927b;
-    public final qb.d f48928c;
+    public final z8 f48969a;
+    public final e f48970b;
+    public final qb.d f48971c;
 
     public a(e eVar, qb.d dVar) {
         String str;
         z8 b10;
-        this.f48927b = eVar;
-        this.f48928c = dVar;
-        if (true != eVar.f48938g) {
+        this.f48970b = eVar;
+        this.f48971c = dVar;
+        if (true != eVar.f48981g) {
             str = "play-services-mlkit-language-id";
         } else {
             str = "language-id";
@@ -33,6 +33,6 @@ public final class a {
                 throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
             }
         }
-        this.f48926a = b10;
+        this.f48969a = b10;
     }
 }

@@ -4,19 +4,19 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
 public final class vb0 extends b6 {
-    public final wb0 f31788a;
+    public final wb0 f31735a;
 
     public vb0(wb0 wb0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
         super(document, fontMetricsInt);
-        this.f31788a = wb0Var;
+        this.f31735a = wb0Var;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        wb0 wb0Var = this.f31788a;
-        int i15 = wb0Var.f32639y;
+        wb0 wb0Var = this.f31735a;
+        int i15 = wb0Var.f32608y;
         int i16 = i14 + i12;
         int i17 = this.measuredSize;
-        wb0Var.f32631c.set((int) f7, hg.c.z(i16, i17, 2, i15), (int) (f7 + i17), ((i16 + i17) / 2) + i15);
+        wb0Var.f32600c.set((int) f7, hg.c.z(i16, i17, 2, i15), (int) (f7 + i17), ((i16 + i17) / 2) + i15);
     }
 }

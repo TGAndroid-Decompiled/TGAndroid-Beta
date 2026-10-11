@@ -1,23 +1,53 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-public abstract class e7 extends og.b {
-    public final int d;
-    public final ArrayList f37219e = new ArrayList();
+public abstract class e7 extends d7 {
+    public final ArrayList f37223f;
+    public final q7 h;
 
-    public e7(int i10) {
-        this.d = i10;
-    }
-
-    public abstract void F();
-
-    @Override
-    public final int h() {
-        return this.f37219e.size();
+    public e7(q7 q7Var, int i10) {
+        super(i10);
+        this.h = q7Var;
+        this.f37223f = new ArrayList();
     }
 
     @Override
-    public final int j(int i10) {
-        return ((l7) this.f37219e.get(i10)).f17129a;
+    public boolean D(s4.d1 d1Var) {
+        return !(this instanceof m7);
+    }
+
+    @Override
+    public void F() {
+        ArrayList arrayList;
+        ArrayList arrayList2 = this.f37223f;
+        arrayList2.clear();
+        ArrayList arrayList3 = this.f36928e;
+        arrayList2.addAll(arrayList3);
+        arrayList3.clear();
+        zh.b bVar = this.h.f41056f;
+        if (bVar != null) {
+            int i10 = this.d;
+            if (i10 == 1) {
+                arrayList = bVar.d;
+            } else if (i10 == 2) {
+                arrayList = bVar.f54790e;
+            } else if (i10 == 3) {
+                arrayList = bVar.f54791f;
+            } else if (i10 == 5) {
+                arrayList = bVar.f54792g;
+            } else if (i10 == 4) {
+                arrayList = bVar.h;
+            } else {
+                arrayList = null;
+            }
+            if (arrayList != null) {
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    ?? aVar = new og.a(2, true);
+                    aVar.d = (zh.a) arrayList.get(i11);
+                    arrayList3.add(aVar);
+                }
+            }
+        }
+        E(arrayList2, arrayList3);
     }
 }

@@ -11,18 +11,18 @@ import android.graphics.RectF;
 import android.os.Build;
 import org.telegram.messenger.Utilities;
 public final class id0 {
-    public static final float[] f27359k = new float[4];
-    public static final Matrix f27360l = new Matrix();
+    public static final float[] f27290k = new float[4];
+    public static final Matrix f27291l = new Matrix();
     public final gd0 d;
-    public int f27364e;
-    public int f27365f;
-    public int f27366g;
+    public int f27295e;
+    public int f27296f;
+    public int f27297g;
     public int h;
-    public final aa.a f27361a = new aa.a(new f2(23));
-    public final a5.a f27362b = new a5.a(14, (byte) 0);
-    public final z10 f27363c = new z10();
-    public final Matrix f27367i = new Matrix();
-    public final RectF f27368j = new RectF();
+    public final aa.a f27292a = new aa.a(new e2(25));
+    public final a5.a f27293b = new a5.a(14, (byte) 0);
+    public final z10 f27294c = new z10();
+    public final Matrix f27298i = new Matrix();
+    public final RectF f27299j = new RectF();
 
     public id0() {
         if (Build.VERSION.SDK_INT >= 33) {
@@ -33,9 +33,9 @@ public final class id0 {
     }
 
     public static void a(Matrix matrix, float[] fArr) {
-        Matrix matrix2 = f27360l;
+        Matrix matrix2 = f27291l;
         matrix.invert(matrix2);
-        float[] fArr2 = f27359k;
+        float[] fArr2 = f27290k;
         fArr2[0] = 0.0f;
         fArr2[1] = 0.0f;
         fArr2[2] = 1.0f;
@@ -55,40 +55,40 @@ public final class id0 {
     }
 
     public final void c(RectF rectF) {
-        RectF rectF2 = this.f27368j;
-        rectF2.set(0.0f, 0.0f, this.f27364e, this.f27365f);
+        RectF rectF2 = this.f27299j;
+        rectF2.set(0.0f, 0.0f, this.f27295e, this.f27296f);
         Matrix.ScaleToFit scaleToFit = Matrix.ScaleToFit.FILL;
-        Matrix matrix = this.f27367i;
+        Matrix matrix = this.f27298i;
         matrix.setRectToRect(rectF2, rectF, scaleToFit);
-        z10 z10Var = this.f27363c;
-        hd0 hd0Var = (hd0) z10Var.f33483c;
-        hd0Var.f26993b.set(matrix);
+        z10 z10Var = this.f27294c;
+        hd0 hd0Var = (hd0) z10Var.f33387c;
+        hd0Var.f26976b.set(matrix);
         BitmapShader bitmapShader = hd0Var.d;
         if (bitmapShader != null) {
             bitmapShader.setLocalMatrix(matrix);
         }
         hd0 hd0Var2 = (hd0) z10Var.d;
-        hd0Var2.f26993b.set(matrix);
+        hd0Var2.f26976b.set(matrix);
         BitmapShader bitmapShader2 = hd0Var2.d;
         if (bitmapShader2 != null) {
             bitmapShader2.setLocalMatrix(matrix);
         }
         gd0 gd0Var = this.d;
         if (gd0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr = gd0Var.f26708g;
+            float[] fArr = gd0Var.f26695g;
             a(matrix, fArr);
-            gd0Var.f26706e.a(fArr);
-            gd0Var.f26707f.a(fArr);
+            gd0Var.f26693e.a(fArr);
+            gd0Var.f26694f.a(fArr);
         }
     }
 
     public final void d(Matrix matrix) {
         boolean z10;
-        z10 z10Var = this.f27363c;
+        z10 z10Var = this.f27294c;
         float[] fArr = (float[]) z10Var.h;
         a(matrix, fArr);
-        hd0 hd0Var = (hd0) z10Var.f33484e;
-        hd0Var.f26993b.set(matrix);
+        hd0 hd0Var = (hd0) z10Var.f33388e;
+        hd0Var.f26976b.set(matrix);
         BitmapShader bitmapShader = hd0Var.d;
         if (bitmapShader != null) {
             bitmapShader.setLocalMatrix(matrix);
@@ -102,24 +102,24 @@ public final class id0 {
         hd0Var.a(z10);
         gd0 gd0Var = this.d;
         if (gd0Var != null && Build.VERSION.SDK_INT >= 33) {
-            float[] fArr2 = gd0Var.f26708g;
+            float[] fArr2 = gd0Var.f26695g;
             a(matrix, fArr2);
             hd0 hd0Var2 = gd0Var.d;
             if (b(fArr2[0]) && b(fArr2[1])) {
                 z11 = true;
             }
             hd0Var2.a(z11);
-            gd0Var.f26706e.b(fArr2);
-            gd0Var.f26707f.b(fArr2);
+            gd0Var.f26693e.b(fArr2);
+            gd0Var.f26694f.b(fArr2);
         }
     }
 
     public final Paint e(Bitmap bitmap, Bitmap bitmap2, int i10, int i11, int i12, boolean z10) {
         Bitmap bitmap3;
-        Bitmap bitmap4 = (Bitmap) this.f27361a.m(bitmap2);
+        Bitmap bitmap4 = (Bitmap) this.f27292a.m(bitmap2);
         if (i12 >= 0) {
             int k10 = i0.a.k(i10, ((Color.alpha(i10) * i11) * i12) / 25500);
-            a5.a aVar = this.f27362b;
+            a5.a aVar = this.f27293b;
             gh.a aVar2 = (gh.a) aVar.f300c;
             if (aVar2.a(bitmap) || k10 != aVar.f299b || ((Bitmap) aVar.d) == null) {
                 Bitmap bitmap5 = (Bitmap) aVar.d;
@@ -135,32 +135,32 @@ public final class id0 {
             bitmap3 = null;
         }
         Bitmap bitmap6 = bitmap3;
-        this.f27364e = bitmap.getWidth();
-        this.f27365f = bitmap.getHeight();
-        this.f27366g = bitmap4.getWidth();
+        this.f27295e = bitmap.getWidth();
+        this.f27296f = bitmap.getHeight();
+        this.f27297g = bitmap4.getWidth();
         this.h = bitmap4.getHeight();
         gd0 gd0Var = this.d;
         if (gd0Var != null && z10 && Build.VERSION.SDK_INT >= 33) {
             return gd0Var.a(bitmap, bitmap4, bitmap6, i11, i12);
         }
-        z10 z10Var = this.f27363c;
-        yt ytVar = (yt) z10Var.f33485f;
-        yt ytVar2 = (yt) z10Var.f33486g;
+        z10 z10Var = this.f27294c;
+        yt ytVar = (yt) z10Var.f33389f;
+        yt ytVar2 = (yt) z10Var.f33390g;
         hd0 hd0Var = (hd0) z10Var.d;
-        Paint paint = (Paint) z10Var.f33482b;
-        hd0 hd0Var2 = (hd0) z10Var.f33483c;
+        Paint paint = (Paint) z10Var.f33386b;
+        hd0 hd0Var2 = (hd0) z10Var.f33387c;
         boolean b10 = hd0Var2.b(bitmap);
-        hd0 hd0Var3 = (hd0) z10Var.f33484e;
+        hd0 hd0Var3 = (hd0) z10Var.f33388e;
         boolean b11 = b10 | hd0Var3.b(bitmap4);
         if (i12 >= 0) {
-            if ((hd0Var.b(bitmap6) | b11) || z10Var.f33481a != 1) {
-                z10Var.f33481a = 1;
+            if ((hd0Var.b(bitmap6) | b11) || z10Var.f33385a != 1) {
+                z10Var.f33385a = 1;
                 paint.setShader(new ComposeShader(hd0Var2.d, new ComposeShader(hd0Var.d, hd0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
                 return paint;
             }
-        } else if ((ytVar2.a(i0.a.k(-1, ((-i12) * i11) / 100)) | b11 | ytVar.a(-16777216)) || z10Var.f33481a != 2) {
-            z10Var.f33481a = 2;
-            paint.setShader(new ComposeShader((yf.i) ytVar.f33403b, new ComposeShader(new ComposeShader(hd0Var2.d, hd0Var3.d, PorterDuff.Mode.DST_IN), (yf.i) ytVar2.f33403b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
+        } else if ((ytVar2.a(i0.a.k(-1, ((-i12) * i11) / 100)) | b11 | ytVar.a(-16777216)) || z10Var.f33385a != 2) {
+            z10Var.f33385a = 2;
+            paint.setShader(new ComposeShader((yf.i) ytVar.f33331b, new ComposeShader(new ComposeShader(hd0Var2.d, hd0Var3.d, PorterDuff.Mode.DST_IN), (yf.i) ytVar2.f33331b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
             return paint;
         }
         return paint;

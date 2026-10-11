@@ -1,31 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class xo0 extends gg.h0 {
-    public final org.telegram.ui.ty I0;
-    public final Context J0;
-    public final org.telegram.ui.dy K0;
+import androidx.recyclerview.widget.RecyclerView;
+public final class xo0 extends s4.t0 {
+    public final int f32998a;
+    public final org.telegram.ui.cy f32999b;
 
-    public xo0(org.telegram.ui.dy dyVar, Context context, org.telegram.ui.ty tyVar, int i10, int i11, s4.j jVar, boolean z10, org.telegram.ui.ty tyVar2, Context context2) {
-        super(context, tyVar, i10, i11, jVar, z10);
-        this.K0 = dyVar;
-        this.I0 = tyVar2;
-        this.J0 = context2;
+    public xo0(org.telegram.ui.cy cyVar, int i10) {
+        this.f32998a = i10;
+        this.f32999b = cyVar;
     }
 
     @Override
-    public final void l() {
-        ai.w0 w0Var;
-        int i10 = this.B0;
-        super.l();
-        org.telegram.ui.dy dyVar = this.K0;
-        if (!dyVar.I0 && (w0Var = dyVar.V) != null) {
-            w0Var.u0(0);
-            dyVar.I0 = true;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f32998a) {
+            case 0:
+                this.f32999b.S(i10, i11);
+                return;
+            default:
+                this.f32999b.S(i10, i11);
+                return;
         }
-        if (h() != 0 || i10 == 0 || this.D0 > 0) {
-            return;
-        }
-        dyVar.W.e(false, false);
     }
 }

@@ -10,9 +10,9 @@ import java.util.Arrays;
 import v7.u6;
 import v7.v7;
 public final class b implements o0 {
-    public final String f9559a;
-    public final byte[] f9560b;
-    public final int f9561c;
+    public final String f9558a;
+    public final byte[] f9559b;
+    public final int f9560c;
     public final int d;
 
     public b(String str, byte[] bArr, int i10, int i11) {
@@ -75,9 +75,9 @@ public final class b implements o0 {
                 e2.d.b(i11 == 0);
                 break;
         }
-        this.f9559a = str;
-        this.f9560b = bArr;
-        this.f9561c = i10;
+        this.f9558a = str;
+        this.f9559b = bArr;
+        this.f9560c = i10;
         this.d = i11;
     }
 
@@ -92,8 +92,8 @@ public final class b implements o0 {
     }
 
     public final ArrayList d() {
-        e2.d.f("Metadata is not an auxiliary tracks map", this.f9559a.equals("auxiliary.tracks.map"));
-        byte[] bArr = this.f9560b;
+        e2.d.f("Metadata is not an auxiliary tracks map", this.f9558a.equals("auxiliary.tracks.map"));
+        byte[] bArr = this.f9559b;
         byte b10 = bArr[1];
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < b10; i10 = e2.e(bArr[i10 + 2], i10, 1, arrayList)) {
@@ -107,7 +107,7 @@ public final class b implements o0 {
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f9559a.equals(bVar.f9559a) && Arrays.equals(this.f9560b, bVar.f9560b) && this.f9561c == bVar.f9561c && this.d == bVar.d) {
+            if (this.f9558a.equals(bVar.f9558a) && Arrays.equals(this.f9559b, bVar.f9559b) && this.f9560c == bVar.f9560c && this.d == bVar.d) {
                 return true;
             }
         }
@@ -115,15 +115,15 @@ public final class b implements o0 {
     }
 
     public final int hashCode() {
-        return ((((Arrays.hashCode(this.f9560b) + a1.g.h(527, 31, this.f9559a)) * 31) + this.f9561c) * 31) + this.d;
+        return ((((Arrays.hashCode(this.f9559b) + a1.g.h(527, 31, this.f9558a)) * 31) + this.f9560c) * 31) + this.d;
     }
 
     public final String toString() {
         String sb2;
         boolean z10;
         boolean z11;
-        String str = this.f9559a;
-        byte[] bArr = this.f9560b;
+        String str = this.f9558a;
+        byte[] bArr = this.f9559b;
         int i10 = this.d;
         if (i10 != 0) {
             if (i10 != 1) {

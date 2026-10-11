@@ -7,13 +7,13 @@ public final class ik extends FragmentContextView {
     public final int R0;
     public final zn S0;
 
-    public ik(zn znVar, Context context, zn znVar2, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, znVar2, null, true, e6Var);
+    public ik(zn znVar, Context context, zn znVar2, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, znVar2, null, true, d6Var);
         this.R0 = i10;
         switch (i10) {
             case 1:
                 this.S0 = znVar;
-                super(context, znVar2, null, false, e6Var);
+                super(context, znVar2, null, false, d6Var);
                 return;
             default:
                 this.S0 = znVar;

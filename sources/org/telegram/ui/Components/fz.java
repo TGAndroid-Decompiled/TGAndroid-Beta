@@ -15,45 +15,45 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class fz extends qm0 {
-    public as E;
+public final class fz extends rm0 {
+    public bs E;
     public boolean F;
     public int G;
     public int H;
     public boolean K;
     public final b00 L;
-    public final Context f26536c;
+    public final Context f26520c;
     public final boolean d;
-    public final hz f26537e;
-    public final int f26538f;
+    public final hz f26521e;
+    public final int f26522f;
     public int h;
-    public TLRPC.User f26539n;
-    public String f26540r;
-    public boolean f26541s;
+    public TLRPC.User f26523n;
+    public String f26524r;
+    public boolean f26525s;
     public boolean v;
-    public String f26542w;
-    public final ArrayList f26543x = new ArrayList();
-    public final HashMap f26544y = new HashMap();
+    public String f26526w;
+    public final ArrayList f26527x = new ArrayList();
+    public final HashMap f26528y = new HashMap();
     public int I = -1;
     public int J = -1;
 
     public fz(b00 b00Var, Context context, boolean z10, int i10) {
         hz hzVar;
         this.L = b00Var;
-        this.f26536c = context;
+        this.f26520c = context;
         this.d = z10;
-        this.f26538f = i10;
+        this.f26522f = i10;
         if (z10) {
             hzVar = null;
         } else {
             hzVar = new hz(b00Var, context);
         }
-        this.f26537e = hzVar;
+        this.f26521e = hzVar;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47706f == 0) {
+        if (d1Var.f47752f == 0) {
             return true;
         }
         return false;
@@ -61,49 +61,49 @@ public final class fz extends qm0 {
 
     public final void E(String str, String str2, boolean z10, boolean z11, boolean z12, String str3, TLObject tLObject) {
         boolean z13;
-        if (str != null && str.equals(this.f26542w)) {
+        if (str != null && str.equals(this.f26526w)) {
             this.h = 0;
             if (z12 && (!(tLObject instanceof TLRPC.messages_BotResults) || ((TLRPC.messages_BotResults) tLObject).results.isEmpty())) {
                 F(str, str2, z10, z11, false);
                 return;
             }
-            HashMap hashMap = this.f26544y;
+            HashMap hashMap = this.f26528y;
             boolean z14 = this.d;
-            ArrayList arrayList = this.f26543x;
+            ArrayList arrayList = this.f26527x;
             b00 b00Var = this.L;
             if (!z14 && TextUtils.isEmpty(str2)) {
                 arrayList.clear();
                 hashMap.clear();
-                b00Var.f24725o0.e(false);
+                b00Var.f24698o0.e(false);
             }
             if (tLObject instanceof TLRPC.messages_BotResults) {
                 int size = arrayList.size();
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) tLObject;
-                HashMap hashMap2 = b00Var.f24717l0;
-                fz fzVar = b00Var.f24722n0;
+                HashMap hashMap2 = b00Var.f24690l0;
+                fz fzVar = b00Var.f24695n0;
                 if (!hashMap2.containsKey(str3)) {
-                    b00Var.f24717l0.put(str3, messages_botresults);
+                    b00Var.f24690l0.put(str3, messages_botresults);
                 }
                 if (!z12 && messages_botresults.cache_time != 0) {
-                    MessagesStorage.getInstance(b00Var.f24689c1).saveBotCache(str3, messages_botresults);
+                    MessagesStorage.getInstance(b00Var.f24662c1).saveBotCache(str3, messages_botresults);
                 }
-                this.f26540r = messages_botresults.next_offset;
+                this.f26524r = messages_botresults.next_offset;
                 int i10 = 0;
                 for (int i11 = 0; i11 < messages_botresults.results.size(); i11++) {
                     TLRPC.BotInlineResult botInlineResult = messages_botresults.results.get(i11);
-                    if (!hashMap.containsKey(botInlineResult.f20040id)) {
+                    if (!hashMap.containsKey(botInlineResult.f20030id)) {
                         botInlineResult.query_id = messages_botresults.query_id;
                         arrayList.add(botInlineResult);
-                        hashMap.put(botInlineResult.f20040id, botInlineResult);
+                        hashMap.put(botInlineResult.f20030id, botInlineResult);
                         i10++;
                     }
                 }
-                if (size != arrayList.size() && !TextUtils.isEmpty(this.f26540r)) {
+                if (size != arrayList.size() && !TextUtils.isEmpty(this.f26524r)) {
                     z13 = false;
                 } else {
                     z13 = true;
                 }
-                this.f26541s = z13;
+                this.f26525s = z13;
                 if (i10 != 0) {
                     if (z11 && size == 0) {
                         l();
@@ -137,11 +137,11 @@ public final class fz extends qm0 {
                 l();
             }
             if (!z14) {
-                if (b00Var.f24705h0.getAdapter() != this) {
-                    b00Var.f24705h0.setAdapter(this);
+                if (b00Var.f24678h0.getAdapter() != this) {
+                    b00Var.f24678h0.setAdapter(this);
                 }
                 if (z11 && !TextUtils.isEmpty(str) && TextUtils.isEmpty(str2)) {
-                    b00Var.f24708i0.h1(0, 0);
+                    b00Var.f24681i0.h1(0, 0);
                     b00Var.F(2);
                 }
             }
@@ -153,21 +153,21 @@ public final class fz extends qm0 {
         b00 b00Var = this.L;
         if (i10 != 0) {
             if (i10 >= 0) {
-                ConnectionsManager.getInstance(b00Var.f24689c1).cancelRequest(this.h, true);
+                ConnectionsManager.getInstance(b00Var.f24662c1).cancelRequest(this.h, true);
             }
             this.h = 0;
         }
-        this.f26542w = str;
+        this.f26526w = str;
         this.v = z11;
-        hz hzVar = this.f26537e;
+        hz hzVar = this.f26521e;
         if (hzVar != null) {
             hzVar.a(z11);
         }
-        int i11 = b00Var.f24689c1;
-        HashMap hashMap = b00Var.f24717l0;
-        dx dxVar = b00Var.f24705h0;
-        gx gxVar = b00Var.f24725o0;
-        int i12 = b00Var.f24689c1;
+        int i11 = b00Var.f24662c1;
+        HashMap hashMap = b00Var.f24690l0;
+        dx dxVar = b00Var.f24678h0;
+        gx gxVar = b00Var.f24698o0;
+        int i12 = b00Var.f24662c1;
         TLObject userOrChat = MessagesController.getInstance(i11).getUserOrChat(MessagesController.getInstance(i12).gifSearchBot);
         boolean z13 = userOrChat instanceof TLRPC.User;
         boolean z14 = this.d;
@@ -190,7 +190,7 @@ public final class fz extends qm0 {
         if (!z14 && TextUtils.isEmpty(str2)) {
             gxVar.e(true);
         }
-        this.f26539n = (TLRPC.User) userOrChat;
+        this.f26523n = (TLRPC.User) userOrChat;
         final String j3 = com.google.android.gms.internal.vision.e2.j("gif_search_", str, "_", str2);
         RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
@@ -211,18 +211,18 @@ public final class fz extends qm0 {
             }
         };
         if (!z12 && !z14 && z11 && TextUtils.isEmpty(str2)) {
-            this.f26543x.clear();
-            this.f26544y.clear();
+            this.f26527x.clear();
+            this.f26528y.clear();
             if (dxVar.getAdapter() != this) {
                 dxVar.setAdapter(this);
             }
             l();
-            b00Var.f24708i0.h1(0, 0);
+            b00Var.f24681i0.h1(0, 0);
             b00Var.F(2);
         }
         if (z12 && hashMap.containsKey(j3)) {
             E(str, str2, z10, z11, true, j3, (TLObject) hashMap.get(j3));
-        } else if (b00Var.f24714k0.f27474a.contains(j3)) {
+        } else if (b00Var.f24687k0.f27487a.contains(j3)) {
         } else {
             if (z12) {
                 this.h = -1;
@@ -234,7 +234,7 @@ public final class fz extends qm0 {
                 str = "";
             }
             tL_messages_getInlineBotResults.query = str;
-            tL_messages_getInlineBotResults.bot = MessagesController.getInstance(i12).getInputUser(this.f26539n);
+            tL_messages_getInlineBotResults.bot = MessagesController.getInstance(i12).getInputUser(this.f26523n);
             tL_messages_getInlineBotResults.offset = str2;
             tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
             this.h = ConnectionsManager.getInstance(i12).sendRequest(tL_messages_getInlineBotResults, requestDelegate);
@@ -248,34 +248,34 @@ public final class fz extends qm0 {
             b00 b00Var = this.L;
             if (i10 != 0) {
                 if (i10 >= 0) {
-                    ConnectionsManager.getInstance(b00Var.f24689c1).cancelRequest(this.h, true);
+                    ConnectionsManager.getInstance(b00Var.f24662c1).cancelRequest(this.h, true);
                 }
                 this.h = 0;
             }
             this.v = false;
-            hz hzVar = this.f26537e;
+            hz hzVar = this.f26521e;
             if (hzVar != null) {
                 hzVar.a(false);
             }
-            as asVar = this.E;
-            if (asVar != null) {
-                AndroidUtilities.cancelRunOnUIThread(asVar);
+            bs bsVar = this.E;
+            if (bsVar != null) {
+                AndroidUtilities.cancelRunOnUIThread(bsVar);
             }
             if (TextUtils.isEmpty(str)) {
-                this.f26542w = null;
+                this.f26526w = null;
                 if (this.K) {
                     F("", "", true, true, true);
                     return;
                 }
-                iy iyVar = b00Var.f24728p0;
-                dx dxVar = b00Var.f24705h0;
+                iy iyVar = b00Var.f24701p0;
+                dx dxVar = b00Var.f24678h0;
                 int currentPosition = iyVar.getCurrentPosition();
-                if (currentPosition != b00Var.f24735r0 && currentPosition != b00Var.f24739s0) {
-                    H(MessagesController.getInstance(b00Var.f24689c1).gifSearchEmojies.get(currentPosition - b00Var.f24742t0));
+                if (currentPosition != b00Var.f24708r0 && currentPosition != b00Var.f24712s0) {
+                    H(MessagesController.getInstance(b00Var.f24662c1).gifSearchEmojies.get(currentPosition - b00Var.f24715t0));
                     return;
                 }
                 s4.i0 adapter = dxVar.getAdapter();
-                fz fzVar = b00Var.f24722n0;
+                fz fzVar = b00Var.f24695n0;
                 if (adapter != fzVar) {
                     dxVar.setAdapter(fzVar);
                     return;
@@ -283,23 +283,23 @@ public final class fz extends qm0 {
                 return;
             }
             String lowerCase = str.toLowerCase();
-            this.f26542w = lowerCase;
+            this.f26526w = lowerCase;
             if (!TextUtils.isEmpty(lowerCase)) {
-                as asVar2 = new as(12, this, str);
-                this.E = asVar2;
+                bs bsVar2 = new bs(11, this, str);
+                this.E = bsVar2;
                 if (z10) {
                     j3 = 300;
                 } else {
                     j3 = 0;
                 }
-                AndroidUtilities.runOnUIThread(asVar2, j3);
+                AndroidUtilities.runOnUIThread(bsVar2, j3);
             }
         }
     }
 
     public final void H(String str) {
-        if (this.v && TextUtils.equals(this.f26542w, str)) {
-            this.L.f24708i0.h1(0, 0);
+        if (this.v && TextUtils.equals(this.f26526w, str)) {
+            this.L.f24681i0.h1(0, 0);
         } else {
             F(str, "", true, true, true);
         }
@@ -313,7 +313,7 @@ public final class fz extends qm0 {
         if (z10) {
             this.G = this.H;
         }
-        ArrayList arrayList = this.f26543x;
+        ArrayList arrayList = this.f26527x;
         if (!arrayList.isEmpty()) {
             if (z10 && this.H > 0) {
                 int i10 = this.G;
@@ -339,7 +339,7 @@ public final class fz extends qm0 {
         if (z10 && i10 == this.I) {
             return 2;
         }
-        if (!z10 && this.f26543x.isEmpty()) {
+        if (!z10 && this.f26527x.isEmpty()) {
             return 3;
         }
         return 0;
@@ -348,26 +348,26 @@ public final class fz extends qm0 {
     @Override
     public final void l() {
         int i10;
-        if (this.d && (i10 = this.f26538f) != 0) {
+        if (this.d && (i10 = this.f26522f) != 0) {
             b00 b00Var = this.L;
             if (i10 == Integer.MAX_VALUE) {
-                this.H = b00Var.f24709i1.size();
+                this.H = b00Var.f24682i1.size();
             } else {
-                dx dxVar = b00Var.f24705h0;
-                gz gzVar = b00Var.f24708i0;
+                dx dxVar = b00Var.f24678h0;
+                gz gzVar = b00Var.f24681i0;
                 if (dxVar.getMeasuredWidth() != 0) {
-                    int measuredWidth = b00Var.f24705h0.getMeasuredWidth();
+                    int measuredWidth = b00Var.f24678h0.getMeasuredWidth();
                     int i11 = gzVar.J;
                     int dp = AndroidUtilities.dp(100.0f);
                     this.H = 0;
-                    int size = b00Var.f24709i1.size();
+                    int size = b00Var.f24682i1.size();
                     int i12 = i11;
                     int i13 = 0;
                     int i14 = 0;
                     for (int i15 = 0; i15 < size; i15++) {
-                        TLRPC.Document document = (TLRPC.Document) b00Var.f24709i1.get(i15);
-                        nw0 C1 = e00.C1(gzVar.F1(document, document.attributes));
-                        int min = Math.min(i11, (int) Math.floor((((C1.f29260a / C1.f29261b) * dp) / measuredWidth) * i11));
+                        TLRPC.Document document = (TLRPC.Document) b00Var.f24682i1.get(i15);
+                        ow0 C1 = e00.C1(gzVar.F1(document, document.attributes));
+                        int min = Math.min(i11, (int) Math.floor((((C1.f29541a / C1.f29542b) * dp) / measuredWidth) * i11));
                         if (i12 < min) {
                             this.H += i13;
                             i14++;
@@ -392,16 +392,16 @@ public final class fz extends qm0 {
 
     @Override
     public final void v(s4.d1 d1Var, int i10) {
-        if (d1Var.f47706f != 0) {
+        if (d1Var.f47752f != 0) {
             return;
         }
-        org.telegram.ui.Cells.f2 f2Var = (org.telegram.ui.Cells.f2) d1Var.f47702a;
+        org.telegram.ui.Cells.f2 f2Var = (org.telegram.ui.Cells.f2) d1Var.f47748a;
         int i11 = this.J;
         if (i11 >= 0 && i10 >= i11) {
-            f2Var.e((TLRPC.BotInlineResult) this.f26543x.get(i10 - i11), this.f26539n, true, false, false, true);
+            f2Var.e((TLRPC.BotInlineResult) this.f26527x.get(i10 - i11), this.f26523n, true, false, false, true);
             return;
         }
-        TLRPC.Document document = (TLRPC.Document) this.L.f24709i1.get(i10);
+        TLRPC.Document document = (TLRPC.Document) this.L.f24682i1.get(i10);
         f2Var.getClass();
         f2Var.d(0, document, "gif" + document);
     }
@@ -414,11 +414,11 @@ public final class fz extends qm0 {
             if (i10 != 1) {
                 if (i10 != 2) {
                     ViewGroup.LayoutParams q0Var = new s4.q0(-1, -2);
-                    View view = this.f26537e;
+                    View view = this.f26521e;
                     view.setLayoutParams(q0Var);
                     o8Var = view;
                 } else {
-                    org.telegram.ui.Cells.o8 o8Var2 = new org.telegram.ui.Cells.o8(this.f26536c, false, false, b00Var.Z1, b00Var.f24710i2);
+                    org.telegram.ui.Cells.o8 o8Var2 = new org.telegram.ui.Cells.o8(this.f26520c, false, false, b00Var.Z1, b00Var.f24683i2);
                     o8Var2.b(0, LocaleController.getString(R.string.FeaturedGifs));
                     s4.q0 q0Var2 = new s4.q0(-1, -2);
                     ((ViewGroup.MarginLayoutParams) q0Var2).topMargin = AndroidUtilities.dp(2.5f);
@@ -428,11 +428,11 @@ public final class fz extends qm0 {
                 }
             } else {
                 View view2 = new View(b00Var.getContext());
-                view2.setLayoutParams(new s4.q0(-1, b00Var.f24685b1));
+                view2.setLayoutParams(new s4.q0(-1, b00Var.f24658b1));
                 o8Var = view2;
             }
         } else {
-            org.telegram.ui.Cells.f2 f2Var = new org.telegram.ui.Cells.f2(this.f26536c);
+            org.telegram.ui.Cells.f2 f2Var = new org.telegram.ui.Cells.f2(this.f26520c);
             f2Var.setIsKeyboard(true);
             f2Var.setCanPreviewGif(true);
             o8Var = f2Var;

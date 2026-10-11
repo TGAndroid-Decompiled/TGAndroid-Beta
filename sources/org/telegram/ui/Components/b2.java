@@ -3,24 +3,24 @@ package org.telegram.ui.Components;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
 public final class b2 implements Runnable {
-    public final int f24808a;
-    public final Utilities.Callback f24809b;
-    public final HashMap f24810c;
+    public final int f24780a;
+    public final Utilities.Callback f24781b;
+    public final HashMap f24782c;
 
     public b2(Utilities.Callback callback, HashMap hashMap, int i10) {
-        this.f24808a = i10;
-        this.f24809b = callback;
-        this.f24810c = hashMap;
+        this.f24780a = i10;
+        this.f24781b = callback;
+        this.f24782c = hashMap;
     }
 
     @Override
     public final void run() {
-        switch (this.f24808a) {
+        switch (this.f24780a) {
             case 0:
-                this.f24809b.run(this.f24810c);
+                this.f24781b.run(this.f24782c);
                 return;
             default:
-                this.f24809b.run(this.f24810c);
+                this.f24781b.run(this.f24782c);
                 return;
         }
     }

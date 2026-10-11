@@ -3,13 +3,13 @@ package e2;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
 public final class t {
-    public final WeakReference f8574a;
-    public final Executor f8575b;
-    public final u f8576c;
+    public final WeakReference f8573a;
+    public final Executor f8574b;
+    public final u f8575c;
 
     public t(u uVar, y2.e eVar, Executor executor) {
-        this.f8576c = uVar;
-        this.f8574a = new WeakReference(eVar);
-        this.f8575b = executor;
+        this.f8575c = uVar;
+        this.f8573a = new WeakReference(eVar);
+        this.f8574b = executor;
     }
 }

@@ -180,11 +180,11 @@ public abstract class c extends IntentService {
         notificationChannel.setShowBadge(false);
         ((NotificationManager) getApplicationContext().getSystemService(NotificationManager.class)).createNotificationChannel(notificationChannel);
         r rVar = new r(getApplicationContext(), "Assistant_verifier");
-        rVar.f8480q = "Assistant_verifier";
-        rVar.f8469e = r.d(getApplicationContext().getResources().getString(2131230721));
+        rVar.f8479q = "Assistant_verifier";
+        rVar.f8468e = r.d(getApplicationContext().getResources().getString(2131230721));
         rVar.E.icon = 17301545;
-        rVar.f8473j = -2;
-        rVar.f8486x = 1;
+        rVar.f8472j = -2;
+        rVar.f8485x = 1;
         startForeground(10000, rVar.b());
     }
 }

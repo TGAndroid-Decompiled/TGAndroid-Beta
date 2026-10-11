@@ -7,8 +7,8 @@ public final class tx extends jw {
     public final TLRPC.StickerSet W;
     public final b00 X;
 
-    public tx(b00 b00Var, org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
-        super(n2Var, context, e6Var, arrayList);
+    public tx(b00 b00Var, org.telegram.ui.ActionBar.m2 m2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(m2Var, context, d6Var, arrayList);
         this.X = b00Var;
         this.W = stickerSet;
     }
@@ -16,21 +16,21 @@ public final class tx extends jw {
     @Override
     public final void Y(boolean z10) {
         b00 b00Var = this.X;
-        ArrayList arrayList = b00Var.f24729p1;
+        ArrayList arrayList = b00Var.f24702p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f20069id))) {
-                arrayList.add(Long.valueOf(stickerSet.f20069id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f20059id))) {
+                arrayList.add(Long.valueOf(stickerSet.f20059id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f20069id));
+            arrayList.remove(Long.valueOf(stickerSet.f20059id));
         }
         b00Var.T();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f24750v2 = false;
+        this.X.f24723v2 = false;
         super.dismiss();
     }
 }

@@ -1,40 +1,56 @@
 package org.telegram.ui;
 
-import android.view.ContextThemeWrapper;
-import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class vr {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f43014a;
-    public final LinearLayout f43015b;
-    public final qr0 f43016c;
+import android.graphics.drawable.Drawable;
+public final class vr implements Drawable.Callback {
+    public final int f43122a;
+    public final Drawable f43123b;
 
-    public vr(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.yh0 yh0Var, qr0 qr0Var) {
-        this.f43016c = qr0Var;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
-        this.f43014a = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
-        org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
-        c10.setOnClickListener(new ur(yh0Var, 0));
-        c10.c(-328966, -328966);
-        c10.setSelectorColor(268435455);
-        View x5Var = new ai.x5(contextThemeWrapper, 11);
-        x5Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
-        x5Var.setBackgroundColor(-15198184);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(x5Var);
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) x5Var.getLayoutParams();
-        if (LocaleController.isRTL) {
-            layoutParams.gravity = 5;
+    public vr(int i10, Drawable drawable) {
+        this.f43122a = i10;
+        this.f43123b = drawable;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f43122a) {
+            case 0:
+                ((wr) this.f43123b).invalidateSelf();
+                return;
+            default:
+                org.telegram.ui.Cells.w0 w0Var = ((i11) this.f43123b).h;
+                if (w0Var != null) {
+                    w0Var.invalidate();
+                    return;
+                }
+                return;
         }
-        layoutParams.width = -1;
-        layoutParams.height = AndroidUtilities.dp(8.0f);
-        x5Var.setLayoutParams(layoutParams);
-        LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
-        this.f43015b = linearLayout;
-        linearLayout.setOrientation(1);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        switch (this.f43122a) {
+            case 0:
+                ((wr) this.f43123b).scheduleSelf(runnable, j3);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f43122a) {
+            case 0:
+                ((wr) this.f43123b).unscheduleSelf(runnable);
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void b(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void a(Drawable drawable, Runnable runnable, long j3) {
     }
 }

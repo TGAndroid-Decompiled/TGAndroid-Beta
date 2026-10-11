@@ -63,11 +63,11 @@ public class BotGuardHelper extends BaseController {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
                 ei.k3 k3Var = (ei.k3) it.next();
-                ei.e5 e5Var = k3Var.f9180v0;
-                if (e5Var != null && e5Var.f9041g == 5) {
-                    long j11 = e5Var.f9037b;
+                ei.e5 e5Var = k3Var.f9179v0;
+                if (e5Var != null && e5Var.f9040g == 5) {
+                    long j11 = e5Var.f9036b;
                     if (j11 == j3 || j11 == 0) {
-                        TLObject tLObject = e5Var.f9050q;
+                        TLObject tLObject = e5Var.f9049q;
                         if ((tLObject instanceof TLRPC.TL_webViewResultUrl) && ((TLRPC.TL_webViewResultUrl) tLObject).query_id == j10) {
                             k3Var.k(false);
                             return;
@@ -83,7 +83,7 @@ public class BotGuardHelper extends BaseController {
     }
 
     private void openGuardBotWebApp(long j3, long j10, long j11, boolean z10) {
-        org.telegram.ui.ActionBar.n2 R;
+        org.telegram.ui.ActionBar.m2 R;
         if (LaunchActivity.G1 == null || (R = LaunchActivity.R()) == null) {
             return;
         }
@@ -98,13 +98,13 @@ public class BotGuardHelper extends BaseController {
             }
         }
         this.queryIdToBotId.put(j11, j10);
-        org.telegram.ui.ActionBar.n2 R2 = LaunchActivity.R();
+        org.telegram.ui.ActionBar.m2 R2 = LaunchActivity.R();
         ei.e5 b10 = ei.e5.b(this.currentAccount, j3, j10, null, null, 5, 0, 0L, null, false, null, null, 0, false, false);
         b10.d = j11;
         ei.k3 k3Var = new ei.k3(LaunchActivity.G1, null);
         k3Var.x(false);
         k3Var.A0 = true;
-        k3Var.f9167k0 = LaunchActivity.G1;
+        k3Var.f9166k0 = LaunchActivity.G1;
         k3Var.t(R2, b10);
         k3Var.show();
     }

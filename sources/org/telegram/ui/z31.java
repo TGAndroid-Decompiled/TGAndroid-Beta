@@ -1,31 +1,28 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class z31 implements Runnable {
-    public final int f44518a;
-    public final b41 f44519b;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+public final class z31 extends org.telegram.ui.Cells.j3 {
+    public final a41 f44574x;
 
-    public z31(b41 b41Var, int i10) {
-        this.f44518a = i10;
-        this.f44519b = b41Var;
+    public z31(a41 a41Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, "", true, false, 1024, d6Var);
+        this.f44574x = a41Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44518a) {
-            case 0:
-                b41 b41Var = this.f44519b;
-                c41 c41Var = b41Var.v;
-                if (b41Var.f36175a == 0) {
-                    c41Var.dismiss();
-                    return;
-                } else {
-                    c41Var.onBackPressed();
-                    return;
-                }
-            default:
-                AndroidUtilities.showKeyboard(this.f44519b.f36180n.f22301b);
-                return;
+    public final void b(Editable editable) {
+        boolean z10;
+        a41 a41Var = this.f44574x;
+        ci.d dVar = a41Var.f35883s;
+        if (dVar != null) {
+            if (!a41Var.d.optional && TextUtils.isEmpty(a41Var.f35881n.getText())) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            dVar.setEnabled(z10);
         }
     }
 }

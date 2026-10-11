@@ -9,18 +9,18 @@ import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public abstract class hr extends Drawable {
-    public final int f27131a;
-    public Object f27132b;
+    public final int f27060a;
+    public Object f27061b;
 
     public hr() {
-        this.f27131a = 1;
+        this.f27060a = 1;
     }
 
     @Override
     public void applyTheme(Resources.Theme theme) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     drawable.applyTheme(theme);
                     return;
@@ -34,9 +34,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public void clearColorFilter() {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     drawable.clearColorFilter();
                     return;
@@ -52,9 +52,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public Drawable getCurrent() {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     return drawable.getCurrent();
                 }
@@ -66,9 +66,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public int getMinimumHeight() {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     return drawable.getMinimumHeight();
                 }
@@ -80,9 +80,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public int getMinimumWidth() {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     return drawable.getMinimumWidth();
                 }
@@ -99,9 +99,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public boolean getPadding(Rect rect) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     return drawable.getPadding(rect);
                 }
@@ -113,9 +113,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public int[] getState() {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     return drawable.getState();
                 }
@@ -127,9 +127,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public Region getTransparentRegion() {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     return drawable.getTransparentRegion();
                 }
@@ -141,9 +141,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public void jumpToCurrentState() {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     drawable.jumpToCurrentState();
                     return;
@@ -157,9 +157,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public boolean onLevelChange(int i10) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     return drawable.setLevel(i10);
                 }
@@ -171,14 +171,14 @@ public abstract class hr extends Drawable {
 
     @Override
     public void setAlpha(int i10) {
-        ((Paint) this.f27132b).setAlpha(i10);
+        ((Paint) this.f27061b).setAlpha(i10);
     }
 
     @Override
     public void setChangingConfigurations(int i10) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     drawable.setChangingConfigurations(i10);
                     return;
@@ -194,9 +194,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public void setColorFilter(int i10, PorterDuff.Mode mode) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     drawable.setColorFilter(i10, mode);
                     return;
@@ -212,9 +212,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public void setFilterBitmap(boolean z10) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     drawable.setFilterBitmap(z10);
                     return;
@@ -228,9 +228,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public void setHotspot(float f7, float f10) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     drawable.setHotspot(f7, f10);
                     return;
@@ -244,9 +244,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public void setHotspotBounds(int i10, int i11, int i12, int i13) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     drawable.setHotspotBounds(i10, i11, i12, i13);
                     return;
@@ -260,9 +260,9 @@ public abstract class hr extends Drawable {
 
     @Override
     public boolean setState(int[] iArr) {
-        switch (this.f27131a) {
+        switch (this.f27060a) {
             case 1:
-                Drawable drawable = (Drawable) this.f27132b;
+                Drawable drawable = (Drawable) this.f27061b;
                 if (drawable != null) {
                     return drawable.setState(iArr);
                 }
@@ -273,8 +273,8 @@ public abstract class hr extends Drawable {
     }
 
     public hr(View view) {
-        this.f27131a = 0;
-        this.f27132b = new Paint(1);
+        this.f27060a = 0;
+        this.f27061b = new Paint(1);
         if (view != null) {
             view.addOnAttachStateChangeListener(new ai.v2(this, 7));
             if (view.isAttachedToWindow()) {
@@ -285,7 +285,7 @@ public abstract class hr extends Drawable {
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
-        ((Paint) this.f27132b).setColorFilter(colorFilter);
+        ((Paint) this.f27061b).setColorFilter(colorFilter);
     }
 
     public void a() {

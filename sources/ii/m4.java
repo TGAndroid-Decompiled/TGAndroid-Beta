@@ -11,14 +11,14 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class m4 extends ReplacementSpan {
-    public final TL_iv.textButton f12570a;
-    public RichMessageLayout.RichButtonSpan f12571b;
-    public View f12572c;
+    public final TL_iv.textButton f12569a;
+    public RichMessageLayout.RichButtonSpan f12570b;
+    public View f12571c;
     public int d = UserConfig.selectedAccount;
-    public org.telegram.ui.ActionBar.e6 f12573e;
+    public org.telegram.ui.ActionBar.d6 f12572e;
 
     public m4(TL_iv.textButton textbutton) {
-        this.f12570a = textbutton;
+        this.f12569a = textbutton;
     }
 
     public static boolean c(TL_keyboard.InlineButtonType inlineButtonType) {
@@ -28,29 +28,29 @@ public final class m4 extends ReplacementSpan {
         return true;
     }
 
-    public final void a(int i10, View view, org.telegram.ui.ActionBar.e6 e6Var) {
+    public final void a(int i10, View view, org.telegram.ui.ActionBar.d6 d6Var) {
         View view2;
-        RichMessageLayout.RichButtonSpan richButtonSpan = this.f12571b;
-        if (richButtonSpan != null && (view2 = this.f12572c) != null) {
+        RichMessageLayout.RichButtonSpan richButtonSpan = this.f12570b;
+        if (richButtonSpan != null && (view2 = this.f12571c) != null) {
             richButtonSpan.detach(view2);
         }
-        this.f12572c = view;
+        this.f12571c = view;
         this.d = i10;
-        this.f12573e = e6Var;
-        this.f12571b = null;
+        this.f12572e = d6Var;
+        this.f12570b = null;
         b();
     }
 
     public final RichMessageLayout.RichButtonSpan b() {
-        if (this.f12571b == null) {
-            RichMessageLayout.RichButtonSpan createEditorButtonSpan = RichMessageLayout.createEditorButtonSpan(this.d, AndroidUtilities.dp(240.0f), this.f12573e, this.f12570a);
-            this.f12571b = createEditorButtonSpan;
-            View view = this.f12572c;
+        if (this.f12570b == null) {
+            RichMessageLayout.RichButtonSpan createEditorButtonSpan = RichMessageLayout.createEditorButtonSpan(this.d, AndroidUtilities.dp(240.0f), this.f12572e, this.f12569a);
+            this.f12570b = createEditorButtonSpan;
+            View view = this.f12571c;
             if (view != null) {
                 createEditorButtonSpan.attach(view);
             }
         }
-        return this.f12571b;
+        return this.f12570b;
     }
 
     public final void d(Editable editable) {

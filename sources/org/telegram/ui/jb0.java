@@ -1,47 +1,33 @@
 package org.telegram.ui;
 
-import android.content.ComponentName;
-import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class jb0 {
-    public static final jb0 h;
-    public static final jb0[] f38942n;
-    public final String f38943a;
-    public final int f38944b;
-    public final int f38945c;
-    public final int d;
-    public final boolean f38946e;
-    public ComponentName f38947f;
+public final class jb0 implements Runnable {
+    public final int f38965a;
+    public final ub0 f38966b;
 
-    static {
-        int i10 = R.drawable.icon_background_sa;
-        int i11 = R.mipmap.icon_foreground_sa;
-        jb0 jb0Var = new jb0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
-        h = jb0Var;
-        f38942n = new jb0[]{jb0Var, new jb0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new jb0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new jb0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new jb0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new jb0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
+    public jb0(ub0 ub0Var, int i10) {
+        this.f38965a = i10;
+        this.f38966b = ub0Var;
     }
 
-    public jb0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
-        this.f38943a = str2;
-        this.f38944b = i11;
-        this.f38945c = i12;
-        this.d = i13;
-        this.f38946e = z10;
-    }
-
-    public static jb0 valueOf(String str) {
-        return (jb0) Enum.valueOf(jb0.class, str);
-    }
-
-    public static jb0[] values() {
-        return (jb0[]) f38942n.clone();
-    }
-
-    public final ComponentName a(Context context) {
-        if (this.f38947f == null) {
-            String packageName = context.getPackageName();
-            this.f38947f = new ComponentName(packageName, "org.telegram.messenger." + this.f38943a);
+    @Override
+    public final void run() {
+        switch (this.f38965a) {
+            case 0:
+                ub0 ub0Var = this.f38966b;
+                ub0Var.f42510r.f22289b.requestFocus();
+                AndroidUtilities.showKeyboard(ub0Var.f42510r.f22289b);
+                return;
+            case 1:
+                ub0 ub0Var2 = this.f38966b;
+                ub0Var2.f42510r.f22289b.clearFocus();
+                AndroidUtilities.hideKeyboard(ub0Var2.f42510r.f22289b);
+                return;
+            default:
+                of.f.s(this.f38966b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
+                return;
         }
-        return this.f38947f;
     }
 }

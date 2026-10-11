@@ -1,17 +1,11 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class s01 extends org.telegram.ui.Cells.c9 {
-    public final y01 f41597r;
+public final class s01 extends org.telegram.ui.Cells.j {
+    public final x01 f41553c0;
 
-    public s01(y01 y01Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, boolean z11) {
-        super(18, context, e6Var, z10, z11);
-        this.f41597r = y01Var;
-    }
-
-    @Override
-    public final int a(int i10) {
-        this.f41597r.f44235e.getClass();
-        return i10;
+    public s01(x01 x01Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, m2Var, d6Var);
+        this.f41553c0 = x01Var;
     }
 }

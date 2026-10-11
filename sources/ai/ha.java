@@ -51,9 +51,9 @@ public final class ha implements Runnable {
         this.f1098c = j3;
     }
 
-    public ha(yh.m5 m5Var, boolean[] zArr, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, Utilities.Callback2 callback2) {
+    public ha(yh.n5 n5Var, boolean[] zArr, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, Utilities.Callback2 callback2) {
         this.f1096a = 5;
-        this.d = m5Var;
+        this.d = n5Var;
         this.f1099e = zArr;
         this.f1098c = j3;
         this.f1097b = tLObject;
@@ -61,9 +61,9 @@ public final class ha implements Runnable {
         this.h = callback2;
     }
 
-    public ha(yh.m5 m5Var, boolean[] zArr, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j3, Utilities.Callback2 callback2) {
+    public ha(yh.n5 n5Var, boolean[] zArr, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j3, Utilities.Callback2 callback2) {
         this.f1096a = 6;
-        this.d = m5Var;
+        this.d = n5Var;
         this.f1097b = zArr;
         this.f1099e = tL_payments_paymentFormStarGift;
         this.f1100f = starGift;

@@ -6,14 +6,14 @@ import m.f3;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.ui.Components.is;
 public final class o0 implements Runnable {
-    public final int f45755a;
-    public final s0 f45756b;
-    public final h1 f45757c;
+    public final int f45745a;
+    public final s0 f45746b;
+    public final h1 f45747c;
 
     public o0(s0 s0Var, h1 h1Var, int i10) {
-        this.f45755a = i10;
-        this.f45756b = s0Var;
-        this.f45757c = h1Var;
+        this.f45745a = i10;
+        this.f45746b = s0Var;
+        this.f45747c = h1Var;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class o0 implements Runnable {
         boolean z10;
         boolean z11;
         float f7;
-        int i10 = this.f45755a;
-        h1 h1Var = this.f45757c;
-        s0 s0Var = this.f45756b;
+        int i10 = this.f45745a;
+        h1 h1Var = this.f45747c;
+        s0 s0Var = this.f45746b;
         switch (i10) {
             case 0:
-                s0Var.f45801c = h1Var;
+                s0Var.f45791c = h1Var;
                 if (s0Var.h == null) {
                     s0Var.h = new RectF();
                 }
-                s0Var.f45801c.a(s0Var.h);
-                f3 f3Var = s0Var.f45799a;
+                s0Var.f45791c.a(s0Var.h);
+                f3 f3Var = s0Var.f45789a;
                 if (f3Var != null) {
                     f3Var.g();
                     return;
                 }
                 return;
             default:
-                if (h1Var != null && s0Var.f45813q == 0) {
-                    s0Var.f45813q = t1.b(s0Var.f45804g);
+                if (h1Var != null && s0Var.f45803q == 0) {
+                    s0Var.f45803q = t1.b(s0Var.f45794g);
                 }
                 boolean z12 = s0Var.H;
                 if (h1Var != null) {
@@ -72,7 +72,7 @@ public final class o0 implements Runnable {
                     s0Var.K.setInterpolator(is.h);
                     s0Var.K.start();
                     s0Var.d = h1Var;
-                    f3 f3Var2 = s0Var.f45799a;
+                    f3 f3Var2 = s0Var.f45789a;
                     if (f3Var2 != null) {
                         f3Var2.g();
                     }
@@ -83,7 +83,7 @@ public final class o0 implements Runnable {
                     return;
                 } else if (h1Var != s0Var.d) {
                     s0Var.d = h1Var;
-                    f3 f3Var3 = s0Var.f45799a;
+                    f3 f3Var3 = s0Var.f45789a;
                     if (f3Var3 != null) {
                         f3Var3.g();
                         return;

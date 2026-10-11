@@ -13,10 +13,10 @@ public final class h4 extends yi {
     public final int S2;
     public final NotificationCenter.NotificationCenterDelegate T2;
 
-    public h4(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(activity, n2Var2, false, false, true, e6Var);
+    public h4(org.telegram.ui.ActionBar.m2 m2Var, Activity activity, org.telegram.ui.ActionBar.m2 m2Var2, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(activity, m2Var2, false, false, true, d6Var);
         this.S2 = i10;
-        this.T2 = (NotificationCenter.NotificationCenterDelegate) n2Var;
+        this.T2 = (NotificationCenter.NotificationCenterDelegate) m2Var;
     }
 
     @Override
@@ -36,16 +36,16 @@ public final class h4 extends yi {
             case 2:
                 zn znVar = (zn) notificationCenterDelegate;
                 h4 h4Var2 = znVar.J1;
-                if (h4Var2 != null && (h4Var2.isShowing() || this.f33292x0)) {
+                if (h4Var2 != null && (h4Var2.isShowing() || this.f33273x0)) {
                     Activity parentActivity = znVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) znVar).classGuid;
+                    i10 = ((org.telegram.ui.ActionBar.m2) znVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 super.dismissInternal();
                 znVar.Y9(false, true);
                 sm smVar = znVar.X0;
                 if (smVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f46810a;
+                    WeakHashMap weakHashMap = r0.i0.f46856a;
                     r0.y.c(smVar);
                     return;
                 }
@@ -87,7 +87,7 @@ public final class h4 extends yi {
                 return;
             default:
                 zn znVar = (zn) this.T2;
-                boolean z10 = this.f33292x0;
+                boolean z10 = this.f33273x0;
                 boolean M = this.B0.M();
                 if (!M) {
                     znVar.D3 = false;
@@ -112,7 +112,7 @@ public final class h4 extends yi {
                     h4 h4Var5 = znVar.J1;
                     if (h4Var5 != null && h4Var5.isShowing()) {
                         Activity parentActivity = znVar.getParentActivity();
-                        i10 = ((org.telegram.ui.ActionBar.n2) znVar).classGuid;
+                        i10 = ((org.telegram.ui.ActionBar.m2) znVar).classGuid;
                         AndroidUtilities.requestAdjustResize(parentActivity, i10);
                     }
                     znVar.Y9(false, false);
@@ -122,8 +122,8 @@ public final class h4 extends yi {
         }
     }
 
-    public h4(f6 f6Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, false, false, true, e6Var);
+    public h4(f6 f6Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, null, false, false, true, d6Var);
         this.S2 = 0;
         this.T2 = f6Var;
     }

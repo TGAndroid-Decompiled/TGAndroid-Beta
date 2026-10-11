@@ -1,98 +1,32 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class k7 extends f7 {
-    public final ArrayList f39152n;
-    public final r7 f39153r;
+import j$.util.Objects;
+public final class k7 extends og.a {
+    public q6 f39216c;
+    public zh.a d;
 
-    public k7(r7 r7Var) {
-        super(r7Var, 2);
-        this.f39153r = r7Var;
-        this.f39152n = new ArrayList();
-    }
-
-    @Override
-    public final void F() {
-        boolean z10;
-        super.F();
-        ArrayList arrayList = this.f39152n;
-        arrayList.clear();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f37219e;
-            if (i10 < arrayList2.size()) {
-                String path = ((l7) arrayList2.get(i10)).d.f54738a.getPath();
-                if (((l7) arrayList2.get(i10)).d.d == 1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+    public final boolean equals(Object obj) {
+        zh.a aVar;
+        zh.a aVar2;
+        q6 q6Var;
+        q6 q6Var2;
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && k7.class == obj.getClass()) {
+            k7 k7Var = (k7) obj;
+            int i10 = this.f17175a;
+            if (i10 == k7Var.f17175a) {
+                if (i10 == 1 && (q6Var = this.f39216c) != null && (q6Var2 = k7Var.f39216c) != null) {
+                    if (q6Var.f41046a == q6Var2.f41046a) {
+                        return true;
+                    }
+                    return false;
+                } else if (i10 == 2 && (aVar = this.d) != null && (aVar2 = k7Var.d) != null) {
+                    return Objects.equals(aVar.f54781a, aVar2.f54781a);
                 }
-                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
-                i10++;
-            } else {
-                return;
             }
         }
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        boolean z10;
-        boolean z11;
-        String name;
-        float f7;
-        View view = d1Var.f47702a;
-        j7 j7Var = (j7) view;
-        org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) j7Var.f38885b.getChildAt(0);
-        ArrayList arrayList = this.f37219e;
-        zh.a aVar = ((l7) arrayList.get(i10)).d;
-        if (aVar == view.getTag()) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i10 != arrayList.size() - 1) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        view.setTag(aVar);
-        File file = aVar.f54738a;
-        long lastModified = file.lastModified();
-        if (aVar.h == 5) {
-            name = LocaleController.getString(R.string.AttachRound);
-        } else {
-            name = file.getName();
-        }
-        k7Var.d(name, LocaleController.formatDateAudio(lastModified / 1000, true), Utilities.getExtension(file.getName()), null, 0, z11);
-        if (!z10) {
-            k7Var.setPhoto(file.getPath());
-        }
-        org.telegram.ui.Components.y9 imageView = k7Var.getImageView();
-        if (aVar.h == 5) {
-            f7 = 20.0f;
-        } else {
-            f7 = 4.0f;
-        }
-        imageView.setRoundRadius(AndroidUtilities.dp(f7));
-        j7Var.d = z11;
-        j7Var.f38886c.setText(AndroidUtilities.formatFileSize(aVar.f54740c));
-        j7Var.f38884a.a(this.f39153r.f41336f.f54751j.contains(aVar), z10);
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        j7 j7Var = new j7(this, viewGroup.getContext(), 0);
-        j7Var.f38887e = 2;
-        j7Var.f38885b.addView(new org.telegram.ui.Cells.k7(viewGroup.getContext(), 3, null));
-        return new s4.d1(j7Var);
+        return false;
     }
 }

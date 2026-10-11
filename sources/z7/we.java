@@ -1,28 +1,36 @@
 package z7;
-public final class we {
-    public final String f54144a;
-    public final String f54145b;
-    public final String f54146c;
-    public final String d;
-    public final m f54147e;
-    public final String f54148f;
-    public final Boolean f54149g;
-    public final Boolean h;
-    public final Boolean f54150i;
-    public final Integer f54151j;
-    public final Integer f54152k;
 
-    public we(v7.e8 e8Var) {
-        this.f54144a = e8Var.f49211a;
-        this.f54145b = e8Var.f49212b;
-        this.f54146c = e8Var.f49213c;
-        this.d = e8Var.d;
-        this.f54147e = (m) e8Var.f49219k;
-        this.f54148f = e8Var.f49214e;
-        this.f54149g = (Boolean) e8Var.f49215f;
-        this.h = (Boolean) e8Var.f49216g;
-        this.f54150i = (Boolean) e8Var.h;
-        this.f54151j = e8Var.f49217i;
-        this.f54152k = (Integer) e8Var.f49218j;
+import java.util.Arrays;
+public final class we {
+    public final Boolean f54189a;
+    public final Boolean f54190b;
+    public final Boolean f54191c;
+    public final Boolean d;
+    public final Boolean f54192e;
+
+    public we(ci.u5 u5Var) {
+        this.f54189a = (Boolean) u5Var.f6064a;
+        this.f54190b = (Boolean) u5Var.f6065b;
+        this.f54191c = (Boolean) u5Var.f6066c;
+        this.d = (Boolean) u5Var.d;
+        this.f54192e = (Boolean) u5Var.f6067e;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof we)) {
+            return false;
+        }
+        we weVar = (we) obj;
+        if (n6.m.l(this.f54189a, weVar.f54189a) && n6.m.l(this.f54190b, weVar.f54190b) && n6.m.l(this.f54191c, weVar.f54191c) && n6.m.l(this.d, weVar.d) && n6.m.l(this.f54192e, weVar.f54192e)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f54189a, this.f54190b, this.f54191c, this.d, this.f54192e});
     }
 }

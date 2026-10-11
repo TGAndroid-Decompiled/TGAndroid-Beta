@@ -11,8 +11,8 @@ public final class dp extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     public final int T;
     public Object U;
 
-    public dp(Context context, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var, int i12) {
-        super(i10, i11, context, e6Var);
+    public dp(Context context, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var, int i12) {
+        super(i10, i11, context, d6Var);
         this.T = i12;
     }
 
@@ -63,8 +63,8 @@ public final class dp extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         }
     }
 
-    public dp(q80 q80Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(i10, i11, context, e6Var);
+    public dp(q80 q80Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
+        super(i10, i11, context, d6Var);
         this.T = 2;
         this.U = q80Var;
     }

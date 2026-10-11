@@ -3,14 +3,14 @@ package ai;
 import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.kx;
+import org.telegram.ui.jx;
 public final class s extends org.telegram.ui.ActionBar.m {
     public final int d = 1;
     public final FrameLayout f1682e;
 
-    public s(kx kxVar, Context context, com.google.firebase.messaging.m mVar) {
+    public s(jx jxVar, Context context, com.google.firebase.messaging.m mVar) {
         super(context, null, mVar);
-        this.f1682e = kxVar;
+        this.f1682e = jxVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class s extends org.telegram.ui.ActionBar.m {
         switch (this.d) {
             case 0:
                 super.c(lVar);
-                ((kx) this.f1682e).invalidate();
+                ((jx) this.f1682e).invalidate();
                 return;
             default:
                 super.c(lVar);
@@ -32,8 +32,8 @@ public final class s extends org.telegram.ui.ActionBar.m {
         }
     }
 
-    public s(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, com.google.firebase.messaging.m mVar) {
-        super(context, e6Var, mVar);
+    public s(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, com.google.firebase.messaging.m mVar) {
+        super(context, d6Var, mVar);
         this.f1682e = kVar;
     }
 }

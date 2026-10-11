@@ -30,7 +30,7 @@ public final class t1 implements Runnable {
                 return;
             case 3:
                 d2 d2Var = this.f1724b;
-                NotificationCenter.getInstance(d2Var.f809e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.v.f20052id));
+                NotificationCenter.getInstance(d2Var.f809e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.v.f20042id));
                 d2Var.u(true);
                 return;
             case 4:
@@ -45,7 +45,7 @@ public final class t1 implements Runnable {
                     DispatchQueue dispatchQueue = Utilities.globalQueue;
                     NativeInstance nativeInstance = d2Var2.E;
                     Objects.requireNonNull(nativeInstance);
-                    dispatchQueue.postRunnable(new org.telegram.messenger.voip.t0(nativeInstance, 3));
+                    dispatchQueue.postRunnable(new org.telegram.messenger.voip.s0(nativeInstance, 3));
                     d2Var2.M.clear();
                     d2Var2.E = null;
                 }
@@ -63,7 +63,7 @@ public final class t1 implements Runnable {
                     DispatchQueue dispatchQueue2 = Utilities.globalQueue;
                     NativeInstance nativeInstance2 = d2Var3.E;
                     Objects.requireNonNull(nativeInstance2);
-                    dispatchQueue2.postRunnable(new org.telegram.messenger.voip.t0(nativeInstance2, 3));
+                    dispatchQueue2.postRunnable(new org.telegram.messenger.voip.s0(nativeInstance2, 3));
                     d2Var3.M.clear();
                     d2Var3.E = null;
                 }

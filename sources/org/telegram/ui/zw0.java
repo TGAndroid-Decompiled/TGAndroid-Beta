@@ -1,33 +1,15 @@
 package org.telegram.ui;
+public final class zw0 extends a71 {
+    public final PremiumPreviewFragment f45126e;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class zw0 extends k71 {
-    public final ai.m0 f45129d2;
-    public final b71[] f45130e2;
-    public final PremiumPreviewFragment f45131f2;
-
-    public zw0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11, ai.m0 m0Var, b71[] b71VarArr) {
-        super(premiumPreviewFragment2, activity, true, num, i10, true, e6Var, i11);
-        this.f45131f2 = premiumPreviewFragment;
-        this.f45129d2 = m0Var;
-        this.f45130e2 = b71VarArr;
+    public zw0(PremiumPreviewFragment premiumPreviewFragment, yw0 yw0Var) {
+        super(yw0Var);
+        this.f45126e = premiumPreviewFragment;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        this.f45129d2.run(l4, num);
-        b71 b71Var = this.f45130e2[0];
-        if (b71Var != null) {
-            this.f45131f2.f34188s0 = null;
-            b71Var.dismiss();
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.f45126e.f34178s0 = null;
     }
 }

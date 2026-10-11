@@ -6,7 +6,7 @@ public abstract class n0 extends he.i {
     public int f477c;
 
     public n0(int i10) {
-        super(0L, he.k.f11124g);
+        super(0L, he.k.f11123g);
         this.f477c = i10;
     }
 

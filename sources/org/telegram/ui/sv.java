@@ -1,27 +1,94 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class sv implements Runnable {
-    public final int f41819a;
-    public final ty f41820b;
-    public final TLRPC.TL_attachMenuBot f41821c;
-    public final LaunchActivity d;
+import android.content.DialogInterface;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class sv implements DialogInterface.OnClickListener {
+    public final int f41863a;
+    public final NotificationCenter.NotificationCenterDelegate f41864b;
 
-    public sv(ty tyVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
-        this.f41819a = i10;
-        this.f41820b = tyVar;
-        this.f41821c = tL_attachMenuBot;
-        this.d = launchActivity;
+    public sv(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f41863a = i10;
+        this.f41864b = notificationCenterDelegate;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41819a) {
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        String str;
+        int i11 = 0;
+        switch (this.f41863a) {
             case 0:
-                ty.r0(this.f41820b, this.f41821c, this.d);
+                sy syVar = (sy) this.f41864b;
+                if (i10 == 0) {
+                    syVar.getMessagesStorage().readAllDialogs(1);
+                    return;
+                } else if (i10 != 1 || syVar.f41907e0 == null) {
+                    return;
+                } else {
+                    while (true) {
+                        ry[] ryVarArr = syVar.f41907e0;
+                        if (i11 < ryVarArr.length) {
+                            ry ryVar = ryVarArr[i11];
+                            if (ryVar.f41537s == 0 && ryVar.getVisibility() == 0) {
+                                org.telegram.ui.Cells.s2 N3 = sy.N3(syVar.f41907e0[i11]);
+                                oy oyVar = syVar.f41907e0[i11].f41530a;
+                                int i12 = oy.f40643t3;
+                                oyVar.A1(true, N3);
+                            }
+                            i11++;
+                        } else {
+                            return;
+                        }
+                    }
+                }
+                break;
+            case 1:
+                ug0 ug0Var = (ug0) this.f41864b;
+                if (i10 == 0) {
+                    BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
+                    ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
+                    org.telegram.ui.Components.ad a02 = org.telegram.ui.Components.ad.a0(ug0Var.V);
+                    int i13 = R.raw.chats_infotip;
+                    if (BuildVars.LOGS_ENABLED) {
+                        str = "Logs enabled.";
+                    } else {
+                        str = "Logs disabled.";
+                    }
+                    a02.Q(i13, 36, str).j();
+                    if (BuildVars.LOGS_ENABLED) {
+                        org.telegram.messenger.q.r(new StringBuilder("app start time = "), ApplicationLoader.startTime);
+                        try {
+                            FileLog.d("buildVersion = " + ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode);
+                            return;
+                        } catch (Exception e7) {
+                            FileLog.e(e7);
+                            return;
+                        }
+                    }
+                    return;
+                }
+                ProfileActivity.H4(ug0Var.V.getParentActivity(), false);
                 return;
+            case 2:
+                mn0 mn0Var = (mn0) this.f41864b;
+                if (i10 == 0) {
+                    mn0Var.f40032w = "male";
+                    mn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+                    return;
+                } else if (i10 == 1) {
+                    mn0Var.f40032w = "female";
+                    mn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
+                    return;
+                } else {
+                    mn0Var.getClass();
+                    return;
+                }
             default:
-                ty.f0(this.f41820b, this.f41821c, this.d);
+                h91.d0((h91) this.f41864b, i10);
                 return;
         }
     }

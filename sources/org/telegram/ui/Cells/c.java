@@ -6,30 +6,30 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class c extends TextView {
-    public boolean f21899a;
+    public boolean f21887a;
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f21899a) {
+        if (this.f21887a) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.i6.U1);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.h6.U1);
         }
         super.onDraw(canvas);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10 = this.f21899a;
+        boolean z10 = this.f21887a;
         if (motionEvent.getAction() == 0) {
-            this.f21899a = true;
+            this.f21887a = true;
         } else if (motionEvent.getAction() != 2) {
-            this.f21899a = false;
+            this.f21887a = false;
         }
-        if (z10 != this.f21899a) {
+        if (z10 != this.f21887a) {
             invalidate();
         }
-        if (!this.f21899a && !super.onTouchEvent(motionEvent)) {
+        if (!this.f21887a && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

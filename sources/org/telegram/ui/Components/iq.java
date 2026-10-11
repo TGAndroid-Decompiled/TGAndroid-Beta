@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class iq {
-    public float f27435g;
-    public float f27438k;
-    public final Path f27430a = new Path();
-    public final float[] f27431b = new float[4];
-    public final float[] f27432c = new float[4];
+    public float f27444g;
+    public float f27447k;
+    public final Path f27439a = new Path();
+    public final float[] f27440b = new float[4];
+    public final float[] f27441c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f27436i = new Random();
-    public final int f27434f = 6;
-    public final float f27433e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f27437j = new float[6];
+    public final Random f27445i = new Random();
+    public final int f27443f = 6;
+    public final float f27442e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
+    public final float[] f27446j = new float[6];
 
     public iq() {
-        for (int i10 = 0; i10 < this.f27434f; i10++) {
-            this.f27437j[i10] = (this.f27436i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f27443f; i10++) {
+            this.f27446j[i10] = (this.f27445i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class iq {
         int i10;
         float f12;
         iq iqVar = this;
-        float f13 = iqVar.f27435g;
+        float f13 = iqVar.f27444g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
-        float f16 = iqVar.f27433e;
+        float f16 = iqVar.f27442e;
         float f17 = max * f16 * iqVar.h;
-        Path path = iqVar.f27430a;
+        Path path = iqVar.f27439a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = iqVar.f27434f;
+            int i12 = iqVar.f27443f;
             if (i11 < i12) {
                 Matrix matrix = iqVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class iq {
                 } else {
                     f11 = f15;
                 }
-                float f19 = iqVar.f27438k;
-                float[] fArr = iqVar.f27437j;
+                float f19 = iqVar.f27447k;
+                float[] fArr = iqVar.f27446j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = iqVar.f27431b;
+                float[] fArr2 = iqVar.f27440b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class iq {
                 } else {
                     f12 = f22;
                 }
-                float f23 = iqVar.f27438k;
-                float[] fArr3 = iqVar.f27432c;
+                float f23 = iqVar.f27447k;
+                float[] fArr3 = iqVar.f27441c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

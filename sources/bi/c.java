@@ -36,7 +36,7 @@ public final class c implements wi {
         z zVar = this.f3895c;
         long j11 = zVar.d;
         yi yiVar = this.f3893a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33247j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33228j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -51,32 +51,32 @@ public final class c implements wi {
                     lc D = lc.D(zVar.f3940a.getParentActivity(), zVar.f3941b);
                     RectF rectF = D.H;
                     WindowManager.LayoutParams layoutParams = D.h;
-                    int i14 = D.f5465c;
-                    WindowManager windowManager = D.f5476f;
+                    int i14 = D.f5464c;
+                    WindowManager windowManager = D.f5475f;
                     if (!D.d) {
                         if (MessagesController.getInstance(i14).isFrozen()) {
                             org.telegram.ui.b.b(i14);
                         } else {
-                            D.f5526v0 = j11;
-                            D.f5530w0 = str;
-                            D.f5523u0 = false;
-                            D.f5472e = false;
+                            D.f5525v0 = j11;
+                            D.f5529w0 = str;
+                            D.f5522u0 = false;
+                            D.f5471e = false;
                             D.B2 = false;
-                            if (windowManager != null && (kcVar = D.f5499n) != null && kcVar.getParent() == null) {
-                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, D.f5499n, layoutParams);
-                                windowManager.addView(D.f5499n, layoutParams);
+                            if (windowManager != null && (kcVar = D.f5498n) != null && kcVar.getParent() == null) {
+                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, D.f5498n, layoutParams);
+                                windowManager.addView(D.f5498n, layoutParams);
                                 D.f0();
                             }
                             D.K1 = l4;
                             l4.J0 = j11;
                             l4.K0 = str;
                             D.O1 = l4.K ? 1 : 0;
-                            D.f5517s0.f4727g = false;
+                            D.f5516s0.f4726g = false;
                             D.J = 0;
                             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
                             D.G = AndroidUtilities.dp(8.0f);
-                            D.f5512r.c();
-                            xb xbVar = D.f5483h0;
+                            D.f5511r.c();
+                            xb xbVar = D.f5482h0;
                             int i15 = D.J;
                             if (i15 != 1 && i15 != 0) {
                                 i13 = -14737633;
@@ -84,21 +84,21 @@ public final class c implements wi {
                                 i13 = 0;
                             }
                             xbVar.setBackgroundColor(i13);
-                            D.f5512r.setTranslationX(0.0f);
-                            D.f5512r.setTranslationY(0.0f);
-                            D.f5512r.b(0.0f);
-                            D.f5512r.setScaleX(1.0f);
-                            D.f5512r.setScaleY(1.0f);
+                            D.f5511r.setTranslationX(0.0f);
+                            D.f5511r.setTranslationY(0.0f);
+                            D.f5511r.b(0.0f);
+                            D.f5511r.setScaleX(1.0f);
+                            D.f5511r.setScaleY(1.0f);
                             D.K = 0.0f;
-                            AndroidUtilities.lockOrientation(D.f5461b, 1);
+                            AndroidUtilities.lockOrientation(D.f5460b, 1);
                             l8 l8Var = D.K1;
                             if (l8Var != null) {
-                                D.f5467c1.setText(l8Var.C0);
+                                D.f5466c1.setText(l8Var.C0);
                             }
                             D.J(1, false);
                             D.k0(-1, false, false);
-                            D.f5463b1.b(false, false);
-                            D.f5463b1.b(true, true);
+                            D.f5462b1.b(false, false);
+                            D.f5462b1.b(true, true);
                             D.f(1.0f, true, new ha(D, 6));
                             D.d();
                         }

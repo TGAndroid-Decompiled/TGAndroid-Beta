@@ -5,15 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 public final class v extends yh.p3 {
     public final Path A0;
     public final float[] B0;
     public final x C0;
 
-    public v(x xVar, Context context, e6 e6Var, q qVar, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6) {
-        super(context, e6Var, qVar, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
+    public v(x xVar, Context context, d6 d6Var, q qVar, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6) {
+        super(context, d6Var, qVar, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
         this.C0 = xVar;
         this.A0 = new Path();
         this.B0 = new float[8];
@@ -40,9 +40,9 @@ public final class v extends yh.p3 {
     @Override
     public final void j(int i10) {
         x xVar = this.C0;
-        TextView textView = xVar.f51630b0;
-        if (textView != null && i6.C1(textView.getBackground(), i10, false)) {
-            xVar.f51630b0.invalidate();
+        TextView textView = xVar.f51673b0;
+        if (textView != null && h6.C1(textView.getBackground(), i10, false)) {
+            xVar.f51673b0.invalidate();
         }
     }
 

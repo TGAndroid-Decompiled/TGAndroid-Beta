@@ -10,7 +10,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Components.b6;
-import org.telegram.ui.qv0;
+import org.telegram.ui.pv0;
 public final class l1 implements org.telegram.ui.Cells.l1 {
     @Override
     public final boolean A2(int i10) {
@@ -118,7 +118,7 @@ public final class l1 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final qv0 e2() {
+    public final pv0 e2() {
         return null;
     }
 

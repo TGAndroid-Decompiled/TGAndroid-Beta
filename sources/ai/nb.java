@@ -21,7 +21,7 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.fz;
+import org.telegram.ui.ez;
 public abstract class nb extends FrameLayout implements View.OnClickListener {
     public final Path E;
     public Bitmap F;
@@ -33,7 +33,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
     public final Matrix f1494e;
     public final float[] f1495f;
     public final View h;
-    public final org.telegram.ui.ActionBar.e6 f1496n;
+    public final org.telegram.ui.ActionBar.d6 f1496n;
     public ArrayList f1497r;
     public final Rect f1498s;
     public final RectF v;
@@ -41,7 +41,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
     public final org.telegram.ui.Components.g6 f1500x;
     public final org.telegram.ui.Components.g6 f1501y;
 
-    public nb(Context context, View view, org.telegram.ui.ActionBar.e6 e6Var) {
+    public nb(Context context, View view, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.f1491a = null;
         this.f1492b = null;
@@ -57,7 +57,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
         this.E = new Path();
         this.G = false;
         this.h = view;
-        this.f1496n = e6Var;
+        this.f1496n = d6Var;
         this.f1500x = new org.telegram.ui.Components.g6(view, 0L, 120L, new LinearInterpolator());
         this.f1501y = new org.telegram.ui.Components.g6(view, 0L, 360L, is.h);
         setClipChildren(false);
@@ -82,7 +82,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
 
     public abstract void b(boolean z10);
 
-    public final void c(TL_stories.StoryItem storyItem, ArrayList arrayList, fz fzVar) {
+    public final void c(TL_stories.StoryItem storyItem, ArrayList arrayList, ez ezVar) {
         FrameLayout frameLayout;
         qb qbVar;
         ArrayList arrayList2 = this.f1497r;
@@ -119,7 +119,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                 TL_stories.MediaArea mediaArea = (TL_stories.MediaArea) arrayList.get(i11);
                 if (mediaArea != null && mediaArea.coordinates != null) {
                     if (mediaArea instanceof TL_stories.TL_mediaAreaSuggestedReaction) {
-                        qb qbVar2 = new qb(getContext(), this, (TL_stories.TL_mediaAreaSuggestedReaction) mediaArea, fzVar);
+                        qb qbVar2 = new qb(getContext(), this, (TL_stories.TL_mediaAreaSuggestedReaction) mediaArea, ezVar);
                         if (storyItem != null) {
                             qbVar2.c(storyItem.views, false);
                         }
@@ -128,12 +128,12 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                     } else if (mediaArea instanceof TL_stories.TL_mediaAreaWeather) {
                         TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = (TL_stories.TL_mediaAreaWeather) mediaArea;
                         ?? tLObject = new TLObject();
-                        tLObject.f5352c = tL_mediaAreaWeather.emoji;
+                        tLObject.f5351c = tL_mediaAreaWeather.emoji;
                         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
                         qg.s0 s0Var = new qg.s0(getContext(), AndroidUtilities.density);
                         s0Var.setMaxWidth(AndroidUtilities.displaySize.x);
                         s0Var.setIsVideo(true);
-                        s0Var.d(UserConfig.selectedAccount, tLObject.f5352c);
+                        s0Var.d(UserConfig.selectedAccount, tLObject.f5351c);
                         s0Var.setText(tLObject.a());
                         s0Var.e(3, tL_mediaAreaWeather.color);
                         qbVar = new mb(getContext(), s0Var, mediaArea);
@@ -142,21 +142,21 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                     }
                     qbVar.setOnClickListener(this);
                     addView(qbVar);
-                    double d = mediaArea.coordinates.f20275w;
+                    double d = mediaArea.coordinates.f20265w;
                 }
             }
             frameLayout.bringToFront();
         }
     }
 
-    public final void d(TL_stories.StoryItem storyItem, fz fzVar) {
+    public final void d(TL_stories.StoryItem storyItem, ez ezVar) {
         ArrayList<TL_stories.MediaArea> arrayList;
         if (storyItem != null) {
             arrayList = storyItem.media_areas;
         } else {
             arrayList = null;
         }
-        c(storyItem, arrayList, fzVar);
+        c(storyItem, arrayList, ezVar);
     }
 
     @Override
@@ -191,7 +191,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                 rectF = rectF2;
                 canvas2 = canvas;
                 canvas2.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
-                canvas2.drawColor(org.telegram.ui.ActionBar.i6.m1(e7, 402653184));
+                canvas2.drawColor(org.telegram.ui.ActionBar.h6.m1(e7, 402653184));
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     View childAt = getChildAt(i11);
                     if (childAt != frameLayout) {
@@ -225,7 +225,7 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                     this.F = ((w4) this).I.getPlayingBitmap();
                 }
                 if (this.F != null) {
-                    canvas2.drawColor(org.telegram.ui.ActionBar.i6.m1(e10, 805306368));
+                    canvas2.drawColor(org.telegram.ui.ActionBar.h6.m1(e10, 805306368));
                     canvas2.save();
                     Path path = this.E;
                     path.rewind();
@@ -329,8 +329,8 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                 int measuredWidth = lbVar.getMeasuredWidth();
                 int measuredHeight = lbVar.getMeasuredHeight();
                 lbVar.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
-                lbVar.setTranslationX((float) ((mediaArea.coordinates.f20276x / 100.0d) * getMeasuredWidth()));
-                lbVar.setTranslationY((float) ((mediaArea.coordinates.f20277y / 100.0d) * getMeasuredHeight()));
+                lbVar.setTranslationX((float) ((mediaArea.coordinates.f20266x / 100.0d) * getMeasuredWidth()));
+                lbVar.setTranslationY((float) ((mediaArea.coordinates.f20267y / 100.0d) * getMeasuredHeight()));
                 lbVar.setRotation((float) mediaArea.coordinates.rotation);
             } else if (childAt instanceof mb) {
                 mb mbVar = (mb) childAt;
@@ -338,8 +338,8 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                 int measuredWidth2 = mbVar.getMeasuredWidth();
                 int measuredHeight2 = mbVar.getMeasuredHeight();
                 mbVar.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
-                mbVar.setTranslationX((float) ((mediaArea2.coordinates.f20276x / 100.0d) * getMeasuredWidth()));
-                mbVar.setTranslationY((float) ((mediaArea2.coordinates.f20277y / 100.0d) * getMeasuredHeight()));
+                mbVar.setTranslationX((float) ((mediaArea2.coordinates.f20266x / 100.0d) * getMeasuredWidth()));
+                mbVar.setTranslationY((float) ((mediaArea2.coordinates.f20267y / 100.0d) * getMeasuredHeight()));
                 mbVar.setRotation((float) mediaArea2.coordinates.rotation);
             }
         }
@@ -356,10 +356,10 @@ public abstract class nb extends FrameLayout implements View.OnClickListener {
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof lb) {
                 lb lbVar = (lb) getChildAt(i12);
-                lbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1365b.coordinates.f20275w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1365b.coordinates.h / 100.0d) * size2), 1073741824));
+                lbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1365b.coordinates.f20265w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1365b.coordinates.h / 100.0d) * size2), 1073741824));
             } else if (childAt instanceof mb) {
                 mb mbVar = (mb) getChildAt(i12);
-                mbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((mbVar.f1431a.coordinates.f20275w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((mbVar.f1431a.coordinates.h / 100.0d) * size2), 1073741824));
+                mbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((mbVar.f1431a.coordinates.f20265w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((mbVar.f1431a.coordinates.h / 100.0d) * size2), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);

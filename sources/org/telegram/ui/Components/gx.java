@@ -13,7 +13,7 @@ public final class gx extends nz {
     public final void setTranslationY(float f7) {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
-            this.H.f24702g0.invalidate();
+            this.H.f24675g0.invalidate();
         }
     }
 }

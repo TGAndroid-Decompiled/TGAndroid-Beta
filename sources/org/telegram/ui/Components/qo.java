@@ -6,20 +6,20 @@ import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.fg1;
+import org.telegram.ui.eg1;
 public final class qo extends y9 {
     public final org.telegram.ui.Cells.m6 G;
-    public final org.telegram.ui.ActionBar.n2 H;
+    public final org.telegram.ui.ActionBar.m2 H;
     public final boolean I;
-    public final org.telegram.ui.ActionBar.e6 J;
+    public final org.telegram.ui.ActionBar.d6 J;
     public final uo K;
 
-    public qo(uo uoVar, Context context, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+    public qo(uo uoVar, Context context, org.telegram.ui.ActionBar.m2 m2Var, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.K = uoVar;
-        this.H = n2Var;
+        this.H = m2Var;
         this.I = z10;
-        this.J = e6Var;
+        this.J = d6Var;
         this.G = new org.telegram.ui.Cells.m6(this);
     }
 
@@ -27,13 +27,13 @@ public final class qo extends y9 {
     public final void onDraw(Canvas canvas) {
         long j3;
         uo uoVar = this.K;
-        if (uoVar.f31588b && this.f33138e == null) {
+        if (uoVar.f31509b && this.f33133e == null) {
             org.telegram.ui.Cells.m6 m6Var = this.G;
             m6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             m6Var.f838a = true;
             m6Var.v = true;
             m6Var.J = this.J;
-            Integer num = uoVar.f31590c;
+            Integer num = uoVar.f31511c;
             if (num != null) {
                 m6Var.f860z = num.intValue();
             }
@@ -41,14 +41,14 @@ public final class qo extends y9 {
             if (znVar != null) {
                 j3 = znVar.a();
             } else {
-                org.telegram.ui.ActionBar.n2 n2Var = this.H;
-                if (n2Var instanceof fg1) {
-                    j3 = -((fg1) n2Var).f37602a;
+                org.telegram.ui.ActionBar.m2 m2Var = this.H;
+                if (m2Var instanceof eg1) {
+                    j3 = -((eg1) m2Var).f37311a;
                 } else {
                     j3 = 0;
                 }
             }
-            ai.ja.h(j3, canvas, this.f33135a, m6Var);
+            ai.ja.h(j3, canvas, this.f33130a, m6Var);
             return;
         }
         super.onDraw(canvas);
@@ -67,7 +67,7 @@ public final class qo extends y9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f31588b && this.G.a(motionEvent, this)) {
+        if (this.K.f31509b && this.G.a(motionEvent, this)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

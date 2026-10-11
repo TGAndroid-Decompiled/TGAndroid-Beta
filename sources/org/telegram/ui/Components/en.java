@@ -70,25 +70,25 @@ public final class en {
             enVar.f26096r = null;
         }
         if (enVar.f26083c == null) {
-            enVar.f26083c = new ImageReceiver(fnVar.f26463z);
-            enVar.d = new ImageReceiver(fnVar.f26463z);
-            enVar.f26083c.setDelegate(new y2(7, enVar, photoEntry));
+            enVar.f26083c = new ImageReceiver(fnVar.f26397z);
+            enVar.d = new ImageReceiver(fnVar.f26397z);
+            enVar.f26083c.setDelegate(new y2(8, enVar, photoEntry));
         }
         String str = photoEntry.thumbPath;
         if (str != null) {
-            enVar.f26083c.setImage(ImageLocation.getForPath(str), null, null, null, org.telegram.ui.ActionBar.i6.R4, 0L, null, null, 0);
+            enVar.f26083c.setImage(ImageLocation.getForPath(str), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
         } else if (photoEntry.path != null) {
             if (photoEntry.isVideo) {
                 ImageReceiver imageReceiver = enVar.f26083c;
-                imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.i6.R4, 0L, null, null, 0);
+                imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
                 enVar.f26083c.setAllowStartAnimation(true);
                 return;
             }
             enVar.f26083c.setOrientation(photoEntry.orientation, true);
             ImageReceiver imageReceiver2 = enVar.f26083c;
-            imageReceiver2.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.i6.R4, 0L, null, null, 0);
+            imageReceiver2.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), null, null, null, org.telegram.ui.ActionBar.h6.R4, 0L, null, null, 0);
         } else {
-            enVar.f26083c.setImageBitmap(org.telegram.ui.ActionBar.i6.R4);
+            enVar.f26083c.setImageBitmap(org.telegram.ui.ActionBar.h6.R4);
         }
     }
 
@@ -114,13 +114,13 @@ public final class en {
                 enVar.h = SystemClock.elapsedRealtime();
             }
             float f12 = groupedMessagePosition.left;
-            float f13 = anVar.f24589c;
+            float f13 = anVar.f24541c;
             float f14 = f12 / f13;
             float f15 = groupedMessagePosition.top;
-            float f16 = anVar.f24591f;
+            float f16 = anVar.f24543f;
             float f17 = f15 / f16;
             enVar.f26089k = 1.0f;
-            rectF2.set(f14, f17, (groupedMessagePosition.pw / f13) + f14, (groupedMessagePosition.f17253ph / f16) + f17);
+            rectF2.set(f14, f17, (groupedMessagePosition.pw / f13) + f14, (groupedMessagePosition.f17248ph / f16) + f17);
             float dp = AndroidUtilities.dp(2.0f);
             float dp2 = AndroidUtilities.dp(SharedConfig.bubbleRadius - 1);
             int i10 = enVar.f26087i;
@@ -183,7 +183,7 @@ public final class en {
     public final RectF d() {
         float f7 = 0.0f;
         if (this.f26086g != null && this.f26083c != null) {
-            gn gnVar = this.O.f26463z;
+            gn gnVar = this.O.f26397z;
             en enVar = gnVar.P.J;
             if (enVar != null && enVar.f26082b == this.f26082b) {
                 f7 = gnVar.G;
@@ -201,7 +201,7 @@ public final class en {
     }
 
     public final float e() {
-        return this.O.f26448j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.h)) / 200.0f));
+        return this.O.f26382j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.h)) / 200.0f));
     }
 
     public final RectF f(float f7) {
@@ -210,32 +210,32 @@ public final class en {
         RectF rectF3 = this.f26086g;
         if (rectF3 != null && this.f26083c != null) {
             fn fnVar = this.O;
-            float f10 = (rectF3.left * fnVar.f26456r) + fnVar.f26452n;
-            float f11 = (rectF3.top * fnVar.f26457s) + fnVar.f26454p;
-            float width = rectF3.width() * fnVar.f26456r;
-            float height = rectF3.height() * fnVar.f26457s;
+            float f10 = (rectF3.left * fnVar.f26390r) + fnVar.f26386n;
+            float f11 = (rectF3.top * fnVar.f26391s) + fnVar.f26388p;
+            float width = rectF3.width() * fnVar.f26390r;
+            float height = rectF3.height() * fnVar.f26391s;
             if (f7 < 1.0f && (rectF = this.f26085f) != null) {
-                f10 = AndroidUtilities.lerp((rectF.left * fnVar.f26456r) + fnVar.f26452n, f10, f7);
-                f11 = AndroidUtilities.lerp((this.f26085f.top * fnVar.f26457s) + fnVar.f26454p, f11, f7);
-                width = AndroidUtilities.lerp(this.f26085f.width() * fnVar.f26456r, width, f7);
-                height = AndroidUtilities.lerp(this.f26085f.height() * fnVar.f26457s, height, f7);
+                f10 = AndroidUtilities.lerp((rectF.left * fnVar.f26390r) + fnVar.f26386n, f10, f7);
+                f11 = AndroidUtilities.lerp((this.f26085f.top * fnVar.f26391s) + fnVar.f26388p, f11, f7);
+                width = AndroidUtilities.lerp(this.f26085f.width() * fnVar.f26390r, width, f7);
+                height = AndroidUtilities.lerp(this.f26085f.height() * fnVar.f26391s, height, f7);
             }
             int i10 = this.f26087i;
             if ((i10 & 4) == 0) {
-                int i11 = fnVar.f26451m;
+                int i11 = fnVar.f26385m;
                 f11 += i11;
                 height -= i11;
             }
             if ((i10 & 8) == 0) {
-                height -= fnVar.f26451m;
+                height -= fnVar.f26385m;
             }
             if ((i10 & 1) == 0) {
-                int i12 = fnVar.f26451m;
+                int i12 = fnVar.f26385m;
                 f10 += i12;
                 width -= i12;
             }
             if ((i10 & 2) == 0) {
-                width -= fnVar.f26451m;
+                width -= fnVar.f26385m;
             }
             rectF2.set(f10, f11, width + f10, height + f11);
             return rectF2;

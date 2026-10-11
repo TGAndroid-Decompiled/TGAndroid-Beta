@@ -1,8 +1,8 @@
 package fi;
 
 import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.ap0;
-public final class z implements ap0 {
+import org.telegram.ui.Components.bp0;
+public final class z implements bp0 {
     @Override
     public final void e(float f7) {
     }

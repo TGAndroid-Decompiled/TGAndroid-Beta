@@ -10,10 +10,10 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
 public final class nf0 implements DialogInterface.OnClickListener {
-    public final sf0 f29112a;
+    public final sf0 f29046a;
 
     public nf0(sf0 sf0Var) {
-        this.f29112a = sf0Var;
+        this.f29046a = sf0Var;
     }
 
     public static void a(String str, ContentValues contentValues) {
@@ -78,7 +78,7 @@ public final class nf0 implements DialogInterface.OnClickListener {
         Integer num10 = 5;
         Integer num11 = 4;
         Integer num12 = 6;
-        sf0 sf0Var2 = this.f29112a;
+        sf0 sf0Var2 = this.f29046a;
         ArrayList arrayList3 = sf0Var2.M;
         ArrayList arrayList4 = sf0Var2.L;
         Integer num13 = 0;
@@ -407,7 +407,7 @@ public final class nf0 implements DialogInterface.OnClickListener {
         intent3.putExtra("finishActivityOnSaveCompleted", true);
         intent3.putParcelableArrayListExtra("data", arrayList5);
         try {
-            sf0Var.f30774r.getParentActivity().startActivity(intent3);
+            sf0Var.f30739r.getParentActivity().startActivity(intent3);
             sf0Var.dismiss();
         } catch (Exception e7) {
             FileLog.e(e7);

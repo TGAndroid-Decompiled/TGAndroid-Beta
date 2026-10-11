@@ -30,9 +30,9 @@ public final class m implements r {
                 arrayList.add(new d3.a(1));
                 return;
             case 4:
-                o T = f4144f.T(0);
-                if (T != null) {
-                    arrayList.add(T);
+                o J = f4144f.J(0);
+                if (J != null) {
+                    arrayList.add(J);
                     return;
                 } else {
                     arrayList.add(new h3.b());
@@ -58,8 +58,8 @@ public final class m implements r {
                 } else {
                     i11 = 32;
                 }
-                e9.g0 g0Var = e9.i0.f8752b;
-                arrayList.add(new w3.j(aVar2, i11, null, a1.f8715e, null));
+                e9.g0 g0Var = e9.i0.f8751b;
+                arrayList.add(new w3.j(aVar2, i11, null, a1.f8714e, null));
                 ob.a aVar3 = this.f4147c;
                 if (!this.f4146b) {
                     i13 = 16;
@@ -74,17 +74,17 @@ public final class m implements r {
                 return;
             case 11:
                 if (this.f4145a == null) {
-                    e9.g0 g0Var2 = e9.i0.f8752b;
-                    this.f4145a = a1.f8715e;
+                    e9.g0 g0Var2 = e9.i0.f8751b;
+                    this.f4145a = a1.f8714e;
                 }
                 arrayList.add(new j4.d0(1, !this.f4146b ? 1 : 0, this.f4147c, new e2.b0(0L), new j4.f(0, this.f4145a)));
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f14618c = 0;
+                obj.f14617c = 0;
                 obj.d = -1L;
-                obj.f14620f = -1;
-                obj.f14621g = -1L;
+                obj.f14619f = -1;
+                obj.f14620g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:
@@ -94,9 +94,9 @@ public final class m implements r {
                 arrayList.add(new k3.a(this.d));
                 return;
             case 15:
-                o T2 = h.T(new Object[0]);
-                if (T2 != null) {
-                    arrayList.add(T2);
+                o J2 = h.J(new Object[0]);
+                if (J2 != null) {
+                    arrayList.add(J2);
                     return;
                 }
                 return;

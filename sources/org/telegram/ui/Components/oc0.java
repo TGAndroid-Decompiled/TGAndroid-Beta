@@ -11,10 +11,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class oc0 implements org.telegram.ui.Cells.l1 {
-    public final pc0 f29440a;
+    public final pc0 f29370a;
 
     public oc0(pc0 pc0Var) {
-        this.f29440a = pc0Var;
+        this.f29370a = pc0Var;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class oc0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final org.telegram.ui.Cells.p9 E2() {
-        return this.f29440a.f29757c.f30184e;
+        return this.f29370a.f29714c.f30133e;
     }
 
     @Override
@@ -79,9 +79,9 @@ public final class oc0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final CharacterStyle U1(org.telegram.ui.Cells.u1 u1Var) {
-        qc0 qc0Var = this.f29440a.f29757c;
-        if (qc0Var.f30178a == 2) {
-            MessagePreviewParams messagePreviewParams = qc0Var.f30183c0.d;
+        qc0 qc0Var = this.f29370a.f29714c;
+        if (qc0Var.f30127a == 2) {
+            MessagePreviewParams messagePreviewParams = qc0Var.f30132c0.d;
             if (!messagePreviewParams.singleLink) {
                 return messagePreviewParams.currentLink;
             }
@@ -112,19 +112,19 @@ public final class oc0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void b1(org.telegram.ui.Cells.u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-        pc0 pc0Var = this.f29440a;
-        qc0 qc0Var = pc0Var.f29757c;
-        if (qc0Var.f30178a == 2 && qc0Var.f30183c0.d.currentLink != characterStyle && u1Var.getMessageObject() != null && (characterStyle instanceof URLSpan)) {
+        pc0 pc0Var = this.f29370a;
+        qc0 qc0Var = pc0Var.f29714c;
+        if (qc0Var.f30127a == 2 && qc0Var.f30132c0.d.currentLink != characterStyle && u1Var.getMessageObject() != null && (characterStyle instanceof URLSpan)) {
             String url = ((URLSpan) characterStyle).getURL();
-            wc0 wc0Var = pc0Var.f29757c.f30183c0;
+            wc0 wc0Var = pc0Var.f29714c.f30132c0;
             MessagePreviewParams messagePreviewParams = wc0Var.d;
             messagePreviewParams.currentLink = characterStyle;
             messagePreviewParams.webpage = null;
-            org.telegram.ui.zn znVar = wc0Var.f32645c;
+            org.telegram.ui.zn znVar = wc0Var.f32614c;
             if (znVar != null && url != null) {
                 znVar.cb(url, true);
             }
-            qc0.b(pc0Var.f29757c, u1Var);
+            qc0.b(pc0Var.f29714c, u1Var);
         }
     }
 
@@ -140,9 +140,9 @@ public final class oc0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean e() {
-        qc0 qc0Var = this.f29440a.f29757c;
-        if (qc0Var.f30178a == 2) {
-            MessagePreviewParams messagePreviewParams = qc0Var.f30183c0.d;
+        qc0 qc0Var = this.f29370a.f29714c;
+        if (qc0Var.f30127a == 2) {
+            MessagePreviewParams messagePreviewParams = qc0Var.f30132c0.d;
             if (!messagePreviewParams.singleLink && !messagePreviewParams.isSecret) {
                 return true;
             }
@@ -157,7 +157,7 @@ public final class oc0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final org.telegram.ui.qv0 e2() {
+    public final org.telegram.ui.pv0 e2() {
         return null;
     }
 
@@ -183,9 +183,9 @@ public final class oc0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean i1(int i10, org.telegram.ui.Cells.u1 u1Var) {
-        qc0 qc0Var = this.f29440a.f29757c;
-        if (qc0Var.f30178a == 2 && i10 == 1) {
-            MessagePreviewParams messagePreviewParams = qc0Var.f30183c0.d;
+        qc0 qc0Var = this.f29370a.f29714c;
+        if (qc0Var.f30127a == 2 && i10 == 1) {
+            MessagePreviewParams messagePreviewParams = qc0Var.f30132c0.d;
             if (!messagePreviewParams.singleLink) {
                 TLRPC.WebPage webPage = messagePreviewParams.webpage;
                 if (webPage == null || (webPage instanceof TLRPC.TL_webPagePending)) {

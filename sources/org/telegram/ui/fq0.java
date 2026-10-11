@@ -1,31 +1,24 @@
 package org.telegram.ui;
 
 import android.text.Editable;
-public final class fq0 implements ar0 {
-    public final kq0 f37712a;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class fq0 implements zq0 {
+    public final HashMap f37742a;
+    public final ArrayList f37743b;
+    public final jq0 f37744c;
 
-    public fq0(kq0 kq0Var) {
-        this.f37712a = kq0Var;
-    }
-
-    @Override
-    public final void a() {
-        kq0 kq0Var = this.f37712a;
-        if (kq0Var.f39374b.size() == 0) {
-            kq0Var.Q.setPivotX(0.0f);
-            kq0Var.Q.setPivotY(0.0f);
-            kq0Var.W(false);
-            return;
-        }
-        kq0Var.Q.invalidate();
-        kq0Var.W(true);
+    public fq0(jq0 jq0Var, HashMap hashMap, ArrayList arrayList) {
+        this.f37744c = jq0Var;
+        this.f37742a = hashMap;
+        this.f37743b = arrayList;
     }
 
     @Override
     public final void b(Editable editable) {
-        kq0 kq0Var = this.f37712a;
-        org.telegram.ui.Components.av avVar = kq0Var.M;
-        kq0Var.f39373a = editable;
+        jq0 jq0Var = this.f37744c;
+        org.telegram.ui.Components.av avVar = jq0Var.M;
+        jq0Var.f39099a = editable;
         avVar.setText(editable);
     }
 
@@ -36,11 +29,15 @@ public final class fq0 implements ar0 {
 
     @Override
     public final void h(int i10, boolean z10, boolean z11) {
-        kq0 kq0Var = this.f37712a;
-        kq0Var.removeSelfFromStack();
+        jq0 jq0Var = this.f37744c;
+        jq0Var.removeSelfFromStack();
         if (!z10) {
-            kq0Var.V(kq0Var.f39374b, kq0Var.f39375c, z11, i10);
+            jq0Var.V(this.f37742a, this.f37743b, z11, i10);
         }
+    }
+
+    @Override
+    public final void a() {
     }
 
     @Override

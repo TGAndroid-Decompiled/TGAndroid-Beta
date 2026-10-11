@@ -7,53 +7,53 @@ import android.os.Looper;
 import com.google.android.gms.internal.vision.e2;
 import v7.v6;
 public final class e {
-    public final d9.j f11632a;
-    public final Handler f11633b;
-    public p0 f11634c;
+    public final d9.j f11631a;
+    public final Handler f11632b;
+    public p0 f11633c;
     public b2.e d;
-    public int f11636f;
+    public int f11635f;
     public c2.c h;
-    public float f11637g = 1.0f;
-    public int f11635e = 0;
+    public float f11636g = 1.0f;
+    public int f11634e = 0;
 
     public e(Context context, Looper looper, p0 p0Var) {
-        this.f11632a = v6.a(new d(context, 0));
-        this.f11634c = p0Var;
-        this.f11633b = new Handler(looper);
+        this.f11631a = v6.a(new d(context, 0));
+        this.f11633c = p0Var;
+        this.f11632b = new Handler(looper);
     }
 
     public final void a() {
-        int i10 = this.f11635e;
+        int i10 = this.f11634e;
         if (i10 != 1 && i10 != 0 && this.h != null) {
-            c2.d.a((AudioManager) this.f11632a.get(), this.h);
+            c2.d.a((AudioManager) this.f11631a.get(), this.h);
         }
     }
 
     public final void b(int i10) {
-        p0 p0Var = this.f11634c;
+        p0 p0Var = this.f11633c;
         if (p0Var != null) {
-            e2.z zVar = p0Var.f11853n;
+            e2.z zVar = p0Var.f11852n;
             zVar.getClass();
             e2.y b10 = e2.z.b();
-            b10.f8591a = zVar.f8593a.obtainMessage(33, i10, 0);
+            b10.f8590a = zVar.f8592a.obtainMessage(33, i10, 0);
             b10.b();
         }
     }
 
     public final void c(int i10) {
         float f7;
-        if (this.f11635e != i10) {
-            this.f11635e = i10;
+        if (this.f11634e != i10) {
+            this.f11634e = i10;
             if (i10 == 4) {
                 f7 = 0.2f;
             } else {
                 f7 = 1.0f;
             }
-            if (this.f11637g != f7) {
-                this.f11637g = f7;
-                p0 p0Var = this.f11634c;
+            if (this.f11636g != f7) {
+                this.f11636g = f7;
+                p0 p0Var = this.f11633c;
                 if (p0Var != null) {
-                    p0Var.f11853n.e(34);
+                    p0Var.f11852n.e(34);
                 }
             }
         }
@@ -63,9 +63,9 @@ public final class e {
         int i11;
         c2.a aVar;
         boolean z11 = false;
-        if (i10 != 1 && (i11 = this.f11636f) == 1) {
+        if (i10 != 1 && (i11 = this.f11635f) == 1) {
             if (z10) {
-                if (this.f11635e != 2) {
+                if (this.f11634e != 2) {
                     c2.c cVar = this.h;
                     if (cVar == null) {
                         if (cVar == null) {
@@ -114,11 +114,11 @@ public final class e {
                                 }
                             }
                         };
-                        Handler handler = this.f11633b;
+                        Handler handler = this.f11632b;
                         handler.getClass();
                         this.h = new c2.c(aVar.f3994b, onAudioFocusChangeListener, handler, (b2.e) aVar.f3995c, aVar.f3993a);
                     }
-                    if (c2.d.h((AudioManager) this.f11632a.get(), this.h) == 1) {
+                    if (c2.d.h((AudioManager) this.f11631a.get(), this.h) == 1) {
                         c(2);
                         return 1;
                     }
@@ -126,7 +126,7 @@ public final class e {
                     return -1;
                 }
             } else {
-                int i12 = this.f11635e;
+                int i12 = this.f11634e;
                 if (i12 == 1) {
                     return -1;
                 }

@@ -7,9 +7,9 @@ public interface k0 {
 
     n9 C();
 
-    a F();
+    a G();
 
-    boolean G();
+    boolean H();
 
     void I(int i10, int i11);
 

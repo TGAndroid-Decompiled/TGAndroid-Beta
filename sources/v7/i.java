@@ -2,21 +2,21 @@ package v7;
 
 import java.util.Map;
 public final class i implements ia.d {
-    public static final i f49256b = new i(0);
-    public static final i f49257c = new i(1);
-    public final int f49258a;
+    public static final i f49299b = new i(0);
+    public static final i f49300c = new i(1);
+    public final int f49301a;
 
     public i(int i10) {
-        this.f49258a = i10;
+        this.f49301a = i10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        switch (this.f49258a) {
+        switch (this.f49301a) {
             case 0:
                 Map.Entry entry = (Map.Entry) obj;
                 ia.e eVar = (ia.e) obj2;
-                eVar.a(j.f49274g, entry.getKey());
+                eVar.a(j.f49317g, entry.getKey());
                 eVar.a(j.h, entry.getValue());
                 return;
             default:

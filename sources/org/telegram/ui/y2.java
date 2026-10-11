@@ -1,33 +1,31 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.os.Build;
-import android.view.Surface;
-import android.view.TextureView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.video.VideoPlayerHolderBase;
-public final class y2 {
-    public long f44260a;
-    public Bitmap f44261b;
+import android.text.TextUtils;
+public final class y2 extends org.telegram.ui.ActionBar.l3 {
+    @Override
+    public final String b() {
+        org.telegram.ui.web.y0 y0Var = this.f21331b;
+        if (y0Var != null && !TextUtils.isEmpty(y0Var.getTitle())) {
+            return this.f21331b.getTitle();
+        }
+        return super.b();
+    }
 
-    public static y2 a(VideoPlayerHolderBase videoPlayerHolderBase, x2 x2Var) {
-        ?? obj = new Object();
-        obj.f44260a = videoPlayerHolderBase.getCurrentPosition();
-        if (videoPlayerHolderBase.firstFrameRendered) {
-            TextureView textureView = x2Var.f43842n;
-            TextureView textureView2 = x2Var.f43842n;
-            if (textureView != null && textureView.getSurfaceTexture() != null) {
-                if (Build.VERSION.SDK_INT >= 24) {
-                    Surface surface = new Surface(textureView2.getSurfaceTexture());
-                    Bitmap createBitmap = Bitmap.createBitmap(textureView2.getMeasuredWidth(), textureView2.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                    AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
-                    surface.release();
-                    obj.f44261b = createBitmap;
-                    return obj;
-                }
-                obj.f44261b = textureView2.getBitmap();
+    public final void c(l3 l3Var) {
+        if (l3Var != null) {
+            j3 j3Var = l3Var.f39499f;
+            j3Var.L();
+            this.f21331b = j3Var.getWebView();
+            this.d = j3Var.getProxy();
+            org.telegram.ui.web.y0 y0Var = this.f21331b;
+            if (y0Var != null) {
+                y0Var.onPause();
+                this.E = this.f21331b.getTitle();
+                this.F = this.f21331b.getFavicon();
+                this.f21350x = this.f21331b.getUrl();
+                this.f21344q = l3Var.f39503w;
+                this.f21345r = l3Var.f39504x;
             }
         }
-        return obj;
     }
 }

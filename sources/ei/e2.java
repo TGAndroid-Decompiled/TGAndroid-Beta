@@ -12,30 +12,30 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.ob;
+import org.telegram.ui.Components.nb;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.c41;
+import org.telegram.ui.b41;
 import org.telegram.ui.zn;
 public final class e2 implements Runnable {
-    public final int f9032a;
-    public final k3 f9033b;
+    public final int f9031a;
+    public final k3 f9032b;
 
     public e2(k3 k3Var, int i10) {
-        this.f9032a = i10;
-        this.f9033b = k3Var;
+        this.f9031a = i10;
+        this.f9032b = k3Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f9032a;
+        int i10 = this.f9031a;
         int i11 = 1;
-        k3 k3Var = this.f9033b;
+        k3 k3Var = this.f9032b;
         switch (i10) {
             case 0:
                 k3.d(k3Var);
                 return;
             case 1:
-                if (!k3Var.f9157c0 && k3Var.J != 0) {
+                if (!k3Var.f9156c0 && k3Var.J != 0) {
                     TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
                     tL_messages_prolongWebView.bot = MessagesController.getInstance(k3Var.G).getInputUser(k3Var.H);
                     tL_messages_prolongWebView.peer = MessagesController.getInstance(k3Var.G).getInputPeer(k3Var.I);
@@ -66,13 +66,13 @@ public final class e2 implements Runnable {
                 k3Var.v.requestLayout();
                 return;
             case 4:
-                if (!k3Var.f9183x.C()) {
+                if (!k3Var.f9182x.C()) {
                     k3Var.r();
                     return;
                 }
                 return;
             case 5:
-                k3Var.f9184x0 = true;
+                k3Var.f9183x0 = true;
                 k3Var.k(true);
                 return;
             case 6:
@@ -86,21 +86,21 @@ public final class e2 implements Runnable {
                 } else {
                     paint.setAlpha(64);
                 }
-                k3Var.f9159e.invalidate();
-                k3Var.f9183x.n(false, false);
-                if (k3Var.f9156c != null) {
+                k3Var.f9158e.invalidate();
+                k3Var.f9182x.n(false, false);
+                if (k3Var.f9155c != null) {
                     if (1.0f - (Math.min(a3Var.getTopActionBarOffsetY(), a3Var.getTranslationY() - a3Var.getTopActionBarOffsetY()) / a3Var.getTopActionBarOffsetY()) <= 0.5f) {
                         i11 = 0;
                     }
                     float f7 = i11 * 100.0f;
-                    o1.k kVar = k3Var.f9156c;
-                    o1.l lVar = kVar.f16942u;
-                    if (((float) lVar.f16949i) != f7) {
-                        lVar.f16949i = f7;
+                    o1.k kVar = k3Var.f9155c;
+                    o1.l lVar = kVar.f16988u;
+                    if (((float) lVar.f16995i) != f7) {
+                        lVar.f16995i = f7;
                         kVar.h();
                     }
                 }
-                if (k3Var.f9158d0) {
+                if (k3Var.f9157d0) {
                     int i12 = k3Var.h.bottom;
                 } else {
                     Math.max(0.0f, a3Var.getSwipeOffsetY());
@@ -108,17 +108,17 @@ public final class e2 implements Runnable {
                 System.currentTimeMillis();
                 return;
             case 8:
-                k3Var.f9183x.n(true, false);
+                k3Var.f9182x.n(true, false);
                 return;
             case 9:
-                Activity activity = k3Var.f9167k0;
+                Activity activity = k3Var.f9166k0;
                 if (activity instanceof LaunchActivity) {
                     ((LaunchActivity) activity).p0(zn.W9(k3Var.H));
                 }
                 k3Var.k(true);
                 return;
             case 10:
-                b3 b3Var = k3Var.f9183x;
+                b3 b3Var = k3Var.f9182x;
                 b3Var.getClass();
                 b3Var.P = System.currentTimeMillis();
                 b3Var.y("settings_button_pressed", null);
@@ -132,10 +132,10 @@ public final class e2 implements Runnable {
             case 13:
                 int i13 = k3Var.G;
                 Context context = k3Var.getContext();
-                ad adVar = new ad(ob.a(k3Var.getContext()), k3Var.E);
+                ad adVar = new ad(nb.a(k3Var.getContext()), k3Var.E);
                 long j3 = k3Var.H;
-                int i14 = c41.v;
-                c41.L(i13, context, j3, false, false, new ArrayList(), adVar, null, new byte[0], null, null);
+                int i14 = b41.v;
+                b41.L(i13, context, j3, false, false, new ArrayList(), adVar, null, new byte[0], null, null);
                 return;
             case 14:
                 k3.j(k3Var.G, k3Var.H, new e2(k3Var, 15));

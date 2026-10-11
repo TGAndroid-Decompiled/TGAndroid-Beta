@@ -1,138 +1,23 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Matrix;
-import android.view.TextureView;
-import android.view.View;
-import android.widget.FrameLayout;
-public class l4 extends FrameLayout {
-    public final k4 f39464a;
-    public float f39465b;
-    public int f39466c;
-    public boolean d;
-    public int f39467e;
-    public final Matrix f39468f;
+import java.util.ArrayList;
+public final class l4 implements Runnable {
+    public final o4 f39511a;
 
-    public l4(Context context) {
-        super(context);
-        this.f39468f = new Matrix();
-        this.f39466c = 0;
-        this.f39464a = new k4(this, 0);
-    }
-
-    public final void a(float f7, int i10) {
-        if (this.f39465b != f7) {
-            this.f39465b = f7;
-            this.f39467e = i10;
-            requestLayout();
-        }
-    }
-
-    public float getAspectRatio() {
-        return this.f39465b;
-    }
-
-    public int getResizeMode() {
-        return this.f39466c;
-    }
-
-    public int getVideoRotation() {
-        return this.f39467e;
+    public l4(o4 o4Var) {
+        this.f39511a = o4Var;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        float f7;
-        float f10;
-        super.onMeasure(i10, i11);
-        if (this.f39465b > 0.0f) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            float f11 = measuredWidth;
-            float f12 = measuredHeight;
-            float f13 = (this.f39465b / (f11 / f12)) - 1.0f;
-            int i12 = (Math.abs(f13) > 0.01f ? 1 : (Math.abs(f13) == 0.01f ? 0 : -1));
-            k4 k4Var = this.f39464a;
-            if (i12 <= 0) {
-                if (!k4Var.f39118b) {
-                    k4Var.f39118b = true;
-                    ((l4) k4Var.f39119c).post(k4Var);
-                    return;
-                }
-                return;
-            }
-            int i13 = this.f39466c;
-            if (i13 != 0) {
-                if (i13 != 1) {
-                    if (i13 != 2) {
-                        if (i13 != 3) {
-                            if (i13 == 4) {
-                                if (f13 > 0.0f) {
-                                    f7 = this.f39465b;
-                                } else {
-                                    f10 = this.f39465b;
-                                }
-                            }
-                        } else if (f13 <= 0.0f) {
-                            f10 = this.f39465b;
-                        } else {
-                            f7 = this.f39465b;
-                        }
-                    } else {
-                        f7 = this.f39465b;
-                    }
-                    measuredWidth = (int) (f12 * f7);
-                } else {
-                    f10 = this.f39465b;
-                }
-                measuredHeight = (int) (f11 / f10);
-            } else if (f13 > 0.0f) {
-                f10 = this.f39465b;
-                measuredHeight = (int) (f11 / f10);
-            } else {
-                f7 = this.f39465b;
-                measuredWidth = (int) (f12 * f7);
-            }
-            if (!k4Var.f39118b) {
-                k4Var.f39118b = true;
-                ((l4) k4Var.f39119c).post(k4Var);
-            }
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
-            int childCount = getChildCount();
-            for (int i14 = 0; i14 < childCount; i14++) {
-                View childAt = getChildAt(i14);
-                if (childAt instanceof TextureView) {
-                    Matrix matrix = this.f39468f;
-                    matrix.reset();
-                    float width = getWidth() / 2;
-                    float height = getHeight() / 2;
-                    matrix.postRotate(this.f39467e, width, height);
-                    int i15 = this.f39467e;
-                    if (i15 == 90 || i15 == 270) {
-                        float height2 = getHeight() / getWidth();
-                        matrix.postScale(1.0f / height2, height2, width, height);
-                    }
-                    ((TextureView) childAt).setTransform(matrix);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void setDrawingReady(boolean z10) {
-        if (this.d == z10) {
-            return;
-        }
-        this.d = z10;
-    }
-
-    public void setResizeMode(int i10) {
-        if (this.f39466c != i10) {
-            this.f39466c = i10;
-            requestLayout();
-        }
-    }
-
-    public void setAspectRatioListener(j4 j4Var) {
+    public final void run() {
+        ?? m2Var = new org.telegram.ui.ActionBar.m2(null);
+        m2Var.N = new a0.i();
+        m2Var.O = new ArrayList();
+        m2Var.f34629x = 1;
+        m2Var.G = false;
+        o4 o4Var = this.f39511a;
+        m2Var.R = o4Var.U();
+        m2Var.f34625n = new y0(this, 2);
+        o4Var.presentFragment((org.telegram.ui.ActionBar.m2) m2Var);
     }
 }

@@ -5,28 +5,28 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class zh implements Runnable {
-    public final int f44674a = 1;
-    public final zn f44675b;
-    public final int f44676c;
+    public final int f44664a = 1;
+    public final zn f44665b;
+    public final int f44666c;
     public final MessageObject d;
 
     public zh(zn znVar, int i10, MessageObject messageObject) {
-        this.f44675b = znVar;
-        this.f44676c = i10;
+        this.f44665b = znVar;
+        this.f44666c = i10;
         this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f44674a) {
+        switch (this.f44664a) {
             case 0:
-                this.f44675b.f44911n4 = null;
-                this.d.messageOwner.replies.read_max_id = this.f44676c;
+                this.f44665b.f44866n4 = null;
+                this.d.messageOwner.replies.read_max_id = this.f44666c;
                 return;
             default:
-                zn znVar = this.f44675b;
+                zn znVar = this.f44665b;
                 org.telegram.ui.Components.ad.a0(znVar).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessagesController.getInstance(this.f44676c).disableAds(false);
+                MessagesController.getInstance(this.f44666c).disableAds(false);
                 MessageObject messageObject = this.d;
                 znVar.Ja(messageObject);
                 znVar.La(messageObject);
@@ -35,8 +35,8 @@ public final class zh implements Runnable {
     }
 
     public zh(zn znVar, MessageObject messageObject, int i10) {
-        this.f44675b = znVar;
+        this.f44665b = znVar;
         this.d = messageObject;
-        this.f44676c = i10;
+        this.f44666c = i10;
     }
 }

@@ -31,7 +31,7 @@ public final class l {
         if (!booleanValue) {
             hVar = a2;
         } else {
-            jd.i iVar2 = jd.i.f14129a;
+            jd.i iVar2 = jd.i.f14128a;
             if (booleanValue) {
                 obj = a2.fold(iVar2, y.f518c);
             } else {
@@ -41,7 +41,7 @@ public final class l {
             iVar2.plus(hVar);
         }
         he.e eVar = o0.f480a;
-        if (hVar != eVar && hVar.get(jd.d.f14128a) == null) {
+        if (hVar != eVar && hVar.get(jd.d.f14127a) == null) {
             hVar = hVar.plus(eVar);
         }
         ae.h hVar2 = new ae.h(hVar, currentThread, a2);

@@ -4,12 +4,12 @@ import ae.z1;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 public abstract class t extends d implements z1 {
     public static final AtomicIntegerFieldUpdater d = AtomicIntegerFieldUpdater.newUpdater(t.class, "cleanedAndPointers$volatile");
-    public final long f9915c;
+    public final long f9914c;
     private volatile int cleanedAndPointers$volatile;
 
     public t(long j3, t tVar, int i10) {
         super(tVar);
-        this.f9915c = j3;
+        this.f9914c = j3;
         this.cleanedAndPointers$volatile = i10 << 16;
     }
 

@@ -1,33 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.transition.Transition;
-public final class o0 implements Transition.TransitionListener {
-    public final v0 f21445a;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.is;
+public final class o0 implements ViewTreeObserver.OnPreDrawListener {
+    public final float f21405a;
+    public final u0 f21406b;
 
-    public o0(v0 v0Var) {
-        this.f21445a = v0Var;
+    public o0(u0 u0Var, float f7) {
+        this.f21406b = u0Var;
+        this.f21405a = f7;
     }
 
     @Override
-    public final void onTransitionCancel(Transition transition) {
-        this.f21445a.f21594i0.unlock();
-    }
-
-    @Override
-    public final void onTransitionEnd(Transition transition) {
-        this.f21445a.f21594i0.unlock();
-    }
-
-    @Override
-    public final void onTransitionStart(Transition transition) {
-        this.f21445a.f21594i0.lock();
-    }
-
-    @Override
-    public final void onTransitionPause(Transition transition) {
-    }
-
-    @Override
-    public final void onTransitionResume(Transition transition) {
+    public final boolean onPreDraw() {
+        u0 u0Var = this.f21406b;
+        u0Var.f21540e.getViewTreeObserver().removeOnPreDrawListener(this);
+        float x10 = u0Var.f21540e.getX();
+        float f7 = this.f21405a;
+        if (x10 != f7) {
+            ci.g2 g2Var = u0Var.f21540e;
+            g2Var.setTranslationX(f7 - g2Var.getX());
+        }
+        u0Var.f21540e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(is.f27451f).start();
+        return true;
     }
 }

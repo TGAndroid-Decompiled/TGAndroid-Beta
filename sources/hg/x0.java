@@ -7,54 +7,54 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.hd0;
+import org.telegram.ui.gd0;
 public final class x0 implements Runnable {
-    public final int f11441a = 0;
-    public final e1 f11442b;
-    public final hd0 f11443c;
-    public final org.telegram.ui.ActionBar.b2 d;
+    public final int f11440a = 0;
+    public final e1 f11441b;
+    public final gd0 f11442c;
+    public final org.telegram.ui.ActionBar.a2 d;
 
-    public x0(e1 e1Var, org.telegram.ui.ActionBar.b2 b2Var, hd0 hd0Var) {
-        this.f11442b = e1Var;
-        this.d = b2Var;
-        this.f11443c = hd0Var;
+    public x0(e1 e1Var, org.telegram.ui.ActionBar.a2 a2Var, gd0 gd0Var) {
+        this.f11441b = e1Var;
+        this.d = a2Var;
+        this.f11442c = gd0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f11441a) {
+        switch (this.f11440a) {
             case 0:
-                e1 e1Var = this.f11442b;
+                e1 e1Var = this.f11441b;
                 e1Var.getClass();
                 this.d.dismiss();
-                e1Var.presentFragment(this.f11443c);
+                e1Var.presentFragment(this.f11442c);
                 return;
             default:
-                e1 e1Var2 = this.f11442b;
-                hd0 hd0Var = this.f11443c;
+                e1 e1Var2 = this.f11441b;
+                gd0 gd0Var = this.f11442c;
                 try {
-                    List<Address> fromLocationName = new Geocoder(e1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(e1Var2.f11215y, 1);
+                    List<Address> fromLocationName = new Geocoder(e1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(e1Var2.f11214y, 1);
                     if (!fromLocationName.isEmpty()) {
                         Address address = fromLocationName.get(0);
                         TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-                        tL_channelLocation.address = e1Var2.f11215y;
+                        tL_channelLocation.address = e1Var2.f11214y;
                         TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                         tL_channelLocation.geo_point = tL_geoPoint;
                         tL_geoPoint.lat = address.getLatitude();
                         tL_channelLocation.geo_point._long = address.getLongitude();
-                        hd0Var.A0 = tL_channelLocation;
+                        gd0Var.A0 = tL_channelLocation;
                     }
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
-                AndroidUtilities.runOnUIThread(new x0(e1Var2, this.d, hd0Var));
+                AndroidUtilities.runOnUIThread(new x0(e1Var2, this.d, gd0Var));
                 return;
         }
     }
 
-    public x0(e1 e1Var, hd0 hd0Var, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f11442b = e1Var;
-        this.f11443c = hd0Var;
-        this.d = b2Var;
+    public x0(e1 e1Var, gd0 gd0Var, org.telegram.ui.ActionBar.a2 a2Var) {
+        this.f11441b = e1Var;
+        this.f11442c = gd0Var;
+        this.d = a2Var;
     }
 }

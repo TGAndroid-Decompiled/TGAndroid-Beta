@@ -33,23 +33,23 @@ public final class t3 extends w7.h0 {
                 kcVar.P();
                 return;
             case 1:
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.i4) this.f1728b).I;
-                if (f3Var != null) {
-                    f3Var.setDisableScroll(z10);
+                org.telegram.ui.ActionBar.e3 e3Var = ((org.telegram.ui.h4) this.f1728b).I;
+                if (e3Var != null) {
+                    e3Var.setDisableScroll(z10);
                     return;
                 }
                 return;
             case 2:
                 zn znVar = (zn) this.f1728b;
-                znVar.f44916n9 = !z10;
+                znVar.f44871n9 = !z10;
                 if (z10) {
-                    if (znVar.f44793d9 != null) {
+                    if (znVar.f44748d9 != null) {
                         zn.W1(znVar, 0.0f);
-                        znVar.f44793d9 = null;
+                        znVar.f44748d9 = null;
                     }
-                    znVar.f44806e9 = false;
-                    znVar.f44818f9 = false;
-                    rl rlVar = znVar.f44842h9;
+                    znVar.f44761e9 = false;
+                    znVar.f44773f9 = false;
+                    rl rlVar = znVar.f44797h9;
                     if (rlVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(rlVar.H);
                         rlVar.a();
@@ -59,15 +59,15 @@ public final class t3 extends w7.h0 {
                 return;
             default:
                 qc0 qc0Var = (qc0) this.f1728b;
-                ic0 ic0Var = qc0Var.f30184e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = qc0Var.f30188s;
-                wc0 wc0Var = qc0Var.f30183c0;
-                if (wc0Var.f32650s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f33207b > 0.0f) {
+                ic0 ic0Var = qc0Var.f30133e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = qc0Var.f30137s;
+                wc0 wc0Var = qc0Var.f30132c0;
+                if (wc0Var.f32619s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f33529b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (ic0Var.v - ic0Var.f21888u > MessagesController.getInstance(wc0Var.f32651w).quoteLengthMax) {
+                        if (ic0Var.v - ic0Var.f21876u > MessagesController.getInstance(wc0Var.f32620w).quoteLengthMax) {
                             qc0Var.f();
                             return;
                         }
@@ -80,7 +80,7 @@ public final class t3 extends w7.h0 {
                         MessageObject c10 = qc0Var.c(messageObject);
                         MessagePreviewParams messagePreviewParams = wc0Var.d;
                         if (messagePreviewParams.quote == null) {
-                            int i10 = ic0Var.f21888u;
+                            int i10 = ic0Var.f21876u;
                             messagePreviewParams.quoteStart = i10;
                             int i11 = ic0Var.v;
                             messagePreviewParams.quoteEnd = i11;
@@ -104,9 +104,9 @@ public final class t3 extends w7.h0 {
         switch (this.f1727a) {
             case 2:
                 zn znVar = (zn) this.f1728b;
-                kVar = ((org.telegram.ui.ActionBar.n2) znVar).actionBar;
+                kVar = ((org.telegram.ui.ActionBar.m2) znVar).actionBar;
                 if (kVar != null) {
-                    kVar2 = ((org.telegram.ui.ActionBar.n2) znVar).actionBar;
+                    kVar2 = ((org.telegram.ui.ActionBar.m2) znVar).actionBar;
                     if (kVar2.t()) {
                         znVar.C7(false);
                     }

@@ -1,62 +1,42 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
+import android.content.Context;
+import android.text.SpannableString;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.t01;
 public final class p3 implements Utilities.Callback {
-    public final int f35429a;
-    public final ci.d f35430b;
-    public final org.telegram.ui.ActionBar.f3 f35431c;
-    public final org.telegram.ui.ActionBar.e6 d;
+    public final LinearLayout f35403a;
+    public final f4 f35404b;
+    public final org.telegram.ui.ActionBar.d6 f35405c;
+    public final int d;
+    public final TextView f35406e;
+    public final k2[] f35407f;
+    public final t01 f35408g;
+    public final Utilities.Callback3 h;
+    public final Context f35409i;
+    public final TextView[] f35410j;
+    public final int f35411k;
+    public final SpannableString[] f35412l;
 
-    public p3(ci.d dVar, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        this.f35429a = i10;
-        this.f35430b = dVar;
-        this.f35431c = f3Var;
-        this.d = e6Var;
+    public p3(LinearLayout linearLayout, f4 f4Var, org.telegram.ui.ActionBar.d6 d6Var, int i10, TextView textView, k2[] k2VarArr, t01 t01Var, Utilities.Callback3 callback3, Context context, TextView[] textViewArr, int i11, SpannableString[] spannableStringArr) {
+        this.f35403a = linearLayout;
+        this.f35404b = f4Var;
+        this.f35405c = d6Var;
+        this.d = i10;
+        this.f35406e = textView;
+        this.f35407f = k2VarArr;
+        this.f35408g = t01Var;
+        this.h = callback3;
+        this.f35409i = context;
+        this.f35410j = textViewArr;
+        this.f35411k = i11;
+        this.f35412l = spannableStringArr;
     }
 
     @Override
-    public final void run(Object obj) {
-        String str = (String) obj;
-        switch (this.f35429a) {
-            case 0:
-                this.f35430b.setLoading(false);
-                boolean isEmpty = TextUtils.isEmpty(str);
-                org.telegram.ui.ActionBar.f3 f3Var = this.f35431c;
-                if (!isEmpty) {
-                    new ad(f3Var.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                } else {
-                    f3Var.dismiss();
-                    return;
-                }
-            case 1:
-                this.f35430b.setLoading(false);
-                org.telegram.ui.ActionBar.f3 f3Var2 = this.f35431c;
-                if (str != null) {
-                    new ad(f3Var2.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                } else {
-                    f3Var2.dismiss();
-                    return;
-                }
-            default:
-                org.telegram.ui.ActionBar.f3 f3Var3 = this.f35431c;
-                if (str != null) {
-                    new ad(f3Var3.topBulletinContainer, this.d).e0(str, false);
-                    return;
-                }
-                this.f35430b.setLoading(false);
-                f3Var3.dismiss();
-                return;
-        }
-    }
-
-    public p3(org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.e6 e6Var, ci.d dVar) {
-        this.f35429a = 2;
-        this.f35431c = f3Var;
-        this.d = e6Var;
-        this.f35430b = dVar;
+    public final void run(java.lang.Object r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.p3.run(java.lang.Object):void");
     }
 }

@@ -44,13 +44,13 @@ public class PushListenerController {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 k9.h.f(ApplicationLoader.applicationContext);
-                com.google.firebase.messaging.u uVar = FirebaseMessaging.f7886l;
+                com.google.firebase.messaging.u uVar = FirebaseMessaging.f7885l;
                 synchronized (FirebaseMessaging.class) {
                     firebaseMessaging = FirebaseMessaging.getInstance(k9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7893f.execute(new ci.y8(5, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.f7892f.execute(new ci.y8(5, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new d0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
@@ -72,7 +72,7 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14706a) == 0) {
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f14705a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -96,7 +96,7 @@ public class PushListenerController {
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("FCM Registration not found.");
             }
-            Utilities.globalQueue.postRunnable(new ug(this, 4));
+            Utilities.globalQueue.postRunnable(new gh(this, 3));
         }
     }
 

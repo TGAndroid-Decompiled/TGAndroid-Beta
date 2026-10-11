@@ -2,41 +2,41 @@ package hg;
 
 import android.content.Context;
 import android.text.Editable;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.j3;
-import org.telegram.ui.Components.f71;
+import org.telegram.ui.Components.g71;
 public final class m extends j3 {
-    public final int f11313x;
-    public final n f11314y;
+    public final int f11312x;
+    public final n f11313y;
 
-    public m(n nVar, Context context, String str, int i10, e6 e6Var, int i11) {
-        super(context, str, false, false, i10, e6Var);
-        this.f11313x = i11;
+    public m(n nVar, Context context, String str, int i10, d6 d6Var, int i11) {
+        super(context, str, false, false, i10, d6Var);
+        this.f11312x = i11;
         switch (i11) {
             case 1:
-                this.f11314y = nVar;
-                super(context, str, true, false, i10, e6Var);
+                this.f11313y = nVar;
+                super(context, str, true, false, i10, d6Var);
                 return;
             default:
-                this.f11314y = nVar;
+                this.f11313y = nVar;
                 return;
         }
     }
 
     @Override
     public final void a(boolean z10) {
-        f71 f71Var;
-        f71 f71Var2;
-        switch (this.f11313x) {
+        g71 g71Var;
+        g71 g71Var2;
+        switch (this.f11312x) {
             case 0:
-                if (z10 && (f71Var = this.f11314y.f26629a) != null) {
-                    f71Var.x0(2);
+                if (z10 && (g71Var = this.f11313y.f26922a) != null) {
+                    g71Var.x0(2);
                     return;
                 }
                 return;
             default:
-                if (z10 && (f71Var2 = this.f11314y.f26629a) != null) {
-                    f71Var2.x0(3);
+                if (z10 && (g71Var2 = this.f11313y.f26922a) != null) {
+                    g71Var2.x0(3);
                     return;
                 }
                 return;
@@ -45,15 +45,15 @@ public final class m extends j3 {
 
     @Override
     public final void b(Editable editable) {
-        switch (this.f11313x) {
+        switch (this.f11312x) {
             case 0:
-                n nVar = this.f11314y;
-                nVar.f11321n.d(nVar.f11323s.getText().toString(), nVar.v.getText().toString());
+                n nVar = this.f11313y;
+                nVar.f11320n.d(nVar.f11322s.getText().toString(), nVar.v.getText().toString());
                 nVar.e0(true);
                 return;
             default:
-                n nVar2 = this.f11314y;
-                nVar2.f11321n.d(nVar2.f11323s.getText().toString(), nVar2.v.getText().toString());
+                n nVar2 = this.f11313y;
+                nVar2.f11320n.d(nVar2.f11322s.getText().toString(), nVar2.v.getText().toString());
                 nVar2.e0(true);
                 return;
         }

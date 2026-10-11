@@ -1,8 +1,8 @@
 package ki;
 public final class b {
-    public final xa.d f14882a;
+    public final xa.c f14881a;
 
-    public b(xa.d dVar) {
-        this.f14882a = dVar;
+    public b(xa.c cVar) {
+        this.f14881a = cVar;
     }
 }

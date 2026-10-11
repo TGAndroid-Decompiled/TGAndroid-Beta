@@ -1,75 +1,137 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class bg implements org.telegram.ui.Components.uk0, org.telegram.ui.ActionBar.a2 {
-    public final int f36352a;
-    public final zn f36353b;
-    public final MessageObject f36354c;
+public final class bg implements org.telegram.ui.Components.vk0 {
+    public final int f36368a;
+    public final zn f36369b;
+    public final boolean f36370c;
+    public final MessageObject d;
 
-    public bg(zn znVar, MessageObject messageObject, int i10) {
-        this.f36352a = i10;
-        this.f36353b = znVar;
-        this.f36354c = messageObject;
+    public bg(zn znVar, boolean z10, MessageObject messageObject, int i10) {
+        this.f36368a = i10;
+        this.f36369b = znVar;
+        this.f36370c = z10;
+        this.d = messageObject;
     }
 
     @Override
-    public void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f36352a) {
+    public final void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
+        switch (this.f36368a) {
             case 0:
-                Bundle bundle = new Bundle();
-                if (j3 > 0) {
-                    bundle.putLong("user_id", j3);
-                } else {
-                    bundle.putLong("chat_id", -j3);
-                }
-                zn znVar = this.f36353b;
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle.putInt("report_reaction_message_id", this.f36354c.getId());
-                    bundle.putLong("report_reaction_from_dialog_id", znVar.T5);
+                    final zn znVar = this.f36369b;
+                    if (j3 != znVar.getUserConfig().getClientUserId() && this.f36370c) {
+                        final ArrayList arrayList = new ArrayList(1);
+                        arrayList.add(this.d);
+                        TLObject userOrChat = znVar.getMessagesController().getUserOrChat(j3);
+                        final ArrayList arrayList2 = new ArrayList(1);
+                        arrayList2.add(userOrChat);
+                        final TLRPC.ChannelParticipant[] channelParticipantArr = new TLRPC.ChannelParticipant[1];
+                        TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
+                        tL_channels_getParticipant.channel = MessagesController.getInputChannel(znVar.f44752e);
+                        tL_channels_getParticipant.participant = MessagesController.getInputPeer(userOrChat);
+                        znVar.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant, new Object(), new Utilities.Callback2() {
+                            @Override
+                            public final void run(Object obj, Object obj2) {
+                                TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) obj;
+                                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                                switch (r5) {
+                                    case 0:
+                                        zn znVar2 = znVar;
+                                        TLRPC.ChannelParticipant[] channelParticipantArr2 = channelParticipantArr;
+                                        if (tL_channels_channelParticipant != null) {
+                                            znVar2.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
+                                            znVar2.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
+                                            channelParticipantArr2[0] = tL_channels_channelParticipant.participant;
+                                        } else {
+                                            znVar2.getClass();
+                                        }
+                                        int i10 = znVar2.R3;
+                                        ai.f fVar = new ai.f(17);
+                                        new org.telegram.ui.Components.ws(znVar2, znVar2.f44752e, arrayList, arrayList2, channelParticipantArr2, znVar2.L6, (int) znVar2.d(), i10, true, fVar).show();
+                                        return;
+                                    default:
+                                        zn znVar3 = znVar;
+                                        TLRPC.ChannelParticipant[] channelParticipantArr3 = channelParticipantArr;
+                                        if (tL_channels_channelParticipant != null) {
+                                            znVar3.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
+                                            znVar3.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
+                                            channelParticipantArr3[0] = tL_channels_channelParticipant.participant;
+                                        } else {
+                                            znVar3.getClass();
+                                        }
+                                        int i11 = znVar3.R3;
+                                        ai.f fVar2 = new ai.f(17);
+                                        new org.telegram.ui.Components.ws(znVar3, znVar3.f44752e, arrayList, arrayList2, channelParticipantArr3, znVar3.L6, (int) znVar3.d(), i11, true, fVar2).show();
+                                        return;
+                                }
+                            }
+                        });
+                        znVar.D7(true);
+                        return;
+                    }
+                    return;
                 }
-                znVar.presentFragment(new ProfileActivity(bundle, null));
-                znVar.D7(true);
                 return;
             default:
-                zn znVar2 = this.f36353b;
+                final zn znVar2 = this.f36369b;
                 znVar2.getClass();
-                Bundle bundle2 = new Bundle();
-                if (j3 > 0) {
-                    bundle2.putLong("user_id", j3);
-                } else {
-                    bundle2.putLong("chat_id", -j3);
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != znVar2.getUserConfig().getClientUserId() && this.f36370c) {
+                    final ArrayList arrayList3 = new ArrayList(1);
+                    arrayList3.add(this.d);
+                    TLObject userOrChat2 = znVar2.getMessagesController().getUserOrChat(j3);
+                    final ArrayList arrayList4 = new ArrayList(1);
+                    arrayList4.add(userOrChat2);
+                    final TLRPC.ChannelParticipant[] channelParticipantArr2 = new TLRPC.ChannelParticipant[1];
+                    TLRPC.TL_channels_getParticipant tL_channels_getParticipant2 = new TLRPC.TL_channels_getParticipant();
+                    tL_channels_getParticipant2.channel = MessagesController.getInputChannel(znVar2.f44752e);
+                    tL_channels_getParticipant2.participant = MessagesController.getInputPeer(userOrChat2);
+                    znVar2.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant2, new Object(), new Utilities.Callback2() {
+                        @Override
+                        public final void run(Object obj, Object obj2) {
+                            TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) obj;
+                            TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                            switch (r5) {
+                                case 0:
+                                    zn znVar22 = znVar2;
+                                    TLRPC.ChannelParticipant[] channelParticipantArr22 = channelParticipantArr2;
+                                    if (tL_channels_channelParticipant != null) {
+                                        znVar22.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
+                                        znVar22.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
+                                        channelParticipantArr22[0] = tL_channels_channelParticipant.participant;
+                                    } else {
+                                        znVar22.getClass();
+                                    }
+                                    int i10 = znVar22.R3;
+                                    ai.f fVar = new ai.f(17);
+                                    new org.telegram.ui.Components.ws(znVar22, znVar22.f44752e, arrayList3, arrayList4, channelParticipantArr22, znVar22.L6, (int) znVar22.d(), i10, true, fVar).show();
+                                    return;
+                                default:
+                                    zn znVar3 = znVar2;
+                                    TLRPC.ChannelParticipant[] channelParticipantArr3 = channelParticipantArr2;
+                                    if (tL_channels_channelParticipant != null) {
+                                        znVar3.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
+                                        znVar3.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
+                                        channelParticipantArr3[0] = tL_channels_channelParticipant.participant;
+                                    } else {
+                                        znVar3.getClass();
+                                    }
+                                    int i11 = znVar3.R3;
+                                    ai.f fVar2 = new ai.f(17);
+                                    new org.telegram.ui.Components.ws(znVar3, znVar3.f44752e, arrayList3, arrayList4, channelParticipantArr3, znVar3.L6, (int) znVar3.d(), i11, true, fVar2).show();
+                                    return;
+                            }
+                        }
+                    });
+                    znVar2.D7(true);
+                    return;
                 }
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle2.putInt("report_reaction_message_id", this.f36354c.getId());
-                    bundle2.putLong("report_reaction_from_dialog_id", znVar2.T5);
-                }
-                znVar2.presentFragment(new ProfileActivity(bundle2, null));
-                znVar2.D7(true);
                 return;
         }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        zn znVar = this.f36353b;
-        org.telegram.ui.ActionBar.b2[] b2VarArr = {new org.telegram.ui.ActionBar.b2(znVar.getParentActivity(), 3, znVar.f44807ea)};
-        TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-        MessageObject messageObject = this.f36354c;
-        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
-        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
-        tL_inputMediaPoll.poll = tL_poll;
-        TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) messageObject.messageOwner.media).poll;
-        tL_poll.f20068id = poll.f20068id;
-        tL_poll.question = poll.question;
-        tL_poll.answers = poll.answers;
-        tL_poll.closed = true;
-        tL_messages_editMessage.media = tL_inputMediaPoll;
-        tL_messages_editMessage.peer = znVar.getMessagesController().getInputPeer(znVar.T5);
-        tL_messages_editMessage.f20125id = messageObject.getId();
-        tL_messages_editMessage.flags |= 16384;
-        AndroidUtilities.runOnUIThread(new vg(znVar, b2VarArr, znVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new ba(znVar, b2VarArr, tL_messages_editMessage, 5)), 2), 500L);
     }
 }

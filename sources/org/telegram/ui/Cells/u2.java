@@ -7,14 +7,14 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.bi;
+import org.telegram.messenger.ai;
 import org.telegram.ui.Components.RadioButton;
 public final class u2 extends FrameLayout {
-    public int f23484a;
-    public TextView f23485b;
-    public TextView f23486c;
+    public int f23472a;
+    public TextView f23473b;
+    public TextView f23474c;
     public RadioButton d;
-    public boolean f23487e;
+    public boolean f23475e;
 
     public final void a(boolean z10, boolean z11) {
         float f7;
@@ -22,8 +22,8 @@ public final class u2 extends FrameLayout {
         float f11;
         float f12;
         RadioButton radioButton = this.d;
-        TextView textView = this.f23486c;
-        TextView textView2 = this.f23485b;
+        TextView textView = this.f23474c;
+        TextView textView2 = this.f23473b;
         setEnabled(z10);
         float f13 = 0.5f;
         if (z11) {
@@ -75,8 +75,8 @@ public final class u2 extends FrameLayout {
         int i11;
         float f11;
         float f12;
-        TextView textView = this.f23485b;
-        TextView textView2 = this.f23486c;
+        TextView textView = this.f23473b;
+        TextView textView2 = this.f23474c;
         int i12 = 3;
         if (textView2.getVisibility() == 0) {
             boolean z10 = LocaleController.isRTL;
@@ -136,7 +136,7 @@ public final class u2 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        if (this.f23487e) {
+        if (this.f23475e) {
             float f10 = 23.0f;
             if (LocaleController.isRTL) {
                 f7 = 0.0f;
@@ -149,16 +149,16 @@ public final class u2 extends FrameLayout {
             if (!LocaleController.isRTL) {
                 f10 = 0.0f;
             }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
+            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.h6.f20908k0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f23487e ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f23475e ? 1 : 0));
         int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-        TextView textView = this.f23486c;
+        TextView textView = this.f23474c;
         if (textView.getVisibility() == 0) {
             i12 = 12;
         } else {
@@ -168,12 +168,12 @@ public final class u2 extends FrameLayout {
         this.d.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22.0f), 1073741824));
         if (textView.getVisibility() == 0) {
             textView.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-            dp = bi.z(12.0f, textView.getMeasuredWidth(), dp);
+            dp = ai.z(12.0f, textView.getMeasuredWidth(), dp);
         }
-        this.f23485b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f23473b.measure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f23485b.setTextColor(i10);
+        this.f23473b.setTextColor(i10);
     }
 }

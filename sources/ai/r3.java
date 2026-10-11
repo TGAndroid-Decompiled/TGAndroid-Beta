@@ -10,15 +10,14 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.fa1;
 import org.telegram.ui.Components.j10;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.ml0;
 import org.telegram.ui.Components.q80;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.ja1;
 import org.telegram.ui.ka1;
-import org.telegram.ui.la1;
 public final class r3 implements View.OnLongClickListener {
     public final int f1650a;
     public final Object f1651b;
@@ -46,17 +45,17 @@ public final class r3 implements View.OnLongClickListener {
                 if (d4Var != null) {
                     d4Var.e(true);
                 }
-                ll0 ll0Var = f6Var.f1002r3;
-                if (ll0Var == null) {
-                    ll0 ll0Var2 = new ll0(2, f6Var.C2, f6Var.getContext(), LaunchActivity.R(), new y3(4, f6Var.B0));
-                    f6Var.f1002r3 = ll0Var2;
-                    ll0Var2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
+                ml0 ml0Var = f6Var.f1002r3;
+                if (ml0Var == null) {
+                    ml0 ml0Var2 = new ml0(2, f6Var.C2, f6Var.getContext(), LaunchActivity.R(), new y3(4, f6Var.B0));
+                    f6Var.f1002r3 = ml0Var2;
+                    ml0Var2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
                     f6Var.addView(f6Var.f1002r3, f6Var.getChildCount() - 1, w7.x5.a(74.0f, 0.0f, 0.0f, 12.0f, 64.0f, -2, 53));
                     f6Var.f1002r3.setVisibility(8);
                     f6Var.f1002r3.setDelegate(new a5(f6Var));
                     f6Var.f1002r3.p(null, null, true);
                 } else {
-                    f6Var.bringChildToFront(ll0Var);
+                    f6Var.bringChildToFront(ml0Var);
                     f6Var.f1002r3.n();
                 }
                 f6Var.f1002r3.setFragment(LaunchActivity.R());
@@ -65,7 +64,7 @@ public final class r3 implements View.OnLongClickListener {
                 return true;
             case 1:
                 org.telegram.ui.Components.c0 c0Var = (org.telegram.ui.Components.c0) this.f1652c;
-                ci.n5 n5Var = ((org.telegram.ui.Components.d0) this.f1651b).f25501n;
+                ci.n5 n5Var = ((org.telegram.ui.Components.d0) this.f1651b).f25367n;
                 if (n5Var != null) {
                     return ((Boolean) n5Var.run(c0Var)).booleanValue();
                 }
@@ -73,18 +72,18 @@ public final class r3 implements View.OnLongClickListener {
             case 2:
                 org.telegram.ui.Components.l8 l8Var = (org.telegram.ui.Components.l8) this.f1651b;
                 float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(true);
-                org.telegram.ui.ActionBar.b1 b1Var = l8Var.X;
-                b1Var.d(playbackSpeed, false);
-                b1Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.G8, (org.telegram.ui.ActionBar.e6) this.f1652c));
+                org.telegram.ui.ActionBar.a1 a1Var = l8Var.X;
+                a1Var.d(playbackSpeed, false);
+                a1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, (org.telegram.ui.ActionBar.d6) this.f1652c));
                 l8Var.F0(false);
-                org.telegram.ui.ActionBar.v0 v0Var = l8Var.V;
-                v0Var.setDimMenu(0.15f);
-                v0Var.M(b1Var, null);
+                org.telegram.ui.ActionBar.u0 u0Var = l8Var.V;
+                u0Var.setDimMenu(0.15f);
+                u0Var.M(a1Var, null);
                 MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
                 return true;
             case 3:
                 q80 q80Var = (q80) this.f1651b;
-                ((fa1) this.f1652c).run();
+                ((org.telegram.ui.Components.voip.i) this.f1652c).run();
                 if (q80Var.J) {
                     q80Var.u();
                     return true;
@@ -98,16 +97,16 @@ public final class r3 implements View.OnLongClickListener {
                     return false;
                 }
                 if (AndroidUtilities.addToClipboard(messageObject.sponsoredUrl)) {
-                    new ad(org.telegram.ui.Components.ob.a(photoViewer.E), dVar).k(false).j();
+                    new ad(org.telegram.ui.Components.nb.a(photoViewer.E), dVar).k(false).j();
                 }
                 return true;
             case 5:
                 ProfileActivity profileActivity = (ProfileActivity) this.f1651b;
                 ImageView imageView = (ImageView) this.f1652c;
-                org.telegram.ui.ActionBar.n1 b10 = org.telegram.ui.Components.q9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f34296g1, profileActivity.f34424z0);
+                org.telegram.ui.ActionBar.m1 b10 = org.telegram.ui.Components.q9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f34286g1, profileActivity.f34414z0);
                 if (b10 != null) {
-                    b10.setOnDismissListener(new org.telegram.ui.f0(profileActivity, 3));
-                    profileActivity.f34405w0 = imageView;
+                    b10.setOnDismissListener(new org.telegram.ui.e0(profileActivity, 3));
+                    profileActivity.f34395w0 = imageView;
                     profileActivity.H3(0.3f);
                     UndoView undoView = profileActivity.M;
                     if (undoView == null) {
@@ -118,29 +117,29 @@ public final class r3 implements View.OnLongClickListener {
                 }
                 return false;
             default:
-                ka1 ka1Var = (ka1) this.f1651b;
+                ja1 ja1Var = (ja1) this.f1651b;
                 kg.f fVar = (kg.f) this.f1652c;
-                la1 la1Var = ka1Var.d;
-                j10 j10Var = ka1Var.f39244a;
+                ka1 ka1Var = ja1Var.d;
+                j10 j10Var = ja1Var.f38962a;
                 boolean z10 = false;
-                if (j10Var.f27499c) {
-                    la1Var.f();
-                    ArrayList arrayList = la1Var.f39537n;
-                    ig.g gVar = la1Var.f39534c;
+                if (j10Var.f27512c) {
+                    ka1Var.f();
+                    ArrayList arrayList = ka1Var.f39253n;
+                    ig.g gVar = ka1Var.f39250c;
                     int size = arrayList.size();
                     for (int i10 = 0; i10 < size; i10++) {
-                        ((ka1) arrayList.get(i10)).f39244a.setChecked(false);
-                        ((ka1) arrayList.get(i10)).f39245b.f14852n = false;
-                        if (la1Var.f39538r.f40194c > 0 && i10 < gVar.d.size()) {
-                            ((kg.f) gVar.d.get(i10)).f14852n = false;
+                        ((ja1) arrayList.get(i10)).f38962a.setChecked(false);
+                        ((ja1) arrayList.get(i10)).f38963b.f14851n = false;
+                        if (ka1Var.f39254r.f39883c > 0 && i10 < gVar.d.size()) {
+                            ((kg.f) gVar.d.get(i10)).f14851n = false;
                         }
                     }
                     z10 = true;
                     j10Var.setChecked(true);
-                    fVar.f14852n = true;
-                    la1Var.f39533b.z();
-                    if (la1Var.f39538r.f40194c > 0) {
-                        ((kg.f) gVar.d.get(ka1Var.f39246c)).f14852n = true;
+                    fVar.f14851n = true;
+                    ka1Var.f39249b.z();
+                    if (ka1Var.f39254r.f39883c > 0) {
+                        ((kg.f) gVar.d.get(ja1Var.f38964c)).f14851n = true;
                         gVar.z();
                     }
                 }

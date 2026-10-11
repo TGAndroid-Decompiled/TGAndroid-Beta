@@ -1,50 +1,40 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-public final class xy implements DialogInterface.OnClickListener {
-    public final int f44206a;
-    public final int f44207b;
-    public final Object f44208c;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class xy implements org.telegram.ui.Components.jm0 {
+    public final Rect f44200a = new Rect();
+    public final bz f44201b;
 
-    public xy(Object obj, int i10, int i11) {
-        this.f44206a = i11;
-        this.f44208c = obj;
-        this.f44207b = i10;
+    public xy(bz bzVar) {
+        this.f44201b = bzVar;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f44206a) {
-            case 0:
-                cz czVar = ((yy) this.f44208c).f44472b;
-                if (i10 == 0) {
-                    czVar.f36800e.remove(this.f44207b - czVar.f36802n);
-                    czVar.Z();
-                    bz bzVar = czVar.f36801f;
-                    if (bzVar != null) {
-                        bzVar.a();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f44208c, this.f44207b, i10);
-                return;
-            default:
-                ThemeActivity themeActivity = (ThemeActivity) this.f44208c;
-                themeActivity.getClass();
-                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                edit.putInt("sortContactsBy", i10);
-                edit.commit();
-                hc1 hc1Var = themeActivity.f34567a;
-                if (hc1Var != null) {
-                    hc1Var.m(this.f44207b);
-                    return;
-                }
-                return;
+    public final boolean mo17c(float f7, float f10, int i10, View view) {
+        bz bzVar = this.f44201b;
+        if (bzVar.getParentActivity() != null && (view instanceof org.telegram.ui.Cells.g4)) {
+            Rect rect = this.f44200a;
+            ((ImageView) view.getTag(R.id.object_tag)).getHitRect(rect);
+            if (!rect.contains((int) f7, (int) f10)) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bzVar.getParentActivity());
+                alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new wy(this, i10, 0));
+                bzVar.showDialog(alertDialog$Builder.f20368a);
+                return true;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public final void h() {
+    }
+
+    @Override
+    public final void q(float f7) {
     }
 }

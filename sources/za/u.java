@@ -4,24 +4,25 @@ import android.util.Log;
 import j$.util.Objects;
 import java.util.Map;
 import v7.a8;
+import z7.ce;
 public final class u extends ld.j implements sd.p {
-    public final int f54332a;
-    public int f54333b;
-    public final Object f54334c;
+    public final int f54372a;
+    public int f54373b;
+    public final Object f54374c;
 
     public u(Object obj, jd.c cVar, int i10) {
         super(2, cVar);
-        this.f54332a = i10;
-        this.f54334c = obj;
+        this.f54372a = i10;
+        this.f54374c = obj;
     }
 
     @Override
     public final jd.c create(Object obj, jd.c cVar) {
-        switch (this.f54332a) {
+        switch (this.f54372a) {
             case 0:
-                return new u((a0) this.f54334c, cVar, 0);
+                return new u((z) this.f54374c, cVar, 0);
             default:
-                return new u((String) this.f54334c, cVar, 1);
+                return new u((String) this.f54374c, cVar, 1);
         }
     }
 
@@ -29,20 +30,20 @@ public final class u extends ld.j implements sd.p {
     public final Object invoke(Object obj, Object obj2) {
         ae.d0 d0Var = (ae.d0) obj;
         jd.c cVar = (jd.c) obj2;
-        switch (this.f54332a) {
+        switch (this.f54372a) {
             case 0:
-                return ((u) create(d0Var, cVar)).invokeSuspend(hd.i.f11092a);
+                return ((u) create(d0Var, cVar)).invokeSuspend(hd.i.f11091a);
             default:
-                return ((u) create(d0Var, cVar)).invokeSuspend(hd.i.f11092a);
+                return ((u) create(d0Var, cVar)).invokeSuspend(hd.i.f11091a);
         }
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        switch (this.f54332a) {
+        switch (this.f54372a) {
             case 0:
-                kd.a aVar = kd.a.f14784a;
-                int i10 = this.f54333b;
+                kd.a aVar = kd.a.f14783a;
+                int i10 = this.f54373b;
                 if (i10 != 0) {
                     if (i10 == 1) {
                         a8.b(obj);
@@ -51,18 +52,18 @@ public final class u extends ld.j implements sd.p {
                     }
                 } else {
                     a8.b(obj);
-                    a0 a0Var = (a0) this.f54334c;
-                    z zVar = a0Var.d;
-                    de.j jVar = new de.j(a0Var, 1);
-                    this.f54333b = 1;
-                    if (zVar.z(jVar, this) == aVar) {
+                    z zVar = (z) this.f54374c;
+                    ce ceVar = zVar.d;
+                    de.j jVar = new de.j(zVar, 1);
+                    this.f54373b = 1;
+                    if (ceVar.G(jVar, this) == aVar) {
                         return aVar;
                     }
                 }
-                return hd.i.f11092a;
+                return hd.i.f11091a;
             default:
-                kd.a aVar2 = kd.a.f14784a;
-                int i11 = this.f54333b;
+                kd.a aVar2 = kd.a.f14783a;
+                int i11 = this.f54373b;
                 if (i11 != 0) {
                     if (i11 == 1) {
                         a8.b(obj);
@@ -72,13 +73,13 @@ public final class u extends ld.j implements sd.p {
                 } else {
                     a8.b(obj);
                     ab.c cVar = ab.c.f398a;
-                    this.f54333b = 1;
+                    this.f54373b = 1;
                     obj = cVar.b(this);
                     if (obj == aVar2) {
                         return aVar2;
                     }
                 }
-                String str = (String) this.f54334c;
+                String str = (String) this.f54374c;
                 for (w9.j jVar2 : ((Map) obj).values()) {
                     ab.e eVar = new ab.e(str);
                     jVar2.getClass();
@@ -86,16 +87,16 @@ public final class u extends ld.j implements sd.p {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str2, null);
                     }
-                    w9.i iVar = jVar2.f50281b;
+                    w9.i iVar = jVar2.f50324b;
                     synchronized (iVar) {
-                        if (!Objects.equals(iVar.f50279c, str)) {
-                            w9.i.a(iVar.f50277a, iVar.f50278b, str);
-                            iVar.f50279c = str;
+                        if (!Objects.equals(iVar.f50322c, str)) {
+                            w9.i.a(iVar.f50320a, iVar.f50321b, str);
+                            iVar.f50322c = str;
                         }
                     }
                     Log.d("SessionLifecycleClient", "Notified " + ab.d.f400a + " of new session " + str);
                 }
-                return hd.i.f11092a;
+                return hd.i.f11091a;
         }
     }
 }

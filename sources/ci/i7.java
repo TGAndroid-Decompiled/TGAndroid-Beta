@@ -8,25 +8,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class i7 extends j1.b {
-    public final Rect f5203o;
-    public final j7 f5204p;
+    public final Rect f5202o;
+    public final j7 f5203p;
 
     public i7(j7 j7Var, j7 j7Var2) {
         super(j7Var2);
-        this.f5204p = j7Var;
-        this.f5203o = new Rect();
+        this.f5203p = j7Var;
+        this.f5202o = new Rect();
     }
 
     @Override
     public final int g(float f7, float f10) {
-        j7 j7Var = this.f5204p;
-        if (Math.abs(f7 - j7Var.f5265k0) <= AndroidUtilities.dp(30.0f) && Math.abs(f10 - j7Var.f5264j0) <= AndroidUtilities.dp(30.0f) && !j7Var.b() && !j7Var.f5277u0) {
+        j7 j7Var = this.f5203p;
+        if (Math.abs(f7 - j7Var.f5264k0) <= AndroidUtilities.dp(30.0f) && Math.abs(f10 - j7Var.f5263j0) <= AndroidUtilities.dp(30.0f) && !j7Var.b() && !j7Var.f5276u0) {
             return 0;
         }
-        if (Math.abs(f7 - j7Var.f5266l0) <= AndroidUtilities.dp(30.0f) && Math.abs(f10 - j7Var.f5264j0) <= AndroidUtilities.dp(30.0f) && !j7Var.b() && !j7Var.f5277u0) {
+        if (Math.abs(f7 - j7Var.f5265l0) <= AndroidUtilities.dp(30.0f) && Math.abs(f10 - j7Var.f5263j0) <= AndroidUtilities.dp(30.0f) && !j7Var.b() && !j7Var.f5276u0) {
             return 2;
         }
-        if (Math.abs(f7 - j7Var.f5263i0) <= AndroidUtilities.dp(60.0f) && Math.abs(f10 - j7Var.f5264j0) <= AndroidUtilities.dp(60.0f)) {
+        if (Math.abs(f7 - j7Var.f5262i0) <= AndroidUtilities.dp(60.0f) && Math.abs(f10 - j7Var.f5263j0) <= AndroidUtilities.dp(60.0f)) {
             return 1;
         }
         return Integer.MIN_VALUE;
@@ -34,61 +34,61 @@ public final class i7 extends j1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        j7 j7Var = this.f5204p;
-        if (!j7Var.b() && !j7Var.f5277u0) {
+        j7 j7Var = this.f5203p;
+        if (!j7Var.b() && !j7Var.f5276u0) {
             arrayList.add(0);
         }
         arrayList.add(1);
-        if (!j7Var.b() && !j7Var.f5277u0) {
+        if (!j7Var.b() && !j7Var.f5276u0) {
             arrayList.add(2);
         }
     }
 
     @Override
     public final boolean k(int i10, int i11) {
-        j7 j7Var = this.f5204p;
-        if (j7Var.f5250a != null && !j7Var.f5277u0 && i11 == 16) {
+        j7 j7Var = this.f5203p;
+        if (j7Var.f5249a != null && !j7Var.f5276u0 && i11 == 16) {
             if (i10 != 0) {
                 if (i10 != 1) {
                     if (i10 == 2 && !j7Var.b()) {
                         j7Var.d(180.0f);
-                        ((gb) j7Var.f5250a).b();
+                        ((gb) j7Var.f5249a).b();
                         return true;
                     }
                 } else if (j7Var.b()) {
-                    ((gb) j7Var.f5250a).a();
+                    ((gb) j7Var.f5249a).a();
                     return true;
-                } else if (j7Var.f5273r0) {
-                    j7Var.f5273r0 = false;
-                    j7Var.f5285z0 = false;
-                    j7Var.f5278v0 = SystemClock.elapsedRealtime();
-                    j7Var.f5277u0 = true;
-                    ((gb) j7Var.f5250a).e(false);
+                } else if (j7Var.f5272r0) {
+                    j7Var.f5272r0 = false;
+                    j7Var.f5284z0 = false;
+                    j7Var.f5277v0 = SystemClock.elapsedRealtime();
+                    j7Var.f5276u0 = true;
+                    ((gb) j7Var.f5249a).e(false);
                     j7Var.invalidate();
                     return true;
-                } else if (j7Var.f5269o0) {
-                    if (lc.c(((gb) j7Var.f5250a).f5132a)) {
+                } else if (j7Var.f5268o0) {
+                    if (lc.c(((gb) j7Var.f5249a).f5131a)) {
                         j7Var.R = 0L;
                         j7Var.Q = System.currentTimeMillis();
                         j7Var.A0 = false;
-                        ((gb) j7Var.f5250a).f(new androidx.fragment.app.a0(this, 19), false);
+                        ((gb) j7Var.f5249a).f(new androidx.fragment.app.a0(this, 19), false);
                     }
                     return true;
                 } else {
-                    ((gb) j7Var.f5250a).d();
+                    ((gb) j7Var.f5249a).d();
                     return true;
                 }
             } else if (!j7Var.b()) {
-                if (j7Var.f5273r0 && j7Var.A0) {
-                    j7Var.f5285z0 = false;
+                if (j7Var.f5272r0 && j7Var.A0) {
+                    j7Var.f5284z0 = false;
                     j7Var.G0.d(1.0f, true);
-                    a4 a4Var = ((gb) j7Var.f5250a).f5132a.T0;
-                    a4Var.f4719a.t(LocaleController.getString(R.string.StoryHintPinchToZoom), true, true);
+                    a4 a4Var = ((gb) j7Var.f5249a).f5131a.T0;
+                    a4Var.f4718a.t(LocaleController.getString(R.string.StoryHintPinchToZoom), true, true);
                     a4Var.invalidate();
                     j7Var.invalidate();
                     return true;
                 }
-                ((gb) j7Var.f5250a).c();
+                ((gb) j7Var.f5249a).c();
                 return true;
             }
         }
@@ -99,11 +99,11 @@ public final class i7 extends j1.b {
     public final void l(int i10, s0.d dVar) {
         String string;
         String string2;
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47631a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47677a;
         dVar.i("android.widget.Button");
         boolean z10 = false;
-        Rect rect = this.f5203o;
-        j7 j7Var = this.f5204p;
+        Rect rect = this.f5202o;
+        j7 j7Var = this.f5203p;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -114,63 +114,63 @@ public final class i7 extends j1.b {
                     return;
                 }
                 int dp = AndroidUtilities.dp(22.0f);
-                float f7 = j7Var.f5266l0;
+                float f7 = j7Var.f5265l0;
                 float f10 = dp;
-                float f11 = j7Var.f5264j0;
+                float f11 = j7Var.f5263j0;
                 rect.set((int) (f7 - f10), (int) (f11 - f10), (int) (f7 + f10), (int) (f11 + f10));
                 dVar.h(rect);
                 dVar.j(LocaleController.getString(R.string.AccDescrSwitchCamera));
-                if (!j7Var.f5277u0 && !j7Var.b()) {
+                if (!j7Var.f5276u0 && !j7Var.b()) {
                     z10 = true;
                 }
                 accessibilityNodeInfo.setEnabled(z10);
                 if (z10) {
-                    dVar.b(s0.c.f47624c);
+                    dVar.b(s0.c.f47670c);
                     return;
                 }
                 return;
             }
             int dp2 = AndroidUtilities.dp(40.0f);
-            float f12 = j7Var.f5263i0;
+            float f12 = j7Var.f5262i0;
             float f13 = dp2;
-            float f14 = j7Var.f5264j0;
+            float f14 = j7Var.f5263j0;
             rect.set((int) (f12 - f13), (int) (f14 - f13), (int) (f12 + f13), (int) (f14 + f13));
             dVar.h(rect);
             if (j7Var.b()) {
                 string2 = LocaleController.getString(R.string.Send);
-            } else if (j7Var.f5273r0) {
+            } else if (j7Var.f5272r0) {
                 string2 = LocaleController.getString(R.string.AccDescrStopRecording);
-            } else if (j7Var.f5269o0) {
+            } else if (j7Var.f5268o0) {
                 string2 = LocaleController.getString(R.string.AccDescrStartRecording);
             } else {
                 string2 = LocaleController.getString(R.string.AccDescrTakePhoto);
             }
             dVar.j(string2);
-            accessibilityNodeInfo.setEnabled(!j7Var.f5277u0);
-            if (!j7Var.f5277u0) {
-                dVar.b(s0.c.f47624c);
+            accessibilityNodeInfo.setEnabled(!j7Var.f5276u0);
+            if (!j7Var.f5276u0) {
+                dVar.b(s0.c.f47670c);
                 return;
             }
             return;
         }
         int dp3 = AndroidUtilities.dp(22.0f);
-        float f15 = j7Var.f5265k0;
+        float f15 = j7Var.f5264k0;
         float f16 = dp3;
-        float f17 = j7Var.f5264j0;
+        float f17 = j7Var.f5263j0;
         rect.set((int) (f15 - f16), (int) (f17 - f16), (int) (f15 + f16), (int) (f17 + f16));
         dVar.h(rect);
-        if (j7Var.f5273r0 && j7Var.A0) {
+        if (j7Var.f5272r0 && j7Var.A0) {
             string = LocaleController.getString(R.string.AccDescrLockRecording);
         } else {
             string = LocaleController.getString(R.string.AccDescrCameraGallery);
         }
         dVar.j(string);
-        if (!j7Var.f5277u0 && !j7Var.b()) {
+        if (!j7Var.f5276u0 && !j7Var.b()) {
             z10 = true;
         }
         accessibilityNodeInfo.setEnabled(z10);
         if (z10) {
-            dVar.b(s0.c.f47624c);
+            dVar.b(s0.c.f47670c);
         }
     }
 }

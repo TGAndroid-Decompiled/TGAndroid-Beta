@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 public interface q {
-    byte[] C(byte[] bArr, byte[] bArr2);
-
     void H(byte[] bArr);
 
     o J(byte[] bArr, List list, int i10, HashMap hashMap);
@@ -18,17 +16,19 @@ public interface q {
 
     Map b(byte[] bArr);
 
-    void h(byte[] bArr, j2.k kVar);
+    void d(byte[] bArr, j2.k kVar);
 
-    p l();
+    p h();
 
-    h2.b q(byte[] bArr);
+    h2.b m(byte[] bArr);
+
+    byte[] q();
 
     void release();
 
-    byte[] v();
+    void v(byte[] bArr, byte[] bArr2);
 
-    void x(byte[] bArr, byte[] bArr2);
+    void x(byte[] bArr);
 
-    void y(byte[] bArr);
+    byte[] z(byte[] bArr, byte[] bArr2);
 }

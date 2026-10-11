@@ -1,4 +1,4 @@
 package de;
 public interface b {
-    Object z(c cVar, ld.c cVar2);
+    Object G(c cVar, ld.c cVar2);
 }

@@ -7,16 +7,16 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class xa0 extends org.telegram.ui.ActionBar.j {
-    public final eb0 f32885a;
+    public final eb0 f32861a;
 
     public xa0(eb0 eb0Var) {
-        this.f32885a = eb0Var;
+        this.f32861a = eb0Var;
     }
 
     @Override
     public final void b(int i10) {
         int i11;
-        eb0 eb0Var = this.f32885a;
+        eb0 eb0Var = this.f32861a;
         if (i10 == -1) {
             if (!eb0Var.V.L(true)) {
                 eb0Var.finishFragment();
@@ -37,13 +37,13 @@ public final class xa0 extends org.telegram.ui.ActionBar.j {
                     } else {
                         i11 = R.string.DeleteStoryTitle;
                     }
-                    alertDialog$Builder.f20378a.R = LocaleController.getString(i11);
-                    alertDialog$Builder.f20378a.T = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new y2(14, this, arrayList));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new f2(22));
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20378a;
-                    b2Var.show();
-                    b2Var.h();
+                    alertDialog$Builder.f20368a.R = LocaleController.getString(i11);
+                    alertDialog$Builder.f20368a.T = LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new y2(15, this, arrayList));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new e2(24));
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
+                    a2Var.show();
+                    a2Var.h();
                 }
             }
         } else if (i10 == 10) {

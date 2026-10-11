@@ -1,25 +1,25 @@
 package gg;
 
-import org.telegram.ui.sy;
+import org.telegram.ui.ry;
 public final class f implements Runnable {
-    public final int f10590a;
-    public final m f10591b;
+    public final int f10589a;
+    public final m f10590b;
 
     public f(m mVar, int i10) {
-        this.f10590a = i10;
-        this.f10591b = mVar;
+        this.f10589a = i10;
+        this.f10590b = mVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f10590a) {
+        switch (this.f10589a) {
             case 0:
-                for (sy syVar : this.f10591b.R.f42218e0) {
-                    ((s4.d0) syVar.f41834a.getLayoutManager()).f47696u = false;
+                for (ry ryVar : this.f10590b.R.f41907e0) {
+                    ((s4.d0) ryVar.f41530a.getLayoutManager()).f47742u = false;
                 }
                 return;
             default:
-                this.f10591b.J();
+                this.f10590b.J();
                 return;
         }
     }

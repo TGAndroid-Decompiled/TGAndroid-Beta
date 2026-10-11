@@ -9,20 +9,20 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class u80 extends FrameLayout {
-    public final z80 f31420a;
+    public final z80 f31333a;
 
     public u80(z80 z80Var, Context context) {
         super(context);
-        this.f31420a = z80Var;
+        this.f31333a = z80Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
-        z80 z80Var = this.f31420a;
-        Drawable drawable = z80Var.f33521b;
-        int i11 = z80Var.f33526r;
-        i10 = ((org.telegram.ui.ActionBar.f3) z80Var).backgroundPaddingTop;
+        z80 z80Var = this.f31333a;
+        Drawable drawable = z80Var.f33438b;
+        int i11 = z80Var.f33443r;
+        i10 = ((org.telegram.ui.ActionBar.e3) z80Var).backgroundPaddingTop;
         drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
         drawable.draw(canvas);
     }
@@ -30,8 +30,8 @@ public final class u80 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            z80 z80Var = this.f31420a;
-            if (z80Var.f33526r != 0 && motionEvent.getY() < z80Var.f33526r) {
+            z80 z80Var = this.f31333a;
+            if (z80Var.f33443r != 0 && motionEvent.getY() < z80Var.f33443r) {
                 z80Var.dismiss();
                 return true;
             }
@@ -42,7 +42,7 @@ public final class u80 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        z80.q(this.f31420a);
+        z80.q(this.f31333a);
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class u80 extends FrameLayout {
         int i12;
         int i13;
         int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
-        z80 z80Var = this.f31420a;
-        TextView textView = z80Var.f33524f;
+        z80 z80Var = this.f31333a;
+        TextView textView = z80Var.f33441f;
         measureChildWithMargins(textView, i10, 0, i11, 0);
         int measuredHeight = textView.getMeasuredHeight();
         v80 v80Var = z80Var.d;
         ((FrameLayout.LayoutParams) v80Var.getLayoutParams()).topMargin = AndroidUtilities.dp(65.0f) + measuredHeight;
         getMeasuredWidth();
         int D = org.telegram.messenger.q.D(58.0f, z80Var.h.size(), AndroidUtilities.dp(80.0f));
-        i12 = ((org.telegram.ui.ActionBar.f3) z80Var).backgroundPaddingTop;
+        i12 = ((org.telegram.ui.ActionBar.e3) z80Var).backgroundPaddingTop;
         int C = org.telegram.messenger.q.C(55.0f, i12 + D, measuredHeight);
         int i14 = size / 5;
         if (C < i14 * 3) {
@@ -67,16 +67,16 @@ public final class u80 extends FrameLayout {
             i13 = i14 * 2;
         }
         if (v80Var.getPaddingTop() != i13) {
-            z80Var.f33525n = true;
+            z80Var.f33442n = true;
             v80Var.setPadding(0, i13, 0, 0);
-            z80Var.f33525n = false;
+            z80Var.f33442n = false;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f31420a.isDismissed() && super.onTouchEvent(motionEvent)) {
+        if (!this.f31333a.isDismissed() && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ public final class u80 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f31420a.f33525n) {
+        if (this.f31333a.f33442n) {
             return;
         }
         super.requestLayout();

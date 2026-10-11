@@ -1,40 +1,226 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.RelativeLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class pw0 extends RelativeLayout {
-    public final PopupNotificationActivity f40951a;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class pw0 implements org.telegram.ui.Components.qg {
+    public final PopupNotificationActivity f40991a;
 
-    public pw0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
-        super(popupNotificationActivity2);
-        this.f40951a = popupNotificationActivity;
+    public pw0(PopupNotificationActivity popupNotificationActivity) {
+        this.f40991a = popupNotificationActivity;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        for (int i14 = 0; i14 < getChildCount(); i14++) {
-            View childAt = getChildAt(i14);
-            if (childAt.getTag() instanceof String) {
-                int left = childAt.getLeft();
-                PopupNotificationActivity popupNotificationActivity = this.f40951a;
-                childAt.layout(left, AndroidUtilities.dp(3.0f) + popupNotificationActivity.f34153b.getTop(), childAt.getRight(), popupNotificationActivity.f34153b.getBottom());
-            }
+    public final boolean C1() {
+        return false;
+    }
+
+    @Override
+    public final boolean I0() {
+        return true;
+    }
+
+    @Override
+    public final void K(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
+        PopupNotificationActivity popupNotificationActivity = this.f40991a;
+        if (popupNotificationActivity.Q == null) {
+            return;
+        }
+        int i12 = popupNotificationActivity.S;
+        if (i12 >= 0 && i12 < popupNotificationActivity.f34142a0.size()) {
+            popupNotificationActivity.f34142a0.remove(popupNotificationActivity.S);
+        }
+        MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
+        popupNotificationActivity.Q = null;
+        popupNotificationActivity.f();
+    }
+
+    @Override
+    public final void L1() {
+        PopupNotificationActivity popupNotificationActivity = this.f40991a;
+        MessageObject messageObject = popupNotificationActivity.Q;
+        if (messageObject != null) {
+            MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        PopupNotificationActivity popupNotificationActivity = this.f40951a;
-        int measuredWidth = popupNotificationActivity.f34153b.getMeasuredWidth();
-        int measuredHeight = popupNotificationActivity.f34153b.getMeasuredHeight();
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt.getTag() instanceof String) {
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight - AndroidUtilities.dp(3.0f), 1073741824));
-            }
-        }
+    public final TLRPC.TL_channels_sendAsPeers P() {
+        return null;
+    }
+
+    @Override
+    public final int h1() {
+        return 0;
+    }
+
+    @Override
+    public final TL_stories.StoryItem j1() {
+        return null;
+    }
+
+    @Override
+    public final boolean l1(long j3) {
+        return false;
+    }
+
+    @Override
+    public final boolean m() {
+        return false;
+    }
+
+    @Override
+    public final boolean o1() {
+        return false;
+    }
+
+    @Override
+    public final pn u0() {
+        return null;
+    }
+
+    @Override
+    public final boolean u1() {
+        return false;
+    }
+
+    @Override
+    public final int v() {
+        return 0;
+    }
+
+    @Override
+    public final TLRPC.Peer x() {
+        return null;
+    }
+
+    @Override
+    public final void B1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void B2() {
+    }
+
+    @Override
+    public final void C(boolean z10) {
+    }
+
+    @Override
+    public final void F2() {
+    }
+
+    @Override
+    public final void G1() {
+    }
+
+    @Override
+    public final void J() {
+    }
+
+    @Override
+    public final void M0() {
+    }
+
+    @Override
+    public final void O0() {
+    }
+
+    @Override
+    public final void Z0() {
+    }
+
+    @Override
+    public final void a0() {
+    }
+
+    @Override
+    public final void c0(boolean z10) {
+    }
+
+    @Override
+    public final void g1(int i10) {
+    }
+
+    @Override
+    public final void h() {
+    }
+
+    @Override
+    public final void j2() {
+    }
+
+    @Override
+    public final void l() {
+    }
+
+    @Override
+    public final void l2(int i10) {
+    }
+
+    @Override
+    public final void o2() {
+    }
+
+    @Override
+    public final void p2(boolean z10) {
+    }
+
+    @Override
+    public final void q0() {
+    }
+
+    @Override
+    public final void t1() {
+    }
+
+    @Override
+    public final void u2() {
+    }
+
+    @Override
+    public final void w1() {
+    }
+
+    @Override
+    public final void x1() {
+    }
+
+    @Override
+    public final void y() {
+    }
+
+    @Override
+    public final void y1() {
+    }
+
+    @Override
+    public final void z(float f7) {
+    }
+
+    @Override
+    public final void z0() {
+    }
+
+    @Override
+    public final void K0(int i10, int i11) {
+    }
+
+    @Override
+    public final void V(float f7, int i10) {
+    }
+
+    @Override
+    public final void r1(CharSequence charSequence, boolean z10, boolean z11) {
+    }
+
+    @Override
+    public final void z1(View view, CharSequence charSequence, boolean z10) {
+    }
+
+    @Override
+    public final void q2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
     }
 }

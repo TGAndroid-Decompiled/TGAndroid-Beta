@@ -18,23 +18,23 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class v6 extends FrameLayout {
-    public final int f6153a;
-    public int f6154b;
-    public final ai.x7 f6155c;
+    public final int f6152a;
+    public int f6153b;
+    public final ai.x7 f6154c;
     public final FrameLayout d;
-    public final ai.ya f6156e;
-    public boolean f6157f;
+    public final ai.ya f6155e;
+    public boolean f6156f;
     public boolean h;
 
     public v6(Activity activity, int i10, ai.d dVar) {
         super(activity);
-        this.f6154b = 1;
-        this.f6157f = false;
+        this.f6153b = 1;
+        this.f6156f = false;
         this.h = false;
-        this.f6153a = i10;
+        this.f6152a = i10;
         TLRPC.User currentUser = UserConfig.getInstance(i10).getCurrentUser();
         ai.x7 x7Var = new ai.x7(this, getContext());
-        this.f6155c = x7Var;
+        this.f6154c = x7Var;
         ai.b6 b6Var = new ai.b6(getContext(), null);
         b6Var.f711a.getAvatarDrawable().m(i10, currentUser);
         ai.z5 z5Var = b6Var.f711a;
@@ -50,7 +50,7 @@ public final class v6 extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.d = frameLayout;
         ai.ya yaVar = new ai.ya(getContext(), dVar);
-        this.f6156e = yaVar;
+        this.f6155e = yaVar;
         yaVar.f1985s0 = true;
         yaVar.setTranslationY(AndroidUtilities.dp(8.0f));
         frameLayout.addView(yaVar, w7.x5.a(-1.0f, 0.0f, 0.0f, 0.0f, 64.0f, -1, 87));
@@ -60,7 +60,7 @@ public final class v6 extends FrameLayout {
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         frameLayout.addView(imageView2, w7.x5.a(28.0f, 0.0f, 0.0f, 12.0f, 16.0f, 28, 85));
         FrameLayout frameLayout2 = new FrameLayout(activity);
-        frameLayout2.setBackground(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), i0.a.k(-16777216, 122)));
+        frameLayout2.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), i0.a.k(-16777216, 122)));
         TextView textView = new TextView(activity);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(1694498815);
@@ -81,8 +81,8 @@ public final class v6 extends FrameLayout {
         View view;
         float f7;
         if (z10) {
-            if (this.f6157f != z11) {
-                this.f6157f = z11;
+            if (this.f6156f != z11) {
+                this.f6156f = z11;
             } else {
                 return;
             }
@@ -92,7 +92,7 @@ public final class v6 extends FrameLayout {
             return;
         }
         if (z10) {
-            view = this.f6155c;
+            view = this.f6154c;
         } else {
             view = this.d;
         }
@@ -120,7 +120,7 @@ public final class v6 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.f6156e.f1969b0.b(org.telegram.ui.Components.b6.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.f6155e.f1969b0.b(org.telegram.ui.Components.b6.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

@@ -1,149 +1,211 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
+import android.util.SparseArray;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class hw0 extends FrameLayout {
-    public final int f38453a;
-    public final mw0 f38454b;
+public final class hw0 extends org.telegram.ui.Components.h91 {
+    public final int f38522a;
+    public final Object f38523b;
+    public final Object f38524c;
 
-    public hw0(mw0 mw0Var, Context context, int i10) {
-        super(context);
-        this.f38453a = i10;
-        this.f38454b = mw0Var;
+    public hw0(Object obj, Context context, int i10) {
+        this.f38522a = i10;
+        this.f38524c = obj;
+        this.f38523b = context;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f38453a) {
+    public final void b(View view, int i10, int i11) {
+        org.telegram.ui.ActionBar.m2 m2Var;
+        s5 s5Var;
+        int i12 = this.f38522a;
+        Object obj = this.f38524c;
+        switch (i12) {
             case 0:
-                mw0 mw0Var = this.f38454b;
-                if (mw0Var.f40064y > 0.0f && mw0Var.f40062w != null) {
-                    mw0Var.f40063x.reset();
-                    float width = getWidth() / mw0Var.f40061s.getWidth();
-                    mw0Var.f40063x.postScale(width, width);
-                    mw0Var.v.setLocalMatrix(mw0Var.f40063x);
-                    mw0Var.f40062w.setAlpha((int) (mw0Var.f40064y * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), mw0Var.f40062w);
-                } else {
-                    canvas2 = canvas;
-                }
-                if (mw0Var.O && (u1Var = mw0Var.L) != null) {
-                    u1Var.L7 = mw0Var.P;
-                    u1Var.invalidate();
-                    mw0Var.O = false;
-                }
-                super.dispatchDraw(canvas2);
                 return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f38453a) {
-            case 0:
-                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f38454b.c(true);
-                    return true;
-                }
-                return super.dispatchKeyEventPreIme(keyEvent);
-            default:
-                return super.dispatchKeyEventPreIme(keyEvent);
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f38453a) {
             case 1:
-                mw0 mw0Var = this.f38454b;
-                if (view != mw0Var.K && view != mw0Var.J) {
-                    return super.drawChild(canvas, view, j3);
-                }
-                canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(mw0Var.M, 0.0f, mw0Var.f40064y), getWidth(), AndroidUtilities.lerp(mw0Var.N, getHeight(), mw0Var.f40064y));
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f38453a) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                this.f38454b.d();
+                ((a41) view).a(i11);
                 return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f38453a) {
             case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                int size2 = View.MeasureSpec.getSize(i11);
-                mw0 mw0Var = this.f38454b;
-                mw0Var.e();
-                for (int i12 = 0; i12 < getChildCount(); i12++) {
-                    View childAt = getChildAt(i12);
-                    ViewGroup viewGroup = mw0Var.T;
-                    if (childAt == viewGroup) {
-                        float f7 = mw0Var.U;
-                        if (f7 > 0.0f) {
-                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f7), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    ViewGroup viewGroup2 = mw0Var.R;
-                    if (childAt == viewGroup2) {
-                        float f10 = mw0Var.S;
-                        if (f10 > 0.0f) {
-                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    org.telegram.ui.Components.ll0 ll0Var = mw0Var.Q;
-                    if (childAt == ll0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(ll0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    }
+                return;
+            case 3:
+                bi1 bi1Var = (bi1) obj;
+                SparseArray sparseArray = bi1Var.f36399a;
+                zh1 zh1Var = (zh1) sparseArray.get(i10);
+                if (zh1Var != null) {
+                    m2Var = zh1Var.f44668a;
+                } else {
+                    org.telegram.ui.ActionBar.m2 V = bi1Var.V(i10);
+                    zh1 zh1Var2 = new zh1(V);
+                    sparseArray.put(i10, zh1Var2);
+                    m2Var = V;
+                    zh1Var = zh1Var2;
                 }
-                setMeasuredDimension(size, size2);
+                if (!zh1Var.f44669b) {
+                    m2Var.onFragmentCreate();
+                    zh1Var.f44669b = true;
+                }
+                m2Var.setParentLayout(bi1Var.getParentLayout());
+                if (m2Var.getFragmentView() == null) {
+                    m2Var.performCreateView((Context) this.f38523b);
+                    m2Var.setTitleOverlayText(bi1Var.f36404n, bi1Var.f36405r, bi1Var.f36406s);
+                }
+                FrameLayout frameLayout = (FrameLayout) view;
+                frameLayout.removeAllViews();
+                View fragmentView = m2Var.getFragmentView();
+                AndroidUtilities.removeFromParent(fragmentView);
+                if (!m2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
+                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20786d6, false));
+                }
+                frameLayout.addView(fragmentView, w7.x5.d(-1.0f, -1));
+                if (m2Var.getActionBar() != null && m2Var.getActionBar().K) {
+                    AndroidUtilities.removeFromParent(m2Var.getActionBar());
+                    frameLayout.addView(m2Var.getActionBar());
+                }
+                WeakHashMap weakHashMap = r0.i0.f46856a;
+                r0.y.c(frameLayout);
+                bi1Var.checkSystemBarColors();
+                bi1Var.U();
+                return;
+            case 4:
                 return;
             default:
-                super.onMeasure(i10, i11);
+                yh.s3 s3Var = (yh.s3) obj;
+                if (i11 == 0) {
+                    yh.s3.k1(s3Var, false);
+                    xh.n2 n2Var = s3Var.f53250c0;
+                    if (n2Var != null) {
+                        s5Var = n2Var.Y;
+                    } else {
+                        return;
+                    }
+                } else if (i11 == 2) {
+                    yh.s3.k1(s3Var, true);
+                    xh.n2 n2Var2 = s3Var.f53252d0;
+                    if (n2Var2 != null) {
+                        s5Var = n2Var2.Y;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+                FrameLayout frameLayout2 = (FrameLayout) view;
+                frameLayout2.removeAllViews();
+                AndroidUtilities.removeFromParent(s5Var);
+                frameLayout2.addView(s5Var);
                 return;
         }
     }
 
     @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f38453a) {
+    public final View d(int i10) {
+        s5 s5Var;
+        switch (this.f38522a) {
             case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                mw0 mw0Var = this.f38454b;
-                gh.d.c(mw0Var.F, mw0Var.f40051c);
-                mw0Var.G.d();
-                return;
+                FrameLayout frameLayout = new FrameLayout((Context) this.f38523b);
+                frameLayout.setOnClickListener(new m60(this, 22));
+                return frameLayout;
+            case 1:
+                return new a41((b41) this.f38524c, (Context) this.f38523b);
+            case 2:
+                FrameLayout frameLayout2 = new FrameLayout((Context) this.f38523b);
+                frameLayout2.setOnClickListener(new o41(this, 6));
+                return frameLayout2;
+            case 3:
+                return new v51((Context) this.f38523b, 7);
+            case 4:
+                if (i10 == 0) {
+                    return ((tg.z) this.f38523b).getContainerView();
+                }
+                return ((tg.y0) this.f38524c).getContainerView();
             default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
+                yh.s3 s3Var = (yh.s3) this.f38524c;
+                if (i10 == 0) {
+                    yh.s3.k1(s3Var, false);
+                    xh.n2 n2Var = s3Var.f53250c0;
+                    if (n2Var != null) {
+                        s5Var = n2Var.Y;
+                        AndroidUtilities.removeFromParent(s5Var);
+                        FrameLayout frameLayout3 = new FrameLayout((Context) this.f38523b);
+                        frameLayout3.addView(s5Var, w7.x5.e(-1, -1, 119));
+                        return frameLayout3;
+                    }
+                    return null;
+                }
+                if (i10 == 1) {
+                    s5Var = s3Var.Y;
+                } else {
+                    if (i10 == 2) {
+                        yh.s3.k1(s3Var, true);
+                        xh.n2 n2Var2 = s3Var.f53252d0;
+                        if (n2Var2 != null) {
+                            s5Var = n2Var2.Y;
+                        }
+                    }
+                    return null;
+                }
+                AndroidUtilities.removeFromParent(s5Var);
+                FrameLayout frameLayout32 = new FrameLayout((Context) this.f38523b);
+                frameLayout32.addView(s5Var, w7.x5.e(-1, -1, 119));
+                return frameLayout32;
         }
+    }
+
+    @Override
+    public final int e() {
+        switch (this.f38522a) {
+            case 0:
+                return 2;
+            case 1:
+                return 5;
+            case 2:
+                return 2;
+            case 3:
+                ((bi1) this.f38524c).getClass();
+                return 4;
+            case 4:
+                return 2;
+            default:
+                yh.s3 s3Var = (yh.s3) this.f38524c;
+                return (s3Var.M1(true) ? 1 : 0) + (s3Var.M1(false) ? 1 : 0) + 1;
+        }
+    }
+
+    @Override
+    public int h(int i10) {
+        switch (this.f38522a) {
+            case 1:
+                if (i10 == 0) {
+                    return 0;
+                }
+                return 1;
+            case 2:
+            case 3:
+            default:
+                return super.h(i10);
+            case 4:
+                return i10;
+            case 5:
+                return (i10 - (((yh.s3) this.f38524c).M1(false) ? 1 : 0)) + 1;
+        }
+    }
+
+    public hw0(tg.z zVar, tg.y0 y0Var) {
+        this.f38522a = 4;
+        this.f38523b = zVar;
+        this.f38524c = y0Var;
+    }
+
+    private final void i(View view, int i10, int i11) {
+    }
+
+    private final void j(View view, int i10, int i11) {
+    }
+
+    private final void k(View view, int i10, int i11) {
     }
 }

@@ -19,10 +19,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.fp;
-import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.i11;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.fg1;
-import org.telegram.ui.ty;
+import org.telegram.ui.eg1;
+import org.telegram.ui.sy;
 import org.telegram.ui.zn;
 import yh.s3;
 public final class g0 implements Runnable {
@@ -47,8 +47,8 @@ public final class g0 implements Runnable {
                 String str = (String) this.f129e;
                 long j3 = this.f127b;
                 long j10 = this.f128c;
-                String str2 = e2.d0.f8532a;
-                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45603c)).f11620a.f11683s;
+                String str2 = e2.d0.f8531a;
+                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45593c)).f11619a.f11682s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j10, j3));
                 return;
@@ -59,8 +59,8 @@ public final class g0 implements Runnable {
                 String str3 = (String) this.f129e;
                 long j11 = this.f127b;
                 long j12 = this.f128c;
-                String str4 = e2.d0.f8532a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.d).f16617c)).f11620a.f11683s;
+                String str4 = e2.d0.f8531a;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.d).f16659c)).f11619a.f11682s;
                 j2.a p10 = fVar2.p();
                 fVar2.q(p10, 1008, new hg.o1(p10, str3, j12, j11));
                 return;
@@ -69,9 +69,9 @@ public final class g0 implements Runnable {
                 p0 p0Var = (p0) this.f129e;
                 long j13 = this.f127b;
                 long j14 = this.f128c;
-                synchronized (t0Var.f15122g) {
-                    if (!p0Var.d && !p0Var.f15074e) {
-                        ((h11) t0Var.f15120e).a(p0Var.f15071a, p0Var.f15072b, j13, j14);
+                synchronized (t0Var.f15121g) {
+                    if (!p0Var.d && !p0Var.f15073e) {
+                        ((i11) t0Var.f15119e).a(p0Var.f15070a, p0Var.f15071b, j13, j14);
                         return;
                     }
                     return;
@@ -107,21 +107,21 @@ public final class g0 implements Runnable {
                 ((fp) this.d).d(this.f127b, this.f128c, (HashSet) this.f129e);
                 return;
             case 14:
-                ty tyVar = (ty) this.d;
+                sy syVar = (sy) this.d;
                 long j15 = this.f127b;
                 long j16 = this.f128c;
-                fg1 fg1Var = (fg1) this.f129e;
-                if (tyVar.C2 != null) {
+                eg1 eg1Var = (eg1) this.f129e;
+                if (syVar.C2 != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j15, j16));
-                    tyVar.C2.w(tyVar, arrayList, null, false, tyVar.J2, tyVar.K2, tyVar.L2, fg1Var);
-                    if (tyVar.f42241i2) {
-                        tyVar.C2 = null;
+                    syVar.C2.w(syVar, arrayList, null, false, syVar.J2, syVar.K2, syVar.L2, eg1Var);
+                    if (syVar.f41930i2) {
+                        syVar.C2 = null;
                         return;
                     }
                     return;
                 }
-                tyVar.finishFragment();
+                syVar.finishFragment();
                 return;
             case 15:
                 LaunchActivity launchActivity = (LaunchActivity) this.d;
@@ -135,7 +135,7 @@ public final class g0 implements Runnable {
                 u10.append(" TL_forumTopic ");
                 u10.append(findTopic);
                 FileLog.d(u10.toString());
-                if (launchActivity.f33845q0 != null) {
+                if (launchActivity.f33835q0 != null) {
                     ng.d.a(znVar, MessagesStorage.TopicKey.of(-j17, j18));
                     ((ActionBarLayout) launchActivity.O()).P(znVar);
                     return;

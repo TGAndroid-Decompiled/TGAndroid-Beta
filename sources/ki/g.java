@@ -6,10 +6,10 @@ import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.os.SystemClock;
 public final class g extends CameraCaptureSession.CaptureCallback {
-    public final j f14925a;
+    public final j f14924a;
 
     public g(j jVar) {
-        this.f14925a = jVar;
+        this.f14924a = jVar;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class g extends CameraCaptureSession.CaptureCallback {
         boolean z11;
         boolean z12;
         int i11;
-        j jVar = this.f14925a;
-        n nVar = jVar.f14980j;
+        j jVar = this.f14924a;
+        n nVar = jVar.f14979j;
         if (jVar.N) {
             Object tag = captureRequest.getTag();
             if ((tag instanceof Integer) && ((Integer) tag).intValue() == jVar.R) {
@@ -83,9 +83,9 @@ public final class g extends CameraCaptureSession.CaptureCallback {
             long j10 = jVar.S0;
             if (j10 != 0) {
                 long j11 = elapsedRealtimeNanos - j10;
-                jVar.f14957a1++;
-                jVar.f14960b1 += j11;
-                jVar.f14963c1 = Math.max(jVar.f14963c1, j11);
+                jVar.f14956a1++;
+                jVar.f14959b1 += j11;
+                jVar.f14962c1 = Math.max(jVar.f14962c1, j11);
             }
             jVar.S0 = elapsedRealtimeNanos;
             jVar.Q0 = l4.longValue();
@@ -96,12 +96,12 @@ public final class g extends CameraCaptureSession.CaptureCallback {
                 if (o0Var == null) {
                     i10 = 0;
                 } else {
-                    i10 = o0Var.f15069a;
+                    i10 = o0Var.f15068a;
                 }
                 StringBuilder sb2 = new StringBuilder("camera capture rate: measuredFps=");
                 sb2.append(f7);
                 sb2.append(", requestedFps=");
-                sb2.append(jVar.h.f15069a);
+                sb2.append(jVar.h.f15068a);
                 sb2.append(", activeFps=");
                 if (i10 == 0) {
                     valueOf = "unknown";
@@ -131,9 +131,9 @@ public final class g extends CameraCaptureSession.CaptureCallback {
                 sb2.append(", over100ms=");
                 sb2.append(jVar.Z0);
                 sb2.append("}, callbackIntervalMs={avg=");
-                sb2.append(j.h(jVar.f14960b1, jVar.f14957a1));
+                sb2.append(j.h(jVar.f14959b1, jVar.f14956a1));
                 sb2.append(", max=");
-                sb2.append(((float) jVar.f14963c1) / 1000000.0f);
+                sb2.append(((float) jVar.f14962c1) / 1000000.0f);
                 sb2.append("}");
                 nVar.b(sb2.toString());
                 jVar.I();

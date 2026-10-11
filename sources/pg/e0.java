@@ -10,21 +10,25 @@ import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import qg.o2;
-public final class e0 implements i0, q3.g, q9.e, pa.a, q9.d, OnFailureListener, androidx.car.app.utils.b, a2 {
-    public final int f45676a;
+import org.telegram.ui.ActionBar.z1;
+import qg.n2;
+public final class e0 implements i0, q3.g, q9.e, pa.a, q9.d, OnFailureListener, androidx.car.app.utils.b, z1 {
+    public final int f45666a;
 
     public e0(int i10) {
-        this.f45676a = i10;
+        this.f45666a = i10;
     }
 
     @Override
     public Typeface a() {
-        switch (this.f45676a) {
+        switch (this.f45666a) {
             case 0:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
+                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
             case 1:
+                return Typeface.create("serif", 1);
+            case 2:
+                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
+            case 3:
                 return AndroidUtilities.getTypeface("fonts/rmono.ttf");
             default:
                 return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
@@ -47,36 +51,36 @@ public final class e0 implements i0, q3.g, q9.e, pa.a, q9.d, OnFailureListener, 
     }
 
     @Override
-    public void f(b2 b2Var, int i10) {
-        switch (this.f45676a) {
-            case 17:
-                b2Var.dismiss();
+    public void f(a2 a2Var, int i10) {
+        switch (this.f45666a) {
+            case 19:
+                a2Var.dismiss();
                 return;
             default:
-                b2Var.dismiss();
+                a2Var.dismiss();
                 return;
         }
     }
 
     @Override
     public void onFailure(Exception exc) {
-        int i10 = o2.f46516r0;
+        int i10 = n2.f46508r0;
     }
 
     @Override
     public Object y0(u5 u5Var) {
-        switch (this.f45676a) {
-            case 6:
+        switch (this.f45666a) {
+            case 8:
                 return FirebaseInstallationsRegistrar.a(u5Var);
-            case 13:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7880a.get();
-            case 14:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7882c.get();
             case 15:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7881b.get();
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7879a.get();
+            case 16:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7881c.get();
+            case 17:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7880b.get();
             default:
-                q9.n nVar = ExecutorsRegistrar.f7880a;
-                return r9.j.f47168a;
+                q9.n nVar = ExecutorsRegistrar.f7879a;
+                return r9.j.f47214a;
         }
     }
 

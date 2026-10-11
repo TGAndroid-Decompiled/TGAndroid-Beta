@@ -1,45 +1,83 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class wa implements bh.a {
-    public final int f43193a;
-    public final Object f43194b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class wa implements RequestDelegate {
+    public final int f43278a;
+    public final ub f43279b;
 
-    public wa(Object obj, int i10) {
-        this.f43193a = i10;
-        this.f43194b = obj;
+    public wa(ub ubVar, int i10) {
+        this.f43278a = i10;
+        this.f43279b = ubVar;
     }
 
     @Override
-    public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f43193a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f43278a) {
             case 0:
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final ub ubVar = this.f43279b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    ub.U(ubVar, tL_channels_adminLogResults);
+                                    return;
+                                default:
+                                    ub.Y(ubVar, tL_channels_adminLogResults);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                return;
             case 1:
+                ub ubVar2 = this.f43279b;
+                ubVar2.getClass();
+                if (tLObject instanceof Vector) {
+                    ArrayList<T> arrayList = ((Vector) tLObject).objects;
+                    ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
+                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                        if (arrayList.get(i10) instanceof TLRPC.User) {
+                            arrayList2.add((TLRPC.User) arrayList.get(i10));
+                        }
+                    }
+                    ubVar2.getMessagesController().putUsers(arrayList2, false);
+                    return;
+                }
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.a6(17, this.f43279b, tLObject));
+                return;
+            case 3:
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final ub ubVar3 = this.f43279b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    ub.U(ubVar3, tL_channels_adminLogResults2);
+                                    return;
+                                default:
+                                    ub.Y(ubVar3, tL_channels_adminLogResults2);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
+                return;
             default:
-                aVar.f536a = true;
-                return;
-        }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f43193a) {
-            case 0:
-                ((sb) this.f43194b).Z(canvas, rectF);
-                return;
-            case 1:
-                aq0 aq0Var = (aq0) this.f43194b;
-                k0 k0Var = aq0Var.d;
-                lp0 lp0Var = aq0Var.h.f42558b;
-                gh.d.a(lp0Var, canvas, rectF, lp0Var, k0Var);
-                lp0 lp0Var2 = aq0Var.f36039n.f42558b;
-                gh.d.a(lp0Var2, canvas, rectF, lp0Var2, k0Var);
-                return;
-            default:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f43194b;
-                org.telegram.ui.Components.rm0 rm0Var = premiumPreviewFragment.f34163a;
-                gh.d.a(rm0Var, canvas, rectF, rm0Var, premiumPreviewFragment.f34169d0);
+                AndroidUtilities.runOnUIThread(new q1(this.f43279b, tL_error, tLObject, 9));
                 return;
         }
     }

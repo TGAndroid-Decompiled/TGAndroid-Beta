@@ -9,11 +9,11 @@ import android.text.TextPaint;
 import android.util.TypedValue;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.ek0;
 public final class p9 extends View {
     public final String f1579a;
     public final String f1580b;
-    public final dk0 f1581c;
+    public final ek0 f1581c;
     public final Paint d;
     public final TextPaint f1582e;
     public final TextPaint f1583f;
@@ -26,10 +26,10 @@ public final class p9 extends View {
         this.f1585r = new Rect();
         this.f1579a = str;
         this.f1580b = str2;
-        dk0 dk0Var = new dk0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
-        this.f1581c = dk0Var;
-        dk0Var.K(1);
-        dk0Var.R(this);
+        ek0 ek0Var = new ek0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
+        this.f1581c = ek0Var;
+        ek0Var.K(1);
+        ek0Var.R(this);
         Paint paint = new Paint(1);
         this.d = paint;
         paint.setColor(383310040);
@@ -53,9 +53,9 @@ public final class p9 extends View {
         int i10 = dp2 / 2;
         int i11 = dp - i10;
         int measuredHeight = (getMeasuredHeight() / 2) - i10;
-        dk0 dk0Var = this.f1581c;
-        dk0Var.setBounds(i11, measuredHeight, i11 + dp2, dp2 + measuredHeight);
-        dk0Var.draw(canvas);
+        ek0 ek0Var = this.f1581c;
+        ek0Var.setBounds(i11, measuredHeight, i11 + dp2, dp2 + measuredHeight);
+        ek0Var.draw(canvas);
         if (this.f1584n > 0.0f) {
             float dpf2 = (1.0f - this.f1584n) * AndroidUtilities.dpf2(4.0f);
             float f7 = dpf2 * 2.0f;

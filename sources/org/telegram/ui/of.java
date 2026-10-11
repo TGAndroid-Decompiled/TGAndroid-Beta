@@ -1,78 +1,24 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class of implements org.telegram.ui.ActionBar.a2, MessagesController.ErrorDelegate, uo0 {
-    public final int f40562a;
-    public final Runnable f40563b;
+import android.content.DialogInterface;
+public final class of implements DialogInterface.OnShowListener {
+    public final int f40528a;
+    public final zn f40529b;
 
-    public of(int i10, Runnable runnable) {
-        this.f40562a = i10;
-        this.f40563b = runnable;
+    public of(zn znVar, int i10) {
+        this.f40528a = i10;
+        this.f40529b = znVar;
     }
 
     @Override
-    public void a(int i10) {
-        int i11 = this.f40562a;
-        Runnable runnable = this.f40563b;
-        switch (i11) {
-            case 9:
-                Pattern pattern = LaunchActivity.B1;
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40562a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f40528a) {
             case 0:
-                this.f40563b.run();
-                return;
-            case 1:
-                this.f40563b.run();
+                this.f40529b.Rb(false);
                 return;
             default:
-                Runnable runnable = this.f40563b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                this.f40529b.Rb(false);
                 return;
-        }
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f40562a) {
-            case 3:
-                this.f40563b.run();
-                return true;
-            case 4:
-                this.f40563b.run();
-                return true;
-            case 5:
-                this.f40563b.run();
-                return true;
-            case 6:
-                this.f40563b.run();
-                return true;
-            case 7:
-                this.f40563b.run();
-                return true;
-            default:
-                this.f40563b.run();
-                return true;
         }
     }
 }

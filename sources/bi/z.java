@@ -24,49 +24,49 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.t7;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.o91;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.rs0;
+import org.telegram.ui.Components.p91;
+import org.telegram.ui.Components.sm0;
+import org.telegram.ui.Components.ss0;
 import org.telegram.ui.Components.yi;
 import w7.x5;
 public abstract class z extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static LongSparseArray E;
     public static LongSparseArray F;
-    public final n2 f3940a;
+    public final m2 f3940a;
     public final int f3941b;
-    public final e6 f3942c;
+    public final d6 f3942c;
     public final long d;
     public final v8 f3943e;
     public final ArrayList f3944f;
     public final ArrayList h;
     public final a f3945n;
-    public final o91 f3946r;
+    public final p91 f3946r;
     public Boolean f3947s;
     public int v;
     public float f3948w;
     public ValueAnimator f3949x;
     public int f3950y;
 
-    public z(Context context, n2 n2Var, long j3) {
+    public z(Context context, m2 m2Var, long j3) {
         super(context);
         this.f3944f = new ArrayList();
         this.h = new ArrayList();
         this.f3947s = null;
         this.v = AndroidUtilities.displaySize.y;
         this.f3950y = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
-        this.f3940a = n2Var;
-        int currentAccount = n2Var.getCurrentAccount();
+        this.f3940a = m2Var;
+        int currentAccount = m2Var.getCurrentAccount();
         this.f3941b = currentAccount;
-        e6 resourceProvider = n2Var.getResourceProvider();
+        d6 resourceProvider = m2Var.getResourceProvider();
         this.f3942c = resourceProvider;
         this.d = j3;
-        setBackgroundColor(i6.v(i6.w0(i6.f20801d6, resourceProvider), i6.m1(0.04f, i6.w0(i6.G6, resourceProvider))));
+        setBackgroundColor(h6.v(h6.w0(h6.f20786d6, resourceProvider), h6.m1(0.04f, h6.w0(h6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -85,30 +85,30 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             v8Var = v8Var2;
         }
         this.f3943e = v8Var;
-        rs0 rs0Var = (rs0) this;
-        a aVar = new a(rs0Var, context);
+        ss0 ss0Var = (ss0) this;
+        a aVar = new a(ss0Var, context);
         this.f3945n = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
-        aVar.setAdapter(new b(rs0Var, context));
+        aVar.setAdapter(new b(ss0Var, context));
         addView(aVar, x5.e(-1, -1, 119));
-        o91 n10 = aVar.n(9, true);
+        p91 n10 = aVar.n(9, true);
         this.f3946r = n10;
-        n10.f29422r = 12;
-        n10.setPreTabClick(new a1.c(rs0Var, 11));
+        n10.f29680r = 12;
+        n10.setPreTabClick(new a1.c(ss0Var, 11));
         addView(n10, x5.e(-1, 42, 48));
         i(false);
     }
 
     public final void a(String str) {
-        n2 n2Var = this.f3940a;
-        if (n2Var != null && n2Var.getParentActivity() != null) {
-            yi yiVar = new yi(n2Var.getParentActivity(), this.f3940a, false, false, false, this.f3942c);
+        m2 m2Var = this.f3940a;
+        if (m2Var != null && m2Var.getParentActivity() != null) {
+            yi yiVar = new yi(m2Var.getParentActivity(), this.f3940a, false, false, false, this.f3942c);
             yiVar.N1(1, false);
             yiVar.W0 = true;
             yiVar.V0 = false;
-            yiVar.f33255m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            yiVar.f33247j0.f0();
-            yiVar.f33226c2 = new c(this, yiVar, str);
+            yiVar.f33236m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            yiVar.f33228j0.f0();
+            yiVar.f33207c2 = new c(this, yiVar, str);
             yiVar.t1();
             yiVar.show();
         }
@@ -301,7 +301,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         return null;
     }
 
-    public rm0 getCurrentListView() {
+    public sm0 getCurrentListView() {
         View currentView = this.f3945n.getCurrentView();
         if (currentView instanceof u) {
             return ((u) currentView).f3927f;
@@ -403,9 +403,9 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         erVar.setScale(0.9f, 0.9f);
         erVar.spaceScaleX = 0.85f;
         spannableString.setSpan(erVar, 0, 1, 33);
-        o91 o91Var = this.f3946r;
-        o91Var.a(-1, spannableString);
-        o91Var.f29426x.l();
+        p91 p91Var = this.f3946r;
+        p91Var.a(-1, spannableString);
+        p91Var.f29684x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {
@@ -432,7 +432,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             } else {
                 f7 = -42.0f;
             }
-            o91Var.setTranslationY(AndroidUtilities.dp(f7));
+            p91Var.setTranslationY(AndroidUtilities.dp(f7));
             if (z11) {
                 f11 = 42.0f;
             }

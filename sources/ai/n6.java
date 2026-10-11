@@ -98,7 +98,7 @@ public abstract class n6 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new l6(this, 0));
             this.M.addListener(new b(this, 7));
-            this.M.setInterpolator(is.f27443f);
+            this.M.setInterpolator(is.f27451f);
             this.M.setDuration(200L);
             this.M.start();
         }

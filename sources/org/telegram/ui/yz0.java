@@ -1,21 +1,23 @@
 package org.telegram.ui;
+public final class yz0 extends tu0 {
+    public final ProfileActivity f44533a;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class yz0 extends org.telegram.ui.Components.nr0 {
-    public final ProfileActivity f44478b1;
-
-    public yz0(ProfileActivity profileActivity, Activity activity, String str, String str2) {
-        super(activity, null, str, false, str2, false, null);
-        this.f44478b1 = profileActivity;
+    public yz0(ProfileActivity profileActivity) {
+        this.f44533a = profileActivity;
     }
 
     @Override
-    public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new rt0(this, iVar, i10, 22), 250L);
+    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yz0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
+    }
+
+    @Override
+    public final void G() {
+        this.f44533a.f34270e0.getImageReceiver().setVisible(true, true);
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f44533a.f34351q0.p(str, str2, z10);
     }
 }

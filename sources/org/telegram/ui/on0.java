@@ -1,67 +1,186 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.webkit.WebView;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class on0 implements Runnable {
-    public final int f40622a;
-    public final vo0 f40623b;
-    public final TLObject f40624c;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class on0 implements View.OnClickListener {
+    public final int f40585a;
+    public final uo0 f40586b;
 
-    public on0(vo0 vo0Var, TLObject tLObject, int i10) {
-        this.f40622a = i10;
-        this.f40623b = vo0Var;
-        this.f40624c = tLObject;
+    public on0(uo0 uo0Var, int i10) {
+        this.f40585a = i10;
+        this.f40586b = uo0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40622a) {
+    public final void onClick(View view) {
+        boolean z10;
+        int i10 = this.f40585a;
+        uo0 uo0Var = this.f40586b;
+        switch (i10) {
             case 0:
-                vo0.e0(this.f40623b, this.f40624c);
-                return;
-            case 1:
-                vo0 vo0Var = this.f40623b;
-                Utilities.Callback callback = vo0Var.f42967d1;
-                TLObject tLObject = this.f40624c;
-                if (callback != null) {
-                    callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
-                }
-                vo0Var.D0(false);
-                vo0Var.f42998z0 = true;
-                vo0Var.H0(true, true);
-                org.telegram.ui.Components.jr jrVar = vo0Var.f42985r;
-                if (jrVar != null) {
-                    jrVar.setVisibility(0);
-                }
-                org.telegram.ui.ActionBar.v0 v0Var = vo0Var.f42980n;
-                if (v0Var != null) {
-                    v0Var.setEnabled(false);
-                    vo0Var.f42980n.getContentView().setVisibility(4);
-                }
-                org.telegram.ui.ActionBar.d5 parentLayout = vo0Var.getParentLayout();
-                Activity parentActivity = vo0Var.getParentActivity();
-                vo0Var.getMessagesController().newMessageCallback = new a7(vo0Var, parentLayout, parentActivity, 17);
-                WebView webView = vo0Var.f42992w;
-                if (webView != null) {
-                    webView.setVisibility(0);
-                    WebView webView2 = vo0Var.f42992w;
-                    String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
-                    vo0Var.f42994x = str;
-                    webView2.loadUrl(str);
-                }
-                vo0Var.f42959a1 = true;
-                vo0Var.f42973f1 = 3;
-                uo0 uo0Var = vo0Var.Z0;
-                if (uo0Var != null) {
-                    uo0Var.a(3);
+                if (uo0Var.getParentActivity() != null) {
+                    uo0Var.G0(null);
                     return;
                 }
                 return;
+            case 1:
+                uo0 uo0Var2 = new uo0(uo0Var.f42697b1, uo0Var.C0, uo0Var.N0, uo0Var.O0, 0, uo0Var.E0, uo0Var.G0, uo0Var.H0, null, uo0Var.f42730x0, uo0Var.I0, uo0Var.U0, null, uo0Var.f42721r0, uo0Var.W0);
+                uo0Var2.f42700c1 = uo0Var.f42700c1;
+                uo0Var2.f42702d1 = uo0Var.f42702d1;
+                uo0Var2.T = new zn0(uo0Var);
+                uo0Var.presentFragment(uo0Var2);
+                return;
+            case 2:
+                uo0 uo0Var3 = new uo0(uo0Var.f42697b1, uo0Var.C0, uo0Var.N0, uo0Var.O0, 0, uo0Var.E0, uo0Var.G0, uo0Var.H0, null, uo0Var.f42730x0, uo0Var.I0, uo0Var.U0, null, uo0Var.f42721r0, uo0Var.W0);
+                uo0Var3.f42700c1 = uo0Var.f42700c1;
+                uo0Var3.f42702d1 = uo0Var.f42702d1;
+                uo0Var3.T = new ao0(uo0Var);
+                uo0Var.presentFragment(uo0Var3);
+                return;
+            case 3:
+                uo0 uo0Var4 = new uo0(uo0Var.f42697b1, uo0Var.C0, uo0Var.N0, uo0Var.O0, 0, uo0Var.E0, uo0Var.G0, uo0Var.H0, null, uo0Var.f42730x0, uo0Var.I0, uo0Var.U0, null, uo0Var.f42721r0, uo0Var.W0);
+                uo0Var4.f42700c1 = uo0Var.f42700c1;
+                uo0Var4.f42702d1 = uo0Var.f42702d1;
+                uo0Var4.T = new bo0(uo0Var);
+                uo0Var.presentFragment(uo0Var4);
+                return;
+            case 4:
+                uo0 uo0Var5 = new uo0(uo0Var.f42697b1, uo0Var.C0, uo0Var.N0, uo0Var.O0, 0, uo0Var.E0, uo0Var.G0, uo0Var.H0, null, uo0Var.f42730x0, uo0Var.I0, uo0Var.U0, null, uo0Var.f42721r0, uo0Var.W0);
+                uo0Var5.f42700c1 = uo0Var.f42700c1;
+                uo0Var5.f42702d1 = uo0Var.f42702d1;
+                uo0Var5.T = new co0(uo0Var);
+                uo0Var.presentFragment(uo0Var5);
+                return;
+            case 5:
+                if (!uo0Var.P0) {
+                    boolean z11 = !uo0Var.F;
+                    uo0Var.F = z11;
+                    uo0Var.V.setChecked(z11);
+                    uo0Var.W.a(uo0Var.F, true);
+                    return;
+                }
+                return;
+            case 6:
+                uo0.Z(uo0Var);
+                return;
+            case 7:
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(uo0Var.getParentActivity());
+                String string = LocaleController.getString(R.string.TurnPasswordOffQuestion);
+                if (uo0Var.f42693a0.has_secure_values) {
+                    string = org.telegram.messenger.q.g(R.string.TurnPasswordOffPassport, sc.v.j(string, "\n\n"));
+                }
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20368a;
+                a2Var.T = string;
+                a2Var.R = LocaleController.getString(R.string.TurnPasswordOffQuestionTitle);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Disable), new sn0(uo0Var, 3));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                uo0Var.showDialog(a2Var);
+                TextView textView = (TextView) a2Var.d(-1);
+                if (textView != null) {
+                    textView.setTextColor(uo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21026q7));
+                    return;
+                }
+                return;
+            case 8:
+                boolean z12 = !uo0Var.T0;
+                uo0Var.T0 = z12;
+                uo0Var.L.setChecked(z12);
+                return;
+            case 9:
+                boolean z13 = !uo0Var.U0;
+                uo0Var.U0 = z13;
+                uo0Var.L.setChecked(z13);
+                return;
+            case 10:
+                boolean z14 = !uo0Var.U0;
+                uo0Var.U0 = z14;
+                uo0Var.L.setChecked(z14);
+                return;
+            case 11:
+                uo0Var.getClass();
+                int intValue = ((Integer) view.getTag()).intValue();
+                int i11 = 0;
+                while (true) {
+                    org.telegram.ui.Cells.k6[] k6VarArr = uo0Var.h;
+                    if (i11 < k6VarArr.length) {
+                        org.telegram.ui.Cells.k6 k6Var = k6VarArr[i11];
+                        if (intValue == i11) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        k6Var.a(z10, true);
+                        i11++;
+                    } else {
+                        return;
+                    }
+                }
+            case 12:
+                uo0Var.P.setClickable(false);
+                try {
+                    JSONObject put = new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
+                    JSONObject p02 = uo0.p0();
+                    if (uo0Var.K0 != null && uo0Var.M0 == null) {
+                        p02.put("tokenizationSpecification", new ho0(uo0Var, 1));
+                    } else {
+                        p02.put("tokenizationSpecification", new ho0(uo0Var, 3));
+                    }
+                    put.put("allowedPaymentMethods", new JSONArray().put(p02));
+                    JSONObject jSONObject = new JSONObject();
+                    ArrayList arrayList = new ArrayList(uo0Var.C0.invoice.prices);
+                    TLRPC.TL_shippingOption tL_shippingOption = uo0Var.G0;
+                    if (tL_shippingOption != null) {
+                        arrayList.addAll(tL_shippingOption.prices);
+                    }
+                    long j3 = 0;
+                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                        j3 += ((TLRPC.TL_labeledPrice) arrayList.get(i12)).amount;
+                    }
+                    jSONObject.put("totalPrice", LocaleController.getInstance().formatCurrencyDecimalString(j3, uo0Var.C0.invoice.currency, false));
+                    jSONObject.put("totalPriceStatus", "FINAL");
+                    if (!TextUtils.isEmpty(uo0Var.L0)) {
+                        jSONObject.put("countryCode", uo0Var.L0);
+                    }
+                    jSONObject.put("currencyCode", uo0Var.C0.invoice.currency);
+                    jSONObject.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
+                    put.put("transactionInfo", jSONObject);
+                    put.put("merchantInfo", new JSONObject().put("merchantName", uo0Var.f42718p0));
+                    String jSONObject2 = put.toString();
+                    ?? obj = new Object();
+                    obj.f49562r = true;
+                    n6.m.i(jSONObject2, "paymentDataRequestJson cannot be null!");
+                    obj.f49563s = jSONObject2;
+                    com.google.android.gms.internal.clearcut.u0 u0Var = uo0Var.f42703e;
+                    u0Var.getClass();
+                    com.google.android.gms.common.api.internal.v e7 = com.google.android.gms.common.api.internal.w.e();
+                    e7.f6695c = new k2.g0((Object) obj, 29);
+                    e7.d = new k6.c[]{v8.p.f49574b};
+                    e7.f6694b = true;
+                    e7.f6693a = 23707;
+                    v8.a.a(u0Var.e(1, e7.a()), uo0Var.getParentActivity());
+                    return;
+                } catch (JSONException e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+            case 13:
+                uo0Var.f42726v0 = false;
+                uo0Var.t0();
+                return;
             default:
-                vo0.c0(this.f40623b, this.f40624c);
+                uo0Var.f42706f[0].requestFocus();
+                AndroidUtilities.showKeyboard(uo0Var.f42706f[0]);
                 return;
         }
     }

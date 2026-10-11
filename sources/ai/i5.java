@@ -1,17 +1,19 @@
 package ai;
 
+import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.media.AudioTrack;
 import android.os.Handler;
 import android.os.SystemClock;
-import java.util.ArrayDeque;
+import java.io.File;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraSession;
-import org.telegram.tgnet.RequestTimeDelegate;
+import org.telegram.messenger.video.VideoAds;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.q80;
 public final class i5 implements Runnable {
     public final int f1136a;
     public final Object f1137b;
@@ -38,13 +40,13 @@ public final class i5 implements Runnable {
             if (nVar != null && handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.w1(26, nVar, kVar));
             }
-            synchronized (k2.d0.f14421n0) {
+            synchronized (k2.d0.f14420n0) {
                 try {
-                    int i10 = k2.d0.f14423p0 - 1;
-                    k2.d0.f14423p0 = i10;
+                    int i10 = k2.d0.f14422p0 - 1;
+                    k2.d0.f14422p0 = i10;
                     if (i10 == 0) {
-                        k2.d0.f14422o0.shutdown();
-                        k2.d0.f14422o0 = null;
+                        k2.d0.f14421o0.shutdown();
+                        k2.d0.f14421o0 = null;
                     }
                 } finally {
                 }
@@ -53,13 +55,13 @@ public final class i5 implements Runnable {
             if (nVar != null && handler.getLooper().getThread().isAlive()) {
                 handler.post(new gg.w1(26, nVar, kVar));
             }
-            synchronized (k2.d0.f14421n0) {
+            synchronized (k2.d0.f14420n0) {
                 try {
-                    int i11 = k2.d0.f14423p0 - 1;
-                    k2.d0.f14423p0 = i11;
+                    int i11 = k2.d0.f14422p0 - 1;
+                    k2.d0.f14422p0 = i11;
                     if (i11 == 0) {
-                        k2.d0.f14422o0.shutdown();
-                        k2.d0.f14422o0 = null;
+                        k2.d0.f14421o0.shutdown();
+                        k2.d0.f14421o0 = null;
                     }
                     throw th2;
                 } finally {
@@ -77,7 +79,7 @@ public final class i5 implements Runnable {
         ki.m0 m0Var2 = (ki.m0) this.d;
         Handler handler = (Handler) this.f1139e;
         if (rVar.Z && rVar.G == 0 && rVar.D) {
-            rVar.f15100x.g(rVar.f15099w, rVar.f15096s, false);
+            rVar.f15099x.g(rVar.f15098w, rVar.f15095s, false);
             rVar.E = false;
             rVar.F = false;
             rVar.M = 0.0f;
@@ -88,11 +90,11 @@ public final class i5 implements Runnable {
             rVar.I = elapsedRealtimeNanos;
             rVar.N = m0Var;
             rVar.O = m0Var2;
-            String[] strArr = ki.u0.f15160a;
+            String[] strArr = ki.u0.f15159a;
             synchronized (ki.u0.class) {
                 ki.u0.b();
                 if (m0Var != m0Var2) {
-                    if (m0Var == ki.m0.f15057b) {
+                    if (m0Var == ki.m0.f15056b) {
                         i10 = 0;
                     }
                     a2 = ki.u0.a(i10);
@@ -103,10 +105,10 @@ public final class i5 implements Runnable {
             rVar.L = a2;
             rVar.J = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a2 - 400) * 3) / 20))) * 45) / 100) * 1000000;
             rVar.K = (max - max2) * 1000000;
-            rVar.f15082e.b("synthetic camera switch started: from=" + m0Var + ", to=" + m0Var2 + ", expectedWaitMs=" + rVar.L + ", targetBlurRadiusPx=" + (((rVar.f15100x.f14883a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((rVar.J + rVar.K) / 1000000));
+            rVar.f15081e.b("synthetic camera switch started: from=" + m0Var + ", to=" + m0Var2 + ", expectedWaitMs=" + rVar.L + ", targetBlurRadiusPx=" + (((rVar.f15099x.f14882a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((rVar.J + rVar.K) / 1000000));
             rVar.A = -1L;
-            handler.removeCallbacks(rVar.f15083e0);
-            handler.post(rVar.f15083e0);
+            handler.removeCallbacks(rVar.f15082e0);
+            handler.post(rVar.f15082e0);
         }
     }
 
@@ -119,17 +121,15 @@ public final class i5 implements Runnable {
     }
 
     private final void f() {
-        oi.f fVar = (oi.f) this.f1137b;
-        ((ArrayDeque) fVar.f17179a).addLast(new oi.e((m4.w) this.f1138c, (oi.b) this.d, (RequestTimeDelegate) this.f1139e));
-        fVar.K();
-    }
-
-    private final void g() {
         CameraController.lambda$openRound$9((CameraSession) this.f1137b, (Runnable) this.f1138c, (SurfaceTexture) this.d, (Runnable) this.f1139e);
     }
 
-    private final void h() {
+    private final void g() {
         CameraController.lambda$close$5((Runnable) this.f1137b, (CameraSession) this.f1138c, (CountDownLatch) this.d, (Runnable) this.f1139e);
+    }
+
+    private final void h() {
+        ((VideoAds) this.f1137b).lambda$show$14((Context) this.f1138c, (TLRPC.TL_sponsoredMessage) this.d, (q80) this.f1139e);
     }
 
     @Override
@@ -151,6 +151,14 @@ public final class i5 implements Runnable {
         this.f1138c = obj2;
         this.d = obj3;
         this.f1139e = obj4;
+    }
+
+    public i5(Utilities.Callback callback, File file, String str, String[] strArr) {
+        this.f1136a = 29;
+        this.f1139e = callback;
+        this.f1137b = file;
+        this.f1138c = str;
+        this.d = strArr;
     }
 
     public i5(TLObject tLObject, boolean[] zArr, org.telegram.ui.web.q qVar, TLRPC.UserFull userFull) {

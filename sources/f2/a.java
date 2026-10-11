@@ -2,10 +2,10 @@ package f2;
 
 import e2.v;
 public final class a implements fb.n {
-    public String f9558a;
+    public String f9557a;
 
     public a(String str) {
-        this.f9558a = str;
+        this.f9557a = str;
     }
 
     public static a a(v vVar) {
@@ -45,6 +45,6 @@ public final class a implements fb.n {
 
     @Override
     public Object v2() {
-        throw new RuntimeException(this.f9558a);
+        throw new RuntimeException(this.f9557a);
     }
 }

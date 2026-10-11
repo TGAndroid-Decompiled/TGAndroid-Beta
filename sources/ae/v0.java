@@ -24,7 +24,7 @@ public abstract class v0 implements Runnable, Comparable, q0 {
                 return 2;
             }
             synchronized (w0Var) {
-                v0[] v0VarArr = w0Var.f9922a;
+                v0[] v0VarArr = w0Var.f9921a;
                 if (v0VarArr != null) {
                     v0Var = v0VarArr[0];
                 } else {

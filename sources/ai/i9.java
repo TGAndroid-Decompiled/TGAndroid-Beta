@@ -45,7 +45,7 @@ public final class i9 implements RequestDelegate {
                 if (tLObject instanceof TLRPC.Updates) {
                     l9Var.I = false;
                     TLRPC.Updates updates3 = (TLRPC.Updates) tLObject;
-                    if (l8Var.f5398b0) {
+                    if (l8Var.f5397b0) {
                         MessagesController.getInstance(i14).lambda$processUpdates$377(updates3, false);
                         AndroidUtilities.runOnUIThread(new j9(l9Var, 1));
                         return;
@@ -59,7 +59,7 @@ public final class i9 implements RequestDelegate {
                             storyItem2.attachPath = l9Var.f1352e;
                             storyItem2.firstFramePath = str;
                             storyItem2.justUploaded = !z12;
-                            int i17 = storyItem2.f20279id;
+                            int i17 = storyItem2.f20269id;
                             if (storyItem == null) {
                                 storyItem = storyItem2;
                             } else {
@@ -153,7 +153,7 @@ public final class i9 implements RequestDelegate {
                                         storyItem.dialogId = UserConfig.getInstance(i11).clientUserId;
                                         storyItem.attachPath = l9Var.f1352e;
                                         storyItem.firstFramePath = str;
-                                        storyItem.f20279id = tL_updateStoryID.f20299id;
+                                        storyItem.f20269id = tL_updateStoryID.f20289id;
                                         storyItem.justUploaded = !z10;
                                         i15 = i10 + 1;
                                         z12 = z10;
@@ -180,7 +180,7 @@ public final class i9 implements RequestDelegate {
                         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i22).getInputPeer(j3);
                         tL_stories_deleteStories.peer = inputPeer;
                         if (inputPeer != null) {
-                            tL_stories_deleteStories.f20282id.add(Integer.valueOf(i16));
+                            tL_stories_deleteStories.f20272id.add(Integer.valueOf(i16));
                             ConnectionsManager.getInstance(i22).sendRequest(tL_stories_deleteStories, new i9(l9Var, 1));
                         }
                     } else {
@@ -206,9 +206,9 @@ public final class i9 implements RequestDelegate {
                     }
                 } else if (tLObject instanceof TL_bots.botPreviewMedia) {
                     l9Var.L = (TL_bots.botPreviewMedia) tLObject;
-                } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && l8Var.f5401c0 != null && (d5Var = l8Var.f5403d0) != null) {
+                } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && l8Var.f5400c0 != null && (d5Var = l8Var.f5402d0) != null) {
                     d5Var.run(new k9(l9Var, 0));
-                    l8Var.f5403d0 = null;
+                    l8Var.f5402d0 = null;
                     return;
                 } else if (tL_error != null && !z12) {
                     AndroidUtilities.runOnUIThread(new a1.f(20, l9Var, tL_error));

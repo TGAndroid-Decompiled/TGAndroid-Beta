@@ -1,48 +1,70 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-public final class sz0 extends AnimatorListenerAdapter {
-    public final ProfileActivity f41848a;
+public final class sz0 extends pv0 {
+    public final ProfileActivity T;
 
-    public sz0(ProfileActivity profileActivity) {
-        this.f41848a = profileActivity;
+    public sz0(ProfileActivity profileActivity, ViewGroup viewGroup, ViewGroup viewGroup2) {
+        super(viewGroup, viewGroup2);
+        this.T = profileActivity;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
         org.telegram.ui.ActionBar.k kVar;
-        int w02;
-        ProfileActivity profileActivity = this.f41848a;
-        kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-        if (profileActivity.f34357p2) {
-            w02 = 1090519039;
-        } else if (profileActivity.Q5 != null) {
-            w02 = 553648127;
-        } else {
-            w02 = org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f20839f8, profileActivity.f34424z0);
+        org.telegram.ui.ActionBar.k kVar2;
+        org.telegram.ui.ActionBar.k kVar3;
+        if (f7 > 0.0f) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            ProfileActivity profileActivity = this.T;
+            rectF.set(0.0f, 0.0f, profileActivity.f34331n0.getMeasuredWidth(), AndroidUtilities.dp(30.0f) + profileActivity.f34331n0.getMeasuredHeight());
+            canvas.saveLayerAlpha(rectF, (int) (255.0f * f7), 31);
+            profileActivity.Z.draw(canvas);
+            canvas.save();
+            kVar = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
+            float x10 = kVar.getX();
+            kVar2 = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
+            canvas.translate(x10, kVar2.getY());
+            kVar3 = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
+            kVar3.draw(canvas);
+            canvas.restore();
+            org.telegram.ui.Components.hk0 hk0Var = profileActivity.v;
+            if (hk0Var != null && hk0Var.getVisibility() == 0 && profileActivity.v.getAlpha() > 0.0f) {
+                canvas.save();
+                float f14 = (f7 * 0.5f) + 0.5f;
+                canvas.scale(f14, f14, (profileActivity.v.getMeasuredWidth() / 2.0f) + profileActivity.v.getX(), (profileActivity.v.getMeasuredHeight() / 2.0f) + profileActivity.v.getY());
+                canvas.translate(profileActivity.v.getX(), profileActivity.v.getY());
+                profileActivity.v.draw(canvas);
+                canvas.restore();
+            }
+            canvas.restore();
         }
-        kVar.C(w02, false);
-        oz0 oz0Var = profileActivity.f34280e0;
-        ImageReceiver imageReceiver = oz0Var.U;
-        org.telegram.ui.Components.f6 animation = imageReceiver.getAnimation();
-        if (animation != null) {
-            animation.w(oz0Var);
-        }
-        imageReceiver.clearImage();
-        ImageReceiver.BitmapHolder bitmapHolder = oz0Var.W;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            oz0Var.W = null;
-        }
-        oz0Var.V = 0.0f;
-        oz0Var.invalidate();
-        profileActivity.H0 = false;
-        profileActivity.l5(false);
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
+    public final void e() {
+        super.e();
+        ProfileActivity profileActivity = this.T;
+        profileActivity.fragmentView.invalidate();
+        for (int i10 = 0; i10 < profileActivity.f34331n0.getChildCount(); i10++) {
+            profileActivity.f34331n0.getChildAt(i10).invalidate();
+        }
+        org.telegram.ui.Components.hk0 hk0Var = profileActivity.v;
+        if (hk0Var != null) {
+            hk0Var.invalidate();
+        }
+    }
+
+    @Override
+    public final boolean j(View view, ImageReceiver imageReceiver) {
+        if (super.j(view, imageReceiver) && this.T.f34239a.getScrollState() != 1) {
+            return true;
+        }
+        return false;
     }
 }

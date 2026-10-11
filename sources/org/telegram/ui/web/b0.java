@@ -9,23 +9,23 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.fg1;
-import org.telegram.ui.ny;
-import org.telegram.ui.rj0;
-import org.telegram.ui.ty;
-public final class b0 implements rj0, ny {
-    public final b1 f43277a;
-    public final boolean[] f43278b;
-    public final String f43279c;
+import org.telegram.ui.eg1;
+import org.telegram.ui.my;
+import org.telegram.ui.qj0;
+import org.telegram.ui.sy;
+public final class b0 implements qj0, my {
+    public final b1 f43422a;
+    public final boolean[] f43423b;
+    public final String f43424c;
     public final TL_keyboard.TL_buttonTypeRequestPeer d;
-    public final ea f43280e;
+    public final ea f43425e;
 
     public b0(b1 b1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, ea eaVar) {
-        this.f43277a = b1Var;
-        this.f43278b = zArr;
-        this.f43279c = str;
+        this.f43422a = b1Var;
+        this.f43423b = zArr;
+        this.f43424c = str;
         this.d = tL_buttonTypeRequestPeer;
-        this.f43280e = eaVar;
+        this.f43425e = eaVar;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class b0 implements rj0, ny {
     }
 
     @Override
-    public boolean K(ty tyVar) {
+    public boolean K(sy syVar) {
         return false;
     }
 
@@ -42,12 +42,12 @@ public final class b0 implements rj0, ny {
     public void a(ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
             int i10 = 0;
-            this.f43278b[0] = true;
+            this.f43423b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            b1 b1Var = this.f43277a;
+            b1 b1Var = this.f43422a;
             MessagesController.getInstance(b1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(b1Var.U);
-            String str = this.f43279c;
+            String str = this.f43424c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             int size = arrayList.size();
@@ -56,20 +56,20 @@ public final class b0 implements rj0, ny {
                 i10++;
                 tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(b1Var.M).getInputPeer(((Long) obj).longValue()));
             }
-            ConnectionsManager.getInstance(b1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(b1Var, this.f43280e, str, 2));
+            ConnectionsManager.getInstance(b1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(b1Var, this.f43425e, str, 2));
         }
     }
 
     @Override
-    public boolean w(ty tyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, fg1 fg1Var) {
+    public boolean w(sy syVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
         if (!arrayList.isEmpty()) {
             int i12 = 0;
-            this.f43278b[0] = true;
+            this.f43423b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            b1 b1Var = this.f43277a;
+            b1 b1Var = this.f43422a;
             MessagesController.getInstance(b1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(b1Var.U);
-            String str = this.f43279c;
+            String str = this.f43424c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             HashSet hashSet = new HashSet();
@@ -83,9 +83,9 @@ public final class b0 implements rj0, ny {
             while (it.hasNext()) {
                 tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(b1Var.M).getInputPeer(((Long) it.next()).longValue()));
             }
-            ConnectionsManager.getInstance(b1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(b1Var, this.f43280e, str, 1));
+            ConnectionsManager.getInstance(b1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new u(b1Var, this.f43425e, str, 1));
         }
-        tyVar.finishFragment();
+        syVar.finishFragment();
         return true;
     }
 }

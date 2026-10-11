@@ -2,11 +2,11 @@ package cf;
 
 import v7.e5;
 public final class g extends p {
-    public final int f4639g;
+    public final int f4638g;
 
     @Override
     public final void a(e5 e5Var) {
-        switch (this.f4639g) {
+        switch (this.f4638g) {
             case 0:
                 e5Var.e(this);
                 return;

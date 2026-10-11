@@ -1,54 +1,36 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class b61 extends z61 {
-    public final k71 E;
+import android.view.View;
+public final class b61 extends View {
+    public final int f36285a;
+    public final Integer f36286b;
 
-    public b61(k71 k71Var, Context context, boolean z10) {
-        super(k71Var, context, z10);
-        this.E = k71Var;
+    public b61(Context context, Integer num, int i10) {
+        super(context);
+        this.f36285a = i10;
+        this.f36286b = num;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float y3;
-        k71 k71Var = this.E;
-        w51 w51Var = k71Var.f39174g0;
-        b61 b61Var = k71Var.f39172f0;
-        k61 k61Var = k71Var.U;
-        if (k61Var != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            float x10 = w51Var.getX() + b61Var.getX();
-            float y10 = w51Var.getY() + b61Var.getY();
-            qg.x1 x1Var = (qg.x1) k61Var;
-            zg.a0 a0Var = (zg.a0) x1Var.f46665b;
-            zg.z zVar = a0Var.f54493a;
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f7 = 0;
-            rectF.set(f7, f7, measuredWidth, measuredHeight);
-            org.telegram.ui.Components.kl0 delegate = ((org.telegram.ui.Components.ll0) x1Var.f46666c).getDelegate();
-            float x11 = zVar.getX() + x10;
-            if (a0Var.f54514y == 1) {
-                y3 = zVar.getY() - AndroidUtilities.statusBarHeight;
-            } else {
-                y3 = zVar.getY() + a0Var.f54495c.getY();
-            }
-            delegate.r(canvas, rectF, 0.0f, x11, y3 + y10, 255, true);
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        if (f7 != getTranslationY()) {
-            super.setTranslationY(f7);
-            if (this.E.U != null) {
-                invalidate();
-            }
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f36285a) {
+            case 0:
+                super.onMeasure(i10, i11);
+                Integer num = this.f36286b;
+                if (num != null) {
+                    setPivotX(num.intValue());
+                    return;
+                }
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                Integer num2 = this.f36286b;
+                if (num2 != null) {
+                    setPivotX(num2.intValue());
+                    return;
+                }
+                return;
         }
     }
 }

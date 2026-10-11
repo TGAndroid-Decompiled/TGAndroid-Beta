@@ -5,21 +5,21 @@ import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.z9;
 public final class s0 implements z9 {
-    public final Layout f12668a;
-    public final int f12669b;
-    public final int f12670c;
+    public final Layout f12667a;
+    public final int f12668b;
+    public final int f12669c;
     public final u0 d;
 
     public s0(u0 u0Var, Layout layout, int i10, int i11) {
         this.d = u0Var;
-        this.f12668a = layout;
-        this.f12669b = i10;
-        this.f12670c = i11;
+        this.f12667a = layout;
+        this.f12668b = i10;
+        this.f12669c = i11;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f12668a;
+        return this.f12667a;
     }
 
     @Override
@@ -39,9 +39,9 @@ public final class s0 implements z9 {
 
     @Override
     public final CharSequence getText() {
-        a aVar = this.d.f12726f;
+        a aVar = this.d.f12725f;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f12234b;
+            TL_iv.PageBlock pageBlock = aVar.f12233b;
             if (pageBlock instanceof TL_iv.pageBlockDetails) {
                 return h6.r(((TL_iv.pageBlockDetails) pageBlock).title, null, true);
             }
@@ -52,11 +52,11 @@ public final class s0 implements z9 {
 
     @Override
     public final int getX() {
-        return this.f12669b;
+        return this.f12668b;
     }
 
     @Override
     public final int getY() {
-        return this.f12670c;
+        return this.f12669c;
     }
 }

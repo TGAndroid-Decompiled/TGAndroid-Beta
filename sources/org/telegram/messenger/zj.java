@@ -5,28 +5,28 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zj implements Runnable {
-    public final int f20027a;
-    public final Object f20028b;
-    public final Object f20029c;
+    public final int f20017a;
+    public final Object f20018b;
+    public final Object f20019c;
     public final Object d;
-    public final Object f20030e;
-    public final Object f20031f;
+    public final Object f20020e;
+    public final Object f20021f;
     public final Object h;
-    public final Object f20032n;
-    public final boolean f20033r;
-    public final Object f20034s;
+    public final Object f20022n;
+    public final boolean f20023r;
+    public final Object f20024s;
 
-    public zj(Object obj, Object obj2, org.telegram.ui.ActionBar.f1 f1Var, org.telegram.ui.ActionBar.f1 f1Var2, org.telegram.ui.ActionBar.f1 f1Var3, org.telegram.ui.ActionBar.f1 f1Var4, boolean z10, org.telegram.ui.ActionBar.f1 f1Var5, org.telegram.ui.ActionBar.f1 f1Var6, int i10) {
-        this.f20027a = i10;
-        this.f20028b = obj;
-        this.f20029c = obj2;
-        this.d = f1Var;
-        this.f20030e = f1Var2;
-        this.f20031f = f1Var3;
-        this.h = f1Var4;
-        this.f20033r = z10;
-        this.f20032n = f1Var5;
-        this.f20034s = f1Var6;
+    public zj(Object obj, Object obj2, org.telegram.ui.ActionBar.e1 e1Var, org.telegram.ui.ActionBar.e1 e1Var2, org.telegram.ui.ActionBar.e1 e1Var3, org.telegram.ui.ActionBar.e1 e1Var4, boolean z10, org.telegram.ui.ActionBar.e1 e1Var5, org.telegram.ui.ActionBar.e1 e1Var6, int i10) {
+        this.f20017a = i10;
+        this.f20018b = obj;
+        this.f20019c = obj2;
+        this.d = e1Var;
+        this.f20020e = e1Var2;
+        this.f20021f = e1Var3;
+        this.h = e1Var4;
+        this.f20023r = z10;
+        this.f20022n = e1Var5;
+        this.f20024s = e1Var6;
     }
 
     @Override
@@ -35,77 +35,77 @@ public final class zj implements Runnable {
         int i11;
         int i12;
         int i13;
-        switch (this.f20027a) {
+        switch (this.f20017a) {
             case 0:
-                ((SendMessagesHelper) this.f20028b).lambda$performSendMessageRequest$89((TLRPC.TL_error) this.f20029c, (TLRPC.Message) this.d, (TLObject) this.f20030e, (MessageObject) this.f20031f, (String) this.h, (HashMap) this.f20032n, this.f20033r, (TLRPC.TL_messages_addPollAnswer) this.f20034s);
+                ((SendMessagesHelper) this.f20018b).lambda$performSendMessageRequest$89((TLRPC.TL_error) this.f20019c, (TLRPC.Message) this.d, (TLObject) this.f20020e, (MessageObject) this.f20021f, (String) this.h, (HashMap) this.f20022n, this.f20023r, (TLRPC.TL_messages_addPollAnswer) this.f20024s);
                 return;
             case 1:
-                ((SendMessagesHelper) this.f20028b).lambda$performSendMessageRequest$92((TLRPC.TL_error) this.f20029c, (TLRPC.Message) this.d, (TLObject) this.f20030e, (MessageObject) this.f20031f, (String) this.h, (HashMap) this.f20032n, this.f20033r, (TLRPC.TL_messages_editMessage) this.f20034s);
+                ((SendMessagesHelper) this.f20018b).lambda$performSendMessageRequest$92((TLRPC.TL_error) this.f20019c, (TLRPC.Message) this.d, (TLObject) this.f20020e, (MessageObject) this.f20021f, (String) this.h, (HashMap) this.f20022n, this.f20023r, (TLRPC.TL_messages_editMessage) this.f20024s);
                 return;
             case 2:
-                ((SendMessagesHelper) this.f20028b).lambda$performSendMessageRequest$103(this.f20033r, (TLRPC.TL_error) this.f20029c, (TLRPC.Message) this.d, (TLObject) this.f20030e, (MessageObject) this.f20031f, (HashMap) this.f20032n, (String) this.h, (TLObject) this.f20034s);
+                ((SendMessagesHelper) this.f20018b).lambda$performSendMessageRequest$103(this.f20023r, (TLRPC.TL_error) this.f20019c, (TLRPC.Message) this.d, (TLObject) this.f20020e, (MessageObject) this.f20021f, (HashMap) this.f20022n, (String) this.h, (TLObject) this.f20024s);
                 return;
             case 3:
-                org.telegram.ui.ActionBar.f1 f1Var = (org.telegram.ui.ActionBar.f1) this.f20028b;
-                yh.e5 e5Var = (yh.e5) this.f20029c;
-                org.telegram.ui.ActionBar.f1 f1Var2 = (org.telegram.ui.ActionBar.f1) this.d;
-                org.telegram.ui.ActionBar.f1 f1Var3 = (org.telegram.ui.ActionBar.f1) this.f20030e;
-                org.telegram.ui.ActionBar.f1 f1Var4 = (org.telegram.ui.ActionBar.f1) this.f20031f;
-                org.telegram.ui.ActionBar.f1 f1Var5 = (org.telegram.ui.ActionBar.f1) this.h;
-                org.telegram.ui.ActionBar.f1 f1Var6 = (org.telegram.ui.ActionBar.f1) this.f20032n;
-                org.telegram.ui.ActionBar.f1 f1Var7 = (org.telegram.ui.ActionBar.f1) this.f20034s;
-                if (f1Var != null) {
-                    if (e5Var.f52480e) {
+                org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.f20018b;
+                yh.f5 f5Var = (yh.f5) this.f20019c;
+                org.telegram.ui.ActionBar.e1 e1Var2 = (org.telegram.ui.ActionBar.e1) this.d;
+                org.telegram.ui.ActionBar.e1 e1Var3 = (org.telegram.ui.ActionBar.e1) this.f20020e;
+                org.telegram.ui.ActionBar.e1 e1Var4 = (org.telegram.ui.ActionBar.e1) this.f20021f;
+                org.telegram.ui.ActionBar.e1 e1Var5 = (org.telegram.ui.ActionBar.e1) this.h;
+                org.telegram.ui.ActionBar.e1 e1Var6 = (org.telegram.ui.ActionBar.e1) this.f20022n;
+                org.telegram.ui.ActionBar.e1 e1Var7 = (org.telegram.ui.ActionBar.e1) this.f20024s;
+                if (e1Var != null) {
+                    if (f5Var.f52600e) {
                         i10 = R.string.Gift2FilterSortByValue;
                     } else {
                         i10 = R.string.Gift2FilterSortByDate;
                     }
                     String string = LocaleController.getString(i10);
-                    if (e5Var.f52480e) {
+                    if (f5Var.f52600e) {
                         i11 = R.drawable.menu_sort_value;
                     } else {
                         i11 = R.drawable.menu_sort_date;
                     }
-                    f1Var.g(string, i11, null);
+                    e1Var.g(string, i11, null);
                 }
-                f1Var2.setChecked(TLObject.hasFlag(e5Var.f52482g, 1));
-                f1Var3.setChecked(TLObject.hasFlag(e5Var.f52482g, 2));
-                f1Var4.setChecked(TLObject.hasFlag(e5Var.f52482g, 4));
-                f1Var5.setChecked(TLObject.hasFlag(e5Var.f52482g, 8));
-                if (this.f20033r) {
-                    f1Var6.setChecked(TLObject.hasFlag(e5Var.f52482g, 256));
-                    f1Var7.setChecked(TLObject.hasFlag(e5Var.f52482g, 512));
+                e1Var2.setChecked(TLObject.hasFlag(f5Var.f52602g, 1));
+                e1Var3.setChecked(TLObject.hasFlag(f5Var.f52602g, 2));
+                e1Var4.setChecked(TLObject.hasFlag(f5Var.f52602g, 4));
+                e1Var5.setChecked(TLObject.hasFlag(f5Var.f52602g, 8));
+                if (this.f20023r) {
+                    e1Var6.setChecked(TLObject.hasFlag(f5Var.f52602g, 256));
+                    e1Var7.setChecked(TLObject.hasFlag(f5Var.f52602g, 512));
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.f1 f1Var8 = (org.telegram.ui.ActionBar.f1) this.f20029c;
-                org.telegram.ui.ActionBar.f1 f1Var9 = (org.telegram.ui.ActionBar.f1) this.d;
-                org.telegram.ui.ActionBar.f1 f1Var10 = (org.telegram.ui.ActionBar.f1) this.f20030e;
-                org.telegram.ui.ActionBar.f1 f1Var11 = (org.telegram.ui.ActionBar.f1) this.f20031f;
-                org.telegram.ui.ActionBar.f1 f1Var12 = (org.telegram.ui.ActionBar.f1) this.h;
-                org.telegram.ui.ActionBar.f1 f1Var13 = (org.telegram.ui.ActionBar.f1) this.f20032n;
-                org.telegram.ui.ActionBar.f1 f1Var14 = (org.telegram.ui.ActionBar.f1) this.f20034s;
-                yh.e5 e5Var2 = ((xh.j4) this.f20028b).f51365c.Y;
-                if (e5Var2.f52480e) {
+                org.telegram.ui.ActionBar.e1 e1Var8 = (org.telegram.ui.ActionBar.e1) this.f20019c;
+                org.telegram.ui.ActionBar.e1 e1Var9 = (org.telegram.ui.ActionBar.e1) this.d;
+                org.telegram.ui.ActionBar.e1 e1Var10 = (org.telegram.ui.ActionBar.e1) this.f20020e;
+                org.telegram.ui.ActionBar.e1 e1Var11 = (org.telegram.ui.ActionBar.e1) this.f20021f;
+                org.telegram.ui.ActionBar.e1 e1Var12 = (org.telegram.ui.ActionBar.e1) this.h;
+                org.telegram.ui.ActionBar.e1 e1Var13 = (org.telegram.ui.ActionBar.e1) this.f20022n;
+                org.telegram.ui.ActionBar.e1 e1Var14 = (org.telegram.ui.ActionBar.e1) this.f20024s;
+                yh.f5 f5Var2 = ((xh.j4) this.f20018b).f51408c.Y;
+                if (f5Var2.f52600e) {
                     i12 = R.string.Gift2FilterSortByValue;
                 } else {
                     i12 = R.string.Gift2FilterSortByDate;
                 }
                 String string2 = LocaleController.getString(i12);
-                if (e5Var2.f52480e) {
+                if (f5Var2.f52600e) {
                     i13 = R.drawable.menu_sort_value;
                 } else {
                     i13 = R.drawable.menu_sort_date;
                 }
-                f1Var8.g(string2, i13, null);
-                f1Var9.setChecked(TLObject.hasFlag(e5Var2.f52482g, 1));
-                f1Var10.setChecked(TLObject.hasFlag(e5Var2.f52482g, 2));
-                f1Var11.setChecked(TLObject.hasFlag(e5Var2.f52482g, 4));
-                f1Var12.setChecked(TLObject.hasFlag(e5Var2.f52482g, 8));
-                if (this.f20033r) {
-                    f1Var13.setChecked(TLObject.hasFlag(e5Var2.f52482g, 256));
-                    f1Var14.setChecked(TLObject.hasFlag(e5Var2.f52482g, 512));
+                e1Var8.g(string2, i13, null);
+                e1Var9.setChecked(TLObject.hasFlag(f5Var2.f52602g, 1));
+                e1Var10.setChecked(TLObject.hasFlag(f5Var2.f52602g, 2));
+                e1Var11.setChecked(TLObject.hasFlag(f5Var2.f52602g, 4));
+                e1Var12.setChecked(TLObject.hasFlag(f5Var2.f52602g, 8));
+                if (this.f20023r) {
+                    e1Var13.setChecked(TLObject.hasFlag(f5Var2.f52602g, 256));
+                    e1Var14.setChecked(TLObject.hasFlag(f5Var2.f52602g, 512));
                     return;
                 }
                 return;
@@ -113,28 +113,28 @@ public final class zj implements Runnable {
     }
 
     public zj(SendMessagesHelper sendMessagesHelper, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, String str, HashMap hashMap, boolean z10, TLMethod tLMethod, int i10) {
-        this.f20027a = i10;
-        this.f20028b = sendMessagesHelper;
-        this.f20029c = tL_error;
+        this.f20017a = i10;
+        this.f20018b = sendMessagesHelper;
+        this.f20019c = tL_error;
         this.d = message;
-        this.f20030e = tLObject;
-        this.f20031f = messageObject;
+        this.f20020e = tLObject;
+        this.f20021f = messageObject;
         this.h = str;
-        this.f20032n = hashMap;
-        this.f20033r = z10;
-        this.f20034s = tLMethod;
+        this.f20022n = hashMap;
+        this.f20023r = z10;
+        this.f20024s = tLMethod;
     }
 
     public zj(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, MessageObject messageObject, HashMap hashMap, String str, TLObject tLObject2) {
-        this.f20027a = 2;
-        this.f20028b = sendMessagesHelper;
-        this.f20033r = z10;
-        this.f20029c = tL_error;
+        this.f20017a = 2;
+        this.f20018b = sendMessagesHelper;
+        this.f20023r = z10;
+        this.f20019c = tL_error;
         this.d = message;
-        this.f20030e = tLObject;
-        this.f20031f = messageObject;
-        this.f20032n = hashMap;
+        this.f20020e = tLObject;
+        this.f20021f = messageObject;
+        this.f20022n = hashMap;
         this.h = str;
-        this.f20034s = tLObject2;
+        this.f20024s = tLObject2;
     }
 }

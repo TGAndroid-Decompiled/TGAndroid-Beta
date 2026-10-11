@@ -2,23 +2,23 @@ package i2;
 
 import android.util.Pair;
 public abstract class a extends b2.k1 {
-    public static final int f11600g = 0;
-    public final int f11601e;
-    public final u2.g1 f11602f;
+    public static final int f11599g = 0;
+    public final int f11600e;
+    public final u2.f1 f11601f;
 
-    public a(u2.g1 g1Var) {
-        this.f11602f = g1Var;
-        this.f11601e = g1Var.getLength();
+    public a(u2.f1 f1Var) {
+        this.f11601f = f1Var;
+        this.f11600e = f1Var.getLength();
     }
 
     @Override
     public final int a(boolean z10) {
         int i10;
-        if (this.f11601e == 0) {
+        if (this.f11600e == 0) {
             return -1;
         }
         if (z10) {
-            i10 = this.f11602f.b();
+            i10 = this.f11601f.b();
         } else {
             i10 = 0;
         }
@@ -50,19 +50,19 @@ public abstract class a extends b2.k1 {
     @Override
     public final int c(boolean z10) {
         int i10;
-        int i11 = this.f11601e;
+        int i11 = this.f11600e;
         if (i11 == 0) {
             return -1;
         }
-        u2.g1 g1Var = this.f11602f;
+        u2.f1 f1Var = this.f11601f;
         if (z10) {
-            i10 = g1Var.g();
+            i10 = f1Var.g();
         } else {
             i10 = i11 - 1;
         }
         while (x(i10).p()) {
             if (z10) {
-                i10 = g1Var.c(i10);
+                i10 = f1Var.c(i10);
                 continue;
             } else if (i10 > 0) {
                 i10--;
@@ -176,9 +176,9 @@ public abstract class a extends b2.k1 {
 
     public final int w(int i10, boolean z10) {
         if (z10) {
-            return this.f11602f.d(i10);
+            return this.f11601f.d(i10);
         }
-        if (i10 < this.f11601e - 1) {
+        if (i10 < this.f11600e - 1) {
             return i10 + 1;
         }
         return -1;

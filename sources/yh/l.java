@@ -6,50 +6,50 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_payments;
 public final class l {
-    public final int f52847a;
-    public final long f52848b;
-    public int f52849c;
+    public final int f52890a;
+    public final long f52891b;
+    public int f52892c;
     public boolean d;
-    public final ArrayList f52850e = new ArrayList();
-    public long f52851f;
-    public boolean f52852g;
+    public final ArrayList f52893e = new ArrayList();
+    public long f52894f;
+    public boolean f52895g;
     public boolean h;
-    public int f52853i;
+    public int f52896i;
 
     public l(int i10, long j3) {
-        this.f52852g = false;
+        this.f52895g = false;
         this.h = false;
-        this.f52847a = i10;
-        this.f52848b = j3;
-        if (System.currentTimeMillis() - this.f52851f > 900000) {
-            this.f52849c = 0;
+        this.f52890a = i10;
+        this.f52891b = j3;
+        if (System.currentTimeMillis() - this.f52894f > 900000) {
+            this.f52892c = 0;
             this.h = false;
             this.d = false;
-            if (this.f52853i != 0) {
-                ConnectionsManager.getInstance(i10).cancelRequest(this.f52853i, true);
-                this.f52853i = 0;
+            if (this.f52896i != 0) {
+                ConnectionsManager.getInstance(i10).cancelRequest(this.f52896i, true);
+                this.f52896i = 0;
             }
-            this.f52852g = false;
+            this.f52895g = false;
             a();
         }
     }
 
     public final void a() {
-        if (!this.f52852g && !this.h && !this.d) {
-            this.f52851f = System.currentTimeMillis();
-            this.f52852g = true;
+        if (!this.f52895g && !this.h && !this.d) {
+            this.f52894f = System.currentTimeMillis();
+            this.f52895g = true;
             TL_payments.getConnectedStarRefBots getconnectedstarrefbots = new TL_payments.getConnectedStarRefBots();
-            int i10 = this.f52847a;
-            getconnectedstarrefbots.peer = MessagesController.getInstance(i10).getInputPeer(this.f52848b);
+            int i10 = this.f52890a;
+            getconnectedstarrefbots.peer = MessagesController.getInstance(i10).getInputPeer(this.f52891b);
             getconnectedstarrefbots.limit = 20;
-            ArrayList arrayList = this.f52850e;
+            ArrayList arrayList = this.f52893e;
             if (!arrayList.isEmpty()) {
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) hg.c.g(1, arrayList);
                 getconnectedstarrefbots.flags |= 4;
                 getconnectedstarrefbots.offset_date = connectedbotstarref.date;
                 getconnectedstarrefbots.offset_link = connectedbotstarref.url;
             }
-            this.f52853i = ConnectionsManager.getInstance(i10).sendRequest(getconnectedstarrefbots, new o8(this, 25));
+            this.f52896i = ConnectionsManager.getInstance(i10).sendRequest(getconnectedstarrefbots, new o8(this, 25));
         }
     }
 }

@@ -429,7 +429,7 @@ public class MrzRecognizer {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         hVar.d = bitmap;
-        a3.l lVar = (a3.l) hVar.f15466b;
+        a3.l lVar = (a3.l) hVar.f15465b;
         lVar.f155a = width;
         lVar.f156b = height;
         SparseArray b12 = nVar.b1(hVar);
@@ -439,15 +439,15 @@ public class MrzRecognizer {
             int i13 = mVar.d;
             int i14 = 6;
             int i15 = 4;
-            if (i13 == 12 && mVar.f47140y != null) {
+            if (i13 == 12 && mVar.f47186y != null) {
                 Result result = new Result();
-                if ("ID".equals(mVar.f47140y.f47100a)) {
+                if ("ID".equals(mVar.f47186y.f47146a)) {
                     i10 = 2;
                 } else {
                     i10 = 4;
                 }
                 result.type = i10;
-                String str = mVar.f47140y.f47110y;
+                String str = mVar.f47186y.f47156y;
                 str.getClass();
                 if (!str.equals("CAN")) {
                     if (str.equals("USA")) {
@@ -458,12 +458,12 @@ public class MrzRecognizer {
                     result.issuingCountry = "CA";
                     result.nationality = "CA";
                 }
-                result.firstName = capitalize(mVar.f47140y.f47101b);
-                result.lastName = capitalize(mVar.f47140y.d);
-                result.middleName = capitalize(mVar.f47140y.f47102c);
-                r8.e eVar = mVar.f47140y;
-                result.number = eVar.f47107s;
-                String str2 = eVar.f47103e;
+                result.firstName = capitalize(mVar.f47186y.f47147b);
+                result.lastName = capitalize(mVar.f47186y.d);
+                result.middleName = capitalize(mVar.f47186y.f47148c);
+                r8.e eVar = mVar.f47186y;
+                result.number = eVar.f47153s;
+                String str2 = eVar.f47149e;
                 if (str2 != null) {
                     if (!str2.equals("1")) {
                         if (str2.equals("2")) {
@@ -479,25 +479,25 @@ public class MrzRecognizer {
                     i14 = 2;
                 }
                 try {
-                    String str3 = mVar.f47140y.f47109x;
+                    String str3 = mVar.f47186y.f47155x;
                     if (str3 != null && str3.length() == 8) {
-                        result.birthYear = Integer.parseInt(mVar.f47140y.f47109x.substring(i11, i11 + 4));
-                        result.birthMonth = Integer.parseInt(mVar.f47140y.f47109x.substring(i15, i15 + 2));
-                        result.birthDay = Integer.parseInt(mVar.f47140y.f47109x.substring(i14, i14 + 2));
+                        result.birthYear = Integer.parseInt(mVar.f47186y.f47155x.substring(i11, i11 + 4));
+                        result.birthMonth = Integer.parseInt(mVar.f47186y.f47155x.substring(i15, i15 + 2));
+                        result.birthDay = Integer.parseInt(mVar.f47186y.f47155x.substring(i14, i14 + 2));
                     }
-                    String str4 = mVar.f47140y.f47108w;
+                    String str4 = mVar.f47186y.f47154w;
                     if (str4 != null && str4.length() == 8) {
-                        result.expiryYear = Integer.parseInt(mVar.f47140y.f47108w.substring(i11, i11 + 4));
-                        result.expiryMonth = Integer.parseInt(mVar.f47140y.f47108w.substring(i15, i15 + 2));
-                        result.expiryDay = Integer.parseInt(mVar.f47140y.f47108w.substring(i14, i14 + 2));
+                        result.expiryYear = Integer.parseInt(mVar.f47186y.f47154w.substring(i11, i11 + 4));
+                        result.expiryMonth = Integer.parseInt(mVar.f47186y.f47154w.substring(i15, i15 + 2));
+                        result.expiryDay = Integer.parseInt(mVar.f47186y.f47154w.substring(i14, i14 + 2));
                     }
                 } catch (NumberFormatException unused) {
                 }
                 return result;
             }
-            if (i13 == 7 && mVar.f47130a == 2048 && mVar.f47131b.matches("^[A-Za-z0-9=]+$")) {
+            if (i13 == 7 && mVar.f47176a == 2048 && mVar.f47177b.matches("^[A-Za-z0-9=]+$")) {
                 try {
-                    String[] split = new String(Base64.decode(mVar.f47131b, 0), "windows-1251").split("\\|");
+                    String[] split = new String(Base64.decode(mVar.f47177b, 0), "windows-1251").split("\\|");
                     if (split.length >= 10) {
                         Result result2 = new Result();
                         result2.type = 4;

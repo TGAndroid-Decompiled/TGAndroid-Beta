@@ -38,7 +38,7 @@ public final class s implements d9.j {
                 return new i2.k(new y2.d(), 1000, 2000);
             default:
                 byte[] bArr = new byte[12];
-                j2.h.f13703i.nextBytes(bArr);
+                j2.h.f13702i.nextBytes(bArr);
                 return Base64.encodeToString(bArr, 10);
         }
     }

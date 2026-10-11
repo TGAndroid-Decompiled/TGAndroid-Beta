@@ -11,18 +11,18 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.er;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.m11;
+import org.telegram.ui.Components.n11;
 public final class w2 {
     public final long f1843a;
     public final float f1844b;
     public final float f1845c;
-    public final dk0 d;
+    public final ek0 d;
     public final Paint f1846e;
     public final ImageReceiver f1847f;
-    public final m11 f1848g;
+    public final n11 f1848g;
     public boolean h;
     public final org.telegram.ui.Components.g6 f1849i;
     public final org.telegram.ui.Components.g6 f1850j;
@@ -35,15 +35,15 @@ public final class w2 {
         this.f1845c = Utilities.clamp01(Utilities.fastRandom.nextFloat());
         if (z10) {
             int[] iArr = x2Var.f1899f;
-            dk0 dk0Var = new dk0(iArr[Utilities.fastRandom.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
-            this.d = dk0Var;
-            dk0Var.R(view);
-            dk0Var.J(true);
-            dk0Var.K(0);
-            dk0Var.start();
+            ek0 ek0Var = new ek0(iArr[Utilities.fastRandom.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+            this.d = ek0Var;
+            ek0Var.R(view);
+            ek0Var.J(true);
+            ek0Var.K(0);
+            ek0Var.start();
         }
         TLObject userOrChat = MessagesController.getInstance(i10).getUserOrChat(j3);
-        org.telegram.ui.Components.j9 j9Var = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.e6) null);
+        org.telegram.ui.Components.j9 j9Var = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.d6) null);
         j9Var.p(userOrChat);
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.f1847f = imageReceiver;
@@ -61,7 +61,7 @@ public final class w2 {
         spannableStringBuilder.setSpan(erVar, 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(i11, ','));
-        this.f1848g = new m11(spannableStringBuilder, 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+        this.f1848g = new n11(spannableStringBuilder, 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
         org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(view, 2000L, new LinearInterpolator());
         this.f1849i = g6Var;
         g6Var.d(0.0f, true);

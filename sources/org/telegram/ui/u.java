@@ -1,40 +1,17 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
 import android.view.View;
-public final class u implements nv0, org.telegram.ui.Components.hm0, org.telegram.ui.ActionBar.l1 {
-    public final i4 f42330a;
+public final class u implements View.OnLongClickListener {
+    public final int f42300a;
+    public final Object f42301b;
 
-    public u(i4 i4Var) {
-        this.f42330a = i4Var;
+    public u(Object obj, int i10) {
+        this.f42300a = i10;
+        this.f42301b = obj;
     }
 
     @Override
-    public void b(float[] fArr) {
-        i4 i4Var = this.f42330a;
-        fArr[0] = i4Var.I0;
-        fArr[1] = i4Var.f38559u0[0].f39796b.getMeasuredHeight();
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        i4 i4Var = this.f42330a;
-        i4Var.getClass();
-        if (view instanceof i2) {
-            c4 c4Var = ((i2) view).f38501n;
-            i4Var.Z(c4Var.f36553a.articles.get(c4Var.f36554b).url);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        i4 i4Var = this.f42330a;
-        i4Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = i4Var.H) != null && n1Var.isShowing()) {
-            i4Var.H.d(true);
-        }
+    public final boolean onLongClick(android.view.View r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.u.onLongClick(android.view.View):boolean");
     }
 }

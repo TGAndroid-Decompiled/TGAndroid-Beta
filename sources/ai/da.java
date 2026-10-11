@@ -13,7 +13,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.sm0;
 import org.telegram.ui.LaunchActivity;
 public class da {
     public int A;
@@ -21,7 +21,7 @@ public class da {
     public final boolean E;
     public float G;
     public bd H;
-    public org.telegram.ui.ActionBar.e6 J;
+    public org.telegram.ui.ActionBar.d6 J;
     public float K;
     public boolean L;
     public float M;
@@ -61,9 +61,9 @@ public class da {
     public final RectF F = new RectF();
     public boolean I = false;
 
-    public da(org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+    public da(org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         this.E = z10;
-        this.J = e6Var;
+        this.J = d6Var;
     }
 
     public final boolean a(MotionEvent motionEvent, View view) {
@@ -100,7 +100,7 @@ public class da {
                     if (bdVar == null) {
                         this.H = new bd(view, 1.5f, 5.0f);
                     } else {
-                        bdVar.f24922a = view;
+                        bdVar.f24907a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -124,7 +124,7 @@ public class da {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
                 bd bdVar2 = this.H;
                 if (bdVar2 != null) {
-                    bdVar2.f24922a = view;
+                    bdVar2.f24907a = view;
                     bdVar2.c(false);
                 }
                 ca caVar3 = this.Q;
@@ -137,7 +137,7 @@ public class da {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             bd bdVar3 = this.H;
             if (bdVar3 != null) {
-                bdVar3.f24922a = view;
+                bdVar3.f24907a = view;
                 bdVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f858x)) {
@@ -195,12 +195,12 @@ public class da {
 
     public void f(long j3) {
         v9 v9Var;
-        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+        org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
         if (R != null && this.R != null) {
             R.getOrCreateStoryViewer().getClass();
             ViewParent parent = this.R.getParent();
             if (parent instanceof RecyclerView) {
-                v9Var = v9.a((rm0) parent);
+                v9Var = v9.a((sm0) parent);
             } else {
                 v9Var = null;
             }

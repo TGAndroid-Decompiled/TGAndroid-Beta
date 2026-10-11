@@ -1,25 +1,41 @@
 package org.telegram.messenger;
 public final class eh implements Runnable {
-    public final int f17773a;
-    public final NotificationsController f17774b;
-    public final long f17775c;
-    public final int d;
+    public final int f17771a;
+    public final NotificationsController f17772b;
+    public final int f17773c;
 
-    public eh(NotificationsController notificationsController, long j3, int i10, int i11) {
-        this.f17773a = i11;
-        this.f17774b = notificationsController;
-        this.f17775c = j3;
-        this.d = i10;
+    public eh(NotificationsController notificationsController, int i10, int i11) {
+        this.f17771a = i11;
+        this.f17772b = notificationsController;
+        this.f17773c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17773a) {
+        switch (this.f17771a) {
             case 0:
-                this.f17774b.lambda$processDeleteStory$16(this.f17775c, this.d);
+                this.f17772b.lambda$processSeenStoryReactions$15(this.f17773c);
+                return;
+            case 1:
+                this.f17772b.lambda$setLastOnlineFromOtherDevice$6(this.f17773c);
+                return;
+            case 2:
+                this.f17772b.lambda$processDialogsUpdateRead$30(this.f17773c);
+                return;
+            case 3:
+                this.f17772b.lambda$processNewMessages$25(this.f17773c);
+                return;
+            case 4:
+                this.f17772b.lambda$processNewMessages$27(this.f17773c);
+                return;
+            case 5:
+                this.f17772b.lambda$removeDeletedMessagesFromNotifications$10(this.f17773c);
+                return;
+            case 6:
+                this.f17772b.lambda$removeDeletedHisoryFromNotifications$13(this.f17773c);
                 return;
             default:
-                this.f17774b.lambda$processReadStories$17(this.f17775c, this.d);
+                this.f17772b.lambda$processLoadedUnreadMessages$33(this.f17773c);
                 return;
         }
     }

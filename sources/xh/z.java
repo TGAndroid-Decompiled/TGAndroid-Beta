@@ -5,15 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 public final class z extends yh.p3 {
     public final Path A0;
     public final float[] B0;
     public final int C0;
     public final e0 D0;
 
-    public z(e0 e0Var, Context context, e6 e6Var, rg.x1 x1Var, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6, int i10) {
-        super(context, e6Var, x1Var, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
+    public z(e0 e0Var, Context context, d6 d6Var, rg.x1 x1Var, ai.e2 e2Var, ai.e2 e2Var2, ai.e2 e2Var3, ai.e2 e2Var4, ai.e2 e2Var5, ai.e2 e2Var6, int i10) {
+        super(context, d6Var, x1Var, e2Var, null, e2Var2, e2Var3, e2Var4, e2Var5, e2Var6);
         this.D0 = e0Var;
         this.C0 = i10;
         this.A0 = new Path();
@@ -30,7 +30,7 @@ public final class z extends yh.p3 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f53046b) {
+        if (view == this.f53089b) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -49,7 +49,7 @@ public final class z extends yh.p3 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        b0 b0Var = this.D0.f51257c0;
+        b0 b0Var = this.D0.f51300c0;
         if (b0Var != null) {
             b0Var.invalidate();
         }
@@ -57,7 +57,7 @@ public final class z extends yh.p3 {
 
     @Override
     public final void j(int i10) {
-        this.D0.f51257c0.setRibbonColor(i10);
+        this.D0.f51300c0.setRibbonColor(i10);
     }
 
     @Override

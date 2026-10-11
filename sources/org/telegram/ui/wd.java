@@ -1,122 +1,61 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class wd implements TextView.OnEditorActionListener {
-    public final int f43233a;
-    public final Object f43234b;
-    public final Object f43235c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+public final class wd implements org.telegram.ui.ActionBar.z1, Utilities.Callback5, Utilities.Callback5Return {
+    public final je f43320a;
 
-    public wd(int i10, Object obj, Object obj2) {
-        this.f43233a = i10;
-        this.f43234b = obj;
-        this.f43235c = obj2;
+    public wd(je jeVar) {
+        this.f43320a = jeVar;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        s4.d1 T;
-        int b10;
-        s4.d1 T2;
-        int b11;
-        switch (this.f43233a) {
-            case 0:
-                ke keVar = (ke) this.f43234b;
-                bb1 bb1Var = (bb1) this.f43235c;
-                if (i10 == 5) {
-                    TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                    sd sdVar = new sd(keVar, twoStepVerificationActivity, 1);
-                    twoStepVerificationActivity.Z = 1;
-                    twoStepVerificationActivity.f34611b0 = sdVar;
-                    keVar.Q0.setLoading(true);
-                    twoStepVerificationActivity.s0(new td(keVar, bb1Var, twoStepVerificationActivity, 1));
-                    return true;
-                }
-                return false;
-            case 1:
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f43234b;
-                ei.u1 u1Var = (ei.u1) this.f43235c;
-                if ((i10 != 6 && keyEvent.getKeyCode() != 66) || !b2Var.isShowing()) {
-                    return false;
-                }
-                u1Var.f(b2Var, 0);
-                return true;
-            case 2:
-                org.telegram.ui.Components.io ioVar = (org.telegram.ui.Components.io) this.f43235c;
-                org.telegram.ui.Components.lo loVar = ((org.telegram.ui.Components.jo) this.f43234b).d;
-                fc1 fc1Var = loVar.f28464s;
-                if (i10 == 5) {
-                    View F = fc1Var.F(ioVar);
-                    if (F == null) {
-                        T = null;
-                    } else {
-                        T = fc1Var.T(F);
-                    }
-                    if (T == null || (b10 = T.b()) == -1) {
-                        return true;
-                    }
-                    int i11 = b10 - loVar.f28466t0;
-                    int i12 = loVar.M;
-                    int i13 = i12 - 1;
-                    if (i11 == i13 && i12 < loVar.J) {
-                        loVar.S();
-                        return true;
-                    } else if (i11 == i13) {
-                        AndroidUtilities.hideKeyboard(ioVar.getTextView());
-                        return true;
-                    } else {
-                        s4.d1 K = fc1Var.K(b10 + 1);
-                        if (K == null) {
-                            return true;
-                        }
-                        View view = K.f47702a;
-                        if (!(view instanceof org.telegram.ui.Cells.d6)) {
-                            return true;
-                        }
-                        ((org.telegram.ui.Cells.d6) view).getTextView().requestFocus();
-                        return true;
-                    }
-                }
-                return false;
-            default:
-                xv0 xv0Var = (xv0) this.f43235c;
-                aw0 aw0Var = ((yv0) this.f43234b).d;
-                if (i10 == 5) {
-                    fc1 fc1Var2 = aw0Var.f36082c;
-                    View F2 = fc1Var2.F(xv0Var);
-                    if (F2 == null) {
-                        T2 = null;
-                    } else {
-                        T2 = fc1Var2.T(F2);
-                    }
-                    if (T2 == null || (b11 = T2.b()) == -1) {
-                        return true;
-                    }
-                    int i14 = b11 - aw0Var.f36096n0;
-                    int i15 = aw0Var.f36111y;
-                    int i16 = i15 - 1;
-                    if (i14 == i16 && i15 < aw0Var.f36095n) {
-                        aw0Var.f0();
-                        return true;
-                    } else if (i14 == i16) {
-                        AndroidUtilities.hideKeyboard(xv0Var.getTextView());
-                        return true;
-                    } else {
-                        s4.d1 K2 = aw0Var.f36082c.K(b11 + 1);
-                        if (K2 == null) {
-                            return true;
-                        }
-                        View view2 = K2.f47702a;
-                        if (!(view2 instanceof org.telegram.ui.Cells.d6)) {
-                            return true;
-                        }
-                        ((org.telegram.ui.Cells.d6) view2).getTextView().requestFocus();
-                        return true;
-                    }
-                }
-                return false;
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        this.f43320a.f39016w0.presentFragment(new hh1(6, null));
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        org.telegram.ui.Components.r61 r61Var = (org.telegram.ui.Components.r61) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        this.f43320a.getClass();
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        je jeVar = this.f43320a;
+        nd ndVar = jeVar.f39015v1;
+        int i10 = jeVar.f39019y0;
+        long j3 = jeVar.f39020z0;
+        int i11 = ((org.telegram.ui.Components.r61) obj).d;
+        if (i11 != 1) {
+            if (i11 == 4) {
+                jeVar.f39016w0.presentFragment(new ei.e4(j3));
+            }
+        } else if (jeVar.B0 < MessagesController.getInstance(i10).channelRestrictSponsoredLevelMin) {
+            if (jeVar.A0 == null) {
+                return;
+            }
+            ab1 ab1Var = jeVar.f39016w0;
+            rg.j0 j0Var = new rg.j0(30, jeVar.f39019y0, jeVar.getContext(), ab1Var, jeVar.f39018x0);
+            j0Var.I1(j3);
+            j0Var.G1(jeVar.A0, true);
+            MessagesController.getInstance(i10).getBoostsController().userCanBoostChannel(j3, jeVar.A0, new oc(1, jeVar, j0Var));
+        } else {
+            jeVar.f39006m1 = !jeVar.f39006m1;
+            AndroidUtilities.cancelRunOnUIThread(ndVar);
+            AndroidUtilities.runOnUIThread(ndVar, 1000L);
+            jeVar.f38995a1.W2.N(true);
         }
     }
 }

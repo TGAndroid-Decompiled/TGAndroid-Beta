@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class h30 {
-    public final g60 f38252a;
+    public final g60 f38237a;
 
     public h30(g60 g60Var) {
-        this.f38252a = g60Var;
+        this.f38237a = g60Var;
     }
 }

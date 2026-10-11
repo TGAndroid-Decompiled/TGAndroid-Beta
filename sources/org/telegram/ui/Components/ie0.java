@@ -18,22 +18,22 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.VideoEditedInfo;
 public final class ie0 extends FrameLayout {
-    public Bitmap f27377a;
-    public HashMap f27378b;
-    public boolean f27379c;
+    public Bitmap f27308a;
+    public HashMap f27309b;
+    public boolean f27310c;
     public BitmapDrawable d;
-    public boolean f27380e;
+    public boolean f27311e;
 
     public ie0(Context context) {
         super(context);
-        this.f27380e = true;
+        this.f27311e = true;
     }
 
     public final void a() {
-        this.f27377a = null;
+        this.f27308a = null;
         this.d = null;
         setBackground(null);
-        HashMap hashMap = this.f27378b;
+        HashMap hashMap = this.f27309b;
         if (hashMap != null) {
             hashMap.clear();
         }
@@ -47,7 +47,7 @@ public final class ie0 extends FrameLayout {
         int i12;
         setClipChildren(z12);
         a();
-        this.f27378b = new HashMap();
+        this.f27309b = new HashMap();
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = arrayList.size();
             for (int i13 = 0; i13 < size; i13++) {
@@ -62,7 +62,7 @@ public final class ie0 extends FrameLayout {
                         imageReceiver.setAllowDecodeSingleFrame(true);
                         imageReceiver.setAllowStartLottieAnimation(false);
                         if (z11) {
-                            imageReceiver.setDelegate(new ge0(0));
+                            imageReceiver.setDelegate(new ae0(2));
                         }
                     }
                     imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), null, null, null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), null, null, 0L, "webp", mediaEntity.parentObject, 1);
@@ -151,7 +151,7 @@ public final class ie0 extends FrameLayout {
                     bVar.setTextColor(i19);
                     bVar.setCursorColor(i19);
                     bVar.setHandlesColor(i19);
-                    bVar.setHighlightColor(org.telegram.ui.ActionBar.i6.m1(0.4f, i19));
+                    bVar.setHighlightColor(org.telegram.ui.ActionBar.h6.m1(0.4f, i19));
                     mediaEntity.view = bVar;
                     y9Var = bVar;
                 } else {
@@ -160,7 +160,7 @@ public final class ie0 extends FrameLayout {
                 if (y9Var != null) {
                     addView(y9Var);
                     y9Var.setRotation((float) (((-mediaEntity.rotation) / 3.141592653589793d) * 180.0d));
-                    this.f27378b.put(y9Var, mediaEntity);
+                    this.f27309b.put(y9Var, mediaEntity);
                 }
             }
         }
@@ -181,14 +181,14 @@ public final class ie0 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f27380e) {
+        if (!this.f27311e) {
             return false;
         }
         return super.drawChild(canvas, view, j3);
     }
 
     public Bitmap getBitmap() {
-        return this.f27377a;
+        return this.f27308a;
     }
 
     public Bitmap getThumb() {
@@ -214,20 +214,20 @@ public final class ie0 extends FrameLayout {
         int i15;
         int i16;
         int measuredHeight;
-        if (this.f27378b != null) {
+        if (this.f27309b != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight2 = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i17 = 0; i17 < childCount; i17++) {
                 View childAt = getChildAt(i17);
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f27378b.get(childAt);
+                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f27309b.get(childAt);
                 if (mediaEntity != null) {
                     int measuredWidth2 = childAt.getMeasuredWidth();
                     int measuredHeight3 = childAt.getMeasuredHeight();
                     if (childAt instanceof qg.b) {
                         if (mediaEntity.customTextView) {
-                            i14 = ((int) (((mediaEntity.width / 2.0f) + mediaEntity.f17279x) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
-                            i16 = (int) (((mediaEntity.height / 2.0f) + mediaEntity.f17280y) * measuredHeight2);
+                            i14 = ((int) (((mediaEntity.width / 2.0f) + mediaEntity.f17274x) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
+                            i16 = (int) (((mediaEntity.height / 2.0f) + mediaEntity.f17275y) * measuredHeight2);
                             measuredHeight = childAt.getMeasuredHeight() / 2;
                         } else {
                             i14 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
@@ -236,8 +236,8 @@ public final class ie0 extends FrameLayout {
                         }
                         i15 = i16 - measuredHeight;
                     } else {
-                        i14 = (int) (measuredWidth * mediaEntity.f17279x);
-                        i15 = (int) (measuredHeight2 * mediaEntity.f17280y);
+                        i14 = (int) (measuredWidth * mediaEntity.f17274x);
+                        i15 = (int) (measuredHeight2 * mediaEntity.f17275y);
                     }
                     childAt.layout(i14, i15, measuredWidth2 + i14, measuredHeight3 + i15);
                 }
@@ -248,15 +248,15 @@ public final class ie0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        this.f27379c = true;
+        this.f27310c = true;
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        if (this.f27378b != null) {
+        if (this.f27309b != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i12 = 0; i12 < childCount; i12++) {
                 View childAt = getChildAt(i12);
-                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f27378b.get(childAt);
+                VideoEditedInfo.MediaEntity mediaEntity = (VideoEditedInfo.MediaEntity) this.f27309b.get(childAt);
                 if (mediaEntity != null) {
                     if (childAt instanceof qg.b) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
@@ -273,7 +273,7 @@ public final class ie0 extends FrameLayout {
                 }
             }
         }
-        this.f27379c = false;
+        this.f27310c = false;
     }
 
     @Override
@@ -283,7 +283,7 @@ public final class ie0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f27379c) {
+        if (this.f27310c) {
             return;
         }
         super.requestLayout();
@@ -306,7 +306,7 @@ public final class ie0 extends FrameLayout {
     }
 
     public void setBitmap(Bitmap bitmap) {
-        this.f27377a = bitmap;
+        this.f27308a = bitmap;
         BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
         this.d = bitmapDrawable;
         setBackground(bitmapDrawable);

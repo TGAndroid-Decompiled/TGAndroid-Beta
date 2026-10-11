@@ -26,7 +26,7 @@ public final class n3 implements Runnable {
     }
 
     private final void a() {
-        g60.D((g60) this.f1459c, (org.telegram.ui.ActionBar.b2) this.d, (TLObject) this.f1460e, (TL_phone.exportGroupCallInvite) this.f1461f, (TLRPC.TL_error) this.f1458b);
+        g60.D((g60) this.f1459c, (org.telegram.ui.ActionBar.a2) this.d, (TLObject) this.f1460e, (TL_phone.exportGroupCallInvite) this.f1461f, (TLRPC.TL_error) this.f1458b);
     }
 
     @Override

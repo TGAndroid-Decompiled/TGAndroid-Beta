@@ -15,7 +15,7 @@ public final class m implements Handler.Callback {
 
     public final void a(long j3) {
         n nVar = this.f159b;
-        if (this == nVar.G1 && nVar.f46958b0 != null) {
+        if (this == nVar.G1 && nVar.f47004b0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 nVar.L0 = true;
                 return;
@@ -35,7 +35,7 @@ public final class m implements Handler.Callback {
         }
         int i10 = message.arg1;
         int i11 = message.arg2;
-        String str = e2.d0.f8532a;
+        String str = e2.d0.f8531a;
         a(((i10 & 4294967295L) << 32) | (4294967295L & i11));
         return true;
     }

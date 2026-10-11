@@ -29,7 +29,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.q80;
 import org.telegram.ui.Components.x10;
 import org.telegram.ui.IUpdateLayout;
-import org.telegram.ui.jb0;
+import org.telegram.ui.ib0;
 public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -64,7 +64,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f14709a;
+            AtomicBoolean atomicBoolean = k6.g.f14708a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
@@ -552,7 +552,7 @@ public class ApplicationLoader extends Application {
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
             AndroidUtilities.runOnUIThread(new w1(6));
-            jb0[] values = jb0.values();
+            ib0[] values = ib0.values();
             int length = values.length;
             while (true) {
                 if (i10 < length) {
@@ -561,7 +561,7 @@ public class ApplicationLoader extends Application {
                     }
                     i10++;
                 } else {
-                    w7.e6.b(jb0.h);
+                    w7.e6.b(ib0.h);
                     break;
                 }
             }
@@ -603,7 +603,7 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
-    public org.telegram.ui.ActionBar.n2 openSettings(int i10) {
+    public org.telegram.ui.ActionBar.m2 openSettings(int i10) {
         return null;
     }
 

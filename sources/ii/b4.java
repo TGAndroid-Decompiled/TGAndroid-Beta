@@ -7,18 +7,18 @@ import android.widget.HorizontalScrollView;
 import org.telegram.ui.Cells.o9;
 import org.telegram.ui.t70;
 public final class b4 extends HorizontalScrollView {
-    public final int f12289a;
-    public final Object f12290b;
+    public final int f12288a;
+    public final Object f12289b;
 
     public b4(FrameLayout frameLayout, Context context, int i10) {
         super(context);
-        this.f12289a = i10;
-        this.f12290b = frameLayout;
+        this.f12288a = i10;
+        this.f12289b = frameLayout;
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f12289a) {
+        switch (this.f12288a) {
             case 0:
                 int mode = View.MeasureSpec.getMode(i10);
                 if (mode == 1073741824) {
@@ -27,7 +27,7 @@ public final class b4 extends HorizontalScrollView {
                 }
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0), i11);
                 int measuredWidth = getMeasuredWidth();
-                int i12 = ((c4) this.f12290b).K;
+                int i12 = ((c4) this.f12289b).K;
                 if (mode == Integer.MIN_VALUE) {
                     i12 = Math.min(i12, View.MeasureSpec.getSize(i10));
                 }
@@ -42,21 +42,21 @@ public final class b4 extends HorizontalScrollView {
     @Override
     public void onScrollChanged(int i10, int i11, int i12, int i13) {
         o9 textSelectionHelper;
-        switch (this.f12289a) {
+        switch (this.f12288a) {
             case 1:
                 super.onScrollChanged(i10, i11, i12, i13);
-                d3 d3Var = ((q5) this.f12290b).E;
-                if (d3Var != null && (textSelectionHelper = d3Var.f12347a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
+                d3 d3Var = ((q5) this.f12289b).E;
+                if (d3Var != null && (textSelectionHelper = d3Var.f12346a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
                     textSelectionHelper.w();
                 }
                 invalidate();
                 return;
             case 2:
                 super.onScrollChanged(i10, i11, i12, i13);
-                t70 t70Var = (t70) this.f12290b;
+                t70 t70Var = (t70) this.f12289b;
                 if (t70Var.d != null) {
                     t70Var.d = null;
-                    t70Var.f41932f = null;
+                    t70Var.f42100f = null;
                     return;
                 }
                 return;
@@ -68,7 +68,7 @@ public final class b4 extends HorizontalScrollView {
 
     public b4(Context context, t70 t70Var) {
         super(context);
-        this.f12289a = 2;
-        this.f12290b = t70Var;
+        this.f12288a = 2;
+        this.f12289b = t70Var;
     }
 }

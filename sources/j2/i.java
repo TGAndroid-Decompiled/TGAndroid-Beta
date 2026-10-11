@@ -3,8 +3,11 @@ package j2;
 import android.content.Context;
 import android.media.metrics.LogSessionId;
 import android.media.metrics.MediaMetricsManager;
+import android.media.metrics.NetworkEvent;
+import android.media.metrics.PlaybackErrorEvent;
 import android.media.metrics.PlaybackMetrics;
 import android.media.metrics.PlaybackSession;
+import android.media.metrics.PlaybackStateEvent;
 import android.media.metrics.TrackChangeEvent;
 import android.os.SystemClock;
 import android.util.Pair;
@@ -36,27 +39,47 @@ public final class i implements b {
     public int P;
     public int Q;
     public boolean R;
-    public final Context f13710a;
-    public final h f13712c;
+    public final Context f13709a;
+    public final h f13711c;
     public final PlaybackSession d;
-    public String f13717s;
+    public String f13716s;
     public PlaybackMetrics.Builder v;
-    public int f13718w;
-    public final Executor f13711b = e2.a.g();
-    public final j1 f13714f = new j1();
+    public int f13717w;
+    public final Executor f13710b = e2.a.g();
+    public final j1 f13713f = new j1();
     public final h1 h = new h1();
-    public final HashMap f13716r = new HashMap();
-    public final HashMap f13715n = new HashMap();
-    public final long f13713e = SystemClock.elapsedRealtime();
-    public int f13719x = 0;
-    public int f13720y = 0;
+    public final HashMap f13715r = new HashMap();
+    public final HashMap f13714n = new HashMap();
+    public final long f13712e = SystemClock.elapsedRealtime();
+    public int f13718x = 0;
+    public int f13719y = 0;
 
     public i(Context context, PlaybackSession playbackSession) {
-        this.f13710a = context.getApplicationContext();
+        this.f13709a = context.getApplicationContext();
         this.d = playbackSession;
         h hVar = new h();
-        this.f13712c = hVar;
+        this.f13711c = hVar;
         hVar.d = this;
+    }
+
+    public static void i(i iVar, PlaybackErrorEvent playbackErrorEvent) {
+        iVar.d.reportPlaybackErrorEvent(playbackErrorEvent);
+    }
+
+    public static void j(i iVar, PlaybackMetrics playbackMetrics) {
+        iVar.d.reportPlaybackMetrics(playbackMetrics);
+    }
+
+    public static void k(i iVar, NetworkEvent networkEvent) {
+        iVar.d.reportNetworkEvent(networkEvent);
+    }
+
+    public static void l(i iVar, TrackChangeEvent trackChangeEvent) {
+        iVar.d.reportTrackChangeEvent(trackChangeEvent);
+    }
+
+    public static void m(i iVar, PlaybackStateEvent playbackStateEvent) {
+        iVar.d.reportPlaybackStateEvent(playbackStateEvent);
     }
 
     public static i o(Context context) {
@@ -69,8 +92,8 @@ public final class i implements b {
 
     @Override
     public final void a(i2.g gVar) {
-        this.O += gVar.f11699g;
-        this.P += gVar.f11697e;
+        this.O += gVar.f11698g;
+        this.P += gVar.f11696e;
     }
 
     @Override
@@ -80,7 +103,7 @@ public final class i implements b {
 
     @Override
     public final void c(b0 b0Var) {
-        this.M = b0Var.f48590a;
+        this.M = b0Var.f48613a;
     }
 
     @Override
@@ -101,13 +124,13 @@ public final class i implements b {
     public final void e(a aVar, b0 b0Var) {
         f0 f0Var = aVar.d;
         if (f0Var != null) {
-            s sVar = b0Var.f48592c;
+            s sVar = b0Var.f48615c;
             sVar.getClass();
             int i10 = b0Var.d;
-            k1 k1Var = aVar.f13678b;
+            k1 k1Var = aVar.f13677b;
             f0Var.getClass();
-            a5.a aVar2 = new a5.a(sVar, i10, this.f13712c.d(k1Var, f0Var), 9);
-            int i11 = b0Var.f48591b;
+            a5.a aVar2 = new a5.a(sVar, i10, this.f13711c.d(k1Var, f0Var), 9);
+            int i11 = b0Var.f48614b;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -131,10 +154,10 @@ public final class i implements b {
         long longValue;
         f0 f0Var = aVar.d;
         if (f0Var != null) {
-            String d = this.f13712c.d(aVar.f13678b, f0Var);
-            HashMap hashMap = this.f13716r;
+            String d = this.f13711c.d(aVar.f13677b, f0Var);
+            HashMap hashMap = this.f13715r;
             Long l4 = (Long) hashMap.get(d);
-            HashMap hashMap2 = this.f13715n;
+            HashMap hashMap2 = this.f13714n;
             Long l10 = (Long) hashMap2.get(d);
             long j10 = 0;
             if (l4 == null) {
@@ -155,7 +178,7 @@ public final class i implements b {
         if (i10 == 1) {
             this.L = true;
         }
-        this.f13718w = i10;
+        this.f13717w = i10;
     }
 
     @Override
@@ -167,9 +190,9 @@ public final class i implements b {
         String str;
         if (aVar != null) {
             String str2 = (String) aVar.f300c;
-            h hVar = this.f13712c;
+            h hVar = this.f13711c;
             synchronized (hVar) {
-                str = hVar.f13708f;
+                str = hVar.f13707f;
             }
             if (str2.equals(str)) {
                 return true;
@@ -188,7 +211,7 @@ public final class i implements b {
             builder.setAudioUnderrunCount(this.Q);
             this.v.setVideoFramesDropped(this.O);
             this.v.setVideoFramesPlayed(this.P);
-            Long l4 = (Long) this.f13715n.get(this.f13717s);
+            Long l4 = (Long) this.f13714n.get(this.f13716s);
             PlaybackMetrics.Builder builder2 = this.v;
             if (l4 == null) {
                 longValue = 0;
@@ -196,7 +219,7 @@ public final class i implements b {
                 longValue = l4.longValue();
             }
             builder2.setNetworkTransferDurationMillis(longValue);
-            Long l10 = (Long) this.f13716r.get(this.f13717s);
+            Long l10 = (Long) this.f13715r.get(this.f13716s);
             PlaybackMetrics.Builder builder3 = this.v;
             if (l10 == null) {
                 longValue2 = 0;
@@ -211,10 +234,10 @@ public final class i implements b {
                 i10 = 0;
             }
             builder4.setStreamSource(i10);
-            this.f13711b.execute(new w1(23, this, this.v.build()));
+            this.f13710b.execute(new w1(23, this, this.v.build()));
         }
         this.v = null;
-        this.f13717s = null;
+        this.f13716s = null;
         this.Q = 0;
         this.O = 0;
         this.P = 0;
@@ -231,14 +254,14 @@ public final class i implements b {
     public final void r(k1 k1Var, f0 f0Var) {
         int b10;
         PlaybackMetrics.Builder builder = this.v;
-        if (f0Var == null || (b10 = k1Var.b(f0Var.f48616a)) == -1) {
+        if (f0Var == null || (b10 = k1Var.b(f0Var.f48640a)) == -1) {
             return;
         }
         h1 h1Var = this.h;
         int i10 = 0;
         k1Var.f(b10, h1Var, false);
         int i11 = h1Var.f3329c;
-        j1 j1Var = this.f13714f;
+        j1 j1Var = this.f13713f;
         k1Var.n(i11, j1Var);
         b2.f0 f0Var2 = j1Var.f3381c.f3400b;
         int i12 = 2;
@@ -275,24 +298,24 @@ public final class i implements b {
             return;
         }
         p();
-        this.f13717s = str;
+        this.f13716s = str;
         this.v = new PlaybackMetrics.Builder().setPlayerName("AndroidXMedia3").setPlayerVersion("1.8.1");
-        r(aVar.f13678b, f0Var);
+        r(aVar.f13677b, f0Var);
     }
 
     public final void t(a aVar, String str) {
         f0 f0Var = aVar.d;
-        if ((f0Var == null || !f0Var.b()) && str.equals(this.f13717s)) {
+        if ((f0Var == null || !f0Var.b()) && str.equals(this.f13716s)) {
             p();
         }
-        this.f13715n.remove(str);
-        this.f13716r.remove(str);
+        this.f13714n.remove(str);
+        this.f13715r.remove(str);
     }
 
     public final void u(int i10, long j3, s sVar, int i11) {
         int i12;
         String str;
-        TrackChangeEvent.Builder timeSinceCreatedMillis = new TrackChangeEvent.Builder(i10).setTimeSinceCreatedMillis(j3 - this.f13713e);
+        TrackChangeEvent.Builder timeSinceCreatedMillis = new TrackChangeEvent.Builder(i10).setTimeSinceCreatedMillis(j3 - this.f13712e);
         if (sVar != null) {
             timeSinceCreatedMillis.setTrackState(1);
             if (i11 != 1) {
@@ -342,7 +365,7 @@ public final class i implements b {
             }
             String str5 = sVar.d;
             if (str5 != null) {
-                String str6 = d0.f8532a;
+                String str6 = d0.f8531a;
                 String[] split = str5.split("-", -1);
                 String str7 = split[0];
                 if (split.length >= 2) {
@@ -365,7 +388,7 @@ public final class i implements b {
             timeSinceCreatedMillis.setTrackState(0);
         }
         this.R = true;
-        this.f13711b.execute(new w1(20, this, timeSinceCreatedMillis.build()));
+        this.f13710b.execute(new w1(20, this, timeSinceCreatedMillis.build()));
     }
 
     @Override

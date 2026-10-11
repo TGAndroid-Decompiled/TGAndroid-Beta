@@ -12,40 +12,40 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class xr extends eb {
+public final class xr extends db {
     public final x80 X;
     public final ArrayList Y;
     public final boolean Z;
-    public final boolean f33014a0;
-    public final boolean f33015b0;
-    public boolean f33016c0;
-    public TLRPC.Peer f33017d0;
-    public TLRPC.InputPeer f33018e0;
-    public final org.telegram.ui.ActionBar.n2 f33019f0;
-    public final long f33020g0;
+    public final boolean f33010a0;
+    public final boolean f33011b0;
+    public boolean f33012c0;
+    public TLRPC.Peer f33013d0;
+    public TLRPC.InputPeer f33014e0;
+    public final org.telegram.ui.ActionBar.m2 f33015f0;
+    public final long f33016g0;
 
-    public xr(org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, long j3, x80 x80Var) {
-        super(n2Var, false);
+    public xr(org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, long j3, x80 x80Var) {
+        super(m2Var, false);
         boolean z10;
         String formatString;
         String formatString2;
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-        this.f33019f0 = n2Var;
-        this.f33020g0 = j3;
+        this.f33015f0 = m2Var;
+        this.f33016g0 = j3;
         this.v = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.Y = arrayList2;
         this.X = x80Var;
         boolean isChannelOrGiga = ChatObject.isChannelOrGiga(chat);
-        this.f33015b0 = isChannelOrGiga;
-        this.f33017d0 = (TLRPC.Peer) arrayList2.get(0);
+        this.f33011b0 = isChannelOrGiga;
+        this.f33013d0 = (TLRPC.Peer) arrayList2.get(0);
         if (arrayList2.size() > 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.Z = z10;
-        this.f33014a0 = ChatObject.canManageCalls(chat);
+        this.f33010a0 = ChatObject.canManageCalls(chat);
         Context context = this.containerView.getContext();
         this.containerView.addView(new ci.bb(this, context, 16), w7.x5.a(120.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
         TextView textView = new TextView(context);
@@ -61,12 +61,12 @@ public final class xr extends eb {
             formatString = LocaleController.formatString(R.string.VoipGroupStartVoiceChat, new Object[0]);
         }
         textView.setText(formatString);
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.Sh, false));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
         int dp = AndroidUtilities.dp(8.0f);
-        int i10 = org.telegram.ui.ActionBar.i6.Oh;
-        int x02 = org.telegram.ui.ActionBar.i6.x0(null, i10, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20801d6, false), 120);
-        textView.setBackground(org.telegram.ui.ActionBar.i6.j0(dp, dp, dp, dp, x02, k10, k10));
+        int i10 = org.telegram.ui.ActionBar.h6.Oh;
+        int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20786d6, false), 120);
+        textView.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, x02, k10, k10));
         this.containerView.addView(textView, w7.x5.a(48.0f, 16.0f, 0.0f, 16.0f, 60.0f, -1, 80));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
@@ -81,71 +81,71 @@ public final class xr extends eb {
         }
         textView2.setText(formatString2);
         textView2.setLetterSpacing(0.025f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, i10, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         int dp2 = AndroidUtilities.dp(8.0f);
-        int k11 = i0.a.k(org.telegram.ui.ActionBar.i6.x0(null, i10, false), 120);
-        textView2.setBackground(org.telegram.ui.ActionBar.i6.j0(dp2, dp2, dp2, dp2, 0, k11, k11));
+        int k11 = i0.a.k(org.telegram.ui.ActionBar.h6.x0(null, i10, false), 120);
+        textView2.setBackground(org.telegram.ui.ActionBar.h6.j0(dp2, dp2, dp2, dp2, 0, k11, k11));
         this.containerView.addView(textView2, w7.x5.a(48.0f, 16.0f, 0.0f, 16.0f, 6.0f, -1, 80));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final xr f31632b;
+            public final xr f31552b;
 
             {
-                this.f31632b = this;
+                this.f31552b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        xr.Q(this.f31632b);
+                        xr.Q(this.f31552b);
                         return;
                     default:
-                        xr.R(this.f31632b);
+                        xr.R(this.f31552b);
                         return;
                 }
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final xr f31632b;
+            public final xr f31552b;
 
             {
-                this.f31632b = this;
+                this.f31552b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        xr.Q(this.f31632b);
+                        xr.Q(this.f31552b);
                         return;
                     default:
-                        xr.R(this.f31632b);
+                        xr.R(this.f31552b);
                         return;
                 }
             }
         });
-        rm0 rm0Var = this.d;
+        sm0 sm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        rm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(120.0f));
+        sm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(120.0f));
         this.d.setOnItemClickListener(new j(this, 4));
         fixNavigationBar();
         O();
     }
 
     public static void Q(xr xrVar) {
-        xrVar.f33018e0 = MessagesController.getInstance(xrVar.currentAccount).getInputPeer(MessageObject.getPeerId(xrVar.f33017d0));
+        xrVar.f33014e0 = MessagesController.getInstance(xrVar.currentAccount).getInputPeer(MessageObject.getPeerId(xrVar.f33013d0));
         xrVar.dismiss();
     }
 
     public static void R(xr xrVar) {
-        xrVar.f33018e0 = MessagesController.getInstance(xrVar.currentAccount).getInputPeer(MessageObject.getPeerId(xrVar.f33017d0));
-        xrVar.f33016c0 = true;
+        xrVar.f33014e0 = MessagesController.getInstance(xrVar.currentAccount).getInputPeer(MessageObject.getPeerId(xrVar.f33013d0));
+        xrVar.f33012c0 = true;
         xrVar.dismiss();
     }
 
     @Override
     public final CharSequence B() {
-        if (this.f33015b0) {
+        if (this.f33011b0) {
             return LocaleController.getString(R.string.StartVoipChannelTitle);
         }
         return LocaleController.getString(R.string.StartVoipChatTitle);
@@ -154,18 +154,18 @@ public final class xr extends eb {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        TLRPC.InputPeer inputPeer = this.f33018e0;
+        TLRPC.InputPeer inputPeer = this.f33014e0;
         if (inputPeer != null) {
             boolean z10 = true;
             if (this.Y.size() <= 1) {
                 z10 = false;
             }
-            this.X.a(inputPeer, z10, this.f33016c0, false);
+            this.X.a(inputPeer, z10, this.f33012c0, false);
         }
     }
 
     @Override
-    public final qm0 x(rm0 rm0Var) {
+    public final rm0 x(sm0 sm0Var) {
         return new vr(this);
     }
 }

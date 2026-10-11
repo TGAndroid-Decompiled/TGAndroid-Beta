@@ -4,8 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.kl0;
-public final class v4 implements kl0 {
+import org.telegram.ui.Components.ll0;
+public final class v4 implements ll0 {
     public final f6 f1824a;
 
     public v4(f6 f6Var) {
@@ -41,11 +41,11 @@ public final class v4 implements kl0 {
         float f13 = -f11;
         nVar.z(f12, f13, f6Var.getMeasuredWidth() + f12, f6Var.getMeasuredHeight() + f13);
         if (f7 > 0.0f) {
-            canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7954a);
+            canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7953a);
             canvas.drawRoundRect(rectF, f7, f7, paint);
             return;
         }
-        canvas.drawRect(rectF, (Paint) nVar.f7954a);
+        canvas.drawRect(rectF, (Paint) nVar.f7953a);
         canvas.drawRect(rectF, paint);
     }
 

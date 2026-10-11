@@ -7,33 +7,31 @@ import com.google.mlkit.vision.common.internal.MobileVisionBase;
 import com.google.mlkit.vision.segmentation.subject.internal.zzd;
 import java.util.concurrent.Executor;
 import m.q3;
-import n6.l;
-import n6.t;
 import qb.m;
-import z7.ce;
+import z7.de;
 import z7.fb;
 import z7.gb;
 import z7.hb;
-import z7.wf;
-import z7.yf;
+import z7.xf;
+import z7.zf;
 public abstract class d {
     public static zzd a(ac.e eVar) {
         bc.b bVar = (bc.b) qb.g.c().a(bc.b.class);
-        wf b10 = yf.b();
-        ?? mobileVisionBase = new MobileVisionBase((bc.f) bVar.f3846a.O0(eVar), (Executor) bVar.f3847b.f46116a.get());
+        xf b10 = zf.b();
+        ?? mobileVisionBase = new MobileVisionBase((bc.f) bVar.f3846a.O0(eVar), (Executor) bVar.f3847b.f46150a.get());
         ?? obj = new Object();
-        obj.f15801c = fb.TYPE_THIN;
-        t tVar = new t(29);
-        tVar.f16722c = eVar.a();
-        tVar.f16721b = gb.NO_ERROR;
-        obj.d = new ce(tVar);
-        m.f46135a.execute(new p(b10, new a5.a((q3) obj, 1), hb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 8));
+        obj.f15822c = fb.TYPE_THIN;
+        ?? obj2 = new Object();
+        obj2.f53708b = eVar.a();
+        obj2.f53707a = gb.NO_ERROR;
+        obj.d = new de(obj2);
+        m.f46169a.execute(new p(b10, new a5.a((q3) obj, 1), hb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 8));
         return mobileVisionBase;
     }
 
     public static Parcelable b(String str, Bundle bundle) {
         ClassLoader classLoader = d.class.getClassLoader();
-        l.h(classLoader);
+        n6.m.h(classLoader);
         bundle.setClassLoader(classLoader);
         Bundle bundle2 = bundle.getBundle("map_state");
         if (bundle2 == null) {
@@ -68,7 +66,7 @@ public abstract class d {
 
     public static void d(Bundle bundle, String str, Parcelable parcelable) {
         ClassLoader classLoader = d.class.getClassLoader();
-        l.h(classLoader);
+        n6.m.h(classLoader);
         bundle.setClassLoader(classLoader);
         Bundle bundle2 = bundle.getBundle("map_state");
         if (bundle2 == null) {

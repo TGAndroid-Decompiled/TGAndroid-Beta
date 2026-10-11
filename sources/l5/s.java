@@ -7,39 +7,39 @@ import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import org.telegram.ui.web.q0;
+import org.telegram.ui.web.t0;
 public final class s {
-    public static volatile j f15438e;
-    public final u5.a f15439a;
-    public final u5.a f15440b;
-    public final q5.b f15441c;
+    public static volatile j f15437e;
+    public final u5.a f15438a;
+    public final u5.a f15439b;
+    public final q5.b f15440c;
     public final da.c d;
 
     public s(u5.a aVar, u5.a aVar2, q5.b bVar, da.c cVar, com.google.firebase.messaging.s sVar) {
-        this.f15439a = aVar;
-        this.f15440b = aVar2;
-        this.f15441c = bVar;
+        this.f15438a = aVar;
+        this.f15439b = aVar2;
+        this.f15440c = bVar;
         this.d = cVar;
-        ((Executor) sVar.f7971b).execute(new q0(sVar, 24));
+        ((Executor) sVar.f7970b).execute(new t0(sVar, 24));
     }
 
     public static s a() {
-        j jVar = f15438e;
+        j jVar = f15437e;
         if (jVar != null) {
-            return (s) jVar.f15422f.mo27get();
+            return (s) jVar.f15421f.mo27get();
         }
         throw new IllegalStateException("Not initialized!");
     }
 
     public static void b(Context context) {
-        if (f15438e == null) {
+        if (f15437e == null) {
             synchronized (s.class) {
                 try {
-                    if (f15438e == null) {
+                    if (f15437e == null) {
                         l2.f fVar = new l2.f(1, false);
                         context.getClass();
-                        fVar.f15335b = context;
-                        f15438e = fVar.n();
+                        fVar.f15334b = context;
+                        f15437e = fVar.j();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -60,8 +60,8 @@ public final class s {
         kVar.getClass();
         a2.f384b = "cct";
         j5.a aVar = (j5.a) kVar;
-        String str = aVar.f14024a;
-        String str2 = aVar.f14025b;
+        String str = aVar.f14023a;
+        String str2 = aVar.f14024b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {

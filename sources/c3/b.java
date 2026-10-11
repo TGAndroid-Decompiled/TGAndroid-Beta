@@ -110,14 +110,14 @@ public abstract class b {
                 }
             }
             int x10 = vVar.x();
-            int i16 = vVar.f8585b;
-            byte[] bArr = vVar.f8584a;
+            int i16 = vVar.f8584b;
+            byte[] bArr = vVar.f8583a;
             int i17 = i16 - 1;
             int i18 = 0;
-            for (int i19 = vVar.f8585b; i19 < i17; i19++) {
-                i18 = e2.d0.f8541l[i18 ^ (bArr[i19] & 255)];
+            for (int i19 = vVar.f8584b; i19 < i17; i19++) {
+                i18 = e2.d0.f8540l[i18 ^ (bArr[i19] & 255)];
             }
-            String str = e2.d0.f8532a;
+            String str = e2.d0.f8531a;
             if (x10 == i18) {
                 return true;
             }
@@ -166,7 +166,7 @@ public abstract class b {
                         break;
                     }
                 }
-                int i14 = vVar.f8585b + i13;
+                int i14 = vVar.f8584b + i13;
                 if (i13 != -1 && i13 <= vVar.a()) {
                     if (i10 == 4 && i13 >= 8) {
                         int x12 = vVar.x();
@@ -197,7 +197,7 @@ public abstract class b {
                     }
                 } else {
                     e2.a.n("CeaUtil", "Skipping remainder of malformed SEI NAL unit.");
-                    i14 = vVar.f8586c;
+                    i14 = vVar.f8585c;
                 }
                 vVar.J(i14);
             } else {
@@ -212,7 +212,7 @@ public abstract class b {
         if ((x10 & 64) != 0) {
             vVar.K(1);
             int i10 = (x10 & 31) * 3;
-            int i11 = vVar.f8585b;
+            int i11 = vVar.f8584b;
             for (h0 h0Var : h0VarArr) {
                 vVar.J(i11);
                 h0Var.d(i10, vVar);
@@ -245,7 +245,7 @@ public abstract class b {
 
     public static void g(int i10, e2.v vVar) {
         vVar.G(7);
-        byte[] bArr = vVar.f8584a;
+        byte[] bArr = vVar.f8583a;
         bArr[0] = -84;
         bArr[1] = 64;
         bArr[2] = -1;
@@ -579,7 +579,7 @@ public abstract class b {
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < list.size(); i10++) {
             String str = (String) list.get(i10);
-            String str2 = e2.d0.f8532a;
+            String str2 = e2.d0.f8531a;
             String[] split = str.split("=", 2);
             if (split.length != 2) {
                 e2.a.n("VorbisUtil", "Failed to parse Vorbis comment: ".concat(str));
@@ -604,14 +604,14 @@ public abstract class b {
         if (z10) {
             e0Var = null;
         } else {
-            e0Var = q3.i.f45995b;
+            e0Var = q3.i.f46026b;
         }
         e2.v vVar = new e2.v(10);
         p0 p0Var = null;
         int i10 = 0;
         while (true) {
             try {
-                pVar.a(0, 10, vVar.f8584a);
+                pVar.a(0, 10, vVar.f8583a);
                 vVar.J(0);
                 if (vVar.A() != 4801587) {
                     break;
@@ -621,7 +621,7 @@ public abstract class b {
                 int i11 = w10 + 10;
                 if (p0Var == null) {
                     byte[] bArr = new byte[i11];
-                    System.arraycopy(vVar.f8584a, 0, bArr, 0, 10);
+                    System.arraycopy(vVar.f8583a, 0, bArr, 0, 10);
                     pVar.a(10, w10, bArr);
                     p0Var = new q3.i(e0Var).c(i11, bArr);
                 } else {
@@ -669,7 +669,7 @@ public abstract class b {
     public static pf.b u(e2.v vVar) {
         vVar.K(1);
         int A = vVar.A();
-        long j3 = vVar.f8585b + A;
+        long j3 = vVar.f8584b + A;
         int i10 = A / 18;
         long[] jArr = new long[i10];
         long[] jArr2 = new long[i10];
@@ -689,7 +689,7 @@ public abstract class b {
             vVar.K(2);
             i11++;
         }
-        vVar.K((int) (j3 - vVar.f8585b));
+        vVar.K((int) (j3 - vVar.f8584b));
         return new pf.b(jArr, jArr2, false, 6);
     }
 

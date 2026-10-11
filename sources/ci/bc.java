@@ -14,22 +14,22 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.nl0;
-import org.telegram.ui.Components.tw0;
+import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.uw0;
 public final class bc extends r {
     public final Path R1;
     public final lc S1;
 
-    public bc(lc lcVar, Activity activity, FrameLayout frameLayout, tw0 tw0Var, FrameLayout frameLayout2, ai.d dVar, org.telegram.ui.Components.ma maVar) {
-        super(activity, frameLayout, tw0Var, frameLayout2, dVar, maVar);
+    public bc(lc lcVar, Activity activity, FrameLayout frameLayout, uw0 uw0Var, FrameLayout frameLayout2, ai.d dVar, org.telegram.ui.Components.la laVar) {
+        super(activity, frameLayout, uw0Var, frameLayout2, dVar, laVar);
         this.S1 = lcVar;
         this.R1 = new Path();
     }
 
     @Override
     public final boolean e() {
-        org.telegram.ui.Components.tc tcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((tcVar = org.telegram.ui.Components.tc.f31088w) != null && tcVar.f31089a == 2)) {
+        org.telegram.ui.Components.sc scVar;
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((scVar = org.telegram.ui.Components.sc.f30703w) != null && scVar.f30704a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -40,20 +40,20 @@ public final class bc extends r {
             int indexOf2 = replaceTags.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.gc, this.f5546a)), indexOf, indexOf2, 33);
+                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.gc, this.f5545a)), indexOf, indexOf2, 33);
                 replaceTags.setSpan(new ac(this, 0), indexOf, indexOf2, 33);
             }
         }
-        org.telegram.ui.Components.tc M = new org.telegram.ui.Components.ad(this.S1.f5495l0, this.f5546a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f31089a = 2;
-        M.f31096j = 5000;
+        org.telegram.ui.Components.sc M = new org.telegram.ui.Components.ad(this.S1.f5494l0, this.f5545a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
+        M.f30704a = 2;
+        M.f30711j = 5000;
         M.k(false);
         return true;
     }
 
     @Override
     public final boolean g() {
-        return this.S1.f5513r0.c();
+        return this.S1.f5512r0.c();
     }
 
     @Override
@@ -67,7 +67,7 @@ public final class bc extends r {
     }
 
     @Override
-    public final void h(org.telegram.ui.Components.qa qaVar, Canvas canvas, RectF rectF, float f7, boolean z10, float f10, float f11, boolean z11) {
+    public final void h(org.telegram.ui.Components.pa paVar, Canvas canvas, RectF rectF, float f7, boolean z10, float f10, float f11, boolean z11) {
         if (!canvas.isHardwareAccelerated()) {
             return;
         }
@@ -77,37 +77,37 @@ public final class bc extends r {
         path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
         canvas.clipPath(path);
         canvas.translate(f10, f11);
-        qaVar.b(canvas, true);
+        paVar.b(canvas, true);
         canvas.restore();
     }
 
     @Override
     public final void i(Bitmap bitmap) {
-        this.S1.f5499n.Z(bitmap, 12.0f);
+        this.S1.f5498n.Z(bitmap, 12.0f);
         Utilities.stackBlurBitmap(bitmap, (int) 12.0f);
     }
 
     @Override
     public final boolean l(float f7, float f10) {
         lc lcVar = this.S1;
-        nb nbVar = lcVar.f5527v1;
+        nb nbVar = lcVar.f5526v1;
         if (nbVar != null && nbVar.R0 != null) {
-            bc bcVar = lcVar.f5467c1;
-            if (!bcVar.f5566p0) {
+            bc bcVar = lcVar.f5466c1;
+            if (!bcVar.f5565p0) {
                 float x10 = bcVar.getX() + f7;
-                float y3 = lcVar.f5467c1.getY() + f10;
-                float x11 = lcVar.f5495l0.getX() + x10;
-                float y10 = lcVar.f5495l0.getY() + y3;
-                float x12 = x11 - lcVar.f5483h0.getX();
-                float y11 = y10 - lcVar.f5483h0.getY();
-                for (int i10 = 0; i10 < lcVar.f5527v1.R0.getChildCount(); i10++) {
-                    View childAt = lcVar.f5527v1.R0.getChildAt(i10);
+                float y3 = lcVar.f5466c1.getY() + f10;
+                float x11 = lcVar.f5494l0.getX() + x10;
+                float y10 = lcVar.f5494l0.getY() + y3;
+                float x12 = x11 - lcVar.f5482h0.getX();
+                float y11 = y10 - lcVar.f5482h0.getY();
+                for (int i10 = 0; i10 < lcVar.f5526v1.R0.getChildCount(); i10++) {
+                    View childAt = lcVar.f5526v1.R0.getChildAt(i10);
                     if (childAt instanceof qg.j) {
-                        nl0 selectionBounds = ((qg.j) childAt).getSelectionBounds();
+                        ol0 selectionBounds = ((qg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f29146a;
-                        float f12 = selectionBounds.f29147b;
-                        rectF.set(f11, f12, selectionBounds.f29148c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f29425a;
+                        float f12 = selectionBounds.f29426b;
+                        rectF.set(f11, f12, selectionBounds.f29427c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }
@@ -120,7 +120,7 @@ public final class bc extends r {
 
     @Override
     public final void n() {
-        bb bbVar = this.S1.f5520t0;
+        bb bbVar = this.S1.f5519t0;
         if (bbVar != null) {
             bbVar.invalidate();
         }
@@ -131,12 +131,12 @@ public final class bc extends r {
         boolean z11;
         l8 l8Var;
         lc lcVar = this.S1;
-        u6 u6Var = lcVar.f5463b1;
+        u6 u6Var = lcVar.f5462b1;
         if (!lcVar.N1 && !z10) {
             ai.m9 storiesController = MessagesController.getInstance(this.U).getStoriesController();
             int A = lcVar.A();
             ai.g9 o9 = storiesController.o();
-            if (o9 == null || !o9.a(storiesController.f1406a, A) || ((l8Var = lcVar.K1) != null && l8Var.f5410g)) {
+            if (o9 == null || !o9.a(storiesController.f1406a, A) || ((l8Var = lcVar.K1) != null && l8Var.f5409g)) {
                 z11 = true;
                 u6Var.setShareEnabled(z11);
             }

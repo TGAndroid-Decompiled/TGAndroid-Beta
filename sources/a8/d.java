@@ -10,7 +10,8 @@ import g6.v;
 import g6.w;
 import kotlin.jvm.internal.i;
 import m.q3;
-import n6.p;
+import n6.m;
+import n6.q;
 import v8.o;
 import y8.y0;
 public final class d {
@@ -24,12 +25,12 @@ public final class d {
         switch (this.f331a) {
             case 1:
                 c6.e eVar = (c6.e) obj;
-                n6.l.i(eVar, "Setting the API options is required.");
-                return new w(context, looper, commonSettings, eVar.f4344a, 0, eVar.f4346c, eVar.d, kVar, lVar);
+                m.i(eVar, "Setting the API options is required.");
+                return new w(context, looper, commonSettings, eVar.f4343a, 0, eVar.f4345c, eVar.d, kVar, lVar);
             case 2:
                 c6.e eVar2 = (c6.e) obj;
-                n6.l.i(eVar2, "Setting the API options is required.");
-                return new v(context, looper, commonSettings, eVar2.f4344a, 0, eVar2.f4345b, eVar2.f4346c, kVar, lVar);
+                m.i(eVar2, "Setting the API options is required.");
+                return new v(context, looper, commonSettings, eVar2.f4343a, 0, eVar2.f4344b, eVar2.f4345c, kVar, lVar);
             case 3:
                 com.google.android.gms.common.api.a aVar = (com.google.android.gms.common.api.a) obj;
                 return new n6.g(context, looper, 161, commonSettings, kVar, lVar, 0);
@@ -59,7 +60,7 @@ public final class d {
                         x5.i iVar = (x5.i) obj;
                         return new i7.c(context, looper, kVar, lVar, commonSettings);
                     case 11:
-                        return new p6.c(context, looper, commonSettings, (p) obj, kVar, lVar);
+                        return new p6.c(context, looper, commonSettings, (q) obj, kVar, lVar);
                     case 12:
                         com.google.android.gms.common.api.a aVar2 = (com.google.android.gms.common.api.a) obj;
                         return new n6.g(context, looper, 19, commonSettings, kVar, lVar, 0);
@@ -108,7 +109,7 @@ public final class d {
                 if (oVar == null) {
                     oVar = new o(new com.google.android.gms.internal.cast.a());
                 }
-                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f49529a);
+                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f49572a);
             case 16:
                 return new i7.g(context, looper, commonSettings, (w5.b) obj, kVar, lVar);
             case 17:

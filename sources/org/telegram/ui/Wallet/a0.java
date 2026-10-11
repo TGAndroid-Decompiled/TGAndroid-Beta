@@ -1,44 +1,55 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class a0 implements Runnable {
-    public volatile boolean f34641a;
-    public Runnable f34642b;
-    public final String f34643c;
-    public final TL_wallet.nftItem d;
-    public final String f34644e;
-    public final Utilities.Callback2 f34645f;
-    public final k0 h;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.uf0;
+public final class a0 implements Runnable, NotificationCenter.NotificationCenterDelegate {
+    public boolean f34631a;
+    public final NotificationCenter f34632b;
+    public final uf0 f34633c;
+    public final l0 d;
 
-    public a0(k0 k0Var, String str, TL_wallet.nftItem nftitem, String str2, Utilities.Callback2 callback2) {
-        this.h = k0Var;
-        this.f34643c = str;
-        this.d = nftitem;
-        this.f34644e = str2;
-        this.f34645f = callback2;
+    public a0(NotificationCenter notificationCenter, uf0 uf0Var, l0 l0Var) {
+        this.f34632b = notificationCenter;
+        this.f34633c = uf0Var;
+        this.d = l0Var;
+    }
+
+    public final void a() {
+        if (!this.f34631a) {
+            l0 l0Var = this.d;
+            if (l0Var.f35188e != null) {
+                ArrayList arrayList = l0Var.C;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    if (((h0) obj).d) {
+                        return;
+                    }
+                }
+                run();
+            }
+        }
     }
 
     @Override
-    public final synchronized void run() {
-        try {
-            try {
-                if (this.f34641a) {
-                    return;
-                }
-                WalletEngine2 walletEngine2 = this.h.f35156b;
-                String str = this.f34643c;
-                TL_wallet.nftItem nftitem = this.d;
-                String str2 = nftitem.address;
-                String str3 = this.f34644e;
-                this.f34642b = walletEngine2.emulateSendNFT(str, str2, str3, new o(this, nftitem, str3, this.f34645f, 4));
-            } catch (Throwable th2) {
-                th = th2;
-                throw th;
-            }
-        } catch (Throwable th3) {
-            th = th3;
-            throw th;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.walletUpdate) {
+            a();
         }
+    }
+
+    @Override
+    public final void run() {
+        if (this.f34631a) {
+            return;
+        }
+        this.f34631a = true;
+        AndroidUtilities.cancelRunOnUIThread(this);
+        this.f34632b.removeObserver(this, NotificationCenter.walletUpdate);
+        this.f34633c.run();
     }
 }

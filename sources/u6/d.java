@@ -7,23 +7,23 @@ import android.os.StrictMode;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import n6.l;
+import n6.m;
 import w7.u;
 public abstract class d {
-    public static String f48901a;
-    public static int f48902b;
-    public static Boolean f48903c;
+    public static String f48944a;
+    public static int f48945b;
+    public static Boolean f48946c;
 
     public static String a() {
         BufferedReader bufferedReader;
-        if (f48901a == null) {
+        if (f48944a == null) {
             if (Build.VERSION.SDK_INT >= 28) {
-                f48901a = Application.getProcessName();
+                f48944a = Application.getProcessName();
             } else {
-                int i10 = f48902b;
+                int i10 = f48945b;
                 if (i10 == 0) {
                     i10 = Process.myPid();
-                    f48902b = i10;
+                    f48945b = i10;
                 }
                 String str = null;
                 str = null;
@@ -37,7 +37,7 @@ public abstract class d {
                         StrictMode.setThreadPolicy(allowThreadDiskReads);
                         try {
                             String readLine = bufferedReader.readLine();
-                            l.h(readLine);
+                            m.h(readLine);
                             str = readLine.trim();
                         } catch (IOException unused) {
                         } catch (Throwable th2) {
@@ -53,14 +53,14 @@ public abstract class d {
                     }
                     b.a(bufferedReader);
                 }
-                f48901a = str;
+                f48944a = str;
             }
         }
-        return f48901a;
+        return f48944a;
     }
 
     public static boolean b() {
-        Boolean bool = f48903c;
+        Boolean bool = f48946c;
         if (bool == null) {
             if (Build.VERSION.SDK_INT >= 28) {
                 bool = Boolean.valueOf(Process.isIsolated());
@@ -77,7 +77,7 @@ public abstract class d {
                     bool = Boolean.FALSE;
                 }
             }
-            f48903c = bool;
+            f48946c = bool;
         }
         return bool.booleanValue();
     }

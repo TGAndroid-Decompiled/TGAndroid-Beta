@@ -8,11 +8,11 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class qf0 extends FrameLayout {
-    public TextView f30199a;
-    public TextView f30200b;
-    public ImageView f30201c;
+    public TextView f30148a;
+    public TextView f30149b;
+    public ImageView f30150c;
     public Switch d;
-    public boolean f30202e;
+    public boolean f30151e;
 
     @Override
     public final void invalidate() {
@@ -27,7 +27,7 @@ public final class qf0 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float dp;
         int i10;
-        if (this.f30202e) {
+        if (this.f30151e) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -41,30 +41,30 @@ public final class qf0 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f20923k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f20908k0);
         }
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(13.0f) + this.f30199a.getMeasuredHeight();
-        TextView textView = this.f30200b;
+        int dp = AndroidUtilities.dp(13.0f) + this.f30148a.getMeasuredHeight();
+        TextView textView = this.f30149b;
         textView.layout(textView.getLeft(), dp, textView.getRight(), textView.getMeasuredHeight() + dp);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f30199a;
+        TextView textView = this.f30148a;
         measureChildWithMargins(textView, i10, 0, i11, 0);
-        TextView textView2 = this.f30200b;
+        TextView textView2 = this.f30149b;
         measureChildWithMargins(textView2, i10, 0, i11, 0);
-        measureChildWithMargins(this.f30201c, i10, 0, i11, 0);
+        measureChildWithMargins(this.f30150c, i10, 0, i11, 0);
         Switch r72 = this.d;
         if (r72 != null) {
             measureChildWithMargins(r72, i10, 0, i11, 0);
         }
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.q.y(20.0f, textView2.getMeasuredHeight() + textView.getMeasuredHeight(), AndroidUtilities.dp(64.0f)) + (this.f30202e ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), org.telegram.messenger.q.y(20.0f, textView2.getMeasuredHeight() + textView.getMeasuredHeight(), AndroidUtilities.dp(64.0f)) + (this.f30151e ? 1 : 0));
     }
 
     public void setChecked(boolean z10) {

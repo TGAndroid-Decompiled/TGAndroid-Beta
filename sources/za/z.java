@@ -1,19 +1,23 @@
 package za;
-public final class z implements de.b {
-    public final Object f54343a;
-    public final Object f54344b;
 
-    public z(Object obj, Object obj2) {
-        this.f54343a = obj;
-        this.f54344b = obj2;
-    }
+import android.content.Context;
+import java.util.concurrent.atomic.AtomicReference;
+import z7.ce;
+public final class z implements t {
+    public static final v f54383e = new Object();
+    public static final m1.c f54384f = w7.p.a(s.f54370a);
+    public final Context f54385a;
+    public final jd.h f54386b;
+    public final AtomicReference f54387c;
+    public final ce d;
 
-    @Override
-    public Object z(de.c cVar, ld.c cVar2) {
-        Object z10 = ((pf.b) this.f54343a).z(new k1.p(cVar, (a0) this.f54344b), cVar2);
-        if (z10 == kd.a.f14784a) {
-            return z10;
-        }
-        return hd.i.f11092a;
+    public z(Context context, jd.h hVar) {
+        kotlin.jvm.internal.i.e(context, "context");
+        this.f54385a = context;
+        this.f54386b = hVar;
+        this.f54387c = new AtomicReference();
+        f54383e.getClass();
+        this.d = new ce(new pf.b(((k1.a0) f54384f.a(context, v.f54375a[0]).f15997b).f14324c, new ld.j(3, null), false, 13), this);
+        ae.g0.q(ae.g0.b(hVar), new u(this, null, 0));
     }
 }

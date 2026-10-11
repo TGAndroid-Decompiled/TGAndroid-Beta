@@ -6,41 +6,41 @@ import android.view.View;
 import java.util.WeakHashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class kk extends org.telegram.ui.Components.g91 {
-    public final Context f39355a;
-    public final zn f39356b;
+public final class kk extends org.telegram.ui.Components.h91 {
+    public final Context f39367a;
+    public final zn f39368b;
 
     public kk(zn znVar, Context context) {
-        this.f39356b = znVar;
-        this.f39355a = context;
+        this.f39368b = znVar;
+        this.f39367a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         if (view instanceof bo) {
-            ((bo) view).f36403a.Nc(this.f39356b.f44997u3);
+            ((bo) view).f36419a.Nc(this.f39368b.f44952u3);
         }
-        WeakHashMap weakHashMap = r0.i0.f46810a;
+        WeakHashMap weakHashMap = r0.i0.f46856a;
         r0.y.c(view);
     }
 
     @Override
     public final View d(int i10) {
-        Context context = this.f39355a;
-        zn znVar = this.f39356b;
+        Context context = this.f39367a;
+        zn znVar = this.f39368b;
         if (i10 == 0) {
             return new nn(znVar, context);
         }
         Bundle bundle = new Bundle();
         bundle.putInt("chatMode", 7);
         bundle.putInt("searchType", i10);
-        bundle.putString("searchHashtag", znVar.f44997u3);
+        bundle.putString("searchHashtag", znVar.f44952u3);
         jk jkVar = new jk(context, znVar.getParentLayout(), bundle, 0);
         jkVar.h = false;
-        ao aoVar = jkVar.f36403a;
-        aoVar.L.f9942a = znVar.L;
-        aoVar.f44782ca = znVar.f44807ea;
-        aoVar.f44794da = znVar;
+        ao aoVar = jkVar.f36419a;
+        aoVar.L.f9941a = znVar.L;
+        aoVar.f44737ca = znVar.f44762ea;
+        aoVar.f44749da = znVar;
         aoVar.V8 = new g(this, 13);
         return jkVar;
     }

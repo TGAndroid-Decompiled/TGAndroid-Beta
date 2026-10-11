@@ -27,18 +27,18 @@ public final class y extends com.googlecode.mp4parser.c {
     public static final m2.t X;
     public static final m2.t Y;
     public static final m2.t Z;
-    public static final m2.t f9737a0;
-    public static final m2.t f9738b0;
-    public Date f9739e;
-    public Date f9740f;
+    public static final m2.t f9736a0;
+    public static final m2.t f9737b0;
+    public Date f9738e;
+    public Date f9739f;
     public long h;
-    public long f9741n;
-    public int f9742r;
-    public int f9743s;
+    public long f9740n;
+    public int f9741r;
+    public int f9742s;
     public float v;
-    public qc.d f9744w;
-    public double f9745x;
-    public double f9746y;
+    public qc.d f9743w;
+    public double f9744x;
+    public double f9745y;
 
     static {
         se.a aVar = new se.a(y.class, "TrackHeaderBox.java");
@@ -62,8 +62,8 @@ public final class y extends com.googlecode.mp4parser.c {
         aVar.e(aVar.d("isInPreview", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
         aVar.e(aVar.d("isInPoster", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "boolean"));
         Z = aVar.e(aVar.d("setEnabled", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "enabled", "void"));
-        f9737a0 = aVar.e(aVar.d("setInMovie", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inMovie", "void"));
-        f9738b0 = aVar.e(aVar.d("setInPreview", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inPreview", "void"));
+        f9736a0 = aVar.e(aVar.d("setInMovie", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inMovie", "void"));
+        f9737b0 = aVar.e(aVar.d("setInPreview", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inPreview", "void"));
         aVar.e(aVar.d("setInPoster", "com.coremedia.iso.boxes.TrackHeaderBox", "boolean", "inPoster", "void"));
         H = aVar.e(aVar.d("getDuration", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "long"));
         I = aVar.e(aVar.d("getLayer", "com.coremedia.iso.boxes.TrackHeaderBox", "", "", "int"));
@@ -78,31 +78,31 @@ public final class y extends com.googlecode.mp4parser.c {
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         if (e() == 1) {
-            this.f9739e = t6.b(e5.b.j(byteBuffer));
-            this.f9740f = t6.b(e5.b.j(byteBuffer));
+            this.f9738e = t6.b(e5.b.j(byteBuffer));
+            this.f9739f = t6.b(e5.b.j(byteBuffer));
             this.h = e5.b.i(byteBuffer);
             e5.b.i(byteBuffer);
             long j3 = byteBuffer.getLong();
-            this.f9741n = j3;
+            this.f9740n = j3;
             if (j3 < -1) {
                 throw new RuntimeException("The tracks duration is bigger than Long.MAX_VALUE");
             }
         } else {
-            this.f9739e = t6.b(e5.b.i(byteBuffer));
-            this.f9740f = t6.b(e5.b.i(byteBuffer));
+            this.f9738e = t6.b(e5.b.i(byteBuffer));
+            this.f9739f = t6.b(e5.b.i(byteBuffer));
             this.h = e5.b.i(byteBuffer);
             e5.b.i(byteBuffer);
-            this.f9741n = e5.b.i(byteBuffer);
+            this.f9740n = e5.b.i(byteBuffer);
         }
         e5.b.i(byteBuffer);
         e5.b.i(byteBuffer);
-        this.f9742r = e5.b.h(byteBuffer);
-        this.f9743s = e5.b.h(byteBuffer);
+        this.f9741r = e5.b.h(byteBuffer);
+        this.f9742s = e5.b.h(byteBuffer);
         this.v = e5.b.g(byteBuffer);
         e5.b.h(byteBuffer);
-        this.f9744w = qc.d.a(byteBuffer);
-        this.f9745x = e5.b.f(byteBuffer);
-        this.f9746y = e5.b.f(byteBuffer);
+        this.f9743w = qc.d.a(byteBuffer);
+        this.f9744x = e5.b.f(byteBuffer);
+        this.f9745y = e5.b.f(byteBuffer);
     }
 
     @Override
@@ -112,28 +112,28 @@ public final class y extends com.googlecode.mp4parser.c {
         com.googlecode.mp4parser.g.b(c10);
         i(byteBuffer);
         if (e() == 1) {
-            byteBuffer.putLong(t6.a(this.f9739e));
-            byteBuffer.putLong(t6.a(this.f9740f));
+            byteBuffer.putLong(t6.a(this.f9738e));
+            byteBuffer.putLong(t6.a(this.f9739f));
             byteBuffer.putInt((int) this.h);
             byteBuffer.putInt((int) 0);
-            byteBuffer.putLong(this.f9741n);
+            byteBuffer.putLong(this.f9740n);
         } else {
-            byteBuffer.putInt((int) t6.a(this.f9739e));
-            byteBuffer.putInt((int) t6.a(this.f9740f));
+            byteBuffer.putInt((int) t6.a(this.f9738e));
+            byteBuffer.putInt((int) t6.a(this.f9739f));
             byteBuffer.putInt((int) this.h);
             byteBuffer.putInt((int) 0);
-            byteBuffer.putInt((int) this.f9741n);
+            byteBuffer.putInt((int) this.f9740n);
         }
         int i10 = (int) 0;
         byteBuffer.putInt(i10);
         byteBuffer.putInt(i10);
-        e5.b.p(this.f9742r, byteBuffer);
-        e5.b.p(this.f9743s, byteBuffer);
+        e5.b.p(this.f9741r, byteBuffer);
+        e5.b.p(this.f9742s, byteBuffer);
         e5.b.o(byteBuffer, this.v);
         e5.b.p(0, byteBuffer);
-        this.f9744w.b(byteBuffer);
-        e5.b.n(byteBuffer, this.f9745x);
-        e5.b.n(byteBuffer, this.f9746y);
+        this.f9743w.b(byteBuffer);
+        e5.b.n(byteBuffer, this.f9744x);
+        e5.b.n(byteBuffer, this.f9745y);
     }
 
     @Override
@@ -153,33 +153,33 @@ public final class y extends com.googlecode.mp4parser.c {
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("TrackHeaderBox[creationTime=");
         e2.q(se.a.b(E, this, this));
-        sb2.append(this.f9739e);
+        sb2.append(this.f9738e);
         sb2.append(";modificationTime=");
         e2.q(se.a.b(F, this, this));
-        sb2.append(this.f9740f);
+        sb2.append(this.f9739f);
         sb2.append(";trackId=");
         e2.q(se.a.b(G, this, this));
         sb2.append(this.h);
         sb2.append(";duration=");
         e2.q(se.a.b(H, this, this));
-        sb2.append(this.f9741n);
+        sb2.append(this.f9740n);
         sb2.append(";layer=");
         e2.q(se.a.b(I, this, this));
-        sb2.append(this.f9742r);
+        sb2.append(this.f9741r);
         sb2.append(";alternateGroup=");
         e2.q(se.a.b(J, this, this));
-        sb2.append(this.f9743s);
+        sb2.append(this.f9742s);
         sb2.append(";volume=");
         e2.q(se.a.b(K, this, this));
         sb2.append(this.v);
         sb2.append(";matrix=");
-        sb2.append(this.f9744w);
+        sb2.append(this.f9743w);
         sb2.append(";width=");
         e2.q(se.a.b(L, this, this));
-        sb2.append(this.f9745x);
+        sb2.append(this.f9744x);
         sb2.append(";height=");
         e2.q(se.a.b(M, this, this));
-        sb2.append(this.f9746y);
+        sb2.append(this.f9745y);
         sb2.append("]");
         return sb2.toString();
     }

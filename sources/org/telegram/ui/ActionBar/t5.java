@@ -1,39 +1,53 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Point;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class t5 extends w7.i0 {
-    public final boolean f21538a;
-    public final View f21539b;
+public final class t5 extends Drawable {
+    public final RectF f21525a = new RectF();
+    public final View f21526b;
+    public final View f21527c;
+    public final int d;
+    public final Paint f21528e;
 
-    public t5(View view, boolean z10) {
-        this.f21538a = z10;
-        this.f21539b = view;
+    public t5(View view, View view2, int i10, Paint paint) {
+        this.f21526b = view;
+        this.f21527c = view2;
+        this.d = i10;
+        this.f21528e = paint;
     }
 
     @Override
-    public final void b(int i10, int i11) {
-        boolean z10;
-        boolean z11 = this.f21538a;
-        View view = this.f21539b;
-        if (!z11) {
-            Point point = AndroidUtilities.displaySize;
-            boolean z12 = false;
-            if (point.x <= point.y) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (i10 <= i11) {
-                z12 = true;
-            }
-            if (z10 == z12) {
-                view.invalidate();
-                return;
-            }
-            return;
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f21525a;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        h6.s(this.f21526b, this.f21527c, null);
+        float f7 = this.d;
+        Paint paint = this.f21528e;
+        if (paint == null) {
+            paint = h6.T0("paintChatActionBackground");
         }
-        view.invalidate();
+        canvas.drawRoundRect(rectF, f7, f7, paint);
+        if (h6.b1()) {
+            canvas.drawRoundRect(rectF, f7, f7, h6.T0("paintChatActionBackgroundDarken"));
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

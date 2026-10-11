@@ -2,12 +2,12 @@ package y9;
 
 import java.util.Arrays;
 public final class f0 extends i1 {
-    public final String f51971a;
-    public final byte[] f51972b;
+    public final String f52014a;
+    public final byte[] f52015b;
 
     public f0(String str, byte[] bArr) {
-        this.f51971a = str;
-        this.f51972b = bArr;
+        this.f52014a = str;
+        this.f52015b = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -18,13 +18,13 @@ public final class f0 extends i1 {
         if (obj instanceof i1) {
             i1 i1Var = (i1) obj;
             f0 f0Var = (f0) i1Var;
-            if (this.f51971a.equals(f0Var.f51971a)) {
+            if (this.f52014a.equals(f0Var.f52014a)) {
                 if (i1Var instanceof f0) {
-                    bArr = ((f0) i1Var).f51972b;
+                    bArr = ((f0) i1Var).f52015b;
                 } else {
-                    bArr = f0Var.f51972b;
+                    bArr = f0Var.f52015b;
                 }
-                if (Arrays.equals(this.f51972b, bArr)) {
+                if (Arrays.equals(this.f52015b, bArr)) {
                     return true;
                 }
             }
@@ -33,10 +33,10 @@ public final class f0 extends i1 {
     }
 
     public final int hashCode() {
-        return ((this.f51971a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f51972b);
+        return ((this.f52014a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f52015b);
     }
 
     public final String toString() {
-        return "File{filename=" + this.f51971a + ", contents=" + Arrays.toString(this.f51972b) + "}";
+        return "File{filename=" + this.f52014a + ", contents=" + Arrays.toString(this.f52015b) + "}";
     }
 }

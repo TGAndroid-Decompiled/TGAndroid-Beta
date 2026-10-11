@@ -2,39 +2,39 @@ package hd;
 
 import java.io.Serializable;
 public final class g implements c, Serializable {
-    public sd.a f11088a;
-    public volatile Object f11089b;
-    public final Object f11090c;
+    public sd.a f11087a;
+    public volatile Object f11088b;
+    public final Object f11089c;
 
     public g(sd.a initializer) {
         kotlin.jvm.internal.i.e(initializer, "initializer");
-        this.f11088a = initializer;
-        this.f11089b = h.f11091a;
-        this.f11090c = this;
+        this.f11087a = initializer;
+        this.f11088b = h.f11090a;
+        this.f11089c = this;
     }
 
     public final Object a() {
         Object obj;
-        Object obj2 = this.f11089b;
-        h hVar = h.f11091a;
+        Object obj2 = this.f11088b;
+        h hVar = h.f11090a;
         if (obj2 != hVar) {
             return obj2;
         }
-        synchronized (this.f11090c) {
-            obj = this.f11089b;
+        synchronized (this.f11089c) {
+            obj = this.f11088b;
             if (obj == hVar) {
-                sd.a aVar = this.f11088a;
+                sd.a aVar = this.f11087a;
                 kotlin.jvm.internal.i.b(aVar);
                 obj = aVar.invoke();
-                this.f11089b = obj;
-                this.f11088a = null;
+                this.f11088b = obj;
+                this.f11087a = null;
             }
         }
         return obj;
     }
 
     public final String toString() {
-        if (this.f11089b != h.f11091a) {
+        if (this.f11088b != h.f11090a) {
             return String.valueOf(a());
         }
         return "Lazy value not initialized yet.";

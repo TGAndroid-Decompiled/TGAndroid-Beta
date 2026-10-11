@@ -4,24 +4,24 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class wh extends AnimatorListenerAdapter {
-    public final int f32672a;
-    public final boolean f32673b;
-    public final ei f32674c;
+    public final int f32642a;
+    public final boolean f32643b;
+    public final ei f32644c;
 
     public wh(ei eiVar, boolean z10, int i10) {
-        this.f32672a = i10;
-        this.f32674c = eiVar;
-        this.f32673b = z10;
+        this.f32642a = i10;
+        this.f32644c = eiVar;
+        this.f32643b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
-        switch (this.f32672a) {
+        switch (this.f32642a) {
             case 0:
-                ei eiVar = this.f32674c;
-                yi yiVar = eiVar.f26053e;
-                boolean z10 = this.f32673b;
+                ei eiVar = this.f32644c;
+                yi yiVar = eiVar.f26015e;
+                boolean z10 = this.f32643b;
                 if (!z10) {
                     yiVar.H1.setVisibility(8);
                 } else {
@@ -35,14 +35,14 @@ public final class wh extends AnimatorListenerAdapter {
                 for (int i11 = 0; i11 < yiVar.A0.size(); i11++) {
                     ((ei.p4) yiVar.A0.valueAt(i11)).setMeasureOffsetY(i10);
                 }
-                if (eiVar.f26050a == animator) {
-                    eiVar.f26050a = null;
+                if (eiVar.f26012a == animator) {
+                    eiVar.f26012a = null;
                     return;
                 }
                 return;
             default:
-                yi yiVar2 = this.f32674c.f26053e;
-                boolean z11 = this.f32673b;
+                yi yiVar2 = this.f32644c.f26015e;
+                boolean z11 = this.f32643b;
                 yiVar2.E1 = z11;
                 if (!z11) {
                     yiVar2.F1.setVisibility(8);
@@ -54,10 +54,10 @@ public final class wh extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f32672a) {
+        switch (this.f32642a) {
             case 0:
-                yi yiVar = this.f32674c.f26053e;
-                if (this.f32673b) {
+                yi yiVar = this.f32644c.f26015e;
+                if (this.f32643b) {
                     yiVar.H1.setAlpha(0.0f);
                     yiVar.H1.setVisibility(0);
                     int dp = AndroidUtilities.dp(36.0f);

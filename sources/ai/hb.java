@@ -19,13 +19,13 @@ public final class hb extends FrameLayout {
     public final TextView d;
     public final TextView f1104e;
 
-    public hb(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public hb(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         Paint paint = new Paint(1);
         this.f1101a = paint;
         Paint paint2 = new Paint(1);
         this.f1102b = paint2;
-        paint.setColor(org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.f21041q7, e6Var));
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21026q7, d6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
@@ -37,7 +37,7 @@ public final class hb extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 8.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.m1(0.5f, -1));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.5f, -1));
         textView2.setVisibility(8);
         textView2.setTranslationY(AndroidUtilities.dp(9.0f));
         addView(textView2, w7.x5.a(-2.0f, 44.0f, 0.0f, 0.0f, 0.0f, -2, 19));
@@ -45,7 +45,7 @@ public final class hb extends FrameLayout {
         this.f1104e = textView3;
         textView3.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
         int dp = AndroidUtilities.dp(16.0f);
-        textView3.setBackground(org.telegram.ui.ActionBar.i6.j0(dp, dp, dp, dp, 536870911, 956301311, 956301311));
+        textView3.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, 536870911, 956301311, 956301311));
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString(R.string.TryAgain));
         textView3.setTextSize(1, 14.0f);

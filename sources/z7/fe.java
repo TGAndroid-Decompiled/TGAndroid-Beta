@@ -1,12 +1,16 @@
 package z7;
 public final class fe {
-    public final gb f53710a;
-    public final Long f53711b;
-    public final ve f53712c;
+    public final va f53755a;
+    public final ra f53756b;
+    public final we f53757c;
+    public final m d;
+    public final m f53758e;
 
-    public fe(v7.k kVar) {
-        this.f53710a = (gb) kVar.f49290b;
-        this.f53711b = (Long) kVar.f49291c;
-        this.f53712c = (ve) kVar.d;
+    public fe(ci.u5 u5Var) {
+        this.f53755a = (va) u5Var.f6064a;
+        this.f53756b = (ra) u5Var.f6065b;
+        this.f53757c = (we) u5Var.f6066c;
+        this.d = (m) u5Var.d;
+        this.f53758e = (m) u5Var.f6067e;
     }
 }

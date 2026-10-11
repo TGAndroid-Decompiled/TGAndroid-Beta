@@ -1,88 +1,55 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
+import android.animation.TimeInterpolator;
+import android.app.Activity;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.bi;
-import org.telegram.ui.g60;
-import org.telegram.ui.l60;
-public abstract class l extends FrameLayout {
-    public int f32102a;
-    public l60 f32103b;
-    public u f32104c;
-    public ChatObject.VideoParticipant d;
-    public boolean f32105e;
-    public final boolean f32106f;
+import org.telegram.ui.Components.is;
+import w7.x5;
+public final class l extends FrameLayout {
+    public final k f32081a;
+    public final TransitionSet f32082b;
+    public boolean f32083c;
 
-    public l(Context context, boolean z10) {
-        super(context);
-        this.f32106f = z10;
+    public l(Activity activity) {
+        super(activity);
+        this.f32083c = false;
+        setWillNotDraw(false);
+        k kVar = new k(activity);
+        this.f32081a = kVar;
+        addView(kVar, x5.e(52, 52, 5));
+        TransitionSet transitionSet = new TransitionSet();
+        this.f32082b = transitionSet;
+        transitionSet.setOrdering(0);
+        transitionSet.addTransition(new org.telegram.ui.ActionBar.i(1));
+        transitionSet.setDuration(500L);
+        transitionSet.setInterpolator((TimeInterpolator) is.f27451f);
     }
 
-    public float getItemHeight() {
-        int measuredHeight;
-        l60 l60Var = this.f32103b;
-        if (l60Var != null) {
-            measuredHeight = l60Var.F();
-        } else {
-            measuredHeight = getMeasuredHeight();
-        }
-        return measuredHeight;
-    }
-
-    public ChatObject.VideoParticipant getParticipant() {
-        return this.d;
-    }
-
-    public u getRenderer() {
-        return this.f32104c;
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f32105e = true;
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f32105e = false;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        int i12;
-        float f10;
-        if (this.f32106f) {
-            ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f32103b.F(), 1073741824));
+    public final void a(View.OnClickListener onClickListener, boolean z10) {
+        if (this.f32083c) {
             return;
         }
-        if (g60.F3) {
-            f7 = 3.0f;
-        } else {
-            f7 = 2.0f;
+        this.f32083c = true;
+        if (z10) {
+            TransitionManager.beginDelayedTransition(this, this.f32082b);
         }
-        int B = bi.B(14.0f, 2, AndroidUtilities.displaySize.x);
-        if (g60.F3) {
-            i12 = -AndroidUtilities.dp(90.0f);
-        } else {
-            i12 = 0;
-        }
-        float f11 = B + i12;
-        if (g60.G3) {
-            f10 = f11 / 2.0f;
-        } else {
-            f10 = f11 / f7;
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (f10 + AndroidUtilities.dp(4.0f)), 1073741824));
+        k kVar = this.f32081a;
+        kVar.v = 255;
+        kVar.f32049n = -1;
+        kVar.f32051s = 0;
+        kVar.f32050r = AndroidUtilities.dp(8.0f);
+        ViewGroup.LayoutParams layoutParams = kVar.getLayoutParams();
+        layoutParams.width = -1;
+        kVar.setLayoutParams(layoutParams);
+        AndroidUtilities.runOnUIThread(new i(0, this, onClickListener), 500L);
     }
 
-    public void setRenderer(u uVar) {
-        this.f32104c = uVar;
+    public k getEndCloseView() {
+        return this.f32081a;
     }
 }

@@ -5,16 +5,16 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.ha0;
+import org.telegram.ui.ga0;
 public final class j5 implements q0.a {
-    public final int f5242a;
-    public final Object f5243b;
-    public final Object f5244c;
+    public final int f5241a;
+    public final Object f5242b;
+    public final Object f5243c;
 
     public j5(int i10, Object obj, Object obj2) {
-        this.f5242a = i10;
-        this.f5243b = obj;
-        this.f5244c = obj2;
+        this.f5241a = i10;
+        this.f5242b = obj;
+        this.f5243c = obj2;
     }
 
     @Override
@@ -23,21 +23,21 @@ public final class j5 implements q0.a {
         String responseCodeString;
         boolean z11;
         String responseCodeString2;
-        switch (this.f5242a) {
+        switch (this.f5241a) {
             case 0:
-                q6.Z((nb) this.f5243b, (pg.u0) this.f5244c, (Integer) obj);
+                q6.Z((nb) this.f5242b, (pg.u0) this.f5243c, (Integer) obj);
                 return;
             case 1:
-                org.telegram.ui.c5 c5Var = (org.telegram.ui.c5) this.f5243b;
-                org.telegram.ui.x4 x4Var = (org.telegram.ui.x4) this.f5244c;
-                org.telegram.ui.d5[] d5VarArr = x4Var.f43864i;
-                org.telegram.ui.z4 z4Var = x4Var.f43865j;
-                if (!c5Var.E) {
+                org.telegram.ui.b5 b5Var = (org.telegram.ui.b5) this.f5242b;
+                org.telegram.ui.w4 w4Var = (org.telegram.ui.w4) this.f5243c;
+                org.telegram.ui.c5[] c5VarArr = w4Var.f43204i;
+                org.telegram.ui.y4 y4Var = w4Var.f43205j;
+                if (!b5Var.E) {
                     if (obj instanceof TLRPC.UserFull) {
-                        c5Var.a(org.telegram.ui.x4.c((TLRPC.User) z4Var.f44522c, (TLRPC.UserFull) obj, d5VarArr));
+                        b5Var.a(org.telegram.ui.w4.c((TLRPC.User) y4Var.f44251c, (TLRPC.UserFull) obj, c5VarArr));
                         return;
                     } else if (obj instanceof TLRPC.ChatFull) {
-                        c5Var.a(org.telegram.ui.x4.a((TLRPC.Chat) z4Var.f44522c, (TLRPC.ChatFull) obj, d5VarArr));
+                        b5Var.a(org.telegram.ui.w4.a((TLRPC.Chat) y4Var.f44251c, (TLRPC.ChatFull) obj, c5VarArr));
                         return;
                     } else {
                         return;
@@ -45,25 +45,25 @@ public final class j5 implements q0.a {
                 }
                 return;
             case 2:
-                Utilities.Callback callback = (Utilities.Callback) this.f5244c;
+                Utilities.Callback callback = (Utilities.Callback) this.f5243c;
                 c5.h hVar = (c5.h) obj;
-                if (((c5.h) this.f5243b).f4254a == 0) {
+                if (((c5.h) this.f5242b).f4253a == 0) {
                     AndroidUtilities.runOnUIThread(new xa(2, callback));
                     return;
                 }
                 return;
             case 3:
-                tg.v vVar = (tg.v) this.f5244c;
+                tg.u uVar = (tg.u) this.f5243c;
                 c5.h hVar2 = (c5.h) obj;
-                if (((c5.h) this.f5243b).f4254a == 0) {
-                    AndroidUtilities.runOnUIThread(new rg.x1(vVar, 10));
+                if (((c5.h) this.f5242b).f4253a == 0) {
+                    AndroidUtilities.runOnUIThread(new rg.x1(uVar, 10));
                     return;
                 }
                 return;
             case 4:
-                g90 g90Var = (g90) this.f5244c;
+                g90 g90Var = (g90) this.f5243c;
                 c5.h hVar3 = (c5.h) obj;
-                int i10 = ((c5.h) this.f5243b).f4254a;
+                int i10 = ((c5.h) this.f5242b).f4253a;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
@@ -74,12 +74,12 @@ public final class j5 implements q0.a {
                 } else {
                     responseCodeString = BillingController.getResponseCodeString(i10);
                 }
-                AndroidUtilities.runOnUIThread(new ha0(g90Var, z10, responseCodeString, 16));
+                AndroidUtilities.runOnUIThread(new ga0(g90Var, z10, responseCodeString, 16));
                 return;
             default:
-                qh.r rVar = (qh.r) this.f5244c;
+                qh.r rVar = (qh.r) this.f5243c;
                 c5.h hVar4 = (c5.h) obj;
-                int i11 = ((c5.h) this.f5243b).f4254a;
+                int i11 = ((c5.h) this.f5242b).f4253a;
                 if (i11 == 0) {
                     z11 = true;
                 } else {
@@ -90,7 +90,7 @@ public final class j5 implements q0.a {
                 } else {
                     responseCodeString2 = BillingController.getResponseCodeString(i11);
                 }
-                AndroidUtilities.runOnUIThread(new ha0(rVar, z11, responseCodeString2, 17));
+                AndroidUtilities.runOnUIThread(new ga0(rVar, z11, responseCodeString2, 17));
                 return;
         }
     }

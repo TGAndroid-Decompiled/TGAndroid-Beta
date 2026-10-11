@@ -5,14 +5,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.nw0;
 public final class i2 extends GestureDetector.SimpleOnGestureListener {
     public float f1127a;
     public float f1128b;
     public final int f1129c;
 
     public i2(int i10) {
-        mw0 mw0Var = n2.X;
+        nw0 nw0Var = n2.X;
         this.f1129c = i10;
     }
 
@@ -40,11 +40,11 @@ public final class i2 extends GestureDetector.SimpleOnGestureListener {
         n2 n2Var = n2.Z;
         if (n2Var.E && !n2Var.F) {
             o1.k kVar = n2Var.P;
-            kVar.f16931a = f7;
+            kVar.f16977a = f7;
             float f12 = n2Var.N;
-            kVar.f16932b = f12;
-            kVar.f16933c = true;
-            o1.l lVar = kVar.f16942u;
+            kVar.f16978b = f12;
+            kVar.f16979c = true;
+            o1.l lVar = kVar.f16988u;
             int i10 = n2Var.J;
             float f13 = (f7 / 7.0f) + (i10 / 2.0f) + f12;
             int i11 = AndroidUtilities.displaySize.x;
@@ -53,13 +53,13 @@ public final class i2 extends GestureDetector.SimpleOnGestureListener {
             } else {
                 dp = AndroidUtilities.dp(16.0f);
             }
-            lVar.f16949i = dp;
+            lVar.f16995i = dp;
             n2Var.P.h();
             o1.k kVar2 = n2Var.Q;
-            kVar2.f16931a = f7;
-            kVar2.f16932b = n2Var.O;
-            kVar2.f16933c = true;
-            kVar2.f16942u.f16949i = w7.o.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
+            kVar2.f16977a = f7;
+            kVar2.f16978b = n2Var.O;
+            kVar2.f16979c = true;
+            kVar2.f16988u.f16995i = w7.o.a((f10 / 10.0f) + f11, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
             n2Var.Q.h();
             return true;
         }

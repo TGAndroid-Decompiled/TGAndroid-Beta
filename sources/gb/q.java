@@ -1,10 +1,10 @@
 package gb;
 public final class q extends db.u {
-    public static final p f10484b = new p(new q(db.t.f8267b), 0);
-    public final db.t f10485a;
+    public static final p f10483b = new p(new q(db.t.f8266b), 0);
+    public final db.t f10484a;
 
     public q(db.t tVar) {
-        this.f10485a = tVar;
+        this.f10484a = tVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class q extends db.u {
             }
             throw new RuntimeException("Expecting number, got: " + hg.c.D(x10) + "; at path " + aVar.h());
         }
-        return this.f10485a.a(aVar);
+        return this.f10484a.a(aVar);
     }
 
     @Override

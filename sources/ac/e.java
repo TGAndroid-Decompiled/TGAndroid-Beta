@@ -1,8 +1,8 @@
 package ac;
 
 import java.util.Arrays;
-import n6.l;
-import z7.ve;
+import n6.m;
+import z7.we;
 public final class e {
     public final boolean f412a;
     public final boolean f413b;
@@ -14,22 +14,22 @@ public final class e {
         this.f414c = dVar.f411c;
     }
 
-    public final ve a() {
+    public final we a() {
         ?? obj = new Object();
         Boolean bool = Boolean.FALSE;
-        obj.f6065a = bool;
-        obj.f6066b = Boolean.valueOf(this.f412a);
-        obj.f6067c = Boolean.valueOf(this.f413b);
+        obj.f6064a = bool;
+        obj.f6065b = Boolean.valueOf(this.f412a);
+        obj.f6066c = Boolean.valueOf(this.f413b);
         obj.d = bool;
-        obj.f6068e = Boolean.valueOf(this.f414c);
-        return new ve(obj);
+        obj.f6067e = Boolean.valueOf(this.f414c);
+        return new we(obj);
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof e) {
                 e eVar = (e) obj;
-                if (this.f412a == eVar.f412a && this.f413b == eVar.f413b && this.f414c == eVar.f414c && l.l(null, null)) {
+                if (this.f412a == eVar.f412a && this.f413b == eVar.f413b && this.f414c == eVar.f414c && m.l(null, null)) {
                     return true;
                 }
                 return false;

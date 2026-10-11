@@ -31,16 +31,16 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c4;
-import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.ActionBar.b4;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.aq;
 import org.telegram.ui.Components.bq;
-import org.telegram.ui.Components.co0;
 import org.telegram.ui.Components.cq;
+import org.telegram.ui.Components.do0;
 import org.telegram.ui.Components.eb0;
 import org.telegram.ui.Components.m60;
-import org.telegram.ui.Components.pz0;
-import org.telegram.ui.Components.rs0;
+import org.telegram.ui.Components.qz0;
+import org.telegram.ui.Components.ss0;
 import org.telegram.ui.Components.t10;
 import org.telegram.ui.Components.t40;
 import org.telegram.ui.Components.tw;
@@ -73,12 +73,12 @@ public final class f implements Runnable {
         switch (i11) {
             case 0:
                 u uVar = (u) obj;
-                rs0 rs0Var = uVar.W;
+                ss0 ss0Var = uVar.W;
                 if (z10) {
-                    new y(rs0Var.f3940a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(rs0Var, 4)).show();
+                    new y(ss0Var.f3940a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(ss0Var, 4)).show();
                     return;
                 } else {
-                    rs0Var.b(uVar.f3923a.E);
+                    ss0Var.b(uVar.f3923a.E);
                     return;
                 }
             case 1:
@@ -91,7 +91,7 @@ public final class f implements Runnable {
                     return;
                 }
             case 2:
-                i4 i4Var = ((j4) obj).f5232b;
+                i4 i4Var = ((j4) obj).f5231b;
                 if (!z10) {
                     i12 = 8;
                 }
@@ -118,7 +118,7 @@ public final class f implements Runnable {
             case 5:
                 nb nbVar = (nb) obj;
                 if (!z10) {
-                    nbVar.A2.f5490j1.setVisibility(8);
+                    nbVar.A2.f5489j1.setVisibility(8);
                     return;
                 } else {
                     nbVar.getClass();
@@ -126,8 +126,8 @@ public final class f implements Runnable {
                 }
             case 6:
                 k3 k3Var = (k3) obj;
-                i3 i3Var = k3Var.f9185y;
-                b3 b3Var = k3Var.f9183x;
+                i3 i3Var = k3Var.f9184y;
+                b3 b3Var = k3Var.f9182x;
                 if (b3Var.getWebView() != null) {
                     b3Var.getWebView().animate().cancel();
                     b3Var.getWebView().animate().alpha(0.0f).start();
@@ -148,11 +148,11 @@ public final class f implements Runnable {
                 ((t0) obj).f(z10, false);
                 return;
             case 8:
-                String str2 = d0.f8532a;
-                f0 f0Var = ((c0) ((k2.j) ((n4.x) obj).f16617c)).f11620a;
-                if (f0Var.f11655a0 != z10) {
-                    f0Var.f11655a0 = z10;
-                    f0Var.f11676m.e(23, new i2.y(1, z10));
+                String str2 = d0.f8531a;
+                f0 f0Var = ((c0) ((k2.j) ((n4.x) obj).f16659c)).f11619a;
+                if (f0Var.f11654a0 != z10) {
+                    f0Var.f11654a0 = z10;
+                    f0Var.f11675m.e(23, new i2.y(1, z10));
                     return;
                 }
                 return;
@@ -162,7 +162,7 @@ public final class f implements Runnable {
                 jVar.N = jVar.z();
                 jVar.O = 0;
                 jVar.P = 0;
-                jVar.f14980j.b("torch requested: enabled=" + z10 + ", available=" + jVar.z() + ", cameraId=" + jVar.f14991o + ", facing=" + jVar.D);
+                jVar.f14979j.b("torch requested: enabled=" + z10 + ", available=" + jVar.z() + ", cameraId=" + jVar.f14990o + ", facing=" + jVar.D);
                 jVar.e();
                 return;
             case 10:
@@ -205,16 +205,16 @@ public final class f implements Runnable {
                 of.f.s(context, LocaleController.getString(i10));
                 return;
             case 21:
-                pz0 pz0Var = ((qm) obj).f41192c.f44785d1;
-                if (pz0Var != null && z10) {
-                    pz0Var.setVisibility(8);
+                qz0 qz0Var = ((qm) obj).f41202c.f44740d1;
+                if (qz0Var != null && z10) {
+                    qz0Var.setVisibility(8);
                     return;
                 }
                 return;
             case 22:
                 uo uoVar = (uo) obj;
-                uoVar.f42540x0.autotranslation = z10;
-                uoVar.getMessagesController().putChat(uoVar.f42540x0, false);
+                uoVar.f42686x0.autotranslation = z10;
+                uoVar.getMessagesController().putChat(uoVar.f42686x0, false);
                 return;
             case 23:
                 cq cqVar = (cq) obj;
@@ -224,19 +224,19 @@ public final class f implements Runnable {
                     if (cqVar.M != null) {
                         cqVar.P = true;
                         if (!cqVar.x()) {
-                            wallPaper = cqVar.f25372n.h;
+                            wallPaper = cqVar.f25273n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        c4 c4Var = cqVar.M.f25019a;
-                        if (c4Var.f20509a) {
-                            cqVar.f25372n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        b4 b4Var = cqVar.M.f25002a;
+                        if (b4Var.f20467a) {
+                            cqVar.f25273n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            cqVar.f25372n.i(c4Var, wallPaper2, false, Boolean.valueOf(z10), false);
+                            cqVar.f25273n.i(b4Var, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (aqVar.d != null) {
                         while (i12 < aqVar.d.size()) {
-                            ((bq) aqVar.d.get(i12)).f25021c = z10 ? 1 : 0;
+                            ((bq) aqVar.d.get(i12)).f25004c = z10 ? 1 : 0;
                             i12++;
                         }
                         aqVar.l();
@@ -254,12 +254,12 @@ public final class f implements Runnable {
                 return;
             case 25:
                 t10 t10Var = (t10) obj;
-                t10Var.S(t10Var.f30938y0, z10);
+                t10Var.S(t10Var.f30953y0, z10);
                 return;
             case 26:
                 t40 t40Var = (t40) obj;
                 if (!z10) {
-                    t40Var.f30979r.setVisibility(8);
+                    t40Var.f30987r.setVisibility(8);
                     return;
                 } else {
                     t40Var.getClass();
@@ -267,23 +267,23 @@ public final class f implements Runnable {
                 }
             case 27:
                 u60 u60Var = ((m60) obj).H0;
-                if (!u60Var.f31359l0) {
+                if (!u60Var.f31281l0) {
                     try {
                         u60Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    AndroidUtilities.lockOrientation(u60Var.f31360n.getParentActivity());
+                    AndroidUtilities.lockOrientation(u60Var.f31282n.getParentActivity());
                     if (z10) {
-                        j3 = u60Var.f31357k0;
+                        j3 = u60Var.f31279k0;
                     } else {
                         j3 = 0;
                     }
-                    u60Var.f31353i0 = j3;
-                    u60Var.f31351h0 = System.currentTimeMillis();
-                    u60Var.f31355j0 = true;
+                    u60Var.f31275i0 = j3;
+                    u60Var.f31273h0 = System.currentTimeMillis();
+                    u60Var.f31277j0 = true;
                     u60Var.v();
                     u60Var.invalidate();
-                    NotificationCenter.getInstance(u60Var.f31346f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(u60Var.V), Boolean.FALSE);
+                    NotificationCenter.getInstance(u60Var.f31268f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(u60Var.V), Boolean.FALSE);
                     return;
                 }
                 return;
@@ -297,13 +297,13 @@ public final class f implements Runnable {
                     return;
                 }
             default:
-                n2 n2Var = ((co0) obj).G;
+                m2 m2Var = ((do0) obj).G;
                 if (z10) {
                     str = "upload_speed";
                 } else {
                     str = "download_speed";
                 }
-                n2Var.presentFragment(new PremiumPreviewFragment(0, str));
+                m2Var.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
         }
     }

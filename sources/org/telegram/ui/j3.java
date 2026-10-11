@@ -1,34 +1,139 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
+import android.net.Uri;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class j3 extends ei.o4 {
-    public boolean f38860c0;
-    public final m3 f38861d0;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class j3 extends org.telegram.ui.web.b1 {
+    public final l3 S0;
 
-    public j3(m3 m3Var, Context context) {
-        super(context);
-        this.f38861d0 = m3Var;
+    public j3(l3 l3Var, Context context, int i10) {
+        super(i10, context, null, false);
+        this.S0 = l3Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f38860c0 = true;
-        setOffsetY(View.MeasureSpec.getSize(i11) * 0.4f);
-        this.f38860c0 = false;
-        int size = View.MeasureSpec.getSize(i11);
-        v3 v3Var = this.f38861d0.K.K;
-        if (v3Var != null) {
-            v3Var.getClass();
+    public final void D(boolean z10, String str) {
+        String str2;
+        String string;
+        l3 l3Var = this.S0;
+        if (z10) {
+            if (l3Var.f39501r == null) {
+                i3 i3Var = l3Var.f39498e;
+                c3 c3Var = new c3(l3Var.getContext());
+                l3Var.f39501r = c3Var;
+                i3Var.addView(c3Var, w7.x5.d(-1.0f, -1));
+                l3Var.f39501r.h.setOnClickListener(new a(l3Var, 2));
+                AndroidUtilities.updateViewVisibilityAnimated(l3Var.f39501r, l3Var.f39500n, 1.0f, false);
+            }
+            c3 c3Var2 = l3Var.f39501r;
+            if (getWebView() != null) {
+                str2 = getWebView().getUrl();
+            } else {
+                str2 = null;
+            }
+            TextView textView = c3Var2.f36529e;
+            c3Var2.d.setText(LocaleController.getString(R.string.WebErrorTitle));
+            String u10 = org.telegram.ui.web.b1.u(str2);
+            boolean z11 = true;
+            if (u10 != null && Uri.parse(u10) != null && Uri.parse(u10).getAuthority() != null) {
+                string = LocaleController.formatString(R.string.WebErrorInfoDomain, Uri.parse(u10).getAuthority());
+            } else {
+                string = LocaleController.getString(R.string.WebErrorInfo);
+            }
+            textView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(string), textView.getPaint().getFontMetricsInt(), false));
+            c3Var2.f36530f.setText(str);
+            c3 c3Var3 = l3Var.f39501r;
+            int i10 = org.telegram.ui.ActionBar.h6.Pk;
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, i10, false)) > 0.721f) {
+                z11 = false;
+            }
+            c3Var3.b(z11, false);
+            l3Var.f39501r.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(56.0f)) - AndroidUtilities.statusBarHeight, 1073741824));
+        c3 c3Var4 = l3Var.f39501r;
+        l3Var.f39500n = z10;
+        AndroidUtilities.updateViewVisibilityAnimated(c3Var4, z10, 1.0f, false);
+        invalidate();
     }
 
     @Override
-    public final void requestLayout() {
-        if (!this.f38860c0) {
-            super.requestLayout();
+    public final void H() {
+        this.S0.K.i0(true);
+    }
+
+    @Override
+    public final void I(boolean z10, boolean z11) {
+        float f7;
+        boolean z12;
+        boolean z13;
+        boolean z14 = true;
+        l3 l3Var = this.S0;
+        l3Var.f39502s = !z10;
+        l3Var.v = !z11;
+        h4 h4Var = l3Var.K;
+        h4Var.i0(true);
+        if (l3Var == h4Var.f38285u0[0]) {
+            k0 k0Var = h4Var.f38273h0;
+            if (!k0Var.W && !k0Var.T) {
+                ArticleViewer$WindowView articleViewer$WindowView = h4Var.f38271f0;
+                if (!articleViewer$WindowView.f21743e && !articleViewer$WindowView.f21744f) {
+                    if (!h4Var.J() && h4Var.f38269d0.size() <= 1) {
+                        h4Var.f38273h0.setBackButtonCached(false);
+                        h4Var.f38273h0.P.f();
+                    } else {
+                        org.telegram.ui.ActionBar.f2 f2Var = h4Var.f38273h0.M;
+                        if (!l3Var.f39502s && h4Var.f38269d0.size() <= 1) {
+                            f7 = 1.0f;
+                        } else {
+                            f7 = 0.0f;
+                        }
+                        f2Var.c(f7, true);
+                        k0 k0Var2 = h4Var.f38273h0;
+                        if (!l3Var.f39502s && h4Var.f38269d0.size() <= 1) {
+                            z12 = false;
+                        } else {
+                            z12 = true;
+                        }
+                        k0Var2.setBackButtonCached(z12);
+                        h4Var.f38273h0.P.f();
+                    }
+                    h4Var.f38273h0.setHasForward(l3Var.v);
+                    k0 k0Var3 = h4Var.f38273h0;
+                    l3 l3Var2 = h4Var.f38285u0[0];
+                    if (l3Var2 != null && l3Var2.e()) {
+                        z13 = true;
+                    } else {
+                        z13 = false;
+                    }
+                    k0Var3.setIsTonsite(z13);
+                    k0 k0Var4 = h4Var.f38273h0;
+                    l3 l3Var3 = h4Var.f38285u0[0];
+                    if (l3Var3 == null || !l3Var3.d()) {
+                        z14 = false;
+                    }
+                    k0Var4.setIsLocal(z14);
+                }
+            }
         }
+    }
+
+    @Override
+    public final void J(org.telegram.ui.web.y0 y0Var) {
+        this.S0.f39498e.setWebView(y0Var);
+    }
+
+    @Override
+    public final void T(String str, boolean z10) {
+        org.telegram.ui.web.g2 g2Var;
+        l3 l3Var = this.S0;
+        h4 h4Var = l3Var.K;
+        if (h4Var.f38273h0 != null && l3Var == h4Var.f38285u0[0] && (g2Var = l3Var.f39505y) != null && g2Var.b() == null) {
+            l3Var.f39505y.d(getWebView());
+        }
+        super.T(str, z10);
     }
 }

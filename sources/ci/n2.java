@@ -6,32 +6,32 @@ import java.util.ArrayDeque;
 import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.nq;
-import org.telegram.ui.tk0;
-import org.telegram.ui.uz;
+import org.telegram.ui.sk0;
+import org.telegram.ui.tz;
 public final class n2 extends TimerTask {
-    public final int f5630a;
-    public final Object f5631b;
+    public final int f5629a;
+    public final Object f5630b;
 
     public n2(Object obj, int i10) {
-        this.f5630a = i10;
-        this.f5631b = obj;
+        this.f5629a = i10;
+        this.f5630b = obj;
     }
 
     @Override
     public final void run() {
         BasePendingResult basePendingResult;
-        switch (this.f5630a) {
+        switch (this.f5629a) {
             case 0:
                 AndroidUtilities.runOnUIThread(new androidx.fragment.app.a0(this, 14));
                 return;
             case 1:
-                e6.c cVar = (e6.c) this.f5631b;
+                e6.c cVar = (e6.c) this.f5630b;
                 ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f8653k == null && cVar.f8646b != 0) {
-                    e6.h hVar = cVar.f8647c;
+                if (!arrayDeque.isEmpty() && cVar.f8652k == null && cVar.f8645b != 0) {
+                    e6.h hVar = cVar.f8646c;
                     int[] e7 = g6.a.e(arrayDeque);
                     hVar.getClass();
-                    n6.l.e("Must be called from the main thread.");
+                    n6.m.e("Must be called from the main thread.");
                     if (!hVar.w()) {
                         basePendingResult = e6.h.t();
                     } else {
@@ -39,7 +39,7 @@ public final class n2 extends TimerTask {
                         e6.h.x(kVar);
                         basePendingResult = kVar;
                     }
-                    cVar.f8653k = basePendingResult;
+                    cVar.f8652k = basePendingResult;
                     basePendingResult.i(new e6.r(cVar, 1));
                     arrayDeque.clear();
                     return;
@@ -49,14 +49,14 @@ public final class n2 extends TimerTask {
                 AndroidUtilities.runOnUIThread(new nq(this, 24));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new uz(this, 24));
+                AndroidUtilities.runOnUIThread(new tz(this, 24));
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new tk0(this, 6));
+                AndroidUtilities.runOnUIThread(new sk0(this, 6));
                 return;
             default:
                 try {
-                    Socket socket = ((sc.q) this.f5631b).f47935a.f47983a.f47977g;
+                    Socket socket = ((sc.q) this.f5630b).f47981a.f48029a.f48023g;
                     if (socket != null) {
                         socket.close();
                         return;

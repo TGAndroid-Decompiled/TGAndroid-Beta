@@ -6,19 +6,19 @@ import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 public final class qe extends dh {
-    public final ChatActivityEnterView f30195x;
+    public final ChatActivityEnterView f30144x;
 
     public qe(ChatActivityEnterView chatActivityEnterView, Activity activity) {
         super(activity);
-        this.f30195x = chatActivityEnterView;
+        this.f30144x = chatActivityEnterView;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        ChatActivityEnterView chatActivityEnterView = this.f30195x;
+        ChatActivityEnterView chatActivityEnterView = this.f30144x;
         Paint paint = chatActivityEnterView.Q1;
         super.onDraw(canvas);
-        if (getTag() != null && chatActivityEnterView.f23945p1 != null && !chatActivityEnterView.W0 && !MediaDataController.getInstance(chatActivityEnterView.Q).getUnreadStickerSets().isEmpty() && paint != null) {
+        if (getTag() != null && chatActivityEnterView.f23933p1 != null && !chatActivityEnterView.W0 && !MediaDataController.getInstance(chatActivityEnterView.Q).getUnreadStickerSets().isEmpty() && paint != null) {
             canvas.drawCircle(AndroidUtilities.dp(9.0f) + (getWidth() / 2), (getHeight() / 2) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f), paint);
         }
     }

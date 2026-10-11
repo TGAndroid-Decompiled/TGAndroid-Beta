@@ -1,209 +1,209 @@
 package qg;
 
-import ai.pb;
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.RectF;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ai;
 import org.telegram.ui.Components.g6;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.nl0;
-import org.telegram.ui.Components.nw0;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.ow0;
+import w7.x5;
 public final class b2 extends j {
-    public nw0 f46236q0;
-    public pb f46237r0;
-    public pb f46238s0;
-    public zg.e0 f46239t0;
-    public zg.e0 f46240u0;
-    public zg.n0 f46241v0;
-    public g6 f46242w0;
-    public g6 f46243x0;
-    public boolean f46244y0;
-    public float f46245z0;
+    public boolean A0;
+    public boolean B0;
+    public final g6 C0;
+    public final int f46278q0;
+    public boolean f46279r0;
+    public final g6 f46280s0;
+    public final ow0 f46281t0;
+    public final TextureView f46282u0;
+    public final Bitmap f46283v0;
+    public final Rect f46284w0;
+    public final Rect f46285x0;
+    public float f46286y0;
+    public final Path f46287z0;
+
+    public b2(Context context, PointF pointF, ow0 ow0Var, String str) {
+        super(context, pointF);
+        this.f46278q0 = -1;
+        this.f46279r0 = false;
+        Rect rect = new Rect();
+        this.f46284w0 = rect;
+        this.f46285x0 = new Rect();
+        this.f46286y0 = 1.0f;
+        this.f46287z0 = new Path();
+        this.A0 = true;
+        this.B0 = true;
+        is isVar = is.h;
+        this.C0 = new g6(this, 0L, 350L, isVar);
+        new Paint(1).setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        setRotation(0.0f);
+        setScale(1.0f);
+        this.f46281t0 = ow0Var;
+        Bitmap decodeFile = BitmapFactory.decodeFile(str);
+        this.f46283v0 = decodeFile;
+        if (decodeFile != null) {
+            this.f46286y0 = decodeFile.getWidth() / decodeFile.getHeight();
+            rect.set(0, 0, decodeFile.getWidth(), decodeFile.getHeight());
+        }
+        TextureView textureView = new TextureView(context);
+        this.f46282u0 = textureView;
+        addView(textureView, x5.d(-1.0f, -1));
+        this.f46280s0 = new g6(this, 0L, 500L, isVar);
+        k();
+        setWillNotDraw(false);
+    }
 
     @Override
     public final i a() {
-        a2 a2Var = new a2(this, getContext(), 0);
-        a2Var.f46224r = new RectF();
-        return a2Var;
+        return new z1(this, getContext());
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        nw0 nw0Var = this.f46236q0;
-        int padding = getPadding();
-        float d = this.f46243x0.d(1.0f, false);
-        if (d == 1.0f) {
-            this.f46238s0 = null;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        Rect rect;
+        Bitmap bitmap;
+        Path path;
+        boolean drawChild;
+        if (!this.A0) {
+            return false;
         }
-        canvas.save();
-        float f7 = this.f46245z0;
-        canvas.scale(f7, f7, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        pb pbVar = this.f46238s0;
-        if (pbVar != null) {
-            pbVar.f1594e = (int) ((1.0f - d) * 255.0f);
-            pbVar.setBounds(padding, padding, ((int) nw0Var.f29260a) - padding, ((int) nw0Var.f29261b) - padding);
-            this.f46238s0.draw(canvas);
-        }
-        pb pbVar2 = this.f46237r0;
-        pbVar2.f1594e = (int) (d * 255.0f);
-        pbVar2.setBounds(padding, padding, ((int) nw0Var.f29260a) - padding, ((int) nw0Var.f29261b) - padding);
-        this.f46237r0.draw(canvas);
-        Rect rect = AndroidUtilities.rectTmp2;
-        float width = (this.f46237r0.getBounds().width() * 0.61f) / 2.0f;
-        rect.set((int) (this.f46237r0.getBounds().centerX() - width), (int) (this.f46237r0.getBounds().centerY() - width), (int) (this.f46237r0.getBounds().centerX() + width), (int) (this.f46237r0.getBounds().centerY() + width));
-        float d10 = this.f46242w0.d(1.0f, false);
-        this.f46239t0.c(rect);
-        this.f46240u0.c(rect);
-        zg.e0 e0Var = this.f46239t0;
-        if (this.f46237r0.f1591a == 1) {
-            i10 = -1;
-        } else {
-            i10 = -16777216;
-        }
-        e0Var.d(i10);
-        if (d10 == 1.0f) {
-            this.f46239t0.a(canvas);
-        } else {
+        if (view == this.f46282u0) {
             canvas.save();
-            float f10 = 1.0f - d10;
-            canvas.scale(f10, f10, rect.centerX(), rect.top);
-            zg.e0 e0Var2 = this.f46240u0;
-            e0Var2.h = f10;
-            e0Var2.a(canvas);
-            canvas.restore();
+            float e7 = this.f46280s0.e(this.f46279r0);
+            canvas.scale(1.0f - (e7 * 2.0f), 1.0f, getMeasuredWidth() / 2.0f, 0.0f);
+            canvas.skew(0.0f, org.telegram.messenger.q.z(1.0f, e7, 4.0f * e7, 0.25f));
+            float e10 = this.C0.e(this.B0);
+            float width = (view.getWidth() / 2.0f) + view.getX();
+            float height = (view.getHeight() / 2.0f) + view.getY();
+            float min = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
+            int i10 = (e10 > 1.0f ? 1 : (e10 == 1.0f ? 0 : -1));
+            Rect rect2 = this.f46284w0;
+            Rect rect3 = this.f46285x0;
+            Bitmap bitmap2 = this.f46283v0;
+            Path path2 = this.f46287z0;
+            if (i10 < 0) {
+                rect = rect3;
+                bitmap = bitmap2;
+                canvas.saveLayerAlpha(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight(), 128, 31);
+                path2.rewind();
+                path = path2;
+                path.addCircle(width, height, min, Path.Direction.CW);
+                canvas.clipPath(path);
+                if (bitmap != null) {
+                    rect.set(0, 0, view.getWidth(), view.getHeight());
+                    canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
+                }
+                super.drawChild(canvas, view, j3);
+                canvas.restore();
+            } else {
+                rect = rect3;
+                bitmap = bitmap2;
+                path = path2;
+            }
             canvas.save();
-            canvas.scale(d10, d10, rect.centerX(), rect.bottom);
-            zg.e0 e0Var3 = this.f46239t0;
-            e0Var3.h = d10;
-            e0Var3.a(canvas);
+            path.rewind();
+            path.addCircle(width, height, min * e10, Path.Direction.CW);
+            canvas.clipPath(path);
+            if (bitmap != null) {
+                rect.set(0, 0, view.getWidth(), view.getHeight());
+                canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
+            }
+            if ((getParent() instanceof d) && ((d) getParent()).f46295a) {
+                drawChild = true;
+            } else {
+                drawChild = super.drawChild(canvas, view, j3);
+            }
             canvas.restore();
+            canvas.restore();
+            return drawChild;
         }
-        canvas.restore();
+        return super.drawChild(canvas, view, j3);
     }
 
-    public zg.n0 getCurrentReaction() {
-        return this.f46241v0;
+    public int getAnchor() {
+        return this.f46278q0;
     }
 
-    @Override
-    public float getMaxScale() {
-        return 1.8f;
-    }
-
-    @Override
-    public float getMinScale() {
-        return 0.5f;
-    }
-
-    public int getPadding() {
-        return (int) ((this.f46236q0.f29261b - AndroidUtilities.dp(84.0f)) / 2.0f);
+    public ow0 getBaseSize() {
+        return this.f46281t0;
     }
 
     @Override
-    public nl0 getSelectionBounds() {
+    public ol0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
         }
         float scaleX = viewGroup.getScaleX();
-        float scale = (getScale() + 0.4f) * getMeasuredWidth();
-        float f7 = scale / 2.0f;
-        float f10 = scale * scaleX;
-        return new nl0((getPositionX() - f7) * scaleX, (getPositionY() - f7) * scaleX, f10, f10);
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float y3 = ai.y(dp, 2.0f, getPositionX(), scaleX);
+        return new ol0(y3, ai.y(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + y3) - y3, dp2 * scaleX);
     }
 
     @Override
     public final void k() {
-        nw0 nw0Var = this.f46236q0;
-        setX(getPositionX() - (nw0Var.f29260a / 2.0f));
-        setY(getPositionY() - (nw0Var.f29261b / 2.0f));
+        ow0 ow0Var = this.f46281t0;
+        setX(getPositionX() - (ow0Var.f29541a / 2.0f));
+        setY(getPositionY() - (ow0Var.f29542b / 2.0f));
         m();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f46239t0.b(true);
-        this.f46240u0.b(true);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f46239t0.b(false);
-        this.f46240u0.b(false);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        TextureView textureView = this.f46282u0;
+        if (textureView != null) {
+            int measuredHeight = ((i13 - i11) - textureView.getMeasuredHeight()) / 2;
+            int measuredWidth = ((i12 - i10) - textureView.getMeasuredWidth()) / 2;
+            textureView.layout(measuredWidth, measuredHeight, textureView.getMeasuredWidth() + measuredWidth, textureView.getMeasuredHeight() + measuredHeight);
+        }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        nw0 nw0Var = this.f46236q0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) nw0Var.f29260a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) nw0Var.f29261b, 1073741824));
-    }
-
-    public final void q(boolean z10) {
-        if (!z10) {
-            this.f46237r0.a();
-        } else {
-            this.f46238s0 = this.f46237r0;
-            pb pbVar = new pb(this);
-            this.f46237r0 = pbVar;
-            if (this.f46238s0.f1591a != 1) {
-                pbVar.a();
+        int i12;
+        int i13;
+        ow0 ow0Var = this.f46281t0;
+        int i14 = (int) ow0Var.f29541a;
+        int i15 = (int) ow0Var.f29542b;
+        TextureView textureView = this.f46282u0;
+        if (textureView != null) {
+            float f7 = this.f46286y0;
+            if (f7 >= 1.0f) {
+                i12 = (int) (f7 * i15);
+            } else {
+                i12 = i14;
             }
-            this.f46237r0.b(this.f46244y0, false);
-            this.f46237r0.c(getScaleX());
-            this.f46243x0.d(0.0f, true);
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+            float f10 = this.f46286y0;
+            if (f10 >= 1.0f) {
+                i13 = i15;
+            } else {
+                i13 = (int) (i14 / f10);
+            }
+            textureView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
         }
-        invalidate();
+        setMeasuredDimension(i14, i15);
     }
 
-    public final void r(boolean z10) {
-        boolean z11 = !this.f46244y0;
-        this.f46244y0 = z11;
-        if (!z10) {
-            this.f46237r0.b(z11, z10);
-            return;
-        }
-        boolean[] zArr = {false};
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new ai.x(26, this, zArr));
-        ofFloat.addListener(new vl0(18, this, zArr));
-        ofFloat.setInterpolator(is.f27444g);
-        ofFloat.setDuration(350L);
-        ofFloat.start();
-    }
-
-    public final void s(zg.n0 n0Var, boolean z10) {
-        if (Objects.equals(this.f46241v0, n0Var)) {
-            return;
-        }
-        if (!z10) {
-            this.f46241v0 = n0Var;
-            this.f46239t0.e(n0Var);
-            invalidate();
-            return;
-        }
-        this.f46241v0 = n0Var;
-        this.f46240u0.e(n0Var);
-        zg.e0 e0Var = this.f46239t0;
-        this.f46239t0 = this.f46240u0;
-        this.f46240u0 = e0Var;
-        this.f46242w0.d(0.0f, true);
-        invalidate();
-    }
-
-    @Override
-    public void setScaleX(float f7) {
-        if (getScaleX() != f7) {
-            super.setScaleX(f7);
-            this.f46237r0.c(f7);
+    public void setDraw(boolean z10) {
+        if (this.A0 != z10) {
+            this.A0 = z10;
             invalidate();
         }
     }

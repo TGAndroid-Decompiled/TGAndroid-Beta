@@ -1,68 +1,50 @@
 package org.telegram.ui.Wallet;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
+import android.util.Base64;
 import org.json.JSONObject;
 public final class d2 {
-    public final long f34806a;
-    public final List f34807b;
-    public final long f34808c;
+    public final String f34801a;
+    public final String f34802b;
+    public final String f34803c;
+    public final String d;
+    public final long f34804e;
+    public final boolean f34805f;
 
     public d2(JSONObject jSONObject) {
-        boolean z10;
-        long optLong = jSONObject.optLong("valid_until", 0L);
-        this.f34806a = optLong;
-        JSONArray jSONArray = jSONObject.getJSONArray("messages");
-        if (jSONArray.length() != 0 && jSONArray.length() <= 255 && optLong >= 0) {
-            ArrayList arrayList = new ArrayList();
-            long j3 = 0;
-            int i10 = 0;
-            while (i10 < jSONArray.length()) {
-                c2 c2Var = new c2(jSONArray.getJSONObject(i10));
-                long j10 = c2Var.f34775e;
-                long j11 = j3 + j10;
-                if ((j10 ^ j3) < 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (z10 | ((j3 ^ j11) >= 0)) {
-                    arrayList.add(c2Var);
-                    i10++;
-                    j3 = j11;
-                } else {
-                    throw new ArithmeticException();
-                }
-            }
-            this.f34808c = j3;
-            this.f34807b = DesugarCollections.unmodifiableList(arrayList);
-            return;
-        }
-        throw new JSONException("Invalid transaction");
-    }
-
-    public final String[] a() {
         String str;
-        List list = this.f34807b;
-        String[] strArr = new String[list.size() * 5];
-        for (int i10 = 0; i10 < list.size(); i10++) {
-            c2 c2Var = (c2) list.get(i10);
-            int i11 = i10 * 5;
-            strArr[i11] = c2Var.f34772a;
-            strArr[i11 + 1] = Long.toString(c2Var.f34775e);
-            strArr[i11 + 2] = c2Var.f34773b;
-            strArr[i11 + 3] = c2Var.f34774c;
-            int i12 = i11 + 4;
-            if (c2Var.f34776f) {
-                str = "1";
-            } else {
-                str = "0";
+        String string = jSONObject.getString("address");
+        this.f34801a = string;
+        if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
+            this.f34805f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
+            Object obj = jSONObject.get("amount");
+            if (obj instanceof String) {
+                String str2 = (String) obj;
+                if (str2.matches("[0-9]+")) {
+                    long parseLong = Long.parseLong(str2);
+                    this.f34804e = parseLong;
+                    if (jSONObject.has("extra_currency") && jSONObject.getJSONObject("extra_currency").length() != 0) {
+                        throw new IllegalArgumentException("Extra currencies are not supported");
+                    }
+                    if (parseLong >= 0) {
+                        if (jSONObject.has("payload")) {
+                            str = jSONObject.getString("payload");
+                        } else {
+                            str = null;
+                        }
+                        this.f34802b = str;
+                        String string2 = jSONObject.has("stateInit") ? jSONObject.getString("stateInit") : null;
+                        this.f34803c = string2;
+                        if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (string2 != null && !WalletEngine2.isValidCellBoc(string2))) {
+                            throw new IllegalArgumentException("Invalid transaction cell");
+                        }
+                        this.d = WalletEngine2.textCommentFromBody(str);
+                        return;
+                    }
+                    throw new IllegalArgumentException("Transfer amount must not be negative");
+                }
             }
-            strArr[i12] = str;
+            throw new IllegalArgumentException("Invalid transfer amount");
         }
-        return strArr;
+        throw new IllegalArgumentException("Expected a friendly destination address");
     }
 }

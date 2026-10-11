@@ -3,11 +3,11 @@ package n4;
 import android.os.IBinder;
 import android.os.Parcel;
 public final class e implements f {
-    public IBinder f16557a;
+    public IBinder f16599a;
 
     @Override
     public final IBinder asBinder() {
-        return this.f16557a;
+        return this.f16599a;
     }
 
     @Override
@@ -16,8 +16,8 @@ public final class e implements f {
         try {
             obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
             obtain.writeInt(i10);
-            if (!this.f16557a.transact(12, obtain, null, 1)) {
-                int i11 = i.f16574b;
+            if (!this.f16599a.transact(12, obtain, null, 1)) {
+                int i11 = i.f16616b;
             }
         } finally {
             obtain.recycle();
@@ -30,8 +30,8 @@ public final class e implements f {
         try {
             obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
             obtain.writeInt(i10);
-            if (!this.f16557a.transact(9, obtain, null, 1)) {
-                int i11 = i.f16574b;
+            if (!this.f16599a.transact(9, obtain, null, 1)) {
+                int i11 = i.f16616b;
             }
         } finally {
             obtain.recycle();
@@ -45,8 +45,8 @@ public final class e implements f {
             obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
             obtain.writeInt(1);
             f0Var.writeToParcel(obtain, 0);
-            if (!this.f16557a.transact(3, obtain, null, 1)) {
-                int i10 = i.f16574b;
+            if (!this.f16599a.transact(3, obtain, null, 1)) {
+                int i10 = i.f16616b;
             }
         } finally {
             obtain.recycle();

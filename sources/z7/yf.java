@@ -1,39 +1,31 @@
 package z7;
-public abstract class yf {
-    public static t7.r f54209a;
 
-    public static synchronized wf a(sf sfVar) {
-        wf wfVar;
-        synchronized (yf.class) {
-            try {
-                if (f54209a == null) {
-                    f54209a = new t7.r(4);
-                }
-                wfVar = (wf) f54209a.O0(sfVar);
-            } catch (Throwable th2) {
-                throw th2;
-            }
+import android.content.Context;
+public final class yf implements uf {
+    public final q9.n f54256a;
+    public final tf f54257b;
+
+    public yf(Context context, tf tfVar) {
+        this.f54257b = tfVar;
+        j5.a aVar = j5.a.f14021e;
+        l5.s.b(context);
+        l5.q c10 = l5.s.a().c(aVar);
+        if (j5.a.d.contains(new i5.c("json"))) {
+            new q9.n(new v7.a9(c10, 6));
         }
-        return wfVar;
+        this.f54256a = new q9.n(new v7.a9(c10, 7));
     }
 
-    public static synchronized wf b() {
-        wf a2;
-        synchronized (yf.class) {
-            byte b10 = (byte) (((byte) 1) | 2);
-            if (b10 == 3) {
-                a2 = a(new Object());
-            } else {
-                StringBuilder sb2 = new StringBuilder();
-                if ((b10 & 1) == 0) {
-                    sb2.append(" enableFirelog");
-                }
-                if ((b10 & 2) == 0) {
-                    sb2.append(" firelogEventType");
-                }
-                throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
-            }
+    @Override
+    public final void a(a5.a aVar) {
+        i5.a aVar2;
+        this.f54257b.getClass();
+        l5.r rVar = (l5.r) this.f54256a.get();
+        if (aVar.f299b != 0) {
+            aVar2 = new i5.a(null, aVar.D(), i5.d.f12013a, null);
+        } else {
+            aVar2 = new i5.a(null, aVar.D(), i5.d.f12014b, null);
         }
-        return a2;
+        rVar.a(aVar2, new j2.e(16));
     }
 }

@@ -14,24 +14,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.web.BotWebViewContainer$WebViewProxy;
 public final class cf0 implements Runnable {
-    public final int f25286a;
-    public final Object f25287b;
-    public final Object f25288c;
+    public final int f25200a;
+    public final Object f25201b;
+    public final Object f25202c;
     public final Object d;
 
     public cf0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f25286a = i10;
-        this.f25287b = obj;
-        this.f25288c = obj2;
+        this.f25200a = i10;
+        this.f25201b = obj;
+        this.f25202c = obj2;
         this.d = obj3;
     }
 
     private final void a() {
         boolean z10;
-        String str = (String) this.f25288c;
+        String str = (String) this.f25202c;
         String str2 = (String) this.d;
-        org.telegram.ui.web.b1 b1Var = ((BotWebViewContainer$WebViewProxy) this.f25287b).f43258a;
-        if (b1Var != null && !b1Var.f43300o0 && b1Var.f43285c != null) {
+        org.telegram.ui.web.b1 b1Var = ((BotWebViewContainer$WebViewProxy) this.f25201b).f43404a;
+        if (b1Var != null && !b1Var.f43445o0 && b1Var.f43430c != null) {
             if (b1Var.F0 != null && !TextUtils.equals(b1Var.getOriginHost(), b1Var.F0)) {
                 b1Var.g("onWebEventReceived ignore " + str);
                 return;
@@ -79,25 +79,25 @@ public final class cf0 implements Runnable {
                         JSONArray jSONArray = new JSONArray(str2);
                         boolean equals = TextUtils.equals(str, "actionBarColor");
                         int argb = Color.argb((int) Math.round(jSONArray.optDouble(3, 1.0d) * 255.0d), (int) Math.round(jSONArray.optDouble(0)), (int) Math.round(jSONArray.optDouble(1)), (int) Math.round(jSONArray.optDouble(2)));
-                        org.telegram.ui.web.y0 y0Var = b1Var.f43281a;
+                        org.telegram.ui.web.y0 y0Var = b1Var.f43426a;
                         if (y0Var != null) {
                             if (equals) {
-                                y0Var.f43590s = true;
-                                y0Var.f43591w = argb;
+                                y0Var.f43736s = true;
+                                y0Var.f43737w = argb;
                             } else {
                                 y0Var.v = true;
-                                y0Var.f43592x = argb;
+                                y0Var.f43738x = argb;
                             }
                             org.telegram.ui.web.y0.a(y0Var);
                         }
-                        b1Var.f43285c.o(argb, equals);
+                        b1Var.f43430c.o(argb, equals);
                         return;
                     } catch (Exception unused) {
                         return;
                     }
                 case 2:
                     b1Var.g("oauth_request " + str2);
-                    if (b1Var.f43281a != null) {
+                    if (b1Var.f43426a != null) {
                         String originHost = b1Var.getOriginHost();
                         if (!TextUtils.isEmpty(originHost)) {
                             try {
@@ -123,9 +123,9 @@ public final class cf0 implements Runnable {
                     return;
                 case 3:
                     b1Var.g("siteName " + str2);
-                    org.telegram.ui.web.y0 y0Var2 = b1Var.f43281a;
+                    org.telegram.ui.web.y0 y0Var2 = b1Var.f43426a;
                     if (y0Var2 != null) {
-                        y0Var2.f43589r = str2;
+                        y0Var2.f43735r = str2;
                         org.telegram.ui.web.y0.a(y0Var2);
                         return;
                     }
@@ -157,32 +157,32 @@ public final class cf0 implements Runnable {
     private final void b() {
         boolean z10;
         Object obj;
-        org.telegram.ui.web.i2 i2Var = (org.telegram.ui.web.i2) this.f25287b;
-        org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f25288c;
+        org.telegram.ui.web.i2 i2Var = (org.telegram.ui.web.i2) this.f25201b;
+        org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f25202c;
         Bitmap bitmap = (Bitmap) this.d;
         i2Var.getClass();
-        if (org.telegram.ui.web.i2.f43397f != null) {
+        if (org.telegram.ui.web.i2.f43541f != null) {
             int i10 = 0;
-            if ((h2Var.d <= 0 || h2Var.f43383e <= 0) && bitmap != null) {
+            if ((h2Var.d <= 0 || h2Var.f43527e <= 0) && bitmap != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (bitmap != null) {
-                i2Var.d.put(h2Var.f43381b, bitmap);
+                i2Var.d.put(h2Var.f43525b, bitmap);
                 if (z10) {
                     int i11 = h2Var.d;
-                    if (i11 == 0 && h2Var.f43383e == 0) {
+                    if (i11 == 0 && h2Var.f43527e == 0) {
                         h2Var.d = bitmap.getWidth();
-                        h2Var.f43383e = bitmap.getHeight();
+                        h2Var.f43527e = bitmap.getHeight();
                     } else if (i11 == 0) {
-                        h2Var.d = (int) ((bitmap.getWidth() / bitmap.getHeight()) * h2Var.f43383e);
-                    } else if (h2Var.f43383e == 0) {
-                        h2Var.f43383e = (int) ((bitmap.getHeight() / bitmap.getWidth()) * h2Var.d);
+                        h2Var.d = (int) ((bitmap.getWidth() / bitmap.getHeight()) * h2Var.f43527e);
+                    } else if (h2Var.f43527e == 0) {
+                        h2Var.f43527e = (int) ((bitmap.getHeight() / bitmap.getWidth()) * h2Var.d);
                     }
                 }
             }
-            ArrayList arrayList = (ArrayList) org.telegram.ui.web.i2.f43397f.remove(h2Var.f43381b);
+            ArrayList arrayList = (ArrayList) org.telegram.ui.web.i2.f43541f.remove(h2Var.f43525b);
             if (arrayList != null) {
                 int size = arrayList.size();
                 while (i10 < size) {
@@ -204,9 +204,9 @@ public final class cf0 implements Runnable {
     }
 
     public cf0(df0 df0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f25286a = 0;
-        this.f25287b = df0Var;
-        this.f25288c = tL_error;
+        this.f25200a = 0;
+        this.f25201b = df0Var;
+        this.f25202c = tL_error;
         this.d = tLObject;
     }
 }

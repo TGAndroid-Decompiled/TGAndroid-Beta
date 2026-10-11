@@ -2,23 +2,23 @@ package xh;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class z3 implements Runnable {
-    public final int f51666a;
-    public final h4 f51667b;
+    public final int f51709a;
+    public final h4 f51710b;
 
     public z3(h4 h4Var, int i10) {
-        this.f51666a = i10;
-        this.f51667b = h4Var;
+        this.f51709a = i10;
+        this.f51710b = h4Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f51666a) {
+        switch (this.f51709a) {
             case 0:
-                this.f51667b.a0();
+                this.f51710b.a0();
                 return;
             default:
-                h4 h4Var = this.f51667b;
-                h4Var.f51320i0.N(true);
+                h4 h4Var = this.f51710b;
+                h4Var.f51363i0.N(true);
                 AndroidUtilities.runOnUIThread(new z3(h4Var, 0), 150L);
                 return;
         }

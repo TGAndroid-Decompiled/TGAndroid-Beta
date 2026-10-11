@@ -24,7 +24,7 @@ public final class i90 extends org.telegram.ui.zn {
 
     public static void bd(i90 i90Var, long j3, TLRPC.Chat chat) {
         boolean z10;
-        org.telegram.ui.ActionBar.e6 e6Var;
+        org.telegram.ui.ActionBar.d6 d6Var;
         if (!AndroidUtilities.isContextSafe(i90Var.getParentActivity())) {
             return;
         }
@@ -39,8 +39,8 @@ public final class i90 extends org.telegram.ui.zn {
         }
         boolean z11 = z10;
         boolean z12 = chat.creator;
-        e6Var = ((org.telegram.ui.ActionBar.f3) i90Var.Tc).resourcesProvider;
-        e11.c(parentActivity, i10, j10, currentUser, null, z11, z12, e6Var);
+        d6Var = ((org.telegram.ui.ActionBar.e3) i90Var.Tc).resourcesProvider;
+        f11.c(parentActivity, i10, j10, currentUser, null, z11, z12, d6Var);
     }
 
     @Override
@@ -52,13 +52,13 @@ public final class i90 extends org.telegram.ui.zn {
             long j3 = this.Sc;
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             if (ChatObject.canManageMyTag(chat)) {
-                tc J = ad.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 21));
-                J.f31104r = false;
+                sc J = ad.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 20));
+                J.f30719r = false;
                 J.k(true);
                 return;
             }
-            tc Q = ad.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f31104r = false;
+            sc Q = ad.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
+            Q.f30719r = false;
             Q.k(true);
         }
     }

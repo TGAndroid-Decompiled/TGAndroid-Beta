@@ -354,7 +354,7 @@ public final class i implements m {
         int i11 = gVar.i(2);
         boolean h = gVar.h();
         gVar.t(1);
-        byte[] bArr2 = d0.f8533b;
+        byte[] bArr2 = d0.f8532b;
         if (i11 == 1) {
             gVar.t(gVar.i(8) * 16);
         } else if (i11 == 0) {
@@ -548,8 +548,8 @@ public final class i implements m {
         }
         d dVar4 = hVar2.f3746i;
         if (dVar4 == null) {
-            g0 g0Var = i0.f8752b;
-            aVar = new z3.a(-9223372036854775807L, -9223372036854775807L, a1.f8715e);
+            g0 g0Var = i0.f8751b;
+            aVar = new z3.a(-9223372036854775807L, -9223372036854775807L, a1.f8714e);
         } else {
             b bVar2 = hVar2.h;
             if (bVar2 == null) {
@@ -711,7 +711,7 @@ public final class i implements m {
     }
 
     @Override
-    public final z3.d s(int i10, int i11, byte[] bArr) {
+    public final z3.d t(int i10, int i11, byte[] bArr) {
         return sc.v.a(this, bArr, i11);
     }
 }

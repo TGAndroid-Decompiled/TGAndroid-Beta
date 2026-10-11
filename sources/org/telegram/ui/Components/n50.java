@@ -39,7 +39,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class n50 implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.mq0 {
+public final class n50 implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.lq0 {
     public String E;
     public boolean F;
     public boolean H;
@@ -56,23 +56,23 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
     public int U;
     public final int V;
     public float W;
-    public org.telegram.ui.ActionBar.n2 f28984a;
-    public m50 f28985b;
-    public yi f28986c;
-    public String f28988f;
+    public org.telegram.ui.ActionBar.m2 f28948a;
+    public m50 f28949b;
+    public yi f28950c;
+    public String f28952f;
     public TLRPC.PhotoSize h;
-    public TLRPC.PhotoSize f28989n;
-    public Bitmap f28990r;
-    public boolean f28991s;
+    public TLRPC.PhotoSize f28953n;
+    public Bitmap f28954r;
+    public boolean f28955s;
     public String v;
-    public String f28992w;
-    public String f28993x;
-    public MessageObject f28994y;
+    public String f28956w;
+    public String f28957x;
+    public MessageObject f28958y;
     public final int d = UserConfig.selectedAccount;
     public boolean G = true;
     public boolean J = true;
     public boolean K = true;
-    public final ImageReceiver f28987e = new ImageReceiver(null);
+    public final ImageReceiver f28951e = new ImageReceiver(null);
 
     public n50(int i10, boolean z10, boolean z11) {
         this.Q = z10;
@@ -83,14 +83,14 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
     public static void a(n50 n50Var, boolean z10, ArrayList arrayList) {
         MessageObject messageObject;
         Bitmap loadBitmap;
-        ImageReceiver imageReceiver = n50Var.f28987e;
+        ImageReceiver imageReceiver = n50Var.f28951e;
         int i10 = n50Var.d;
         if (!arrayList.isEmpty()) {
             SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
             Bitmap bitmap = null;
             if ((sendingMediaInfo.isVideo || sendingMediaInfo.videoEditedInfo != null) && !sendingMediaInfo.isLivePhoto) {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                tL_message.f20063id = 0;
+                tL_message.f20053id = 0;
                 tL_message.message = "";
                 tL_message.media = new TLRPC.TL_messageMediaEmpty();
                 tL_message.action = new TLRPC.TL_messageActionEmpty();
@@ -158,10 +158,10 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
         if (str != null) {
             FileLoader.getInstance(i10).cancelFileUpload(this.v, false);
         }
-        if (this.f28992w != null) {
-            FileLoader.getInstance(i10).cancelFileUpload(this.f28992w, false);
+        if (this.f28956w != null) {
+            FileLoader.getInstance(i10).cancelFileUpload(this.f28956w, false);
         }
-        m50 m50Var = this.f28985b;
+        m50 m50Var = this.f28949b;
         if (m50Var != null) {
             m50Var.P();
         }
@@ -169,49 +169,49 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
 
     public final void c() {
         this.v = null;
-        this.f28992w = null;
-        this.f28993x = null;
-        this.f28994y = null;
+        this.f28956w = null;
+        this.f28957x = null;
+        this.f28958y = null;
         if (this.F) {
-            this.f28987e.setImageBitmap((Drawable) null);
-            this.f28984a = null;
-            this.f28985b = null;
+            this.f28951e.setImageBitmap((Drawable) null);
+            this.f28948a = null;
+            this.f28949b = null;
         }
     }
 
     public final void d() {
         this.T = false;
-        if (this.v == null && this.f28992w == null && this.f28994y == null) {
-            this.f28984a = null;
-            this.f28985b = null;
+        if (this.v == null && this.f28956w == null && this.f28958y == null) {
+            this.f28948a = null;
+            this.f28949b = null;
         } else {
             this.F = true;
         }
-        yi yiVar = this.f28986c;
+        yi yiVar = this.f28950c;
         if (yiVar != null) {
             yiVar.dismissInternal();
-            this.f28986c.y1();
+            this.f28950c.y1();
         }
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         m50 m50Var;
-        org.telegram.ui.ActionBar.n2 n2Var;
+        org.telegram.ui.ActionBar.m2 m2Var;
         String str;
         int i12 = NotificationCenter.fileUploaded;
         int i13 = this.d;
         if (i10 != i12 && i10 != NotificationCenter.fileUploadFailed) {
             if (i10 == NotificationCenter.fileUploadProgressChanged) {
                 String str2 = (String) objArr[0];
-                if (this.f28994y != null) {
-                    str = this.f28992w;
+                if (this.f28958y != null) {
+                    str = this.f28956w;
                 } else {
                     str = this.v;
                 }
-                if (this.f28985b != null && str2.equals(str)) {
+                if (this.f28949b != null && str2.equals(str)) {
                     float min = Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()));
-                    m50 m50Var2 = this.f28985b;
+                    m50 m50Var2 = this.f28949b;
                     this.W = min;
                     m50Var2.D(min);
                     return;
@@ -222,7 +222,7 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
             if (i10 != i14 && i10 != NotificationCenter.fileLoadFailed && i10 != NotificationCenter.httpFileDidLoad && i10 != NotificationCenter.httpFileDidFailedLoad) {
                 int i15 = NotificationCenter.filePreparingFailed;
                 if (i10 == i15) {
-                    if (((MessageObject) objArr[0]) == this.f28994y && this.f28984a != null) {
+                    if (((MessageObject) objArr[0]) == this.f28958y && this.f28948a != null) {
                         NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.filePreparingStarted);
                         NotificationCenter.getInstance(i13).removeObserver(this, i15);
                         NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
@@ -231,11 +231,11 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                     }
                     return;
                 } else if (i10 == NotificationCenter.fileNewChunkAvailable) {
-                    if (((MessageObject) objArr[0]) == this.f28994y && this.f28984a != null) {
+                    if (((MessageObject) objArr[0]) == this.f28958y && this.f28948a != null) {
                         String str3 = (String) objArr[1];
                         long longValue = ((Long) objArr[2]).longValue();
                         long longValue2 = ((Long) objArr[3]).longValue();
-                        this.f28984a.getFileLoader().checkUploadNewDataAvailable(str3, false, longValue, longValue2);
+                        this.f28948a.getFileLoader().checkUploadNewDataAvailable(str3, false, longValue, longValue2);
                         if (longValue2 != 0) {
                             double longValue3 = ((Long) objArr[5]).longValue() / 1000000.0d;
                             if (this.P > longValue3) {
@@ -243,7 +243,7 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                             }
                             Bitmap createVideoThumbnailAtTime = SendMessagesHelper.createVideoThumbnailAtTime(str3, (long) (this.P * 1000.0d), null, true);
                             if (createVideoThumbnailAtTime != null) {
-                                File pathToAttach = FileLoader.getInstance(i13).getPathToAttach(this.f28989n, true);
+                                File pathToAttach = FileLoader.getInstance(i13).getPathToAttach(this.f28953n, true);
                                 if (pathToAttach != null) {
                                     if (BuildVars.LOGS_ENABLED) {
                                         FileLog.e("delete file " + pathToAttach);
@@ -259,11 +259,11 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                                 }
                                 this.h = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 800.0f, 800.0f, 80, false, 320, 320);
                                 TLRPC.PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(createVideoThumbnailAtTime, 150.0f, 150.0f, 80, false, 150, 150);
-                                this.f28989n = scaleAndSaveImage;
+                                this.f28953n = scaleAndSaveImage;
                                 if (scaleAndSaveImage != null) {
                                     try {
-                                        Bitmap decodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(i13).getPathToAttach(this.f28989n, true).getAbsolutePath());
-                                        ImageLoader.getInstance().putImageToCache(new BitmapDrawable(decodeFile), this.f28989n.location.volume_id + "_" + this.f28989n.location.local_id + "@50_50", true);
+                                        Bitmap decodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(i13).getPathToAttach(this.f28953n, true).getAbsolutePath());
+                                        ImageLoader.getInstance().putImageToCache(new BitmapDrawable(decodeFile), this.f28953n.location.volume_id + "_" + this.f28953n.location.local_id + "@50_50", true);
                                     } catch (Throwable unused) {
                                     }
                                 }
@@ -271,17 +271,17 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                             NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.filePreparingStarted);
                             NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.filePreparingFailed);
                             NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
-                            this.f28993x = str3;
-                            this.f28992w = str3;
-                            this.f28994y = null;
+                            this.f28957x = str3;
+                            this.f28956w = str3;
+                            this.f28958y = null;
                             return;
                         }
                         return;
                     }
                     return;
-                } else if (i10 == NotificationCenter.filePreparingStarted && ((MessageObject) objArr[0]) == this.f28994y && (n2Var = this.f28984a) != null) {
-                    this.f28992w = (String) objArr[1];
-                    n2Var.getFileLoader().uploadFile(this.f28992w, false, false, (int) this.f28994y.videoEditedInfo.estimatedSize, 33554432, false);
+                } else if (i10 == NotificationCenter.filePreparingStarted && ((MessageObject) objArr[0]) == this.f28958y && (m2Var = this.f28948a) != null) {
+                    this.f28956w = (String) objArr[1];
+                    m2Var.getFileLoader().uploadFile(this.f28956w, false, false, (int) this.f28958y.videoEditedInfo.estimatedSize, 33554432, false);
                     return;
                 } else {
                     return;
@@ -297,8 +297,8 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                 NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.httpFileDidFailedLoad);
                 this.v = null;
                 if (i10 != i14 && i10 != i16) {
-                    this.f28987e.setImageBitmap((Drawable) null);
-                    m50 m50Var3 = this.f28985b;
+                    this.f28951e.setImageBitmap((Drawable) null);
+                    m50 m50Var3 = this.f28949b;
                     if (m50Var3 != null) {
                         m50Var3.P();
                         return;
@@ -316,20 +316,20 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
             if (i10 == i12) {
                 this.M = (TLRPC.InputFile) objArr[1];
             }
-        } else if (str4.equals(this.f28992w)) {
-            this.f28992w = null;
+        } else if (str4.equals(this.f28956w)) {
+            this.f28956w = null;
             if (i10 == i12) {
                 this.N = (TLRPC.InputFile) objArr[1];
             }
         } else {
             return;
         }
-        if (this.v == null && this.f28992w == null && this.f28994y == null) {
+        if (this.v == null && this.f28956w == null && this.f28958y == null) {
             NotificationCenter.getInstance(i13).removeObserver(this, i12);
             NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
             NotificationCenter.getInstance(i13).removeObserver(this, NotificationCenter.fileUploadFailed);
-            if (i10 == i12 && (m50Var = this.f28985b) != null) {
-                m50Var.Q(this.M, this.N, this.P, this.f28993x, this.h, this.f28989n, this.f28991s, this.O);
+            if (i10 == i12 && (m50Var = this.f28949b) != null) {
+                m50Var.Q(this.M, this.N, this.P, this.f28957x, this.h, this.f28953n, this.f28955s, this.O);
             }
             c();
         }
@@ -339,19 +339,19 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
         int i10;
         hu huVar;
         boolean z10;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28984a;
-        if (n2Var != null && n2Var.getParentActivity() != null) {
-            if (this.f28986c == null) {
-                yi yiVar = new yi(this.f28984a.getParentActivity(), this.f28984a, this.R, this.S);
-                this.f28986c = yiVar;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f28948a;
+        if (m2Var != null && m2Var.getParentActivity() != null) {
+            if (this.f28950c == null) {
+                yi yiVar = new yi(this.f28948a.getParentActivity(), this.f28948a, this.R, this.S);
+                this.f28950c = yiVar;
                 if (this.Q) {
                     i10 = 2;
                 } else {
                     i10 = 1;
                 }
-                m50 m50Var = this.f28985b;
+                m50 m50Var = this.f28949b;
                 if (m50Var != null && m50Var.u()) {
-                    m50 m50Var2 = this.f28985b;
+                    m50 m50Var2 = this.f28949b;
                     Objects.requireNonNull(m50Var2);
                     huVar = new hu(m50Var2, 1);
                 } else {
@@ -361,52 +361,52 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                 yiVar.U0 = huVar;
                 yiVar.V0 = false;
                 qi qiVar = yiVar.B0;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33247j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33228j0;
                 if (qiVar == null || qiVar == chatAttachAlertPhotoLayout) {
                     yiVar.A1.setVisibility(8);
                 }
                 int i11 = yiVar.T0;
-                TextView textView = yiVar.f33255m1;
+                TextView textView = yiVar.f33236m1;
                 if (i11 == 2) {
                     textView.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
                 } else {
                     textView.setText(LocaleController.getString(R.string.ChoosePhoto));
                 }
                 if (chatAttachAlertPhotoLayout != null) {
-                    yi yiVar2 = chatAttachAlertPhotoLayout.f30211b;
+                    yi yiVar2 = chatAttachAlertPhotoLayout.f30161b;
                     if (yiVar2.T0 != 0 && !yiVar2.F) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    chatAttachAlertPhotoLayout.f24043g1 = z10;
+                    chatAttachAlertPhotoLayout.f24031g1 = z10;
                 }
-                yi yiVar3 = this.f28986c;
-                yiVar3.f33226c2 = new i50(this);
+                yi yiVar3 = this.f28950c;
+                yiVar3.f33207c2 = new i50(this);
                 yiVar3.U = this;
             }
             int i12 = this.U;
             if (i12 == 1) {
-                this.f28986c.f33255m1.setText(LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, this.L.first_name));
+                this.f28950c.f33236m1.setText(LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, this.L.first_name));
             } else if (i12 == 2) {
-                this.f28986c.f33255m1.setText(LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.L.first_name));
+                this.f28950c.f33236m1.setText(LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.L.first_name));
             }
         }
     }
 
     public final boolean f(Dialog dialog) {
-        yi yiVar = this.f28986c;
+        yi yiVar = this.f28950c;
         if (yiVar == null || dialog != yiVar) {
             return false;
         }
-        yiVar.f33247j0.a0(false);
-        this.f28986c.dismissInternal();
-        this.f28986c.f33247j0.d0(true);
+        yiVar.f33228j0.a0(false);
+        this.f28950c.dismissInternal();
+        this.f28950c.f33228j0.d0(true);
         return true;
     }
 
     public final boolean g() {
-        if (this.v == null && this.f28992w == null && this.f28994y == null) {
+        if (this.v == null && this.f28956w == null && this.f28958y == null) {
             return false;
         }
         return true;
@@ -416,85 +416,85 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
         if (i11 == -1) {
             if (i10 != 0 && i10 != 2) {
                 if (i10 == 13) {
-                    this.f28984a.getParentActivity().overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
-                    PhotoViewer.t1().K2(null, this.f28984a, null);
-                    o(this.f28988f, null, AndroidUtilities.getImageOrientation(this.f28988f), false);
-                    AndroidUtilities.addMediaToGallery(this.f28988f);
-                    this.f28988f = null;
+                    this.f28948a.getParentActivity().overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
+                    PhotoViewer.t1().K2(null, this.f28948a, null);
+                    o(this.f28952f, null, AndroidUtilities.getImageOrientation(this.f28952f), false);
+                    AndroidUtilities.addMediaToGallery(this.f28952f);
+                    this.f28952f = null;
                     return;
                 } else if (i10 == 14) {
                     if (intent != null && intent.getData() != null) {
-                        AndroidUtilities.runOnUIThread(new as(18, this, intent.getData()));
+                        AndroidUtilities.runOnUIThread(new bs(17, this, intent.getData()));
                         return;
                     }
                     return;
                 } else if (i10 == 15) {
-                    p(this.f28988f, null, true);
-                    AndroidUtilities.addMediaToGallery(this.f28988f);
-                    this.f28988f = null;
+                    p(this.f28952f, null, true);
+                    AndroidUtilities.addMediaToGallery(this.f28952f);
+                    this.f28952f = null;
                     return;
                 } else {
                     return;
                 }
             }
             e();
-            yi yiVar = this.f28986c;
+            yi yiVar = this.f28950c;
             if (yiVar != null) {
-                yiVar.f33247j0.g0(i10, intent, this.f28988f);
+                yiVar.f33228j0.g0(i10, intent, this.f28952f);
             }
-            this.f28988f = null;
+            this.f28952f = null;
         }
     }
 
     public final void i() {
-        yi yiVar = this.f28986c;
+        yi yiVar = this.f28950c;
         if (yiVar != null) {
             yiVar.A1();
         }
     }
 
     public final void j(int i10, String[] strArr, int[] iArr) {
-        yi yiVar = this.f28986c;
+        yi yiVar = this.f28950c;
         if (yiVar != null) {
             if (i10 == 17) {
-                yiVar.f33247j0.U(false);
-                this.f28986c.f33247j0.Y();
+                yiVar.f33228j0.U(false);
+                this.f28950c.f33228j0.Y();
             } else if (i10 == 4) {
-                yiVar.f33247j0.Y();
+                yiVar.f33228j0.Y();
             }
         }
     }
 
     public final void k() {
-        yi yiVar = this.f28986c;
+        yi yiVar = this.f28950c;
         if (yiVar != null) {
             yiVar.B1();
         }
     }
 
     public final void l() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28984a;
-        if (n2Var != null && n2Var.getParentActivity() != null) {
+        org.telegram.ui.ActionBar.m2 m2Var = this.f28948a;
+        if (m2Var != null && m2Var.getParentActivity() != null) {
             try {
                 int i10 = Build.VERSION.SDK_INT;
-                if (this.f28984a.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                    this.f28984a.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 20);
+                if (this.f28948a.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                    this.f28948a.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 20);
                     return;
                 }
                 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 File generatePicturePath = AndroidUtilities.generatePicturePath();
                 if (generatePicturePath != null) {
                     if (i10 >= 24) {
-                        Activity parentActivity = this.f28984a.getParentActivity();
+                        Activity parentActivity = this.f28948a.getParentActivity();
                         intent.putExtra("output", FileProvider.d(parentActivity, ApplicationLoader.getApplicationId() + ".provider", generatePicturePath));
                         intent.addFlags(2);
                         intent.addFlags(1);
                     } else {
                         intent.putExtra("output", Uri.fromFile(generatePicturePath));
                     }
-                    this.f28988f = generatePicturePath.getAbsolutePath();
+                    this.f28952f = generatePicturePath.getAbsolutePath();
                 }
-                this.f28984a.startActivityForResult(intent, 13);
+                this.f28948a.startActivityForResult(intent, 13);
             } catch (Exception e7) {
                 FileLog.e(e7);
             }
@@ -503,11 +503,11 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
 
     public final void m() {
         int i10;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28984a;
-        if (n2Var == null) {
+        org.telegram.ui.ActionBar.m2 m2Var = this.f28948a;
+        if (m2Var == null) {
             return;
         }
-        Activity parentActivity = n2Var.getParentActivity();
+        Activity parentActivity = m2Var.getParentActivity();
         if (Build.VERSION.SDK_INT >= 33 && parentActivity != null) {
             if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0) {
                 parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 151);
@@ -522,49 +522,49 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
         } else {
             i10 = 1;
         }
-        org.telegram.ui.kq0 kq0Var = new org.telegram.ui.kq0(i10, false, false, null);
-        kq0Var.f39382x = this.J;
-        kq0Var.V = new j50(this);
-        this.f28984a.presentFragment(kq0Var);
+        org.telegram.ui.jq0 jq0Var = new org.telegram.ui.jq0(i10, false, false, null);
+        jq0Var.f39108x = this.J;
+        jq0Var.V = new j50(this);
+        this.f28948a.presentFragment(jq0Var);
     }
 
     public final void n(boolean z10, final Runnable runnable, DialogInterface.OnDismissListener onDismissListener, int i10) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f28984a;
-        if (n2Var != null && n2Var.getParentActivity() != null) {
+        org.telegram.ui.ActionBar.m2 m2Var = this.f28948a;
+        if (m2Var != null && m2Var.getParentActivity() != null) {
             this.T = false;
             this.U = i10;
             if (this.G) {
-                org.telegram.ui.ActionBar.n2 n2Var2 = this.f28984a;
-                if (n2Var2 != null && n2Var2.getParentActivity() != null) {
+                org.telegram.ui.ActionBar.m2 m2Var2 = this.f28948a;
+                if (m2Var2 != null && m2Var2.getParentActivity() != null) {
                     e();
-                    yi yiVar = this.f28986c;
+                    yi yiVar = this.f28950c;
                     yiVar.X1 = this.H;
                     yiVar.N1(1, false);
-                    this.f28986c.f33247j0.f0();
-                    this.f28986c.t1();
-                    this.f28986c.setOnHideListener(onDismissListener);
+                    this.f28950c.f33228j0.f0();
+                    this.f28950c.t1();
+                    this.f28950c.setOnHideListener(onDismissListener);
                     int i11 = this.U;
                     if (i11 != 0) {
-                        this.f28986c.Q = new l50(i11, this.L);
+                        this.f28950c.Q = new l50(i11, this.L);
                     }
-                    yi yiVar2 = this.f28986c;
+                    yi yiVar2 = this.f28950c;
                     yiVar2.getClass();
-                    this.f28984a.showDialog(yiVar2);
+                    this.f28948a.showDialog(yiVar2);
                     return;
                 }
                 return;
             }
-            org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) this.f28984a.getParentActivity(), (org.telegram.ui.ActionBar.e6) null, false);
-            f3Var.fixNavigationBar();
+            org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) this.f28948a.getParentActivity(), (org.telegram.ui.ActionBar.d6) null, false);
+            e3Var.fixNavigationBar();
             if (i10 == 1) {
-                f3Var.title = LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, this.L.first_name);
-                f3Var.bigTitle = true;
+                e3Var.title = LocaleController.formatString("SetPhotoFor", R.string.SetPhotoFor, this.L.first_name);
+                e3Var.bigTitle = true;
             } else if (i10 == 2) {
-                f3Var.title = LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.L.first_name);
-                f3Var.bigTitle = true;
+                e3Var.title = LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.L.first_name);
+                e3Var.bigTitle = true;
             } else {
-                f3Var.title = LocaleController.getString(R.string.ChoosePhoto);
-                f3Var.bigTitle = true;
+                e3Var.title = LocaleController.getString(R.string.ChoosePhoto);
+                e3Var.bigTitle = true;
             }
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
@@ -593,7 +593,7 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
             DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i13) {
-                    org.telegram.ui.ActionBar.n2 n2Var3;
+                    org.telegram.ui.ActionBar.m2 m2Var3;
                     n50 n50Var = n50.this;
                     n50Var.getClass();
                     int intValue = ((Integer) arrayList3.get(i13)).intValue();
@@ -601,18 +601,18 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                         if (intValue != 1) {
                             if (intValue != 2) {
                                 if (intValue != 3) {
-                                    if (intValue == 4 && (n2Var3 = n50Var.f28984a) != null && n2Var3.getParentActivity() != null) {
+                                    if (intValue == 4 && (m2Var3 = n50Var.f28948a) != null && m2Var3.getParentActivity() != null) {
                                         try {
                                             int i14 = Build.VERSION.SDK_INT;
-                                            if (n50Var.f28984a.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                                                n50Var.f28984a.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 19);
+                                            if (n50Var.f28948a.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                                                n50Var.f28948a.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 19);
                                                 return;
                                             }
                                             Intent intent = new Intent("android.media.action.VIDEO_CAPTURE");
                                             File generateVideoPath = AndroidUtilities.generateVideoPath();
                                             if (generateVideoPath != null) {
                                                 if (i14 >= 24) {
-                                                    Activity parentActivity = n50Var.f28984a.getParentActivity();
+                                                    Activity parentActivity = n50Var.f28948a.getParentActivity();
                                                     intent.putExtra("output", FileProvider.d(parentActivity, ApplicationLoader.getApplicationId() + ".provider", generateVideoPath));
                                                     intent.addFlags(2);
                                                     intent.addFlags(1);
@@ -623,9 +623,9 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                                                 intent.putExtra("android.intent.extras.LENS_FACING_FRONT", 1);
                                                 intent.putExtra("android.intent.extra.USE_FRONT_CAMERA", true);
                                                 intent.putExtra("android.intent.extra.durationLimit", 10);
-                                                n50Var.f28988f = generateVideoPath.getAbsolutePath();
+                                                n50Var.f28952f = generateVideoPath.getAbsolutePath();
                                             }
-                                            n50Var.f28984a.startActivityForResult(intent, 15);
+                                            n50Var.f28948a.startActivityForResult(intent, 15);
                                             return;
                                         } catch (Exception e7) {
                                             FileLog.e(e7);
@@ -646,13 +646,13 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                     n50Var.l();
                 }
             };
-            f3Var.items = (CharSequence[]) arrayList.toArray(new CharSequence[0]);
-            f3Var.itemIcons = iArr;
-            f3Var.onClickListener = onClickListener;
-            f3Var.setOnHideListener(onDismissListener);
-            this.f28984a.showDialog(f3Var);
+            e3Var.items = (CharSequence[]) arrayList.toArray(new CharSequence[0]);
+            e3Var.itemIcons = iArr;
+            e3Var.onClickListener = onClickListener;
+            e3Var.setOnHideListener(onDismissListener);
+            this.f28948a.showDialog(e3Var);
             if (z10) {
-                f3Var.setItemColor(arrayList.size() - 1, org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21041q7, false), org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f21022p7, false));
+                e3Var.setItemColor(arrayList.size() - 1, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21026q7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21007p7, false));
             }
         }
     }
@@ -663,7 +663,7 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
         orientation.isVideo = z10;
         orientation.thumbPath = str2;
         arrayList.add(orientation);
-        PhotoViewer.t1().K2(null, this.f28984a, null);
+        PhotoViewer.t1().K2(null, this.f28948a, null);
         PhotoViewer.t1().g2(arrayList, 0, 1, false, new k50(this, arrayList), null);
         PhotoViewer.t1().P = true;
     }
@@ -673,19 +673,19 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
     }
 
     public final void q() {
-        if (this.f28984a == null) {
+        if (this.f28948a == null) {
             return;
         }
         HashMap hashMap = new HashMap();
         ArrayList arrayList = new ArrayList();
-        org.telegram.ui.br0 br0Var = new org.telegram.ui.br0(0, null, hashMap, arrayList, 1, false, null, this.R);
-        br0Var.f36458s0 = new h50(this, hashMap, arrayList);
-        br0Var.f0(1, false);
-        br0Var.f36453p0 = this.f28985b.getInitialSearchString();
+        org.telegram.ui.ar0 ar0Var = new org.telegram.ui.ar0(0, null, hashMap, arrayList, 1, false, null, this.R);
+        ar0Var.f36158s0 = new h50(this, hashMap, arrayList);
+        ar0Var.f0(1, false);
+        ar0Var.f36153p0 = this.f28949b.getInitialSearchString();
         if (this.S) {
-            this.f28984a.showAsSheet(br0Var);
+            this.f28948a.showAsSheet(ar0Var);
         } else {
-            this.f28984a.presentFragment(br0Var);
+            this.f28948a.presentFragment(ar0Var);
         }
     }
 
@@ -694,8 +694,8 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
         if (bitmap != null) {
             this.N = null;
             this.M = null;
-            this.f28994y = null;
-            this.f28993x = null;
+            this.f28958y = null;
+            this.f28957x = null;
             if (messageObject == null) {
                 videoSize = null;
             } else {
@@ -704,13 +704,13 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
             this.O = videoSize;
             this.h = ImageLoader.scaleAndSaveImage(bitmap, 800.0f, 800.0f, 80, false, 320, 320);
             TLRPC.PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmap, 150.0f, 150.0f, 80, false, 150, 150);
-            this.f28989n = scaleAndSaveImage;
+            this.f28953n = scaleAndSaveImage;
             int i10 = this.d;
             if (scaleAndSaveImage != null) {
                 try {
-                    Bitmap decodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(i10).getPathToAttach(this.f28989n, true).getAbsolutePath());
-                    this.f28990r = decodeFile;
-                    ImageLoader.getInstance().putImageToCache(new BitmapDrawable(decodeFile), this.f28989n.location.volume_id + "_" + this.f28989n.location.local_id + "@50_50", true);
+                    Bitmap decodeFile = BitmapFactory.decodeFile(FileLoader.getInstance(i10).getPathToAttach(this.f28953n, true).getAbsolutePath());
+                    this.f28954r = decodeFile;
+                    ImageLoader.getInstance().putImageToCache(new BitmapDrawable(decodeFile), this.f28953n.location.volume_id + "_" + this.f28953n.location.local_id + "@50_50", true);
                 } catch (Throwable unused) {
                 }
             }
@@ -726,20 +726,20 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                 if (this.K) {
                     if (messageObject != null && messageObject.videoEditedInfo != null) {
                         if (this.I && !MessagesController.getInstance(i10).uploadMarkupVideo) {
-                            m50 m50Var = this.f28985b;
+                            m50 m50Var = this.f28949b;
                             if (m50Var != null) {
                                 m50Var.L(z10, true);
                             }
-                            m50 m50Var2 = this.f28985b;
+                            m50 m50Var2 = this.f28949b;
                             if (m50Var2 != null) {
-                                m50Var2.Q(null, null, 0.0d, null, this.h, this.f28989n, this.f28991s, null);
-                                this.f28985b.Q(null, null, this.P, this.f28993x, this.h, this.f28989n, this.f28991s, this.O);
+                                m50Var2.Q(null, null, 0.0d, null, this.h, this.f28953n, this.f28955s, null);
+                                this.f28949b.Q(null, null, this.P, this.f28957x, this.h, this.f28953n, this.f28955s, this.O);
                                 c();
                                 return;
                             }
                             return;
                         }
-                        this.f28994y = messageObject;
+                        this.f28958y = messageObject;
                         VideoEditedInfo videoEditedInfo = messageObject.videoEditedInfo;
                         long j3 = videoEditedInfo.startTime;
                         if (j3 < 0) {
@@ -752,17 +752,17 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileNewChunkAvailable);
                         MediaController.getInstance().scheduleVideoConvert(messageObject, true, true, false);
                         this.v = null;
-                        m50 m50Var3 = this.f28985b;
+                        m50 m50Var3 = this.f28949b;
                         if (m50Var3 != null) {
                             m50Var3.L(z10, true);
                         }
-                        this.f28991s = true;
+                        this.f28955s = true;
                     } else {
-                        m50 m50Var4 = this.f28985b;
+                        m50 m50Var4 = this.f28949b;
                         if (m50Var4 != null) {
                             m50Var4.L(z10, false);
                         }
-                        this.f28991s = false;
+                        this.f28955s = false;
                     }
                     NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
                     NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploadProgressChanged);
@@ -771,9 +771,9 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
                         FileLoader.getInstance(i10).uploadFile(this.v, false, true, 16777216);
                     }
                 }
-                m50 m50Var5 = this.f28985b;
+                m50 m50Var5 = this.f28949b;
                 if (m50Var5 != null) {
-                    m50Var5.Q(null, null, 0.0d, null, this.h, this.f28989n, this.f28991s, null);
+                    m50Var5.Q(null, null, 0.0d, null, this.h, this.f28953n, this.f28955s, null);
                 }
             }
         }
@@ -788,7 +788,7 @@ public final class n50 implements NotificationCenter.NotificationCenterDelegate,
         MessageObject messageObject = null;
         if ((photoEntry.isVideo || photoEntry.editedInfo != null) && !photoEntry.isLivePhoto()) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.f20063id = 0;
+            tL_message.f20053id = 0;
             tL_message.message = "";
             tL_message.media = new TLRPC.TL_messageMediaEmpty();
             tL_message.action = new TLRPC.TL_messageActionEmpty();

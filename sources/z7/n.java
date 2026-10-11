@@ -2,16 +2,16 @@ package z7;
 
 import java.util.AbstractMap;
 public final class n extends i {
-    public final o f54022c;
+    public final o f54071c;
 
     public n(o oVar) {
-        this.f54022c = oVar;
+        this.f54071c = oVar;
     }
 
     @Override
     public final Object get(int i10) {
-        o oVar = this.f54022c;
-        w7.j9.a(i10, oVar.f54031e);
+        o oVar = this.f54071c;
+        w7.j9.a(i10, oVar.f54080e);
         Object[] objArr = oVar.d;
         int i11 = i10 + i10;
         Object obj = objArr[i11];
@@ -23,6 +23,6 @@ public final class n extends i {
 
     @Override
     public final int size() {
-        return this.f54022c.f54031e;
+        return this.f54071c.f54080e;
     }
 }

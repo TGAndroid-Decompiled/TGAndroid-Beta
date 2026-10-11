@@ -1,210 +1,1762 @@
 package org.telegram.ui.ActionBar;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.transition.ChangeBounds;
+import android.transition.Transition;
+import android.transition.TransitionManager;
+import android.transition.TransitionSet;
+import android.util.Property;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fr;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.ai;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.c31;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.fa0;
+import org.telegram.ui.Components.hk0;
 import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.y9;
-public class u0 extends FrameLayout implements me.d {
-    public final me.b f21541a;
-    public fr f21542b;
-    public final y9 f21543c;
-    public final ImageView d;
-    public final TextView f21544e;
-    public gg.p0 f21545f;
-    public final q h;
-    public final e6 f21546n;
-    public boolean f21547r;
-    public boolean f21548s;
-    public int v;
-    public int f21549w;
+import org.telegram.ui.Components.q80;
+import org.telegram.ui.vh;
+import org.telegram.ui.xh;
+public class u0 extends FrameLayout {
+    public final TextView E;
+    public p0 F;
+    public boolean G;
+    public e5 H;
+    public Rect I;
+    public int[] J;
+    public View K;
+    public p L;
+    public int M;
+    public int N;
+    public int O;
+    public q0 P;
+    public r0 Q;
+    public boolean R;
+    public boolean S;
+    public boolean T;
+    public boolean U;
+    public boolean V;
+    public ci.i2 W;
+    public FrameLayout f21533a;
+    public int f21534a0;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f21535b;
+    public int f21536b0;
+    public final y f21537c;
+    public boolean f21538c0;
+    public m1 d;
+    public boolean f21539d0;
+    public ci.g2 f21540e;
+    public boolean f21541e0;
+    public LinearLayout f21542f;
+    public boolean f21543f0;
+    public final ArrayList f21544g0;
+    public TextView h;
+    public int f21545h0;
+    public final AnimationNotificationsLocker f21546i0;
+    public float f21547j0;
+    public float f21548k0;
+    public View f21549l0;
+    public final d6 m0;
+    public CharSequence f21550n;
+    public int f21551n0;
+    public View.OnClickListener f21552o0;
+    public boolean f21553p0;
+    public ah.c f21554q0;
+    public CharSequence f21555r;
+    public dh.e f21556r0;
+    public j0 f21557s;
+    public AnimatorSet f21558s0;
+    public ArrayList f21559t0;
+    public HashMap f21560u0;
+    public AnimatorSet v;
+    public View f21561w;
+    public final hk0 f21562x;
+    public int f21563y;
 
-    public u0(Context context, e6 e6Var) {
-        super(context);
-        this.f21541a = new me.b(0, this, is.h, 380L, false);
-        this.h = new q(this, 2);
-        this.f21546n = e6Var;
-        y9 y9Var = new y9(context);
-        this.f21543c = y9Var;
-        addView(y9Var, w7.x5.d(32.0f, 32));
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setImageResource(R.drawable.ic_close_white);
-        addView(imageView, w7.x5.a(24.0f, 8.0f, 0.0f, 0.0f, 0.0f, 24, 16));
-        TextView textView = new TextView(context);
-        this.f21544e = textView;
-        textView.setSingleLine();
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTextSize(1, 14.0f);
-        addView(textView, w7.x5.a(-2.0f, 38.0f, 0.0f, 12.0f, 0.0f, -2, 16));
-        this.f21549w = AndroidUtilities.dp(28.0f);
-        a();
+    public u0(int i10, int i11, Context context, boolean z10) {
+        this(context, null, i10, i11, z10, null);
     }
 
-    public final void a() {
-        int w02;
-        float f7 = this.f21541a.f16341e;
-        boolean z10 = this.f21547r;
-        e6 e6Var = this.f21546n;
+    public static e1 c(boolean z10, boolean z11, ViewGroup viewGroup, int i10, CharSequence charSequence, boolean z12, d6 d6Var) {
+        e1 e1Var = new e1(z12 ? 1 : 0, viewGroup.getContext(), d6Var, z10, z11);
+        e1Var.g(charSequence, i10, null);
+        e1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        viewGroup.addView(e1Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) e1Var.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
+        }
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(48.0f);
+        e1Var.setLayoutParams(layoutParams);
+        return e1Var;
+    }
+
+    public final s0 A(s0 s0Var) {
+        if (this.f21559t0 == null) {
+            this.f21559t0 = new ArrayList();
+        }
+        this.f21559t0.add(s0Var);
+        if (this.f21560u0 == null) {
+            this.f21560u0 = new HashMap();
+        }
+        this.f21560u0.put(Integer.valueOf(s0Var.f21469b), s0Var);
+        return s0Var;
+    }
+
+    public final void B(int i10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21535b;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && actionBarPopupWindow$ActionBarPopupWindowLayout.getBackgroundColor() != i10) {
+            this.f21535b.setBackgroundColor(i10);
+            m1 m1Var = this.d;
+            if (m1Var != null && m1Var.isShowing()) {
+                this.f21535b.invalidate();
+            }
+        }
+    }
+
+    public final void C(gg.p0 p0Var) {
+        if (!p0Var.h) {
+            return;
+        }
+        ArrayList arrayList = this.f21544g0;
+        arrayList.remove(p0Var);
+        int i10 = this.f21545h0;
+        if (i10 < 0 || i10 > arrayList.size() - 1) {
+            this.f21545h0 = arrayList.size() - 1;
+        }
+        y();
+        this.f21540e.hideActionMode();
+    }
+
+    public final void D() {
+        this.R = false;
+    }
+
+    public final void E(ah.c cVar, dh.e eVar) {
+        this.f21554q0 = cVar;
+        this.f21556r0 = eVar;
+        View view = this.f21535b;
+        if (view != null && cVar != null) {
+            ch.d c10 = cVar.c(view, null, true);
+            c10.o(eVar);
+            c10.q(AndroidUtilities.dp(12.0f));
+            c10.p(AndroidUtilities.dp(8.0f));
+            view.setBackground(c10);
+        }
+    }
+
+    public final void F() {
+        if (this.f21537c == null) {
+            return;
+        }
+        this.G = true;
+    }
+
+    public final void G(int i10, boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21535b;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
+            i1 i1Var = actionBarPopupWindow$ActionBarPopupWindowLayout.L;
+            int childCount = i1Var.getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = i1Var.getChildAt(i11);
+                if (childAt instanceof TextView) {
+                    ((TextView) childAt).setTextColor(i10);
+                } else if (childAt instanceof e1) {
+                    if (z10) {
+                        ((e1) childAt).setIconColor(i10);
+                    } else {
+                        ((e1) childAt).setTextColor(i10);
+                    }
+                }
+            }
+        }
+    }
+
+    public final void H(CharSequence charSequence, boolean z10) {
+        this.f21555r = charSequence;
+        if (this.h != null) {
+            this.f21539d0 = z10;
+            this.f21540e.setText(charSequence);
+            if (!TextUtils.isEmpty(charSequence)) {
+                this.f21540e.setSelection(charSequence.length());
+            }
+        }
+    }
+
+    public final void I(int i10, boolean z10) {
         if (z10) {
-            w02 = i6.m1(0.075f, i6.w0(i6.G6, e6Var));
+            K(i10);
         } else {
-            w02 = i6.w0(i6.f20794ci, e6Var);
+            r(i10);
         }
-        int i10 = i6.Oh;
-        int w03 = i6.w0(i10, e6Var);
-        int w04 = i6.w0(i6.G6, e6Var);
-        int i11 = i6.Sh;
-        int w05 = i6.w0(i11, e6Var);
-        this.v = i0.a.d(f7, w02, w03);
-        this.f21544e.setTextColor(i0.a.d(f7, w04, w05));
-        ImageView imageView = this.d;
-        imageView.setColorFilter(w05);
-        imageView.setAlpha(f7);
-        float f10 = 0.82f * f7;
-        imageView.setScaleX(f10);
-        imageView.setScaleY(f10);
-        fr frVar = this.f21542b;
-        if (frVar != null) {
-            i6.w1(frVar, i6.w0(i10, e6Var), false);
-            i6.w1(this.f21542b, i6.w0(i11, e6Var), true);
+    }
+
+    public final void J(int i10) {
+        K(i10);
+    }
+
+    public final void K(int i10) {
+        s0 s0Var;
+        View findViewWithTag;
+        HashMap hashMap = this.f21560u0;
+        if (hashMap == null) {
+            s0Var = null;
+        } else {
+            s0Var = (s0) hashMap.get(Integer.valueOf(i10));
         }
-        this.f21543c.setAlpha(1.0f - f7);
-        gg.p0 p0Var = this.f21545f;
-        if (p0Var != null && p0Var.d == 7) {
-            setData(p0Var);
+        if (s0Var != null) {
+            s0Var.e(0);
         }
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21535b;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(Integer.valueOf(i10))) != null && findViewWithTag.getVisibility() != 0) {
+            findViewWithTag.setAlpha(0.0f);
+            ai.t(findViewWithTag.animate().alpha(1.0f), is.f27451f, 150L);
+            findViewWithTag.setVisibility(0);
+        }
+    }
+
+    public final boolean L(boolean z10) {
+        y yVar;
+        hk0 iconView;
+        Animator g10;
+        k();
+        e5 e5Var = this.H;
+        if (this.F == null || (e5Var != null && !e5Var.c())) {
+            return false;
+        }
+        e5 e5Var2 = this.H;
+        if (e5Var2 != null && (g10 = e5Var2.g()) != null) {
+            g10.start();
+            return true;
+        }
+        ArrayList arrayList = new ArrayList();
+        int i10 = 0;
+        while (true) {
+            yVar = this.f21537c;
+            if (i10 >= yVar.getChildCount()) {
+                break;
+            }
+            View childAt = yVar.getChildAt(i10);
+            if ((childAt instanceof u0) && (iconView = ((u0) childAt).getIconView()) != null) {
+                arrayList.add(iconView);
+            }
+            i10++;
+        }
+        Object tag = this.F.getTag();
+        Property property = View.ALPHA;
+        if (tag != null) {
+            this.F.setTag(null);
+            AnimatorSet animatorSet = this.f21558s0;
+            if (animatorSet != null) {
+                animatorSet.removeAllListeners();
+                this.f21558s0.cancel();
+            }
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.f21558s0 = animatorSet2;
+            p0 p0Var = this.F;
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(p0Var, property, p0Var.getAlpha(), 0.0f));
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                ((View) arrayList.get(i11)).setAlpha(0.0f);
+                this.f21558s0.playTogether(ObjectAnimator.ofFloat((View) arrayList.get(i11), property, ((View) arrayList.get(i11)).getAlpha(), 1.0f));
+            }
+            this.f21558s0.setDuration(150L);
+            this.f21558s0.addListener(new l0(this, arrayList, 0));
+            this.f21558s0.start();
+            this.f21540e.clearFocus();
+            setVisibility(0);
+            ArrayList arrayList2 = this.f21544g0;
+            if (!arrayList2.isEmpty() && this.H != null) {
+                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                    if (((gg.p0) arrayList2.get(i12)).h) {
+                        this.H.o((gg.p0) arrayList2.get(i12));
+                    }
+                }
+            }
+            e5 e5Var3 = this.H;
+            if (e5Var3 != null) {
+                e5Var3.m();
+            }
+            if (z10) {
+                AndroidUtilities.hideKeyboard(this.f21540e);
+            }
+            yVar.requestLayout();
+            requestLayout();
+            return false;
+        }
+        this.F.setVisibility(0);
+        this.F.setAlpha(0.0f);
+        AnimatorSet animatorSet3 = this.f21558s0;
+        if (animatorSet3 != null) {
+            animatorSet3.removeAllListeners();
+            this.f21558s0.cancel();
+        }
+        AnimatorSet animatorSet4 = new AnimatorSet();
+        this.f21558s0 = animatorSet4;
+        p0 p0Var2 = this.F;
+        animatorSet4.playTogether(ObjectAnimator.ofFloat(p0Var2, property, p0Var2.getAlpha(), 1.0f));
+        for (int i13 = 0; i13 < arrayList.size(); i13++) {
+            this.f21558s0.playTogether(ObjectAnimator.ofFloat((View) arrayList.get(i13), property, ((View) arrayList.get(i13)).getAlpha(), 0.0f));
+        }
+        this.f21558s0.setDuration(150L);
+        this.f21558s0.addListener(new l0(this, arrayList, 1));
+        this.f21558s0.start();
+        setVisibility(8);
+        m();
+        this.f21540e.setText("");
+        this.f21540e.requestFocus();
+        if (z10) {
+            AndroidUtilities.showKeyboard(this.f21540e);
+        }
+        this.F.setTag(1);
+        e5 e5Var4 = this.H;
+        if (e5Var4 != null) {
+            e5Var4.n();
+        }
+        return true;
+    }
+
+    public final void M(View view, u0 u0Var) {
+        float f7;
+        FrameLayout frameLayout;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        View childAt;
+        long j3;
+        k kVar;
+        m1 m1Var = this.d;
+        d6 d6Var = this.m0;
+        View view2 = null;
+        if ((m1Var != null && m1Var.isShowing()) || this.f21559t0 == null) {
+            f7 = 8.0f;
+        } else {
+            for (int i10 = 0; i10 < this.f21559t0.size(); i10++) {
+                s0 s0Var = (s0) this.f21559t0.get(i10);
+                s0Var.getClass();
+                o();
+                View view3 = s0Var.f21475j;
+                if (view3 != null) {
+                    this.f21535b.addView(view3);
+                } else {
+                    int i11 = s0Var.f21468a;
+                    if (i11 == 0) {
+                        e1 e1Var = new e1(0, getContext(), this.m0, false, false);
+                        e1Var.g(s0Var.f21471e, s0Var.f21470c, s0Var.d);
+                        e1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+                        e1Var.setTag(Integer.valueOf(s0Var.f21469b));
+                        this.f21535b.addView(e1Var);
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) e1Var.getLayoutParams();
+                        if (LocaleController.isRTL) {
+                            layoutParams.gravity = 5;
+                        }
+                        layoutParams.width = -1;
+                        layoutParams.height = AndroidUtilities.dp(48.0f);
+                        e1Var.setLayoutParams(layoutParams);
+                        e1Var.setOnClickListener(new ai.f2(17, s0Var, this));
+                        Integer num = s0Var.f21479n;
+                        if (num != null && s0Var.f21480o != null) {
+                            e1Var.c(num.intValue(), s0Var.f21480o.intValue());
+                        }
+                        s0Var.f21475j = e1Var;
+                    } else if (i11 == 1) {
+                        j1 j1Var = new j1(getContext(), h6.H8, d6Var);
+                        j1Var.setTag(R.id.fit_width_tag, 1);
+                        this.f21535b.a(j1Var, w7.x5.n(-1, 8));
+                        s0Var.f21475j = j1Var;
+                    } else if (i11 == 2) {
+                        e1 e1Var2 = new e1(0, getContext(), this.m0, false, false);
+                        e1Var2.g(s0Var.f21471e, s0Var.f21470c, s0Var.d);
+                        e1Var2.setMinimumWidth(AndroidUtilities.dp(196.0f));
+                        e1Var2.setRightIcon(R.drawable.msg_arrowright);
+                        e1Var2.getRightIcon().setVisibility(s0Var.f21478m);
+                        this.f21535b.addView(e1Var2);
+                        LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) e1Var2.getLayoutParams();
+                        if (LocaleController.isRTL) {
+                            layoutParams2.gravity = 5;
+                        }
+                        layoutParams2.width = -1;
+                        layoutParams2.height = AndroidUtilities.dp(48.0f);
+                        e1Var2.setLayoutParams(layoutParams2);
+                        xh xhVar = s0Var.h;
+                        if (xhVar != null) {
+                            s0Var.f21473g = (View) xhVar.run();
+                            s0Var.h = null;
+                        }
+                        e1Var2.G = new f0(this, this.f21535b.b(s0Var.f21473g), 1);
+                        e1Var2.setOnClickListener(new g0(e1Var2, 1));
+                        this.f21535b.f20359c = true;
+                        Integer num2 = s0Var.f21479n;
+                        if (num2 != null && s0Var.f21480o != null) {
+                            e1Var2.c(num2.intValue(), s0Var.f21480o.intValue());
+                        }
+                        s0Var.f21475j = e1Var2;
+                    } else if (i11 == 3) {
+                        fa0 fa0Var = new fa0(getContext(), null);
+                        fa0Var.setTag(R.id.fit_width_tag, 1);
+                        fa0Var.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
+                        fa0Var.setTextSize(1, s0Var.f21474i);
+                        fa0Var.setTextColor(h6.x0(null, h6.E8, false));
+                        fa0Var.setMovementMethod(LinkMovementMethod.getInstance());
+                        fa0Var.setLinkTextColor(h6.x0(null, h6.J6, false));
+                        fa0Var.setText(s0Var.f21471e);
+                        fa0Var.setMaxWidth(AndroidUtilities.dp(200.0f));
+                        this.f21535b.a(fa0Var, w7.x5.p(-1, -2, 0.0f, 0, 0, 8, 0, 0));
+                        s0Var.f21475j = fa0Var;
+                    }
+                }
+                View view4 = s0Var.f21475j;
+                if (view4 != null) {
+                    view4.setVisibility(s0Var.f21477l);
+                    vh vhVar = s0Var.f21476k;
+                    if (vhVar != null) {
+                        s0Var.f21475j.setOnClickListener(vhVar);
+                    }
+                }
+            }
+            f7 = 8.0f;
+            this.f21559t0.clear();
+        }
+        if (this.f21535b != null) {
+            y yVar = this.f21537c;
+            if (yVar == null || !yVar.f21687c || (kVar = yVar.f21686b) == null || kVar.t()) {
+                p pVar = this.L;
+                if (pVar != null) {
+                    AndroidUtilities.cancelRunOnUIThread(pVar);
+                    this.L = null;
+                }
+                m1 m1Var2 = this.d;
+                if (m1Var2 != null && m1Var2.isShowing()) {
+                    this.d.d(true);
+                    return;
+                }
+                this.f21549l0 = u0Var;
+                r0 r0Var = this.Q;
+                if (r0Var != null) {
+                    r0Var.e();
+                }
+                if (this.f21535b.getParent() != null) {
+                    ((ViewGroup) this.f21535b.getParent()).removeView(this.f21535b);
+                }
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = this.f21535b;
+                if (view != null) {
+                    ?? w5Var = new ci.w5(this, getContext(), view);
+                    w5Var.setOrientation(1);
+                    frameLayout = new FrameLayout(getContext());
+                    frameLayout.setAlpha(0.0f);
+                    ViewPropertyAnimator duration = frameLayout.animate().alpha(1.0f).setDuration(100L);
+                    if (this.f21535b.v) {
+                        j3 = 165;
+                    } else {
+                        j3 = 0;
+                    }
+                    duration.setStartDelay(j3).start();
+                    if (view.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) view.getParent()).removeView(view);
+                    }
+                    if ((view instanceof e1) || (view instanceof LinearLayout)) {
+                        ah.c cVar = this.f21554q0;
+                        if (cVar != null) {
+                            ch.d c10 = cVar.c(this.f21535b, null, true);
+                            c10.o(this.f21556r0);
+                            c10.q(AndroidUtilities.dp(12.0f));
+                            c10.p(AndroidUtilities.dp(f7));
+                            c10.f4684j.f4667e = true;
+                            frameLayout.setBackground(c10);
+                        } else {
+                            Drawable mutate = getContext().getDrawable(R.drawable.popup_fixed_alert2).mutate();
+                            mutate.setColorFilter(new PorterDuffColorFilter(this.f21535b.getBackgroundColor(), PorterDuff.Mode.MULTIPLY));
+                            frameLayout.setBackground(mutate);
+                        }
+                    }
+                    frameLayout.addView(view, w7.x5.d(-2.0f, -1));
+                    w5Var.addView(frameLayout, w7.x5.n(-1, -2));
+                    w5Var.addView(this.f21535b, w7.x5.t(-2, -2, 0, 0, -10, 0, 0));
+                    this.f21535b.setTopView(frameLayout);
+                    actionBarPopupWindow$ActionBarPopupWindowLayout = w5Var;
+                } else {
+                    actionBarPopupWindow$ActionBarPopupWindowLayout2.setTopView(null);
+                    frameLayout = null;
+                    actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+                }
+                if (this.f21554q0 != null) {
+                    q80.U(this.f21535b, h6.m1(0.06f, h6.w0(h6.E8, d6Var)));
+                }
+                m1 m1Var3 = new m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+                this.d = m1Var3;
+                if (this.V) {
+                    m1Var3.setAnimationStyle(0);
+                } else {
+                    m1Var3.setAnimationStyle(R.style.PopupAnimation);
+                }
+                boolean z13 = this.V;
+                if (!z13) {
+                    this.d.f21370b = z13;
+                }
+                this.d.setOutsideTouchable(true);
+                this.d.setClippingEnabled(true);
+                if (this.U) {
+                    this.d.g();
+                }
+                this.d.setInputMethodMode(2);
+                this.d.setSoftInputMode(0);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setFocusableInTouchMode(true);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public final boolean onKey(View view5, int i12, KeyEvent keyEvent) {
+                        m1 m1Var4;
+                        u0 u0Var2 = u0.this;
+                        u0Var2.getClass();
+                        if (i12 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && (m1Var4 = u0Var2.d) != null && m1Var4.isShowing()) {
+                            u0Var2.d.d(true);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                this.d.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public final void onDismiss() {
+                        r0 r0Var2 = u0.this.Q;
+                        if (r0Var2 != null) {
+                            r0Var2.c();
+                        }
+                    }
+                });
+                actionBarPopupWindow$ActionBarPopupWindowLayout.measure(ai.c(40.0f, AndroidUtilities.displaySize.x, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE));
+                if (frameLayout != null && frameLayout.getLayoutParams() != null && this.f21535b.getSwipeBack() != null && (childAt = this.f21535b.getSwipeBack().getChildAt(0)) != null && childAt.getMeasuredWidth() > 0) {
+                    frameLayout.getLayoutParams().width = AndroidUtilities.dp(16.0f) + childAt.getMeasuredWidth();
+                }
+                this.T = false;
+                this.d.setFocusable(true);
+                if (actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth() == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                O(true, z10);
+                i1 i1Var = this.f21535b.L;
+                int childCount = i1Var.getChildCount();
+                View view5 = null;
+                for (int i12 = 0; i12 < childCount; i12++) {
+                    View childAt2 = i1Var.getChildAt(i12);
+                    if (childAt2.getVisibility() == 0) {
+                        if (view2 == null) {
+                            view2 = childAt2;
+                        }
+                        view5 = childAt2;
+                    }
+                }
+                boolean z14 = false;
+                for (int i13 = 0; i13 < childCount; i13++) {
+                    View childAt3 = i1Var.getChildAt(i13);
+                    if (childAt3.getVisibility() == 0) {
+                        Object tag = childAt3.getTag(R.id.object_tag);
+                        if (childAt3 instanceof e1) {
+                            e1 e1Var3 = (e1) childAt3;
+                            if (childAt3 != view2 && !z14) {
+                                z11 = false;
+                            } else {
+                                z11 = true;
+                            }
+                            if (childAt3 == view5) {
+                                z12 = true;
+                            } else {
+                                z12 = false;
+                            }
+                            e1Var3.j(z11, z12);
+                        }
+                        if (tag != null) {
+                            z14 = true;
+                        } else {
+                            z14 = false;
+                        }
+                    }
+                }
+                if (this.f21535b.getSwipeBack() != null) {
+                    this.f21535b.getSwipeBack().b(false);
+                }
+                this.d.h();
+                float f10 = this.f21547j0;
+                if (f10 > 0.0f) {
+                    this.d.c(f10);
+                }
+            }
+        }
+    }
+
+    public final void N() {
+        if (this.f21542f != null) {
+            for (int i10 = 0; i10 < this.f21542f.getChildCount(); i10++) {
+                if (this.f21542f.getChildAt(i10) instanceof t0) {
+                    ((t0) this.f21542f.getChildAt(i10)).a();
+                }
+            }
+        }
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21535b;
+        d6 d6Var = this.m0;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
+            for (int i11 = 0; i11 < this.f21535b.getItemsCount(); i11++) {
+                if (this.f21535b.L.getChildAt(i11) instanceof e1) {
+                    ((e1) this.f21535b.L.getChildAt(i11)).setSelectorColor(h6.w0(h6.I5, d6Var));
+                }
+            }
+        }
+        ci.g2 g2Var = this.f21540e;
+        if (g2Var != null) {
+            int i12 = h6.C8;
+            g2Var.setCursorColor(h6.w0(i12, d6Var));
+            this.f21540e.setHintTextColor(h6.w0(h6.D8, d6Var));
+            this.f21540e.setTextColor(h6.w0(i12, d6Var));
+            this.f21540e.setHighlightColor(h6.w0(h6.f21109uf, d6Var));
+            this.f21540e.setHandlesColor(h6.w0(h6.f21126vf, d6Var));
+        }
+    }
+
+    public final void O(boolean z10, boolean z11) {
+        float f7;
+        int i10;
+        int i11;
+        ScrollView scrollView;
+        y yVar = this.f21537c;
+        if (yVar != null) {
+            i11 = yVar.getTop() + (-yVar.f21686b.getMeasuredHeight());
+            i10 = yVar.getPaddingTop();
+        } else {
+            float scaleY = getScaleY();
+            float measuredHeight = getMeasuredHeight() * scaleY;
+            if (this.M != 2) {
+                f7 = getTranslationY();
+            } else {
+                f7 = 0.0f;
+            }
+            i10 = -((int) (measuredHeight - (f7 / scaleY)));
+            i11 = this.f21534a0;
+        }
+        int i12 = i10 + i11 + this.N;
+        if (z10 && (scrollView = this.f21535b.K) != null) {
+            scrollView.scrollTo(0, 0);
+        }
+        View view = this.f21549l0;
+        if (view == null) {
+            view = this;
+        }
+        if (yVar != null) {
+            k kVar = yVar.f21686b;
+            if (this.M == 0) {
+                if (z10) {
+                    this.d.showAsDropDown(kVar, ((view.getMeasuredWidth() + (yVar.getLeft() + view.getLeft())) - this.d.getContentView().getMeasuredWidth()) + ((int) getTranslationX()) + this.O, i12);
+                }
+                if (z11) {
+                    this.d.update(kVar, ((view.getMeasuredWidth() + (yVar.getLeft() + view.getLeft())) - this.d.getContentView().getMeasuredWidth()) + ((int) getTranslationX()) + this.O, i12, -1, -1);
+                    return;
+                }
+                return;
+            }
+            if (z10) {
+                if (this.f21541e0) {
+                    this.d.showAtLocation(kVar, 51, (getLeft() - AndroidUtilities.dp(8.0f)) + ((int) getTranslationX()) + this.O, i12);
+                } else {
+                    this.d.showAsDropDown(kVar, (getLeft() - AndroidUtilities.dp(8.0f)) + ((int) getTranslationX()) + this.O, i12);
+                }
+            }
+            if (z11) {
+                this.d.update(kVar, (getLeft() - AndroidUtilities.dp(8.0f)) + ((int) getTranslationX()) + this.O, i12, -1, -1);
+                return;
+            }
+            return;
+        }
+        int i13 = this.M;
+        if (i13 == 0) {
+            if (getParent() != null) {
+                View view2 = (View) getParent();
+                if (z10) {
+                    this.d.showAsDropDown(view2, ((getMeasuredWidth() + getLeft()) - this.d.getContentView().getMeasuredWidth()) + this.f21536b0 + this.O, i12);
+                }
+                if (z11) {
+                    this.d.update(view2, ((getMeasuredWidth() + getLeft()) - this.d.getContentView().getMeasuredWidth()) + this.f21536b0 + this.O, i12, -1, -1);
+                }
+            }
+        } else if (i13 == 1) {
+            if (z10) {
+                this.d.showAsDropDown(this, (-AndroidUtilities.dp(8.0f)) + this.f21536b0 + this.O, i12);
+            }
+            if (z11) {
+                this.d.update(this, (-AndroidUtilities.dp(8.0f)) + this.f21536b0 + this.O, i12, -1, -1);
+            }
+        } else {
+            if (z10) {
+                this.d.showAsDropDown(this, (getMeasuredWidth() - this.d.getContentView().getMeasuredWidth()) + this.f21536b0 + this.O, i12);
+            }
+            if (z11) {
+                this.d.update(this, (getMeasuredWidth() - this.d.getContentView().getMeasuredWidth()) + this.f21536b0 + this.O, i12, -1, -1);
+            }
+        }
+    }
+
+    public final j1 a(int i10) {
+        o();
+        j1 j1Var = new j1(getContext(), h6.H8, this.m0);
+        if (i10 != -1) {
+            j1Var.setTag(Integer.valueOf(i10));
+        }
+        j1Var.setTag(R.id.fit_width_tag, 1);
+        this.f21535b.a(j1Var, w7.x5.n(-1, 8));
+        return j1Var;
+    }
+
+    public final TextView b(int i10) {
+        o();
+        TextView textView = new TextView(getContext());
+        textView.setBackgroundColor(i10);
+        textView.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        this.f21535b.addView(textView);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
+        layoutParams.width = -1;
+        layoutParams.height = 1;
+        int dp = AndroidUtilities.dp(3.0f);
+        layoutParams.bottomMargin = dp;
+        layoutParams.topMargin = dp;
+        textView.setLayoutParams(layoutParams);
+        return textView;
+    }
+
+    public final e1 d(int i10, int i11, Drawable drawable, CharSequence charSequence, boolean z10, boolean z11, d6 d6Var) {
+        o();
+        e1 e1Var = new e1(z11 ? 1 : 0, getContext(), d6Var, false, false);
+        e1Var.g(charSequence, i11, drawable);
+        e1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        e1Var.setTag(Integer.valueOf(i10));
+        this.f21535b.addView(e1Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) e1Var.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
+        }
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(48.0f);
+        e1Var.setLayoutParams(layoutParams);
+        e1Var.setOnClickListener(new ai.k3(2, this, z10));
+        return e1Var;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        if (this.f21553p0) {
+            getBackground().draw(canvas);
+        }
+        super.draw(canvas);
+    }
+
+    public final e1 e(int i10, int i11, String str) {
+        return d(i10, i11, null, str, true, false, this.m0);
+    }
+
+    public final e1 f(int i10, int i11, String str, d6 d6Var) {
+        return d(i10, i11, null, str, true, false, d6Var);
+    }
+
+    public final void g(int i10, CharSequence charSequence) {
+        o();
+        TextView textView = new TextView(getContext());
+        textView.setTextColor(h6.w0(h6.E8, this.m0));
+        textView.setBackgroundDrawable(h6.L0(false));
+        if (!LocaleController.isRTL) {
+            textView.setGravity(16);
+        } else {
+            textView.setGravity(21);
+        }
+        textView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        textView.setTextSize(1, 16.0f);
+        textView.setMinWidth(AndroidUtilities.dp(196.0f));
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setTag(Integer.valueOf(i10));
+        textView.setText(charSequence);
+        this.f21535b.addView(textView);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
+        }
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(48.0f);
+        textView.setLayoutParams(layoutParams);
+        textView.setOnClickListener(new a0(this, 3));
+    }
+
+    public View getContentView() {
+        hk0 hk0Var = this.f21562x;
+        if (hk0Var != null) {
+            return hk0Var;
+        }
+        return this.E;
+    }
+
+    public hk0 getIconView() {
+        return this.f21562x;
+    }
+
+    public View.OnClickListener getOnClickListener() {
+        return this.f21552o0;
+    }
+
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout getPopupLayout() {
+        if (this.f21535b == null) {
+            o();
+        }
+        return this.f21535b;
+    }
+
+    public ImageView getSearchClearButton() {
+        return this.f21557s;
+    }
+
+    public FrameLayout getSearchContainer() {
+        return this.F;
+    }
+
+    public EditTextBoldCursor getSearchField() {
+        k();
+        return this.f21540e;
+    }
+
+    public TextView getTextView() {
+        return this.E;
+    }
+
+    public int getVisibleSubItemsCount() {
+        int i10 = 0;
+        for (int i11 = 0; i11 < this.f21535b.getItemsCount(); i11++) {
+            View childAt = this.f21535b.L.getChildAt(i11);
+            if (childAt != null && childAt.getVisibility() == 0) {
+                i10++;
+            }
+        }
+        return i10;
+    }
+
+    public final void h(org.telegram.ui.Cells.k kVar, int i10) {
+        o();
+        kVar.setLayoutParams(new LinearLayout.LayoutParams(-2, i10));
+        this.f21535b.addView(kVar);
+        kVar.setTag(8);
+        kVar.setOnClickListener(new a0(this, 1));
+        kVar.setBackgroundDrawable(h6.L0(false));
+    }
+
+    public final e1 i(int i10, c31 c31Var, String str, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        o();
+        e1 e1Var = new e1(0, getContext(), this.m0, false, false);
+        e1Var.g(str, i10, c31Var);
+        e1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        e1Var.setRightIcon(R.drawable.msg_arrowright);
+        this.f21535b.addView(e1Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) e1Var.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
+        }
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(48.0f);
+        e1Var.setLayoutParams(layoutParams);
+        e1Var.G = new f0(this, this.f21535b.b(actionBarPopupWindow$ActionBarPopupWindowLayout), 0);
+        e1Var.setOnClickListener(new g0(e1Var, 0));
+        this.f21535b.f20359c = true;
+        return e1Var;
+    }
+
+    public final void j() {
+        e5 e5Var;
+        TextView textView;
+        e5 e5Var2;
+        if (this.f21557s != null) {
+            boolean p5 = p();
+            Property property = View.ROTATION;
+            Property property2 = View.SCALE_Y;
+            Property property3 = View.SCALE_X;
+            Property property4 = View.ALPHA;
+            if (!p5 && TextUtils.isEmpty(this.f21540e.getText()) && (((e5Var = this.H) == null || !e5Var.f()) && ((textView = this.h) == null || textView.getVisibility() != 0 || ((e5Var2 = this.H) != null && !e5Var2.r())))) {
+                if (this.f21557s.getTag() != null) {
+                    this.f21557s.setTag(null);
+                    AnimatorSet animatorSet = this.v;
+                    if (animatorSet != null) {
+                        animatorSet.cancel();
+                    }
+                    if (this.f21539d0) {
+                        AnimatorSet duration = new AnimatorSet().setDuration(180L);
+                        duration.setInterpolator(new DecelerateInterpolator());
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                            public final u0 f20479b;
+
+                            {
+                                this.f20479b = this;
+                            }
+
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                switch (r2) {
+                                    case 0:
+                                        u0 u0Var = this.f20479b;
+                                        u0Var.getClass();
+                                        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        View view = u0Var.f21561w;
+                                        if (view != null) {
+                                            view.setTranslationX(AndroidUtilities.dp(32.0f) * floatValue);
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        u0 u0Var2 = this.f20479b;
+                                        u0Var2.getClass();
+                                        float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        View view2 = u0Var2.f21561w;
+                                        if (view2 != null) {
+                                            view2.setTranslationX(AndroidUtilities.dp(32.0f) * floatValue2);
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        });
+                        duration.playTogether(ObjectAnimator.ofFloat(this.f21557s, property4, 0.0f), ObjectAnimator.ofFloat(this.f21557s, property3, 0.0f), ObjectAnimator.ofFloat(this.f21557s, property2, 0.0f), ObjectAnimator.ofFloat(this.f21557s, property, 45.0f), ofFloat);
+                        duration.addListener(new k0(this, 0));
+                        duration.start();
+                        this.v = duration;
+                        return;
+                    }
+                    this.f21557s.setAlpha(0.0f);
+                    this.f21557s.setRotation(45.0f);
+                    this.f21557s.setScaleX(0.0f);
+                    this.f21557s.setScaleY(0.0f);
+                    this.f21557s.setVisibility(4);
+                    this.f21539d0 = true;
+                }
+            } else if (this.f21557s.getTag() == null) {
+                this.f21557s.setTag(1);
+                AnimatorSet animatorSet2 = this.v;
+                if (animatorSet2 != null) {
+                    animatorSet2.cancel();
+                }
+                this.f21557s.setVisibility(0);
+                if (this.f21539d0) {
+                    AnimatorSet duration2 = new AnimatorSet().setDuration(180L);
+                    duration2.setInterpolator(new DecelerateInterpolator());
+                    ValueAnimator ofFloat2 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                    ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                        public final u0 f20479b;
+
+                        {
+                            this.f20479b = this;
+                        }
+
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            switch (r2) {
+                                case 0:
+                                    u0 u0Var = this.f20479b;
+                                    u0Var.getClass();
+                                    float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    View view = u0Var.f21561w;
+                                    if (view != null) {
+                                        view.setTranslationX(AndroidUtilities.dp(32.0f) * floatValue);
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    u0 u0Var2 = this.f20479b;
+                                    u0Var2.getClass();
+                                    float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    View view2 = u0Var2.f21561w;
+                                    if (view2 != null) {
+                                        view2.setTranslationX(AndroidUtilities.dp(32.0f) * floatValue2);
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    duration2.playTogether(ObjectAnimator.ofFloat(this.f21557s, property4, 1.0f), ObjectAnimator.ofFloat(this.f21557s, property3, 1.0f), ObjectAnimator.ofFloat(this.f21557s, property2, 1.0f), ObjectAnimator.ofFloat(this.f21557s, property, 0.0f), ofFloat2);
+                    duration2.addListener(new k0(this, 1));
+                    duration2.start();
+                    this.v = duration2;
+                    return;
+                }
+                this.f21557s.setAlpha(1.0f);
+                this.f21557s.setRotation(0.0f);
+                this.f21557s.setScaleX(1.0f);
+                this.f21557s.setScaleY(1.0f);
+                View view = this.f21561w;
+                if (view != null) {
+                    view.setTranslationX(0.0f);
+                }
+                this.f21539d0 = true;
+            }
+        }
+    }
+
+    public final void k() {
+        boolean z10;
+        int i10;
+        if (this.F == null && this.G) {
+            p0 p0Var = new p0(this, getContext(), 0);
+            this.F = p0Var;
+            if (this.f21551n0 != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            p0Var.setClipChildren(z10);
+            this.f21533a = null;
+            p0 p0Var2 = this.F;
+            LinearLayout.LayoutParams m10 = w7.x5.m(1.0f, 0, -1, this.f21551n0 + 6, 0, 0);
+            y yVar = this.f21537c;
+            yVar.addView(p0Var2, 0, m10);
+            this.F.setVisibility(8);
+            TextView textView = new TextView(getContext());
+            this.h = textView;
+            textView.setTextSize(1, 18.0f);
+            TextView textView2 = this.h;
+            int i11 = h6.C8;
+            d6 d6Var = this.m0;
+            textView2.setTextColor(h6.w0(i11, d6Var));
+            this.h.setSingleLine(true);
+            this.h.setEllipsize(TextUtils.TruncateAt.END);
+            this.h.setVisibility(8);
+            TextView textView3 = this.h;
+            if (LocaleController.isRTL) {
+                i10 = 5;
+            } else {
+                i10 = 3;
+            }
+            textView3.setGravity(i10);
+            ci.g2 g2Var = new ci.g2(this, getContext(), 2);
+            this.f21540e = g2Var;
+            g2Var.setScrollContainer(false);
+            this.f21540e.setCursorWidth(1.5f);
+            this.f21540e.setCursorColor(h6.w0(i11, d6Var));
+            this.f21540e.setTextSize(1, 18.0f);
+            this.f21540e.setHintTextColor(h6.w0(h6.D8, d6Var));
+            this.f21540e.setTextColor(h6.w0(i11, d6Var));
+            this.f21540e.setSingleLine(true);
+            this.f21540e.setBackgroundResource(0);
+            this.f21540e.setPadding(0, 0, 0, 0);
+            this.f21540e.setInputType(this.f21540e.getInputType() | 524288);
+            this.f21540e.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public final boolean onEditorAction(TextView textView4, int i12, KeyEvent keyEvent) {
+                    if (keyEvent != null) {
+                        if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                            u0 u0Var = u0.this;
+                            AndroidUtilities.hideKeyboard(u0Var.f21540e);
+                            e5 e5Var = u0Var.H;
+                            if (e5Var != null) {
+                                e5Var.p(u0Var.f21540e);
+                                return false;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+            });
+            this.f21540e.addTextChangedListener(new i0(this));
+            this.f21540e.setImeOptions(234881027);
+            this.f21540e.setTextIsSelectable(false);
+            this.f21540e.setHighlightColor(h6.w0(h6.f21109uf, d6Var));
+            this.f21540e.setHandlesColor(h6.w0(h6.f21126vf, d6Var));
+            CharSequence charSequence = this.f21550n;
+            if (charSequence != null) {
+                this.f21540e.setHint(charSequence);
+                setContentDescription(this.f21550n);
+            }
+            CharSequence charSequence2 = this.f21555r;
+            if (charSequence2 != null) {
+                this.f21540e.setText(charSequence2);
+            }
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            this.f21542f = linearLayout;
+            linearLayout.setOrientation(0);
+            this.f21542f.setVisibility(0);
+            if (!LocaleController.isRTL) {
+                this.F.addView(this.h, w7.x5.a(36.0f, 0.0f, 5.5f, 0.0f, 0.0f, -2, 19));
+                this.F.addView(this.f21540e, w7.x5.a(36.0f, 6.0f, 0.0f, 48.0f, 0.0f, -1, 16));
+                this.F.addView(this.f21542f, w7.x5.a(32.0f, 0.0f, 0.0f, 48.0f, 0.0f, -2, 16));
+            } else {
+                this.F.addView(this.f21542f, w7.x5.a(32.0f, 0.0f, 0.0f, 48.0f, 0.0f, -2, 16));
+                this.F.addView(this.f21540e, w7.x5.a(36.0f, 0.0f, 0.0f, 48.0f, 0.0f, -1, 16));
+                this.F.addView(this.h, w7.x5.a(36.0f, 0.0f, 5.5f, 48.0f, 0.0f, -2, 21));
+            }
+            this.f21542f.setClipChildren(false);
+            j0 j0Var = new j0(this, getContext(), 0);
+            this.f21557s = j0Var;
+            ci.i2 i2Var = new ci.i2(1, this);
+            this.W = i2Var;
+            j0Var.setImageDrawable(i2Var);
+            this.f21557s.setBackground(h6.g0(yVar.f21686b.f21292q0, 1, -1));
+            this.f21557s.setScaleType(ImageView.ScaleType.CENTER);
+            this.f21557s.setAlpha(0.0f);
+            this.f21557s.setRotation(45.0f);
+            this.f21557s.setScaleX(0.0f);
+            this.f21557s.setScaleY(0.0f);
+            this.f21557s.setOnClickListener(new a0(this, 0));
+            this.f21557s.setContentDescription(LocaleController.getString(R.string.ClearButton));
+            this.F.addView(this.f21557s, w7.x5.e(48, -1, 21));
+        }
+    }
+
+    public final void l() {
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            if (i11 < this.f21535b.getItemsCount()) {
+                if (this.f21535b.L.getChildAt(i11).getVisibility() == 0) {
+                    break;
+                }
+                i11++;
+            } else {
+                i10 = 8;
+                break;
+            }
+        }
+        if (i10 != getVisibility()) {
+            setVisibility(i10);
+        }
+    }
+
+    public final void m() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.f21544g0;
+            if (i10 < arrayList.size()) {
+                if (((gg.p0) arrayList.get(i10)).h) {
+                    arrayList.remove(i10);
+                    i10--;
+                }
+                i10++;
+            } else {
+                y();
+                return;
+            }
+        }
+    }
+
+    public final void n() {
+        m1 m1Var = this.d;
+        if (m1Var != null && m1Var.isShowing()) {
+            this.d.dismiss();
+        }
+    }
+
+    public final void o() {
+        if (this.f21535b != null) {
+            return;
+        }
+        this.I = new Rect();
+        this.J = new int[2];
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert4, 1, getContext(), this.m0);
+        this.f21535b = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        ah.c cVar = this.f21554q0;
+        if (cVar != null) {
+            ch.d c10 = cVar.c(actionBarPopupWindow$ActionBarPopupWindowLayout, null, true);
+            c10.o(this.f21556r0);
+            c10.q(AndroidUtilities.dp(12.0f));
+            c10.p(AndroidUtilities.dp(8.0f));
+            actionBarPopupWindow$ActionBarPopupWindowLayout.setBackground(c10);
+        }
+        this.f21535b.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                m1 m1Var;
+                u0 u0Var = u0.this;
+                u0Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (m1Var = u0Var.d) != null && m1Var.isShowing()) {
+                    view.getHitRect(u0Var.I);
+                    if (!u0Var.I.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        u0Var.d.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            }
+        });
+        this.f21535b.setDispatchKeyEventListener(new n(this, 2));
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f21562x != null) {
+            accessibilityNodeInfo.setClassName("android.widget.ImageButton");
+            return;
+        }
+        TextView textView = this.E;
+        if (textView != null) {
+            accessibilityNodeInfo.setClassName("android.widget.Button");
+            if (TextUtils.isEmpty(accessibilityNodeInfo.getText())) {
+                accessibilityNodeInfo.setText(textView.getText());
+            }
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        m1 m1Var = this.d;
+        if (m1Var != null && m1Var.isShowing()) {
+            O(false, true);
+        }
+        e5 e5Var = this.H;
+        if (e5Var != null) {
+            e5Var.l();
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        m1 m1Var;
+        int[] iArr;
+        m1 m1Var2;
+        m1 m1Var3;
+        if (motionEvent.getActionMasked() == 0) {
+            if (this.f21538c0 && q() && ((m1Var3 = this.d) == null || !m1Var3.isShowing())) {
+                p pVar = new p(this, 1);
+                this.L = pVar;
+                AndroidUtilities.runOnUIThread(pVar, 200L);
+            }
+        } else if (motionEvent.getActionMasked() == 2) {
+            if (this.f21543f0 && q() && ((m1Var2 = this.d) == null || !m1Var2.isShowing())) {
+                if (motionEvent.getY() > getHeight()) {
+                    if (getParent() != null) {
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                    }
+                    M(null, null);
+                    return true;
+                }
+            } else if (this.f21543f0 && (m1Var = this.d) != null && m1Var.isShowing()) {
+                getLocationOnScreen(this.J);
+                float x10 = motionEvent.getX() + this.J[0];
+                float y3 = motionEvent.getY();
+                float f7 = y3 + iArr[1];
+                this.f21535b.getLocationOnScreen(this.J);
+                int[] iArr2 = this.J;
+                float f10 = x10 - iArr2[0];
+                float f11 = f7 - iArr2[1];
+                this.K = null;
+                for (int i10 = 0; i10 < this.f21535b.getItemsCount(); i10++) {
+                    View childAt = this.f21535b.L.getChildAt(i10);
+                    childAt.getHitRect(this.I);
+                    Object tag = childAt.getTag();
+                    if ((tag instanceof Integer) && ((Integer) tag).intValue() < 100) {
+                        if (!this.I.contains((int) f10, (int) f11)) {
+                            childAt.setPressed(false);
+                            childAt.setSelected(false);
+                        } else {
+                            childAt.setPressed(true);
+                            childAt.setSelected(true);
+                            childAt.drawableHotspotChanged(f10, f11 - childAt.getTop());
+                            this.K = childAt;
+                        }
+                    }
+                }
+            }
+        } else {
+            m1 m1Var4 = this.d;
+            if (m1Var4 != null && m1Var4.isShowing() && motionEvent.getActionMasked() == 1) {
+                View view = this.K;
+                if (view != null) {
+                    view.setSelected(false);
+                    y yVar = this.f21537c;
+                    if (yVar != null) {
+                        yVar.o(((Integer) this.K.getTag()).intValue());
+                    } else {
+                        q0 q0Var = this.P;
+                        if (q0Var != null) {
+                            q0Var.m(((Integer) this.K.getTag()).intValue());
+                        }
+                    }
+                    this.d.d(this.R);
+                } else if (this.f21543f0) {
+                    this.d.d(true);
+                }
+            } else {
+                View view2 = this.K;
+                if (view2 != null) {
+                    view2.setSelected(false);
+                    this.K = null;
+                }
+            }
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    public final boolean p() {
+        ArrayList arrayList = this.f21544g0;
+        if (!arrayList.isEmpty()) {
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                if (((gg.p0) arrayList.get(i10)).h) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public final boolean q() {
+        if (this.f21535b == null) {
+            ArrayList arrayList = this.f21559t0;
+            if (arrayList == null || arrayList.isEmpty()) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public final void r(int i10) {
+        s0 s0Var;
+        View findViewWithTag;
+        HashMap hashMap = this.f21560u0;
+        if (hashMap == null) {
+            s0Var = null;
+        } else {
+            s0Var = (s0) hashMap.get(Integer.valueOf(i10));
+        }
+        if (s0Var != null) {
+            s0Var.e(8);
+        }
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21535b;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(Integer.valueOf(i10))) != null && findViewWithTag.getVisibility() != 8) {
+            findViewWithTag.setVisibility(8);
+        }
+    }
+
+    public final boolean s() {
+        p0 p0Var = this.F;
+        if (p0Var != null && p0Var.getVisibility() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setAdditionalXOffset(int i10) {
+        this.f21536b0 = i10;
+    }
+
+    public void setAdditionalYOffset(int i10) {
+        this.f21534a0 = i10;
+    }
+
+    public void setDelegate(q0 q0Var) {
+        this.P = q0Var;
+    }
+
+    public void setDimMenu(float f7) {
+        this.f21547j0 = f7;
+    }
+
+    public void setFitSubItems(boolean z10) {
+        this.f21535b.setFitItems(z10);
+    }
+
+    public void setFixBackground(boolean z10) {
+        this.f21553p0 = z10;
         invalidate();
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float width = getWidth();
-        float height = getHeight();
-        int i10 = this.f21549w;
-        canvas.drawRoundRect(0.0f, 0.0f, width, height, i10, i10, i6.m0(this.v));
-        super.dispatchDraw(canvas);
+    public void setForceSmoothKeyboard(boolean z10) {
+        this.f21541e0 = z10;
     }
 
-    public gg.p0 getFilter() {
-        return this.f21545f;
-    }
-
-    @Override
-    public final void n(int i10, float f7, float f10, me.e eVar) {
-        if (i10 == 0) {
-            a();
-            invalidate();
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        if (this.f21548s) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(135.0f), Integer.MIN_VALUE), i11);
-        } else {
-            super.onMeasure(i10, i11);
-        }
-    }
-
-    public void setData(gg.p0 p0Var) {
-        this.f21545f = p0Var;
-        this.f21548s = false;
-        String str = p0Var.f10762c;
-        if (str == null) {
-            str = LocaleController.getString(p0Var.f10761b);
-        }
-        this.f21544e.setText(str);
-        fr M = i6.M(AndroidUtilities.dp(32.0f), p0Var.f10760a);
-        this.f21542b = M;
-        int i10 = i6.Oh;
-        e6 e6Var = this.f21546n;
-        i6.w1(M, i6.w0(i10, e6Var), false);
-        fr frVar = this.f21542b;
-        int i11 = i6.Sh;
-        i6.w1(frVar, i6.w0(i11, e6Var), true);
-        int i12 = p0Var.d;
-        float f7 = 16.0f;
-        y9 y9Var = this.f21543c;
-        if (i12 == 4) {
-            TLObject tLObject = p0Var.f10764f;
-            if (tLObject instanceof TLRPC.User) {
-                TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20189id == user.f20189id) {
-                    fr M2 = i6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
-                    int dp = AndroidUtilities.dp(16.0f);
-                    int dp2 = AndroidUtilities.dp(16.0f);
-                    M2.f26498e = dp;
-                    M2.f26499f = dp2;
-                    i6.w1(M2, i6.w0(i10, e6Var), false);
-                    i6.w1(M2, i6.w0(i11, e6Var), true);
-                    y9Var.setImageDrawable(M2);
-                    return;
-                }
-                y9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                y9Var.getImageReceiver().setForUserOrChat(user, this.f21542b);
-            } else if (tLObject instanceof TLRPC.Chat) {
-                TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                this.f21548s = ChatObject.isCommunity(chat);
-                ImageReceiver imageReceiver = y9Var.getImageReceiver();
-                if (this.f21548s) {
-                    f7 = 10.0f;
-                }
-                int dp3 = AndroidUtilities.dp(f7);
-                this.f21549w = dp3;
-                imageReceiver.setRoundRadius(dp3);
-                y9Var.getImageReceiver().setForUserOrChat(chat, this.f21542b);
-            }
-        } else if (i12 == 7) {
-            fr M3 = i6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
-            int dp4 = AndroidUtilities.dp(16.0f);
-            int dp5 = AndroidUtilities.dp(16.0f);
-            M3.f26498e = dp4;
-            M3.f26499f = dp5;
-            i6.w1(M3, i6.w0(i10, e6Var), false);
-            i6.w1(M3, i6.w0(i11, e6Var), true);
-            y9Var.setImageDrawable(M3);
-        } else {
-            y9Var.setImageDrawable(this.f21542b);
-        }
-    }
-
-    public void setExpanded(boolean z10) {
-        TextView textView = this.f21544e;
-        if (z10) {
-            textView.setVisibility(0);
+    public void setIcon(Drawable drawable) {
+        hk0 hk0Var = this.f21562x;
+        if (hk0Var == null) {
             return;
         }
-        textView.setVisibility(8);
-        setSelectedForDelete(false);
+        if (drawable instanceof ek0) {
+            hk0Var.setAnimation((ek0) drawable);
+        } else {
+            hk0Var.setImageDrawable(drawable);
+        }
+        this.f21563y = 0;
     }
 
-    public void setSelectedForDelete(boolean z10) {
-        me.b bVar = this.f21541a;
-        if (bVar.f16342f != z10) {
-            q qVar = this.h;
-            AndroidUtilities.cancelRunOnUIThread(qVar);
-            bVar.a(z10, true);
-            if (z10) {
-                AndroidUtilities.runOnUIThread(qVar, 2000L);
+    public void setIconColor(int i10) {
+        hk0 hk0Var = this.f21562x;
+        if (hk0Var != null) {
+            hk0Var.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+        }
+        TextView textView = this.E;
+        if (textView != null) {
+            textView.setTextColor(i10);
+        }
+        j0 j0Var = this.f21557s;
+        if (j0Var != null) {
+            j0Var.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+        }
+    }
+
+    public void setLayoutInScreen(boolean z10) {
+        this.U = z10;
+    }
+
+    public void setLongClickEnabled(boolean z10) {
+        this.f21538c0 = z10;
+    }
+
+    public void setMenuXOffset(int i10) {
+        this.O = i10;
+    }
+
+    public void setMenuYOffset(int i10) {
+        this.N = i10;
+    }
+
+    @Override
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.f21552o0 = onClickListener;
+        super.setOnClickListener(onClickListener);
+    }
+
+    public void setOnMenuDismiss(final Utilities.Callback<Boolean> callback) {
+        m1 m1Var = this.d;
+        if (m1Var != null) {
+            m1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                @Override
+                public final void onDismiss() {
+                    Utilities.Callback callback2 = callback;
+                    if (callback2 != null) {
+                        callback2.run(Boolean.valueOf(u0.this.T));
+                    }
+                }
+            });
+        }
+    }
+
+    public void setPopupAnimationEnabled(boolean z10) {
+        m1 m1Var = this.d;
+        if (m1Var != null) {
+            m1Var.f21370b = z10;
+        }
+        this.V = z10;
+    }
+
+    public void setPopupItemsSelectorColor(int i10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21535b;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
+            i1 i1Var = actionBarPopupWindow$ActionBarPopupWindowLayout.L;
+            int childCount = i1Var.getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = i1Var.getChildAt(i11);
+                if (childAt instanceof e1) {
+                    ((e1) childAt).setSelectorColor(i10);
+                }
             }
         }
     }
 
+    public void setSearchAdditionalButton(View view) {
+        this.f21561w = view;
+    }
+
+    public void setSearchFieldCaption(CharSequence charSequence) {
+        if (this.h == null) {
+            return;
+        }
+        if (TextUtils.isEmpty(charSequence)) {
+            this.h.setVisibility(8);
+            return;
+        }
+        this.h.setVisibility(0);
+        this.h.setText(charSequence);
+    }
+
+    public void setSearchFieldHint(CharSequence charSequence) {
+        this.f21550n = charSequence;
+        if (this.h == null) {
+            return;
+        }
+        this.f21540e.setHint(charSequence);
+        setContentDescription(charSequence);
+    }
+
+    public void setSearchPaddingStart(int i10) {
+        boolean z10;
+        this.f21551n0 = i10;
+        p0 p0Var = this.F;
+        if (p0Var != null) {
+            ((ViewGroup.MarginLayoutParams) p0Var.getLayoutParams()).leftMargin = AndroidUtilities.dp(i10);
+            p0 p0Var2 = this.F;
+            if (this.f21551n0 != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            p0Var2.setClipChildren(z10);
+            p0 p0Var3 = this.F;
+            p0Var3.setLayoutParams(p0Var3.getLayoutParams());
+        }
+    }
+
+    public void setShowSearchProgress(boolean z10) {
+        ci.i2 i2Var = this.W;
+        if (i2Var == null) {
+            return;
+        }
+        if (z10) {
+            i2Var.f32461e = true;
+            i2Var.f32459b = System.currentTimeMillis();
+            i2Var.invalidateSelf();
+            return;
+        }
+        i2Var.f32461e = false;
+    }
+
+    public void setShowSubmenuByMove(boolean z10) {
+        this.f21543f0 = z10;
+    }
+
+    public void setShowedFromBottom(boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21535b;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout == null) {
+            return;
+        }
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(z10);
+    }
+
+    public void setSubMenuDelegate(r0 r0Var) {
+        this.Q = r0Var;
+    }
+
+    public void setSubMenuOpenSide(int i10) {
+        this.M = i10;
+    }
+
+    public void setText(CharSequence charSequence) {
+        TextView textView = this.E;
+        if (textView == null) {
+            return;
+        }
+        textView.setText(charSequence);
+    }
+
+    public void setTransitionOffset(float f7) {
+        this.f21548k0 = f7;
+        setTranslationX(0.0f);
+    }
+
     @Override
-    public final void A(float f7, int i10) {
+    public void setTranslationX(float f7) {
+        super.setTranslationX(f7 + this.f21548k0);
+    }
+
+    public void setupPopupRadialSelectors(int i10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f21535b;
+        if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
+            actionBarPopupWindow$ActionBarPopupWindowLayout.setupRadialSelectors(i10);
+        }
+    }
+
+    public final boolean t() {
+        m1 m1Var = this.d;
+        if (m1Var != null && m1Var.isShowing()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final s0 u(int i10, int i11, String str) {
+        s0 s0Var = new s0(0);
+        s0Var.f21469b = i10;
+        s0Var.f21470c = i11;
+        s0Var.d = null;
+        s0Var.f21471e = str;
+        s0Var.f21472f = true;
+        A(s0Var);
+        return s0Var;
+    }
+
+    public final void v(ek0 ek0Var, String str) {
+        s0 s0Var = new s0(0);
+        s0Var.f21469b = 29;
+        s0Var.f21470c = 0;
+        s0Var.d = ek0Var;
+        s0Var.f21471e = str;
+        s0Var.f21472f = true;
+        A(s0Var);
+    }
+
+    public final s0 w(int i10, xh xhVar) {
+        s0 s0Var = new s0(2);
+        s0Var.f21470c = i10;
+        s0Var.d = null;
+        s0Var.f21471e = null;
+        s0Var.f21473g = null;
+        s0Var.h = xhVar;
+        A(s0Var);
+        return s0Var;
+    }
+
+    public final s0 x() {
+        s0 s0Var = new s0(3);
+        s0Var.f21471e = "";
+        s0Var.f21474i = 13;
+        A(s0Var);
+        return s0Var;
+    }
+
+    public final void y() {
+        Integer num;
+        boolean z10;
+        ArrayList arrayList = this.f21544g0;
+        boolean isEmpty = arrayList.isEmpty();
+        ArrayList arrayList2 = new ArrayList(arrayList);
+        p0 p0Var = this.F;
+        if (p0Var != null && p0Var.getTag() != null) {
+            TransitionSet transitionSet = new TransitionSet();
+            ChangeBounds changeBounds = new ChangeBounds();
+            changeBounds.setDuration(150L);
+            transitionSet.addTransition(new m0(0).setDuration(150L)).addTransition(changeBounds);
+            transitionSet.setOrdering(0);
+            transitionSet.setInterpolator((TimeInterpolator) is.f27452g);
+            transitionSet.addListener((Transition.TransitionListener) new n0(this));
+            TransitionManager.beginDelayedTransition(this.f21542f, transitionSet);
+        }
+        if (this.f21542f != null) {
+            int i10 = 0;
+            while (i10 < this.f21542f.getChildCount()) {
+                if (!arrayList2.remove(((t0) this.f21542f.getChildAt(i10)).getFilter())) {
+                    this.f21542f.removeViewAt(i10);
+                    i10--;
+                }
+                i10++;
+            }
+        }
+        for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+            gg.p0 p0Var2 = (gg.p0) arrayList2.get(i11);
+            p0Var2.getClass();
+            t0 t0Var = new t0(getContext(), this.m0);
+            t0Var.setData(p0Var2);
+            t0Var.setOnClickListener(new ai.f2(16, this, t0Var));
+            this.f21542f.addView(t0Var, w7.x5.t(-2, -1, 0, 0, 0, 6, 0));
+        }
+        if (this.f21542f != null) {
+            for (int i12 = 0; i12 < this.f21542f.getChildCount(); i12++) {
+                t0 t0Var2 = (t0) this.f21542f.getChildAt(i12);
+                if (i12 == this.f21545h0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                t0Var2.setExpanded(z10);
+            }
+        }
+        LinearLayout linearLayout = this.f21542f;
+        if (linearLayout != null) {
+            if (!isEmpty) {
+                num = 1;
+            } else {
+                num = null;
+            }
+            linearLayout.setTag(num);
+        }
+        float x10 = this.f21540e.getX();
+        if (this.F.getTag() != null) {
+            this.f21540e.getViewTreeObserver().addOnPreDrawListener(new o0(this, x10));
+        }
+        j();
+    }
+
+    public final void z(boolean z10) {
+        y yVar;
+        k();
+        p0 p0Var = this.F;
+        if (p0Var != null && p0Var.getVisibility() != 0 && (yVar = this.f21537c) != null) {
+            yVar.f21686b.w(L(z10));
+        }
+    }
+
+    public u0(Context context, y yVar, int i10, int i11) {
+        this(context, yVar, i10, i11, false, null);
+    }
+
+    public u0(Context context, y yVar, int i10, int i11, boolean z10, d6 d6Var) {
+        super(context);
+        new ArrayList();
+        this.R = true;
+        this.V = true;
+        this.f21539d0 = true;
+        this.f21543f0 = true;
+        this.f21544g0 = new ArrayList();
+        this.f21545h0 = -1;
+        this.f21546i0 = new AnimationNotificationsLocker();
+        this.m0 = d6Var;
+        if (i10 != 0) {
+            setBackgroundDrawable(h6.g0(i10, z10 ? 5 : 1, -1));
+        }
+        this.f21537c = yVar;
+        if (z10) {
+            TextView textView = new TextView(context);
+            this.E = textView;
+            textView.setTextSize(1, 15.0f);
+            textView.setTypeface(AndroidUtilities.bold());
+            textView.setGravity(17);
+            textView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            textView.setImportantForAccessibility(2);
+            if (i11 != 0) {
+                textView.setTextColor(i11);
+            }
+            addView(textView, w7.x5.d(-1.0f, -2));
+            return;
+        }
+        ?? imageView = new ImageView(context);
+        this.f21562x = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImportantForAccessibility(2);
+        addView((View) imageView, w7.x5.d(-1.0f, -1));
+        if (i11 != 0) {
+            imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
+        }
+    }
+
+    public void setIcon(int i10) {
+        hk0 hk0Var = this.f21562x;
+        if (hk0Var == null) {
+            return;
+        }
+        this.f21563y = i10;
+        hk0Var.setImageResource(i10);
     }
 }

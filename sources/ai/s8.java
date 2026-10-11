@@ -4,16 +4,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.sa0;
+import org.telegram.ui.ra0;
 public final class s8 implements RequestDelegate {
     public final long f1710a;
-    public final sa0 f1711b;
+    public final ra0 f1711b;
     public final m9 f1712c;
 
-    public s8(m9 m9Var, long j3, sa0 sa0Var) {
+    public s8(m9 m9Var, long j3, ra0 ra0Var) {
         this.f1712c = m9Var;
         this.f1710a = j3;
-        this.f1711b = sa0Var;
+        this.f1711b = ra0Var;
     }
 
     @Override

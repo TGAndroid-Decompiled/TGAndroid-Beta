@@ -1,4 +1,4 @@
 package w7;
 public interface ja {
-    void a(n6.t tVar);
+    void a(n6.k kVar);
 }

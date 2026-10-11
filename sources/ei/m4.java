@@ -6,28 +6,28 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.js;
 import org.telegram.ui.Components.ms;
-import org.telegram.ui.Components.yh0;
+import org.telegram.ui.Components.zh0;
 public final class m4 extends GestureDetector.SimpleOnGestureListener {
-    public final int f9223a;
-    public final int f9224b;
-    public final ViewGroup f9225c;
+    public final int f9222a;
+    public final int f9223b;
+    public final ViewGroup f9224c;
 
     public m4(ViewGroup viewGroup, int i10, int i11) {
-        this.f9223a = i11;
-        this.f9225c = viewGroup;
-        this.f9224b = i10;
+        this.f9222a = i11;
+        this.f9224c = viewGroup;
+        this.f9223b = i10;
     }
 
     @Override
     public boolean onDown(MotionEvent motionEvent) {
-        switch (this.f9223a) {
+        switch (this.f9222a) {
             case 1:
-                ms msVar = (ms) this.f9225c;
-                js jsVar = msVar.f28890r;
-                if (msVar.f28889n) {
+                ms msVar = (ms) this.f9224c;
+                js jsVar = msVar.f28851r;
+                if (msVar.f28850n) {
                     msVar.removeCallbacks(jsVar);
                 }
-                msVar.f28889n = true;
+                msVar.f28850n = true;
                 msVar.postDelayed(jsVar, 200L);
                 msVar.h.run();
                 return true;
@@ -41,9 +41,9 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
     @Override
     public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         org.telegram.ui.web.y0 y0Var;
-        switch (this.f9223a) {
+        switch (this.f9222a) {
             case 0:
-                o4 o4Var = (o4) this.f9225c;
+                o4 o4Var = (o4) this.f9224c;
                 if (o4Var.d || !o4Var.M) {
                     return false;
                 }
@@ -55,14 +55,14 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
                 }
                 float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), motionEvent2.getX(), motionEvent2.getY());
                 float eventTime = (float) (motionEvent2.getEventTime() - motionEvent.getEventTime());
-                if (f10 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && ((y0Var = o4Var.f9268x) == null || y0Var.getScrollY() == 0))) {
-                    o4Var.f9267w = true;
-                    float f11 = o4Var.f9265r;
+                if (f10 >= AndroidUtilities.dp(650.0f) && ((distance > AndroidUtilities.dp(200.0f) || eventTime > 250.0f) && ((y0Var = o4Var.f9267x) == null || y0Var.getScrollY() == 0))) {
+                    o4Var.f9266w = true;
+                    float f11 = o4Var.f9264r;
                     int i10 = o4Var.H;
                     if (f11 < i10 && !o4Var.J) {
                         o4Var.e(0.0f);
-                    } else if (o4Var.J && o4Var.L && (o4Var.Q == (-o4Var.f9263f) + o4Var.f9262e || (f11 <= (-i10) && f10 < AndroidUtilities.dp(1200.0f)))) {
-                        o4Var.e((-o4Var.f9263f) + o4Var.f9262e);
+                    } else if (o4Var.J && o4Var.L && (o4Var.Q == (-o4Var.f9262f) + o4Var.f9261e || (f11 <= (-i10) && f10 < AndroidUtilities.dp(1200.0f)))) {
+                        o4Var.e((-o4Var.f9262f) + o4Var.f9261e);
                     } else {
                         n4 n4Var = o4Var.F;
                         if (n4Var != null) {
@@ -72,12 +72,12 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
                 } else if (f10 > -700.0f) {
                     return false;
                 } else {
-                    float f12 = o4Var.f9265r;
-                    float f13 = (-o4Var.f9263f) + o4Var.f9262e;
+                    float f12 = o4Var.f9264r;
+                    float f13 = (-o4Var.f9262f) + o4Var.f9261e;
                     if (f12 <= f13) {
                         return false;
                     }
-                    o4Var.f9267w = true;
+                    o4Var.f9266w = true;
                     o4Var.e(f13);
                 }
                 return true;
@@ -85,11 +85,11 @@ public final class m4 extends GestureDetector.SimpleOnGestureListener {
             default:
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
-                yh0 yh0Var = (yh0) this.f9225c;
-                if (!yh0Var.f33210f && !yh0Var.h && f7 >= 600.0f) {
-                    yh0Var.f33209e = false;
-                    yh0Var.h = false;
-                    yh0Var.a(0.0f, f7 / 6000.0f);
+                zh0 zh0Var = (zh0) this.f9224c;
+                if (!zh0Var.f33532f && !zh0Var.h && f7 >= 600.0f) {
+                    zh0Var.f33531e = false;
+                    zh0Var.h = false;
+                    zh0Var.a(0.0f, f7 / 6000.0f);
                 }
                 return false;
         }

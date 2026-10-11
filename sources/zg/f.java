@@ -12,29 +12,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import w7.x5;
 public final class f extends FrameLayout {
-    public static final int f54562e = 0;
-    public final e f54563a;
-    public boolean f54564b;
-    public boolean f54565c;
+    public static final int f54605e = 0;
+    public final e f54606a;
+    public boolean f54607b;
+    public boolean f54608c;
     public Utilities.Callback d;
 
-    public f(Activity activity, e6 e6Var) {
+    public f(Activity activity, d6 d6Var) {
         super(activity);
         int x02;
         int x03;
         e eVar = new e(this, activity);
-        this.f54563a = eVar;
+        this.f54606a = eVar;
         eVar.setHapticFeedbackEnabled(true);
         eVar.setImageResource(R.drawable.smiles_tab_clear);
-        int i10 = i6.Re;
-        if (e6Var != null) {
-            x02 = e6Var.x0(i10);
+        int i10 = h6.Re;
+        if (d6Var != null) {
+            x02 = d6Var.x0(i10);
         } else {
-            x02 = i6.x0(null, i10, false);
+            x02 = h6.x0(null, i10, false);
         }
         eVar.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
         eVar.setScaleType(ImageView.ScaleType.CENTER);
@@ -42,15 +42,15 @@ public final class f extends FrameLayout {
         eVar.setFocusable(true);
         eVar.setOnClickListener(new e2(28));
         addView(eVar, x5.e(36, 36, 17));
-        int x04 = i6.x0(null, i6.f20892i6, false);
+        int x04 = h6.x0(null, h6.f20877i6, false);
         int dp = AndroidUtilities.dp(36.0f);
-        int i11 = i6.f20801d6;
-        if (e6Var != null) {
-            x03 = e6Var.x0(i11);
+        int i11 = h6.f20786d6;
+        if (d6Var != null) {
+            x03 = d6Var.x0(i11);
         } else {
-            x03 = i6.x0(null, i11, false);
+            x03 = h6.x0(null, i11, false);
         }
-        eVar.setBackground(i6.i0(dp, x03, x04));
+        eVar.setBackground(h6.i0(dp, x03, x04));
         eVar.setOutlineProvider(new j6(18));
         eVar.setElevation(AndroidUtilities.dp(1.0f));
         eVar.setClipToOutline(true);

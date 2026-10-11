@@ -41,8 +41,8 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.ca0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.kx;
-import org.telegram.ui.ty;
+import org.telegram.ui.jx;
+import org.telegram.ui.sy;
 import v7.d8;
 import v7.g8;
 public final class d implements Runnable {
@@ -65,12 +65,12 @@ public final class d implements Runnable {
                 ((w) this.f82b).f216k--;
                 return;
             case 2:
-                ty tyVar = ((kx) this.f82b).O0;
-                if (tyVar.L && tyVar.U3().G()) {
-                    tyVar.E0.h();
+                sy syVar = ((jx) this.f82b).O0;
+                if (syVar.L && syVar.U3().G()) {
+                    syVar.E0.h();
                     return;
                 } else {
-                    tyVar.u4(true, true);
+                    syVar.u4(true, true);
                     return;
                 }
             case 3:
@@ -118,7 +118,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f82b;
-                int i10 = ProfileStoriesView.f34535s0;
+                int i10 = ProfileStoriesView.f34525s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -137,8 +137,8 @@ public final class d implements Runnable {
                 return;
             case 13:
                 a1 a1Var = (a1) this.f82b;
-                a1Var.c(a1Var.f4712b);
-                a1Var.f4713c = false;
+                a1Var.c(a1Var.f4711b);
+                a1Var.f4712c = false;
                 return;
             case 14:
                 q9 q9Var = (q9) this.f82b;
@@ -251,24 +251,24 @@ public final class d implements Runnable {
                         if (pVar.h != null) {
                             try {
                                 o0.h d = pVar.d();
-                                int i11 = d.f16909e;
+                                int i11 = d.f16955e;
                                 if (i11 == 2) {
                                     synchronized (pVar.d) {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f16468a;
+                                    int i12 = n0.g.f16510a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                                     ob.a aVar = pVar.f2623c;
                                     Context context = pVar.f2621a;
                                     aVar.getClass();
                                     o0.h[] hVarArr = {d};
-                                    d8 d8Var = i0.e.f11582a;
+                                    d8 d8Var = i0.e.f11581a;
                                     w7.a8.a("TypefaceCompat.createFromFontInfo");
                                     try {
-                                        Typeface b10 = i0.e.f11582a.b(context, hVarArr, 0);
+                                        Typeface b10 = i0.e.f11581a.b(context, hVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e7 = g8.e(pVar.f2621a, d.f16906a);
+                                        MappedByteBuffer e7 = g8.e(pVar.f2621a, d.f16952a);
                                         if (e7 != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
@@ -283,7 +283,7 @@ public final class d implements Runnable {
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f16468a;
+                                                int i13 = n0.g.f16510a;
                                                 throw th2;
                                             }
                                         }

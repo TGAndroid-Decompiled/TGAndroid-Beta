@@ -39,15 +39,15 @@ public final class d extends j implements l {
             case 0:
                 Throwable th3 = (Throwable) obj;
                 ((e) this.f3879c).f3880c.removeCallbacks((s) this.d);
-                return i.f11092a;
+                return i.f11091a;
             default:
                 Throwable th4 = (Throwable) obj;
                 ((g) this.f3879c).invoke(th4);
                 ce.b bVar = (ce.b) ((com.google.firebase.messaging.s) this.d).d;
                 bVar.getClass();
-                AtomicLongFieldUpdater atomicLongFieldUpdater = ce.b.f4607b;
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ce.b.f4612i;
-                da.a aVar2 = ce.d.f4631r;
+                AtomicLongFieldUpdater atomicLongFieldUpdater = ce.b.f4606b;
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ce.b.f4611i;
+                da.a aVar2 = ce.d.f4630r;
                 while (true) {
                     z10 = true;
                     if (atomicReferenceFieldUpdater.compareAndSet(bVar, aVar2, th4)) {
@@ -78,13 +78,13 @@ public final class d extends j implements l {
                 }
                 bVar.c();
                 if (z11) {
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = ce.b.f4613j;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = ce.b.f4612j;
                     while (true) {
                         Object obj2 = atomicReferenceFieldUpdater2.get(bVar);
                         if (obj2 == null) {
-                            aVar = ce.d.f4629p;
+                            aVar = ce.d.f4628p;
                         } else {
-                            aVar = ce.d.f4630q;
+                            aVar = ce.d.f4629q;
                         }
                         while (!atomicReferenceFieldUpdater2.compareAndSet(bVar, obj2, aVar)) {
                             if (atomicReferenceFieldUpdater2.get(bVar) != obj2) {
@@ -93,32 +93,32 @@ public final class d extends j implements l {
                         }
                         if (obj2 != null) {
                             kotlin.jvm.internal.s.a(1, obj2);
-                            ((l) obj2).invoke((Throwable) ce.b.f4612i.get(bVar));
+                            ((l) obj2).invoke((Throwable) ce.b.f4611i.get(bVar));
                         }
                     }
                 }
                 while (true) {
                     bVar.getClass();
-                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = ce.b.f4608c;
+                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = ce.b.f4607c;
                     long j11 = atomicLongFieldUpdater3.get(bVar);
-                    long j12 = ce.b.f4607b.get(bVar);
+                    long j12 = ce.b.f4606b.get(bVar);
                     if (bVar.i(j12, z10)) {
-                        eVar = new ce.e((Throwable) ce.b.f4612i.get(bVar));
+                        eVar = new ce.e((Throwable) ce.b.f4611i.get(bVar));
                     } else {
                         int i12 = (j11 > (j12 & 1152921504606846975L) ? 1 : (j11 == (j12 & 1152921504606846975L) ? 0 : -1));
-                        ce.f fVar = ce.g.f4633a;
+                        ce.f fVar = ce.g.f4632a;
                         if (i12 < 0) {
-                            da.a aVar3 = ce.d.f4624k;
-                            h hVar = (h) ce.b.f4611g.get(bVar);
+                            da.a aVar3 = ce.d.f4623k;
+                            h hVar = (h) ce.b.f4610g.get(bVar);
                             while (true) {
-                                if (bVar.i(ce.b.f4607b.get(bVar), z10)) {
-                                    eVar = new ce.e((Throwable) ce.b.f4612i.get(bVar));
+                                if (bVar.i(ce.b.f4606b.get(bVar), z10)) {
+                                    eVar = new ce.e((Throwable) ce.b.f4611i.get(bVar));
                                 } else {
                                     long andIncrement = atomicLongFieldUpdater3.getAndIncrement(bVar);
-                                    long j13 = ce.d.f4617b;
+                                    long j13 = ce.d.f4616b;
                                     long j14 = andIncrement / j13;
                                     int i13 = (int) (andIncrement % j13);
-                                    if (hVar.f9915c != j14) {
+                                    if (hVar.f9914c != j14) {
                                         h e7 = bVar.e(j14, hVar);
                                         if (e7 == null) {
                                             continue;
@@ -128,7 +128,7 @@ public final class d extends j implements l {
                                         }
                                     }
                                     Object o9 = bVar.o(hVar, i13, andIncrement, aVar3);
-                                    if (o9 == ce.d.f4626m) {
+                                    if (o9 == ce.d.f4625m) {
                                         if (aVar3 instanceof k2) {
                                             k2Var = (k2) aVar3;
                                         } else {
@@ -139,12 +139,12 @@ public final class d extends j implements l {
                                         }
                                         bVar.q(andIncrement);
                                         hVar.i();
-                                    } else if (o9 == ce.d.f4628o) {
+                                    } else if (o9 == ce.d.f4627o) {
                                         if (andIncrement < bVar.g()) {
                                             hVar.b();
                                         }
                                         z10 = true;
-                                    } else if (o9 != ce.d.f4627n) {
+                                    } else if (o9 != ce.d.f4626n) {
                                         hVar.b();
                                         eVar = o9;
                                     } else {
@@ -158,13 +158,13 @@ public final class d extends j implements l {
                     if (eVar instanceof ce.f) {
                         eVar = null;
                     }
-                    i iVar2 = i.f11092a;
+                    i iVar2 = i.f11091a;
                     if (eVar == null) {
                         iVar = null;
                     } else {
                         k kVar = (k) eVar;
                         if (kVar instanceof k1.j) {
-                            t tVar = ((k1.j) kVar).f14345b;
+                            t tVar = ((k1.j) kVar).f14344b;
                             if (th4 == null) {
                                 th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
                             } else {

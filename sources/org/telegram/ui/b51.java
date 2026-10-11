@@ -1,53 +1,26 @@
 package org.telegram.ui;
+public final class b51 extends org.telegram.ui.Components.m81 {
+    public final SecretMediaViewer m0;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class b51 extends AnimatorListenerAdapter {
-    public final int f36186a;
-    public final SecretMediaViewer f36187b;
-
-    public b51(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f36186a = i10;
-        this.f36187b = secretMediaViewer;
+    public b51(SecretMediaViewer secretMediaViewer) {
+        this.m0 = secretMediaViewer;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36186a) {
-            case 0:
-                SecretMediaViewer secretMediaViewer = this.f36187b;
-                Runnable runnable = secretMediaViewer.f34482o0;
-                if (runnable != null) {
-                    runnable.run();
-                    secretMediaViewer.f34482o0 = null;
-                    return;
-                }
-                return;
-            case 1:
-                SecretMediaViewer secretMediaViewer2 = this.f36187b;
-                AnimatorSet animatorSet = secretMediaViewer2.G;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    secretMediaViewer2.F.setVisibility(8);
-                    secretMediaViewer2.G = null;
-                    secretMediaViewer2.f34451a0.scrollTo(0, 0);
-                    return;
-                }
-                return;
-            case 2:
-                SecretMediaViewer secretMediaViewer3 = this.f36187b;
-                Runnable runnable2 = secretMediaViewer3.f34482o0;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    secretMediaViewer3.f34482o0 = null;
-                    return;
-                }
-                return;
-            default:
-                SecretMediaViewer secretMediaViewer4 = this.f36187b;
-                secretMediaViewer4.K0 = null;
-                secretMediaViewer4.f34461e.invalidate();
-                return;
-        }
+    public final void B() {
+        super.B();
+        this.m0.W.a(false, true);
+    }
+
+    @Override
+    public final void C() {
+        super.C();
+        this.m0.W.a(true, true);
+    }
+
+    @Override
+    public final void P(boolean z10) {
+        super.P(z10);
+        this.m0.W.a(z10, true);
     }
 }

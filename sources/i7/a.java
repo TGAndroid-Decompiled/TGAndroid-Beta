@@ -4,14 +4,14 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import v7.g5;
 public final class a extends com.google.android.gms.common.api.internal.i {
-    public final TaskCompletionSource f12035b;
+    public final TaskCompletionSource f12034b;
 
     public a(TaskCompletionSource taskCompletionSource) {
-        this.f12035b = taskCompletionSource;
+        this.f12034b = taskCompletionSource;
     }
 
     @Override
     public final void H(Status status) {
-        g5.a(status, null, this.f12035b);
+        g5.a(status, null, this.f12034b);
     }
 }

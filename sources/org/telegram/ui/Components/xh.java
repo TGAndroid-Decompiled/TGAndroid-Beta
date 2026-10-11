@@ -6,16 +6,16 @@ import java.util.HashMap;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
-public final class xh implements org.telegram.ui.ar0 {
-    public boolean f32942a;
-    public final HashMap f32943b;
-    public final ArrayList f32944c;
+public final class xh implements org.telegram.ui.zq0 {
+    public boolean f32918a;
+    public final HashMap f32919b;
+    public final ArrayList f32920c;
     public final yi d;
 
     public xh(yi yiVar, HashMap hashMap, ArrayList arrayList) {
         this.d = yiVar;
-        this.f32943b = hashMap;
-        this.f32944c = arrayList;
+        this.f32919b = hashMap;
+        this.f32920c = arrayList;
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class xh implements org.telegram.ui.ar0 {
     public final void h(int i10, boolean z10, boolean z11) {
         String str;
         if (!z10) {
-            HashMap hashMap = this.f32943b;
-            if (!hashMap.isEmpty() && !this.f32942a) {
-                this.f32942a = true;
+            HashMap hashMap = this.f32919b;
+            if (!hashMap.isEmpty() && !this.f32918a) {
+                this.f32918a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f32944c;
+                    ArrayList arrayList2 = this.f32920c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -65,7 +65,7 @@ public final class xh implements org.telegram.ui.ar0 {
                         searchImage.date = (int) (System.currentTimeMillis() / 1000);
                         i11++;
                     } else {
-                        ((org.telegram.ui.zn) this.d.f33235f0).g8(i10, arrayList, z11);
+                        ((org.telegram.ui.zn) this.d.f33216f0).g8(i10, arrayList, z11);
                         return;
                     }
                 }

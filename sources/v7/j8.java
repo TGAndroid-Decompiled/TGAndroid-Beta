@@ -29,7 +29,7 @@ public abstract class j8 {
 
     public static i9.u b(Object obj) {
         if (obj == null) {
-            return i9.u.f12080b;
+            return i9.u.f12079b;
         }
         return new i9.u(obj);
     }

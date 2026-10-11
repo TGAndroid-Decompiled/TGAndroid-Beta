@@ -10,25 +10,25 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class um implements yu0 {
-    public final TL_iv.RichMessage f42499a;
-    public final ArrayList f42500b;
-    public final MessageObject f42501c;
+public final class um implements xu0 {
+    public final TL_iv.RichMessage f42647a;
+    public final ArrayList f42648b;
+    public final MessageObject f42649c;
 
     public um(TL_iv.RichMessage richMessage, ArrayList arrayList, MessageObject messageObject) {
-        this.f42499a = richMessage;
-        this.f42500b = arrayList;
-        this.f42501c = messageObject;
+        this.f42647a = richMessage;
+        this.f42648b = arrayList;
+        this.f42649c = messageObject;
     }
 
     @Override
     public final boolean a(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42500b;
+            ArrayList arrayList = this.f42648b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    TLRPC.Document b10 = f4.b(this.f42499a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    TLRPC.Document b10 = e4.b(this.f42647a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                     if (b10 != null) {
                         return MessageObject.isVideoDocument(b10);
                     }
@@ -46,19 +46,19 @@ public final class um implements yu0 {
         TLRPC.Document b10;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42500b;
+            ArrayList arrayList = this.f42648b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f42499a;
+                TL_iv.RichMessage richMessage = this.f42647a;
                 if (z10) {
-                    TLRPC.Photo f7 = f4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                    TLRPC.Photo f7 = e4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                     if (f7 != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(f7.sizes, AndroidUtilities.getPhotoSize())) != null) {
-                        return f4.c(closestPhotoSizeWithSize);
+                        return e4.c(closestPhotoSizeWithSize);
                     }
                     return null;
-                } else if ((pageBlock instanceof TL_iv.pageBlockVideo) && (b10 = f4.b(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
-                    return f4.c(b10);
+                } else if ((pageBlock instanceof TL_iv.pageBlockVideo) && (b10 = e4.b(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
+                    return e4.c(b10);
                 } else {
                     return null;
                 }
@@ -80,16 +80,16 @@ public final class um implements yu0 {
     @Override
     public final TLObject d(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42500b;
+            ArrayList arrayList = this.f42648b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f42499a;
+                TL_iv.RichMessage richMessage = this.f42647a;
                 if (z10) {
-                    return f4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                    return e4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 }
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    return f4.b(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    return e4.b(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                 }
                 return null;
             }
@@ -139,27 +139,27 @@ public final class um implements yu0 {
 
     @Override
     public final Object g() {
-        MessageObject messageObject = this.f42501c;
+        MessageObject messageObject = this.f42649c;
         if (messageObject != null) {
             return messageObject;
         }
-        return this.f42499a;
+        return this.f42647a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i10) {
-        return (TL_iv.PageBlock) this.f42500b.get(i10);
+        return (TL_iv.PageBlock) this.f42648b.get(i10);
     }
 
     @Override
     public final List getAll() {
-        return this.f42500b;
+        return this.f42648b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
         RichMessageLayout richMessageLayout;
-        MessageObject messageObject = this.f42501c;
+        MessageObject messageObject = this.f42649c;
         if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null) {
             richMessageLayout.setSlideshowPage(pageBlock);
         }
@@ -172,6 +172,6 @@ public final class um implements yu0 {
 
     @Override
     public final int j() {
-        return this.f42500b.size();
+        return this.f42648b.size();
     }
 }

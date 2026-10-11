@@ -53,12 +53,12 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
     }
 
     @Override
-    public void X(Object obj) {
+    public void W(Object obj) {
         this.f3505b = true;
         pb.c cVar = (pb.c) this.f3506c;
         cVar.getClass();
         Void r32 = (Void) obj;
-        SignInHubActivity signInHubActivity = (SignInHubActivity) cVar.f45588b;
+        SignInHubActivity signInHubActivity = (SignInHubActivity) cVar.f45578b;
         signInHubActivity.setResult(signInHubActivity.R, signInHubActivity.S);
         signInHubActivity.finish();
     }
@@ -138,7 +138,7 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
             boolean z10 = true;
             for (int i11 = 0; i11 < i10 && z10; i11++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i11));
-                p pVar = p0.f.f45200a;
+                p pVar = p0.f.f45190a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {
@@ -174,7 +174,7 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
             return;
         }
         try {
-            ((l5.r) this.f3506c).a(new i5.a(null, x3Var, i5.d.f12014a, null), new j2.e(16));
+            ((l5.r) this.f3506c).a(new i5.a(null, x3Var, i5.d.f12013a, null), new j2.e(16));
         } catch (Throwable unused) {
             com.google.android.gms.internal.play_billing.u.h("BillingLogger", "logging failed.");
         }

@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-public final class ki extends uu0 {
-    public final zn f39344a;
+public final class ki extends tu0 {
+    public final zn f39343a;
 
     public ki(zn znVar) {
-        this.f39344a = znVar;
+        this.f39343a = znVar;
     }
 
     @Override
-    public final org.telegram.ui.ev0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ki.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.ev0");
+    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ki.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
     }
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
         if (i10 >= 0) {
-            zn znVar = this.f39344a;
+            zn znVar = this.f39343a;
             if (i10 < znVar.Ia.size()) {
                 znVar.gb((TLRPC.BotInlineResult) znVar.Ia.get(i10), z10, i11, 0L);
             }

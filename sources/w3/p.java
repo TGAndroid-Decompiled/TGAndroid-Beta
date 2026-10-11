@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 public abstract class p {
-    public static final int[] f49892a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
+    public static final int[] f49935a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
 
     public static byte[] a(UUID uuid, UUID[] uuidArr, byte[] bArr) {
         int i10;
@@ -62,7 +62,7 @@ public abstract class p {
                 o0 o0Var = o0VarArr[i10];
                 if (o0Var instanceof f2.b) {
                     f2.b bVar = (f2.b) o0Var;
-                    if (bVar.f9559a.equals(str)) {
+                    if (bVar.f9558a.equals(str)) {
                         return bVar;
                     }
                 }
@@ -81,7 +81,7 @@ public abstract class p {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            String str2 = ((t) obj).f49922a.f49898g.f3643r;
+            String str2 = ((t) obj).f49965a.f49941g.f3643r;
             if (r0.m(str2)) {
                 return "video/mp4";
             }
@@ -112,7 +112,7 @@ public abstract class p {
             return true;
         }
         for (int i11 = 0; i11 < 29; i11++) {
-            if (f49892a[i11] == i10) {
+            if (f49935a[i11] == i10) {
                 return true;
             }
         }
@@ -135,7 +135,7 @@ public abstract class p {
         int j3 = vVar.j();
         if (vVar.j() == 1684108385) {
             int j10 = vVar.j();
-            byte[] bArr = e.f49814a;
+            byte[] bArr = e.f49857a;
             int i10 = j10 & 16777215;
             if (i10 == 13) {
                 str = "image/jpeg";
@@ -184,7 +184,7 @@ public abstract class p {
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 3) {
-                        if (i10 == 4 && (vVar.f8584a[vVar.f8585b] & 128) == 0) {
+                        if (i10 == 4 && (vVar.f8583a[vVar.f8584b] & 128) == 0) {
                             return vVar.B();
                         }
                     } else {
@@ -219,7 +219,7 @@ public abstract class p {
     public static j6.l j(byte[] bArr) {
         UUID[] uuidArr;
         v vVar = new v(bArr);
-        if (vVar.f8586c < 32) {
+        if (vVar.f8585c < 32) {
             return null;
         }
         vVar.J(0);
@@ -258,9 +258,9 @@ public abstract class p {
         byte[] bArr2 = new byte[B2];
         vVar.h(0, B2, bArr2);
         ?? obj = new Object();
-        obj.f14062b = uuid;
-        obj.f14061a = e7;
-        obj.f14063c = bArr2;
+        obj.f14061b = uuid;
+        obj.f14060a = e7;
+        obj.f14062c = bArr2;
         obj.d = uuidArr;
         return obj;
     }
@@ -270,12 +270,12 @@ public abstract class p {
         if (j3 == null) {
             return null;
         }
-        UUID uuid2 = (UUID) j3.f14062b;
+        UUID uuid2 = (UUID) j3.f14061b;
         if (!uuid.equals(uuid2)) {
             e2.a.n("PsshAtomUtil", "UUID mismatch. Expected: " + uuid + ", got: " + uuid2 + ".");
             return null;
         }
-        return (byte[]) j3.f14063c;
+        return (byte[]) j3.f14062c;
     }
 
     public static q3.o l(int i10, v vVar, String str) {
@@ -302,7 +302,7 @@ public abstract class p {
                 o0 o0Var = o0VarArr[i11];
                 if (o0Var instanceof f2.b) {
                     f2.b bVar = (f2.b) o0Var;
-                    if (bVar.f9559a.equals("com.android.capture.fps")) {
+                    if (bVar.f9558a.equals("com.android.capture.fps")) {
                         if (i10 == 2) {
                             p0Var2 = p0Var2.a(bVar);
                         }
@@ -344,14 +344,14 @@ public abstract class p {
         while (i17 < i15) {
             vVar.G(8);
             boolean z13 = true;
-            if (!pVar.h(vVar.f8584a, i16, 8, true)) {
+            if (!pVar.i(vVar.f8583a, i16, 8, true)) {
                 break;
             }
             long z14 = vVar.z();
             int j12 = vVar.j();
             if (z14 == 1) {
                 j3 = j10;
-                pVar.a(8, 8, vVar.f8584a);
+                pVar.a(8, 8, vVar.f8583a);
                 i12 = 16;
                 vVar.I(16);
                 z14 = vVar.r();
@@ -401,7 +401,7 @@ public abstract class p {
                     }
                     vVar.G(i19);
                     i13 = 0;
-                    pVar.a(0, i19, vVar.f8584a);
+                    pVar.a(0, i19, vVar.f8583a);
                     if (d(vVar.j(), z11)) {
                         z12 = true;
                     }
@@ -430,14 +430,14 @@ public abstract class p {
                     if (!z13) {
                         ?? obj = new Object();
                         if (iArr != null) {
-                            int i21 = h9.a.f11048c;
+                            int i21 = h9.a.f11047c;
                             if (iArr.length == 0) {
                                 return obj;
                             }
                             new h9.a(Arrays.copyOf(iArr, iArr.length));
                             return obj;
                         }
-                        int i22 = h9.a.f11048c;
+                        int i22 = h9.a.f11047c;
                         return obj;
                     }
                     z12 = z13;
@@ -458,13 +458,13 @@ public abstract class p {
         f0Var = null;
         i10 = i16;
         if (!z12) {
-            return k.f49858c;
+            return k.f49901c;
         }
         if (z10 != i10) {
             if (i10 != 0) {
-                return k.f49856a;
+                return k.f49899a;
             }
-            return k.f49857b;
+            return k.f49900b;
         }
         return f0Var;
     }

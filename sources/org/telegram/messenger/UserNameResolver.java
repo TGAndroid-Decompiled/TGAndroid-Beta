@@ -29,7 +29,7 @@ public class UserNameResolver {
     }
 
     public void lambda$resolve$0(String str, TLRPC.TL_error tL_error, TLObject tLObject) {
-        org.telegram.ui.ActionBar.n2 R;
+        org.telegram.ui.ActionBar.m2 R;
         ArrayList<Utilities.Callback<Long>> remove = this.resolvingConsumers.remove(str);
         if (remove != null) {
             int i10 = 0;
@@ -48,7 +48,7 @@ public class UserNameResolver {
                 }
                 String str3 = tL_error.text;
                 if (str3 != null && str3.contains("FLOOD_WAIT") && (R = LaunchActivity.R()) != null) {
-                    bi.q(R.string.FloodWait, org.telegram.ui.Components.ad.a0(R), null);
+                    ai.q(R.string.FloodWait, org.telegram.ui.Components.ad.a0(R), null);
                     return;
                 }
                 return;
@@ -67,7 +67,7 @@ public class UserNameResolver {
     }
 
     public void lambda$resolve$1(String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new zh(str, this, tLObject, tL_error), 2L);
+        AndroidUtilities.runOnUIThread(new zi(str, this, tLObject, tL_error), 2L);
     }
 
     public void lambda$resolve$2(String str, int i10) {
@@ -87,7 +87,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(user.username);
         String str2 = user2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(user2.f20189id));
+            this.resolvedCache.put(str2, new CachedPeer(user2.f20179id));
         }
     }
 
@@ -141,7 +141,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(chat.username);
         String str2 = chat2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(-chat2.f20042id));
+            this.resolvedCache.put(str2, new CachedPeer(-chat2.f20032id));
         }
     }
 }

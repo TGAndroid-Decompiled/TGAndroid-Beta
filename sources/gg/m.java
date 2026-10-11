@@ -29,7 +29,8 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.a3;
 import org.telegram.ui.Cells.b7;
 import org.telegram.ui.Cells.f7;
@@ -45,75 +46,75 @@ import org.telegram.ui.Components.ao;
 import org.telegram.ui.Components.fr;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.oj0;
-import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.sm0;
 import org.telegram.ui.Components.x6;
-import org.telegram.ui.py;
-import org.telegram.ui.ty;
+import org.telegram.ui.oy;
+import org.telegram.ui.sy;
 import w7.x5;
-public class m extends qm0 implements o2 {
-    public static final boolean f10715c0 = BuildVars.DEBUG_PRIVATE_VERSION;
+public class m extends rm0 implements o2 {
+    public static final boolean f10714c0 = BuildVars.DEBUG_PRIVATE_VERSION;
     public boolean E;
     public final int F;
     public boolean G;
     public boolean H;
     public long I;
     public boolean J;
-    public rm0 K;
-    public oj0 L;
+    public sm0 K;
+    public pj0 L;
     public Drawable O;
     public final j P;
     public boolean Q;
-    public final ty R;
+    public final sy R;
     public boolean S;
     public final TLRPC.RequestPeerType T;
     public boolean U;
     public final long V;
     public boolean Z;
-    public boolean f10716a0;
-    public final Context f10718c;
+    public boolean f10715a0;
+    public final Context f10717c;
     public ArrayList d;
-    public boolean f10719e;
-    public int f10720f;
+    public boolean f10718e;
+    public int f10719f;
     public int h;
-    public boolean f10721n;
-    public final int f10722r;
-    public long f10723s;
+    public boolean f10720n;
+    public final int f10721r;
+    public long f10722s;
     public int v;
-    public final boolean f10724w;
-    public final ArrayList f10725x;
-    public boolean f10726y;
+    public final boolean f10723w;
+    public final ArrayList f10724x;
+    public boolean f10725y;
     public ArrayList M = new ArrayList();
     public ArrayList N = new ArrayList();
     public int W = 10;
     public final LongSparseIntArray X = new LongSparseIntArray();
     public final HashMap Y = new HashMap();
-    public int f10717b0 = -1;
+    public int f10716b0 = -1;
 
-    public m(ty tyVar, Context context, int i10, int i11, boolean z10, ArrayList arrayList, int i12, TLRPC.RequestPeerType requestPeerType) {
+    public m(sy syVar, Context context, int i10, int i11, boolean z10, ArrayList arrayList, int i12, TLRPC.RequestPeerType requestPeerType) {
         boolean z11;
-        this.f10718c = context;
-        this.R = tyVar;
+        this.f10717c = context;
+        this.R = syVar;
         this.h = i10;
-        this.f10722r = i11;
-        this.f10724w = z10;
+        this.f10721r = i11;
+        this.f10723w = z10;
         if (i11 == 0 && i10 == 0 && !z10) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f10726y = z11;
-        this.f10725x = arrayList;
+        this.f10725y = z11;
+        this.f10724x = arrayList;
         this.F = i12;
-        this.V = tyVar.X2;
+        this.V = syVar.X2;
         if (i11 == 0) {
             ?? obj = new Object();
-            obj.f10658a = new HashSet();
-            obj.f10659b = new HashSet();
-            obj.f10660c = new HashSet();
+            obj.f10657a = new HashSet();
+            obj.f10658b = new HashSet();
+            obj.f10659c = new HashSet();
             obj.d = new ArrayList();
-            obj.f10661e = new ai.f(obj, 11);
+            obj.f10660e = new ai.f(obj, 11);
             this.P = obj;
         }
         this.T = requestPeerType;
@@ -121,7 +122,7 @@ public class m extends qm0 implements o2 {
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47706f;
+        int i10 = d1Var.f47752f;
         if (i10 != 1 && i10 != 5 && i10 != 3 && i10 != 8 && i10 != 7 && i10 != 10 && i10 != 11 && i10 != 13 && i10 != 15 && i10 != 16 && i10 != 18 && i10 != 19 && i10 != 20) {
             return true;
         }
@@ -130,7 +131,7 @@ public class m extends qm0 implements o2 {
 
     public final int E() {
         int i10 = this.h;
-        int i11 = this.f10722r;
+        int i11 = this.f10721r;
         if (i10 != 7 && i10 != 8) {
             if (i11 == 1) {
                 return 2;
@@ -148,7 +149,7 @@ public class m extends qm0 implements o2 {
 
     public final int F(long j3) {
         for (int i10 = 0; i10 < this.M.size(); i10++) {
-            if (((k) this.M.get(i10)).f10700c != null && ((k) this.M.get(i10)).f10700c.f20046id == j3) {
+            if (((k) this.M.get(i10)).f10699c != null && ((k) this.M.get(i10)).f10699c.f20036id == j3) {
                 return i10;
             }
         }
@@ -159,10 +160,10 @@ public class m extends qm0 implements o2 {
         if (this.E) {
             i10--;
         }
-        if (this.f10726y) {
+        if (this.f10725y) {
             i10 = com.google.android.gms.internal.vision.e2.f(2, i10, MessagesController.getInstance(this.F).hintDialogs);
         }
-        if (this.f10721n && this.h == 3) {
+        if (this.f10720n && this.h == 3) {
             i10--;
         }
         int i11 = this.h;
@@ -186,20 +187,20 @@ public class m extends qm0 implements o2 {
     public final Object I(int i10) {
         if (i10 >= 0 && i10 < this.M.size()) {
             k kVar = (k) this.M.get(i10);
-            String str = kVar.f10707l;
-            TLRPC.TL_contact tL_contact = kVar.f10701e;
+            String str = kVar.f10706l;
+            TLRPC.TL_contact tL_contact = kVar.f10700e;
             if (str != null) {
                 return str;
             }
-            TLRPC.Chat chat = kVar.f10708m;
+            TLRPC.Chat chat = kVar.f10707m;
             if (chat != null) {
                 return chat;
             }
-            TLRPC.User user = kVar.f10709n;
+            TLRPC.User user = kVar.f10708n;
             if (user != null) {
                 return user;
             }
-            TLRPC.Dialog dialog = kVar.f10700c;
+            TLRPC.Dialog dialog = kVar.f10699c;
             if (dialog != null) {
                 return dialog;
             }
@@ -215,33 +216,33 @@ public class m extends qm0 implements o2 {
     }
 
     public final void M(boolean z10) {
-        this.f10721n = z10;
+        this.f10720n = z10;
     }
 
-    public final void N(oj0 oj0Var) {
-        this.L = oj0Var;
+    public final void N(pj0 pj0Var) {
+        this.L = pj0Var;
     }
 
-    public final void O(rm0 rm0Var, boolean z10) {
+    public final void O(sm0 sm0Var, boolean z10) {
         this.J = z10;
-        for (int i10 = 0; i10 < rm0Var.getChildCount(); i10++) {
-            if (rm0Var.getChildAt(i10) instanceof s2) {
-                ((s2) rm0Var.getChildAt(i10)).f22794f = z10;
+        for (int i10 = 0; i10 < sm0Var.getChildCount(); i10++) {
+            if (sm0Var.getChildAt(i10) instanceof s2) {
+                ((s2) sm0Var.getChildAt(i10)).f22782f = z10;
             }
         }
-        for (int i11 = 0; i11 < rm0Var.getCachedChildCount(); i11++) {
-            if (rm0Var.P(i11) instanceof s2) {
-                ((s2) rm0Var.P(i11)).f22794f = z10;
+        for (int i11 = 0; i11 < sm0Var.getCachedChildCount(); i11++) {
+            if (sm0Var.P(i11) instanceof s2) {
+                ((s2) sm0Var.P(i11)).f22782f = z10;
             }
         }
-        for (int i12 = 0; i12 < rm0Var.getHiddenChildCount(); i12++) {
-            if (rm0Var.V(i12) instanceof s2) {
-                ((s2) rm0Var.V(i12)).f22794f = z10;
+        for (int i12 = 0; i12 < sm0Var.getHiddenChildCount(); i12++) {
+            if (sm0Var.V(i12) instanceof s2) {
+                ((s2) sm0Var.V(i12)).f22782f = z10;
             }
         }
-        for (int i13 = 0; i13 < rm0Var.getAttachedScrapChildCount(); i13++) {
-            if (rm0Var.O(i13) instanceof s2) {
-                ((s2) rm0Var.O(i13)).f22794f = z10;
+        for (int i13 = 0; i13 < sm0Var.getAttachedScrapChildCount(); i13++) {
+            if (sm0Var.O(i13) instanceof s2) {
+                ((s2) sm0Var.O(i13)).f22782f = z10;
             }
         }
     }
@@ -251,11 +252,11 @@ public class m extends qm0 implements o2 {
     }
 
     public final void Q(long j3) {
-        this.f10723s = j3;
+        this.f10722s = j3;
     }
 
-    public final void R(py pyVar) {
-        this.K = pyVar;
+    public final void R(oy oyVar) {
+        this.K = oyVar;
     }
 
     public boolean S() {
@@ -282,12 +283,12 @@ public class m extends qm0 implements o2 {
 
     public final void U() {
         boolean z10;
-        if (this.f10722r == 0 && this.h == 0 && !this.f10724w && !MessagesController.getInstance(this.F).hintDialogs.isEmpty()) {
+        if (this.f10721r == 0 && this.h == 0 && !this.f10723w && !MessagesController.getInstance(this.F).hintDialogs.isEmpty()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f10726y = z10;
+        this.f10725y = z10;
     }
 
     public final void V() {
@@ -296,7 +297,7 @@ public class m extends qm0 implements o2 {
 
     public final void W(Runnable runnable) {
         if (this.Z) {
-            this.f10716a0 = true;
+            this.f10715a0 = true;
             return;
         }
         this.Z = true;
@@ -308,7 +309,7 @@ public class m extends qm0 implements o2 {
         ArrayList arrayList3 = this.N;
         this.M = arrayList3;
         g gVar = new g(this, arrayList2, 0);
-        if (arrayList3.size() >= 50 && f10715c0) {
+        if (arrayList3.size() >= 50 && f10714c0) {
             Utilities.searchQueue.postRunnable(new i5(this, gVar, runnable, arrayList2, 13));
             return;
         }
@@ -323,7 +324,7 @@ public class m extends qm0 implements o2 {
 
     @Override
     public final boolean b() {
-        return this.f10725x.isEmpty();
+        return this.f10724x.isEmpty();
     }
 
     @Override
@@ -346,7 +347,7 @@ public class m extends qm0 implements o2 {
                 arrayList2.add(Long.valueOf(peerDialogId));
             }
         }
-        this.R.getOrCreateStoryViewer().G(this.f10718c, null, arrayList2, 0, null, null, new v9(this.K, true), false);
+        this.R.getOrCreateStoryViewer().G(this.f10717c, null, arrayList2, 0, null, null, new v9(this.K, true), false);
     }
 
     @Override
@@ -354,9 +355,9 @@ public class m extends qm0 implements o2 {
         int i10 = this.F;
         MessagesController.getInstance(i10);
         if (MessagesController.getInstance(i10).getStoriesController().I(s2Var.getDialogId())) {
-            ty tyVar = this.R;
-            tyVar.getOrCreateStoryViewer().getClass();
-            tyVar.getOrCreateStoryViewer().D(tyVar.getParentActivity(), s2Var.getDialogId(), v9.a((rm0) s2Var.getParent()));
+            sy syVar = this.R;
+            syVar.getOrCreateStoryViewer().getClass();
+            syVar.getOrCreateStoryViewer().D(syVar.getParentActivity(), s2Var.getDialogId(), v9.a((sm0) s2Var.getParent()));
         }
     }
 
@@ -374,12 +375,12 @@ public class m extends qm0 implements o2 {
 
     @Override
     public final long i(int i10) {
-        return ((k) this.M.get(i10)).f10706k;
+        return ((k) this.M.get(i10)).f10705k;
     }
 
     @Override
     public final int j(int i10) {
-        return ((k) this.M.get(i10)).f17129a;
+        return ((k) this.M.get(i10)).f17175a;
     }
 
     @Override
@@ -404,13 +405,13 @@ public class m extends qm0 implements o2 {
         int i12;
         int i13;
         long j3 = this.V;
-        Context context = this.f10718c;
+        Context context = this.f10717c;
         switch (i10) {
             case 0:
             case 21:
                 int i14 = this.h;
                 if (i14 != 2 && i14 != 15) {
-                    s2 s2Var = new s2(this.R, this.f10718c, false, this.F, null);
+                    s2 s2Var = new s2(this.R, this.f10717c, false, this.F, null);
                     if (S()) {
                         ai.y1 y1Var = new ai.y1(this, 20);
                         s2Var.J1 = true;
@@ -434,7 +435,7 @@ public class m extends qm0 implements o2 {
                     r22 = new i6(context, null);
                 }
                 if (this.h == 15) {
-                    r22.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20801d6, false));
+                    r22.setBackgroundColor(h6.x0(null, h6.f20786d6, false));
                     break;
                 }
                 break;
@@ -462,7 +463,7 @@ public class m extends qm0 implements o2 {
                 TextView textView = new TextView(context);
                 textView.setTextSize(1, 15.0f);
                 textView.setTypeface(AndroidUtilities.bold());
-                textView.setTextColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.L6, false));
+                textView.setTextColor(h6.x0(null, h6.L6, false));
                 textView.setText(LocaleController.getString(R.string.RecentlyViewedHide));
                 int i15 = 3;
                 if (LocaleController.isRTL) {
@@ -479,20 +480,20 @@ public class m extends qm0 implements o2 {
                 break;
             case 3:
                 r22 = new ai.x5(context, 2);
-                r22.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20745a7, false));
+                r22.setBackgroundColor(h6.x0(null, h6.f20730a7, false));
                 View view = new View(context);
-                view.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.i6.f20765b7));
+                view.setBackgroundDrawable(h6.W0(context, R.drawable.greydivider, h6.f20750b7));
                 r22.addView(view, x5.d(-1.0f, -1));
                 break;
             case 4:
                 r22 = new org.telegram.ui.Cells.a0(context);
                 ImageReceiver imageReceiver = new ImageReceiver(r22);
                 r22.h = imageReceiver;
-                r22.f23039n = new j9((e6) null);
-                r22.f23042w = AndroidUtilities.dp(40.0f);
+                r22.f23027n = new j9((d6) null);
+                r22.f23030w = AndroidUtilities.dp(40.0f);
                 r22.F = AndroidUtilities.dp(10.0f);
                 r22.H = UserConfig.selectedAccount;
-                org.telegram.ui.ActionBar.i6.S(context);
+                h6.S(context);
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(26.0f));
                 break;
             case 5:
@@ -503,16 +504,16 @@ public class m extends qm0 implements o2 {
                 break;
             case 7:
                 r22 = new m4(context);
-                ty tyVar = this.R;
-                if (tyVar == null || !tyVar.N0) {
+                sy syVar = this.R;
+                if (syVar == null || !syVar.N0) {
                     r22.setPadding(0, 0, 0, AndroidUtilities.dp(12.0f));
                     break;
                 }
                 break;
             case 8:
                 r22 = new b7(context, (org.telegram.ui.Cells.c1) null);
-                fr frVar = new fr(new ColorDrawable(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20745a7, false)), org.telegram.ui.ActionBar.i6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.i6.f20765b7));
-                frVar.f26503w = true;
+                fr frVar = new fr(new ColorDrawable(h6.x0(null, h6.f20730a7, false)), h6.W0(context, R.drawable.greydivider, h6.f20750b7));
+                frVar.f26475w = true;
                 r22.setBackgroundDrawable(frVar);
                 break;
             case 9:
@@ -520,7 +521,7 @@ public class m extends qm0 implements o2 {
             default:
                 r22 = new r8(context);
                 if (this.h == 15) {
-                    r22.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20801d6, false));
+                    r22.setBackgroundColor(h6.x0(null, h6.f20786d6, false));
                     break;
                 }
                 break;
@@ -529,21 +530,21 @@ public class m extends qm0 implements o2 {
                 break;
             case 11:
                 r22 = new i(this, context);
-                fr frVar2 = new fr(new ColorDrawable(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20745a7, false)), org.telegram.ui.ActionBar.i6.W0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.i6.f20765b7));
-                frVar2.f26503w = true;
+                fr frVar2 = new fr(new ColorDrawable(h6.x0(null, h6.f20730a7, false)), h6.W0(context, R.drawable.greydivider, h6.f20750b7));
+                frVar2.f26475w = true;
                 r22.setBackgroundDrawable(frVar2);
                 break;
             case 14:
-                m4 m4Var = new m4(this.f10718c, org.telegram.ui.ActionBar.i6.f7, 16, 0, false, null);
+                m4 m4Var = new m4(this.f10717c, h6.f7, 16, 0, false, null);
                 m4Var.setHeight(32);
                 m4Var.setClickable(false);
                 r22 = m4Var;
                 break;
             case 15:
                 r22 = new LinearLayout(context);
-                r22.f22720b = new ArrayList();
+                r22.f22708b = new ArrayList();
                 r22.setOrientation(1);
-                r22.setBackgroundColor(org.telegram.ui.ActionBar.i6.x0(null, org.telegram.ui.ActionBar.i6.f20745a7, false));
+                r22.setBackgroundColor(h6.x0(null, h6.f20730a7, false));
                 break;
             case 16:
                 r22 = new h(this, context);
@@ -556,7 +557,7 @@ public class m extends qm0 implements o2 {
                 break;
             case 19:
                 r22 = new l(this, context);
-                r22.addView(new x6(this.f10718c, this.F, null, new f(this, 1), null), x5.a(-1.0f, 0.0f, -40.0f, 0.0f, 0.0f, -1, 17));
+                r22.addView(new x6(this.f10717c, this.F, null, new f(this, 1), null), x5.a(-1.0f, 0.0f, -40.0f, 0.0f, 0.0f, -1, 17));
                 break;
             case 20:
                 r22 = new v3(context, null);
@@ -565,7 +566,7 @@ public class m extends qm0 implements o2 {
                 r22 = new m4(context);
                 break;
             case 23:
-                s2 s2Var2 = new s2(this.R, this.f10718c, false, this.F, null);
+                s2 s2Var2 = new s2(this.R, this.f10717c, false, this.F, null);
                 if (j3 != 0) {
                     s2Var2.O0 = true;
                     s2Var2.P0 = true;
@@ -584,11 +585,11 @@ public class m extends qm0 implements o2 {
 
     @Override
     public final void y(s4.d1 d1Var) {
-        View view = d1Var.f47702a;
+        View view = d1Var.f47748a;
         if (view instanceof s2) {
             s2 s2Var = (s2) view;
             s2Var.T(this.H, false);
-            s2Var.V(this.f10725x.contains(Long.valueOf(s2Var.getDialogId())), false);
+            s2Var.V(this.f10724x.contains(Long.valueOf(s2Var.getDialogId())), false);
         }
     }
 

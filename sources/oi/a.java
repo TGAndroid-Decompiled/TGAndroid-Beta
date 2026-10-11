@@ -1,58 +1,32 @@
 package oi;
 
-import android.text.TextUtils;
-import java.net.IDN;
-import java.util.Locale;
+import ai.h7;
+import android.util.SparseArray;
+import j$.util.Comparator$CC;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 public final class a {
-    public int f17158a;
-    public String f17159b;
-    public int f17160c;
-    public String d;
-    public String f17161e;
-    public String f17162f;
+    public SparseArray f17204a;
 
-    public final b a() {
-        String str;
-        String str2;
-        if (this.f17158a == 3) {
-            String str3 = this.f17159b;
-            if (TextUtils.isEmpty(str3)) {
-                str3 = "";
-            } else {
-                int indexOf = str3.indexOf(47);
-                if (indexOf >= 0) {
-                    str = str3.substring(0, indexOf);
-                } else {
-                    str = str3;
-                }
-                if (indexOf >= 0) {
-                    str2 = str3.substring(indexOf + 1);
-                } else {
-                    str2 = null;
-                }
-                if (!TextUtils.isEmpty(str) && str.indexOf(58) < 0 && str.indexOf(63) < 0 && str.indexOf(35) < 0 && (str2 == null || (str2.length() <= 128 && b.f17163g.matcher(str2).matches()))) {
-                    try {
-                        String lowerCase = IDN.toASCII(str, 3).toLowerCase(Locale.US);
-                        if (str2 == null) {
-                            str3 = lowerCase;
-                        } else {
-                            str3 = lowerCase + '/' + str2;
-                        }
-                    } catch (IllegalArgumentException unused) {
-                    }
-                }
+    public final void a(HashMap hashMap) {
+        if (this.f17204a == null) {
+            this.f17204a = new SparseArray(hashMap.size());
+            ArrayList arrayList = new ArrayList(hashMap.entrySet());
+            Collections.sort(arrayList, Comparator$CC.comparingInt(new h7(4)));
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                Map.Entry entry = (Map.Entry) obj;
+                this.f17204a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
             }
-            this.f17159b = str3;
-            if (str3 != null && str3.indexOf(47) >= 0) {
-                String b10 = b.b(this.f17162f);
-                if (b10 == null) {
-                    b10 = this.f17162f.toLowerCase(Locale.US);
-                }
-                this.f17162f = b10;
-            } else {
-                this.f17162f = this.f17162f.toLowerCase(Locale.US);
-            }
+            return;
         }
-        return new b(this);
+        for (Map.Entry entry2 : hashMap.entrySet()) {
+            this.f17204a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
+        }
     }
 }

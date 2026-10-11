@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class kb0 extends g.o {
-    public final qb0 f27969c;
+    public final qb0 f27920c;
 
     public kb0(qb0 qb0Var) {
-        this.f27969c = qb0Var;
+        this.f27920c = qb0Var;
     }
 
     @Override
     public final int i(int i10) {
-        qb0 qb0Var = this.f27969c;
-        gg.j1 j1Var = qb0Var.f30167f;
+        qb0 qb0Var = this.f27920c;
+        gg.j1 j1Var = qb0Var.f30116f;
         if (i10 != 0) {
             int i11 = i10 - 1;
             Object J = j1Var.J(i11);

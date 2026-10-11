@@ -22,7 +22,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public abstract class c1 extends CameraView {
-    public static final int[] f4812a0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
+    public static final int[] f4811a0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
     public boolean E;
     public boolean F;
     public boolean G;
@@ -42,35 +42,35 @@ public abstract class c1 extends CameraView {
     public final float[] U;
     public float[] V;
     public float[] W;
-    public boolean f4813a;
-    public final PointF f4814b;
-    public final PointF f4815c;
+    public boolean f4812a;
+    public final PointF f4813b;
+    public final PointF f4814c;
     public float d;
-    public double f4816e;
-    public boolean f4817f;
+    public double f4815e;
+    public boolean f4816f;
     public boolean h;
-    public final Matrix f4818n;
-    public final Matrix f4819r;
-    public boolean f4820s;
+    public final Matrix f4817n;
+    public final Matrix f4818r;
+    public boolean f4819s;
     public float v;
-    public boolean f4821w;
-    public final Matrix f4822x;
-    public final Matrix f4823y;
+    public boolean f4820w;
+    public final Matrix f4821x;
+    public final Matrix f4822y;
 
     public c1(Context context, boolean z10) {
         super(context, z10, false);
-        this.f4814b = new PointF();
-        this.f4815c = new PointF();
-        this.f4818n = new Matrix();
-        this.f4819r = new Matrix();
-        this.f4822x = new Matrix();
-        this.f4823y = new Matrix();
+        this.f4813b = new PointF();
+        this.f4814c = new PointF();
+        this.f4817n = new Matrix();
+        this.f4818r = new Matrix();
+        this.f4821x = new Matrix();
+        this.f4822y = new Matrix();
         this.E = true;
         this.L = new Matrix();
         this.O = new float[2];
         new Matrix();
         this.U = new float[2];
-        this.f4813a = q(context);
+        this.f4812a = q(context);
     }
 
     private Matrix getSavedDualMatrix() {
@@ -116,7 +116,7 @@ public abstract class c1 extends CameraView {
                 int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
                 while (true) {
                     if (i10 < 32) {
-                        if (f4812a0[i10] == hashCode) {
+                        if (f4811a0[i10] == hashCode) {
                             break;
                         }
                         i10++;
@@ -183,7 +183,7 @@ public abstract class c1 extends CameraView {
             if (MessagesController.getGlobalMainSettings().getInt("storysvddualhint", 0) < 2) {
                 AndroidUtilities.runOnUIThread(new androidx.fragment.app.a0(obVar, 26), 340L);
             }
-            lc lcVar = obVar.f5702b0;
+            lc lcVar = obVar.f5701b0;
             lcVar.F0.setValue(obVar.isDual());
             yc ycVar = lcVar.F0;
             if (obVar.isDual()) {
@@ -201,11 +201,11 @@ public abstract class c1 extends CameraView {
         if (isDual()) {
             if (!p(getContext(), false)) {
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                this.f4813a = false;
+                this.f4812a = false;
                 edit.putBoolean("dual_available", false).apply();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-                alertDialog$Builder.f20378a.R = LocaleController.getString(R.string.DualErrorTitle);
-                alertDialog$Builder.f20378a.T = LocaleController.getString(R.string.DualErrorMessage);
+                alertDialog$Builder.f20368a.R = LocaleController.getString(R.string.DualErrorTitle);
+                alertDialog$Builder.f20368a.T = LocaleController.getString(R.string.DualErrorMessage);
                 org.telegram.messenger.q.p(R.string.OK, alertDialog$Builder, null);
             }
             t(false);
@@ -228,11 +228,11 @@ public abstract class c1 extends CameraView {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        Matrix matrix = this.f4822x;
+        Matrix matrix = this.f4821x;
         matrix.reset();
         matrix.postTranslate(1.0f, -1.0f);
         matrix.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
-        matrix.invert(this.f4823y);
+        matrix.invert(this.f4822y);
     }
 
     @Override
@@ -283,7 +283,7 @@ public abstract class c1 extends CameraView {
         float[] fArr = this.U;
         fArr[0] = f7;
         fArr[1] = f10;
-        this.f4823y.mapPoints(fArr);
+        this.f4822y.mapPoints(fArr);
         Matrix dualPosition = getDualPosition();
         Matrix matrix = this.L;
         dualPosition.invert(matrix);
@@ -306,7 +306,7 @@ public abstract class c1 extends CameraView {
 
     @Override
     public void toggleDual() {
-        if (!isDual() && !this.f4813a) {
+        if (!isDual() && !this.f4812a) {
             return;
         }
         if (!isDual()) {
@@ -345,12 +345,12 @@ public abstract class c1 extends CameraView {
         if (savedDualMatrix != null) {
             dualPosition.set(savedDualMatrix);
         } else {
-            dualPosition.postConcat(this.f4822x);
+            dualPosition.postConcat(this.f4821x);
             float measuredWidth = getMeasuredWidth() * 0.43f;
             float min = Math.min(getMeasuredWidth(), getMeasuredWidth()) * 0.025f;
             dualPosition.postScale(measuredWidth / getMeasuredWidth(), (getMeasuredHeight() * 0.43f) / getMeasuredHeight());
             dualPosition.postTranslate((getMeasuredWidth() - min) - measuredWidth, min);
-            dualPosition.postConcat(this.f4823y);
+            dualPosition.postConcat(this.f4822y);
         }
         updateDualPosition();
     }

@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public abstract class bu {
-    public static final is f25056a = new is(0.39d, 0.575d, 0.565d, 1.0d);
-    public static final is f25057b = new is(0.445d, 0.05d, 0.55d, 0.95d);
-    public static final is f25058c = new is(0.55d, 0.085d, 0.68d, 0.53d);
+    public static final is f25021a = new is(0.39d, 0.575d, 0.565d, 1.0d);
+    public static final is f25022b = new is(0.445d, 0.05d, 0.55d, 0.95d);
+    public static final is f25023c = new is(0.55d, 0.085d, 0.68d, 0.53d);
     public static final is d = new is(0.25d, 0.46d, 0.45d, 0.94d);
-    public static final is f25059e = new is(0.455d, 0.03d, 0.515d, 0.955d);
+    public static final is f25024e = new is(0.455d, 0.03d, 0.515d, 0.955d);
 }

@@ -3,11 +3,11 @@ package db;
 import java.util.ArrayList;
 import java.util.Iterator;
 public final class h extends i implements Iterable {
-    public final ArrayList f8262a = new ArrayList();
+    public final ArrayList f8261a = new ArrayList();
 
     public final boolean equals(Object obj) {
         if (obj != this) {
-            if (!(obj instanceof h) || !((h) obj).f8262a.equals(this.f8262a)) {
+            if (!(obj instanceof h) || !((h) obj).f8261a.equals(this.f8261a)) {
                 return false;
             }
             return true;
@@ -16,17 +16,17 @@ public final class h extends i implements Iterable {
     }
 
     public final int hashCode() {
-        return this.f8262a.hashCode();
+        return this.f8261a.hashCode();
     }
 
     @Override
     public final Iterator iterator() {
-        return this.f8262a.iterator();
+        return this.f8261a.iterator();
     }
 
     @Override
     public final String n() {
-        ArrayList arrayList = this.f8262a;
+        ArrayList arrayList = this.f8261a;
         int size = arrayList.size();
         if (size == 1) {
             return ((i) arrayList.get(0)).n();

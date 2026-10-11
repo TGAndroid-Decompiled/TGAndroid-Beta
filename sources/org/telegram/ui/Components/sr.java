@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class sr implements TextWatcher {
-    public final ea f30837a;
-    public final qr f30838b;
+    public final wc f30846a;
+    public final qr f30847b;
 
-    public sr(ea eaVar, qr qrVar) {
-        this.f30837a = eaVar;
-        this.f30838b = qrVar;
+    public sr(wc wcVar, qr qrVar) {
+        this.f30846a = wcVar;
+        this.f30847b = qrVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f30837a.run();
-        this.f30838b.run();
+        this.f30846a.run();
+        this.f30847b.run();
     }
 
     @Override

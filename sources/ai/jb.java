@@ -1,7 +1,7 @@
 package ai;
 
-import org.telegram.ui.hd0;
-public final class jb extends hd0 {
+import org.telegram.ui.gd0;
+public final class jb extends gd0 {
     public final int R0;
 
     public jb(int i10, int i11) {

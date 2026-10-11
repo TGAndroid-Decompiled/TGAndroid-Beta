@@ -2,22 +2,22 @@ package org.webrtc;
 
 import java.nio.ByteBuffer;
 public final class j implements Runnable {
-    public final int f45171a;
-    public final ByteBuffer f45172b;
+    public final int f45161a;
+    public final ByteBuffer f45162b;
 
     public j(int i10, ByteBuffer byteBuffer) {
-        this.f45171a = i10;
-        this.f45172b = byteBuffer;
+        this.f45161a = i10;
+        this.f45162b = byteBuffer;
     }
 
     @Override
     public final void run() {
-        switch (this.f45171a) {
+        switch (this.f45161a) {
             case 0:
-                JavaI420Buffer.a(this.f45172b);
+                JavaI420Buffer.a(this.f45162b);
                 return;
             default:
-                YuvConverter.a(this.f45172b);
+                YuvConverter.a(this.f45162b);
                 return;
         }
     }

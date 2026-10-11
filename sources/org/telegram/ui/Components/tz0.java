@@ -1,23 +1,96 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.SharedConfig;
-public final class tz0 implements rd0, td0 {
-    public final vz0 f31280a;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.R;
+public final class tz0 extends Drawable {
+    public boolean f31187a;
+    public final g6 f31188b;
+    public final Drawable f31189c;
+    public final Drawable d;
+    public int f31190e = 255;
 
-    @Override
-    public String i(int i10) {
-        return this.f31280a.h[i10];
+    public tz0(org.telegram.ui.Cells.u1 u1Var) {
+        this.f31188b = new g6(u1Var, 420L, is.h);
+        this.f31189c = u1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
+        this.d = u1Var.getContext().getResources().getDrawable(R.drawable.summary_stars);
     }
 
     @Override
-    public void r(vd0 vd0Var, int i10) {
-        vz0 vz0Var = this.f31280a;
-        vz0Var.b();
-        SharedConfig.updateChatListSwipeSetting(i10);
-        vz0Var.invalidate();
-        try {
-            vd0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        Drawable drawable = this.d;
+        drawable.setBounds(bounds);
+        drawable.setAlpha(this.f31190e);
+        drawable.draw(canvas);
+        float e7 = this.f31188b.e(this.f31187a);
+        float centerX = getBounds().centerX();
+        float centerY = getBounds().centerY();
+        float width = getBounds().width();
+        canvas.save();
+        if (e7 < 0.5f) {
+            float abs = Math.abs(e7 - 0.5f) + 0.5f;
+            canvas.scale(abs, abs, centerX, centerY);
         }
+        canvas.save();
+        int i10 = (e7 > 0.5f ? 1 : (e7 == 0.5f ? 0 : -1));
+        if (i10 > 0) {
+            float abs2 = Math.abs(e7 - 0.5f) + 0.5f;
+            float f7 = -abs2;
+            float f10 = width * 0.32f;
+            canvas.scale(f7, f7, getBounds().left + f10, getBounds().bottom - f10);
+            float f11 = 1.0f - abs2;
+            canvas.translate((-width) * f11 * 0.4f, f11 * width * 0.4f);
+        }
+        Rect bounds2 = getBounds();
+        Drawable drawable2 = this.f31189c;
+        drawable2.setBounds(bounds2);
+        drawable2.setAlpha(this.f31190e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.save();
+        if (i10 > 0) {
+            float f12 = -(Math.abs(e7 - 0.5f) + 0.5f);
+            float f13 = 0.32f * width;
+            canvas.scale(f12, f12, getBounds().right - f13, getBounds().top + f13);
+        }
+        canvas.rotate(180.0f, centerX, centerY);
+        if (i10 > 0) {
+            float abs3 = 1.0f - (Math.abs(e7 - 0.5f) + 0.5f);
+            canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
+        }
+        drawable2.setBounds(getBounds());
+        drawable2.setAlpha(this.f31190e);
+        drawable2.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f31189c.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f31189c.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f31190e = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f31189c.setColorFilter(colorFilter);
+        this.d.setColorFilter(colorFilter);
     }
 }

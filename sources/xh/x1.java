@@ -6,33 +6,33 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.o91;
 import org.telegram.ui.Components.p91;
-import org.telegram.ui.Components.ss0;
+import org.telegram.ui.Components.q91;
+import org.telegram.ui.Components.ts0;
 import org.telegram.ui.ProfileActivity;
-public final class x1 extends p91 {
-    public final org.telegram.ui.ActionBar.n2 T;
-    public final ss0 U;
+public final class x1 extends q91 {
+    public final org.telegram.ui.ActionBar.m2 T;
+    public final ts0 U;
 
-    public x1(ss0 ss0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+    public x1(ts0 ts0Var, Context context, org.telegram.ui.ActionBar.m2 m2Var) {
         super(context, null);
-        this.U = ss0Var;
-        this.T = n2Var;
+        this.U = ts0Var;
+        this.T = m2Var;
     }
 
     @Override
     public final void h() {
-        ss0 ss0Var = this.U;
-        o91 o91Var = ss0Var.f51560n;
-        if (ss0Var.b() && o91Var != null) {
-            if (ss0Var.J == null) {
+        ts0 ts0Var = this.U;
+        p91 p91Var = ts0Var.f51603n;
+        if (ts0Var.b() && p91Var != null) {
+            if (ts0Var.J == null) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.q.g(R.string.Gift2NewCollection, new StringBuilder("+ ")));
                 er erVar = new er(R.drawable.poll_add_plus, 0);
                 erVar.spaceScaleX = 0.8f;
                 spannableStringBuilder.setSpan(erVar, 0, 1, 33);
-                ss0Var.J = spannableStringBuilder;
+                ts0Var.J = spannableStringBuilder;
             }
-            o91Var.a(-1, ss0Var.J);
+            p91Var.a(-1, ts0Var.J);
         }
     }
 
@@ -43,25 +43,25 @@ public final class x1 extends p91 {
 
     @Override
     public final void w(boolean z10) {
-        ss0 ss0Var = this.U;
-        ss0Var.l();
-        org.telegram.ui.ActionBar.n2 n2Var = this.T;
-        if (n2Var instanceof ProfileActivity) {
-            ((ProfileActivity) n2Var).R();
-            View fragmentView = n2Var.getFragmentView();
+        ts0 ts0Var = this.U;
+        ts0Var.l();
+        org.telegram.ui.ActionBar.m2 m2Var = this.T;
+        if (m2Var instanceof ProfileActivity) {
+            ((ProfileActivity) m2Var).R();
+            View fragmentView = m2Var.getFragmentView();
             if (fragmentView != null) {
                 fragmentView.invalidate();
             }
         }
-        ss0Var.o();
+        ts0Var.o();
     }
 
     @Override
     public final void z(int i10) {
         this.U.l();
-        org.telegram.ui.ActionBar.n2 n2Var = this.T;
-        if (n2Var instanceof ProfileActivity) {
-            ((ProfileActivity) n2Var).R();
+        org.telegram.ui.ActionBar.m2 m2Var = this.T;
+        if (m2Var instanceof ProfileActivity) {
+            ((ProfileActivity) m2Var).R();
         }
     }
 }

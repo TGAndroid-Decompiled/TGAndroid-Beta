@@ -21,33 +21,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.r51;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.UserInfoActivity;
-import org.telegram.ui.ec0;
-import org.telegram.ui.ft;
-import org.telegram.ui.wb0;
-import org.telegram.ui.ze;
+import org.telegram.ui.dc0;
+import org.telegram.ui.et;
+import org.telegram.ui.vb0;
+import org.telegram.ui.ye;
 public final class k implements Runnable {
-    public final int f12527a;
-    public final Object f12528b;
-    public final Object f12529c;
+    public final int f12526a;
+    public final Object f12527b;
+    public final Object f12528c;
     public final Object d;
-    public final Object f12530e;
-    public final Object f12531f;
+    public final Object f12529e;
+    public final Object f12530f;
     public final Object h;
-    public final Object f12532n;
-    public final Object f12533r;
+    public final Object f12531n;
+    public final Object f12532r;
 
     public k(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, Object obj8, int i10) {
-        this.f12527a = i10;
-        this.f12528b = obj;
-        this.f12529c = obj2;
+        this.f12526a = i10;
+        this.f12527b = obj;
+        this.f12528c = obj2;
         this.d = obj3;
-        this.f12530e = obj4;
-        this.f12531f = obj5;
+        this.f12529e = obj4;
+        this.f12530f = obj5;
         this.h = obj6;
-        this.f12532n = obj7;
-        this.f12533r = obj8;
+        this.f12531n = obj7;
+        this.f12532r = obj8;
     }
 
     @Override
@@ -55,16 +55,16 @@ public final class k implements Runnable {
         String str;
         String str2;
         String str3;
-        switch (this.f12527a) {
+        switch (this.f12526a) {
             case 0:
-                String[] strArr = (String[]) this.f12528b;
-                HorizontalScrollView horizontalScrollView = (HorizontalScrollView) this.f12529c;
+                String[] strArr = (String[]) this.f12527b;
+                HorizontalScrollView horizontalScrollView = (HorizontalScrollView) this.f12528c;
                 ci.d dVar = (ci.d) this.d;
-                boolean[] zArr = (boolean[]) this.f12530e;
-                hi.a aVar = (hi.a) this.f12531f;
+                boolean[] zArr = (boolean[]) this.f12529e;
+                hi.a aVar = (hi.a) this.f12530f;
                 ImageView imageView = (ImageView) this.h;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.f12532n;
-                int[] iArr = (int[]) this.f12533r;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f12531n;
+                int[] iArr = (int[]) this.f12532r;
                 if (TextUtils.isEmpty(strArr[0].trim())) {
                     horizontalScrollView.setVisibility(8);
                     dVar.setEnabled(false);
@@ -72,146 +72,146 @@ public final class k implements Runnable {
                 }
                 boolean z10 = zArr[0];
                 String str4 = strArr[0];
-                aVar.run(str4, new c(str4, strArr, imageView, e6Var, z10, iArr, dVar, horizontalScrollView, zArr));
+                aVar.run(str4, new c(str4, strArr, imageView, d6Var, z10, iArr, dVar, horizontalScrollView, zArr));
                 return;
             case 1:
-                ((MessagesStorage) this.f12528b).lambda$loadUnreadMessages$76((a0.i) this.f12529c, (ArrayList) this.d, (ArrayList) this.f12530e, (ArrayList) this.f12531f, (ArrayList) this.h, (ArrayList) this.f12532n, (HashMap) this.f12533r);
+                ((MessagesStorage) this.f12527b).lambda$loadUnreadMessages$76((a0.i) this.f12528c, (ArrayList) this.d, (ArrayList) this.f12529e, (ArrayList) this.f12530f, (ArrayList) this.h, (ArrayList) this.f12531n, (HashMap) this.f12532r);
                 return;
             case 2:
-                String str5 = (String) this.f12530e;
-                String str6 = (String) this.f12531f;
+                String str5 = (String) this.f12529e;
+                String str6 = (String) this.f12530f;
                 String str7 = (String) this.h;
-                String str8 = (String) this.f12532n;
-                org.telegram.ui.Wallet.e2 e2Var = ((org.telegram.ui.Wallet.k0) this.f12529c).f35160g;
-                wb0 wb0Var = new wb0((ec0) this.f12528b, (String) this.f12533r, 1);
-                e2Var.getClass();
+                String str8 = (String) this.f12531n;
+                org.telegram.ui.Wallet.f2 f2Var = ((org.telegram.ui.Wallet.l0) this.f12528c).f35190g;
+                vb0 vb0Var = new vb0((dc0) this.f12527b, (String) this.f12532r, 1);
+                f2Var.getClass();
                 TL_wallet.tonConnectCreateSession tonconnectcreatesession = new TL_wallet.tonConnectCreateSession();
                 tonconnectcreatesession.dapp_client_id = (String) this.d;
                 tonconnectcreatesession.manifest_url = str5;
-                e2Var.f34862f.sendRequestTyped(tonconnectcreatesession, new Object(), new org.telegram.ui.Wallet.h1(e2Var, wb0Var, str6, str5, str7, str8));
+                f2Var.f34894f.sendRequestTyped(tonconnectcreatesession, new Object(), new org.telegram.ui.Wallet.i1(f2Var, vb0Var, str6, str5, str7, str8));
                 return;
             case 3:
-                UserInfoActivity.Y((UserInfoActivity) this.f12528b, (TLRPC.TL_error) this.f12529c, (TLObject) this.d, (TL_account.TL_birthday) this.f12530e, (TLRPC.UserFull) this.f12531f, (TLObject) this.h, (int[]) this.f12533r, (ArrayList) this.f12532n);
+                UserInfoActivity.Y((UserInfoActivity) this.f12527b, (TLRPC.TL_error) this.f12528c, (TLObject) this.d, (TL_account.TL_birthday) this.f12529e, (TLRPC.UserFull) this.f12530f, (TLObject) this.h, (int[]) this.f12532r, (ArrayList) this.f12531n);
                 return;
             case 4:
-                org.telegram.ui.Wallet.e2 e2Var2 = (org.telegram.ui.Wallet.e2) this.f12528b;
-                org.telegram.ui.Wallet.h0 h0Var = (org.telegram.ui.Wallet.h0) this.f12529c;
+                org.telegram.ui.Wallet.f2 f2Var2 = (org.telegram.ui.Wallet.f2) this.f12527b;
+                org.telegram.ui.Wallet.i0 i0Var = (org.telegram.ui.Wallet.i0) this.f12528c;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.d;
-                String str9 = (String) this.f12530e;
-                byte[] bArr = (byte[]) this.f12531f;
-                org.telegram.ui.Wallet.z1 z1Var = (org.telegram.ui.Wallet.z1) this.h;
-                TL_wallet.tonConnectChallenge tonconnectchallenge = (TL_wallet.tonConnectChallenge) this.f12532n;
-                ft ftVar = (ft) this.f12533r;
-                e2Var2.getClass();
+                String str9 = (String) this.f12529e;
+                byte[] bArr = (byte[]) this.f12530f;
+                org.telegram.ui.Wallet.a2 a2Var = (org.telegram.ui.Wallet.a2) this.h;
+                TL_wallet.tonConnectChallenge tonconnectchallenge = (TL_wallet.tonConnectChallenge) this.f12531n;
+                et etVar = (et) this.f12532r;
+                f2Var2.getClass();
                 try {
-                    AndroidUtilities.runOnUIThread(new ze((Object) e2Var2, (Object) z1Var, (Object) tonconnectsession, str9, (Object) bArr, (Object) org.telegram.ui.Wallet.e2.p(h0Var, tonconnectsession, str9, bArr, z1Var.f35785a, z1Var.f35786b, z1Var.d, tonconnectchallenge, e2Var2.f34862f.getCurrentTime()), (Object) ftVar, 8));
+                    AndroidUtilities.runOnUIThread(new ye((Object) f2Var2, (Object) a2Var, (Object) tonconnectsession, str9, (Object) bArr, (Object) org.telegram.ui.Wallet.f2.p(i0Var, tonconnectsession, str9, bArr, a2Var.f34648a, a2Var.f34649b, a2Var.d, tonconnectchallenge, f2Var2.f34894f.getCurrentTime()), (Object) etVar, 8));
                     return;
                 } catch (Exception e7) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.c1(ftVar, org.telegram.ui.Wallet.e2.h("prepare connect challenge", e7), 0));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.d1(etVar, org.telegram.ui.Wallet.f2.h("prepare connect challenge", e7), 0));
                     return;
                 }
             case 5:
-                org.telegram.ui.Wallet.e2 e2Var3 = (org.telegram.ui.Wallet.e2) this.f12528b;
-                org.telegram.ui.Wallet.h0 h0Var2 = (org.telegram.ui.Wallet.h0) this.f12529c;
+                org.telegram.ui.Wallet.f2 f2Var3 = (org.telegram.ui.Wallet.f2) this.f12527b;
+                org.telegram.ui.Wallet.i0 i0Var2 = (org.telegram.ui.Wallet.i0) this.f12528c;
                 TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) this.d;
-                String str10 = (String) this.f12530e;
-                byte[] bArr2 = (byte[]) this.f12531f;
+                String str10 = (String) this.f12529e;
+                byte[] bArr2 = (byte[]) this.f12530f;
                 JSONArray jSONArray = (JSONArray) this.h;
-                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.f12532n;
-                ai.m0 m0Var = (ai.m0) this.f12533r;
-                e2Var3.getClass();
+                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.f12531n;
+                ai.m0 m0Var = (ai.m0) this.f12532r;
+                f2Var3.getClass();
                 try {
-                    AndroidUtilities.runOnUIThread(new r51(e2Var3, str10, bArr2, tonconnectsession2, org.telegram.ui.Wallet.e2.q(h0Var2, tonconnectsession2, str10, bArr2, jSONArray, tL_urlAuthResultRequest.domain, null, null, e2Var3.f34862f.getCurrentTime()), m0Var, h0Var2, jSONArray, tL_urlAuthResultRequest));
+                    AndroidUtilities.runOnUIThread(new s51(f2Var3, str10, bArr2, tonconnectsession2, org.telegram.ui.Wallet.f2.q(i0Var2, tonconnectsession2, str10, bArr2, jSONArray, tL_urlAuthResultRequest.domain, null, null, f2Var3.f34894f.getCurrentTime()), m0Var, i0Var2, jSONArray, tL_urlAuthResultRequest));
                     return;
                 } catch (Exception e10) {
-                    m0Var.run(null, org.telegram.ui.Wallet.e2.h("prepare OAuth identity", e10));
+                    m0Var.run(null, org.telegram.ui.Wallet.f2.h("prepare OAuth identity", e10));
                     return;
                 }
             case 6:
-                org.telegram.ui.Wallet.e2 e2Var4 = (org.telegram.ui.Wallet.e2) this.f12528b;
-                org.telegram.ui.Wallet.z1 z1Var2 = (org.telegram.ui.Wallet.z1) this.f12529c;
+                org.telegram.ui.Wallet.f2 f2Var4 = (org.telegram.ui.Wallet.f2) this.f12527b;
+                org.telegram.ui.Wallet.a2 a2Var2 = (org.telegram.ui.Wallet.a2) this.f12528c;
                 TL_wallet.tonConnectSession tonconnectsession3 = (TL_wallet.tonConnectSession) this.d;
-                String str11 = (String) this.f12530e;
-                byte[] bArr3 = (byte[]) this.f12531f;
-                String str12 = ((org.telegram.ui.Wallet.b2) this.h).f34701a;
-                ft ftVar2 = (ft) this.f12532n;
-                org.telegram.ui.Wallet.h0 h0Var3 = (org.telegram.ui.Wallet.h0) this.f12533r;
-                if (e2Var4.c(z1Var2, tonconnectsession3, str11, bArr3) && ((str = z1Var2.f35788e.client_id) == null || str12.equalsIgnoreCase(str))) {
+                String str11 = (String) this.f12529e;
+                byte[] bArr3 = (byte[]) this.f12530f;
+                String str12 = ((org.telegram.ui.Wallet.c2) this.h).f34732a;
+                et etVar2 = (et) this.f12531n;
+                org.telegram.ui.Wallet.i0 i0Var3 = (org.telegram.ui.Wallet.i0) this.f12532r;
+                if (f2Var4.c(a2Var2, tonconnectsession3, str11, bArr3) && ((str = a2Var2.f34651e.client_id) == null || str12.equalsIgnoreCase(str))) {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession3.f20303id;
+                    tonconnectregisterkey.session_id = tonconnectsession3.f20293id;
                     tonconnectregisterkey.client_id = str12;
-                    e2Var4.f34862f.sendRequestTyped(tonconnectregisterkey, new Object(), new org.telegram.ui.Wallet.b1(e2Var4, ftVar2, h0Var3, tonconnectsession3, str11, bArr3, z1Var2));
+                    f2Var4.f34894f.sendRequestTyped(tonconnectregisterkey, new Object(), new org.telegram.ui.Wallet.c1(f2Var4, etVar2, i0Var3, tonconnectsession3, str11, bArr3, a2Var2));
                     return;
                 }
-                ftVar2.run("Wallet or TON Connect session changed. Open the request again.");
+                etVar2.run("Wallet or TON Connect session changed. Open the request again.");
                 return;
             case 7:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f12528b;
-                tg.v vVar = (tg.v) this.f12529c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f12527b;
+                tg.u uVar = (tg.u) this.f12528c;
                 TLObject tLObject = (TLObject) this.d;
-                List list = (List) this.f12530e;
-                c5.h hVar = (c5.h) this.f12531f;
-                tg.v vVar2 = (tg.v) this.h;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f12532n;
-                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f12533r;
+                List list = (List) this.f12529e;
+                c5.h hVar = (c5.h) this.f12530f;
+                tg.u uVar2 = (tg.u) this.h;
+                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f12531n;
+                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f12532r;
                 if (tL_error != null) {
-                    vVar.run(tL_error);
+                    uVar.run(tL_error);
                     return;
                 } else if (tLObject != null) {
-                    BillingController.getInstance().addResultListener(((c5.o) list.get(0)).f4279c, new ci.j5(3, hVar, vVar2));
-                    BillingController.getInstance().setOnCanceled(new tg.r(vVar, 0));
+                    BillingController.getInstance().addResultListener(((c5.o) list.get(0)).f4278c, new ci.j5(3, hVar, uVar2));
+                    BillingController.getInstance().setOnCanceled(new tg.q(uVar, 0));
                     BillingController billingController = BillingController.getInstance();
-                    Activity parentActivity = n2Var.getParentActivity();
+                    Activity parentActivity = m2Var.getParentActivity();
                     AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
                     pf.b bVar = new pf.b(7, false);
-                    bVar.T((c5.o) list.get(0));
-                    billingController.launchBillingFlow(parentActivity, accountInstance, tL_inputStorePaymentPremiumGiveaway, Collections.singletonList(bVar.A()));
+                    bVar.X((c5.o) list.get(0));
+                    billingController.launchBillingFlow(parentActivity, accountInstance, tL_inputStorePaymentPremiumGiveaway, Collections.singletonList(bVar.H()));
                     return;
                 } else {
                     return;
                 }
             case 8:
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f12528b;
-                Utilities.Callback callback = (Utilities.Callback) this.f12529c;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f12527b;
+                Utilities.Callback callback = (Utilities.Callback) this.f12528c;
                 TLObject tLObject2 = (TLObject) this.d;
-                List list2 = (List) this.f12530e;
-                c5.h hVar2 = (c5.h) this.f12531f;
+                List list2 = (List) this.f12529e;
+                c5.h hVar2 = (c5.h) this.f12530f;
                 Utilities.Callback callback2 = (Utilities.Callback) this.h;
-                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f12532n;
-                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f12533r;
+                org.telegram.ui.ActionBar.m2 m2Var2 = (org.telegram.ui.ActionBar.m2) this.f12531n;
+                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f12532r;
                 if (tL_error2 != null) {
                     callback.run(tL_error2);
                     return;
                 } else if (tLObject2 != null) {
-                    BillingController.getInstance().addResultListener(((c5.o) list2.get(0)).f4279c, new ci.j5(2, hVar2, callback2));
+                    BillingController.getInstance().addResultListener(((c5.o) list2.get(0)).f4278c, new ci.j5(2, hVar2, callback2));
                     BillingController.getInstance().setOnCanceled(new xa(1, callback));
                     BillingController billingController2 = BillingController.getInstance();
-                    Activity parentActivity2 = n2Var2.getParentActivity();
+                    Activity parentActivity2 = m2Var2.getParentActivity();
                     AccountInstance accountInstance2 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     pf.b bVar2 = new pf.b(7, false);
-                    bVar2.T((c5.o) list2.get(0));
-                    billingController2.launchBillingFlow(parentActivity2, accountInstance2, tL_inputStorePaymentPremiumGiftCode, Collections.singletonList(bVar2.A()));
+                    bVar2.X((c5.o) list2.get(0));
+                    billingController2.launchBillingFlow(parentActivity2, accountInstance2, tL_inputStorePaymentPremiumGiftCode, Collections.singletonList(bVar2.H()));
                     return;
                 } else {
                     return;
                 }
             case 9:
-                TLObject tLObject3 = (TLObject) this.f12528b;
-                c5.o oVar = (c5.o) this.f12529c;
+                TLObject tLObject3 = (TLObject) this.f12527b;
+                c5.o oVar = (c5.o) this.f12528c;
                 c5.h hVar3 = (c5.h) this.d;
-                qh.r rVar = (qh.r) this.f12530e;
-                Activity activity = (Activity) this.f12531f;
+                qh.r rVar = (qh.r) this.f12529e;
+                Activity activity = (Activity) this.f12530f;
                 TLRPC.TL_inputStorePaymentStarsGiveaway tL_inputStorePaymentStarsGiveaway = (TLRPC.TL_inputStorePaymentStarsGiveaway) this.h;
-                List list3 = (List) this.f12532n;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f12533r;
+                List list3 = (List) this.f12531n;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f12532r;
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(oVar.f4279c, new ci.j5(5, hVar3, rVar));
+                    BillingController.getInstance().addResultListener(oVar.f4278c, new ci.j5(5, hVar3, rVar));
                     BillingController.getInstance().setOnCanceled(new yh.e4(rVar, 2));
                     BillingController billingController3 = BillingController.getInstance();
                     AccountInstance accountInstance3 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     pf.b bVar3 = new pf.b(7, false);
-                    bVar3.T((c5.o) list3.get(0));
-                    billingController3.launchBillingFlow(activity, accountInstance3, tL_inputStorePaymentStarsGiveaway, Collections.singletonList(bVar3.A()));
+                    bVar3.X((c5.o) list3.get(0));
+                    billingController3.launchBillingFlow(activity, accountInstance3, tL_inputStorePaymentStarsGiveaway, Collections.singletonList(bVar3.H()));
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
                     rVar.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
@@ -227,22 +227,22 @@ public final class k implements Runnable {
                     return;
                 }
             default:
-                TLObject tLObject4 = (TLObject) this.f12528b;
-                c5.o oVar2 = (c5.o) this.f12529c;
+                TLObject tLObject4 = (TLObject) this.f12527b;
+                c5.o oVar2 = (c5.o) this.f12528c;
                 c5.h hVar4 = (c5.h) this.d;
-                g90 g90Var = (g90) this.f12530e;
-                Activity activity2 = (Activity) this.f12531f;
+                g90 g90Var = (g90) this.f12529e;
+                Activity activity2 = (Activity) this.f12530f;
                 TLRPC.TL_inputStorePaymentStarsGift tL_inputStorePaymentStarsGift = (TLRPC.TL_inputStorePaymentStarsGift) this.h;
-                List list4 = (List) this.f12532n;
-                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f12533r;
+                List list4 = (List) this.f12531n;
+                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f12532r;
                 if (tLObject4 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(oVar2.f4279c, new ci.j5(4, hVar4, g90Var));
+                    BillingController.getInstance().addResultListener(oVar2.f4278c, new ci.j5(4, hVar4, g90Var));
                     BillingController.getInstance().setOnCanceled(new yh.g4(g90Var, 0));
                     BillingController billingController4 = BillingController.getInstance();
                     AccountInstance accountInstance4 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     pf.b bVar4 = new pf.b(7, false);
-                    bVar4.T((c5.o) list4.get(0));
-                    billingController4.launchBillingFlow(activity2, accountInstance4, tL_inputStorePaymentStarsGift, Collections.singletonList(bVar4.A()));
+                    bVar4.X((c5.o) list4.get(0));
+                    billingController4.launchBillingFlow(activity2, accountInstance4, tL_inputStorePaymentStarsGift, Collections.singletonList(bVar4.H()));
                     return;
                 } else if (tLObject4 instanceof TLRPC.TL_boolFalse) {
                     g90Var.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
@@ -261,14 +261,14 @@ public final class k implements Runnable {
     }
 
     public k(UserInfoActivity userInfoActivity, TLRPC.TL_error tL_error, TLObject tLObject, TL_account.TL_birthday tL_birthday, TLRPC.UserFull userFull, TLObject tLObject2, int[] iArr, ArrayList arrayList) {
-        this.f12527a = 3;
-        this.f12528b = userInfoActivity;
-        this.f12529c = tL_error;
+        this.f12526a = 3;
+        this.f12527b = userInfoActivity;
+        this.f12528c = tL_error;
         this.d = tLObject;
-        this.f12530e = tL_birthday;
-        this.f12531f = userFull;
+        this.f12529e = tL_birthday;
+        this.f12530f = userFull;
         this.h = tLObject2;
-        this.f12533r = iArr;
-        this.f12532n = arrayList;
+        this.f12532r = iArr;
+        this.f12531n = arrayList;
     }
 }

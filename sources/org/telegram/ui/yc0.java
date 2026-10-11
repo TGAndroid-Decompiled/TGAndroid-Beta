@@ -1,34 +1,17 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class yc0 extends s4.t0 {
-    public final hd0 f44358a;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class yc0 extends org.telegram.ui.ActionBar.m1 {
+    public final gd0 f44319o;
 
-    public yc0(hd0 hd0Var) {
-        this.f44358a = hd0Var;
+    public yc0(gd0 gd0Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f44319o = gd0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        hd0 hd0Var = this.f44358a;
-        hd0Var.Q = z10;
-        if (!z10 && hd0Var.L != null) {
-            hd0Var.L = null;
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        hd0 hd0Var = this.f44358a;
-        hd0Var.z0(false);
-        if (hd0Var.L != null) {
-            hd0Var.N += i11;
-        }
+    public final void dismiss() {
+        d(true);
+        this.f44319o.I0 = null;
     }
 }

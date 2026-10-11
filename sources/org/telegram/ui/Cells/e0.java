@@ -8,72 +8,72 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.bi;
+import org.telegram.messenger.ai;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.ja0;
-import org.telegram.ui.Components.m11;
+import org.telegram.ui.Components.n11;
 public final class e0 {
-    public final Runnable f22002a;
-    public boolean f22003b;
-    public float f22004c;
+    public final Runnable f21990a;
+    public boolean f21991b;
+    public float f21992c;
     public int d;
-    public float f22005e;
-    public int f22006f;
-    public int f22007g;
-    public m11 h;
-    public TL_keyboard.KeyboardInlineButton f22008i;
-    public BotInlineKeyboard.ButtonCustom f22009j;
-    public BotInlineKeyboard.Button f22010k;
-    public boolean f22011l;
-    public boolean f22012m;
-    public final Path f22013n = new Path();
-    public final Paint f22014o = new Paint(1);
-    public final RectF f22015p = new RectF();
-    public final float[] f22016q = new float[8];
-    public ja0 f22017r;
-    public z f22018s;
-    public Drawable f22019t;
-    public org.telegram.ui.Components.s5 f22020u;
+    public float f21993e;
+    public int f21994f;
+    public int f21995g;
+    public n11 h;
+    public TL_keyboard.KeyboardInlineButton f21996i;
+    public BotInlineKeyboard.ButtonCustom f21997j;
+    public BotInlineKeyboard.Button f21998k;
+    public boolean f21999l;
+    public boolean f22000m;
+    public final Path f22001n = new Path();
+    public final Paint f22002o = new Paint(1);
+    public final RectF f22003p = new RectF();
+    public final float[] f22004q = new float[8];
+    public ja0 f22005r;
+    public z f22006s;
+    public Drawable f22007t;
+    public org.telegram.ui.Components.s5 f22008u;
     public boolean v;
-    public float f22021w;
-    public ValueAnimator f22022x;
+    public float f22009w;
+    public ValueAnimator f22010x;
 
     public e0(Runnable runnable) {
-        this.f22002a = runnable;
+        this.f21990a = runnable;
     }
 
     public final float a() {
         if (this.v) {
-            float f7 = this.f22021w;
+            float f7 = this.f22009w;
             if (f7 != 1.0f) {
                 float min = (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f) + f7;
-                this.f22021w = min;
-                this.f22021w = Utilities.clamp(min, 1.0f, 0.0f);
-                this.f22002a.run();
+                this.f22009w = min;
+                this.f22009w = Utilities.clamp(min, 1.0f, 0.0f);
+                this.f21990a.run();
             }
         }
-        return com.google.android.gms.internal.vision.e2.y(1.0f, this.f22021w, 0.04f, 0.96f);
+        return com.google.android.gms.internal.vision.e2.y(1.0f, this.f22009w, 0.04f, 0.96f);
     }
 
     public final void b(boolean z10) {
         ValueAnimator valueAnimator;
         if (this.v != z10) {
             this.v = z10;
-            this.f22002a.run();
-            if (z10 && (valueAnimator = this.f22022x) != null) {
+            this.f21990a.run();
+            if (z10 && (valueAnimator = this.f22010x) != null) {
                 valueAnimator.removeAllListeners();
-                this.f22022x.cancel();
+                this.f22010x.cancel();
             }
             if (!z10) {
-                float f7 = this.f22021w;
+                float f7 = this.f22009w;
                 if (f7 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.f22022x = ofFloat;
+                    this.f22010x = ofFloat;
                     ofFloat.addUpdateListener(new r(this, 1));
-                    this.f22022x.addListener(new org.telegram.ui.t4(this, 6));
-                    bi.l(2.0f, this.f22022x);
-                    this.f22022x.setDuration(350L);
-                    this.f22022x.start();
+                    this.f22010x.addListener(new org.telegram.ui.s4(this, 6));
+                    ai.l(2.0f, this.f22010x);
+                    this.f22010x.setDuration(350L);
+                    this.f22010x.start();
                 }
             }
         }

@@ -17,7 +17,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.wj;
 import w7.o;
 public final class e extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
@@ -25,52 +25,52 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     public ViewTreeObserver E;
     public boolean F;
     public TextPaint G;
-    public final boolean f11489a;
-    public final RectF f11490b;
-    public final RectF f11491c;
+    public final boolean f11488a;
+    public final RectF f11489b;
+    public final RectF f11490c;
     public long d;
-    public int f11492e;
-    public ViewGroup f11493f;
+    public int f11491e;
+    public ViewGroup f11492f;
     public ViewGroup h;
-    public long f11494n;
-    public c f11495r;
-    public long f11496s;
+    public long f11493n;
+    public c f11494r;
+    public long f11495s;
     public final ArrayList v;
-    public final LongSparseArray f11497w;
-    public final LongSparseArray f11498x;
-    public final c f11499y;
+    public final LongSparseArray f11496w;
+    public final LongSparseArray f11497x;
+    public final c f11498y;
 
     public e(Context context) {
         super(context);
-        this.f11490b = new RectF();
-        this.f11491c = new RectF();
+        this.f11489b = new RectF();
+        this.f11490c = new RectF();
         this.v = new ArrayList();
-        this.f11497w = new LongSparseArray();
-        this.f11498x = new LongSparseArray();
-        this.f11499y = new c(this, 1);
-        this.f11489a = SharedConfig.debugViewMetrics;
+        this.f11496w = new LongSparseArray();
+        this.f11497x = new LongSparseArray();
+        this.f11498y = new c(this, 1);
+        this.f11488a = SharedConfig.debugViewMetrics;
     }
 
     public final void a() {
-        c cVar = this.f11495r;
+        c cVar = this.f11494r;
         if (cVar != null) {
             AndroidUtilities.cancelRunOnUIThread(cVar);
-            this.f11495r = null;
+            this.f11494r = null;
         }
         ArrayList arrayList = this.v;
         if (!arrayList.isEmpty()) {
             TLRPC.TL_messages_reportReadMetrics tL_messages_reportReadMetrics = new TLRPC.TL_messages_reportReadMetrics();
-            tL_messages_reportReadMetrics.peer = MessagesController.getInstance(this.f11492e).getInputPeer(this.d);
+            tL_messages_reportReadMetrics.peer = MessagesController.getInstance(this.f11491e).getInputPeer(this.d);
             tL_messages_reportReadMetrics.metrics = new ArrayList<>(arrayList);
-            ConnectionsManager.getInstance(this.f11492e).sendRequestTyped(tL_messages_reportReadMetrics, null, new b(0));
+            ConnectionsManager.getInstance(this.f11491e).sendRequestTyped(tL_messages_reportReadMetrics, null, new b(0));
             arrayList.clear();
         }
     }
 
     public final void b(int i10, long j3, ViewGroup viewGroup, wj wjVar) {
         this.d = j3;
-        this.f11492e = i10;
-        this.f11493f = viewGroup;
+        this.f11491e = i10;
+        this.f11492f = viewGroup;
         this.h = wjVar;
     }
 
@@ -81,13 +81,13 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f11496s = 0L;
+        this.f11495s = 0L;
         ViewTreeObserver viewTreeObserver = getViewTreeObserver();
         this.E = viewTreeObserver;
         viewTreeObserver.addOnPreDrawListener(this);
         this.E.addOnGlobalLayoutListener(this);
         this.E.addOnScrollChangedListener(this);
-        AndroidUtilities.runOnUIThread(this.f11499y, 400L);
+        AndroidUtilities.runOnUIThread(this.f11498y, 400L);
         if (BuildVars.LOGS_ENABLED) {
             Log.d("ViewMetrics", "attach");
         }
@@ -102,8 +102,8 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
             this.E.removeOnScrollChangedListener(this);
         }
         this.E = null;
-        this.f11496s = 0L;
-        AndroidUtilities.cancelRunOnUIThread(this.f11499y);
+        this.f11495s = 0L;
+        AndroidUtilities.cancelRunOnUIThread(this.f11498y);
         if (BuildVars.LOGS_ENABLED) {
             Log.d("ViewMetrics", "detach");
         }
@@ -113,7 +113,7 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onDraw(Canvas canvas) {
         int round;
-        if (this.f11489a) {
+        if (this.f11488a) {
             if (this.G == null) {
                 TextPaint textPaint = new TextPaint(1);
                 this.G = textPaint;
@@ -121,32 +121,32 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
                 this.G.setTextSize(AndroidUtilities.dp(10.0f));
             }
             super.onDraw(canvas);
-            Paint paint = i6.Ol;
-            RectF rectF = this.f11491c;
+            Paint paint = h6.Ol;
+            RectF rectF = this.f11490c;
             canvas.drawRect(rectF, paint);
-            LongSparseArray longSparseArray = this.f11497w;
+            LongSparseArray longSparseArray = this.f11496w;
             int size = longSparseArray.size();
             for (int i10 = 0; i10 < size; i10++) {
                 d dVar = (d) longSparseArray.valueAt(i10);
-                RectF rectF2 = dVar.f11480c;
-                canvas.drawRect(rectF2, i6.Pl);
+                RectF rectF2 = dVar.f11479c;
+                canvas.drawRect(rectF2, h6.Pl);
                 canvas.save();
                 canvas.translate(rectF2.left, o.a(o.a(rectF2.centerY() - AndroidUtilities.dp(20.0f), rectF.top - AndroidUtilities.dp(40.0f), rectF.bottom), rectF2.top, rectF2.bottom - AndroidUtilities.dp(40.0f)));
-                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), i6.Nl);
+                canvas.drawRect(0.0f, 0.0f, rectF2.width(), AndroidUtilities.dp(40.0f), h6.Nl);
                 canvas.translate(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(16.0f));
                 canvas.save();
-                canvas.drawText("time_in_view_ms: " + dVar.f11483g, 0.0f, 0.0f, this.G);
+                canvas.drawText("time_in_view_ms: " + dVar.f11482g, 0.0f, 0.0f, this.G);
                 canvas.translate(0.0f, (float) AndroidUtilities.dp(16.0f));
                 canvas.drawText("active_time_in_view_ms: " + dVar.h, 0.0f, 0.0f, this.G);
                 canvas.restore();
                 canvas.save();
                 canvas.translate(getWidth() / 2.0f, 0.0f);
                 StringBuilder sb2 = new StringBuilder("height_to_viewport_ratio_permille: ");
-                float f7 = dVar.f11486k;
+                float f7 = dVar.f11485k;
                 if (f7 == 0.0f) {
                     round = 1000;
                 } else {
-                    round = Math.round((dVar.f11485j / f7) * 1000.0f);
+                    round = Math.round((dVar.f11484j / f7) * 1000.0f);
                 }
                 sb2.append(round);
                 canvas.drawText(sb2.toString(), 0.0f, 0.0f, this.G);
@@ -166,8 +166,8 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        RectF rectF = this.f11490b;
-        this.f11491c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
+        RectF rectF = this.f11489b;
+        this.f11490c.set(rectF.left, rectF.top, getMeasuredWidth() - rectF.right, getMeasuredHeight() - rectF.bottom);
     }
 
     @Override

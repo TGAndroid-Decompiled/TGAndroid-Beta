@@ -10,19 +10,19 @@ import org.telegram.ui.Components.jh;
 import org.telegram.ui.Components.wi;
 import org.telegram.ui.Components.yi;
 public final class n implements wi {
-    public final yi f12578a;
-    public final r f12579b;
+    public final yi f12577a;
+    public final r f12578b;
 
     public n(r rVar, yi yiVar) {
-        this.f12579b = rVar;
-        this.f12578a = yiVar;
+        this.f12578b = rVar;
+        this.f12577a = yiVar;
     }
 
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        yi yiVar = this.f12578a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33247j0;
-        x3 x3Var = this.f12579b.f12650r;
+        yi yiVar = this.f12577a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33228j0;
+        x3 x3Var = this.f12578b.f12649r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -56,7 +56,7 @@ public final class n implements wi {
 
     @Override
     public final void f0(jh jhVar) {
-        NotificationCenter.getInstance(this.f12579b.f12649n).doOnIdle(jhVar);
+        NotificationCenter.getInstance(this.f12578b.f12648n).doOnIdle(jhVar);
     }
 
     @Override

@@ -68,7 +68,7 @@ public abstract class g implements b1 {
     public void F0() {
         i2.f0 f0Var = (i2.f0) this;
         f0Var.D1();
-        X0(12, f0Var.f11686w);
+        X0(12, f0Var.f11685w);
     }
 
     @Override
@@ -194,7 +194,7 @@ public abstract class g implements b1 {
             if (Q0) {
                 long J0 = f0Var.J0();
                 f0Var.D1();
-                if (J0 <= f0Var.f11687x) {
+                if (J0 <= f0Var.f11686x) {
                     Y0(7);
                     return;
                 }
@@ -421,7 +421,7 @@ public abstract class g implements b1 {
         if (duration == 0) {
             return 100;
         }
-        String str = e2.d0.f8532a;
+        String str = e2.d0.f8531a;
         long d = n7.d(c02, 100L);
         if (d != Long.MAX_VALUE && d != Long.MIN_VALUE) {
             j3 = d / duration;

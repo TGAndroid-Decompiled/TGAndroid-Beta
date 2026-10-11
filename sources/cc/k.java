@@ -1,9 +1,9 @@
 package cc;
 
-import n6.l;
+import n6.m;
 public class k extends Exception {
     public k(String str) {
         super(str);
-        l.g(str, "Detail message must not be empty");
+        m.g(str, "Detail message must not be empty");
     }
 }

@@ -20,7 +20,7 @@ public final class s1 extends ld.i implements sd.p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((s1) create((xd.c) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11092a);
+        return ((s1) create((xd.c) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
     }
 
     @Override

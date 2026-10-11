@@ -80,8 +80,8 @@ public abstract class c1 {
         arrayList2.add(num);
     }
 
-    public static void n(int i10, org.telegram.ui.ActionBar.e6 e6Var, TextView textView, int i11, float f7) {
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(i10, e6Var));
+    public static void n(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11, float f7) {
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         textView.setTextSize(i11, f7);
         textView.setTypeface(AndroidUtilities.bold());
     }
@@ -90,8 +90,8 @@ public abstract class c1 {
         fa0Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
-    public static void p(FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new ad(frameLayout, e6Var).f0(tL_error, z10);
+    public static void p(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {
+        new ad(frameLayout, d6Var).f0(tL_error, z10);
     }
 
     public static void q(String str, int i10, ArrayList arrayList) {

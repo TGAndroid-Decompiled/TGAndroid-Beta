@@ -1,43 +1,9 @@
 package org.telegram.ui;
-
-import android.content.Context;
-public final class qi0 extends org.telegram.ui.Components.xg {
-    public final org.telegram.ui.Components.xg f41176l0;
-    public final boolean m0;
-    public final dj0 f41177n0;
-
-    public qi0(dj0 dj0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.Components.xg xgVar, boolean z10) {
-        super(i10, context, e6Var, false);
-        this.f41177n0 = dj0Var;
-        this.f41176l0 = xgVar;
-        this.m0 = z10;
-    }
-
+public final class qi0 extends org.telegram.ui.Components.ml0 {
     @Override
-    public final boolean d() {
-        return this.f41176l0.d();
-    }
-
-    @Override
-    public final boolean e() {
-        return this.f41176l0.e();
-    }
-
-    @Override
-    public final boolean f() {
-        if (this.m0 && this.f41177n0.f37055q0 && this.f32935r <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return this.f41176l0.getFillColor();
-    }
-
-    @Override
-    public final boolean j() {
-        return this.f41176l0.j();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        setPivotX(getMeasuredWidth());
+        setPivotY(getMeasuredHeight());
     }
 }

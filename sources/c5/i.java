@@ -7,24 +7,24 @@ import com.google.android.gms.internal.clearcut.e2;
 import java.util.HashMap;
 import org.telegram.ui.Cells.c1;
 public final class i implements com.google.android.gms.internal.clearcut.g {
-    public String f4260a;
+    public String f4259a;
 
     public i(String str) {
-        this.f4260a = str;
+        this.f4259a = str;
     }
 
     @Override
     public Object zzp() {
         Object obj;
         boolean z10;
-        String str = this.f4260a;
-        ContentResolver contentResolver = com.google.android.gms.internal.clearcut.d.f7147g.getContentResolver();
-        Uri uri = e2.f7164a;
+        String str = this.f4259a;
+        ContentResolver contentResolver = com.google.android.gms.internal.clearcut.d.f7146g.getContentResolver();
+        Uri uri = e2.f7163a;
         synchronized (e2.class) {
             e2.c(contentResolver);
-            obj = e2.f7172k;
+            obj = e2.f7171k;
         }
-        HashMap hashMap = e2.f7169g;
+        HashMap hashMap = e2.f7168g;
         Boolean bool = Boolean.FALSE;
         Boolean bool2 = (Boolean) e2.a(hashMap, str, bool);
         if (bool2 != null) {
@@ -33,7 +33,7 @@ public final class i implements com.google.android.gms.internal.clearcut.g {
             String b10 = e2.b(contentResolver, str);
             boolean z11 = false;
             if (b10 != null && !b10.equals("")) {
-                if (e2.f7166c.matcher(b10).matches()) {
+                if (e2.f7165c.matcher(b10).matches()) {
                     bool = Boolean.TRUE;
                     z11 = true;
                 } else if (!e2.d.matcher(b10).matches()) {

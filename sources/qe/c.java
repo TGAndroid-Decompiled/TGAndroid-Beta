@@ -2,15 +2,15 @@ package qe;
 
 import java.util.HashMap;
 public final class c {
-    public b f46175b;
-    public final HashMap f46176c = new HashMap();
-    public final boolean f46174a = true;
+    public b f46209b;
+    public final HashMap f46210c = new HashMap();
+    public final boolean f46208a = true;
 
     public final boolean a(Long l4) {
         boolean z10;
-        synchronized (this.f46176c) {
+        synchronized (this.f46210c) {
             try {
-                b bVar = (b) this.f46176c.get(l4);
+                b bVar = (b) this.f46210c.get(l4);
                 if (bVar != null && !bVar.isEmpty()) {
                     z10 = true;
                 } else {

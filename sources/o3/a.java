@@ -9,23 +9,23 @@ import e2.v;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class a implements o0 {
-    public final int f17066a;
-    public final String f17067b;
-    public final String f17068c;
+    public final int f17112a;
+    public final String f17113b;
+    public final String f17114c;
     public final int d;
-    public final int f17069e;
-    public final int f17070f;
-    public final int f17071g;
+    public final int f17115e;
+    public final int f17116f;
+    public final int f17117g;
     public final byte[] h;
 
     public a(int i10, String str, String str2, int i11, int i12, int i13, int i14, byte[] bArr) {
-        this.f17066a = i10;
-        this.f17067b = str;
-        this.f17068c = str2;
+        this.f17112a = i10;
+        this.f17113b = str;
+        this.f17114c = str2;
         this.d = i11;
-        this.f17069e = i12;
-        this.f17070f = i13;
-        this.f17071g = i14;
+        this.f17115e = i12;
+        this.f17116f = i13;
+        this.f17117g = i14;
         this.h = bArr;
     }
 
@@ -50,7 +50,7 @@ public final class a implements o0 {
 
     @Override
     public final void b(m0 m0Var) {
-        m0Var.a(this.f17066a, this.h);
+        m0Var.a(this.f17112a, this.h);
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f17066a == aVar.f17066a && this.f17067b.equals(aVar.f17067b) && this.f17068c.equals(aVar.f17068c) && this.d == aVar.d && this.f17069e == aVar.f17069e && this.f17070f == aVar.f17070f && this.f17071g == aVar.f17071g && Arrays.equals(this.h, aVar.h)) {
+            if (this.f17112a == aVar.f17112a && this.f17113b.equals(aVar.f17113b) && this.f17114c.equals(aVar.f17114c) && this.d == aVar.d && this.f17115e == aVar.f17115e && this.f17116f == aVar.f17116f && this.f17117g == aVar.f17117g && Arrays.equals(this.h, aVar.h)) {
                 return true;
             }
         }
@@ -72,10 +72,10 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((g.h(g.h((527 + this.f17066a) * 31, 31, this.f17067b), 31, this.f17068c) + this.d) * 31) + this.f17069e) * 31) + this.f17070f) * 31) + this.f17071g) * 31);
+        return Arrays.hashCode(this.h) + ((((((((g.h(g.h((527 + this.f17112a) * 31, 31, this.f17113b), 31, this.f17114c) + this.d) * 31) + this.f17115e) * 31) + this.f17116f) * 31) + this.f17117g) * 31);
     }
 
     public final String toString() {
-        return "Picture: mimeType=" + this.f17067b + ", description=" + this.f17068c;
+        return "Picture: mimeType=" + this.f17113b + ", description=" + this.f17114c;
     }
 }

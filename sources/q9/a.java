@@ -9,30 +9,30 @@ import java.util.Set;
 import m4.w;
 import w7.r6;
 public final class a {
-    public final String f46051a;
-    public final Set f46052b;
-    public final Set f46053c;
+    public final String f46082a;
+    public final Set f46083b;
+    public final Set f46084c;
     public final int d;
-    public final int f46054e;
-    public final d f46055f;
-    public final Set f46056g;
+    public final int f46085e;
+    public final d f46086f;
+    public final Set f46087g;
 
     public a(String str, Set set, Set set2, int i10, int i11, d dVar, Set set3) {
-        this.f46051a = str;
-        this.f46052b = DesugarCollections.unmodifiableSet(set);
-        this.f46053c = DesugarCollections.unmodifiableSet(set2);
+        this.f46082a = str;
+        this.f46083b = DesugarCollections.unmodifiableSet(set);
+        this.f46084c = DesugarCollections.unmodifiableSet(set2);
         this.d = i10;
-        this.f46054e = i11;
-        this.f46055f = dVar;
-        this.f46056g = DesugarCollections.unmodifiableSet(set3);
+        this.f46085e = i11;
+        this.f46086f = dVar;
+        this.f46087g = DesugarCollections.unmodifiableSet(set3);
     }
 
     public static i0 a(Class cls) {
         return new i0(cls, new Class[0]);
     }
 
-    public static i0 b(r rVar) {
-        r[] rVarArr = new r[0];
+    public static i0 b(s sVar) {
+        s[] sVarArr = new s[0];
         ?? obj = new Object();
         obj.d = null;
         HashSet hashSet = new HashSet();
@@ -41,11 +41,11 @@ public final class a {
         obj.f3337a = 0;
         obj.f3338b = 0;
         obj.f3342g = new HashSet();
-        hashSet.add(rVar);
-        for (r rVar2 : rVarArr) {
-            r6.a(rVar2, "Null interface");
+        hashSet.add(sVar);
+        for (s sVar2 : sVarArr) {
+            r6.a(sVar2, "Null interface");
         }
-        Collections.addAll((HashSet) obj.f3339c, rVarArr);
+        Collections.addAll((HashSet) obj.f3339c, sVarArr);
         return obj;
     }
 
@@ -53,15 +53,15 @@ public final class a {
         HashSet hashSet = new HashSet();
         HashSet hashSet2 = new HashSet();
         HashSet hashSet3 = new HashSet();
-        hashSet.add(r.a(cls));
+        hashSet.add(s.a(cls));
         for (Class cls2 : clsArr) {
             r6.a(cls2, "Null interface");
-            hashSet.add(r.a(cls2));
+            hashSet.add(s.a(cls2));
         }
         return new a(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new w(obj, 18), hashSet3);
     }
 
     public final String toString() {
-        return "Component<" + Arrays.toString(this.f46052b.toArray()) + ">{" + this.d + ", type=" + this.f46054e + ", deps=" + Arrays.toString(this.f46053c.toArray()) + "}";
+        return "Component<" + Arrays.toString(this.f46083b.toArray()) + ">{" + this.d + ", type=" + this.f46085e + ", deps=" + Arrays.toString(this.f46084c.toArray()) + "}";
     }
 }

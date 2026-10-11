@@ -6,8 +6,8 @@ public final class w4 extends nb {
     public final kc H;
     public final f6 I;
 
-    public w4(f6 f6Var, Context context, b5 b5Var, org.telegram.ui.ActionBar.e6 e6Var, kc kcVar) {
-        super(context, b5Var, e6Var);
+    public w4(f6 f6Var, Context context, b5 b5Var, org.telegram.ui.ActionBar.d6 d6Var, kc kcVar) {
+        super(context, b5Var, d6Var);
         this.I = f6Var;
         this.H = kcVar;
     }

@@ -1,141 +1,711 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.net.Uri;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import java.net.URLDecoder;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class l3 implements org.telegram.ui.web.g0 {
-    public final m3 f39455a;
+import org.telegram.tgnet.tl.TL_iv;
+public final class l3 extends FrameLayout {
+    public boolean E;
+    public String F;
+    public String G;
+    public boolean H;
+    public float I;
+    public y2 J;
+    public final h4 K;
+    public int f39495a;
+    public final ci.v f39496b;
+    public final f4 f39497c;
+    public final s4.d0 d;
+    public final i3 f39498e;
+    public final j3 f39499f;
+    public boolean h;
+    public boolean f39500n;
+    public c3 f39501r;
+    public boolean f39502s;
+    public boolean v;
+    public int f39503w;
+    public int f39504x;
+    public org.telegram.ui.web.g2 f39505y;
 
-    public l3(m3 m3Var) {
-        this.f39455a = m3Var;
-    }
-
-    @Override
-    public final void b() {
-        v3 v3Var = this.f39455a.K.K;
-        if (v3Var != null) {
-            v3Var.dismiss(true);
+    public l3(h4 h4Var, Activity activity) {
+        super(activity);
+        boolean z10;
+        this.K = h4Var;
+        int i10 = org.telegram.ui.ActionBar.h6.Pk;
+        this.f39503w = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+        this.f39504x = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+        this.E = false;
+        this.I = -1.0f;
+        new Matrix();
+        ci.v vVar = new ci.v(this, activity);
+        this.f39496b = vVar;
+        vVar.setClipToPadding(false);
+        vVar.setPadding(0, AndroidUtilities.dp(56.0f), 0, 0);
+        vVar.setTopGlowOffset(AndroidUtilities.dp(56.0f));
+        ((s4.j) vVar.getItemAnimator()).C = false;
+        if (h4Var.K != null) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        f4 f4Var = new f4(h4Var, activity, z10);
+        this.f39497c = f4Var;
+        vVar.setAdapter(f4Var);
+        s4.d0 d0Var = new s4.d0(1, false);
+        this.d = d0Var;
+        vVar.setLayoutManager(d0Var);
+        vVar.setOnScrollListener(new h3(this, 0));
+        addView(vVar, w7.x5.d(-1.0f, -1));
+        i3 i3Var = new i3(this, getContext());
+        this.f39498e = i3Var;
+        i3Var.setShouldWaitWebViewScroll(true);
+        i3Var.setFullSize(true);
+        i3Var.setAllowFullSizeSwipe(true);
+        j3 j3Var = new j3(this, getContext(), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20786d6, false));
+        this.f39499f = j3Var;
+        j3Var.setOnCloseRequestedListener(new Runnable(this) {
+            public final l3 f37519b;
+
+            {
+                this.f37519b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        h4 h4Var2 = this.f37519b.K;
+                        LaunchActivity launchActivity = LaunchActivity.G1;
+                        if (launchActivity != null) {
+                            org.telegram.ui.ActionBar.m3 P = launchActivity.P();
+                            if (P != null) {
+                                boolean z11 = false;
+                                int i11 = 0;
+                                while (true) {
+                                    HashMap hashMap = org.telegram.ui.ActionBar.m3.K;
+                                    if (i11 < hashMap.size()) {
+                                        ArrayList arrayList = (ArrayList) hashMap.get(Integer.valueOf(i11));
+                                        if (arrayList != null) {
+                                            int size = arrayList.size();
+                                            int i12 = 0;
+                                            while (i12 < size) {
+                                                Object obj = arrayList.get(i12);
+                                                i12++;
+                                                org.telegram.ui.ActionBar.l3 l3Var = (org.telegram.ui.ActionBar.l3) obj;
+                                                if (l3Var.J == h4Var2) {
+                                                    z11 = P.h(i11, l3Var, true);
+                                                }
+                                            }
+                                            continue;
+                                        }
+                                        i11++;
+                                    }
+                                }
+                                if (z11) {
+                                    return;
+                                }
+                            }
+                            h4Var2.o(true, true);
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f37519b.f39499f.n(true, false);
+                        return;
+                    default:
+                        l3 l3Var2 = this.f37519b;
+                        i3 i3Var2 = l3Var2.f39498e;
+                        l3Var2.f39499f.n(false, false);
+                        c3 c3Var = l3Var2.f39501r;
+                        if (c3Var != null) {
+                            c3Var.f36526a.setTranslationY(((i3Var2.getTopActionBarOffsetY() + (-i3Var2.getOffsetY())) - i3Var2.getSwipeOffsetY()) / 2.0f);
+                        }
+                        l3Var2.K.f0();
+                        return;
+                }
+            }
+        });
+        j3Var.setWebViewProgressListener(new g3(this, 0));
+        j3Var.setDelegate(new k3(this));
+        j3Var.setWebViewScrollListener(new g(this, 2));
+        i3Var.addView(j3Var, w7.x5.d(-1.0f, -1));
+        i3Var.setScrollEndListener(new Runnable(this) {
+            public final l3 f37519b;
+
+            {
+                this.f37519b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        h4 h4Var2 = this.f37519b.K;
+                        LaunchActivity launchActivity = LaunchActivity.G1;
+                        if (launchActivity != null) {
+                            org.telegram.ui.ActionBar.m3 P = launchActivity.P();
+                            if (P != null) {
+                                boolean z11 = false;
+                                int i11 = 0;
+                                while (true) {
+                                    HashMap hashMap = org.telegram.ui.ActionBar.m3.K;
+                                    if (i11 < hashMap.size()) {
+                                        ArrayList arrayList = (ArrayList) hashMap.get(Integer.valueOf(i11));
+                                        if (arrayList != null) {
+                                            int size = arrayList.size();
+                                            int i12 = 0;
+                                            while (i12 < size) {
+                                                Object obj = arrayList.get(i12);
+                                                i12++;
+                                                org.telegram.ui.ActionBar.l3 l3Var = (org.telegram.ui.ActionBar.l3) obj;
+                                                if (l3Var.J == h4Var2) {
+                                                    z11 = P.h(i11, l3Var, true);
+                                                }
+                                            }
+                                            continue;
+                                        }
+                                        i11++;
+                                    }
+                                }
+                                if (z11) {
+                                    return;
+                                }
+                            }
+                            h4Var2.o(true, true);
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f37519b.f39499f.n(true, false);
+                        return;
+                    default:
+                        l3 l3Var2 = this.f37519b;
+                        i3 i3Var2 = l3Var2.f39498e;
+                        l3Var2.f39499f.n(false, false);
+                        c3 c3Var = l3Var2.f39501r;
+                        if (c3Var != null) {
+                            c3Var.f36526a.setTranslationY(((i3Var2.getTopActionBarOffsetY() + (-i3Var2.getOffsetY())) - i3Var2.getSwipeOffsetY()) / 2.0f);
+                        }
+                        l3Var2.K.f0();
+                        return;
+                }
+            }
+        });
+        i3Var.setDelegate(new y0(this, 1));
+        i3Var.setScrollListener(new Runnable(this) {
+            public final l3 f37519b;
+
+            {
+                this.f37519b = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (r2) {
+                    case 0:
+                        h4 h4Var2 = this.f37519b.K;
+                        LaunchActivity launchActivity = LaunchActivity.G1;
+                        if (launchActivity != null) {
+                            org.telegram.ui.ActionBar.m3 P = launchActivity.P();
+                            if (P != null) {
+                                boolean z11 = false;
+                                int i11 = 0;
+                                while (true) {
+                                    HashMap hashMap = org.telegram.ui.ActionBar.m3.K;
+                                    if (i11 < hashMap.size()) {
+                                        ArrayList arrayList = (ArrayList) hashMap.get(Integer.valueOf(i11));
+                                        if (arrayList != null) {
+                                            int size = arrayList.size();
+                                            int i12 = 0;
+                                            while (i12 < size) {
+                                                Object obj = arrayList.get(i12);
+                                                i12++;
+                                                org.telegram.ui.ActionBar.l3 l3Var = (org.telegram.ui.ActionBar.l3) obj;
+                                                if (l3Var.J == h4Var2) {
+                                                    z11 = P.h(i11, l3Var, true);
+                                                }
+                                            }
+                                            continue;
+                                        }
+                                        i11++;
+                                    }
+                                }
+                                if (z11) {
+                                    return;
+                                }
+                            }
+                            h4Var2.o(true, true);
+                            return;
+                        }
+                        return;
+                    case 1:
+                        this.f37519b.f39499f.n(true, false);
+                        return;
+                    default:
+                        l3 l3Var2 = this.f37519b;
+                        i3 i3Var2 = l3Var2.f39498e;
+                        l3Var2.f39499f.n(false, false);
+                        c3 c3Var = l3Var2.f39501r;
+                        if (c3Var != null) {
+                            c3Var.f36526a.setTranslationY(((i3Var2.getTopActionBarOffsetY() + (-i3Var2.getOffsetY())) - i3Var2.getSwipeOffsetY()) / 2.0f);
+                        }
+                        l3Var2.K.f0();
+                        return;
+                }
+            }
+        });
+        i3Var.setTopActionBarOffsetY(AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight);
+        addView(i3Var, w7.x5.d(-1.0f, -1));
+        b();
+        setType(0);
     }
 
-    @Override
-    public final String g(boolean z10, boolean z11) {
-        return "UNSUPPORTED";
+    public static void a(l3 l3Var, boolean z10, int i10) {
+        h4 h4Var = l3Var.K;
+        u3 u3Var = h4Var.K;
+        if (z10) {
+            int v = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Pk, false), i10);
+            l3Var.f39503w = v;
+            if (l3Var == h4Var.f38285u0[0]) {
+                if (SharedConfig.adaptableColorInBrowser) {
+                    h4Var.f38273h0.d(v, true);
+                }
+                if (u3Var != null) {
+                    u3Var.i();
+                }
+            }
+        } else {
+            int v9 = org.telegram.ui.ActionBar.h6.v(-1, i10);
+            l3Var.f39504x = v9;
+            if (l3Var == h4Var.f38285u0[0]) {
+                if (SharedConfig.adaptableColorInBrowser) {
+                    h4Var.f38273h0.setMenuColors(v9);
+                }
+                if (u3Var != null) {
+                    u3Var.i();
+                }
+            }
+        }
+        h4Var.f0();
     }
 
-    @Override
-    public final boolean h() {
+    public final void b() {
+        boolean z10;
+        this.f39502s = false;
+        this.v = false;
+        setWeb(null);
+        j3 j3Var = this.f39499f;
+        j3Var.h();
+        j3Var.f43426a = null;
+        int i10 = org.telegram.ui.ActionBar.h6.Pk;
+        this.f39503w = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+        int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
+        this.f39504x = x02;
+        c3 c3Var = this.f39501r;
+        if (c3Var != null) {
+            if (AndroidUtilities.computePerceivedBrightness(x02) <= 0.721f) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            c3Var.b(z10, true);
+            this.f39501r.setBackgroundColor(this.f39504x);
+            c3 c3Var2 = this.f39501r;
+            this.f39500n = false;
+            AndroidUtilities.updateViewVisibilityAnimated(c3Var2, false, 1.0f, false);
+        }
+        f4 f4Var = this.f39497c;
+        f4Var.E = null;
+        f4Var.f37528e.clear();
+        f4Var.f37529f.clear();
+        f4Var.f37532s.clear();
+        f4Var.v.clear();
+        f4Var.h.clear();
+        f4Var.f37531r.clear();
+        f4Var.f37530n.clear();
+        f4Var.f37534x.clear();
+        f4Var.f37533w.clear();
+        f4Var.F = null;
+        f4Var.l();
+        invalidate();
+    }
+
+    public final boolean c() {
+        if (this.f39495a == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean d() {
+        f4 f4Var;
+        TLRPC.WebPage webPage;
+        TL_iv.Page page;
+        if (!f() && (f4Var = this.f39497c) != null && (webPage = f4Var.E) != null && (page = webPage.cached_page) != null && page.local != null) {
+            return true;
+        }
         return false;
     }
 
     @Override
-    public final void j() {
-        m3 m3Var = this.f39455a;
-        i4 i4Var = m3Var.K;
-        v3 v3Var = i4Var.K;
-        if (v3Var != null) {
-            if (!v3Var.h) {
-                v3Var.h = true;
-                v3Var.release();
-                v3Var.K.s();
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+    }
+
+    public final boolean e() {
+        org.telegram.ui.web.y0 webView;
+        String u10;
+        if (!f() || (webView = getWebView()) == null || (u10 = org.telegram.ui.web.b1.u(webView.getUrl())) == null || !org.telegram.ui.web.b1.p(Uri.parse(u10))) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean f() {
+        if (this.f39495a == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void g() {
+        int i10;
+        if (c()) {
+            u3 u3Var = this.K.K;
+            int i11 = 0;
+            if (u3Var != null) {
+                i10 = 1;
+            } else {
+                i10 = 0;
             }
-        } else if (i4Var.f38559u0[0] == m3Var) {
-            i4Var.G();
+            if (u3Var != null) {
+                i11 = AndroidUtilities.dp(32.0f);
+            }
+            this.d.h1(i10, i11);
+        } else if (f()) {
+            i3 i3Var = this.f39498e;
+            i3Var.setSwipeOffsetY(i3Var.getTopActionBarOffsetY() + (-i3Var.getOffsetY()));
         }
     }
 
-    @Override
-    public final void o(int i10, boolean z10) {
-        m3.a(this.f39455a, z10, i10);
+    public int getActionBarColor() {
+        if (f() && SharedConfig.adaptableColorInBrowser) {
+            return this.f39503w;
+        }
+        int i10 = org.telegram.ui.ActionBar.h6.Pk;
+        this.K.getClass();
+        return org.telegram.ui.ActionBar.h6.x0(null, i10, false);
     }
 
-    @Override
-    public final void y() {
-        m3 m3Var = this.f39455a;
-        i4 i4Var = m3Var.K;
-        if (i4Var.f38559u0[0] == m3Var) {
-            i4Var.G();
+    public f4 getAdapter() {
+        return this.f39497c;
+    }
+
+    public int getBackgroundColor() {
+        if (f() && SharedConfig.adaptableColorInBrowser) {
+            if (this.f39500n) {
+                return org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Pk, false);
+            }
+            return this.f39504x;
+        }
+        return org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Pk, false);
+    }
+
+    public float getListTop() {
+        int i10;
+        if (c()) {
+            ci.v vVar = this.f39496b;
+            float height = vVar.getHeight();
+            for (int i11 = 0; i11 < vVar.getChildCount(); i11++) {
+                View childAt = vVar.getChildAt(i11);
+                if (vVar.getLayoutManager() == null) {
+                    i10 = 0;
+                } else {
+                    vVar.getLayoutManager().getClass();
+                    i10 = RecyclerView.U(childAt).f47752f;
+                }
+                if (i10 == 2147483646) {
+                    height = Math.min(height, childAt.getBottom());
+                } else {
+                    height = Math.min(height, childAt.getTop());
+                }
+            }
+            return height;
+        } else if (f()) {
+            return this.f39498e.getTranslationY();
+        } else {
+            return 0.0f;
         }
     }
 
-    @Override
-    public final ei.a1 z() {
+    public org.telegram.ui.Components.sm0 getListView() {
+        return this.f39496b;
+    }
+
+    public float getProgress() {
+        org.telegram.ui.web.y0 webView;
+        f4 f4Var;
+        int i10;
+        int B;
+        View m10;
+        float min;
+        u3 u3Var = this.K.K;
+        if (c()) {
+            float f7 = this.I;
+            if (f7 >= 0.0f) {
+                return f7;
+            }
+            s4.d0 d0Var = this.d;
+            int L0 = d0Var.L0();
+            View m11 = d0Var.m(L0);
+            if (m11 != null) {
+                int[] iArr = this.f39497c.I;
+                ci.v vVar = this.f39496b;
+                int i11 = 0;
+                if (iArr == null) {
+                    int N0 = d0Var.N0();
+                    if (u3Var != null) {
+                        if (L0 < 1) {
+                            L0 = 1;
+                        }
+                        if (N0 < 1) {
+                            N0 = 1;
+                        }
+                    }
+                    int B2 = d0Var.B() - 2;
+                    if (N0 >= B2) {
+                        m10 = d0Var.m(B2);
+                    } else {
+                        m10 = d0Var.m(L0);
+                    }
+                    if (m10 != null) {
+                        float width = getWidth() / (B - 1);
+                        float measuredHeight = m10.getMeasuredHeight();
+                        if (N0 >= B2) {
+                            min = (((B2 - L0) * width) * (vVar.getMeasuredHeight() - m10.getTop())) / measuredHeight;
+                        } else {
+                            min = (1.0f - ((Math.min(0, m10.getTop() - vVar.getPaddingTop()) + measuredHeight) / measuredHeight)) * width;
+                        }
+                        return ((L0 * width) + min) / getWidth();
+                    }
+                } else {
+                    int i12 = L0 - 1;
+                    if (i12 >= 0 && i12 < iArr.length) {
+                        i10 = iArr[i12];
+                    } else {
+                        i10 = 0;
+                    }
+                    if (L0 != 0 || u3Var == null) {
+                        i11 = -m11.getTop();
+                    }
+                    return Utilities.clamp01((i10 + i11) / Math.max(1, f4Var.J - vVar.getHeight()));
+                }
+            }
+        } else if (f() && (webView = this.f39499f.getWebView()) != null) {
+            return webView.getScrollProgress();
+        }
+        return 0.0f;
+    }
+
+    public String getSubtitle() {
+        org.telegram.ui.web.y0 webView;
+        String uri;
+        String[] split;
+        k0 k0Var;
+        if (!f() || (webView = this.f39499f.getWebView()) == null) {
+            return "";
+        }
+        if (TextUtils.equals(this.F, webView.getUrl())) {
+            return this.G;
+        }
+        try {
+            String url = webView.getUrl();
+            this.F = url;
+            Uri parse = Uri.parse(org.telegram.ui.web.b1.u(url));
+            if (parse.getScheme() != null && (parse.getScheme().equalsIgnoreCase("http") || parse.getScheme().equalsIgnoreCase("https"))) {
+                uri = parse.getSchemeSpecificPart();
+            } else {
+                uri = parse.toString();
+            }
+            try {
+                if (!e()) {
+                    try {
+                        Uri parse2 = Uri.parse(uri);
+                        if (parse2.getHost() != null) {
+                            parse = parse2;
+                        }
+                        String a2 = of.f.a(parse.getHost());
+                        if (a2.split("\\.").length > 2 && (k0Var = this.K.f38273h0) != null && ci.d4.g(a2, k0Var.E) > AndroidUtilities.displaySize.x - AndroidUtilities.dp(162.0f)) {
+                            a2 = split[split.length - 2] + '.' + split[split.length - 1];
+                        }
+                        uri = of.f.v(parse, null, "", a2, null);
+                    } catch (Exception e7) {
+                        FileLog.e((Throwable) e7, false);
+                    }
+                    uri = URLDecoder.decode(uri.replaceAll("\\+", "%2b"), "UTF-8");
+                }
+            } catch (Exception e10) {
+                FileLog.e(e10);
+            }
+            if (uri.startsWith("//")) {
+                uri = uri.substring(2);
+            }
+            if (uri.startsWith("www.")) {
+                uri = uri.substring(4);
+            }
+            if (uri.endsWith("/")) {
+                uri = uri.substring(0, uri.length() - 1);
+            }
+            int indexOf = uri.indexOf("#");
+            if (indexOf >= 0) {
+                uri = uri.substring(0, indexOf);
+            }
+            this.G = uri;
+            return uri;
+        } catch (Exception unused) {
+            return webView.getUrl();
+        }
+    }
+
+    public String getTitle() {
+        org.telegram.ui.web.y0 webView;
+        String str;
+        String str2;
+        if (c()) {
+            TLRPC.WebPage webPage = this.f39497c.E;
+            if (webPage != null && (str2 = webPage.site_name) != null) {
+                return str2;
+            }
+            if (webPage != null && (str = webPage.title) != null) {
+                return str;
+            }
+        }
+        if (f() && (webView = this.f39499f.getWebView()) != null) {
+            return webView.getTitle();
+        }
+        return "";
+    }
+
+    public org.telegram.ui.web.b1 getWebContainer() {
+        return this.f39499f;
+    }
+
+    public org.telegram.ui.web.y0 getWebView() {
+        j3 j3Var = this.f39499f;
+        if (j3Var != null) {
+            return j3Var.getWebView();
+        }
         return null;
     }
 
     @Override
-    public final void a() {
+    public final void onAttachedToWindow() {
+        c3 c3Var;
+        boolean z10;
+        super.onAttachedToWindow();
+        if (this.f39500n && (c3Var = this.f39501r) != null) {
+            int i10 = org.telegram.ui.ActionBar.h6.Pk;
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, i10, false)) <= 0.721f) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            c3Var.b(z10, false);
+            this.f39501r.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        }
+    }
+
+    public void setLastVisible(boolean z10) {
+        if (this.H != z10) {
+            this.H = z10;
+            this.f39499f.setKeyboardFocusable(z10);
+        }
     }
 
     @Override
-    public final void c() {
+    public void setTranslationX(float f7) {
+        super.setTranslationX(f7);
+        h4 h4Var = this.K;
+        h4Var.f0();
+        if (h4Var.f38271f0.f21744f) {
+            h4Var.f38272g0.invalidate();
+        }
+        if (h4Var.f38271f0.f21743e) {
+            h4Var.f38272g0.invalidate();
+            h4Var.X((int) (((AndroidUtilities.dp(56.0f) - h4Var.f38271f0.h) * (f7 / getMeasuredWidth())) + h4Var.f38271f0.h));
+        }
+        u3 u3Var = h4Var.K;
+        if (u3Var != null) {
+            u3Var.n();
+        }
     }
 
-    @Override
-    public final void d(TLRPC.Document document) {
+    public void setType(int i10) {
+        int i11;
+        if (this.f39495a != i10) {
+            b();
+        }
+        this.f39495a = i10;
+        int i12 = 8;
+        if (c()) {
+            i11 = 0;
+        } else {
+            i11 = 8;
+        }
+        this.f39496b.setVisibility(i11);
+        if (f()) {
+            i12 = 0;
+        }
+        this.f39498e.setVisibility(i12);
     }
 
-    @Override
-    public final void e(String str) {
-    }
-
-    @Override
-    public final void f(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void i(boolean z10) {
-    }
-
-    @Override
-    public final void k(boolean z10) {
-    }
-
-    @Override
-    public final void m(int i10) {
-    }
-
-    @Override
-    public final void p(boolean z10) {
-    }
-
-    @Override
-    public final void r(int i10) {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void t(boolean z10) {
-    }
-
-    @Override
-    public final void w(boolean z10) {
-    }
-
-    @Override
-    public final void x(boolean z10) {
-    }
-
-    @Override
-    public final void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject) {
-    }
-
-    @Override
-    public final void u(int i10, int i11, boolean z10) {
-    }
-
-    @Override
-    public final void v(TLRPC.User user, String str, ArrayList arrayList) {
-    }
-
-    @Override
-    public final void q(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13) {
-    }
-
-    @Override
-    public final void l(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13, String str2) {
+    public void setWeb(y2 y2Var) {
+        y2 y2Var2 = this.J;
+        if (y2Var2 != y2Var) {
+            if (y2Var2 != null) {
+                y2Var2.c(this);
+            }
+            this.J = y2Var;
+            if (y2Var != null) {
+                org.telegram.ui.web.y0 y0Var = y2Var.f21331b;
+                j3 j3Var = this.f39499f;
+                if (y0Var != null) {
+                    y0Var.onResume();
+                    j3Var.N(UserConfig.selectedAccount, y2Var.f21331b, y2Var.d, y2Var.f21350x, false);
+                    a(this, true, y2Var.f21344q);
+                    a(this, false, y2Var.f21345r);
+                } else {
+                    String str = y2Var.f21350x;
+                    if (str != null) {
+                        j3Var.t(UserConfig.selectedAccount, str, false);
+                    }
+                }
+            }
+            org.telegram.ui.web.g2 g2Var = this.f39505y;
+            if (g2Var != null) {
+                g2Var.a();
+                org.telegram.ui.web.g2 g2Var2 = this.f39505y;
+                TLRPC.TL_webPage tL_webPage = g2Var2.f43507j;
+                if (tL_webPage != null) {
+                    org.telegram.ui.web.i2.o(tL_webPage);
+                    g2Var2.f43507j = null;
+                }
+                this.f39505y = null;
+            }
+        }
     }
 }

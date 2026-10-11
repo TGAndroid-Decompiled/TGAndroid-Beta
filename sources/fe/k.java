@@ -3,9 +3,9 @@ package fe;
 import ae.g0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public class k {
-    public static final AtomicReferenceFieldUpdater f9902a = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_next$volatile");
-    public static final AtomicReferenceFieldUpdater f9903b = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_prev$volatile");
-    public static final AtomicReferenceFieldUpdater f9904c = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_removedRef$volatile");
+    public static final AtomicReferenceFieldUpdater f9901a = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_next$volatile");
+    public static final AtomicReferenceFieldUpdater f9902b = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_prev$volatile");
+    public static final AtomicReferenceFieldUpdater f9903c = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_removedRef$volatile");
     private volatile Object _next$volatile = this;
     private volatile Object _prev$volatile = this;
     private volatile Object _removedRef$volatile;
@@ -16,7 +16,7 @@ public class k {
 
     public final void e(k kVar) {
         while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9903b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9902b;
             k kVar2 = (k) atomicReferenceFieldUpdater.get(kVar);
             if (f() == kVar) {
                 while (!atomicReferenceFieldUpdater.compareAndSet(kVar, kVar2, this)) {
@@ -36,7 +36,7 @@ public class k {
 
     public final Object f() {
         while (true) {
-            Object obj = f9902a.get(this);
+            Object obj = f9901a.get(this);
             if (!(obj instanceof p)) {
                 return obj;
             }
@@ -53,7 +53,7 @@ public class k {
         } else {
             qVar = null;
         }
-        if (qVar != null && (kVar = qVar.f9914a) != null) {
+        if (qVar != null && (kVar = qVar.f9913a) != null) {
             return kVar;
         }
         kotlin.jvm.internal.i.c(f7, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");

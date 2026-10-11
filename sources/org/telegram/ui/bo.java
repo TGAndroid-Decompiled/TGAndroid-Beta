@@ -6,44 +6,44 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public abstract class bo extends FrameLayout {
-    public final ao f36403a;
-    public final org.telegram.ui.ActionBar.d5 f36404b;
-    public View f36405c;
+    public final ao f36419a;
+    public final org.telegram.ui.ActionBar.b5 f36420b;
+    public View f36421c;
     public int d;
-    public boolean f36406e;
+    public boolean f36422e;
 
-    public bo(Context context, org.telegram.ui.ActionBar.d5 d5Var, Bundle bundle) {
+    public bo(Context context, org.telegram.ui.ActionBar.b5 b5Var, Bundle bundle) {
         super(context);
-        this.f36406e = true;
-        this.f36404b = d5Var;
+        this.f36422e = true;
+        this.f36420b = b5Var;
         ao aoVar = new ao(this, bundle);
-        this.f36403a = aoVar;
+        this.f36419a = aoVar;
         aoVar.Pa = true;
     }
 
     public void a() {
         int i10;
-        ao aoVar = this.f36403a;
+        ao aoVar = this.f36419a;
         if (aoVar.onFragmentCreate()) {
-            this.f36405c = aoVar.fragmentView;
-            aoVar.setParentLayout(this.f36404b);
-            View view = this.f36405c;
+            this.f36421c = aoVar.fragmentView;
+            aoVar.setParentLayout(this.f36420b);
+            View view = this.f36421c;
             if (view == null) {
-                this.f36405c = aoVar.createView(getContext());
+                this.f36421c = aoVar.createView(getContext());
             } else {
                 ViewGroup viewGroup = (ViewGroup) view.getParent();
                 if (viewGroup != null) {
                     aoVar.onRemoveFromParent();
-                    viewGroup.removeView(this.f36405c);
+                    viewGroup.removeView(this.f36421c);
                 }
             }
-            wj wjVar = aoVar.f45034x0;
+            wj wjVar = aoVar.f44989x0;
             if (wjVar != null && (i10 = this.d) != 0) {
                 wjVar.setPadding(0, i10, 0, 0);
             }
             aoVar.ua();
-            addView(this.f36405c, w7.x5.d(-1.0f, -1));
-            if (this.f36406e) {
+            addView(this.f36421c, w7.x5.d(-1.0f, -1));
+            if (this.f36422e) {
                 aoVar.onResume();
             }
         }

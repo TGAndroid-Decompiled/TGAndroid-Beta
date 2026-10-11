@@ -1,56 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class vz extends FrameLayout {
-    public FrameLayout f43056a;
-    public org.telegram.ui.ActionBar.j5 f43057b;
-    public org.telegram.ui.ActionBar.j5 f43058c;
-    public ImageView d;
-    public ci.g9 f43059e;
-    public ai.q4 f43060f;
-    public ai.q4 h;
-    public TextView f43061n;
-    public org.telegram.ui.ActionBar.n2 f43062r;
-    public String f43063s;
-    public float v;
-    public ValueAnimator f43064w;
-    public org.telegram.ui.ActionBar.n1 f43065x;
-    public float[] f43066y;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class vz implements org.telegram.ui.ActionBar.z1 {
+    public final int f43154a;
+    public final EditTextBoldCursor f43155b;
 
-    public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
-        float f7 = 0.0f;
-        float f10 = 0.0f;
-        FrameLayout frameLayout3 = frameLayout;
-        while (frameLayout3 != frameLayout2) {
-            float y3 = frameLayout3.getY() + f7;
-            f10 += frameLayout3.getX();
-            if (frameLayout3 instanceof ScrollView) {
-                y3 -= frameLayout3.getScrollY();
-            }
-            f7 = y3;
-            if (!(frameLayout3.getParent() instanceof View)) {
-                break;
-            }
-            ?? r32 = (View) frameLayout3.getParent();
-            boolean z10 = r32 instanceof ViewGroup;
-            frameLayout3 = r32;
-            if (!z10) {
-                return;
-            }
-        }
-        fArr[0] = f10 - frameLayout2.getPaddingLeft();
-        fArr[1] = f7 - frameLayout2.getPaddingTop();
+    public vz(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f43154a = i10;
+        this.f43155b = editTextBoldCursor;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(127.0f), 1073741824));
+    public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f43154a) {
+            case 0:
+                AndroidUtilities.hideKeyboard(this.f43155b);
+                return;
+            case 1:
+                AndroidUtilities.hideKeyboard(this.f43155b);
+                return;
+            default:
+                AndroidUtilities.hideKeyboard(this.f43155b);
+                return;
+        }
     }
 }

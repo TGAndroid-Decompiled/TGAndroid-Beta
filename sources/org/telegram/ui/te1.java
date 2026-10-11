@@ -1,46 +1,193 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class te1 extends org.telegram.ui.Components.qm0 {
-    public final ArrayList f42036c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public se1 f42037e;
-    public int f42038f;
-    public final ue1 h;
+import org.telegram.ui.Components.RadialProgressView;
+public final class te1 extends org.telegram.ui.ActionBar.m2 {
+    public float E;
+    public RadialProgressView F;
+    public int G;
+    public final int H;
+    public final v5 I;
+    public final y21 J;
+    public final gq0 K;
+    public org.telegram.ui.Components.sm0 f42167a;
+    public org.telegram.ui.Components.sm0 f42168b;
+    public TextView f42169c;
+    public qe1 d;
+    public se1 f42170e;
+    public final ArrayList f42171f;
+    public final ArrayList h;
+    public v51 f42172n;
+    public org.telegram.ui.Components.d00 f42173r;
+    public FrameLayout f42174s;
+    public int v;
+    public final HashSet f42175w;
+    public org.telegram.ui.Cells.oa f42176x;
+    public ValueAnimator f42177y;
 
-    public te1(ue1 ue1Var) {
-        this.h = ue1Var;
+    public te1(int i10) {
+        super(null);
+        this.f42171f = new ArrayList();
+        this.h = new ArrayList();
+        this.f42175w = new HashSet();
+        this.H = AndroidUtilities.dp(64.0f);
+        this.I = new v5(this, 14);
+        this.J = new y21(this, 9);
+        this.K = new gq0(this, 22);
+        this.arguments = org.telegram.ui.Cells.c1.f(i10, "type");
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        return true;
+    public final View createView(Context context) {
+        this.G = this.arguments.getInt("type", 0);
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.LimitReached));
+        this.actionBar.setActionBarMenuOnItemClick(new o81(this, 5));
+        org.telegram.ui.ActionBar.u0 a2 = this.actionBar.o().a(0, R.drawable.outline_header_search);
+        a2.F();
+        a2.H = new ne1(this);
+        a2.setContentDescription(LocaleController.getString(R.string.Search));
+        a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        org.telegram.ui.Components.sm0 sm0Var = new org.telegram.ui.Components.sm0(context, null);
+        this.f42167a = sm0Var;
+        sm0Var.setLayoutManager(new s4.d0());
+        org.telegram.ui.Components.sm0 sm0Var2 = this.f42167a;
+        qe1 qe1Var = new qe1(this);
+        this.d = qe1Var;
+        sm0Var2.setAdapter(qe1Var);
+        this.f42167a.setClipToPadding(false);
+        org.telegram.ui.Components.sm0 sm0Var3 = this.f42167a;
+        y21 y21Var = this.J;
+        sm0Var3.setOnItemClickListener(y21Var);
+        org.telegram.ui.Components.sm0 sm0Var4 = this.f42167a;
+        gq0 gq0Var = this.K;
+        sm0Var4.setOnItemLongClickListener(gq0Var);
+        org.telegram.ui.Components.sm0 sm0Var5 = new org.telegram.ui.Components.sm0(context, null);
+        this.f42168b = sm0Var5;
+        sm0Var5.setLayoutManager(new s4.d0());
+        org.telegram.ui.Components.sm0 sm0Var6 = this.f42168b;
+        se1 se1Var = new se1(this);
+        this.f42170e = se1Var;
+        sm0Var6.setAdapter(se1Var);
+        this.f42168b.setOnItemClickListener(y21Var);
+        this.f42168b.setOnItemLongClickListener(gq0Var);
+        this.f42168b.setOnScrollListener(new oe1(this, 0));
+        org.telegram.ui.Components.d00 d00Var = new org.telegram.ui.Components.d00(context, null);
+        this.f42173r = d00Var;
+        d00Var.setShowAtCenter(true);
+        this.f42173r.setText(LocaleController.getString(R.string.NoResult));
+        this.f42173r.c();
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        this.F = radialProgressView;
+        frameLayout.addView(radialProgressView, w7.x5.d(-2.0f, -2));
+        this.d.E();
+        this.F.setVisibility(8);
+        frameLayout.addView(this.f42167a);
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.f42174s = frameLayout2;
+        frameLayout2.addView(this.f42168b);
+        this.f42174s.addView(this.f42173r);
+        this.f42174s.setVisibility(8);
+        frameLayout.addView(this.f42174s);
+        this.d.l();
+        this.E = 0.0f;
+        AndroidUtilities.runOnUIThread(this.I, 500L);
+        getConnectionsManager().sendRequest(new TLRPC.TL_channels_getInactiveChannels(), new m(this, 22));
+        View view = this.fragmentView;
+        int i10 = org.telegram.ui.ActionBar.h6.f20786d6;
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        v51 v51Var = new v51(context, 5);
+        this.f42172n = v51Var;
+        v51Var.setWillNotDraw(false);
+        TextView textView = new TextView(context);
+        this.f42169c = textView;
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
+        this.f42169c.setGravity(17);
+        this.f42169c.setTextSize(1, 14.0f);
+        this.f42169c.setTypeface(AndroidUtilities.bold());
+        this.f42169c.setBackground(org.telegram.ui.ActionBar.w5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
+        frameLayout.addView(this.f42172n, w7.x5.e(-1, 64, 80));
+        this.f42172n.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        this.f42172n.addView(this.f42169c, w7.x5.a(-1.0f, 16.0f, 12.0f, 16.0f, 12.0f, -1, 0));
+        this.f42172n.setVisibility(8);
+        this.f42169c.setOnClickListener(new o41(this, 7));
+        return this.fragmentView;
     }
 
     @Override
-    public final int h() {
-        return this.f42036c.size();
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        ArrayList arrayList = this.f42036c;
-        TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
-        String str = (String) this.d.get(i10);
-        org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) d1Var.f47702a;
-        String str2 = chat.title;
-        boolean z10 = true;
-        if (i10 == arrayList.size() - 1) {
-            z10 = false;
-        }
-        g4Var.e(chat, str2, str, z10);
-        g4Var.c(this.h.f42464w.contains(Long.valueOf(chat.f20042id)), false);
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new org.telegram.ui.Cells.g4(1, 0, viewGroup.getContext(), false));
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        vy0 vy0Var = new vy0(8, this);
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1, null, null, null, null, org.telegram.ui.ActionBar.h6.f21065s8));
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        int i10 = org.telegram.ui.ActionBar.h6.f21120v8;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(kVar, 64, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.h6.f21084t8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 64, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 134217728, null, null, null, null, org.telegram.ui.ActionBar.h6.C8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 67108864, null, null, null, null, org.telegram.ui.ActionBar.h6.D8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.h6.A8));
+        int i11 = org.telegram.ui.ActionBar.h6.f20954m9;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42176x, 0, new Class[]{org.telegram.ui.Cells.oa.class}, new String[]{"imageView"}, null, null, -1, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42176x, 0, new Class[]{org.telegram.ui.Cells.oa.class}, new String[]{"headerTextView"}, null, null, -1, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42176x, 0, new Class[]{org.telegram.ui.Cells.oa.class}, new String[]{"messageTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.f20845g9));
+        View view = this.fragmentView;
+        int i12 = org.telegram.ui.ActionBar.h6.f20786d6;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(view, 1, null, null, null, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42172n, 1, null, null, null, null, i12));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 32, new Class[]{org.telegram.ui.Cells.b7.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20750b7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 48, new Class[]{org.telegram.ui.Cells.b7.class}, null, null, null, org.telegram.ui.ActionBar.h6.f20730a7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 0, new Class[]{org.telegram.ui.Cells.m4.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.L6));
+        int i13 = org.telegram.ui.ActionBar.h6.f20741ai;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"textView"}, null, null, -1, null, i13));
+        int i14 = org.telegram.ui.ActionBar.h6.f20878i7;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"checkBox"}, null, null, -1, null, i14));
+        int i15 = org.telegram.ui.ActionBar.h6.f20896j7;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"checkBox"}, null, null, -1, null, i15));
+        int i16 = org.telegram.ui.ActionBar.h6.f20915k7;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"checkBox"}, null, null, -1, null, i16));
+        int i17 = org.telegram.ui.ActionBar.h6.G6;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"nameTextView"}, null, null, -1, null, i17));
+        int i18 = org.telegram.ui.ActionBar.h6.f21171y6;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 262148, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"statusTextView"}, null, null, -1, null, i18));
+        Drawable[] drawableArr = org.telegram.ui.ActionBar.h6.f21039r0;
+        int i19 = org.telegram.ui.ActionBar.h6.J7;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42167a, 0, new Class[]{org.telegram.ui.Cells.g4.class}, null, drawableArr, null, i19));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42168b, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"textView"}, null, null, -1, null, i13));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42168b, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"checkBox"}, null, null, -1, null, i14));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42168b, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"checkBox"}, null, null, -1, null, i15));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42168b, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"checkBox"}, null, null, -1, null, i16));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42168b, 4, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"nameTextView"}, null, null, -1, null, i17));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42168b, 262148, new Class[]{org.telegram.ui.Cells.g4.class}, new String[]{"statusTextView"}, null, null, -1, null, i18));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42168b, 0, new Class[]{org.telegram.ui.Cells.g4.class}, null, drawableArr, null, i19));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, vy0Var, org.telegram.ui.ActionBar.h6.O7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, vy0Var, org.telegram.ui.ActionBar.h6.P7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, vy0Var, org.telegram.ui.ActionBar.h6.Q7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, vy0Var, org.telegram.ui.ActionBar.h6.R7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, vy0Var, org.telegram.ui.ActionBar.h6.S7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, vy0Var, org.telegram.ui.ActionBar.h6.T7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, vy0Var, org.telegram.ui.ActionBar.h6.U7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42173r, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.f20770c7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42169c, 0, null, null, null, vy0Var, org.telegram.ui.ActionBar.h6.Oh));
+        TextView textView = this.f42169c;
+        int i20 = org.telegram.ui.ActionBar.h6.Qh;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(textView, 0, null, null, null, vy0Var, i20));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.F, 0, null, null, null, vy0Var, i20));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f42176x, 0, new Class[]{org.telegram.ui.Cells.oa.class}, new String[]{"imageLayout"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.f21007p7));
+        return arrayList;
     }
 }

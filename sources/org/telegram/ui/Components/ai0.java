@@ -1,22 +1,63 @@
 package org.telegram.ui.Components;
-public final class ai0 implements Runnable {
-    public final int f24571a;
-    public final ei0 f24572b;
 
-    public ai0(ei0 ei0Var, int i10) {
-        this.f24571a = i10;
-        this.f24572b = ei0Var;
-    }
+import android.os.IBinder;
+import android.os.RemoteException;
+import android.util.Log;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.AndroidUtilities;
+public final class ai0 {
+    public final HashMap f24522a;
 
-    @Override
-    public final void run() {
-        switch (this.f24571a) {
-            case 0:
-                this.f24572b.a(true);
+    public ai0(int i10) {
+        switch (i10) {
+            case 1:
+                this.f24522a = new HashMap();
                 return;
             default:
-                this.f24572b.d();
+                this.f24522a = new HashMap();
                 return;
+        }
+    }
+
+    public void a(Runnable runnable) {
+        Runnable runnable2 = (Runnable) this.f24522a.remove(runnable);
+        if (runnable2 != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable2);
+        }
+    }
+
+    public void b() {
+        HashMap hashMap = this.f24522a;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            AndroidUtilities.cancelRunOnUIThread((Runnable) entry.getValue());
+        }
+        hashMap.clear();
+    }
+
+    public void c(IBinder iBinder) {
+        synchronized (this.f24522a) {
+            if (iBinder != null) {
+                try {
+                    iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            new y8.a();
+            for (Map.Entry entry : this.f24522a.entrySet()) {
+                if (entry.getValue() == null) {
+                    try {
+                        throw null;
+                        break;
+                    } catch (RemoteException unused) {
+                        String valueOf = String.valueOf(entry.getKey());
+                        Log.w("WearableClient", "onPostInitHandler: Didn't add: " + valueOf + "/null");
+                    }
+                } else {
+                    throw new ClassCastException();
+                }
+            }
         }
     }
 }

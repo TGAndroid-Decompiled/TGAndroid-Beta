@@ -4,32 +4,32 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.b00;
 public final class f1 {
-    public final int f10592a;
-    public final long f10593b;
-    public final long f10594c;
-    public boolean f10595e;
-    public final int f10597g;
+    public final int f10591a;
+    public final long f10592b;
+    public final long f10593c;
+    public boolean f10594e;
+    public final int f10596g;
     public final NotificationCenter.NotificationCenterDelegate h;
     public boolean d = false;
-    public long f10596f = -1;
+    public long f10595f = -1;
 
     public f1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, long j3, long j10, int i11) {
-        this.f10597g = i11;
+        this.f10596g = i11;
         this.h = notificationCenterDelegate;
-        this.f10592a = i10;
-        this.f10593b = j3;
-        this.f10594c = j10;
+        this.f10591a = i10;
+        this.f10592b = j3;
+        this.f10593c = j10;
     }
 
     public final void a() {
         boolean N;
-        switch (this.f10597g) {
+        switch (this.f10596g) {
             case 0:
                 N = ((j1) this.h).N();
                 break;
             default:
                 b00 b00Var = (b00) this.h;
-                if (b00Var.f24743t1 != null && b00Var.getVisibility() == 0 && b00Var.K0) {
+                if (b00Var.f24716t1 != null && b00Var.getVisibility() == 0 && b00Var.K0) {
                     N = true;
                     break;
                 } else {
@@ -39,21 +39,21 @@ public final class f1 {
         }
         this.d = N;
         if (!N) {
-            if (this.f10595e) {
-                MessagesController.getInstance(this.f10592a).sendTyping(this.f10593b, this.f10594c, 2, 0);
+            if (this.f10594e) {
+                MessagesController.getInstance(this.f10591a).sendTyping(this.f10592b, this.f10593c, 2, 0);
             }
-            this.f10596f = -1L;
+            this.f10595f = -1L;
         }
     }
 
     public final void b() {
         if (this.d) {
-            if (this.f10596f == -1) {
-                this.f10596f = System.currentTimeMillis();
-            } else if (System.currentTimeMillis() - this.f10596f > 2000) {
-                this.f10595e = true;
-                this.f10596f = System.currentTimeMillis();
-                MessagesController.getInstance(this.f10592a).sendTyping(this.f10593b, this.f10594c, 10, 0);
+            if (this.f10595f == -1) {
+                this.f10595f = System.currentTimeMillis();
+            } else if (System.currentTimeMillis() - this.f10595f > 2000) {
+                this.f10594e = true;
+                this.f10595f = System.currentTimeMillis();
+                MessagesController.getInstance(this.f10591a).sendTyping(this.f10592b, this.f10593c, 10, 0);
             }
         }
     }

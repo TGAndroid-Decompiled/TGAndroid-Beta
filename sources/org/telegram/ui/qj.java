@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 public final class qj extends org.telegram.ui.Components.uo {
-    public final zn f41179v0;
+    public final zn f41190v0;
 
-    public qj(zn znVar, Context context, zn znVar2, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, znVar2, z10, e6Var);
-        this.f41179v0 = znVar;
+    public qj(zn znVar, Context context, zn znVar2, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, znVar2, z10, d6Var);
+        this.f41190v0 = znVar;
     }
 
     @Override
     public final boolean a() {
         boolean z10;
-        zn znVar = this.f41179v0;
+        zn znVar = this.f41190v0;
         if (!znVar.Pa && !znVar.isInPreviewMode()) {
-            z10 = ((org.telegram.ui.ActionBar.n2) znVar).inBubbleMode;
-            if (!z10 && znVar.f44858j0 != null && !znVar.f44972s3) {
-                if (!znVar.K9() || znVar.f44837h4) {
+            z10 = ((org.telegram.ui.ActionBar.m2) znVar).inBubbleMode;
+            if (!z10 && znVar.f44813j0 != null && !znVar.f44927s3) {
+                if (!znVar.K9() || znVar.f44792h4) {
                     return true;
                 }
                 return false;
@@ -29,15 +29,15 @@ public final class qj extends org.telegram.ui.Components.uo {
 
     @Override
     public final boolean d() {
-        zn znVar = this.f41179v0;
-        TLRPC.User user = znVar.f44809f;
+        zn znVar = this.f41190v0;
+        TLRPC.User user = znVar.f44764f;
         if (user != null && user.linked_community_id != 0) {
-            znVar.showDialog(new fi.k0(znVar, znVar.f44809f.linked_community_id, null, null));
+            znVar.showDialog(new fi.k0(znVar, znVar.f44764f.linked_community_id, null, null));
             return true;
         }
-        TLRPC.Chat chat = znVar.f44797e;
+        TLRPC.Chat chat = znVar.f44752e;
         if (chat != null && chat.linked_community_id != 0) {
-            znVar.showDialog(new fi.k0(znVar, znVar.f44797e.linked_community_id, null, null));
+            znVar.showDialog(new fi.k0(znVar, znVar.f44752e.linked_community_id, null, null));
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public final class qj extends org.telegram.ui.Components.uo {
     @Override
     public final void f() {
         String str;
-        zn znVar = this.f41179v0;
+        zn znVar = this.f41190v0;
         if (znVar.J9()) {
             str = "";
         } else {
@@ -57,7 +57,7 @@ public final class qj extends org.telegram.ui.Components.uo {
 
     @Override
     public final boolean p() {
-        if (this.f41179v0.R3 == 3) {
+        if (this.f41190v0.R3 == 3) {
             return true;
         }
         return false;

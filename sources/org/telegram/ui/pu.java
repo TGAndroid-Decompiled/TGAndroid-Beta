@@ -1,54 +1,67 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class pu extends og.a {
-    public final int f40924c;
-    public final int d;
-    public final int f40925e;
-    public final CharSequence f40926f;
-    public final CharSequence f40927g;
-    public final int h;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.StatsController;
+public final class pu implements org.telegram.ui.Components.dm0, org.telegram.ui.ActionBar.z1 {
+    public final tu f40959a;
 
-    public pu(int i10, String str) {
-        super(i10, false);
-        this.f40926f = str;
+    public pu(tu tuVar) {
+        this.f40959a = tuVar;
     }
 
-    public static pu b(CharSequence charSequence, String str) {
-        return new pu(-1, 0, 0, 0, charSequence, str);
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof pu)) {
-            return false;
-        }
-        pu puVar = (pu) obj;
-        CharSequence charSequence = puVar.f40926f;
-        int i10 = puVar.f17129a;
-        int i11 = this.f17129a;
-        if (i10 != i11) {
-            return false;
-        }
-        CharSequence charSequence2 = this.f40926f;
-        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
-            if (i11 != 2) {
-                return true;
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        tu tuVar = this.f40959a;
+        xu xuVar = tuVar.f42277m3;
+        ArrayList arrayList = tuVar.f42269d3;
+        arrayList.clear();
+        int i14 = 0;
+        while (true) {
+            su[] suVarArr = tuVar.f42270e3;
+            if (i14 >= suVarArr.length) {
+                i11 = ((org.telegram.ui.ActionBar.m2) xuVar).currentAccount;
+                StatsController.getInstance(i11).resetStats(0);
+                i12 = ((org.telegram.ui.ActionBar.m2) xuVar).currentAccount;
+                StatsController.getInstance(i12).resetStats(1);
+                i13 = ((org.telegram.ui.ActionBar.m2) xuVar).currentAccount;
+                StatsController.getInstance(i13).resetStats(2);
+                tuVar.V2 = true;
+                tuVar.A1();
+                tuVar.B1(true);
+                return;
             }
-            if (puVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || puVar.d != this.d || puVar.f40925e != this.f40925e || puVar.f40924c != this.f40924c) {
-                return false;
+            su suVar = suVarArr[i14];
+            if (suVar.f26335c > 0) {
+                arrayList.add(Integer.valueOf(suVar.d));
             }
-            return true;
+            i14++;
         }
-        return TextUtils.equals(charSequence2, charSequence);
     }
 
-    public pu(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
-        super(2, false);
-        this.h = i10;
-        this.f40924c = i11;
-        this.d = i12;
-        this.f40925e = i13;
-        this.f40926f = charSequence;
-        this.f40927g = charSequence2;
+    @Override
+    public int run() {
+        tu tuVar = this.f40959a;
+        ArrayList arrayList = tuVar.f42266a3;
+        int i10 = 0;
+        while (true) {
+            if (i10 < arrayList.size()) {
+                if (((ou) arrayList.get(i10)).f17175a == 5) {
+                    break;
+                }
+                i10++;
+            } else {
+                i10 = -1;
+                break;
+            }
+        }
+        if (i10 < 0) {
+            return -1;
+        }
+        tuVar.X2.h1(i10, AndroidUtilities.dp(60.0f));
+        return i10;
     }
 }

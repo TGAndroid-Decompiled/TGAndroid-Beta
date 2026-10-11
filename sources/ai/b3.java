@@ -8,7 +8,7 @@ import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.j90;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ty;
+import org.telegram.ui.sy;
 public final class b3 implements View.OnClickListener {
     public final int f697a;
     public final long f698b;
@@ -39,20 +39,20 @@ public final class b3 implements View.OnClickListener {
                 j90.s((j90) this.f699c, this.f698b);
                 return;
             case 2:
-                ty tyVar = (ty) this.f699c;
-                MessagesController messagesController = tyVar.getMessagesController();
+                sy syVar = (sy) this.f699c;
+                MessagesController messagesController = syVar.getMessagesController();
                 long j10 = this.f698b;
                 boolean isDialogMuted = messagesController.isDialogMuted(j10, 0L);
                 if (!isDialogMuted) {
-                    tyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 3);
+                    syVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 3);
                 } else {
-                    tyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 4);
+                    syVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 4);
                 }
-                ad.A(tyVar, !isDialogMuted, null).j();
-                tyVar.finishPreviewFragment();
+                ad.A(syVar, !isDialogMuted, null).j();
+                syVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((qh.p) this.f699c).f46758f;
+                Utilities.Callback callback = ((qh.p) this.f699c).f46789f;
                 if (callback != null) {
                     callback.run(Long.valueOf(this.f698b));
                     return;
@@ -64,7 +64,7 @@ public final class b3 implements View.OnClickListener {
             default:
                 xh.r1 r1Var = (xh.r1) this.f699c;
                 r1Var.getClass();
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != null) {
                     r1Var.dismiss();
                     U.presentFragment(ProfileActivity.m4(this.f698b));

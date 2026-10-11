@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.NumberTextView;
-public final class yn extends org.telegram.ui.ActionBar.j5 {
+public final class yn extends org.telegram.ui.ActionBar.h5 {
     public boolean M0;
     public final zn N0;
 

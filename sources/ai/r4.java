@@ -26,7 +26,7 @@ public final class r4 implements Runnable {
 
     private final void a() {
         g6.o oVar = (g6.o) this.f1654b;
-        synchronized (g6.o.f10349i) {
+        synchronized (g6.o.f10348i) {
             try {
                 if (!oVar.d()) {
                     return;
@@ -128,23 +128,23 @@ public final class r4 implements Runnable {
                 c5.y yVar = (c5.y) this.f1654b;
                 c5.c cVar = yVar.d;
                 cVar.k(0);
-                c5.h hVar2 = c5.g0.f4246i;
+                c5.h hVar2 = c5.g0.f4245i;
                 cVar.j(24, hVar2);
                 yVar.c(hVar2);
                 return;
             case 12:
                 qg.j jVar = ((ci.nb) this.f1654b).J0;
-                if (jVar instanceof qg.w2) {
-                    ((qg.w2) jVar).getEditText();
+                if (jVar instanceof qg.v2) {
+                    ((qg.v2) jVar).getEditText();
                     return;
                 }
                 return;
             case 13:
                 com.google.android.gms.common.api.internal.g0 g0Var = (com.google.android.gms.common.api.internal.g0) this.f1654b;
                 k6.e eVar = g0Var.d;
-                Context context = g0Var.f6588c;
+                Context context = g0Var.f6587c;
                 eVar.getClass();
-                if (!k6.g.f14709a.getAndSet(true)) {
+                if (!k6.g.f14708a.getAndSet(true)) {
                     try {
                         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
                         if (notificationManager != null) {
@@ -162,22 +162,22 @@ public final class r4 implements Runnable {
                 ((com.google.android.gms.common.api.internal.p0) this.f1654b).f();
                 return;
             case 15:
-                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((xa.d) this.f1654b).f51151b).f6657b;
+                com.google.android.gms.common.api.c cVar2 = ((com.google.android.gms.common.api.internal.p0) ((xa.c) this.f1654b).f51194b).f6656b;
                 cVar2.e(cVar2.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 16:
-                ((com.google.android.gms.common.api.internal.d1) this.f1654b).f6580j.b(new k6.a(4));
+                ((com.google.android.gms.common.api.internal.d1) this.f1654b).f6579j.b(new k6.a(4));
                 return;
             case 17:
                 return;
             case 18:
                 com.google.android.gms.common.api.internal.x xVar = (com.google.android.gms.common.api.internal.x) this.f1654b;
-                xVar.f6711o.lock();
+                xVar.f6710o.lock();
                 try {
                     com.google.android.gms.common.api.internal.x.l(xVar);
                     return;
                 } finally {
-                    xVar.f6711o.unlock();
+                    xVar.f6710o.unlock();
                 }
             case 19:
                 ((f6.i) this.f1654b).g(false);
@@ -198,7 +198,7 @@ public final class r4 implements Runnable {
                 return;
             case 23:
                 kg.e eVar3 = (kg.e) this.f1654b;
-                eVar3.f14834f.animate().setDuration(120L).alpha(0.0f);
+                eVar3.f14833f.animate().setDuration(120L).alpha(0.0f);
                 eVar3.h.animate().setListener(null).start();
                 if (eVar3.h.getVisibility() != 0) {
                     eVar3.h.setVisibility(0);
@@ -208,20 +208,20 @@ public final class r4 implements Runnable {
                 return;
             case 24:
                 ki.t0 t0Var = (ki.t0) this.f1654b;
-                if (t0Var.W == 5 && (f0Var = t0Var.S) != null && t0Var.f15137x) {
+                if (t0Var.W == 5 && (f0Var = t0Var.S) != null && t0Var.f15136x) {
                     long J0 = f0Var.J0();
                     long j3 = t0Var.G;
                     if (J0 < j3 || J0 >= t0Var.H) {
                         t0Var.S.W0(5, j3);
                     }
                     t0Var.d.getClass();
-                    t0Var.f15123i.postDelayed(this, 33L);
+                    t0Var.f15122i.postDelayed(this, 33L);
                     return;
                 }
                 return;
             case 25:
                 m.r1 r1Var = (m.r1) this.f1654b;
-                r1Var.f15813w = null;
+                r1Var.f15834w = null;
                 r1Var.drawableStateChanged();
                 return;
             case 26:
@@ -232,30 +232,30 @@ public final class r4 implements Runnable {
                 }
                 return;
             case 27:
-                Object obj2 = ((xa.d) this.f1654b).f51151b;
+                Object obj2 = ((xa.c) this.f1654b).f51194b;
                 return;
             case 28:
                 org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1654b;
-                if (a0Var.f21780b == null) {
-                    a0Var.f21780b = new androidx.emoji2.text.j(a0Var, 3);
+                if (a0Var.f21768b == null) {
+                    a0Var.f21768b = new androidx.emoji2.text.j(a0Var, 3);
                 }
-                androidx.emoji2.text.j jVar2 = a0Var.f21780b;
-                int i10 = a0Var.f21781c + 1;
-                a0Var.f21781c = i10;
+                androidx.emoji2.text.j jVar2 = a0Var.f21768b;
+                int i10 = a0Var.f21769c + 1;
+                a0Var.f21769c = i10;
                 jVar2.f2601b = i10;
                 a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             default:
                 org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1654b;
-                TextView textView = v5Var.f23547b;
+                TextView textView = v5Var.f23535b;
                 textView.setTag(null);
                 AnimatorSet animatorSet = new AnimatorSet();
                 v5Var.d = animatorSet;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23546a, property, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f23534a, property, 1.0f));
                 v5Var.d.setDuration(250L);
                 v5Var.d.setInterpolator(new DecelerateInterpolator());
-                v5Var.d.addListener(new org.telegram.ui.t4(this, 9));
+                v5Var.d.addListener(new org.telegram.ui.s4(this, 9));
                 v5Var.d.start();
                 return;
         }
@@ -266,8 +266,8 @@ public final class r4 implements Runnable {
         this.f1654b = obj;
     }
 
-    public r4(xa.d dVar, int i10) {
+    public r4(xa.c cVar, int i10) {
         this.f1653a = 27;
-        this.f1654b = dVar;
+        this.f1654b = cVar;
     }
 }

@@ -11,14 +11,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class z60 implements Runnable {
-    public final int f44533a;
-    public final a70 f44534b;
-    public final String f44535c;
+    public final int f44592a;
+    public final a70 f44593b;
+    public final String f44594c;
 
     public z60(a70 a70Var, String str, int i10) {
-        this.f44533a = i10;
-        this.f44534b = a70Var;
-        this.f44535c = str;
+        this.f44592a = i10;
+        this.f44593b = a70Var;
+        this.f44594c = str;
     }
 
     @Override
@@ -31,16 +31,16 @@ public final class z60 implements Runnable {
         boolean z11;
         int i11;
         Object obj;
-        switch (this.f44533a) {
+        switch (this.f44592a) {
             case 0:
-                a70 a70Var = this.f44534b;
-                String str2 = this.f44535c;
+                a70 a70Var = this.f44593b;
+                String str2 = this.f44594c;
                 a70Var.getClass();
                 AndroidUtilities.runOnUIThread(new z60(a70Var, str2, 1));
                 return;
             case 1:
-                a70 a70Var2 = this.f44534b;
-                String str3 = this.f44535c;
+                a70 a70Var2 = this.f44593b;
+                String str3 = this.f44594c;
                 gg.b2 b2Var = a70Var2.f35905f;
                 c70 c70Var = a70Var2.I;
                 if (!c70Var.O && !c70Var.P) {
@@ -55,8 +55,8 @@ public final class z60 implements Runnable {
                 dispatchQueue.postRunnable(z60Var);
                 return;
             default:
-                a70 a70Var3 = this.f44534b;
-                String str4 = this.f44535c;
+                a70 a70Var3 = this.f44593b;
+                String str4 = this.f44594c;
                 ArrayList arrayList2 = a70Var3.f35907r;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
@@ -108,7 +108,7 @@ public final class z60 implements Runnable {
                     int i15 = i12;
                     while (i12 < i13) {
                         String str5 = strArr[i12];
-                        if (!str.startsWith(str5) && !org.telegram.messenger.bi.w(" ", str5, str) && (translitString2 == null || (!translitString2.startsWith(str5) && !org.telegram.messenger.bi.w(" ", str5, translitString2)))) {
+                        if (!str.startsWith(str5) && !org.telegram.messenger.ai.w(" ", str5, str) && (translitString2 == null || (!translitString2.startsWith(str5) && !org.telegram.messenger.ai.w(" ", str5, translitString2)))) {
                             if (publicUsername != null && publicUsername.startsWith(str5)) {
                                 i15 = 2;
                             }

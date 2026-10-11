@@ -47,7 +47,7 @@ public final class q implements t0 {
             if (t0Var == null) {
                 this.f199f = i10;
                 this.f198e = fVar;
-                i10.f((v0) ((r1) this.f197c).f11882e);
+                i10.f((v0) ((r1) this.f197c).f11881e);
                 return;
             }
             throw new i2.n(2, new IllegalStateException("Multiple renderer media clocks enabled."), 1000);
@@ -70,12 +70,12 @@ public final class q implements t0 {
         if (t0Var != null) {
             return t0Var.h();
         }
-        return (v0) ((r1) this.f197c).f11882e;
+        return (v0) ((r1) this.f197c).f11881e;
     }
 
     public q(Context context, a0 a0Var) {
         this.f197c = context.getApplicationContext();
         this.d = a0Var;
-        this.f199f = e2.x.f8590a;
+        this.f199f = e2.x.f8589a;
     }
 }

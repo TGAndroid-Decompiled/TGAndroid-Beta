@@ -4,21 +4,21 @@ import android.content.DialogInterface;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class b1 implements DialogInterface.OnDismissListener {
-    public final int f24768a;
-    public final Object f24769b;
+    public final int f24742a;
+    public final Object f24743b;
 
     public b1(Object obj, int i10) {
-        this.f24768a = i10;
-        this.f24769b = obj;
+        this.f24742a = i10;
+        this.f24743b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f24768a;
-        Object obj = this.f24769b;
+        int i10 = this.f24742a;
+        Object obj = this.f24743b;
         switch (i10) {
             case 0:
-                ((org.telegram.ui.tg) obj).run();
+                ((org.telegram.ui.sg) obj).run();
                 return;
             case 1:
                 AndroidUtilities.hideKeyboard((EditTextBoldCursor) obj);
@@ -45,19 +45,19 @@ public final class b1 implements DialogInterface.OnDismissListener {
                 ((FragmentContextView) obj).c(false);
                 return;
             case 8:
-                oo0.H = null;
+                po0.H = null;
                 ((View) obj).requestFocus();
                 return;
             case 9:
-                AndroidUtilities.hideKeyboard((io0) obj);
+                AndroidUtilities.hideKeyboard((jo0) obj);
                 return;
             default:
-                ThemeEditorView themeEditorView = ((e21) obj).d;
-                themeEditorView.f24362l = null;
-                if (themeEditorView.f24354b != null) {
-                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f24353a, themeEditorView.f24358g);
+                ThemeEditorView themeEditorView = ((f21) obj).d;
+                themeEditorView.f24350l = null;
+                if (themeEditorView.f24342b != null) {
+                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f24341a, themeEditorView.f24346g);
                     try {
-                        themeEditorView.h.addView(themeEditorView.f24353a, themeEditorView.f24358g);
+                        themeEditorView.h.addView(themeEditorView.f24341a, themeEditorView.f24346g);
                         themeEditorView.d();
                         return;
                     } catch (Exception unused) {

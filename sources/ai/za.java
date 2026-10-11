@@ -13,11 +13,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.th0;
+import org.telegram.ui.Components.uh0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cj;
-import org.telegram.ui.m70;
-import org.telegram.ui.qs;
+import org.telegram.ui.n70;
+import org.telegram.ui.ps;
 import org.telegram.ui.s60;
 import org.telegram.ui.vq;
 public final class za implements RequestDelegate {
@@ -55,42 +55,42 @@ public final class za implements RequestDelegate {
                 ((ChatObject.Call) obj4).lambda$loadUnknownParticipants$6(this.f2024b, (ChatObject.Call.OnParticipantsLoad) obj, (ArrayList) obj3, (HashSet) obj2, tLObject, tL_error);
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new db(this.f2024b, 5, (org.telegram.ui.ActionBar.b2) obj4, (Context) obj, (org.telegram.ui.ActionBar.e6) obj3, (s60) obj2, tLObject));
+                AndroidUtilities.runOnUIThread(new db(this.f2024b, 5, (org.telegram.ui.ActionBar.a2) obj4, (Context) obj, (org.telegram.ui.ActionBar.d6) obj3, (s60) obj2, tLObject));
                 return;
             case 4:
                 AndroidUtilities.runOnUIThread(new gg.d1(tL_error, tLObject, (ArrayList) obj3, this.f2024b, (AtomicInteger) obj4, (ArrayList) obj, (vq) obj2));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new db((th0) obj4, (Integer[]) obj, this.f2024b, tLObject, (ArrayList) obj3, (TLRPC.PollAnswerVoters) obj2));
+                AndroidUtilities.runOnUIThread(new db((uh0) obj4, (Integer[]) obj, this.f2024b, tLObject, (ArrayList) obj3, (TLRPC.PollAnswerVoters) obj2));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new gg.d1((org.telegram.ui.ActionBar.b2) obj4, tLObject, this.f2024b, (TLRPC.Document) obj3, tL_error, this.f2026e, (TLRPC.TL_stickers_addStickerToSet) obj2));
+                AndroidUtilities.runOnUIThread(new gg.d1((org.telegram.ui.ActionBar.a2) obj4, tLObject, this.f2024b, (TLRPC.Document) obj3, tL_error, this.f2026e, (TLRPC.TL_stickers_addStickerToSet) obj2));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new db((qs) obj4, (TLRPC.FileLocation) obj, (TLRPC.InputFile) obj3, tLObject, (TLRPC.FileLocation) obj2, this.f2024b));
+                AndroidUtilities.runOnUIThread(new db((ps) obj4, (TLRPC.FileLocation) obj, (TLRPC.InputFile) obj3, tLObject, (TLRPC.FileLocation) obj2, this.f2024b));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new gg.d1((org.telegram.ui.ActionBar.b2) obj4, (of.e) obj, tLObject, this.f2024b, (Context) obj3, (TLRPC.TL_inputGroupCallSlug) obj2, tL_error));
+                AndroidUtilities.runOnUIThread(new gg.d1((org.telegram.ui.ActionBar.a2) obj4, (of.e) obj, tLObject, this.f2024b, (Context) obj3, (TLRPC.TL_inputGroupCallSlug) obj2, tL_error));
                 return;
             case 9:
                 Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.d1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (m70) obj3, this.f2024b, (String) obj2));
+                AndroidUtilities.runOnUIThread(new gg.d1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (n70) obj3, this.f2024b, (String) obj2));
                 return;
             case 10:
                 Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new gg.d1((LaunchActivity) obj4, tL_error, tLObject, this.f2024b, (org.telegram.ui.ActionBar.b2) obj, (m70) obj3, (String) obj2));
+                AndroidUtilities.runOnUIThread(new gg.d1((LaunchActivity) obj4, tL_error, tLObject, this.f2024b, (org.telegram.ui.ActionBar.a2) obj, (n70) obj3, (String) obj2));
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new gg.d1((org.telegram.ui.web.b1) obj4, (String) obj, tLObject, tL_error, this.f2024b, (org.telegram.ui.web.y0) obj3, (ea) obj2));
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new db(this.f2024b, 13, (TLRPC.PhotoSize) obj4, (TLRPC.PhotoSize) obj, (cj) obj3, (org.telegram.ui.ActionBar.d5) obj2, tLObject));
+                AndroidUtilities.runOnUIThread(new db(this.f2024b, 13, (TLRPC.PhotoSize) obj4, (TLRPC.PhotoSize) obj, (cj) obj3, (org.telegram.ui.ActionBar.b5) obj2, tLObject));
                 return;
             case 13:
-                AndroidUtilities.runOnUIThread(new qg.f2((ci.d) obj4, (org.telegram.ui.ActionBar.f3[]) obj, this.f2024b, (TLObject) obj3, (String) obj2, 2));
+                AndroidUtilities.runOnUIThread(new qg.e2((ci.d) obj4, (org.telegram.ui.ActionBar.e3[]) obj, this.f2024b, (TLObject) obj3, (String) obj2, 2));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new db((ci.d) obj4, tLObject, (org.telegram.ui.ActionBar.f3[]) obj, (org.telegram.ui.ActionBar.e6) obj3, this.f2024b, (TLRPC.TL_messages_checkChatInvite) obj2, 14));
+                AndroidUtilities.runOnUIThread(new db((ci.d) obj4, tLObject, (org.telegram.ui.ActionBar.e3[]) obj, (org.telegram.ui.ActionBar.d6) obj3, this.f2024b, (TLRPC.TL_messages_checkChatInvite) obj2, 14));
                 return;
         }
     }

@@ -20,13 +20,13 @@ public final class a implements ff.a {
 
     @Override
     public final int a(b bVar, b bVar2) {
-        if (bVar.d || bVar2.f54416c) {
+        if (bVar.d || bVar2.f54459c) {
             int i10 = bVar2.h;
             if (i10 % 3 != 0 && (bVar.h + i10) % 3 == 0) {
                 return 0;
             }
         }
-        if (bVar.f54419g >= 2 && bVar2.f54419g >= 2) {
+        if (bVar.f54462g >= 2 && bVar2.f54462g >= 2) {
             return 2;
         }
         return 1;
@@ -41,20 +41,20 @@ public final class a implements ff.a {
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f4655f; pVar != null && pVar != sVar2; pVar = (p) pVar.f4655f) {
+        for (p pVar = (p) sVar.f4654f; pVar != null && pVar != sVar2; pVar = (p) pVar.f4654f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f4655f;
-        gVar.f4655f = pVar2;
+        p pVar2 = (p) sVar.f4654f;
+        gVar.f4654f = pVar2;
         if (pVar2 != null) {
-            pVar2.f4654e = gVar;
+            pVar2.f4653e = gVar;
         }
-        gVar.f4654e = sVar;
-        sVar.f4655f = gVar;
-        p pVar3 = (p) sVar.f4652b;
-        gVar.f4652b = pVar3;
-        if (((p) gVar.f4655f) == null) {
+        gVar.f4653e = sVar;
+        sVar.f4654f = gVar;
+        p pVar3 = (p) sVar.f4651b;
+        gVar.f4651b = pVar3;
+        if (((p) gVar.f4654f) == null) {
             pVar3.d = gVar;
         }
     }

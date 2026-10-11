@@ -98,13 +98,13 @@ public class Utilities {
         long nextLong = random.nextLong();
         ?? random2 = new Random(0L);
         long a2 = v7.q6.a(nextLong);
-        random2.f8151a = a2;
+        random2.f8150a = a2;
         long a10 = v7.q6.a(a2);
-        random2.f8152b = a10;
-        if (random2.f8151a == 0 && a10 == 0) {
+        random2.f8151b = a10;
+        if (random2.f8150a == 0 && a10 == 0) {
             long a11 = v7.q6.a(3735928559L);
-            random2.f8151a = a11;
-            random2.f8152b = v7.q6.a(a11);
+            random2.f8150a = a11;
+            random2.f8151b = v7.q6.a(a11);
         }
         fastRandom = random2;
         stageQueue = new DispatchQueue("stageQueue");
@@ -475,10 +475,10 @@ public class Utilities {
     private static native int pbkdf2(byte[] bArr, byte[] bArr2, byte[] bArr3, int i10);
 
     public static void raceCallbacks(Runnable runnable, Callback<Runnable>... callbackArr) {
-        if (callbackArr != 0 && callbackArr.length != 0) {
-            ul ulVar = new ul(new int[]{0}, callbackArr, runnable, 0);
-            for (ai.j3 j3Var : callbackArr) {
-                j3Var.run(ulVar);
+        if (callbackArr != null && callbackArr.length != 0) {
+            j8 j8Var = new j8(new int[]{0}, callbackArr, runnable, 29);
+            for (Callback<Runnable> callback : callbackArr) {
+                callback.run(j8Var);
             }
         } else if (runnable != null) {
             runnable.run();

@@ -3,20 +3,20 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 public final class bq {
-    public final org.telegram.ui.ActionBar.c4 f25019a;
-    public Drawable f25020b;
-    public int f25021c;
+    public final org.telegram.ui.ActionBar.b4 f25002a;
+    public Drawable f25003b;
+    public int f25004c;
     public boolean d;
-    public Bitmap f25022e;
+    public Bitmap f25005e;
 
-    public bq(org.telegram.ui.ActionBar.c4 c4Var) {
-        this.f25019a = c4Var;
+    public bq(org.telegram.ui.ActionBar.b4 b4Var) {
+        this.f25002a = b4Var;
     }
 
     public final String a() {
-        org.telegram.ui.ActionBar.c4 c4Var = this.f25019a;
-        if (c4Var != null && !c4Var.f20509a) {
-            return c4Var.f20512e;
+        org.telegram.ui.ActionBar.b4 b4Var = this.f25002a;
+        if (b4Var != null && !b4Var.f20467a) {
+            return b4Var.f20470e;
         }
         return null;
     }

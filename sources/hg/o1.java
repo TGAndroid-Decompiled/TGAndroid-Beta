@@ -2,16 +2,16 @@ package hg;
 
 import android.graphics.Bitmap;
 import org.telegram.messenger.Utilities;
-public final class o1 implements org.telegram.ui.ActionBar.a2, gh.b, d9.e, e2.m, e2.n {
-    public final int f11342a;
+public final class o1 implements org.telegram.ui.ActionBar.z1, gh.b, d9.e, e2.m, e2.n {
+    public final int f11341a;
 
     public o1(int i10) {
-        this.f11342a = i10;
+        this.f11341a = i10;
     }
 
     @Override
     public Object a(Bitmap bitmap) {
-        switch (this.f11342a) {
+        switch (this.f11341a) {
             case 1:
                 if (bitmap != null && !bitmap.isRecycled()) {
                     Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
@@ -46,13 +46,13 @@ public final class o1 implements org.telegram.ui.ActionBar.a2, gh.b, d9.e, e2.m,
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        b2Var.dismiss();
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        a2Var.dismiss();
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f11342a) {
+        switch (this.f11341a) {
             case 9:
                 ((b2.z0) obj).onPlayerError(new i2.n(2, new RuntimeException("Player release timed out."), 1003));
                 return;
@@ -116,26 +116,26 @@ public final class o1 implements org.telegram.ui.ActionBar.a2, gh.b, d9.e, e2.m,
     }
 
     public o1(j2.a aVar, int i10, int i11) {
-        this.f11342a = i11;
+        this.f11341a = i11;
     }
 
     public o1(j2.a aVar, int i10, int i11, boolean z10) {
-        this.f11342a = 24;
+        this.f11341a = 24;
     }
 
     public o1(j2.a aVar, Object obj, int i10) {
-        this.f11342a = i10;
+        this.f11341a = i10;
     }
 
     public o1(j2.a aVar, String str, long j3, long j10) {
-        this.f11342a = 18;
+        this.f11341a = 18;
     }
 
     public o1(j2.a aVar, boolean z10) {
-        this.f11342a = 17;
+        this.f11341a = 17;
     }
 
     public o1(j2.a aVar, boolean z10, int i10, int i11) {
-        this.f11342a = i11;
+        this.f11341a = i11;
     }
 }

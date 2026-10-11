@@ -2,27 +2,27 @@ package org.telegram.ui.Components;
 
 import android.graphics.drawable.Drawable;
 public final class gs implements Drawable.Callback {
-    public final int f26835a;
-    public final hs f26836b;
+    public final int f26814a;
+    public final hs f26815b;
 
     public gs(hs hsVar, int i10) {
-        this.f26835a = i10;
-        this.f26836b = hsVar;
+        this.f26814a = i10;
+        this.f26815b = hsVar;
     }
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f26835a) {
+        switch (this.f26814a) {
             case 0:
-                hs hsVar = this.f26836b;
-                if (hsVar.f27135c < 1.0f) {
+                hs hsVar = this.f26815b;
+                if (hsVar.f27067c < 1.0f) {
                     hsVar.invalidateSelf();
                     return;
                 }
                 return;
             default:
-                hs hsVar2 = this.f26836b;
-                if (hsVar2.f27135c > 0.0f) {
+                hs hsVar2 = this.f26815b;
+                if (hsVar2.f27067c > 0.0f) {
                     hsVar2.invalidateSelf();
                     return;
                 }
@@ -32,17 +32,17 @@ public final class gs implements Drawable.Callback {
 
     @Override
     public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        switch (this.f26835a) {
+        switch (this.f26814a) {
             case 0:
-                hs hsVar = this.f26836b;
-                if (hsVar.f27135c < 1.0f) {
+                hs hsVar = this.f26815b;
+                if (hsVar.f27067c < 1.0f) {
                     hsVar.scheduleSelf(runnable, j3);
                     return;
                 }
                 return;
             default:
-                hs hsVar2 = this.f26836b;
-                if (hsVar2.f27135c > 0.0f) {
+                hs hsVar2 = this.f26815b;
+                if (hsVar2.f27067c > 0.0f) {
                     hsVar2.scheduleSelf(runnable, j3);
                     return;
                 }
@@ -52,17 +52,17 @@ public final class gs implements Drawable.Callback {
 
     @Override
     public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f26835a) {
+        switch (this.f26814a) {
             case 0:
-                hs hsVar = this.f26836b;
-                if (hsVar.f27135c < 1.0f) {
+                hs hsVar = this.f26815b;
+                if (hsVar.f27067c < 1.0f) {
                     hsVar.unscheduleSelf(runnable);
                     return;
                 }
                 return;
             default:
-                hs hsVar2 = this.f26836b;
-                if (hsVar2.f27135c > 0.0f) {
+                hs hsVar2 = this.f26815b;
+                if (hsVar2.f27067c > 0.0f) {
                     hsVar2.unscheduleSelf(runnable);
                     return;
                 }

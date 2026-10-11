@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.app.Activity;
 import org.telegram.ui.Components.UndoView;
 public final class xl extends org.telegram.ui.Components.f30 {
-    public final zn f44104b;
+    public final zn f44102b;
 
-    public xl(zn znVar, Activity activity, org.telegram.ui.ActionBar.n2 n2Var) {
-        super(activity, n2Var);
-        this.f44104b = znVar;
+    public xl(zn znVar, Activity activity, org.telegram.ui.ActionBar.m2 m2Var) {
+        super(activity, m2Var);
+        this.f44102b = znVar;
     }
 
     @Override
     public final void o() {
-        zn znVar = this.f44104b;
+        zn znVar = this.f44102b;
         znVar.T7();
         UndoView undoView = znVar.y3;
         if (undoView == null) {
@@ -24,7 +24,7 @@ public final class xl extends org.telegram.ui.Components.f30 {
 
     @Override
     public final void p() {
-        zn znVar = this.f44104b;
-        znVar.getMessagesController().convertToGigaGroup(znVar.getParentActivity(), znVar.f44797e, znVar, new z0(this, 19));
+        zn znVar = this.f44102b;
+        znVar.getMessagesController().convertToGigaGroup(znVar.getParentActivity(), znVar.f44752e, znVar, new y0(this, 19));
     }
 }

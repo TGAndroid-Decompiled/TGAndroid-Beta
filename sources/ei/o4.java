@@ -15,10 +15,10 @@ import ci.rc;
 import ci.sa;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.Components.mw0;
-import org.telegram.ui.Components.tc;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.sc;
 public abstract class o4 extends FrameLayout {
-    public static final mw0 f9257b0 = new mw0(new d2.c(20), new d2.c(21));
+    public static final nw0 f9256b0 = new nw0(new d2.c(20), new d2.c(21));
     public Runnable E;
     public n4 F;
     public o1.k G;
@@ -38,36 +38,36 @@ public abstract class o4 extends FrameLayout {
     public final boolean U;
     public long V;
     public float W;
-    public Object f9258a;
-    public float f9259a0;
-    public final m.f3 f9260b;
-    public boolean f9261c;
+    public Object f9257a;
+    public float f9258a0;
+    public final m.f3 f9259b;
+    public boolean f9260c;
     public boolean d;
-    public float f9262e;
-    public float f9263f;
+    public float f9261e;
+    public float f9262f;
     public float h;
-    public float f9264n;
-    public float f9265r;
-    public boolean f9266s;
+    public float f9263n;
+    public float f9264r;
+    public boolean f9265s;
     public o1.k v;
-    public boolean f9267w;
-    public org.telegram.ui.web.y0 f9268x;
-    public Runnable f9269y;
+    public boolean f9266w;
+    public org.telegram.ui.web.y0 f9267x;
+    public Runnable f9268y;
 
     public o4(Context context) {
         super(context);
         float f7;
-        this.f9262e = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        this.f9263f = 0.0f;
+        this.f9261e = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+        this.f9262f = 0.0f;
         this.h = -1.0f;
-        this.f9264n = -2.1474836E9f;
+        this.f9263n = -2.1474836E9f;
         this.I = new d2.c(22);
         this.M = true;
         this.R = 0.0f;
         this.S = false;
         this.T = AndroidUtilities.dp(60.0f);
         this.U = true;
-        this.f9260b = new m.f3(context, new m4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 0));
+        this.f9259b = new m.f3(context, new m4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 0));
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             f7 = 8.0f;
@@ -83,7 +83,7 @@ public abstract class o4 extends FrameLayout {
     }
 
     public final boolean b(boolean z10) {
-        org.telegram.ui.web.y0 y0Var = this.f9268x;
+        org.telegram.ui.web.y0 y0Var = this.f9267x;
         if (y0Var != null && y0Var.N) {
             if (z10) {
                 if (!this.O) {
@@ -100,28 +100,28 @@ public abstract class o4 extends FrameLayout {
     }
 
     public final void c() {
-        setTranslationY(Math.max(this.f9262e, this.f9263f + this.f9265r));
+        setTranslationY(Math.max(this.f9261e, this.f9262f + this.f9264r));
         AndroidUtilities.cancelRunOnUIThread(new rc(this, 15));
         AndroidUtilities.runOnUIThread(new rc(this, 15));
-        Runnable runnable = this.f9269y;
+        Runnable runnable = this.f9268y;
         if (runnable != null) {
             runnable.run();
         }
-        tc tcVar = tc.f31088w;
-        if (tcVar != null) {
-            tcVar.l();
+        sc scVar = sc.f30703w;
+        if (scVar != null) {
+            scVar.l();
         }
     }
 
     public final boolean d() {
-        return this.f9261c;
+        return this.f9260c;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         RecordingCanvas recordingCanvas;
         if (canvas.isHardwareAccelerated()) {
-            Object obj = this.f9258a;
+            Object obj = this.f9257a;
             if (obj != null) {
                 RenderNode c10 = org.telegram.messenger.b.c(obj);
                 c10.setPosition(0, 0, getWidth(), getHeight());
@@ -130,7 +130,7 @@ public abstract class o4 extends FrameLayout {
                 recordingCanvas = canvas;
             }
             super.dispatchDraw(recordingCanvas);
-            Object obj2 = this.f9258a;
+            Object obj2 = this.f9257a;
             if (obj2 != null) {
                 RenderNode c11 = org.telegram.messenger.b.c(obj2);
                 c11.endRecording();
@@ -144,11 +144,11 @@ public abstract class o4 extends FrameLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.f9261c || motionEvent.getActionIndex() == 0) {
+        if (!this.f9260c || motionEvent.getActionIndex() == 0) {
             if (motionEvent.getAction() == 0) {
                 this.V = motionEvent.getEventTime();
                 this.W = motionEvent.getX();
-                this.f9259a0 = motionEvent.getY();
+                this.f9258a0 = motionEvent.getY();
                 this.S = false;
                 this.R = 0.0f;
                 if (this.N) {
@@ -163,36 +163,36 @@ public abstract class o4 extends FrameLayout {
             } else {
                 obtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
             }
-            boolean onTouchEvent = ((GestureDetector) this.f9260b.f15672b).onTouchEvent(obtain);
+            boolean onTouchEvent = ((GestureDetector) this.f9259b.f15693b).onTouchEvent(obtain);
             obtain.recycle();
             if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                boolean z10 = this.f9261c;
+                boolean z10 = this.f9260c;
                 this.d = false;
-                this.f9261c = false;
+                this.f9260c = false;
                 if (!this.J || this.L) {
-                    if (this.f9267w) {
-                        this.f9267w = false;
-                    } else if (this.M && (!this.N || (this.f9265r != (-this.f9263f) + this.f9262e && b(false)))) {
-                        float f7 = this.f9265r;
+                    if (this.f9266w) {
+                        this.f9266w = false;
+                    } else if (this.M && (!this.N || (this.f9264r != (-this.f9262f) + this.f9261e && b(false)))) {
+                        float f7 = this.f9264r;
                         int i10 = this.H;
                         float f10 = -i10;
                         int i11 = (f7 > f10 ? 1 : (f7 == f10 ? 0 : -1));
                         boolean z11 = this.U;
                         if (i11 <= 0) {
                             if (z11) {
-                                e((-this.f9263f) + this.f9262e);
+                                e((-this.f9262f) + this.f9261e);
                             }
                         } else if (f7 > f10 && f7 <= i10) {
                             if (z11) {
                                 e(0.0f);
                             }
                         } else {
-                            float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), this.W, this.f9259a0);
+                            float distance = AndroidUtilities.distance(motionEvent.getX(), motionEvent.getY(), this.W, this.f9258a0);
                             long eventTime = motionEvent.getEventTime() - this.V;
                             if (this.F != null && (eventTime > 250 || distance > AndroidUtilities.dp(200.0f))) {
                                 this.F.j(!z10);
                             } else if (z11) {
-                                e((-this.f9263f) + this.f9262e);
+                                e((-this.f9262f) + this.f9261e);
                             }
                         }
                     }
@@ -215,8 +215,8 @@ public abstract class o4 extends FrameLayout {
         if (this.J && !z10) {
             f7 = (-getOffsetY()) + getTopActionBarOffsetY();
         }
-        if (this.f9265r != f7 && ((kVar = this.G) == null || ((float) kVar.f16942u.f16949i) != f7)) {
-            this.f9264n = f7;
+        if (this.f9264r != f7 && ((kVar = this.G) == null || ((float) kVar.f16988u.f16995i) != f7)) {
+            this.f9263n = f7;
             o1.k kVar2 = this.v;
             if (kVar2 != null) {
                 kVar2.c();
@@ -225,8 +225,8 @@ public abstract class o4 extends FrameLayout {
             if (kVar3 != null) {
                 kVar3.c();
             }
-            o1.k kVar4 = new o1.k(this, f9257b0, f7);
-            kVar4.f16942u = org.telegram.ui.Cells.c1.j(f7, 1200.0f, 1.0f);
+            o1.k kVar4 = new o1.k(this, f9256b0, f7);
+            kVar4.f16988u = org.telegram.ui.Cells.c1.j(f7, 1200.0f, 1.0f);
             kVar4.a(new l4(0, this, runnable));
             this.G = kVar4;
             kVar4.h();
@@ -242,22 +242,22 @@ public abstract class o4 extends FrameLayout {
     }
 
     public float getOffsetY() {
-        return this.f9263f;
+        return this.f9262f;
     }
 
     public Object getRenderNode() {
-        if (this.f9258a == null && Build.VERSION.SDK_INT >= 31) {
-            this.f9258a = ah.e.k();
+        if (this.f9257a == null && Build.VERSION.SDK_INT >= 31) {
+            this.f9257a = ah.e.k();
         }
-        return this.f9258a;
+        return this.f9257a;
     }
 
     public float getSwipeOffsetY() {
-        return this.f9265r;
+        return this.f9264r;
     }
 
     public float getTopActionBarOffsetY() {
-        return this.f9262e;
+        return this.f9261e;
     }
 
     @Override
@@ -278,7 +278,7 @@ public abstract class o4 extends FrameLayout {
         super.requestDisallowInterceptTouchEvent(z10);
         if (z10) {
             this.d = true;
-            this.f9261c = false;
+            this.f9260c = false;
         }
     }
 
@@ -297,7 +297,7 @@ public abstract class o4 extends FrameLayout {
     }
 
     public void setForceOffsetY(float f7) {
-        this.f9263f = f7;
+        this.f9262f = f7;
         c();
     }
 
@@ -321,7 +321,7 @@ public abstract class o4 extends FrameLayout {
 
     public void setOffsetY(final float f7) {
         boolean z10;
-        if (this.f9264n != -2.1474836E9f) {
+        if (this.f9263n != -2.1474836E9f) {
             this.h = f7;
             return;
         }
@@ -329,27 +329,27 @@ public abstract class o4 extends FrameLayout {
         if (kVar != null) {
             kVar.c();
         }
-        final float f10 = this.f9263f;
+        final float f10 = this.f9262f;
         final float f11 = f7 - f10;
-        if (Math.abs((this.f9265r + f10) - this.f9262e) <= AndroidUtilities.dp(1.0f)) {
+        if (Math.abs((this.f9264r + f10) - this.f9261e) <= AndroidUtilities.dp(1.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
         final boolean z11 = z10;
-        if (!this.f9266s) {
+        if (!this.f9265s) {
             o1.k kVar2 = this.v;
             if (kVar2 != null) {
                 kVar2.c();
             }
             o1.k kVar3 = new o1.k(new o1.j(f10));
-            kVar3.f16942u = org.telegram.ui.Cells.c1.j(f7, 1400.0f, 1.0f);
+            kVar3.f16988u = org.telegram.ui.Cells.c1.j(f7, 1400.0f, 1.0f);
             kVar3.b(new o1.g() {
                 @Override
                 public final void a(o1.h hVar, float f12, float f13) {
                     float f14;
                     o4 o4Var = o4.this;
-                    o4Var.f9263f = f12;
+                    o4Var.f9262f = f12;
                     float f15 = f11;
                     int i10 = (f15 > 0.0f ? 1 : (f15 == 0.0f ? 0 : -1));
                     float f16 = f10;
@@ -359,14 +359,14 @@ public abstract class o4 extends FrameLayout {
                         f14 = (f12 - f16) / f15;
                     }
                     if (z11) {
-                        o4Var.f9265r = w7.o.a(o4Var.f9265r - (Math.max(0.0f, f15) * f14), (-o4Var.f9263f) + o4Var.f9262e, (o4Var.getHeight() - o4Var.f9263f) + o4Var.f9262e);
+                        o4Var.f9264r = w7.o.a(o4Var.f9264r - (Math.max(0.0f, f15) * f14), (-o4Var.f9262f) + o4Var.f9261e, (o4Var.getHeight() - o4Var.f9262f) + o4Var.f9261e);
                     }
                     o1.k kVar4 = o4Var.G;
                     if (kVar4 != null) {
-                        o1.l lVar = kVar4.f16942u;
-                        float f17 = o4Var.f9262e;
-                        if (((float) lVar.f16949i) == (-f16) + f17) {
-                            lVar.f16949i = (-f7) + f17;
+                        o1.l lVar = kVar4.f16988u;
+                        float f17 = o4Var.f9261e;
+                        if (((float) lVar.f16995i) == (-f16) + f17) {
+                            lVar.f16995i = (-f7) + f17;
                         }
                     }
                     o4Var.c();
@@ -377,9 +377,9 @@ public abstract class o4 extends FrameLayout {
             kVar3.h();
             return;
         }
-        this.f9263f = f7;
+        this.f9262f = f7;
         if (z11) {
-            this.f9265r = w7.o.a(this.f9265r - Math.max(0.0f, f11), (-this.f9263f) + this.f9262e, (getHeight() - this.f9263f) + this.f9262e);
+            this.f9264r = w7.o.a(this.f9264r - Math.max(0.0f, f11), (-this.f9262f) + this.f9261e, (getHeight() - this.f9262f) + this.f9261e);
         }
         c();
     }
@@ -389,7 +389,7 @@ public abstract class o4 extends FrameLayout {
     }
 
     public void setScrollListener(Runnable runnable) {
-        this.f9269y = runnable;
+        this.f9268y = runnable;
     }
 
     public void setShouldWaitWebViewScroll(boolean z10) {
@@ -397,16 +397,16 @@ public abstract class o4 extends FrameLayout {
     }
 
     public void setSwipeOffsetAnimationDisallowed(boolean z10) {
-        this.f9266s = z10;
+        this.f9265s = z10;
     }
 
     public void setSwipeOffsetY(float f7) {
-        this.f9265r = f7;
+        this.f9264r = f7;
         c();
     }
 
     public void setTopActionBarOffsetY(float f7) {
-        this.f9262e = f7;
+        this.f9261e = f7;
         c();
     }
 
@@ -416,6 +416,6 @@ public abstract class o4 extends FrameLayout {
     }
 
     public void setWebView(org.telegram.ui.web.y0 y0Var) {
-        this.f9268x = y0Var;
+        this.f9267x = y0Var;
     }
 }

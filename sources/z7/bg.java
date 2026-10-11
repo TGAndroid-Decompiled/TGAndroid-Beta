@@ -1,58 +1,36 @@
 package z7;
 
-import java.util.List;
-import java.util.ListIterator;
-public final class bg extends e9.c implements ListIterator {
-    public final e9.l f53646e;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class bg extends o6.a {
+    public static final Parcelable.Creator<bg> CREATOR = new dg(0);
+    public final int f53689a;
+    public final int f53690b;
+    public final int f53691c;
+    public final int d;
+    public final long f53692e;
 
-    public bg(e9.l lVar) {
-        super(lVar, (char) 0);
-        this.f53646e = lVar;
+    public bg(int i10, int i11, int i12, long j3, int i13) {
+        this.f53689a = i10;
+        this.f53690b = i11;
+        this.f53691c = i12;
+        this.d = i13;
+        this.f53692e = j3;
     }
 
     @Override
-    public final void add(Object obj) {
-        e9.l lVar = this.f53646e;
-        boolean isEmpty = lVar.isEmpty();
-        b();
-        ((ListIterator) this.f8720b).add(obj);
-        if (isEmpty) {
-            lVar.p();
-        }
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        b();
-        return ((ListIterator) this.f8720b).hasPrevious();
-    }
-
-    @Override
-    public final int nextIndex() {
-        b();
-        return ((ListIterator) this.f8720b).nextIndex();
-    }
-
-    @Override
-    public final Object previous() {
-        b();
-        return ((ListIterator) this.f8720b).previous();
-    }
-
-    @Override
-    public final int previousIndex() {
-        b();
-        return ((ListIterator) this.f8720b).previousIndex();
-    }
-
-    @Override
-    public final void set(Object obj) {
-        b();
-        ((ListIterator) this.f8720b).set(obj);
-    }
-
-    public bg(e9.l lVar, int i10) {
-        super(lVar, ((List) lVar.f8766c).listIterator(i10), (char) 0);
-        this.f53646e = lVar;
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q6 = w7.d0.q(parcel, 20293);
+        w7.d0.s(parcel, 1, 4);
+        parcel.writeInt(this.f53689a);
+        w7.d0.s(parcel, 2, 4);
+        parcel.writeInt(this.f53690b);
+        w7.d0.s(parcel, 3, 4);
+        parcel.writeInt(this.f53691c);
+        w7.d0.s(parcel, 4, 4);
+        parcel.writeInt(this.d);
+        w7.d0.s(parcel, 5, 8);
+        parcel.writeLong(this.f53692e);
+        w7.d0.r(parcel, q6);
     }
 }

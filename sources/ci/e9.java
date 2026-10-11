@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.qm0;
-public final class e9 extends qm0 {
-    public final f9 f5042c;
+import org.telegram.ui.Components.rm0;
+public final class e9 extends rm0 {
+    public final f9 f5041c;
 
     public e9(f9 f9Var) {
-        this.f5042c = f9Var;
+        this.f5041c = f9Var;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47706f == 2) {
+        if (d1Var.f47752f == 2) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class e9 extends qm0 {
 
     @Override
     public final int h() {
-        return this.f5042c.f5088c.size() + 2;
+        return this.f5041c.f5087c.size() + 2;
     }
 
     @Override
@@ -45,12 +45,12 @@ public final class e9 extends qm0 {
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         int dp;
         View view;
-        org.telegram.ui.ActionBar.e6 e6Var;
-        f9 f9Var = this.f5042c;
+        org.telegram.ui.ActionBar.d6 d6Var;
+        f9 f9Var = this.f5041c;
         if (i10 != 0 && i10 != 1) {
             Context context = f9Var.getContext();
-            e6Var = ((org.telegram.ui.ActionBar.f3) f9Var).resourcesProvider;
-            view = new ea(context, e6Var);
+            d6Var = ((org.telegram.ui.ActionBar.e3) f9Var).resourcesProvider;
+            view = new ea(context, d6Var);
         } else {
             View view2 = new View(f9Var.getContext());
             if (i10 == 0) {

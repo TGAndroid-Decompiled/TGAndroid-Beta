@@ -5,24 +5,24 @@ import android.os.Parcelable;
 import android.util.Log;
 public final class e extends o6.a {
     public static final Parcelable.Creator<e> CREATOR = new c(1);
-    public final f f51814a;
-    public final int f51815b;
-    public final int f51816c;
+    public final f f51857a;
+    public final int f51858b;
+    public final int f51859c;
     public final int d;
 
     public e(f fVar, int i10, int i11, int i12) {
-        this.f51814a = fVar;
-        this.f51815b = i10;
-        this.f51816c = i11;
+        this.f51857a = fVar;
+        this.f51858b = i10;
+        this.f51859c = i11;
         this.d = i12;
     }
 
     public final void b(x8.c cVar) {
-        f fVar = this.f51814a;
-        int i10 = this.f51815b;
+        f fVar = this.f51857a;
+        int i10 = this.f51858b;
         if (i10 != 1) {
             int i11 = this.d;
-            int i12 = this.f51816c;
+            int i12 = this.f51859c;
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
@@ -44,8 +44,8 @@ public final class e extends o6.a {
     public final String toString() {
         String str;
         String str2;
-        String valueOf = String.valueOf(this.f51814a);
-        int i10 = this.f51815b;
+        String valueOf = String.valueOf(this.f51857a);
+        int i10 = this.f51858b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -63,7 +63,7 @@ public final class e extends o6.a {
         } else {
             str = "CHANNEL_OPENED";
         }
-        int i11 = this.f51816c;
+        int i11 = this.f51859c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -92,11 +92,11 @@ public final class e extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.d0.q(parcel, 20293);
-        w7.d0.k(parcel, 2, this.f51814a, i10);
+        w7.d0.k(parcel, 2, this.f51857a, i10);
         w7.d0.s(parcel, 3, 4);
-        parcel.writeInt(this.f51815b);
+        parcel.writeInt(this.f51858b);
         w7.d0.s(parcel, 4, 4);
-        parcel.writeInt(this.f51816c);
+        parcel.writeInt(this.f51859c);
         w7.d0.s(parcel, 5, 4);
         parcel.writeInt(this.d);
         w7.d0.r(parcel, q6);

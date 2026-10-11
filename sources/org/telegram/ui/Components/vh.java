@@ -15,19 +15,19 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class vh implements Runnable {
-    public final int f31842a;
+    public final int f31786a;
 
     public vh(int i10) {
-        this.f31842a = i10;
+        this.f31786a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f31842a) {
+        switch (this.f31786a) {
             case 0:
                 return;
             case 1:
-                int i10 = lo.f28433m1;
+                int i10 = lo.f28372m1;
                 return;
             case 2:
                 PhotoViewer.t1().G0(false, false);
@@ -54,29 +54,29 @@ public final class vh implements Runnable {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;
             case 9:
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != 0) {
                     ?? obj = new Object();
-                    obj.f21361a = true;
+                    obj.f21313a = true;
                     R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 10:
-                int i12 = n11.f28948f;
+                int i12 = o11.f29213f;
                 return;
             case 11:
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                d21.f25527f = Boolean.TRUE;
+                e21.f25805f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 12:
                 SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
-                d21.f25527f = Boolean.TRUE;
+                e21.f25805f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 13:
-                int i13 = d41.f25545f0;
+                int i13 = e41.f25839f0;
                 return;
             case 14:
                 SavedMessagesController.openSavedMessages();
@@ -85,7 +85,7 @@ public final class vh implements Runnable {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
                 return;
             case 16:
-                org.telegram.ui.Components.voip.m2.i();
+                org.telegram.ui.Components.voip.n2.i();
                 return;
             case 17:
                 ai.y7.r();
@@ -138,7 +138,7 @@ public final class vh implements Runnable {
     }
 
     public vh(Object obj, int i10) {
-        this.f31842a = i10;
+        this.f31786a = i10;
     }
 
     private final void a() {

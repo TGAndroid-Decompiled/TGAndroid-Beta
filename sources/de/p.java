@@ -1,7 +1,7 @@
 package de;
 public abstract class p {
-    public static final da.a f8346a = new da.a("NONE");
-    public static final da.a f8347b = new da.a("PENDING");
+    public static final da.a f8345a = new da.a("NONE");
+    public static final da.a f8346b = new da.a("PENDING");
 
     public static final java.io.Serializable a(de.b r4, de.c r5, ld.c r6) {
         throw new UnsupportedOperationException("Method not decompiled: de.p.a(de.b, de.c, ld.c):java.io.Serializable");

@@ -12,10 +12,10 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public abstract class a {
-    public static volatile cc.k f16740b;
-    public static final Object f16739a = new Object();
-    public static final a1 f16741c = new a1("id");
-    public static final a1 d = new a1("type");
+    public static volatile cc.k f16782b;
+    public static final Object f16781a = new Object();
+    public static final b1 f16783c = new b1("id");
+    public static final b1 d = new b1("type");
 
     public static int a(int i10, int i11) {
         RoundingMode roundingMode = RoundingMode.CEILING;
@@ -25,7 +25,7 @@ public abstract class a {
             int i13 = i10 - (i11 * i12);
             if (i13 != 0) {
                 int i14 = ((i10 ^ i11) >> 31) | 1;
-                switch (n0.f16789a[roundingMode.ordinal()]) {
+                switch (n0.f16831a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -245,7 +245,7 @@ public abstract class a {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = v.f16810b;
+                obj = v.f16854b;
             }
         } else if (collection instanceof c0) {
             obj = ((s) ((c0) collection)).d;
@@ -275,15 +275,15 @@ public abstract class a {
         return bArr2;
     }
 
-    public static final c1 k(e1 e1Var) {
+    public static final d1 k(f1 f1Var) {
         long j3;
         try {
-            d1 d10 = e1Var.d();
+            e1 d10 = f1Var.d();
             if (d10 != null) {
                 try {
                     try {
-                        byte b10 = d10.f16745a;
-                        byte b11 = d10.f16746b;
+                        byte b10 = d10.f16791a;
+                        byte b11 = d10.f16792b;
                         int i10 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -292,20 +292,20 @@ public abstract class a {
                                         if (b10 != 0 && b10 != 32) {
                                             if (b10 != 64) {
                                                 if (b10 == 96) {
-                                                    e1Var.h((byte) 96);
-                                                    String str = new String(e1Var.j(), StandardCharsets.UTF_8);
+                                                    f1Var.h((byte) 96);
+                                                    String str = new String(f1Var.j(), StandardCharsets.UTF_8);
                                                     l(b11, str.length());
-                                                    return new a1(str);
+                                                    return new b1(str);
                                                 }
                                                 throw new IOException("Unidentifiable major type: " + ((b10 >> 5) & 7));
                                             }
-                                            e1Var.h((byte) 64);
-                                            byte[] j10 = e1Var.j();
+                                            f1Var.h((byte) 64);
+                                            byte[] j10 = f1Var.j();
                                             int length = j10.length;
                                             l(b11, length);
                                             return new w0(s0.t(length, j10));
                                         }
-                                        long b12 = e1Var.b();
+                                        long b12 = f1Var.b();
                                         if (b12 > 0) {
                                             j3 = b12;
                                         } else {
@@ -314,49 +314,49 @@ public abstract class a {
                                         l(b11, j3);
                                         return new y0(b12);
                                     }
-                                    return new v0(e1Var.e());
+                                    return new v0(f1Var.e());
                                 }
                                 throw new IOException("Tags are currently unsupported");
                             }
-                            long c10 = e1Var.c();
+                            long c10 = f1Var.c();
                             if (c10 <= 1000) {
                                 l(b11, c10);
                                 int i11 = (int) c10;
-                                pf.b[] bVarArr = new pf.b[i11];
-                                c1 c1Var = null;
+                                z0[] z0VarArr = new z0[i11];
+                                d1 d1Var = null;
                                 int i12 = 0;
                                 while (i12 < c10) {
-                                    c1 k10 = k(e1Var);
-                                    if (c1Var != null && k10.compareTo(c1Var) <= 0) {
-                                        throw new IOException("Keys in CBOR Map not in strictly ascending natural order:\nPrevious key: " + c1Var.toString() + "\nCurrent key: " + k10.toString());
+                                    d1 k10 = k(f1Var);
+                                    if (d1Var != null && k10.compareTo(d1Var) <= 0) {
+                                        throw new IOException("Keys in CBOR Map not in strictly ascending natural order:\nPrevious key: " + d1Var.toString() + "\nCurrent key: " + k10.toString());
                                     }
-                                    bVarArr[i12] = new pf.b(k10, k(e1Var), false, 29);
+                                    z0VarArr[i12] = new z0(0, k10, k(f1Var));
                                     i12++;
-                                    c1Var = k10;
+                                    d1Var = k10;
                                 }
                                 TreeMap treeMap = new TreeMap();
                                 while (i10 < i11) {
-                                    pf.b bVar = bVarArr[i10];
-                                    if (!treeMap.containsKey((c1) bVar.f45602b)) {
-                                        treeMap.put((c1) bVar.f45602b, (c1) bVar.f45603c);
+                                    z0 z0Var = z0VarArr[i10];
+                                    if (!treeMap.containsKey((d1) z0Var.f16869b)) {
+                                        treeMap.put((d1) z0Var.f16869b, (d1) z0Var.f16870c);
                                         i10++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");
                                     }
                                 }
-                                return new z0(r.b(treeMap));
+                                return new a1(r.b(treeMap));
                             }
                             throw new IOException("Parser being asked to read a large CBOR map");
                         }
-                        long a2 = e1Var.a();
+                        long a2 = f1Var.a();
                         if (a2 <= 1000) {
                             l(b11, a2);
-                            c1[] c1VarArr = new c1[(int) a2];
+                            d1[] d1VarArr = new d1[(int) a2];
                             while (i10 < a2) {
-                                c1VarArr[i10] = k(e1Var);
+                                d1VarArr[i10] = k(f1Var);
                                 i10++;
                             }
-                            return new u0(m.u(c1VarArr));
+                            return new u0(m.u(d1VarArr));
                         }
                         throw new IOException("Parser being asked to read a large CBOR array");
                     } catch (IOException | RuntimeException e7) {

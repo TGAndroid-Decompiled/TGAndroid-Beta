@@ -10,16 +10,16 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class a10 extends s4.w {
     public final nq d = new nq(this, 17);
-    public final b10 f24420e;
+    public final b10 f24405e;
 
     public a10(b10 b10Var) {
-        this.f24420e = b10Var;
+        this.f24405e = b10Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
         super.a(recyclerView, d1Var);
-        View view = d1Var.f47702a;
+        View view = d1Var.f47748a;
         view.setPressed(false);
         view.setBackground(null);
         view.setTag(R.id.dragging, null);
@@ -28,8 +28,8 @@ public final class a10 extends s4.w {
     @Override
     public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
         if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            b10 b10Var = this.f24420e;
-            if (!b10Var.f24787n || (d1Var.b() == 0 && ((x00) b10Var.h.get(0)).f32797e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+            b10 b10Var = this.f24405e;
+            if (!b10Var.f24761n || (d1Var.b() == 0 && ((x00) b10Var.h.get(0)).f32787e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
                 return s4.w.l(0, 0);
             }
         }
@@ -38,7 +38,7 @@ public final class a10 extends s4.w {
 
     @Override
     public final boolean k() {
-        return this.f24420e.f24787n;
+        return this.f24405e.f24761n;
     }
 
     @Override
@@ -47,12 +47,12 @@ public final class a10 extends s4.w {
         if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() && ((d1Var.b() == 0 || d1Var2.b() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
             return false;
         }
-        w00 w00Var = this.f24420e.I;
+        w00 w00Var = this.f24405e.I;
         int b10 = d1Var.b();
         int b11 = d1Var2.b();
         b10 b10Var = w00Var.d;
         ArrayList arrayList = b10Var.h;
-        SparseIntArray sparseIntArray = b10Var.f24785k0;
+        SparseIntArray sparseIntArray = b10Var.f24759k0;
         int size = arrayList.size();
         if (b10 >= 0 && b11 >= 0 && b10 < size && b11 < size) {
             ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
@@ -65,51 +65,51 @@ public final class a10 extends s4.w {
             dialogFilters.set(b11, dialogFilter);
             x00 x00Var = (x00) arrayList.get(b10);
             x00 x00Var2 = (x00) arrayList.get(b11);
-            int i12 = x00Var.f32794a;
-            x00Var.f32794a = x00Var2.f32794a;
-            x00Var2.f32794a = i12;
+            int i12 = x00Var.f32784a;
+            x00Var.f32784a = x00Var2.f32784a;
+            x00Var2.f32784a = i12;
             int i13 = sparseIntArray.get(b10);
             sparseIntArray.put(b10, sparseIntArray.get(b11));
             sparseIntArray.put(b11, i13);
             v00 v00Var = b10Var.J;
-            int i14 = x00Var2.f32794a;
-            int i15 = x00Var.f32794a;
-            org.telegram.ui.sw swVar = (org.telegram.ui.sw) v00Var;
+            int i14 = x00Var2.f32784a;
+            int i15 = x00Var.f32784a;
+            org.telegram.ui.rw rwVar = (org.telegram.ui.rw) v00Var;
             while (true) {
-                org.telegram.ui.sy[] syVarArr = swVar.f41824b.f42218e0;
-                if (i10 >= syVarArr.length) {
+                org.telegram.ui.ry[] ryVarArr = rwVar.f41520b.f41907e0;
+                if (i10 >= ryVarArr.length) {
                     break;
                 }
-                org.telegram.ui.sy syVar = syVarArr[i10];
-                int i16 = syVar.h;
+                org.telegram.ui.ry ryVar = ryVarArr[i10];
+                int i16 = ryVar.h;
                 if (i16 == i14) {
-                    syVar.h = i15;
+                    ryVar.h = i15;
                 } else if (i16 == i15) {
-                    syVar.h = i14;
+                    ryVar.h = i14;
                 }
                 i10++;
             }
             int i17 = b10Var.K;
             if (i17 == b10) {
                 b10Var.K = b11;
-                b10Var.L = x00Var.f32794a;
+                b10Var.L = x00Var.f32784a;
             } else if (i17 == b11) {
                 b10Var.K = b10;
-                b10Var.L = x00Var2.f32794a;
+                b10Var.L = x00Var2.f32784a;
             }
-            int i18 = b10Var.f24791q0;
+            int i18 = b10Var.f24765q0;
             if (i18 == b10) {
-                b10Var.f24791q0 = b11;
-                b10Var.f24793r0 = x00Var.f32794a;
+                b10Var.f24765q0 = b11;
+                b10Var.f24767r0 = x00Var.f32784a;
             } else if (i18 == b11) {
-                b10Var.f24791q0 = b10;
-                b10Var.f24793r0 = x00Var2.f32794a;
+                b10Var.f24765q0 = b10;
+                b10Var.f24767r0 = x00Var2.f32784a;
             }
             arrayList.set(b10, x00Var2);
             arrayList.set(b11, x00Var);
             b10Var.j();
-            b10Var.f24803y = true;
-            b10Var.F.setItemAnimator(b10Var.f24795s0);
+            b10Var.f24777y = true;
+            b10Var.F.setItemAnimator(b10Var.f24769s0);
             w00Var.p(b10, b11);
         }
         return true;
@@ -119,17 +119,17 @@ public final class a10 extends s4.w {
     public final void p(s4.d1 d1Var, int i10) {
         Boolean bool;
         if (i10 != 0) {
-            b10 b10Var = this.f24420e;
+            b10 b10Var = this.f24405e;
             b10Var.F.I0(false);
-            d1Var.f47702a.setPressed(true);
-            d1Var.f47702a.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(b10Var.f24773b0, b10Var.f24770a));
+            d1Var.f47748a.setPressed(true);
+            d1Var.f47748a.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(b10Var.f24747b0, b10Var.f24744a));
         } else {
             nq nqVar = this.d;
             AndroidUtilities.cancelRunOnUIThread(nqVar);
             AndroidUtilities.runOnUIThread(nqVar, 320L);
         }
         if (d1Var != null) {
-            View view = d1Var.f47702a;
+            View view = d1Var.f47748a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

@@ -128,13 +128,13 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (z10) {
             return null;
         }
-        org.telegram.ui.ActionBar.i6.S(this);
+        org.telegram.ui.ActionBar.h6.S(this);
         if (tLObject instanceof TLRPC.User) {
             j9Var = new org.telegram.ui.Components.j9(0, (TLRPC.User) tLObject);
         } else {
             j9Var = new org.telegram.ui.Components.j9((TLRPC.Chat) tLObject);
         }
-        j9Var.f27610r = 1;
+        j9Var.f27619r = 1;
         float f11 = i11;
         Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(f11), AndroidUtilities.dp(f11), Bitmap.Config.ARGB_8888);
         j9Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -514,7 +514,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         }
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject == null) {
-            AndroidUtilities.runOnUIThread(new f1(this, 29));
+            AndroidUtilities.runOnUIThread(new f1(this, 28));
             return 1;
         }
         if (supportLockScreenControls) {

@@ -3,22 +3,22 @@ package fb;
 import java.util.AbstractSet;
 import java.util.Iterator;
 public final class k extends AbstractSet {
-    public final int f9825a;
-    public final m f9826b;
+    public final int f9824a;
+    public final m f9825b;
 
     public k(m mVar, int i10) {
-        this.f9825a = i10;
-        this.f9826b = mVar;
+        this.f9824a = i10;
+        this.f9825b = mVar;
     }
 
     @Override
     public final void clear() {
-        switch (this.f9825a) {
+        switch (this.f9824a) {
             case 0:
-                this.f9826b.clear();
+                this.f9825b.clear();
                 return;
             default:
-                this.f9826b.clear();
+                this.f9825b.clear();
                 return;
         }
     }
@@ -30,11 +30,11 @@ public final class k extends AbstractSet {
 
     @Override
     public final Iterator iterator() {
-        switch (this.f9825a) {
+        switch (this.f9824a) {
             case 0:
-                return new j(this.f9826b, 0);
+                return new j(this.f9825b, 0);
             default:
-                return new j(this.f9826b, 1);
+                return new j(this.f9825b, 1);
         }
     }
 
@@ -45,11 +45,11 @@ public final class k extends AbstractSet {
 
     @Override
     public final int size() {
-        switch (this.f9825a) {
+        switch (this.f9824a) {
             case 0:
-                return this.f9826b.d;
+                return this.f9825b.d;
             default:
-                return this.f9826b.d;
+                return this.f9825b.d;
         }
     }
 }

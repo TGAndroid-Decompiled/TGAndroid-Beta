@@ -1,22 +1,22 @@
 package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class lt extends org.telegram.ui.ActionBar.n1 {
-    public final nt f39717o;
+public final class lt extends org.telegram.ui.ActionBar.m1 {
+    public final mt f39725o;
 
-    public lt(nt ntVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+    public lt(mt mtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
         super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f39717o = ntVar;
+        this.f39725o = mtVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        rt rtVar = this.f39717o.f40406a;
-        rtVar.f41541k = null;
-        rtVar.K = false;
-        if (rtVar.R) {
-            rtVar.n();
+        qt qtVar = this.f39725o.f40073a;
+        qtVar.f41243k = null;
+        qtVar.K = false;
+        if (qtVar.R) {
+            qtVar.n();
         }
     }
 }

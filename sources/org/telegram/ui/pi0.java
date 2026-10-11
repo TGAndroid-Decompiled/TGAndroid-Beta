@@ -1,46 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class pi0 extends fz {
-    public final int[] N;
-    public final dj0 O;
+import android.content.Context;
+public final class pi0 extends org.telegram.ui.Components.xg {
+    public final org.telegram.ui.Components.xg f40876l0;
+    public final boolean m0;
+    public final cj0 f40877n0;
 
-    public pi0(dj0 dj0Var, oi0 oi0Var, int i10) {
-        super(i10, oi0Var);
-        this.O = dj0Var;
-        this.N = new int[2];
+    public pi0(cj0 cj0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.xg xgVar, boolean z10) {
+        super(i10, context, d6Var, false);
+        this.f40877n0 = cj0Var;
+        this.f40876l0 = xgVar;
+        this.m0 = z10;
     }
 
     @Override
-    public final void g(ez ezVar) {
-        dj0 dj0Var = this.O;
-        wi0 wi0Var = dj0Var.K;
-        if (ezVar != null) {
-            if (dj0Var.f37050l0 != null) {
-                ezVar.f37433c = true;
-                float f7 = (fz.f() * AndroidUtilities.density) / 1.3f;
-                float f10 = f7 / 3.0f;
-                ezVar.d = f10;
-                ezVar.f37434e = f10;
-                ezVar.f37431a = Utilities.clamp(dj0Var.f37050l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
-                ezVar.f37432b = dj0Var.f37050l0.bottom - (f7 / 2.0f);
-                return;
-            }
-            org.telegram.ui.Cells.u1 u1Var = dj0Var.Q;
-            if (u1Var != null && u1Var.isAttachedToWindow() && dj0Var.Q.getMessageObject() != null && dj0Var.Q.getMessageObject().getId() == dj0Var.R) {
-                org.telegram.ui.Cells.u1 u1Var2 = dj0Var.Q;
-                int[] iArr = this.N;
-                u1Var2.getLocationOnScreen(iArr);
-                ezVar.f37433c = true;
-                float f11 = (fz.f() * AndroidUtilities.density) / 1.3f;
-                float f12 = f11 / 3.0f;
-                ezVar.d = f12;
-                ezVar.f37434e = f12;
-                float f13 = f11 / 2.0f;
-                ezVar.f37431a = Utilities.clamp(((wi0Var.getScaleX() * dj0Var.Q.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
-                ezVar.f37432b = ((wi0Var.getScaleY() * dj0Var.Q.getTimeY()) + iArr[1]) - f13;
-            }
+    public final boolean d() {
+        return this.f40876l0.d();
+    }
+
+    @Override
+    public final boolean e() {
+        return this.f40876l0.e();
+    }
+
+    @Override
+    public final boolean f() {
+        if (this.m0 && this.f40877n0.f36744q0 && this.f32911r <= 0) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final int getFillColor() {
+        return this.f40876l0.getFillColor();
+    }
+
+    @Override
+    public final boolean j() {
+        return this.f40876l0.j();
     }
 }

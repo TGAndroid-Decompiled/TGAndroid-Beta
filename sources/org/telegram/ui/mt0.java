@@ -1,25 +1,40 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.content.Context;
-public final class mt0 extends org.telegram.ui.Components.t81 {
-    public final PhotoViewer f40028h0;
+import android.view.OrientationEventListener;
+public final class mt0 extends OrientationEventListener {
+    public final PhotoViewer f40074a;
 
-    public mt0(PhotoViewer photoViewer, Context context, qr0 qr0Var) {
-        super(context, qr0Var);
-        this.f40028h0 = photoViewer;
+    public mt0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f40074a = photoViewer;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        PhotoViewer.X(this.f40028h0);
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        super.setVisibility(i10);
-        if (i10 == 0) {
-            PhotoViewer.X(this.f40028h0);
+    public final void onOrientationChanged(int i10) {
+        rt0 rt0Var;
+        Activity activity;
+        int i11;
+        PhotoViewer photoViewer = this.f40074a;
+        if (photoViewer.W3 != null && (rt0Var = photoViewer.f34113y2) != null && rt0Var.getVisibility() == 0 && (activity = photoViewer.f34110y) != null && (i11 = photoViewer.Y3) != 0) {
+            if (i11 == 1) {
+                if (i10 >= 240 && i10 <= 300) {
+                    photoViewer.Z3 = true;
+                } else if (photoViewer.Z3 && i10 > 0) {
+                    if (i10 >= 330 || i10 <= 30) {
+                        activity.setRequestedOrientation(photoViewer.X3);
+                        photoViewer.Y3 = 0;
+                        photoViewer.Z3 = false;
+                    }
+                }
+            } else if (i10 > 0 && (i10 >= 330 || i10 <= 30)) {
+                photoViewer.Z3 = true;
+            } else if (photoViewer.Z3 && i10 >= 240 && i10 <= 300) {
+                activity.setRequestedOrientation(photoViewer.X3);
+                photoViewer.Y3 = 0;
+                photoViewer.Z3 = false;
+            }
         }
     }
 }

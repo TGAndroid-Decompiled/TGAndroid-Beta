@@ -1,70 +1,210 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class yq0 implements org.telegram.ui.Cells.s5 {
-    public final zq0 f44443a;
+import org.telegram.ui.Components.RadialProgressView;
+public final class yq0 extends org.telegram.ui.Components.rm0 {
+    public final Context f44480c;
+    public final ar0 d;
 
-    public yq0(zq0 zq0Var) {
-        this.f44443a = zq0Var;
+    public yq0(ar0 ar0Var, Context context) {
+        this.d = ar0Var;
+        this.f44480c = context;
     }
 
-    public final void a() {
-        zn znVar;
-        TLRPC.Chat chat;
-        br0 br0Var = this.f44443a.d;
-        if (br0Var.I && (znVar = br0Var.U) != null && (chat = znVar.f44797e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && br0Var.W != 2) {
-            org.telegram.ui.Components.g5.t0(br0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
-            if (br0Var.W == 1) {
-                br0Var.W = 2;
+    @Override
+    public final boolean D(s4.d1 d1Var) {
+        ar0 ar0Var = this.d;
+        if (ar0Var.J == null) {
+            if (TextUtils.isEmpty(ar0Var.v)) {
+                if (d1Var.f47752f != 3) {
+                    return false;
+                }
+                return true;
+            } else if (d1Var.b() >= ar0Var.f36142f.size()) {
+                return false;
+            } else {
+                return true;
             }
+        }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        ar0 ar0Var = this.d;
+        MediaController.AlbumEntry albumEntry = ar0Var.J;
+        if (albumEntry == null) {
+            if (ar0Var.f36142f.isEmpty()) {
+                if (!TextUtils.isEmpty(ar0Var.v) || ar0Var.f36150n.isEmpty()) {
+                    return 0;
+                }
+                return ar0Var.f36150n.size() + 2;
+            }
+            return ar0Var.f36142f.size() + (!ar0Var.f36157s ? 1 : 0);
+        }
+        return albumEntry.photos.size();
+    }
+
+    @Override
+    public final long i(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        ar0 ar0Var = this.d;
+        if (ar0Var.Y) {
+            return 2;
+        }
+        if (ar0Var.J != null) {
+            return 0;
+        }
+        if (ar0Var.f36142f.isEmpty()) {
+            if (i10 == ar0Var.f36150n.size()) {
+                return 4;
+            }
+            return 3;
+        } else if (i10 < ar0Var.f36142f.size()) {
+            return 0;
+        } else {
+            return 1;
         }
     }
 
     @Override
-    public final void b(org.telegram.ui.Cells.t5 t5Var) {
+    public final void v(s4.d1 d1Var, int i10) {
+        boolean M1;
         boolean z10;
-        int intValue = ((Integer) t5Var.getTag()).intValue();
-        br0 br0Var = this.f44443a.d;
-        MediaController.AlbumEntry albumEntry = br0Var.J;
-        int i10 = -1;
-        int i11 = 1;
+        ar0 ar0Var = this.d;
+        MediaController.AlbumEntry albumEntry = ar0Var.J;
+        ArrayList arrayList = ar0Var.f36150n;
+        ArrayList arrayList2 = ar0Var.f36137c;
+        HashMap hashMap = ar0Var.f36135b;
+        int i11 = d1Var.f47752f;
+        View view = d1Var.f47748a;
+        int i12 = -1;
+        int i13 = 0;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 != 2) {
+                    if (i11 == 3) {
+                        org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
+                        if (i10 < arrayList.size()) {
+                            r8Var.m(R.drawable.msg_recent, (CharSequence) arrayList.get(i10), false);
+                            return;
+                        } else {
+                            r8Var.m(R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearRecentHistory), false);
+                            return;
+                        }
+                    }
+                    return;
+                }
+                MediaController.PhotoEntry photoEntry = albumEntry.photos.get(i10);
+                org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
+                k7Var.setPhotoEntry(photoEntry);
+                k7Var.b(hashMap.containsKey(Integer.valueOf(photoEntry.imageId)), false);
+                k7Var.setTag(Integer.valueOf(i10));
+                return;
+            }
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (layoutParams != null) {
+                layoutParams.width = -1;
+                layoutParams.height = ar0Var.R;
+                view.setLayoutParams(layoutParams);
+                return;
+            }
+            return;
+        }
+        org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+        t5Var.setItemSize(ar0Var.R);
+        org.telegram.ui.Components.y9 imageView = t5Var.getImageView();
+        t5Var.setTag(Integer.valueOf(i10));
+        imageView.q(0, true);
         if (albumEntry != null) {
-            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
-            boolean containsKey = br0Var.f36435b.containsKey(Integer.valueOf(photoEntry.imageId));
-            z10 = !containsKey;
-            if (!containsKey && br0Var.H > 0 && br0Var.f36435b.size() >= br0Var.H) {
-                a();
-                return;
+            MediaController.PhotoEntry photoEntry2 = albumEntry.photos.get(i10);
+            if (arrayList2.size() > 1) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            if (br0Var.f36440e && !containsKey) {
-                i10 = br0Var.f36437c.size();
+            t5Var.d(photoEntry2, z10, true, false, false);
+            if (ar0Var.f36140e) {
+                i12 = arrayList2.indexOf(Integer.valueOf(photoEntry2.imageId));
             }
-            t5Var.b(i10, z10, true);
-            br0Var.Y(intValue, photoEntry);
+            t5Var.b(i12, hashMap.containsKey(Integer.valueOf(photoEntry2.imageId)), false);
+            M1 = PhotoViewer.M1(photoEntry2.path);
         } else {
-            AndroidUtilities.hideKeyboard(br0Var.getParentActivity().getCurrentFocus());
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) br0Var.f36442f.get(intValue);
-            boolean containsKey2 = br0Var.f36435b.containsKey(searchImage.f17250id);
-            z10 = !containsKey2;
-            if (!containsKey2 && br0Var.H > 0 && br0Var.f36435b.size() >= br0Var.H) {
-                a();
-                return;
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) ar0Var.f36142f.get(i10);
+            t5Var.e(searchImage);
+            t5Var.getVideoInfoContainer().setVisibility(4);
+            if (ar0Var.f36140e) {
+                i12 = arrayList2.indexOf(searchImage.f17245id);
             }
-            if (br0Var.f36440e && !containsKey2) {
-                i10 = br0Var.f36437c.size();
+            t5Var.b(i12, hashMap.containsKey(searchImage.f17245id), false);
+            M1 = PhotoViewer.M1(searchImage.getPathToAttach());
+        }
+        imageView.getImageReceiver().setVisible(!M1, true);
+        t5Var.getCheckBox().setVisibility((ar0Var.T != 0 || M1) ? 8 : 8);
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        ViewGroup viewGroup2;
+        ViewGroup viewGroup3;
+        ar0 ar0Var = this.d;
+        boolean z10 = ar0Var.f36156r0;
+        int i11 = 0;
+        Context context = this.f44480c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        org.telegram.ui.Cells.d3 d3Var = new org.telegram.ui.Cells.d3(context, null);
+                        d3Var.setForceDarkTheme(z10);
+                        viewGroup3 = d3Var;
+                    } else {
+                        org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(23, context, true);
+                        r8Var.setLayoutParams(new s4.q0(-1, -2));
+                        viewGroup2 = r8Var;
+                        if (z10) {
+                            r8Var.f22709a.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, ar0Var.f36161v0, false));
+                            r8Var.f22712e.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21054rg, false), PorterDuff.Mode.MULTIPLY));
+                            viewGroup2 = r8Var;
+                        }
+                    }
+                } else {
+                    viewGroup3 = new org.telegram.ui.Cells.k7(context, 1, null);
+                }
+            } else {
+                ViewGroup frameLayout = new FrameLayout(context);
+                frameLayout.setLayoutParams(new s4.q0(-1, -2));
+                RadialProgressView radialProgressView = new RadialProgressView(context, null);
+                radialProgressView.setProgressColor(-11371101);
+                frameLayout.addView(radialProgressView, w7.x5.d(-1.0f, -1));
+                viewGroup3 = frameLayout;
             }
-            t5Var.b(i10, z10, true);
-            br0Var.Y(intValue, searchImage);
+            return new s4.d1(viewGroup3);
         }
-        if (!z10) {
-            i11 = 2;
+        org.telegram.ui.Cells.t5 t5Var = new org.telegram.ui.Cells.t5(context, null);
+        t5Var.setDelegate(new xq0(this));
+        FrameLayout checkFrame = t5Var.getCheckFrame();
+        if (ar0Var.T != 0) {
+            i11 = 8;
         }
-        br0Var.i0(i11);
-        br0Var.f36458s0.a();
+        checkFrame.setVisibility(i11);
+        viewGroup2 = t5Var;
+        viewGroup3 = viewGroup2;
+        return new s4.d1(viewGroup3);
     }
 }

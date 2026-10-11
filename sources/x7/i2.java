@@ -1,6 +1,6 @@
 package x7;
 public final class i2 implements ia.d {
-    public static final i2 f50844a = new Object();
+    public static final i2 f50888a = new Object();
 
     static {
         sc.v.t(sc.v.n(c0.class, new z(1)));

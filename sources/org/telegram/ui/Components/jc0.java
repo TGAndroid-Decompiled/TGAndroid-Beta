@@ -6,11 +6,11 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class jc0 extends rm0 {
+public final class jc0 extends sm0 {
     public final qc0 V2;
 
-    public jc0(qc0 qc0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public jc0(qc0 qc0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
         this.V2 = qc0Var;
     }
 
@@ -24,12 +24,12 @@ public final class jc0 extends rm0 {
         MessageObject.GroupedMessages currentMessagesGroup;
         MessageObject.GroupedMessages currentMessagesGroup2;
         qc0 qc0Var2 = this.V2;
-        org.telegram.ui.v8 v8Var = qc0Var2.f30180b;
+        org.telegram.ui.u8 u8Var = qc0Var2.f30129b;
         boolean z12 = false;
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             View childAt = getChildAt(i10);
             if (childAt instanceof org.telegram.ui.Cells.u1) {
-                ((org.telegram.ui.Cells.u1) childAt).Z3(v8Var.getMeasuredWidth(), v8Var.getBackgroundSizeY());
+                ((org.telegram.ui.Cells.u1) childAt).Z3(u8Var.getMeasuredWidth(), u8Var.getBackgroundSizeY());
             }
         }
         int childCount = getChildCount();
@@ -42,9 +42,9 @@ public final class jc0 extends rm0 {
         }
         int i12 = 0;
         while (i12 < 3) {
-            wc0 wc0Var = qc0Var2.f30183c0;
+            wc0 wc0Var = qc0Var2.f30132c0;
             ArrayList arrayList = wc0Var.E;
-            jc0 jc0Var = qc0Var2.f30185f;
+            jc0 jc0Var = qc0Var2.f30134f;
             wc0Var.E.clear();
             if (i12 != 2 || jc0Var.V1) {
                 int i13 = z12 ? 1 : 0;
@@ -57,7 +57,7 @@ public final class jc0 extends rm0 {
                     View childAt3 = jc0Var.getChildAt(i13);
                     if (childAt3 instanceof org.telegram.ui.Cells.u1) {
                         org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt3;
-                        if (childAt3.getY() <= jc0Var.getHeight() && childAt3.getY() + childAt3.getHeight() >= 0.0f && (currentMessagesGroup = u1Var.getCurrentMessagesGroup()) != null && ((i12 != 0 || currentMessagesGroup.messages.size() != 1) && ((i12 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i12 != 0 || !u1Var.getMessageObject().deleted) && ((i12 != 1 || u1Var.getMessageObject().deleted) && ((i12 != 2 || u1Var.f23320oc) && (i12 == 2 || !u1Var.f23320oc))))))) {
+                        if (childAt3.getY() <= jc0Var.getHeight() && childAt3.getY() + childAt3.getHeight() >= 0.0f && (currentMessagesGroup = u1Var.getCurrentMessagesGroup()) != null && ((i12 != 0 || currentMessagesGroup.messages.size() != 1) && ((i12 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i12 != 0 || !u1Var.getMessageObject().deleted) && ((i12 != 1 || u1Var.getMessageObject().deleted) && ((i12 != 2 || u1Var.f23308oc) && (i12 == 2 || !u1Var.f23308oc))))))) {
                             if (!arrayList.contains(currentMessagesGroup)) {
                                 MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
                                 transitionParams.left = r32;
@@ -81,7 +81,7 @@ public final class jc0 extends rm0 {
                             if ((u1Var.getCurrentPosition().flags & 8) == 0) {
                                 backgroundDrawableBottom += AndroidUtilities.dp(10.0f);
                             }
-                            if (u1Var.f23320oc) {
+                            if (u1Var.f23308oc) {
                                 currentMessagesGroup.transitionParams.cell = u1Var;
                             }
                             MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
@@ -190,15 +190,15 @@ public final class jc0 extends rm0 {
             u1Var.P1(canvas, true);
             u1Var.u3(true);
             u1Var.V1(canvas);
-            if (u1Var.getCurrentMessagesGroup() == null || ((u1Var.getCurrentPosition() != null && (((u1Var.getCurrentPosition().flags & u1Var.t0()) != 0 && (u1Var.getCurrentPosition().flags & 1) != 0) || (u1Var.getCurrentMessagesGroup() != null && u1Var.getCurrentMessagesGroup().isDocuments))) || u1Var.getTransitionParams().f23023w0)) {
+            if (u1Var.getCurrentMessagesGroup() == null || ((u1Var.getCurrentPosition() != null && (((u1Var.getCurrentPosition().flags & u1Var.t0()) != 0 && (u1Var.getCurrentPosition().flags & 1) != 0) || (u1Var.getCurrentMessagesGroup() != null && u1Var.getCurrentMessagesGroup().isDocuments))) || u1Var.getTransitionParams().f23011w0)) {
                 u1Var.I1(u1Var.getAlpha(), canvas, false);
                 u1Var.d2(canvas, u1Var.getAlpha(), null);
                 u1Var.N1(canvas, u1Var.getAlpha());
             }
-            if (u1Var.getCurrentMessagesGroup() != null || u1Var.getTransitionParams().f23023w0) {
+            if (u1Var.getCurrentMessagesGroup() != null || u1Var.getTransitionParams().f23011w0) {
                 u1Var.W1(canvas, u1Var.getAlpha());
             }
-            if ((u1Var.getCurrentPosition() != null && u1Var.getCurrentPosition().last) || u1Var.getTransitionParams().f23023w0) {
+            if ((u1Var.getCurrentPosition() != null && u1Var.getCurrentPosition().last) || u1Var.getTransitionParams().f23011w0) {
                 u1Var.m2(u1Var.getAlpha(), canvas, true);
             }
             u1Var.Y1(canvas);
@@ -213,19 +213,19 @@ public final class jc0 extends rm0 {
     @Override
     public final void j0(int i10) {
         if (i10 == 0) {
-            this.V2.f30184e.V();
+            this.V2.f30133e.V();
         }
     }
 
     @Override
     public final void k0(int i10, int i11) {
-        this.V2.f30184e.G();
+        this.V2.f30133e.G();
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         qc0 qc0Var = this.V2;
-        int i14 = qc0Var.f30178a;
+        int i14 = qc0Var.f30127a;
         if (qc0Var.K) {
             if (i14 != 0) {
                 u0(0);
@@ -234,7 +234,7 @@ public final class jc0 extends rm0 {
         }
         super.onLayout(z10, i10, i11, i12, i13);
         qc0Var.i();
-        jc0 jc0Var = qc0Var.f30185f;
+        jc0 jc0Var = qc0Var.f30134f;
         if (qc0Var.U) {
             if (jc0Var.computeVerticalScrollRange() > jc0Var.computeVerticalScrollExtent()) {
                 qc0Var.postDelayed(new cc0(qc0Var, 0), 0L);

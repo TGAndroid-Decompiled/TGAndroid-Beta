@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicLongArray;
 public final class e extends u {
-    public final int f8251a;
-    public final u f8252b;
+    public final int f8250a;
+    public final u f8251b;
 
     public e(u uVar, int i10) {
-        this.f8251a = i10;
-        this.f8252b = uVar;
+        this.f8250a = i10;
+        this.f8251b = uVar;
     }
 
     @Override
     public final Object read(lb.a aVar) {
-        switch (this.f8251a) {
+        switch (this.f8250a) {
             case 0:
-                return new AtomicLong(((Number) this.f8252b.read(aVar)).longValue());
+                return new AtomicLong(((Number) this.f8251b.read(aVar)).longValue());
             case 1:
                 ArrayList arrayList = new ArrayList();
                 aVar.a();
                 while (aVar.k()) {
-                    arrayList.add(Long.valueOf(((Number) this.f8252b.read(aVar)).longValue()));
+                    arrayList.add(Long.valueOf(((Number) this.f8251b.read(aVar)).longValue()));
                 }
                 aVar.e();
                 int size = arrayList.size();
@@ -35,22 +35,22 @@ public final class e extends u {
                     aVar.t();
                     return null;
                 }
-                return this.f8252b.read(aVar);
+                return this.f8251b.read(aVar);
         }
     }
 
     @Override
     public final void write(lb.b bVar, Object obj) {
-        switch (this.f8251a) {
+        switch (this.f8250a) {
             case 0:
-                this.f8252b.write(bVar, Long.valueOf(((AtomicLong) obj).get()));
+                this.f8251b.write(bVar, Long.valueOf(((AtomicLong) obj).get()));
                 return;
             case 1:
                 AtomicLongArray atomicLongArray = (AtomicLongArray) obj;
                 bVar.b();
                 int length = atomicLongArray.length();
                 for (int i10 = 0; i10 < length; i10++) {
-                    this.f8252b.write(bVar, Long.valueOf(atomicLongArray.get(i10)));
+                    this.f8251b.write(bVar, Long.valueOf(atomicLongArray.get(i10)));
                 }
                 bVar.e();
                 return;
@@ -59,7 +59,7 @@ public final class e extends u {
                     bVar.i();
                     return;
                 } else {
-                    this.f8252b.write(bVar, obj);
+                    this.f8251b.write(bVar, obj);
                     return;
                 }
         }

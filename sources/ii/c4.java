@@ -13,21 +13,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.bi;
+import org.telegram.messenger.ai;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.bh;
 import org.telegram.ui.Components.dh;
-import org.telegram.ui.Components.dk0;
-import org.telegram.ui.Components.gk0;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.hk0;
 import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.xg;
-import org.telegram.ui.dc1;
+import org.telegram.ui.cc1;
 public final class c4 extends FrameLayout {
     public final ImageView E;
     public final z1 F;
-    public final dc1 G;
+    public final cc1 G;
     public final FrameLayout H;
-    public final gk0 I;
+    public final hk0 I;
     public final LinearLayout J;
     public int K;
     public final LinearLayout L;
@@ -42,23 +42,23 @@ public final class c4 extends FrameLayout {
     public final ArrayList U;
     public final ArrayList V;
     public boolean W;
-    public final m f12312a;
-    public int f12313a0;
-    public final org.telegram.ui.ActionBar.e6 f12314b;
-    public int f12315b0;
-    public final View f12316c;
-    public boolean f12317c0;
+    public final m f12311a;
+    public int f12312a0;
+    public final org.telegram.ui.ActionBar.d6 f12313b;
+    public int f12314b0;
+    public final View f12315c;
+    public boolean f12316c0;
     public final View d;
-    public final FrameLayout f12318e;
-    public final ImageView f12319f;
+    public final FrameLayout f12317e;
+    public final ImageView f12318f;
     public final LinearLayout h;
-    public final ImageView f12320n;
-    public final ImageView f12321r;
-    public final FrameLayout f12322s;
+    public final ImageView f12319n;
+    public final ImageView f12320r;
+    public final FrameLayout f12321s;
     public final FrameLayout v;
-    public final LinearLayout f12323w;
-    public final dh f12324x;
-    public final LinearLayout f12325y;
+    public final LinearLayout f12322w;
+    public final dh f12323x;
+    public final LinearLayout f12324y;
 
     public c4(Context context, final m mVar) {
         super(context);
@@ -69,40 +69,40 @@ public final class c4 extends FrameLayout {
         this.U = new ArrayList();
         ArrayList arrayList = new ArrayList();
         this.V = arrayList;
-        this.f12313a0 = -1;
-        this.f12315b0 = 0;
-        this.f12312a = mVar;
-        org.telegram.ui.ActionBar.e6 e6Var = mVar.f12561a.f30210a;
-        this.f12314b = e6Var;
+        this.f12312a0 = -1;
+        this.f12314b0 = 0;
+        this.f12311a = mVar;
+        org.telegram.ui.ActionBar.d6 d6Var = mVar.f12560a.f30160a;
+        this.f12313b = d6Var;
         setClipChildren(false);
         setClipToPadding(false);
         View view = new View(context);
-        this.f12316c = view;
+        this.f12315c = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i12 = org.telegram.ui.ActionBar.i6.f20801d6;
-        view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.i6.w0(i12, e6Var), org.telegram.ui.ActionBar.i6.m1(0.0f, org.telegram.ui.ActionBar.i6.w0(i12, e6Var))}));
+        int i12 = org.telegram.ui.ActionBar.h6.f20786d6;
+        view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.h6.w0(i12, d6Var), org.telegram.ui.ActionBar.h6.m1(0.0f, org.telegram.ui.ActionBar.h6.w0(i12, d6Var))}));
         addView(view, w7.x5.e(-1, 68, 55));
         View view2 = new View(context);
         this.d = view2;
-        view2.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.i6.m1(0.0f, org.telegram.ui.ActionBar.i6.w0(i12, e6Var)), org.telegram.ui.ActionBar.i6.w0(i12, e6Var)}));
+        view2.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.h6.m1(0.0f, org.telegram.ui.ActionBar.h6.w0(i12, d6Var)), org.telegram.ui.ActionBar.h6.w0(i12, d6Var)}));
         addView(view2, w7.x5.e(-1, 68, 87));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f12318e = frameLayout;
+        this.f12317e = frameLayout;
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
         addView(frameLayout, w7.x5.e(-1, -1, 55));
         ImageView imageView = new ImageView(context);
-        this.f12319f = imageView;
+        this.f12318f = imageView;
         imageView.setImageResource(R.drawable.ic_ab_back);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        int i13 = org.telegram.ui.ActionBar.i6.Yk;
-        int w02 = org.telegram.ui.ActionBar.i6.w0(i13, e6Var);
-        int w03 = org.telegram.ui.ActionBar.i6.w0(i13, e6Var);
-        int i14 = org.telegram.ui.ActionBar.i6.f20892i6;
-        imageView.setBackground(new d2(org.telegram.ui.ActionBar.i6.a0(w02, org.telegram.ui.ActionBar.i6.v(w03, org.telegram.ui.ActionBar.i6.w0(i14, e6Var)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
-        int i15 = org.telegram.ui.ActionBar.i6.G6;
-        int w04 = org.telegram.ui.ActionBar.i6.w0(i15, e6Var);
+        int i13 = org.telegram.ui.ActionBar.h6.Yk;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(i13, d6Var);
+        int w03 = org.telegram.ui.ActionBar.h6.w0(i13, d6Var);
+        int i14 = org.telegram.ui.ActionBar.h6.f20877i6;
+        imageView.setBackground(new d2(org.telegram.ui.ActionBar.h6.a0(w02, org.telegram.ui.ActionBar.h6.v(w03, org.telegram.ui.ActionBar.h6.w0(i14, d6Var)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
+        int i15 = org.telegram.ui.ActionBar.h6.G6;
+        int w04 = org.telegram.ui.ActionBar.h6.w0(i15, d6Var);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(w04, mode));
         w7.z5.a(imageView);
@@ -112,14 +112,14 @@ public final class c4 extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         this.h = linearLayout;
         linearLayout.setOrientation(0);
-        linearLayout.setBackground(new d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(i13, e6Var))));
+        linearLayout.setBackground(new d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(i13, d6Var))));
         frameLayout.addView(linearLayout, w7.x5.a(44.0f, 8.0f, 8.0f, 8.0f, 8.0f, 82, 53));
         ImageView imageView2 = new ImageView(context);
-        this.f12320n = imageView2;
+        this.f12319n = imageView2;
         imageView2.setImageResource(R.drawable.iv_undo);
         imageView2.setScaleType(scaleType);
-        imageView2.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.w0(i14, e6Var), 1, -1));
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i15, e6Var), mode));
+        imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(i14, d6Var), 1, -1));
+        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i15, d6Var), mode));
         w7.z5.a(imageView2);
         imageView2.setContentDescription("Undo");
         imageView2.setOnClickListener(new View.OnClickListener() {
@@ -127,31 +127,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -159,17 +159,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -177,16 +177,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -194,11 +194,11 @@ public final class c4 extends FrameLayout {
         });
         linearLayout.addView(imageView2, w7.x5.q(41, 41, 16));
         ImageView imageView3 = new ImageView(context);
-        this.f12321r = imageView3;
+        this.f12320r = imageView3;
         imageView3.setImageResource(R.drawable.iv_redo);
         imageView3.setScaleType(scaleType);
-        imageView3.setBackground(org.telegram.ui.ActionBar.i6.g0(org.telegram.ui.ActionBar.i6.w0(i14, e6Var), 1, -1));
-        imageView3.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i15, e6Var), mode));
+        imageView3.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(i14, d6Var), 1, -1));
+        imageView3.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i15, d6Var), mode));
         w7.z5.a(imageView3);
         imageView3.setContentDescription("Redo");
         imageView3.setOnClickListener(new View.OnClickListener() {
@@ -206,31 +206,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -238,17 +238,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -256,16 +256,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -273,7 +273,7 @@ public final class c4 extends FrameLayout {
         });
         linearLayout.addView(imageView3, w7.x5.q(41, 41, 16));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f12322s = frameLayout2;
+        this.f12321s = frameLayout2;
         frameLayout2.setClipChildren(false);
         frameLayout2.setClipToPadding(false);
         addView(frameLayout2, w7.x5.e(-1, -1, 87));
@@ -283,7 +283,7 @@ public final class c4 extends FrameLayout {
         frameLayout3.setClipToPadding(false);
         frameLayout2.addView(frameLayout3, w7.x5.e(-1, 60, 87));
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f12323w = linearLayout2;
+        this.f12322w = linearLayout2;
         linearLayout2.setClipToPadding(false);
         linearLayout2.setClipChildren(false);
         linearLayout2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -291,8 +291,8 @@ public final class c4 extends FrameLayout {
         ImageView imageView4 = new ImageView(context);
         imageView4.setImageDrawable(new org.telegram.ui.Components.i0(context));
         imageView4.setScaleType(scaleType);
-        imageView4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i15, e6Var), mode));
-        imageView4.setBackground(new d2(org.telegram.ui.ActionBar.i6.a0(org.telegram.ui.ActionBar.i6.w0(i13, e6Var), org.telegram.ui.ActionBar.i6.v(org.telegram.ui.ActionBar.i6.w0(i13, e6Var), org.telegram.ui.ActionBar.i6.w0(i14, e6Var)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
+        imageView4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i15, d6Var), mode));
+        imageView4.setBackground(new d2(org.telegram.ui.ActionBar.h6.a0(org.telegram.ui.ActionBar.h6.w0(i13, d6Var), org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.w0(i13, d6Var), org.telegram.ui.ActionBar.h6.w0(i14, d6Var)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
         linearLayout2.addView(imageView4, w7.x5.p(44, 44, 0.0f, 19, 0, 0, 8, 0));
         w7.z5.a(imageView4);
         imageView4.setContentDescription("AI");
@@ -301,31 +301,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -333,17 +333,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -351,16 +351,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -370,23 +370,23 @@ public final class c4 extends FrameLayout {
         frameLayout4.setClipToPadding(false);
         frameLayout4.setClipChildren(false);
         FrameLayout frameLayout5 = new FrameLayout(context);
-        frameLayout5.setBackground(new d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(i12, e6Var))));
+        frameLayout5.setBackground(new d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(i12, d6Var))));
         frameLayout4.addView(frameLayout5, w7.x5.e(-2, 44, 81));
         x1 x1Var = new x1(context, 1);
         x1Var.setClipToOutline(true);
         x1Var.setOutlineProvider(new ai.l2(5));
         LinearLayout linearLayout3 = new LinearLayout(context);
-        this.f12325y = linearLayout3;
+        this.f12324y = linearLayout3;
         linearLayout3.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         linearLayout3.setOrientation(0);
         x1Var.addView(linearLayout3);
         frameLayout5.addView(x1Var, w7.x5.d(-1.0f, -1));
         dh dhVar = new dh(context, 24);
-        this.f12324x = dhVar;
+        this.f12323x = dhVar;
         dhVar.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        dhVar.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i15, e6Var), mode));
-        dhVar.setBackground(org.telegram.ui.ActionBar.i6.a0(org.telegram.ui.ActionBar.i6.w0(i12, e6Var), org.telegram.ui.ActionBar.i6.w0(i14, e6Var), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
-        dhVar.j(bh.f24965e, false);
+        dhVar.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i15, d6Var), mode));
+        dhVar.setBackground(org.telegram.ui.ActionBar.h6.a0(org.telegram.ui.ActionBar.h6.w0(i12, d6Var), org.telegram.ui.ActionBar.h6.w0(i14, d6Var), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
+        dhVar.j(bh.f24958e, false);
         linearLayout3.addView(dhVar, w7.x5.q(38, 38, 16));
         w7.z5.a(dhVar);
         dhVar.setContentDescription("Emoji");
@@ -395,31 +395,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -427,17 +427,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -445,16 +445,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -468,8 +468,8 @@ public final class c4 extends FrameLayout {
         this.E = imageView5;
         imageView5.setImageResource(R.drawable.outline_poll_attach_24);
         imageView5.setScaleType(scaleType);
-        imageView5.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i15, e6Var), mode));
-        imageView5.setBackground(org.telegram.ui.ActionBar.i6.a0(org.telegram.ui.ActionBar.i6.w0(i12, e6Var), org.telegram.ui.ActionBar.i6.w0(i14, e6Var), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
+        imageView5.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i15, d6Var), mode));
+        imageView5.setBackground(org.telegram.ui.ActionBar.h6.a0(org.telegram.ui.ActionBar.h6.w0(i12, d6Var), org.telegram.ui.ActionBar.h6.w0(i14, d6Var), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
         linearLayout3.addView(imageView5, w7.x5.t(38, 38, 16, 2, 0, 0, 0));
         w7.z5.a(imageView5);
         imageView5.setContentDescription("Attach");
@@ -478,31 +478,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -510,17 +510,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -528,29 +528,29 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
             }
         });
         linearLayout2.addView(frameLayout4, w7.x5.l(1.0f, 0, 44));
-        dc1 dc1Var = new dc1(this, context, 3);
-        this.G = dc1Var;
-        dc1Var.setOrientation(0);
-        dc1Var.setClipToPadding(false);
-        dc1Var.setClipChildren(false);
-        dc1Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        frameLayout2.addView(dc1Var, w7.x5.e(-2, 60, 81));
+        cc1 cc1Var = new cc1(this, context, 3);
+        this.G = cc1Var;
+        cc1Var.setOrientation(0);
+        cc1Var.setClipToPadding(false);
+        cc1Var.setClipChildren(false);
+        cc1Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        frameLayout2.addView(cc1Var, w7.x5.e(-2, 60, 81));
         FrameLayout frameLayout6 = new FrameLayout(context);
         this.H = frameLayout6;
         frameLayout6.setClipChildren(false);
@@ -560,19 +560,19 @@ public final class c4 extends FrameLayout {
         ?? imageView6 = new ImageView(context);
         this.I = imageView6;
         imageView6.f(R.raw.group_pip_delete_icon, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), null);
-        dk0 animatedDrawable = imageView6.getAnimatedDrawable();
+        ek0 animatedDrawable = imageView6.getAnimatedDrawable();
         if (animatedDrawable != null) {
             animatedDrawable.h = true;
             animatedDrawable.K(0);
             animatedDrawable.P(0);
         }
         imageView6.setScaleType(scaleType);
-        imageView6.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i15, e6Var), mode));
-        imageView6.setBackground(new d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(i13, e6Var))));
+        imageView6.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i15, d6Var), mode));
+        imageView6.setBackground(new d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(i13, d6Var))));
         frameLayout6.addView((View) imageView6, w7.x5.e(-1, -1, 119));
         FrameLayout frameLayout7 = new FrameLayout(context);
-        frameLayout7.setBackground(new d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(i13, e6Var))));
-        dc1Var.addView(frameLayout7, w7.x5.d(44.0f, -2));
+        frameLayout7.setBackground(new d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(i13, d6Var))));
+        cc1Var.addView(frameLayout7, w7.x5.d(44.0f, -2));
         b4 b4Var = new b4(this, context, 0);
         b4Var.setHorizontalScrollBarEnabled(false);
         b4Var.setClipToOutline(true);
@@ -591,7 +591,7 @@ public final class c4 extends FrameLayout {
         b(R.drawable.iv_code, 4, false);
         b(R.drawable.iv_sub, 16384, true);
         b(R.drawable.iv_super, 32768, true);
-        a2 a2Var = new a2(context, R.drawable.iv_quote, e6Var);
+        a2 a2Var = new a2(context, R.drawable.iv_quote, d6Var);
         this.S = a2Var;
         a2Var.c(i13);
         a2Var.setContentDescription(LocaleController.getString(R.string.Quote));
@@ -600,31 +600,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -632,17 +632,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -650,16 +650,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -671,7 +671,7 @@ public final class c4 extends FrameLayout {
             i10 = 2;
         }
         linearLayout4.addView(a2Var, w7.x5.t(38, 38, 16, i10, 0, 0, 0));
-        a2 a2Var2 = new a2(context, R.drawable.iv_button, e6Var);
+        a2 a2Var2 = new a2(context, R.drawable.iv_button, d6Var);
         this.P = a2Var2;
         a2Var2.c(i13);
         a2Var2.setContentDescription(LocaleController.getString(R.string.RichEditorButton));
@@ -680,31 +680,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -712,17 +712,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -730,16 +730,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -755,9 +755,9 @@ public final class c4 extends FrameLayout {
         this.M = linearLayout5;
         linearLayout5.setOrientation(0);
         linearLayout5.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        linearLayout5.setBackground(new d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(i13, e6Var))));
-        dc1Var.addView(linearLayout5, w7.x5.a(44.0f, 8.0f, 0.0f, 0.0f, 0.0f, -2, 80));
-        a2 a2Var3 = new a2(context, R.drawable.media_link_24, e6Var);
+        linearLayout5.setBackground(new d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(i13, d6Var))));
+        cc1Var.addView(linearLayout5, w7.x5.a(44.0f, 8.0f, 0.0f, 0.0f, 0.0f, -2, 80));
+        a2 a2Var3 = new a2(context, R.drawable.media_link_24, d6Var);
         this.O = a2Var3;
         a2Var3.c(i13);
         a2Var3.setContentDescription(LocaleController.getString(R.string.CreateLink));
@@ -766,31 +766,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -798,17 +798,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -816,23 +816,23 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
             }
         });
         linearLayout5.addView(a2Var3, w7.x5.q(38, 38, 16));
-        a2 a2Var4 = new a2(context, R.drawable.msg_calendar2, e6Var);
+        a2 a2Var4 = new a2(context, R.drawable.msg_calendar2, d6Var);
         this.Q = a2Var4;
         a2Var4.c(i13);
         a2Var4.setContentDescription(LocaleController.getString(R.string.AccDescrIVInsertDate));
@@ -841,31 +841,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -873,17 +873,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -891,16 +891,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -911,9 +911,9 @@ public final class c4 extends FrameLayout {
         this.N = linearLayout6;
         linearLayout6.setOrientation(0);
         linearLayout6.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        linearLayout6.setBackground(new d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(i13, e6Var))));
-        dc1Var.addView(linearLayout6, w7.x5.a(44.0f, 8.0f, 0.0f, 0.0f, 0.0f, -2, 80));
-        a2 a2Var5 = new a2(context, R.drawable.iv_math, e6Var);
+        linearLayout6.setBackground(new d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(i13, d6Var))));
+        cc1Var.addView(linearLayout6, w7.x5.a(44.0f, 8.0f, 0.0f, 0.0f, 0.0f, -2, 80));
+        a2 a2Var5 = new a2(context, R.drawable.iv_math, d6Var);
         this.R = a2Var5;
         a2Var5.c(i13);
         a2Var5.d();
@@ -924,31 +924,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -956,17 +956,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -974,16 +974,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -994,9 +994,9 @@ public final class c4 extends FrameLayout {
         this.L = linearLayout7;
         linearLayout7.setOrientation(0);
         linearLayout7.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        linearLayout7.setBackground(new d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(i13, e6Var))));
-        dc1Var.addView(linearLayout7, 0, w7.x5.a(44.0f, 0.0f, 0.0f, 8.0f, 0.0f, -2, 80));
-        a2 a2Var6 = new a2(context, R.drawable.input_ai, e6Var);
+        linearLayout7.setBackground(new d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(i13, d6Var))));
+        cc1Var.addView(linearLayout7, 0, w7.x5.a(44.0f, 0.0f, 0.0f, 8.0f, 0.0f, -2, 80));
+        a2 a2Var6 = new a2(context, R.drawable.input_ai, d6Var);
         a2Var6.setImageDrawable(new org.telegram.ui.Components.i0(context));
         a2Var6.c(i13);
         a2Var6.setContentDescription(LocaleController.getString(R.string.AIEditor));
@@ -1005,31 +1005,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -1037,17 +1037,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -1055,25 +1055,25 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
             }
         });
         linearLayout7.addView(a2Var6, w7.x5.q(38, 38, 16));
-        z1 z1Var = new z1(R.drawable.send_plane_24, 1, context, this, e6Var);
+        z1 z1Var = new z1(R.drawable.send_plane_24, 1, context, this, d6Var);
         this.F = z1Var;
-        z1Var.setBackground(new d2(org.telegram.ui.ActionBar.i6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.i6.w0(org.telegram.ui.ActionBar.i6.Yd, e6Var))));
+        z1Var.setBackground(new d2(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Yd, d6Var))));
         w7.z5.a(z1Var);
         linearLayout2.addView(z1Var, w7.x5.p(44, 44, 0.0f, 5, 8, 0, 0, 0));
         z1Var.setContentDescription("Send");
@@ -1082,31 +1082,31 @@ public final class c4 extends FrameLayout {
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        r rVar = mVar.f12561a;
-                        rVar.f12650r.R4();
+                        r rVar = mVar.f12560a;
+                        rVar.f12649r.R4();
                         rVar.Z();
                         return;
                     case 1:
-                        mVar.f12561a.f12650r.a4(view3);
+                        mVar.f12560a.f12649r.a4(view3);
                         return;
                     case 2:
-                        mVar.f12561a.f12650r.b4();
+                        mVar.f12560a.f12649r.b4();
                         return;
                     case 3:
-                        mVar.f12561a.f12650r.Y3();
+                        mVar.f12560a.f12649r.Y3();
                         return;
                     case 4:
-                        mVar.f12561a.f12650r.c4();
+                        mVar.f12560a.f12649r.c4();
                         return;
                     case 5:
-                        r rVar2 = mVar.f12561a;
-                        o3 i22 = rVar2.f12650r.i2();
+                        r rVar2 = mVar.f12560a;
+                        o3 i22 = rVar2.f12649r.i2();
                         if (i22 != null) {
                             TL_iv.RichMessage a2 = i22.a();
                             if (!a2.blocks.isEmpty()) {
-                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30210a);
+                                org.telegram.ui.Components.e0 e0Var = new org.telegram.ui.Components.e0(rVar2.getContext(), rVar2.f30160a);
                                 e0Var.o0(a2);
-                                e0Var.f25832k0 = new ai.y1(i22, 28);
+                                e0Var.f25771k0 = new ai.y1(i22, 28);
                                 e0Var.show();
                                 return;
                             }
@@ -1114,17 +1114,17 @@ public final class c4 extends FrameLayout {
                         }
                         return;
                     case 6:
-                        mVar.f12561a.K(0, true, 0, false, 0L);
+                        mVar.f12560a.K(0, true, 0, false, 0L);
                         return;
                     case 7:
-                        i2 i2Var = mVar.f12561a.f12650r.H3;
+                        i2 i2Var = mVar.f12560a.f12649r.H3;
                         if (i2Var != null) {
                             i2Var.k();
                             return;
                         }
                         return;
                     case 8:
-                        i2 i2Var2 = mVar.f12561a.f12650r.H3;
+                        i2 i2Var2 = mVar.f12560a.f12649r.H3;
                         if (i2Var2 != null) {
                             i2Var2.i();
                             return;
@@ -1132,16 +1132,16 @@ public final class c4 extends FrameLayout {
                         return;
                     case 9:
                         m mVar2 = mVar;
-                        r rVar3 = mVar2.f12561a;
+                        r rVar3 = mVar2.f12560a;
                         Context context2 = rVar3.getContext();
-                        new x(rVar3.f12649n, context2, new ai.y1(mVar2, 29), rVar3.f30210a).show();
+                        new x(rVar3.f12648n, context2, new ai.y1(mVar2, 29), rVar3.f30160a).show();
                         return;
                     case 10:
-                        r.O(mVar.f12561a);
+                        r.O(mVar.f12560a);
                         return;
                     default:
-                        r rVar4 = mVar.f12561a;
-                        rVar4.f12650r.Z3 = null;
+                        r rVar4 = mVar.f12560a;
+                        rVar4.f12649r.Z3 = null;
                         r.R(rVar4, 90, 0);
                         return;
                 }
@@ -1153,9 +1153,9 @@ public final class c4 extends FrameLayout {
 
     public final void a(int i10, int i11, boolean z10) {
         int i12;
-        LinearLayout linearLayout = this.f12325y;
-        a2 a2Var = new a2(linearLayout.getContext(), i10, this.f12314b);
-        a2Var.c(org.telegram.ui.ActionBar.i6.f20801d6);
+        LinearLayout linearLayout = this.f12324y;
+        a2 a2Var = new a2(linearLayout.getContext(), i10, this.f12313b);
+        a2Var.c(org.telegram.ui.ActionBar.h6.f20786d6);
         if (z10) {
             a2Var.d();
             this.V.add(a2Var);
@@ -1174,8 +1174,8 @@ public final class c4 extends FrameLayout {
 
     public final void b(int i10, int i11, boolean z10) {
         int i12;
-        a2 a2Var = new a2(getContext(), i10, this.f12314b);
-        a2Var.c(org.telegram.ui.ActionBar.i6.Yk);
+        a2 a2Var = new a2(getContext(), i10, this.f12313b);
+        a2Var.c(org.telegram.ui.ActionBar.h6.Yk);
         if (z10) {
             a2Var.d();
             this.V.add(a2Var);
@@ -1249,31 +1249,31 @@ public final class c4 extends FrameLayout {
     public final void e(boolean z10, boolean z11) {
         float f7;
         int i10;
-        if (this.f12317c0 != z10 || !z11) {
-            this.f12317c0 = z10;
+        if (this.f12316c0 != z10 || !z11) {
+            this.f12316c0 = z10;
             if (z10) {
                 f7 = 1.15f;
             } else {
                 f7 = 1.0f;
             }
-            gk0 gk0Var = this.I;
+            hk0 hk0Var = this.I;
             if (z11) {
-                gk0Var.animate().scaleX(f7).scaleY(f7).setDuration(180L).setInterpolator(is.h).start();
+                hk0Var.animate().scaleX(f7).scaleY(f7).setDuration(180L).setInterpolator(is.h).start();
             } else {
-                gk0Var.animate().cancel();
-                gk0Var.setScaleX(f7);
-                gk0Var.setScaleY(f7);
+                hk0Var.animate().cancel();
+                hk0Var.setScaleX(f7);
+                hk0Var.setScaleY(f7);
             }
             if (z10) {
-                i10 = org.telegram.ui.ActionBar.i6.f21041q7;
+                i10 = org.telegram.ui.ActionBar.h6.f21026q7;
             } else {
-                i10 = org.telegram.ui.ActionBar.i6.G6;
+                i10 = org.telegram.ui.ActionBar.h6.G6;
             }
-            gk0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(i10, this.f12314b), PorterDuff.Mode.SRC_IN));
-            dk0 animatedDrawable = gk0Var.getAnimatedDrawable();
+            hk0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i10, this.f12313b), PorterDuff.Mode.SRC_IN));
+            ek0 animatedDrawable = hk0Var.getAnimatedDrawable();
             if (animatedDrawable != null) {
                 if (z10) {
-                    if (animatedDrawable.f25726a0 > 34) {
+                    if (animatedDrawable.f26037a0 > 34) {
                         animatedDrawable.N(0, false, false);
                     }
                     animatedDrawable.P(33);
@@ -1306,14 +1306,14 @@ public final class c4 extends FrameLayout {
         float f21;
         float dp4;
         float f22;
-        if (this.f12313a0 == i10) {
+        if (this.f12312a0 == i10) {
             return;
         }
-        this.f12313a0 = i10;
+        this.f12312a0 = i10;
         FrameLayout frameLayout = this.H;
         int i13 = 0;
-        dc1 dc1Var = this.G;
-        LinearLayout linearLayout = this.f12323w;
+        cc1 cc1Var = this.G;
+        LinearLayout linearLayout = this.f12322w;
         float f23 = 0.0f;
         float f24 = 0.8f;
         if (z10) {
@@ -1345,32 +1345,32 @@ public final class c4 extends FrameLayout {
             ViewPropertyAnimator duration = scaleY.translationY(dp3).setDuration(420L);
             is isVar = is.h;
             duration.setInterpolator(isVar).withEndAction(new Runnable(this) {
-                public final c4 f12876b;
+                public final c4 f12875b;
 
                 {
-                    this.f12876b = this;
+                    this.f12875b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            c4 c4Var = this.f12876b;
-                            if (c4Var.f12313a0 != 0) {
-                                c4Var.f12323w.setVisibility(8);
+                            c4 c4Var = this.f12875b;
+                            if (c4Var.f12312a0 != 0) {
+                                c4Var.f12322w.setVisibility(8);
                                 return;
                             }
                             return;
                         case 1:
-                            c4 c4Var2 = this.f12876b;
-                            if (c4Var2.f12313a0 != 1) {
+                            c4 c4Var2 = this.f12875b;
+                            if (c4Var2.f12312a0 != 1) {
                                 c4Var2.G.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
-                            c4 c4Var3 = this.f12876b;
-                            if (c4Var3.f12313a0 != 2) {
+                            c4 c4Var3 = this.f12875b;
+                            if (c4Var3.f12312a0 != 2) {
                                 c4Var3.H.setVisibility(8);
                                 return;
                             }
@@ -1378,8 +1378,8 @@ public final class c4 extends FrameLayout {
                     }
                 }
             }).start();
-            dc1Var.setVisibility(0);
-            ViewPropertyAnimator animate2 = dc1Var.animate();
+            cc1Var.setVisibility(0);
+            ViewPropertyAnimator animate2 = cc1Var.animate();
             if (i10 == 1) {
                 f19 = 1.0f;
             } else {
@@ -1404,32 +1404,32 @@ public final class c4 extends FrameLayout {
                 dp4 = AndroidUtilities.dp(30.0f);
             }
             scaleY2.translationY(dp4).setDuration(420L).setInterpolator(isVar).withEndAction(new Runnable(this) {
-                public final c4 f12876b;
+                public final c4 f12875b;
 
                 {
-                    this.f12876b = this;
+                    this.f12875b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            c4 c4Var = this.f12876b;
-                            if (c4Var.f12313a0 != 0) {
-                                c4Var.f12323w.setVisibility(8);
+                            c4 c4Var = this.f12875b;
+                            if (c4Var.f12312a0 != 0) {
+                                c4Var.f12322w.setVisibility(8);
                                 return;
                             }
                             return;
                         case 1:
-                            c4 c4Var2 = this.f12876b;
-                            if (c4Var2.f12313a0 != 1) {
+                            c4 c4Var2 = this.f12875b;
+                            if (c4Var2.f12312a0 != 1) {
                                 c4Var2.G.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
-                            c4 c4Var3 = this.f12876b;
-                            if (c4Var3.f12313a0 != 2) {
+                            c4 c4Var3 = this.f12875b;
+                            if (c4Var3.f12312a0 != 2) {
                                 c4Var3.H.setVisibility(8);
                                 return;
                             }
@@ -1453,32 +1453,32 @@ public final class c4 extends FrameLayout {
                 f24 = 1.0f;
             }
             scaleX3.scaleY(f24).setDuration(420L).setInterpolator(isVar).withEndAction(new Runnable(this) {
-                public final c4 f12876b;
+                public final c4 f12875b;
 
                 {
-                    this.f12876b = this;
+                    this.f12875b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            c4 c4Var = this.f12876b;
-                            if (c4Var.f12313a0 != 0) {
-                                c4Var.f12323w.setVisibility(8);
+                            c4 c4Var = this.f12875b;
+                            if (c4Var.f12312a0 != 0) {
+                                c4Var.f12322w.setVisibility(8);
                                 return;
                             }
                             return;
                         case 1:
-                            c4 c4Var2 = this.f12876b;
-                            if (c4Var2.f12313a0 != 1) {
+                            c4 c4Var2 = this.f12875b;
+                            if (c4Var2.f12312a0 != 1) {
                                 c4Var2.G.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
-                            c4 c4Var3 = this.f12876b;
-                            if (c4Var3.f12313a0 != 2) {
+                            c4 c4Var3 = this.f12875b;
+                            if (c4Var3.f12312a0 != 2) {
                                 c4Var3.H.setVisibility(8);
                                 return;
                             }
@@ -1523,31 +1523,31 @@ public final class c4 extends FrameLayout {
         } else {
             i12 = 8;
         }
-        dc1Var.setVisibility(i12);
+        cc1Var.setVisibility(i12);
         if (i10 == 1) {
             f12 = 1.0f;
         } else {
             f12 = 0.0f;
         }
-        dc1Var.setAlpha(f12);
+        cc1Var.setAlpha(f12);
         if (i10 == 1) {
             f13 = 1.0f;
         } else {
             f13 = 0.8f;
         }
-        dc1Var.setScaleX(f13);
+        cc1Var.setScaleX(f13);
         if (i10 == 1) {
             f14 = 1.0f;
         } else {
             f14 = 0.8f;
         }
-        dc1Var.setScaleY(f14);
+        cc1Var.setScaleY(f14);
         if (i10 == 1) {
             dp2 = 0.0f;
         } else {
             dp2 = AndroidUtilities.dp(30.0f);
         }
-        dc1Var.setTranslationY(dp2);
+        cc1Var.setTranslationY(dp2);
         if (i10 != 2) {
             i13 = 8;
         }
@@ -1573,7 +1573,7 @@ public final class c4 extends FrameLayout {
     }
 
     public FrameLayout getBottomContainer() {
-        return this.f12322s;
+        return this.f12321s;
     }
 
     public FrameLayout getBottomInnerContainer() {
@@ -1581,11 +1581,11 @@ public final class c4 extends FrameLayout {
     }
 
     public LinearLayout getBottomPanel() {
-        return this.f12323w;
+        return this.f12322w;
     }
 
     public View getEmojiButton() {
-        return this.f12324x;
+        return this.f12323x;
     }
 
     public xg getSendButton() {
@@ -1599,7 +1599,7 @@ public final class c4 extends FrameLayout {
         } else {
             i10 = 8;
         }
-        this.f12319f.setVisibility(i10);
+        this.f12318f.setVisibility(i10);
     }
 
     public void setBottomGradientTranslationY(float f7) {
@@ -1612,9 +1612,9 @@ public final class c4 extends FrameLayout {
         if (z10) {
             bhVar = bh.d;
         } else {
-            bhVar = bh.f24965e;
+            bhVar = bh.f24958e;
         }
-        dh dhVar = this.f12324x;
+        dh dhVar = this.f12323x;
         dhVar.j(bhVar, true);
         if (z10) {
             str = "Keyboard";
@@ -1666,7 +1666,7 @@ public final class c4 extends FrameLayout {
         } else {
             f7 = 0.5f;
         }
-        bi.s(animate, f7, 150L);
+        ai.s(animate, f7, 150L);
     }
 
     public void setSendLoading(boolean z10) {
@@ -1684,7 +1684,7 @@ public final class c4 extends FrameLayout {
             layoutParams.topMargin = i10;
             linearLayout.setLayoutParams(layoutParams);
         }
-        ImageView imageView = this.f12319f;
+        ImageView imageView = this.f12318f;
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) imageView.getLayoutParams();
         if (layoutParams2.topMargin != i10) {
             layoutParams2.topMargin = i10;
@@ -1699,7 +1699,7 @@ public final class c4 extends FrameLayout {
         } else {
             i10 = 8;
         }
-        this.f12316c.setVisibility(i10);
+        this.f12315c.setVisibility(i10);
     }
 
     public void setTopPanelVisible(boolean z10) {
@@ -1710,10 +1710,10 @@ public final class c4 extends FrameLayout {
         } else {
             i10 = 8;
         }
-        this.f12318e.setVisibility(i10);
+        this.f12317e.setVisibility(i10);
         if (z10) {
             i11 = 0;
         }
-        this.f12316c.setVisibility(i11);
+        this.f12315c.setVisibility(i11);
     }
 }

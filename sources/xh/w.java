@@ -5,26 +5,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.nr0;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.Components.or0;
 public final class w extends org.telegram.ui.ActionBar.j {
-    public final TL_stars.StarGift f51615a;
-    public final Context f51616b;
-    public final e6 f51617c;
+    public final TL_stars.StarGift f51658a;
+    public final Context f51659b;
+    public final d6 f51660c;
 
-    public w(Context context, TL_stars.StarGift starGift, e6 e6Var) {
-        this.f51615a = starGift;
-        this.f51616b = context;
-        this.f51617c = e6Var;
+    public w(Context context, TL_stars.StarGift starGift, d6 d6Var) {
+        this.f51658a = starGift;
+        this.f51659b = context;
+        this.f51660c = d6Var;
     }
 
     @Override
     public final void b(int i10) {
-        Context context = this.f51616b;
-        TL_stars.StarGift starGift = this.f51615a;
+        Context context = this.f51659b;
+        TL_stars.StarGift starGift = this.f51658a;
         if (i10 != 3 && i10 != 2) {
             if (i10 == 4) {
-                x.V(context, starGift, this.f51617c);
+                x.V(context, starGift, this.f51660c);
                 return;
             }
             return;
@@ -33,7 +33,7 @@ public final class w extends org.telegram.ui.ActionBar.j {
         if (i10 == 3) {
             AndroidUtilities.addToClipboard(str);
         } else {
-            nr0.O0(context, null, str, false, str).show();
+            or0.O0(context, null, str, false, str).show();
         }
     }
 }

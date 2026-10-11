@@ -26,7 +26,7 @@ public class w1 implements h1, r, a2 {
 
     public static q D(fe.k kVar) {
         while (kVar.h()) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = fe.k.f9903b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = fe.k.f9902b;
             fe.k d = kVar.d();
             if (d == null) {
                 Object obj = atomicReferenceFieldUpdater.get(kVar);
@@ -148,8 +148,8 @@ public class w1 implements h1, r, a2 {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         fe.k kVar = new fe.k();
         m1Var.getClass();
-        fe.k.f9903b.set(kVar, m1Var);
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = fe.k.f9902a;
+        fe.k.f9902b.set(kVar, m1Var);
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = fe.k.f9901a;
         atomicReferenceFieldUpdater2.set(kVar, m1Var);
         loop0: while (true) {
             if (m1Var.f() == m1Var) {
@@ -304,7 +304,7 @@ public class w1 implements h1, r, a2 {
         fe.k d;
         r1 r1Var = new r1(m1Var, this, c1Var);
         loop0: while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = fe.k.f9903b;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = fe.k.f9902b;
             d = x1Var.d();
             if (d == null) {
                 Object obj = atomicReferenceFieldUpdater.get(x1Var);
@@ -316,8 +316,8 @@ public class w1 implements h1, r, a2 {
                     obj = atomicReferenceFieldUpdater.get(d);
                 }
             }
-            fe.k.f9903b.set(m1Var, d);
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = fe.k.f9902a;
+            fe.k.f9902b.set(m1Var, d);
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = fe.k.f9901a;
             atomicReferenceFieldUpdater2.set(m1Var, x1Var);
             r1Var.f493c = x1Var;
             while (!atomicReferenceFieldUpdater2.compareAndSet(d, x1Var, r1Var)) {
@@ -446,7 +446,7 @@ public class w1 implements h1, r, a2 {
         n1Var.s();
         n1Var.v(new j(g0.n(this, false, new r0(n1Var, 3), 3), 2));
         Object r10 = n1Var.r();
-        kd.a aVar = kd.a.f14784a;
+        kd.a aVar = kd.a.f14783a;
         return r10;
     }
 
@@ -502,7 +502,7 @@ public class w1 implements h1, r, a2 {
         do {
             u10 = u();
             boolean z10 = u10 instanceof c1;
-            iVar = hd.i.f11092a;
+            iVar = hd.i.f11091a;
             if (!z10) {
                 g0.h(cVar.getContext());
                 return iVar;
@@ -512,7 +512,7 @@ public class w1 implements h1, r, a2 {
         mVar.s();
         mVar.v(new j(g0.n(this, false, new r0(mVar, 4), 3), 2));
         Object r10 = mVar.r();
-        kd.a aVar = kd.a.f14784a;
+        kd.a aVar = kd.a.f14783a;
         if (r10 != aVar) {
             r10 = iVar;
         }

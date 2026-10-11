@@ -4,39 +4,39 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class k70 implements View.OnClickListener {
-    public final int f27919a;
-    public final TLRPC.User f27920b;
-    public final String f27921c;
+    public final int f27856a;
+    public final TLRPC.User f27857b;
+    public final String f27858c;
     public final boolean d;
-    public final boolean f27922e;
-    public final boolean f27923f;
-    public final qm0 h;
+    public final boolean f27859e;
+    public final boolean f27860f;
+    public final rm0 h;
 
-    public k70(qm0 qm0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i10) {
-        this.f27919a = i10;
-        this.h = qm0Var;
-        this.f27920b = user;
-        this.f27921c = str;
+    public k70(rm0 rm0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i10) {
+        this.f27856a = i10;
+        this.h = rm0Var;
+        this.f27857b = user;
+        this.f27858c = str;
         this.d = z10;
-        this.f27922e = z11;
-        this.f27923f = z12;
+        this.f27859e = z11;
+        this.f27860f = z12;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
-        org.telegram.ui.ActionBar.e6 e6Var;
-        switch (this.f27919a) {
+        org.telegram.ui.ActionBar.d6 d6Var;
+        switch (this.f27856a) {
             case 0:
-                u70 u70Var = ((p70) this.h).f29713c;
+                u70 u70Var = ((p70) this.h).f29637c;
                 Context context = u70Var.getContext();
-                i10 = ((org.telegram.ui.ActionBar.f3) u70Var).currentAccount;
-                e6Var = ((org.telegram.ui.ActionBar.f3) u70Var).resourcesProvider;
-                e11.b(context, i10, -u70Var.f31397g0, this.f27920b, this.f27921c, this.d, this.f27922e, this.f27923f, e6Var);
+                i10 = ((org.telegram.ui.ActionBar.e3) u70Var).currentAccount;
+                d6Var = ((org.telegram.ui.ActionBar.e3) u70Var).resourcesProvider;
+                f11.b(context, i10, -u70Var.f31320g0, this.f27857b, this.f27858c, this.d, this.f27859e, this.f27860f, d6Var);
                 return;
             default:
-                cw0 cw0Var = ((mu0) this.h).f28901f;
-                e11.b(cw0Var.getContext(), cw0Var.f25474v1.getCurrentAccount(), cw0Var.f25449j1, this.f27920b, this.f27921c, this.d, this.f27922e, this.f27923f, cw0Var.F1);
+                dw0 dw0Var = ((nu0) this.h).f29143f;
+                f11.b(dw0Var.getContext(), dw0Var.f25735v1.getCurrentAccount(), dw0Var.f25710j1, this.f27857b, this.f27858c, this.d, this.f27859e, this.f27860f, dw0Var.F1);
                 return;
         }
     }

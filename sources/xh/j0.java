@@ -7,17 +7,17 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.qg;
 import org.telegram.ui.Components.r6;
 import org.telegram.ui.pn;
 public final class j0 implements qg {
-    public final TL_stars.TL_starGiftUnique f51337a;
-    public final l0 f51338b;
+    public final TL_stars.TL_starGiftUnique f51380a;
+    public final l0 f51381b;
 
     public j0(l0 l0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f51338b = l0Var;
-        this.f51337a = tL_starGiftUnique;
+        this.f51381b = l0Var;
+        this.f51380a = tL_starGiftUnique;
     }
 
     @Override
@@ -44,11 +44,11 @@ public final class j0 implements qg {
         int i10;
         int i11;
         boolean z10;
-        l0 l0Var = this.f51338b;
-        r6 r6Var = l0Var.f51383w;
-        a5 a5Var = l0Var.f51376b;
-        i10 = ((org.telegram.ui.ActionBar.f3) l0Var).currentAccount;
-        a5Var.a(this.f51337a, UserConfig.getInstance(i10).getClientUserId(), l0Var.f51380n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        l0 l0Var = this.f51381b;
+        r6 r6Var = l0Var.f51426w;
+        a5 a5Var = l0Var.f51419b;
+        i10 = ((org.telegram.ui.ActionBar.e3) l0Var).currentAccount;
+        a5Var.a(this.f51380a, UserConfig.getInstance(i10).getClientUserId(), l0Var.f51423n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         l0Var.F = codePointCount;
         int i12 = l0Var.E;
@@ -72,14 +72,14 @@ public final class j0 implements qg {
             r6Var.animate().setListener(null).cancel();
             r6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                r6Var.setTextColor(l0Var.getThemedColor(i6.f21022p7));
+                r6Var.setTextColor(l0Var.getThemedColor(h6.f21007p7));
                 return;
             } else {
-                r6Var.setTextColor(l0Var.getThemedColor(i6.f21185y6));
+                r6Var.setTextColor(l0Var.getThemedColor(h6.f21171y6));
                 return;
             }
         }
-        r6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new org.telegram.ui.Wallet.y4(this, 17));
+        r6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new org.telegram.ui.Wallet.z4(this, 17));
     }
 
     @Override

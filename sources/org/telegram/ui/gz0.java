@@ -1,49 +1,30 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class gz0 extends s4.d0 {
-    public final ProfileActivity I;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class gz0 implements RequestDelegate {
+    public final int f38182a;
+    public final jz0 f38183b;
 
-    public gz0(ProfileActivity profileActivity) {
-        this.I = profileActivity;
+    public gz0(jz0 jz0Var, int i10) {
+        this.f38182a = i10;
+        this.f38183b = jz0Var;
     }
 
     @Override
-    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
-        ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f34264c.m(0);
-        if (m10 != null && !profileActivity.F0) {
-            int top = m10.getTop() - profileActivity.T3();
-            boolean z10 = profileActivity.f34350o2;
-            boolean z11 = true;
-            if (!z10 && top > i10) {
-                if (!profileActivity.f34341n0.X0.isEmpty() && profileActivity.f34280e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f34343n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
-                    if (profileActivity.J2 != null) {
-                        z11 = false;
-                    }
-                    profileActivity.f34350o2 = z11;
-                }
-            } else if (z10) {
-                if (i10 >= top) {
-                    profileActivity.f34350o2 = false;
-                } else if (profileActivity.f34249a.getScrollState() == 1 && !profileActivity.f34357p2) {
-                    i10 /= 2;
-                }
-            }
-            i10 = top;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f38182a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                jz0 jz0Var = this.f38183b;
+                jz0Var.f39153c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new gz0(jz0Var, 1));
+                return;
+            default:
+                this.f38183b.f39153c.getMessagesController().loadAppConfig();
+                return;
         }
-        if (profileActivity.O1 && !profileActivity.f34249a.P0) {
-            return 0;
-        }
-        return super.o0(i10, eVar, a1Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        if (this.I.f34361q0 != null) {
-            return true;
-        }
-        return false;
     }
 }

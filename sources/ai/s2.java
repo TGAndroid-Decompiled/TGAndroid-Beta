@@ -35,7 +35,7 @@ public final class s2 extends FrameLayout {
         addView(frameLayout, w7.x5.e(40, 40, 17));
         View view = new View(context);
         this.f1692b = view;
-        view.setBackground(org.telegram.ui.ActionBar.i6.K(AndroidUtilities.dp(40.0f), -13522392));
+        view.setBackground(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(40.0f), -13522392));
         frameLayout.addView(view, w7.x5.e(38, 38, 17));
         view.setAlpha(0.0f);
         view.setScaleX(0.0f);

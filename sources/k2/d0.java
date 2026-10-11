@@ -26,9 +26,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 public final class d0 implements p {
-    public static final Object f14421n0 = new Object();
-    public static ScheduledExecutorService f14422o0;
-    public static int f14423p0;
+    public static final Object f14420n0 = new Object();
+    public static ScheduledExecutorService f14421o0;
+    public static int f14422p0;
     public b2.e A;
     public w B;
     public w C;
@@ -55,45 +55,45 @@ public final class d0 implements p {
     public boolean X;
     public int Y;
     public boolean Z;
-    public final Context f14424a;
-    public b2.f f14425a0;
-    public final aa.a f14426b;
-    public a4.l f14427b0;
-    public final t f14428c;
-    public boolean f14429c0;
+    public final Context f14423a;
+    public b2.f f14424a0;
+    public final aa.a f14425b;
+    public a4.l f14426b0;
+    public final t f14427c;
+    public boolean f14428c0;
     public final m0 d;
-    public long f14430d0;
-    public final c2.l f14431e;
-    public long f14432e0;
-    public final l0 f14433f;
-    public boolean f14434f0;
-    public final a1 f14435g;
-    public boolean f14436g0;
+    public long f14429d0;
+    public final c2.l f14430e;
+    public long f14431e0;
+    public final l0 f14432f;
+    public boolean f14433f0;
+    public final a1 f14434g;
+    public boolean f14435g0;
     public final s h;
-    public Looper f14437h0;
-    public final ArrayDeque f14438i;
-    public long f14439i0;
-    public int f14440j;
-    public long f14441j0;
-    public c0 f14442k;
-    public Handler f14443k0;
-    public final z f14444l;
-    public Context f14445l0;
-    public final z f14446m;
+    public Looper f14436h0;
+    public final ArrayDeque f14437i;
+    public long f14438i0;
+    public int f14439j;
+    public long f14440j0;
+    public c0 f14441k;
+    public Handler f14442k0;
+    public final z f14443l;
+    public Context f14444l0;
+    public final z f14445m;
     public final boolean m0;
-    public final e0 f14447n;
-    public final pf.b f14448o;
-    public final f0 f14449p;
-    public final int f14450q;
-    public j2.k f14451r;
-    public n f14452s;
-    public v f14453t;
-    public v f14454u;
+    public final e0 f14446n;
+    public final pf.b f14447o;
+    public final f0 f14448p;
+    public final int f14449q;
+    public j2.k f14450r;
+    public n f14451s;
+    public v f14452t;
+    public v f14453u;
     public c2.e v;
-    public AudioTrack f14455w;
-    public b f14456x;
-    public e7 f14457y;
-    public y f14458z;
+    public AudioTrack f14454w;
+    public b f14455x;
+    public e7 f14456y;
+    public y f14457z;
 
     public d0(e6 e6Var) {
         Context applicationContext;
@@ -104,41 +104,41 @@ public final class d0 implements p {
         } else {
             applicationContext = context.getApplicationContext();
         }
-        this.f14424a = applicationContext;
+        this.f14423a = applicationContext;
         this.A = b2.e.h;
-        this.f14456x = applicationContext == null ? (b) e6Var.f884c : null;
-        this.f14426b = (aa.a) e6Var.d;
+        this.f14455x = applicationContext == null ? (b) e6Var.f884c : null;
+        this.f14425b = (aa.a) e6Var.d;
         int i10 = Build.VERSION.SDK_INT;
-        this.f14440j = 0;
-        this.f14447n = (e0) e6Var.f885e;
+        this.f14439j = 0;
+        this.f14446n = (e0) e6Var.f885e;
         pf.b bVar = (pf.b) e6Var.f887g;
         bVar.getClass();
-        this.f14448o = bVar;
-        this.h = new s(new xa.d(this, 28));
+        this.f14447o = bVar;
+        this.h = new s(new xa.c(this, 28));
         ?? iVar = new c2.i();
-        this.f14428c = iVar;
+        this.f14427c = iVar;
         ?? iVar2 = new c2.i();
-        iVar2.f14521m = e2.d0.f8533b;
+        iVar2.f14520m = e2.d0.f8532b;
         this.d = iVar2;
-        this.f14431e = new c2.i();
-        this.f14433f = new c2.i();
-        this.f14435g = e9.i0.A(iVar2, iVar);
+        this.f14430e = new c2.i();
+        this.f14432f = new c2.i();
+        this.f14434g = e9.i0.A(iVar2, iVar);
         this.P = 1.0f;
         this.Y = 0;
-        this.f14425a0 = new Object();
+        this.f14424a0 = new Object();
         v0 v0Var = v0.d;
         this.C = new w(v0Var, 0L, 0L);
         this.D = v0Var;
         this.E = false;
-        this.f14438i = new ArrayDeque();
-        this.f14444l = new z();
-        this.f14446m = new z();
-        this.f14449p = (f0) e6Var.f886f;
+        this.f14437i = new ArrayDeque();
+        this.f14443l = new z();
+        this.f14445m = new z();
+        this.f14448p = (f0) e6Var.f886f;
         int i11 = -1;
         if (i10 >= 34 && context != null && (deviceId = context.getDeviceId()) != 0 && deviceId != -1) {
             i11 = deviceId;
         }
-        this.f14450q = i11;
+        this.f14449q = i11;
         this.m0 = true;
     }
 
@@ -171,16 +171,16 @@ public final class d0 implements p {
     public final void B() {
         if (q()) {
             try {
-                this.f14455w.setPlaybackParams(new PlaybackParams().allowDefaults().setSpeed(this.D.f3673a).setPitch(this.D.f3674b).setAudioFallbackMode(2));
+                this.f14454w.setPlaybackParams(new PlaybackParams().allowDefaults().setSpeed(this.D.f3673a).setPitch(this.D.f3674b).setAudioFallbackMode(2));
             } catch (IllegalArgumentException e7) {
                 e2.a.o("DefaultAudioSink", "Failed to set playback params", e7);
             }
-            v0 v0Var = new v0(this.f14455w.getPlaybackParams().getSpeed(), this.f14455w.getPlaybackParams().getPitch());
+            v0 v0Var = new v0(this.f14454w.getPlaybackParams().getSpeed(), this.f14454w.getPlaybackParams().getPitch());
             this.D = v0Var;
             float f7 = v0Var.f3673a;
             s sVar = this.h;
             sVar.h = f7;
-            r rVar = sVar.f14543e;
+            r rVar = sVar.f14542e;
             if (rVar != null) {
                 rVar.a(0);
             }
@@ -189,21 +189,21 @@ public final class d0 implements p {
     }
 
     public final void C(b2.f fVar) {
-        if (this.f14425a0.equals(fVar)) {
+        if (this.f14424a0.equals(fVar)) {
             return;
         }
         fVar.getClass();
-        if (this.f14455w != null) {
-            this.f14425a0.getClass();
+        if (this.f14454w != null) {
+            this.f14424a0.getClass();
         }
-        this.f14425a0 = fVar;
+        this.f14424a0 = fVar;
     }
 
     public final void D(int i10, int i11) {
         v vVar;
-        AudioTrack audioTrack = this.f14455w;
-        if (audioTrack != null && r(audioTrack) && (vVar = this.f14454u) != null && vVar.f14574k) {
-            this.f14455w.setOffloadDelayPadding(i10, i11);
+        AudioTrack audioTrack = this.f14454w;
+        if (audioTrack != null && r(audioTrack) && (vVar = this.f14453u) != null && vVar.f14573k) {
+            this.f14454w.setOffloadDelayPadding(i10, i11);
         }
     }
 
@@ -213,8 +213,8 @@ public final class d0 implements p {
 
     public final void F(v0 v0Var) {
         this.D = new v0(e2.d0.g(v0Var.f3673a, 0.1f, 8.0f), e2.d0.g(v0Var.f3674b, 0.1f, 8.0f));
-        v vVar = this.f14454u;
-        if (vVar != null && vVar.f14573j) {
+        v vVar = this.f14453u;
+        if (vVar != null && vVar.f14572j) {
             B();
             return;
         }
@@ -237,14 +237,14 @@ public final class d0 implements p {
         v0 v0Var;
         boolean z10;
         boolean z11;
-        v vVar = this.f14454u;
+        v vVar = this.f14453u;
         boolean z12 = false;
-        aa.a aVar = this.f14426b;
-        if (vVar != null && vVar.f14573j) {
+        aa.a aVar = this.f14425b;
+        if (vVar != null && vVar.f14572j) {
             v0Var = v0.d;
         } else {
-            if (!this.f14429c0 && vVar.f14568c == 0) {
-                int i10 = vVar.f14566a.L;
+            if (!this.f14428c0 && vVar.f14567c == 0) {
+                int i10 = vVar.f14565a.L;
                 v0Var = this.D;
                 c2.k kVar = (c2.k) aVar.d;
                 float f7 = v0Var.f3673a;
@@ -276,20 +276,20 @@ public final class d0 implements p {
             this.D = v0Var;
         }
         v0 v0Var2 = v0Var;
-        if (!this.f14429c0) {
-            v vVar2 = this.f14454u;
-            if (vVar2.f14568c == 0) {
-                int i11 = vVar2.f14566a.L;
+        if (!this.f14428c0) {
+            v vVar2 = this.f14453u;
+            if (vVar2.f14567c == 0) {
+                int i11 = vVar2.f14565a.L;
                 z12 = this.E;
-                ((j0) aVar.f385c).f14499o = z12;
+                ((j0) aVar.f385c).f14498o = z12;
             }
         }
         this.E = z12;
-        this.f14438i.add(new w(v0Var2, Math.max(0L, j3), e2.d0.V(this.f14454u.f14569e, m())));
-        c2.e eVar = this.f14454u.f14572i;
+        this.f14437i.add(new w(v0Var2, Math.max(0L, j3), e2.d0.V(this.f14453u.f14568e, m())));
+        c2.e eVar = this.f14453u.f14571i;
         this.v = eVar;
         eVar.a();
-        n nVar = this.f14452s;
+        n nVar = this.f14451s;
         if (nVar != null) {
             nVar.onSkipSilenceEnabledChanged(this.E);
         }
@@ -297,7 +297,7 @@ public final class d0 implements p {
 
     public final AudioTrack b(k kVar, b2.e eVar, int i10, b2.s sVar, Context context) {
         try {
-            AudioTrack a2 = this.f14449p.a(kVar, eVar, i10, context);
+            AudioTrack a2 = this.f14448p.a(kVar, eVar, i10, context);
             int state = a2.getState();
             if (state == 1) {
                 return a2;
@@ -306,9 +306,9 @@ public final class d0 implements p {
                 a2.release();
             } catch (Exception unused) {
             }
-            throw new m(state, kVar.f14507b, kVar.f14508c, kVar.f14506a, kVar.f14510f, sVar, kVar.f14509e, null);
+            throw new m(state, kVar.f14506b, kVar.f14507c, kVar.f14505a, kVar.f14509f, sVar, kVar.f14508e, null);
         } catch (IllegalArgumentException | UnsupportedOperationException e7) {
-            throw new m(0, kVar.f14507b, kVar.f14508c, kVar.f14506a, kVar.f14510f, sVar, kVar.f14509e, e7);
+            throw new m(0, kVar.f14506b, kVar.f14507c, kVar.f14505a, kVar.f14509f, sVar, kVar.f14508e, e7);
         }
     }
 
@@ -325,23 +325,23 @@ public final class d0 implements p {
         n nVar;
         boolean z10;
         boolean z11;
-        z zVar = this.f14446m;
+        z zVar = this.f14445m;
         if (this.S != null) {
             boolean z12 = false;
-            if (zVar.f14583a != null) {
-                synchronized (f14421n0) {
-                    if (f14423p0 > 0) {
+            if (zVar.f14582a != null) {
+                synchronized (f14420n0) {
+                    if (f14422p0 > 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                 }
-                if (z11 || SystemClock.elapsedRealtime() < zVar.f14585c) {
+                if (z11 || SystemClock.elapsedRealtime() < zVar.f14584c) {
                     return;
                 }
             }
             int remaining = this.S.remaining();
-            if (this.f14429c0) {
+            if (this.f14428c0) {
                 if (j3 != -9223372036854775807L) {
                     z10 = true;
                 } else {
@@ -349,11 +349,11 @@ public final class d0 implements p {
                 }
                 e2.d.g(z10);
                 if (j3 == Long.MIN_VALUE) {
-                    j3 = this.f14430d0;
+                    j3 = this.f14429d0;
                 } else {
-                    this.f14430d0 = j3;
+                    this.f14429d0 = j3;
                 }
-                AudioTrack audioTrack = this.f14455w;
+                AudioTrack audioTrack = this.f14454w;
                 ByteBuffer byteBuffer = this.S;
                 if (Build.VERSION.SDK_INT >= 26) {
                     write = audioTrack.write(byteBuffer, remaining, 1, 1000 * j3);
@@ -388,46 +388,46 @@ public final class d0 implements p {
                     }
                 }
             } else {
-                write = this.f14455w.write(this.S, remaining, 1);
+                write = this.f14454w.write(this.S, remaining, 1);
             }
-            this.f14432e0 = SystemClock.elapsedRealtime();
+            this.f14431e0 = SystemClock.elapsedRealtime();
             if (write < 0) {
                 if ((Build.VERSION.SDK_INT >= 24 && write == -6) || write == -32) {
                     if (m() <= 0) {
-                        if (r(this.f14455w)) {
-                            if (this.f14454u.f14568c == 1) {
-                                this.f14434f0 = true;
+                        if (r(this.f14454w)) {
+                            if (this.f14453u.f14567c == 1) {
+                                this.f14433f0 = true;
                             }
                         }
                     }
                     z12 = true;
                 }
-                o oVar = new o(write, this.f14454u.f14566a, z12);
-                n nVar2 = this.f14452s;
+                o oVar = new o(write, this.f14453u.f14565a, z12);
+                n nVar2 = this.f14451s;
                 if (nVar2 != null) {
                     nVar2.f0(oVar);
                 }
-                if (oVar.f14525b && this.f14424a != null) {
-                    b bVar = b.f14409c;
-                    this.f14456x = bVar;
-                    this.f14457y.a(bVar);
+                if (oVar.f14524b && this.f14423a != null) {
+                    b bVar = b.f14408c;
+                    this.f14455x = bVar;
+                    this.f14456y.a(bVar);
                     throw oVar;
                 }
                 zVar.a(oVar);
                 return;
             }
-            zVar.f14583a = null;
-            zVar.f14584b = -9223372036854775807L;
-            zVar.f14585c = -9223372036854775807L;
-            if (r(this.f14455w)) {
+            zVar.f14582a = null;
+            zVar.f14583b = -9223372036854775807L;
+            zVar.f14584c = -9223372036854775807L;
+            if (r(this.f14454w)) {
                 if (this.K > 0) {
-                    this.f14436g0 = false;
+                    this.f14435g0 = false;
                 }
-                if (this.W && (nVar = this.f14452s) != null && write < remaining && !this.f14436g0) {
+                if (this.W && (nVar = this.f14451s) != null && write < remaining && !this.f14435g0) {
                     nVar.v();
                 }
             }
-            int i10 = this.f14454u.f14568c;
+            int i10 = this.f14453u.f14567c;
             if (i10 == 0) {
                 this.J += write;
             }
@@ -455,12 +455,12 @@ public final class d0 implements p {
             this.I = 0L;
             this.J = 0L;
             this.K = 0L;
-            this.f14436g0 = false;
+            this.f14435g0 = false;
             this.L = 0;
             this.C = new w(this.D, 0L, 0L);
             this.O = 0L;
             this.B = null;
-            this.f14438i.clear();
+            this.f14437i.clear();
             this.Q = null;
             this.R = 0;
             this.S = null;
@@ -469,62 +469,62 @@ public final class d0 implements p {
             this.V = false;
             this.F = null;
             this.G = 0;
-            this.d.f14523o = 0L;
-            c2.e eVar = this.f14454u.f14572i;
+            this.d.f14522o = 0L;
+            c2.e eVar = this.f14453u.f14571i;
             this.v = eVar;
             eVar.a();
-            AudioTrack audioTrack = this.h.f14542c;
+            AudioTrack audioTrack = this.h.f14541c;
             audioTrack.getClass();
             if (audioTrack.getPlayState() == 3) {
-                this.f14455w.pause();
+                this.f14454w.pause();
             }
-            if (r(this.f14455w)) {
-                c0 c0Var = this.f14442k;
+            if (r(this.f14454w)) {
+                c0 c0Var = this.f14441k;
                 c0Var.getClass();
-                c0Var.a(this.f14455w);
+                c0Var.a(this.f14454w);
             }
-            k a2 = this.f14454u.a();
-            v vVar = this.f14453t;
+            k a2 = this.f14453u.a();
+            v vVar = this.f14452t;
             if (vVar != null) {
-                this.f14454u = vVar;
-                this.f14453t = null;
+                this.f14453u = vVar;
+                this.f14452t = null;
             }
             s sVar = this.h;
             sVar.f();
-            sVar.f14542c = null;
-            sVar.f14543e = null;
-            if (Build.VERSION.SDK_INT >= 24 && (yVar = this.f14458z) != null) {
+            sVar.f14541c = null;
+            sVar.f14542e = null;
+            if (Build.VERSION.SDK_INT >= 24 && (yVar = this.f14457z) != null) {
                 yVar.b();
-                this.f14458z = null;
+                this.f14457z = null;
             }
-            AudioTrack audioTrack2 = this.f14455w;
-            n nVar = this.f14452s;
+            AudioTrack audioTrack2 = this.f14454w;
+            n nVar = this.f14451s;
             Handler handler = new Handler(Looper.myLooper());
-            synchronized (f14421n0) {
+            synchronized (f14420n0) {
                 try {
-                    if (f14422o0 == null) {
-                        String str = e2.d0.f8532a;
-                        f14422o0 = Executors.newSingleThreadScheduledExecutor(new e2.c0(0));
+                    if (f14421o0 == null) {
+                        String str = e2.d0.f8531a;
+                        f14421o0 = Executors.newSingleThreadScheduledExecutor(new e2.c0(0));
                     }
-                    f14423p0++;
-                    f14422o0.schedule(new i5(audioTrack2, nVar, handler, a2, 19), 20L, TimeUnit.MILLISECONDS);
+                    f14422p0++;
+                    f14421o0.schedule(new i5(audioTrack2, nVar, handler, a2, 19), 20L, TimeUnit.MILLISECONDS);
                 } catch (Throwable th2) {
                     throw th2;
                 }
             }
-            this.f14455w = null;
+            this.f14454w = null;
         }
-        z zVar = this.f14446m;
-        zVar.f14583a = null;
-        zVar.f14584b = -9223372036854775807L;
-        zVar.f14585c = -9223372036854775807L;
-        z zVar2 = this.f14444l;
-        zVar2.f14583a = null;
-        zVar2.f14584b = -9223372036854775807L;
-        zVar2.f14585c = -9223372036854775807L;
-        this.f14439i0 = 0L;
-        this.f14441j0 = 0L;
-        Handler handler2 = this.f14443k0;
+        z zVar = this.f14445m;
+        zVar.f14582a = null;
+        zVar.f14583b = -9223372036854775807L;
+        zVar.f14584c = -9223372036854775807L;
+        z zVar2 = this.f14443l;
+        zVar2.f14582a = null;
+        zVar2.f14583b = -9223372036854775807L;
+        zVar2.f14584c = -9223372036854775807L;
+        this.f14438i0 = 0L;
+        this.f14440j0 = 0L;
+        Handler handler2 = this.f14442k0;
         if (handler2 != null) {
             handler2.removeCallbacksAndMessages(null);
         }
@@ -535,13 +535,13 @@ public final class d0 implements p {
         if (!q()) {
             return -9223372036854775807L;
         }
-        AudioTrack audioTrack = this.f14455w;
-        v vVar = this.f14454u;
-        if (vVar.f14568c == 0) {
-            return e2.d0.V(vVar.f14569e, audioTrack.getBufferSizeInFrames());
+        AudioTrack audioTrack = this.f14454w;
+        v vVar = this.f14453u;
+        if (vVar.f14567c == 0) {
+            return e2.d0.V(vVar.f14568e, audioTrack.getBufferSizeInFrames());
         }
         long bufferSizeInFrames = audioTrack.getBufferSizeInFrames();
-        int i10 = c3.b.i(vVar.f14571g);
+        int i10 = c3.b.i(vVar.f14570g);
         if (i10 != -2147483647) {
             z10 = true;
         } else {
@@ -556,19 +556,19 @@ public final class d0 implements p {
         long j3;
         c2.j jVar;
         if (q() && !this.N) {
-            long min = Math.min(this.h.a(), e2.d0.V(this.f14454u.f14569e, m()));
+            long min = Math.min(this.h.a(), e2.d0.V(this.f14453u.f14568e, m()));
             while (true) {
-                arrayDeque = this.f14438i;
-                if (arrayDeque.isEmpty() || min < ((w) arrayDeque.getFirst()).f14578c) {
+                arrayDeque = this.f14437i;
+                if (arrayDeque.isEmpty() || min < ((w) arrayDeque.getFirst()).f14577c) {
                     break;
                 }
                 this.C = (w) arrayDeque.remove();
             }
             w wVar = this.C;
-            long j10 = min - wVar.f14578c;
-            long y3 = e2.d0.y(j10, wVar.f14576a.f3673a);
+            long j10 = min - wVar.f14577c;
+            long y3 = e2.d0.y(j10, wVar.f14575a.f3673a);
             boolean isEmpty = arrayDeque.isEmpty();
-            aa.a aVar = this.f14426b;
+            aa.a aVar = this.f14425b;
             if (isEmpty) {
                 c2.k kVar = (c2.k) aVar.d;
                 if (kVar.isActive()) {
@@ -588,24 +588,24 @@ public final class d0 implements p {
                     }
                 }
                 w wVar2 = this.C;
-                j3 = wVar2.f14577b + j10;
+                j3 = wVar2.f14576b + j10;
                 wVar2.d = j10 - y3;
             } else {
                 w wVar3 = this.C;
-                j3 = wVar3.f14577b + y3 + wVar3.d;
+                j3 = wVar3.f14576b + y3 + wVar3.d;
             }
-            long j13 = ((j0) aVar.f385c).f14501q;
-            long V = e2.d0.V(this.f14454u.f14569e, j13) + j3;
-            long j14 = this.f14439i0;
+            long j13 = ((j0) aVar.f385c).f14500q;
+            long V = e2.d0.V(this.f14453u.f14568e, j13) + j3;
+            long j14 = this.f14438i0;
             if (j13 > j14) {
-                long V2 = e2.d0.V(this.f14454u.f14569e, j13 - j14);
-                this.f14439i0 = j13;
-                this.f14441j0 += V2;
-                if (this.f14443k0 == null) {
-                    this.f14443k0 = new Handler(Looper.myLooper());
+                long V2 = e2.d0.V(this.f14453u.f14568e, j13 - j14);
+                this.f14438i0 = j13;
+                this.f14440j0 += V2;
+                if (this.f14442k0 == null) {
+                    this.f14442k0 = new Handler(Looper.myLooper());
                 }
-                this.f14443k0.removeCallbacksAndMessages(null);
-                this.f14443k0.postDelayed(new i2.h0(this, 8), 100L);
+                this.f14442k0.removeCallbacksAndMessages(null);
+                this.f14442k0.postDelayed(new i2.h0(this, 8), 100L);
             }
             return V;
         }
@@ -615,19 +615,19 @@ public final class d0 implements p {
     public final e j(b2.s sVar) {
         boolean booleanValue;
         boolean z10;
-        if (this.f14434f0) {
+        if (this.f14433f0) {
             return e.d;
         }
         b2.e eVar = this.A;
-        pf.b bVar = this.f14448o;
+        pf.b bVar = this.f14447o;
         bVar.getClass();
         sVar.getClass();
         int i10 = sVar.K;
         eVar.getClass();
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 29 && i10 != -1) {
-            Context context = (Context) bVar.f45602b;
-            Boolean bool = (Boolean) bVar.f45603c;
+            Context context = (Context) bVar.f45592b;
+            Boolean bool = (Boolean) bVar.f45593c;
             if (bool != null) {
                 booleanValue = bool.booleanValue();
             } else {
@@ -638,11 +638,11 @@ public final class d0 implements p {
                     } else {
                         z10 = false;
                     }
-                    bVar.f45603c = Boolean.valueOf(z10);
+                    bVar.f45593c = Boolean.valueOf(z10);
                 } else {
-                    bVar.f45603c = Boolean.FALSE;
+                    bVar.f45593c = Boolean.FALSE;
                 }
-                booleanValue = ((Boolean) bVar.f45603c).booleanValue();
+                booleanValue = ((Boolean) bVar.f45593c).booleanValue();
             }
             String str = sVar.f3643r;
             str.getClass();
@@ -678,26 +678,26 @@ public final class d0 implements p {
             } else if (i10 != 2) {
                 return 1;
             }
-        } else if (this.f14456x.d(this.A, sVar) == null) {
+        } else if (this.f14455x.d(this.A, sVar) == null) {
             return 0;
         }
         return 2;
     }
 
     public final long l() {
-        v vVar = this.f14454u;
-        if (vVar.f14568c == 0) {
-            return this.H / vVar.f14567b;
+        v vVar = this.f14453u;
+        if (vVar.f14567c == 0) {
+            return this.H / vVar.f14566b;
         }
         return this.I;
     }
 
     public final long m() {
-        v vVar = this.f14454u;
-        if (vVar.f14568c == 0) {
+        v vVar = this.f14453u;
+        if (vVar.f14567c == 0) {
             long j3 = this.J;
             long j10 = vVar.d;
-            String str = e2.d0.f8532a;
+            String str = e2.d0.f8531a;
             return ((j3 + j10) - 1) / j10;
         }
         return this.K;
@@ -709,12 +709,12 @@ public final class d0 implements p {
 
     public final boolean o() {
         if (q()) {
-            if (Build.VERSION.SDK_INT < 29 || !this.f14455w.isOffloadedPlayback() || !this.V) {
+            if (Build.VERSION.SDK_INT < 29 || !this.f14454w.isOffloadedPlayback() || !this.V) {
                 long m10 = m();
                 s sVar = this.h;
                 long a2 = sVar.a();
-                int i10 = sVar.f14544f;
-                String str = e2.d0.f8532a;
+                int i10 = sVar.f14543f;
+                String str = e2.d0.f8531a;
                 if (m10 > e2.d0.X(a2, i10, 1000000L, RoundingMode.UP)) {
                     return true;
                 }
@@ -730,7 +730,7 @@ public final class d0 implements p {
     }
 
     public final boolean q() {
-        if (this.f14455w != null) {
+        if (this.f14454w != null) {
             return true;
         }
         return false;
@@ -742,13 +742,13 @@ public final class d0 implements p {
         Context context;
         b bVar;
         Looper myLooper = Looper.myLooper();
-        if (this.f14457y != null && this.f14437h0 != myLooper) {
+        if (this.f14456y != null && this.f14436h0 != myLooper) {
             z10 = false;
         } else {
             z10 = true;
         }
         StringBuilder sb2 = new StringBuilder("DefaultAudioSink accessed on multiple threads: ");
-        Looper looper = this.f14437h0;
+        Looper looper = this.f14436h0;
         String str = "null";
         if (looper == null) {
             name = "null";
@@ -762,32 +762,32 @@ public final class d0 implements p {
         }
         sb2.append(str);
         e2.d.f(sb2.toString(), z10);
-        if (this.f14457y == null && (context = this.f14424a) != null) {
-            this.f14437h0 = myLooper;
-            e7 e7Var = new e7(context, new c5(this, 29), this.A, this.f14427b0);
-            this.f14457y = e7Var;
+        if (this.f14456y == null && (context = this.f14423a) != null) {
+            this.f14436h0 = myLooper;
+            e7 e7Var = new e7(context, new c5(this, 29), this.A, this.f14426b0);
+            this.f14456y = e7Var;
             Handler handler = (Handler) e7Var.d;
-            Context context2 = (Context) e7Var.f5031b;
-            if (e7Var.f5030a) {
+            Context context2 = (Context) e7Var.f5030b;
+            if (e7Var.f5029a) {
                 bVar = (b) e7Var.h;
                 bVar.getClass();
             } else {
-                e7Var.f5030a = true;
-                d dVar = (d) e7Var.f5035g;
+                e7Var.f5029a = true;
+                d dVar = (d) e7Var.f5034g;
                 if (dVar != null) {
-                    dVar.f14418a.registerContentObserver(dVar.f14419b, false, dVar);
+                    dVar.f14417a.registerContentObserver(dVar.f14418b, false, dVar);
                 }
-                c cVar = (c) e7Var.f5033e;
+                c cVar = (c) e7Var.f5032e;
                 if (cVar != null) {
                     c2.d.e(context2).registerAudioDeviceCallback(cVar, handler);
                 }
-                b b10 = b.b(context2, context2.registerReceiver((androidx.mediarouter.app.g) e7Var.f5034f, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG"), null, handler), (b2.e) e7Var.f5037j, (a4.l) e7Var.f5036i);
+                b b10 = b.b(context2, context2.registerReceiver((androidx.mediarouter.app.g) e7Var.f5033f, new IntentFilter("android.media.action.HDMI_AUDIO_PLUG"), null, handler), (b2.e) e7Var.f5036j, (a4.l) e7Var.f5035i);
                 e7Var.h = b10;
                 bVar = b10;
             }
-            this.f14456x = bVar;
+            this.f14455x = bVar;
         }
-        this.f14456x.getClass();
+        this.f14455x.getClass();
     }
 
     public final void t() {
@@ -795,14 +795,14 @@ public final class d0 implements p {
         if (q()) {
             s sVar = this.h;
             sVar.f();
-            if (sVar.f14560x == -9223372036854775807L) {
-                r rVar = sVar.f14543e;
+            if (sVar.f14559x == -9223372036854775807L) {
+                r rVar = sVar.f14542e;
                 rVar.getClass();
                 rVar.a(0);
             }
-            sVar.f14562z = sVar.b();
-            if (!this.U || r(this.f14455w)) {
-                this.f14455w.pause();
+            sVar.f14561z = sVar.b();
+            if (!this.U || r(this.f14454w)) {
+                this.f14454w.pause();
             }
         }
     }
@@ -811,16 +811,16 @@ public final class d0 implements p {
         this.W = true;
         if (q()) {
             s sVar = this.h;
-            if (sVar.f14560x != -9223372036854775807L) {
+            if (sVar.f14559x != -9223372036854775807L) {
                 sVar.G.getClass();
-                sVar.f14560x = e2.d0.P(SystemClock.elapsedRealtime());
+                sVar.f14559x = e2.d0.P(SystemClock.elapsedRealtime());
             }
-            sVar.f14547j = e2.d0.V(sVar.f14544f, sVar.b());
-            r rVar = sVar.f14543e;
+            sVar.f14546j = e2.d0.V(sVar.f14543f, sVar.b());
+            r rVar = sVar.f14542e;
             rVar.getClass();
             rVar.a(0);
-            if (!this.U || r(this.f14455w)) {
-                this.f14455w.play();
+            if (!this.U || r(this.f14454w)) {
+                this.f14454w.play();
             }
         }
     }
@@ -830,14 +830,14 @@ public final class d0 implements p {
             this.U = true;
             long m10 = m();
             s sVar = this.h;
-            sVar.f14562z = sVar.b();
+            sVar.f14561z = sVar.b();
             sVar.G.getClass();
-            sVar.f14560x = e2.d0.P(SystemClock.elapsedRealtime());
+            sVar.f14559x = e2.d0.P(SystemClock.elapsedRealtime());
             sVar.A = m10;
-            if (r(this.f14455w)) {
+            if (r(this.f14454w)) {
                 this.V = false;
             }
-            this.f14455w.stop();
+            this.f14454w.stop();
             this.G = 0;
         }
     }
@@ -855,12 +855,12 @@ public final class d0 implements p {
 
     public final void y() {
         g();
-        e9.g0 listIterator = this.f14435g.listIterator(0);
+        e9.g0 listIterator = this.f14434g.listIterator(0);
         while (listIterator.hasNext()) {
             ((c2.h) listIterator.next()).reset();
         }
-        this.f14431e.reset();
-        this.f14433f.reset();
+        this.f14430e.reset();
+        this.f14432f.reset();
         c2.e eVar = this.v;
         if (eVar != null) {
             e9.i0 i0Var = eVar.f4004a;
@@ -874,19 +874,19 @@ public final class d0 implements p {
             eVar.d = false;
         }
         this.W = false;
-        this.f14434f0 = false;
+        this.f14433f0 = false;
     }
 
     public final void z(b2.e eVar) {
         if (!this.A.equals(eVar)) {
             this.A = eVar;
-            if (this.f14429c0) {
+            if (this.f14428c0) {
                 return;
             }
-            e7 e7Var = this.f14457y;
+            e7 e7Var = this.f14456y;
             if (e7Var != null) {
-                e7Var.f5037j = eVar;
-                e7Var.a(b.c((Context) e7Var.f5031b, eVar, (a4.l) e7Var.f5036i));
+                e7Var.f5036j = eVar;
+                e7Var.a(b.c((Context) e7Var.f5030b, eVar, (a4.l) e7Var.f5035i));
             }
             g();
         }

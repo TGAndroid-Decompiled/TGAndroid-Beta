@@ -11,15 +11,15 @@ import sc.v;
 import y9.b0;
 import y9.k0;
 public final class c {
-    public Object f8232a;
-    public Object f8233b;
-    public Object f8234c;
+    public Object f8231a;
+    public Object f8232b;
+    public Object f8233c;
     public Object d;
-    public Object f8235e;
-    public Object f8236f;
-    public Object f8237g;
+    public Object f8234e;
+    public Object f8235f;
+    public Object f8236g;
     public Object h;
-    public Object f8238i;
+    public Object f8237i;
 
     public static void f(String str, JSONObject jSONObject) {
         StringBuilder v = g.v(str);
@@ -32,68 +32,68 @@ public final class c {
 
     public b0 a() {
         String str;
-        if (((Integer) this.f8232a) == null) {
+        if (((Integer) this.f8231a) == null) {
             str = " pid";
         } else {
             str = "";
         }
-        if (((String) this.f8233b) == null) {
+        if (((String) this.f8232b) == null) {
             str = str.concat(" processName");
         }
-        if (((Integer) this.f8234c) == null) {
+        if (((Integer) this.f8233c) == null) {
             str = v.v(str, " reasonCode");
         }
         if (((Integer) this.d) == null) {
             str = v.v(str, " importance");
         }
-        if (((Long) this.f8235e) == null) {
+        if (((Long) this.f8234e) == null) {
             str = v.v(str, " pss");
         }
-        if (((Long) this.f8236f) == null) {
+        if (((Long) this.f8235f) == null) {
             str = v.v(str, " rss");
         }
-        if (((Long) this.f8237g) == null) {
+        if (((Long) this.f8236g) == null) {
             str = v.v(str, " timestamp");
         }
         if (str.isEmpty()) {
-            return new b0(((Integer) this.f8232a).intValue(), (String) this.f8233b, ((Integer) this.f8234c).intValue(), ((Integer) this.d).intValue(), ((Long) this.f8235e).longValue(), ((Long) this.f8236f).longValue(), ((Long) this.f8237g).longValue(), (String) this.h, (List) this.f8238i);
+            return new b0(((Integer) this.f8231a).intValue(), (String) this.f8232b, ((Integer) this.f8233c).intValue(), ((Integer) this.d).intValue(), ((Long) this.f8234e).longValue(), ((Long) this.f8235f).longValue(), ((Long) this.f8236g).longValue(), (String) this.h, (List) this.f8237i);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public k0 b() {
         String str;
-        if (((Integer) this.f8232a) == null) {
+        if (((Integer) this.f8231a) == null) {
             str = " arch";
         } else {
             str = "";
         }
-        if (((String) this.f8233b) == null) {
+        if (((String) this.f8232b) == null) {
             str = str.concat(" model");
         }
-        if (((Integer) this.f8234c) == null) {
+        if (((Integer) this.f8233c) == null) {
             str = v.v(str, " cores");
         }
         if (((Long) this.d) == null) {
             str = v.v(str, " ram");
         }
-        if (((Long) this.f8235e) == null) {
+        if (((Long) this.f8234e) == null) {
             str = v.v(str, " diskSpace");
         }
-        if (((Boolean) this.f8236f) == null) {
+        if (((Boolean) this.f8235f) == null) {
             str = v.v(str, " simulator");
         }
-        if (((Integer) this.f8237g) == null) {
+        if (((Integer) this.f8236g) == null) {
             str = v.v(str, " state");
         }
         if (((String) this.h) == null) {
             str = v.v(str, " manufacturer");
         }
-        if (((String) this.f8238i) == null) {
+        if (((String) this.f8237i) == null) {
             str = v.v(str, " modelClass");
         }
         if (str.isEmpty()) {
-            return new k0(((Integer) this.f8232a).intValue(), (String) this.f8233b, ((Integer) this.f8234c).intValue(), ((Long) this.d).longValue(), ((Long) this.f8235e).longValue(), ((Boolean) this.f8236f).booleanValue(), ((Integer) this.f8237g).intValue(), (String) this.h, (String) this.f8238i);
+            return new k0(((Integer) this.f8231a).intValue(), (String) this.f8232b, ((Integer) this.f8233c).intValue(), ((Long) this.d).longValue(), ((Long) this.f8234e).longValue(), ((Boolean) this.f8235f).booleanValue(), ((Integer) this.f8236g).intValue(), (String) this.h, (String) this.f8237i);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
@@ -102,13 +102,13 @@ public final class c {
         b bVar = null;
         try {
             if (!j.b(2, i10)) {
-                JSONObject b02 = ((pb.c) this.f8235e).b0();
+                JSONObject b02 = ((pb.c) this.f8234e).b0();
                 if (b02 != null) {
-                    b U = ((l) this.f8234c).U(b02);
+                    b U = ((l) this.f8233c).U(b02);
                     f("Loaded cached settings: ", b02);
                     ((rb.a) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!j.b(3, i10) && U.f8229c < currentTimeMillis) {
+                    if (!j.b(3, i10) && U.f8228c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;
@@ -140,7 +140,7 @@ public final class c {
         return (b) ((AtomicReference) this.h).get();
     }
 
-    public void e(l5.i r45, int r46) {
+    public void e(l5.i r46, int r47) {
         throw new UnsupportedOperationException("Method not decompiled: da.c.e(l5.i, int):void");
     }
 }

@@ -24,7 +24,7 @@ public final class b5 extends i0 {
         this.f710x = f6Var;
         this.v = c6Var;
         this.f709w = kcVar;
-        is isVar = is.f27443f;
+        is isVar = is.f27451f;
         this.d = new org.telegram.ui.Components.g6(this, 150L, isVar);
         this.f704e = new org.telegram.ui.Components.g6(this, 150L, isVar);
         this.f705f = new org.telegram.ui.Components.voip.h(32, 102, 240);
@@ -32,8 +32,8 @@ public final class b5 extends i0 {
         this.h = g6Var;
         org.telegram.ui.Components.g6 g6Var2 = new org.telegram.ui.Components.g6(this);
         this.f706n = g6Var2;
-        g6Var.f26619g = 500L;
-        g6Var2.f26619g = 100L;
+        g6Var.f26616g = 500L;
+        g6Var2.f26616g = 100L;
     }
 
     public final void b(android.graphics.Canvas r34) {
@@ -50,7 +50,7 @@ public final class b5 extends i0 {
         d2 d2Var;
         f6 f6Var = this.f710x;
         e6 e6Var = f6Var.M2;
-        if (f6Var.K1 && !f6Var.f957c3 && ((org.telegram.ui.l4) e6Var.f885e) != null && (d2Var = (d2) e6Var.f883b) != null && d2Var.n() && ((org.telegram.ui.l4) e6Var.f885e).dispatchTouchEvent(motionEvent)) {
+        if (f6Var.K1 && !f6Var.f957c3 && ((org.telegram.ui.k4) e6Var.f885e) != null && (d2Var = (d2) e6Var.f883b) != null && d2Var.n() && ((org.telegram.ui.k4) e6Var.f885e).dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -60,8 +60,8 @@ public final class b5 extends i0 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view != this.f710x.f978j1) {
             if (this.f707r) {
-                org.telegram.ui.Components.tc tcVar = org.telegram.ui.Components.tc.f31088w;
-                if (tcVar != null && view == tcVar.f31092e) {
+                org.telegram.ui.Components.sc scVar = org.telegram.ui.Components.sc.f30703w;
+                if (scVar != null && view == scVar.f30707e) {
                     if (this.f708s) {
                         return super.drawChild(canvas, view, j3);
                     }
@@ -78,7 +78,7 @@ public final class b5 extends i0 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.f710x.f980k1.i();
-        org.telegram.ui.Components.tc.a(this, new x4(this, 0));
+        org.telegram.ui.Components.sc.a(this, new x4(this, 0));
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class b5 extends i0 {
         super.onDetachedFromWindow();
         f6 f6Var = this.f710x;
         f6Var.f980k1.j();
-        org.telegram.ui.Components.tc.h(this);
+        org.telegram.ui.Components.sc.h(this);
         y5 y5Var = f6Var.Q1;
         if (y5Var != null) {
             kc kcVar = ((bc) y5Var).d;

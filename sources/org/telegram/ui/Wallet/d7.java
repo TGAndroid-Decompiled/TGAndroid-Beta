@@ -1,37 +1,39 @@
 package org.telegram.ui.Wallet;
 
-import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-public final class d7 implements View.OnClickListener {
-    public final int f34841a;
-    public final ci.d f34842b;
-    public final Utilities.Callback f34843c;
-    public final org.telegram.ui.ActionBar.f3 d;
-    public final org.telegram.ui.ActionBar.e6 f34844e;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.sc;
+public final class d7 implements Utilities.Callback {
+    public final int f34822a;
+    public final n7 f34823b;
 
-    public d7(ci.d dVar, Utilities.Callback callback, org.telegram.ui.ActionBar.f3 f3Var, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        this.f34841a = i10;
-        this.f34842b = dVar;
-        this.f34843c = callback;
-        this.d = f3Var;
-        this.f34844e = e6Var;
+    public d7(n7 n7Var, int i10) {
+        this.f34822a = i10;
+        this.f34823b = n7Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f34841a) {
+    public final void run(Object obj) {
+        switch (this.f34822a) {
             case 0:
-                ci.d dVar = this.f34842b;
-                dVar.setLoading(true);
-                this.f34843c.run(new p3(dVar, this.d, this.f34844e, 1));
+                n7.c0(this.f34823b, (Utilities.Callback) obj);
                 return;
-            default:
-                ci.d dVar2 = this.f34842b;
-                if (!dVar2.N) {
-                    dVar2.setLoading(true);
-                    this.f34843c.run(new p3(this.d, this.f34844e, dVar2));
+            case 1:
+                String str = (String) obj;
+                n7 n7Var = this.f34823b;
+                if (str != null) {
+                    ad.a0(n7Var).e0(str, false);
                     return;
                 }
+                sc M = ad.a0(n7Var).M(LocaleController.getString(R.string.WalletBackupEnabled), LocaleController.getString(R.string.WalletBackupEnabledInfo), R.raw.contact_check);
+                M.f30711j = 5000;
+                M.j();
+                n7Var.f26922a.W2.N(true);
+                return;
+            default:
+                n7.a0(this.f34823b, (Boolean) obj);
                 return;
         }
     }

@@ -1,35 +1,153 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class o81 implements org.telegram.ui.ActionBar.a2 {
-    public final int f40474a;
-    public final SessionsActivity f40475b;
+import android.app.Activity;
+public final class o81 extends org.telegram.ui.ActionBar.j {
+    public final int f40446a;
+    public final Object f40447b;
 
-    public o81(SessionsActivity sessionsActivity, int i10) {
-        this.f40474a = i10;
-        this.f40475b = sessionsActivity;
+    public o81(Object obj, int i10) {
+        this.f40446a = i10;
+        this.f40447b = obj;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40474a) {
+    public final void b(int i10) {
+        int i11;
+        switch (this.f40446a) {
             case 0:
-                SessionsActivity sessionsActivity = this.f40475b;
-                sessionsActivity.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    sessionsActivity.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                if (i10 == -1) {
+                    ((SessionsActivity) this.f40447b).finishFragment();
                     return;
                 }
+                return;
+            case 1:
+                h91 h91Var = (h91) this.f40447b;
+                if (i10 == -1) {
+                    h91Var.finishFragment();
+                    return;
+                } else if (i10 == 2) {
+                    h91Var.l0(new org.telegram.ui.ActionBar.m2(null));
+                    return;
+                } else {
+                    return;
+                }
+            case 2:
+                if (i10 == -1) {
+                    ((ab1) this.f40447b).finishFragment();
+                    return;
+                }
+                return;
+            case 3:
+                StickersActivity stickersActivity = (StickersActivity) this.f40447b;
+                if (i10 == -1) {
+                    if (stickersActivity.onBackPressed(true)) {
+                        stickersActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                }
+                StickersActivity.d0(stickersActivity, i10);
+                return;
+            case 4:
+                be1 be1Var = (be1) this.f40447b;
+                if (i10 == -1) {
+                    be1Var.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    be1.Y(be1Var);
+                    return;
+                } else {
+                    return;
+                }
+            case 5:
+                if (i10 == -1) {
+                    ((te1) this.f40447b).finishFragment();
+                    return;
+                }
+                return;
+            case 6:
+                if (i10 == -1) {
+                    ((kg1) this.f40447b).finishFragment();
+                    return;
+                }
+                return;
+            case 7:
+                if (i10 == -1) {
+                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f40447b;
+                    if (twoStepVerificationActivity.X >= 0) {
+                        twoStepVerificationActivity.x0();
+                        return;
+                    } else {
+                        twoStepVerificationActivity.finishFragment();
+                        return;
+                    }
+                }
+                return;
+            case 8:
+                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f40447b;
+                if (i10 == -1) {
+                    if (userInfoActivity.onBackPressed(true)) {
+                        userInfoActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    userInfoActivity.c0(true);
+                    return;
+                } else {
+                    return;
+                }
+            case 9:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f40447b;
+                if (i10 == -1) {
+                    usersSelectActivity.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    usersSelectActivity.X();
+                    return;
+                } else {
+                    return;
+                }
+            case 10:
+                org.telegram.ui.Wallet.l8 l8Var = (org.telegram.ui.Wallet.l8) this.f40447b;
+                if (i10 == -1) {
+                    l8Var.finishFragment();
+                    return;
+                } else if (i10 == 2) {
+                    Activity parentActivity = l8Var.getParentActivity();
+                    i11 = ((org.telegram.ui.ActionBar.m2) l8Var).currentAccount;
+                    org.telegram.ui.Wallet.c5.u0(parentActivity, i11, l8Var.getResourceProvider());
+                    return;
+                } else if (i10 == 3) {
+                    l8Var.o0();
+                    return;
+                } else {
+                    return;
+                }
+            case 11:
+                if (i10 == -1) {
+                    ((rg.y0) this.f40447b).dismiss();
+                    return;
+                }
+                return;
+            case 12:
+                if (i10 == -1) {
+                    ((xh.i4) this.f40447b).finishFragment();
+                    return;
+                }
+                return;
+            case 13:
+                if (i10 == -1) {
+                    ((yh.g) this.f40447b).finishFragment();
+                    return;
+                }
+                return;
             default:
-                SessionsActivity.W(this.f40475b);
+                zg.q qVar = (zg.q) this.f40447b;
+                if (i10 == -1 && !qVar.X(true)) {
+                    qVar.finishFragment();
+                    return;
+                }
                 return;
         }
     }

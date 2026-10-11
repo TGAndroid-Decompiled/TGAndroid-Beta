@@ -1,26 +1,55 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.ClippingImageView;
-public final class ev0 {
-    public ImageReceiver f37400a;
-    public int f37401b;
-    public int f37402c;
-    public View d;
-    public ImageReceiver.BitmapHolder f37403e;
-    public long f37404f;
-    public long f37405g;
-    public int[] h;
-    public int f37406i;
-    public int f37407j;
-    public boolean f37409l;
-    public ClippingImageView f37410m;
-    public int f37411n;
-    public boolean f37413p;
-    public int f37414q;
-    public boolean f37415r;
-    public boolean f37416s;
-    public float f37408k = 1.0f;
-    public boolean f37412o = true;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ev0 extends org.telegram.ui.Components.a70 {
+    public final fv0 d;
+
+    public ev0(fv0 fv0Var) {
+        this.d = fv0Var;
+    }
+
+    @Override
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+        if (this.d.f37787s.Z7 > 0) {
+            sb2.append(", ");
+            sb2.append(this.d.f37787s.Y7 + 1);
+            sb2.append(" / ");
+            sb2.append(this.d.f37787s.Z7);
+        }
+        sb2.append(", ");
+        sb2.append(this.d.h);
+        sb2.append(" – ");
+        sb2.append(this.d.f37785n);
+        return sb2.toString();
+    }
+
+    @Override
+    public final int i() {
+        return Math.max(0, this.d.f37787s.Z7 - 1);
+    }
+
+    @Override
+    public final int j() {
+        return this.d.f37787s.Y7;
+    }
+
+    @Override
+    public final void k(int i10) {
+        int max;
+        if (this.d.f37787s.Z7 > 0 && (max = Math.max(0, Math.min(this.d.f37787s.Z7 - 1, i10))) != this.d.f37787s.Y7) {
+            fv0 fv0Var = this.d;
+            fv0Var.f37786r = fv0Var.f37787s.Y7;
+            this.d.f37787s.Y7 = max;
+            this.d.f37787s.R0();
+            this.d.invalidate();
+            int i11 = this.d.f37787s.Y7;
+            fv0 fv0Var2 = this.d;
+            if (i11 != fv0Var2.f37786r) {
+                fv0Var2.f37787s.p2(1);
+            }
+        }
+    }
 }

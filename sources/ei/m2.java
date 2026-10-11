@@ -4,21 +4,21 @@ import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.q80;
 import org.telegram.ui.PhotoViewer;
 public final class m2 implements Runnable {
-    public final int f9215a;
-    public final q80 f9216b;
-    public final q80 f9217c;
+    public final int f9214a;
+    public final q80 f9215b;
+    public final q80 f9216c;
 
     public m2(q80 q80Var, q80 q80Var2, int i10) {
-        this.f9215a = i10;
-        this.f9216b = q80Var;
-        this.f9217c = q80Var2;
+        this.f9214a = i10;
+        this.f9215b = q80Var;
+        this.f9216c = q80Var2;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f9215a;
-        q80 q80Var = this.f9217c;
-        q80 q80Var2 = this.f9216b;
+        int i10 = this.f9214a;
+        q80 q80Var = this.f9216c;
+        q80 q80Var2 = this.f9215b;
         switch (i10) {
             case 0:
                 q80Var2.K(q80Var);

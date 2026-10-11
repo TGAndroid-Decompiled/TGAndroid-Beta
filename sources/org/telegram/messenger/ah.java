@@ -1,22 +1,9 @@
 package org.telegram.messenger;
 
-import android.media.SoundPool;
-public final class ah implements SoundPool.OnLoadCompleteListener {
-    public final int f17356a;
-
-    public ah(int i10) {
-        this.f17356a = i10;
-    }
-
+import android.graphics.ImageDecoder;
+public final class ah implements ImageDecoder.OnHeaderDecodedListener {
     @Override
-    public final void onLoadComplete(SoundPool soundPool, int i10, int i11) {
-        switch (this.f17356a) {
-            case 0:
-                NotificationsController.I(soundPool, i10, i11);
-                return;
-            default:
-                NotificationsController.j(soundPool, i10, i11);
-                return;
-        }
+    public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
+        NotificationsController.lambda$loadRoundAvatar$48(imageDecoder, imageInfo, source);
     }
 }

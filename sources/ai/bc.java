@@ -37,14 +37,14 @@ public final class bc implements y5 {
     public final void b(boolean z10) {
         int i10;
         kc kcVar = this.d;
-        org.telegram.ui.ActionBar.n2 n2Var = kcVar.f1267f;
+        org.telegram.ui.ActionBar.m2 m2Var = kcVar.f1267f;
         if (kcVar.f1256b) {
             if (!kcVar.f1259c) {
                 if (z10) {
-                    AndroidUtilities.requestAdjustNothing(n2Var.getParentActivity(), n2Var.getClassGuid());
+                    AndroidUtilities.requestAdjustNothing(m2Var.getParentActivity(), m2Var.getClassGuid());
                     return;
                 } else {
-                    AndroidUtilities.requestAdjustResize(n2Var.getParentActivity(), n2Var.getClassGuid());
+                    AndroidUtilities.requestAdjustResize(m2Var.getParentActivity(), m2Var.getClassGuid());
                     return;
                 }
             }

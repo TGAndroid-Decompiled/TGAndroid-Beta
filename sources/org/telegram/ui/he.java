@@ -1,22 +1,135 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class he {
-    public String f38338b;
-    public CharSequence f38339c;
-    public long d;
-    public long f38340e;
-    public String f38341f;
-    public boolean f38342g;
-    public String h;
-    public long f38344j;
-    public boolean f38337a = true;
-    public TL_stars.StarsAmount f38343i = TL_stars.StarsAmount.ofStars(0);
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.RelativeSizeSpan;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.LocaleController;
+public final class he extends LinearLayout {
+    public final LinearLayout f38385a;
+    public final LinearLayout[] f38386b;
+    public final org.telegram.ui.Components.a6[] f38387c;
+    public final TextView[] d;
+    public final TextView f38388e;
+    public final DecimalFormat f38389f;
 
-    public static he a(String str, String str2) {
-        he heVar = new he();
-        heVar.f38338b = str;
-        heVar.f38339c = str2;
-        return heVar;
+    public he(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f38386b = new LinearLayout[2];
+        this.f38387c = new org.telegram.ui.Components.a6[2];
+        this.d = new TextView[2];
+        setOrientation(1);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f38385a = linearLayout;
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.x5.k(22.0f, 9.0f, 22.0f, 0.0f, -1, -2));
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f38386b[i10] = new LinearLayout(context);
+            this.f38386b[i10].setOrientation(0);
+            this.f38385a.addView(this.f38386b[i10], w7.x5.o(-1, -2, 1.0f, 119));
+            this.f38387c[i10] = new org.telegram.ui.Components.a6(context);
+            this.f38387c[i10].setTypeface(AndroidUtilities.bold());
+            this.f38387c[i10].setTextSize(1, 16.0f);
+            this.f38387c[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+            this.f38386b[i10].addView(this.f38387c[i10], w7.x5.t(-2, -2, 80, 0, 0, 5, 0));
+            this.d[i10] = new org.telegram.ui.Components.a6(context);
+            this.d[i10].setTextSize(1, 11.5f);
+            this.d[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21171y6, d6Var));
+            this.f38386b[i10].addView(this.d[i10], w7.x5.q(-2, -2, 80));
+        }
+        TextView textView = new TextView(context);
+        this.f38388e = textView;
+        textView.setTextSize(1, 13.0f);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21171y6, d6Var));
+        addView(textView, w7.x5.t(-1, -2, 55, 22, 5, 22, 9));
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+        decimalFormatSymbols.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+        this.f38389f = decimalFormat;
+        decimalFormat.setMinimumFractionDigits(2);
+        decimalFormat.setMaximumFractionDigits(12);
+        decimalFormat.setGroupingUsed(false);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    public void set(ge geVar) {
+        String str;
+        long j3;
+        int i10;
+        SpannableStringBuilder spannableStringBuilder;
+        int indexOf;
+        this.f38388e.setText(geVar.f38053c);
+        int i11 = 0;
+        while (i11 < 2) {
+            if (i11 == 0) {
+                str = geVar.f38052b;
+            } else {
+                str = geVar.h;
+            }
+            if (i11 == 0) {
+                j3 = geVar.f38054e;
+            } else {
+                j3 = geVar.f38058j;
+            }
+            LinearLayout[] linearLayoutArr = this.f38386b;
+            if (i11 == 0 && !geVar.f38051a) {
+                linearLayoutArr[i11].setVisibility(8);
+            } else if (i11 == 1 && !geVar.f38056g) {
+                linearLayoutArr[i11].setVisibility(8);
+            } else {
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(sc.v.v(str, " "));
+                boolean equalsIgnoreCase = "TON".equalsIgnoreCase(str);
+                TextView[] textViewArr = this.f38387c;
+                if (equalsIgnoreCase) {
+                    String format = this.f38389f.format(geVar.d / 1.0E9d);
+                    int indexOf2 = format.indexOf(46);
+                    if (indexOf2 >= 0) {
+                        i10 = i11;
+                        spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber((long) Math.floor(geVar.d / 1.0E9d), ' '));
+                        spannableStringBuilder2.append((CharSequence) format.substring(indexOf2));
+                    } else {
+                        i10 = i11;
+                        spannableStringBuilder2.append((CharSequence) format);
+                    }
+                    spannableStringBuilder = je.f0(spannableStringBuilder2, textViewArr[i10].getPaint(), 1.05f, 0.0f, true);
+                } else {
+                    i10 = i11;
+                    if ("XTR".equalsIgnoreCase(str)) {
+                        if (i10 == 0) {
+                            spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber(geVar.d, ' '));
+                        } else {
+                            spannableStringBuilder2.append((CharSequence) yh.p7.K0(geVar.f38057i, 0.8f, ' '));
+                        }
+                        spannableStringBuilder = yh.p7.Y0(false, spannableStringBuilder2, 0.7f, null);
+                    } else {
+                        spannableStringBuilder2.append((CharSequence) Long.toString(geVar.d));
+                        spannableStringBuilder = spannableStringBuilder2;
+                    }
+                }
+                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(spannableStringBuilder);
+                if ("TON".equalsIgnoreCase(str) && (indexOf = TextUtils.indexOf(spannableStringBuilder3, ".")) >= 0) {
+                    spannableStringBuilder3.setSpan(new RelativeSizeSpan(0.8125f), indexOf, spannableStringBuilder3.length(), 33);
+                }
+                linearLayoutArr[i10].setVisibility(0);
+                textViewArr[i10].setText(spannableStringBuilder3);
+                TextView textView = this.d[i10];
+                textView.setText("≈" + BillingController.getInstance().formatCurrency(j3, geVar.f38055f));
+                i11 = i10 + 1;
+            }
+            i10 = i11;
+            i11 = i10 + 1;
+        }
     }
 }

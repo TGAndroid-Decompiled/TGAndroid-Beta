@@ -8,8 +8,8 @@ import org.telegram.messenger.R;
 public final class rl extends gg.t0 {
     public final xl N;
 
-    public rl(xl xlVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(context, e6Var, z10, false);
+    public rl(xl xlVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        super(context, d6Var, z10, false);
         this.N = xlVar;
     }
 
@@ -17,13 +17,13 @@ public final class rl extends gg.t0 {
     public final void l() {
         xl xlVar = this.N;
         rl rlVar = xlVar.R;
-        org.telegram.ui.ActionBar.v0 v0Var = xlVar.E;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(rlVar.J);
+        org.telegram.ui.ActionBar.u0 u0Var = xlVar.E;
+        if (u0Var != null) {
+            u0Var.setShowSearchProgress(rlVar.J);
         }
-        TextView textView = xlVar.f32986y;
+        TextView textView = xlVar.f32976y;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, rlVar.f10555x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, rlVar.f10554x)));
         }
         super.l();
     }

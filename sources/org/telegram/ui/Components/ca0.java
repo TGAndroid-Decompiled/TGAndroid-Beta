@@ -10,12 +10,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class ca0 {
-    public View f25253a;
-    public org.telegram.ui.Cells.b1 f25254b;
-    public final ArrayList f25255c = new ArrayList();
+    public View f25170a;
+    public org.telegram.ui.Cells.b1 f25171b;
+    public final ArrayList f25172c = new ArrayList();
     public int d = 0;
-    public final ArrayList f25256e = new ArrayList();
-    public int f25257f = 0;
+    public final ArrayList f25173e = new ArrayList();
+    public int f25174f = 0;
 
     public ca0() {
     }
@@ -29,7 +29,7 @@ public final class ca0 {
             z90Var.d(layout, spanStart, f7);
             layout.getSelectionPath(spanStart, spanEnd, z90Var);
             ja0 ja0Var = new ja0();
-            ja0Var.f27652y = z90Var;
+            ja0Var.f27660y = z90Var;
             ja0Var.D = true;
             ja0Var.k(4.0f);
             ja0Var.l();
@@ -39,14 +39,14 @@ public final class ca0 {
     }
 
     public final void a(ga0 ga0Var, Object obj) {
-        this.f25255c.add(new Pair(ga0Var, obj));
+        this.f25172c.add(new Pair(ga0Var, obj));
         this.d++;
         h(obj, true);
     }
 
     public final void b(ja0 ja0Var, Object obj) {
-        this.f25256e.add(new Pair(ja0Var, obj));
-        this.f25257f++;
+        this.f25173e.add(new Pair(ja0Var, obj));
+        this.f25174f++;
         h(obj, true);
     }
 
@@ -63,7 +63,7 @@ public final class ca0 {
             int i11 = 0;
             while (true) {
                 int i12 = this.d;
-                ArrayList arrayList = this.f25255c;
+                ArrayList arrayList = this.f25172c;
                 if (i11 < i12) {
                     ((ga0) ((Pair) arrayList.get(i11)).first).c();
                     h(((Pair) arrayList.get(i11)).second, false);
@@ -79,7 +79,7 @@ public final class ca0 {
     }
 
     public final void e() {
-        for (int i10 = 0; i10 < this.f25257f; i10++) {
+        for (int i10 = 0; i10 < this.f25174f; i10++) {
             m(i10, true);
         }
     }
@@ -87,13 +87,13 @@ public final class ca0 {
     public final boolean f(Canvas canvas) {
         int i10 = 0;
         boolean z10 = false;
-        while (i10 < this.f25257f) {
-            ((ja0) ((Pair) this.f25256e.get(i10)).first).draw(canvas);
+        while (i10 < this.f25174f) {
+            ((ja0) ((Pair) this.f25173e.get(i10)).first).draw(canvas);
             i10++;
             z10 = true;
         }
         for (int i11 = 0; i11 < this.d; i11++) {
-            if (!((ga0) ((Pair) this.f25255c.get(i11)).first).a(canvas) && !z10) {
+            if (!((ga0) ((Pair) this.f25172c.get(i11)).first).a(canvas) && !z10) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -104,15 +104,15 @@ public final class ca0 {
 
     public final boolean g(Canvas canvas, Object obj) {
         boolean z10 = false;
-        for (int i10 = 0; i10 < this.f25257f; i10++) {
-            ArrayList arrayList = this.f25256e;
+        for (int i10 = 0; i10 < this.f25174f; i10++) {
+            ArrayList arrayList = this.f25173e;
             if (((Pair) arrayList.get(i10)).second == obj) {
                 ((ja0) ((Pair) arrayList.get(i10)).first).draw(canvas);
                 z10 = true;
             }
         }
         for (int i11 = 0; i11 < this.d; i11++) {
-            ArrayList arrayList2 = this.f25255c;
+            ArrayList arrayList2 = this.f25172c;
             if (((Pair) arrayList2.get(i11)).second == obj) {
                 if (!((ga0) ((Pair) arrayList2.get(i11)).first).a(canvas) && !z10) {
                     z10 = false;
@@ -130,15 +130,15 @@ public final class ca0 {
         View view2;
         if (obj instanceof View) {
             ((View) obj).invalidate();
-        } else if (obj instanceof org.telegram.ui.b3) {
-            org.telegram.ui.b3 b3Var = (org.telegram.ui.b3) obj;
-            if (!b3Var.f36156c && (view2 = b3Var.f36155b) != null) {
+        } else if (obj instanceof org.telegram.ui.a3) {
+            org.telegram.ui.a3 a3Var = (org.telegram.ui.a3) obj;
+            if (!a3Var.f35857c && (view2 = a3Var.f35856b) != null) {
                 view2.invalidate();
             }
-        } else if (z10 && (view = this.f25253a) != null) {
+        } else if (z10 && (view = this.f25170a) != null) {
             view.invalidate();
         }
-        org.telegram.ui.Cells.b1 b1Var = this.f25254b;
+        org.telegram.ui.Cells.b1 b1Var = this.f25171b;
         if (b1Var != null) {
             b1Var.run();
         }
@@ -146,12 +146,12 @@ public final class ca0 {
 
     public final void j(int i10) {
         if (i10 >= 0 && i10 < this.d) {
-            Pair pair = (Pair) this.f25255c.get(i10);
+            Pair pair = (Pair) this.f25172c.get(i10);
             ga0 ga0Var = (ga0) pair.first;
-            if (ga0Var.f26680p < 0) {
-                ga0Var.f26680p = Math.max(ga0Var.f26679o + ga0Var.f26681q, SystemClock.elapsedRealtime());
+            if (ga0Var.f26669p < 0) {
+                ga0Var.f26669p = Math.max(ga0Var.f26668o + ga0Var.f26670q, SystemClock.elapsedRealtime());
                 h(pair.second, true);
-                AndroidUtilities.runOnUIThread(new ba0(this, ga0Var, 1), Math.max(0L, (ga0Var.f26680p - SystemClock.elapsedRealtime()) + 175));
+                AndroidUtilities.runOnUIThread(new ba0(this, ga0Var, 1), Math.max(0L, (ga0Var.f26669p - SystemClock.elapsedRealtime()) + 175));
             }
         }
     }
@@ -163,7 +163,7 @@ public final class ca0 {
             int i10 = 0;
             while (true) {
                 int i11 = this.d;
-                arrayList = this.f25255c;
+                arrayList = this.f25172c;
                 if (i10 < i11) {
                     if (((Pair) arrayList.get(i10)).first == ga0Var) {
                         pair = (Pair) arrayList.get(i10);
@@ -177,10 +177,10 @@ public final class ca0 {
             }
             if (pair != null) {
                 if (z10) {
-                    if (ga0Var.f26680p < 0) {
-                        ga0Var.f26680p = Math.max(ga0Var.f26679o + ga0Var.f26681q, SystemClock.elapsedRealtime());
+                    if (ga0Var.f26669p < 0) {
+                        ga0Var.f26669p = Math.max(ga0Var.f26668o + ga0Var.f26670q, SystemClock.elapsedRealtime());
                         h(pair.second, true);
-                        AndroidUtilities.runOnUIThread(new ba0(this, ga0Var, 0), Math.max(0L, (ga0Var.f26680p - SystemClock.elapsedRealtime()) + 175));
+                        AndroidUtilities.runOnUIThread(new ba0(this, ga0Var, 0), Math.max(0L, (ga0Var.f26669p - SystemClock.elapsedRealtime()) + 175));
                         return;
                     }
                     return;
@@ -195,8 +195,8 @@ public final class ca0 {
 
     public final void l(ja0 ja0Var, boolean z10) {
         if (ja0Var != null) {
-            for (int i10 = 0; i10 < this.f25257f; i10++) {
-                if (((Pair) this.f25256e.get(i10)).first == ja0Var) {
+            for (int i10 = 0; i10 < this.f25174f; i10++) {
+                if (((Pair) this.f25173e.get(i10)).first == ja0Var) {
                     m(i10, z10);
                     return;
                 }
@@ -205,8 +205,8 @@ public final class ca0 {
     }
 
     public final void m(int i10, boolean z10) {
-        if (i10 >= 0 && i10 < this.f25257f) {
-            ArrayList arrayList = this.f25256e;
+        if (i10 >= 0 && i10 < this.f25174f) {
+            ArrayList arrayList = this.f25173e;
             Pair pair = (Pair) arrayList.get(i10);
             if (pair != null) {
                 ja0 ja0Var = (ja0) pair.first;
@@ -215,27 +215,27 @@ public final class ca0 {
                         if (!ja0Var.d()) {
                             ja0Var.a();
                         }
-                        as asVar = new as(26, this, ja0Var);
+                        bs bsVar = new bs(25, this, ja0Var);
                         long j3 = 0;
-                        if (ja0Var.f27633c > 0) {
-                            j3 = 320 - (SystemClock.elapsedRealtime() - ja0Var.f27633c);
+                        if (ja0Var.f27641c > 0) {
+                            j3 = 320 - (SystemClock.elapsedRealtime() - ja0Var.f27641c);
                         }
-                        AndroidUtilities.runOnUIThread(asVar, j3);
+                        AndroidUtilities.runOnUIThread(bsVar, j3);
                         return;
                     }
                     l(ja0Var, false);
                     return;
                 }
                 arrayList.remove(pair);
-                ja0Var.f27632b = -1L;
-                ja0Var.f27633c = -1L;
-                this.f25257f = arrayList.size();
+                ja0Var.f27640b = -1L;
+                ja0Var.f27641c = -1L;
+                this.f25174f = arrayList.size();
                 h(pair.second, true);
             }
         }
     }
 
     public ca0(View view) {
-        this.f25253a = view;
+        this.f25170a = view;
     }
 }

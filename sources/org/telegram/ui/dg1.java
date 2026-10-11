@@ -1,298 +1,117 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public abstract class dg1 extends org.telegram.ui.Components.la {
-    public static final int f37005f3 = 0;
-    public boolean f37006b3;
-    public boolean f37007c3;
-    public float f37008d3;
-    public final fg1 f37009e3;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.TopicsController;
+import org.telegram.tgnet.TLRPC;
+public final class dg1 extends s4.w {
+    public boolean d;
+    public final eg1 f37009e;
 
-    public dg1(fg1 fg1Var, Context context) {
-        super(context, null);
-        this.f37009e3 = fg1Var;
-        this.f37006b3 = true;
-        new Paint();
-        new RectF();
-        this.f30495f1 = true;
-        this.Z2 = AndroidUtilities.dp(200.0f);
+    public dg1(eg1 eg1Var) {
+        this.f37009e = eg1Var;
     }
 
-    public final void A1(boolean z10, org.telegram.ui.Cells.s2 s2Var) {
-        fg1 fg1Var = this.f37009e3;
-        fg1Var.E = z10;
-        int i10 = 2;
-        boolean z11 = true;
-        if (!z10) {
-            if (s2Var != null) {
-                fg1Var.F.h1(1, 0);
-                if (fg1Var.E) {
-                    i10 = 0;
-                }
-                fg1Var.f37647y = i10;
-                zw zwVar = fg1Var.f37643w;
-                if (zwVar != null) {
-                    if (i10 == 0) {
-                        z11 = false;
+    @Override
+    public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
+        super.a(recyclerView, d1Var);
+        d1Var.f47748a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
+        int l4 = s4.w.l(0, 0);
+        int b10 = d1Var.b();
+        if (b10 >= 0) {
+            eg1 eg1Var = this.f37009e;
+            if (b10 < eg1Var.f37314b.size() && ((vf1) eg1Var.f37314b.get(b10)).f43006c != null && ChatObject.canManageTopics(eg1Var.g())) {
+                TLRPC.TL_forumTopic tL_forumTopic = ((vf1) eg1Var.f37314b.get(b10)).f43006c;
+                if (eg1Var.f37312a0.isEmpty()) {
+                    View view = d1Var.f47748a;
+                    if ((view instanceof bg1) && tL_forumTopic.f20084id == 1) {
+                        this.d = true;
+                        ((bg1) view).setSliding(true);
+                        return s4.w.l(0, 4);
                     }
-                    zwVar.X = z11;
                 }
-            }
-        } else {
-            fg1Var.F.h1(0, 0);
-            if (fg1Var.E) {
-                i10 = 0;
-            }
-            fg1Var.f37647y = i10;
-            zw zwVar2 = fg1Var.f37643w;
-            if (zwVar2 != null) {
-                if (i10 == 0) {
-                    z11 = false;
+                if (!tL_forumTopic.pinned) {
+                    return l4;
                 }
-                zwVar2.X = z11;
-            }
-            if (s2Var != null) {
-                s2Var.U();
-                s2Var.invalidate();
+                return s4.w.l(3, 0);
             }
         }
-        tf1 tf1Var = fg1Var.E0;
-        if (tf1Var != null) {
-            tf1Var.forceLayout();
-        }
+        return l4;
     }
 
     @Override
-    public final boolean F0(View view) {
-        if ((view instanceof org.telegram.ui.Cells.m4) && !view.isClickable()) {
-            return false;
-        }
-        return true;
+    public final boolean k() {
+        return !this.f37009e.f37312a0.isEmpty();
     }
 
     @Override
-    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        super.addView(view, i10, layoutParams);
-        view.setTranslationY(this.f37008d3);
-        view.setTranslationX(0.0f);
-        view.setAlpha(1.0f);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        fg1 fg1Var = this.f37009e3;
-        if (fg1Var.f37607b1 != null) {
-            canvas.save();
-            canvas.translate(fg1Var.f37607b1.getLeft(), fg1Var.f37607b1.getY());
-            fg1Var.f37607b1.draw(canvas);
-            canvas.restore();
-        }
-        super.dispatchDraw(canvas);
-        z1();
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        z1();
-        if (this.f37009e3.f37607b1 == view) {
+    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
+        int b10;
+        eg1 eg1Var = this.f37009e;
+        ArrayList arrayList = eg1Var.f37314b;
+        if (d1Var.f47752f == d1Var2.f47752f && (b10 = d1Var2.b()) >= 0 && b10 < arrayList.size() && ((vf1) arrayList.get(b10)).f43006c != null && ((vf1) arrayList.get(b10)).f43006c.pinned) {
+            tf1 tf1Var = eg1Var.f37345r;
+            int b11 = d1Var.b();
+            int b12 = d1Var2.b();
+            eg1 eg1Var2 = tf1Var.d;
+            ArrayList arrayList2 = eg1Var2.f37314b;
+            arrayList2.add(b12, (vf1) arrayList2.remove(b11));
+            s4.n0 itemAnimator = eg1Var2.N.getItemAnimator();
+            rf1 rf1Var = eg1Var2.I0;
+            if (itemAnimator != rf1Var) {
+                eg1Var2.N.setItemAnimator(rf1Var);
+            }
+            tf1Var.p(b11, b12);
             return true;
         }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        fg1 fg1Var = this.f37009e3;
-        if (fg1Var.f37643w != null && this.f37008d3 != 0.0f) {
-            int paddingTop = getPaddingTop();
-            if (paddingTop != 0) {
-                canvas.save();
-                canvas.translate(0.0f, paddingTop);
-            }
-            fg1Var.f37643w.c(canvas, true);
-            if (paddingTop != 0) {
-                canvas.restore();
-            }
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (!this.V1) {
-            HashSet hashSet = fg1.f37601n1;
-            fg1 fg1Var = this.f37009e3;
-            if (fg1Var.getParentLayout() == null || !((ActionBarLayout) fg1Var.getParentLayout()).y()) {
-                if (motionEvent.getAction() == 0) {
-                    kVar = ((org.telegram.ui.ActionBar.n2) fg1Var).actionBar;
-                    kVar.getClass();
-                    s4.i0 adapter = getAdapter();
-                    if (fg1Var.f37608c != adapter.h()) {
-                        this.f37007c3 = true;
-                        adapter.l();
-                        this.f37007c3 = false;
-                    }
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-        }
         return false;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        HashSet hashSet = fg1.f37601n1;
-        fg1 fg1Var = this.f37009e3;
-        fg1Var.getClass();
-        fg1Var.getClass();
-        fg1Var.getClass();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (this.f37006b3) {
-            fg1 fg1Var = this.f37009e3;
-            if (fg1Var.getMessagesController().dialogsLoaded) {
-                if (fg1Var.f37645x > 0) {
-                    this.f37007c3 = true;
-                    kVar = ((org.telegram.ui.ActionBar.n2) fg1Var).actionBar;
-                    ((s4.d0) getLayoutManager()).h1(1, (int) kVar.getTranslationY());
-                    this.f37007c3 = false;
+    public final void p(s4.d1 d1Var, int i10) {
+        eg1 eg1Var = this.f37009e;
+        if (i10 == 0) {
+            ArrayList arrayList = eg1Var.f37314b;
+            ArrayList<Integer> arrayList2 = new ArrayList<>();
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                TLRPC.TL_forumTopic tL_forumTopic = ((vf1) arrayList.get(i11)).f43006c;
+                if (tL_forumTopic != null && tL_forumTopic.pinned) {
+                    arrayList2.add(Integer.valueOf(tL_forumTopic.f20084id));
                 }
-                this.f37006b3 = false;
             }
-        }
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        s4.d0 d0Var;
-        int L0;
-        float f7;
-        if (!this.V1) {
-            HashSet hashSet = fg1.f37601n1;
-            fg1 fg1Var = this.f37009e3;
-            if (fg1Var.getParentLayout() == null || !((ActionBarLayout) fg1Var.getParentLayout()).y()) {
-                int action = motionEvent.getAction();
-                if (action == 0) {
-                    setOverScrollMode(0);
-                }
-                if (action == 1 || action == 3) {
-                    jf1 jf1Var = fg1Var.O;
-                    if (jf1Var.f47870y != 0 && fg1Var.P.d && jf1Var.g(null, 4) != 0) {
-                        fg1Var.P.getClass();
-                    }
-                }
-                boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if ((action == 1 || action == 3) && fg1Var.f37647y == 2 && fg1Var.f37645x > 0 && (L0 = (d0Var = (s4.d0) getLayoutManager()).L0()) == 0) {
-                    int paddingTop = getPaddingTop();
-                    View m10 = d0Var.m(L0);
-                    if (SharedConfig.useThreeLinesLayout) {
-                        f7 = 78.0f;
-                    } else {
-                        f7 = 72.0f;
-                    }
-                    int dp = (int) (AndroidUtilities.dp(f7) * 0.85f);
-                    int measuredHeight = m10.getMeasuredHeight() + (m10.getTop() - paddingTop);
-                    long currentTimeMillis = System.currentTimeMillis() - fg1Var.Y;
-                    if (measuredHeight >= dp && currentTimeMillis >= 200) {
-                        if (fg1Var.f37647y != 1) {
-                            if (this.f37008d3 == 0.0f) {
-                                v0(0, m10.getTop() - paddingTop, org.telegram.ui.Components.is.h);
-                            }
-                            if (!fg1Var.Z) {
-                                fg1Var.Z = true;
-                                try {
-                                    performHapticFeedback(3, 2);
-                                } catch (Exception unused) {
-                                }
-                                zw zwVar = fg1Var.f37643w;
-                                if (zwVar != null) {
-                                    zwVar.a(true);
-                                }
-                            }
-                            ((org.telegram.ui.Cells.s2) m10).a0();
-                            fg1Var.f37647y = 1;
-                        }
-                    } else {
-                        v0(0, measuredHeight, org.telegram.ui.Components.is.h);
-                        fg1Var.f37647y = 2;
-                    }
-                    float f10 = this.f37008d3;
-                    if (f10 != 0.0f) {
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                        ofFloat.addUpdateListener(new y11(this, 19));
-                        ofFloat.setDuration(Math.max(100L, org.telegram.messenger.bi.b(this.f37008d3, AndroidUtilities.dp(72.0f), 120.0f, 350.0f)));
-                        ofFloat.setInterpolator(org.telegram.ui.Components.is.h);
-                        setScrollEnabled(false);
-                        ofFloat.addListener(new ep0(this, 25));
-                        ofFloat.start();
-                    }
-                }
-                return onTouchEvent;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void removeView(View view) {
-        super.removeView(view);
-        view.setTranslationY(0.0f);
-        view.setTranslationX(0.0f);
-        view.setAlpha(1.0f);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f37007c3) {
+            eg1Var.getMessagesController().getTopicsController().reorderPinnedTopics(eg1Var.f37311a, arrayList2);
             return;
         }
-        super.requestLayout();
+        eg1Var.N.I0(false);
+        d1Var.f47748a.setPressed(true);
     }
 
     @Override
-    public final void setAdapter(s4.i0 i0Var) {
-        super.setAdapter(i0Var);
-        this.f37006b3 = true;
-    }
-
-    public final void setViewsOffset(float f7) {
-        View m10;
-        this.f37008d3 = f7;
-        int childCount = getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            getChildAt(i10).setTranslationY(f7);
-        }
-        if (this.C1 != -1 && (m10 = getLayoutManager().m(this.C1)) != null) {
-            int right = m10.getRight();
-            int bottom = (int) (m10.getBottom() + f7);
-            Rect rect = this.E1;
-            rect.set(m10.getLeft(), (int) (m10.getTop() + f7), right, bottom);
-            this.B1.setBounds(rect);
-        }
-        invalidate();
-    }
-
-    public final void z1() {
-        if (getItemAnimator() != null && getItemAnimator().k()) {
-            HashSet hashSet = fg1.f37601n1;
+    public final void q(s4.d1 d1Var) {
+        if (d1Var != null) {
+            bg1 bg1Var = (bg1) d1Var.f47748a;
+            TLRPC.TL_forumTopic tL_forumTopic = bg1Var.N;
+            eg1 eg1Var = this.f37009e;
+            if (tL_forumTopic != null) {
+                TopicsController topicsController = eg1Var.getMessagesController().getTopicsController();
+                long j3 = eg1Var.f37311a;
+                TLRPC.TL_forumTopic tL_forumTopic2 = bg1Var.N;
+                topicsController.toggleShowTopic(j3, tL_forumTopic2.f20084id, tL_forumTopic2.hidden);
+            }
+            eg1Var.f37316b1 = bg1Var;
+            int i10 = cg1.f36697f3;
+            eg1Var.N.A1(!bg1Var.N.hidden, bg1Var);
+            eg1Var.U0(true, true);
+            TLRPC.TL_forumTopic tL_forumTopic3 = bg1Var.f36376c5;
+            if (tL_forumTopic3 != null) {
+                bg1Var.setTopicIcon(tL_forumTopic3);
+            }
         }
     }
 }
