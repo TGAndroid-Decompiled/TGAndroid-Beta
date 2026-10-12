@@ -11,26 +11,26 @@ import android.util.Log;
 import com.google.android.gms.tasks.Task;
 import java.util.concurrent.TimeUnit;
 public abstract class a {
-    public static final long f49551a = TimeUnit.MINUTES.toMillis(10);
-    public static final long f49552b = SystemClock.elapsedRealtime();
-    public static final int f49553c = 0;
+    public static final long f49658a = TimeUnit.MINUTES.toMillis(10);
+    public static final long f49659b = SystemClock.elapsedRealtime();
+    public static final int f49660c = 0;
 
     public static void a(Task task, Activity activity) {
         ?? obj = new Object();
-        int incrementAndGet = u.f49625f.incrementAndGet();
-        obj.f49626a = incrementAndGet;
-        u.f49624e.put(incrementAndGet, obj);
-        u.d.postDelayed(obj, f49551a);
+        int incrementAndGet = u.f49732f.incrementAndGet();
+        obj.f49733a = incrementAndGet;
+        u.f49731e.put(incrementAndGet, obj);
+        u.d.postDelayed(obj, f49658a);
         task.addOnCompleteListener(obj);
         FragmentTransaction beginTransaction = activity.getFragmentManager().beginTransaction();
-        int i10 = obj.f49626a;
+        int i10 = obj.f49733a;
         Bundle bundle = new Bundle();
         bundle.putInt("resolveCallId", i10);
         bundle.putInt("requestCode", 991);
-        bundle.putLong("initializationElapsedRealtime", f49552b);
+        bundle.putLong("initializationElapsedRealtime", f49659b);
         Fragment fragment = new Fragment();
         fragment.setArguments(bundle);
-        int i11 = obj.f49626a;
+        int i11 = obj.f49733a;
         StringBuilder sb2 = new StringBuilder(58);
         sb2.append("com.google.android.gms.wallet.AutoResolveHelper");
         sb2.append(i11);

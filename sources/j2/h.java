@@ -10,38 +10,38 @@ import java.util.Random;
 import u2.f0;
 public final class h {
     public static final s h = new s(4);
-    public static final Random f13702i = new Random();
+    public static final Random f13700i = new Random();
     public i d;
-    public String f13707f;
-    public final j1 f13703a = new j1();
-    public final h1 f13704b = new h1();
-    public final HashMap f13705c = new HashMap();
-    public k1 f13706e = k1.f3404a;
-    public long f13708g = -1;
+    public String f13705f;
+    public final j1 f13701a = new j1();
+    public final h1 f13702b = new h1();
+    public final HashMap f13703c = new HashMap();
+    public k1 f13704e = k1.f3402a;
+    public long f13706g = -1;
 
     public final void a(g gVar) {
-        long j3 = gVar.f13698c;
+        long j3 = gVar.f13696c;
         if (j3 != -1) {
-            this.f13708g = j3;
+            this.f13706g = j3;
         }
-        this.f13707f = null;
+        this.f13705f = null;
     }
 
     public final synchronized void b(a aVar) {
         i iVar;
         try {
-            String str = this.f13707f;
+            String str = this.f13705f;
             if (str != null) {
-                g gVar = (g) this.f13705c.get(str);
+                g gVar = (g) this.f13703c.get(str);
                 gVar.getClass();
                 a(gVar);
             }
-            Iterator it = this.f13705c.values().iterator();
+            Iterator it = this.f13703c.values().iterator();
             while (it.hasNext()) {
                 g gVar2 = (g) it.next();
                 it.remove();
-                if (gVar2.f13699e && (iVar = this.d) != null) {
-                    iVar.t(aVar, gVar2.f13696a);
+                if (gVar2.f13697e && (iVar = this.d) != null) {
+                    iVar.t(aVar, gVar2.f13694a);
                 }
             }
         } catch (Throwable th2) {
@@ -54,18 +54,18 @@ public final class h {
     }
 
     public final synchronized String d(k1 k1Var, f0 f0Var) {
-        return c(k1Var.g(f0Var.f48674a, this.f13704b).f3329c, f0Var).f13696a;
+        return c(k1Var.g(f0Var.f48781a, this.f13702b).f3327c, f0Var).f13694a;
     }
 
     public final void e(a aVar) {
         f0 f0Var;
-        k1 k1Var = aVar.f13677b;
-        int i10 = aVar.f13678c;
+        k1 k1Var = aVar.f13675b;
+        int i10 = aVar.f13676c;
         f0 f0Var2 = aVar.d;
         boolean p5 = k1Var.p();
-        HashMap hashMap = this.f13705c;
+        HashMap hashMap = this.f13703c;
         if (p5) {
-            String str = this.f13707f;
+            String str = this.f13705f;
             if (str != null) {
                 g gVar = (g) hashMap.get(str);
                 gVar.getClass();
@@ -74,14 +74,14 @@ public final class h {
             }
             return;
         }
-        g gVar2 = (g) hashMap.get(this.f13707f);
-        this.f13707f = c(i10, f0Var2).f13696a;
+        g gVar2 = (g) hashMap.get(this.f13705f);
+        this.f13705f = c(i10, f0Var2).f13694a;
         f(aVar);
         if (f0Var2 != null) {
             long j3 = f0Var2.d;
             if (f0Var2.b()) {
-                if (gVar2 == null || gVar2.f13698c != j3 || (f0Var = gVar2.d) == null || f0Var.f48675b != f0Var2.f48675b || f0Var.f48676c != f0Var2.f48676c) {
-                    c(i10, new f0(f0Var2.f48674a, j3));
+                if (gVar2 == null || gVar2.f13696c != j3 || (f0Var = gVar2.d) == null || f0Var.f48782b != f0Var2.f48782b || f0Var.f48783c != f0Var2.f48783c) {
+                    c(i10, new f0(f0Var2.f48781a, j3));
                     this.d.getClass();
                 }
             }
@@ -101,20 +101,20 @@ public final class h {
             } else {
                 z10 = false;
             }
-            Iterator it = this.f13705c.values().iterator();
+            Iterator it = this.f13703c.values().iterator();
             while (it.hasNext()) {
                 g gVar = (g) it.next();
                 if (gVar.a(aVar)) {
                     it.remove();
-                    if (gVar.f13699e) {
-                        boolean equals = gVar.f13696a.equals(this.f13707f);
+                    if (gVar.f13697e) {
+                        boolean equals = gVar.f13694a.equals(this.f13705f);
                         if (z10 && equals) {
-                            boolean z11 = gVar.f13700f;
+                            boolean z11 = gVar.f13698f;
                         }
                         if (equals) {
                             a(gVar);
                         }
-                        this.d.t(aVar, gVar.f13696a);
+                        this.d.t(aVar, gVar.f13694a);
                     }
                 }
             }

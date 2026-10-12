@@ -1,64 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.RectF;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
-public final class m91 extends View {
-    public l91 f28808a;
-    public int f28809b;
-    public final RectF f28810c;
-    public CharSequence d;
-    public m11 f28811e;
-    public boolean f28812f;
-    public eq0 h;
-    public final g6 f28813n;
-    public final o91 f28814r;
+import org.telegram.messenger.Utilities;
+public final class m91 implements lm0, mm0 {
+    public final t91 f28454a;
 
-    public m91(o91 o91Var, Context context) {
-        super(context);
-        this.f28814r = o91Var;
-        this.f28810c = new RectF();
-        this.f28813n = new g6(this, 360L, is.h);
+    public m91(t91 t91Var) {
+        this.f28454a = t91Var;
     }
 
     @Override
-    public int getId() {
-        return this.f28808a.f28314a;
+    public boolean Y0(View view) {
+        return false;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m91.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        int i10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        l91 l91Var = this.f28808a;
-        if (l91Var != null && (i10 = this.f28814r.G) != -1 && l91Var.f28314a == i10) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public void c(float f7, float f10, int i10, View view) {
+        t91 t91Var = this.f28454a;
+        s91 s91Var = t91Var.f30827y;
+        if (s91Var != null) {
+            u91 u91Var = (u91) ((n4.l) s91Var).f16325a;
+            if (u91Var.f31120x || u91Var.H) {
+                return;
+            }
         }
-        accessibilityNodeInfo.setSelected(z10);
+        r91 r91Var = (r91) view;
+        if (i10 != t91Var.F || s91Var == null) {
+            Utilities.Callback2Return callback2Return = t91Var.f30816l0;
+            if (callback2Return != null && ((Boolean) callback2Return.run(Integer.valueOf(r91Var.f30108a.f29806a), Integer.valueOf(i10))).booleanValue()) {
+                return;
+            }
+            t91Var.d(r91Var.f30108a.f29806a, i10);
+        }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        l91 l91Var = this.f28808a;
-        o91 o91Var = this.f28814r;
-        setMeasuredDimension(AndroidUtilities.dp(o91Var.f29452r * 2) + l91Var.a(o91Var.f29434c) + o91Var.I, View.MeasureSpec.getSize(i11));
+    public boolean d(int i10, View view) {
+        Utilities.Callback2Return callback2Return = this.f28454a.f30802b;
+        if (callback2Return == null) {
+            return false;
+        }
+        return ((Boolean) callback2Return.run(Integer.valueOf(((r91) view).f30108a.f29806a), view)).booleanValue();
     }
 
-    public void setReordering(boolean z10) {
-        if (this.f28812f == z10) {
-            return;
-        }
-        this.f28812f = z10;
-        invalidate();
+    @Override
+    public void n0(View view, float f7, float f10) {
     }
 }

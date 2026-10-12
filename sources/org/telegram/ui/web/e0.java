@@ -6,9 +6,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ad;
-import org.telegram.ui.zn;
-public final class e0 extends zn {
+import org.telegram.ui.Components.zc;
+import org.telegram.ui.eo;
+public final class e0 extends eo {
     public boolean Qc;
     public final TLRPC.User Rc;
     public final long Sc;
@@ -26,7 +26,7 @@ public final class e0 extends zn {
         super.onBecomeFullyVisible();
         if (!this.Qc) {
             this.Qc = true;
-            ad.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Rc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Tc.U)), new d0(this, this.Sc, 0)), R.raw.contact_check).j();
+            zc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Rc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Tc.U)), new d0(this, this.Sc, 0)), R.raw.contact_check).j();
         }
     }
 }

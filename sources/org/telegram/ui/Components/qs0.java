@@ -1,32 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class qs0 extends zv0 {
-    public final cw0 G;
+import org.telegram.messenger.Utilities;
+public final class qs0 implements Utilities.Callback {
+    public final org.telegram.ui.Cells.t7 f29924a;
+    public final float f29925b;
+    public final float f29926c;
 
-    public qs0(cw0 cw0Var, Context context) {
-        super(cw0Var, context, 0, true);
-        this.G = cw0Var;
+    public qs0(org.telegram.ui.Cells.t7 t7Var, float f7, float f10) {
+        this.f29924a = t7Var;
+        this.f29925b = f7;
+        this.f29926c = f10;
     }
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        cw0 cw0Var = this.G;
-        vu0 W = cw0Var.W(9);
-        if (W != null && W.f32556r.getVisibility() == 0) {
-            cw0Var.f25502f0.l();
-        }
-        if (W != null) {
-            mt0 mt0Var = W.f32558w;
-            ai.e9 e9Var = this.f33716s;
-            if (e9Var != null && (e9Var.k() || (cw0Var.i0() && this.f33716s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            mt0Var.e(z10, true);
-        }
+    public final void run(Object obj) {
+        Boolean bool = (Boolean) obj;
+        this.f29924a.n(this.f29925b, this.f29926c);
     }
 }

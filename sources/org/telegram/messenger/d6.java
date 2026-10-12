@@ -1,30 +1,23 @@
 package org.telegram.messenger;
+public final class d6 implements Runnable {
+    public final int f17381a;
+    public final MediaController f17382b;
+    public final int f17383c;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class d6 implements RequestDelegate {
-    public final int f17655a;
-    public final int f17656b;
-    public final int f17657c;
-    public final NotificationCenter.NotificationCenterDelegate d;
-
-    public d6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, int i11, int i12) {
-        this.f17655a = i12;
-        this.d = notificationCenterDelegate;
-        this.f17656b = i10;
-        this.f17657c = i11;
+    public d6(MediaController mediaController, int i10, int i11) {
+        this.f17381a = i11;
+        this.f17382b = mediaController;
+        this.f17383c = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17655a) {
+    public final void run() {
+        switch (this.f17381a) {
             case 0:
-                ((MediaController) this.d).lambda$loadMoreMusic$12(this.f17656b, this.f17657c, tLObject, tL_error);
+                this.f17382b.lambda$onAudioFocusChange$5(this.f17383c);
                 return;
             default:
-                ((MessagesController) this.d).lambda$getDifference$358(this.f17656b, this.f17657c, tLObject, tL_error);
+                this.f17382b.lambda$stopRecording$43(this.f17383c);
                 return;
         }
     }

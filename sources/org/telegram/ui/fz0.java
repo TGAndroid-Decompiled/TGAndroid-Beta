@@ -1,49 +1,78 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class fz0 extends s4.d0 {
-    public final ProfileActivity I;
+import android.view.TextureView;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class fz0 implements org.telegram.ui.ActionBar.r0, ov0, org.telegram.ui.Components.p8 {
+    public final ProfileActivity f37877a;
 
     public fz0(ProfileActivity profileActivity) {
-        this.I = profileActivity;
+        this.f37877a = profileActivity;
     }
 
     @Override
-    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
-        ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f34288c.m(0);
-        if (m10 != null && !profileActivity.F0) {
-            int top = m10.getTop() - profileActivity.T3();
-            boolean z10 = profileActivity.f34374o2;
-            boolean z11 = true;
-            if (!z10 && top > i10) {
-                if (!profileActivity.f34365n0.X0.isEmpty() && profileActivity.f34304e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f34367n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
-                    if (profileActivity.J2 != null) {
-                        z11 = false;
-                    }
-                    profileActivity.f34374o2 = z11;
-                }
-            } else if (z10) {
-                if (i10 >= top) {
-                    profileActivity.f34374o2 = false;
-                } else if (profileActivity.f34273a.getScrollState() == 1 && !profileActivity.f34381p2) {
-                    i10 /= 2;
-                }
-            }
-            i10 = top;
+    public void H(MessageObject messageObject) {
+        org.telegram.ui.Components.mi0 mi0Var = this.f37877a.m0;
+        if (mi0Var != null && mi0Var.f28559a) {
+            mi0Var.O.d(0.0f, true);
+            mi0Var.invalidate();
         }
-        if (profileActivity.O1 && !profileActivity.f34273a.P0) {
-            return 0;
-        }
-        return super.o0(i10, eVar, a1Var);
     }
 
     @Override
-    public final boolean y0() {
-        if (this.I.f34385q0 != null) {
-            return true;
+    public void Q0(int i10, int i11) {
+        int i12;
+        ProfileActivity profileActivity = this.f37877a;
+        long a2 = profileActivity.a();
+        profileActivity.getMessagesController().setDialogHistoryTTL(a2, i10);
+        if (profileActivity.f34198v2 == null && profileActivity.f34191u2 == null) {
+            return;
         }
-        return false;
+        UndoView undoView = profileActivity.M;
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(a2));
+        TLRPC.UserFull userFull = profileActivity.f34198v2;
+        if (userFull != null) {
+            i12 = userFull.ttl_period;
+        } else {
+            i12 = profileActivity.f34191u2.ttl_period;
+        }
+        undoView.k(a2, i11, user, Integer.valueOf(i12), null, null);
+    }
+
+    @Override
+    public void dismiss() {
+        this.f37877a.T0.M(null, null);
+    }
+
+    @Override
+    public void e() {
+        org.telegram.ui.Components.mn0.d(new e5(this.f37877a, 18));
+    }
+
+    @Override
+    public TextureView g0() {
+        return null;
+    }
+
+    @Override
+    public void h1() {
+        this.f37877a.presentFragment(new s4());
+        dismiss();
+    }
+
+    @Override
+    public void w0(MessageObject messageObject) {
+        ProfileActivity profileActivity = this.f37877a;
+        profileActivity.f34048a.I0(true);
+        m01 m01Var = profileActivity.O;
+        if (m01Var != null && m01Var.getCurrentListView() != null) {
+            profileActivity.O.getCurrentListView().I0(true);
+        }
+        profileActivity.f34072d1.setBackgroundColor(i0.a.d(0.1f, profileActivity.P3(profileActivity.V4.f41996f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20503a7, profileActivity.f34223z0)));
+    }
+
+    @Override
+    public void c() {
     }
 }

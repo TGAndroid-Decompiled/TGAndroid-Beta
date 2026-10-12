@@ -5,19 +5,19 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public final class a4 extends View implements v2 {
-    public final org.telegram.ui.Components.q6 f4718a;
+    public final org.telegram.ui.Components.q6 f4717a;
 
     public a4(Activity activity) {
         super(activity);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(true, true, true);
-        this.f4718a = q6Var;
-        q6Var.n(0.35f, 300L, is.h);
+        this.f4717a = q6Var;
+        q6Var.n(0.35f, 300L, js.h);
         q6Var.u(-1);
         q6Var.w(AndroidUtilities.dp(14.0f));
         q6Var.s(AndroidUtilities.dp(1.4f), AndroidUtilities.dp(0.4f), 1275068416);
-        q6Var.f30134b = 1;
+        q6Var.f29712b = 1;
         q6Var.setCallback(this);
         q6Var.M = AndroidUtilities.displaySize.x;
     }
@@ -27,7 +27,7 @@ public final class a4 extends View implements v2 {
         super.draw(canvas);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Components.q6 q6Var = this.f4718a;
+        org.telegram.ui.Components.q6 q6Var = this.f4717a;
         q6Var.setBounds(0, 0, width, height);
         q6Var.draw(canvas);
     }
@@ -35,17 +35,17 @@ public final class a4 extends View implements v2 {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f4718a.M = getMeasuredWidth();
+        this.f4717a.M = getMeasuredWidth();
     }
 
     @Override
     public void setInvert(float f7) {
-        this.f4718a.u(i0.a.d(f7, -1, -16777216));
+        this.f4717a.u(i0.a.d(f7, -1, -16777216));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f4718a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f4717a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

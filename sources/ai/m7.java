@@ -15,7 +15,7 @@ public final class m7 extends n6 {
         super(context);
         this.O = t7Var;
         this.N = kcVar;
-        this.f1474w = -1;
+        this.f1472w = -1;
         this.E = new ArrayList();
         this.F = new ArrayList();
         this.G = new ArrayList();
@@ -29,7 +29,7 @@ public final class m7 extends n6 {
         gc gcVar;
         t7 t7Var = this.O;
         n7 n7Var = t7Var.E;
-        if (!t7Var.f1746w) {
+        if (!t7Var.f1744w) {
             if (n7Var.getCurrentItem() != i10) {
                 try {
                     n7Var.x(i10, false);
@@ -40,11 +40,11 @@ public final class m7 extends n6 {
                 }
             }
             kc kcVar = this.N;
-            if (kcVar.O0 != null && (gcVar = kcVar.f1297t0) != null) {
+            if (kcVar.O0 != null && (gcVar = kcVar.f1295t0) != null) {
                 if (i10 < 10) {
                     gcVar.b(false);
                 } else if (i10 >= this.E.size() - 10) {
-                    kcVar.f1297t0.b(true);
+                    kcVar.f1295t0.b(true);
                 }
             }
         }

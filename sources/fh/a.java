@@ -2,7 +2,7 @@ package fh;
 
 import android.graphics.Canvas;
 public interface a {
-    void d();
+    void b();
 
     ch.d l();
 

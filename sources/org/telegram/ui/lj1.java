@@ -1,76 +1,69 @@
 package org.telegram.ui;
 
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.SecureRandom;
-import java.util.Arrays;
-import javax.crypto.Cipher;
-import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-public abstract class lj1 {
-    public static final BigInteger f39724a = new BigInteger("FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB9ED529077096966D670C354E4ABC9804F1746C08CA18217C32905E462E36CE3BE39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9DE2BCBF6955817183995497CEA956AE515D2261898FA051015728E5A8AACAA68FFFFFFFFFFFFFFFF", 16);
-    public static final BigInteger f39725b = BigInteger.valueOf(2);
-    public static org.telegram.ui.ActionBar.e3 f39726c;
-    public static ci.u5 d;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class lj1 extends org.telegram.ui.Components.vm0 {
+    public final Context f39773c;
+    public final WallpapersListActivity d;
 
-    public static byte[] a(BigInteger bigInteger) {
-        byte[] byteArray = bigInteger.toByteArray();
-        if (byteArray.length == 256) {
-            return byteArray;
-        }
-        if (byteArray.length == 257 && byteArray[0] == 0) {
-            return Arrays.copyOfRange(byteArray, 1, byteArray.length);
-        }
-        if (byteArray.length < 256) {
-            byte[] bArr = new byte[256];
-            System.arraycopy(byteArray, 0, bArr, 256 - byteArray.length, byteArray.length);
-            return bArr;
-        }
-        throw new IllegalStateException("unexpected DH value size " + byteArray.length);
+    public lj1(WallpapersListActivity wallpapersListActivity, Context context) {
+        this.d = wallpapersListActivity;
+        this.f39773c = context;
     }
 
-    public static byte[] b(byte[][] bArr) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            for (byte[] bArr2 : bArr) {
-                messageDigest.update(bArr2);
+    @Override
+    public final boolean D(s4.d1 d1Var) {
+        if (d1Var.f47893f == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f35612a;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        WallpapersListActivity wallpapersListActivity = this.d;
+        i11 = wallpapersListActivity.uploadImageRow;
+        if (i10 != i11 && i10 != wallpapersListActivity.f35628r && i10 != wallpapersListActivity.f35614b && i10 != wallpapersListActivity.h) {
+            if (i10 != wallpapersListActivity.f35616c && i10 != wallpapersListActivity.f35621f) {
+                if (i10 != wallpapersListActivity.f35627n && i10 != wallpapersListActivity.f35629s) {
+                    return 2;
+                }
+                return 3;
             }
-            return messageDigest.digest();
-        } catch (Exception e7) {
-            throw new RuntimeException(e7);
+            return 1;
         }
+        return 0;
     }
 
-    public static byte[] c(ci.u5 u5Var, String str, int i10, boolean z10) {
-        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
-        ByteBuffer allocate = ByteBuffer.allocate(bytes.length + 9);
-        allocate.order(ByteOrder.BIG_ENDIAN);
-        allocate.putInt(bytes.length);
-        allocate.put(bytes);
-        allocate.putInt(i10);
-        allocate.put(z10 ? (byte) 1 : (byte) 0);
-        byte[] array = allocate.array();
-        byte[] bArr = new byte[12];
-        new SecureRandom().nextBytes(bArr);
-        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-        cipher.init(1, new SecretKeySpec((byte[]) u5Var.d, "AES"), new GCMParameterSpec(128, bArr));
-        byte[] doFinal = cipher.doFinal(array);
-        byte[] bArr2 = new byte[doFinal.length + 28];
-        System.arraycopy((byte[]) u5Var.f6064a, 0, bArr2, 0, 16);
-        System.arraycopy(bArr, 0, bArr2, 16, 12);
-        System.arraycopy(doFinal, 0, bArr2, 28, doFinal.length);
-        return bArr2;
+    @Override
+    public final void v(s4.d1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lj1.v(s4.d1, int):void");
     }
 
-    public static String d(byte[] bArr) {
-        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-        int length = bArr.length;
-        for (int i10 = 0; i10 < length; i10++) {
-            sb2.append(String.format("%02x", Byte.valueOf(bArr[i10])));
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        View r8Var;
+        Context context = this.f39773c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    r8Var = new org.telegram.ui.Components.oj(this, context, 1);
+                } else {
+                    r8Var = new org.telegram.ui.Cells.e9(context);
+                }
+            } else {
+                r8Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.c1) null);
+            }
+        } else {
+            r8Var = new org.telegram.ui.Cells.r8(context);
         }
-        return sb2.toString();
+        return new s4.d1(r8Var);
     }
 }

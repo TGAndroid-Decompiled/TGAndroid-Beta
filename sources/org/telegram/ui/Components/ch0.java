@@ -1,95 +1,62 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PhotoViewer;
-public final class ch0 implements Runnable {
-    public final int f25361a;
-    public final hh0 f25362b;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class ch0 extends org.telegram.ui.l4 {
+    public final int h;
+    public final Object f24943n;
 
-    public ch0(hh0 hh0Var, int i10) {
-        this.f25361a = i10;
-        this.f25362b = hh0Var;
+    public ch0(Object obj, Context context, int i10) {
+        super(context);
+        this.h = i10;
+        this.f24943n = obj;
     }
 
     @Override
-    public final void run() {
-        tg0 tg0Var;
-        boolean z10;
-        switch (this.f25361a) {
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        MessageObject playingMessageObject;
+        switch (this.h) {
             case 0:
-                this.f25362b.u();
-                return;
-            case 1:
-                hh0 hh0Var = this.f25362b;
-                PhotoViewer photoViewer = hh0Var.V;
-                if (photoViewer != null) {
-                    if (hh0Var.f27120r != null) {
-                        hh0Var.Z = tg0Var.getCurrentPosition() / hh0Var.f27120r.getVideoDuration();
-                        hh0Var.f27103a0 = hh0Var.f27120r.getBufferedPosition();
-                    } else {
-                        l81 l81Var = photoViewer.F2;
-                        if (l81Var != null) {
-                            float m10 = (float) hh0Var.m();
-                            hh0Var.Z = ((float) l81Var.n()) / m10;
-                            hh0Var.f27103a0 = ((float) l81Var.j()) / m10;
-                        } else {
-                            return;
-                        }
-                    }
-                    hh0Var.f27105b0.invalidate();
-                    AndroidUtilities.runOnUIThread(hh0Var.f27110e0, 500L);
-                    return;
+                boolean drawChild = super.drawChild(canvas, view, j3);
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f24943n;
+                if (view == pipRoundVideoView.f23991c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
+                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
+                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.h6.f20683k2);
                 }
-                return;
-            case 2:
-                hh0 hh0Var2 = this.f25362b;
-                PhotoViewer photoViewer2 = hh0Var2.V;
-                if (photoViewer2 != null) {
-                    if ((photoViewer2.F2 != null || hh0Var2.f27120r != null) && !hh0Var2.f27107c0 && !hh0Var2.Y && !hh0Var2.f27122w && !hh0Var2.f27121s.isInProgress() && hh0Var2.f27112f0) {
-                        l81 l81Var2 = hh0Var2.V.F2;
-                        if (hh0Var2.f27113g0[0] >= hh0Var2.t() * hh0Var2.J * 0.5f) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        long l4 = hh0Var2.l();
-                        long m11 = hh0Var2.m();
-                        if (l4 != -9223372036854775807L && m11 >= 15000) {
-                            tg0 tg0Var2 = hh0Var2.f27120r;
-                            if (tg0Var2 != null) {
-                                PhotoViewer photoViewer3 = hh0Var2.V;
-                                photoViewer3.f33951c4.startRewind(tg0Var2, z10, hh0Var2.f27113g0[0], photoViewer3.f34098t1, hh0Var2.R);
-                            } else {
-                                PhotoViewer photoViewer4 = hh0Var2.V;
-                                photoViewer4.f33951c4.startRewind(l81Var2, z10, hh0Var2.f27113g0[0], photoViewer4.f34098t1, hh0Var2.R);
-                            }
-                            if (!hh0Var2.E) {
-                                hh0Var2.E = true;
-                                hh0Var2.y(true);
-                                if (!hh0Var2.f27115i0) {
-                                    AndroidUtilities.runOnUIThread(hh0Var2.f27116j0, 1500L);
-                                    hh0Var2.f27115i0 = true;
-                                    return;
-                                }
-                                return;
-                            }
-                            return;
-                        }
+                return drawChild;
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.h) {
+            case 1:
+                super.onMeasure(i10, i11);
+                ma1 ma1Var = (ma1) this.f24943n;
+                if (ma1Var.f28512f != null) {
+                    ViewGroup.LayoutParams layoutParams = ma1Var.d.getLayoutParams();
+                    layoutParams.width = getMeasuredWidth();
+                    layoutParams.height = getMeasuredHeight();
+                    ImageView imageView = ma1Var.f28510e;
+                    if (imageView != null) {
+                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
+                        layoutParams2.width = getMeasuredWidth();
+                        layoutParams2.height = getMeasuredHeight();
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                hh0 hh0Var3 = this.f25362b;
-                PhotoViewer photoViewer5 = hh0Var3.V;
-                if (photoViewer5 != null && photoViewer5.f33951c4.rewinding) {
-                    AndroidUtilities.runOnUIThread(hh0Var3.f27116j0, 1500L);
-                    return;
-                }
-                hh0Var3.E = false;
-                hh0Var3.y(false);
-                hh0Var3.f27115i0 = false;
+                super.onMeasure(i10, i11);
                 return;
         }
     }

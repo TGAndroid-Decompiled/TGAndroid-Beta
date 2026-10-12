@@ -12,33 +12,33 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.ao;
-import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.ws;
-public abstract class t1 extends qm0 {
+import org.telegram.ui.Components.co;
+import org.telegram.ui.Components.m10;
+import org.telegram.ui.Components.vm0;
+import org.telegram.ui.at;
+public abstract class t1 extends vm0 {
     public int E;
     public int F;
     public ArrayList G;
     public ArrayList H;
     public String I;
     public int J;
-    public Context f10812c;
+    public Context f10811c;
     public ArrayList d;
-    public ArrayList f10813e;
-    public b2 f10814f;
+    public ArrayList f10812e;
+    public b2 f10813f;
     public a0.i h;
-    public Timer f10815n;
-    public boolean f10816r;
-    public boolean f10817s;
+    public Timer f10814n;
+    public boolean f10815r;
+    public boolean f10816s;
     public boolean v;
-    public boolean f10818w;
-    public long f10819x;
-    public boolean f10820y;
+    public boolean f10817w;
+    public long f10818x;
+    public boolean f10819y;
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47786f;
+        int i10 = d1Var.f47893f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -48,9 +48,9 @@ public abstract class t1 extends qm0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.H.size();
-        b2 b2Var = this.f10814f;
-        int size3 = b2Var.f10534e.size();
-        int size4 = b2Var.f10538j.size();
+        b2 b2Var = this.f10813f;
+        int size3 = b2Var.f10533e.size();
+        int size4 = b2Var.f10537j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -65,20 +65,20 @@ public abstract class t1 extends qm0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return b2Var.f10538j.get(i11);
+            return b2Var.f10537j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
             return null;
         }
-        return b2Var.f10534e.get(i12 - 1);
+        return b2Var.f10533e.get(i12 - 1);
     }
 
     public abstract void F();
 
     public final void G(String str) {
         try {
-            Timer timer = this.f10815n;
+            Timer timer = this.f10814n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -87,32 +87,32 @@ public abstract class t1 extends qm0 {
         }
         this.d.clear();
         this.H.clear();
-        this.f10813e.clear();
-        if (this.f10816r) {
-            this.f10814f.g(null, true, false, this.f10817s, this.v, this.f10819x, this.f10818w, 0, 0);
+        this.f10812e.clear();
+        if (this.f10815r) {
+            this.f10813f.g(null, true, false, this.f10816s, this.v, this.f10818x, this.f10817w, 0, 0);
         }
         l();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f10815n = timer2;
-            timer2.schedule(new r1((ws) this, str, 0), 200L, 300L);
+            this.f10814n = timer2;
+            timer2.schedule(new r1((at) this, str, 0), 200L, 300L);
         }
     }
 
     @Override
     public final int h() {
-        b2 b2Var = this.f10814f;
+        b2 b2Var = this.f10813f;
         this.J = -1;
         int size = this.d.size();
         if (!this.H.isEmpty()) {
             this.J = size;
             size += this.H.size() + 1;
         }
-        int size2 = b2Var.f10534e.size();
+        int size2 = b2Var.f10533e.size();
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = b2Var.f10538j.size();
+        int size3 = b2Var.f10537j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -145,7 +145,7 @@ public abstract class t1 extends qm0 {
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         v3 v3Var;
-        Context context = this.f10812c;
+        Context context = this.f10811c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -153,17 +153,17 @@ public abstract class t1 extends qm0 {
                         if (i10 != 5) {
                             v3Var = new r8(16, context, false);
                         } else {
-                            k10 k10Var = new k10(context, null);
-                            k10Var.setIsSingleCell(true);
-                            k10Var.setViewType(29);
-                            k10Var.setBackgroundColor(h6.x0(null, h6.f20822d6, false));
-                            v3Var = k10Var;
+                            m10 m10Var = new m10(context, null);
+                            m10Var.setIsSingleCell(true);
+                            m10Var.setViewType(29);
+                            m10Var.setBackgroundColor(h6.x0(null, h6.f20559d6, false));
+                            v3Var = m10Var;
                         }
                     } else {
-                        View aoVar = new ao(context, 7);
-                        aoVar.setId(9);
-                        aoVar.setTag(-33024);
-                        v3Var = aoVar;
+                        View coVar = new co(context, 7);
+                        coVar.setId(9);
+                        coVar.setTag(-33024);
+                        v3Var = coVar;
                     }
                 } else {
                     i6 i6Var = new i6(context, null);

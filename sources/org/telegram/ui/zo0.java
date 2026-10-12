@@ -1,41 +1,37 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
 public final class zo0 implements Utilities.Callback {
-    public final int f45063a = 0;
-    public final zf.b f45064b;
-    public final TL_stars.TL_starGiftUnique f45065c;
-    public final long d;
-    public final Object f45066e;
-    public final Object f45067f;
+    public final int f44890a;
+    public final cq0 f44891b;
 
-    public zo0(zp0 zp0Var, zf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, wo0 wo0Var) {
-        this.f45066e = zp0Var;
-        this.f45064b = bVar;
-        this.f45065c = tL_starGiftUnique;
-        this.d = j3;
-        this.f45067f = wo0Var;
+    public zo0(cq0 cq0Var, int i10) {
+        this.f44890a = i10;
+        this.f44891b = cq0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f45063a) {
+        switch (this.f44890a) {
             case 0:
-                zp0.V((zp0) this.f45066e, this.f45064b, this.f45065c, this.d, (wo0) this.f45067f, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                cq0 cq0Var = this.f44891b;
+                cq0Var.f36491r = false;
+                cq0Var.Q.setLoading(false);
+                if (((Boolean) obj).booleanValue()) {
+                    cq0Var.x0();
+                    cq0Var.finishFragment();
+                    cq0Var.E0();
+                    return;
+                }
                 return;
             default:
-                xh.h4.V((xh.h4) this.f45066e, (org.telegram.ui.ActionBar.a2) this.f45067f, this.f45064b, this.f45065c, this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                Integer num = (Integer) obj;
+                ci.h1 h1Var = this.f44891b.I;
+                if (h1Var != null) {
+                    h1Var.D(num.intValue());
+                    return;
+                }
                 return;
         }
-    }
-
-    public zo0(xh.h4 h4Var, org.telegram.ui.ActionBar.a2 a2Var, zf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
-        this.f45066e = h4Var;
-        this.f45067f = a2Var;
-        this.f45064b = bVar;
-        this.f45065c = tL_starGiftUnique;
-        this.d = j3;
     }
 }

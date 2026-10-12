@@ -89,7 +89,7 @@ public class SQLitePreparedStatement {
                     sb2.append(this.query);
                     sb2.append(" took ");
                     sb2.append(elapsedRealtime);
-                    c.t("ms", sb2);
+                    c.v("ms", sb2);
                 }
             }
             try {

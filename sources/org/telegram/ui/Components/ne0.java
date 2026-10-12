@@ -1,45 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class ne0 extends AnimatorListenerAdapter {
-    public final int f29153a;
-    public final oe0 f29154b;
+public final class ne0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28789a;
+    public final xe0 f28790b;
 
-    public ne0(oe0 oe0Var, int i10) {
-        this.f29153a = i10;
-        this.f29154b = oe0Var;
+    public ne0(xe0 xe0Var, int i10) {
+        this.f28789a = i10;
+        this.f28790b = xe0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        EditTextBoldCursor editTextBoldCursor;
-        switch (this.f29153a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f28789a) {
             case 0:
-                te0 te0Var = this.f29154b.d;
-                if (!te0Var.L) {
-                    te0Var.T = 1.0f;
-                    te0Var.g(1.0f);
-                    return;
-                }
+                xe0 xe0Var = this.f28790b;
+                xe0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                xe0Var.T = floatValue;
+                xe0Var.g(floatValue);
+                xe0Var.setAlpha(xe0Var.T);
                 return;
             default:
-                oe0 oe0Var = this.f29154b;
-                te0 te0Var2 = oe0Var.d;
-                if (!te0Var2.L) {
-                    Runnable runnable = oe0Var.f29497c;
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                    if (SharedConfig.passcodeType == 1 && te0Var2.f31233x.getVisibility() != 0 && (editTextBoldCursor = te0Var2.f31230r) != null) {
-                        editTextBoldCursor.requestFocus();
-                        AndroidUtilities.showKeyboard(te0Var2.f31230r);
-                        return;
-                    }
-                    return;
-                }
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                xe0 xe0Var2 = this.f28790b;
+                ai.x5 x5Var = xe0Var2.f32743e;
+                x5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
+                x5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
+                x5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
+                TextView textView = xe0Var2.f32748w;
+                textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
+                textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
+                textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue2));
+                xe0Var2.f32747s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
                 return;
         }
     }

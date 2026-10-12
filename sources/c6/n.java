@@ -13,27 +13,27 @@ import org.json.JSONObject;
 import v7.t7;
 public final class n extends o6.a {
     public static final Parcelable.Creator<n> CREATOR = new v(13);
-    public String f4390a;
-    public String f4391b;
-    public int f4392c;
+    public String f4389a;
+    public String f4390b;
+    public int f4391c;
     public String d;
-    public m f4393e;
-    public int f4394f;
+    public m f4392e;
+    public int f4393f;
     public List h;
-    public int f4395n;
-    public long f4396r;
-    public boolean f4397s;
+    public int f4394n;
+    public long f4395r;
+    public boolean f4396s;
 
     public final JSONObject b() {
         JSONObject jSONObject = new JSONObject();
         try {
-            if (!TextUtils.isEmpty(this.f4390a)) {
-                jSONObject.put("id", this.f4390a);
+            if (!TextUtils.isEmpty(this.f4389a)) {
+                jSONObject.put("id", this.f4389a);
             }
-            if (!TextUtils.isEmpty(this.f4391b)) {
-                jSONObject.put("entity", this.f4391b);
+            if (!TextUtils.isEmpty(this.f4390b)) {
+                jSONObject.put("entity", this.f4390b);
             }
-            switch (this.f4392c) {
+            switch (this.f4391c) {
                 case 1:
                     jSONObject.put("queueType", "ALBUM");
                     break;
@@ -65,11 +65,11 @@ public final class n extends o6.a {
             if (!TextUtils.isEmpty(this.d)) {
                 jSONObject.put("name", this.d);
             }
-            m mVar = this.f4393e;
+            m mVar = this.f4392e;
             if (mVar != null) {
                 jSONObject.put("containerMetadata", mVar.b());
             }
-            String b10 = t7.b(Integer.valueOf(this.f4394f));
+            String b10 = t7.b(Integer.valueOf(this.f4393f));
             if (b10 != null) {
                 jSONObject.put("repeatMode", b10);
             }
@@ -81,13 +81,13 @@ public final class n extends o6.a {
                 }
                 jSONObject.put("items", jSONArray);
             }
-            jSONObject.put("startIndex", this.f4395n);
-            long j3 = this.f4396r;
+            jSONObject.put("startIndex", this.f4394n);
+            long j3 = this.f4395r;
             if (j3 != -1) {
-                Pattern pattern = g6.a.f10320a;
+                Pattern pattern = g6.a.f10319a;
                 jSONObject.put("startTime", j3 / 1000.0d);
             }
-            jSONObject.put("shuffle", this.f4397s);
+            jSONObject.put("shuffle", this.f4396s);
         } catch (JSONException unused) {
         }
         return jSONObject;
@@ -101,29 +101,29 @@ public final class n extends o6.a {
             return false;
         }
         n nVar = (n) obj;
-        if (TextUtils.equals(this.f4390a, nVar.f4390a) && TextUtils.equals(this.f4391b, nVar.f4391b) && this.f4392c == nVar.f4392c && TextUtils.equals(this.d, nVar.d) && n6.m.l(this.f4393e, nVar.f4393e) && this.f4394f == nVar.f4394f && n6.m.l(this.h, nVar.h) && this.f4395n == nVar.f4395n && this.f4396r == nVar.f4396r && this.f4397s == nVar.f4397s) {
+        if (TextUtils.equals(this.f4389a, nVar.f4389a) && TextUtils.equals(this.f4390b, nVar.f4390b) && this.f4391c == nVar.f4391c && TextUtils.equals(this.d, nVar.d) && n6.m.l(this.f4392e, nVar.f4392e) && this.f4393f == nVar.f4393f && n6.m.l(this.h, nVar.h) && this.f4394n == nVar.f4394n && this.f4395r == nVar.f4395r && this.f4396s == nVar.f4396s) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4390a, this.f4391b, Integer.valueOf(this.f4392c), this.d, this.f4393e, Integer.valueOf(this.f4394f), this.h, Integer.valueOf(this.f4395n), Long.valueOf(this.f4396r), Boolean.valueOf(this.f4397s)});
+        return Arrays.hashCode(new Object[]{this.f4389a, this.f4390b, Integer.valueOf(this.f4391c), this.d, this.f4392e, Integer.valueOf(this.f4393f), this.h, Integer.valueOf(this.f4394n), Long.valueOf(this.f4395r), Boolean.valueOf(this.f4396s)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         List unmodifiableList;
-        int q6 = w7.d0.q(parcel, 20293);
-        w7.d0.l(parcel, 2, this.f4390a);
-        w7.d0.l(parcel, 3, this.f4391b);
-        int i11 = this.f4392c;
-        w7.d0.s(parcel, 4, 4);
+        int q6 = w7.c0.q(parcel, 20293);
+        w7.c0.l(parcel, 2, this.f4389a);
+        w7.c0.l(parcel, 3, this.f4390b);
+        int i11 = this.f4391c;
+        w7.c0.s(parcel, 4, 4);
         parcel.writeInt(i11);
-        w7.d0.l(parcel, 5, this.d);
-        w7.d0.k(parcel, 6, this.f4393e, i10);
-        int i12 = this.f4394f;
-        w7.d0.s(parcel, 7, 4);
+        w7.c0.l(parcel, 5, this.d);
+        w7.c0.k(parcel, 6, this.f4392e, i10);
+        int i12 = this.f4393f;
+        w7.c0.s(parcel, 7, 4);
         parcel.writeInt(i12);
         List list = this.h;
         if (list == null) {
@@ -131,16 +131,16 @@ public final class n extends o6.a {
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(list);
         }
-        w7.d0.p(parcel, 8, unmodifiableList);
-        int i13 = this.f4395n;
-        w7.d0.s(parcel, 9, 4);
+        w7.c0.p(parcel, 8, unmodifiableList);
+        int i13 = this.f4394n;
+        w7.c0.s(parcel, 9, 4);
         parcel.writeInt(i13);
-        long j3 = this.f4396r;
-        w7.d0.s(parcel, 10, 8);
+        long j3 = this.f4395r;
+        w7.c0.s(parcel, 10, 8);
         parcel.writeLong(j3);
-        boolean z10 = this.f4397s;
-        w7.d0.s(parcel, 11, 4);
+        boolean z10 = this.f4396s;
+        w7.c0.s(parcel, 11, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        w7.d0.r(parcel, q6);
+        w7.c0.r(parcel, q6);
     }
 }

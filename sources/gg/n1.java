@@ -15,37 +15,37 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.zn;
-public final class n1 extends qm0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Context f10738c;
-    public final zn f10740f;
+import org.telegram.ui.Components.m10;
+import org.telegram.ui.Components.vm0;
+import org.telegram.ui.eo;
+public final class n1 extends vm0 implements NotificationCenter.NotificationCenterDelegate {
+    public final Context f10737c;
+    public final eo f10739f;
     public int h;
-    public int f10741n;
-    public final d6 f10743s;
+    public int f10740n;
+    public final c6 f10742s;
     public final int v;
-    public final boolean f10744w;
-    public String f10745x;
-    public w8 f10746y;
+    public final boolean f10743w;
+    public String f10744x;
+    public w8 f10745y;
     public final HashSet d = new HashSet();
-    public final ArrayList f10739e = new ArrayList();
-    public final int f10742r = UserConfig.selectedAccount;
+    public final ArrayList f10738e = new ArrayList();
+    public final int f10741r = UserConfig.selectedAccount;
     public final rc E = new rc(this, 16);
 
-    public n1(Context context, zn znVar, d6 d6Var, int i10, boolean z10) {
-        this.f10743s = d6Var;
-        this.f10738c = context;
-        this.f10740f = znVar;
+    public n1(Context context, eo eoVar, c6 c6Var, int i10, boolean z10) {
+        this.f10742s = c6Var;
+        this.f10737c = context;
+        this.f10739f = eoVar;
         this.v = i10;
-        this.f10744w = z10;
+        this.f10743w = z10;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        int i10 = d1Var.f47786f;
+        int i10 = d1Var.f47893f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -54,7 +54,7 @@ public final class n1 extends qm0 implements NotificationCenter.NotificationCent
 
     public final Object E(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f10739e;
+            ArrayList arrayList = this.f10738e;
             if (i10 < arrayList.size()) {
                 return arrayList.get(i10);
             }
@@ -65,19 +65,19 @@ public final class n1 extends qm0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storiesListUpdated && objArr[0] == this.f10746y) {
+        if (i10 == NotificationCenter.storiesListUpdated && objArr[0] == this.f10745y) {
             l();
         }
     }
 
     @Override
     public final int h() {
-        return this.f10739e.size() + this.f10741n;
+        return this.f10738e.size() + this.f10740n;
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 < this.f10739e.size()) {
+        if (i10 < this.f10738e.size()) {
             return 0;
         }
         return 1;
@@ -87,11 +87,11 @@ public final class n1 extends qm0 implements NotificationCenter.NotificationCent
     public final void l() {
         ArrayList<MessageObject> messages;
         int h = h();
-        ArrayList arrayList = this.f10739e;
+        ArrayList arrayList = this.f10738e;
         arrayList.clear();
         HashSet hashSet = this.d;
         hashSet.clear();
-        int i10 = this.f10742r;
+        int i10 = this.f10741r;
         int i11 = this.v;
         if (i11 == 0) {
             messages = MediaDataController.getInstance(i10).getFoundMessageObjects();
@@ -106,18 +106,18 @@ public final class n1 extends qm0 implements NotificationCenter.NotificationCent
                 hashSet.add(Integer.valueOf(messageObject.getId()));
             }
         }
-        int i14 = this.f10741n;
+        int i14 = this.f10740n;
         this.h = arrayList.size();
         if (i11 != 0) {
             if (!HashtagSearchController.getInstance(i10).isEndReached(i11) && this.h != 0) {
                 i12 = Utilities.clamp(HashtagSearchController.getInstance(i10).getCount(i11) - this.h, 3, 0);
             }
-            this.f10741n = i12;
+            this.f10740n = i12;
         } else {
             if (!MediaDataController.getInstance(i10).searchEndReached() && this.h != 0) {
                 i12 = Utilities.clamp(MediaDataController.getInstance(i10).getSearchCount() - this.h, 3, 0);
             }
-            this.f10741n = i12;
+            this.f10740n = i12;
         }
         int h10 = h();
         if (h < h10) {
@@ -135,16 +135,16 @@ public final class n1 extends qm0 implements NotificationCenter.NotificationCent
         boolean z10;
         int i11;
         int i12;
-        int i13 = d1Var.f47786f;
-        View view = d1Var.f47782a;
+        int i13 = d1Var.f47893f;
+        View view = d1Var.f47889a;
         if (i13 == 0) {
             s2 s2Var = (s2) view;
-            s2Var.f22885s2 = true;
+            s2Var.f22620s2 = true;
             MessageObject messageObject = (MessageObject) E(i10);
             long dialogId = messageObject.getDialogId();
             int i14 = messageObject.messageOwner.date;
-            if (this.f10744w) {
-                s2Var.f22877r0 = true;
+            if (this.f10743w) {
+                s2Var.f22612r0 = true;
                 long savedDialogId = messageObject.getSavedDialogId();
                 TLRPC.Message message = messageObject.messageOwner;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
@@ -161,7 +161,7 @@ public final class n1 extends qm0 implements NotificationCenter.NotificationCent
                 z10 = false;
                 dialogId = savedDialogId;
             } else {
-                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.f10742r, dialogId)) {
+                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.f10741r, dialogId)) {
                     dialogId = messageObject.getFromChatId();
                 }
                 z10 = true;
@@ -170,32 +170,32 @@ public final class n1 extends qm0 implements NotificationCenter.NotificationCent
             s2Var.W(dialogId, messageObject, i11, z10, false);
             s2Var.setDialogCellDelegate(new k1(this));
         } else if (i13 == 2) {
-            ((m1) view).a(this.f10746y);
+            ((m1) view).a(this.f10745y);
         }
     }
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
         View s2Var;
-        k10 k10Var;
+        m10 m10Var;
         if (i10 != 0) {
-            d6 d6Var = this.f10743s;
-            Context context = this.f10738c;
+            c6 c6Var = this.f10742s;
+            Context context = this.f10737c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     s2Var = null;
                 } else {
-                    k10Var = new m1(context, d6Var);
+                    m10Var = new m1(context, c6Var);
                 }
             } else {
-                k10 k10Var2 = new k10(context, d6Var);
-                k10Var2.setIsSingleCell(true);
-                k10Var2.setViewType(7);
-                k10Var = k10Var2;
+                m10 m10Var2 = new m10(context, c6Var);
+                m10Var2.setIsSingleCell(true);
+                m10Var2.setViewType(7);
+                m10Var = m10Var2;
             }
-            s2Var = k10Var;
+            s2Var = m10Var;
         } else {
-            s2Var = new s2(null, this.f10738c, true, this.f10742r, this.f10743s);
+            s2Var = new s2(null, this.f10737c, true, this.f10741r, this.f10742s);
         }
         return com.google.android.gms.internal.vision.e2.k(s2Var, s2Var, -1, -2);
     }

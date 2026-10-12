@@ -1,18 +1,8 @@
 package r2;
+public class n extends h2.f {
+    public final int f47109a;
 
-import android.os.Bundle;
-public interface n {
-    void a(long j3, int i10, int i11, int i12);
-
-    void b(int i10, h2.d dVar, long j3, int i11);
-
-    void c();
-
-    void flush();
-
-    void setParameters(Bundle bundle);
-
-    void shutdown();
-
-    void start();
+    public n(java.lang.IllegalStateException r3, r2.o r4) {
+        throw new UnsupportedOperationException("Method not decompiled: r2.n.<init>(java.lang.IllegalStateException, r2.o):void");
+    }
 }

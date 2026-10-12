@@ -1,23 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
 import android.view.View;
-public final class kq0 implements ah.m {
-    public final int f28118a;
-    public final rm0 f28119b;
+import org.telegram.messenger.NotificationCenter;
+public final class kq0 implements o1.g {
+    public final int f27926a;
+    public final int[] f27927b;
+    public final NotificationCenter.NotificationCenterDelegate f27928c;
+    public final View d;
 
-    public kq0(rm0 rm0Var, int i10) {
-        this.f28118a = i10;
-        this.f28119b = rm0Var;
+    public kq0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, View view, int[] iArr, int i10) {
+        this.f27926a = i10;
+        this.f27928c = notificationCenterDelegate;
+        this.d = view;
+        this.f27927b = iArr;
     }
 
     @Override
-    public final boolean a(Canvas canvas, View view, long j3) {
-        switch (this.f28118a) {
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f27926a) {
             case 0:
-                return ((pq0) this.f28119b).drawChild(canvas, view, j3);
+                ((sr0) this.f27928c).R0((org.telegram.ui.Cells.f7) this.d, this.f27927b, f7 / 1000.0f);
+                return;
             default:
-                return ((uu0) this.f28119b).drawChild(canvas, view, j3);
+                ((zq0) this.f27928c).d.R0(this.d, this.f27927b, f7 / 1000.0f);
+                return;
         }
     }
 }

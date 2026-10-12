@@ -1,22 +1,76 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class qk0 extends k10 {
-    public final vk0 U;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class qk0 extends s4.i0 {
+    public final int f29856c;
+    public final Context d;
+    public final org.telegram.ui.ActionBar.c6 f29857e;
+    public final boolean f29858f;
+    public final xk0 h;
 
-    public qk0(vk0 vk0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.U = vk0Var;
+    public qk0(xk0 xk0Var, int i10, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        this.h = xk0Var;
+        this.f29856c = i10;
+        this.d = context;
+        this.f29857e = c6Var;
+        this.f29858f = z10;
     }
 
     @Override
-    public final int getAdditionalHeight() {
-        vb0 vb0Var;
-        vk0 vk0Var = this.U;
-        if (!vk0Var.H.isEmpty() && (vb0Var = vk0Var.J) != null) {
-            return AndroidUtilities.dp(8.0f) + vb0Var.getMeasuredHeight();
+    public final int h() {
+        int i10;
+        xk0 xk0Var = this.h;
+        int size = xk0Var.f32799n.size();
+        if (!xk0Var.H.isEmpty() && !MessagesController.getInstance(this.f29856c).premiumFeaturesBlocked()) {
+            i10 = 1;
+        } else {
+            i10 = 0;
         }
-        return 0;
+        return size + i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 < this.h.f32799n.size()) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        if (d1Var.f47893f == 0) {
+            ((org.telegram.ui.Cells.o6) d1Var.f47889a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f32799n.get(i10));
+        }
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout o6Var;
+        if (i10 != 0) {
+            xk0 xk0Var = this.h;
+            zb0 zb0Var = xk0Var.J;
+            if (zb0Var != null) {
+                if (zb0Var.getParent() != null) {
+                    ((ViewGroup) xk0Var.J.getParent()).removeView(xk0Var.J);
+                }
+            } else {
+                xk0Var.i();
+            }
+            Context context = this.d;
+            o6Var = new FrameLayout(context);
+            View view = new View(context);
+            view.setBackgroundColor(org.telegram.ui.ActionBar.h6.m1(0.06f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.E8, this.f29857e)));
+            o6Var.addView(view, w7.w5.d(8.0f, -1));
+            o6Var.addView(xk0Var.J, w7.w5.a(-1.0f, 0.0f, 8.0f, 0.0f, 0.0f, -1, 0));
+        } else {
+            o6Var = new org.telegram.ui.Cells.o6(0, this.f29856c, this.d, this.f29857e, true, this.f29858f);
+        }
+        return new s4.d1(o6Var);
     }
 }

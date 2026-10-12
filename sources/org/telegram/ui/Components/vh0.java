@@ -1,30 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class vh0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31877a;
-    public final yh0 f31878b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class vh0 {
+    public int f31519a;
+    public ArrayList f31520b;
+    public String f31521c;
+    public final byte[] d;
+    public boolean f31522e;
+    public int f31523f = 10;
 
-    public vh0(yh0 yh0Var, int i10) {
-        this.f31877a = i10;
-        this.f31878b = yh0Var;
+    public vh0(TLRPC.TL_messages_votesList tL_messages_votesList, byte[] bArr) {
+        this.f31519a = tL_messages_votesList.count;
+        this.f31520b = tL_messages_votesList.votes;
+        this.f31521c = tL_messages_votesList.next_offset;
+        this.d = bArr;
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f31877a) {
-            case 0:
-                yh0 yh0Var = this.f31878b;
-                yh0Var.getClass();
-                yh0Var.f33261b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yh0Var.c(true);
-                return;
-            default:
-                yh0 yh0Var2 = this.f31878b;
-                yh0Var2.getClass();
-                yh0Var2.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yh0Var2.c(true);
-                return;
+    public final int a() {
+        if (this.f31520b.size() <= 15) {
+            return 0;
         }
+        if (this.f31522e) {
+            return 1;
+        }
+        return 2;
+    }
+
+    public final int b() {
+        if (this.f31522e) {
+            return Math.min(this.f31523f, this.f31520b.size());
+        }
+        return this.f31520b.size();
     }
 }

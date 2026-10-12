@@ -7,50 +7,50 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import m.y2;
+import m.a3;
 import m.z2;
 public abstract class b extends BaseAdapter implements Filterable {
-    public boolean f10966a;
-    public boolean f10967b;
-    public Cursor f10968c;
+    public boolean f10965a;
+    public boolean f10966b;
+    public Cursor f10967c;
     public int d;
-    public com.google.android.gms.internal.clearcut.c f10969e;
-    public a f10970f;
+    public com.google.android.gms.internal.clearcut.c f10968e;
+    public a f10969f;
     public c h;
 
     public abstract void a(View view, Cursor cursor);
 
     public void b(Cursor cursor) {
-        Cursor cursor2 = this.f10968c;
+        Cursor cursor2 = this.f10967c;
         if (cursor == cursor2) {
             cursor2 = null;
         } else {
             if (cursor2 != null) {
-                com.google.android.gms.internal.clearcut.c cVar = this.f10969e;
+                com.google.android.gms.internal.clearcut.c cVar = this.f10968e;
                 if (cVar != null) {
                     cursor2.unregisterContentObserver(cVar);
                 }
-                a aVar = this.f10970f;
+                a aVar = this.f10969f;
                 if (aVar != null) {
                     cursor2.unregisterDataSetObserver(aVar);
                 }
             }
-            this.f10968c = cursor;
+            this.f10967c = cursor;
             if (cursor != null) {
-                com.google.android.gms.internal.clearcut.c cVar2 = this.f10969e;
+                com.google.android.gms.internal.clearcut.c cVar2 = this.f10968e;
                 if (cVar2 != null) {
                     cursor.registerContentObserver(cVar2);
                 }
-                a aVar2 = this.f10970f;
+                a aVar2 = this.f10969f;
                 if (aVar2 != null) {
                     cursor.registerDataSetObserver(aVar2);
                 }
                 this.d = cursor.getColumnIndexOrThrow("_id");
-                this.f10966a = true;
+                this.f10965a = true;
                 notifyDataSetChanged();
             } else {
                 this.d = -1;
-                this.f10966a = false;
+                this.f10965a = false;
                 notifyDataSetInvalidated();
             }
         }
@@ -64,7 +64,7 @@ public abstract class b extends BaseAdapter implements Filterable {
     @Override
     public final int getCount() {
         Cursor cursor;
-        if (this.f10966a && (cursor = this.f10968c) != null) {
+        if (this.f10965a && (cursor = this.f10967c) != null) {
             return cursor.getCount();
         }
         return 0;
@@ -72,13 +72,13 @@ public abstract class b extends BaseAdapter implements Filterable {
 
     @Override
     public View getDropDownView(int i10, View view, ViewGroup viewGroup) {
-        if (this.f10966a) {
-            this.f10968c.moveToPosition(i10);
+        if (this.f10965a) {
+            this.f10967c.moveToPosition(i10);
             if (view == null) {
-                z2 z2Var = (z2) this;
-                view = z2Var.f15951s.inflate(z2Var.f15950r, viewGroup, false);
+                a3 a3Var = (a3) this;
+                view = a3Var.f15380s.inflate(a3Var.f15379r, viewGroup, false);
             }
-            a(view, this.f10968c);
+            a(view, this.f10967c);
             return view;
         }
         return null;
@@ -88,7 +88,7 @@ public abstract class b extends BaseAdapter implements Filterable {
     public final Filter getFilter() {
         if (this.h == null) {
             ?? filter = new Filter();
-            filter.f10971a = this;
+            filter.f10970a = this;
             this.h = filter;
         }
         return this.h;
@@ -97,9 +97,9 @@ public abstract class b extends BaseAdapter implements Filterable {
     @Override
     public final Object getItem(int i10) {
         Cursor cursor;
-        if (this.f10966a && (cursor = this.f10968c) != null) {
+        if (this.f10965a && (cursor = this.f10967c) != null) {
             cursor.moveToPosition(i10);
-            return this.f10968c;
+            return this.f10967c;
         }
         return null;
     }
@@ -107,26 +107,26 @@ public abstract class b extends BaseAdapter implements Filterable {
     @Override
     public final long getItemId(int i10) {
         Cursor cursor;
-        if (!this.f10966a || (cursor = this.f10968c) == null || !cursor.moveToPosition(i10)) {
+        if (!this.f10965a || (cursor = this.f10967c) == null || !cursor.moveToPosition(i10)) {
             return 0L;
         }
-        return this.f10968c.getLong(this.d);
+        return this.f10967c.getLong(this.d);
     }
 
     @Override
     public View getView(int i10, View view, ViewGroup viewGroup) {
-        if (this.f10966a) {
-            if (this.f10968c.moveToPosition(i10)) {
+        if (this.f10965a) {
+            if (this.f10967c.moveToPosition(i10)) {
                 if (view == null) {
-                    z2 z2Var = (z2) this;
-                    view = z2Var.f15951s.inflate(z2Var.f15949n, viewGroup, false);
-                    view.setTag(new y2(view));
-                    ((ImageView) view.findViewById(2131296420)).setImageResource(z2Var.E);
+                    a3 a3Var = (a3) this;
+                    view = a3Var.f15380s.inflate(a3Var.f15378n, viewGroup, false);
+                    view.setTag(new z2(view));
+                    ((ImageView) view.findViewById(2131296420)).setImageResource(a3Var.E);
                 }
-                a(view, this.f10968c);
+                a(view, this.f10967c);
                 return view;
             }
-            throw new IllegalStateException(hg.c.h(i10, "couldn't move cursor to position "));
+            throw new IllegalStateException(hg.c.i(i10, "couldn't move cursor to position "));
         }
         throw new IllegalStateException("this should only be called when the cursor is valid");
     }

@@ -13,21 +13,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.c41;
-import org.telegram.ui.Components.eq0;
-import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.m11;
-import org.telegram.ui.Components.ud0;
+import org.telegram.ui.Components.g41;
+import org.telegram.ui.Components.jq0;
+import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.r11;
+import org.telegram.ui.Components.yd0;
 public final class w5 extends LinearLayout {
-    public final int f6206a;
-    public Object f6207b;
-    public Object f6208c;
+    public final int f6205a;
+    public Object f6206b;
+    public Object f6207c;
 
     public w5(Context context, Object obj, LinearLayout linearLayout, int i10) {
         super(context);
-        this.f6206a = i10;
-        this.f6207b = obj;
-        this.f6208c = linearLayout;
+        this.f6205a = i10;
+        this.f6206b = obj;
+        this.f6207c = linearLayout;
     }
 
     public static boolean a(View view, View view2) {
@@ -48,30 +48,30 @@ public final class w5 extends LinearLayout {
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f6206a) {
+        switch (this.f6205a) {
             case 4:
                 super.dispatchDraw(canvas);
-                ((m11) this.f6207b).e(canvas, ((ud0) this.f6208c).getX() - AndroidUtilities.dp(50.0f), getHeight() / 2.0f);
+                ((r11) this.f6206b).e(canvas, ((yd0) this.f6207c).getX() - AndroidUtilities.dp(50.0f), getHeight() / 2.0f);
                 return;
             case 5:
                 canvas.save();
-                c41 c41Var = (c41) this.f6208c;
-                float e7 = ((org.telegram.ui.Components.g6) this.f6207b).e(c41Var.f25223w);
+                g41 g41Var = (g41) this.f6207c;
+                float e7 = ((org.telegram.ui.Components.g6) this.f6206b).e(g41Var.f26277w);
                 if (e7 > 0.0f) {
-                    if (c41Var.f25217c == null) {
-                        c41Var.f25217c = new eq0(this);
+                    if (g41Var.f26271c == null) {
+                        g41Var.f26271c = new jq0(this);
                     }
                     canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                    c41Var.f25217c.a(canvas, e7);
+                    g41Var.f26271c.a(canvas, e7);
                     canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
                 }
                 super.dispatchDraw(canvas);
                 canvas.restore();
                 return;
             case 6:
-                RectF rectF = (RectF) this.f6207b;
+                RectF rectF = (RectF) this.f6206b;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                org.telegram.ui.Components.voip.r1 r1Var = (org.telegram.ui.Components.voip.r1) this.f6208c;
+                org.telegram.ui.Components.voip.r1 r1Var = (org.telegram.ui.Components.voip.r1) this.f6207c;
                 r1Var.d(getX(), getY());
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), r1Var.b());
                 super.dispatchDraw(canvas);
@@ -84,9 +84,9 @@ public final class w5 extends LinearLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f6206a) {
+        switch (this.f6205a) {
             case 2:
-                int[] iArr = (int[]) this.f6207b;
+                int[] iArr = (int[]) this.f6206b;
                 boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
                 if (!dispatchTouchEvent) {
                     getLocationOnScreen(iArr);
@@ -101,7 +101,7 @@ public final class w5 extends LinearLayout {
                                     motionEvent.offsetLocation(-iArr[0], -iArr[1]);
                                     dispatchTouchEvent = view.dispatchTouchEvent(motionEvent);
                                     if (dispatchTouchEvent) {
-                                        this.f6208c = view;
+                                        this.f6207c = view;
                                         return true;
                                     }
                                     motionEvent.offsetLocation(iArr[0], iArr[1]);
@@ -109,7 +109,7 @@ public final class w5 extends LinearLayout {
                             }
                         }
                     } else {
-                        View view2 = (View) this.f6208c;
+                        View view2 = (View) this.f6207c;
                         if (view2 != null) {
                             view2.getLocationOnScreen(iArr);
                             motionEvent.offsetLocation(-iArr[0], -iArr[1]);
@@ -118,7 +118,7 @@ public final class w5 extends LinearLayout {
                     }
                 }
                 if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    this.f6208c = null;
+                    this.f6207c = null;
                 }
                 return dispatchTouchEvent;
             default:
@@ -128,11 +128,11 @@ public final class w5 extends LinearLayout {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f6206a) {
+        switch (this.f6205a) {
             case 8:
                 super.onAttachedToWindow();
-                getViewTreeObserver().addOnPreDrawListener((org.telegram.ui.Wallet.n4) this.f6207b);
-                getViewTreeObserver().addOnWindowFocusChangeListener(((org.telegram.ui.Wallet.l8) this.f6208c).H);
+                getViewTreeObserver().addOnPreDrawListener((org.telegram.ui.Wallet.n4) this.f6206b);
+                getViewTreeObserver().addOnWindowFocusChangeListener(((org.telegram.ui.Wallet.l8) this.f6207c).H);
                 return;
             default:
                 super.onAttachedToWindow();
@@ -142,10 +142,10 @@ public final class w5 extends LinearLayout {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f6206a) {
+        switch (this.f6205a) {
             case 8:
-                getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.Wallet.n4) this.f6207b);
-                getViewTreeObserver().removeOnWindowFocusChangeListener(((org.telegram.ui.Wallet.l8) this.f6208c).H);
+                getViewTreeObserver().removeOnPreDrawListener((org.telegram.ui.Wallet.n4) this.f6206b);
+                getViewTreeObserver().removeOnWindowFocusChangeListener(((org.telegram.ui.Wallet.l8) this.f6207c).H);
                 super.onDetachedFromWindow();
                 return;
             default:
@@ -162,11 +162,11 @@ public final class w5 extends LinearLayout {
         TextView textView2;
         float interpolation2;
         float f10;
-        switch (this.f6206a) {
+        switch (this.f6205a) {
             case 0:
-                Paint paint = (Paint) this.f6207b;
+                Paint paint = (Paint) this.f6206b;
                 super.onDraw(canvas);
-                q6 q6Var = (q6) this.f6208c;
+                q6 q6Var = (q6) this.f6207c;
                 TextView textView3 = (TextView) getChildAt(q6Var.Y0);
                 int i10 = q6Var.Z0;
                 Layout layout = null;
@@ -186,7 +186,7 @@ public final class w5 extends LinearLayout {
                     if (layout == null) {
                         interpolation = 0.0f;
                     } else {
-                        interpolation = is.f27500f.getInterpolation(q6Var.f5789a1);
+                        interpolation = js.f27627f.getInterpolation(q6Var.f5788a1);
                     }
                     float primaryHorizontal = layout2.getPrimaryHorizontal(layout2.getLineStart(0)) + textView3.getX();
                     if (layout != null) {
@@ -204,15 +204,15 @@ public final class w5 extends LinearLayout {
                 }
                 return;
             case 3:
-                canvas.drawPath((Path) this.f6208c, (Paint) this.f6207b);
+                canvas.drawPath((Path) this.f6207c, (Paint) this.f6206b);
                 super.onDraw(canvas);
                 return;
             case 9:
-                Paint paint2 = (Paint) this.f6207b;
+                Paint paint2 = (Paint) this.f6206b;
                 super.onDraw(canvas);
-                qg.m0 m0Var = (qg.m0) this.f6208c;
-                TextView textView4 = (TextView) getChildAt(m0Var.f46500g1);
-                int i11 = m0Var.f46502h1;
+                qg.m0 m0Var = (qg.m0) this.f6207c;
+                TextView textView4 = (TextView) getChildAt(m0Var.f46308g1);
+                int i11 = m0Var.f46310h1;
                 Layout layout3 = null;
                 if (i11 != -1) {
                     textView2 = (TextView) getChildAt(i11);
@@ -229,7 +229,7 @@ public final class w5 extends LinearLayout {
                 if (layout3 == null) {
                     interpolation2 = 0.0f;
                 } else {
-                    interpolation2 = is.f27500f.getInterpolation(m0Var.f46504i1);
+                    interpolation2 = js.f27627f.getInterpolation(m0Var.f46312i1);
                 }
                 float primaryHorizontal3 = layout4.getPrimaryHorizontal(layout4.getLineStart(0)) + textView4.getX();
                 if (textView2 != null) {
@@ -252,21 +252,21 @@ public final class w5 extends LinearLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f6206a) {
+        switch (this.f6205a) {
             case 1:
-                View view = (View) this.f6207b;
-                org.telegram.ui.ActionBar.u0 u0Var = (org.telegram.ui.ActionBar.u0) this.f6208c;
-                u0Var.f21571b.measure(i10, i11);
-                if (u0Var.f21571b.getSwipeBack() != null) {
-                    view.getLayoutParams().width = u0Var.f21571b.getSwipeBack().getChildAt(0).getMeasuredWidth();
+                View view = (View) this.f6206b;
+                org.telegram.ui.ActionBar.u0 u0Var = (org.telegram.ui.ActionBar.u0) this.f6207c;
+                u0Var.f21309b.measure(i10, i11);
+                if (u0Var.f21309b.getSwipeBack() != null) {
+                    view.getLayoutParams().width = u0Var.f21309b.getSwipeBack().getChildAt(0).getMeasuredWidth();
                 } else {
-                    view.getLayoutParams().width = u0Var.f21571b.getMeasuredWidth() - AndroidUtilities.dp(16.0f);
+                    view.getLayoutParams().width = u0Var.f21309b.getMeasuredWidth() - AndroidUtilities.dp(16.0f);
                 }
                 super.onMeasure(i10, i11);
                 return;
             case 3:
                 super.onMeasure(i10, i11);
-                Path path = (Path) this.f6208c;
+                Path path = (Path) this.f6207c;
                 path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), getMeasuredWidth() - AndroidUtilities.dp(12.0f), getMeasuredHeight() - AndroidUtilities.dp(12.0f));
@@ -274,9 +274,9 @@ public final class w5 extends LinearLayout {
                 return;
             case 7:
                 int size = View.MeasureSpec.getSize(i10);
-                LinearLayout linearLayout = (LinearLayout) this.f6207b;
+                LinearLayout linearLayout = (LinearLayout) this.f6206b;
                 linearLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
-                LinearLayout linearLayout2 = (LinearLayout) this.f6208c;
+                LinearLayout linearLayout2 = (LinearLayout) this.f6207c;
                 if (linearLayout2 != null) {
                     linearLayout2.measure(View.MeasureSpec.makeMeasureSpec(linearLayout.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
                     setMeasuredDimension(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredHeight() + linearLayout.getMeasuredHeight());
@@ -295,39 +295,39 @@ public final class w5 extends LinearLayout {
 
     public w5(Activity activity, org.telegram.ui.Components.voip.r1 r1Var) {
         super(activity);
-        this.f6206a = 6;
-        this.f6207b = new RectF();
-        this.f6208c = r1Var;
+        this.f6205a = 6;
+        this.f6206b = new RectF();
+        this.f6207c = r1Var;
         r1Var.a(this);
     }
 
     public w5(org.telegram.ui.ActionBar.u0 u0Var, Context context, View view) {
         super(context);
-        this.f6206a = 1;
-        this.f6208c = u0Var;
-        this.f6207b = view;
+        this.f6205a = 1;
+        this.f6207c = u0Var;
+        this.f6206b = view;
     }
 
     public w5(org.telegram.ui.Wallet.l8 l8Var, Context context) {
         super(context);
-        this.f6206a = 8;
-        this.f6208c = l8Var;
-        this.f6207b = new org.telegram.ui.Wallet.n4(this, 2);
+        this.f6205a = 8;
+        this.f6207c = l8Var;
+        this.f6206b = new org.telegram.ui.Wallet.n4(this, 2);
     }
 
-    public w5(c41 c41Var, Context context) {
+    public w5(g41 g41Var, Context context) {
         super(context);
-        this.f6206a = 5;
-        this.f6208c = c41Var;
-        this.f6207b = new org.telegram.ui.Components.g6(this, 360L, is.h);
+        this.f6205a = 5;
+        this.f6207c = g41Var;
+        this.f6206b = new org.telegram.ui.Components.g6(this, 360L, js.h);
     }
 
     public w5(qg.m0 m0Var, Context context) {
         super(context);
-        this.f6206a = 9;
-        this.f6208c = m0Var;
+        this.f6205a = 9;
+        this.f6207c = m0Var;
         Paint paint = new Paint(1);
-        this.f6207b = paint;
+        this.f6206b = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -336,24 +336,24 @@ public final class w5 extends LinearLayout {
 
     public w5(Context context, int i10) {
         super(context);
-        this.f6206a = i10;
+        this.f6205a = i10;
         switch (i10) {
             case 3:
                 super(context);
                 return;
             default:
-                this.f6207b = new int[2];
-                this.f6208c = null;
+                this.f6206b = new int[2];
+                this.f6207c = null;
                 return;
         }
     }
 
     public w5(q6 q6Var, Context context) {
         super(context);
-        this.f6206a = 0;
-        this.f6208c = q6Var;
+        this.f6205a = 0;
+        this.f6207c = q6Var;
         Paint paint = new Paint(1);
-        this.f6207b = paint;
+        this.f6206b = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);

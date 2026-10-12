@@ -1,69 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class q21 extends qm0 {
-    public Context f30096c;
-    public ArrayList d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class q21 extends AnimatorListenerAdapter {
+    public final boolean f29673a;
+    public final ThemeEditorView.EditorAlert f29674b;
 
-    @Override
-    public final boolean D(s4.d1 d1Var) {
-        return true;
+    public q21(ThemeEditorView.EditorAlert editorAlert, boolean z10) {
+        this.f29674b = editorAlert;
+        this.f29673a = z10;
     }
 
     @Override
-    public final int h() {
-        ArrayList arrayList = this.d;
-        if (arrayList.isEmpty()) {
-            return 0;
+    public final void onAnimationCancel(Animator animator) {
+        AnimatorSet[] animatorSetArr = this.f29674b.f24145x;
+        AnimatorSet animatorSet = animatorSetArr[0];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            animatorSetArr[0] = null;
         }
-        return arrayList.size() + 1;
     }
 
     @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        int c10;
-        if (d1Var.f47786f == 0) {
-            boolean z10 = true;
-            org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) ((ArrayList) this.d.get(i10 - 1)).get(0);
-            if (j6Var.f21283f == org.telegram.ui.ActionBar.h6.Nd) {
-                c10 = 0;
-            } else {
-                c10 = j6Var.c();
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f29674b;
+        AnimatorSet[] animatorSetArr = editorAlert.f24145x;
+        AnimatorSet animatorSet = animatorSetArr[0];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            if (!this.f29673a) {
+                editorAlert.f24144w[0].setVisibility(4);
             }
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) d1Var.f47782a;
-            z8Var.f23846a.setText(org.telegram.ui.ActionBar.e5.i(j6Var.f21283f));
-            z8Var.f23847b = c10;
-            if (c10 != 0) {
-                z10 = false;
-            }
-            z8Var.setWillNotDraw(z10);
-            z8Var.invalidate();
+            animatorSetArr[0] = null;
         }
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View z8Var;
-        Context context = this.f30096c;
-        if (i10 != 0) {
-            z8Var = new View(context);
-            z8Var.setLayoutParams(new s4.q0(-1, AndroidUtilities.dp(56.0f)));
-        } else {
-            z8Var = new org.telegram.ui.Cells.z8(context);
-            z8Var.setLayoutParams(new s4.q0(-1, -2));
-        }
-        return new s4.d1(z8Var);
     }
 }

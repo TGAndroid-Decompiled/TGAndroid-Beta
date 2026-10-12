@@ -7,28 +7,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import java.util.ArrayList;
-import org.telegram.ui.Components.e40;
+import org.telegram.ui.Components.g40;
 public final class ba extends ViewGroup {
-    public final int f4795a = 0;
-    public AnimatorSet f4796b;
-    public boolean f4797c;
+    public final int f4794a = 0;
+    public AnimatorSet f4795b;
+    public boolean f4796c;
     public final ArrayList d;
-    public final ArrayList f4798e;
-    public final ArrayList f4799f;
+    public final ArrayList f4797e;
+    public final ArrayList f4798f;
     public final ArrayList h;
-    public final ScrollView f4800n;
+    public final ScrollView f4799n;
 
     public ba(xg.i iVar, Context context) {
         super(context);
-        this.f4800n = iVar;
+        this.f4799n = iVar;
         this.d = new ArrayList();
-        this.f4798e = new ArrayList();
-        this.f4799f = new ArrayList();
+        this.f4797e = new ArrayList();
+        this.f4798f = new ArrayList();
         this.h = new ArrayList();
     }
 
     public void a() {
-        ca caVar = (ca) this.f4800n;
+        ca caVar = (ca) this.f4799n;
         caVar.G = true;
         ArrayList arrayList = caVar.d;
         ArrayList arrayList2 = new ArrayList(arrayList);
@@ -37,74 +37,74 @@ public final class ba extends ViewGroup {
         arrayList3.addAll(arrayList);
         arrayList.clear();
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            ((e40) arrayList2.get(i10)).setOnClickListener(null);
+            ((g40) arrayList2.get(i10)).setOnClickListener(null);
         }
         c();
-        this.f4797c = false;
+        this.f4796c = false;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f4796b = animatorSet;
+        this.f4795b = animatorSet;
         animatorSet.addListener(new aa(this, arrayList2, 1));
-        ArrayList arrayList4 = this.f4799f;
+        ArrayList arrayList4 = this.f4798f;
         arrayList4.clear();
         ArrayList arrayList5 = this.d;
         arrayList5.clear();
-        this.f4798e.clear();
+        this.f4797e.clear();
         for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-            e40 e40Var = (e40) arrayList2.get(i11);
-            arrayList5.add(e40Var);
-            arrayList4.add(ObjectAnimator.ofFloat(e40Var, View.SCALE_X, 1.0f, 0.01f));
-            arrayList4.add(ObjectAnimator.ofFloat(e40Var, View.SCALE_Y, 1.0f, 0.01f));
-            arrayList4.add(ObjectAnimator.ofFloat(e40Var, View.ALPHA, 1.0f, 0.0f));
+            g40 g40Var = (g40) arrayList2.get(i11);
+            arrayList5.add(g40Var);
+            arrayList4.add(ObjectAnimator.ofFloat(g40Var, View.SCALE_X, 1.0f, 0.01f));
+            arrayList4.add(ObjectAnimator.ofFloat(g40Var, View.SCALE_Y, 1.0f, 0.01f));
+            arrayList4.add(ObjectAnimator.ofFloat(g40Var, View.ALPHA, 1.0f, 0.0f));
         }
         requestLayout();
     }
 
     public void b(boolean z10) {
-        xg.i iVar = (xg.i) this.f4800n;
+        xg.i iVar = (xg.i) this.f4799n;
         iVar.G = true;
-        ArrayList arrayList = iVar.f51267e;
+        ArrayList arrayList = iVar.f51374e;
         ArrayList arrayList2 = new ArrayList(arrayList);
         ArrayList arrayList3 = this.h;
         arrayList3.clear();
         arrayList3.addAll(arrayList);
         arrayList.clear();
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            ((e40) arrayList2.get(i10)).setOnClickListener(null);
+            ((g40) arrayList2.get(i10)).setOnClickListener(null);
         }
         c();
         if (z10) {
-            this.f4797c = false;
+            this.f4796c = false;
             AnimatorSet animatorSet = new AnimatorSet();
-            this.f4796b = animatorSet;
+            this.f4795b = animatorSet;
             animatorSet.addListener(new xg.h(this, arrayList2, 1));
-            ArrayList arrayList4 = this.f4799f;
+            ArrayList arrayList4 = this.f4798f;
             arrayList4.clear();
             ArrayList arrayList5 = this.d;
             arrayList5.clear();
-            this.f4798e.clear();
+            this.f4797e.clear();
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                e40 e40Var = (e40) arrayList2.get(i11);
-                arrayList5.add(e40Var);
-                arrayList4.add(ObjectAnimator.ofFloat(e40Var, View.SCALE_X, 1.0f, 0.01f));
-                arrayList4.add(ObjectAnimator.ofFloat(e40Var, View.SCALE_Y, 1.0f, 0.01f));
-                arrayList4.add(ObjectAnimator.ofFloat(e40Var, View.ALPHA, 1.0f, 0.0f));
+                g40 g40Var = (g40) arrayList2.get(i11);
+                arrayList5.add(g40Var);
+                arrayList4.add(ObjectAnimator.ofFloat(g40Var, View.SCALE_X, 1.0f, 0.01f));
+                arrayList4.add(ObjectAnimator.ofFloat(g40Var, View.SCALE_Y, 1.0f, 0.01f));
+                arrayList4.add(ObjectAnimator.ofFloat(g40Var, View.ALPHA, 1.0f, 0.0f));
             }
         } else {
             for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                 removeView((View) arrayList2.get(i12));
             }
             arrayList3.clear();
-            this.f4796b = null;
-            this.f4797c = false;
-            iVar.f51265b.setAllowDrawCursor(true);
+            this.f4795b = null;
+            this.f4796c = false;
+            iVar.f51372b.setAllowDrawCursor(true);
         }
         requestLayout();
     }
 
     public final void c() {
-        switch (this.f4795a) {
+        switch (this.f4794a) {
             case 0:
-                AnimatorSet animatorSet = this.f4796b;
+                AnimatorSet animatorSet = this.f4795b;
                 if (animatorSet != null) {
                     animatorSet.cancel();
                 }
@@ -119,7 +119,7 @@ public final class ba extends ViewGroup {
                         i11++;
                     } else {
                         while (true) {
-                            ArrayList arrayList2 = this.f4798e;
+                            ArrayList arrayList2 = this.f4797e;
                             if (i10 < arrayList2.size()) {
                                 ((View) arrayList2.get(i10)).setScaleX(0.0f);
                                 ((View) arrayList2.get(i10)).setScaleY(0.0f);
@@ -134,7 +134,7 @@ public final class ba extends ViewGroup {
                     }
                 }
             default:
-                AnimatorSet animatorSet2 = this.f4796b;
+                AnimatorSet animatorSet2 = this.f4795b;
                 if (animatorSet2 != null) {
                     animatorSet2.cancel();
                 }
@@ -149,7 +149,7 @@ public final class ba extends ViewGroup {
                         i13++;
                     } else {
                         while (true) {
-                            ArrayList arrayList4 = this.f4798e;
+                            ArrayList arrayList4 = this.f4797e;
                             if (i12 < arrayList4.size()) {
                                 ((View) arrayList4.get(i12)).setScaleX(0.0f);
                                 ((View) arrayList4.get(i12)).setScaleY(0.0f);
@@ -168,7 +168,7 @@ public final class ba extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f4795a) {
+        switch (this.f4794a) {
             case 0:
                 int childCount = getChildCount();
                 for (int i14 = 0; i14 < childCount; i14++) {
@@ -193,10 +193,10 @@ public final class ba extends ViewGroup {
 
     public ba(ca caVar, Context context) {
         super(context);
-        this.f4800n = caVar;
+        this.f4799n = caVar;
         this.d = new ArrayList();
-        this.f4798e = new ArrayList();
-        this.f4799f = new ArrayList();
+        this.f4797e = new ArrayList();
+        this.f4798f = new ArrayList();
         this.h = new ArrayList();
     }
 }

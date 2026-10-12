@@ -1,153 +1,150 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.view.MotionEvent;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class uc0 extends View {
-    public final q6 f31521a;
-    public final qc0 f31522b;
-    public boolean f31523c;
-    public boolean d;
-    public final String f31524e;
-    public final String f31525f;
-    public final int h;
+public final class uc0 extends Drawable {
+    public final int f31139a;
+    public boolean f31140b;
+    public Object f31141c;
+    public Object d;
+    public Object f31142e;
 
-    public uc0(Context context, int i10, String str, int i11, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f31523c = true;
-        this.f31524e = str;
-        this.f31525f = str2;
-        setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20913i6, d6Var), 2, -1));
-        q6 q6Var = new q6(true, true, true);
-        this.f31521a = q6Var;
-        q6Var.n(0.35f, 300L, is.h);
-        q6Var.w(AndroidUtilities.dp(16.0f));
-        q6Var.u(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.E8, d6Var));
-        q6Var.setCallback(this);
-        q6Var.q(!LocaleController.isRTL);
-        if (LocaleController.isRTL) {
-            q6Var.f30134b = 5;
+    public uc0(int i10) {
+        this.f31139a = i10;
+        switch (i10) {
+            case 1:
+                this.f31141c = new Paint(1);
+                Paint paint = new Paint(1);
+                this.d = paint;
+                this.f31142e = new Matrix();
+                paint.setStyle(Paint.Style.STROKE);
+                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{1308622847, 0, 452984831}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
+                return;
+            default:
+                return;
         }
-        TextPaint textPaint = q6Var.f30132a;
-        int max = (int) (Math.max(textPaint.measureText(str), textPaint.measureText(str2)) + AndroidUtilities.dp(77.0f));
-        this.h = max;
-        q6Var.M = max;
-        qc0 qc0Var = new qc0(0);
-        dk0 dk0Var = new dk0(i10, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        qc0Var.f30230c = dk0Var;
-        dk0Var.R(this);
-        dk0Var.J(true);
-        dk0Var.h = true;
-        dk0Var.K(0);
-        dk0 dk0Var2 = new dk0(i11, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        qc0Var.d = dk0Var2;
-        dk0Var2.R(this);
-        dk0Var2.J(true);
-        dk0Var2.h = true;
-        dk0Var2.K(0);
-        qc0Var.f30231e = dk0Var;
-        this.f31522b = qc0Var;
-        qc0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.F8, d6Var), PorterDuff.Mode.SRC_IN));
     }
 
-    public final void a(boolean z10, boolean z11) {
-        String str;
-        boolean z12;
-        dk0 dk0Var;
-        if (!this.f31523c && z10 == this.d) {
-            return;
-        }
-        this.d = z10;
-        if (z10) {
-            str = this.f31524e;
-        } else {
-            str = this.f31525f;
-        }
-        if (z11 && !LocaleController.isRTL) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        q6 q6Var = this.f31521a;
-        q6Var.t(str, z12, true);
-        qc0 qc0Var = this.f31522b;
-        dk0 dk0Var2 = (dk0) qc0Var.d;
-        dk0 dk0Var3 = (dk0) qc0Var.f30230c;
-        qc0Var.f30229b = z10;
-        if (z11) {
-            if (z10) {
-                dk0Var = dk0Var3;
-            } else {
-                dk0Var = dk0Var2;
-            }
-            qc0Var.f30231e = dk0Var;
-            dk0Var3.M(0);
-            dk0Var2.M(0);
-            ((dk0) qc0Var.f30231e).start();
-        } else {
-            if (z10) {
-                dk0Var2 = dk0Var3;
-            }
-            qc0Var.f30231e = dk0Var2;
-            dk0Var2.M(dk0Var2.f25810e[0] - 1);
-        }
-        this.f31523c = false;
-        setContentDescription(q6Var.f30140i);
+    public void b(int i10, int i11) {
+        ((Paint) this.f31141c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10 = LocaleController.isRTL;
-        q6 q6Var = this.f31521a;
-        qc0 qc0Var = this.f31522b;
-        if (z10) {
-            qc0Var.setBounds(getMeasuredWidth() - AndroidUtilities.dp(41.0f), org.telegram.messenger.ai.A(24.0f, getMeasuredHeight(), 2), getMeasuredWidth() - AndroidUtilities.dp(17.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
-            q6Var.setBounds(0, 0, getMeasuredWidth() - AndroidUtilities.dp(59.0f), getMeasuredHeight());
-        } else {
-            qc0Var.setBounds(AndroidUtilities.dp(17.0f), org.telegram.messenger.ai.A(24.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(41.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
-            q6Var.setBounds(AndroidUtilities.dp(59.0f), 0, getMeasuredWidth(), getMeasuredHeight());
+    public final void draw(Canvas canvas) {
+        fk0 fk0Var;
+        switch (this.f31139a) {
+            case 0:
+                fk0 fk0Var2 = (fk0) this.d;
+                fk0 fk0Var3 = (fk0) this.f31141c;
+                Rect rect = AndroidUtilities.rectTmp2;
+                rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + getBounds().centerX(), AndroidUtilities.dp(12.0f) + getBounds().centerY());
+                if (((fk0) this.f31142e).A()) {
+                    fk0 fk0Var4 = (fk0) this.f31142e;
+                    boolean z10 = this.f31140b;
+                    if (z10) {
+                        fk0Var = fk0Var3;
+                    } else {
+                        fk0Var = fk0Var2;
+                    }
+                    if (fk0Var4 != fk0Var) {
+                        if (z10) {
+                            fk0Var2 = fk0Var3;
+                        }
+                        this.f31142e = fk0Var2;
+                        fk0Var2.M(fk0Var2.f26107e[0] - 1);
+                    }
+                }
+                ((fk0) this.f31142e).setBounds(rect);
+                ((fk0) this.f31142e).draw(canvas);
+                return;
+            default:
+                Paint paint = (Paint) this.d;
+                float dp = AndroidUtilities.dp(10.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(getBounds());
+                Matrix matrix = (Matrix) this.f31142e;
+                matrix.reset();
+                matrix.postTranslate(rectF.left, rectF.top);
+                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f31141c);
+                if (this.f31140b) {
+                    float dp2 = AndroidUtilities.dp(1.0f);
+                    paint.setStrokeWidth(dp2);
+                    matrix.reset();
+                    matrix.postTranslate(rectF.left, rectF.top);
+                    float f7 = dp2 / 2.0f;
+                    rectF.inset(f7, f7);
+                    canvas.drawRoundRect(rectF, dp, dp, paint);
+                    return;
+                }
+                return;
         }
-        q6Var.draw(canvas);
-        qc0Var.draw(canvas);
-    }
-
-    public boolean getState() {
-        return this.d;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int min;
-        int mode = View.MeasureSpec.getMode(i10);
-        int i12 = this.h;
-        if (mode == 1073741824) {
-            min = Math.max(View.MeasureSpec.getSize(i10), i12);
-        } else {
-            min = Math.min(View.MeasureSpec.getSize(i10), i12);
+    public int getIntrinsicHeight() {
+        switch (this.f31139a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return super.getIntrinsicHeight();
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, mode), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-            return super.onTouchEvent(motionEvent);
+    public int getIntrinsicWidth() {
+        switch (this.f31139a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return super.getIntrinsicWidth();
         }
-        return false;
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f31521a && !super.verifyDrawable(drawable)) {
-            return false;
+    public final int getOpacity() {
+        switch (this.f31139a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
         }
-        return true;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f31139a) {
+            case 0:
+                ((fk0) this.f31141c).setAlpha(i10);
+                ((fk0) this.d).setAlpha(i10);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f31139a) {
+            case 0:
+                ((fk0) this.f31141c).setColorFilter(colorFilter);
+                ((fk0) this.d).setColorFilter(colorFilter);
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void a(int i10) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
     }
 }

@@ -1,58 +1,59 @@
 package org.telegram.ui;
 
+import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class bw implements View.OnLongClickListener {
-    public final int f36497a;
-    public final sy f36498b;
+import org.telegram.messenger.MessageObject;
+public final class bw implements org.telegram.ui.Components.km0 {
+    public final int f36268a;
+    public final vy f36269b;
 
-    public bw(sy syVar, int i10) {
-        this.f36497a = i10;
-        this.f36498b = syVar;
+    public bw(vy vyVar, int i10) {
+        this.f36268a = i10;
+        this.f36269b = vyVar;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        switch (this.f36497a) {
+    public final void d(int i10, View view) {
+        gg.p0 p0Var;
+        switch (this.f36268a) {
             case 0:
-                sy syVar = this.f36498b;
-                ArrayList arrayList = syVar.I2;
-                if (syVar.getParentActivity() == null) {
-                    return false;
-                }
-                boolean z10 = true;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    long longValue = ((Long) arrayList.get(i10)).longValue();
-                    if (DialogObject.isEncryptedDialog(longValue)) {
-                        z10 = false;
+                vy vyVar = this.f36269b;
+                Object obj = vyVar.C0.f27610v0.G(i10).G;
+                if (obj instanceof MessageObject) {
+                    MessageObject messageObject = (MessageObject) obj;
+                    Bundle bundle = new Bundle();
+                    if (messageObject.getDialogId() >= 0) {
+                        bundle.putLong("user_id", messageObject.getDialogId());
+                    } else {
+                        bundle.putLong("chat_id", -messageObject.getDialogId());
                     }
-                    TLRPC.Chat chat = syVar.getMessagesController().getChat(Long.valueOf(-longValue));
-                    if (chat != null && !ChatObject.canWriteToChat(chat)) {
-                        z10 = false;
-                    }
+                    bundle.putInt("message_id", messageObject.getId());
+                    eo eoVar = new eo(bundle);
+                    vy.a4(eoVar, messageObject);
+                    vyVar.presentFragment(eoVar);
+                    return;
+                } else if (obj instanceof ai.w8) {
+                    ai.w8 w8Var = (ai.w8) obj;
+                    Bundle f7 = org.telegram.ui.Cells.c1.f(3, "type");
+                    f7.putString("hashtag", w8Var.C);
+                    f7.putInt("storiesCount", w8Var.J);
+                    vyVar.presentFragment(new org.telegram.ui.Components.hb0(f7, null));
+                    return;
+                } else {
+                    return;
                 }
-                org.telegram.ui.Components.p80 H = org.telegram.ui.Components.p80.H(syVar, view);
-                H.c(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new nv(syVar, 20), false);
-                H.l(R.drawable.msg_calendar2, LocaleController.getString(R.string.ScheduleMessage), new nv(syVar, 21), z10);
-                H.Z();
-                return true;
-            case 1:
-                sy syVar2 = this.f36498b;
-                syVar2.o4(syVar2.I2, 104, true, true, null);
-                return true;
-            case 2:
-                this.f36498b.m4(view);
-                return true;
             default:
-                sy syVar3 = this.f36498b;
-                syVar3.getContactsController().loadGlobalPrivacySetting();
-                syVar3.H4();
-                return true;
+                vy vyVar2 = this.f36269b;
+                vyVar2.f42886b0.I0(true);
+                ArrayList arrayList = vyVar2.f42886b0.V2;
+                if (arrayList.isEmpty()) {
+                    p0Var = gg.r0.f10777a3[i10];
+                } else {
+                    p0Var = (gg.p0) arrayList.get(i10);
+                }
+                vyVar2.g3(p0Var);
+                return;
         }
     }
 }

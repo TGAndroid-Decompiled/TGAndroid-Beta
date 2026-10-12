@@ -3,30 +3,30 @@ package a3;
 import b2.x1;
 public final class e implements Runnable {
     public final int f87a;
-    public final n4.x f88b;
+    public final n4.y f88b;
 
-    public e(int i10, n4.x xVar) {
+    public e(int i10, n4.y yVar) {
         this.f87a = i10;
-        this.f88b = xVar;
+        this.f88b = yVar;
     }
 
     @Override
     public final void run() {
         switch (this.f87a) {
             case 0:
-                ((f) this.f88b.f16695c).f109g.onFirstFrameRendered();
+                ((f) this.f88b.f16363c).f109g.onFirstFrameRendered();
                 return;
             case 1:
-                ((f) this.f88b.f16695c).f109g.F();
+                ((f) this.f88b.f16363c).f109g.C();
                 return;
             default:
-                ((f) this.f88b.f16695c).f109g.P();
+                ((f) this.f88b.f16363c).f109g.K();
                 return;
         }
     }
 
-    public e(n4.x xVar, x1 x1Var) {
+    public e(n4.y yVar, x1 x1Var) {
         this.f87a = 2;
-        this.f88b = xVar;
+        this.f88b = yVar;
     }
 }

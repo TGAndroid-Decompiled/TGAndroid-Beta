@@ -1,23 +1,62 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ImageReceiver;
-public final class us0 implements org.telegram.ui.Components.m40 {
-    public final PhotoViewer f42797a;
+import java.io.File;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class us0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.c6 f42560a;
+    public final PhotoViewer f42561b;
 
-    public us0(PhotoViewer photoViewer) {
-        this.f42797a = photoViewer;
+    public us0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f42561b = photoViewer;
+        this.f42560a = c6Var;
     }
 
-    public final void a(int i10) {
-        PhotoViewer photoViewer = this.f42797a;
-        photoViewer.P4 = -1;
-        ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f34014j5;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            photoViewer.f34014j5 = null;
+    @Override
+    public final boolean a() {
+        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
+        boolean z10;
+        PhotoViewer photoViewer = this.f42561b;
+        if (photoViewer.T4 != null || photoViewer.f33717b5 != null) {
+            return true;
         }
-        photoViewer.f34030l5 = true;
-        photoViewer.B2(i10);
-        photoViewer.f34030l5 = false;
+        if (photoViewer.f33707a5 != null) {
+            FileLoader fileLoader = FileLoader.getInstance(photoViewer.T);
+            ImageLocation imageLocation = photoViewer.f33707a5;
+            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = null;
+            if (imageLocation == null) {
+                tL_fileLocationToBeDeprecated = null;
+            } else {
+                tL_fileLocationToBeDeprecated = imageLocation.location;
+            }
+            String q12 = PhotoViewer.q1(imageLocation);
+            if (photoViewer.f33933z5 == 0 && !photoViewer.B5) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            File pathToAttach = fileLoader.getPathToAttach(tL_fileLocationToBeDeprecated, q12, z10);
+            File file = new File(FileLoader.getDirectory(4), pathToAttach.getName());
+            FileLoader fileLoader2 = FileLoader.getInstance(photoViewer.T);
+            ImageLocation imageLocation2 = photoViewer.f33707a5;
+            if (imageLocation2 != null) {
+                tL_fileLocationToBeDeprecated2 = imageLocation2.location;
+            }
+            File pathToAttach2 = fileLoader2.getPathToAttach(tL_fileLocationToBeDeprecated2, PhotoViewer.q1(imageLocation2), false);
+            if (pathToAttach.exists() || file.exists() || pathToAttach2.exists()) {
+                return true;
+            }
+            return false;
+        } else if (photoViewer.f33791j7 != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public final void b(int r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.us0.b(int):void");
     }
 }

@@ -1,40 +1,19 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.LinearLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.messenger.voip.VoIPServiceState;
-public final class qi1 extends LinearLayout {
-    public final ui1 f41223a;
+import android.content.Context;
+public final class qi1 extends org.telegram.ui.Components.voip.e1 {
+    public final xi1 V;
 
-    public qi1(ui1 ui1Var, Activity activity) {
-        super(activity);
-        this.f41223a = ui1Var;
+    public qi1(xi1 xi1Var, Context context, float f7, float f10) {
+        super(context, f7, f10);
+        this.V = xi1Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        VoIPServiceState sharedState = VoIPService.getSharedState();
-        CharSequence text = this.f41223a.E.getText();
-        if (sharedState != null && !TextUtils.isEmpty(text)) {
-            StringBuilder sb2 = new StringBuilder(text);
-            sb2.append(", ");
-            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
-                sb2.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
-            } else {
-                sb2.append(LocaleController.getString(R.string.VoipInCallBranding));
-            }
-            long callDuration = sharedState.getCallDuration();
-            if (callDuration > 0) {
-                sb2.append(", ");
-                sb2.append(LocaleController.formatDuration((int) (callDuration / 1000)));
-            }
-            accessibilityNodeInfo.setText(sb2);
-        }
+    public final int[] getFloatingViewLocation() {
+        int[] iArr = new int[2];
+        xi1 xi1Var = this.V;
+        xi1Var.Y.getLocationOnScreen(iArr);
+        return new int[]{iArr[0], iArr[1], xi1Var.Y.getMeasuredWidth()};
     }
 }

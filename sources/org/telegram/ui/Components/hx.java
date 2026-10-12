@@ -1,61 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class hx extends FrameLayout {
-    public final boolean f27247a;
-    public final b00 f27248b;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class hx extends c00 {
+    public final d00 d;
 
-    public hx(b00 b00Var, Context context, boolean z10) {
-        super(context);
-        this.f27248b = b00Var;
-        this.f27247a = z10;
+    public hx(d00 d00Var) {
+        super(d00Var, 2);
+        this.d = d00Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        b00 b00Var = this.f27248b;
-        nx nxVar = b00Var.B0;
-        jx jxVar = b00Var.D0;
-        mx mxVar = b00Var.G0;
-        if (!this.f27247a && (view == jxVar || view == mxVar)) {
-            canvas.save();
-            float y3 = nxVar.getY() + nxVar.getMeasuredHeight() + 1.0f;
-            if (view == jxVar) {
-                y3 = Math.max(y3, mxVar.getY() + mxVar.getMeasuredHeight() + 1.0f);
-            }
-            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * b00Var.f24722a.f16401e), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        b00 b00Var = this.f27248b;
-        b00Var.K0 = true;
-        b00Var.Y();
-        gg.f1 f1Var = b00Var.T0;
-        if (f1Var != null) {
-            f1Var.a();
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        b00 b00Var = this.f27248b;
-        b00Var.K0 = false;
-        b00Var.Y();
-        gg.f1 f1Var = b00Var.T0;
-        if (f1Var != null) {
-            f1Var.a();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ah.h hVar;
+        super.b(recyclerView, i10, i11);
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.d.f25104j2) != null) {
+            hVar.f(i10, i11);
         }
     }
 }

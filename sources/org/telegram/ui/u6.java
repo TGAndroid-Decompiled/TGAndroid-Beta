@@ -1,37 +1,38 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class u6 extends q7 {
-    public final int f42400w;
-    public final Object f42401x;
+import android.util.SparseArray;
+public final class u6 {
+    public long f42371a;
+    public int f42372b;
+    public long f42373c;
+    public final SparseArray d = new SparseArray();
 
-    public u6(Object obj, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10) {
-        super(context, m2Var);
-        this.f42400w = i10;
-        this.f42401x = obj;
+    public u6(long j3) {
+        this.f42371a = j3;
     }
 
-    public void e(boolean z10) {
-        x6 x6Var = ((v6) this.f42401x).f42913e;
-        if (z10) {
-            x6.b0(x6Var, true);
-            x6.d0(x6Var).O(null, null);
-            return;
+    public final void a(zh.a aVar, int i10) {
+        SparseArray sparseArray = this.d;
+        v6 v6Var = (v6) sparseArray.get(i10, null);
+        if (v6Var == null) {
+            v6Var = new v6();
+            sparseArray.put(i10, v6Var);
         }
-        x6.e0(x6Var).s();
+        long j3 = aVar.f54920c;
+        v6Var.f42688a += j3;
+        this.f42373c += j3;
+        this.f42372b++;
+        v6Var.f42689b.add(aVar);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f42400w) {
-            case 0:
-                super.onMeasure(i10, org.telegram.messenger.ai.c(12.0f, View.MeasureSpec.getSize(i11) - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() / 2), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((hv) this.f42401x).h - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
-                return;
+    public final void b(zh.a aVar) {
+        v6 v6Var = (v6) this.d.get(aVar.d, null);
+        if (v6Var != null && v6Var.f42689b.remove(aVar)) {
+            long j3 = v6Var.f42688a;
+            long j10 = aVar.f54920c;
+            v6Var.f42688a = j3 - j10;
+            this.f42373c -= j10;
+            this.f42372b--;
         }
     }
 }

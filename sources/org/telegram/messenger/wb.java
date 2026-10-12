@@ -1,46 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class wb implements Runnable {
-    public final int f19725a = 0;
-    public final MessagesController f19726b;
-    public final long f19727c;
-    public final ArrayList d;
-    public final long f19728e;
+    public final int f19462a;
+    public final MessagesController f19463b;
+    public final TLRPC.Dialog f19464c;
 
-    public wb(MessagesController messagesController, long j3, long j10, ArrayList arrayList) {
-        this.f19726b = messagesController;
-        this.f19727c = j3;
-        this.f19728e = j10;
-        this.d = arrayList;
+    public wb(MessagesController messagesController, TLRPC.Dialog dialog, int i10) {
+        this.f19462a = i10;
+        this.f19463b = messagesController;
+        this.f19464c = dialog;
     }
 
     @Override
     public final void run() {
-        switch (this.f19725a) {
+        switch (this.f19462a) {
             case 0:
-                this.f19726b.lambda$checkUnreadPollVotesInternal2$434(this.f19727c, this.f19728e, 0, this.d);
+                this.f19463b.lambda$checkLastDialogMessage$224(this.f19464c);
                 return;
             case 1:
-                this.f19726b.lambda$processUpdateArray$422(this.f19727c, this.d, this.f19728e);
+                this.f19463b.lambda$checkLastDialogMessage$225(this.f19464c);
                 return;
             default:
-                this.f19726b.lambda$deleteMessagesByPush$369(this.d, this.f19727c, this.f19728e);
+                this.f19463b.lambda$checkLastDialogMessage$223(this.f19464c);
                 return;
         }
-    }
-
-    public wb(MessagesController messagesController, long j3, ArrayList arrayList, long j10) {
-        this.f19726b = messagesController;
-        this.f19727c = j3;
-        this.d = arrayList;
-        this.f19728e = j10;
-    }
-
-    public wb(MessagesController messagesController, ArrayList arrayList, long j3, long j10) {
-        this.f19726b = messagesController;
-        this.d = arrayList;
-        this.f19727c = j3;
-        this.f19728e = j10;
     }
 }

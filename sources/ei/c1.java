@@ -17,31 +17,31 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.aa;
-import org.telegram.ui.eg0;
-import org.telegram.ui.eg1;
-import org.telegram.ui.my;
-import org.telegram.ui.sy;
-import org.telegram.ui.zn;
+import org.telegram.ui.ea;
+import org.telegram.ui.eo;
+import org.telegram.ui.fg0;
+import org.telegram.ui.hg1;
+import org.telegram.ui.py;
+import org.telegram.ui.vy;
 import yh.e7;
 import yh.n5;
 public final class c1 implements View.OnClickListener {
-    public final int f8986a = 0;
-    public final long f8987b;
-    public final int f8988c;
+    public final int f8984a = 0;
+    public final long f8985b;
+    public final int f8986c;
     public final KeyEvent.Callback d;
-    public final Object f8989e;
-    public final Object f8990f;
+    public final Object f8987e;
+    public final Object f8988f;
     public final Object h;
 
     public c1(p1 p1Var, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, org.telegram.tgnet.e eVar, int i10, long j3, org.telegram.ui.web.s sVar) {
         this.d = p1Var;
-        this.f8989e = tL_messages_preparedInlineMessage;
-        this.f8990f = eVar;
-        this.f8988c = i10;
-        this.f8987b = j3;
+        this.f8987e = tL_messages_preparedInlineMessage;
+        this.f8988f = eVar;
+        this.f8986c = i10;
+        this.f8985b = j3;
         this.h = sVar;
     }
 
@@ -50,15 +50,15 @@ public final class c1 implements View.OnClickListener {
         TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage;
         boolean z10;
         zf.a aVar;
-        switch (this.f8986a) {
+        switch (this.f8984a) {
             case 0:
                 final p1 p1Var = (p1) this.d;
-                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage2 = (TLRPC.TL_messages_preparedInlineMessage) this.f8989e;
-                final org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f8990f;
+                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage2 = (TLRPC.TL_messages_preparedInlineMessage) this.f8987e;
+                final org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f8988f;
                 org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.h;
                 final org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != null) {
-                    p1Var.f9281b0 = true;
+                    p1Var.f9279b0 = true;
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("onlySelect", true);
                     bundle.putBoolean("canSelectTopics", true);
@@ -102,21 +102,21 @@ public final class c1 implements View.OnClickListener {
                     org.telegram.ui.web.s sVar3 = sVar;
                     final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage3 = tL_messages_preparedInlineMessage2;
                     n1 n1Var = new n1(p1Var, bundle, eVar);
-                    final int i11 = this.f8988c;
-                    final long j3 = this.f8987b;
-                    n1Var.C2 = new my() {
+                    final int i11 = this.f8986c;
+                    final long j3 = this.f8985b;
+                    n1Var.C2 = new py() {
                         @Override
-                        public final boolean C() {
+                        public final boolean B() {
                             return false;
                         }
 
                         @Override
-                        public final boolean K(sy syVar) {
+                        public final boolean K(vy vyVar) {
                             return false;
                         }
 
                         @Override
-                        public final boolean w(sy syVar, ArrayList arrayList2, CharSequence charSequence, boolean z11, boolean z12, int i12, int i13, eg1 eg1Var) {
+                        public final boolean w(vy vyVar, ArrayList arrayList2, CharSequence charSequence, boolean z11, boolean z12, int i12, int i13, hg1 hg1Var) {
                             String str;
                             TLRPC.TL_forumTopic findTopic;
                             TLRPC.Message message;
@@ -149,7 +149,7 @@ public final class c1 implements View.OnClickListener {
                                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage4 = tL_messages_preparedInlineMessage3;
                                     sb2.append(tL_messages_preparedInlineMessage4.query_id);
                                     hashMap.put("query_id", sb2.toString());
-                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f20066id);
+                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f19800id);
                                     hashMap.put("bot", "" + j3);
                                     long j12 = j10;
                                     SendMessagesHelper.prepareSendingBotContextResult(U, AccountInstance.getInstance(i16), tL_messages_preparedInlineMessage4.result, hashMap, j12, messageObject2, messageObject2, null, null, z12, i12, 0, null, 0L, 0L);
@@ -163,19 +163,19 @@ public final class c1 implements View.OnClickListener {
                                 }
                             }
                             p1 p1Var2 = p1.this;
-                            if (!p1Var2.f9282c0) {
-                                p1Var2.f9282c0 = true;
+                            if (!p1Var2.f9280c0) {
+                                p1Var2.f9280c0 = true;
                                 if (arrayList3.size() <= 0) {
                                     str = "USER_DECLINED";
                                 }
                                 eVar.run(str, arrayList3);
                             }
-                            if (eg1Var != null) {
-                                eg1Var.finishFragment();
-                                syVar.removeSelfFromStack();
+                            if (hg1Var != null) {
+                                hg1Var.finishFragment();
+                                vyVar.removeSelfFromStack();
                                 return true;
                             }
-                            syVar.finishFragment();
+                            vyVar.finishFragment();
                             return true;
                         }
                     };
@@ -186,22 +186,22 @@ public final class c1 implements View.OnClickListener {
                 }
                 return;
             case 1:
-                eg0 eg0Var = (eg0) this.d;
-                String str = (String) this.f8989e;
-                String str2 = (String) this.f8990f;
+                fg0 fg0Var = (fg0) this.d;
+                String str = (String) this.f8987e;
+                String str2 = (String) this.f8988f;
                 String str3 = (String) this.h;
-                ci.d dVar = eg0Var.f37337b;
+                ci.d dVar = fg0Var.f37771b;
                 if (!dVar.N) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
                     tL_inputStorePaymentAuthCode.currency = str;
-                    tL_inputStorePaymentAuthCode.amount = this.f8987b;
+                    tL_inputStorePaymentAuthCode.amount = this.f8985b;
                     if (TextUtils.isEmpty(str2)) {
                         str2 = "";
                     }
                     tL_inputStorePaymentAuthCode.phone_code_hash = str2;
                     tL_inputStorePaymentAuthCode.phone_number = str3;
-                    tL_inputStorePaymentAuthCode.premium_days = this.f8988c;
+                    tL_inputStorePaymentAuthCode.premium_days = this.f8986c;
                     TLRPC.TL_inputInvoicePremiumAuthCode tL_inputInvoicePremiumAuthCode = new TLRPC.TL_inputInvoicePremiumAuthCode();
                     tL_inputInvoicePremiumAuthCode.purpose = tL_inputStorePaymentAuthCode;
                     TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
@@ -213,37 +213,37 @@ public final class c1 implements View.OnClickListener {
                         tL_dataJSON.data = q6.toString();
                         tL_payments_getPaymentForm.flags |= 1;
                     }
-                    eg0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new aa(eg0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
+                    fg0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new ea(fg0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
                     return;
                 }
                 return;
             default:
                 yh.c0 c0Var = (yh.c0) this.d;
-                Context context = (Context) this.f8989e;
-                d6 d6Var = (d6) this.f8990f;
+                Context context = (Context) this.f8987e;
+                c6 c6Var = (c6) this.f8988f;
                 Utilities.Callback callback = (Utilities.Callback) this.h;
-                if (c0Var.f52451s.W) {
-                    int i12 = this.f8988c;
+                if (c0Var.f52554s.W) {
+                    int i12 = this.f8986c;
                     if (MessagesController.getInstance(i12).isFrozen()) {
                         org.telegram.ui.b.b(i12);
                         return;
                     }
-                    n5 x10 = n5.x(i12, c0Var.H.f54562a);
-                    if (x10.f53034e) {
+                    n5 x10 = n5.x(i12, c0Var.H.f54665a);
+                    if (x10.f53137e) {
                         aVar = zf.a.l(x10.p());
                     } else {
                         aVar = null;
                     }
-                    if (!c0Var.f52446c && (aVar == null || aVar.f54563b < c0Var.H.f54563b)) {
+                    if (!c0Var.f52549c && (aVar == null || aVar.f54666b < c0Var.H.f54666b)) {
                         zf.a aVar2 = c0Var.H;
-                        zf.b bVar = aVar2.f54562a;
-                        if (bVar == zf.b.f54564a) {
+                        zf.b bVar = aVar2.f54665a;
+                        if (bVar == zf.b.f54667a) {
                             long a2 = aVar2.a();
-                            long j10 = this.f8987b;
-                            new e7(context, d6Var, a2, 13, ng.d.h(i12, j10), null, j10).show();
+                            long j10 = this.f8985b;
+                            new e7(context, c6Var, a2, 13, ng.d.h(i12, j10), null, j10).show();
                             return;
-                        } else if (bVar == zf.b.f54565b) {
-                            new di.h(context, d6Var, aVar2, true, null).show();
+                        } else if (bVar == zf.b.f54668b) {
+                            new di.h(context, c6Var, aVar2, true, null).show();
                             return;
                         } else {
                             return;
@@ -257,21 +257,21 @@ public final class c1 implements View.OnClickListener {
         }
     }
 
-    public c1(eg0 eg0Var, String str, long j3, String str2, String str3, int i10) {
-        this.d = eg0Var;
-        this.f8989e = str;
-        this.f8987b = j3;
-        this.f8990f = str2;
+    public c1(fg0 fg0Var, String str, long j3, String str2, String str3, int i10) {
+        this.d = fg0Var;
+        this.f8987e = str;
+        this.f8985b = j3;
+        this.f8988f = str2;
         this.h = str3;
-        this.f8988c = i10;
+        this.f8986c = i10;
     }
 
-    public c1(yh.c0 c0Var, zn znVar, int i10, Context context, d6 d6Var, long j3, Utilities.Callback callback) {
+    public c1(yh.c0 c0Var, eo eoVar, int i10, Context context, c6 c6Var, long j3, Utilities.Callback callback) {
         this.d = c0Var;
-        this.f8988c = i10;
-        this.f8989e = context;
-        this.f8990f = d6Var;
-        this.f8987b = j3;
+        this.f8986c = i10;
+        this.f8987e = context;
+        this.f8988f = c6Var;
+        this.f8985b = j3;
         this.h = callback;
     }
 }

@@ -1,39 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ex extends s4.o0 {
-    public final b00 f26227a;
+import android.widget.FrameLayout;
+public final class ex extends FrameLayout {
+    public final d00 f25799a;
 
-    public ex(b00 b00Var) {
-        this.f26227a = b00Var;
+    public ex(d00 d00Var, Context context) {
+        super(context);
+        this.f25799a = d00Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
-        recyclerView.getClass();
-        int R = RecyclerView.R(view);
-        b00 b00Var = this.f26227a;
-        s4.i0 adapter = b00Var.f24747h0.getAdapter();
-        fz fzVar = b00Var.f24764n0;
-        int i10 = 0;
-        if (adapter == fzVar && R == fzVar.I) {
-            rect.set(0, 0, 0, 0);
-            return;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        d00 d00Var = this.f25799a;
+        ix ixVar = d00Var.f25116o0;
+        if (view == d00Var.f25096h0) {
+            canvas.save();
+            canvas.clipRect(0.0f, ixVar.getY() + ixVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
         }
-        if (R == 0) {
-            fzVar.getClass();
-        }
-        rect.left = 0;
-        rect.bottom = 0;
-        rect.top = AndroidUtilities.dp(2.0f);
-        gz gzVar = b00Var.f24750i0;
-        fzVar.getClass();
-        if (!gzVar.E1(R)) {
-            i10 = AndroidUtilities.dp(2.0f);
-        }
-        rect.right = i10;
+        return super.drawChild(canvas, view, j3);
     }
 }

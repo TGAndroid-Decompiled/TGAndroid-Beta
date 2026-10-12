@@ -1,57 +1,55 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class fa implements org.telegram.ui.Components.fm0 {
-    public final qa f37647a;
+import android.content.DialogInterface;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class fa implements DialogInterface.OnCancelListener {
+    public final int f37688a;
+    public final int f37689b;
+    public final Object f37690c;
 
-    public fa(qa qaVar) {
-        this.f37647a = qaVar;
+    public fa(Object obj, int i10, int i11) {
+        this.f37688a = i11;
+        this.f37690c = obj;
+        this.f37689b = i10;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        int i11;
-        int i12;
-        int i13;
-        boolean z10 = view instanceof na;
-        qa qaVar = this.f37647a;
-        if (z10) {
-            na naVar = (na) view;
-            TLRPC.TL_username tL_username = naVar.v;
-            if (tL_username != null && !naVar.f40207r) {
-                if (tL_username.editable && qaVar.f41121x == 0) {
-                    qaVar.f41113b.x0(0);
-                    qaVar.e0(true);
-                    return;
-                }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qaVar.getParentActivity(), 0, qaVar.getResourceProvider());
-                if (tL_username.active) {
-                    i11 = R.string.UsernameDeactivateLink;
-                } else {
-                    i11 = R.string.UsernameActivateLink;
-                }
-                alertDialog$Builder.f20404a.R = LocaleController.getString(i11);
-                if (tL_username.active) {
-                    i12 = R.string.UsernameDeactivateLinkProfileMessage;
-                } else {
-                    i12 = R.string.UsernameActivateLinkProfileMessage;
-                }
-                alertDialog$Builder.f20404a.T = LocaleController.getString(i12);
-                if (tL_username.active) {
-                    i13 = R.string.Hide;
-                } else {
-                    i13 = R.string.Show;
-                }
-                alertDialog$Builder.k(LocaleController.getString(i13), new da(this, tL_username, i10, view, 0));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new m4.p0(28));
-                alertDialog$Builder.o();
-            }
-        } else if (view instanceof ka) {
-            qaVar.e0(true);
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f37688a) {
+            case 0:
+                ua.V((ua) this.f37690c, this.f37689b);
+                return;
+            case 1:
+                ((pn) this.f37690c).f40998a.getConnectionsManager().cancelRequest(this.f37689b, true);
+                return;
+            case 2:
+                xo xoVar = (xo) this.f37690c;
+                xoVar.N0 = false;
+                xoVar.f44049b = null;
+                xoVar.getConnectionsManager().cancelRequest(this.f37689b, true);
+                return;
+            case 3:
+                ((ChatActivityEnterView) this.f37690c).P2.getConnectionsManager().cancelRequest(this.f37689b, true);
+                return;
+            case 4:
+                ConnectionsManager.getInstance(((org.telegram.ui.Components.yy) this.f37690c).f33221c.f33519a.F.f25080c1).cancelRequest(this.f37689b, true);
+                return;
+            case 5:
+                ((i60) this.f37690c).d.getConnectionsManager().cancelRequest(this.f37689b, true);
+                return;
+            case 6:
+                ConnectionsManager.getInstance(((LanguageSelectActivity) this.f37690c).currentAccount).cancelRequest(this.f37689b, true);
+                return;
+            case 7:
+                ((id0) this.f37690c).getConnectionsManager().cancelRequest(this.f37689b, true);
+                return;
+            case 8:
+                ConnectionsManager.getInstance(((ee1) this.f37690c).currentAccount).cancelRequest(this.f37689b, true);
+                return;
+            default:
+                ConnectionsManager.getInstance(((yh.o) this.f37690c).f53167a).cancelRequest(this.f37689b, true);
+                return;
         }
     }
 }

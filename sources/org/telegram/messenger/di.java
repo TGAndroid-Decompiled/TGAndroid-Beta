@@ -1,28 +1,35 @@
 package org.telegram.messenger;
 
-import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.RichMessageLayout;
 public final class di implements Runnable {
-    public final int f17705a;
-    public final SecretChatHelper f17706b;
-    public final Context f17707c;
-    public final org.telegram.ui.ActionBar.a2 d;
+    public final int f17429a = 0;
+    public final RichMessageLayout.Text f17430b;
+    public final RichMessageLayout f17431c;
+    public final View d;
 
-    public di(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        this.f17705a = i10;
-        this.f17706b = secretChatHelper;
-        this.f17707c = context;
-        this.d = a2Var;
+    public di(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
+        this.f17430b = text;
+        this.d = view;
+        this.f17431c = richMessageLayout;
     }
 
     @Override
     public final void run() {
-        switch (this.f17705a) {
+        switch (this.f17429a) {
             case 0:
-                this.f17706b.lambda$startSecretChat$27(this.f17707c, this.d);
+                RichMessageLayout.Text.c(this.f17430b, this.d, this.f17431c);
                 return;
             default:
-                this.f17706b.lambda$startSecretChat$29(this.f17707c, this.d);
+                RichMessageLayout richMessageLayout = this.f17431c;
+                RichMessageLayout.Text.a(this.f17430b, this.d, richMessageLayout);
                 return;
         }
+    }
+
+    public di(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
+        this.f17430b = text;
+        this.f17431c = richMessageLayout;
+        this.d = view;
     }
 }

@@ -1,31 +1,81 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
+import android.animation.AnimatorSet;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-public final class pl extends ViewOutlineProvider {
-    public final zn f40937a;
+public final class pl extends FrameLayout {
+    public float f40987a;
+    public float f40988b;
+    public final eo f40989c;
 
-    public pl(zn znVar) {
-        this.f40937a = znVar;
+    public pl(eo eoVar, Activity activity) {
+        super(activity);
+        this.f40989c = eoVar;
+        setOnLongClickListener(new v(this, 2));
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
-        if (imageReceiver != null) {
-            int[] roundRadius = imageReceiver.getRoundRadius();
-            int i10 = 0;
-            for (int i11 = 0; i11 < 4; i11++) {
-                i10 = Math.max(i10, roundRadius[i11]);
-            }
-            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
-            return;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        eo eoVar = this.f40989c;
+        if (view == eoVar.f37504z2) {
+            canvas.save();
+            canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
-        zn znVar = this.f40937a;
-        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(znVar.H9()), AndroidUtilities.roundPlayingMessageSize(znVar.H9()));
+        org.telegram.ui.ActionBar.h5[] h5VarArr = eoVar.D2;
+        if (view != h5VarArr[0] && view != h5VarArr[1]) {
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            if (view == eoVar.f37504z2) {
+                canvas.restore();
+            }
+            return drawChild;
+        }
+        canvas.save();
+        canvas.clipRect(0, 0, getMeasuredWidth() - AndroidUtilities.dp(38.0f), getMeasuredHeight());
+        boolean drawChild2 = super.drawChild(canvas, view, j3);
+        canvas.restore();
+        return drawChild2;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        eo eoVar = this.f40989c;
+        if (eoVar.A2) {
+            int i12 = 0;
+            while (true) {
+                AnimatorSet[] animatorSetArr = eoVar.H2;
+                if (i12 < animatorSetArr.length) {
+                    AnimatorSet animatorSet = animatorSetArr[i12];
+                    if (animatorSet != null) {
+                        animatorSet.start();
+                    }
+                    i12++;
+                } else {
+                    eoVar.A2 = false;
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.f40987a = motionEvent.getY();
+        int action = motionEvent.getAction();
+        eo eoVar = this.f40989c;
+        if (action == 1) {
+            eoVar.finishPreviewFragment();
+        } else if (motionEvent.getAction() == 2) {
+            float f7 = this.f40988b - this.f40987a;
+            eoVar.movePreviewFragment(f7);
+            if (f7 < 0.0f) {
+                this.f40988b = this.f40987a;
+            }
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

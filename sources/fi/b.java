@@ -7,40 +7,40 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.q61;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.zc;
 public final class b implements Utilities.Callback2 {
-    public final int f9946a;
-    public final f f9947b;
+    public final int f9945a;
+    public final f f9946b;
 
     public b(f fVar, int i10) {
-        this.f9946a = i10;
-        this.f9947b = fVar;
+        this.f9945a = i10;
+        this.f9946b = fVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String string;
         int i10;
-        switch (this.f9946a) {
+        switch (this.f9945a) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                d71 d71Var = (d71) obj2;
-                f fVar = this.f9947b;
-                e eVar = fVar.f9963f;
-                q61 q61Var = new q61(-4);
-                q61Var.d = 0;
-                q61Var.f30160c = eVar;
-                q61Var.f30180z = -1;
-                arrayList.add(q61Var);
-                q61 c10 = q61.c(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity));
-                c10.f30172q = true;
+                h71 h71Var = (h71) obj2;
+                f fVar = this.f9946b;
+                e eVar = fVar.f9962f;
+                u61 u61Var = new u61(-4);
+                u61Var.d = 0;
+                u61Var.f31069c = eVar;
+                u61Var.f31089z = -1;
+                arrayList.add(u61Var);
+                u61 c10 = u61.c(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity));
+                c10.f31081q = true;
                 arrayList.add(c10);
-                arrayList.add(q61.D(2, AndroidUtilities.dp(14.0f)));
+                arrayList.add(u61.D(2, AndroidUtilities.dp(14.0f)));
                 ArrayList arrayList2 = fVar.h;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    arrayList.add(q61.s(3, LocaleController.getString(R.string.CommunityAddToExistingCommunity)));
+                    arrayList.add(u61.s(3, LocaleController.getString(R.string.CommunityAddToExistingCommunity)));
                     ArrayList arrayList3 = fVar.h;
                     int size = arrayList3.size();
                     int i11 = 0;
@@ -48,9 +48,9 @@ public final class b implements Utilities.Callback2 {
                         Object obj3 = arrayList3.get(i11);
                         i11++;
                         TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f20068id);
-                        q61 v = q61.v(chat);
-                        long j3 = chat.f20068id;
+                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f19802id);
+                        u61 v = u61.v(chat);
+                        long j3 = chat.f19802id;
                         v.d = (int) (j3 ^ (j3 >>> 32));
                         if (chatFull != null) {
                             ArrayList<TL_communities.CommunityPeer> arrayList4 = chatFull.linked_peers;
@@ -63,7 +63,7 @@ public final class b implements Utilities.Callback2 {
                         } else {
                             string = LocaleController.getString(R.string.Loading);
                         }
-                        v.f30168m = string;
+                        v.f31077m = string;
                         arrayList.add(v);
                     }
                     return;
@@ -72,13 +72,13 @@ public final class b implements Utilities.Callback2 {
             default:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                f fVar2 = this.f9947b;
+                f fVar2 = this.f9946b;
                 if (tL_error != null) {
                     fVar2.getClass();
-                    ad.a0(fVar2).f0(tL_error, false);
+                    zc.a0(fVar2).f0(tL_error, false);
                     return;
                 }
-                u0.d(fVar2, fVar2.f9959a, 0);
+                u0.d(fVar2, fVar2.f9958a, 0);
                 return;
         }
     }

@@ -1,15 +1,20 @@
 package pi;
+public interface j {
+    void onCompleted(p pVar);
 
-import java.net.Socket;
-public final class j {
-    public final int f45980a;
-    public final Socket f45981b;
-    public long f45982c = 4194304;
-    public long d = 4194304;
-    public boolean f45983e;
+    void onError(Exception exc);
 
-    public j(int i10, Socket socket) {
-        this.f45980a = i10;
-        this.f45981b = socket;
-    }
+    void onMaximumDurationReached();
+
+    void onPreviewPlaybackChanged(boolean z10);
+
+    void onPreviewProgress(long j3, long j10);
+
+    void onPreviewReady(long j3, long j10, long j11, byte[] bArr);
+
+    void onRecordingProgress(long j3, double d);
+
+    void onRecordingTooShort(long j3);
+
+    void onStateChanged(r rVar);
 }

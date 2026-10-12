@@ -1,52 +1,28 @@
 package org.telegram.ui;
+public final class jd1 implements qd1 {
+    public boolean f39183a;
+    public final eo f39184b;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.VideoEditedInfo;
-public final class jd1 extends tu0 {
-    public final MediaController.PhotoEntry f39025a;
-    public final kd1 f39026b;
-
-    public jd1(kd1 kd1Var, MediaController.PhotoEntry photoEntry) {
-        this.f39026b = kd1Var;
-        this.f39025a = photoEntry;
+    public jd1(eo eoVar, boolean z10) {
+        this.f39184b = eoVar;
+        this.f39183a = z10;
     }
 
     @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        wd1 wd1Var = this.f39026b.f39340a;
-        MediaController.PhotoEntry photoEntry = this.f39025a;
-        if (photoEntry.imagePath != null) {
-            File directory = FileLoader.getDirectory(4);
-            File file = new File(directory, Utilities.random.nextInt() + ".jpg");
-            Point realScreenSize = AndroidUtilities.getRealScreenSize();
-            Bitmap loadBitmap = ImageLoader.loadBitmap(photoEntry.imagePath, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
-            try {
-                loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-            } catch (FileNotFoundException e7) {
-                e7.printStackTrace();
-            }
-            File file2 = new File(photoEntry.imagePath);
-            wd1Var.B1 = new hj1(file2, file2, "");
-            wd1Var.C1 = loadBitmap;
-            wd1Var.f43365b2 = 0;
-            wd1Var.f43422x0.requestLayout();
-            wd1Var.b1(false);
-            wd1Var.f43420w1 = null;
-            wd1Var.i1();
-        }
+    public final boolean T0() {
+        return true;
     }
 
     @Override
-    public final boolean z() {
-        return false;
+    public final boolean a() {
+        return this.f39183a;
+    }
+
+    @Override
+    public final void l1(boolean z10) {
+        boolean z11 = !this.f39183a;
+        this.f39183a = z11;
+        bo boVar = this.f39184b.f37251ea;
+        boVar.i(boVar.f36218f, boVar.h, z10, Boolean.valueOf(z11), false);
     }
 }

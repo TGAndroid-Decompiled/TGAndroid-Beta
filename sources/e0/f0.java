@@ -24,9 +24,9 @@ public abstract class f0 {
         } else {
             z11 = false;
         }
-        obj.f409a = true;
-        obj.f410b = z11;
-        obj.f411c = z10;
+        obj.f411a = true;
+        obj.f412b = z11;
+        obj.f413c = z10;
         return obj.a();
     }
 
@@ -63,13 +63,13 @@ public abstract class f0 {
         LogSessionId a2 = kVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!a2.equals(logSessionId)) {
-            ((MediaFormat) nVar.f7954b).setString("log-session-id", a2.getStringId());
+            ((MediaFormat) nVar.f7951b).setString("log-session-id", a2.getStringId());
         }
     }
 
-    public static void g(n4.x xVar, ComponentName componentName) {
+    public static void g(n4.y yVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((n4.r) xVar.f16694b).f16675a;
+            MediaSession mediaSession = ((n4.s) yVar.f16362b).f16343a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e7) {

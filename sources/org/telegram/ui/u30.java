@@ -1,44 +1,25 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class u30 extends org.telegram.ui.Components.rm0 {
-    public final g60 V2;
+import android.graphics.RectF;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class u30 extends TextView {
+    public final RectF f42358a;
+    public final i60 f42359b;
 
-    public u30(g60 g60Var, LaunchActivity launchActivity) {
-        super(launchActivity, null);
-        this.V2 = g60Var;
+    public u30(i60 i60Var, Context context) {
+        super(context);
+        this.f42359b = i60Var;
+        this.f42358a = new RectF();
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        org.telegram.ui.Components.j30 j30Var = (org.telegram.ui.Components.j30) view;
-        g60 g60Var = this.V2;
-        m50 m50Var = g60Var.Q;
-        y30 y30Var = g60Var.a2;
-        if (y30Var.f32198r == null && !g60Var.N2.k()) {
-            j30Var.setAlpha(1.0f);
-            j30Var.setTranslationX(0.0f);
-            j30Var.setTranslationY(0.0f);
-        }
-        u30 u30Var = g60Var.f37952m2;
-        j30Var.getClass();
-        u30Var.getClass();
-        if (RecyclerView.R(j30Var) == -1 && j30Var.getRenderer() != null) {
-            return true;
-        }
-        if (j30Var.getTranslationY() != 0.0f && j30Var.getRenderer() != null && j30Var.getRenderer().f32378c != null) {
-            float top = m50Var.getTop() - getTop();
-            float measuredHeight = m50Var.getMeasuredHeight() + top;
-            float f7 = y30Var.f32180c;
-            canvas.save();
-            float f10 = 1.0f - f7;
-            canvas.clipRect(0.0f, top * f10, getMeasuredWidth(), (getMeasuredHeight() * f7) + (measuredHeight * f10));
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.f42358a;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f42359b.f38705g1);
+        super.onDraw(canvas);
     }
 }

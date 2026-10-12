@@ -1,28 +1,15 @@
 package org.telegram.ui;
-
-import org.telegram.tgnet.TLRPC;
 public final class rv implements Runnable {
-    public final int f41549a;
-    public final sy f41550b;
-    public final TLRPC.TL_attachMenuBot f41551c;
-    public final LaunchActivity d;
+    public final int f41734a;
+    public final vy f41735b;
 
-    public rv(sy syVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
-        this.f41549a = i10;
-        this.f41550b = syVar;
-        this.f41551c = tL_attachMenuBot;
-        this.d = launchActivity;
+    public rv(vy vyVar, int i10) {
+        this.f41734a = i10;
+        this.f41735b = vyVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f41549a) {
-            case 0:
-                sy.r0(this.f41550b, this.f41551c, this.d);
-                return;
-            default:
-                sy.f0(this.f41550b, this.f41551c, this.d);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rv.run():void");
     }
 }

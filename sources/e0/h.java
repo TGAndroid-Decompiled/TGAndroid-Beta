@@ -5,13 +5,13 @@ import android.os.Bundle;
 import androidx.core.graphics.drawable.IconCompat;
 import java.util.ArrayList;
 public final class h {
-    public final IconCompat f8415a;
-    public final CharSequence f8416b;
-    public final PendingIntent f8417c;
+    public final IconCompat f8413a;
+    public final CharSequence f8414b;
+    public final PendingIntent f8415c;
     public boolean d;
-    public final Bundle f8418e;
-    public ArrayList f8419f;
-    public int f8420g;
+    public final Bundle f8416e;
+    public ArrayList f8417f;
+    public int f8418g;
     public boolean h;
 
     public h(int i10, String str, PendingIntent pendingIntent) {
@@ -24,28 +24,28 @@ public final class h {
         Bundle bundle = new Bundle();
         this.d = true;
         this.h = true;
-        this.f8415a = e7;
-        this.f8416b = r.d(str);
-        this.f8417c = pendingIntent;
-        this.f8418e = bundle;
-        this.f8419f = null;
+        this.f8413a = e7;
+        this.f8414b = r.d(str);
+        this.f8415c = pendingIntent;
+        this.f8416e = bundle;
+        this.f8417f = null;
         this.d = true;
-        this.f8420g = 0;
+        this.f8418g = 0;
         this.h = true;
     }
 
     public final void a(p0 p0Var) {
-        if (this.f8419f == null) {
-            this.f8419f = new ArrayList();
+        if (this.f8417f == null) {
+            this.f8417f = new ArrayList();
         }
-        this.f8419f.add(p0Var);
+        this.f8417f.add(p0Var);
     }
 
     public final i b() {
         p0[] p0VarArr;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        ArrayList arrayList3 = this.f8419f;
+        ArrayList arrayList3 = this.f8417f;
         if (arrayList3 != null) {
             int size = arrayList3.size();
             int i10 = 0;
@@ -66,7 +66,7 @@ public final class h {
         if (!arrayList2.isEmpty()) {
             p0VarArr2 = (p0[]) arrayList2.toArray(new p0[arrayList2.size()]);
         }
-        return new i(this.f8415a, this.f8416b, this.f8417c, this.f8418e, p0VarArr2, p0VarArr, this.d, this.f8420g, this.h);
+        return new i(this.f8413a, this.f8414b, this.f8415c, this.f8416e, p0VarArr2, p0VarArr, this.d, this.f8418g, this.h);
     }
 
     public final void c() {

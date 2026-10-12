@@ -14,27 +14,27 @@ import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public final class yc extends View implements v2 {
-    public final Drawable f6374a;
-    public final int f6375b;
-    public Bitmap f6376c;
+    public final Drawable f6373a;
+    public final int f6374b;
+    public Bitmap f6375c;
     public final Paint d;
-    public final Paint f6377e;
-    public float f6378f;
+    public final Paint f6376e;
+    public float f6377f;
     public final org.telegram.ui.Components.g6 h;
-    public final Path f6379n;
+    public final Path f6378n;
 
     public yc(Activity activity, int i10, int i11) {
         super(activity);
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(3);
-        this.f6377e = paint2;
-        this.h = new org.telegram.ui.Components.g6(this, 0L, 350L, is.h);
-        this.f6379n = new Path();
-        this.f6374a = activity.getResources().getDrawable(i10).mutate();
-        this.f6375b = i11;
+        this.f6376e = paint2;
+        this.h = new org.telegram.ui.Components.g6(this, 0L, 350L, js.h);
+        this.f6378n = new Path();
+        this.f6373a = activity.getResources().getDrawable(i10).mutate();
+        this.f6374b = i11;
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
@@ -42,26 +42,26 @@ public final class yc extends View implements v2 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f6376c == null) {
-            this.f6376c = BitmapFactory.decodeResource(getResources(), this.f6375b);
+        if (this.f6375c == null) {
+            this.f6375c = BitmapFactory.decodeResource(getResources(), this.f6374b);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Bitmap bitmap = this.f6376c;
+        Bitmap bitmap = this.f6375c;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f6376c = null;
+            this.f6375c = null;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float d = this.h.d(this.f6378f, false);
-        Drawable drawable = this.f6374a;
+        float d = this.h.d(this.f6377f, false);
+        Drawable drawable = this.f6373a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         Rect rect = AndroidUtilities.rectTmp2;
@@ -71,7 +71,7 @@ public final class yc extends View implements v2 {
             drawable.draw(canvas);
         } else if (d < 1.0f) {
             canvas.save();
-            Path path = this.f6379n;
+            Path path = this.f6378n;
             path.rewind();
             path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * d, Path.Direction.CW);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
@@ -83,9 +83,9 @@ public final class yc extends View implements v2 {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * d, this.d);
             canvas.save();
-            Bitmap bitmap = this.f6376c;
+            Bitmap bitmap = this.f6375c;
             if (bitmap != null) {
-                canvas.drawBitmap(bitmap, (Rect) null, rect, this.f6377e);
+                canvas.drawBitmap(bitmap, (Rect) null, rect, this.f6376e);
             }
             canvas.restore();
             canvas.restore();
@@ -94,7 +94,7 @@ public final class yc extends View implements v2 {
 
     @Override
     public void setInvert(float f7) {
-        this.f6374a.setColorFilter(new PorterDuffColorFilter(i0.a.d(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        this.f6373a.setColorFilter(new PorterDuffColorFilter(i0.a.d(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
         this.d.setColor(i0.a.d(f7, -1, -16777216));
     }
 
@@ -105,7 +105,7 @@ public final class yc extends View implements v2 {
         } else {
             f7 = 0.0f;
         }
-        this.f6378f = f7;
+        this.f6377f = f7;
         invalidate();
     }
 }

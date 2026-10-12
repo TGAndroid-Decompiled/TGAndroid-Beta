@@ -1,10 +1,78 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
-public interface im0 {
-    boolean mo17c(float f7, float f10, int i10, View view);
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class im0 extends s4.o0 implements bh.a {
+    public final Utilities.CallbackReturn f27229a;
+    public final wm0 f27230b;
+    public final int f27231c;
+    public final boolean d;
 
-    void h();
+    public im0(wm0 wm0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
+        this.f27230b = wm0Var;
+        this.f27229a = callbackReturn;
+        this.f27231c = i10;
+        this.d = z10;
+    }
 
-    void q(float f7);
+    @Override
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
+        int b10;
+        boolean z10;
+        int dp;
+        if (((Boolean) this.f27229a.run(view)).booleanValue()) {
+            int i10 = this.f27231c;
+            rect.right = i10;
+            rect.left = i10;
+            s4.d1 T = recyclerView.T(view);
+            s4.i0 adapter = recyclerView.getAdapter();
+            if (T != null && adapter != null && (b10 = T.b()) != -1) {
+                boolean z11 = false;
+                if (b10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (b10 == adapter.h() - 1) {
+                    z11 = true;
+                }
+                if (z10) {
+                    if (this.d) {
+                        dp = i10;
+                    } else {
+                        dp = AndroidUtilities.dp(4.0f);
+                    }
+                    rect.top = dp;
+                }
+                if (z11) {
+                    rect.bottom = i10;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void b(ah.a aVar, RectF rectF) {
+        aVar.f538a = true;
+    }
+
+    @Override
+    public final void c(Canvas canvas, RecyclerView recyclerView) {
+        if (recyclerView instanceof wm0) {
+            ((wm0) recyclerView).Q0(canvas);
+        }
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        canvas.save();
+        canvas.clipRect(rectF);
+        this.f27230b.Q0(canvas);
+        canvas.restore();
+    }
 }

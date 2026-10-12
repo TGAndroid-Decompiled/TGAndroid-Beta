@@ -1,84 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.util.TypedValue;
-public class x40 extends EditTextBoldCursor {
-    public final TextPaint f32864b;
-    public String f32865c;
-    public final Rect d;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class x40 extends FrameLayout {
+    public final int f32645a;
+    public final org.telegram.ui.ActionBar.c6 f32646b;
+    public ArrayList f32647c;
+    public final FrameLayout d;
+    public final p71 f32648e;
+    public final h71 f32649f;
+    public Utilities.Callback h;
 
-    public x40(Context context) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f32864b = textPaint;
-        this.d = new Rect();
-        textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
+    public x40(int i10, Activity activity, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(activity);
+        this.f32645a = i10;
+        this.f32646b = c6Var;
+        p71 p71Var = new p71(activity, i10, 0, false, new d(this, 15), new w40(this), new w40(this), c6Var);
+        this.f32648e = p71Var;
+        p71Var.setClipToPadding(false);
+        h71 h71Var = (h71) p71Var.getAdapter();
+        this.f32649f = h71Var;
+        h71Var.f26675r = false;
+        addView(p71Var, -1, -1);
+        FrameLayout frameLayout = new FrameLayout(activity);
+        this.d = frameLayout;
+        ImageView imageView = new ImageView(activity);
+        int i11 = org.telegram.ui.ActionBar.h6.f20724m6;
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, c6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.large_hashtags);
+        frameLayout.addView(imageView, w7.w5.e(56, 56, 49));
+        TextView textView = new TextView(activity);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
+        org.telegram.messenger.am.m(R.string.HashtagSearchPlaceholder, textView, 17);
+        frameLayout.addView(textView, w7.w5.a(-2.0f, 0.0f, 56.0f, 0.0f, 0.0f, -2, 81));
+        addView(frameLayout, w7.w5.e(210, -2, 17));
+        p71Var.setEmptyView(frameLayout);
     }
 
-    public String getHintText() {
-        return this.f32865c;
+    public void setOnHashtagClickListener(Utilities.Callback<String> callback) {
+        this.h = callback;
     }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        float measureText;
-        Rect rect;
-        Canvas canvas2;
-        if (this.f32865c != null && length() < this.f32865c.length()) {
-            int i10 = 0;
-            float f7 = 0.0f;
-            while (i10 < this.f32865c.length()) {
-                int length = length();
-                TextPaint textPaint = this.f32864b;
-                if (i10 < length) {
-                    measureText = getPaint().measureText(getText(), i10, i10 + 1);
-                } else {
-                    measureText = textPaint.measureText(this.f32865c, i10, i10 + 1);
-                }
-                if (i10 < length()) {
-                    f7 += measureText;
-                    canvas2 = canvas;
-                } else {
-                    int color = textPaint.getColor();
-                    canvas.save();
-                    String str = this.f32865c;
-                    textPaint.getTextBounds(str, 0, str.length(), this.d);
-                    i(i10);
-                    canvas2 = canvas;
-                    canvas2.drawText(this.f32865c, i10, i10 + 1, f7, (rect.height() + getHeight()) / 2.0f, (Paint) textPaint);
-                    f7 += measureText;
-                    canvas2.restore();
-                    textPaint.setColor(color);
-                }
-                i10++;
-                canvas = canvas2;
-            }
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        invalidate();
-    }
-
-    public void setHintText(String str) {
-        this.f32865c = str;
-        invalidate();
-        setText(getText());
-    }
-
-    @Override
-    public void setTextSize(int i10, float f7) {
-        super.setTextSize(i10, f7);
-        this.f32864b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
-    }
-
-    public void i(int i10) {
+    public void setOnScrollListener(s4.t0 t0Var) {
+        this.f32648e.j(t0Var);
     }
 }

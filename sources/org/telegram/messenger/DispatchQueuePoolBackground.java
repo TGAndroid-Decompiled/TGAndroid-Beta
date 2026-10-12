@@ -83,12 +83,12 @@ public class DispatchQueuePoolBackground {
                 this.totalTasksCount++;
                 this.busyQueues.add(remove);
                 this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
-                if (zg.d0.f54623b) {
+                if (zg.d0.f54726b) {
                     remove.setPriority(1);
                 } else if (remove.getPriority() != 10) {
                     remove.setPriority(10);
                 }
-                remove.postRunnable(new g0(this, runnable, remove, 17));
+                remove.postRunnable(new h0(this, runnable, remove, 17));
             }
         }
     }
@@ -121,7 +121,7 @@ public class DispatchQueuePoolBackground {
 
     public void lambda$execute$1(Runnable runnable, DispatchQueue dispatchQueue) {
         runnable.run();
-        Utilities.globalQueue.postRunnable(new d3(27, this, dispatchQueue));
+        Utilities.globalQueue.postRunnable(new q(28, this, dispatchQueue));
     }
 
     public static void lambda$finishCollectUpdateRunnables$2(ArrayList arrayList) {
@@ -149,7 +149,7 @@ public class DispatchQueuePoolBackground {
         if (updateTaskCollection == null) {
             ArrayList<ArrayList<Runnable>> arrayList = freeCollections;
             if (!arrayList.isEmpty()) {
-                updateTaskCollection = (ArrayList) hg.c.x(1, arrayList);
+                updateTaskCollection = (ArrayList) hg.c.A(1, arrayList);
             } else {
                 updateTaskCollection = new ArrayList<>(100);
             }

@@ -12,37 +12,37 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.d71;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.Components.db;
+import org.telegram.ui.Components.h71;
 import org.telegram.ui.Components.o7;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.vm0;
+import org.telegram.ui.Components.wm0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import w7.x5;
+import w7.w5;
 public final class d extends db {
-    public static final int f51320a0 = 0;
+    public static final int f51418a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public d71 Z;
+    public h71 Z;
 
-    public d(Context context, d6 d6Var, GiftAuctionController.Auction auction, List list) {
-        super(context, null, false, false, 2, d6Var);
+    public d(Context context, c6 c6Var, GiftAuctionController.Auction auction, List list) {
+        super(context, null, false, false, 2, c6Var);
         this.Y = auction;
         this.X = list;
         this.v = 0.2f;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.f25734e.setTitle(B());
+        this.f25295e.setTitle(A());
         fixNavigationBar();
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new o7(3));
         this.d.setOverScrollMode(2);
-        ci.d dVar = new ci.d(context, d6Var, true);
-        dVar.setOnClickListener(new org.telegram.ui.Components.voip.p(this, 15));
+        ci.d dVar = new ci.d(context, c6Var, true);
+        dVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 15));
         dVar.g(LocaleController.getString(R.string.OK), false, true);
-        FrameLayout.LayoutParams a2 = x5.a(48.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 80);
+        FrameLayout.LayoutParams a2 = w5.a(48.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 80);
         int i10 = a2.leftMargin;
         int i11 = this.backgroundPaddingLeft;
         a2.leftMargin = i10 + i11;
@@ -71,7 +71,7 @@ public final class d extends db {
     }
 
     @Override
-    public final CharSequence B() {
+    public final CharSequence A() {
         List list = this.X;
         if (list == null) {
             return null;
@@ -80,10 +80,10 @@ public final class d extends db {
     }
 
     @Override
-    public final qm0 x(rm0 rm0Var) {
-        d71 d71Var = new d71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
-        this.Z = d71Var;
-        d71Var.f25649r = false;
-        return d71Var;
+    public final vm0 x(wm0 wm0Var) {
+        h71 h71Var = new h71(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
+        this.Z = h71Var;
+        h71Var.f26675r = false;
+        return h71Var;
     }
 }

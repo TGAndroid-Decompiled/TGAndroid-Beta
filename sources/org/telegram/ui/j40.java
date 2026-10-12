@@ -1,17 +1,48 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class j40 extends FrameLayout {
-    public j40(LaunchActivity launchActivity) {
-        super(launchActivity);
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+public final class j40 implements TextWatcher {
+    public final i60 f39093a;
+
+    public j40(i60 i60Var) {
+        this.f39093a = i60Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() <= 0.95f) {
-            return false;
+    public final void afterTextChanged(Editable editable) {
+        String str;
+        int i10;
+        i60 i60Var = this.f39093a;
+        i60Var.A3.a(TextUtils.isEmpty(editable), true);
+        int codePointCount = Character.codePointCount(editable, 0, editable.length());
+        int i11 = i60Var.f38690d0;
+        if (codePointCount + 25 > i11) {
+            str = "" + (i11 - codePointCount);
+        } else {
+            str = null;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        i60Var.M.a();
+        i60Var.M.setText(str);
+        org.telegram.ui.Components.r6 r6Var = i60Var.M;
+        if (codePointCount >= i11) {
+            i10 = -1280137;
+        } else {
+            i10 = -1;
+        }
+        r6Var.setTextColor(i10);
+        if (codePointCount > i11) {
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

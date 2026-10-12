@@ -1,70 +1,28 @@
 package org.telegram.ui;
 
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class xq0 implements org.telegram.ui.Cells.s5 {
-    public final yq0 f44202a;
+public final class xq0 extends g.o {
+    public final dr0 f44149c;
 
-    public xq0(yq0 yq0Var) {
-        this.f44202a = yq0Var;
-    }
-
-    public final void a() {
-        zn znVar;
-        TLRPC.Chat chat;
-        ar0 ar0Var = this.f44202a.d;
-        if (ar0Var.I && (znVar = ar0Var.U) != null && (chat = znVar.f44786e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && ar0Var.W != 2) {
-            org.telegram.ui.Components.g5.t0(ar0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
-            if (ar0Var.W == 1) {
-                ar0Var.W = 2;
-            }
-        }
+    public xq0(dr0 dr0Var) {
+        this.f44149c = dr0Var;
     }
 
     @Override
-    public final void b(org.telegram.ui.Cells.t5 t5Var) {
-        boolean z10;
-        int intValue = ((Integer) t5Var.getTag()).intValue();
-        ar0 ar0Var = this.f44202a.d;
-        MediaController.AlbumEntry albumEntry = ar0Var.J;
-        int i10 = -1;
-        int i11 = 1;
-        if (albumEntry != null) {
-            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
-            boolean containsKey = ar0Var.f36169b.containsKey(Integer.valueOf(photoEntry.imageId));
-            z10 = !containsKey;
-            if (!containsKey && ar0Var.H > 0 && ar0Var.f36169b.size() >= ar0Var.H) {
-                a();
-                return;
+    public final int i(int i10) {
+        int i11;
+        dr0 dr0Var = this.f44149c;
+        if (dr0Var.L.j(i10) != 1 && !dr0Var.Y && (dr0Var.J != null || !TextUtils.isEmpty(dr0Var.v))) {
+            int i12 = dr0Var.R;
+            int i13 = dr0Var.f36877g0;
+            if (i10 % i13 != i13 - 1) {
+                i11 = AndroidUtilities.dp(2.0f);
+            } else {
+                i11 = 0;
             }
-            if (ar0Var.f36174e && !containsKey) {
-                i10 = ar0Var.f36171c.size();
-            }
-            t5Var.b(i10, z10, true);
-            ar0Var.Y(intValue, photoEntry);
-        } else {
-            AndroidUtilities.hideKeyboard(ar0Var.getParentActivity().getCurrentFocus());
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) ar0Var.f36176f.get(intValue);
-            boolean containsKey2 = ar0Var.f36169b.containsKey(searchImage.f17281id);
-            z10 = !containsKey2;
-            if (!containsKey2 && ar0Var.H > 0 && ar0Var.f36169b.size() >= ar0Var.H) {
-                a();
-                return;
-            }
-            if (ar0Var.f36174e && !containsKey2) {
-                i10 = ar0Var.f36171c.size();
-            }
-            t5Var.b(i10, z10, true);
-            ar0Var.Y(intValue, searchImage);
+            return i12 + i11;
         }
-        if (!z10) {
-            i11 = 2;
-        }
-        ar0Var.i0(i11);
-        ar0Var.f36192s0.a();
+        return dr0Var.M.J;
     }
 }

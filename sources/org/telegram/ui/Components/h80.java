@@ -1,78 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-public final class h80 implements View.OnClickListener {
-    public final int f26994a;
-    public final p80 f26995b;
-    public final Runnable f26996c;
+import android.view.KeyEvent;
+public final class h80 implements org.telegram.ui.ActionBar.k1 {
+    public final int f26682a;
+    public final s80 f26683b;
 
-    public h80(p80 p80Var, Runnable runnable, int i10) {
-        this.f26994a = i10;
-        this.f26995b = p80Var;
-        this.f26996c = runnable;
+    public h80(s80 s80Var, int i10) {
+        this.f26682a = i10;
+        this.f26683b = s80Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f26994a) {
+    public final void o(KeyEvent keyEvent) {
+        s80 s80Var;
+        n80 n80Var;
+        s80 s80Var2;
+        n80 n80Var2;
+        switch (this.f26682a) {
             case 0:
-                this.f26995b.u();
-                Runnable runnable = this.f26996c;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                this.f26996c.run();
-                p80 p80Var = this.f26995b;
-                if (p80Var.J) {
-                    p80Var.u();
-                    return;
-                }
-                return;
-            case 2:
-                p80 p80Var2 = this.f26995b;
-                Runnable runnable2 = this.f26996c;
-                if (runnable2 != null) {
-                    int i10 = -p80Var2.K;
-                    p80Var2.K = i10;
-                    AndroidUtilities.shakeViewSpring(view, i10);
-                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                    runnable2.run();
-                    return;
-                }
-                p80Var2.getClass();
-                return;
-            case 3:
-                Runnable runnable3 = this.f26996c;
-                if (runnable3 != null) {
-                    runnable3.run();
-                }
-                p80 p80Var3 = this.f26995b;
-                if (p80Var3.J) {
-                    p80Var3.u();
-                    return;
-                }
-                return;
-            case 4:
-                this.f26996c.run();
-                p80 p80Var4 = this.f26995b;
-                if (p80Var4.J) {
-                    p80Var4.u();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n80Var = (s80Var = this.f26683b).f30462m) != null && n80Var.isShowing()) {
+                    s80Var.u();
                     return;
                 }
                 return;
             default:
-                Runnable runnable4 = this.f26996c;
-                if (runnable4 != null) {
-                    runnable4.run();
-                }
-                p80 p80Var5 = this.f26995b;
-                if (p80Var5.J) {
-                    p80Var5.u();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n80Var2 = (s80Var2 = this.f26683b).f30462m) != null && n80Var2.isShowing()) {
+                    s80Var2.u();
                     return;
                 }
                 return;

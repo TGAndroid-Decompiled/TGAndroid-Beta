@@ -1,22 +1,18 @@
 package org.telegram.ui.Components;
-public final class mf implements o1.g {
-    public boolean f28843a = false;
-    public final float f28844b;
-    public final jw0 f28845c;
 
-    public mf(float f7, jw0 jw0Var) {
-        this.f28844b = f7;
-        this.f28845c = jw0Var;
+import android.view.ViewTreeObserver;
+public final class mf implements ViewTreeObserver.OnDrawListener {
+    public final ow0 f28536a;
+    public final fq0 f28537b;
+
+    public mf(ow0 ow0Var, fq0 fq0Var) {
+        this.f28536a = ow0Var;
+        this.f28537b = fq0Var;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        if (!this.f28843a && f7 >= this.f28844b) {
-            this.f28843a = true;
-            try {
-                this.f28845c.performHapticFeedback(3, 2);
-            } catch (Exception unused) {
-            }
-        }
+    public final void onDraw() {
+        ow0 ow0Var = this.f28536a;
+        ow0Var.post(new org.telegram.tgnet.h(this, ow0Var, this.f28537b, 11));
     }
 }

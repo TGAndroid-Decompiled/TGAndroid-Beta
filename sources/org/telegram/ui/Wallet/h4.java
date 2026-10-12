@@ -4,31 +4,31 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 public final class h4 implements TextWatcher {
-    public final String[] f35056a;
-    public final i f35057b;
-    public final Runnable[] f35058c;
-    public final org.telegram.messenger.z5 d;
+    public final String[] f34831a;
+    public final s f34832b;
+    public final Runnable[] f34833c;
+    public final org.telegram.messenger.b6 d;
 
-    public h4(String[] strArr, i iVar, Runnable[] runnableArr, org.telegram.messenger.z5 z5Var) {
-        this.f35056a = strArr;
-        this.f35057b = iVar;
-        this.f35058c = runnableArr;
-        this.d = z5Var;
+    public h4(String[] strArr, s sVar, Runnable[] runnableArr, org.telegram.messenger.b6 b6Var) {
+        this.f34831a = strArr;
+        this.f34832b = sVar;
+        this.f34833c = runnableArr;
+        this.d = b6Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f35056a[0] = editable.toString();
-        this.f35057b.run();
-        Runnable[] runnableArr = this.f35058c;
+        this.f34831a[0] = editable.toString();
+        this.f34832b.run();
+        Runnable[] runnableArr = this.f34833c;
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
             runnable.run();
             runnableArr[0] = null;
         }
-        org.telegram.messenger.z5 z5Var = this.d;
-        AndroidUtilities.cancelRunOnUIThread(z5Var);
-        AndroidUtilities.runOnUIThread(z5Var, 1000L);
+        org.telegram.messenger.b6 b6Var = this.d;
+        AndroidUtilities.cancelRunOnUIThread(b6Var);
+        AndroidUtilities.runOnUIThread(b6Var, 1000L);
     }
 
     @Override

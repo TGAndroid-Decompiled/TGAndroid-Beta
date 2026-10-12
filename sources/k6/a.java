@@ -4,19 +4,19 @@ import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
-import w7.d0;
+import w7.c0;
 public final class a extends o6.a {
-    public final int f14695a;
-    public final int f14696b;
-    public final PendingIntent f14697c;
+    public final int f14692a;
+    public final int f14693b;
+    public final PendingIntent f14694c;
     public final String d;
-    public static final a f14694e = new a(0);
+    public static final a f14691e = new a(0);
     public static final Parcelable.Creator<a> CREATOR = new g8.j(17);
 
     public a(int i10, int i11, PendingIntent pendingIntent, String str) {
-        this.f14695a = i10;
-        this.f14696b = i11;
-        this.f14697c = pendingIntent;
+        this.f14692a = i10;
+        this.f14693b = i11;
+        this.f14694c = pendingIntent;
         this.d = str;
     }
 
@@ -79,7 +79,7 @@ public final class a extends o6.a {
                             case 25:
                                 return "API_INSTALL_REQUIRED";
                             default:
-                                return hg.c.i(i10, "UNKNOWN_ERROR_CODE(", ")");
+                                return hg.c.j(i10, "UNKNOWN_ERROR_CODE(", ")");
                         }
                 }
             }
@@ -89,14 +89,14 @@ public final class a extends o6.a {
     }
 
     public final boolean b() {
-        if (this.f14696b != 0 && this.f14697c != null) {
+        if (this.f14693b != 0 && this.f14694c != null) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f14696b == 0) {
+        if (this.f14693b == 0) {
             return true;
         }
         return false;
@@ -110,34 +110,34 @@ public final class a extends o6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f14696b == aVar.f14696b && n6.m.l(this.f14697c, aVar.f14697c) && n6.m.l(this.d, aVar.d)) {
+        if (this.f14693b == aVar.f14693b && n6.m.l(this.f14694c, aVar.f14694c) && n6.m.l(this.d, aVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f14696b), this.f14697c, this.d});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f14693b), this.f14694c, this.d});
     }
 
     public final String toString() {
         n6.k kVar = new n6.k(this);
-        kVar.m(d(this.f14696b), "statusCode");
-        kVar.m(this.f14697c, "resolution");
-        kVar.m(this.d, "message");
+        kVar.d(d(this.f14693b), "statusCode");
+        kVar.d(this.f14694c, "resolution");
+        kVar.d(this.d, "message");
         return kVar.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = d0.q(parcel, 20293);
-        d0.s(parcel, 1, 4);
-        parcel.writeInt(this.f14695a);
-        d0.s(parcel, 2, 4);
-        parcel.writeInt(this.f14696b);
-        d0.k(parcel, 3, this.f14697c, i10);
-        d0.l(parcel, 4, this.d);
-        d0.r(parcel, q6);
+        int q6 = c0.q(parcel, 20293);
+        c0.s(parcel, 1, 4);
+        parcel.writeInt(this.f14692a);
+        c0.s(parcel, 2, 4);
+        parcel.writeInt(this.f14693b);
+        c0.k(parcel, 3, this.f14694c, i10);
+        c0.l(parcel, 4, this.d);
+        c0.r(parcel, q6);
     }
 
     public a(int i10) {

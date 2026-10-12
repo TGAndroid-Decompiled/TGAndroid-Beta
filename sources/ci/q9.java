@@ -19,24 +19,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.es;
-import org.telegram.ui.Components.gm0;
+import org.telegram.ui.Components.fs;
+import org.telegram.ui.Components.lm0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.f01;
-import org.telegram.ui.g60;
-import org.telegram.ui.sy;
-import org.telegram.ui.ug1;
-public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, gm0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, pa.a, ug1 {
-    public final int f5839a;
-    public final long f5840b;
-    public final Object f5841c;
+import org.telegram.ui.i01;
+import org.telegram.ui.i60;
+import org.telegram.ui.vy;
+import org.telegram.ui.xg1;
+public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, lm0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, pa.a, xg1 {
+    public final int f5838a;
+    public final long f5839b;
+    public final Object f5840c;
     public final Object d;
 
     public q9(Object obj, long j3, Object obj2, int i10) {
-        this.f5839a = i10;
-        this.f5841c = obj;
-        this.f5840b = j3;
+        this.f5838a = i10;
+        this.f5840c = obj;
+        this.f5839b = j3;
         this.d = obj2;
     }
 
@@ -48,9 +48,9 @@ public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.O
     @Override
     public Object apply(Object obj) {
         boolean z10;
-        String str = (String) this.f5841c;
+        String str = (String) this.f5840c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((o5.c) this.d).f17166a;
+        int i10 = ((o5.c) this.d).f16832a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -59,7 +59,7 @@ public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.O
                 z10 = false;
             }
             rawQuery.close();
-            long j3 = this.f5840b;
+            long j3 = this.f5839b;
             if (!z10) {
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("log_source", str);
@@ -78,13 +78,13 @@ public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.O
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        ProfileActivity.b0((ProfileActivity) this.f5841c, (Context) this.d, this.f5840b, view, i10, f7, f10);
+        ProfileActivity.b0((ProfileActivity) this.f5840c, (Context) this.d, this.f5839b, view, i10, f7, f10);
     }
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ResultCallback resultCallback = (ResultCallback) this.f5841c;
-        long j3 = this.f5840b;
+        ResultCallback resultCallback = (ResultCallback) this.f5840c;
+        long j3 = this.f5839b;
         File file = (File) this.d;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z10 && bitmapSafe != null && !bitmapSafe.bitmap.isRecycled()) {
@@ -108,79 +108,79 @@ public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.O
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.i5.a(this, i10, str, drawable);
+        org.telegram.messenger.l5.a(this, i10, str, drawable);
     }
 
     @Override
     public void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((yh.g) this.f5841c).h0(true, this.f5840b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
+        ((yh.g) this.f5840c).h0(true, this.f5839b, tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f5839a) {
+        switch (this.f5838a) {
             case 0:
-                y9 y9Var = (y9) this.f5841c;
+                y9 y9Var = (y9) this.f5840c;
                 ArrayList arrayList = (ArrayList) this.d;
-                y9Var.d.put(Long.valueOf(this.f5840b), arrayList);
+                y9Var.d.put(Long.valueOf(this.f5839b), arrayList);
                 int size = arrayList.size();
                 int i11 = 0;
                 while (i11 < size) {
                     Object obj = arrayList.get(i11);
                     i11++;
-                    y9Var.f6360b.k(Boolean.TRUE, ((Long) obj).longValue());
+                    y9Var.f6359b.k(Boolean.TRUE, ((Long) obj).longValue());
                 }
                 y9Var.i(true);
                 y9Var.e(true);
                 y9Var.f(true);
                 a2Var.dismiss();
-                y9Var.f6368x.K = true;
+                y9Var.f6367x.K = true;
                 return;
             case 3:
-                es.R((es) this.f5841c, (d) this.d, this.f5840b);
+                fs.R((fs) this.f5840c, (d) this.d, this.f5839b);
                 return;
             default:
-                g60 g60Var = (g60) this.f5841c;
-                g60Var.d.getMessagesController().addUserToChat(g60Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.m2) g60Var.f37937i0.O().getFragmentStack().get(g60Var.f37937i0.O().getFragmentStack().size() - 1), new ai.j(g60Var, this.f5840b, 26));
+                i60 i60Var = (i60) this.f5840c;
+                i60Var.d.getMessagesController().addUserToChat(i60Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.m2) i60Var.f38712i0.O().getFragmentStack().get(i60Var.f38712i0.O().getFragmentStack().size() - 1), new ai.j(i60Var, this.f5839b, 26));
                 return;
         }
     }
 
     @Override
     public void g(pa.b bVar) {
-        ((t9.a) bVar.get()).d((String) this.f5841c, this.f5840b, (y9.b1) this.d);
+        ((t9.a) bVar.get()).d((String) this.f5840c, this.f5839b, (y9.b1) this.d);
     }
 
     @Override
     public Object i() {
-        da.c cVar = (da.c) this.f5841c;
-        long Z = ((u5.a) cVar.f8236g).Z() + this.f5840b;
-        s5.g gVar = (s5.g) ((s5.d) cVar.f8233c);
+        da.c cVar = (da.c) this.f5840c;
+        long W = ((u5.a) cVar.f8234g).W() + this.f5839b;
+        s5.g gVar = (s5.g) ((s5.d) cVar.f8231c);
         gVar.getClass();
-        gVar.c(new ai.z1(Z, (l5.i) this.d));
+        gVar.c(new ai.z1(W, (l5.i) this.d));
         return null;
     }
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.i5.b(this, imageReceiver);
+        org.telegram.messenger.l5.b(this, imageReceiver);
     }
 
     @Override
     public void onLoad(ArrayList arrayList) {
-        ((VoIPService) this.f5841c).lambda$createGroupInstance$69(this.f5840b, (int[]) this.d, arrayList);
+        ((VoIPService) this.f5840c).lambda$createGroupInstance$69(this.f5839b, (int[]) this.d, arrayList);
     }
 
     @Override
     public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new ai.i3((f01) this.f5841c, this.f5840b, tL_chatAdminRights, str, z10, (sy) this.d));
+        AndroidUtilities.runOnUIThread(new ai.i3((i01) this.f5840c, this.f5839b, tL_chatAdminRights, str, z10, (vy) this.d));
     }
 
     public q9(Object obj, Object obj2, long j3, int i10) {
-        this.f5839a = i10;
-        this.f5841c = obj;
+        this.f5838a = i10;
+        this.f5840c = obj;
         this.d = obj2;
-        this.f5840b = j3;
+        this.f5839b = j3;
     }
 
     @Override

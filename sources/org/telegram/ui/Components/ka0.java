@@ -1,96 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SvgHelper;
-public final class ka0 extends Drawable {
-    public final Bitmap f28001a;
-    public long f28003c;
-    public LinearGradient d;
-    public float f28005f;
-    public float f28006g;
-    public final y9 h;
-    public int f28007i;
-    public int f28008j;
-    public final Paint f28002b = new Paint(2);
-    public final Matrix f28004e = new Matrix();
+import org.telegram.messenger.R;
+public final class ka0 extends View {
+    public final Drawable f27797a;
+    public final Paint f27798b;
+    public final Paint f27799c;
+    public final g6 d;
+    public boolean f27800e;
 
-    public ka0(y9 y9Var, String str, int i10, int i11) {
-        this.f28001a = SvgHelper.getBitmapByPathOnly(str, 512, 512, i10, i11);
-        this.h = y9Var;
+    public ka0(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f27798b = paint;
+        Paint paint2 = new Paint(1);
+        this.f27799c = paint2;
+        this.d = new g6(this, 0L, 320L, js.h);
+        w7.y5.a(this);
+        this.f27797a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint2.setColor(-65536);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint.setStyle(style);
+        paint.setColor(-1);
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        if (this.f27800e == z10) {
+            return;
+        }
+        this.f27800e = z10;
+        if (!z11) {
+            this.d.a(z10);
+        }
+        invalidate();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f28001a;
-        if (bitmap == null) {
-            return;
-        }
-        int i10 = org.telegram.ui.ActionBar.h6.f20893h5;
-        int i11 = org.telegram.ui.ActionBar.h6.f20912i5;
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        int x03 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
-        int i12 = this.f28007i;
-        Paint paint = this.f28002b;
-        Matrix matrix = this.f28004e;
-        if (i12 != x02 || this.f28008j != x03) {
-            this.f28007i = x02;
-            this.f28008j = x03;
-            int averageColor = AndroidUtilities.getAverageColor(x03, x02);
-            paint.setColor(x03);
-            float dp = AndroidUtilities.dp(500.0f);
-            this.f28006g = dp;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{x03, averageColor, x03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
-            this.d = linearGradient;
-            linearGradient.setLocalMatrix(matrix);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
-        }
-        Rect bounds = getBounds();
-        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f28003c - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
-        }
-        this.f28003c = elapsedRealtime;
-        this.f28005f = a1.g.B((float) abs, this.f28006g, 1800.0f, this.f28005f);
-        while (true) {
-            float f7 = this.f28005f;
-            float f10 = this.f28006g * 2.0f;
-            if (f7 >= f10) {
-                this.f28005f = f7 - f10;
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e7 = this.d.e(!this.f27800e);
+        int width = getWidth();
+        Drawable drawable = this.f27797a;
+        drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
+        Rect bounds = drawable.getBounds();
+        float width2 = (bounds.width() * 0.325f) + bounds.left;
+        float height = (bounds.height() * 0.152f) + bounds.top;
+        float height2 = bounds.bottom - (bounds.height() * 0.152f);
+        float width3 = bounds.right - (bounds.width() * 0.101f);
+        int i10 = (e7 > 0.0f ? 1 : (e7 == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            Paint paint = this.f27799c;
+            paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
+            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+            drawable.draw(canvas);
+            if (this.f27800e) {
+                canvas.drawLine(width3 - AndroidUtilities.dp(4.0f), height2 - AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(width3 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + width2, e7), AndroidUtilities.lerp(height2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + height, e7), paint);
+                canvas2 = canvas;
             } else {
-                matrix.setTranslate(f7, 0.0f);
-                this.d.setLocalMatrix(matrix);
-                this.h.invalidate();
-                return;
+                canvas2 = canvas;
+                canvas2.drawLine(width2 + AndroidUtilities.dp(4.0f), height + AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + width2, width3 - AndroidUtilities.dp(4.0f), e7), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + height, height2 - AndroidUtilities.dp(4.0f), e7), paint);
+            }
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+            drawable.draw(canvas2);
+        }
+        if (i10 > 0) {
+            Paint paint2 = this.f27798b;
+            paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            if (this.f27800e) {
+                canvas2.drawLine(width3, height2, AndroidUtilities.lerp(width3, width2, e7), AndroidUtilities.lerp(height2, height, e7), paint2);
+            } else {
+                canvas.drawLine(width2, height, AndroidUtilities.lerp(width2, width3, e7), AndroidUtilities.lerp(height, height2, e7), paint2);
             }
         }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
     }
 }

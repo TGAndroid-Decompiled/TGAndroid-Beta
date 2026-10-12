@@ -1,54 +1,111 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.text.TextUtils;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class y40 extends AnimatorListenerAdapter {
-    public final int f33142a;
-    public final a50 f33143b;
+import org.telegram.tgnet.ConnectionsManager;
+public abstract class y40 extends h71 {
+    public final int N;
+    public final ArrayList O;
+    public boolean P;
+    public ai.w8 Q;
+    public boolean R;
+    public boolean S;
+    public int T;
+    public int U;
+    public boolean V;
+    public int W;
+    public String X;
+    public String Y;
+    public int Z;
+    public bl f32954a0;
+    public final boolean[] f32955b0;
 
-    public y40(a50 a50Var, int i10) {
-        this.f33142a = i10;
-        this.f33143b = a50Var;
+    public y40(wm0 wm0Var, Context context, int i10) {
+        super(wm0Var, context, i10, 0, false, null, null);
+        this.O = new ArrayList();
+        this.T = 0;
+        this.U = -1;
+        this.f32955b0 = new boolean[1];
+        this.f26676s = new d(this, 16);
+        this.N = i10;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        long j3;
-        switch (this.f33142a) {
-            case 0:
-                a50 a50Var = this.f33143b;
-                a50Var.f24501f = null;
-                if (!a50Var.H) {
-                    nq nqVar = new nq(this, 21);
-                    a50Var.h = nqVar;
-                    if (a50Var.f24502n == 0) {
-                        j3 = 10000;
-                    } else {
-                        j3 = 2000;
-                    }
-                    AndroidUtilities.runOnUIThread(nqVar, j3);
-                    return;
-                }
-                return;
-            case 1:
-                a50 a50Var2 = this.f33143b;
-                a50Var2.f24501f = null;
-                if (!a50Var2.H) {
-                    nq nqVar2 = new nq(this, 22);
-                    a50Var2.h = nqVar2;
-                    AndroidUtilities.runOnUIThread(nqVar2, a50Var2.E);
-                    return;
-                }
-                return;
-            default:
-                a50 a50Var3 = this.f33143b;
-                a50Var3.setVisibility(4);
-                a50Var3.getClass();
-                a50Var3.f24500e = null;
-                a50Var3.d = null;
-                a50Var3.f24501f = null;
-                return;
+    public static String X(String str, boolean[] zArr) {
+        boolean z10;
+        if (zArr != null) {
+            zArr[0] = false;
         }
+        if (str != null && !str.isEmpty()) {
+            String trim = str.trim();
+            if (trim.length() > 1) {
+                if ((trim.charAt(0) == '#' || trim.charAt(0) == '$') && trim.indexOf(64) < 0) {
+                    if (zArr != null) {
+                        if (trim.charAt(0) == '$') {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        zArr[0] = z10;
+                    }
+                    return trim.substring(1);
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public final void V() {
+        ai.w8 w8Var = this.Q;
+        if (w8Var != null && w8Var.I != 0) {
+            ConnectionsManager.getInstance(w8Var.f893c).cancelRequest(w8Var.I, true);
+            w8Var.I = 0;
+        }
+        this.P = false;
+        if (this.U >= 0) {
+            ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
+            this.U = -1;
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.f32954a0);
+        this.T++;
+        this.S = false;
+    }
+
+    public final void W() {
+        wm0 wm0Var;
+        if (!TextUtils.isEmpty(this.X) && !this.V && !this.S && (wm0Var = this.d) != null) {
+            for (int i10 = 0; i10 < wm0Var.getChildCount(); i10++) {
+                if (wm0Var.getChildAt(i10) instanceof m10) {
+                    Y(this.X);
+                    return;
+                }
+            }
+        }
+    }
+
+    public final void Y(String str) {
+        this.X = str;
+        String X = X(str, this.f32955b0);
+        if (!TextUtils.equals(this.Y, X)) {
+            this.O.clear();
+            this.V = false;
+            this.W = 0;
+            V();
+        } else if (this.S) {
+            return;
+        }
+        int i10 = this.T + 1;
+        this.T = i10;
+        if (X == null) {
+            return;
+        }
+        this.S = true;
+        N(true);
+        bl blVar = new bl(this, i10, X, 6);
+        this.f32954a0 = blVar;
+        AndroidUtilities.runOnUIThread(blVar, 300L);
     }
 }

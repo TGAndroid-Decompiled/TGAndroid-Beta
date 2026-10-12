@@ -19,11 +19,11 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.ga0;
-import org.telegram.ui.hb0;
+import org.telegram.ui.dm0;
+import org.telegram.ui.jb0;
 public abstract class s2 {
-    public static void a(final int i10, final Utilities.CallbackReturn callbackReturn, final Utilities.Callback2 callback2, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity, final Utilities.Callback3 callback3, final boolean z10, final boolean z11, final hb0 hb0Var) {
-        if (!hb0Var.f38405b) {
+    public static void a(final int i10, final Utilities.CallbackReturn callbackReturn, final Utilities.Callback2 callback2, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity, final Utilities.Callback3 callback3, final boolean z10, final boolean z11, final jb0 jb0Var) {
+        if (!jb0Var.f39172b) {
             final org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
             if (U != null && U.getContext() != null) {
                 final Activity parentActivity = U.getParentActivity();
@@ -37,8 +37,8 @@ public abstract class s2 {
                         @Override
                         public final void run(Object obj) {
                             TLMethod tLMethod = (TLMethod) obj;
-                            final hb0 hb0Var2 = hb0Var;
-                            boolean z12 = hb0Var2.f38405b;
+                            final jb0 jb0Var2 = jb0Var;
+                            boolean z12 = jb0Var2.f39172b;
                             final org.telegram.ui.ActionBar.a2 a2Var2 = a2Var;
                             if (!z12 && tLMethod != null) {
                                 final int i11 = i10;
@@ -59,8 +59,8 @@ public abstract class s2 {
                                         TLObject tLObject = (TLObject) obj3;
                                         final TLRPC.TL_error tL_error = (TLRPC.TL_error) obj4;
                                         a2Var2.dismiss();
-                                        final hb0 hb0Var3 = hb0Var2;
-                                        if (hb0Var3.f38405b) {
+                                        final jb0 jb0Var3 = jb0Var2;
+                                        if (jb0Var3.f39172b) {
                                             return;
                                         }
                                         final TwoStepVerificationActivity twoStepVerificationActivity3 = twoStepVerificationActivity2;
@@ -84,8 +84,8 @@ public abstract class s2 {
                                                             r2 r2Var;
                                                             TL_account.Password password = (TL_account.Password) obj5;
                                                             TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj6;
-                                                            hb0 hb0Var4 = hb0.this;
-                                                            if (hb0Var4.f38405b) {
+                                                            jb0 jb0Var4 = jb0.this;
+                                                            if (jb0Var4.f39172b) {
                                                                 return;
                                                             }
                                                             if (tL_error2 == null) {
@@ -97,15 +97,15 @@ public abstract class s2 {
                                                                 boolean z17 = z15;
                                                                 boolean z18 = z16;
                                                                 if (twoStepVerificationActivity4 == null) {
-                                                                    r2 r2Var2 = new r2(hb0Var4);
+                                                                    r2 r2Var2 = new r2(jb0Var4);
                                                                     r2Var2.setCurrentAccount(i14);
                                                                     callback24 = callback25;
                                                                     callbackReturn4 = callbackReturn5;
                                                                     i13 = i14;
-                                                                    n2 n2Var = new n2(i13, callbackReturn4, callback24, r2Var2, callback34, z17, z18, hb0Var4, 1);
+                                                                    n2 n2Var = new n2(i13, callbackReturn4, callback24, r2Var2, callback34, z17, z18, jb0Var4, 1);
                                                                     r2Var2.Z = 1;
-                                                                    r2Var2.f34635b0 = n2Var;
-                                                                    r2Var2.s0(new ga0(hb0Var4, z17, r2Var2, 12));
+                                                                    r2Var2.f34410b0 = n2Var;
+                                                                    r2Var2.s0(new dm0(jb0Var4, z17, r2Var2, 10));
                                                                     r2Var = r2Var2;
                                                                 } else {
                                                                     callback24 = callback25;
@@ -115,15 +115,15 @@ public abstract class s2 {
                                                                 }
                                                                 r2Var.I = password;
                                                                 TwoStepVerificationActivity.m0(password);
-                                                                s2.a(i13, callbackReturn4, callback24, r2Var.l0(), r2Var, callback34, z17, z18, hb0Var4);
+                                                                s2.a(i13, callbackReturn4, callback24, r2Var.l0(), r2Var, callback34, z17, z18, jb0Var4);
                                                                 return;
                                                             }
-                                                            hb0Var4.b();
+                                                            jb0Var4.b();
                                                         }
                                                     }, 8);
                                                     return;
                                                 }
-                                                hb0Var3.f38406c = true;
+                                                jb0Var3.f39173c = true;
                                                 if (twoStepVerificationActivity3 != null) {
                                                     try {
                                                         twoStepVerificationActivity3.o0();
@@ -132,7 +132,7 @@ public abstract class s2 {
                                                     }
                                                 }
                                                 callback33.run(tLObject, tL_error, inputCheckPasswordSRP3);
-                                                hb0Var3.b();
+                                                jb0Var3.b();
                                                 return;
                                             }
                                             if (twoStepVerificationActivity3 != null) {
@@ -157,47 +157,47 @@ public abstract class s2 {
                                                     int i19;
                                                     TL_account.Password password = (TL_account.Password) obj6;
                                                     TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj7;
-                                                    hb0 hb0Var4 = hb0.this;
-                                                    if (hb0Var4.f38405b) {
+                                                    jb0 jb0Var4 = jb0.this;
+                                                    if (jb0Var4.f39172b) {
                                                         return;
                                                     }
                                                     if (tL_error2 == null) {
-                                                        r2 r2Var = new r2(hb0Var4);
+                                                        r2 r2Var = new r2(jb0Var4);
                                                         int i20 = i12;
                                                         r2Var.setCurrentAccount(i20);
                                                         Utilities.CallbackReturn callbackReturn4 = callbackReturn3;
                                                         Utilities.Callback2 callback24 = callback23;
                                                         Utilities.Callback3 callback34 = callback33;
                                                         boolean z17 = z15;
-                                                        n2 n2Var = new n2(i20, callbackReturn4, callback24, r2Var, callback34, z17, z16, hb0Var4, 0);
+                                                        n2 n2Var = new n2(i20, callbackReturn4, callback24, r2Var, callback34, z17, z16, jb0Var4, 0);
                                                         r2Var.Z = 1;
-                                                        r2Var.f34635b0 = n2Var;
+                                                        r2Var.f34410b0 = n2Var;
                                                         r2Var.I = password;
                                                         r2Var.J = false;
                                                         org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
                                                         if (U2 != 0 && U2.getContext() != null) {
                                                             if (z17) {
                                                                 ?? obj8 = new Object();
-                                                                obj8.f21349a = true;
+                                                                obj8.f21087a = true;
                                                                 U2.showAsSheet(r2Var, obj8);
                                                                 return;
                                                             }
                                                             U2.presentFragment(r2Var);
                                                             return;
                                                         }
-                                                        hb0Var4.b();
+                                                        jb0Var4.b();
                                                         return;
                                                     }
-                                                    hb0Var4.b();
+                                                    jb0Var4.b();
                                                     Activity activity3 = activity2;
                                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity3);
-                                                    alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
+                                                    alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
                                                     LinearLayout linearLayout = new LinearLayout(activity3);
                                                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                                                     linearLayout.setOrientation(1);
                                                     alertDialog$Builder.n(linearLayout);
                                                     TextView textView = new TextView(activity3);
-                                                    int i21 = org.telegram.ui.ActionBar.h6.f20930j5;
+                                                    int i21 = org.telegram.ui.ActionBar.h6.f20667j5;
                                                     textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i21, false));
                                                     textView.setTextSize(1, 16.0f);
                                                     if (LocaleController.isRTL) {
@@ -207,10 +207,10 @@ public abstract class s2 {
                                                     }
                                                     textView.setGravity(i13 | 48);
                                                     textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.WithdrawChannelAlertText)));
-                                                    linearLayout.addView(textView, w7.x5.n(-1, -2));
+                                                    linearLayout.addView(textView, w7.w5.n(-1, -2));
                                                     LinearLayout linearLayout2 = new LinearLayout(activity3);
                                                     linearLayout2.setOrientation(0);
-                                                    linearLayout.addView(linearLayout2, w7.x5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                                                    linearLayout.addView(linearLayout2, w7.w5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                                     ImageView imageView = new ImageView(activity3);
                                                     imageView.setImageResource(R.drawable.list_circle);
                                                     if (LocaleController.isRTL) {
@@ -237,16 +237,16 @@ public abstract class s2 {
                                                         i15 = 3;
                                                     }
                                                     textView2.setGravity(i15 | 48);
-                                                    org.telegram.messenger.q.n(R.string.EditAdminTransferAlertText1, textView2);
+                                                    org.telegram.messenger.v0.n(R.string.EditAdminTransferAlertText1, textView2);
                                                     if (LocaleController.isRTL) {
-                                                        linearLayout2.addView(textView2, w7.x5.n(-1, -2));
-                                                        linearLayout2.addView(imageView, w7.x5.q(-2, -2, 5));
+                                                        linearLayout2.addView(textView2, w7.w5.n(-1, -2));
+                                                        linearLayout2.addView(imageView, w7.w5.q(-2, -2, 5));
                                                     } else {
-                                                        linearLayout2.addView(imageView, w7.x5.n(-2, -2));
-                                                        linearLayout2.addView(textView2, w7.x5.n(-1, -2));
+                                                        linearLayout2.addView(imageView, w7.w5.n(-2, -2));
+                                                        linearLayout2.addView(textView2, w7.w5.n(-1, -2));
                                                     }
-                                                    LinearLayout e7 = org.telegram.messenger.q.e(activity3, 0);
-                                                    linearLayout.addView(e7, w7.x5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                                                    LinearLayout f7 = org.telegram.messenger.v0.f(activity3, 0);
+                                                    linearLayout.addView(f7, w7.w5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                                     ImageView imageView2 = new ImageView(activity3);
                                                     imageView2.setImageResource(R.drawable.list_circle);
                                                     if (LocaleController.isRTL) {
@@ -271,15 +271,15 @@ public abstract class s2 {
                                                         i17 = 3;
                                                     }
                                                     textView3.setGravity(i17 | 48);
-                                                    org.telegram.messenger.q.n(R.string.EditAdminTransferAlertText2, textView3);
+                                                    org.telegram.messenger.v0.n(R.string.EditAdminTransferAlertText2, textView3);
                                                     if (LocaleController.isRTL) {
-                                                        e7.addView(textView3, w7.x5.n(-1, -2));
+                                                        f7.addView(textView3, w7.w5.n(-1, -2));
                                                         i18 = 5;
-                                                        e7.addView(imageView2, w7.x5.q(-2, -2, 5));
+                                                        f7.addView(imageView2, w7.w5.q(-2, -2, 5));
                                                     } else {
                                                         i18 = 5;
-                                                        e7.addView(imageView2, w7.x5.n(-2, -2));
-                                                        e7.addView(textView3, w7.x5.n(-1, -2));
+                                                        f7.addView(imageView2, w7.w5.n(-2, -2));
+                                                        f7.addView(textView3, w7.w5.n(-1, -2));
                                                     }
                                                     boolean equals2 = "PASSWORD_MISSING".equals(tL_error.text);
                                                     org.telegram.ui.ActionBar.m2 m2Var3 = m2Var2;
@@ -297,20 +297,20 @@ public abstract class s2 {
                                                         }
                                                         textView4.setGravity(i19 | 48);
                                                         textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
-                                                        linearLayout.addView(textView4, w7.x5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+                                                        linearLayout.addView(textView4, w7.w5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                                         alertDialog$Builder.h(LocaleController.getString(R.string.OK), null);
                                                     }
                                                     TwoStepVerificationActivity twoStepVerificationActivity4 = twoStepVerificationActivity3;
                                                     if (twoStepVerificationActivity4 != null) {
-                                                        twoStepVerificationActivity4.showDialog(alertDialog$Builder.f20404a);
+                                                        twoStepVerificationActivity4.showDialog(alertDialog$Builder.f20141a);
                                                     } else {
-                                                        m2Var3.showDialog(alertDialog$Builder.f20404a);
+                                                        m2Var3.showDialog(alertDialog$Builder.f20141a);
                                                     }
                                                 }
                                             }, 8);
                                             return;
                                         }
-                                        hb0Var3.f38406c = true;
+                                        jb0Var3.f39173c = true;
                                         if (twoStepVerificationActivity3 != null) {
                                             try {
                                                 twoStepVerificationActivity3.o0();
@@ -319,13 +319,13 @@ public abstract class s2 {
                                             }
                                         }
                                         callback33.run(tLObject, tL_error, inputCheckPasswordSRP3);
-                                        hb0Var3.b();
+                                        jb0Var3.b();
                                     }
                                 });
                                 return;
                             }
                             a2Var2.dismiss();
-                            hb0Var2.b();
+                            jb0Var2.b();
                         }
                     };
                     if (callbackReturn != null) {
@@ -338,10 +338,10 @@ public abstract class s2 {
                         return;
                     }
                 }
-                hb0Var.b();
+                jb0Var.b();
                 return;
             }
-            hb0Var.b();
+            jb0Var.b();
         }
     }
 }

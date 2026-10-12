@@ -7,16 +7,16 @@ import c3.n;
 import e2.d0;
 import e2.v;
 public final class c implements h0 {
-    public final int f49158a;
-    public final s f49159b;
-    public final n f49160c = new n();
+    public final int f49265a;
+    public final s f49266b;
+    public final n f49267c = new n();
     public s d;
-    public h0 f49161e;
-    public long f49162f;
+    public h0 f49268e;
+    public long f49269f;
 
     public c(int i10, int i11, s sVar) {
-        this.f49158a = i11;
-        this.f49159b = sVar;
+        this.f49265a = i11;
+        this.f49266b = sVar;
     }
 
     @Override
@@ -26,24 +26,24 @@ public final class c implements h0 {
 
     @Override
     public final void b(s sVar) {
-        s sVar2 = this.f49159b;
+        s sVar2 = this.f49266b;
         if (sVar2 != null) {
             sVar = sVar.d(sVar2);
         }
         this.d = sVar;
-        h0 h0Var = this.f49161e;
-        String str = d0.f8531a;
+        h0 h0Var = this.f49268e;
+        String str = d0.f8529a;
         h0Var.b(sVar);
     }
 
     @Override
     public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
-        long j10 = this.f49162f;
+        long j10 = this.f49269f;
         if (j10 != -9223372036854775807L && j3 >= j10) {
-            this.f49161e = this.f49160c;
+            this.f49268e = this.f49267c;
         }
-        h0 h0Var = this.f49161e;
-        String str = d0.f8531a;
+        h0 h0Var = this.f49268e;
+        String str = d0.f8529a;
         h0Var.c(j3, i10, i11, i12, g0Var);
     }
 
@@ -54,15 +54,15 @@ public final class c implements h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        h0 h0Var = this.f49161e;
-        String str = d0.f8531a;
+        h0 h0Var = this.f49268e;
+        String str = d0.f8529a;
         return h0Var.a(kVar, i10, z10);
     }
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        h0 h0Var = this.f49161e;
-        String str = d0.f8531a;
+        h0 h0Var = this.f49268e;
+        String str = d0.f8529a;
         h0Var.d(i10, vVar);
     }
 }

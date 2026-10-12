@@ -1,37 +1,29 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class g50 extends org.telegram.ui.ActionBar.m1 {
-    public final g60 f37899o;
+import android.content.DialogInterface;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class g50 implements DialogInterface.OnShowListener {
+    public final int f37937a;
+    public final org.telegram.ui.ActionBar.a2 f37938b;
+    public final EditTextBoldCursor f37939c;
+    public final Object d;
 
-    public g50(g60 g60Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f37899o = g60Var;
+    public g50(Object obj, org.telegram.ui.ActionBar.a2 a2Var, EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f37937a = i10;
+        this.d = obj;
+        this.f37938b = a2Var;
+        this.f37939c = editTextBoldCursor;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        g60 g60Var = this.f37899o;
-        if (g60Var.f37928f3 != this) {
-            return;
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f37937a) {
+            case 0:
+                ((l50) this.d).f39646b.t1(null, this.f37938b, this.f37939c, true);
+                return;
+            default:
+                ((h50) this.d).f38247n.f39646b.t1(null, this.f37938b, this.f37939c, true);
+                return;
         }
-        g60Var.f37928f3 = null;
-        AnimatorSet animatorSet = g60Var.f37923e3;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            g60Var.f37923e3 = null;
-        }
-        g60Var.Y.X = true;
-        g60Var.f37923e3 = new AnimatorSet();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(g60Var.W2, org.telegram.ui.Components.u6.f31449b, 0));
-        g60Var.f37923e3.playTogether(arrayList);
-        g60Var.f37923e3.setDuration(220L);
-        g60Var.f37923e3.addListener(new org.telegram.ui.Components.j91(this, 22));
-        g60Var.f37923e3.start();
     }
 }

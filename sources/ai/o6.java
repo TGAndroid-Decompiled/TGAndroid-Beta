@@ -1,15 +1,15 @@
 package ai;
 
-import org.telegram.ui.Components.fm0;
-public final class o6 implements fm0 {
-    public final int f1531a;
-    public final Object f1532b;
-    public final Object f1533c;
+import org.telegram.ui.Components.km0;
+public final class o6 implements km0 {
+    public final int f1529a;
+    public final Object f1530b;
+    public final Object f1531c;
 
     public o6(int i10, Object obj, Object obj2) {
-        this.f1531a = i10;
-        this.f1532b = obj;
-        this.f1533c = obj2;
+        this.f1529a = i10;
+        this.f1530b = obj;
+        this.f1531c = obj2;
     }
 
     @Override

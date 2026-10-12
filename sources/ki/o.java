@@ -1,23 +1,27 @@
 package ki;
-
-import android.os.SystemClock;
-import java.util.concurrent.atomic.AtomicLong;
-import org.telegram.messenger.FileLog;
 public final class o {
-    public static final AtomicLong f15073c = new AtomicLong(1);
-    public final long f15074a = f15073c.getAndIncrement();
-    public final long f15075b = SystemClock.elapsedRealtime();
+    public final String f14900a;
+    public final String f14901b;
+    public final int f14902c;
 
-    public final void a(String str, Exception exc) {
-        FileLog.e(c() + str + ": " + exc);
-        FileLog.e(exc);
+    public o(String str, String str2) {
+        this.f14900a = str;
+        this.f14901b = str2;
+        this.f14902c = str2.hashCode() + (str.hashCode() * 31);
     }
 
-    public final void b(String str) {
-        FileLog.d(c() + str);
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof o)) {
+            return false;
+        }
+        o oVar = (o) obj;
+        if (!this.f14900a.equals(oVar.f14900a) || !this.f14901b.equals(oVar.f14901b)) {
+            return false;
+        }
+        return true;
     }
 
-    public final String c() {
-        return "RoundVideo[" + this.f15074a + "] t+" + (SystemClock.elapsedRealtime() - this.f15075b) + "ms [" + Thread.currentThread().getName() + "] ";
+    public final int hashCode() {
+        return this.f14902c;
     }
 }

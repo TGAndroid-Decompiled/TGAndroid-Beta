@@ -15,28 +15,28 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ai;
-import org.telegram.ui.Components.is;
+import org.telegram.messenger.am;
+import org.telegram.ui.Components.js;
 public final class c extends FrameLayout {
-    public final ImageView f734a;
-    public final org.telegram.ui.Components.q6 f735b;
-    public final Paint f736c;
+    public final ImageView f732a;
+    public final org.telegram.ui.Components.q6 f733b;
+    public final Paint f734c;
     public final Paint d;
-    public boolean f737e;
-    public int f738f;
+    public boolean f735e;
+    public int f736f;
     public float h;
-    public ValueAnimator f739n;
+    public ValueAnimator f737n;
 
     public c(Context context, dh.b bVar) {
         super(context);
         Paint paint = new Paint(1);
-        this.f736c = paint;
+        this.f734c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.h = 1.0f;
-        w7.z5.a(this);
+        w7.y5.a(this);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(false, true, true);
-        this.f735b = q6Var;
+        this.f733b = q6Var;
         q6Var.u(-9866632);
         q6Var.w(AndroidUtilities.dp(9.0f));
         q6Var.setCallback(this);
@@ -47,38 +47,38 @@ public final class c extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         ah.l lVar = new ah.l();
         lVar.a(bVar);
-        lVar.f609g.setColor(-14670806);
+        lVar.f611g.setColor(-14670806);
         lVar.invalidateSelf();
-        lVar.f608f = AndroidUtilities.dp(1.0f);
+        lVar.f610f = AndroidUtilities.dp(1.0f);
         frameLayout.setBackground(lVar);
-        addView(frameLayout, w7.x5.e(40, 40, 17));
+        addView(frameLayout, w7.w5.e(40, 40, 17));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.menu_comments);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView, w7.x5.e(20, 20, 17));
+        frameLayout.addView(imageView, w7.w5.e(20, 20, 17));
         ImageView imageView2 = new ImageView(context);
-        this.f734a = imageView2;
+        this.f732a = imageView2;
         imageView2.setImageResource(R.drawable.menu_comments_arrow);
         imageView2.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
-        frameLayout.addView(imageView2, w7.x5.e(20, 20, 17));
+        frameLayout.addView(imageView2, w7.w5.e(20, 20, 17));
         imageView2.setPivotX(AndroidUtilities.dp(10.27f));
         imageView2.setPivotY(AndroidUtilities.dp(9.58f));
     }
 
     public final void a(boolean z10, boolean z11) {
-        if (z11 && this.f737e == z10) {
+        if (z11 && this.f735e == z10) {
             return;
         }
-        this.f737e = z10;
+        this.f735e = z10;
         float f7 = 180.0f;
-        ImageView imageView = this.f734a;
+        ImageView imageView = this.f732a;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
             if (z10) {
                 f7 = 0.0f;
             }
-            ai.t(animate.rotation(f7), is.h, 420L);
+            am.t(animate.rotation(f7), js.h, 420L);
             return;
         }
         if (z10) {
@@ -92,7 +92,7 @@ public final class c extends FrameLayout {
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         super.dispatchDraw(canvas);
         float f7 = this.h;
-        org.telegram.ui.Components.q6 q6Var = this.f735b;
+        org.telegram.ui.Components.q6 q6Var = this.f733b;
         float i10 = q6Var.i() * f7;
         float max = Math.max(AndroidUtilities.dp(12.0f), q6Var.c() + AndroidUtilities.dp(6.0f));
         canvas.save();
@@ -102,7 +102,7 @@ public final class c extends FrameLayout {
         rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.d);
         rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
-        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f736c);
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f734c);
         canvas.translate(((max - q6Var.c()) / 2.0f) + rectF.left, AndroidUtilities.dp(7.0f));
         q6Var.draw(canvas);
         canvas.restore();
@@ -116,28 +116,28 @@ public final class c extends FrameLayout {
         } else {
             formatNumber = LocaleController.formatNumber(i10, ',');
         }
-        this.f735b.t(formatNumber, true, true);
-        if (this.f738f != i10) {
-            ValueAnimator valueAnimator = this.f739n;
+        this.f733b.t(formatNumber, true, true);
+        if (this.f736f != i10) {
+            ValueAnimator valueAnimator = this.f737n;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f739n = null;
+                this.f737n = null;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f739n = ofFloat;
+            this.f737n = ofFloat;
             ofFloat.addUpdateListener(new a(this, 0));
-            this.f739n.addListener(new b(this, 0));
-            ai.l(2.5f, this.f739n);
-            this.f739n.setDuration(200L);
-            this.f739n.start();
-            this.f738f = i10;
+            this.f737n.addListener(new b(this, 0));
+            am.l(2.5f, this.f737n);
+            this.f737n.setDuration(200L);
+            this.f737n.start();
+            this.f736f = i10;
         }
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f735b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f733b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

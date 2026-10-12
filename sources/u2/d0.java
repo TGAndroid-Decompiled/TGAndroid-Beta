@@ -12,9 +12,9 @@ public interface d0 extends c1 {
 
     long l();
 
-    long o(x2.r[] rVarArr, boolean[] zArr, a1[] a1VarArr, boolean[] zArr2, long j3);
+    long n(x2.r[] rVarArr, boolean[] zArr, a1[] a1VarArr, boolean[] zArr2, long j3);
 
-    n1 p();
+    n1 o();
 
-    long r(long j3, q1 q1Var);
+    long q(long j3, q1 q1Var);
 }

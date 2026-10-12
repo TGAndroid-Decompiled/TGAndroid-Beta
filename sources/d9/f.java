@@ -1,20 +1,20 @@
 package d9;
 
-import fb.n;
+import fb.o;
 import j$.util.Objects;
 import java.io.IOException;
 import java.util.Iterator;
-public final class f implements n {
-    public String f8211a;
+public final class f implements o {
+    public String f8209a;
 
     public f(String str, int i10) {
         switch (i10) {
             case 1:
-                this.f8211a = str;
+                this.f8209a = str;
                 return;
             default:
                 str.getClass();
-                this.f8211a = str;
+                this.f8209a = str;
                 return;
         }
     }
@@ -33,7 +33,7 @@ public final class f implements n {
                 }
                 sb2.append(obj);
                 while (it.hasNext()) {
-                    sb2.append((CharSequence) this.f8211a);
+                    sb2.append((CharSequence) this.f8209a);
                     Object next2 = it.next();
                     Objects.requireNonNull(next2);
                     if (next2 instanceof CharSequence) {
@@ -50,7 +50,7 @@ public final class f implements n {
     }
 
     @Override
-    public Object v2() {
-        throw new RuntimeException(this.f8211a);
+    public Object w2() {
+        throw new RuntimeException(this.f8209a);
     }
 }

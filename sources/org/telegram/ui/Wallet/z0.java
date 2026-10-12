@@ -4,17 +4,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.r21;
-import org.telegram.ui.ai0;
+import org.telegram.ui.Components.w21;
+import org.telegram.ui.ci0;
 public final class z0 {
-    public final int f35799a;
-    public final long f35800b;
-    public final a1 f35801c;
+    public final int f35575a;
+    public final long f35576b;
+    public final a1 f35577c;
 
     public z0(a1 a1Var, int i10, long j3) {
-        this.f35801c = a1Var;
-        this.f35799a = i10;
-        this.f35800b = j3;
+        this.f35577c = a1Var;
+        this.f35575a = i10;
+        this.f35576b = j3;
     }
 
     public final void a(sc.u uVar, sc.y yVar, sc.y yVar2, boolean z10) {
@@ -34,22 +34,22 @@ public final class z0 {
             obj = Integer.valueOf(yVar2.b());
         }
         sb2.append(obj);
-        AndroidUtilities.runOnUIThread(new r21(this.f35801c, uVar, this.f35799a, sb2.toString(), 14));
+        AndroidUtilities.runOnUIThread(new w21(this.f35577c, uVar, this.f35575a, sb2.toString(), 14));
     }
 
     public final void b(sc.u uVar, String str) {
         StringBuilder sb2 = new StringBuilder("[gram-wallet-streaming] account=");
-        sb2.append(this.f35801c.f34668a);
+        sb2.append(this.f35577c.f34443a);
         sb2.append(" generation=");
-        int i10 = this.f35799a;
+        int i10 = this.f35575a;
         sb2.append(i10);
         sb2.append(" receive <- ");
         sb2.append(str);
         FileLog.d(sb2.toString());
         try {
-            AndroidUtilities.runOnUIThread(new r21(this, uVar, i10, new JSONObject(str), 15));
+            AndroidUtilities.runOnUIThread(new w21(this, uVar, i10, new JSONObject(str), 15));
         } catch (JSONException unused) {
-            AndroidUtilities.runOnUIThread(new ai0(this, uVar, i10, 11));
+            AndroidUtilities.runOnUIThread(new ci0(this, uVar, i10, 11));
         }
     }
 }

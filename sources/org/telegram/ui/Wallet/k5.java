@@ -31,8 +31,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.js;
 public class k5 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static Typeface V;
     public static Typeface W;
@@ -53,20 +53,20 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     public float S;
     public int T;
     public l0 U;
-    public boolean f35190a;
-    public float f35191b;
-    public final Matrix f35192c;
+    public boolean f34964a;
+    public float f34965b;
+    public final Matrix f34966c;
     public final Matrix d;
-    public final Matrix f35193e;
-    public final RectF f35194f;
+    public final Matrix f34967e;
+    public final RectF f34968f;
     public boolean h;
-    public boolean f35195n;
-    public final boolean f35196r;
-    public float f35197s;
+    public boolean f34969n;
+    public final boolean f34970r;
+    public float f34971s;
     public float v;
-    public final Matrix f35198w;
-    public final Matrix f35199x;
-    public final Matrix f35200y;
+    public final Matrix f34972w;
+    public final Matrix f34973x;
+    public final Matrix f34974y;
 
     public k5(Context context, boolean z10) {
         this(R.drawable.wallet_card_qr, 45, context, z10);
@@ -123,7 +123,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public final void a() {
-        boolean z10 = this.f35195n;
+        boolean z10 = this.f34969n;
         int i10 = this.Q;
         if (z10) {
             f5 f5Var = new f5(this.P, i10, getContext(), false);
@@ -134,14 +134,14 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
             this.E = s5Var;
             this.F = s5Var.getFrontFace();
         }
-        setAdditionalTilt(this.f35197s);
+        setAdditionalTilt(this.f34971s);
         setUseGyroscope(this.v);
         FrameLayout frameLayout = this.E;
         if (frameLayout instanceof s5) {
             ((s5) frameLayout).setDiamondAlpha(1.0f - this.R);
         }
         this.E.setOnClickListener(this.H);
-        addView(this.E, 0, w7.x5.d(-2.0f, -1));
+        addView(this.E, 0, w7.w5.d(-2.0f, -1));
         Bitmap bitmap = this.G;
         if (bitmap != null) {
             setEngravingBitmap(bitmap);
@@ -177,7 +177,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
 
     public final void g(l0 l0Var) {
         if (l0Var != null) {
-            int i10 = l0Var.f35219a;
+            int i10 = l0Var.f34994a;
             setCardHolder(UserObject.getUserName(UserConfig.getInstance(i10).getCurrentUser()).toUpperCase());
             if (l0Var.r() != null) {
                 setCardNumber(b(l0Var.r().toUpperCase()));
@@ -187,7 +187,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 SpannableString spannableString = new SpannableString("GRAM");
                 boolean z10 = false;
-                spannableString.setSpan(new er(R.drawable.wallet_gram_large, 0), 0, spannableString.length(), 33);
+                spannableString.setSpan(new gr(R.drawable.wallet_gram_large, 0), 0, spannableString.length(), 33);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
                 spannableStringBuilder.append((CharSequence) c(t10));
                 spannableStringBuilder.append((CharSequence) " ");
@@ -285,7 +285,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setAdditionalTilt(float f7) {
-        this.f35197s = f7;
+        this.f34971s = f7;
         FrameLayout frameLayout = this.E;
         if (frameLayout instanceof f5) {
             ((f5) frameLayout).setAdditionalTilt(f7);
@@ -347,7 +347,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setDiamondOnCard(boolean z10) {
-        this.f35190a = z10;
+        this.f34964a = z10;
         if (!z10) {
             FrameLayout frameLayout = this.E;
             if (frameLayout instanceof s5) {
@@ -377,8 +377,8 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setUse2D(boolean z10) {
-        boolean z11 = z10 | this.f35196r;
-        if (this.f35195n != z11) {
+        boolean z11 = z10 | this.f34970r;
+        if (this.f34969n != z11) {
             int childCount = this.F.getChildCount();
             View[] viewArr = new View[childCount];
             ViewGroup.LayoutParams[] layoutParamsArr = new ViewGroup.LayoutParams[childCount];
@@ -389,7 +389,7 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
             }
             this.F.removeAllViews();
             removeView(this.E);
-            this.f35195n = z11;
+            this.f34969n = z11;
             a();
             for (int i11 = 0; i11 < childCount; i11++) {
                 this.F.addView(viewArr[i11], layoutParamsArr[i11]);
@@ -409,20 +409,20 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
 
     public k5(int i10, int i11, Context context, boolean z10) {
         super(context);
-        this.f35191b = 1.0f;
-        this.f35192c = new Matrix();
+        this.f34965b = 1.0f;
+        this.f34966c = new Matrix();
         this.d = new Matrix();
-        this.f35193e = new Matrix();
-        this.f35194f = new RectF();
+        this.f34967e = new Matrix();
+        this.f34968f = new RectF();
         this.v = 1.0f;
-        this.f35198w = new Matrix();
-        this.f35199x = new Matrix();
-        this.f35200y = new Matrix();
+        this.f34972w = new Matrix();
+        this.f34973x = new Matrix();
+        this.f34974y = new Matrix();
         this.T = UserConfig.selectedAccount;
         PowerManager powerManager = (PowerManager) context.getSystemService("power");
         boolean z11 = powerManager != null && powerManager.isPowerSaveMode();
-        this.f35196r = z11;
-        this.f35195n = z10 || z11;
+        this.f34970r = z11;
+        this.f34969n = z10 || z11;
         this.P = i10;
         this.Q = i11;
         setClipChildren(false);
@@ -445,32 +445,32 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setMaxLines(1);
         textView.setSingleLine();
-        this.F.addView(textView, w7.x5.a(-2.0f, 24.0f, 16.6f, 64.0f, 16.6f, -1, 83));
+        this.F.addView(textView, w7.w5.a(-2.0f, 24.0f, 16.6f, 64.0f, 16.6f, -1, 83));
         View view = new View(context);
         this.J = view;
-        this.F.addView(view, w7.x5.a(1.0f, 24.0f, 0.0f, 0.0f, 0.0f, 1, 19));
+        this.F.addView(view, w7.w5.a(1.0f, 24.0f, 0.0f, 0.0f, 0.0f, 1, 19));
         LinearLayout linearLayout = new LinearLayout(context);
         this.K = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
-        FrameLayout.LayoutParams a2 = w7.x5.a(-2.0f, 24.0f, 0.0f, 24.0f, 0.0f, -1, 19);
+        FrameLayout.LayoutParams a2 = w7.w5.a(-2.0f, 24.0f, 0.0f, 24.0f, 0.0f, -1, 19);
         this.N = a2;
         this.F.addView(linearLayout, a2);
         i5 i5Var = new i5(this, context, i11);
         this.L = i5Var;
         i5Var.getDrawable().M = AndroidUtilities.dp(4096.0f);
-        is isVar = is.h;
-        i5Var.f30430c.m(0.35f, 320L, 3.5f, isVar);
+        js jsVar = js.h;
+        i5Var.f30055c.m(0.35f, 320L, 3.5f, jsVar);
         i5Var.setScaleProperty(0.6f);
         i5Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         i5Var.setTextSize(AndroidUtilities.dp(24.0f));
         i5Var.setTextColor(-1);
         i5Var.setIgnoreRTL(true);
-        linearLayout.addView(i5Var, w7.x5.n(-1, 28));
+        linearLayout.addView(i5Var, w7.w5.n(-1, 28));
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(context, false, true, true, true, true);
         this.M = r6Var;
-        r6Var.f30430c.m(0.35f, 320L, 3.5f, isVar);
+        r6Var.f30055c.m(0.35f, 320L, 3.5f, jsVar);
         r6Var.setScaleProperty(0.6f);
         r6Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         r6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -479,6 +479,6 @@ public class k5 extends FrameLayout implements NotificationCenter.NotificationCe
         r6Var.setTextDirection(3);
         r6Var.setGravity(19);
         r6Var.setIgnoreRTL(true);
-        linearLayout.addView(r6Var, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, 16));
+        linearLayout.addView(r6Var, w7.w5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, 16));
     }
 }

@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 public final class b {
-    public final String f51224a;
-    public final c f51225b;
+    public final String f51331a;
+    public final c f51332b;
 
     public b(Set set, c cVar) {
-        this.f51224a = b(set);
-        this.f51225b = cVar;
+        this.f51331a = b(set);
+        this.f51332b = cVar;
     }
 
     public static String b(Set set) {
@@ -18,9 +18,9 @@ public final class b {
         Iterator it = set.iterator();
         while (it.hasNext()) {
             a aVar = (a) it.next();
-            sb2.append(aVar.f51222a);
+            sb2.append(aVar.f51329a);
             sb2.append('/');
-            sb2.append(aVar.f51223b);
+            sb2.append(aVar.f51330b);
             if (it.hasNext()) {
                 sb2.append(' ');
             }
@@ -30,14 +30,14 @@ public final class b {
 
     public final String a() {
         Set unmodifiableSet;
-        String str = this.f51224a;
-        c cVar = this.f51225b;
-        synchronized (((HashSet) cVar.f51228b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) cVar.f51228b);
+        String str = this.f51331a;
+        c cVar = this.f51332b;
+        synchronized (((HashSet) cVar.f51335b)) {
+            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) cVar.f51335b);
         }
         if (unmodifiableSet.isEmpty()) {
             return str;
         }
-        return str + ' ' + b(cVar.m());
+        return str + ' ' + b(cVar.o());
     }
 }

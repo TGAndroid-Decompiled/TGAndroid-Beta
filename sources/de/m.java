@@ -7,28 +7,28 @@ import ii.z;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.gp0;
-import org.telegram.ui.Components.n71;
-public final class m implements b, gp0, me.d, ne.a {
-    public final Object f8337a;
+import org.telegram.ui.Components.lp0;
+import org.telegram.ui.Components.r71;
+public final class m implements b, lp0, me.d, ne.a {
+    public final Object f8335a;
 
     public m(Object obj) {
-        this.f8337a = obj;
+        this.f8335a = obj;
     }
 
     @Override
-    public void A(float f7, int i10) {
-        ((me.j) this.f8337a).i(f7);
+    public void C(float f7, int i10) {
+        ((me.j) this.f8335a).i(f7);
     }
 
     @Override
-    public java.lang.Object G(de.c r7, ld.c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: de.m.G(de.c, ld.c):java.lang.Object");
+    public java.lang.Object F(de.c r7, ld.c r8) {
+        throw new UnsupportedOperationException("Method not decompiled: de.m.F(de.c, ld.c):java.lang.Object");
     }
 
     @Override
     public void b(float f7) {
-        z zVar = (z) this.f8337a;
+        z zVar = (z) this.f8335a;
         MessageObject messageObject = zVar.P;
         if (messageObject == null) {
             return;
@@ -39,7 +39,7 @@ public final class m implements b, gp0, me.d, ne.a {
 
     @Override
     public void d(float f7) {
-        MessageObject messageObject = ((z) this.f8337a).P;
+        MessageObject messageObject = ((z) this.f8335a).P;
         if (messageObject == null) {
             return;
         }
@@ -63,7 +63,7 @@ public final class m implements b, gp0, me.d, ne.a {
 
     @Override
     public void n(int i10, float f7, float f10, me.e eVar) {
-        ((me.j) this.f8337a).i(f7);
+        ((me.j) this.f8335a).i(f7);
     }
 
     @Override
@@ -74,12 +74,12 @@ public final class m implements b, gp0, me.d, ne.a {
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
         int dp = AndroidUtilities.dp(9.0f);
-        n71 n71Var = (n71) this.f8337a;
+        r71 r71Var = (r71) this.f8335a;
         float f11 = -dp;
-        n71Var.f29067g.inset(f11, f11);
-        boolean contains = n71Var.f29067g.contains(f7, f10);
+        r71Var.f30073g.inset(f11, f11);
+        boolean contains = r71Var.f30073g.contains(f7, f10);
         float f12 = dp;
-        n71Var.f29067g.inset(f12, f12);
+        r71Var.f30073g.inset(f12, f12);
         return contains;
     }
 
@@ -90,7 +90,7 @@ public final class m implements b, gp0, me.d, ne.a {
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((n71) this.f8337a).f29069j;
+        Runnable runnable = ((r71) this.f8335a).f30075j;
         if (runnable != null) {
             runnable.run();
         }
@@ -98,12 +98,12 @@ public final class m implements b, gp0, me.d, ne.a {
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        ((n71) this.f8337a).h.c(true);
+        ((r71) this.f8335a).h.c(true);
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        ((n71) this.f8337a).h.c(false);
+        ((r71) this.f8335a).h.c(false);
     }
 
     @Override

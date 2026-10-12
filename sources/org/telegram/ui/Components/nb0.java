@@ -1,43 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class nb0 extends s4.o0 {
-    public final ob0 f29142a;
+import org.telegram.tgnet.TLRPC;
+public final class nb0 extends g.o {
+    public final tb0 f28773c;
 
-    public nb0(ob0 ob0Var) {
-        this.f29142a = ob0Var;
+    public nb0(tb0 tb0Var) {
+        this.f28773c = tb0Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
-        int R;
-        int i10 = 0;
-        rect.left = 0;
-        rect.right = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        s4.p0 layoutManager = recyclerView.getLayoutManager();
-        pb0 pb0Var = this.f29142a.Z2;
-        if (layoutManager == pb0Var.d && (R = RecyclerView.R(view)) != 0 && !pb0Var.f29832f.N()) {
-            if (pb0Var.f29832f.I() == null && pb0Var.f29832f.U == null) {
-                rect.top = AndroidUtilities.dp(2.0f);
-            } else if (R != 0) {
-                R--;
-                ib0 ib0Var = pb0Var.d;
-                ib0Var.B1();
-                if (R > ib0Var.U) {
-                    rect.top = AndroidUtilities.dp(2.0f);
-                }
-            } else {
-                return;
+    public final int i(int i10) {
+        tb0 tb0Var = this.f28773c;
+        gg.j1 j1Var = tb0Var.f30842f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = j1Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
             }
-            if (!pb0Var.d.E1(R)) {
-                i10 = AndroidUtilities.dp(2.0f);
+            if (J instanceof TLRPC.Document) {
+                return 20;
             }
-            rect.right = i10;
+            if (j1Var.I() != null || j1Var.U != null) {
+                i10 = i11;
+            }
+            mb0 mb0Var = tb0Var.d;
+            mb0Var.B1();
+            return mb0Var.R.get(i10);
         }
+        return 100;
     }
 }

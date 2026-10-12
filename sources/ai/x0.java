@@ -2,8 +2,8 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.d71;
-public final class x0 extends d71 {
+import org.telegram.ui.Components.h71;
+public final class x0 extends h71 {
     public final s3 N;
 
     public x0(s3 s3Var, w0 w0Var, Context context, int i10, t0 t0Var, d dVar) {
@@ -17,11 +17,11 @@ public final class x0 extends d71 {
         m1 m1Var;
         super.v(d1Var, i10);
         s3 s3Var = this.N;
-        if (s3Var.f1522y) {
-            View view = d1Var.f47782a;
-            if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1380a == s3Var.f1521x) {
+        if (s3Var.f1520y) {
+            View view = d1Var.f47889a;
+            if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1378a == s3Var.f1519x) {
                 h1Var.c();
-                s3Var.f1522y = false;
+                s3Var.f1520y = false;
             }
         }
     }
@@ -32,11 +32,11 @@ public final class x0 extends d71 {
         m1 m1Var;
         super.y(d1Var);
         s3 s3Var = this.N;
-        if (s3Var.f1522y) {
-            View view = d1Var.f47782a;
-            if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1380a == s3Var.f1521x) {
+        if (s3Var.f1520y) {
+            View view = d1Var.f47889a;
+            if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1378a == s3Var.f1519x) {
                 h1Var.c();
-                s3Var.f1522y = false;
+                s3Var.f1520y = false;
             }
         }
     }

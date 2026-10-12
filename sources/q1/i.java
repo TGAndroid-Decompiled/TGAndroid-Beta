@@ -7,12 +7,12 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import androidx.emoji2.text.l;
 public final class i implements TextWatcher {
-    public final EditText f46025a;
-    public h f46026b;
-    public boolean f46027c = true;
+    public final EditText f45853a;
+    public h f45854b;
+    public boolean f45855c = true;
 
     public i(EditText editText) {
-        this.f46025a = editText;
+        this.f45853a = editText;
     }
 
     public static void a(EditText editText, int i10) {
@@ -41,8 +41,8 @@ public final class i implements TextWatcher {
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        EditText editText = this.f46025a;
-        if (!editText.isInEditMode() && this.f46027c && l.f2604j != null && i11 <= i12 && (charSequence instanceof Spannable)) {
+        EditText editText = this.f45853a;
+        if (!editText.isInEditMode() && this.f45855c && l.f2602j != null && i11 <= i12 && (charSequence instanceof Spannable)) {
             int b10 = l.a().b();
             if (b10 != 0) {
                 if (b10 != 1) {
@@ -55,10 +55,10 @@ public final class i implements TextWatcher {
                 }
             }
             l a2 = l.a();
-            if (this.f46026b == null) {
-                this.f46026b = new h(editText);
+            if (this.f45854b == null) {
+                this.f45854b = new h(editText);
             }
-            a2.f(this.f46026b);
+            a2.f(this.f45854b);
         }
     }
 

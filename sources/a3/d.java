@@ -39,10 +39,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ba0;
+import org.telegram.ui.Components.fa0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.jx;
-import org.telegram.ui.sy;
+import org.telegram.ui.mx;
+import org.telegram.ui.vy;
 import v7.d8;
 import v7.g8;
 public final class d implements Runnable {
@@ -59,26 +59,26 @@ public final class d implements Runnable {
         boolean z10 = false;
         switch (this.f81a) {
             case 0:
-                ((f) this.f82b).f109g.K();
+                ((f) this.f82b).f109g.H();
                 return;
             case 1:
                 ((w) this.f82b).f216k--;
                 return;
             case 2:
-                sy syVar = ((jx) this.f82b).O0;
-                if (syVar.L && syVar.U3().G()) {
-                    syVar.E0.h();
+                vy vyVar = ((mx) this.f82b).O0;
+                if (vyVar.L && vyVar.U3().G()) {
+                    vyVar.E0.h();
                     return;
                 } else {
-                    syVar.u4(true, true);
+                    vyVar.u4(true, true);
                     return;
                 }
             case 3:
-                ((b2) this.f82b).f696a.t(false);
+                ((b2) this.f82b).f698a.t(false);
                 return;
             case 4:
-                d2 d2Var = ((c2) this.f82b).f752a;
-                NotificationCenter.getInstance(d2Var.f809e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.g()));
+                d2 d2Var = ((c2) this.f82b).f750a;
+                NotificationCenter.getInstance(d2Var.f807e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.g()));
                 return;
             case 5:
                 n2 n2Var = (n2) this.f82b;
@@ -87,21 +87,21 @@ public final class d implements Runnable {
                 n2Var.T = false;
                 return;
             case 6:
-                ((v4) this.f82b).f1824a.Q0();
+                ((v4) this.f82b).f1822a.Q0();
                 return;
             case 7:
-                f6 f6Var = ((b5) this.f82b).f710x;
+                f6 f6Var = ((b5) this.f82b).f708x;
                 y5 y5Var = f6Var.Q1;
                 if (y5Var != null) {
                     if (!f6Var.T1 && !f6Var.U1 && !f6Var.V1) {
                         kc kcVar = ((bc) y5Var).d;
-                        if (!kcVar.f1283n0.getCurrentPeerView().d1(true) && !kcVar.f1283n0.E(true)) {
+                        if (!kcVar.f1281n0.getCurrentPeerView().d1(true) && !kcVar.f1281n0.E(true)) {
                             kcVar.q(true);
                             return;
                         }
                         return;
-                    } else if (f6Var.O1.f825e) {
-                        ((jc) f6Var.M2.f884c).loopBack();
+                    } else if (f6Var.O1.f823e) {
+                        ((jc) f6Var.M2.f882c).loopBack();
                         return;
                     } else {
                         f6Var.W0 = 0L;
@@ -118,7 +118,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f82b;
-                int i10 = ProfileStoriesView.f34559s0;
+                int i10 = ProfileStoriesView.f34334s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -137,8 +137,8 @@ public final class d implements Runnable {
                 return;
             case 13:
                 a1 a1Var = (a1) this.f82b;
-                a1Var.c(a1Var.f4711b);
-                a1Var.f4712c = false;
+                a1Var.c(a1Var.f4710b);
+                a1Var.f4711c = false;
                 return;
             case 14:
                 q9 q9Var = (q9) this.f82b;
@@ -153,13 +153,13 @@ public final class d implements Runnable {
                 return;
             case 17:
                 na naVar = (na) this.f82b;
-                ArrayList arrayList = naVar.f1489c;
+                ArrayList arrayList = naVar.f1487c;
                 if (arrayList != null) {
-                    naVar.f1487a.f1027z1 = arrayList;
+                    naVar.f1485a.f1025z1 = arrayList;
                 }
-                f6 f6Var2 = naVar.f1487a;
-                long j3 = naVar.f1488b;
-                if (f6Var2.B1 != j3 || f6Var2.f1027z1 != null) {
+                f6 f6Var2 = naVar.f1485a;
+                long j3 = naVar.f1486b;
+                if (f6Var2.B1 != j3 || f6Var2.f1025z1 != null) {
                     f6Var2.B1 = j3;
                     f6Var2.j1();
                     f6Var2.i1();
@@ -180,17 +180,17 @@ public final class d implements Runnable {
                 }
                 return;
             case 18:
-                ((ba0) this.f82b).d(true);
+                ((fa0) this.f82b).d(true);
                 return;
             case 19:
                 ((eb) this.f82b).requestLayout();
                 return;
             case 20:
                 nb nbVar = (nb) this.f82b;
-                d4 d4Var = nbVar.f1493c;
+                d4 d4Var = nbVar.f1491c;
                 if (d4Var != null) {
                     d4Var.e(true);
-                    nbVar.f1493c = null;
+                    nbVar.f1491c = null;
                 }
                 nbVar.b(false);
                 return;
@@ -200,23 +200,23 @@ public final class d implements Runnable {
                     lbVar.E = true;
                     lbVar.F = System.currentTimeMillis();
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    lbVar.f1367e = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
-                    lbVar.f1368f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
+                    lbVar.f1365e = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
+                    lbVar.f1366f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
                     lbVar.invalidate();
                     return;
                 }
                 return;
             case 22:
-                kc kcVar2 = ((tb) this.f82b).f1775b;
+                kc kcVar2 = ((tb) this.f82b).f1773b;
                 try {
-                    yb ybVar = kcVar2.f1294s;
+                    yb ybVar = kcVar2.f1292s;
                     if (ybVar != null) {
-                        if (kcVar2.f1256b) {
+                        if (kcVar2.f1254b) {
                             AndroidUtilities.removeFromParent(ybVar);
                         } else {
-                            kcVar2.f1282n.removeView(ybVar);
+                            kcVar2.f1280n.removeView(ybVar);
                         }
-                        kcVar2.f1294s = null;
+                        kcVar2.f1292s = null;
                         return;
                     }
                     return;
@@ -234,10 +234,10 @@ public final class d implements Runnable {
                 return;
             case 26:
                 androidx.activity.k kVar = (androidx.activity.k) this.f82b;
-                Runnable runnable = kVar.f2131b;
+                Runnable runnable = kVar.f2129b;
                 if (runnable != null) {
                     runnable.run();
-                    kVar.f2131b = null;
+                    kVar.f2129b = null;
                     return;
                 }
                 return;
@@ -251,24 +251,24 @@ public final class d implements Runnable {
                         if (pVar.h != null) {
                             try {
                                 o0.h d = pVar.d();
-                                int i11 = d.f16991e;
+                                int i11 = d.f16657e;
                                 if (i11 == 2) {
                                     synchronized (pVar.d) {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f16546a;
+                                    int i12 = n0.g.f16212a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
-                                    ob.a aVar = pVar.f2623c;
-                                    Context context = pVar.f2621a;
+                                    ob.a aVar = pVar.f2621c;
+                                    Context context = pVar.f2619a;
                                     aVar.getClass();
                                     o0.h[] hVarArr = {d};
-                                    d8 d8Var = i0.e.f11581a;
+                                    d8 d8Var = i0.e.f11580a;
                                     w7.a8.a("TypefaceCompat.createFromFontInfo");
                                     try {
-                                        Typeface b10 = i0.e.f11581a.b(context, hVarArr, 0);
+                                        Typeface b10 = i0.e.f11580a.b(context, hVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e7 = g8.e(pVar.f2621a, d.f16988a);
+                                        MappedByteBuffer e7 = g8.e(pVar.f2619a, d.f16654a);
                                         if (e7 != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
@@ -283,7 +283,7 @@ public final class d implements Runnable {
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f16546a;
+                                                int i13 = n0.g.f16212a;
                                                 throw th2;
                                             }
                                         }

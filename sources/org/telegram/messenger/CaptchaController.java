@@ -94,7 +94,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$0(String str, String str2, Request request, String str3) {
-        hg.c.t(str3, a1.g.x("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
+        hg.c.v(str3, a1.g.x("CaptchaController: got token for {action=", str, ", key_id=", str2, "}: "));
         if (str3 == null) {
             request.done("RECAPTCHA_FAILED_TOKEN_NULL");
         } else {
@@ -108,7 +108,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$2(String str, String str2, Request request, RecaptchaTasksClient recaptchaTasksClient) {
-        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new r0(str, str2, request, 1)).addOnFailureListener(new s0(request, 1));
+        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new s0(str, str2, request, 1)).addOnFailureListener(new t0(request, 1));
     }
 
     public static void lambda$request$3(Request request, Exception exc) {
@@ -133,6 +133,6 @@ public class CaptchaController {
             request2.done("RECAPTCHA_FAILED_NO_ACTIVITY");
             return;
         }
-        Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new r0(str, str2, request2, 0)).addOnFailureListener(new s0(request2, 0));
+        Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new s0(str, str2, request2, 0)).addOnFailureListener(new t0(request2, 0));
     }
 }

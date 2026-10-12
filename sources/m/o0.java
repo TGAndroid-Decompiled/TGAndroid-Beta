@@ -13,19 +13,19 @@ public interface o0 {
 
     void dismiss();
 
-    Drawable e();
+    Drawable h();
 
-    void h(CharSequence charSequence);
+    void i(CharSequence charSequence);
 
-    void i(Drawable drawable);
-
-    void j(int i10);
+    void j(Drawable drawable);
 
     void k(int i10);
 
-    void l(int i10, int i11);
+    void l(int i10);
 
-    int m();
+    void m(int i10, int i11);
 
-    void n(ListAdapter listAdapter);
+    int o();
+
+    void p(ListAdapter listAdapter);
 }

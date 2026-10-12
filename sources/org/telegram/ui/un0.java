@@ -1,32 +1,50 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class un0 implements RequestDelegate {
-    public final int f42686a;
-    public final uo0 f42687b;
+public final class un0 implements Runnable {
+    public final int f42540a;
+    public final xo0 f42541b;
 
-    public un0(uo0 uo0Var, int i10) {
-        this.f42686a = i10;
-        this.f42687b = uo0Var;
+    public un0(xo0 xo0Var, int i10) {
+        this.f42540a = i10;
+        this.f42541b = xo0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f42686a) {
+    public final void run() {
+        switch (this.f42540a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new uf0(20, this.f42687b, tL_error));
+                xo0 xo0Var = this.f42541b;
+                xo0Var.f44099f[0].requestFocus();
+                AndroidUtilities.showKeyboard(xo0Var.f44099f[0]);
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new tn0(this.f42687b, tL_error, tLObject, 0));
+                this.f42541b.t0();
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new nn0(this.f42687b, tLObject, 2));
-                return;
+                xo0 xo0Var2 = this.f42541b;
+                xo0Var2.getMessagesController().newMessageCallback = null;
+                if (xo0Var2.f44101f1 == 3 && !xo0Var2.isFinishing()) {
+                    xo0Var2.f44101f1 = 4;
+                    wo0 wo0Var = xo0Var2.Z0;
+                    if (wo0Var != null) {
+                        wo0Var.a(4);
+                    }
+                    xo0Var2.finishFragment();
+                    return;
+                } else if (xo0Var2.f44101f1 == 1 && !xo0Var2.isFinishing()) {
+                    xo0Var2.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
             default:
-                AndroidUtilities.runOnUIThread(new nn0(this.f42687b, tLObject, 0));
+                xo0 xo0Var3 = this.f42541b;
+                if (xo0Var3.f44094d0 != null) {
+                    xo0Var3.w0();
+                    xo0Var3.f44094d0 = null;
+                    return;
+                }
                 return;
         }
     }

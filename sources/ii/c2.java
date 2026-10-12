@@ -9,28 +9,29 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
+import org.telegram.messenger.am;
 public final class c2 extends Drawable {
-    public final Context f12304a;
-    public final Drawable f12305b;
-    public Drawable f12306c;
+    public final Context f12311a;
+    public final Drawable f12312b;
+    public Drawable f12313c;
     public int d;
-    public int f12307e;
-    public Drawable f12308f;
-    public boolean f12309g;
+    public int f12314e;
+    public Drawable f12315f;
+    public boolean f12316g;
 
     public c2(Context context, int i10) {
         Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.d = org.telegram.ui.ActionBar.h6.f20822d6;
-        this.f12309g = true;
-        this.f12304a = context;
-        this.f12305b = mutate;
+        this.d = org.telegram.ui.ActionBar.h6.f20559d6;
+        this.f12316g = true;
+        this.f12311a = context;
+        this.f12312b = mutate;
     }
 
     public final void a(boolean z10) {
-        if (this.f12309g == z10) {
+        if (this.f12316g == z10) {
             return;
         }
-        this.f12309g = z10;
+        this.f12316g = z10;
         invalidateSelf();
     }
 
@@ -39,58 +40,58 @@ public final class c2 extends Drawable {
         Rect bounds = getBounds();
         int centerX = bounds.centerX();
         int centerY = bounds.centerY();
-        Drawable drawable = this.f12305b;
-        drawable.setBounds(org.telegram.ui.Cells.c1.s(2, centerX, drawable), org.telegram.ui.Cells.c1.c(2, centerY, drawable), org.telegram.ui.Cells.c1.w(2, centerX, drawable), org.telegram.ui.Cells.c1.v(2, centerY, drawable));
+        Drawable drawable = this.f12312b;
+        drawable.setBounds(am.z(2, centerX, drawable), am.d(2, centerY, drawable), org.telegram.ui.Cells.c1.r(2, centerX, drawable), org.telegram.ui.Cells.c1.c(2, centerY, drawable));
         drawable.draw(canvas);
-        if (this.f12309g) {
+        if (this.f12316g) {
             int dp = AndroidUtilities.dp(9.0f) + centerX;
             int dp2 = AndroidUtilities.dp(9.0f) + centerY;
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, this.d, false);
-            Drawable drawable2 = this.f12306c;
-            Context context = this.f12304a;
+            Drawable drawable2 = this.f12313c;
+            Context context = this.f12311a;
             if (drawable2 == null) {
                 Drawable mutate = context.getResources().getDrawable(R.drawable.star_premium_cutout).mutate();
-                this.f12306c = mutate;
-                this.f12307e = x02;
+                this.f12313c = mutate;
+                this.f12314e = x02;
                 mutate.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             }
-            if (x02 != this.f12307e) {
-                Drawable drawable3 = this.f12306c;
-                this.f12307e = x02;
+            if (x02 != this.f12314e) {
+                Drawable drawable3 = this.f12313c;
+                this.f12314e = x02;
                 drawable3.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             }
-            if (this.f12308f == null) {
-                this.f12308f = context.getResources().getDrawable(R.drawable.star_premium).mutate();
+            if (this.f12315f == null) {
+                this.f12315f = context.getResources().getDrawable(R.drawable.star_premium).mutate();
             }
-            this.f12306c.setBounds(dp - AndroidUtilities.dp(9.0f), dp2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + dp, AndroidUtilities.dp(9.0f) + dp2);
-            this.f12306c.draw(canvas);
-            this.f12308f.setBounds(dp - AndroidUtilities.dp(9.0f), dp2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + dp, AndroidUtilities.dp(9.0f) + dp2);
-            this.f12308f.draw(canvas);
+            this.f12313c.setBounds(dp - AndroidUtilities.dp(9.0f), dp2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + dp, AndroidUtilities.dp(9.0f) + dp2);
+            this.f12313c.draw(canvas);
+            this.f12315f.setBounds(dp - AndroidUtilities.dp(9.0f), dp2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + dp, AndroidUtilities.dp(9.0f) + dp2);
+            this.f12315f.draw(canvas);
         }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return Math.max(AndroidUtilities.dp(38.0f), this.f12305b.getIntrinsicHeight());
+        return Math.max(AndroidUtilities.dp(38.0f), this.f12312b.getIntrinsicHeight());
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return Math.max(AndroidUtilities.dp(38.0f), this.f12305b.getIntrinsicWidth());
+        return Math.max(AndroidUtilities.dp(38.0f), this.f12312b.getIntrinsicWidth());
     }
 
     @Override
     public final int getOpacity() {
-        return this.f12305b.getOpacity();
+        return this.f12312b.getOpacity();
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f12305b.setAlpha(i10);
+        this.f12312b.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f12305b.setColorFilter(colorFilter);
+        this.f12312b.setColorFilter(colorFilter);
     }
 }

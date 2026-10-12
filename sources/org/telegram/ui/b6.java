@@ -1,155 +1,101 @@
 package org.telegram.ui;
 
-import android.os.StatFs;
-import android.text.TextUtils;
-import android.util.LongSparseArray;
-import java.io.File;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SharedConfig;
-public final class b6 implements Runnable {
-    public final int f36311a;
-    public final x6 f36312b;
+import org.telegram.messenger.CacheByChatsController;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b6 extends og.b {
+    public final d6 d;
 
-    public b6(x6 x6Var, int i10) {
-        this.f36311a = i10;
-        this.f36312b = x6Var;
+    public b6(d6 d6Var) {
+        this.d = d6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36311a) {
-            case 0:
-                x6 x6Var = this.f36312b;
-                x6Var.resumeDelayedFragmentAnimation();
-                x6Var.L = false;
-                x6Var.w0(true);
-                x6Var.v0();
-                return;
-            case 1:
-                x6 x6Var2 = this.f36312b;
-                x6Var2.getFileLoader().getFileDatabase().ensureDatabaseCreated();
-                zh.b bVar = new zh.b(false);
-                LongSparseArray longSparseArray = new LongSparseArray();
-                x6Var2.o0(FileLoader.checkDirectory(4), 6, longSparseArray, bVar);
-                x6Var2.o0(FileLoader.checkDirectory(0), 0, longSparseArray, bVar);
-                x6Var2.o0(FileLoader.checkDirectory(100), 0, longSparseArray, bVar);
-                x6Var2.o0(FileLoader.checkDirectory(2), 1, longSparseArray, bVar);
-                x6Var2.o0(FileLoader.checkDirectory(101), 1, longSparseArray, bVar);
-                x6Var2.o0(FileLoader.checkDirectory(1), 4, longSparseArray, bVar);
-                x6Var2.o0(FileLoader.checkDirectory(6), 6, longSparseArray, bVar);
-                x6Var2.o0(FileLoader.checkDirectory(3), 2, longSparseArray, bVar);
-                x6Var2.o0(FileLoader.checkDirectory(5), 2, longSparseArray, bVar);
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                for (int i10 = 0; i10 < longSparseArray.size(); i10++) {
-                    q6 q6Var = (q6) longSparseArray.valueAt(i10);
-                    arrayList.add(q6Var);
-                    if (x6Var2.getMessagesController().getUserOrChat(((q6) arrayList.get(i10)).f41080a) == null) {
-                        long j3 = q6Var.f41080a;
-                        if (j3 > 0) {
-                            arrayList2.add(Long.valueOf(j3));
-                        } else {
-                            arrayList3.add(Long.valueOf(j3));
-                        }
-                    }
-                }
-                Collections.sort(bVar.d, new lb1(28));
-                Collections.sort(bVar.f54824e, new lb1(28));
-                Collections.sort(bVar.f54825f, new lb1(28));
-                Collections.sort(bVar.f54826g, new lb1(28));
-                Collections.sort(bVar.h, new lb1(28));
-                x6Var2.getMessagesStorage().getStorageQueue().postRunnable(new c6(x6Var2, arrayList2, arrayList3, arrayList, bVar, 0));
-                return;
-            default:
-                x6 x6Var3 = this.f36312b;
-                x6Var3.h = x6.q0(5, FileLoader.checkDirectory(4));
-                if (!x6.f44003k0) {
-                    x6Var3.f44023r = x6.q0(4, FileLoader.checkDirectory(4));
-                    if (!x6.f44003k0) {
-                        long q02 = x6.q0(0, FileLoader.checkDirectory(0));
-                        x6Var3.f44027y = q02;
-                        x6Var3.f44027y = x6.q0(0, FileLoader.checkDirectory(100)) + q02;
-                        if (!x6.f44003k0) {
-                            long q03 = x6.q0(0, FileLoader.checkDirectory(2));
-                            x6Var3.E = q03;
-                            x6Var3.E = x6.q0(0, FileLoader.checkDirectory(101)) + q03;
-                            if (!x6.f44003k0) {
-                                long q04 = x6.q0(1, AndroidUtilities.getLogsDir());
-                                x6Var3.F = q04;
-                                if (!BuildVars.DEBUG_VERSION && q04 < 268435456) {
-                                    x6Var3.F = 0L;
-                                }
-                                if (!x6.f44003k0) {
-                                    long q05 = x6.q0(1, FileLoader.checkDirectory(3));
-                                    x6Var3.f44024s = q05;
-                                    x6Var3.f44024s = x6.q0(1, FileLoader.checkDirectory(5)) + q05;
-                                    if (!x6.f44003k0) {
-                                        long q06 = x6.q0(2, FileLoader.checkDirectory(3));
-                                        x6Var3.f44026x = q06;
-                                        x6Var3.f44026x = x6.q0(2, FileLoader.checkDirectory(5)) + q06;
-                                        if (!x6.f44003k0) {
-                                            x6Var3.G = x6.q0(0, new File(FileLoader.checkDirectory(4), "acache"));
-                                            if (!x6.f44003k0) {
-                                                x6Var3.f44022n = x6.q0(3, FileLoader.checkDirectory(4));
-                                                if (!x6.f44003k0) {
-                                                    x6Var3.G += x6Var3.f44022n;
-                                                    x6Var3.v = x6.q0(0, FileLoader.checkDirectory(1));
-                                                    x6Var3.f44025w = x6.q0(0, FileLoader.checkDirectory(6));
-                                                    if (!x6.f44003k0) {
-                                                        long j10 = x6Var3.h + x6Var3.f44023r + x6Var3.E + x6Var3.F + x6Var3.v + x6Var3.f44027y + x6Var3.f44024s + x6Var3.f44026x + x6Var3.f44025w + x6Var3.G;
-                                                        x6.m0 = Long.valueOf(j10);
-                                                        x6Var3.H = j10;
-                                                        x6.f44004l0 = System.currentTimeMillis();
-                                                        ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
-                                                        File file = rootDirs.get(0);
-                                                        file.getAbsolutePath();
-                                                        if (!TextUtils.isEmpty(SharedConfig.storageCacheDir)) {
-                                                            int size = rootDirs.size();
-                                                            for (int i11 = 0; i11 < size; i11++) {
-                                                                File file2 = rootDirs.get(i11);
-                                                                if (file2.getAbsolutePath().startsWith(SharedConfig.storageCacheDir)) {
-                                                                    file = file2;
-                                                                }
-                                                            }
-                                                        }
-                                                        try {
-                                                            StatFs statFs = new StatFs(file.getPath());
-                                                            long blockSizeLong = statFs.getBlockSizeLong();
-                                                            long availableBlocksLong = statFs.getAvailableBlocksLong();
-                                                            x6Var3.I = statFs.getBlockCountLong() * blockSizeLong;
-                                                            x6Var3.J = availableBlocksLong * blockSizeLong;
-                                                        } catch (Exception e7) {
-                                                            FileLog.e(e7);
-                                                        }
-                                                        AndroidUtilities.runOnUIThread(new b6(x6Var3, 0));
-                                                        x6Var3.getFileLoader().getFileDatabase().getQueue().postRunnable(new b6(x6Var3, 1));
-                                                        return;
-                                                    }
-                                                    return;
-                                                }
-                                                return;
-                                            }
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final boolean D(s4.d1 d1Var) {
+        int i10 = d1Var.f47893f;
+        if (i10 == 1 || i10 == 2 || i10 == 4) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f36654c.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return ((c6) this.d.f36654c.get(i10)).f16876a;
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        String str;
+        d6 d6Var = this.d;
+        ArrayList arrayList = d6Var.f36654c;
+        if (((c6) arrayList.get(i10)).f16876a == 2) {
+            org.telegram.ui.Cells.xa xaVar = (org.telegram.ui.Cells.xa) d1Var.f47889a;
+            CacheByChatsController.KeepMediaException keepMediaException = ((c6) arrayList.get(i10)).f36332c;
+            TLObject userOrChat = d6Var.getMessagesController().getUserOrChat(keepMediaException.dialogId);
+            if (userOrChat instanceof TLRPC.User) {
+                TLRPC.User user = (TLRPC.User) userOrChat;
+                if (user.self) {
+                    str = LocaleController.getString(R.string.SavedMessages);
+                } else {
+                    str = ContactsController.formatName(user.first_name, user.last_name);
+                }
+            } else if (userOrChat instanceof TLRPC.Chat) {
+                str = ((TLRPC.Chat) userOrChat).title;
+            } else {
+                str = null;
+            }
+            boolean z10 = true;
+            xaVar.setSelfAsSavedMessages(true);
+            String keepMediaString = CacheByChatsController.getKeepMediaString(keepMediaException.keepMedia);
+            if (i10 != arrayList.size() - 1 && ((c6) arrayList.get(i10 + 1)).f16876a != 2) {
+                z10 = false;
+            }
+            xaVar.d(userOrChat, str, keepMediaString, z10);
+        }
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.r8 r8Var;
+        View view = null;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 == 4) {
+                        org.telegram.ui.Cells.r8 r8Var2 = new org.telegram.ui.Cells.r8(viewGroup.getContext());
+                        r8Var2.i(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
+                        r8Var2.e(-1, org.telegram.ui.ActionBar.h6.f20780p7);
+                        r8Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+                        r8Var = r8Var2;
+                    }
+                } else {
+                    r8Var = new org.telegram.ui.Cells.a7(viewGroup.getContext(), (org.telegram.ui.Cells.c1) null);
+                }
+            } else {
+                View xaVar = new org.telegram.ui.Cells.xa(4, 0, viewGroup.getContext(), null, false, false);
+                xaVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+                view = xaVar;
+            }
+            return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
+        }
+        org.telegram.ui.Cells.r8 r8Var3 = new org.telegram.ui.Cells.r8(viewGroup.getContext());
+        r8Var3.m(R.drawable.msg_contact_add, LocaleController.getString(R.string.NotificationsAddAnException), true);
+        r8Var3.e(org.telegram.ui.ActionBar.h6.f20892v6, org.telegram.ui.ActionBar.h6.f20874u6);
+        r8Var3.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+        r8Var = r8Var3;
+        view = r8Var;
+        return com.google.android.gms.internal.vision.e2.k(view, view, -1, -2);
     }
 }

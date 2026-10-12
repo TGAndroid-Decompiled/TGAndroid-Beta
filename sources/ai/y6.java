@@ -7,13 +7,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.os;
-public final class y6 extends os {
-    public final z6 f1948c;
+import org.telegram.ui.Components.ps;
+public final class y6 extends ps {
+    public final z6 f1946c;
 
     public y6(z6 z6Var, Context context, d dVar) {
         super(context, dVar, false);
-        this.f1948c = z6Var;
+        this.f1946c = z6Var;
     }
 
     @Override
@@ -24,17 +24,17 @@ public final class y6 extends os {
         int i12;
         int i13;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setBackgroundColor(i0.a.d(0.18f, -16777216, -1));
-        z6 z6Var = this.f1948c;
-        l7 l7Var = z6Var.f2016x;
+        z6 z6Var = this.f1946c;
+        l7 l7Var = z6Var.f2014x;
         k7 k7Var = l7Var.E;
-        if (k7Var != null && k7Var.f1231f) {
+        if (k7Var != null && k7Var.f1229f) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
             i10 = R.drawable.menu_views_reposts;
-        } else if (l7Var.O.f1825a) {
+        } else if (l7Var.O.f1823a) {
             i10 = R.drawable.menu_views_reactions2;
         } else {
             i10 = R.drawable.menu_views_reactions;
@@ -45,57 +45,57 @@ public final class y6 extends os {
         } else {
             i11 = R.string.SortByReactions;
         }
-        org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i14, LocaleController.getString(i11), false, l7Var.f1341s);
-        if (!l7Var.O.f1825a) {
+        org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i14, LocaleController.getString(i11), false, l7Var.f1339s);
+        if (!l7Var.O.f1823a) {
             c10.setAlpha(0.5f);
         }
         c10.setOnClickListener(new View.OnClickListener(this) {
-            public final y6 f1909b;
+            public final y6 f1907b;
 
             {
-                this.f1909b = this;
+                this.f1907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        l7 l7Var2 = this.f1909b.f1948c.f2016x;
+                        l7 l7Var2 = this.f1907b.f1946c.f2014x;
                         v6 v6Var = l7Var2.O;
-                        if (!v6Var.f1825a) {
+                        if (!v6Var.f1823a) {
                             v6 v6Var2 = l7Var2.M;
                             if (v6Var2 != null) {
-                                v6Var.f1825a = true;
-                                v6Var2.f1825a = true;
+                                v6Var.f1823a = true;
+                                v6Var2.f1823a = true;
                             } else {
-                                v6Var.f1825a = true;
+                                v6Var.f1823a = true;
                             }
                             l7Var2.h(true);
                             l7.b(l7Var2);
                             l7Var2.N.run(l7Var2);
                         }
-                        y6 y6Var = l7Var2.f1338f;
+                        y6 y6Var = l7Var2.f1336f;
                         if (y6Var != null) {
                             y6Var.a();
                             return;
                         }
                         return;
                     default:
-                        l7 l7Var3 = this.f1909b.f1948c.f2016x;
+                        l7 l7Var3 = this.f1907b.f1946c.f2014x;
                         v6 v6Var3 = l7Var3.O;
-                        if (v6Var3.f1825a) {
+                        if (v6Var3.f1823a) {
                             v6 v6Var4 = l7Var3.M;
                             if (v6Var4 != null) {
-                                v6Var3.f1825a = false;
-                                v6Var4.f1825a = false;
+                                v6Var3.f1823a = false;
+                                v6Var4.f1823a = false;
                             } else {
-                                v6Var3.f1825a = false;
+                                v6Var3.f1823a = false;
                             }
                             l7Var3.h(true);
                             l7.b(l7Var3);
                             l7Var3.N.run(l7Var3);
                         }
-                        y6 y6Var2 = l7Var3.f1338f;
+                        y6 y6Var2 = l7Var3.f1336f;
                         if (y6Var2 != null) {
                             y6Var2.a();
                             return;
@@ -104,62 +104,62 @@ public final class y6 extends os {
                 }
             }
         });
-        if (!l7Var.O.f1825a) {
+        if (!l7Var.O.f1823a) {
             i12 = R.drawable.menu_views_recent2;
         } else {
             i12 = R.drawable.menu_views_recent;
         }
-        org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i12, LocaleController.getString(R.string.SortByTime), false, l7Var.f1341s);
-        if (l7Var.O.f1825a) {
+        org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, i12, LocaleController.getString(R.string.SortByTime), false, l7Var.f1339s);
+        if (l7Var.O.f1823a) {
             c11.setAlpha(0.5f);
         }
         c11.setOnClickListener(new View.OnClickListener(this) {
-            public final y6 f1909b;
+            public final y6 f1907b;
 
             {
-                this.f1909b = this;
+                this.f1907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        l7 l7Var2 = this.f1909b.f1948c.f2016x;
+                        l7 l7Var2 = this.f1907b.f1946c.f2014x;
                         v6 v6Var = l7Var2.O;
-                        if (!v6Var.f1825a) {
+                        if (!v6Var.f1823a) {
                             v6 v6Var2 = l7Var2.M;
                             if (v6Var2 != null) {
-                                v6Var.f1825a = true;
-                                v6Var2.f1825a = true;
+                                v6Var.f1823a = true;
+                                v6Var2.f1823a = true;
                             } else {
-                                v6Var.f1825a = true;
+                                v6Var.f1823a = true;
                             }
                             l7Var2.h(true);
                             l7.b(l7Var2);
                             l7Var2.N.run(l7Var2);
                         }
-                        y6 y6Var = l7Var2.f1338f;
+                        y6 y6Var = l7Var2.f1336f;
                         if (y6Var != null) {
                             y6Var.a();
                             return;
                         }
                         return;
                     default:
-                        l7 l7Var3 = this.f1909b.f1948c.f2016x;
+                        l7 l7Var3 = this.f1907b.f1946c.f2014x;
                         v6 v6Var3 = l7Var3.O;
-                        if (v6Var3.f1825a) {
+                        if (v6Var3.f1823a) {
                             v6 v6Var4 = l7Var3.M;
                             if (v6Var4 != null) {
-                                v6Var3.f1825a = false;
-                                v6Var4.f1825a = false;
+                                v6Var3.f1823a = false;
+                                v6Var4.f1823a = false;
                             } else {
-                                v6Var3.f1825a = false;
+                                v6Var3.f1823a = false;
                             }
                             l7Var3.h(true);
                             l7.b(l7Var3);
                             l7Var3.N.run(l7Var3);
                         }
-                        y6 y6Var2 = l7Var3.f1338f;
+                        y6 y6Var2 = l7Var3.f1336f;
                         if (y6Var2 != null) {
                             y6Var2.a();
                             return;
@@ -168,24 +168,24 @@ public final class y6 extends os {
                 }
             }
         });
-        View j1Var = new org.telegram.ui.ActionBar.j1(z6Var.getContext(), org.telegram.ui.ActionBar.h6.H8, l7Var.f1341s);
+        View j1Var = new org.telegram.ui.ActionBar.j1(z6Var.getContext(), org.telegram.ui.ActionBar.h6.H8, l7Var.f1339s);
         j1Var.setTag(R.id.fit_width_tag, 1);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.a(j1Var, w7.x5.n(-1, 8));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.a(j1Var, w7.w5.n(-1, 8));
         if (z10) {
             i13 = R.string.StoryReactionsSortDescription;
         } else {
             i13 = R.string.StoryViewsSortDescription;
         }
         String string = LocaleController.getString(i13);
-        d dVar = l7Var.f1341s;
+        d dVar = l7Var.f1339s;
         TextView textView = new TextView(actionBarPopupWindow$ActionBarPopupWindowLayout.getContext());
         textView.setTextSize(1, 13.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20930j5, dVar));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20667j5, dVar));
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setText(string);
         textView.setTag(R.id.fit_width_tag, 1);
         textView.setMaxWidth(AndroidUtilities.dp(200.0f));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.a(textView, w7.x5.n(-1, -2));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.a(textView, w7.w5.n(-1, -2));
     }
 
     @Override

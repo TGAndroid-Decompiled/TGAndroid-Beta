@@ -5,15 +5,15 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.LockSupport;
 public final class d0 extends AtomicReference implements Runnable {
-    public static final aa f12055c = new aa(2);
+    public static final aa f12054c = new aa(2);
     public static final aa d = new aa(2);
-    public final Callable f12056a;
-    public final e0 f12057b;
+    public final Callable f12055a;
+    public final e0 f12056b;
 
     public d0(e0 e0Var, Callable callable) {
-        this.f12057b = e0Var;
+        this.f12056b = e0Var;
         callable.getClass();
-        this.f12056a = callable;
+        this.f12055a = callable;
     }
 
     public final void a(Thread thread) {
@@ -55,12 +55,12 @@ public final class d0 extends AtomicReference implements Runnable {
         Thread currentThread = Thread.currentThread();
         Object obj = null;
         if (compareAndSet(null, currentThread)) {
-            e0 e0Var = this.f12057b;
+            e0 e0Var = this.f12056b;
             boolean isDone = e0Var.isDone();
-            aa aaVar = f12055c;
+            aa aaVar = f12054c;
             if (!isDone) {
                 try {
-                    obj = this.f12056a.call();
+                    obj = this.f12055a.call();
                 } catch (Throwable th2) {
                     try {
                         if (th2 instanceof InterruptedException) {
@@ -91,7 +91,7 @@ public final class d0 extends AtomicReference implements Runnable {
     public final String toString() {
         String str;
         Runnable runnable = (Runnable) get();
-        if (runnable == f12055c) {
+        if (runnable == f12054c) {
             str = "running=[DONE]";
         } else if (runnable instanceof v) {
             str = "running=[INTERRUPTED]";
@@ -101,7 +101,7 @@ public final class d0 extends AtomicReference implements Runnable {
             str = "running=[NOT STARTED YET]";
         }
         StringBuilder j3 = sc.v.j(str, ", ");
-        j3.append(this.f12056a.toString());
+        j3.append(this.f12055a.toString());
         return j3.toString();
     }
 }

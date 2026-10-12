@@ -1,9 +1,9 @@
 package b2;
 public final class y {
-    public long f3693a;
-    public long f3694b = Long.MIN_VALUE;
-    public boolean f3695c;
+    public long f3691a;
+    public long f3692b = Long.MIN_VALUE;
+    public boolean f3693c;
     public boolean d;
-    public boolean f3696e;
-    public boolean f3697f;
+    public boolean f3694e;
+    public boolean f3695f;
 }

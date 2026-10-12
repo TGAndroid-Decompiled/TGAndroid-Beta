@@ -1,13 +1,13 @@
 package fc;
 public final class a {
     public static final a h;
-    public final int[] f9846a;
-    public final int[] f9847b;
-    public final b f9848c;
+    public final int[] f9845a;
+    public final int[] f9846b;
+    public final b f9847c;
     public final b d;
-    public final int f9849e;
-    public final int f9850f;
-    public final int f9851g;
+    public final int f9848e;
+    public final int f9849f;
+    public final int f9850g;
 
     static {
         new a(4201, 4096, 1);
@@ -19,30 +19,30 @@ public final class a {
     }
 
     public a(int i10, int i11, int i12) {
-        this.f9850f = i10;
-        this.f9849e = i11;
-        this.f9851g = i12;
-        this.f9846a = new int[i11];
-        this.f9847b = new int[i11];
+        this.f9849f = i10;
+        this.f9848e = i11;
+        this.f9850g = i12;
+        this.f9845a = new int[i11];
+        this.f9846b = new int[i11];
         int i13 = 1;
         for (int i14 = 0; i14 < i11; i14++) {
-            this.f9846a[i14] = i13;
+            this.f9845a[i14] = i13;
             i13 *= 2;
             if (i13 >= i11) {
                 i13 = (i13 ^ i10) & (i11 - 1);
             }
         }
         for (int i15 = 0; i15 < i11 - 1; i15++) {
-            this.f9847b[this.f9846a[i15]] = i15;
+            this.f9846b[this.f9845a[i15]] = i15;
         }
-        this.f9848c = new b(this, new int[]{0});
+        this.f9847c = new b(this, new int[]{0});
         this.d = new b(this, new int[]{1});
     }
 
     public final b a(int i10, int i11) {
         if (i10 >= 0) {
             if (i11 == 0) {
-                return this.f9848c;
+                return this.f9847c;
             }
             int[] iArr = new int[i10 + 1];
             iArr[0] = i11;
@@ -53,21 +53,21 @@ public final class a {
 
     public final int b(int i10) {
         if (i10 != 0) {
-            int i11 = this.f9847b[i10];
-            return this.f9846a[(this.f9849e - i11) - 1];
+            int i11 = this.f9846b[i10];
+            return this.f9845a[(this.f9848e - i11) - 1];
         }
         throw new ArithmeticException();
     }
 
     public final int c(int i10, int i11) {
         if (i10 != 0 && i11 != 0) {
-            int[] iArr = this.f9847b;
-            return this.f9846a[(iArr[i10] + iArr[i11]) % (this.f9849e - 1)];
+            int[] iArr = this.f9846b;
+            return this.f9845a[(iArr[i10] + iArr[i11]) % (this.f9848e - 1)];
         }
         return 0;
     }
 
     public final String toString() {
-        return "GF(0x" + Integer.toHexString(this.f9850f) + ',' + this.f9849e + ')';
+        return "GF(0x" + Integer.toHexString(this.f9849f) + ',' + this.f9848e + ')';
     }
 }

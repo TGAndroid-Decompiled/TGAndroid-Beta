@@ -1,39 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class wm extends ViewOutlineProvider {
-    public final ym f32735a;
+import org.telegram.messenger.camera.CameraView;
+public final class wm extends CameraView {
+    public final ai.x4 f32439a;
+    public boolean f32440b;
+    public final ChatAttachAlertPhotoLayout f32441c;
 
-    public wm(ym ymVar) {
-        this.f32735a = ymVar;
+    public wm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, boolean z10, boolean z11) {
+        super(context, z10, z11);
+        this.f32441c = chatAttachAlertPhotoLayout;
+        this.f32439a = new ai.x4(this, 7);
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-        if (t5Var.getTag() == null) {
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32441c;
+        aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+        if (AndroidUtilities.makingGlobalBlurBitmap) {
             return;
         }
-        int intValue = ((Integer) t5Var.getTag()).intValue();
-        ym ymVar = this.f32735a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ymVar.v;
-        if (ymVar.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0 && !chatAttachAlertPhotoLayout.O0) {
-            intValue++;
+        if (!this.f32440b && (chatAttachAlertPhotoLayout.f23809d0 || !chatAttachAlertPhotoLayout.f23805b0)) {
+            float translationY = (ajVar.getContainerView().getTranslationY() + (ajVar.J0[1] + chatAttachAlertPhotoLayout.W0)) - chatAttachAlertPhotoLayout.P.getTranslationY();
+            ci.i iVar = ajVar.E2;
+            if (iVar != null) {
+                f7 = iVar.d() + AndroidUtilities.dp(8.0f);
+            } else {
+                f7 = 0.0f;
+            }
+            int min = (int) Math.min(translationY - f7, getMeasuredHeight());
+            boolean z10 = chatAttachAlertPhotoLayout.f23809d0;
+            if (z10) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                float f10 = chatAttachAlertPhotoLayout.f23829n1;
+                boolean z11 = ChatAttachAlertPhotoLayout.f23798q1;
+                float f11 = 1.0f - chatAttachAlertPhotoLayout.f23811e0;
+                rectF.set((0.0f * f11) + f10, (f11 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f23824k1, chatAttachAlertPhotoLayout.f23826m1, AndroidUtilities.lerp(Math.min(min, chatAttachAlertPhotoLayout.l1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f23811e0));
+            } else if (!z10 && !chatAttachAlertPhotoLayout.f23805b0) {
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                boolean z12 = ChatAttachAlertPhotoLayout.f23798q1;
+                rectF2.set(0.0f, chatAttachAlertPhotoLayout.W, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
+                return;
+            } else {
+                AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
+            }
+            canvas.save();
+            canvas.clipRect(AndroidUtilities.rectTmp);
+            super.dispatchDraw(canvas);
+            canvas.restore();
+            return;
         }
-        if (chatAttachAlertPhotoLayout.f24067g1) {
-            intValue++;
-        }
-        if (intValue == 0) {
-            int dp = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
-        } else if (intValue == chatAttachAlertPhotoLayout.M0 - 1) {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
-        } else {
-            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32441c;
+        sc.a(chatAttachAlertPhotoLayout.P, this.f32439a);
+        chatAttachAlertPhotoLayout.E.invalidate();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        sc.h(this.f32441c.P);
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        super.setVisibility(i10);
+        this.f32441c.E.invalidate();
+    }
+
+    @Override
+    public final void showTexture(boolean z10, boolean z11) {
+        super.showTexture(z10, z11);
+        this.f32441c.E.invalidate();
     }
 }

@@ -1,4 +1,4 @@
 package c3;
 public interface g {
-    long c(long j3);
+    long h(long j3);
 }

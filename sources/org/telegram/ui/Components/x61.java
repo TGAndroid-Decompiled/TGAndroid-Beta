@@ -1,34 +1,54 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Typeface;
 import android.text.TextPaint;
-public final class x61 extends u61 {
-    public final int f32880e;
-    public final u11 f32881f;
+import android.text.style.MetricAffectingSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
+public final class x61 extends MetricAffectingSpan {
+    public final CharSequence f32667a;
+    public final int f32668b;
+    public final int f32669c;
+    public final byte d;
+    public final z11 f32670e;
 
-    public x61(String str, int i10, u11 u11Var) {
-        super(str, (u11) null);
-        this.f32880e = i10;
-        this.f32881f = u11Var;
+    public x61(CharSequence charSequence, int i10, int i11, byte b10, z11 z11Var) {
+        this.f32667a = charSequence;
+        this.f32668b = i10;
+        this.f32669c = i11;
+        this.d = b10;
+        this.f32670e = z11Var;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        int i10 = this.f32880e;
-        if (i10 == 3) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.J6, false));
-        } else if (i10 == 2) {
+        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
+        byte b10 = this.d;
+        if (b10 == 2) {
             textPaint.setColor(-1);
-        } else if (i10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20899hc, false));
+        } else if (b10 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20601fc, false));
         } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.gc, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.ec, false));
         }
-        u11 u11Var = this.f32881f;
-        if (u11Var != null) {
-            u11Var.a(textPaint);
+        z11 z11Var = this.f32670e;
+        if (z11Var != null) {
+            z11Var.a(textPaint);
+            return;
+        }
+        textPaint.setTypeface(Typeface.MONOSPACE);
+        textPaint.setUnderlineText(false);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        z11 z11Var = this.f32670e;
+        if (z11Var != null) {
+            z11Var.a(textPaint);
         } else {
-            textPaint.setUnderlineText(false);
+            textPaint.setTypeface(Typeface.MONOSPACE);
         }
     }
 }

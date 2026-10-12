@@ -1,35 +1,53 @@
 package org.telegram.messenger;
+
+import java.util.ArrayList;
 public final class ue implements Runnable {
-    public final int f19384a;
-    public final MessagesStorage f19385b;
-    public final long f19386c;
+    public final int f19105a;
+    public final MessagesStorage f19106b;
+    public final ArrayList f19107c;
     public final long d;
 
-    public ue(int i10, long j3, long j10, MessagesStorage messagesStorage) {
-        this.f19384a = i10;
-        this.f19385b = messagesStorage;
-        this.f19386c = j3;
-        this.d = j10;
+    public ue(MessagesStorage messagesStorage, long j3, ArrayList arrayList, int i10) {
+        this.f19105a = i10;
+        this.f19106b = messagesStorage;
+        this.d = j3;
+        this.f19107c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f19384a) {
+        switch (this.f19105a) {
             case 0:
-                this.f19385b.lambda$clearUserPhoto$93(this.f19386c, this.d);
+                this.f19106b.lambda$deleteUserChatHistory$86(this.f19107c, this.d);
                 return;
             case 1:
-                this.f19385b.lambda$saveChatInviter$132(this.f19386c, this.d);
+                this.f19106b.lambda$emptyMessagesMedia$99(this.f19107c, this.d);
                 return;
             case 2:
-                this.f19385b.lambda$setDialogFlags$37(this.f19386c, this.d);
+                this.f19106b.lambda$deleteSavedDialog$54(this.d, this.f19107c);
                 return;
             case 3:
-                this.f19385b.lambda$removeTopic$57(this.f19386c, this.d);
+                this.f19106b.lambda$updateChannelUsers$125(this.d, this.f19107c);
+                return;
+            case 4:
+                this.f19106b.lambda$markVoiceMessageContentAsRead$217(this.f19107c, this.d);
+                return;
+            case 5:
+                this.f19106b.lambda$markMessagesAsDeletedInternal$226(this.f19107c, this.d);
+                return;
+            case 6:
+                this.f19106b.lambda$removeTopics$58(this.f19107c, this.d);
                 return;
             default:
-                this.f19385b.lambda$deleteUserChatHistory$87(this.f19386c, this.d);
+                this.f19106b.lambda$createTaskForSecretChat$117(this.d, this.f19107c);
                 return;
         }
+    }
+
+    public ue(MessagesStorage messagesStorage, ArrayList arrayList, long j3, int i10) {
+        this.f19105a = i10;
+        this.f19106b = messagesStorage;
+        this.f19107c = arrayList;
+        this.d = j3;
     }
 }

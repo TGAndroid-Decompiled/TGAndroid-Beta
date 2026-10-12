@@ -1,111 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import org.json.JSONArray;
-import org.json.JSONTokener;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class s41 extends Thread {
-    public final String f30722a;
-    public final String f30723b;
-    public final String f30724c;
-    public final Utilities.Callback2 d;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class s41 extends wm0 {
+    public final g51 V2;
 
-    public s41(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        this.f30722a = str;
-        this.f30723b = str2;
-        this.f30724c = str3;
-        this.d = callback2;
+    public s41(g51 g51Var, Context context) {
+        super(context, null);
+        this.V2 = g51Var;
     }
 
     @Override
-    public final void run() {
-        HttpURLConnection httpURLConnection;
-        Integer num;
-        String str;
-        Utilities.Callback2 callback2 = this.d;
-        String str2 = this.f30724c;
-        boolean z10 = false;
-        String str3 = null;
-        try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f30722a) + "&tl=" + Uri.encode(this.f30723b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
-            try {
-                httpURLConnection.setRequestMethod("GET");
-                httpURLConnection.setRequestProperty("User-Agent", c51.R[(int) Math.round(Math.random() * 5)]);
-                httpURLConnection.setRequestProperty("Content-Type", "application/json");
-                StringBuilder sb2 = new StringBuilder();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), d9.d.f8210a));
-                while (true) {
-                    int read = bufferedReader.read();
-                    if (read == -1) {
-                        break;
-                    }
-                    sb2.append((char) read);
-                }
-                bufferedReader.close();
-                JSONArray jSONArray = new JSONArray(new JSONTokener(sb2.toString()));
-                JSONArray jSONArray2 = jSONArray.getJSONArray(0);
-                try {
-                    str = jSONArray.getString(2);
-                } catch (Exception unused) {
-                    str = null;
-                }
-                if (str != null && str.contains("-")) {
-                    str.substring(0, str.indexOf("-"));
-                }
-                String str4 = "";
-                for (int i10 = 0; i10 < jSONArray2.length(); i10++) {
-                    String string = jSONArray2.getJSONArray(i10).getString(0);
-                    if (string != null && !string.equals("null")) {
-                        str4 = str4 + string;
-                    }
-                }
-                if (str2.length() > 0 && str2.charAt(0) == '\n') {
-                    str4 = "\n" + str4;
-                }
-                AndroidUtilities.runOnUIThread(new r41(str4, 0, callback2));
-            } catch (Exception e7) {
-                e = e7;
-                try {
-                    StringBuilder sb3 = new StringBuilder();
-                    sb3.append("failed to translate a text ");
-                    if (httpURLConnection != null) {
-                        num = Integer.valueOf(httpURLConnection.getResponseCode());
-                    } else {
-                        num = null;
-                    }
-                    sb3.append(num);
-                    sb3.append(" ");
-                    if (httpURLConnection != null) {
-                        str3 = httpURLConnection.getResponseMessage();
-                    }
-                    sb3.append(str3);
-                    Log.e("translate", sb3.toString());
-                } catch (IOException e10) {
-                    e10.printStackTrace();
-                }
-                e.printStackTrace();
-                if (httpURLConnection != null) {
-                    try {
-                        if (httpURLConnection.getResponseCode() == 429) {
-                            z10 = true;
-                        }
-                    } catch (Exception unused2) {
-                        AndroidUtilities.runOnUIThread(new pr0(callback2, 22));
-                        return;
-                    }
-                }
-                AndroidUtilities.runOnUIThread(new es0(5, callback2, z10));
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            float y3 = motionEvent.getY();
+            g51 g51Var = this.V2;
+            if (y3 < g51Var.B(true) - getTop()) {
+                g51Var.dismiss();
+                return true;
             }
-        } catch (Exception e11) {
-            e = e11;
-            httpURLConnection = null;
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        return true;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
     }
 }

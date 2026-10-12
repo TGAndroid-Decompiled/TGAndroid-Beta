@@ -12,8 +12,8 @@ import v7.h8;
 import v7.u7;
 import v7.u8;
 public abstract class e {
-    public static boolean f11035a = false;
-    public static int f11036b = 1;
+    public static boolean f11034a = false;
+    public static int f11035b = 1;
 
     public static final ArrayList a(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
@@ -24,8 +24,8 @@ public abstract class e {
             i10++;
             w wVar = (w) obj;
             Bundle bundle = new Bundle();
-            bundle.putInt("event_type", wVar.f379a);
-            bundle.putLong("event_timestamp", wVar.f380b);
+            bundle.putInt("event_type", wVar.f381a);
+            bundle.putLong("event_timestamp", wVar.f382b);
             arrayList2.add(bundle);
         }
         return arrayList2;
@@ -37,7 +37,7 @@ public abstract class e {
             try {
                 m.i(context, "Context is null");
                 Log.d("e", "preferredRenderer: ".concat("null"));
-                if (f11035a) {
+                if (f11034a) {
                     return 0;
                 }
                 try {
@@ -45,19 +45,19 @@ public abstract class e {
                     try {
                         i8.a V0 = a2.V0();
                         m.h(V0);
-                        u7.f49446a = V0;
+                        u7.f49553a = V0;
                         s7.e X0 = a2.X0();
-                        if (u8.f49447a == null) {
+                        if (u8.f49554a == null) {
                             m.i(X0, "delegate must not be null");
-                            u8.f49447a = X0;
+                            u8.f49554a = X0;
                         }
-                        f11035a = true;
+                        f11034a = true;
                         try {
                             Parcel M0 = a2.M0(a2.N0(), 9);
                             int readInt = M0.readInt();
                             M0.recycle();
                             if (readInt == 2) {
-                                f11036b = 2;
+                                f11035b = 2;
                             }
                             x6.b bVar = new x6.b(context);
                             Parcel N0 = a2.N0();
@@ -67,7 +67,7 @@ public abstract class e {
                         } catch (RemoteException e7) {
                             Log.e("e", "Failed to retrieve renderer type or log initialization.", e7);
                         }
-                        int i10 = f11036b;
+                        int i10 = f11035b;
                         if (i10 != 1) {
                             if (i10 != 2) {
                                 str = "null";
@@ -83,7 +83,7 @@ public abstract class e {
                         throw new RuntimeException(e10);
                     }
                 } catch (k6.f e11) {
-                    return e11.f14707a;
+                    return e11.f14704a;
                 }
             } catch (Throwable th2) {
                 throw th2;

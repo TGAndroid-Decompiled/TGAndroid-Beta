@@ -4,15 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import org.telegram.messenger.Utilities;
 public abstract class m0 {
-    public static float[] f5581a;
+    public static float[] f5580a;
 
     public static int a(int i10, boolean z10) {
         float f7;
-        if (f5581a == null) {
-            f5581a = new float[3];
+        if (f5580a == null) {
+            f5580a = new float[3];
         }
-        Color.colorToHSV(i10, f5581a);
-        float[] fArr = f5581a;
+        Color.colorToHSV(i10, f5580a);
+        float[] fArr = f5580a;
         float f10 = fArr[2];
         if (z10) {
             f7 = -0.05f;
@@ -20,7 +20,7 @@ public abstract class m0 {
             f7 = 0.07f;
         }
         fArr[2] = Utilities.clamp(f10 + f7, 0.85f, 0.15f);
-        float[] fArr2 = f5581a;
+        float[] fArr2 = f5580a;
         float f11 = fArr2[1];
         if (f11 > 0.1f && f11 <= 0.95f) {
             if (f11 <= 0.5f) {
@@ -29,7 +29,7 @@ public abstract class m0 {
                 fArr2[1] = Utilities.clamp(f11 - 0.4f, 1.0f, 0.0f);
             }
         }
-        return Color.HSVToColor(f5581a);
+        return Color.HSVToColor(f5580a);
     }
 
     public static int[] b(Bitmap bitmap, boolean z10) {

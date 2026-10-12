@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class w8 extends cr {
-    public final int f32656f0;
+public final class w8 extends er {
+    public final int f32357f0;
 
-    public w8(Context context, boolean z10, br brVar, int i10) {
-        super(context, z10, brVar);
-        this.f32656f0 = i10;
+    public w8(Context context, boolean z10, dr drVar, int i10) {
+        super(context, z10, drVar);
+        this.f32357f0 = i10;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        switch (this.f32656f0) {
+        switch (this.f32357f0) {
             case 0:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
                 return;

@@ -1,11 +1,13 @@
 package org.telegram.ui;
+public final class lv0 extends s4.j {
+    public final mv0 F;
 
-import android.view.TextureView;
-import org.telegram.messenger.MessageObject;
-public interface lv0 {
-    void H(MessageObject messageObject);
+    public lv0(mv0 mv0Var) {
+        this.F = mv0Var;
+    }
 
-    TextureView d0();
-
-    void w0(MessageObject messageObject);
+    @Override
+    public final void P(s4.d1 d1Var) {
+        this.F.invalidate();
+    }
 }

@@ -1,31 +1,8 @@
 package org.telegram.ui.Components;
-
-import java.util.ArrayList;
-public final class cu implements du {
-    public final int f25472a;
-    public final Object f25473b;
-
-    public cu(Object obj, int i10) {
-        this.f25472a = i10;
-        this.f25473b = obj;
-    }
-
-    @Override
-    public final void a(int i10, boolean z10) {
-        switch (this.f25472a) {
-            case 0:
-                ArrayList arrayList = ((fu) this.f25473b).f26574b;
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    ((du) obj).a(i10, z10);
-                }
-                return;
-            default:
-                ((Runnable) this.f25473b).run();
-                return;
-        }
-    }
+public abstract class cu {
+    public static final js f25015a = new js(0.39d, 0.575d, 0.565d, 1.0d);
+    public static final js f25016b = new js(0.445d, 0.05d, 0.55d, 0.95d);
+    public static final js f25017c = new js(0.55d, 0.085d, 0.68d, 0.53d);
+    public static final js d = new js(0.25d, 0.46d, 0.45d, 0.94d);
+    public static final js f25018e = new js(0.455d, 0.03d, 0.515d, 0.955d);
 }

@@ -1,44 +1,53 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.UnconfirmedAuthController;
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class rl implements Runnable {
-    public final int f19128a;
-    public final UnconfirmedAuthController.UnconfirmedAuth f19129b;
-    public final TLObject f19130c;
-    public final Utilities.Callback d;
-    public final TLRPC.TL_error f19131e;
+import org.telegram.tgnet.tl.TL_stories;
+public final class rl implements RequestDelegate {
+    public final int f18818a;
+    public final BaseController f18819b;
+    public final Object f18820c;
+    public final Object d;
+    public final Object f18821e;
+    public final Object f18822f;
+    public final Object f18823g;
 
-    public rl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f19128a = 1;
-        this.f19129b = unconfirmedAuth;
-        this.f19130c = tLObject;
-        this.d = callback;
-        this.f19131e = tL_error;
+    public rl(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject, int i10) {
+        this.f18818a = i10;
+        this.f18819b = baseController;
+        this.f18820c = obj;
+        this.d = obj2;
+        this.f18821e = obj3;
+        this.f18822f = obj4;
+        this.f18823g = tLObject;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19128a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18818a) {
             case 0:
-                this.f19129b.lambda$confirm$1(this.d, this.f19130c, this.f19131e);
+                ((TranslateController) this.f18819b).lambda$translateStory$38((TL_stories.StoryItem) this.f18820c, (String) this.d, (TranslateController.StoryKey) this.f18821e, (Runnable) this.f18822f, (TLRPC.TL_textWithEntities) this.f18823g, tLObject, tL_error);
                 return;
             case 1:
-                this.f19129b.lambda$deny$3(this.f19130c, this.d, this.f19131e);
+                ((MessagesController) this.f18819b).lambda$convertToGigaGroup$269((Context) this.f18820c, (org.telegram.ui.ActionBar.a2) this.d, (MessagesStorage.BooleanCallback) this.f18821e, (org.telegram.ui.ActionBar.m2) this.f18822f, (TLRPC.TL_channels_convertToGigagroup) this.f18823g, tLObject, tL_error);
                 return;
             default:
-                this.f19129b.lambda$deny$5(this.d, this.f19130c, this.f19131e);
+                ((SecretChatHelper) this.f18819b).lambda$performSendEncryptedRequest$7((TLRPC.DecryptedMessage) this.f18820c, (TLRPC.EncryptedChat) this.f18821e, (TLRPC.Message) this.f18822f, (MessageObject) this.f18823g, (String) this.d, tLObject, tL_error);
                 return;
         }
     }
 
-    public rl(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error, int i10) {
-        this.f19128a = i10;
-        this.f19129b = unconfirmedAuth;
-        this.d = callback;
-        this.f19130c = tLObject;
-        this.f19131e = tL_error;
+    public rl(SecretChatHelper secretChatHelper, TLRPC.DecryptedMessage decryptedMessage, TLRPC.EncryptedChat encryptedChat, TLRPC.Message message, MessageObject messageObject, String str) {
+        this.f18818a = 2;
+        this.f18819b = secretChatHelper;
+        this.f18820c = decryptedMessage;
+        this.f18821e = encryptedChat;
+        this.f18822f = message;
+        this.f18823g = messageObject;
+        this.d = str;
     }
 }

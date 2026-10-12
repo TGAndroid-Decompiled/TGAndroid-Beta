@@ -1,25 +1,221 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class wz0 extends AnimatorListenerAdapter {
-    public final int f32820a;
-    public final Switch f32821b;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class wz0 {
+    public final org.telegram.ui.ActionBar.c6 f32591a;
+    public StaticLayout f32592b;
+    public final ArrayList f32593c = new ArrayList(2);
+    public int d;
+    public int f32594e;
+    public int f32595f;
+    public int f32596g;
+    public int h;
 
-    public wz0(Switch r12, int i10) {
-        this.f32820a = i10;
-        this.f32821b = r12;
+    public wz0(org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f32591a = c6Var;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32820a) {
-            case 0:
-                this.f32821b.d = null;
-                return;
-            default:
-                this.f32821b.f24368e = null;
-                return;
+    public static void c(StringBuilder sb2, int i10, boolean z10) {
+        if (sb2.length() > 0) {
+            if (z10) {
+                sb2.append(' ');
+                sb2.append(LocaleController.getString(R.string.SuggestionOfferInfoTitleEditedAnd));
+                sb2.append(' ');
+            } else {
+                sb2.append(", ");
+            }
         }
+        sb2.append(LocaleController.getString(i10));
+    }
+
+    public final int a() {
+        return this.f32596g;
+    }
+
+    public final void b(MessageObject messageObject) {
+        TLRPC.SuggestedPost suggestedPost;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        float f7;
+        int i14;
+        int i15;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        int i16;
+        TLRPC.Message message;
+        Paint paint = null;
+        if (messageObject != null && (message = messageObject.messageOwner) != null) {
+            suggestedPost = message.suggested_post;
+        } else {
+            suggestedPost = null;
+        }
+        if (suggestedPost == null) {
+            return;
+        }
+        MessageSuggestionParams of2 = MessageSuggestionParams.of(suggestedPost);
+        org.telegram.ui.ActionBar.c6 c6Var = this.f32591a;
+        if (c6Var != null) {
+            paint = c6Var.G("paintChatActionText3");
+        }
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.h6.T0("paintChatActionText3");
+        }
+        TextPaint textPaint = (TextPaint) paint;
+        this.f32596g = AndroidUtilities.dp(14.0f) * 2;
+        ArrayList arrayList = this.f32593c;
+        arrayList.clear();
+        zf.a aVar = of2.amount;
+        if (aVar != null && !aVar.k()) {
+            arrayList.add(new vz0(new r11(LocaleController.getString(R.string.SuggestionOfferInfoPrice), textPaint), new r11(LocaleController.bold(of2.amount.f()), textPaint)));
+        }
+        if (suggestedPost.schedule_date > 0) {
+            arrayList.add(new vz0(new r11(LocaleController.getString(R.string.SuggestionOfferInfoTime), textPaint), new r11(LocaleController.bold(LocaleController.formatDateTime(suggestedPost.schedule_date, true)), textPaint)));
+        }
+        int size = arrayList.size();
+        float f10 = 0.0f;
+        boolean z13 = false;
+        float f11 = 0.0f;
+        int i17 = 0;
+        while (i17 < size) {
+            Object obj = arrayList.get(i17);
+            i17++;
+            vz0 vz0Var = (vz0) obj;
+            f10 = Math.max(f10, vz0Var.f32218a.l());
+            f11 = Math.max(f11, vz0Var.f32219b.l());
+            int j3 = ((int) vz0Var.f32218a.j()) + this.f32596g;
+            this.f32596g = j3;
+            this.f32596g = AndroidUtilities.dp(7.0f) + j3;
+        }
+        int dp = (int) (f11 + f10 + AndroidUtilities.dp(11.0f));
+        int max = Math.max(dp, AndroidUtilities.dp(160.0f));
+        String name = DialogObject.getName(messageObject.getFromChatId());
+        int editedSuggestionFlags = messageObject.getEditedSuggestionFlags();
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (editedSuggestionFlags == 0) {
+            if (messageObject.isOutOwner()) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.SuggestionOfferInfoTitleYou));
+            } else {
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.SuggestionOfferInfoTitle, name));
+            }
+            f7 = 11.0f;
+            i15 = 0;
+        } else {
+            MessageObject messageObject2 = messageObject.replyMessageObject;
+            if (messageObject2 != null) {
+                DialogObject.getName(messageObject2.getFromChatId());
+            }
+            StringBuilder sb2 = new StringBuilder();
+            int i18 = editedSuggestionFlags & 4;
+            if (i18 != 0) {
+                i10 = 1;
+            } else {
+                i10 = 0;
+            }
+            int i19 = editedSuggestionFlags & 2;
+            if (i19 != 0) {
+                i11 = 1;
+            } else {
+                i11 = 0;
+            }
+            int i20 = i10 + i11;
+            int i21 = editedSuggestionFlags & 8;
+            if (i21 != 0) {
+                i12 = 1;
+            } else {
+                i12 = 0;
+            }
+            int i22 = i20 + i12;
+            int i23 = editedSuggestionFlags & 1;
+            if (i23 != 0) {
+                i13 = 1;
+            } else {
+                i13 = 0;
+            }
+            int i24 = i22 + i13;
+            if (i23 != 0) {
+                int i25 = R.string.SuggestionOfferInfoTitleEditedPrice;
+                f7 = 11.0f;
+                if (i24 == 1) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                c(sb2, i25, z12);
+                i14 = 1;
+            } else {
+                f7 = 11.0f;
+                i14 = 0;
+            }
+            if (i19 != 0) {
+                int i26 = R.string.SuggestionOfferInfoTitleEditedTime;
+                i14++;
+                i15 = 0;
+                if (i24 == i14) {
+                    z13 = true;
+                }
+                c(sb2, i26, z13);
+            } else {
+                i15 = 0;
+            }
+            if (i18 != 0) {
+                int i27 = R.string.SuggestionOfferInfoTitleEditedText;
+                i14++;
+                if (i24 == i14) {
+                    z11 = true;
+                } else {
+                    z11 = i15;
+                }
+                c(sb2, i27, z11);
+            }
+            if (i21 != 0) {
+                int i28 = R.string.SuggestionOfferInfoTitleEditedMedia;
+                if (i24 == i14 + 1) {
+                    z10 = true;
+                } else {
+                    z10 = i15;
+                }
+                c(sb2, i28, z10);
+            }
+            if (messageObject.isOutOwner()) {
+                int i29 = R.string.SuggestionOfferInfoTitleEditedFromYou;
+                Object[] objArr = new Object[1];
+                objArr[i15] = sb2;
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(i29, objArr));
+            } else {
+                int i30 = R.string.SuggestionOfferInfoTitleEditedFromX;
+                Object[] objArr2 = new Object[2];
+                objArr2[i15] = name;
+                objArr2[1] = sb2;
+                spannableStringBuilder.append((CharSequence) LocaleController.formatString(i30, objArr2));
+            }
+        }
+        this.f32592b = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        int i31 = i15;
+        for (int i32 = i31; i32 < this.f32592b.getLineCount(); i32++) {
+            i31 = (int) Math.max(i31, this.f32592b.getLineWidth(i32));
+        }
+        int height = this.f32592b.getHeight() + this.f32596g;
+        this.f32596g = height;
+        this.f32596g = AndroidUtilities.dp(5.0f) + height;
+        int D = org.telegram.messenger.v0.D(24.0f, 2, Math.max(dp, i31));
+        this.h = D;
+        this.d = (D - max) / 2;
+        this.f32594e = (D - dp) / 2;
+        this.f32595f = (int) (AndroidUtilities.dp(f7) + i16 + f10);
     }
 }

@@ -2,29 +2,29 @@ package b2;
 
 import android.net.Uri;
 public final class x {
-    public static final String f3682b;
-    public final Uri f3683a;
+    public static final String f3680b;
+    public final Uri f3681a;
 
     static {
-        String str = e2.d0.f8531a;
-        f3682b = Integer.toString(0, 36);
+        String str = e2.d0.f8529a;
+        f3680b = Integer.toString(0, 36);
     }
 
     public x(w0 w0Var) {
-        this.f3683a = (Uri) w0Var.f3681a;
+        this.f3681a = (Uri) w0Var.f3679a;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof x) && this.f3683a.equals(((x) obj).f3683a)) {
+        if ((obj instanceof x) && this.f3681a.equals(((x) obj).f3681a)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f3683a.hashCode() * 31;
+        return this.f3681a.hashCode() * 31;
     }
 }

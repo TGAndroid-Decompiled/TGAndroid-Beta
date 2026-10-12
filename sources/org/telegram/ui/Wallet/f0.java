@@ -1,8 +1,8 @@
 package org.telegram.ui.Wallet;
 public final class f0 {
-    public String f34916a;
-    public i0 f34917b;
-    public byte[] f34918c;
+    public String f34691a;
+    public i0 f34692b;
+    public byte[] f34693c;
     public final l0 d;
 
     public f0(l0 l0Var) {
@@ -10,8 +10,8 @@ public final class f0 {
     }
 
     public final void a() {
-        i0 i0Var = this.f34917b;
-        this.f34917b = null;
+        i0 i0Var = this.f34692b;
+        this.f34692b = null;
         try {
             this.d.R(i0Var, false, new e0(this, 0));
         } finally {

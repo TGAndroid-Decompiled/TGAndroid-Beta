@@ -1,96 +1,238 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
 import java.util.ArrayList;
-import java.util.Collections;
-public final class nn extends View {
-    public final ArrayList f40323a;
-    public final ArrayList f40324b;
-    public final zn f40325c;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class nn implements st {
+    public final TLRPC.TL_messageMediaPoll f40435a;
+    public final TLRPC.PollAnswer f40436b;
+    public final org.telegram.ui.Cells.u1 f40437c;
+    public final pn d;
 
-    public nn(zn znVar, Context context) {
-        super(context);
-        this.f40325c = znVar;
-        this.f40323a = new ArrayList();
-        this.f40324b = new ArrayList();
-    }
-
-    public final void a() {
-        ArrayList arrayList = this.f40323a;
-        arrayList.clear();
-        zn znVar = this.f40325c;
-        arrayList.add(znVar.K1);
-        arrayList.add(znVar.f45023x0);
-        arrayList.add(znVar.X);
-        arrayList.add(znVar.K3);
-        arrayList.add(znVar.I1);
-        arrayList.add(znVar.X2);
-        arrayList.add(znVar.Y);
-        arrayList.add(znVar.f44848j1);
-        arrayList.add(znVar.S);
-        arrayList.add(znVar.R1);
-        arrayList.removeAll(Collections.singleton(null));
+    public nn(pn pnVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.u1 u1Var) {
+        this.d = pnVar;
+        this.f40435a = tL_messageMediaPoll;
+        this.f40436b = pollAnswer;
+        this.f40437c = u1Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+    public final MessageObject A() {
+        return this.f40437c.getMessageObject();
+    }
+
+    @Override
+    public final boolean B() {
         return false;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        zn znVar = this.f40325c;
-        znVar.f44956rc = true;
-        ArrayList arrayList = this.f40324b;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).setVisibility(0);
-        }
-        arrayList.clear();
-        znVar.f44956rc = false;
+    public final boolean D() {
+        return false;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        a();
-        zn znVar = this.f40325c;
-        znVar.f44956rc = true;
-        ArrayList arrayList = this.f40323a;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            View view = (View) obj;
-            if (view.getVisibility() == 0) {
-                view.setVisibility(8);
-                this.f40324b.add(view);
-            }
-        }
-        znVar.f44956rc = false;
+    public final boolean E(TLRPC.Document document) {
+        return false;
     }
 
     @Override
-    public void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        a();
-        ArrayList arrayList = this.f40323a;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            View view = (View) obj;
-            if (view != null) {
-                view.setTranslationX(f7);
-            }
+    public final String G(boolean z10) {
+        return null;
+    }
+
+    @Override
+    public final boolean I() {
+        return false;
+    }
+
+    @Override
+    public final boolean J() {
+        return false;
+    }
+
+    @Override
+    public final void K() {
+        ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
+        arrayList.add(this.f40436b);
+        SendMessagesHelper sendMessagesHelper = this.d.f40998a.getSendMessagesHelper();
+        org.telegram.ui.Cells.u1 u1Var = this.f40437c;
+        sendMessagesHelper.sendVote(u1Var.getMessageObject(), arrayList, null);
+        u1Var.S0(true);
+    }
+
+    @Override
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+        eo eoVar = this.d.f40998a;
+        if (inputStickerSet != null && eoVar.getParentActivity() != null) {
+            TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+            tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
+            tL_inputStickerSetID.f19822id = inputStickerSet.f19822id;
+            org.telegram.ui.Components.dz0 dz0Var = new org.telegram.ui.Components.dz0(eoVar.getParentActivity(), eoVar, tL_inputStickerSetID, null, eoVar.Y, eoVar.f37251ea);
+            dz0Var.setCalcMandatoryInsets(eoVar.C9());
+            dz0Var.f25489i0 = z10;
+            eoVar.showDialog(dz0Var);
         }
+    }
+
+    @Override
+    public final boolean N(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final Boolean P(TLRPC.Document document) {
+        return null;
+    }
+
+    @Override
+    public final boolean Q() {
+        return true;
+    }
+
+    @Override
+    public final long a() {
+        return this.d.f40998a.T5;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        if (this.d.f40998a.R3 == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final TLRPC.TL_messageMediaPoll d() {
+        return this.f40435a;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PollAnswer h() {
+        return this.f40436b;
+    }
+
+    @Override
+    public final boolean i() {
+        return true;
+    }
+
+    @Override
+    public final org.telegram.ui.Components.s80 j(ci.m6 m6Var) {
+        return null;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final boolean m(int i10) {
+        return false;
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final void s() {
+        SendMessagesHelper sendMessagesHelper = this.d.f40998a.getSendMessagesHelper();
+        org.telegram.ui.Cells.u1 u1Var = this.f40437c;
+        sendMessagesHelper.sendVote(u1Var.getMessageObject(), null, null);
+        u1Var.S0(true);
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
+    }
+
+    @Override
+    public final void C(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void F(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void H(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void O(String str) {
+    }
+
+    @Override
+    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
+    }
+
+    @Override
+    public final void o(String str) {
+    }
+
+    @Override
+    public final void p(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void r(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void v(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void z(String str) {
+    }
+
+    @Override
+    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    }
+
+    @Override
+    public final void x(TLObject tLObject, Object obj) {
+    }
+
+    @Override
+    public final void f(CharSequence charSequence, String str, jt jtVar) {
+    }
+
+    @Override
+    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+    }
+
+    @Override
+    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
     }
 }

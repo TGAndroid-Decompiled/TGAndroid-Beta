@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public interface vb {
-    void c(wb wbVar, hb hbVar, fb fbVar, ib ibVar);
+    void G(wb wbVar, hb hbVar, tg tgVar, fm fmVar);
 
-    void y(wb wbVar, hb hbVar, rg rgVar, dm dmVar);
+    void c(wb wbVar, hb hbVar, fb fbVar, ib ibVar);
 }

@@ -7,29 +7,29 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_payments;
 public final class m {
-    public final int f52962a;
-    public final long f52963b;
-    public int f52964c;
+    public final int f53065a;
+    public final long f53066b;
+    public int f53067c;
     public boolean d;
-    public long f52966f;
+    public long f53069f;
     public boolean h;
-    public boolean f52968i;
-    public String f52969j;
-    public final ArrayList f52965e = new ArrayList();
-    public int f52967g = 1;
+    public boolean f53071i;
+    public String f53072j;
+    public final ArrayList f53068e = new ArrayList();
+    public int f53070g = 1;
 
     public m(int i10, long j3) {
         this.h = false;
-        this.f52968i = false;
-        this.f52969j = null;
-        this.f52962a = i10;
-        this.f52963b = j3;
-        if (System.currentTimeMillis() - this.f52966f > 900000) {
-            this.f52964c = 0;
+        this.f53071i = false;
+        this.f53072j = null;
+        this.f53065a = i10;
+        this.f53066b = j3;
+        if (System.currentTimeMillis() - this.f53069f > 900000) {
+            this.f53067c = 0;
             this.d = false;
-            this.f52968i = false;
-            this.f52966f = 0L;
-            this.f52969j = null;
+            this.f53071i = false;
+            this.f53069f = 0L;
+            this.f53072j = null;
             this.h = false;
             a();
         }
@@ -37,15 +37,15 @@ public final class m {
 
     public final void a() {
         boolean z10;
-        if (!this.h && !this.f52968i && !this.d) {
-            this.f52966f = System.currentTimeMillis();
+        if (!this.h && !this.f53071i && !this.d) {
+            this.f53069f = System.currentTimeMillis();
             boolean z11 = true;
             this.h = true;
             TL_payments.getSuggestedStarRefBots getsuggestedstarrefbots = new TL_payments.getSuggestedStarRefBots();
-            int i10 = this.f52962a;
-            getsuggestedstarrefbots.peer = MessagesController.getInstance(i10).getInputPeer(this.f52963b);
+            int i10 = this.f53065a;
+            getsuggestedstarrefbots.peer = MessagesController.getInstance(i10).getInputPeer(this.f53066b);
             getsuggestedstarrefbots.limit = 20;
-            int i11 = this.f52967g;
+            int i11 = this.f53070g;
             if (i11 == 3) {
                 z10 = true;
             } else {
@@ -56,8 +56,8 @@ public final class m {
                 z11 = false;
             }
             getsuggestedstarrefbots.order_by_revenue = z11;
-            if (!TextUtils.isEmpty(this.f52969j)) {
-                getsuggestedstarrefbots.offset = this.f52969j;
+            if (!TextUtils.isEmpty(this.f53072j)) {
+                getsuggestedstarrefbots.offset = this.f53072j;
             } else {
                 getsuggestedstarrefbots.offset = "";
             }

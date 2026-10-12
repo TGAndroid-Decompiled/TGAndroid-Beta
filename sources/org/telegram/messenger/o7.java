@@ -1,30 +1,72 @@
 package org.telegram.messenger;
+public final class o7 implements Runnable {
+    public final int f18452a;
+    public final MediaDataController f18453b;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class o7 implements Utilities.Callback2 {
-    public final int f18749a;
-    public final MediaDataController f18750b;
-    public final String f18751c;
-    public final Utilities.Callback d;
-
-    public o7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i10) {
-        this.f18749a = i10;
-        this.f18750b = mediaDataController;
-        this.f18751c = str;
-        this.d = callback;
+    public o7(MediaDataController mediaDataController, int i10) {
+        this.f18452a = i10;
+        this.f18453b = mediaDataController;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
-        switch (this.f18749a) {
+    public final void run() {
+        switch (this.f18452a) {
             case 0:
-                this.f18750b.lambda$getStickerSet$32(this.f18751c, this.d, bool, tL_messages_stickerSet);
+                this.f18453b.lambda$processLoadedMenuBots$5();
+                return;
+            case 1:
+                this.f18453b.lambda$addRecentSticker$20();
+                return;
+            case 2:
+                this.f18453b.lambda$processLoadedReactions$15();
+                return;
+            case 3:
+                this.f18453b.lambda$fetchNewEmojiKeywords$211();
+                return;
+            case 4:
+                this.f18453b.lambda$clearRecentEmojiStatuses$230();
+                return;
+            case 5:
+                this.f18453b.lambda$clearRecentStickers$17();
+                return;
+            case 6:
+                this.f18453b.lambda$loadReactions$12();
+                return;
+            case 7:
+                this.f18453b.lambda$loadPremiumPromo$7();
+                return;
+            case 8:
+                this.f18453b.lambda$processLoadedPremiumPromo$9();
+                return;
+            case 9:
+                this.f18453b.lambda$cleanupStickerSetCache$39();
+                return;
+            case 10:
+                this.f18453b.lambda$cleanup$2();
+                return;
+            case 11:
+                this.f18453b.lambda$fetchEmojiStatuses$231();
+                return;
+            case 12:
+                this.f18453b.lambda$loadDraftsIfNeed$186();
+                return;
+            case 13:
+                this.f18453b.lambda$loadHints$145();
+                return;
+            case 14:
+                this.f18453b.lambda$loadDraftsIfNeed$187();
+                return;
+            case 15:
+                this.f18453b.lambda$loadAttachMenuBots$3();
+                return;
+            case 16:
+                this.f18453b.lambda$loadHints$146();
+                return;
+            case 17:
+                this.f18453b.lambda$clearTopPeers$149();
                 return;
             default:
-                this.f18750b.lambda$getStickerSet$35(this.f18751c, this.d, bool, tL_messages_stickerSet);
+                this.f18453b.lambda$fetchEmojiStatuses$233();
                 return;
         }
     }

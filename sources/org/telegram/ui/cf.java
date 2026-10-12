@@ -1,35 +1,50 @@
 package org.telegram.ui;
 
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.Utilities;
-public final class cf implements Utilities.Callback2 {
-    public final int f36714a;
-    public final Object f36715b;
-    public final Object f36716c;
-    public final Object d;
-    public final Object f36717e;
-    public final Object f36718f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class cf implements Runnable {
+    public final int f36409a;
+    public final eo f36410b;
+    public final org.telegram.ui.Components.mn0 f36411c;
+    public final String d;
 
-    public cf(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f36714a = i10;
-        this.f36715b = obj;
-        this.d = obj2;
-        this.f36716c = obj3;
-        this.f36717e = obj4;
-        this.f36718f = obj5;
+    public cf(eo eoVar, org.telegram.ui.Components.mn0 mn0Var, String str, int i10) {
+        this.f36409a = i10;
+        this.f36410b = eoVar;
+        this.f36411c = mn0Var;
+        this.d = str;
     }
 
     @Override
-    public final void run(java.lang.Object r19, java.lang.Object r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cf.run(java.lang.Object, java.lang.Object):void");
-    }
-
-    public cf(zn znVar, zi ziVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
-        this.f36714a = 1;
-        this.f36715b = znVar;
-        this.f36716c = ziVar;
-        this.d = u1Var;
-        this.f36717e = str;
-        this.f36718f = characterStyle;
+    public final void run() {
+        org.telegram.ui.Components.zc a02;
+        int i10;
+        switch (this.f36409a) {
+            case 0:
+                this.f36411c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.zc.a0(this.f36410b);
+                i10 = R.string.RelativeDateCopied;
+                break;
+            case 1:
+                this.f36411c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.zc.a0(this.f36410b);
+                i10 = R.string.WalletAddressCopiedBulletin;
+                break;
+            case 2:
+                this.f36411c.dismiss();
+                AndroidUtilities.addToClipboard("@" + this.d);
+                a02 = org.telegram.ui.Components.zc.a0(this.f36410b);
+                i10 = R.string.UsernameCopied;
+                break;
+            default:
+                this.f36411c.dismiss();
+                AndroidUtilities.addToClipboard(this.d);
+                a02 = org.telegram.ui.Components.zc.a0(this.f36410b);
+                i10 = R.string.CardNumberCopied;
+                break;
+        }
+        org.telegram.messenger.am.p(i10, a02);
     }
 }

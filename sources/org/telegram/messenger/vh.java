@@ -1,33 +1,25 @@
 package org.telegram.messenger;
+public final class vh implements Runnable {
+    public final int f19219a;
+    public final String f19220b;
+    public final String f19221c;
+    public final long d;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.Window;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.RichMessageLayout;
-import org.telegram.ui.Components.l81;
-public final class vh implements ValueAnimator.AnimatorUpdateListener {
-    public final int f19477a;
-    public final Object f19478b;
-    public final Object f19479c;
-
-    public vh(int i10, Object obj, Object obj2) {
-        this.f19477a = i10;
-        this.f19478b = obj;
-        this.f19479c = obj2;
+    public vh(int i10, long j3, String str, String str2) {
+        this.f19219a = i10;
+        this.f19220b = str;
+        this.f19221c = str2;
+        this.d = j3;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f19477a) {
+    public final void run() {
+        switch (this.f19219a) {
             case 0:
-                ((RichMessageLayout.SpoilerReveal) this.f19478b).lambda$start$0((View) this.f19479c, valueAnimator);
-                return;
-            case 1:
-                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f19478b, (Window) this.f19479c, valueAnimator);
+                PushListenerController.lambda$processRemoteMessage$6(this.f19220b, this.f19221c, this.d);
                 return;
             default:
-                ((MediaController) this.f19478b).lambda$cleanupPlayer$10((l81) this.f19479c, valueAnimator);
+                PushListenerController.lambda$processRemoteMessage$7(this.f19220b, this.f19221c, this.d);
                 return;
         }
     }

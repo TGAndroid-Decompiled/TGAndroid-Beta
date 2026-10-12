@@ -1,50 +1,52 @@
 package org.telegram.ui;
 
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class qo extends tu0 {
-    public final uo f41244a;
+public final class qo implements Runnable {
+    public final int f41374a;
+    public final xo f41375b;
 
-    public qo(uo uoVar) {
-        this.f41244a = uoVar;
+    public qo(xo xoVar, int i10) {
+        this.f41374a = i10;
+        this.f41375b = xoVar;
     }
 
     @Override
-    public final org.telegram.ui.dv0 E(org.telegram.messenger.MessageObject r8, org.telegram.tgnet.TLRPC.FileLocation r9, int r10, boolean r11, boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qo.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.dv0");
-    }
-
-    @Override
-    public final void G() {
-        this.f41244a.f42695e.getImageReceiver().setVisible(true, true);
-    }
-
-    @Override
-    public final boolean M() {
-        uo uoVar = this.f41244a;
-        long j3 = uoVar.C0;
-        if (j3 == 0) {
-            return true;
+    public final void run() {
+        switch (this.f41374a) {
+            case 0:
+                xo.V(this.f41375b);
+                return;
+            case 1:
+                xo.a0(this.f41375b);
+                return;
+            case 2:
+                xo xoVar = this.f41375b;
+                xoVar.f44049b.dismiss();
+                xoVar.finishFragment();
+                return;
+            case 3:
+                xo xoVar2 = this.f41375b;
+                xoVar2.M.setChecked(xoVar2.f44079x0.autotranslation);
+                return;
+            default:
+                xo xoVar3 = this.f41375b;
+                xoVar3.f44054e.setImageDrawable(xoVar3.f44069r);
+                xoVar3.f44050b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), true);
+                TLRPC.User user = xoVar3.D0;
+                if (user != null) {
+                    user.photo = null;
+                    xoVar3.getMessagesController().putUser(xoVar3.D0, true);
+                }
+                xoVar3.O0 = true;
+                if (xoVar3.R0 == null) {
+                    xoVar3.R0 = new org.telegram.ui.Components.fk0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                }
+                xoVar3.f44050b0.f22483e.setTranslationX(-AndroidUtilities.dp(8.0f));
+                xoVar3.f44050b0.f22483e.setAnimation(xoVar3.R0);
+                return;
         }
-        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
-        tL_photos_updateProfilePhoto.bot = uoVar.getMessagesController().getInputUser(j3);
-        tL_photos_updateProfilePhoto.flags |= 2;
-        tL_photos_updateProfilePhoto.f20200id = new TLRPC.TL_inputPhotoEmpty();
-        uoVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new m(this, 2));
-        return false;
-    }
-
-    @Override
-    public final void f(String str, String str2, boolean z10) {
-        this.f41244a.f42712s.p(str, str2, z10);
-    }
-
-    @Override
-    public final boolean t() {
-        return false;
-    }
-
-    @Override
-    public final int y() {
-        return 1;
     }
 }

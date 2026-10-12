@@ -207,6 +207,14 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public CameraCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, CameraEnumerator cameraEnumerator) {
         this.eventsHandler = cameraEventsHandler == null ? new CameraVideoCapturer.CameraEventsHandler() {
             @Override
+            public void onCameraClosed() {
+            }
+
+            @Override
+            public void onCameraDisconnected() {
+            }
+
+            @Override
             public void onCameraError(String str2) {
             }
 
@@ -216,14 +224,6 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
             @Override
             public void onCameraOpening(String str2) {
-            }
-
-            @Override
-            public void onCameraClosed() {
-            }
-
-            @Override
-            public void onCameraDisconnected() {
             }
 
             @Override
@@ -328,9 +328,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder k10 = hg.c.k("changeCaptureFormat: ", i10, "x", i11, "@");
-        k10.append(i12);
-        Logging.d("CameraCapturer", k10.toString());
+        StringBuilder m10 = hg.c.m("changeCaptureFormat: ", i10, "x", i11, "@");
+        m10.append(i12);
+        Logging.d("CameraCapturer", m10.toString());
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i10, i11, i12);
@@ -392,9 +392,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder k10 = hg.c.k("startCapture: ", i10, "x", i11, "@");
-        k10.append(i12);
-        Logging.d("CameraCapturer", k10.toString());
+        StringBuilder m10 = hg.c.m("startCapture: ", i10, "x", i11, "@");
+        m10.append(i12);
+        Logging.d("CameraCapturer", m10.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {

@@ -56,12 +56,12 @@ public class PasskeysController {
 
         @Override
         public void onResult(v0.o oVar) {
-            b2.g gVar = oVar.f49146a;
+            b2.g gVar = oVar.f49253a;
             TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
             finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
             try {
-                JSONObject jSONObject = new JSONObject(((Bundle) gVar.f3314a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
-                finishpasskeylogin.credential.f20277id = jSONObject.getString("id");
+                JSONObject jSONObject = new JSONObject(((Bundle) gVar.f3312a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
+                finishpasskeylogin.credential.f20013id = jSONObject.getString("id");
                 finishpasskeylogin.credential.raw_id = jSONObject.getString("rawId");
                 JSONObject jSONObject2 = jSONObject.getJSONObject("response");
                 TL_account.inputPasskeyResponseLogin inputpasskeyresponselogin = new TL_account.inputPasskeyResponseLogin();
@@ -85,7 +85,7 @@ public class PasskeysController {
                     finishpasskeylogin.from_dc_id = currentDatacenterId;
                     finishpasskeylogin.from_auth_key_id = currentAuthKeyId;
                 }
-                final int sendRequestTyped = ConnectionsManager.getInstance(this.val$currentAccount).sendRequestTyped(finishpasskeylogin, new Object(), new oh(a2Var, this.val$done, parseLong, 0), parseInt, 72);
+                final int sendRequestTyped = ConnectionsManager.getInstance(this.val$currentAccount).sendRequestTyped(finishpasskeylogin, new Object(), new rh(a2Var, this.val$done, parseLong, 0), parseInt, 72);
                 final int i10 = this.val$currentAccount;
                 final Utilities.Callback3 callback3 = this.val$done;
                 a2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -118,11 +118,11 @@ public class PasskeysController {
         k6.h hVar = new k6.h(context, 3);
         org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(context, 3, null);
         a2Var.q(500L);
-        ConnectionsManager.getInstance(i10).sendRequestTyped(new TL_account.initPasskeyRegistration(), new Object(), new jh(a2Var, callback2, hVar, context, i10, 0));
+        ConnectionsManager.getInstance(i10).sendRequestTyped(new TL_account.initPasskeyRegistration(), new Object(), new mh(a2Var, callback2, hVar, context, i10, 0));
     }
 
     public static <T> jd.c ktxCallback(Utilities.Callback2<T, Throwable> callback2) {
-        return ktxCallback(jd.i.f14128a, callback2);
+        return ktxCallback(jd.i.f14126a, callback2);
     }
 
     public static void lambda$create$2(Utilities.Callback2 callback2, Throwable th2) {
@@ -150,7 +150,7 @@ public class PasskeysController {
     public static void lambda$create$6(Context context, final int i10, TL_account.registerPasskey registerpasskey, final Utilities.Callback2 callback2) {
         org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(context, 3, null);
         a2Var.q(500L);
-        final int sendRequestTyped = ConnectionsManager.getInstance(i10).sendRequestTyped(registerpasskey, new Object(), new e1(3, a2Var, callback2));
+        final int sendRequestTyped = ConnectionsManager.getInstance(i10).sendRequestTyped(registerpasskey, new Object(), new h1(3, a2Var, callback2));
         a2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
@@ -178,15 +178,15 @@ public class PasskeysController {
                 return;
             } else if (th2 != null) {
                 FileLog.e(th2);
-                AndroidUtilities.runOnUIThread(new ug(5, callback2, th2));
+                AndroidUtilities.runOnUIThread(new xg(6, callback2, th2));
                 return;
             } else {
                 TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
                 try {
-                    JSONObject jSONObject = new JSONObject(cVar.f49139a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+                    JSONObject jSONObject = new JSONObject(cVar.f49246a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
                     TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
                     registerpasskey.credential = inputpasskeycredentialpublickey;
-                    inputpasskeycredentialpublickey.f20277id = jSONObject.getString("id");
+                    inputpasskeycredentialpublickey.f20013id = jSONObject.getString("id");
                     registerpasskey.credential.raw_id = jSONObject.getString("rawId");
                     JSONObject jSONObject2 = jSONObject.getJSONObject("response");
                     TL_account.inputPasskeyResponseRegister inputpasskeyresponseregister = new TL_account.inputPasskeyResponseRegister();
@@ -196,11 +196,11 @@ public class PasskeysController {
                     inputpasskeyresponseregister.attestation_object = Base64.decode(jSONObject2.getString("attestationObject"), 8);
                     FileLog.d("AAGUID: " + bytesToHex(Arrays.copyOfRange(inputpasskeyresponseregister.attestation_object, 67, 83)));
                     registerpasskey.credential.response = inputpasskeyresponseregister;
-                    AndroidUtilities.runOnUIThread(new i0(context, i10, registerpasskey, callback2, 17));
+                    AndroidUtilities.runOnUIThread(new j0(context, i10, registerpasskey, callback2, 17));
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
-                    AndroidUtilities.runOnUIThread(new mh(callback2, e7, 0));
+                    AndroidUtilities.runOnUIThread(new ph(callback2, e7, 0));
                     return;
                 }
             }
@@ -232,10 +232,10 @@ public class PasskeysController {
         }
         try {
             try {
-                ((k6.h) hVar).b(context, new v0.e(new JSONObject(passkeyregistrationoptions.options.data).getJSONObject("publicKey").toString()), ktxCallback(new nh(context, i10, callback2)));
+                ((k6.h) hVar).b(context, new v0.e(new JSONObject(passkeyregistrationoptions.options.data).getJSONObject("publicKey").toString()), ktxCallback(new qh(context, i10, callback2)));
             } catch (Exception e7) {
                 FileLog.e(e7);
-                AndroidUtilities.runOnUIThread(new mh(callback2, e7, 1));
+                AndroidUtilities.runOnUIThread(new ph(callback2, e7, 1));
             }
         } catch (Exception e10) {
             FileLog.e(e10);
@@ -262,13 +262,13 @@ public class PasskeysController {
                 AnonymousClass1 anonymousClass1 = new AnonymousClass1(callback3, context, i10);
                 ((k6.h) hVar).getClass();
                 kotlin.jvm.internal.i.e(executor, "executor");
-                v0.j a2 = r2.h.a(new r2.h(context, 1), nVar);
-                if (a2 == null) {
+                v0.j b10 = l5.j.b(new l5.j(context, 2), nVar);
+                if (b10 == null) {
                     anonymousClass1.onError((Object) new w0.h("getCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
                 } else {
-                    a2.onGetCredential(context, nVar, cancellationSignal, executor, anonymousClass1);
+                    b10.onGetCredential(context, nVar, cancellationSignal, executor, anonymousClass1);
                 }
-                runnableArr[0] = new gh(cancellationSignal, 1);
+                runnableArr[0] = new jh(cancellationSignal, 1);
             } catch (Exception e7) {
                 callback3.run(0L, null, e7.getMessage());
             }
@@ -300,13 +300,13 @@ public class PasskeysController {
         TL_account.initPasskeyLogin initpasskeylogin = new TL_account.initPasskeyLogin();
         initpasskeylogin.api_id = BuildVars.APP_ID;
         initpasskeylogin.api_hash = BuildVars.APP_HASH;
-        final Runnable[] runnableArr = {new kh(i10, ConnectionsManager.getInstance(i10).sendRequestTyped(initpasskeylogin, new Object(), new Utilities.Callback2() {
+        final Runnable[] runnableArr = {new nh(i10, ConnectionsManager.getInstance(i10).sendRequestTyped(initpasskeylogin, new Object(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 PasskeysController.lambda$login$10(zArr, callback3, z10, hVar, context, i10, runnableArr, (TL_account.passkeyLoginOptions) obj, (TLRPC.TL_error) obj2);
             }
         }, 8), 0)};
-        return new yc(zArr, runnableArr, 1);
+        return new bd(zArr, runnableArr, 1);
     }
 
     public static <T> jd.c ktxCallback(final jd.h hVar, final Utilities.Callback2<T, Throwable> callback2) {
@@ -319,7 +319,7 @@ public class PasskeysController {
             @Override
             public void resumeWith(Object obj) {
                 if (obj instanceof hd.e) {
-                    callback2.run(null, ((hd.e) obj).f11085a);
+                    callback2.run(null, ((hd.e) obj).f11084a);
                 } else {
                     callback2.run(obj, null);
                 }

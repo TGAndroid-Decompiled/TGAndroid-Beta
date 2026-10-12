@@ -1,32 +1,10 @@
 package org.telegram.ui;
+public interface k7 {
+    void clear();
 
-import j$.util.Objects;
-public final class k7 extends og.a {
-    public q6 f39250c;
-    public zh.a d;
+    void dismiss();
 
-    public final boolean equals(Object obj) {
-        zh.a aVar;
-        zh.a aVar2;
-        q6 q6Var;
-        q6 q6Var2;
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && k7.class == obj.getClass()) {
-            k7 k7Var = (k7) obj;
-            int i10 = this.f17211a;
-            if (i10 == k7Var.f17211a) {
-                if (i10 == 1 && (q6Var = this.f39250c) != null && (q6Var2 = k7Var.f39250c) != null) {
-                    if (q6Var.f41080a == q6Var2.f41080a) {
-                        return true;
-                    }
-                    return false;
-                } else if (i10 == 2 && (aVar = this.d) != null && (aVar2 = k7Var.d) != null) {
-                    return Objects.equals(aVar.f54815a, aVar2.f54815a);
-                }
-            }
-        }
-        return false;
-    }
+    void g1();
+
+    void y0(u6 u6Var, zh.a aVar, boolean z10);
 }

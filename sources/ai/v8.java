@@ -31,7 +31,7 @@ public final class v8 extends e9 {
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         TL_bots.reorderPreviewMedias reorderpreviewmedias = new TL_bots.reorderPreviewMedias();
-        int i10 = this.f895c;
+        int i10 = this.f893c;
         reorderpreviewmedias.bot = MessagesController.getInstance(i10).getInputUser(this.d);
         reorderpreviewmedias.lang_code = this.E;
         int size = arrayList.size();
@@ -54,7 +54,7 @@ public final class v8 extends e9 {
         }
         ((ArrayList) arrayList4.get(0)).clear();
         ((ArrayList) arrayList4.get(0)).addAll(arrayList3);
-        ArrayList arrayList5 = this.f899i;
+        ArrayList arrayList5 = this.f897i;
         arrayList5.clear();
         arrayList5.addAll(arrayList2);
     }
@@ -62,7 +62,7 @@ public final class v8 extends e9 {
     public final void F(ArrayList arrayList) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f899i;
+            ArrayList arrayList2 = this.f897i;
             if (i10 >= arrayList2.size()) {
                 break;
             }
@@ -85,13 +85,13 @@ public final class v8 extends e9 {
             i10++;
         }
         TL_bots.deletePreviewMedia deletepreviewmedia = new TL_bots.deletePreviewMedia();
-        int i12 = this.f895c;
+        int i12 = this.f893c;
         deletepreviewmedia.bot = MessagesController.getInstance(i12).getInputUser(this.d);
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
             deletepreviewmedia.media.add(MessagesController.toInputMedia((TLRPC.MessageMedia) arrayList.get(i13)));
         }
         ConnectionsManager.getInstance(i12).sendRequest(deletepreviewmedia, null);
-        z8 z8Var = this.f907q;
+        z8 z8Var = this.f905q;
         AndroidUtilities.cancelRunOnUIThread(z8Var);
         AndroidUtilities.runOnUIThread(z8Var);
     }
@@ -105,16 +105,16 @@ public final class v8 extends e9 {
         TLRPC.Document document;
         int i10 = 0;
         while (true) {
-            arrayList = this.f899i;
+            arrayList = this.f897i;
             if (i10 < arrayList.size()) {
                 messageObject = (MessageObject) arrayList.get(i10);
                 if (inputMedia != null && (storyItem = messageObject.storyItem) != null && (messageMedia = storyItem.media) != null) {
                     if (inputMedia instanceof TLRPC.TL_inputMediaPhoto) {
                         TLRPC.Photo photo = messageMedia.photo;
-                        if (photo != null && photo.f20092id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f20131id.f20087id) {
+                        if (photo != null && photo.f19826id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f19865id.f19821id) {
                             break;
                         }
-                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f20074id == ((TLRPC.TL_inputMediaDocument) inputMedia).f20129id.f20080id) {
+                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f19808id == ((TLRPC.TL_inputMediaDocument) inputMedia).f19863id.f19814id) {
                         break;
                     }
                 }
@@ -135,7 +135,7 @@ public final class v8 extends e9 {
                 ((ArrayList) arrayList2.get(0)).remove(i10);
             }
         }
-        MessageObject messageObject2 = new MessageObject(this.f895c, new u8(this, this.d, botpreviewmedia));
+        MessageObject messageObject2 = new MessageObject(this.f893c, new u8(this, this.d, botpreviewmedia));
         TL_stories.StoryItem storyItem2 = messageObject2.storyItem;
         TLRPC.Message message = messageObject2.messageOwner;
         if (messageObject == null) {
@@ -144,8 +144,8 @@ public final class v8 extends e9 {
         } else {
             id2 = messageObject.getId();
         }
-        message.f20089id = id2;
-        storyItem2.f20305id = id2;
+        message.f19823id = id2;
+        storyItem2.f20041id = id2;
         messageObject2.parentStoriesList = this;
         messageObject2.generateThumbs(false);
         if (arrayList2.isEmpty()) {
@@ -153,7 +153,7 @@ public final class v8 extends e9 {
         }
         ((ArrayList) arrayList2.get(0)).add(i10, Integer.valueOf(messageObject2.getId()));
         arrayList.add(i10, messageObject2);
-        z8 z8Var = this.f907q;
+        z8 z8Var = this.f905q;
         AndroidUtilities.cancelRunOnUIThread(z8Var);
         AndroidUtilities.runOnUIThread(z8Var);
     }
@@ -163,7 +163,7 @@ public final class v8 extends e9 {
         if (!this.C && !this.D) {
             long j3 = this.d;
             String str = this.E;
-            int i10 = this.f895c;
+            int i10 = this.f893c;
             if (str != null) {
                 TL_bots.getPreviewInfo getpreviewinfo = new TL_bots.getPreviewInfo();
                 getpreviewinfo.bot = MessagesController.getInstance(i10).getInputUser(j3);
@@ -182,13 +182,13 @@ public final class v8 extends e9 {
     }
 
     public final void I(TL_bots.botPreviewMedia botpreviewmedia) {
-        MessageObject messageObject = new MessageObject(this.f895c, new u8(this, this.d, botpreviewmedia));
+        MessageObject messageObject = new MessageObject(this.f893c, new u8(this, this.d, botpreviewmedia));
         TL_stories.StoryItem storyItem = messageObject.storyItem;
         TLRPC.Message message = messageObject.messageOwner;
         int i10 = this.I;
         this.I = i10 + 1;
-        message.f20089id = i10;
-        storyItem.f20305id = i10;
+        message.f19823id = i10;
+        storyItem.f20041id = i10;
         messageObject.parentStoriesList = this;
         messageObject.generateThumbs(false);
         ArrayList arrayList = this.H;
@@ -196,8 +196,8 @@ public final class v8 extends e9 {
             arrayList.add(new ArrayList());
         }
         ((ArrayList) arrayList.get(0)).add(0, Integer.valueOf(messageObject.getId()));
-        this.f899i.add(0, messageObject);
-        z8 z8Var = this.f907q;
+        this.f897i.add(0, messageObject);
+        z8 z8Var = this.f905q;
         AndroidUtilities.cancelRunOnUIThread(z8Var);
         AndroidUtilities.runOnUIThread(z8Var);
     }
@@ -206,7 +206,7 @@ public final class v8 extends e9 {
     public final MessageObject f(int i10) {
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f899i;
+            ArrayList arrayList = this.f897i;
             if (i11 < arrayList.size()) {
                 if (((MessageObject) arrayList.get(i11)).getId() == i10) {
                     return (MessageObject) arrayList.get(i11);
@@ -220,7 +220,7 @@ public final class v8 extends e9 {
 
     @Override
     public final int g() {
-        return this.f899i.size();
+        return this.f897i.size();
     }
 
     @Override
@@ -230,7 +230,7 @@ public final class v8 extends e9 {
 
     @Override
     public final int i() {
-        return this.f899i.size();
+        return this.f897i.size();
     }
 
     @Override

@@ -1,51 +1,177 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.WindowInsets;
-public final class hq0 implements r0.n, org.telegram.ui.ActionBar.k1 {
-    public final int f27219a;
-    public final nr0 f27220b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class hq0 extends View {
+    public static final rw0 v;
+    public ImageReceiver f26881a;
+    public j9 f26882b;
+    public org.telegram.ui.Cells.z f26883c;
+    public Paint d;
+    public Paint f26884e;
+    public o1.k f26885f;
+    public ValueAnimator h;
+    public float f26886n;
+    public boolean f26887r;
+    public boolean f26888s;
 
-    public hq0(nr0 nr0Var, int i10) {
-        this.f27219a = i10;
-        this.f27220b = nr0Var;
+    static {
+        rw0 rw0Var = new rw0(new je0(9), new je0(10));
+        rw0Var.f30272c = 100.0f;
+        v = rw0Var;
+    }
+
+    public final void a(boolean z10, boolean z11, float f7) {
+        if (z10) {
+            o1.k kVar = this.f26885f;
+            if (kVar != null) {
+                kVar.c();
+            }
+            ValueAnimator valueAnimator = this.h;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            boolean z12 = false;
+            this.f26888s = false;
+            this.f26887r = false;
+            if (z11) {
+                float f10 = this.f26886n * 100.0f;
+                o1.k kVar2 = new o1.k(this, v);
+                kVar2.f16680b = f10;
+                kVar2.f16681c = true;
+                this.f26885f = kVar2;
+                if (f7 < this.f26886n) {
+                    z12 = true;
+                }
+                float f11 = f7 * 100.0f;
+                this.f26888s = z12;
+                this.f26887r = !z12;
+                o1.l lVar = new o1.l(f11);
+                lVar.f16697i = f11;
+                lVar.b(450.0f);
+                lVar.a(1.0f);
+                kVar2.f16690u = lVar;
+                this.f26885f.b(new sh(this, z12, f10, f11));
+                this.f26885f.a(new jb(this, 4));
+                this.f26885f.h();
+                return;
+            }
+            ValueAnimator duration = ValueAnimator.ofFloat(this.f26886n, f7).setDuration(200L);
+            this.h = duration;
+            duration.setInterpolator(js.f27627f);
+            this.h.addUpdateListener(new m80(this, 17));
+            this.h.addListener(new zd0(this, 12));
+            this.h.start();
+            return;
+        }
+        this.f26886n = f7;
+        invalidate();
     }
 
     @Override
-    public r0.k1 M0(View view, r0.k1 k1Var) {
-        WindowInsets g10 = k1Var.g();
-        nr0 nr0Var = this.f27220b;
-        nr0Var.processLegacyContainerInsets(g10);
-        i0.b f7 = k1Var.f46901a.f(519);
-        if (!nr0Var.G0.equals(f7)) {
-            nr0Var.G0 = f7;
-            nr0Var.container.requestLayout();
-        }
-        return r0.k1.f46900b;
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        this.f26883c.setState(getDrawableState());
+    }
+
+    public float getProgress() {
+        return this.f26886n;
     }
 
     @Override
-    public void o(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.m1 m1Var;
-        org.telegram.ui.ActionBar.m1 m1Var2;
-        switch (this.f27219a) {
-            case 1:
-                nr0 nr0Var = this.f27220b;
-                nr0Var.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var = nr0Var.J0) != null && m1Var.isShowing()) {
-                    nr0Var.J0.d(true);
-                    return;
-                }
-                return;
-            default:
-                nr0 nr0Var2 = this.f27220b;
-                nr0Var2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var2 = nr0Var2.J0) != null && m1Var2.isShowing()) {
-                    nr0Var2.J0.d(true);
-                    return;
-                }
-                return;
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        this.f26883c.jumpToCurrentState();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f26881a.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f26881a.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.d;
+        Paint paint2 = this.f26884e;
+        canvas.save();
+        float f7 = 1.0f;
+        if (this.f26887r) {
+            f7 = 1.0f - this.f26886n;
+        } else if (this.f26888s) {
+            f7 = this.f26886n;
         }
+        canvas.scale(f7, f7, getWidth() / 2.0f, getHeight() / 2.0f);
+        super.onDraw(canvas);
+        this.f26881a.draw(canvas);
+        int i10 = (int) (this.f26886n * 255.0f);
+        paint.setAlpha(i10);
+        canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, paint);
+        canvas.save();
+        paint2.setAlpha(i10);
+        float strokeWidth = paint2.getStrokeWidth() + AndroidUtilities.dp(10.0f);
+        canvas.drawLine(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth, paint2);
+        canvas.drawLine(strokeWidth, getHeight() - strokeWidth, getWidth() - strokeWidth, strokeWidth, paint2);
+        canvas.restore();
+        this.f26883c.setBounds(0, 0, getWidth(), getHeight());
+        this.f26883c.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getLayoutParams().width, 1073741824), View.MeasureSpec.makeMeasureSpec(getLayoutParams().height, 1073741824));
+        this.f26881a.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    public void setAvatar(TLObject tLObject) {
+        String str;
+        j9 j9Var = this.f26882b;
+        if (tLObject instanceof TLRPC.User) {
+            str = UserObject.getFirstName((TLRPC.User) tLObject);
+        } else if (tLObject instanceof TLRPC.Chat) {
+            str = ((TLRPC.Chat) tLObject).title;
+        } else if (tLObject instanceof TLRPC.ChatInvite) {
+            str = ((TLRPC.ChatInvite) tLObject).title;
+        } else {
+            str = "";
+        }
+        setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, str));
+        j9Var.p(tLObject);
+        this.f26881a.setForUserOrChat(tLObject, j9Var);
+    }
+
+    public void setProgress(float f7) {
+        boolean z10;
+        if (f7 != 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        a(true, z10, f7);
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && this.f26883c != drawable) {
+            return false;
+        }
+        return true;
     }
 }

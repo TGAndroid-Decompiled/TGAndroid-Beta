@@ -1,29 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-public final class rf implements fm0 {
-    public final ChatActivityEnterView f30508a;
+import android.content.Context;
+public final class rf extends org.telegram.ui.ej0 {
+    public final int A0;
+    public final Object B0;
 
-    public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f30508a = chatActivityEnterView;
+    public rf(Object obj, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, c6Var);
+        this.A0 = i10;
+        this.B0 = obj;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        if (view instanceof ei.a0) {
-            String command = ((ei.a0) view).getCommand();
-            if (!TextUtils.isEmpty(command)) {
-                ChatActivityEnterView chatActivityEnterView = this.f30508a;
-                if (chatActivityEnterView.c()) {
-                    g5.L(chatActivityEnterView.O2, chatActivityEnterView.Q2, new y2(this, command, false, 3), chatActivityEnterView.W3);
-                    return;
-                }
-                org.telegram.ui.zn znVar = chatActivityEnterView.P2;
-                if (znVar == null || !znVar.h7(view)) {
-                    g5.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.ui.oc(15, this, command));
-                }
-            }
+    public final void m(long j3) {
+        switch (this.A0) {
+            case 0:
+                ((ChatActivityEnterView) this.B0).setEffectId(j3);
+                return;
+            default:
+                aj ajVar = (aj) this.B0;
+                ki kiVar = ajVar.L0;
+                ajVar.Q0 = j3;
+                kiVar.setEffect(j3);
+                return;
         }
     }
 }

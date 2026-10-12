@@ -1,36 +1,26 @@
 package org.telegram.ui;
+public final class pd0 implements org.telegram.ui.ActionBar.z1 {
+    public final int f40922a;
+    public final xg0 f40923b;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class pd0 implements org.telegram.ui.Components.sw0 {
-    public final int f40865a;
-    public final org.telegram.ui.ActionBar.m2 f40866b;
-
-    public pd0(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f40865a = i10;
-        this.f40866b = m2Var;
+    public pd0(xg0 xg0Var, int i10) {
+        this.f40922a = i10;
+        this.f40923b = xg0Var;
     }
 
     @Override
-    public final void H(int i10, boolean z10) {
-        kg0 kg0Var;
-        nl0 nl0Var;
-        switch (this.f40865a) {
+    public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f40922a) {
             case 0:
-                vg0 vg0Var = (vg0) this.f40866b;
-                if (i10 > AndroidUtilities.dp(20.0f) && vg0Var.h1()) {
-                    AndroidUtilities.hideKeyboard(vg0Var.fragmentView);
-                }
-                if (i10 <= AndroidUtilities.dp(20.0f) && (kg0Var = vg0Var.T) != null) {
-                    kg0Var.run();
-                    vg0Var.T = null;
-                    return;
-                }
+                xg0 xg0Var = this.f40923b;
+                xg0Var.f43934b[xg0Var.f43932a].d();
+                xg0Var.k1(true, true);
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f40866b;
-                if (i10 >= AndroidUtilities.dp(20.0f) && (nl0Var = passcodeActivity.T) != null) {
-                    nl0Var.run();
-                    passcodeActivity.T = null;
+                xg0 xg0Var2 = this.f40923b;
+                xg0Var2.f43948l0 = true;
+                if (xg0Var2.f43932a != 0) {
+                    xg0Var2.u1(0, true, null, true);
                     return;
                 }
                 return;

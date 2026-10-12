@@ -4,15 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class n6 extends o6.a {
     public static final Parcelable.Creator<n6> CREATOR = new n5(1);
-    public final int f50999a;
-    public final float f51000b;
-    public final int f51001c;
+    public final int f51106a;
+    public final float f51107b;
+    public final int f51108c;
 
     public n6(int i10, int i11, float f7, int i12) {
         if (i10 == 1) {
-            this.f50999a = i11;
-            this.f51000b = f7;
-            this.f51001c = i12;
+            this.f51106a = i11;
+            this.f51107b = f7;
+            this.f51108c = i12;
             return;
         }
         throw new IllegalArgumentException("Unknown language.");
@@ -20,15 +20,15 @@ public final class n6 extends o6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.d0.q(parcel, 20293);
-        w7.d0.s(parcel, 2, 4);
+        int q6 = w7.c0.q(parcel, 20293);
+        w7.c0.s(parcel, 2, 4);
         parcel.writeInt(1);
-        w7.d0.s(parcel, 3, 4);
-        parcel.writeInt(this.f50999a);
-        w7.d0.s(parcel, 4, 4);
-        parcel.writeFloat(this.f51000b);
-        w7.d0.s(parcel, 5, 4);
-        parcel.writeInt(this.f51001c);
-        w7.d0.r(parcel, q6);
+        w7.c0.s(parcel, 3, 4);
+        parcel.writeInt(this.f51106a);
+        w7.c0.s(parcel, 4, 4);
+        parcel.writeFloat(this.f51107b);
+        w7.c0.s(parcel, 5, 4);
+        parcel.writeInt(this.f51108c);
+        w7.c0.r(parcel, q6);
     }
 }

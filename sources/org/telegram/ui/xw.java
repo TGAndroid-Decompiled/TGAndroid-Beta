@@ -1,198 +1,76 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.os.Build;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class xw extends s4.t0 {
-    public boolean f44225a;
-    public final ry f44226b;
-    public final ly f44227c;
-    public final sy d;
+public final class xw implements Runnable {
+    public final int f44182a;
+    public final uy f44183b;
 
-    public xw(sy syVar, ry ryVar, ly lyVar) {
-        this.d = syVar;
-        this.f44226b = ryVar;
-        this.f44227c = lyVar;
+    public xw(uy uyVar, int i10) {
+        this.f44182a = i10;
+        this.f44183b = uyVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        sy syVar = this.d;
-        if (i10 == 1) {
-            this.f44225a = true;
-            syVar.f41938d3 = true;
-            a5.a aVar = syVar.f41941e0[0].f41565b;
-            ValueAnimator valueAnimator = (ValueAnimator) aVar.f300c;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                ((ValueAnimator) aVar.f300c).cancel();
-                aVar.f300c = null;
-            }
-            if (syVar.X.f31038r.getText().length() == 0 && syVar.X.f31038r.hasFocus()) {
-                AndroidUtilities.hideKeyboard(syVar.X.f31038r);
-                syVar.X.f31038r.clearFocus();
-            }
-        } else {
-            syVar.f41938d3 = false;
-        }
-        if (i10 == 0) {
-            this.f44225a = false;
-            syVar.f41943e2 = false;
-            boolean z10 = syVar.f41925b1;
-            ry ryVar = this.f44226b;
-            if (z10) {
-                syVar.f41925b1 = false;
-                if (syVar.f41936d1) {
-                    oy oyVar = ryVar.f41564a;
-                    int i11 = oy.f40677t3;
-                    oyVar.B1();
-                    syVar.f41936d1 = false;
-                }
-                ryVar.d.l();
-            }
-            sy.o1(syVar, ryVar);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        ah.h hVar;
-        oy oyVar;
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        View childAt;
-        int i13;
+    public final void run() {
         boolean z10;
-        Object[] objArr;
-        this.f44227c.X();
-        ry ryVar = this.f44226b;
-        tw twVar = ryVar.f41573x;
-        int i14 = -i11;
-        ArrayList arrayList = twVar.f30940x;
-        ArrayList arrayList2 = twVar.f30932o;
-        boolean z11 = false;
-        if (!arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            for (int i15 = 0; i15 < size; i15++) {
-                View view = ((s4.d1) arrayList2.get(i15)).f47782a;
-                view.setTranslationY(view.getTranslationY() + i14);
-            }
-        }
-        if (!arrayList.isEmpty()) {
-            int size2 = arrayList.size();
-            for (int i16 = 0; i16 < size2; i16++) {
-                View view2 = ((s4.d1) arrayList.get(i16)).f47782a;
-                view2.setTranslationY(view2.getTranslationY() + i14);
-            }
-        }
-        int i17 = -1;
-        int i18 = -1;
-        for (int i19 = 0; i19 < recyclerView.getChildCount(); i19++) {
-            int R = RecyclerView.R(recyclerView.getChildAt(i19));
-            if (R >= 0) {
-                if (i17 == -1 || R > i17) {
-                    i17 = R;
-                }
-                if (i18 == -1 || R < i18) {
-                    i18 = R;
-                }
-            }
-        }
-        sy syVar = this.d;
-        syVar.o3(ryVar);
-        syVar.Q = true;
-        View view3 = syVar.fragmentView;
-        if (view3 != null) {
-            view3.invalidate();
-        }
-        if (syVar.R0 != 10 && this.f44225a && recyclerView.getChildCount() > 0 && i18 != -1) {
-            s4.d1 K = recyclerView.K(i18);
-            if (!syVar.W3() || (K != null && K.b() >= 0)) {
-                if (K != null) {
-                    i13 = K.f47782a.getTop();
-                } else {
-                    i13 = 0;
-                }
-                int i20 = syVar.Y1;
-                if (i20 == i18) {
-                    int i21 = syVar.Z1;
-                    int i22 = i21 - i13;
-                    if (i13 < i21) {
+        switch (this.f44182a) {
+            case 0:
+                this.f44183b.d.l();
+                return;
+            case 1:
+                uy uyVar = this.f44183b;
+                vy vyVar = uyVar.K;
+                ry ryVar = uyVar.f42611a;
+                if (ryVar != null && ryVar.getScrollState() == 0 && uyVar.f42611a.getChildCount() > 0 && uyVar.f42611a.getLayoutManager() != null) {
+                    int i10 = 1;
+                    if (uyVar.f42618s == 0 && vyVar.W3() && uyVar.v == 2) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (Math.abs(i22) <= 1) {
-                        objArr = null;
-                        if (objArr != null && syVar.a2 && (z10 || syVar.f41938d3)) {
-                            syVar.Z3(z10);
+                    float f7 = vyVar.N;
+                    s4.d0 d0Var = (s4.d0) uyVar.f42611a.getLayoutManager();
+                    View view = null;
+                    int i11 = Integer.MAX_VALUE;
+                    int i12 = -1;
+                    for (int i13 = 0; i13 < uyVar.f42611a.getChildCount(); i13++) {
+                        int R = RecyclerView.R(uyVar.f42611a.getChildAt(i13));
+                        View childAt = uyVar.f42611a.getChildAt(i13);
+                        if (R != -1 && childAt != null && childAt.getTop() < i11) {
+                            i11 = childAt.getTop();
+                            i12 = R;
+                            view = childAt;
                         }
-                        syVar.Y1 = i18;
-                        syVar.Z1 = i13;
-                        syVar.a2 = true;
                     }
-                } else if (i18 > i20) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                objArr = 1;
-                if (objArr != null) {
-                    syVar.Z3(z10);
-                }
-                syVar.Y1 = i18;
-                syVar.Z1 = i13;
-                syVar.a2 = true;
-            }
-        }
-        if (!syVar.K && recyclerView == syVar.f41941e0[0].f41564a && !syVar.f41969j2) {
-            kVar = ((org.telegram.ui.ActionBar.m2) syVar).actionBar;
-            if (kVar != null) {
-                kVar2 = ((org.telegram.ui.ActionBar.m2) syVar).actionBar;
-                if (!kVar2.t() && !syVar.f41943e2 && !syVar.F3.c()) {
-                    if (i11 > 0 && syVar.W3() && syVar.f41941e0[0].f41571s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
-                        int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
-                        if (top + i11 > 0) {
-                            if (top < 0) {
-                                i11 = -top;
+                    if (view != null) {
+                        float top = view.getTop() - uyVar.f42611a.getPaddingTop();
+                        if (vyVar.K) {
+                            f7 = 0.0f;
+                        }
+                        if (uyVar.f42611a.getScrollState() != 1) {
+                            if (z10 && i12 == 0 && ((uyVar.f42611a.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f7 < 0.0f) {
+                                top = f7;
                             } else {
-                                return;
+                                i10 = i12;
                             }
+                            d0Var.h1(i10, (int) top);
+                            return;
                         }
+                        return;
                     }
-                    syVar.Q = true;
-                    View view4 = syVar.fragmentView;
-                    if (view4 != null) {
-                        view4.invalidate();
-                    }
+                    return;
                 }
-            }
-        }
-        if (syVar.fragmentView != null) {
-            syVar.j3();
-        }
-        mx mxVar = syVar.F3;
-        if (mxVar != null && mxVar.c() && (oyVar = ryVar.f41564a) != null) {
-            oyVar.invalidate();
-        }
-        jx jxVar = syVar.E0;
-        if (jxVar != null && jxVar.getPremiumHint() != null && syVar.E0.getPremiumHint().V) {
-            syVar.E0.getPremiumHint().e(true);
-        }
-        ?? W3 = syVar.W3();
-        View childAt2 = ryVar.f41564a.getChildAt(W3 == true ? 1 : 0);
-        if (childAt2 != null) {
-            i12 = childAt2.getTop();
-        } else {
-            i12 = 0;
-        }
-        syVar.f41940e.a((i18 > W3 || (i12 - syVar.N) + AndroidUtilities.dp(5.0f) < ryVar.f41564a.getPaddingTop()) ? true : true, true);
-        if (i11 != 0 && (hVar = syVar.f41975k4) != null && Build.VERSION.SDK_INT >= 31) {
-            hVar.f(i10, i11);
+                return;
+            default:
+                uy uyVar2 = this.f44183b;
+                uyVar2.d.W(uyVar2.I);
+                uyVar2.K.Q = true;
+                ry ryVar2 = uyVar2.f42611a;
+                ryVar2.f41750b3 = true;
+                uyVar2.H = false;
+                ryVar2.invalidate();
+                return;
         }
     }
 }

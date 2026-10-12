@@ -1,22 +1,12 @@
 package org.telegram.ui.Components;
 
-import java.util.regex.Pattern;
-public final class qa0 extends fd.h {
-    public static final Pattern f30220e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+import org.telegram.tgnet.tl.TL_iv;
+public final class qa0 {
+    public final TL_iv.PageBlock f29814a;
+    public final int f29815b;
 
-    @Override
-    public final cf.p b() {
-        String a2 = a(f30220e);
-        if (a2 == null) {
-            return null;
-        }
-        ?? pVar = new cf.p();
-        pVar.f421g = com.google.android.gms.internal.vision.e2.i(1, 1, a2);
-        return pVar;
-    }
-
-    @Override
-    public final char d() {
-        return '$';
+    public qa0(int i10, TL_iv.PageBlock pageBlock) {
+        this.f29814a = pageBlock;
+        this.f29815b = i10;
     }
 }

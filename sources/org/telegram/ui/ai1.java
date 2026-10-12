@@ -1,138 +1,196 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class ai1 extends org.telegram.ui.Components.p91 {
-    public boolean T;
-    public final Path U;
-    public final bi1 V;
+import java.util.ArrayList;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class ai1 extends org.telegram.ui.Components.em0 {
+    public final Context f35843c;
+    public final gg.b2 f35845f;
+    public Runnable h;
+    public boolean f35846n;
+    public final int f35848s;
+    public final UsersSelectActivity v;
+    public ArrayList d = new ArrayList();
+    public ArrayList f35844e = new ArrayList();
+    public final ArrayList f35847r = new ArrayList();
 
-    public ai1(bi1 bi1Var, Context context) {
-        super(context, null);
-        this.V = bi1Var;
-        this.U = new Path();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.T) {
-            Path path = this.U;
-            path.rewind();
-            float dpf2 = AndroidUtilities.dpf2(24.0f);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, AndroidUtilities.statusBarHeight, getWidth(), getHeight());
-            path.addRoundRect(rectF, dpf2, dpf2, Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
+    public ai1(UsersSelectActivity usersSelectActivity, Context context) {
+        boolean z10;
+        boolean z11;
+        this.v = usersSelectActivity;
+        this.f35843c = context;
+        if (usersSelectActivity.F) {
+            this.f35848s = 0;
+        } else {
+            int i10 = usersSelectActivity.f34438x;
+            if (i10 == 2) {
+                this.f35848s = (!usersSelectActivity.H ? 1 : 0) + 5;
+            } else if (i10 == 0) {
+                if (usersSelectActivity.I) {
+                    this.f35848s = 7;
+                } else {
+                    this.f35848s = 5;
+                }
+            } else {
+                this.f35848s = 0;
+            }
         }
-        super.dispatchDraw(canvas);
-        if (this.T) {
-            canvas.restore();
+        int i11 = usersSelectActivity.f34438x;
+        if (i11 != 2) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i11 != 2) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        ArrayList<TLRPC.Dialog> allDialogs = usersSelectActivity.getMessagesController().getAllDialogs();
+        int size = allDialogs.size();
+        int i12 = 0;
+        boolean z12 = false;
+        while (i12 < size) {
+            TLRPC.Dialog dialog = allDialogs.get(i12);
+            if (!DialogObject.isEncryptedDialog(dialog.f19806id)) {
+                if (DialogObject.isUserDialog(dialog.f19806id)) {
+                    TLRPC.User user = usersSelectActivity.getMessagesController().getUser(Long.valueOf(dialog.f19806id));
+                    if (user != null && ((usersSelectActivity.G || !UserObject.isUserSelf(user)) && (!user.bot || z10))) {
+                        this.f35847r.add(user);
+                        if (UserObject.isUserSelf(user)) {
+                            z12 = true;
+                        }
+                    }
+                } else {
+                    TLRPC.Chat chat = usersSelectActivity.getMessagesController().getChat(Long.valueOf(-dialog.f19806id));
+                    if (z11 && chat != null) {
+                        this.f35847r.add(chat);
+                    }
+                }
+            }
+            i12++;
+            z12 = z12;
+        }
+        if (!z12 && usersSelectActivity.G) {
+            this.f35847r.add(0, usersSelectActivity.getMessagesController().getUser(Long.valueOf(usersSelectActivity.getUserConfig().clientUserId)));
+        }
+        gg.b2 b2Var = new gg.b2(false);
+        this.f35845f = b2Var;
+        b2Var.f10543p = false;
+        b2Var.f10530a = new jq0(this, 24);
+    }
+
+    @Override
+    public final void A(s4.d1 d1Var) {
+        View view = d1Var.f47889a;
+        if (view instanceof org.telegram.ui.Cells.g4) {
+            ((org.telegram.ui.Cells.g4) view).f21894a.getImageReceiver().cancelLoadImage();
         }
     }
 
     @Override
-    public float getAvailableTranslationX() {
-        return getMeasuredWidth();
-    }
-
-    @Override
-    public long getManualScrollDuration() {
-        return 320L;
-    }
-
-    @Override
-    public final boolean j(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.m2 X = ((eh0) this.V).X();
-        if (!(X instanceof dh0)) {
-            return false;
-        }
-        return ((dh0) X).S(motionEvent, false);
-    }
-
-    @Override
-    public final boolean k(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.m2 X = ((eh0) this.V).X();
-        if (X instanceof dh0) {
-            return ((dh0) X).S(motionEvent, true);
+    public final boolean D(s4.d1 d1Var) {
+        if (d1Var.f47893f == 1) {
+            return true;
         }
         return false;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
+    public final String F(int i10) {
+        return null;
     }
 
     @Override
-    public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
-        super.setLayoutParams(layoutParams);
+    public final void G(org.telegram.ui.Components.wm0 wm0Var, float f7, int[] iArr) {
+        iArr[0] = (int) (h() * f7);
+        iArr[1] = 0;
     }
 
-    public void setTabletLayout(boolean z10) {
-        if (this.T == z10) {
+    public final void L(String str) {
+        boolean z10;
+        boolean z11;
+        if (this.h != null) {
+            Utilities.searchQueue.cancelRunnable(this.h);
+            this.h = null;
+        }
+        int i10 = this.v.f34438x;
+        if (i10 != 2) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i10 != 2) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (str == null) {
+            this.d.clear();
+            this.f35844e.clear();
+            this.f35845f.f(null, null);
+            this.f35845f.g(null, true, false, false, false, 0L, false, 0, 0);
+            l();
             return;
         }
-        this.T = z10;
-        invalidate();
+        DispatchQueue dispatchQueue = Utilities.searchQueue;
+        zh1 zh1Var = new zh1(this, str, z11, z10, 0);
+        this.h = zh1Var;
+        dispatchQueue.postRunnable(zh1Var, 300L);
     }
 
     @Override
-    public final void t(View view, View view2, int i10, int i11) {
-        this.V.U();
+    public final int h() {
+        if (this.f35846n) {
+            int size = this.d.size();
+            gg.b2 b2Var = this.f35845f;
+            return b2Var.f10533e.size() + b2Var.d.size() + size;
+        }
+        UsersSelectActivity usersSelectActivity = this.v;
+        int i10 = 0;
+        if (!usersSelectActivity.F) {
+            int i11 = usersSelectActivity.f34438x;
+            if (i11 == 2) {
+                i10 = (!usersSelectActivity.H ? 1 : 0) + 3;
+            } else if (i11 == 0) {
+                i10 = usersSelectActivity.I ? 7 : 5;
+            }
+        }
+        return this.f35847r.size() + i10;
     }
 
     @Override
-    public final void u() {
-        sy syVar;
-        bi1 bi1Var = this.V;
-        eh0 eh0Var = (eh0) bi1Var;
-        if (eh0Var.F != null) {
-            eh0Var.m0(eh0Var.f36435c.getCurrentPosition(), true);
-            eh0Var.n0(0.0f, false);
-        }
-        eh0Var.d0();
-        ai1 ai1Var = eh0Var.f36435c;
-        if (ai1Var != null) {
-            int currentPosition = ai1Var.getCurrentPosition();
-            if (currentPosition != 2 && eh0Var.f37397x) {
-                eh0Var.W(2);
-                eh0Var.f37397x = false;
-            }
-            if (currentPosition != 3) {
-                eh0Var.W(3);
-            }
-            Integer num = eh0Var.I;
-            if (num != null && currentPosition == 0 && (syVar = eh0Var.J) != null) {
-                syVar.t4(num.intValue());
-                eh0Var.I = null;
+    public final int j(int i10) {
+        int i11;
+        if (!this.f35846n) {
+            UsersSelectActivity usersSelectActivity = this.v;
+            if (!usersSelectActivity.F ? !((i11 = usersSelectActivity.f34438x) != 2 ? i11 != 0 || (!usersSelectActivity.I ? !(i10 == 0 || i10 == 4) : !(i10 == 0 || i10 == 6)) : i10 != 0 && i10 != (!usersSelectActivity.H ? 1 : 0) + 4) : i10 == 0) {
+                return 2;
             }
         }
-        bi1Var.U();
+        return 1;
     }
 
     @Override
-    public final void w(boolean z10) {
-        bi1 bi1Var = this.V;
-        eh0 eh0Var = (eh0) bi1Var;
-        boolean z11 = !z10;
-        if (eh0Var.F != null) {
-            float positionAnimated = eh0Var.f36435c.getPositionAnimated();
-            eh0Var.n0(positionAnimated, z11);
-            if (!z10) {
-                eh0Var.m0(Math.round(positionAnimated), true);
-            }
+    public final void v(s4.d1 r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ai1.v(s4.d1, int):void");
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        View g4Var;
+        Context context = this.f35843c;
+        if (i10 != 1) {
+            g4Var = new org.telegram.ui.Cells.v3(context, null);
+        } else {
+            g4Var = new org.telegram.ui.Cells.g4(1, 0, context, true);
         }
-        eh0Var.h0();
-        eh0Var.d0();
-        eh0Var.f36434b.invalidate();
-        bi1Var.U();
-        bi1Var.checkSystemBarColors();
+        return new s4.d1(g4Var);
     }
 }

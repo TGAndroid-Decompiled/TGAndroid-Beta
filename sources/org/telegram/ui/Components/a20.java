@@ -1,75 +1,92 @@
 package org.telegram.ui.Components;
 
-import java.util.Iterator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MediaController;
-public final class a20 implements org.telegram.ui.ActionBar.q0, me.k, org.telegram.ui.ActionBar.z1, fw0 {
-    public final FragmentContextView f24452a;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLRPC;
+public final class a20 extends URLSpan {
+    public static final int f24216e = 0;
+    public final String f24217a;
+    public final TLRPC.TL_messageEntityFormattedDate f24218b;
+    public final z11 f24219c;
+    public final boolean d;
 
-    public a20(FragmentContextView fragmentContextView) {
-        this.f24452a = fragmentContextView;
+    public a20(String str, z11 z11Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
+        super(str);
+        this.f24217a = str;
+        this.f24218b = tL_messageEntityFormattedDate;
+        this.f24219c = z11Var;
+        this.d = false;
     }
 
-    @Override
-    public void b(LocationController.SharingLocationInfo sharingLocationInfo) {
-        float[] fArr = FragmentContextView.Q0;
-        this.f24452a.k(sharingLocationInfo);
-    }
-
-    @Override
-    public void c(me.l lVar) {
-        FragmentContextView fragmentContextView = this.f24452a;
-        me.l lVar2 = fragmentContextView.O0;
-        float f7 = 1.0f - lVar2.f16428a.d.f16419c.f16429a;
-        fragmentContextView.d.setAlpha(f7);
-        fragmentContextView.d.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f7));
-        fragmentContextView.d.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f7));
-        Iterator it = lVar2.iterator();
-        while (it.hasNext()) {
-            me.g gVar = (me.g) it.next();
-            float c10 = gVar.c();
-            Object obj = gVar.f16412a;
-            float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c10);
-            lh.c cVar = ((m20) obj).f28697b;
-            cVar.setAlpha(gVar.c());
-            cVar.setScaleX(lerp);
-            cVar.setScaleY(lerp);
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        FragmentContextView fragmentContextView = this.f24452a;
-        org.telegram.ui.ActionBar.m2 m2Var = fragmentContextView.h;
-        if (m2Var instanceof org.telegram.ui.sy) {
-            for (int i11 = 0; i11 < 4; i11++) {
-                LocationController.getInstance(i11).removeAllLocationSharings();
-            }
-            return;
-        }
-        LocationController.getInstance(m2Var.getCurrentAccount()).removeSharingLocation(fragmentContextView.f24207n.a());
-    }
-
-    @Override
-    public void m(int i10) {
-        float[] fArr = FragmentContextView.Q0;
-        if (i10 >= 0) {
-            float[] fArr2 = FragmentContextView.Q0;
-            if (i10 < 6) {
-                MediaController mediaController = MediaController.getInstance();
-                FragmentContextView fragmentContextView = this.f24452a;
-                float playbackSpeed = mediaController.getPlaybackSpeed(fragmentContextView.W);
-                float f7 = fArr2[i10];
-                MediaController.getInstance().setPlaybackSpeed(fragmentContextView.W, f7);
-                if (playbackSpeed != f7) {
-                    fragmentContextView.l(playbackSpeed, f7, false);
+    public static CharSequence a(CharSequence charSequence, boolean z10) {
+        String str;
+        if (charSequence instanceof Spanned) {
+            Spanned spanned = (Spanned) charSequence;
+            int i10 = 0;
+            a20[] a20VarArr = (a20[]) spanned.getSpans(0, spanned.length(), a20.class);
+            int length = a20VarArr.length;
+            ?? r42 = 0;
+            while (i10 < length) {
+                a20 a20Var = a20VarArr[i10];
+                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = a20Var.f24218b;
+                if (tL_messageEntityFormattedDate.flags != 0 && (a20Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
+                    if (r42 == 0) {
+                        charSequence = new SpannableStringBuilder(spanned);
+                        r42 = charSequence;
+                    }
+                    int spanStart = r42.getSpanStart(a20Var);
+                    int spanEnd = r42.getSpanEnd(a20Var);
+                    if (z10) {
+                        str = LocaleController.formatEntityFormattedDate(a20Var.f24218b);
+                    } else {
+                        str = a20Var.f24217a;
+                    }
+                    r42.removeSpan(a20Var);
+                    r42.replace(spanStart, spanEnd, str);
+                    r42.setSpan(new a20(a20Var, z10), spanStart, str.length() + spanStart, 33);
                 }
+                i10++;
+                r42 = r42;
             }
         }
+        return charSequence;
+    }
+
+    public static CharSequence b(SpannableStringBuilder spannableStringBuilder) {
+        return a(spannableStringBuilder, false);
     }
 
     @Override
-    public void a() {
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int i10 = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        z11 z11Var = this.f24219c;
+        if (z11Var != null) {
+            z11Var.a(textPaint);
+        }
+        if (i10 == color) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+    }
+
+    public a20(a20 a20Var, boolean z10) {
+        super(a20Var.f24217a);
+        this.f24217a = a20Var.f24217a;
+        this.f24218b = a20Var.f24218b;
+        this.f24219c = a20Var.f24219c;
+        this.d = z10;
+    }
+
+    @Override
+    public final void onClick(View view) {
     }
 }

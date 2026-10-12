@@ -7,44 +7,44 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.ai;
+import org.telegram.messenger.am;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.bm0;
-import org.telegram.ui.Components.km;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.yi;
+import org.telegram.ui.Components.aj;
+import org.telegram.ui.Components.gm0;
+import org.telegram.ui.Components.mm;
+import org.telegram.ui.Components.wm0;
 public final class s9 extends s4.t0 {
-    public final int f5958a;
-    public boolean f5959b;
-    public final Object f5960c;
+    public final int f5957a;
+    public boolean f5958b;
+    public final Object f5959c;
 
     public s9(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f5958a = i10;
-        this.f5960c = notificationCenterDelegate;
+        this.f5957a = i10;
+        this.f5959c = notificationCenterDelegate;
     }
 
     @Override
     public void a(RecyclerView recyclerView, int i10) {
         boolean z10;
         int i11;
-        bm0 bm0Var;
+        gm0 gm0Var;
         int topScrollOffset;
         int topScrollOffset2;
-        switch (this.f5958a) {
+        switch (this.f5957a) {
             case 0:
-                y9 y9Var = (y9) this.f5960c;
-                rm0 rm0Var = y9Var.f6363f;
+                y9 y9Var = (y9) this.f5959c;
+                wm0 wm0Var = y9Var.f6362f;
                 fa faVar = y9Var.W;
                 boolean z11 = true;
                 if (i10 == 1) {
                     z10 = ((org.telegram.ui.ActionBar.e3) faVar).keyboardVisible;
-                    if (z10 && y9Var.f6368x != null) {
+                    if (z10 && y9Var.f6367x != null) {
                         faVar.g1();
                     }
                 }
                 if (i10 == 0) {
-                    y9Var.S = !rm0Var.canScrollVertically(-1);
-                    rm0Var.canScrollVertically(1);
+                    y9Var.S = !wm0Var.canScrollVertically(-1);
+                    wm0Var.canScrollVertically(1);
                 }
                 if (i10 == 0) {
                     z11 = false;
@@ -55,27 +55,27 @@ public final class s9 extends s4.t0 {
             default:
                 return;
             case 2:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5960c;
-                km kmVar = chatAttachAlertPhotoLayout.E;
-                yi yiVar = chatAttachAlertPhotoLayout.f30245b;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5959c;
+                mm mmVar = chatAttachAlertPhotoLayout.E;
+                aj ajVar = chatAttachAlertPhotoLayout.f30574b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.u0 u0Var = yiVar.f33282d1;
+                    org.telegram.ui.ActionBar.u0 u0Var = ajVar.f24335d1;
                     if (u0Var != null) {
                         i11 = AndroidUtilities.dp(u0Var.getAlpha() * 26.0f);
                     } else {
                         i11 = 0;
                     }
                     int i12 = dp + i11;
-                    int backgroundPaddingTop = yiVar.getBackgroundPaddingTop();
-                    if (((yiVar.f33287e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (yiVar.R0.getAlpha() * yiVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (bm0Var = (bm0) kmVar.K(0)) != null) {
-                        View view = bm0Var.f47782a;
+                    int backgroundPaddingTop = ajVar.getBackgroundPaddingTop();
+                    if (((ajVar.f24340e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (ajVar.R0.getAlpha() * ajVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (gm0Var = (gm0) mmVar.K(0)) != null) {
+                        View view = gm0Var.f47889a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
                             int top2 = view.getTop();
                             topScrollOffset2 = chatAttachAlertPhotoLayout.getTopScrollOffset();
-                            kmVar.v0(0, top2 - topScrollOffset2, null);
+                            mmVar.v0(0, top2 - topScrollOffset2, null);
                             return;
                         }
                         return;
@@ -84,9 +84,9 @@ public final class s9 extends s4.t0 {
                 }
                 return;
             case 3:
-                if (i10 == 0 && this.f5959b) {
-                    this.f5959b = false;
-                    ((org.telegram.ui.Wallet.x4) this.f5960c).e();
+                if (i10 == 0 && this.f5958b) {
+                    this.f5958b = false;
+                    ((org.telegram.ui.Wallet.x4) this.f5959c).e();
                     return;
                 }
                 return;
@@ -99,21 +99,21 @@ public final class s9 extends s4.t0 {
         int i12;
         int i13;
         boolean z10;
-        switch (this.f5958a) {
+        switch (this.f5957a) {
             case 0:
-                y9 y9Var = (y9) this.f5960c;
+                y9 y9Var = (y9) this.f5959c;
                 fa faVar = y9Var.W;
-                rm0 rm0Var = y9Var.f6363f;
-                boolean canScrollVertically = rm0Var.canScrollVertically(1);
-                if (canScrollVertically != this.f5959b) {
-                    y9Var.f6365r.invalidate();
-                    this.f5959b = canScrollVertically;
+                wm0 wm0Var = y9Var.f6362f;
+                boolean canScrollVertically = wm0Var.canScrollVertically(1);
+                if (canScrollVertically != this.f5958b) {
+                    y9Var.f6364r.invalidate();
+                    this.f5958b = canScrollVertically;
                 }
-                y9Var.f6362e.invalidate();
+                y9Var.f6361e.invalidate();
                 viewGroup = ((org.telegram.ui.ActionBar.e3) faVar).containerView;
                 viewGroup.invalidate();
-                if (y9Var.f6359a == 6 && rm0Var.getChildCount() > 0) {
-                    int R = RecyclerView.R(rm0Var.getChildAt(0));
+                if (y9Var.f6358a == 6 && wm0Var.getChildCount() > 0) {
+                    int R = RecyclerView.R(wm0Var.getChildAt(0));
                     i12 = ((org.telegram.ui.ActionBar.e3) faVar).currentAccount;
                     if (R >= MessagesController.getInstance(i12).getStoriesController().L.size()) {
                         i13 = ((org.telegram.ui.ActionBar.e3) faVar).currentAccount;
@@ -124,39 +124,39 @@ public final class s9 extends s4.t0 {
                 }
                 return;
             case 1:
-                org.telegram.ui.x6 x6Var = (org.telegram.ui.x6) this.f5960c;
-                if (x6Var.f44011c.L0() <= 0 && !org.telegram.ui.x6.a0(x6Var).t()) {
+                org.telegram.ui.b7 b7Var = (org.telegram.ui.b7) this.f5959c;
+                if (b7Var.f36081c.L0() <= 0 && !org.telegram.ui.b7.a0(b7Var).u()) {
                     z10 = false;
                 } else {
                     z10 = true;
                 }
-                org.telegram.ui.x6.b0(x6Var, z10);
-                if (this.f5959b != x6Var.V.Z()) {
-                    this.f5959b = x6Var.V.Z();
-                    x6Var.V.invalidate();
+                org.telegram.ui.b7.b0(b7Var, z10);
+                if (this.f5958b != b7Var.V.Z()) {
+                    this.f5958b = b7Var.V.Z();
+                    b7Var.V.invalidate();
                     return;
                 }
                 return;
             case 2:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5960c;
-                yi yiVar = chatAttachAlertPhotoLayout.f30245b;
-                km kmVar = chatAttachAlertPhotoLayout.E;
-                if (kmVar.getChildCount() > 0) {
-                    yiVar.b2(chatAttachAlertPhotoLayout, i11);
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5959c;
+                aj ajVar = chatAttachAlertPhotoLayout.f30574b;
+                mm mmVar = chatAttachAlertPhotoLayout.E;
+                if (mmVar.getChildCount() > 0) {
+                    ajVar.b2(chatAttachAlertPhotoLayout, i11);
                     float f7 = 0.0f;
                     if (chatAttachAlertPhotoLayout.G.h() > 30) {
-                        boolean z11 = this.f5959b;
-                        boolean z12 = yiVar.R;
+                        boolean z11 = this.f5958b;
+                        boolean z12 = ajVar.R;
                         if (z11 != z12) {
-                            this.f5959b = z12;
-                            ViewPropertyAnimator animate = kmVar.getFastScroll().animate();
-                            if (this.f5959b) {
+                            this.f5958b = z12;
+                            ViewPropertyAnimator animate = mmVar.getFastScroll().animate();
+                            if (this.f5958b) {
                                 f7 = 1.0f;
                             }
-                            ai.s(animate, f7, 100L);
+                            am.s(animate, f7, 100L);
                         }
                     } else {
-                        kmVar.getFastScroll().setAlpha(0.0f);
+                        mmVar.getFastScroll().setAlpha(0.0f);
                     }
                     if (i11 != 0) {
                         chatAttachAlertPhotoLayout.V();
@@ -167,7 +167,7 @@ public final class s9 extends s4.t0 {
                 return;
             default:
                 if (i10 != 0 || i11 != 0) {
-                    this.f5959b = true;
+                    this.f5958b = true;
                     return;
                 }
                 return;
@@ -175,8 +175,8 @@ public final class s9 extends s4.t0 {
     }
 
     public s9(org.telegram.ui.Wallet.x4 x4Var) {
-        this.f5958a = 3;
-        this.f5960c = x4Var;
-        this.f5959b = false;
+        this.f5957a = 3;
+        this.f5959c = x4Var;
+        this.f5958b = false;
     }
 }

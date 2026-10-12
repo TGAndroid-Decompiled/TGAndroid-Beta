@@ -1,90 +1,36 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import android.os.AsyncTask;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class no0 extends WebViewClient {
-    public final Context f40333a;
-    public final uo0 f40334b;
+public final class no0 extends AsyncTask {
+    public final vc.a f40446a;
+    public final xo0 f40447b;
 
-    public no0(uo0 uo0Var, Context context) {
-        this.f40334b = uo0Var;
-        this.f40333a = context;
+    public no0(xo0 xo0Var, vc.a aVar) {
+        this.f40447b = xo0Var;
+        this.f40446a = aVar;
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        uo0 uo0Var = this.f40334b;
-        uo0Var.f42767z0 = false;
-        uo0Var.H0(true, false);
-        uo0Var.K0();
+    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.no0.doInBackground(java.lang.Object[]):java.lang.Object");
     }
 
     @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        uo0 uo0Var = this.f40334b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(uo0Var.getParentActivity())) {
-                return true;
-            }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(uo0Var.getParentActivity(), 0, uo0Var.Y0);
-            alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20404a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new sk0(this, 10));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e7) {
-            FileLog.e(e7);
-            return false;
+    public final void onPostExecute(Object obj) {
+        String str = (String) obj;
+        xo0 xo0Var = this.f40447b;
+        if (xo0Var.Q0) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
-        boolean z10;
-        uo0 uo0Var = this.f40334b;
-        uo0Var.f42765y = !str.equals(uo0Var.f42763x);
-        try {
-            parse = Uri.parse(str);
-        } catch (Exception unused) {
+        if (str == null) {
+            org.telegram.ui.Components.g5.v0(xo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+        } else {
+            xo0Var.f44121w0 = str;
+            xo0Var.t0();
         }
-        if ("t.me".equals(parse.getHost())) {
-            uo0Var.t0();
-            return true;
-        }
-        if (!uo0.f42725h1.contains(parse.getScheme())) {
-            if (!uo0.f42724g1.contains(parse.getScheme())) {
-                try {
-                    if (uo0Var.getParentActivity() != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        uo0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
-                    }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f40333a);
-                    alertDialog$Builder.f20404a.R = uo0Var.f42752p0;
-                    alertDialog$Builder.f20404a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.o();
-                }
-            }
-            return super.shouldOverrideUrlLoading(webView, str);
-        }
-        return true;
+        xo0Var.H0(true, false);
+        xo0Var.D0(false);
     }
 }

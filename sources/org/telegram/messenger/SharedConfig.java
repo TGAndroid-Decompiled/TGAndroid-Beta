@@ -215,24 +215,24 @@ public class SharedConfig {
         public long availableCheckTime;
         public boolean checking;
         public long ping;
-        public pi.b settings;
+        public oi.b settings;
 
-        public ProxyInfo(pi.b bVar) {
+        public ProxyInfo(oi.b bVar) {
             this.settings = bVar;
         }
 
         public static ProxyInfo fromSerializedData(int i10, InputSerializedData inputSerializedData) {
             long j3;
             long j10;
-            pi.a a2 = pi.b.a();
+            oi.a a2 = oi.b.a();
             boolean z10 = false;
             String readString = inputSerializedData.readString(false);
             String str = "";
             if (readString == null) {
                 readString = "";
             }
-            a2.f45952b = readString;
-            a2.f45953c = inputSerializedData.readInt32(false);
+            a2.f16906b = readString;
+            a2.f16907c = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -242,12 +242,12 @@ public class SharedConfig {
             if (readString3 == null) {
                 readString3 = "";
             }
-            a2.f45954e = readString3;
+            a2.f16908e = readString3;
             String readString4 = inputSerializedData.readString(false);
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f45955f = str;
+            a2.f16909f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j3 = inputSerializedData.readInt64(false);
@@ -257,16 +257,16 @@ public class SharedConfig {
                 j10 = 0;
             }
             if (i10 >= 3) {
-                int e7 = pi.b.e(inputSerializedData.readInt32(false));
+                int e7 = oi.b.e(inputSerializedData.readInt32(false));
                 if (e7 == 0) {
                     e7 = 1;
                 }
-                a2.f45951a = e7;
+                a2.f16905a = e7;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f45951a = i11;
+                a2.f16905a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.a());
             proxyInfo.availableCheckTime = j10;
@@ -279,14 +279,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f45959b);
-            outputSerializedData.writeInt32(this.settings.f45960c);
+            outputSerializedData.writeString(this.settings.f16913b);
+            outputSerializedData.writeInt32(this.settings.f16914c);
             outputSerializedData.writeString(this.settings.d);
-            outputSerializedData.writeString(this.settings.f45961e);
-            outputSerializedData.writeString(this.settings.f45962f);
+            outputSerializedData.writeString(this.settings.f16915e);
+            outputSerializedData.writeString(this.settings.f16916f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f45958a);
+            int c10 = m1.j.c(this.settings.f16912a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -489,12 +489,12 @@ public class SharedConfig {
     }
 
     public static void checkSaveToGalleryFiles() {
-        Utilities.globalQueue.postRunnable(new w1(22));
+        Utilities.globalQueue.postRunnable(new z1(22));
     }
 
     public static void checkSdCard(File file) {
         if (file != null && storageCacheDir != null && !readOnlyStorageDirAlertShowed && file.getPath().startsWith(storageCacheDir)) {
-            AndroidUtilities.runOnUIThread(new w1(21));
+            AndroidUtilities.runOnUIThread(new z1(21));
         }
     }
 
@@ -908,13 +908,13 @@ public class SharedConfig {
         if (!readOnlyStorageDirAlertShowed && (R = LaunchActivity.R()) != null && R.getParentActivity() != null) {
             storageCacheDir = null;
             saveConfig();
-            ImageLoader.getInstance().checkMediaPaths(new w1(20));
+            ImageLoader.getInstance().checkMediaPaths(new z1(20));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f20404a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f20141a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20404a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
             a2Var.setCanceledOnTouchOutside(false);
             a2Var.show();
         }
@@ -952,7 +952,7 @@ public class SharedConfig {
     public static void loadProxyList() {
         if (!proxyListLoaded) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-            pi.b c10 = pi.b.c(sharedPreferences);
+            oi.b c10 = oi.b.c(sharedPreferences);
             proxyListLoaded = true;
             proxyList.clear();
             currentProxy = null;
@@ -1050,17 +1050,17 @@ public class SharedConfig {
             i12 = (i11 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i11 == 8 && i10 <= 23)) ? 1 : 2;
         }
         if (BuildVars.LOGS_ENABLED) {
-            StringBuilder k10 = hg.c.k("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
-            hg.c.u(k10, ceil, ", memoryClass = ", memoryClass, ", android version ");
-            k10.append(i10);
-            k10.append(", manufacture ");
-            k10.append(Build.MANUFACTURER);
-            k10.append(", screenRefreshRate=");
-            k10.append(AndroidUtilities.screenRefreshRate);
-            k10.append(", screenMaxRefreshRate=");
-            k10.append(AndroidUtilities.screenMaxRefreshRate);
-            k10.append(")");
-            FileLog.d(k10.toString());
+            StringBuilder m10 = hg.c.m("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
+            hg.c.w(m10, ceil, ", memoryClass = ", memoryClass, ", android version ");
+            m10.append(i10);
+            m10.append(", manufacture ");
+            m10.append(Build.MANUFACTURER);
+            m10.append(", screenRefreshRate=");
+            m10.append(AndroidUtilities.screenRefreshRate);
+            m10.append(", screenMaxRefreshRate=");
+            m10.append(AndroidUtilities.screenMaxRefreshRate);
+            m10.append(")");
+            FileLog.d(m10.toString());
         }
         return i12;
     }
@@ -1211,7 +1211,7 @@ public class SharedConfig {
 
     public static void saveProxyList() {
         ArrayList arrayList = new ArrayList(proxyList);
-        Collections.sort(arrayList, new zh(4));
+        Collections.sort(arrayList, new fi(4));
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(-1);
         serializedData.writeByte(3);

@@ -1,49 +1,74 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.TextUtils;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-public final class c20 extends FrameLayout {
-    public TextView f36554a;
-    public TextView f36555b;
-    public org.telegram.ui.Components.dj0 f36556c;
-    public boolean d;
-    public TLRPC.TL_dialogFilterSuggested f36557e;
+public final class c20 extends og.a {
+    public CharSequence f36304c;
+    public MessagesController.DialogFilter d;
+    public TLRPC.TL_dialogFilterSuggested f36305e;
 
-    public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
-        return this.f36557e;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.d) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.h6.f20944k0);
+    public final boolean equals(Object obj) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        if (obj == this) {
+            return true;
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setText(this.f36556c.getText());
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
-        measureChildWithMargins(this.f36556c, i10, 0, i11, 0);
-        TextView textView = this.f36554a;
-        org.telegram.ui.Components.dj0 dj0Var = this.f36556c;
-        measureChildWithMargins(textView, i10, dj0Var.getMeasuredWidth(), i11, 0);
-        measureChildWithMargins(this.f36555b, i10, dj0Var.getMeasuredWidth(), i11, 0);
-    }
-
-    public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f36556c.setOnClickListener(onClickListener);
+        if (!(obj instanceof c20)) {
+            return false;
+        }
+        c20 c20Var = (c20) obj;
+        int i10 = c20Var.f16876a;
+        int i11 = this.f16876a;
+        if (i10 != i11) {
+            return false;
+        }
+        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f36304c, c20Var.f36304c)) {
+            return false;
+        }
+        int i12 = this.f16876a;
+        if (i12 == 2) {
+            MessagesController.DialogFilter dialogFilter = this.d;
+            if (dialogFilter == null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            MessagesController.DialogFilter dialogFilter2 = c20Var.d;
+            if (dialogFilter2 == null) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            if (z12 != z13) {
+                return false;
+            }
+            if (dialogFilter != null && dialogFilter.f17003id != dialogFilter2.f17003id) {
+                return false;
+            }
+        }
+        if (i12 == 5) {
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.f36305e;
+            if (tL_dialogFilterSuggested == null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = c20Var.f36305e;
+            if (tL_dialogFilterSuggested2 == null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (z10 != z11) {
+                return false;
+            }
+            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f19807id != tL_dialogFilterSuggested2.filter.f19807id) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -1,50 +1,30 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class pk extends org.telegram.ui.Components.sd {
-    public final zn d;
+public final class pk extends org.telegram.ui.Components.lp {
+    public final eo f40981f;
 
-    public pk(zn znVar, Context context) {
+    public pk(eo eoVar, Context context) {
         super(context);
-        this.d = znVar;
+        this.f40981f = eoVar;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        zn znVar = this.d;
-        ok okVar = znVar.Y;
-        if (okVar != null) {
-            okVar.invalidate();
+    public final void a(boolean z10) {
+        eo eoVar = this.f40981f;
+        eoVar.w7();
+        eoVar.u7();
+        eoVar.x7();
+        eoVar.y7();
+        il ilVar = eoVar.f37213bb;
+        if (ilVar != null) {
+            ilVar.setTranslationY(eoVar.f37473w9 + getCurrentHeight());
         }
-        if (getVisibility() != 8) {
-            znVar.m9(true);
-            FrameLayout frameLayout = znVar.P;
-            if (frameLayout != null) {
-                frameLayout.setTranslationY(f7);
-            }
-            znVar.t9();
-            znVar.w9();
-            View view = znVar.fragmentView;
-            if (view != null) {
-                view.invalidate();
-            }
+        if (z10) {
+            eoVar.D9 = true;
+            eoVar.nc();
+            return;
         }
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        FrameLayout frameLayout;
-        super.setVisibility(i10);
-        if (i10 == 8 && (frameLayout = this.d.P) != null) {
-            frameLayout.setTranslationY(0.0f);
-        }
+        eoVar.t9();
     }
 }

@@ -1,61 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public interface bz {
-    boolean A();
+import java.util.LinkedHashSet;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.UserConfig;
+public final class bz implements qz {
+    public final cz f24776a;
 
-    long a();
+    public bz(cz czVar) {
+        this.f24776a = czVar;
+    }
 
-    boolean b();
+    @Override
+    public final void d() {
+        cz czVar = this.f24776a;
+        if (czVar.F.V.F) {
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        czVar.F.V.e(true);
+        cz.E(czVar, new hu(8, this, arrayList), arrayList, true);
+    }
 
-    boolean c();
-
-    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10);
-
-    void e(Object obj, Object obj2);
-
-    int f();
-
-    boolean g();
-
-    void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void i(int i10);
-
-    boolean j();
-
-    boolean k();
-
-    void l(String str);
-
-    void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10);
-
-    void n();
-
-    void o(m61 m61Var);
-
-    float p();
-
-    void q();
-
-    void r(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void s(int i10);
-
-    void t(ArrayList arrayList);
-
-    void u();
-
-    void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11);
-
-    void w();
-
-    void x(long j3, TLRPC.Document document, String str, boolean z10);
-
-    void y(long j3);
-
-    boolean z();
+    @Override
+    public final void run() {
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        String str = this.f24776a.v;
+        hu huVar = new hu(7, this, str);
+        if (Emoji.fullyConsistsOfEmojis(str)) {
+            ey0.f25804w3.fetch(UserConfig.selectedAccount, str, new org.telegram.ui.tc(22, linkedHashSet, huVar));
+        } else {
+            huVar.run();
+        }
+    }
 }

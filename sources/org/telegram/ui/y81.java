@@ -1,39 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class y81 implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
-    public final h91 f44320a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class y81 implements Runnable {
+    public final int f44324a;
+    public final k91 f44325b;
 
-    public y81(h91 h91Var) {
-        this.f44320a = h91Var;
+    public y81(k91 k91Var, int i10) {
+        this.f44324a = i10;
+        this.f44325b = k91Var;
     }
 
     @Override
-    public r0.k1 M0(View view, r0.k1 k1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        int i10 = defaultWindowInsets.d;
-        h91 h91Var = this.f44320a;
-        h91Var.S = i10;
-        h91Var.f38387c.setPadding(0, AndroidUtilities.dp(12.0f) + defaultWindowInsets.f11576b, 0, h91Var.S + h91Var.T);
-        return r0.k1.f46900b;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(h91.U(this.f44320a, (org.telegram.ui.Components.q61) obj, (View) obj2));
-    }
-
-    @Override
-    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        h91.f0(this.f44320a, (org.telegram.ui.Components.q61) obj);
+    public final void run() {
+        switch (this.f44324a) {
+            case 0:
+                this.f44325b.f39417c.W2.N(true);
+                return;
+            case 1:
+                of.f.s(this.f44325b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                return;
+            case 2:
+                k91 k91Var = this.f44325b;
+                k91Var.f39417c.postOnAnimation(new y81(k91Var, 3));
+                return;
+            case 3:
+                this.f44325b.i0();
+                return;
+            default:
+                MessagesController.getInstance(this.f44325b.currentAccount).deleteUserPhoto(null);
+                return;
+        }
     }
 }

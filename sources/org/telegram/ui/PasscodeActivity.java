@@ -36,39 +36,39 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
     public int P;
     public org.telegram.ui.ActionBar.u0 Q;
     public boolean R;
-    public final ml0 S;
-    public nl0 T;
-    public yb0 U;
-    public org.telegram.ui.Wallet.i V;
-    public org.telegram.ui.Components.gk0 f33911a;
+    public final ol0 S;
+    public pl0 T;
+    public ac0 U;
+    public org.telegram.ui.Wallet.s V;
+    public org.telegram.ui.Components.ik0 f33686a;
     private int autoLockRow;
-    public rl0 f33912b;
-    public org.telegram.ui.Components.rm0 f33913c;
+    public tl0 f33687b;
+    public org.telegram.ui.Components.wm0 f33688c;
     private int changePasscodeRow;
     public TextView d;
     private int disablePasscodeRow;
-    public org.telegram.ui.Components.w11 f33914e;
-    public org.telegram.ui.Components.ae0 f33915f;
+    public org.telegram.ui.Components.b21 f33689e;
+    public org.telegram.ui.Components.de0 f33690f;
     private int fingerprintRow;
     public EditTextBoldCursor h;
-    public be0 f33916n;
-    public TextView f33917r;
-    public ImageView f33918s;
-    public org.telegram.ui.Components.ms v;
-    public org.telegram.ui.Components.q20 f33919w;
-    public final int f33920x;
-    public int f33921y;
+    public de0 f33691n;
+    public TextView f33692r;
+    public ImageView f33693s;
+    public org.telegram.ui.Components.ns v;
+    public org.telegram.ui.Components.s20 f33694w;
+    public final int f33695x;
+    public int f33696y;
 
     public PasscodeActivity(int i10) {
         super(null);
-        this.f33921y = 0;
+        this.f33696y = 0;
         this.E = 0;
-        this.S = new ml0(this, 5);
-        this.f33920x = i10;
+        this.S = new ol0(this, 5);
+        this.f33695x = i10;
     }
 
-    public static void U(PasscodeActivity passcodeActivity, org.telegram.ui.Components.ud0 ud0Var, int i10) {
-        int value = ud0Var.getValue();
+    public static void U(PasscodeActivity passcodeActivity, org.telegram.ui.Components.yd0 yd0Var, int i10) {
+        int value = yd0Var.getValue();
         if (value == 0) {
             SharedConfig.autoLockIn = 0;
         } else if (value == 1) {
@@ -80,7 +80,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
         } else if (value == 4) {
             SharedConfig.autoLockIn = 18000;
         }
-        passcodeActivity.f33912b.m(i10);
+        passcodeActivity.f33687b.m(i10);
         UserConfig.getInstance(passcodeActivity.currentAccount).saveConfig(false);
     }
 
@@ -89,39 +89,39 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
             if (i10 == passcodeActivity.disablePasscodeRow) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(passcodeActivity.getParentActivity());
                 String string = LocaleController.getString(R.string.DisablePasscode);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20404a;
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
                 a2Var.R = string;
                 a2Var.T = LocaleController.getString(R.string.DisablePasscodeConfirmMessage);
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                alertDialog$Builder.k(LocaleController.getString(R.string.DisablePasscodeTurnOff), new fu(passcodeActivity, 28));
+                alertDialog$Builder.k(LocaleController.getString(R.string.DisablePasscodeTurnOff), new ju(passcodeActivity, 28));
                 a2Var.show();
-                ((TextView) a2Var.d(-1)).setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21062q7, false));
+                ((TextView) a2Var.d(-1)).setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20799q7, false));
             } else if (i10 == passcodeActivity.changePasscodeRow) {
                 passcodeActivity.presentFragment(new PasscodeActivity(1));
             } else if (i10 == passcodeActivity.autoLockRow) {
                 if (passcodeActivity.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(passcodeActivity.getParentActivity());
                     String string2 = LocaleController.getString(R.string.AutoLock);
-                    org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder2.f20404a;
+                    org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder2.f20141a;
                     a2Var2.R = string2;
-                    org.telegram.ui.Components.ud0 ud0Var = new org.telegram.ui.Components.ud0(passcodeActivity.getParentActivity(), null);
-                    ud0Var.setMinValue(0);
-                    ud0Var.setMaxValue(4);
+                    org.telegram.ui.Components.yd0 yd0Var = new org.telegram.ui.Components.yd0(passcodeActivity.getParentActivity(), null);
+                    yd0Var.setMinValue(0);
+                    yd0Var.setMaxValue(4);
                     int i11 = SharedConfig.autoLockIn;
                     if (i11 == 0) {
-                        ud0Var.setValue(0);
+                        yd0Var.setValue(0);
                     } else if (i11 == 60) {
-                        ud0Var.setValue(1);
+                        yd0Var.setValue(1);
                     } else if (i11 == 300) {
-                        ud0Var.setValue(2);
+                        yd0Var.setValue(2);
                     } else if (i11 == 3600) {
-                        ud0Var.setValue(3);
+                        yd0Var.setValue(3);
                     } else if (i11 == 18000) {
-                        ud0Var.setValue(4);
+                        yd0Var.setValue(4);
                     }
-                    ud0Var.setFormatter(new v20(7));
-                    alertDialog$Builder2.n(ud0Var);
-                    alertDialog$Builder2.h(LocaleController.getString(R.string.Done), new gg.c2(passcodeActivity, ud0Var, i10, 14));
+                    yd0Var.setFormatter(new c80(5));
+                    alertDialog$Builder2.n(yd0Var);
+                    alertDialog$Builder2.h(LocaleController.getString(R.string.Done), new gg.c2(passcodeActivity, yd0Var, i10, 14));
                     passcodeActivity.showDialog(a2Var2);
                 }
             } else if (i10 == passcodeActivity.fingerprintRow) {
@@ -139,10 +139,10 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
             } else if (i10 == passcodeActivity.J) {
                 org.telegram.ui.Wallet.l0 v = org.telegram.ui.Wallet.l0.v(passcodeActivity.currentAccount);
                 boolean z10 = !v.H();
-                if (v.f35229m != z10) {
-                    v.f35229m = z10;
+                if (v.f35004m != z10) {
+                    v.f35004m = z10;
                     try {
-                        org.telegram.ui.Wallet.l0.u().getSharedPreferences("gram_wallet", 0).edit().putBoolean("passcode", v.f35229m).apply();
+                        org.telegram.ui.Wallet.l0.u().getSharedPreferences("gram_wallet", 0).edit().putBoolean("passcode", v.f35004m).apply();
                     } catch (Exception e7) {
                         org.telegram.ui.Wallet.l0.j("failed to save prefs", e7);
                     }
@@ -154,12 +154,12 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
                 boolean G = v9.G();
                 boolean z11 = !G;
                 ai.j3 j3Var = new ai.j3(6, view, G);
-                org.telegram.ui.Wallet.q0 q0Var = v9.f35221c;
+                org.telegram.ui.Wallet.q0 q0Var = v9.f34996c;
                 if (q0Var == null) {
                     j3Var.run(Boolean.FALSE);
                     return;
                 }
-                org.telegram.ui.Wallet.q0.h.execute(new org.telegram.messenger.o8(q0Var, q0Var.l(), z11, new org.telegram.ui.Wallet.l(j3Var, 0), 10));
+                org.telegram.ui.Wallet.q0.h.execute(new org.telegram.messenger.r8(q0Var, q0Var.l(), z11, new org.telegram.ui.Wallet.k(j3Var, 0), 10));
             }
         }
     }
@@ -183,14 +183,14 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
         }
         int i10 = 0;
         while (true) {
-            be0 be0Var = this.f33916n;
-            ds[] dsVarArr = be0Var.f36484f;
-            if (i10 < dsVarArr.length) {
-                ds dsVar = dsVarArr[i10];
-                dsVar.postDelayed(new ol0(dsVar, 0), i10 * 75);
+            de0 de0Var = this.f33691n;
+            hs[] hsVarArr = de0Var.f37837f;
+            if (i10 < hsVarArr.length) {
+                hs hsVar = hsVarArr[i10];
+                hsVar.postDelayed(new ql0(hsVar, 0), i10 * 75);
                 i10++;
             } else {
-                be0Var.postDelayed(new uf0(12, this, runnable), (dsVarArr.length * 75) + 350);
+                de0Var.postDelayed(new og0(10, this, runnable), (hsVarArr.length * 75) + 350);
                 return;
             }
         }
@@ -199,18 +199,18 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.didSetPasscode) {
-            if ((objArr.length == 0 || ((Boolean) objArr[0]).booleanValue()) && this.f33920x == 0) {
+            if ((objArr.length == 0 || ((Boolean) objArr[0]).booleanValue()) && this.f33695x == 0) {
                 p0();
-                rl0 rl0Var = this.f33912b;
-                if (rl0Var != null) {
-                    rl0Var.l();
+                tl0 tl0Var = this.f33687b;
+                if (tl0Var != null) {
+                    tl0Var.l();
                 }
             }
         }
     }
 
     public final boolean f0() {
-        if (h0() && this.f33920x != 0 && !AndroidUtilities.isTablet()) {
+        if (h0() && this.f33695x != 0 && !AndroidUtilities.isTablet()) {
             Point point = AndroidUtilities.displaySize;
             if (point.x < point.y && !AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
                 return true;
@@ -221,8 +221,8 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
     }
 
     public final boolean g0() {
-        int i10 = this.f33920x;
-        if ((i10 == 1 && this.f33921y == 1) || ((i10 == 2 || i10 == 3) && SharedConfig.passcodeType == 1)) {
+        int i10 = this.f33695x;
+        if ((i10 == 1 && this.f33696y == 1) || ((i10 == 2 || i10 == 3) && SharedConfig.passcodeType == 1)) {
             return true;
         }
         return false;
@@ -231,41 +231,41 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        int i10 = org.telegram.ui.ActionBar.h6.f20822d6;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 16, new Class[]{org.telegram.ui.Cells.w8.class, org.telegram.ui.Cells.ca.class}, null, null, null, i10));
+        int i10 = org.telegram.ui.ActionBar.h6.f20559d6;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 16, new Class[]{org.telegram.ui.Cells.w8.class, org.telegram.ui.Cells.ca.class}, null, null, null, i10));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.fragmentView, 262145, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.fragmentView, 262145, null, null, null, null, org.telegram.ui.ActionBar.h6.f20766a7));
-        if (this.f33920x != 0) {
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1, null, null, null, null, org.telegram.ui.ActionBar.h6.f21101s8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.fragmentView, 262145, null, null, null, null, org.telegram.ui.ActionBar.h6.f20503a7));
+        if (this.f33695x != 0) {
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1, null, null, null, null, org.telegram.ui.ActionBar.h6.f20839s8));
         }
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 32768, null, null, null, null, org.telegram.ui.ActionBar.h6.f21101s8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.h6.f21156v8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 32768, null, null, null, null, org.telegram.ui.ActionBar.h6.f20839s8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.h6.f20894v8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.h6.A8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.h6.f21120t8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.h6.f20858t8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, Integer.MIN_VALUE, null, null, null, null, org.telegram.ui.ActionBar.h6.G8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1073741824, null, null, null, null, org.telegram.ui.ActionBar.h6.E8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 1073741832, null, null, null, null, org.telegram.ui.ActionBar.h6.F8));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 4096, null, null, null, null, org.telegram.ui.ActionBar.h6.f20913i6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.h6.f20944k0, null, null, org.telegram.ui.ActionBar.h6.f20823d7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 4096, null, null, null, null, org.telegram.ui.ActionBar.h6.f20650i6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.h6.f20681k0, null, null, org.telegram.ui.ActionBar.h6.f20560d7));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.d, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.D6));
         EditTextBoldCursor editTextBoldCursor = this.h;
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         arrayList.add(new org.telegram.ui.ActionBar.j6(editTextBoldCursor, 4, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h, 32, null, null, null, null, org.telegram.ui.ActionBar.h6.f20950k6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h, 65568, null, null, null, null, org.telegram.ui.ActionBar.h6.f20968l6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"textView"}, null, null, -1, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.M6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.N6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 262144, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"textView"}, null, null, -1, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 262144, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.E6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 0, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"valueTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.I6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33913c, 0, new Class[]{org.telegram.ui.Cells.e9.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.B6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h, 32, null, null, null, null, org.telegram.ui.ActionBar.h6.f20687k6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.h, 65568, null, null, null, null, org.telegram.ui.ActionBar.h6.f20705l6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"textView"}, null, null, -1, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.M6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.N6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 262144, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"textView"}, null, null, -1, null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 262144, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.E6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 0, new Class[]{org.telegram.ui.Cells.ca.class}, new String[]{"valueTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.I6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f33688c, 0, new Class[]{org.telegram.ui.Cells.e9.class}, new String[]{"textView"}, null, null, -1, null, org.telegram.ui.ActionBar.h6.B6));
         return arrayList;
     }
 
     public final boolean h0() {
-        int i10 = this.f33920x;
-        if ((i10 == 1 && this.f33921y == 0) || ((i10 == 2 || i10 == 3) && SharedConfig.passcodeType == 0)) {
+        int i10 = this.f33695x;
+        if ((i10 == 1 && this.f33696y == 0) || ((i10 == 2 || i10 == 3) && SharedConfig.passcodeType == 0)) {
             return true;
         }
         return false;
@@ -273,7 +273,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
 
     @Override
     public final boolean hasForceLightStatusBar() {
-        if (this.f33920x != 0) {
+        if (this.f33695x != 0) {
             return true;
         }
         return false;
@@ -290,52 +290,52 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
         } catch (Exception unused) {
         }
         if (h0()) {
-            for (ds dsVar : this.f33916n.f36484f) {
-                dsVar.i(1.0f);
+            for (hs hsVar : this.f33691n.f37837f) {
+                hsVar.i(1.0f);
             }
         } else {
-            this.f33915f.a(1.0f);
+            this.f33690f.a(1.0f);
         }
         if (h0()) {
-            view = this.f33916n;
+            view = this.f33691n;
         } else {
-            view = this.f33915f;
+            view = this.f33690f;
         }
         if (h0()) {
             f7 = 10.0f;
         } else {
             f7 = 4.0f;
         }
-        AndroidUtilities.shakeViewSpring(view, f7, new ml0(this, 3));
+        AndroidUtilities.shakeViewSpring(view, f7, new ol0(this, 3));
     }
 
     public final void j0() {
         String obj;
-        ds[] dsVarArr;
-        ds[] dsVarArr2;
+        hs[] hsVarArr;
+        hs[] hsVarArr2;
         if (g0() && this.h.getText().length() == 0) {
             i0();
             return;
         }
         if (h0()) {
-            obj = this.f33916n.getCode();
+            obj = this.f33691n.getCode();
         } else {
             obj = this.h.getText().toString();
         }
-        int i10 = this.f33920x;
+        int i10 = this.f33695x;
         if (i10 == 1) {
             if (!this.F.equals(obj)) {
-                AndroidUtilities.updateViewVisibilityAnimated(this.f33917r, true);
-                for (ds dsVar : this.f33916n.f36484f) {
-                    dsVar.setText("");
+                AndroidUtilities.updateViewVisibilityAnimated(this.f33692r, true);
+                for (hs hsVar : this.f33691n.f37837f) {
+                    hsVar.setText("");
                 }
                 if (h0()) {
-                    this.f33916n.f36484f[0].requestFocus();
+                    this.f33691n.f37837f[0].requestFocus();
                 }
                 this.h.setText("");
                 i0();
-                this.f33916n.removeCallbacks(this.S);
-                this.f33916n.post(new ml0(this, 0));
+                this.f33691n.removeCallbacks(this.S);
+                this.f33691n.post(new ol0(this, 0));
                 return;
             }
             boolean isEmpty = SharedConfig.passcodeHash.isEmpty();
@@ -353,36 +353,36 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
                 FileLog.e(e7);
             }
             SharedConfig.allowScreenCapture = true;
-            SharedConfig.passcodeType = this.f33921y;
+            SharedConfig.passcodeType = this.f33696y;
             SharedConfig.saveConfig();
             this.h.clearFocus();
             AndroidUtilities.hideKeyboard(this.h);
-            for (ds dsVar2 : this.f33916n.f36484f) {
-                dsVar2.clearFocus();
-                AndroidUtilities.hideKeyboard(dsVar2);
+            for (hs hsVar2 : this.f33691n.f37837f) {
+                hsVar2.clearFocus();
+                AndroidUtilities.hideKeyboard(hsVar2);
             }
             this.v.setEditText(null);
-            d0(new nl0(this, isEmpty, 0));
+            d0(new pl0(this, isEmpty, 0));
         } else if (i10 == 2 || i10 == 3) {
             long j3 = SharedConfig.passcodeRetryInMs;
             if (j3 > 0) {
                 Toast.makeText(getParentActivity(), LocaleController.formatString("TooManyTries", R.string.TooManyTries, LocaleController.formatPluralString("Seconds", Math.max(1, (int) Math.ceil(j3 / 1000.0d)), new Object[0])), 0).show();
-                for (ds dsVar3 : this.f33916n.f36484f) {
-                    dsVar3.setText("");
+                for (hs hsVar3 : this.f33691n.f37837f) {
+                    hsVar3.setText("");
                 }
                 this.h.setText("");
                 if (h0()) {
-                    this.f33916n.f36484f[0].requestFocus();
+                    this.f33691n.f37837f[0].requestFocus();
                 }
                 i0();
             } else if (!SharedConfig.checkPasscode(obj)) {
                 SharedConfig.increaseBadPasscodeTries();
                 this.h.setText("");
-                for (ds dsVar4 : this.f33916n.f36484f) {
-                    dsVar4.setText("");
+                for (hs hsVar4 : this.f33691n.f37837f) {
+                    hsVar4.setText("");
                 }
                 if (h0()) {
-                    this.f33916n.f36484f[0].requestFocus();
+                    this.f33691n.f37837f[0].requestFocus();
                 }
                 i0();
             } else {
@@ -390,15 +390,15 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
                 SharedConfig.saveConfig();
                 this.h.clearFocus();
                 AndroidUtilities.hideKeyboard(this.h);
-                for (ds dsVar5 : this.f33916n.f36484f) {
-                    dsVar5.clearFocus();
-                    AndroidUtilities.hideKeyboard(dsVar5);
+                for (hs hsVar5 : this.f33691n.f37837f) {
+                    hsVar5.clearFocus();
+                    AndroidUtilities.hideKeyboard(hsVar5);
                 }
                 this.v.setEditText(null);
                 if (i10 == 3) {
-                    d0(new ml0(this, 1));
+                    d0(new ol0(this, 1));
                 } else {
-                    d0(new ml0(this, 2));
+                    d0(new ol0(this, 2));
                 }
             }
         }
@@ -406,7 +406,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
 
     public final void k0() {
         String obj;
-        if ((this.f33921y == 1 && this.h.getText().length() == 0) || (this.f33921y == 0 && this.f33916n.getCode().length() != 4)) {
+        if ((this.f33696y == 1 && this.h.getText().length() == 0) || (this.f33696y == 0 && this.f33691n.getCode().length() != 4)) {
             i0();
             return;
         }
@@ -415,17 +415,17 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
             u0Var.setVisibility(8);
         }
         this.d.setText(LocaleController.getString(R.string.ConfirmCreatePasscode));
-        this.f33914e.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PasscodeReinstallNotice)));
+        this.f33689e.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PasscodeReinstallNotice)));
         if (h0()) {
-            obj = this.f33916n.getCode();
+            obj = this.f33691n.getCode();
         } else {
             obj = this.h.getText().toString();
         }
         this.F = obj;
         this.h.setText("");
         this.h.setInputType(524417);
-        for (ds dsVar : this.f33916n.f36484f) {
-            dsVar.setText("");
+        for (hs hsVar : this.f33691n.f37837f) {
+            hsVar.setText("");
         }
         n0();
         this.E = 1;
@@ -433,7 +433,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
 
     public final void l0(boolean z10, boolean z11) {
         float f7;
-        org.telegram.ui.Components.is isVar;
+        org.telegram.ui.Components.js jsVar;
         if (z10) {
             AndroidUtilities.hideKeyboard(this.fragmentView);
             AndroidUtilities.requestAltFocusable(getParentActivity(), this.classGuid);
@@ -444,21 +444,21 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
         float f10 = 1.0f;
         float f11 = 0.0f;
         if (!z11) {
-            org.telegram.ui.Components.ms msVar = this.v;
+            org.telegram.ui.Components.ns nsVar = this.v;
             if (!z10) {
                 i10 = 8;
             }
-            msVar.setVisibility(i10);
-            org.telegram.ui.Components.ms msVar2 = this.v;
+            nsVar.setVisibility(i10);
+            org.telegram.ui.Components.ns nsVar2 = this.v;
             if (!z10) {
                 f10 = 0.0f;
             }
-            msVar2.setAlpha(f10);
-            org.telegram.ui.Components.ms msVar3 = this.v;
+            nsVar2.setAlpha(f10);
+            org.telegram.ui.Components.ns nsVar3 = this.v;
             if (!z10) {
                 f11 = AndroidUtilities.dp(230.0f);
             }
-            msVar3.setTranslationY(f11);
+            nsVar3.setTranslationY(f11);
             this.fragmentView.requestLayout();
             return;
         }
@@ -472,25 +472,25 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(150L);
         if (z10) {
-            isVar = org.telegram.ui.Components.is.f27500f;
+            jsVar = org.telegram.ui.Components.js.f27627f;
         } else {
-            isVar = org.telegram.ui.Components.bu.f25097e;
+            jsVar = org.telegram.ui.Components.cu.f25018e;
         }
-        duration.setInterpolator(isVar);
-        duration.addUpdateListener(new b3(this, 19));
-        duration.addListener(new f70(2, this, z10));
+        duration.setInterpolator(jsVar);
+        duration.addUpdateListener(new c3(this, 19));
+        duration.addListener(new h70(2, this, z10));
         duration.start();
     }
 
     public final void m0(Runnable runnable) {
-        this.U = (yb0) runnable;
+        this.U = (ac0) runnable;
     }
 
     public final void n0() {
         if (h0()) {
-            this.f33916n.f36484f[0].requestFocus();
+            this.f33691n.f37837f[0].requestFocus();
             if (!f0()) {
-                AndroidUtilities.showKeyboard(this.f33916n.f36484f[0]);
+                AndroidUtilities.showKeyboard(this.f33691n.f37837f[0]);
             }
         } else if (g0()) {
             this.h.requestFocus();
@@ -503,52 +503,52 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
         int i10;
         boolean z10;
         int i11;
-        int i12 = this.f33920x;
+        int i12 = this.f33695x;
         if (i12 == 2) {
             charSequence = LocaleController.getString(R.string.EnterYourPasscodeInfo);
         } else if (i12 == 3) {
             charSequence = LocaleController.getString(R.string.WalletAuthorizeTransactionPasscode);
         } else if (this.E == 0) {
-            if (this.f33921y == 0) {
+            if (this.f33696y == 0) {
                 i10 = R.string.CreatePasscodeInfoPIN;
             } else {
                 i10 = R.string.CreatePasscodeInfoPassword;
             }
             charSequence = LocaleController.getString(i10);
         } else {
-            charSequence = this.f33914e.getCurrentView().getText().toString();
+            charSequence = this.f33689e.getCurrentView().getText().toString();
         }
-        if (!this.f33914e.getCurrentView().getText().equals(charSequence) && !TextUtils.isEmpty(this.f33914e.getCurrentView().getText())) {
+        if (!this.f33689e.getCurrentView().getText().equals(charSequence) && !TextUtils.isEmpty(this.f33689e.getCurrentView().getText())) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (i12 == 2) {
-            this.f33914e.a(LocaleController.getString(R.string.EnterYourPasscodeInfo), z10, false);
+            this.f33689e.a(LocaleController.getString(R.string.EnterYourPasscodeInfo), z10, false);
         } else if (i12 == 3) {
-            this.f33914e.setText(LocaleController.getString(R.string.WalletAuthorizeTransactionPasscode));
+            this.f33689e.setText(LocaleController.getString(R.string.WalletAuthorizeTransactionPasscode));
         } else if (this.E == 0) {
-            org.telegram.ui.Components.w11 w11Var = this.f33914e;
-            if (this.f33921y == 0) {
+            org.telegram.ui.Components.b21 b21Var = this.f33689e;
+            if (this.f33696y == 0) {
                 i11 = R.string.CreatePasscodeInfoPIN;
             } else {
                 i11 = R.string.CreatePasscodeInfoPassword;
             }
-            w11Var.a(LocaleController.getString(i11), z10, false);
+            b21Var.a(LocaleController.getString(i11), z10, false);
         }
         if (h0()) {
-            AndroidUtilities.updateViewVisibilityAnimated(this.f33916n, true, 1.0f, z10);
-            AndroidUtilities.updateViewVisibilityAnimated(this.f33915f, false, 1.0f, z10);
+            AndroidUtilities.updateViewVisibilityAnimated(this.f33691n, true, 1.0f, z10);
+            AndroidUtilities.updateViewVisibilityAnimated(this.f33690f, false, 1.0f, z10);
         } else if (g0()) {
-            AndroidUtilities.updateViewVisibilityAnimated(this.f33916n, false, 1.0f, z10);
-            AndroidUtilities.updateViewVisibilityAnimated(this.f33915f, true, 1.0f, z10);
+            AndroidUtilities.updateViewVisibilityAnimated(this.f33691n, false, 1.0f, z10);
+            AndroidUtilities.updateViewVisibilityAnimated(this.f33690f, true, 1.0f, z10);
         }
         if (g0()) {
-            nl0 nl0Var = new nl0(this, z10, 1);
-            this.T = nl0Var;
-            AndroidUtilities.runOnUIThread(nl0Var, 3000L);
+            pl0 pl0Var = new pl0(this, z10, 1);
+            this.T = pl0Var;
+            AndroidUtilities.runOnUIThread(pl0Var, 3000L);
         } else {
-            this.f33919w.e(false, z10);
+            this.f33694w.e(false, z10);
         }
         l0(f0(), z10);
         n0();
@@ -556,26 +556,26 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
-        ds[] dsVarArr;
+        hs[] hsVarArr;
         int i10;
         super.onConfigurationChanged(configuration);
         l0(f0(), false);
-        org.telegram.ui.Components.gk0 gk0Var = this.f33911a;
-        if (gk0Var != null) {
+        org.telegram.ui.Components.ik0 ik0Var = this.f33686a;
+        if (ik0Var != null) {
             if (!AndroidUtilities.isSmallScreen()) {
                 Point point = AndroidUtilities.displaySize;
                 if (point.x < point.y) {
                     i10 = 0;
-                    gk0Var.setVisibility(i10);
+                    ik0Var.setVisibility(i10);
                 }
             }
             i10 = 8;
-            gk0Var.setVisibility(i10);
+            ik0Var.setVisibility(i10);
         }
-        be0 be0Var = this.f33916n;
-        if (be0Var != null && (dsVarArr = be0Var.f36484f) != null) {
-            for (ds dsVar : dsVarArr) {
-                dsVar.setShowSoftInputOnFocusCompat(!f0());
+        de0 de0Var = this.f33691n;
+        if (de0Var != null && (hsVarArr = de0Var.f37837f) != null) {
+            for (hs hsVar : hsVarArr) {
+                hsVar.setShowSoftInputOnFocusCompat(!f0());
             }
         }
     }
@@ -584,7 +584,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
     public final boolean onFragmentCreate() {
         super.onFragmentCreate();
         p0();
-        if (this.f33920x == 0) {
+        if (this.f33695x == 0) {
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetPasscode);
             return true;
         }
@@ -594,7 +594,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
     @Override
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
-        if (this.f33920x == 0) {
+        if (this.f33695x == 0) {
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetPasscode);
         }
         AndroidUtilities.removeAdjustResize(getParentActivity(), this.classGuid);
@@ -609,12 +609,12 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
     @Override
     public final void onResume() {
         super.onResume();
-        rl0 rl0Var = this.f33912b;
-        if (rl0Var != null) {
-            rl0Var.l();
+        tl0 tl0Var = this.f33687b;
+        if (tl0Var != null) {
+            tl0Var.l();
         }
-        if (this.f33920x != 0 && !f0()) {
-            AndroidUtilities.runOnUIThread(new ml0(this, 6), 200L);
+        if (this.f33695x != 0 && !f0()) {
+            AndroidUtilities.runOnUIThread(new ol0(this, 6), 200L);
         }
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
         if (f0()) {
@@ -625,7 +625,7 @@ public class PasscodeActivity extends org.telegram.ui.ActionBar.m2 implements No
 
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (z10 && this.f33920x != 0) {
+        if (z10 && this.f33695x != 0) {
             n0();
         }
     }

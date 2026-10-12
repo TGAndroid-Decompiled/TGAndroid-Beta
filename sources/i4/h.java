@@ -28,9 +28,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import v7.p6;
 public abstract class h {
-    public static final Pattern f12004a = Pattern.compile("^(\\S+)\\s+-->\\s+(\\S+)((?:.|\\f)*)?$");
-    public static final Pattern f12005b = Pattern.compile("(\\S+?):(\\S+)");
-    public static final Map f12006c;
+    public static final Pattern f12003a = Pattern.compile("^(\\S+)\\s+-->\\s+(\\S+)((?:.|\\f)*)?$");
+    public static final Pattern f12004b = Pattern.compile("(\\S+?):(\\S+)");
+    public static final Map f12005c;
     public static final Map d;
 
     static {
@@ -43,7 +43,7 @@ public abstract class h {
         hashMap.put("magenta", Integer.valueOf(Color.rgb(255, 0, 255)));
         hashMap.put("blue", Integer.valueOf(Color.rgb(0, 0, 255)));
         hashMap.put("black", Integer.valueOf(Color.rgb(0, 0, 0)));
-        f12006c = DesugarCollections.unmodifiableMap(hashMap);
+        f12005c = DesugarCollections.unmodifiableMap(hashMap);
         HashMap hashMap2 = new HashMap();
         hashMap2.put("bg_white", Integer.valueOf(Color.rgb(255, 255, 255)));
         hashMap2.put("bg_lime", Integer.valueOf(Color.rgb(0, 255, 0)));
@@ -65,9 +65,9 @@ public abstract class h {
         int i12;
         int i13;
         int i14;
-        int i15 = eVar.f11991b;
+        int i15 = eVar.f11990b;
         int length = spannableStringBuilder.length();
-        String str2 = eVar.f11990a;
+        String str2 = eVar.f11989a;
         str2.getClass();
         int i16 = -1;
         switch (str2.hashCode()) {
@@ -140,7 +140,7 @@ public abstract class h {
                 break;
             case 2:
                 for (String str3 : eVar.d) {
-                    Map map = f12006c;
+                    Map map = f12005c;
                     if (map.containsKey(str3)) {
                         spannableStringBuilder.setSpan(new ForegroundColorSpan(((Integer) map.get(str3)).intValue()), i15, length, 33);
                     } else {
@@ -158,20 +158,20 @@ public abstract class h {
                 spannableStringBuilder.setSpan(new UnderlineSpan(), i15, length, 33);
                 break;
             case 5:
-                spannableStringBuilder.setSpan(new d2.i(eVar.f11992c), i15, length, 33);
+                spannableStringBuilder.setSpan(new d2.i(eVar.f11991c), i15, length, 33);
                 break;
             case 7:
                 int c13 = c(list2, str, eVar);
                 ArrayList arrayList = new ArrayList(list.size());
                 arrayList.addAll(list);
-                Collections.sort(arrayList, d.f11987c);
-                int i17 = eVar.f11991b;
+                Collections.sort(arrayList, d.f11986c);
+                int i17 = eVar.f11990b;
                 int i18 = 0;
                 int i19 = 0;
                 while (i18 < arrayList.size()) {
-                    if ("rt".equals(((d) arrayList.get(i18)).f11988a.f11990a)) {
+                    if ("rt".equals(((d) arrayList.get(i18)).f11987a.f11989a)) {
                         d dVar = (d) arrayList.get(i18);
-                        int c14 = c(list2, str, dVar.f11988a);
+                        int c14 = c(list2, str, dVar.f11987a);
                         if (c14 == i16) {
                             if (c13 != i16) {
                                 c14 = c13;
@@ -179,8 +179,8 @@ public abstract class h {
                                 c14 = 1;
                             }
                         }
-                        int i20 = dVar.f11988a.f11991b - i19;
-                        int i21 = dVar.f11989b - i19;
+                        int i20 = dVar.f11987a.f11990b - i19;
+                        int i21 = dVar.f11988b - i19;
                         CharSequence subSequence = spannableStringBuilder.subSequence(i20, i21);
                         spannableStringBuilder.delete(i20, i21);
                         spannableStringBuilder.setSpan(new d2.g(subSequence.toString(), c14), i17, i20, 33);
@@ -196,9 +196,9 @@ public abstract class h {
         }
         ArrayList b10 = b(list2, str, eVar);
         for (int i22 = 0; i22 < b10.size(); i22++) {
-            b bVar = ((f) b10.get(i22)).f11994b;
-            int i23 = bVar.f11978l;
-            if (i23 == -1 && bVar.f11979m == -1) {
+            b bVar = ((f) b10.get(i22)).f11993b;
+            int i23 = bVar.f11977l;
+            if (i23 == -1 && bVar.f11978m == -1) {
                 i10 = -1;
             } else {
                 if (i23 == 1) {
@@ -206,7 +206,7 @@ public abstract class h {
                 } else {
                     c11 = 0;
                 }
-                if (bVar.f11979m == 1) {
+                if (bVar.f11978m == 1) {
                     c12 = 2;
                 } else {
                     c12 = 0;
@@ -214,8 +214,8 @@ public abstract class h {
                 i10 = c12 | c11;
             }
             if (i10 != -1) {
-                int i24 = bVar.f11978l;
-                if (i24 == -1 && bVar.f11979m == -1) {
+                int i24 = bVar.f11977l;
+                if (i24 == -1 && bVar.f11978m == -1) {
                     i14 = -1;
                     i11 = 1;
                 } else {
@@ -225,7 +225,7 @@ public abstract class h {
                     } else {
                         i12 = 0;
                     }
-                    if (bVar.f11979m == 1) {
+                    if (bVar.f11978m == 1) {
                         i13 = 2;
                     } else {
                         i13 = 0;
@@ -236,42 +236,42 @@ public abstract class h {
             } else {
                 i11 = 1;
             }
-            if (bVar.f11976j == i11) {
+            if (bVar.f11975j == i11) {
                 spannableStringBuilder.setSpan(new StrikethroughSpan(), i15, length, 33);
             }
-            if (bVar.f11977k == i11) {
+            if (bVar.f11976k == i11) {
                 spannableStringBuilder.setSpan(new UnderlineSpan(), i15, length, 33);
             }
-            if (bVar.f11974g) {
-                if (bVar.f11974g) {
-                    p6.a(new ForegroundColorSpan(bVar.f11973f), spannableStringBuilder, i15, length);
+            if (bVar.f11973g) {
+                if (bVar.f11973g) {
+                    p6.a(new ForegroundColorSpan(bVar.f11972f), spannableStringBuilder, i15, length);
                 } else {
                     throw new IllegalStateException("Font color not defined");
                 }
             }
-            if (bVar.f11975i) {
-                if (bVar.f11975i) {
+            if (bVar.f11974i) {
+                if (bVar.f11974i) {
                     p6.a(new BackgroundColorSpan(bVar.h), spannableStringBuilder, i15, length);
                 } else {
                     throw new IllegalStateException("Background color not defined.");
                 }
             }
-            if (bVar.f11972e != null) {
-                p6.a(new TypefaceSpan(bVar.f11972e), spannableStringBuilder, i15, length);
+            if (bVar.f11971e != null) {
+                p6.a(new TypefaceSpan(bVar.f11971e), spannableStringBuilder, i15, length);
             }
-            int i25 = bVar.f11980n;
+            int i25 = bVar.f11979n;
             if (i25 != 1) {
                 if (i25 != 2) {
                     if (i25 == 3) {
-                        p6.a(new RelativeSizeSpan(bVar.f11981o / 100.0f), spannableStringBuilder, i15, length);
+                        p6.a(new RelativeSizeSpan(bVar.f11980o / 100.0f), spannableStringBuilder, i15, length);
                     }
                 } else {
-                    p6.a(new RelativeSizeSpan(bVar.f11981o), spannableStringBuilder, i15, length);
+                    p6.a(new RelativeSizeSpan(bVar.f11980o), spannableStringBuilder, i15, length);
                 }
             } else {
-                p6.a(new AbsoluteSizeSpan((int) bVar.f11981o, true), spannableStringBuilder, i15, length);
+                p6.a(new AbsoluteSizeSpan((int) bVar.f11980o, true), spannableStringBuilder, i15, length);
             }
-            if (bVar.f11983q) {
+            if (bVar.f11982q) {
                 spannableStringBuilder.setSpan(new Object(), i15, length, 33);
             }
         }
@@ -282,15 +282,15 @@ public abstract class h {
         ArrayList arrayList = new ArrayList();
         for (int i11 = 0; i11 < list.size(); i11++) {
             b bVar = (b) list.get(i11);
-            String str2 = eVar.f11990a;
+            String str2 = eVar.f11989a;
             Set set = eVar.d;
-            String str3 = eVar.f11992c;
-            if (bVar.f11969a.isEmpty() && bVar.f11970b.isEmpty() && bVar.f11971c.isEmpty() && bVar.d.isEmpty()) {
+            String str3 = eVar.f11991c;
+            if (bVar.f11968a.isEmpty() && bVar.f11969b.isEmpty() && bVar.f11970c.isEmpty() && bVar.d.isEmpty()) {
                 i10 = TextUtils.isEmpty(str2);
             } else {
-                int a2 = b.a(b.a(b.a(0, 1073741824, bVar.f11969a, str), 2, bVar.f11970b, str2), 4, bVar.d, str3);
-                if (a2 != -1 && set.containsAll(bVar.f11971c)) {
-                    i10 = a2 + (bVar.f11971c.size() * 4);
+                int a2 = b.a(b.a(b.a(0, 1073741824, bVar.f11968a, str), 2, bVar.f11969b, str2), 4, bVar.d, str3);
+                if (a2 != -1 && set.containsAll(bVar.f11970c)) {
+                    i10 = a2 + (bVar.f11970c.size() * 4);
                 } else {
                     i10 = 0;
                 }
@@ -306,7 +306,7 @@ public abstract class h {
     public static int c(List list, String str, e eVar) {
         ArrayList b10 = b(list, str, eVar);
         for (int i10 = 0; i10 < b10.size(); i10++) {
-            int i11 = ((f) b10.get(i10)).f11994b.f11982p;
+            int i11 = ((f) b10.get(i10)).f11993b.f11981p;
             if (i11 != -1) {
                 return i11;
             }
@@ -319,10 +319,10 @@ public abstract class h {
         try {
             String group = matcher.group(1);
             group.getClass();
-            gVar.f11995a = i.c(group);
+            gVar.f11994a = i.c(group);
             String group2 = matcher.group(2);
             group2.getClass();
-            gVar.f11996b = i.c(group2);
+            gVar.f11995b = i.c(group2);
             String group3 = matcher.group(3);
             group3.getClass();
             e(group3, gVar);
@@ -336,8 +336,8 @@ public abstract class h {
                 sb2.append(k10.trim());
                 k10 = vVar.k(StandardCharsets.UTF_8);
             }
-            gVar.f11997c = f(str, sb2.toString(), arrayList);
-            return new c(gVar.a().a(), gVar.f11995a, gVar.f11996b);
+            gVar.f11996c = f(str, sb2.toString(), arrayList);
+            return new c(gVar.a().a(), gVar.f11994a, gVar.f11995b);
         } catch (IllegalArgumentException unused) {
             e2.a.n("WebvttCueParser", "Skipping cue with bad header: " + matcher.group());
             return null;
@@ -400,7 +400,7 @@ public abstract class h {
                             if (!substring.trim().isEmpty()) {
                                 String trim = substring.trim();
                                 e2.d.b(!trim.isEmpty());
-                                String str4 = d0.f8531a;
+                                String str4 = d0.f8529a;
                                 String str5 = trim.split("[ \\.]", 2)[0];
                                 str5.getClass();
                                 switch (str5.hashCode()) {
@@ -482,7 +482,7 @@ public abstract class h {
                                                 } else {
                                                     arrayList.clear();
                                                 }
-                                                if (eVar.f11990a.equals(str5)) {
+                                                if (eVar.f11989a.equals(str5)) {
                                                     break;
                                                 }
                                             }
@@ -635,15 +635,15 @@ public abstract class h {
                     i10 = Integer.MIN_VALUE;
                     break;
             }
-            gVar.f12000g = i10;
+            gVar.f11999g = i10;
             str = str.substring(0, indexOf);
         }
         if (str.endsWith("%")) {
-            gVar.f11998e = i.b(str);
-            gVar.f11999f = 0;
+            gVar.f11997e = i.b(str);
+            gVar.f11998f = 0;
             return;
         }
-        gVar.f11998e = Integer.parseInt(str);
-        gVar.f11999f = 1;
+        gVar.f11997e = Integer.parseInt(str);
+        gVar.f11998f = 1;
     }
 }

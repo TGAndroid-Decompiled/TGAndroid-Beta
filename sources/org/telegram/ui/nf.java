@@ -1,78 +1,65 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class nf implements org.telegram.ui.ActionBar.z1, MessagesController.ErrorDelegate, to0 {
-    public final int f40271a;
-    public final Runnable f40272b;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+public final class nf implements Runnable {
+    public final int f40396a;
+    public final eo f40397b;
+    public final int f40398c;
 
-    public nf(int i10, Runnable runnable) {
-        this.f40271a = i10;
-        this.f40272b = runnable;
+    public nf(eo eoVar, int i10, int i11) {
+        this.f40396a = i11;
+        this.f40397b = eoVar;
+        this.f40398c = i10;
     }
 
     @Override
-    public void a(int i10) {
-        int i11 = this.f40271a;
-        Runnable runnable = this.f40272b;
-        switch (i11) {
-            case 9:
-                Pattern pattern = LaunchActivity.B1;
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                if (i10 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f40271a) {
+    public final void run() {
+        org.telegram.ui.Cells.u1 u1Var;
+        MessageObject messageObject;
+        switch (this.f40396a) {
             case 0:
-                this.f40272b.run();
+                this.f40397b.getConnectionsManager().cancelRequest(this.f40398c, true);
                 return;
             case 1:
-                this.f40272b.run();
+                this.f40397b.F(this.f40398c, 0, 0, 0, false, true);
                 return;
-            default:
-                Runnable runnable = this.f40272b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+            case 2:
+                this.f40397b.getConnectionsManager().cancelRequest(this.f40398c, true);
                 return;
-        }
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f40271a) {
             case 3:
-                this.f40272b.run();
-                return true;
+                eo eoVar = this.f40397b;
+                ak akVar = eoVar.f37478x0;
+                if (akVar != null) {
+                    int childCount = akVar.getChildCount();
+                    for (int i10 = 0; i10 < childCount; i10++) {
+                        View childAt = eoVar.f37478x0.getChildAt(i10);
+                        if ((childAt instanceof org.telegram.ui.Cells.u1) && (messageObject = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && messageObject.equals(eoVar.G3)) {
+                            u1Var.g4(this.f40398c, true, true);
+                        }
+                    }
+                }
+                eoVar.G3 = null;
+                return;
             case 4:
-                this.f40272b.run();
-                return true;
+                this.f40397b.getConnectionsManager().cancelRequest(this.f40398c, true);
+                return;
             case 5:
-                this.f40272b.run();
-                return true;
+                eo.a0(this.f40397b, this.f40398c);
+                return;
             case 6:
-                this.f40272b.run();
-                return true;
+                this.f40397b.actionBar.setSubtitle(LocaleController.formatPluralString("messages", this.f40398c, new Object[0]));
+                return;
             case 7:
-                this.f40272b.run();
-                return true;
+                this.f40397b.getConnectionsManager().cancelRequest(this.f40398c, true);
+                return;
+            case 8:
+                eo.j1(this.f40397b, this.f40398c);
+                return;
             default:
-                this.f40272b.run();
-                return true;
+                eo.f1(this.f40397b, this.f40398c);
+                return;
         }
     }
 }

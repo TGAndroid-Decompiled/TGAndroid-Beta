@@ -3,9 +3,9 @@ package u3;
 import c3.p;
 public final class e {
     public static final long[] d = {128, 64, 32, 16, 8, 4, 2, 1};
-    public final byte[] f48953a = new byte[8];
-    public int f48954b;
-    public int f48955c;
+    public final byte[] f49060a = new byte[8];
+    public int f49061b;
+    public int f49062c;
 
     public static long a(int i10, boolean z10, byte[] bArr) {
         long j3 = bArr[0] & 255;
@@ -20,8 +20,8 @@ public final class e {
 
     public final long b(p pVar, boolean z10, boolean z11, int i10) {
         int i11;
-        int i12 = this.f48954b;
-        byte[] bArr = this.f48953a;
+        int i12 = this.f49061b;
+        byte[] bArr = this.f49060a;
         if (i12 == 0) {
             if (!pVar.c(bArr, 0, 1, z10)) {
                 return -1L;
@@ -40,22 +40,22 @@ public final class e {
                     break;
                 }
             }
-            this.f48955c = i11;
+            this.f49062c = i11;
             if (i11 != -1) {
-                this.f48954b = 1;
+                this.f49061b = 1;
             } else {
                 throw new IllegalStateException("No valid varint length mask found");
             }
         }
-        int i15 = this.f48955c;
+        int i15 = this.f49062c;
         if (i15 > i10) {
-            this.f48954b = 0;
+            this.f49061b = 0;
             return -2L;
         }
         if (i15 != 1) {
             pVar.readFully(bArr, 1, i15 - 1);
         }
-        this.f48954b = 0;
-        return a(this.f48955c, z11, bArr);
+        this.f49061b = 0;
+        return a(this.f49062c, z11, bArr);
     }
 }

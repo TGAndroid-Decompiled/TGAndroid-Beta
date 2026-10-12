@@ -15,21 +15,21 @@ import y8.h0;
 import y8.i0;
 import y8.y0;
 public final class e extends com.google.android.gms.common.api.internal.e {
-    public final int f3782q = 1;
-    public final String f3783r;
-    public final byte[] f3784s;
-    public final Object f3785t;
+    public final int f3780q = 1;
+    public final String f3781r;
+    public final byte[] f3782s;
+    public final Object f3783t;
 
     public e(m mVar, byte[] bArr, String str) {
-        super(m8.c.f16339a, mVar);
-        this.f3784s = bArr;
-        this.f3783r = str;
-        this.f3785t = new g(this);
+        super(m8.c.f16025a, mVar);
+        this.f3782s = bArr;
+        this.f3781r = str;
+        this.f3783t = new g(this);
     }
 
     @Override
     public final void a(q qVar) {
-        switch (this.f3782q) {
+        switch (this.f3780q) {
             case 0:
                 a(qVar);
                 return;
@@ -41,7 +41,7 @@ public final class e extends com.google.android.gms.common.api.internal.e {
 
     @Override
     public final q d(Status status) {
-        switch (this.f3782q) {
+        switch (this.f3780q) {
             case 0:
                 return new f(status, null);
             default:
@@ -55,10 +55,10 @@ public final class e extends com.google.android.gms.common.api.internal.e {
         Parcel obtain2;
         ApplicationInfo applicationInfo;
         Bundle bundle;
-        int i10 = this.f3782q;
-        byte[] bArr = this.f3784s;
-        Object obj = this.f3785t;
-        String str = this.f3783r;
+        int i10 = this.f3780q;
+        byte[] bArr = this.f3782s;
+        Object obj = this.f3783t;
+        String str = this.f3781r;
         switch (i10) {
             case 0:
                 a aVar = (a) cVar;
@@ -80,7 +80,7 @@ public final class e extends com.google.android.gms.common.api.internal.e {
                 d dVar = (d) aVar.u();
                 obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.safetynet.internal.ISafetyNetService");
-                int i11 = c.f3780a;
+                int i11 = c.f3778a;
                 if (gVar == null) {
                     obtain.writeStrongBinder(null);
                 } else {
@@ -90,7 +90,7 @@ public final class e extends com.google.android.gms.common.api.internal.e {
                 obtain.writeString(str);
                 obtain2 = Parcel.obtain();
                 try {
-                    dVar.f3781a.transact(7, obtain, obtain2, 0);
+                    dVar.f3779a.transact(7, obtain, obtain2, 0);
                     obtain2.readException();
                     return;
                 } finally {
@@ -98,17 +98,17 @@ public final class e extends com.google.android.gms.common.api.internal.e {
             default:
                 h0 h0Var = (h0) ((y0) cVar).u();
                 ?? aVar2 = new y8.a();
-                aVar2.f51965b = this;
+                aVar2.f52068b = this;
                 obtain = Parcel.obtain();
-                obtain.writeInterfaceToken(h0Var.f337c);
-                int i12 = f8.a.f9800a;
+                obtain.writeInterfaceToken(h0Var.f339c);
+                int i12 = f8.a.f9798a;
                 obtain.writeStrongBinder(aVar2);
                 obtain.writeString(str);
                 obtain.writeString((String) obj);
                 obtain.writeByteArray(bArr);
                 obtain2 = Parcel.obtain();
                 try {
-                    h0Var.f336b.transact(12, obtain, obtain2, 0);
+                    h0Var.f338b.transact(12, obtain, obtain2, 0);
                     obtain2.readException();
                     return;
                 } finally {
@@ -117,9 +117,9 @@ public final class e extends com.google.android.gms.common.api.internal.e {
     }
 
     public e(t0 t0Var, String str, String str2, byte[] bArr) {
-        super(j.f51180a, t0Var);
-        this.f3783r = str;
-        this.f3785t = str2;
-        this.f3784s = bArr;
+        super(j.f51287a, t0Var);
+        this.f3781r = str;
+        this.f3783t = str2;
+        this.f3782s = bArr;
     }
 }

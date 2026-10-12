@@ -1,25 +1,8 @@
 package org.telegram.ui;
-public final class ce1 implements Runnable {
-    public final int f36712a;
-    public final le1 f36713b;
 
-    public ce1(le1 le1Var, int i10) {
-        this.f36712a = i10;
-        this.f36713b = le1Var;
-    }
-
+import android.content.DialogInterface;
+public final class ce1 implements DialogInterface.OnCancelListener {
     @Override
-    public final void run() {
-        switch (this.f36712a) {
-            case 0:
-                this.f36713b.c(false);
-                return;
-            case 1:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            default:
-                this.f36713b.c(false);
-                return;
-        }
+    public final void onCancel(DialogInterface dialogInterface) {
     }
 }

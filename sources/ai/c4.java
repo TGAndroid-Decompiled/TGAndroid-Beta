@@ -13,36 +13,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.a50;
-import org.telegram.ui.Components.qg;
-import org.telegram.ui.Components.t60;
-import org.telegram.ui.pn;
-public final class c4 implements qg {
-    public final f6 f755a;
+import org.telegram.ui.Components.c50;
+import org.telegram.ui.Components.sg;
+import org.telegram.ui.Components.w60;
+import org.telegram.ui.tn;
+public final class c4 implements sg {
+    public final f6 f753a;
 
     public c4(f6 f6Var) {
-        this.f755a = f6Var;
+        this.f753a = f6Var;
     }
 
     @Override
-    public final boolean C1() {
+    public final boolean D1() {
         return false;
     }
 
     @Override
-    public final void F2() {
-        this.f755a.P0();
-    }
-
-    @Override
-    public final boolean I0() {
-        return true;
-    }
-
-    @Override
-    public final void K(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
+    public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
         boolean z11;
-        f6 f6Var = this.f755a;
+        f6 f6Var = this.f753a;
         if (f6Var.G2) {
             AndroidUtilities.runOnUIThread(new j(this, j3, 1), 200L);
             return;
@@ -56,11 +46,21 @@ public final class c4 implements qg {
     }
 
     @Override
-    public final TLRPC.TL_channels_sendAsPeers P() {
+    public final boolean H0() {
+        return true;
+    }
+
+    @Override
+    public final void H2() {
+        this.f753a.P0();
+    }
+
+    @Override
+    public final TLRPC.TL_channels_sendAsPeers J() {
         d2 d2Var;
         boolean z10;
-        f6 f6Var = this.f755a;
-        if (f6Var.O1.f826f) {
+        f6 f6Var = this.f753a;
+        if (f6Var.O1.f824f) {
             kc kcVar = f6Var.J0;
             if (kcVar != null && (d2Var = kcVar.A0) != null) {
                 TLRPC.GroupCall groupCall = d2Var.v;
@@ -79,32 +79,32 @@ public final class c4 implements qg {
     }
 
     @Override
-    public final void V(float f7, int i10) {
-        t60 t60Var = this.f755a.J2;
-        if (t60Var != null) {
-            t60Var.b(f7, i10);
+    public final void K(float f7, int i10) {
+        w60 w60Var = this.f753a.J2;
+        if (w60Var != null) {
+            w60Var.b(f7, i10);
         }
     }
 
     @Override
     public final int h1() {
-        return this.f755a.getHeight();
+        return this.f753a.getHeight();
     }
 
     @Override
     public final TL_stories.StoryItem j1() {
-        return this.f755a.O1.f822a;
+        return this.f753a.O1.f820a;
     }
 
     @Override
     public final boolean l1(long j3) {
         boolean z10;
-        f6 f6Var = this.f755a;
+        f6 f6Var = this.f753a;
         d6 d6Var = f6Var.O1;
-        TL_stories.StoryItem storyItem = d6Var.f822a;
+        TL_stories.StoryItem storyItem = d6Var.f820a;
         if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
             TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
-            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) d6Var.f822a.media).call;
+            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) d6Var.f820a.media).call;
             savedefaultsendas.send_as = MessagesController.getInstance(f6Var.C2).getInputPeer(j3);
             ConnectionsManager.getInstance(f6Var.C2).sendRequest(savedefaultsendas, null);
             d2 d2Var = f6Var.J0.A0;
@@ -123,8 +123,8 @@ public final class c4 implements qg {
                 }
             }
             f6Var.r0(true);
-            f6Var.f952b2.O1(true);
-            f6Var.f952b2.I(true);
+            f6Var.f950b2.S1(true);
+            f6Var.f950b2.L(true);
             f6Var.f1(false);
         }
         return true;
@@ -137,8 +137,8 @@ public final class c4 implements qg {
 
     @Override
     public final boolean o1() {
-        t60 t60Var = this.f755a.J2;
-        if (t60Var != null && !t60Var.f31101j0) {
+        w60 w60Var = this.f753a.J2;
+        if (w60Var != null && !w60Var.f32306j0) {
             return true;
         }
         return false;
@@ -148,16 +148,16 @@ public final class c4 implements qg {
     public final void o2() {
         String str;
         int i10;
-        f6 f6Var = this.f755a;
+        f6 f6Var = this.f753a;
         if (f6Var.E1) {
             f6.h0(f6Var);
             return;
         }
         if (f6Var.W2 == null) {
-            a50 a50Var = new a50(9, f6Var.getContext(), f6Var.B0, false);
-            f6Var.W2 = a50Var;
-            a50Var.setVisibility(8);
-            f6Var.addView(f6Var.W2, w7.x5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
+            c50 c50Var = new c50(9, f6Var.getContext(), f6Var.B0, false);
+            f6Var.W2 = c50Var;
+            c50Var.setVisibility(8);
+            f6Var.addView(f6Var.W2, w7.w5.a(-2.0f, 10.0f, 0.0f, 10.0f, 0.0f, -2, 51));
         }
         if (f6Var.B1 >= 0) {
             str = UserObject.getFirstName(MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1)));
@@ -169,56 +169,56 @@ public final class c4 implements qg {
                 str = "";
             }
         }
-        a50 a50Var2 = f6Var.W2;
-        if (f6Var.f952b2.f23894c1) {
+        c50 c50Var2 = f6Var.W2;
+        if (f6Var.f950b2.f23631c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
         }
-        a50Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
-        f6Var.W2.f(f6Var.f952b2.getAudioVideoButtonContainer(), true);
+        c50Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
+        f6Var.W2.f(f6Var.f950b2.getAudioVideoButtonContainer(), true);
     }
 
     @Override
     public final void q2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
-        f6 f6Var = this.f755a;
+        f6 f6Var = this.f753a;
         boolean z11 = false;
         if (f6Var.J2 == null && CameraView.isCameraAllowed()) {
-            f6Var.J2 = new t60(f6Var.getContext(), new s4(f6Var), f6Var.B0, false);
-            f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f952b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f952b2.O1)), w7.x5.e(-1, -1, 51));
+            f6Var.J2 = new w60(f6Var.getContext(), new s4(f6Var), f6Var.B0, false);
+            f6Var.addView(f6Var.J2, Math.min(f6Var.indexOfChild(f6Var.f950b2.getRecordCircle()), f6Var.indexOfChild(f6Var.f950b2.O1)), w7.w5.e(-1, -1, 51));
         }
-        t60 t60Var = f6Var.J2;
-        if (t60Var != null) {
+        w60 w60Var = f6Var.J2;
+        if (w60Var != null) {
             if (i10 == 0) {
-                t60Var.h(false);
+                w60Var.h(false);
             } else if (i10 != 1 && i10 != 3 && i10 != 4) {
                 if (i10 == 2 || i10 == 5) {
                     if (i10 == 2) {
                         z11 = true;
                     }
-                    t60Var.a(z11);
+                    w60Var.a(z11);
                 }
             } else {
-                t60Var.f(i10, i11, i12, j3, j10, z10);
+                w60Var.f(i10, i11, i12, j3, j10, z10);
             }
         }
     }
 
     @Override
     public final void r1(CharSequence charSequence, boolean z10, boolean z11) {
-        f6 f6Var = this.f755a;
-        if (f6Var.f961d3 == null) {
-            d4 d4Var = new d4(f6Var, f6Var.getContext(), f6Var.B1, f6Var.J0.f1267f, f6Var.B0);
-            f6Var.f961d3 = d4Var;
+        f6 f6Var = this.f753a;
+        if (f6Var.f959d3 == null) {
+            d4 d4Var = new d4(f6Var, f6Var.getContext(), f6Var.B1, f6Var.J0.f1265f, f6Var.B0);
+            f6Var.f959d3 = d4Var;
             d4Var.p(new g4(f6Var));
-            f6Var.addView(f6Var.f961d3, w7.x5.e(-1, -1, 83));
+            f6Var.addView(f6Var.f959d3, w7.w5.e(-1, -1, 83));
         }
-        if (f6Var.f961d3.getAdapter() != null) {
-            f6Var.f961d3.setDialogId(f6Var.B1);
-            if (f6Var.O1.f826f) {
-                gg.j1 adapter = f6Var.f961d3.getAdapter();
-                if (adapter.f10677j0 == 0 && adapter.f10690u0 == 0 && adapter.f10689t0 == 0 && adapter.E0 == 0) {
-                    adapter.f10693w0 = null;
+        if (f6Var.f959d3.getAdapter() != null) {
+            f6Var.f959d3.setDialogId(f6Var.B1);
+            if (f6Var.O1.f824f) {
+                gg.j1 adapter = f6Var.f959d3.getAdapter();
+                if (adapter.f10676j0 == 0 && adapter.f10689u0 == 0 && adapter.f10688t0 == 0 && adapter.E0 == 0) {
+                    adapter.f10692w0 = null;
                     adapter.F = null;
                     ArrayList arrayList = adapter.A0;
                     if (arrayList != null) {
@@ -230,7 +230,7 @@ public final class c4 implements qg {
                     }
                     adapter.T = null;
                     adapter.U = null;
-                    ArrayList arrayList3 = adapter.f10694x;
+                    ArrayList arrayList3 = adapter.f10693x;
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
@@ -253,34 +253,34 @@ public final class c4 implements qg {
                     adapter.l();
                 }
             } else {
-                gg.j1 adapter2 = f6Var.f961d3.getAdapter();
+                gg.j1 adapter2 = f6Var.f959d3.getAdapter();
                 MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1));
                 TLRPC.Chat chat = MessagesController.getInstance(f6Var.C2).getChat(Long.valueOf(-f6Var.B1));
                 adapter2.getClass();
-                adapter2.f10679l0 = chat;
-                f6Var.f961d3.getAdapter().U(charSequence, f6Var.f952b2.getCursorPosition(), null, false, false);
+                adapter2.f10678l0 = chat;
+                f6Var.f959d3.getAdapter().U(charSequence, f6Var.f950b2.getCursorPosition(), null, false, false);
             }
         }
         f6Var.invalidate();
     }
 
     @Override
-    public final void t1() {
-        t60 t60Var = this.f755a.J2;
-        if (t60Var != null) {
-            t60Var.i();
-        }
+    public final tn t0() {
+        return null;
     }
 
     @Override
-    public final pn u0() {
-        return null;
+    public final void t1() {
+        w60 w60Var = this.f753a.J2;
+        if (w60Var != null) {
+            w60Var.i();
+        }
     }
 
     @Override
     public final boolean u1() {
         TLRPC.User user;
-        f6 f6Var = this.f755a;
+        f6 f6Var = this.f753a;
         if (f6Var.B1 < 0 || (user = MessagesController.getInstance(f6Var.C2).getUser(Long.valueOf(f6Var.B1))) == null || UserObject.isUserSelf(user) || user.bot) {
             return false;
         }
@@ -294,14 +294,14 @@ public final class c4 implements qg {
 
     @Override
     public final void w1() {
-        this.f755a.O0();
+        this.f753a.O0();
     }
 
     @Override
     public final TLRPC.Peer x() {
         d2 d2Var;
         boolean z10;
-        kc kcVar = this.f755a.J0;
+        kc kcVar = this.f753a.J0;
         if (kcVar != null && (d2Var = kcVar.A0) != null) {
             TLRPC.GroupCall groupCall = d2Var.v;
             if (groupCall == null) {
@@ -319,11 +319,7 @@ public final class c4 implements qg {
 
     @Override
     public final void y1() {
-        this.f755a.requestLayout();
-    }
-
-    @Override
-    public final void B1(CharSequence charSequence) {
+        this.f753a.requestLayout();
     }
 
     @Override
@@ -331,35 +327,19 @@ public final class c4 implements qg {
     }
 
     @Override
-    public final void c0(boolean z10) {
+    public final void C1(CharSequence charSequence) {
     }
 
     @Override
-    public final void g1(int i10) {
+    public final void D2() {
     }
 
     @Override
-    public final void l2(int i10) {
-    }
-
-    @Override
-    public final void p2(boolean z10) {
-    }
-
-    @Override
-    public final void z(float f7) {
-    }
-
-    @Override
-    public final void B2() {
+    public final void G() {
     }
 
     @Override
     public final void G1() {
-    }
-
-    @Override
-    public final void J() {
     }
 
     @Override
@@ -375,11 +355,19 @@ public final class c4 implements qg {
     }
 
     @Override
-    public final void Z0() {
+    public final void X() {
     }
 
     @Override
-    public final void a0() {
+    public final void Y0() {
+    }
+
+    @Override
+    public final void Z(boolean z10) {
+    }
+
+    @Override
+    public final void g1(int i10) {
     }
 
     @Override
@@ -395,7 +383,15 @@ public final class c4 implements qg {
     }
 
     @Override
-    public final void q0() {
+    public final void l2(int i10) {
+    }
+
+    @Override
+    public final void p0() {
+    }
+
+    @Override
+    public final void p2(boolean z10) {
     }
 
     @Override
@@ -411,11 +407,15 @@ public final class c4 implements qg {
     }
 
     @Override
-    public final void z0() {
+    public final void y0() {
     }
 
     @Override
-    public final void K0(int i10, int i11) {
+    public final void z(float f7) {
+    }
+
+    @Override
+    public final void J0(int i10, int i11) {
     }
 
     @Override

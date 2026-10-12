@@ -1,10 +1,8 @@
 package d6;
 public interface h {
-    void A(f fVar);
+    void C(f fVar, String str);
 
-    void D(f fVar, String str);
-
-    void F(f fVar, int i10);
+    void E(f fVar, int i10);
 
     void d(f fVar, String str);
 
@@ -12,9 +10,11 @@ public interface h {
 
     void o(f fVar, boolean z10);
 
-    void r(f fVar, int i10);
+    void s(f fVar, int i10);
 
-    void u(f fVar);
+    void t(f fVar);
 
-    void v(f fVar, int i10);
+    void u(f fVar, int i10);
+
+    void z(f fVar);
 }

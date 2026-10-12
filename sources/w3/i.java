@@ -1,177 +1,314 @@
 package w3;
 
+import android.util.Pair;
+import android.util.SparseArray;
+import b2.r0;
+import b2.s0;
+import c3.f0;
 import c3.h0;
+import e2.b0;
 import e2.d0;
 import e2.v;
-public final class i {
-    public final h0 f49899a;
-    public t d;
-    public f f49902e;
-    public int f49903f;
-    public int f49904g;
-    public int h;
-    public int f49905i;
-    public final b2.s f49906j;
-    public boolean f49909m;
-    public final s f49900b = new s();
-    public final v f49901c = new v();
-    public final v f49907k = new v(1);
-    public final v f49908l = new v();
+import e9.a1;
+import e9.g0;
+import e9.i0;
+import j$.util.DesugarCollections;
+import java.math.RoundingMode;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.UUID;
+public final class i implements c3.o {
+    public static final byte[] O = {-94, 57, 79, 82, 90, -101, 79, 20, -94, 68, 108, 66, 124, 100, -115, -12};
+    public static final b2.s P;
+    public long A;
+    public long B;
+    public h C;
+    public int D;
+    public int E;
+    public int F;
+    public boolean G;
+    public boolean H;
+    public c3.q I;
+    public h0[] J;
+    public h0[] K;
+    public boolean L;
+    public boolean M;
+    public long N;
+    public final z3.k f50016a;
+    public final int f50017b;
+    public final List f50018c;
+    public final byte[] h;
+    public final v f50022i;
+    public final b0 f50023j;
+    public final e2.c f50028o;
+    public final h0 f50029p;
+    public final xa.c f50030q;
+    public a1 f50031r;
+    public int f50032s;
+    public int f50033t;
+    public long f50034u;
+    public int v;
+    public v f50035w;
+    public long f50036x;
+    public int f50037y;
+    public long f50038z;
+    public final pf.b f50024k = new pf.b(29);
+    public final v f50025l = new v(16);
+    public final v f50019e = new v(f2.p.f9614a);
+    public final v f50020f = new v(6);
+    public final v f50021g = new v();
+    public final ArrayDeque f50026m = new ArrayDeque();
+    public final ArrayDeque f50027n = new ArrayDeque();
+    public final SparseArray d = new SparseArray();
 
-    public i(h0 h0Var, t tVar, f fVar, b2.s sVar) {
-        this.f49899a = h0Var;
-        this.d = tVar;
-        this.f49902e = fVar;
-        this.f49906j = sVar;
-        this.d = tVar;
-        this.f49902e = fVar;
-        h0Var.b(sVar);
-        e();
+    static {
+        b2.r rVar = new b2.r();
+        rVar.f3583q = r0.n("application/x-emsg");
+        P = new b2.s(rVar);
     }
 
-    public final int a() {
+    public i(z3.k kVar, int i10, b0 b0Var, List list, l2.o oVar) {
+        this.f50016a = kVar;
+        this.f50017b = i10;
+        this.f50023j = b0Var;
+        this.f50018c = DesugarCollections.unmodifiableList(list);
+        this.f50029p = oVar;
+        byte[] bArr = new byte[16];
+        this.h = bArr;
+        this.f50022i = new v(bArr);
+        g0 g0Var = i0.f8749b;
+        this.f50031r = a1.f8712e;
+        this.A = -9223372036854775807L;
+        this.f50038z = -9223372036854775807L;
+        this.B = -9223372036854775807L;
+        this.I = c3.q.f4148m;
+        this.J = new h0[0];
+        this.K = new h0[0];
+        this.f50028o = new e2.c(new f(this));
+        this.f50030q = new xa.c(7);
+        this.N = -1L;
+    }
+
+    public static b2.o d(List list) {
+        UUID uuid;
+        int size = list.size();
+        ArrayList arrayList = null;
+        for (int i10 = 0; i10 < size; i10++) {
+            f2.e eVar = (f2.e) list.get(i10);
+            if (eVar.f8878b == 1886614376) {
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                }
+                byte[] bArr = eVar.f9562c.f8581a;
+                j6.l j3 = o.j(bArr);
+                if (j3 == null) {
+                    uuid = null;
+                } else {
+                    uuid = (UUID) j3.f14059b;
+                }
+                if (uuid == null) {
+                    e2.a.n("FragmentedMp4Extractor", "Skipped pssh atom (failed to extract uuid)");
+                } else {
+                    arrayList.add(new b2.n(uuid, null, "video/mp4", bArr));
+                }
+            }
+        }
+        if (arrayList == null) {
+            return null;
+        }
+        return new b2.o(null, false, (b2.n[]) arrayList.toArray(new b2.n[0]));
+    }
+
+    public static void e(v vVar, int i10, r rVar) {
+        boolean z10;
+        vVar.J(i10 + 8);
+        int j3 = vVar.j();
+        byte[] bArr = d.f49997a;
+        if ((j3 & 1) == 0) {
+            if ((j3 & 2) != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int B = vVar.B();
+            if (B == 0) {
+                Arrays.fill(rVar.f50099l, 0, rVar.f50093e, false);
+                return;
+            }
+            int i11 = rVar.f50093e;
+            v vVar2 = rVar.f50101n;
+            if (B == i11) {
+                Arrays.fill(rVar.f50099l, 0, B, z10);
+                vVar2.G(vVar.a());
+                rVar.f50098k = true;
+                rVar.f50102o = true;
+                vVar.h(0, vVar2.f8583c, vVar2.f8581a);
+                vVar2.J(0);
+                rVar.f50102o = false;
+                return;
+            }
+            StringBuilder l4 = hg.c.l(B, "Senc sample count ", " is different from fragment sample count");
+            l4.append(rVar.f50093e);
+            throw s0.a(null, l4.toString());
+        }
+        throw s0.c("Overriding TrackEncryptionBox parameters is unsupported.");
+    }
+
+    public static Pair f(long j3, v vVar) {
+        long C;
+        long C2;
+        v vVar2 = vVar;
+        vVar2.J(8);
+        int e7 = d.e(vVar2.j());
+        vVar2.K(4);
+        long z10 = vVar2.z();
+        if (e7 == 0) {
+            C = vVar2.z();
+            C2 = vVar2.z();
+        } else {
+            C = vVar2.C();
+            C2 = vVar2.C();
+        }
+        long j10 = C2 + j3;
+        String str = d0.f8529a;
+        long X = d0.X(C, 1000000L, z10, RoundingMode.DOWN);
+        vVar2.K(2);
+        int D = vVar2.D();
+        int[] iArr = new int[D];
+        long[] jArr = new long[D];
+        long[] jArr2 = new long[D];
+        long[] jArr3 = new long[D];
+        long j11 = j10;
+        long j12 = X;
+        int i10 = 0;
+        while (i10 < D) {
+            int j13 = vVar2.j();
+            if ((Integer.MIN_VALUE & j13) == 0) {
+                long z11 = vVar2.z();
+                iArr[i10] = j13 & Integer.MAX_VALUE;
+                jArr[i10] = j11;
+                jArr3[i10] = j12;
+                C += z11;
+                long[] jArr4 = jArr2;
+                long[] jArr5 = jArr3;
+                long X2 = d0.X(C, 1000000L, z10, RoundingMode.DOWN);
+                jArr4[i10] = X2 - jArr5[i10];
+                vVar2.K(4);
+                j11 += iArr[i10];
+                i10++;
+                D = D;
+                vVar2 = vVar;
+                j12 = X2;
+                jArr2 = jArr4;
+                jArr3 = jArr5;
+            } else {
+                throw s0.a(null, "Unhandled indirect reference");
+            }
+        }
+        return Pair.create(Long.valueOf(X), new c3.j(iArr, jArr, jArr2, jArr3));
+    }
+
+    public final void a() {
+        this.f50032s = 0;
+        this.v = 0;
+    }
+
+    @Override
+    public final boolean b(c3.p pVar) {
+        a1 a1Var;
+        f0 n10 = o.n(pVar, true, false);
+        if (n10 != null) {
+            a1Var = i0.z(n10);
+        } else {
+            g0 g0Var = i0.f8749b;
+            a1Var = a1.f8712e;
+        }
+        this.f50031r = a1Var;
+        if (n10 == null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void g(c3.q qVar) {
         int i10;
-        if (!this.f49909m) {
-            i10 = this.d.f50004g[this.f49903f];
-        } else if (this.f49900b.f49991j[this.f49903f]) {
+        int i11 = this.f50017b;
+        if ((i11 & 32) == 0) {
+            qVar = new com.google.firebase.messaging.m(qVar, this.f50016a);
+        }
+        this.I = qVar;
+        a();
+        h0[] h0VarArr = new h0[2];
+        this.J = h0VarArr;
+        int i12 = 0;
+        h0 h0Var = this.f50029p;
+        if (h0Var != null) {
+            h0VarArr[0] = h0Var;
             i10 = 1;
         } else {
             i10 = 0;
         }
-        if (b() != null) {
-            return i10 | 1073741824;
+        int i13 = 100;
+        if ((i11 & 4) != 0) {
+            h0VarArr[i10] = this.I.f2(100, 5);
+            i13 = 101;
+            i10++;
         }
-        return i10;
+        h0[] h0VarArr2 = (h0[]) d0.R(i10, this.J);
+        this.J = h0VarArr2;
+        for (h0 h0Var2 : h0VarArr2) {
+            h0Var2.b(P);
+        }
+        List list = this.f50018c;
+        this.K = new h0[list.size()];
+        while (i12 < this.K.length) {
+            h0 f22 = this.I.f2(i13, 3);
+            f22.b((b2.s) list.get(i12));
+            this.K[i12] = f22;
+            i12++;
+            i13++;
+        }
     }
 
-    public final r b() {
-        if (this.f49909m) {
-            s sVar = this.f49900b;
-            f fVar = sVar.f49984a;
-            String str = d0.f8531a;
-            int i10 = fVar.f49892a;
-            r rVar = sVar.f49994m;
-            if (rVar == null) {
-                rVar = this.d.f49999a.f49979l[i10];
-            }
-            if (rVar != null && rVar.f49980a) {
-                return rVar;
-            }
-            return null;
+    @Override
+    public final void h(long j3, long j10) {
+        SparseArray sparseArray = this.d;
+        int size = sparseArray.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            ((h) sparseArray.valueAt(i10)).e();
         }
-        return null;
+        this.f50027n.clear();
+        this.f50037y = 0;
+        ((PriorityQueue) this.f50028o.f8526e).clear();
+        this.f50038z = j10;
+        this.f50026m.clear();
+        a();
     }
 
-    public final boolean c() {
-        this.f49903f++;
-        if (!this.f49909m) {
-            return false;
-        }
-        int i10 = this.f49904g + 1;
-        this.f49904g = i10;
-        int[] iArr = this.f49900b.f49989g;
-        int i11 = this.h;
-        if (i10 != iArr[i11]) {
-            return true;
-        }
-        this.h = i11 + 1;
-        this.f49904g = 0;
-        return false;
+    @Override
+    public final List i() {
+        return this.f50031r;
     }
 
-    public final int d(int i10, int i11) {
-        v vVar;
-        boolean z10;
-        boolean z11;
-        int i12;
-        r b10 = b();
-        if (b10 == null) {
-            return 0;
-        }
-        int i13 = b10.d;
-        s sVar = this.f49900b;
-        if (i13 != 0) {
-            vVar = sVar.f49995n;
-        } else {
-            byte[] bArr = b10.f49983e;
-            String str = d0.f8531a;
-            int length = bArr.length;
-            v vVar2 = this.f49908l;
-            vVar2.H(length, bArr);
-            i13 = bArr.length;
-            vVar = vVar2;
-        }
-        int i14 = this.f49903f;
-        if (sVar.f49992k && sVar.f49993l[i14]) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (!z10 && i11 == 0) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        v vVar3 = this.f49907k;
-        byte[] bArr2 = vVar3.f8583a;
-        if (z11) {
-            i12 = 128;
-        } else {
-            i12 = 0;
-        }
-        bArr2[0] = (byte) (i12 | i13);
-        vVar3.J(0);
-        h0 h0Var = this.f49899a;
-        h0Var.f(vVar3, 1, 1);
-        h0Var.f(vVar, i13, 1);
-        if (!z11) {
-            return i13 + 1;
-        }
-        v vVar4 = this.f49901c;
-        if (!z10) {
-            vVar4.G(8);
-            byte[] bArr3 = vVar4.f8583a;
-            bArr3[0] = 0;
-            bArr3[1] = 1;
-            bArr3[2] = (byte) 0;
-            bArr3[3] = (byte) (i11 & 255);
-            bArr3[4] = (byte) ((i10 >> 24) & 255);
-            bArr3[5] = (byte) ((i10 >> 16) & 255);
-            bArr3[6] = (byte) ((i10 >> 8) & 255);
-            bArr3[7] = (byte) (i10 & 255);
-            h0Var.f(vVar4, 8, 1);
-            return i13 + 9;
-        }
-        v vVar5 = sVar.f49995n;
-        int D = vVar5.D();
-        vVar5.K(-2);
-        int i15 = (D * 6) + 2;
-        if (i11 != 0) {
-            vVar4.G(i15);
-            byte[] bArr4 = vVar4.f8583a;
-            vVar5.h(0, i15, bArr4);
-            int i16 = (((bArr4[2] & 255) << 8) | (bArr4[3] & 255)) + i11;
-            bArr4[2] = (byte) ((i16 >> 8) & 255);
-            bArr4[3] = (byte) (i16 & 255);
-        } else {
-            vVar4 = vVar5;
-        }
-        h0Var.f(vVar4, i15, 1);
-        return i13 + 1 + i15;
+    public final void j(long r54) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.i.j(long):void");
     }
 
-    public final void e() {
-        s sVar = this.f49900b;
-        sVar.d = 0;
-        sVar.f49997p = 0L;
-        sVar.f49998q = false;
-        sVar.f49992k = false;
-        sVar.f49996o = false;
-        sVar.f49994m = null;
-        this.f49903f = 0;
-        this.h = 0;
-        this.f49904g = 0;
-        this.f49905i = 0;
-        this.f49909m = false;
+    @Override
+    public final int m(c3.p r33, c3.s r34) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.i.m(c3.p, c3.s):int");
+    }
+
+    @Override
+    public final c3.o c() {
+        return this;
+    }
+
+    @Override
+    public final void release() {
     }
 }

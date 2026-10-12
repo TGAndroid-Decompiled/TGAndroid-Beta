@@ -5,7 +5,7 @@ import b2.r0;
 import b2.x1;
 import java.util.NoSuchElementException;
 public final class f0 {
-    public final n4.x f111a;
+    public final n4.y f111a;
     public final a0 f112b;
     public final z f113c = new z();
     public final e2.a0 d = new e2.a0(0, (byte) 0);
@@ -17,15 +17,15 @@ public final class f0 {
     public x1 f118j;
     public long f119k;
 
-    public f0(n4.x xVar, a0 a0Var) {
-        this.f111a = xVar;
+    public f0(n4.y yVar, a0 a0Var) {
+        this.f111a = yVar;
         this.f112b = a0Var;
         ?? obj = new Object();
         int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f8568a = 0;
-        obj.f8569b = -1;
-        obj.f8570c = 0;
-        obj.f8571e = new long[highestOneBit];
+        obj.f8566a = 0;
+        obj.f8567b = -1;
+        obj.f8568c = 0;
+        obj.f8569e = new long[highestOneBit];
         obj.d = highestOneBit - 1;
         this.f115f = obj;
         this.f116g = -9223372036854775807L;
@@ -38,16 +38,16 @@ public final class f0 {
         boolean z10;
         long j11;
         b2.s sVar;
-        n4.x xVar = this.f111a;
-        f fVar = (f) xVar.f16695c;
+        n4.y yVar = this.f111a;
+        f fVar = (f) yVar.f16363c;
         while (true) {
             e2.q qVar = this.f115f;
-            int i10 = qVar.f8570c;
+            int i10 = qVar.f8568c;
             if (i10 == 0) {
                 return;
             }
             if (i10 != 0) {
-                long j12 = ((long[]) qVar.f8571e)[qVar.f8568a];
+                long j12 = ((long[]) qVar.f8569e)[qVar.f8566a];
                 Long l4 = (Long) this.f114e.i(j12);
                 a0 a0Var = this.f112b;
                 if (l4 != null && l4.longValue() != this.f119k) {
@@ -71,7 +71,7 @@ public final class f0 {
                     } else {
                         this.h = j12;
                         qVar.d();
-                        fVar.h.execute(new e(1, xVar));
+                        fVar.h.execute(new e(1, yVar));
                         j jVar = (j) fVar.f106c.remove();
                         jVar.f142c.M0(jVar.f140a, jVar.f141b);
                     }
@@ -87,11 +87,11 @@ public final class f0 {
                     if (x1Var != null && !x1Var.equals(x1.d) && !x1Var.equals(this.f118j)) {
                         this.f118j = x1Var;
                         b2.r rVar = new b2.r();
-                        rVar.f3591x = x1Var.f3690a;
-                        rVar.f3592y = x1Var.f3691b;
-                        rVar.f3585q = r0.n("video/raw");
-                        xVar.f16694b = new b2.s(rVar);
-                        fVar.h.execute(new e(xVar, x1Var));
+                        rVar.f3589x = x1Var.f3688a;
+                        rVar.f3590y = x1Var.f3689b;
+                        rVar.f3583q = r0.n("video/raw");
+                        yVar.f16362b = new b2.s(rVar);
+                        fVar.h.execute(new e(yVar, x1Var));
                     }
                     if (z10) {
                         j11 = System.nanoTime();
@@ -106,15 +106,15 @@ public final class f0 {
                     a0Var.f72l.getClass();
                     a0Var.f68g = e2.d0.P(SystemClock.elapsedRealtime());
                     if (z11 && fVar.d != null) {
-                        fVar.h.execute(new e(0, xVar));
+                        fVar.h.execute(new e(0, yVar));
                     }
-                    b2.s sVar2 = (b2.s) xVar.f16694b;
+                    b2.s sVar2 = (b2.s) yVar.f16362b;
                     if (sVar2 == null) {
                         sVar = new b2.s(new b2.r());
                     } else {
                         sVar = sVar2;
                     }
-                    fVar.f110i.a(d, j14, sVar, null);
+                    fVar.f110i.c(d, j14, sVar, null);
                     j jVar2 = (j) fVar.f106c.remove();
                     jVar2.f142c.I0(jVar2.f140a, jVar2.f141b, j14);
                 }

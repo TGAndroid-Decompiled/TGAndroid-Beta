@@ -5,16 +5,16 @@ public abstract class o8 {
     public static q9.a a(String str, String str2) {
         xa.a aVar = new xa.a(str, str2);
         b2.i0 a2 = q9.a.a(xa.a.class);
-        a2.f3338b = 1;
-        a2.f3341f = new m4.w(aVar, 18);
+        a2.f3336b = 1;
+        a2.f3339f = new m4.x(aVar, 18);
         return a2.b();
     }
 
     public static q9.a b(String str, j2.e eVar) {
         b2.i0 a2 = q9.a.a(xa.a.class);
-        a2.f3338b = 1;
+        a2.f3336b = 1;
         a2.a(q9.j.a(Context.class));
-        a2.f3341f = new q9.p(15, str, eVar);
+        a2.f3339f = new qg.x1(15, str, eVar);
         return a2.b();
     }
 }

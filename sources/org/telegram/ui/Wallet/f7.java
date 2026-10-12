@@ -2,30 +2,30 @@ package org.telegram.ui.Wallet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.zc;
 public final class f7 implements Utilities.Callback2 {
-    public final int f34986a;
-    public final n7 f34987b;
-    public final of.e f34988c;
+    public final int f34761a;
+    public final n7 f34762b;
+    public final of.e f34763c;
     public final l0 d;
 
     public f7(n7 n7Var, of.e eVar, l0 l0Var, int i10) {
-        this.f34986a = i10;
-        this.f34987b = n7Var;
-        this.f34988c = eVar;
+        this.f34761a = i10;
+        this.f34762b = n7Var;
+        this.f34763c = eVar;
         this.d = l0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f34986a) {
+        switch (this.f34761a) {
             case 0:
                 i0 i0Var = (i0) obj;
                 String str = (String) obj2;
-                this.f34988c.c(false);
-                n7 n7Var = this.f34987b;
+                this.f34763c.c(false);
+                n7 n7Var = this.f34762b;
                 if (i0Var == null) {
-                    ad a02 = ad.a0(n7Var);
+                    zc a02 = zc.a0(n7Var);
                     if (str == null) {
                         str = "NULL_ERROR";
                     }
@@ -34,41 +34,41 @@ public final class f7 implements Utilities.Callback2 {
                 }
                 r7 r7Var = new r7();
                 r7Var.h = true;
-                ArrayList arrayList = r7Var.f35550a;
+                ArrayList arrayList = r7Var.f35327a;
                 arrayList.clear();
                 if (!i0Var.e()) {
                     arrayList.addAll(i0Var.g());
                 }
                 r7Var.V();
-                r7Var.f35554f = new i(n7Var, this.d);
+                r7Var.f35331f = new s(14, n7Var, this.d);
                 n7Var.presentFragment(r7Var);
                 return;
             default:
                 g0 g0Var = (g0) obj;
                 String str2 = (String) obj2;
-                this.f34988c.c(false);
-                n7 n7Var2 = this.f34987b;
+                this.f34763c.c(false);
+                n7 n7Var2 = this.f34762b;
                 if (g0Var == null) {
-                    ad a03 = ad.a0(n7Var2);
+                    zc a03 = zc.a0(n7Var2);
                     if (str2 == null) {
                         str2 = "NULL_ERROR";
                     }
                     a03.e0(str2, false);
                     return;
-                } else if (n7Var2.f35370e) {
+                } else if (n7Var2.f35136e) {
                     g0Var.close();
                     return;
                 } else {
                     n7Var2.d.add(g0Var);
                     r7 r7Var2 = new r7();
-                    i0 i0Var2 = g0Var.f35003b;
-                    ArrayList arrayList2 = r7Var2.f35550a;
+                    i0 i0Var2 = g0Var.f34778b;
+                    ArrayList arrayList2 = r7Var2.f35327a;
                     arrayList2.clear();
                     if (!i0Var2.e()) {
                         arrayList2.addAll(i0Var2.g());
                     }
                     r7Var2.V();
-                    r7Var2.f35554f = new m(n7Var2, this.d, g0Var);
+                    r7Var2.f35331f = new l(n7Var2, this.d, g0Var);
                     n7Var2.presentFragment(r7Var2);
                     return;
                 }

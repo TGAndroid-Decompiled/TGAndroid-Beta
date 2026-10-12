@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class yc implements Runnable {
-    public final int f19934a;
-    public final boolean[] f19935b;
-    public final Runnable[] f19936c;
+    public final int f19665a;
+    public final MessagesController f19666b;
+    public final boolean f19667c;
 
-    public yc(boolean[] zArr, Runnable[] runnableArr, int i10) {
-        this.f19934a = i10;
-        this.f19935b = zArr;
-        this.f19936c = runnableArr;
+    public yc(int i10, MessagesController messagesController, boolean z10) {
+        this.f19665a = i10;
+        this.f19666b = messagesController;
+        this.f19667c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19934a) {
+        switch (this.f19665a) {
             case 0:
-                MessagesController.lambda$ensureMessagesLoaded$464(this.f19935b, this.f19936c);
+                this.f19666b.lambda$checkPromoInfo$163(this.f19667c);
                 return;
             default:
-                PasskeysController.lambda$login$12(this.f19935b, this.f19936c);
+                this.f19666b.lambda$removeFolderTemporarily$483(this.f19667c);
                 return;
         }
     }

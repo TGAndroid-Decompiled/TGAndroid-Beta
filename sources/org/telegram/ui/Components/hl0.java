@@ -1,32 +1,162 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class hl0 extends ImageReceiver {
-    public final int f27166a;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import androidx.recyclerview.widget.RecyclerView;
+public final class hl0 extends s4.t0 {
+    public boolean f26809a;
+    public boolean f26810b;
+    public ValueAnimator f26811c;
+    public ValueAnimator d;
+    public final nl0 f26812e;
 
-    public hl0(int i10, View view) {
-        super(view);
-        this.f27166a = i10;
+    public hl0(nl0 nl0Var) {
+        this.f26812e = nl0Var;
+    }
+
+    public static ValueAnimator c(float f7, float f10, q0.a aVar, Runnable runnable) {
+        ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(Math.abs(f10 - f7) * 150.0f);
+        duration.addUpdateListener(new m80(aVar, 9));
+        duration.addListener(new org.telegram.ui.r0(1, runnable));
+        duration.start();
+        return duration;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        switch (this.f27166a) {
-            case 0:
-                if (drawable instanceof dk0) {
-                    ((dk0) drawable).N(0, false, true);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z10;
+        float f7;
+        nl0 nl0Var = this.f26812e;
+        gg.i0 i0Var = nl0Var.W;
+        boolean z11 = false;
+        if (i0Var.L0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        float f10 = 0.0f;
+        if (z10 != this.f26809a) {
+            ValueAnimator valueAnimator = this.f26811c;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            float f11 = nl0Var.f28852r;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.f26811c = c(f11, f7, new q0.a(this) {
+                public final hl0 f26137b;
+
+                {
+                    this.f26137b = this;
                 }
-                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-            default:
-                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (imageBitmapByKey && (drawable instanceof dk0)) {
-                    dk0 dk0Var = (dk0) drawable;
-                    dk0Var.N(0, false, true);
-                    dk0Var.stop();
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f12 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            nl0 nl0Var2 = this.f26137b.f26812e;
+                            Paint paint = nl0Var2.h;
+                            float floatValue = f12.floatValue();
+                            nl0Var2.f28852r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            nl0Var2.invalidate();
+                            return;
+                        default:
+                            nl0 nl0Var3 = this.f26137b.f26812e;
+                            Paint paint2 = nl0Var3.f28847n;
+                            float floatValue2 = f12.floatValue();
+                            nl0Var3.f28854s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            nl0Var3.invalidate();
+                            return;
+                    }
                 }
-                return imageBitmapByKey;
+            }, new Runnable(this) {
+                public final hl0 f26451b;
+
+                {
+                    this.f26451b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f26451b.f26811c = null;
+                            return;
+                        default:
+                            this.f26451b.d = null;
+                            return;
+                    }
+                }
+            });
+            this.f26809a = z10;
+        }
+        if (i0Var.N0() != nl0Var.f28821a0.h() - 1) {
+            z11 = true;
+        }
+        if (z11 != this.f26810b) {
+            ValueAnimator valueAnimator2 = this.d;
+            if (valueAnimator2 != null) {
+                valueAnimator2.cancel();
+            }
+            float f12 = nl0Var.f28854s;
+            if (z11) {
+                f10 = 1.0f;
+            }
+            this.d = c(f12, f10, new q0.a(this) {
+                public final hl0 f26137b;
+
+                {
+                    this.f26137b = this;
+                }
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f122 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            nl0 nl0Var2 = this.f26137b.f26812e;
+                            Paint paint = nl0Var2.h;
+                            float floatValue = f122.floatValue();
+                            nl0Var2.f28852r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            nl0Var2.invalidate();
+                            return;
+                        default:
+                            nl0 nl0Var3 = this.f26137b.f26812e;
+                            Paint paint2 = nl0Var3.f28847n;
+                            float floatValue2 = f122.floatValue();
+                            nl0Var3.f28854s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            nl0Var3.invalidate();
+                            return;
+                    }
+                }
+            }, new Runnable(this) {
+                public final hl0 f26451b;
+
+                {
+                    this.f26451b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f26451b.f26811c = null;
+                            return;
+                        default:
+                            this.f26451b.d = null;
+                            return;
+                    }
+                }
+            });
+            this.f26810b = z11;
         }
     }
 }

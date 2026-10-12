@@ -1,14 +1,14 @@
 package lg;
 public interface e {
-    void I0();
-
     void K();
 
-    void K0(float f7);
+    boolean X();
 
-    void a0();
+    void m0();
 
-    boolean i0();
+    void n0(float f7);
 
     boolean q();
+
+    void z();
 }

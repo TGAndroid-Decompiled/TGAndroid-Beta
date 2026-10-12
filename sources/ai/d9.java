@@ -3,21 +3,21 @@ package ai;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.i40;
-import org.telegram.ui.Components.pz0;
+import org.telegram.ui.Components.k40;
+import org.telegram.ui.Components.uz0;
 public final class d9 implements Runnable {
-    public final int f834a;
-    public final int f835b;
-    public final Object f836c;
+    public final int f832a;
+    public final int f833b;
+    public final Object f834c;
     public final Object d;
-    public final Object f837e;
+    public final Object f835e;
 
     public d9(int i10, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback) {
-        this.f834a = 1;
-        this.f835b = i10;
-        this.f836c = arrayList;
+        this.f832a = 1;
+        this.f833b = i10;
+        this.f834c = arrayList;
         this.d = hashMap;
-        this.f837e = callback;
+        this.f835e = callback;
     }
 
     @Override
@@ -26,42 +26,42 @@ public final class d9 implements Runnable {
     }
 
     public d9(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f834a = i11;
+        this.f832a = i11;
         this.d = obj;
-        this.f835b = i10;
-        this.f836c = obj2;
-        this.f837e = obj3;
+        this.f833b = i10;
+        this.f834c = obj2;
+        this.f835e = obj3;
     }
 
     public d9(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f834a = i11;
+        this.f832a = i11;
         this.d = obj;
-        this.f836c = obj2;
-        this.f835b = i10;
-        this.f837e = obj3;
+        this.f834c = obj2;
+        this.f833b = i10;
+        this.f835e = obj3;
     }
 
     public d9(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f834a = i11;
+        this.f832a = i11;
         this.d = obj;
-        this.f836c = obj2;
-        this.f837e = obj3;
-        this.f835b = i10;
+        this.f834c = obj2;
+        this.f835e = obj3;
+        this.f833b = i10;
     }
 
-    public d9(i40 i40Var, String str, int i10, ArrayList arrayList) {
-        this.f834a = 20;
-        this.d = i40Var;
-        this.f837e = str;
-        this.f835b = i10;
-        this.f836c = arrayList;
+    public d9(k40 k40Var, String str, int i10, ArrayList arrayList) {
+        this.f832a = 20;
+        this.d = k40Var;
+        this.f835e = str;
+        this.f833b = i10;
+        this.f834c = arrayList;
     }
 
-    public d9(pz0 pz0Var, int i10, String str, ArrayList arrayList) {
-        this.f834a = 29;
-        this.d = pz0Var;
-        this.f835b = i10;
-        this.f837e = str;
-        this.f836c = arrayList;
+    public d9(uz0 uz0Var, int i10, String str, ArrayList arrayList) {
+        this.f832a = 29;
+        this.d = uz0Var;
+        this.f833b = i10;
+        this.f835e = str;
+        this.f834c = arrayList;
     }
 }

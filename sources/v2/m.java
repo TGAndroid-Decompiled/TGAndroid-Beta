@@ -20,27 +20,27 @@ public final class m extends a {
     @Override
     public final void a() {
         z0[] z0VarArr;
-        b0 b0Var = this.f49177r;
-        n7.z0 z0Var = this.f49153x;
+        b0 b0Var = this.f49284r;
+        n7.z0 z0Var = this.f49260x;
         e2.d.h(z0Var);
-        for (z0 z0Var2 : (z0[]) z0Var.f16906c) {
+        for (z0 z0Var2 : (z0[]) z0Var.f16573c) {
             if (z0Var2.F != 0) {
                 z0Var2.F = 0L;
-                z0Var2.f48886z = true;
+                z0Var2.f48993z = true;
             }
         }
-        h0 D = z0Var.D(this.E);
-        D.b(this.F);
+        h0 w10 = z0Var.w(this.E);
+        w10.b(this.F);
         try {
-            long open = b0Var.open(this.f49172b.b(this.G));
+            long open = b0Var.open(this.f49279b.b(this.G));
             if (open != -1) {
                 open += this.G;
             }
-            c3.l lVar = new c3.l(this.f49177r, this.G, open);
-            for (int i10 = 0; i10 != -1; i10 = D.a(lVar, Integer.MAX_VALUE, true)) {
+            c3.l lVar = new c3.l(this.f49284r, this.G, open);
+            for (int i10 = 0; i10 != -1; i10 = w10.a(lVar, Integer.MAX_VALUE, true)) {
                 this.G += i10;
             }
-            D.c(this.h, 1, (int) this.G, 0, null);
+            w10.c(this.h, 1, (int) this.G, 0, null);
             k7.a(b0Var);
             this.H = true;
         } catch (Throwable th2) {
@@ -55,6 +55,6 @@ public final class m extends a {
     }
 
     @Override
-    public final void v() {
+    public final void C() {
     }
 }

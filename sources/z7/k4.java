@@ -1,22 +1,22 @@
 package z7;
 public final class k4 implements ia.d {
-    public static final k4 f54066a = new Object();
-    public static final ia.c f54067b = new ia.c("maxMs", hg.c.m(sc.v.o(w.class, new s(1))));
-    public static final ia.c f54068c = new ia.c("minMs", hg.c.m(sc.v.o(w.class, new s(2))));
-    public static final ia.c d = new ia.c("avgMs", hg.c.m(sc.v.o(w.class, new s(3))));
-    public static final ia.c f54069e = new ia.c("firstQuartileMs", hg.c.m(sc.v.o(w.class, new s(4))));
-    public static final ia.c f54070f = new ia.c("medianMs", hg.c.m(sc.v.o(w.class, new s(5))));
-    public static final ia.c f54071g = new ia.c("thirdQuartileMs", hg.c.m(sc.v.o(w.class, new s(6))));
+    public static final k4 f54169a = new Object();
+    public static final ia.c f54170b = new ia.c("maxMs", hg.c.o(sc.v.o(w.class, new s(1))));
+    public static final ia.c f54171c = new ia.c("minMs", hg.c.o(sc.v.o(w.class, new s(2))));
+    public static final ia.c d = new ia.c("avgMs", hg.c.o(sc.v.o(w.class, new s(3))));
+    public static final ia.c f54172e = new ia.c("firstQuartileMs", hg.c.o(sc.v.o(w.class, new s(4))));
+    public static final ia.c f54173f = new ia.c("medianMs", hg.c.o(sc.v.o(w.class, new s(5))));
+    public static final ia.c f54174g = new ia.c("thirdQuartileMs", hg.c.o(sc.v.o(w.class, new s(6))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         ma maVar = (ma) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f54067b, maVar.f54099a);
-        eVar.a(f54068c, maVar.f54100b);
-        eVar.a(d, maVar.f54101c);
-        eVar.a(f54069e, maVar.d);
-        eVar.a(f54070f, maVar.f54102e);
-        eVar.a(f54071g, maVar.f54103f);
+        eVar.a(f54170b, maVar.f54202a);
+        eVar.a(f54171c, maVar.f54203b);
+        eVar.a(d, maVar.f54204c);
+        eVar.a(f54172e, maVar.d);
+        eVar.a(f54173f, maVar.f54205e);
+        eVar.a(f54174g, maVar.f54206f);
     }
 }

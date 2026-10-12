@@ -2,19 +2,19 @@ package i2;
 
 import b2.x1;
 public final class b0 implements e2.m {
-    public final int f11612a = 0;
-    public final x1 f11613b;
+    public final int f11611a = 0;
+    public final x1 f11612b;
 
     @Override
     public final void invoke(Object obj) {
-        switch (this.f11612a) {
+        switch (this.f11611a) {
             case 0:
-                ((b2.z0) obj).onVideoSizeChanged(this.f11613b);
+                ((b2.z0) obj).onVideoSizeChanged(this.f11612b);
                 return;
             default:
-                x1 x1Var = this.f11613b;
+                x1 x1Var = this.f11612b;
                 ((j2.b) obj).d(x1Var);
-                int i10 = x1Var.f3690a;
+                int i10 = x1Var.f3688a;
                 return;
         }
     }

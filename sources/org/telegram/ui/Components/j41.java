@@ -1,55 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-import org.telegram.messenger.R;
-public final class j41 extends Drawable {
-    public final dk0 f27604a;
-    public int f27605b;
-    public final TextPaint f27606c;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+public final class j41 implements Runnable {
+    public final int f27361a;
+    public final MessageObject f27362b;
+    public final long f27363c;
+    public final String d;
 
-    public j41(TextPaint textPaint) {
-        i.f fVar = new i.f(this, 5);
-        this.f27606c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        dk0 dk0Var = new dk0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f27604a = dk0Var;
-        dk0Var.setCallback(fVar);
-        dk0Var.K(1);
-        dk0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        dk0Var.J(true);
-        dk0Var.start();
+    public j41(String str, MessageObject messageObject, long j3, int i10) {
+        this.f27361a = i10;
+        this.f27362b = messageObject;
+        this.f27363c = j3;
+        this.d = str;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f27606c.getColor();
-        int i10 = this.f27605b;
-        dk0 dk0Var = this.f27604a;
-        if (color != i10) {
-            dk0Var.Z = true;
-            dk0Var.Q(color, "Comp 1");
-            dk0Var.o();
-            dk0Var.J(true);
-            dk0Var.V(0L);
-            this.f27605b = color;
+    public final void run() {
+        int i10 = this.f27361a;
+        String str = this.d;
+        long j3 = this.f27363c;
+        MessageObject messageObject = this.f27362b;
+        switch (i10) {
+            case 0:
+                NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
+                int i11 = NotificationCenter.voiceTranscriptionUpdate;
+                Long valueOf = Long.valueOf(j3);
+                Boolean bool = Boolean.TRUE;
+                notificationCenter.lambda$postNotificationNameOnUIThread$1(i11, messageObject, valueOf, str, bool, bool);
+                return;
+            default:
+                o41.g(messageObject, j3, str);
+                return;
         }
-        dk0Var.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,31 +1,22 @@
 package org.telegram.ui;
 
-import android.widget.Toast;
-import java.util.List;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class xc implements ResultCallback {
-    public final int f44072a;
-    public final yc f44073b;
+import android.content.Context;
+import android.widget.TextView;
+public final class xc extends aq0 {
+    public final yc F;
 
-    public xc(yc ycVar, int i10) {
-        this.f44073b = ycVar;
-        this.f44072a = i10;
+    public xc(yc ycVar, Context context, int i10, long j3, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(i10, j3, context, c6Var);
+        this.F = ycVar;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        NotificationCenter.getInstance(this.f44072a).doOnIdle(new org.telegram.ui.ActionBar.a6(20, this, (List) obj));
-    }
-
-    @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.l.a(this, th2);
-    }
-
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f44073b.getContext(), tL_error.text, 0).show();
+    public final void b(int i10, boolean z10) {
+        super.b(i10, z10);
+        yc ycVar = this.F;
+        TextView textView = ycVar.d;
+        if (textView != null) {
+            textView.setTextColor(ycVar.f44445b.h.getTextColor());
+        }
     }
 }

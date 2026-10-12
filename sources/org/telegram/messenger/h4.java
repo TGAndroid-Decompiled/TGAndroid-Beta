@@ -1,25 +1,36 @@
 package org.telegram.messenger;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-public final class h4 implements OnCompleteListener {
-    public final int f18051a;
-    public final q0.a f18052b;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
+public final class h4 implements Utilities.Callback {
+    public final int f17747a = 0;
+    public final long f17748b;
+    public final BaseController f17749c;
+    public final Object d;
 
-    public h4(q0.a aVar, int i10) {
-        this.f18051a = i10;
-        this.f18052b = aVar;
+    public h4(GiftAuctionController giftAuctionController, long j3, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
+        this.f17749c = giftAuctionController;
+        this.f17748b = j3;
+        this.d = tL_StarGiftAuctionState;
     }
 
     @Override
-    public void onComplete(Task task) {
-        switch (this.f18051a) {
+    public final void run(Object obj) {
+        switch (this.f17747a) {
             case 0:
-                GoogleLocationProvider.b(this.f18052b, task);
+                ((GiftAuctionController) this.f17749c).lambda$subscribeToGiftAuctionStateInternal$0(this.f17748b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
                 return;
             default:
-                GoogleLocationProvider.c(this.f18052b, task);
+                ((TranslateController) this.f17749c).lambda$checkTranslation$4((MessageObject) this.d, this.f17748b, (TLRPC.TL_textWithEntities) obj);
                 return;
         }
+    }
+
+    public h4(TranslateController translateController, MessageObject messageObject, long j3) {
+        this.f17749c = translateController;
+        this.d = messageObject;
+        this.f17748b = j3;
     }
 }

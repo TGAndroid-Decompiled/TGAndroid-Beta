@@ -1,129 +1,88 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.R;
-public final class pa extends FrameLayout {
-    public final org.telegram.ui.Components.ea0 f40835a;
-    public final org.telegram.ui.Cells.y1 f40836b;
-    public Integer f40837c;
-    public ValueAnimator d;
-    public final qa f40838e;
+import org.telegram.tgnet.TLRPC;
+public final class pa extends s4.w {
+    public final ua d;
 
-    public pa(qa qaVar, Activity activity) {
-        super(activity);
-        int i10;
-        this.f40838e = qaVar;
-        qaVar.F = this;
-        setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(17.0f));
-        setClipChildren(false);
-        org.telegram.ui.Components.ea0 ea0Var = new org.telegram.ui.Components.ea0(activity, null);
-        this.f40835a = ea0Var;
-        ea0Var.setTextSize(1, 15.0f);
-        int i11 = org.telegram.ui.ActionBar.h6.F6;
-        ea0Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        ea0Var.setGravity(i10);
-        int i12 = org.telegram.ui.ActionBar.h6.J6;
-        ea0Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
-        int i13 = org.telegram.ui.ActionBar.h6.K6;
-        ea0Var.setHighlightColor(org.telegram.ui.ActionBar.h6.x0(null, i13, false));
-        ea0Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-        org.telegram.ui.Cells.y1 y1Var = new org.telegram.ui.Cells.y1(this, activity, 2);
-        qaVar.G = y1Var;
-        this.f40836b = y1Var;
-        y1Var.setTextSize(1, 15.0f);
-        y1Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
-        y1Var.setGravity(LocaleController.isRTL ? 5 : 3);
-        y1Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
-        y1Var.setHighlightColor(org.telegram.ui.ActionBar.h6.x0(null, i13, false));
-        y1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-        addView(ea0Var, w7.x5.e(-1, -2, 48));
-        addView(y1Var, w7.x5.e(-1, -2, 48));
-        if (qaVar.f41121x != 0) {
-            String string = LocaleController.getString(R.string.BotUsernameHelp);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-            int indexOf = string.indexOf(42);
-            int lastIndexOf = string.lastIndexOf(42);
-            if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
-                spannableStringBuilder.setSpan(new org.telegram.ui.Components.u61("https://fragment.com", (org.telegram.ui.Components.u11) null), indexOf, lastIndexOf - 1, 33);
-            }
-            ea0Var.setText(spannableStringBuilder);
-            return;
-        }
-        org.telegram.ui.Cells.c1.o(R.string.UsernameHelp, ea0Var);
-    }
-
-    public static void a(final pa paVar) {
-        int intValue;
-        int i10;
-        float f7;
-        org.telegram.ui.Components.ea0 ea0Var = paVar.f40835a;
-        org.telegram.ui.Cells.y1 y1Var = paVar.f40836b;
-        if (y1Var.getVisibility() == 0) {
-            y1Var.measure(View.MeasureSpec.makeMeasureSpec((paVar.getMeasuredWidth() - paVar.getPaddingLeft()) - paVar.getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
-        }
-        ValueAnimator valueAnimator = paVar.d;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        Integer num = paVar.f40837c;
-        if (num == null) {
-            intValue = paVar.getMeasuredHeight();
-        } else {
-            intValue = num.intValue();
-        }
-        final int i11 = intValue;
-        int height = ea0Var.getHeight() + AndroidUtilities.dp(27.0f);
-        if (y1Var.getVisibility() == 0 && !TextUtils.isEmpty(y1Var.getText())) {
-            i10 = AndroidUtilities.dp(8.0f) + y1Var.getMeasuredHeight();
-        } else {
-            i10 = 0;
-        }
-        final int i12 = height + i10;
-        final float translationY = ea0Var.getTranslationY();
-        if (y1Var.getVisibility() == 0 && !TextUtils.isEmpty(y1Var.getText())) {
-            f7 = AndroidUtilities.dp(8.0f) + y1Var.getMeasuredHeight();
-        } else {
-            f7 = 0.0f;
-        }
-        final float f10 = f7;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        paVar.d = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                pa paVar2 = pa.this;
-                paVar2.getClass();
-                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                paVar2.f40835a.setTranslationY(AndroidUtilities.lerp(translationY, f10, floatValue));
-                paVar2.f40837c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
-                paVar2.requestLayout();
-            }
-        });
-        paVar.d.setDuration(200L);
-        paVar.d.setInterpolator(org.telegram.ui.Components.is.h);
-        paVar.d.start();
+    public pa(ua uaVar) {
+        this.d = uaVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        Integer num = this.f40837c;
-        if (num != null) {
-            i11 = View.MeasureSpec.makeMeasureSpec(num.intValue(), 1073741824);
+    public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
+        super.a(recyclerView, d1Var);
+        View view = d1Var.f47889a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
+        if (d1Var.f47893f == 4 && ((ra) d1Var.f47889a).G) {
+            return s4.w.l(3, 0);
         }
-        super.onMeasure(i10, i11);
+        return s4.w.l(0, 0);
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
+        if (d1Var.f47893f == d1Var2.f47893f) {
+            View view = d1Var2.f47889a;
+            if (!(view instanceof ra) || ((ra) view).G) {
+                la laVar = this.d.f42432c;
+                int b10 = d1Var.b();
+                int b11 = d1Var2.b();
+                int i10 = b10 - 4;
+                int i11 = b11 - 4;
+                ua uaVar = laVar.f39678c;
+                ArrayList arrayList = uaVar.v;
+                if (i10 < arrayList.size() && i11 < arrayList.size()) {
+                    if (b10 != b11) {
+                        uaVar.d = true;
+                    }
+                    arrayList.set(i10, (TLRPC.TL_username) arrayList.get(i11));
+                    arrayList.set(i11, (TLRPC.TL_username) arrayList.get(i10));
+                    laVar.p(b10, b11);
+                    int size = arrayList.size() + 3;
+                    if (b10 == size || b11 == size) {
+                        laVar.n(b10, 3);
+                        laVar.n(b11, 3);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void p(s4.d1 d1Var, int i10) {
+        Boolean bool;
+        ua uaVar = this.d;
+        if (i10 == 0) {
+            ua.Y(uaVar);
+        } else {
+            uaVar.f42431b.I0(false);
+            d1Var.f47889a.setPressed(true);
+        }
+        if (d1Var != null) {
+            View view = d1Var.f47889a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
+        }
+    }
+
+    @Override
+    public final void q(s4.d1 d1Var) {
     }
 }

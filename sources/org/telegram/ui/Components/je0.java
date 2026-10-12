@@ -1,41 +1,195 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.widget.TextView;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-public final class je0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27720a;
-    public final te0 f27721b;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.MessagesController;
+public final class je0 implements ImageReceiver.ImageReceiverDelegate, r0.n, pw0, qw0, org.telegram.ui.ActionBar.z1, GenericProvider, LanguageDetector.ExceptionCallback, ud0 {
+    public final int f27488a;
 
-    public je0(te0 te0Var, int i10) {
-        this.f27720a = i10;
-        this.f27721b = te0Var;
+    public je0(int i10) {
+        this.f27488a = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27720a) {
-            case 0:
-                te0 te0Var = this.f27721b;
-                te0Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                te0Var.T = floatValue;
-                te0Var.g(floatValue);
-                te0Var.setAlpha(te0Var.T);
+    public r0.k1 M0(View view, r0.k1 k1Var) {
+        return r0.k1.f46991b;
+    }
+
+    @Override
+    public void b(Object obj, float f7) {
+        switch (this.f27488a) {
+            case 3:
+                jh0 jh0Var = (jh0) obj;
+                WindowManager.LayoutParams layoutParams = jh0Var.f27508c;
+                jh0Var.K = f7;
+                layoutParams.x = (int) f7;
+                try {
+                    AndroidUtilities.updateViewLayout(jh0Var.f27506b, jh0Var.d, layoutParams);
+                    return;
+                } catch (IllegalArgumentException unused) {
+                    jh0Var.M.c();
+                    return;
+                }
+            case 5:
+                jh0 jh0Var2 = (jh0) obj;
+                WindowManager.LayoutParams layoutParams2 = jh0Var2.f27508c;
+                jh0Var2.L = f7;
+                layoutParams2.y = (int) f7;
+                try {
+                    AndroidUtilities.updateViewLayout(jh0Var2.f27506b, jh0Var2.d, layoutParams2);
+                    return;
+                } catch (IllegalArgumentException unused2) {
+                    jh0Var2.N.c();
+                    return;
+                }
+            case 10:
+                hq0 hq0Var = (hq0) obj;
+                hq0Var.f26886n = f7;
+                hq0Var.invalidate();
+                return;
+            case 21:
+                org.telegram.ui.Components.voip.k1 k1Var = (org.telegram.ui.Components.voip.k1) obj;
+                WindowManager.LayoutParams layoutParams3 = k1Var.f31761c;
+                k1Var.Q = f7;
+                layoutParams3.x = (int) f7;
+                AndroidUtilities.updateViewLayout(k1Var.f31760b, k1Var.d, layoutParams3);
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                te0 te0Var2 = this.f27721b;
-                ai.x5 x5Var = te0Var2.f31227e;
-                x5Var.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
-                x5Var.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, floatValue2));
-                x5Var.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
-                TextView textView = te0Var2.f31232w;
-                textView.setScaleX(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
-                textView.setScaleY(AndroidUtilities.lerp(1.0f, 0.9f, floatValue2));
-                textView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, floatValue2));
-                te0Var2.f31231s.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, floatValue2));
+                org.telegram.ui.Components.voip.k1 k1Var2 = (org.telegram.ui.Components.voip.k1) obj;
+                WindowManager.LayoutParams layoutParams4 = k1Var2.f31761c;
+                k1Var2.R = f7;
+                layoutParams4.y = (int) f7;
+                AndroidUtilities.updateViewLayout(k1Var2.f31760b, k1Var2.d, layoutParams4);
                 return;
         }
+    }
+
+    @Override
+    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        fk0 lottieAnimation;
+        switch (this.f27488a) {
+            case 0:
+                if (z10 && !z11 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
+                    lottieAnimation.start();
+                    return;
+                }
+                return;
+            default:
+                if (imageReceiver.canInvertBitmap()) {
+                    imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        int i11 = this.f27488a;
+        org.telegram.messenger.l5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public String e(int i10) {
+        switch (this.f27488a) {
+            case 28:
+                return String.format("%02d", Integer.valueOf(i10));
+            default:
+                return String.format("%02d", Integer.valueOf(i10));
+        }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f27488a) {
+            case 7:
+                a2Var.dismiss();
+                return;
+            case 8:
+                a2Var.dismiss();
+                return;
+            case 9:
+            case 10:
+            case 11:
+            case 17:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            default:
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutFSILockscreen", true).commit();
+                return;
+            case 12:
+                a2Var.dismiss();
+                return;
+            case 13:
+                a2Var.dismiss();
+                return;
+            case 14:
+                a2Var.dismiss();
+                return;
+            case 15:
+                int i11 = dz0.f25476u0;
+                return;
+            case 16:
+                a2Var.dismiss();
+                return;
+            case 18:
+                a2Var.dismiss();
+                return;
+            case 24:
+                a2Var.dismiss();
+                return;
+            case 25:
+                return;
+            case 26:
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
+                return;
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        switch (this.f27488a) {
+            case 2:
+                return ((jh0) obj).K;
+            case 4:
+                return ((jh0) obj).L;
+            case 9:
+                return ((hq0) obj).f26886n;
+            case 20:
+                return ((org.telegram.ui.Components.voip.k1) obj).Q;
+            default:
+                return ((org.telegram.ui.Components.voip.k1) obj).R;
+        }
+    }
+
+    @Override
+    public void onAnimationReady(ImageReceiver imageReceiver) {
+        int i10 = this.f27488a;
+        org.telegram.messenger.l5.b(this, imageReceiver);
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        Integer num = (Integer) obj;
+        int i10 = sr0.f30629a1;
+        return 0;
+    }
+
+    @Override
+    public void run(Exception exc) {
+        FileLog.e(exc);
+    }
+
+    private final void a(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
     }
 }

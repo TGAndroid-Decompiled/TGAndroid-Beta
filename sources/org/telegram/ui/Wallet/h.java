@@ -4,40 +4,41 @@ import android.text.TextUtils;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.w31;
 public final class h implements Utilities.Callback2 {
-    public final int f35039a;
-    public final l0 f35040b;
+    public final int f34814a;
+    public final l0 f34815b;
 
     public h(l0 l0Var, int i10) {
-        this.f35039a = i10;
-        this.f35040b = l0Var;
+        this.f34814a = i10;
+        this.f34815b = l0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String str;
         String str2;
-        switch (this.f35039a) {
+        switch (this.f34814a) {
             case 0:
-                l0 l0Var = this.f35040b;
+                l0 l0Var = this.f34815b;
                 TL_wallet.existingBalance existingbalance = (TL_wallet.existingBalance) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                l0Var.f35240y = -1;
+                l0Var.f35015y = -1;
                 if (existingbalance != null) {
-                    l0Var.f35225i = Boolean.valueOf(existingbalance.has_balance);
-                    l0Var.f35226j = existingbalance.url;
+                    l0Var.f35000i = Boolean.valueOf(existingbalance.has_balance);
+                    l0Var.f35001j = existingbalance.url;
                 }
-                Boolean bool = l0Var.f35225i;
-                if (bool != null && bool.booleanValue() && !TextUtils.isEmpty(l0Var.f35226j)) {
+                Boolean bool = l0Var.f35000i;
+                if (bool != null && bool.booleanValue() && !TextUtils.isEmpty(l0Var.f35001j)) {
                     l0Var.I();
                     return;
                 }
                 return;
             case 1:
-                l0 l0Var2 = this.f35040b;
+                l0 l0Var2 = this.f34815b;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                l0Var2.f35238w = -1;
+                l0Var2.f35013w = -1;
                 if (walletState == null) {
                     StringBuilder sb2 = new StringBuilder("requesting gasless info: ");
                     if (tL_error2 != null) {
@@ -51,31 +52,31 @@ public final class h implements Utilities.Callback2 {
                 }
                 long currentTimeMillis = System.currentTimeMillis();
                 if (walletState instanceof TL_wallet.TL_walletState) {
-                    TL_wallet.WalletState walletState2 = l0Var2.f35222e;
-                    if ((walletState2 instanceof TL_wallet.TL_walletState) && l0Var2.f35228l) {
+                    TL_wallet.WalletState walletState2 = l0Var2.f34997e;
+                    if ((walletState2 instanceof TL_wallet.TL_walletState) && l0Var2.f35003l) {
                         TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) walletState2;
                         TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) walletState;
-                        if (currentTimeMillis - l0Var2.f35227k < 30000) {
+                        if (currentTimeMillis - l0Var2.f35002k < 30000) {
                             tL_walletState2.balance = tL_walletState.balance;
                         } else {
-                            l0Var2.f35228l = false;
+                            l0Var2.f35003l = false;
                         }
-                        l0Var2.f35222e = walletState;
+                        l0Var2.f34997e = walletState;
                         l0Var2.K();
                         l0Var2.I();
                         return;
                     }
                 }
-                l0Var2.f35228l = false;
-                l0Var2.f35222e = walletState;
+                l0Var2.f35003l = false;
+                l0Var2.f34997e = walletState;
                 l0Var2.K();
                 l0Var2.I();
                 return;
             default:
-                l0 l0Var3 = this.f35040b;
+                l0 l0Var3 = this.f34815b;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                l0Var3.f35239x = -1;
+                l0Var3.f35014x = -1;
                 if (updates == null) {
                     StringBuilder sb3 = new StringBuilder("requesting gasless info: ");
                     if (tL_error3 != null) {
@@ -87,7 +88,7 @@ public final class h implements Utilities.Callback2 {
                     l0.i(sb3.toString());
                     return;
                 }
-                Utilities.stageQueue.postRunnable(new i(0, l0Var3, updates));
+                Utilities.stageQueue.postRunnable(new w31(28, l0Var3, updates));
                 return;
         }
     }

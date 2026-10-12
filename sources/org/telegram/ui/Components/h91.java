@@ -1,49 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class h91 implements gm0, hm0 {
-    public final o91 f27001a;
+public final class h91 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f26704a;
+    public final u91 f26705b;
 
-    public h91(o91 o91Var) {
-        this.f27001a = o91Var;
+    public h91(u91 u91Var, int i10) {
+        this.f26704a = i10;
+        this.f26705b = u91Var;
     }
 
     @Override
-    public boolean Y0(View view) {
-        return false;
-    }
-
-    @Override
-    public void c(float f7, float f10, int i10, View view) {
-        o91 o91Var = this.f27001a;
-        n91 n91Var = o91Var.f29457y;
-        if (n91Var != null) {
-            p91 p91Var = (p91) ((m2.t) n91Var).f16033b;
-            if (p91Var.f29804x || p91Var.H) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f26704a) {
+            case 0:
+                u91 u91Var = this.f26705b;
+                u91Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View[] viewArr = u91Var.f31114e;
+                View view = viewArr[1];
+                if (view != null) {
+                    if (u91Var.f31121y) {
+                        u91Var.E(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
+                        View view2 = viewArr[0];
+                        u91Var.E(view2, (-view2.getMeasuredWidth()) * floatValue);
+                    } else {
+                        u91Var.E(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
+                        View view3 = viewArr[0];
+                        u91Var.E(view3, view3.getMeasuredWidth() * floatValue);
+                    }
+                    u91Var.f31113c = floatValue;
+                    u91Var.w(true);
+                    j91 j91Var = u91Var.M;
+                    if (j91Var != null) {
+                        j91Var.v.invalidate();
+                        u91Var.M.v.f1();
+                        u91Var.M.invalidate();
+                        return;
+                    }
+                    return;
+                }
                 return;
-            }
-        }
-        m91 m91Var = (m91) view;
-        if (i10 != o91Var.F || n91Var == null) {
-            Utilities.Callback2Return callback2Return = o91Var.f29446l0;
-            if (callback2Return != null && ((Boolean) callback2Return.run(Integer.valueOf(m91Var.f28808a.f28314a), Integer.valueOf(i10))).booleanValue()) {
+            case 1:
+                u91 u91Var2 = this.f26705b;
+                u91Var2.getClass();
+                u91Var2.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
-            }
-            o91Var.d(m91Var.f28808a.f28314a, i10);
+            case 2:
+                u91 u91Var3 = this.f26705b;
+                u91Var3.N.onAnimationUpdate(valueAnimator);
+                u91Var3.M.f30800a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u91Var3.M.v.f1();
+                u91Var3.M.invalidate();
+                return;
+            default:
+                u91 u91Var4 = this.f26705b;
+                u91Var4.getClass();
+                u91Var4.R = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
         }
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        Utilities.Callback2Return callback2Return = this.f27001a.f29432b;
-        if (callback2Return == null) {
-            return false;
-        }
-        return ((Boolean) callback2Return.run(Integer.valueOf(((m91) view).f28808a.f28314a), view)).booleanValue();
-    }
-
-    @Override
-    public void n0(View view, float f7, float f10) {
     }
 }

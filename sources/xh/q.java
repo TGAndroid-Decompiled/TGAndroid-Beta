@@ -1,21 +1,21 @@
 package xh;
 public final class q implements Runnable {
-    public final int f51580a;
-    public final x f51581b;
+    public final int f51683a;
+    public final x f51684b;
 
     public q(x xVar, int i10) {
-        this.f51580a = i10;
-        this.f51581b = xVar;
+        this.f51683a = i10;
+        this.f51684b = xVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f51580a) {
+        switch (this.f51683a) {
             case 0:
-                this.f51581b.onBackPressed();
+                this.f51684b.onBackPressed();
                 return;
             default:
-                this.f51581b.U();
+                this.f51684b.U();
                 return;
         }
     }

@@ -1,86 +1,97 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
-public class bd {
-    public View f24975a;
-    public final float f24976b;
-    public final float f24977c;
-    public final float d;
-    public long f24978e;
-    public Runnable f24979f;
-    public ValueAnimator f24980g;
-    public final float h;
-    public boolean f24981i;
-    public float f24982j;
+import android.content.Context;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+public class bd extends ia0 {
+    public final Path L;
+    public final RectF M;
+    public cd N;
+    public cd O;
 
-    public bd(View view) {
-        this(view, 1.0f, 5.0f);
+    public bd(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, c6Var);
+        this.L = new Path();
+        this.M = new RectF();
     }
 
-    public final float a(float f7) {
-        return com.google.android.gms.internal.vision.e2.y(1.0f, this.f24982j, f7, 1.0f - f7) * this.h;
-    }
-
-    public void b() {
-        View view = this.f24975a;
-        if (view != null) {
-            view.invalidate();
-        }
-        Runnable runnable = this.f24979f;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public final void c(boolean z10) {
-        float f7;
-        if (this.f24981i != z10) {
-            this.f24981i = z10;
-            ValueAnimator valueAnimator = this.f24980g;
-            this.f24980g = null;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f10 = this.f24982j;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f24980g = ofFloat;
-            ofFloat.addUpdateListener(new m6(this, 7));
-            this.f24980g.addListener(new ea(1, this, z10));
-            if (this.f24981i) {
-                this.f24980g.setInterpolator(is.f27500f);
-                this.f24980g.setDuration(this.f24976b * 60.0f);
-                this.f24980g.setStartDelay(0L);
-            } else {
-                this.f24980g.setInterpolator(new OvershootInterpolator(this.d));
-                this.f24980g.setDuration(this.f24977c * 350.0f);
-                this.f24980g.setStartDelay(this.f24978e);
-            }
-            this.f24980g.start();
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.O != null && getMeasuredWidth() > 0) {
+            SpannableString spannableString = new SpannableString(" btn");
+            spannableString.setSpan(this.O, 1, spannableString.length(), 33);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.ellipsize(getText(), getPaint(), (((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - this.O.a()) - AndroidUtilities.dp(4.0f), TextUtils.TruncateAt.END));
+            spannableStringBuilder.append((CharSequence) spannableString);
+            setText(spannableStringBuilder);
+            this.O = null;
         }
     }
 
-    public bd(View view, float f7, float f10) {
-        this.f24978e = 0L;
-        this.h = 1.0f;
-        this.f24975a = view;
-        this.f24977c = f7;
-        this.f24976b = f7;
-        this.d = f10;
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        Layout layout;
+        cd cdVar;
+        Runnable runnable;
+        cd cdVar2;
+        int action = motionEvent.getAction();
+        float x10 = motionEvent.getX() - getPaddingLeft();
+        int y3 = ((int) motionEvent.getY()) - getPaddingTop();
+        if ((getText() instanceof Spanned) && (layout = getLayout()) != null && y3 >= 0 && y3 < layout.getHeight()) {
+            int lineForVertical = layout.getLineForVertical(y3);
+            Spanned spanned = (Spanned) getText();
+            cd[] cdVarArr = (cd[]) spanned.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), cd.class);
+            for (int i10 = 0; i10 < cdVarArr.length; i10++) {
+                cdVar = cdVarArr[i10];
+                int spanStart = spanned.getSpanStart(cdVar);
+                int spanEnd = spanned.getSpanEnd(cdVar);
+                Path path = this.L;
+                layout.getSelectionPath(spanStart, spanEnd, path);
+                RectF rectF = this.M;
+                path.computeBounds(rectF, true);
+                if (rectF.contains(x10, y3)) {
+                    break;
+                }
+            }
+        }
+        cdVar = null;
+        if (action == 0) {
+            this.N = cdVar;
+            if (cdVar != null) {
+                cdVar.c(this, true);
+                return true;
+            }
+        } else if (action != 1 && action != 3) {
+            if (action == 2 && (cdVar2 = this.N) != null && cdVar2 != cdVar) {
+                cdVar2.c(this, false);
+                this.N = null;
+            }
+        } else {
+            cd cdVar3 = this.N;
+            if (cdVar3 != null) {
+                cdVar3.c(this, false);
+                if (action == 1 && (runnable = this.N.d) != null) {
+                    runnable.run();
+                }
+            }
+            this.N = null;
+        }
+        if (this.N == null && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 
-    public bd(ci.o6 o6Var) {
-        this.f24978e = 0L;
-        this.h = 1.0f;
-        this.f24975a = o6Var;
-        this.f24976b = 1.5f;
-        this.f24977c = 1.0f;
-        this.d = 2.0f;
+    public bd(Context context) {
+        super(context, null);
+        this.L = new Path();
+        this.M = new RectF();
     }
 }

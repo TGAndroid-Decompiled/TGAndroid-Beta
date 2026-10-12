@@ -8,13 +8,13 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.jh;
-import org.telegram.ui.Components.wi;
-public final class i4 implements wi {
-    public final f6 f1135a;
+import org.telegram.ui.Components.lh;
+import org.telegram.ui.Components.yi;
+public final class i4 implements yi {
+    public final f6 f1133a;
 
     public i4(f6 f6Var) {
-        this.f1135a = f6Var;
+        this.f1133a = f6Var;
     }
 
     @Override
@@ -27,9 +27,9 @@ public final class i4 implements wi {
         boolean z17;
         String str;
         String str2;
-        f6 f6Var = this.f1135a;
-        if (f6Var.J0.m0 && (storyItem = f6Var.O1.f822a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f33301j0.getSelectedPhotos().isEmpty())) {
+        f6 f6Var = this.f1133a;
+        if (f6Var.J0.m0 && (storyItem = f6Var.O1.f820a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || f6Var.I2.f24354j0.getSelectedPhotos().isEmpty())) {
                 h4 h4Var = f6Var.I2;
                 if (h4Var != null) {
                     h4Var.dismissWithButtonClick(i10);
@@ -41,8 +41,8 @@ public final class i4 implements wi {
             if (i10 != 8) {
                 f6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = f6Var.I2.f33301j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f33301j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = f6Var.I2.f24354j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = f6Var.I2.f24354j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -102,7 +102,7 @@ public final class i4 implements wi {
                         z16 = true;
                         z17 = 1;
                     }
-                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, null, null, storyItem, null, z17, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, f6Var.f952b2.getSendMonoForumPeerId(), f6Var.f952b2.getSendMessageSuggestionParams());
+                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, null, null, storyItem, null, z17, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, f6Var.f950b2.getSendMonoForumPeerId(), f6Var.f950b2.getSendMessageSuggestionParams());
                     i14++;
                     z18 = true;
                     selectedPhotos = hashMap;
@@ -111,7 +111,7 @@ public final class i4 implements wi {
                 }
                 boolean z20 = z18;
                 int i19 = i13;
-                f6Var.f952b2.setFieldText("");
+                f6Var.f950b2.setFieldText("");
                 if (j10 <= 0) {
                     z14 = z20;
                 } else {
@@ -124,7 +124,7 @@ public final class i4 implements wi {
 
     @Override
     public final void P0() {
-        this.f1135a.f952b2.N();
+        this.f1133a.f950b2.Q();
     }
 
     @Override
@@ -137,8 +137,8 @@ public final class i4 implements wi {
         AccountInstance accountInstance;
         CharSequence charSequence2;
         boolean z12;
-        f6 f6Var = this.f1135a;
-        TL_stories.StoryItem storyItem = f6Var.O1.f822a;
+        f6 f6Var = this.f1133a;
+        TL_stories.StoryItem storyItem = f6Var.O1.f820a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = f6Var.getAccountInstance();
             if (charSequence != null) {
@@ -157,24 +157,24 @@ public final class i4 implements wi {
     }
 
     @Override
-    public final void f0(jh jhVar) {
-        NotificationCenter.getInstance(this.f1135a.C2).doOnIdle(jhVar);
+    public final void d0(lh lhVar) {
+        NotificationCenter.getInstance(this.f1133a.C2).doOnIdle(lhVar);
     }
 
     @Override
-    public final boolean i0() {
-        return this.f1135a.N0();
+    public final boolean g0() {
+        return this.f1133a.N0();
     }
 
     @Override
-    public final void a1(Object obj) {
+    public final void A0() {
+    }
+
+    @Override
+    public final void Z0(Object obj) {
     }
 
     @Override
     public final void p1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void B0() {
     }
 }

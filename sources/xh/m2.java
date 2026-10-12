@@ -1,15 +1,46 @@
 package xh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.s5;
-public final class m2 extends s5 {
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.zc;
+public final class m2 extends yh.s3 {
+    public final int f51607s1;
+    public final Object f51608t1;
+
+    public m2(n2 n2Var, Context context, int i10, long j3, c6 c6Var, int i11) {
+        super(context, i10, j3, c6Var, null);
+        this.f51607s1 = i11;
+        this.f51608t1 = n2Var;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+    public int getBottomInset() {
+        switch (this.f51607s1) {
+            case 3:
+                return ((yh.s3) this.f51608t1).getBottomInset();
+            default:
+                return super.getBottomInset();
+        }
+    }
+
+    @Override
+    public zc getBulletinFactory() {
+        switch (this.f51607s1) {
+            case 0:
+                return zc.a0(((n2) this.f51608t1).f51622a.f51721a);
+            case 1:
+                return zc.a0(((n2) this.f51608t1).f51622a.f51721a);
+            case 2:
+                return zc.a0(((n2) this.f51608t1).f51622a.f51721a);
+            default:
+                return super.getBulletinFactory();
+        }
+    }
+
+    public m2(yh.s3 s3Var, Context context, int i10, long j3, c6 c6Var, View view) {
+        super(context, i10, j3, c6Var, view);
+        this.f51607s1 = 3;
+        this.f51608t1 = s3Var;
     }
 }

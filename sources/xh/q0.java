@@ -1,79 +1,51 @@
 package xh;
 
-import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.db;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.zn;
-public final class q0 implements Runnable {
-    public final int f51582a;
-    public final long f51583b;
-    public final Object f51584c;
-    public final Object d;
+import org.telegram.ui.Components.h71;
+public final class q0 implements Utilities.Callback {
+    public final int f51685a;
+    public final q1 f51686b;
 
-    public q0(Object obj, long j3, Object obj2, int i10) {
-        this.f51582a = i10;
-        this.f51584c = obj;
-        this.f51583b = j3;
-        this.d = obj2;
+    public q0(q1 q1Var, int i10) {
+        this.f51685a = i10;
+        this.f51686b = q1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f51582a) {
+    public final void run(Object obj) {
+        switch (this.f51685a) {
             case 0:
-                r1 r1Var = (r1) this.f51584c;
-                Utilities.Callback callback = (Utilities.Callback) this.d;
-                r1Var.getClass();
-                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                if (U != null) {
-                    r1Var.dismiss();
-                    if (callback != null) {
-                        callback.run(Boolean.FALSE);
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", this.f51583b);
-                    bundle.putBoolean("open_gifts", true);
-                    U.presentFragment(new ProfileActivity(bundle, null));
+                int intValue = ((Integer) obj).intValue();
+                q1 q1Var = this.f51686b;
+                if (q1Var.f51705s0 != intValue) {
+                    q1Var.f51705s0 = intValue;
+                    q1Var.f51698k0.g();
+                    q1Var.Y.N(true);
                     return;
                 }
-                return;
-            case 1:
-                yh.s3 s3Var = (yh.s3) this.f51584c;
-                Runnable runnable = (Runnable) this.d;
-                s3Var.r2((int) this.f51583b, s3Var.getContext(), true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 2:
-                yh.s3 s3Var2 = (yh.s3) this.f51584c;
-                s3Var2.getClass();
-                ((of.e) this.d).b();
-                s3Var2.r2((int) this.f51583b, s3Var2.getContext(), true);
                 return;
             default:
-                TL_stories.Boost boost = (TL_stories.Boost) this.d;
-                org.telegram.ui.ActionBar.e3 e3Var = ((org.telegram.ui.ActionBar.e3[]) this.f51584c)[0];
-                if (e3Var != null) {
-                    e3Var.dismiss();
-                }
-                org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    U2.presentFragment(zn.V9(boost.giveaway_msg_id, this.f51583b));
+                List list = (List) obj;
+                q1 q1Var2 = this.f51686b;
+                if (q1Var2.getContext() != null && q1Var2.isShown()) {
+                    ArrayList b10 = tg.r.b(1, list);
+                    q1Var2.Z = b10;
+                    List c10 = tg.r.c(b10);
+                    q1Var2.Z = c10;
+                    if (!((ArrayList) c10).isEmpty()) {
+                        q1Var2.X();
+                        h71 h71Var = q1Var2.Y;
+                        if (h71Var != null) {
+                            h71Var.N(true);
+                            return;
+                        }
+                        return;
+                    }
                     return;
                 }
                 return;
         }
-    }
-
-    public q0(db dbVar, Object obj, long j3, int i10) {
-        this.f51582a = i10;
-        this.f51584c = dbVar;
-        this.d = obj;
-        this.f51583b = j3;
     }
 }

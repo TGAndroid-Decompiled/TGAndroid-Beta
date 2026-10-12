@@ -8,29 +8,29 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class z3 implements Utilities.Callback {
-    public final Utilities.Callback f21747a;
-    public final TLRPC.WallPaper f21748b;
-    public final int f21749c;
+    public final Utilities.Callback f21485a;
+    public final TLRPC.WallPaper f21486b;
+    public final int f21487c;
     public final int d;
-    public final long f21750e;
+    public final long f21488e;
 
     public z3(Utilities.Callback callback, TLRPC.WallPaper wallPaper, int i10, int i11, long j3) {
-        this.f21747a = callback;
-        this.f21748b = wallPaper;
-        this.f21749c = i10;
+        this.f21485a = callback;
+        this.f21486b = wallPaper;
+        this.f21487c = i10;
         this.d = i11;
-        this.f21750e = j3;
+        this.f21488e = j3;
     }
 
     @Override
     public final void run(Object obj) {
         dg.a aVar = (dg.a) obj;
-        Utilities.Callback callback = this.f21747a;
+        Utilities.Callback callback = this.f21485a;
         if (aVar != null) {
             callback.run(aVar);
             return;
         }
-        TLRPC.WallPaper wallPaper = this.f21748b;
+        TLRPC.WallPaper wallPaper = this.f21486b;
         ImageLocation forDocument = ImageLocation.getForDocument(wallPaper.document);
         ImageReceiver imageReceiver = new ImageReceiver();
         imageReceiver.setAllowLoadingOnAttachedOnly(false);
@@ -39,7 +39,7 @@ public final class z3 implements Utilities.Callback {
         Point point2 = AndroidUtilities.displaySize;
         int max = Math.max(point2.x, point2.y);
         imageReceiver.setImage(forDocument, (min / AndroidUtilities.density) + "_" + (max / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
-        imageReceiver.setDelegate(new org.telegram.tgnet.g(this.f21749c, this.d, this.f21750e, callback));
+        imageReceiver.setDelegate(new org.telegram.tgnet.g(this.f21487c, this.d, this.f21488e, callback));
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 }

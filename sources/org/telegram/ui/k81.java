@@ -1,24 +1,36 @@
 package org.telegram.ui;
-public final class k81 implements Runnable {
-    public final int f39267a;
-    public final SessionsActivity f39268b;
-    public final boolean f39269c;
 
-    public k81(SessionsActivity sessionsActivity, boolean z10, int i10) {
-        this.f39267a = i10;
-        this.f39268b = sessionsActivity;
-        this.f39269c = z10;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class k81 extends org.telegram.ui.ActionBar.e3 {
+    public static final int f39374e = 0;
+    public TLRPC.TL_authorization f39375b;
+    public SessionsActivity f39376c;
+    public org.telegram.ui.Components.ik0 d;
+
+    public static void o(k81 k81Var, String str) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k81Var.getContext());
+        alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new lg.j(12, k81Var, str));
+        alertDialog$Builder.o();
+    }
+
+    public static void p(k81 k81Var) {
+        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
+        TLRPC.TL_authorization tL_authorization = k81Var.f39375b;
+        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
+        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
+        changeauthorizationsettings.flags = 3;
+        changeauthorizationsettings.hash = tL_authorization.hash;
+        ConnectionsManager.getInstance(k81Var.currentAccount).sendRequest(changeauthorizationsettings, new ai.v7(21));
     }
 
     @Override
-    public final void run() {
-        switch (this.f39267a) {
-            case 0:
-                this.f39268b.k0(this.f39269c);
-                return;
-            default:
-                this.f39268b.k0(this.f39269c);
-                return;
-        }
+    public final void show() {
+        super.show();
+        this.d.d();
     }
 }

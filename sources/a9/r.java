@@ -1,22 +1,9 @@
 package a9;
 public final class r implements q, ie.a {
-    public final Object f377a;
-
-    public r(Object obj) {
-        this.f377a = obj;
-    }
+    public final Object f379a;
 
     @Override
     public Object a() {
-        return this.f377a;
-    }
-
-    public Object b() {
-        if (n7.a.f16818b == null) {
-            n7.a.f16818b = new Exception();
-        }
-        synchronized (n7.a.f16817a) {
-        }
-        throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
+        return this.f379a;
     }
 }

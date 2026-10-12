@@ -1,18 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class dn extends AnimatorListenerAdapter {
-    public final en f25847a;
+import android.animation.ValueAnimator;
+public final class dn implements ValueAnimator.AnimatorUpdateListener {
+    public final int f25417a;
+    public final in f25418b;
 
-    public dn(en enVar) {
-        this.f25847a = enVar;
+    public dn(in inVar, int i10) {
+        this.f25417a = i10;
+        this.f25418b = inVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        en enVar = this.f25847a;
-        enVar.f26120b.isChatPreviewSpoilerRevealed = true;
-        enVar.O.f26512z.invalidate();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f25417a) {
+            case 0:
+                in inVar = this.f25418b;
+                inVar.getClass();
+                inVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                inVar.invalidate();
+                return;
+            default:
+                in inVar2 = this.f25418b;
+                inVar2.getClass();
+                inVar2.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                inVar2.invalidate();
+                return;
+        }
     }
 }

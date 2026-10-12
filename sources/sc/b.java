@@ -2,22 +2,22 @@ package sc;
 
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.r21;
+import org.telegram.ui.Components.w21;
 import org.telegram.ui.Wallet.a1;
 import org.telegram.ui.Wallet.z0;
 public final class b extends a0 {
-    public final int f48016b;
+    public final int f48123b;
 
     public b(String str, u uVar, int i10, int i11) {
         super(str, uVar, i10);
-        this.f48016b = i11;
+        this.f48123b = i11;
     }
 
     @Override
     public final void a() {
-        switch (this.f48016b) {
+        switch (this.f48123b) {
             case 0:
-                u uVar = this.f48015a;
+                u uVar = this.f48122a;
                 try {
                     uVar.b();
                     return;
@@ -33,10 +33,10 @@ public final class b extends a0 {
                         z0 z0Var = (z0) obj;
                         try {
                             try {
-                                u uVar2 = (u) mVar.f7951b;
-                                a1 a1Var = z0Var.f35801c;
-                                int i11 = z0Var.f35799a;
-                                AndroidUtilities.runOnUIThread(new r21(a1Var, uVar2, i11, "connect error: " + a1.a(e7), 14));
+                                u uVar2 = (u) mVar.f7948b;
+                                a1 a1Var = z0Var.f35577c;
+                                int i11 = z0Var.f35575a;
+                                AndroidUtilities.runOnUIThread(new w21(a1Var, uVar2, i11, "connect error: " + a1.a(e7), 14));
                             } catch (Throwable unused) {
                             }
                         } catch (Throwable unused2) {
@@ -46,7 +46,7 @@ public final class b extends a0 {
                     return;
                 }
             default:
-                this.f48015a.d();
+                this.f48122a.d();
                 return;
         }
     }

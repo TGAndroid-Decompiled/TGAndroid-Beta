@@ -1,7 +1,8 @@
 package p4;
 
-import android.content.BroadcastReceiver;
-public abstract class e0 extends BroadcastReceiver {
-    public static final int f45418a = 0;
-    public static final int f45419b = 0;
+import android.media.MediaRouter;
+public abstract class e0 {
+    public static MediaRouter.VolumeCallback a(c0 c0Var) {
+        return new d0(c0Var);
+    }
 }

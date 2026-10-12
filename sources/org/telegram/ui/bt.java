@@ -1,35 +1,40 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-public final class bt implements Runnable {
-    public final int f36488a;
-    public final qt f36489b;
+import android.content.Context;
+public final class bt extends gg.e {
+    public final ContactsActivity L;
 
-    public bt(qt qtVar, int i10) {
-        this.f36488a = i10;
-        this.f36489b = qtVar;
+    public bt(ContactsActivity contactsActivity, Context context, int i10, boolean z10, a0.i iVar, int i11) {
+        super(context, i10, z10, iVar, i11);
+        this.L = contactsActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36488a) {
-            case 0:
-                this.f36489b.f41269c0 = null;
-                return;
-            case 1:
-                qt qtVar = this.f36489b;
-                qtVar.A.setImageBitmap((Bitmap) null);
-                org.telegram.ui.Components.he0 he0Var = qtVar.C;
-                if (he0Var != null) {
-                    he0Var.a();
-                    qtVar.f41291z.removeView(qtVar.C);
-                    qtVar.C = null;
-                    return;
+    public final int R() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bt.R():int");
+    }
+
+    @Override
+    public final void l() {
+        boolean z10 = false;
+        X(false);
+        ContactsActivity contactsActivity = this.L;
+        org.telegram.ui.Components.wm0 wm0Var = contactsActivity.f33537f;
+        if (wm0Var != null && wm0Var.getAdapter() == this) {
+            int h = h();
+            if (contactsActivity.H) {
+                org.telegram.ui.Components.wm0 wm0Var2 = contactsActivity.f33537f;
+                if (h != 2) {
+                    z10 = true;
                 }
+                wm0Var2.setFastScrollVisible(z10);
                 return;
-            default:
-                this.f36489b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.is.h).start();
-                return;
+            }
+            org.telegram.ui.Components.wm0 wm0Var3 = contactsActivity.f33537f;
+            if (h != 0) {
+                z10 = true;
+            }
+            wm0Var3.setFastScrollVisible(z10);
         }
     }
 }

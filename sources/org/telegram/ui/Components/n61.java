@@ -1,53 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class n61 extends MetricAffectingSpan {
-    public Typeface f29056a;
-    public int f29057b;
-    public int f29058c;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public abstract class n61 {
+    public String[] f28747a = new String[0];
 
-    public n61(Typeface typeface) {
-        this.f29058c = -1;
-        this.f29056a = typeface;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10 = this.f29058c;
-        if (i10 >= 0) {
-            this.f29057b = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        }
-        Typeface typeface = this.f29056a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        int i11 = this.f29057b;
-        if (i11 != 0) {
-            textPaint.setColor(i11);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
+    public String[] b() {
+        return this.f28747a;
     }
 
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.f29056a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
+    public boolean c() {
+        return false;
     }
 
-    public n61() {
-        Typeface typeface = Typeface.DEFAULT;
-        this.f29058c = -1;
-        this.f29056a = typeface;
+    public boolean d(g61 g61Var, MotionEvent motionEvent) {
+        return false;
     }
 
-    public n61(Typeface typeface, int i10) {
-        this.f29058c = -1;
-        this.f29056a = typeface;
-        this.f29057b = i10;
+    public boolean e(g61 g61Var, j jVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f28747a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
     }
 }

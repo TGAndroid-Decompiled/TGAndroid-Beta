@@ -1,21 +1,19 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class v30 extends s4.j {
-    public final g60 F;
+import org.telegram.ui.Components.UndoView;
+public final class v30 extends UndoView {
+    public final i60 f42662f0;
 
-    public v30(g60 g60Var) {
-        this.F = g60Var;
+    public v30(i60 i60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f42662f0 = i60Var;
     }
 
     @Override
-    public final void P(s4.d1 d1Var) {
-        ViewGroup viewGroup;
-        g60 g60Var = this.F;
-        g60Var.Q.invalidate();
-        g60Var.a2.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.e3) g60Var).containerView;
-        viewGroup.invalidate();
-        g60.K0(g60Var);
+    public final void k(long j3, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
+        if (this.f42662f0.f38782z0 != null) {
+            return;
+        }
+        super.k(j3, i10, obj, obj2, runnable, runnable2);
     }
 }

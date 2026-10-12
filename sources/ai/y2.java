@@ -12,43 +12,43 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.js;
 public final class y2 extends View {
     public float E;
     public final int[] F;
     public final float G;
-    public final x2 f1934a;
-    public final RectF f1935b;
-    public final Path f1936c;
+    public final x2 f1932a;
+    public final RectF f1933b;
+    public final Path f1934c;
     public final yh.b8 d;
-    public final org.telegram.ui.Components.g6 f1937e;
-    public final org.telegram.ui.Components.g6 f1938f;
+    public final org.telegram.ui.Components.g6 f1935e;
+    public final org.telegram.ui.Components.g6 f1936f;
     public final org.telegram.ui.Components.q6 h;
-    public final Paint f1939n;
-    public final Paint f1940r;
-    public final Drawable f1941s;
+    public final Paint f1937n;
+    public final Paint f1938r;
+    public final Drawable f1939s;
     public final ah.l v;
-    public int f1942w;
-    public boolean f1943x;
-    public long f1944y;
+    public int f1940w;
+    public boolean f1941x;
+    public long f1942y;
 
     public y2(Context context, x2 x2Var, dh.b bVar) {
         super(context);
-        this.f1935b = new RectF();
-        this.f1936c = new Path();
-        is isVar = is.h;
-        this.f1937e = new org.telegram.ui.Components.g6(this, 320L, isVar);
-        this.f1938f = new org.telegram.ui.Components.g6(this, 320L, isVar);
+        this.f1933b = new RectF();
+        this.f1934c = new Path();
+        js jsVar = js.h;
+        this.f1935e = new org.telegram.ui.Components.g6(this, 320L, jsVar);
+        this.f1936f = new org.telegram.ui.Components.g6(this, 320L, jsVar);
         Paint paint = new Paint(1);
-        this.f1939n = paint;
+        this.f1937n = paint;
         Paint paint2 = new Paint(1);
-        this.f1940r = paint2;
+        this.f1938r = paint2;
         this.F = new int[2];
         this.G = 1.0f;
-        this.f1934a = x2Var;
-        w7.z5.a(this);
-        this.f1941s = context.getResources().getDrawable(R.drawable.star).mutate();
+        this.f1932a = x2Var;
+        w7.y5.a(this);
+        this.f1939s = context.getResources().getDrawable(R.drawable.star).mutate();
         ah.l lVar = new ah.l();
         this.v = lVar;
         lVar.a(bVar);
@@ -61,7 +61,7 @@ public final class y2 extends View {
         q6Var.J = true;
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        new er(R.drawable.star, 0).setScale(1.8f, 1.8f);
+        new gr(R.drawable.star, 0).setScale(1.8f, 1.8f);
         setCount(0);
         this.d = new yh.b8(1, 50);
     }
@@ -70,29 +70,29 @@ public final class y2 extends View {
     public final void dispatchDraw(Canvas canvas) {
         boolean z10;
         float dp = AndroidUtilities.dp(38.0f);
-        float e7 = this.f1937e.e(this.f1943x);
-        if (this.f1942w > 0) {
+        float e7 = this.f1935e.e(this.f1941x);
+        if (this.f1940w > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        float e10 = this.f1938f.e(z10);
-        RectF rectF = this.f1935b;
+        float e10 = this.f1936f.e(z10);
+        RectF rectF = this.f1933b;
         rectF.set((getWidth() - dp) / 2.0f, (getHeight() - dp) / 2.0f, (getWidth() + dp) / 2.0f, (getHeight() + dp) / 2.0f);
         int d = i0.a.d(e7, -14670806, -548067);
-        Paint paint = this.f1939n;
+        Paint paint = this.f1937n;
         paint.setColor(d);
         ah.l lVar = this.v;
         lVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        lVar.f609g.setColor(d);
+        lVar.f611g.setColor(d);
         lVar.invalidateSelf();
         lVar.draw(canvas);
         int dp2 = AndroidUtilities.dp(20.0f);
-        Drawable drawable = this.f1941s;
+        Drawable drawable = this.f1939s;
         drawable.setBounds((getWidth() - dp2) / 2, (getHeight() - dp2) / 2, (getWidth() + dp2) / 2, (getHeight() + dp2) / 2);
         drawable.draw(canvas);
         canvas.save();
-        Path path = this.f1936c;
+        Path path = this.f1934c;
         path.rewind();
         path.addRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, Path.Direction.CW);
         canvas.clipPath(path);
@@ -113,7 +113,7 @@ public final class y2 extends View {
             rectF2.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
             canvas.scale(i10, i10, rectF2.centerX(), rectF2.centerY());
             rectF2.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
-            canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.f1940r);
+            canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.f1938r);
             rectF2.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
             canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, paint);
             canvas.translate(((max - q6Var.c()) / 2.0f) + rectF2.left, AndroidUtilities.dp(6.33f));
@@ -126,11 +126,11 @@ public final class y2 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f1934a.c(this);
+        this.f1932a.c(this);
     }
 
     public void setCount(int i10) {
-        this.f1942w = i10;
+        this.f1940w = i10;
         org.telegram.ui.Components.q6 q6Var = this.h;
         if (i10 > 50000) {
             q6Var.t(AndroidUtilities.formatWholeNumber(i10, 0), true, true);
@@ -142,10 +142,10 @@ public final class y2 extends View {
     }
 
     public void setFilled(boolean z10) {
-        if (this.f1943x == z10) {
+        if (this.f1941x == z10) {
             return;
         }
-        this.f1943x = z10;
+        this.f1941x = z10;
         invalidate();
     }
 

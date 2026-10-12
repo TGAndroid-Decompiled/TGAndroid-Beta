@@ -1,25 +1,15 @@
 package org.telegram.ui.Components;
-public final class j71 extends g.o {
-    public final i71 f27636c;
-    public final l71 d;
+public final class j71 extends p71 {
+    public final k71 f27390d3;
 
-    public j71(l71 l71Var, i71 i71Var) {
-        this.d = l71Var;
-        this.f27636c = i71Var;
+    public j71(k71 k71Var, k71 k71Var2, d dVar, i71 i71Var, i71 i71Var2) {
+        super(k71Var2, dVar, i71Var, i71Var2);
+        this.f27390d3 = k71Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        d71 d71Var = this.d.W2;
-        i71 i71Var = this.f27636c;
-        if (d71Var == null) {
-            return i71Var.J;
-        }
-        q61 G = d71Var.G(i10);
-        if (G != null && (i11 = G.f30176u) != -1) {
-            return i11;
-        }
-        return i71Var.J;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f27390d3.f27774b = -1;
     }
 }

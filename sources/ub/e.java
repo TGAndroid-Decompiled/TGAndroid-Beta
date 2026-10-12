@@ -9,23 +9,23 @@ import n6.m;
 import qb.i;
 public final class e extends i {
     public ThickLanguageIdentifier d;
-    public final Context f49013e;
-    public final tb.a f49014f;
-    public final boolean f49015g;
+    public final Context f49120e;
+    public final tb.a f49121f;
+    public final boolean f49122g;
 
     public e(Context context, tb.a aVar) {
-        this.f49013e = context;
-        this.f49014f = aVar;
+        this.f49120e = context;
+        this.f49121f = aVar;
         aVar.getClass();
-        this.f49015g = true;
+        this.f49122g = true;
     }
 
     @Override
     public final void b() {
-        m.k(Thread.currentThread().equals(((AtomicReference) this.f46193a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f46018a.d).get()));
         if (this.d == null) {
-            this.f49014f.getClass();
-            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f49013e);
+            this.f49121f.getClass();
+            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f49120e);
             this.d = thickLanguageIdentifier;
             thickLanguageIdentifier.b();
         }
@@ -33,7 +33,7 @@ public final class e extends i {
 
     @Override
     public final void c() {
-        m.k(Thread.currentThread().equals(((AtomicReference) this.f46193a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f46018a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();
@@ -57,8 +57,8 @@ public final class e extends i {
                     Object obj = a2.get(i10);
                     i10++;
                     IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
-                    if (!"unknown".equals(identifiedLanguage.f8004a)) {
-                        str2 = identifiedLanguage.f8004a;
+                    if (!"unknown".equals(identifiedLanguage.f8002a)) {
+                        str2 = identifiedLanguage.f8002a;
                         break;
                     }
                 } else {

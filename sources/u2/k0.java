@@ -2,133 +2,133 @@ package u2;
 
 import java.util.List;
 public final class k0 implements x2.r {
-    public final x2.r f48731a;
-    public final b2.l1 f48732b;
+    public final x2.r f48838a;
+    public final b2.l1 f48839b;
 
     public k0(x2.r rVar, b2.l1 l1Var) {
-        this.f48731a = rVar;
-        this.f48732b = l1Var;
+        this.f48838a = rVar;
+        this.f48839b = l1Var;
     }
 
     @Override
     public final boolean a(int i10, long j3) {
-        return this.f48731a.a(i10, j3);
+        return this.f48838a.a(i10, j3);
     }
 
     @Override
     public final b2.l1 b() {
-        return this.f48732b;
+        return this.f48839b;
     }
 
     @Override
     public final int c() {
-        return this.f48731a.c();
+        return this.f48838a.c();
     }
 
     @Override
     public final boolean d(long j3, v2.e eVar, List list) {
-        return this.f48731a.d(j3, eVar, list);
+        return this.f48838a.d(j3, eVar, list);
     }
 
     @Override
     public final void e(boolean z10) {
-        this.f48731a.e(z10);
+        this.f48838a.e(z10);
     }
 
     public final boolean equals(Object obj) {
         if (v(obj) && (obj instanceof k0)) {
-            return this.f48732b.equals(((k0) obj).f48732b);
+            return this.f48839b.equals(((k0) obj).f48839b);
         }
         return false;
     }
 
     @Override
     public final b2.s f(int i10) {
-        return this.f48732b.d[this.f48731a.h(i10)];
+        return this.f48839b.d[this.f48838a.h(i10)];
     }
 
     @Override
     public final void g() {
-        this.f48731a.g();
+        this.f48838a.g();
     }
 
     @Override
     public final int h(int i10) {
-        return this.f48731a.h(i10);
+        return this.f48838a.h(i10);
     }
 
     public final int hashCode() {
-        return this.f48732b.hashCode() + (this.f48731a.hashCode() * 31);
+        return this.f48839b.hashCode() + (this.f48838a.hashCode() * 31);
     }
 
     @Override
     public final int i(long j3, List list) {
-        return this.f48731a.i(j3, list);
+        return this.f48838a.i(j3, list);
     }
 
     @Override
     public final void j() {
-        this.f48731a.j();
+        this.f48838a.j();
     }
 
     @Override
     public final void k(long j3, long j10, long j11, List list, v2.l[] lVarArr) {
-        this.f48731a.k(j3, j10, j11, list, lVarArr);
+        this.f48838a.k(j3, j10, j11, list, lVarArr);
     }
 
     @Override
     public final int l() {
-        return this.f48731a.l();
+        return this.f48838a.l();
     }
 
     @Override
     public final int length() {
-        return this.f48731a.length();
+        return this.f48838a.length();
     }
 
     @Override
     public final b2.s m() {
-        return this.f48732b.d[this.f48731a.l()];
+        return this.f48839b.d[this.f48838a.l()];
     }
 
     @Override
     public final int n() {
-        return this.f48731a.n();
+        return this.f48838a.n();
     }
 
     @Override
     public final boolean o(int i10, long j3) {
-        return this.f48731a.o(i10, j3);
+        return this.f48838a.o(i10, j3);
     }
 
     @Override
     public final void p(float f7) {
-        this.f48731a.p(f7);
+        this.f48838a.p(f7);
     }
 
     @Override
     public final Object q() {
-        return this.f48731a.q();
+        return this.f48838a.q();
     }
 
     @Override
     public final void r() {
-        this.f48731a.r();
+        this.f48838a.r();
     }
 
     @Override
     public final int s(b2.s sVar) {
-        return this.f48731a.u(this.f48732b.a(sVar));
+        return this.f48838a.u(this.f48839b.a(sVar));
     }
 
     @Override
     public final void t() {
-        this.f48731a.t();
+        this.f48838a.t();
     }
 
     @Override
     public final int u(int i10) {
-        return this.f48731a.u(i10);
+        return this.f48838a.u(i10);
     }
 
     public final boolean v(Object obj) {
@@ -138,6 +138,6 @@ public final class k0 implements x2.r {
         if (!(obj instanceof k0)) {
             return false;
         }
-        return this.f48731a.equals(((k0) obj).f48731a);
+        return this.f48838a.equals(((k0) obj).f48838a);
     }
 }

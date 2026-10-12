@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.es0;
-import org.telegram.ui.Components.p91;
-public final class d2 extends p91 {
+import org.telegram.ui.Components.js0;
+import org.telegram.ui.Components.u91;
+public final class d2 extends u91 {
     public final s3 T;
 
     public d2(s3 s3Var, Context context) {
@@ -20,8 +20,8 @@ public final class d2 extends p91 {
     public final void E(View view, float f7) {
         int i10;
         View view2;
-        xh.n2 n2Var;
-        xh.n2 n2Var2;
+        xh.m2 m2Var;
+        xh.m2 m2Var2;
         f2 f2Var;
         f2 f2Var2;
         f2 f2Var3;
@@ -45,15 +45,15 @@ public final class d2 extends p91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                n2Var = s3Var.f53284c0;
-                if (n2Var != null && view2 == n2Var.Y && (f2Var3 = n2Var.f53288e0) != null) {
+                m2Var = s3Var.f53387c0;
+                if (m2Var != null && view2 == m2Var.Y && (f2Var3 = m2Var.f53391e0) != null) {
                     f2Var3.invalidate();
                 }
-                if (view2 == s3Var.Y && (f2Var2 = s3Var.f53288e0) != null) {
+                if (view2 == s3Var.Y && (f2Var2 = s3Var.f53391e0) != null) {
                     f2Var2.invalidate();
                 }
-                n2Var2 = s3Var.f53286d0;
-                if (n2Var2 == null && view2 == n2Var2.Y && (f2Var = n2Var2.f53288e0) != null) {
+                m2Var2 = s3Var.f53389d0;
+                if (m2Var2 == null && view2 == m2Var2.Y && (f2Var = m2Var2.f53391e0) != null) {
                     f2Var.invalidate();
                     return;
                 }
@@ -61,29 +61,29 @@ public final class d2 extends p91 {
             }
         }
         view2 = null;
-        n2Var = s3Var.f53284c0;
-        if (n2Var != null) {
+        m2Var = s3Var.f53387c0;
+        if (m2Var != null) {
             f2Var3.invalidate();
         }
         if (view2 == s3Var.Y) {
             f2Var2.invalidate();
         }
-        n2Var2 = s3Var.f53286d0;
-        if (n2Var2 == null) {
+        m2Var2 = s3Var.f53389d0;
+        if (m2Var2 == null) {
         }
     }
 
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f29796b;
+        int i10 = this.f31112b;
         s3 s3Var = this.T;
         boolean z10 = false;
         if (i10 != s3Var.M1(false)) {
-            if (this.f29796b > s3Var.M1(false)) {
+            if (this.f31112b > s3Var.M1(false)) {
                 z10 = true;
             }
-            AndroidUtilities.runOnUIThread(new es0(18, this, z10));
+            AndroidUtilities.runOnUIThread(new js0(19, this, z10));
         }
     }
 

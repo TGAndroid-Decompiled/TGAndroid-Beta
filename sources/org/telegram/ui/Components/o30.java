@@ -1,30 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-public final class o30 implements Runnable {
-    public final p30 f29376a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class o30 extends AnimatorListenerAdapter {
+    public final int f29039a;
+    public final t30 f29040b;
 
-    public o30(p30 p30Var) {
-        this.f29376a = p30Var;
+    public o30(t30 t30Var, int i10) {
+        this.f29039a = i10;
+        this.f29040b = t30Var;
     }
 
     @Override
-    public final void run() {
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && sharedInstance.isMicMute()) {
-            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.participants.f(sharedInstance.getSelfId());
-            if (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
-                p30 p30Var = this.f29376a;
-                AndroidUtilities.runOnUIThread(p30Var.f29719f, 90L);
-                try {
-                    p30Var.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                p30Var.f29717c = true;
-            }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29039a) {
+            case 0:
+                t30 t30Var = this.f29040b;
+                t30Var.f30743b.setVisibility(8);
+                t30Var.f30754y = false;
+                t30Var.E = 0.0f;
+                return;
+            default:
+                this.f29040b.f30747e.setVisibility(8);
+                return;
         }
     }
 }

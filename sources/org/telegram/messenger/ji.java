@@ -1,30 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ji implements RequestDelegate {
-    public final int f18318a;
-    public final SendMessagesHelper f18319b;
-    public final TLRPC.InputMedia f18320c;
-    public final SendMessagesHelper.DelayedMessage d;
+public final class ji implements Runnable {
+    public final int f17993a;
+    public final SecretChatHelper f17994b;
+    public final TLRPC.EncryptedChat f17995c;
 
-    public ji(SendMessagesHelper sendMessagesHelper, TLRPC.InputMedia inputMedia, SendMessagesHelper.DelayedMessage delayedMessage, int i10) {
-        this.f18318a = i10;
-        this.f18319b = sendMessagesHelper;
-        this.f18320c = inputMedia;
-        this.d = delayedMessage;
+    public ji(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
+        this.f17993a = i10;
+        this.f17994b = secretChatHelper;
+        this.f17995c = encryptedChat;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18318a) {
+    public final void run() {
+        switch (this.f17993a) {
             case 0:
-                this.f18319b.lambda$performSendDelayedMessage$55(this.f18320c, this.d, tLObject, tL_error);
+                this.f17994b.lambda$processAcceptedSecretChat$18(this.f17995c);
+                return;
+            case 1:
+                this.f17994b.lambda$acceptSecretChat$21(this.f17995c);
                 return;
             default:
-                this.f18319b.lambda$uploadMultiMedia$63(this.f18320c, this.d, tLObject, tL_error);
+                this.f17994b.lambda$applyPeerLayer$9(this.f17995c);
                 return;
         }
     }

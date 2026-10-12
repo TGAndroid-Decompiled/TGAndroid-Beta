@@ -3,16 +3,16 @@ package vg;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.e9;
-import org.telegram.ui.Components.fr;
+import org.telegram.ui.Components.hr;
 public final class d0 extends e9 {
-    public final d6 v;
+    public final c6 v;
 
-    public d0(Context context, d6 d6Var) {
-        super(context, d6Var);
-        this.v = d6Var;
+    public d0(Context context, c6 c6Var) {
+        super(context, c6Var);
+        this.v = c6Var;
     }
 
     public void setBackground(boolean z10) {
@@ -23,10 +23,10 @@ public final class d0 extends e9 {
         } else {
             i10 = R.drawable.greydivider;
         }
-        int i11 = h6.f20786b7;
-        d6 d6Var = this.v;
-        fr frVar = new fr(new ColorDrawable(h6.w0(h6.f20766a7, d6Var)), h6.V0(context, i10, h6.w0(i11, d6Var)), 0, 0);
-        frVar.f26552w = true;
-        setBackground(frVar);
+        int i11 = h6.f20523b7;
+        c6 c6Var = this.v;
+        hr hrVar = new hr(new ColorDrawable(h6.w0(h6.f20503a7, c6Var)), h6.V0(context, i10, h6.w0(i11, c6Var)), 0, 0);
+        hrVar.f26897w = true;
+        setBackground(hrVar);
     }
 }

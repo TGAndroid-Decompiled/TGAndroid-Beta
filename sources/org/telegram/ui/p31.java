@@ -1,38 +1,102 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class p31 implements Runnable {
-    public final int f40759a;
-    public final org.telegram.ui.ActionBar.m2 f40760b;
-    public final Context f40761c;
-    public final org.telegram.ui.ActionBar.d6 d;
-    public final org.telegram.ui.Components.ei0 f40762e;
+    public final int f40838a;
+    public final eo f40839b;
+    public final Activity f40840c;
+    public final org.telegram.ui.ActionBar.c6 d;
+    public final MessageObject f40841e;
 
-    public p31(org.telegram.ui.ActionBar.m2 m2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.ei0 ei0Var, int i10) {
-        this.f40759a = i10;
-        this.f40760b = m2Var;
-        this.f40761c = context;
-        this.d = d6Var;
-        this.f40762e = ei0Var;
+    public p31(eo eoVar, Activity activity, org.telegram.ui.ActionBar.c6 c6Var, MessageObject messageObject, int i10) {
+        this.f40838a = i10;
+        this.f40839b = eoVar;
+        this.f40840c = activity;
+        this.d = c6Var;
+        this.f40841e = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f40759a) {
+        switch (this.f40838a) {
             case 0:
-                org.telegram.ui.Components.ad.a0(this.f40760b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new mv(this.f40761c, 4), this.d)).j();
-                AndroidUtilities.runOnUIThread(this.f40762e);
+                eo eoVar = this.f40839b;
+                org.telegram.ui.Components.zc a02 = org.telegram.ui.Components.zc.a0(eoVar);
+                String string = LocaleController.getString(R.string.AdReported);
+                final Activity activity = this.f40840c;
+                a02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                of.f.s(activity, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject = this.f40841e;
+                eoVar.Ja(messageObject);
+                eoVar.La(messageObject);
                 return;
             case 1:
-                org.telegram.ui.Components.ad.a0(this.f40760b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new mv(this.f40761c, 3), this.d)).j();
-                AndroidUtilities.runOnUIThread(this.f40762e);
+                eo eoVar2 = this.f40839b;
+                org.telegram.ui.Components.zc a03 = org.telegram.ui.Components.zc.a0(eoVar2);
+                String string2 = LocaleController.getString(R.string.AdReported);
+                final Activity activity2 = this.f40840c;
+                a03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                of.f.s(activity2, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject2 = this.f40841e;
+                eoVar2.Ja(messageObject2);
+                eoVar2.La(messageObject2);
                 return;
             default:
-                org.telegram.ui.Components.ad.a0(this.f40760b).c(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new mv(this.f40761c, 7), this.d)).j();
-                AndroidUtilities.runOnUIThread(this.f40762e);
+                eo eoVar3 = this.f40839b;
+                org.telegram.ui.Components.zc a04 = org.telegram.ui.Components.zc.a0(eoVar3);
+                String string3 = LocaleController.getString(R.string.AdReported);
+                final Activity activity3 = this.f40840c;
+                a04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                            case 1:
+                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                            default:
+                                of.f.s(activity3, "https://promote.telegram.org/guidelines");
+                                return;
+                        }
+                    }
+                }, this.d)).j();
+                MessageObject messageObject3 = this.f40841e;
+                eoVar3.Ja(messageObject3);
+                eoVar3.La(messageObject3);
                 return;
         }
     }

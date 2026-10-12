@@ -4,8 +4,6 @@ import ai.o1;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.regex.Pattern;
-import ki.r0;
-import ki.v0;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileUploadOperation;
 import org.telegram.messenger.MediaDataController;
@@ -18,12 +16,13 @@ import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.fp;
-import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.hp;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.eg1;
-import org.telegram.ui.sy;
-import org.telegram.ui.zn;
+import org.telegram.ui.eo;
+import org.telegram.ui.hg1;
+import org.telegram.ui.vy;
+import qi.p0;
 import yh.s3;
 public final class g0 implements Runnable {
     public final int f126a;
@@ -47,8 +46,8 @@ public final class g0 implements Runnable {
                 String str = (String) this.f129e;
                 long j3 = this.f127b;
                 long j10 = this.f128c;
-                String str2 = e2.d0.f8531a;
-                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45627c)).f11619a.f11682s;
+                String str2 = e2.d0.f8529a;
+                j2.f fVar = ((i2.c0) ((l0) ((pf.b) this.d).f45444c)).f11618a.f11681s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j10, j3));
                 return;
@@ -59,88 +58,88 @@ public final class g0 implements Runnable {
                 String str3 = (String) this.f129e;
                 long j11 = this.f127b;
                 long j12 = this.f128c;
-                String str4 = e2.d0.f8531a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.x) this.d).f16695c)).f11619a.f11682s;
+                String str4 = e2.d0.f8529a;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.d).f16363c)).f11618a.f11681s;
                 j2.a p10 = fVar2.p();
                 fVar2.q(p10, 1008, new hg.o1(p10, str3, j12, j11));
                 return;
             case 3:
-                v0 v0Var = (v0) this.d;
-                r0 r0Var = (r0) this.f129e;
-                long j13 = this.f127b;
-                long j14 = this.f128c;
-                synchronized (v0Var.f15163g) {
-                    if (!r0Var.d && !r0Var.f15097e) {
-                        ((h11) v0Var.f15161e).a(r0Var.f15094a, r0Var.f15095b, j13, j14);
-                        return;
-                    }
-                    return;
-                }
-            case 4:
                 ((FileUploadOperation) this.d).lambda$checkNewDataAvailable$4((Float) this.f129e, this.f127b, this.f128c);
                 return;
-            case 5:
+            case 4:
                 ((MediaDataController) this.d).lambda$loadPinnedMessages$163(this.f127b, this.f128c, (ArrayList) this.f129e);
                 return;
-            case 6:
+            case 5:
                 ((MediaDataController) this.d).lambda$saveDraftReplyMessage$193(this.f127b, this.f128c, (TLRPC.Message) this.f129e);
                 return;
-            case 7:
+            case 6:
                 ((MessagesStorage) this.d).lambda$loadPendingTasks$29(this.f127b, this.f128c, (TLRPC.TL_messages_deleteScheduledMessages) this.f129e);
                 return;
-            case 8:
+            case 7:
                 ((MessagesStorage) this.d).lambda$loadPendingTasks$21(this.f127b, (TLRPC.InputPeer) this.f129e, this.f128c);
                 return;
-            case 9:
+            case 8:
                 ((MessagesStorage) this.d).lambda$getUnreadMention$156(this.f127b, this.f128c, (MessagesStorage.IntCallback) this.f129e);
                 return;
-            case 10:
+            case 9:
                 NotificationsSettingsFacade.a((NotificationsSettingsFacade) this.d, this.f127b, this.f128c, (TLRPC.PeerNotifySettings) this.f129e);
                 return;
-            case 11:
+            case 10:
                 ((SecretChatHelper) this.d).lambda$resendMessages$15(this.f127b, (TLRPC.EncryptedChat) this.f129e, this.f128c);
                 return;
-            case 12:
+            case 11:
                 ((GroupCallMessagesController) this.d).lambda$processUpdate$3(this.f127b, this.f128c, (byte[]) this.f129e);
                 return;
-            case 13:
-                ((fp) this.d).d(this.f127b, this.f128c, (HashSet) this.f129e);
+            case 12:
+                ((hp) this.d).d(this.f127b, this.f128c, (HashSet) this.f129e);
                 return;
-            case 14:
-                sy syVar = (sy) this.d;
-                long j15 = this.f127b;
-                long j16 = this.f128c;
-                eg1 eg1Var = (eg1) this.f129e;
-                if (syVar.C2 != null) {
+            case 13:
+                vy vyVar = (vy) this.d;
+                long j13 = this.f127b;
+                long j14 = this.f128c;
+                hg1 hg1Var = (hg1) this.f129e;
+                if (vyVar.C2 != null) {
                     ArrayList arrayList = new ArrayList();
-                    arrayList.add(MessagesStorage.TopicKey.of(j15, j16));
-                    syVar.C2.w(syVar, arrayList, null, false, syVar.J2, syVar.K2, syVar.L2, eg1Var);
-                    if (syVar.f41964i2) {
-                        syVar.C2 = null;
+                    arrayList.add(MessagesStorage.TopicKey.of(j13, j14));
+                    vyVar.C2.w(vyVar, arrayList, null, false, vyVar.J2, vyVar.K2, vyVar.L2, hg1Var);
+                    if (vyVar.f42926i2) {
+                        vyVar.C2 = null;
                         return;
                     }
                     return;
                 }
-                syVar.finishFragment();
+                vyVar.finishFragment();
                 return;
-            case 15:
+            case 14:
                 LaunchActivity launchActivity = (LaunchActivity) this.d;
-                long j17 = this.f127b;
-                long j18 = this.f128c;
-                zn znVar = (zn) this.f129e;
+                long j15 = this.f127b;
+                long j16 = this.f128c;
+                eo eoVar = (eo) this.f129e;
                 Pattern pattern = LaunchActivity.B1;
-                TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(launchActivity.O).getTopicsController().findTopic(j17, j18);
-                StringBuilder u10 = a1.g.u(j17, "LaunchActivity openForum after load ", " ");
-                u10.append(j18);
+                TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(launchActivity.O).getTopicsController().findTopic(j15, j16);
+                StringBuilder u10 = a1.g.u(j15, "LaunchActivity openForum after load ", " ");
+                u10.append(j16);
                 u10.append(" TL_forumTopic ");
                 u10.append(findTopic);
                 FileLog.d(u10.toString());
-                if (launchActivity.f33869q0 != null) {
-                    ng.d.a(znVar, MessagesStorage.TopicKey.of(-j17, j18));
-                    ((ActionBarLayout) launchActivity.O()).P(znVar);
+                if (launchActivity.f33644q0 != null) {
+                    ng.d.a(eoVar, MessagesStorage.TopicKey.of(-j15, j16));
+                    ((ActionBarLayout) launchActivity.O()).P(eoVar);
                     return;
                 }
                 return;
+            case 15:
+                p0 p0Var = (p0) this.d;
+                qi.l0 l0Var = (qi.l0) this.f129e;
+                long j17 = this.f127b;
+                long j18 = this.f128c;
+                synchronized (p0Var.f46857g) {
+                    if (!l0Var.d && !l0Var.f46802e) {
+                        ((m11) p0Var.f46855e).a(l0Var.f46799a, l0Var.f46800b, j17, j18);
+                        return;
+                    }
+                    return;
+                }
             default:
                 s3.f0((s3) this.d, this.f127b, this.f128c, (Utilities.Callback) this.f129e);
                 return;

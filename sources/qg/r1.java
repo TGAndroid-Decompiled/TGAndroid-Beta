@@ -15,21 +15,21 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Cells.sa;
-import org.telegram.ui.Components.dk0;
-import org.telegram.ui.Components.gk0;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.fk0;
+import org.telegram.ui.Components.ik0;
+import org.telegram.ui.Components.js;
 import org.telegram.ui.Wallet.z4;
-import w7.x5;
+import w7.w5;
 public final class r1 extends LinearLayout {
-    public final gk0[] f46643a;
-    public q1 f46644b;
-    public final Paint f46645c;
+    public final ik0[] f46467a;
+    public q1 f46468b;
+    public final Paint f46469c;
     public final int d;
-    public boolean f46646e;
-    public int f46647f;
+    public boolean f46470e;
+    public int f46471f;
     public int h;
-    public float f46648n;
-    public ValueAnimator f46649r;
+    public float f46472n;
+    public ValueAnimator f46473r;
 
     public r1(Context context, boolean z10) {
         super(context);
@@ -37,13 +37,13 @@ public final class r1 extends LinearLayout {
         Object[] objArr2;
         float f7;
         float f10;
-        List list = pg.m.f45756a;
-        this.f46643a = new gk0[list.size() + 2];
+        List list = pg.m.f45582a;
+        this.f46467a = new ik0[list.size() + 2];
         Paint paint = new Paint(1);
-        this.f46645c = paint;
-        this.f46647f = 1;
+        this.f46469c = paint;
+        this.f46471f = 1;
         this.h = -1;
-        this.f46648n = 0.0f;
+        this.f46472n = 0.0f;
         setOrientation(0);
         setGravity(16);
         setWillNotDraw(false);
@@ -53,9 +53,9 @@ public final class r1 extends LinearLayout {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            List list2 = pg.m.f45756a;
+            List list2 = pg.m.f45582a;
             if (i10 < list2.size() + 2) {
-                gk0[] gk0VarArr = this.f46643a;
+                ik0[] ik0VarArr = this.f46467a;
                 if (i10 == 0) {
                     objArr = 1;
                 } else {
@@ -80,25 +80,25 @@ public final class r1 extends LinearLayout {
                     f10 = 8.0f;
                 }
                 imageView.setPadding(dp, dp2, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f));
-                imageView.setLayoutParams(x5.l(1.0f, 0, 40));
+                imageView.setLayoutParams(w5.l(1.0f, 0, 40));
                 imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-                gk0VarArr[i11] = imageView;
+                ik0VarArr[i11] = imageView;
                 if (i10 == 0) {
-                    this.f46643a[i11].setOnClickListener(new View.OnClickListener(this) {
-                        public final r1 f46625b;
+                    this.f46467a[i11].setOnClickListener(new View.OnClickListener(this) {
+                        public final r1 f46444b;
 
                         {
-                            this.f46625b = this;
+                            this.f46444b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    this.f46625b.f46644b.a();
+                                    this.f46444b.f46468b.a();
                                     return;
                                 default:
-                                    this.f46625b.f46644b.y();
+                                    this.f46444b.f46468b.y();
                                     return;
                             }
                         }
@@ -106,34 +106,34 @@ public final class r1 extends LinearLayout {
                 } else if (i10 > 0 && i10 <= list2.size()) {
                     pg.m mVar = (pg.m) list2.get(i10 - 1);
                     if (z10 || !(mVar instanceof pg.b)) {
-                        this.f46643a[i11].f(mVar.e(), 28, 28, null);
-                        this.f46643a[i11].setOnClickListener(new sa(this, i11, mVar, 20));
+                        this.f46467a[i11].f(mVar.e(), 28, 28, null);
+                        this.f46467a[i11].setOnClickListener(new sa(this, i11, mVar, 20));
                     } else {
                         i10++;
                     }
                 } else if (i10 == list2.size() + 1) {
-                    this.f46643a[i11].setImageResource(R.drawable.msg_add);
-                    this.f46643a[i11].setOnClickListener(new View.OnClickListener(this) {
-                        public final r1 f46625b;
+                    this.f46467a[i11].setImageResource(R.drawable.msg_add);
+                    this.f46467a[i11].setOnClickListener(new View.OnClickListener(this) {
+                        public final r1 f46444b;
 
                         {
-                            this.f46625b = this;
+                            this.f46444b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    this.f46625b.f46644b.a();
+                                    this.f46444b.f46468b.a();
                                     return;
                                 default:
-                                    this.f46625b.f46644b.y();
+                                    this.f46444b.f46468b.y();
                                     return;
                             }
                         }
                     });
                 }
-                addView(this.f46643a[i11]);
+                addView(this.f46467a[i11]);
                 i11++;
                 i10++;
             } else {
@@ -144,35 +144,35 @@ public final class r1 extends LinearLayout {
 
     public final void a(int i10) {
         if (i10 >= 0) {
-            gk0[] gk0VarArr = this.f46643a;
-            if (i10 < gk0VarArr.length) {
-                if (this.f46649r == null || this.h != i10) {
-                    gk0 gk0Var = gk0VarArr[i10];
-                    if (gk0Var != null) {
-                        Drawable drawable = gk0Var.getDrawable();
-                        if (drawable instanceof dk0) {
-                            dk0 dk0Var = (dk0) drawable;
-                            dk0Var.M(0);
-                            dk0Var.start();
+            ik0[] ik0VarArr = this.f46467a;
+            if (i10 < ik0VarArr.length) {
+                if (this.f46473r == null || this.h != i10) {
+                    ik0 ik0Var = ik0VarArr[i10];
+                    if (ik0Var != null) {
+                        Drawable drawable = ik0Var.getDrawable();
+                        if (drawable instanceof fk0) {
+                            fk0 fk0Var = (fk0) drawable;
+                            fk0Var.M(0);
+                            fk0Var.start();
                         }
                     }
-                    ValueAnimator valueAnimator = this.f46649r;
+                    ValueAnimator valueAnimator = this.f46473r;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    if (this.f46647f != i10) {
-                        if (this.f46646e) {
-                            this.f46646e = false;
-                            AndroidUtilities.updateImageViewImageAnimated(gk0VarArr[this.d + 1], R.drawable.msg_add);
+                    if (this.f46471f != i10) {
+                        if (this.f46470e) {
+                            this.f46470e = false;
+                            AndroidUtilities.updateImageViewImageAnimated(ik0VarArr[this.d + 1], R.drawable.msg_add);
                         }
                         this.h = i10;
-                        this.f46648n = 0.0f;
+                        this.f46472n = 0.0f;
                         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(250L);
-                        this.f46649r = duration;
-                        duration.setInterpolator(is.f27500f);
-                        this.f46649r.addUpdateListener(new org.telegram.ui.Components.voip.s0(this, 9));
-                        this.f46649r.addListener(new z4(this, 9));
-                        this.f46649r.start();
+                        this.f46473r = duration;
+                        duration.setInterpolator(js.f27627f);
+                        this.f46473r.addUpdateListener(new org.telegram.ui.Components.voip.s0(this, 9));
+                        this.f46473r.addListener(new z4(this, 9));
+                        this.f46473r.start();
                     }
                 }
             }
@@ -181,7 +181,7 @@ public final class r1 extends LinearLayout {
 
     public final void b(int i10) {
         a(i10);
-        this.f46644b.v().i(i10 - 1, true);
+        this.f46468b.v().i(i10 - 1, true);
     }
 
     @Override
@@ -192,15 +192,15 @@ public final class r1 extends LinearLayout {
             for (int i10 = 1; i10 < getChildCount() - 1; i10++) {
                 View childAt = getChildAt(i10);
                 if (x10 >= childAt.getLeft() && x10 <= childAt.getRight()) {
-                    if (this.f46649r != null) {
+                    if (this.f46473r != null) {
                         if (this.h != i10) {
                             a(i10);
-                            post(new org.telegram.ui.web.t0(childAt, 16));
+                            post(new org.telegram.ui.web.t0(childAt, 15));
                             return true;
                         }
-                    } else if (this.f46647f != i10) {
+                    } else if (this.f46471f != i10) {
                         a(i10);
-                        post(new org.telegram.ui.web.t0(childAt, 16));
+                        post(new org.telegram.ui.web.t0(childAt, 15));
                         return true;
                     }
                 }
@@ -211,33 +211,33 @@ public final class r1 extends LinearLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        gk0 gk0Var;
+        ik0 ik0Var;
         float f7;
         float f10;
         float f11;
         super.onDraw(canvas);
-        int i10 = this.f46647f;
-        gk0[] gk0VarArr = this.f46643a;
-        gk0 gk0Var2 = gk0VarArr[i10];
+        int i10 = this.f46471f;
+        ik0[] ik0VarArr = this.f46467a;
+        ik0 ik0Var2 = ik0VarArr[i10];
         int i11 = this.h;
         if (i11 != -1) {
-            gk0Var = gk0VarArr[i11];
+            ik0Var = ik0VarArr[i11];
         } else {
-            gk0Var = null;
+            ik0Var = null;
         }
         float f12 = 0.0f;
-        if (gk0Var != null) {
-            f7 = this.f46648n;
+        if (ik0Var != null) {
+            f7 = this.f46472n;
         } else {
             f7 = 0.0f;
         }
         float f13 = 1.0f;
         if (f7 > 0.25f && f7 < 0.75f) {
-            f13 = (f7 <= 0.25f || f7 >= 0.5f) ? org.telegram.messenger.q.x(0.75f, f7, 0.25f, 1.0f) : (0.5f - f7) / 0.25f;
+            f13 = (f7 <= 0.25f || f7 >= 0.5f) ? org.telegram.messenger.v0.y(0.75f, f7, 0.25f, 1.0f) : (0.5f - f7) / 0.25f;
         }
-        float dp = (AndroidUtilities.dp(3.0f) * f13) + (Math.min((gk0Var2.getWidth() - gk0Var2.getPaddingLeft()) - gk0Var2.getPaddingRight(), (gk0Var2.getHeight() - gk0Var2.getPaddingTop()) - gk0Var2.getPaddingBottom()) / 2.0f) + AndroidUtilities.dp(3.0f);
-        float width = (gk0Var2.getWidth() / 2.0f) + gk0Var2.getX();
-        int i12 = this.f46647f;
+        float dp = (AndroidUtilities.dp(3.0f) * f13) + (Math.min((ik0Var2.getWidth() - ik0Var2.getPaddingLeft()) - ik0Var2.getPaddingRight(), (ik0Var2.getHeight() - ik0Var2.getPaddingTop()) - ik0Var2.getPaddingBottom()) / 2.0f) + AndroidUtilities.dp(3.0f);
+        float width = (ik0Var2.getWidth() / 2.0f) + ik0Var2.getX();
+        int i12 = this.f46471f;
         int i13 = this.d;
         if (i12 == i13 + 1) {
             f10 = AndroidUtilities.dp(4.0f);
@@ -245,8 +245,8 @@ public final class r1 extends LinearLayout {
             f10 = 0.0f;
         }
         float f14 = f10 + width;
-        if (gk0Var != null) {
-            f11 = (gk0Var.getWidth() / 2.0f) + gk0Var.getX();
+        if (ik0Var != null) {
+            f11 = (ik0Var.getWidth() / 2.0f) + ik0Var.getX();
         } else {
             f11 = 0.0f;
         }
@@ -254,18 +254,18 @@ public final class r1 extends LinearLayout {
         if (i14 != -1 && i14 == i13 + 1) {
             f12 = AndroidUtilities.dp(4.0f);
         }
-        canvas.drawCircle(AndroidUtilities.lerp(f14, f11 + f12, f7), (gk0Var2.getHeight() / 2.0f) + gk0Var2.getY(), dp, this.f46645c);
+        canvas.drawCircle(AndroidUtilities.lerp(f14, f11 + f12, f7), (ik0Var2.getHeight() / 2.0f) + ik0Var2.getY(), dp, this.f46469c);
     }
 
     public void setDelegate(q1 q1Var) {
-        this.f46644b = q1Var;
+        this.f46468b = q1Var;
     }
 
     public void setSelectedIndex(int i10) {
-        this.f46647f = i10;
-        if (this.f46646e) {
-            this.f46646e = false;
-            AndroidUtilities.updateImageViewImageAnimated(this.f46643a[this.d + 1], R.drawable.msg_add);
+        this.f46471f = i10;
+        if (this.f46470e) {
+            this.f46470e = false;
+            AndroidUtilities.updateImageViewImageAnimated(this.f46467a[this.d + 1], R.drawable.msg_add);
         }
         invalidate();
     }

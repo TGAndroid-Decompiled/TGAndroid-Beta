@@ -3,37 +3,37 @@ package org.telegram.ui.Components;
 import android.view.View;
 import android.widget.FrameLayout;
 public abstract class sd extends FrameLayout {
-    public ai.f0 f30848a;
-    public qd f30849b;
-    public boolean f30850c;
+    public ai.f0 f30553a;
+    public qd f30554b;
+    public boolean f30555c;
 
     public final void a(qd qdVar, FrameLayout.LayoutParams layoutParams) {
-        if (this.f30849b == null) {
-            this.f30849b = qdVar;
+        if (this.f30554b == null) {
+            this.f30554b = qdVar;
             qdVar.setVisibility(8);
             addView(qdVar, layoutParams);
         }
     }
 
     public final void b(ai.f0 f0Var, FrameLayout.LayoutParams layoutParams) {
-        if (this.f30848a == null) {
-            this.f30848a = f0Var;
+        if (this.f30553a == null) {
+            this.f30553a = f0Var;
             addView(f0Var, layoutParams);
         }
     }
 
     public qd getEditView() {
-        return this.f30849b;
+        return this.f30554b;
     }
 
     public View getReplyView() {
-        return this.f30848a;
+        return this.f30553a;
     }
 
     public void setEditMode(boolean z10) {
         int i10;
-        this.f30850c = z10;
-        ai.f0 f0Var = this.f30848a;
+        this.f30555c = z10;
+        ai.f0 f0Var = this.f30553a;
         int i11 = 0;
         if (z10) {
             i10 = 8;
@@ -41,7 +41,7 @@ public abstract class sd extends FrameLayout {
             i10 = 0;
         }
         f0Var.setVisibility(i10);
-        qd qdVar = this.f30849b;
+        qd qdVar = this.f30554b;
         if (!z10) {
             i11 = 8;
         }
@@ -51,9 +51,9 @@ public abstract class sd extends FrameLayout {
     public void setEditSuggestionMode(boolean z10) {
         setEditMode(z10);
         if (z10) {
-            this.f30848a.setVisibility(0);
+            this.f30553a.setVisibility(0);
         }
-        this.f30849b.f30232a[0].setOnlyIconMode(z10);
-        this.f30849b.f30232a[1].setOnlyIconMode(z10);
+        this.f30554b.f29820a[0].setOnlyIconMode(z10);
+        this.f30554b.f29820a[1].setOnlyIconMode(z10);
     }
 }

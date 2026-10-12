@@ -1,43 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ScrollView;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class s51 extends ScrollView {
-    public Drawable f30746a;
-    public g6 f30747b;
-    public boolean f30748c;
+public final class s51 implements Runnable {
+    public final int f30419a;
+    public final org.telegram.ui.ActionBar.e3[] f30420b;
+    public final Context f30421c;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        super.dispatchDraw(canvas);
-        g6 g6Var = this.f30747b;
-        if (canScrollVertically(-1)) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = g6Var.d(f7, false) * 0.5f;
-        if (d > 0.0f) {
-            if (this.f30746a == null) {
-                this.f30746a = getContext().getResources().getDrawable(R.drawable.header_shadow);
-            }
-            this.f30746a.setBounds(0, getScrollY(), getWidth(), this.f30746a.getIntrinsicHeight() + getScrollY());
-            this.f30746a.setAlpha((int) (d * 255.0f));
-            this.f30746a.draw(canvas);
-        }
+    public s51(Context context, org.telegram.ui.ActionBar.e3[] e3VarArr) {
+        this.f30419a = 3;
+        this.f30421c = context;
+        this.f30420b = e3VarArr;
     }
 
     @Override
-    public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
-        super.onNestedScroll(view, i10, i11, i12, i13);
-        boolean canScrollVertically = canScrollVertically(-1);
-        if (this.f30748c != canScrollVertically) {
-            invalidate();
-            this.f30748c = canScrollVertically;
+    public final void run() {
+        org.telegram.ui.ActionBar.e3 e3Var;
+        org.telegram.ui.ActionBar.m2 m2Var;
+        switch (this.f30419a) {
+            case 0:
+                this.f30420b[0].dismiss();
+                of.f.s(this.f30421c, LocaleController.getString(R.string.CocoonFeature1TextLink));
+                return;
+            case 1:
+                this.f30420b[0].dismiss();
+                of.f.u(this.f30421c, LocaleController.getString(R.string.CocoonFeature3TextLink));
+                return;
+            case 2:
+                this.f30420b[0].dismiss();
+                of.f.s(this.f30421c, LocaleController.getString(R.string.CocoonFooterLink));
+                return;
+            default:
+                nx0 nx0Var = new nx0(this.f30421c);
+                if (!AndroidUtilities.isTablet()) {
+                    org.telegram.ui.ActionBar.e3[] e3VarArr = this.f30420b;
+                    if (!AndroidUtilities.hasDialogOnTop(e3VarArr[0].attachedFragment) && (e3Var = e3VarArr[0]) != null && (m2Var = e3Var.attachedFragment) != null) {
+                        nx0Var.makeAttached(m2Var);
+                    }
+                }
+                nx0Var.show();
+                return;
         }
+    }
+
+    public s51(org.telegram.ui.ActionBar.e3[] e3VarArr, Context context, int i10) {
+        this.f30419a = i10;
+        this.f30420b = e3VarArr;
+        this.f30421c = context;
     }
 }

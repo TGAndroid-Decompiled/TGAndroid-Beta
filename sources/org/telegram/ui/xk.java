@@ -1,33 +1,182 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class xk extends pv0 {
-    public xk(ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.FragmentContextView;
+public final class xk extends TextView {
+    public final int f44029a;
+    public Object f44030b;
+
+    public xk(Object obj, Context context, int i10) {
+        super(context);
+        this.f44029a = i10;
+        this.f44030b = obj;
+    }
+
+    public void a(int i10) {
+        FragmentContextView fragmentContextView = (FragmentContextView) this.f44030b;
+        if (fragmentContextView.N != i10) {
+            org.telegram.ui.Components.k20 k20Var = fragmentContextView.d;
+            k20Var.setPadding(k20Var.getPaddingLeft(), fragmentContextView.d.getPaddingTop(), (fragmentContextView.d.getPaddingRight() - fragmentContextView.N) + i10, fragmentContextView.d.getPaddingBottom());
+            fragmentContextView.N = i10;
+        }
     }
 
     @Override
-    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
-        if (f7 > 0.0f) {
-            View view = this.f41002e;
-            if (view instanceof org.telegram.ui.Cells.u1) {
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+    public void draw(Canvas canvas) {
+        switch (this.f44029a) {
+            case 1:
+                super.draw(canvas);
+                int dp = AndroidUtilities.dp(1.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(f10, (int) Math.max(f12, f11), u1Var.getMeasuredWidth() + f10, (int) Math.min(f13, u1Var.getMeasuredHeight() + f11));
-                canvas.saveLayerAlpha(rectF, (int) (f7 * 255.0f), 31);
-                canvas.translate(f10, f11 + u1Var.getPaddingTop());
-                u1Var.Ed = true;
-                u1Var.Y1(canvas);
-                if (u1Var.f4() && u1Var.getCurrentMessagesGroup() == null) {
-                    u1Var.m2(1.0f, canvas, false);
+                float f7 = dp;
+                rectF.set(f7, f7, getWidth() - dp, getHeight() - dp);
+                ((FragmentContextView) this.f44030b).O.a(AndroidUtilities.dp(16.0f), canvas, rectF, this);
+                return;
+            case 2:
+            default:
+                super.draw(canvas);
+                return;
+            case 3:
+                super.draw(canvas);
+                x81 x81Var = (x81) this.f44030b;
+                org.telegram.ui.Components.voip.h hVar = x81Var.f43833c;
+                if (hVar.f31703g <= 1.0f) {
+                    SessionsActivity sessionsActivity = x81Var.d;
+                    if (sessionsActivity.W && sessionsActivity.X) {
+                        RectF rectF2 = AndroidUtilities.rectTmp;
+                        rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
+                        hVar.f31702f = getMeasuredWidth();
+                        hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF2, null);
+                        invalidate();
+                        return;
+                    }
+                    return;
                 }
-                u1Var.Ed = false;
-                canvas.restore();
-            }
+                return;
         }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f44029a) {
+            case 0:
+                super.onDraw(canvas);
+                if (((org.telegram.ui.Components.voip.h) this.f44030b) == null) {
+                    org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
+                    this.f44030b = hVar;
+                    hVar.f31706k = false;
+                    hVar.f31708m = 2.0f;
+                }
+                ((org.telegram.ui.Components.voip.h) this.f44030b).f31702f = getMeasuredWidth();
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                ((org.telegram.ui.Components.voip.h) this.f44030b).a(AndroidUtilities.dp(22.0f), canvas, rectF, null);
+                invalidate();
+                return;
+            case 4:
+                super.onDraw(canvas);
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), (Paint) this.f44030b);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f44029a) {
+            case 5:
+                super.onLayout(z10, i10, i11, i12, i13);
+                if (z10) {
+                    ((xi1) this.f44030b).G();
+                    return;
+                }
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f44029a) {
+            case 1:
+                super.onMeasure(i10, i11);
+                a(getMeasuredWidth());
+                return;
+            case 2:
+                super.onMeasure(i10, i11);
+                if (LocaleController.isRTL) {
+                    ((org.telegram.ui.Components.e51) this.f44030b).f25600b.setPivotX(getMeasuredWidth());
+                    return;
+                }
+                return;
+            case 3:
+            case 4:
+            case 5:
+            default:
+                super.onMeasure(i10, i11);
+                return;
+            case 6:
+                super.onMeasure(i10, i11);
+                setMeasuredDimension(getMeasuredWidth(), Math.round(getMeasuredHeight() * ((org.telegram.ui.Wallet.l8) this.f44030b).U));
+                return;
+            case 7:
+                super.onMeasure(i10, i11);
+                ((org.telegram.ui.web.x1) this.f44030b).f43473c.setPivotY(getMeasuredHeight() / 2.0f);
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f44029a) {
+            case 1:
+                super.onSizeChanged(i10, i11, i12, i13);
+                ((FragmentContextView) this.f44030b).O.f31702f = getWidth();
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.f44029a) {
+            case 1:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    a(0);
+                    ((FragmentContextView) this.f44030b).N = 0;
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
+        }
+    }
+
+    public xk(Activity activity, Paint paint) {
+        super(activity);
+        this.f44029a = 4;
+        this.f44030b = paint;
+    }
+
+    public xk(Context context) {
+        super(context);
+        this.f44029a = 0;
     }
 }

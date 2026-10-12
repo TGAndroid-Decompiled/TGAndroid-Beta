@@ -1,126 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class i40 extends qm0 {
-    public final Context f27314c;
-    public final gg.b2 d;
-    public g40 f27315e;
-    public int f27316f;
-    public boolean h;
-    public int f27317n;
-    public int f27318r;
-    public int f27319s;
-    public int v;
-    public final j40 f27320w;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.Utilities;
+public final class i40 implements Runnable {
+    public final int f27048a;
+    public final k40 f27049b;
+    public final String f27050c;
+    public final int d;
 
-    public i40(j40 j40Var, Context context) {
-        this.f27320w = j40Var;
-        this.f27314c = context;
-        gg.b2 b2Var = new gg.b2(true);
-        this.d = b2Var;
-        b2Var.f10531a = new h40(this);
+    public i40(k40 k40Var, String str, int i10, int i11) {
+        this.f27048a = i11;
+        this.f27049b = k40Var;
+        this.f27050c = str;
+        this.d = i10;
     }
 
     @Override
-    public final void A(s4.d1 d1Var) {
-        View view = d1Var.f47782a;
-        if (view instanceof org.telegram.ui.Cells.b5) {
-            ((org.telegram.ui.Cells.b5) view).a();
-        }
-    }
-
-    @Override
-    public final boolean D(s4.d1 d1Var) {
-        View view = d1Var.f47782a;
-        if ((!(view instanceof org.telegram.ui.Cells.b5) || !this.f27320w.f27592f0.contains(Long.valueOf(((org.telegram.ui.Cells.b5) view).getUserId()))) && d1Var.f47786f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.f27316f;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 2;
-        }
-        if (i10 == this.f27318r) {
-            return 3;
-        }
-        if (i10 != this.v && i10 != this.f27319s) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void l() {
-        this.f27316f = 1;
-        gg.b2 b2Var = this.d;
-        int size = b2Var.f10536g.size();
-        if (size != 0) {
-            int i10 = this.f27316f;
-            this.f27319s = i10;
-            this.f27316f = size + 1 + i10;
-        } else {
-            this.f27319s = -1;
-        }
-        int size2 = b2Var.f10534e.size();
-        if (size2 != 0) {
-            int i11 = this.f27316f;
-            this.v = i11;
-            this.f27316f = size2 + 1 + i11;
-        } else {
-            this.v = -1;
-        }
-        int i12 = this.f27316f;
-        this.f27316f = i12 + 1;
-        this.f27318r = i12;
-        super.l();
-    }
-
-    @Override
-    public final void v(s4.d1 r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i40.v(s4.d1, int):void");
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        if (i10 != 0) {
-            Context context = this.f27314c;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    view = new View(context);
-                } else {
-                    view = new View(context);
-                    view.setLayoutParams(new s4.q0(-1, AndroidUtilities.dp(56.0f)));
+    public final void run() {
+        long j3;
+        switch (this.f27048a) {
+            case 0:
+                k40 k40Var = this.f27049b;
+                String str = this.f27050c;
+                int i10 = this.d;
+                if (k40Var.f27749e != null) {
+                    k40Var.f27749e = null;
+                    AndroidUtilities.runOnUIThread(new i40(k40Var, str, i10, 1));
+                    return;
                 }
-            } else {
-                org.telegram.ui.Cells.v3 v3Var = new org.telegram.ui.Cells.v3(context, null);
-                v3Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20940jg, false));
-                v3Var.setTextColor(org.telegram.ui.ActionBar.h6.Qg);
-                view = v3Var;
-            }
-        } else {
-            org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(2, 2, this.f27314c, null, false);
-            b5Var.setCustomRightImage(R.drawable.msg_invited);
-            b5Var.setNameColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21015ng, false));
-            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20978lg, false);
-            int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21052pg, false);
-            b5Var.H = x02;
-            b5Var.I = x03;
-            b5Var.setDividerColor(org.telegram.ui.ActionBar.h6.f21127tg);
-            view = b5Var;
+                return;
+            default:
+                k40 k40Var2 = this.f27049b;
+                String str2 = this.f27050c;
+                int i11 = this.d;
+                ArrayList arrayList = null;
+                k40Var2.f27749e = null;
+                if (!ChatObject.isChannel(k40Var2.f27754w.V) && k40Var2.f27754w.W != null) {
+                    arrayList = new ArrayList(k40Var2.f27754w.W.participants.participants);
+                }
+                if (arrayList != null) {
+                    Utilities.searchQueue.postRunnable(new ai.d9(k40Var2, str2, i11, arrayList));
+                } else {
+                    k40Var2.h = false;
+                }
+                gg.b2 b2Var = k40Var2.d;
+                boolean canAddUsers = ChatObject.canAddUsers(k40Var2.f27754w.V);
+                if (ChatObject.isChannel(k40Var2.f27754w.V)) {
+                    j3 = k40Var2.f27754w.V.f19802id;
+                } else {
+                    j3 = 0;
+                }
+                b2Var.g(str2, canAddUsers, false, true, false, j3, false, 2, i11);
+                return;
         }
-        return new s4.d1(view);
     }
 }

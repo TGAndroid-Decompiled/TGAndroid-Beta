@@ -1,45 +1,65 @@
 package pg;
+
+import android.graphics.PointF;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 public final class w0 {
-    public final double f45897a;
-    public final double f45898b;
-    public final double f45899c;
-    public boolean d;
+    public float f45711a;
+    public float f45712b;
+    public float f45713c;
+    public float d;
+    public float f45714e;
+    public float f45715f;
+    public double f45716g;
+    public int h;
+    public int f45717i;
+    public ByteBuffer f45718j;
 
-    public w0(double d, double d10, double d11) {
-        this.f45897a = d;
-        this.f45898b = d10;
-        this.f45899c = d11;
-    }
-
-    public final float a(w0 w0Var) {
-        return (float) Math.sqrt(Math.pow(this.f45899c - w0Var.f45899c, 2.0d) + Math.pow(this.f45898b - w0Var.f45898b, 2.0d) + Math.pow(this.f45897a - w0Var.f45897a, 2.0d));
-    }
-
-    public final w0 b(w0 w0Var) {
-        return new w0((this.f45897a + w0Var.f45897a) * 0.5d, (this.f45898b + w0Var.f45898b) * 0.5d, (this.f45899c + w0Var.f45899c) * 0.5d);
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == null) {
+    public final boolean a(PointF pointF, float f7, float f10, float f11, int i10) {
+        if ((i10 != -1 && i10 >= this.f45717i) || this.f45718j.position() == this.f45718j.limit()) {
+            d();
             return false;
         }
-        if (obj == this) {
-            return true;
+        if (i10 != -1) {
+            this.f45718j.position(i10 * 20);
         }
-        if (!(obj instanceof w0)) {
-            return false;
-        }
-        w0 w0Var = (w0) obj;
-        if (this.f45897a != w0Var.f45897a || this.f45898b != w0Var.f45898b || this.f45899c != w0Var.f45899c) {
-            return false;
-        }
+        this.f45718j.putFloat(pointF.x);
+        this.f45718j.putFloat(pointF.y);
+        this.f45718j.putFloat(f7);
+        this.f45718j.putFloat(f10);
+        this.f45718j.putFloat(f11);
         return true;
     }
 
-    public w0(double d, double d10, double d11, int i10) {
-        this.f45897a = d;
-        this.f45898b = d10;
-        this.f45899c = d11;
-        this.d = true;
+    public final void b(int i10) {
+        int i11 = this.h + i10;
+        if (i11 > this.f45717i || this.f45718j == null) {
+            d();
+        }
+        this.h = i11;
+    }
+
+    public final void c() {
+        this.h = 0;
+        if (this.f45718j != null) {
+            return;
+        }
+        this.f45717i = 256;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(256 * 5 * 4);
+        this.f45718j = allocateDirect;
+        allocateDirect.order(ByteOrder.nativeOrder());
+        this.f45718j.position(0);
+    }
+
+    public final void d() {
+        if (this.f45718j != null) {
+            this.f45718j = null;
+        }
+        int max = Math.max(this.f45717i * 2, 256);
+        this.f45717i = max;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 20);
+        this.f45718j = allocateDirect;
+        allocateDirect.order(ByteOrder.nativeOrder());
+        this.f45718j.position(0);
     }
 }

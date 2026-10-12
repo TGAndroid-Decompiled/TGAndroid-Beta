@@ -1,72 +1,23 @@
 package org.telegram.ui;
+public final class b01 extends wu0 {
+    public final ProfileActivity f36007a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class b01 extends AnimatorListenerAdapter {
-    public final int f36262a;
-    public final boolean f36263b;
-    public final ProfileActivity f36264c;
-
-    public b01(ProfileActivity profileActivity, boolean z10, int i10) {
-        this.f36262a = i10;
-        this.f36264c = profileActivity;
-        this.f36263b = z10;
+    public b01(ProfileActivity profileActivity) {
+        this.f36007a = profileActivity;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f36262a) {
-            case 1:
-                this.f36264c.f34312f0 = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public final org.telegram.ui.gv0 E(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b01.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.gv0");
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        org.telegram.ui.Cells.z3 z3Var;
-        switch (this.f36262a) {
-            case 0:
-                ProfileActivity profileActivity = this.f36264c;
-                boolean z10 = this.f36263b;
-                ProfileActivity.n1(profileActivity, z10);
-                profileActivity.Y.setClickable(true);
-                if (z10) {
-                    org.telegram.ui.ActionBar.u0 u0Var = profileActivity.U0;
-                    if (u0Var.F.getWidth() != 0 && !u0Var.f21576e.isFocused()) {
-                        u0Var.f21576e.requestFocus();
-                        AndroidUtilities.showKeyboard(u0Var.f21576e);
-                    }
-                }
-                profileActivity.k4(true);
-                profileActivity.V1 = null;
-                profileActivity.fragmentView.invalidate();
-                if (z10) {
-                    profileActivity.U4 = true;
-                    profileActivity.F4();
-                    Activity parentActivity = profileActivity.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.m2) profileActivity).classGuid;
-                    AndroidUtilities.requestAdjustResize(parentActivity, i10);
-                    profileActivity.P.setPreventMoving(false);
-                    return;
-                }
-                return;
-            default:
-                ProfileActivity profileActivity2 = this.f36264c;
-                if (profileActivity2.f34312f0 != null && (z3Var = profileActivity2.f34319g0) != null) {
-                    if (!this.f36263b) {
-                        z3Var.setVisibility(4);
-                    }
-                    profileActivity2.f34312f0 = null;
-                    return;
-                }
-                return;
-        }
+    public final void G() {
+        this.f36007a.f34079e0.getImageReceiver().setVisible(true, true);
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f36007a.f34160q0.p(str, str2, z10);
     }
 }

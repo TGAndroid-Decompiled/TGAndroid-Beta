@@ -2,37 +2,37 @@ package bi;
 
 import android.view.View;
 public final class p implements View.OnClickListener {
-    public final int f3910a;
-    public final Runnable f3911b;
+    public final int f3909a;
+    public final Runnable f3910b;
 
     public p(int i10, Runnable runnable) {
-        this.f3910a = i10;
-        this.f3911b = runnable;
+        this.f3909a = i10;
+        this.f3910b = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f3910a) {
+        switch (this.f3909a) {
             case 0:
-                this.f3911b.run();
+                this.f3910b.run();
                 return;
             case 1:
-                this.f3911b.run();
+                this.f3910b.run();
                 return;
             case 2:
-                this.f3911b.run();
+                this.f3910b.run();
                 return;
             case 3:
-                this.f3911b.run();
+                this.f3910b.run();
                 return;
             case 4:
-                this.f3911b.run();
+                this.f3910b.run();
                 return;
             case 5:
-                this.f3911b.run();
+                this.f3910b.run();
                 return;
             default:
-                this.f3911b.run();
+                this.f3910b.run();
                 return;
         }
     }

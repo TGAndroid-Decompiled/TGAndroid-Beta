@@ -2,29 +2,24 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class li implements Runnable {
-    public final int f18490a;
-    public final SendMessagesHelper f18491b;
-    public final long f18492c;
-    public final ArrayList d;
+    public final int f18201a;
+    public final SecretChatHelper f18202b;
+    public final ArrayList f18203c;
 
-    public li(SendMessagesHelper sendMessagesHelper, long j3, ArrayList arrayList, int i10) {
-        this.f18490a = i10;
-        this.f18491b = sendMessagesHelper;
-        this.f18492c = j3;
-        this.d = arrayList;
+    public li(SecretChatHelper secretChatHelper, ArrayList arrayList, int i10) {
+        this.f18201a = i10;
+        this.f18202b = secretChatHelper;
+        this.f18203c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18490a) {
+        switch (this.f18201a) {
             case 0:
-                this.f18491b.lambda$performSendMessageRequestMulti$72(this.f18492c, this.d);
-                return;
-            case 1:
-                this.f18491b.lambda$performSendMessageRequest$100(this.f18492c, this.d);
+                this.f18202b.lambda$resendMessages$14(this.f18203c);
                 return;
             default:
-                this.f18491b.lambda$sendMessage$14(this.f18492c, this.d);
+                this.f18202b.lambda$processPendingEncMessages$0(this.f18203c);
                 return;
         }
     }

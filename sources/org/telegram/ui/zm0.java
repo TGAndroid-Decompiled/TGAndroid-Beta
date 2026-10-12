@@ -1,99 +1,109 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class zm0 implements TextWatcher {
-    public final mn0 f44732a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class zm0 implements RequestDelegate {
+    public final int f44879a;
+    public final bn0 f44880b;
 
-    public zm0(mn0 mn0Var) {
-        this.f44732a = mn0Var;
+    public zm0(bn0 bn0Var, int i10) {
+        this.f44879a = i10;
+        this.f44880b = bn0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        String str;
-        int indexOf;
-        mn0 mn0Var = this.f44732a;
-        ArrayList arrayList = mn0Var.U0;
-        HashMap hashMap = mn0Var.W0;
-        if (mn0Var.Z0) {
-            return;
-        }
-        mn0Var.Z0 = true;
-        String d = hf.b.d(mn0Var.Y[1].getText().toString(), false);
-        mn0Var.Y[1].setText(d);
-        org.telegram.ui.Components.x40 x40Var = (org.telegram.ui.Components.x40) mn0Var.Y[2];
-        if (d.length() == 0) {
-            x40Var.setHintText((String) null);
-            x40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-            mn0Var.Y[0].setText(LocaleController.getString(R.string.ChooseCountry));
-        } else {
-            int i10 = 4;
-            if (d.length() > 4) {
-                while (true) {
-                    if (i10 >= 1) {
-                        String substring = d.substring(0, i10);
-                        if (((String) hashMap.get(substring)) != null) {
-                            mn0Var.Y[1].setText(substring);
-                            str = d.substring(i10) + mn0Var.Y[2].getText().toString();
-                            d = substring;
-                            z10 = true;
-                            break;
+    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f44879a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new an0(this.f44880b, tLObject, tL_error));
+                return;
+            case 1:
+                final bn0 bn0Var = this.f44880b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10;
+                        int i11;
+                        switch (r3) {
+                            case 0:
+                                bn0 bn0Var2 = bn0Var;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                pn0 pn0Var = bn0Var2.f36213e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.m2) pn0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new zm0(bn0Var2, 4), 8);
+                                    return;
+                                }
+                                if (pn0Var.f41055y == null) {
+                                    pn0Var.f41055y = new TL_account.authorizationForm();
+                                }
+                                bn0Var2.a();
+                                return;
+                            default:
+                                bn0 bn0Var3 = bn0Var;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i11 = ((org.telegram.ui.ActionBar.m2) bn0Var3.f36213e).currentAccount;
+                                    ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new zm0(bn0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.globalQueue.postRunnable(new pf0(bn0Var3, bn0Var3.f36211b, bn0Var3.d, 12));
+                                return;
                         }
-                        i10--;
-                    } else {
-                        z10 = false;
-                        str = null;
-                        break;
                     }
-                }
-                if (!z10) {
-                    str = d.substring(1) + mn0Var.Y[2].getText().toString();
-                    EditTextBoldCursor editTextBoldCursor = mn0Var.Y[1];
-                    d = d.substring(0, 1);
-                    editTextBoldCursor.setText(d);
-                }
-            } else {
-                z10 = false;
-                str = null;
-            }
-            String str2 = (String) hashMap.get(d);
-            if (str2 != null && (indexOf = arrayList.indexOf(str2)) != -1) {
-                mn0Var.Y[0].setText((CharSequence) arrayList.get(indexOf));
-                String str3 = (String) mn0Var.X0.get(d);
-                if (str3 != null) {
-                    x40Var.setHintText(str3.replace('X', (char) 8211));
-                    x40Var.setHint((CharSequence) null);
-                }
-            } else {
-                x40Var.setHintText((String) null);
-                x40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-                mn0Var.Y[0].setText(LocaleController.getString(R.string.WrongCountry));
-            }
-            if (!z10) {
-                EditTextBoldCursor editTextBoldCursor2 = mn0Var.Y[1];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-            }
-            if (str != null) {
-                x40Var.requestFocus();
-                x40Var.setText(str);
-                x40Var.setSelection(x40Var.length());
-            }
+                });
+                return;
+            case 2:
+                final bn0 bn0Var2 = this.f44880b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10;
+                        int i11;
+                        switch (r3) {
+                            case 0:
+                                bn0 bn0Var22 = bn0Var2;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                pn0 pn0Var = bn0Var22.f36213e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.m2) pn0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new zm0(bn0Var22, 4), 8);
+                                    return;
+                                }
+                                if (pn0Var.f41055y == null) {
+                                    pn0Var.f41055y = new TL_account.authorizationForm();
+                                }
+                                bn0Var22.a();
+                                return;
+                            default:
+                                bn0 bn0Var3 = bn0Var2;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i11 = ((org.telegram.ui.ActionBar.m2) bn0Var3.f36213e).currentAccount;
+                                    ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new zm0(bn0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.globalQueue.postRunnable(new pf0(bn0Var3, bn0Var3.f36211b, bn0Var3.d, 12));
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new an0(this.f44880b, tL_error, tLObject, 1));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new an0(this.f44880b, tL_error, tLObject, 2));
+                return;
         }
-        mn0Var.Z0 = false;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

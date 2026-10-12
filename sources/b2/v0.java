@@ -3,16 +3,16 @@ package b2;
 import java.util.Locale;
 public final class v0 {
     public static final v0 d = new v0(1.0f, 1.0f);
-    public static final String f3671e;
-    public static final String f3672f;
-    public final float f3673a;
-    public final float f3674b;
-    public final int f3675c;
+    public static final String f3669e;
+    public static final String f3670f;
+    public final float f3671a;
+    public final float f3672b;
+    public final int f3673c;
 
     static {
-        String str = e2.d0.f8531a;
-        f3671e = Integer.toString(0, 36);
-        f3672f = Integer.toString(1, 36);
+        String str = e2.d0.f8529a;
+        f3669e = Integer.toString(0, 36);
+        f3670f = Integer.toString(1, 36);
     }
 
     public v0(float f7, float f10) {
@@ -24,9 +24,9 @@ public final class v0 {
         }
         e2.d.b(z10);
         e2.d.b(f10 > 0.0f);
-        this.f3673a = f7;
-        this.f3674b = f10;
-        this.f3675c = Math.round(f7 * 1000.0f);
+        this.f3671a = f7;
+        this.f3672b = f10;
+        this.f3673c = Math.round(f7 * 1000.0f);
     }
 
     public final boolean equals(Object obj) {
@@ -35,7 +35,7 @@ public final class v0 {
         }
         if (obj != null && v0.class == obj.getClass()) {
             v0 v0Var = (v0) obj;
-            if (this.f3673a == v0Var.f3673a && this.f3674b == v0Var.f3674b) {
+            if (this.f3671a == v0Var.f3671a && this.f3672b == v0Var.f3672b) {
                 return true;
             }
         }
@@ -43,12 +43,12 @@ public final class v0 {
     }
 
     public final int hashCode() {
-        return Float.floatToRawIntBits(this.f3674b) + ((Float.floatToRawIntBits(this.f3673a) + 527) * 31);
+        return Float.floatToRawIntBits(this.f3672b) + ((Float.floatToRawIntBits(this.f3671a) + 527) * 31);
     }
 
     public final String toString() {
-        Object[] objArr = {Float.valueOf(this.f3673a), Float.valueOf(this.f3674b)};
-        String str = e2.d0.f8531a;
+        Object[] objArr = {Float.valueOf(this.f3671a), Float.valueOf(this.f3672b)};
+        String str = e2.d0.f8529a;
         return String.format(Locale.US, "PlaybackParameters(speed=%.2f, pitch=%.2f)", objArr);
     }
 }

@@ -211,18 +211,18 @@ public class Camera1Session implements CameraSession {
 
             @Override
             public void onError(int i10, Camera camera) {
-                String h;
+                String i11;
                 if (i10 == 100) {
-                    h = "Camera server died!";
+                    i11 = "Camera server died!";
                 } else {
-                    h = hg.c.h(i10, "Camera error: ");
+                    i11 = hg.c.i(i10, "Camera error: ");
                 }
-                Logging.e("Camera1Session", h);
+                Logging.e("Camera1Session", i11);
                 Camera1Session.this.stopInternal();
                 if (i10 == 2) {
                     Camera1Session.this.events.onCameraDisconnected(Camera1Session.this);
                 } else {
-                    Camera1Session.this.events.onCameraError(Camera1Session.this, h);
+                    Camera1Session.this.events.onCameraError(Camera1Session.this, i11);
                 }
             }
         });

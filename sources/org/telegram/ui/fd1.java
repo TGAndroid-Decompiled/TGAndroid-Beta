@@ -1,18 +1,19 @@
 package org.telegram.ui;
-public final class fd1 extends wd1 {
-    public final zn f37679k2;
-    public final boolean f37680l2;
 
-    public fd1(Object obj, zn znVar, boolean z10) {
-        super(obj, null, true);
-        this.f37679k2 = znVar;
-        this.f37680l2 = z10;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class fd1 extends AnimatorListenerAdapter {
+    public final zd1 f37757a;
+
+    public fd1(zd1 zd1Var) {
+        this.f37757a = zd1Var;
     }
 
     @Override
-    public final void onFragmentClosed() {
-        super.onFragmentClosed();
-        xn xnVar = this.f37679k2.f44796ea;
-        xnVar.i(xnVar.f44149f, xnVar.h, false, Boolean.valueOf(this.f37680l2), false);
+    public final void onAnimationEnd(Animator animator) {
+        zd1 zd1Var = this.f37757a;
+        if (zd1Var.W0 == null) {
+            zd1Var.J0[0].setVisibility(4);
+        }
     }
 }

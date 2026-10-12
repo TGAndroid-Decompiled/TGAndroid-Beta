@@ -1,22 +1,22 @@
 package ii;
 public final class c1 implements Runnable {
-    public final int f12302a;
-    public final i1 f12303b;
+    public final int f12309a;
+    public final i1 f12310b;
 
     public c1(i1 i1Var, int i10) {
-        this.f12302a = i10;
-        this.f12303b = i1Var;
+        this.f12309a = i10;
+        this.f12310b = i1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f12302a) {
+        switch (this.f12309a) {
             case 0:
-                i1 i1Var = this.f12303b;
-                m4 m4Var = i1Var.R;
-                if (m4Var != null && i1Var.d != null) {
+                i1 i1Var = this.f12310b;
+                l4 l4Var = i1Var.R;
+                if (l4Var != null && i1Var.d != null) {
                     i1Var.S = true;
-                    m4Var.b().setPressed(false);
+                    l4Var.b().setPressed(false);
                     try {
                         i1Var.performHapticFeedback(0);
                     } catch (Exception unused) {
@@ -26,10 +26,10 @@ public final class c1 implements Runnable {
                 }
                 return;
             case 1:
-                this.f12303b.n();
+                this.f12310b.n();
                 return;
             default:
-                this.f12303b.s();
+                this.f12310b.s();
                 return;
         }
     }

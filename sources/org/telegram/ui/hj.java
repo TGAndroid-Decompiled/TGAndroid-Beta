@@ -1,30 +1,36 @@
 package org.telegram.ui;
-public final class hj extends org.telegram.ui.ActionBar.m1 {
-    public final zn f38494o;
 
-    public hj(zn znVar, fj fjVar) {
-        super(fjVar, -2, -2);
-        this.f38494o = znVar;
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class hj implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38443a;
+    public final org.telegram.ui.ActionBar.m2 f38444b;
+
+    public hj(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
+        this.f38443a = i10;
+        this.f38444b = m2Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        zn znVar = this.f38494o;
-        if (znVar.Q8 == this) {
-            znVar.Q8 = null;
-            znVar.T8 = null;
-            znVar.S8 = null;
-            znVar.f45047z0.R = true;
-            if (znVar.R8) {
-                znVar.j8(false, true, 0.0f);
-            } else {
-                znVar.R8 = true;
-            }
-            ok okVar = znVar.Y;
-            if (okVar != null && okVar.getEditField() != null) {
-                znVar.Y.getEditField().setAllowDrawCursor(true);
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f38443a) {
+            case 0:
+                eo eoVar = (eo) this.f38444b;
+                eoVar.f37335la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                eoVar.X0.invalidate();
+                return;
+            case 1:
+                vy vyVar = (vy) this.f38444b;
+                vyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = vyVar.fragmentView;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ((zd1) this.f38444b).f44792x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

@@ -1,37 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-public final class f41 implements Runnable {
-    public final int f26313a;
-    public final MessageObject f26314b;
-    public final long f26315c;
-    public final String d;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class f41 extends t61 {
+    public static final int f25887a = 0;
 
-    public f41(String str, MessageObject messageObject, long j3, int i10) {
-        this.f26313a = i10;
-        this.f26314b = messageObject;
-        this.f26315c = j3;
-        this.d = str;
+    static {
+        t61.setup(new t61());
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f26313a;
-        String str = this.d;
-        long j3 = this.f26315c;
-        MessageObject messageObject = this.f26314b;
-        switch (i10) {
-            case 0:
-                NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
-                int i11 = NotificationCenter.voiceTranscriptionUpdate;
-                Long valueOf = Long.valueOf(j3);
-                Boolean bool = Boolean.TRUE;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i11, messageObject, valueOf, str, bool, bool);
-                return;
-            default:
-                k41.g(messageObject, j3, str);
-                return;
+    public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
+        boolean z11;
+        g41 g41Var = (g41) view;
+        boolean z12 = false;
+        if (u61Var.f31082r) {
+            g41Var.e();
+        } else {
+            Object obj = u61Var.G;
+            if (obj == null) {
+                if (u61Var.B == -2) {
+                    g41Var.b(u61Var.f31081q, u61Var.f31070e);
+                } else {
+                    if ((u61Var.f31088y & 1) != 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    g41Var.c(z11, u61Var.f31081q, u61Var.f31070e);
+                }
+            } else if (obj instanceof TLRPC.TL_forumTopic) {
+                if (!u61Var.I) {
+                    g41Var.f((TLRPC.TL_forumTopic) obj, u61Var.f31070e);
+                } else {
+                    g41Var.a(u61Var.f31087x, (TLRPC.TL_forumTopic) obj, u61Var.f31070e);
+                }
+            }
         }
+        if (p71Var != null && p71Var.f29439a3 && g41Var.f26279y) {
+            z12 = true;
+        }
+        g41Var.setReorder(z12);
+    }
+
+    @Override
+    public final View createView(Context context, wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        return new g41(context, i10, c6Var);
     }
 }

@@ -1,11 +1,24 @@
 package n4;
 
-import android.content.Context;
-import android.media.session.MediaSession;
-import android.os.Bundle;
-public final class t extends s {
+import android.media.session.MediaSessionManager;
+import android.text.TextUtils;
+public class t extends s {
     @Override
-    public final MediaSession a(Context context, String str, Bundle bundle) {
-        return ah.e.f(context, str, bundle);
+    public final a0 c() {
+        MediaSessionManager.RemoteUserInfo currentControllerInfo = this.f16343a.getCurrentControllerInfo();
+        ?? obj = new Object();
+        String packageName = currentControllerInfo.getPackageName();
+        if (packageName != null) {
+            if (!TextUtils.isEmpty(packageName)) {
+                obj.f16291a = new c0(currentControllerInfo.getPackageName(), currentControllerInfo.getPid(), currentControllerInfo.getUid());
+                return obj;
+            }
+            throw new IllegalArgumentException("packageName should be nonempty");
+        }
+        throw new NullPointerException("package shouldn't be null");
+    }
+
+    @Override
+    public final void d(a0 a0Var) {
     }
 }

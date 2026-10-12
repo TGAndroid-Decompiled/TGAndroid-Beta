@@ -2,52 +2,82 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class re implements Runnable {
-    public final int f19092a;
-    public final MessagesStorage f19093b;
-    public final ArrayList f19094c;
-    public final long d;
+    public final int f18787a;
+    public final MessagesStorage f18788b;
+    public final ArrayList f18789c;
 
-    public re(MessagesStorage messagesStorage, long j3, ArrayList arrayList, int i10) {
-        this.f19092a = i10;
-        this.f19093b = messagesStorage;
-        this.d = j3;
-        this.f19094c = arrayList;
+    public re(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f18787a = i10;
+        this.f18788b = messagesStorage;
+        this.f18789c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f19092a) {
+        switch (this.f18787a) {
             case 0:
-                this.f19093b.lambda$deleteUserChatHistory$86(this.f19094c, this.d);
+                this.f18788b.lambda$markMessagesAsDeletedInternal$230(this.f18789c);
                 return;
             case 1:
-                this.f19093b.lambda$emptyMessagesMedia$99(this.f19094c, this.d);
+                this.f18788b.lambda$markVoiceMessageContentAsRead$216(this.f18789c);
                 return;
             case 2:
-                this.f19093b.lambda$deleteSavedDialog$54(this.d, this.f19094c);
+                this.f18788b.lambda$emptyMessagesMedia$96(this.f18789c);
                 return;
             case 3:
-                this.f19093b.lambda$updateChannelUsers$125(this.d, this.f19094c);
+                this.f18788b.lambda$emptyMessagesMedia$97(this.f18789c);
                 return;
             case 4:
-                this.f19093b.lambda$markVoiceMessageContentAsRead$217(this.f19094c, this.d);
+                this.f18788b.lambda$loadUserInfo$128(this.f18789c);
                 return;
             case 5:
-                this.f19093b.lambda$markMessagesAsDeletedInternal$226(this.f19094c, this.d);
+                this.f18788b.lambda$replaceMessageIfExists$233(this.f18789c);
                 return;
             case 6:
-                this.f19093b.lambda$removeTopics$58(this.f19094c, this.d);
+                this.f18788b.lambda$markMessagesAsDeletedByRandoms$220(this.f18789c);
+                return;
+            case 7:
+                this.f18788b.lambda$deleteFromDownloadQueue$183(this.f18789c);
+                return;
+            case 8:
+                this.f18788b.lambda$deleteContacts$147(this.f18789c);
+                return;
+            case 9:
+                this.f18788b.lambda$updateMessageVerifyFlags$195(this.f18789c);
+                return;
+            case 10:
+                this.f18788b.lambda$putMessagesInternal$198(this.f18789c);
+                return;
+            case 11:
+                this.f18788b.lambda$putMessagesInternal$197(this.f18789c);
+                return;
+            case 12:
+                this.f18788b.lambda$markMessagesAsDeletedByRandoms$221(this.f18789c);
+                return;
+            case 13:
+                this.f18788b.lambda$markMessagesAsDeletedInternal$224(this.f18789c);
+                return;
+            case 14:
+                this.f18788b.lambda$markMessagesAsDeletedInternal$227(this.f18789c);
+                return;
+            case 15:
+                this.f18788b.lambda$onReactionsUpdate$105(this.f18789c);
+                return;
+            case 16:
+                this.f18788b.lambda$deleteDialog$88(this.f18789c);
+                return;
+            case 17:
+                this.f18788b.lambda$saveDialogFiltersOrder$75(this.f18789c);
+                return;
+            case 18:
+                this.f18788b.lambda$putMessages$236(this.f18789c);
+                return;
+            case 19:
+                this.f18788b.lambda$putMessages$237(this.f18789c);
                 return;
             default:
-                this.f19093b.lambda$createTaskForSecretChat$117(this.d, this.f19094c);
+                this.f18788b.lambda$putWebPages$187(this.f18789c);
                 return;
         }
-    }
-
-    public re(MessagesStorage messagesStorage, ArrayList arrayList, long j3, int i10) {
-        this.f19092a = i10;
-        this.f19093b = messagesStorage;
-        this.f19094c = arrayList;
-        this.d = j3;
     }
 }

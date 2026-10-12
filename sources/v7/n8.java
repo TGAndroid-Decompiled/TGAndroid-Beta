@@ -1,16 +1,16 @@
 package v7;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ym0;
+import org.telegram.ui.Components.dn0;
 public abstract class n8 {
-    public static void a(ym0 ym0Var, org.telegram.ui.ActionBar.d6 d6Var) {
+    public static void a(dn0 dn0Var, org.telegram.ui.ActionBar.c6 c6Var) {
         boolean q6;
-        if (d6Var != null) {
-            q6 = d6Var.a();
+        if (c6Var != null) {
+            q6 = c6Var.a();
         } else {
             q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
-        ym0Var.q(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, d6Var), q6);
+        dn0Var.q(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, c6Var), q6);
     }
 
     public static int b(ii.a aVar) {
@@ -19,9 +19,9 @@ public abstract class n8 {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f12234c);
+        int max = Math.max(0, aVar.f12233c);
         if (max > 0) {
-            i10 = AndroidUtilities.dp(hg.c.f(max, 1, 24, 28));
+            i10 = AndroidUtilities.dp(hg.c.g(max, 1, 24, 28));
         }
         return c10 + i10;
     }
@@ -31,12 +31,12 @@ public abstract class n8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f12240k.size();
+            size = aVar.f12239k.size();
         }
         if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(hg.c.f(size, 1, 16, 12));
+        return AndroidUtilities.dp(hg.c.g(size, 1, 16, 12));
     }
 
     public static int d(ii.a aVar) {
@@ -44,11 +44,11 @@ public abstract class n8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f12240k.size();
+            size = aVar.f12239k.size();
         }
         if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(hg.c.f(size, 1, 16, 8));
+        return AndroidUtilities.dp(hg.c.g(size, 1, 16, 8));
     }
 }

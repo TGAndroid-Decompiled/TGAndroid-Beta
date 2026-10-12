@@ -2,26 +2,26 @@ package org.telegram.ui.Wallet;
 
 import android.view.View;
 public final class b3 implements Runnable {
-    public final int f34726a;
-    public final f3 f34727b;
+    public final int f34501a;
+    public final f3 f34502b;
 
     public b3(f3 f3Var, int i10) {
-        this.f34726a = i10;
-        this.f34727b = f3Var;
+        this.f34501a = i10;
+        this.f34502b = f3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34726a) {
+        switch (this.f34501a) {
             case 0:
-                org.telegram.ui.Cells.w0 w0Var = this.f34727b.f34930a;
+                org.telegram.ui.Cells.w0 w0Var = this.f34502b.f34705a;
                 if (w0Var.getParent() instanceof View) {
                     ((View) w0Var.getParent()).invalidate();
                     return;
                 }
                 return;
             default:
-                this.f34727b.p();
+                this.f34502b.p();
                 return;
         }
     }

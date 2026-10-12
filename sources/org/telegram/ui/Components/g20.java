@@ -1,43 +1,26 @@
 package org.telegram.ui.Components;
-
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 public final class g20 implements Runnable {
-    public final FragmentContextView f26633a;
+    public final int f26229a;
+    public final FragmentContextView f26230b;
 
-    public g20(FragmentContextView fragmentContextView) {
-        this.f26633a = fragmentContextView;
+    public g20(FragmentContextView fragmentContextView, int i10) {
+        this.f26229a = i10;
+        this.f26230b = fragmentContextView;
     }
 
     @Override
     public final void run() {
-        String formatFullDuration;
-        FragmentContextView fragmentContextView = this.f26633a;
-        org.telegram.ui.ActionBar.m2 m2Var = fragmentContextView.h;
-        if (fragmentContextView.f24201g0 != null && (m2Var instanceof org.telegram.ui.zn)) {
-            ChatObject.Call groupCall = fragmentContextView.f24207n.getGroupCall();
-            if (groupCall != null && groupCall.isScheduled()) {
-                int currentTime = groupCall.call.schedule_date - m2Var.getConnectionsManager().getCurrentTime();
-                if (currentTime >= 86400) {
-                    formatFullDuration = LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]);
-                } else {
-                    formatFullDuration = AndroidUtilities.formatFullDuration(currentTime);
-                }
-                q6 q6Var = fragmentContextView.f24204j0;
-                if (!fragmentContextView.f24203i0) {
-                    formatFullDuration = LocaleController.getString(R.string.VoipChatNotify);
-                }
-                q6Var.t(formatFullDuration, true, true);
-                AndroidUtilities.runOnUIThread(fragmentContextView.m0, 1000L);
-                fragmentContextView.f24214s.invalidate();
+        int i10 = this.f26229a;
+        FragmentContextView fragmentContextView = this.f26230b;
+        switch (i10) {
+            case 0:
+                fragmentContextView.O.f31703g = 0.0f;
+                fragmentContextView.M.invalidate();
                 return;
-            }
-            fragmentContextView.f24202h0 = false;
-            fragmentContextView.f24206l0 = false;
-            return;
+            default:
+                float[] fArr = FragmentContextView.Q0;
+                fragmentContextView.o(true);
+                return;
         }
-        fragmentContextView.f24206l0 = false;
     }
 }

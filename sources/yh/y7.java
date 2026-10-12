@@ -1,8 +1,8 @@
 package yh;
 
 import android.os.Bundle;
-import org.telegram.ui.zn;
-public final class y7 extends zn {
+import org.telegram.ui.eo;
+public final class y7 extends eo {
     public final boolean Qc;
     public final h8 Rc;
 

@@ -1,124 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class mi extends t6 {
-    public final int f28858b;
-    public final yi f28859c;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class mi implements vj {
+    public final aj f28558a;
 
-    public mi(yi yiVar, int i10) {
-        super("translation", 0);
-        this.f28858b = i10;
-        switch (i10) {
-            case 1:
-                this.f28859c = yiVar;
-                super("openProgress", 0);
-                return;
-            default:
-                this.f28859c = yiVar;
-                return;
+    public mi(aj ajVar) {
+        this.f28558a = ajVar;
+    }
+
+    @Override
+    public final void a(TLRPC.User user, boolean z10, int i10, long j3) {
+        org.telegram.ui.eo eoVar = (org.telegram.ui.eo) this.f28558a.f24342f0;
+        if (eoVar.i7()) {
+            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, eoVar.T5, eoVar.f37356n5, eoVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
+            of2.sendMessageChatArguments = eoVar.H8();
+            of2.effect_id = 0L;
+            of2.invert_media = false;
+            of2.payStars = j3;
+            of2.monoForumPeer = eoVar.S8();
+            of2.suggestionParams = eoVar.f37271g5;
+            eoVar.getSendMessagesHelper().sendMessage(of2);
+            eoVar.B6();
         }
     }
 
     @Override
-    public final void c(Object obj, float f7) {
-        ViewGroup viewGroup;
-        int i10;
-        float f10;
-        switch (this.f28858b) {
-            case 0:
-                qi qiVar = (qi) obj;
-                yi yiVar = this.f28859c;
-                yiVar.f33281d0 = f7;
-                qi qiVar2 = yiVar.C0;
-                if (qiVar2 != null) {
-                    if (!(qiVar2 instanceof hn) && !(yiVar.B0 instanceof hn)) {
-                        qiVar2.setAlpha(f7);
-                        yiVar.C0.v(f7);
-                        qi qiVar3 = yiVar.C0;
-                        lo loVar = yiVar.m0;
-                        int i11 = 0;
-                        if (qiVar3 == loVar || yiVar.B0 == loVar) {
-                            if (qiVar3 == loVar) {
-                                i10 = 1;
-                            } else {
-                                i10 = 0;
-                            }
-                            yiVar.e2(i10);
-                        }
-                        qi qiVar4 = yiVar.C0;
-                        lo loVar2 = yiVar.f33312n0;
-                        if (qiVar4 == loVar2 || yiVar.B0 == loVar2) {
-                            if (qiVar4 == loVar2) {
-                                i11 = 1;
-                            }
-                            yiVar.e2(i11);
-                        }
-                        yiVar.C0.setTranslationY(AndroidUtilities.dp(78.0f) * f7);
-                        yiVar.B0.v(1.0f - Math.min(1.0f, f7 / 0.7f));
-                        yiVar.B0.l(yiVar.f33317o2);
-                    } else {
-                        int max = Math.max(qiVar2.getWidth(), yiVar.B0.getWidth());
-                        if (yiVar.C0 instanceof hn) {
-                            yiVar.B0.setTranslationX((-max) * f7);
-                            yiVar.C0.setTranslationX((1.0f - f7) * max);
-                        } else {
-                            yiVar.B0.setTranslationX(max * f7);
-                            yiVar.C0.setTranslationX((1.0f - f7) * (-max));
-                        }
-                    }
-                    if (yiVar.f33343w1 != null) {
-                        yiVar.e2(1);
-                    }
-                    yiVar.b1();
-                    viewGroup = ((org.telegram.ui.ActionBar.e3) yiVar).containerView;
-                    viewGroup.invalidate();
-                    return;
-                }
-                return;
-            default:
-                yi yiVar2 = (yi) obj;
-                bi biVar = this.f28859c.B1;
-                int childCount = biVar.getChildCount();
-                for (int i12 = 0; i12 < childCount; i12++) {
-                    float f11 = (3 - i12) * 32.0f;
-                    View childAt = biVar.getChildAt(i12);
-                    if (f7 > f11) {
-                        float f12 = f7 - f11;
-                        if (f12 <= 200.0f) {
-                            float f13 = f12 / 200.0f;
-                            f10 = is.f27501g.getInterpolation(f13) * 1.1f;
-                            childAt.setAlpha(is.f27503j.getInterpolation(f13));
-                        } else {
-                            childAt.setAlpha(1.0f);
-                            float f14 = f12 - 200.0f;
-                            if (f14 <= 100.0f) {
-                                f10 = 1.1f - (is.f27502i.getInterpolation(f14 / 100.0f) * 0.1f);
-                            } else {
-                                f10 = 1.0f;
-                            }
-                        }
-                    } else {
-                        f10 = 0.0f;
-                    }
-                    if (childAt instanceof ti) {
-                        ((ti) childAt).f31265a.setAttachScale(f10);
-                    }
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f28858b) {
-            case 0:
-                qi qiVar = (qi) obj;
-                return Float.valueOf(this.f28859c.f33281d0);
-            default:
-                yi yiVar = (yi) obj;
-                return Float.valueOf(0.0f);
-        }
+    public final void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
+        ((org.telegram.ui.eo) this.f28558a.f24342f0).hb(arrayList, str, z10, i10, j3, z11);
     }
 }

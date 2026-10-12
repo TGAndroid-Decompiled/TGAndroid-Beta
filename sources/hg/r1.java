@@ -5,19 +5,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.b5;
-import org.telegram.ui.Components.b00;
-import org.telegram.ui.Components.tw0;
-public final class r1 extends tw0 {
-    public final int f11365w0;
+import org.telegram.ui.Components.d00;
+import org.telegram.ui.Components.yw0;
+public final class r1 extends yw0 {
+    public final int f11364w0;
 
     public r1(Context context, b5 b5Var, int i10) {
         super(context, b5Var);
-        this.f11365w0 = i10;
+        this.f11364w0 = i10;
     }
 
     @Override
     public boolean P() {
-        switch (this.f11365w0) {
+        switch (this.f11364w0) {
             case 2:
                 return false;
             case 3:
@@ -32,10 +32,10 @@ public final class r1 extends tw0 {
 
     @Override
     public void addView(View view) {
-        switch (this.f11365w0) {
+        switch (this.f11364w0) {
             case 4:
-                if (view instanceof b00) {
-                    ViewGroup.LayoutParams layoutParams = ((b00) view).getLayoutParams();
+                if (view instanceof d00) {
+                    ViewGroup.LayoutParams layoutParams = ((d00) view).getLayoutParams();
                     if (layoutParams == null) {
                         layoutParams = new FrameLayout.LayoutParams(-1, -2);
                     }
@@ -59,7 +59,7 @@ public final class r1 extends tw0 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f11365w0) {
+        switch (this.f11364w0) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
                 return;

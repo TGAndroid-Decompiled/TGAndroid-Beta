@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import n4.x;
+import n4.y;
 import org.telegram.messenger.FileStreamLoadOperation;
 public final class ExtendedDefaultDataSource implements h {
     private static final String SCHEME_ASSET = "asset";
@@ -191,15 +191,15 @@ public final class ExtendedDefaultDataSource implements h {
             z10 = false;
         }
         d.g(z10);
-        Uri uri = mVar.f10266a;
+        Uri uri = mVar.f10265a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f10266a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f10265a.toString().substring(8)));
             l a2 = mVar.a();
-            a2.f10262e = uri;
+            a2.f10261e = uri;
             mVar = a2.d();
         }
         String scheme = uri.getScheme();
-        String str = d0.f8531a;
+        String str = d0.f8529a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {
@@ -238,7 +238,7 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     public ExtendedDefaultDataSource(Context context, String str, int i10, int i11, boolean z10) {
-        this(context, new r(str, i10, i11, z10, new x(17)), (LongSparseArray<Uri>) null);
+        this(context, new r(str, i10, i11, z10, new y(17)), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, h hVar, LongSparseArray<Uri> longSparseArray) {

@@ -1,114 +1,55 @@
 package bb;
 
-import ae.c1;
-import ae.e0;
-import ae.e2;
-import ae.g0;
-import ae.o0;
-import ae.v;
-import ae.y;
-import ae.y0;
-import java.util.concurrent.locks.LockSupport;
 import sd.p;
-public final class l {
-    public static final n1.d f3837c = new n1.d("firebase_sessions_enabled");
-    public static final n1.d d = new n1.d("firebase_sessions_sampling_rate");
-    public static final n1.d f3838e = new n1.d("firebase_sessions_restart_timeout");
-    public static final n1.d f3839f = new n1.d("firebase_sessions_cache_duration");
-    public static final n1.d f3840g = new n1.d("firebase_sessions_cache_updated_time");
-    public final k1.f f3841a;
-    public e f3842b;
+import v7.a8;
+public final class l extends ld.j implements p {
+    public Object f3833a;
+    public final Object f3834b;
+    public final n1.d f3835c;
+    public final m d;
 
-    public l(k1.f fVar) {
-        Object obj;
-        jd.h hVar;
-        long j3;
-        this.f3841a = fVar;
-        p iVar = new i(this, null, 0);
-        Thread currentThread = Thread.currentThread();
-        y0 a2 = e2.a();
-        boolean booleanValue = ((Boolean) a2.fold(Boolean.FALSE, y.d)).booleanValue();
-        if (!booleanValue) {
-            hVar = a2;
+    public l(Object obj, n1.d dVar, m mVar, jd.c cVar) {
+        super(2, cVar);
+        this.f3834b = obj;
+        this.f3835c = dVar;
+        this.d = mVar;
+    }
+
+    @Override
+    public final jd.c create(Object obj, jd.c cVar) {
+        l lVar = new l(this.f3834b, this.f3835c, this.d, cVar);
+        lVar.f3833a = obj;
+        return lVar;
+    }
+
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        hd.i iVar = hd.i.f11090a;
+        ((l) create((n1.b) obj, (jd.c) obj2)).invokeSuspend(iVar);
+        return iVar;
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        kd.a aVar = kd.a.f14780a;
+        a8.b(obj);
+        n1.b bVar = (n1.b) this.f3833a;
+        n1.d key = this.f3835c;
+        Object obj2 = this.f3834b;
+        if (obj2 != null) {
+            bVar.getClass();
+            kotlin.jvm.internal.i.e(key, "key");
+            bVar.b(key, obj2);
         } else {
-            jd.i iVar2 = jd.i.f14128a;
-            if (booleanValue) {
-                obj = a2.fold(iVar2, y.f518c);
+            bVar.getClass();
+            kotlin.jvm.internal.i.e(key, "key");
+            if (!bVar.f16215b.get()) {
+                bVar.f16214a.remove(key);
             } else {
-                obj = a2;
-            }
-            hVar = (jd.h) obj;
-            iVar2.plus(hVar);
-        }
-        he.e eVar = o0.f480a;
-        if (hVar != eVar && hVar.get(jd.d.f14127a) == null) {
-            hVar = hVar.plus(eVar);
-        }
-        ae.h hVar2 = new ae.h(hVar, currentThread, a2);
-        hVar2.L(e0.f438a, hVar2, iVar);
-        y0 y0Var = hVar2.f461e;
-        if (y0Var != null) {
-            int i10 = y0.f520f;
-            y0Var.h(false);
-        }
-        while (!Thread.interrupted()) {
-            try {
-                if (y0Var != null) {
-                    j3 = y0Var.i();
-                } else {
-                    j3 = Long.MAX_VALUE;
-                }
-                if (hVar2.u() instanceof c1) {
-                    LockSupport.parkNanos(hVar2, j3);
-                } else {
-                    if (y0Var != null) {
-                        int i11 = y0.f520f;
-                        y0Var.f(false);
-                    }
-                    Object u10 = g0.u(hVar2.u());
-                    v vVar = u10 instanceof v ? (v) u10 : null;
-                    if (vVar == null) {
-                        return;
-                    }
-                    throw vVar.f509a;
-                }
-            } catch (Throwable th2) {
-                if (y0Var != null) {
-                    int i12 = y0.f520f;
-                    y0Var.f(false);
-                }
-                throw th2;
+                throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
             }
         }
-        InterruptedException interruptedException = new InterruptedException();
-        hVar2.i(interruptedException);
-        throw interruptedException;
-    }
-
-    public static final void a(l lVar, n1.b bVar) {
-        lVar.getClass();
-        lVar.f3842b = new e((Boolean) bVar.a(f3837c), (Double) bVar.a(d), (Integer) bVar.a(f3838e), (Integer) bVar.a(f3839f), (Long) bVar.a(f3840g));
-    }
-
-    public final boolean b() {
-        e eVar = this.f3842b;
-        if (eVar != null) {
-            Long l4 = eVar.f3820e;
-            if (eVar != null) {
-                Integer num = eVar.d;
-                if (l4 != null && num != null && (System.currentTimeMillis() - l4.longValue()) / 1000 < num.intValue()) {
-                    return false;
-                }
-                return true;
-            }
-            kotlin.jvm.internal.i.h("sessionConfigs");
-            throw null;
-        }
-        kotlin.jvm.internal.i.h("sessionConfigs");
-        throw null;
-    }
-
-    public final java.lang.Object c(n1.d r6, java.lang.Object r7, ld.c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: bb.l.c(n1.d, java.lang.Object, ld.c):java.lang.Object");
+        m.a(this.d, bVar);
+        return hd.i.f11090a;
     }
 }

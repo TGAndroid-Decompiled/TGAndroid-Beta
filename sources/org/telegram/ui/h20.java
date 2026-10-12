@@ -1,57 +1,95 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-public final class h20 implements View.OnClickListener {
-    public final int f38265a;
-    public final Context f38266b;
-    public final sg.g f38267c;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class h20 extends s4.w {
+    public final FiltersSetupActivity d;
 
-    public h20(Context context, sg.g gVar, int i10) {
-        this.f38265a = i10;
-        this.f38266b = context;
-        this.f38267c = gVar;
+    public h20(FiltersSetupActivity filtersSetupActivity) {
+        this.d = filtersSetupActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
-        switch (this.f38265a) {
-            case 0:
-                g gVar = new g(this, 18);
-                Context context = this.f38266b;
-                org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8(context, false, gVar, 1);
-                sg.o oVar = this.f38267c.f48166c;
-                if (oVar != null) {
-                    i10 = oVar.I;
-                } else {
-                    i10 = 0;
-                }
-                w8Var.e(i10, 0);
-                w8Var.f(-1, 1, 1, false);
-                org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(context, false);
-                e3Var.setCustomView(w8Var);
-                e3Var.setDimBehind(false);
-                e3Var.show();
-                return;
-            default:
-                g gVar2 = new g(this, 19);
-                Context context2 = this.f38266b;
-                org.telegram.ui.Components.w8 w8Var2 = new org.telegram.ui.Components.w8(context2, false, gVar2, 2);
-                sg.o oVar2 = this.f38267c.f48166c;
-                if (oVar2 == null) {
-                    i11 = 0;
-                } else {
-                    i11 = oVar2.H;
-                }
-                w8Var2.e(i11, 0);
-                w8Var2.f(-1, 1, 1, false);
-                org.telegram.ui.ActionBar.e3 e3Var2 = new org.telegram.ui.ActionBar.e3(context2, false);
-                e3Var2.setCustomView(w8Var2);
-                e3Var2.setDimBehind(false);
-                e3Var2.show();
-                return;
+    public final void a(RecyclerView recyclerView, s4.d1 d1Var) {
+        super.a(recyclerView, d1Var);
+        View view = d1Var.f47889a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.d1 d1Var) {
+        if (d1Var.f47893f != 2) {
+            return s4.w.l(0, 0);
         }
+        return s4.w.l(3, 0);
+    }
+
+    @Override
+    public final boolean k() {
+        return true;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
+        MessagesController.DialogFilter dialogFilter;
+        MessagesController.DialogFilter dialogFilter2;
+        if (d1Var.f47893f != d1Var2.f47893f) {
+            return false;
+        }
+        e20 e20Var = this.d.f33598b;
+        int b10 = d1Var.b();
+        int b11 = d1Var2.b();
+        FiltersSetupActivity filtersSetupActivity = e20Var.f36960e;
+        int i10 = filtersSetupActivity.f33603r;
+        ArrayList arrayList = filtersSetupActivity.f33602n;
+        if (b10 >= i10 && b11 >= i10) {
+            c20 c20Var = (c20) arrayList.get(b10);
+            c20 c20Var2 = (c20) arrayList.get(b11);
+            if (c20Var != null && c20Var2 != null && (dialogFilter = c20Var.d) != null && (dialogFilter2 = c20Var2.d) != null) {
+                int i11 = dialogFilter.order;
+                dialogFilter.order = dialogFilter2.order;
+                dialogFilter2.order = i11;
+                ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
+                try {
+                    arrayList2.set(b10 - filtersSetupActivity.f33603r, c20Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f33603r, c20Var.d);
+                } catch (Exception unused) {
+                }
+                filtersSetupActivity.f33600e = true;
+                filtersSetupActivity.Z(true);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final void p(s4.d1 d1Var, int i10) {
+        Boolean bool;
+        if (i10 != 0) {
+            this.d.f33597a.I0(false);
+            d1Var.f47889a.setPressed(true);
+        } else {
+            AndroidUtilities.cancelRunOnUIThread(new wz(this, 5));
+            AndroidUtilities.runOnUIThread(new wz(this, 5), 320L);
+        }
+        if (d1Var != null) {
+            View view = d1Var.f47889a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
+        }
+    }
+
+    @Override
+    public final void q(s4.d1 d1Var) {
     }
 }

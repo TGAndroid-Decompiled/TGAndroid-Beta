@@ -1,149 +1,210 @@
 package qg;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.os.Build;
-import android.text.SpannableStringBuilder;
-import android.view.ContextThemeWrapper;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.view.TextureView;
 import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.la;
-import org.telegram.ui.Components.pa;
-public abstract class c2 extends ci.d {
-    public final pa f46323h0;
-    public final RectF f46324i0;
-    public int f46325j0;
-    public final n2 f46326k0;
-    public final d6 f46327l0;
-    public int m0;
-    public boolean f46328n0;
+import org.telegram.messenger.am;
+import org.telegram.ui.Components.g6;
+import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.sw0;
+import w7.w5;
+public final class c2 extends j {
+    public boolean A0;
+    public boolean B0;
+    public final g6 C0;
+    public final int f46140q0;
+    public boolean f46141r0;
+    public final g6 f46142s0;
+    public final sw0 f46143t0;
+    public final TextureView f46144u0;
+    public final Bitmap f46145v0;
+    public final Rect f46146w0;
+    public final Rect f46147x0;
+    public float f46148y0;
+    public final Path f46149z0;
 
-    public c2(n2 n2Var, ContextThemeWrapper contextThemeWrapper, d6 d6Var, la laVar) {
-        super(contextThemeWrapper, d6Var, false);
-        this.f46324i0 = new RectF();
-        this.m0 = 8;
-        this.f46327l0 = d6Var;
-        this.f46326k0 = n2Var;
-        this.f46323h0 = new pa(laVar, this, 0, true);
+    public c2(Context context, PointF pointF, sw0 sw0Var, String str) {
+        super(context, pointF);
+        this.f46140q0 = -1;
+        this.f46141r0 = false;
+        Rect rect = new Rect();
+        this.f46146w0 = rect;
+        this.f46147x0 = new Rect();
+        this.f46148y0 = 1.0f;
+        this.f46149z0 = new Path();
+        this.A0 = true;
+        this.B0 = true;
+        js jsVar = js.h;
+        this.C0 = new g6(this, 0L, 350L, jsVar);
+        new Paint(1).setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        setRotation(0.0f);
+        setScale(1.0f);
+        this.f46143t0 = sw0Var;
+        Bitmap decodeFile = BitmapFactory.decodeFile(str);
+        this.f46145v0 = decodeFile;
+        if (decodeFile != null) {
+            this.f46148y0 = decodeFile.getWidth() / decodeFile.getHeight();
+            rect.set(0, 0, decodeFile.getWidth(), decodeFile.getHeight());
+        }
+        TextureView textureView = new TextureView(context);
+        this.f46144u0 = textureView;
+        addView(textureView, w5.d(-1.0f, -1));
+        this.f46142s0 = new g6(this, 0L, 500L, jsVar);
+        k();
         setWillNotDraw(false);
-        setTextColor(-1);
-        setFlickeringLoading(true);
-        this.d.x(AndroidUtilities.bold());
-        removeView(this.f4873r);
-        setForeground(h6.Z(h6.m1(0.08f, -1), 8, 8));
-        setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        boolean z10 = this.f4866d0;
-        RectF rectF = this.f46324i0;
-        if (z10) {
-            float c10 = this.d.c() + getPaddingLeft() + getPaddingRight();
-            rectF.set((getMeasuredWidth() - c10) / 2.0f, 0.0f, (getMeasuredWidth() + c10) / 2.0f, getMeasuredHeight());
-        } else {
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+    public final i a() {
+        return new a2(this, getContext());
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        Rect rect;
+        Bitmap bitmap;
+        Path path;
+        boolean drawChild;
+        if (!this.A0) {
+            return false;
         }
-        super.onDraw(canvas);
+        if (view == this.f46144u0) {
+            canvas.save();
+            float e7 = this.f46142s0.e(this.f46141r0);
+            canvas.scale(1.0f - (e7 * 2.0f), 1.0f, getMeasuredWidth() / 2.0f, 0.0f);
+            canvas.skew(0.0f, org.telegram.messenger.v0.A(1.0f, e7, 4.0f * e7, 0.25f));
+            float e10 = this.C0.e(this.B0);
+            float width = (view.getWidth() / 2.0f) + view.getX();
+            float height = (view.getHeight() / 2.0f) + view.getY();
+            float min = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
+            int i10 = (e10 > 1.0f ? 1 : (e10 == 1.0f ? 0 : -1));
+            Rect rect2 = this.f46146w0;
+            Rect rect3 = this.f46147x0;
+            Bitmap bitmap2 = this.f46145v0;
+            Path path2 = this.f46149z0;
+            if (i10 < 0) {
+                rect = rect3;
+                bitmap = bitmap2;
+                canvas.saveLayerAlpha(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight(), 128, 31);
+                path2.rewind();
+                path = path2;
+                path.addCircle(width, height, min, Path.Direction.CW);
+                canvas.clipPath(path);
+                if (bitmap != null) {
+                    rect.set(0, 0, view.getWidth(), view.getHeight());
+                    canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
+                }
+                super.drawChild(canvas, view, j3);
+                canvas.restore();
+            } else {
+                rect = rect3;
+                bitmap = bitmap2;
+                path = path2;
+            }
+            canvas.save();
+            path.rewind();
+            path.addCircle(width, height, min * e10, Path.Direction.CW);
+            canvas.clipPath(path);
+            if (bitmap != null) {
+                rect.set(0, 0, view.getWidth(), view.getHeight());
+                canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
+            }
+            if ((getParent() instanceof d) && ((d) getParent()).f46150a) {
+                drawChild = true;
+            } else {
+                drawChild = super.drawChild(canvas, view, j3);
+            }
+            canvas.restore();
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    public int getAnchor() {
+        return this.f46140q0;
+    }
+
+    public sw0 getBaseSize() {
+        return this.f46143t0;
+    }
+
+    @Override
+    public sl0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float x10 = am.x(dp, 2.0f, getPositionX(), scaleX);
+        return new sl0(x10, am.x(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + x10) - x10, dp2 * scaleX);
+    }
+
+    @Override
+    public final void k() {
+        sw0 sw0Var = this.f46143t0;
+        setX(getPositionX() - (sw0Var.f30696a / 2.0f));
+        setY(getPositionY() - (sw0Var.f30697b / 2.0f));
+        m();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        TextureView textureView = this.f46144u0;
+        if (textureView != null) {
+            int measuredHeight = ((i13 - i11) - textureView.getMeasuredHeight()) / 2;
+            int measuredWidth = ((i12 - i10) - textureView.getMeasuredWidth()) / 2;
+            textureView.layout(measuredWidth, measuredHeight, textureView.getMeasuredWidth() + measuredWidth, textureView.getMeasuredHeight() + measuredHeight);
+        }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f46328n0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.d.c()), 1073741824);
+        int i12;
+        int i13;
+        sw0 sw0Var = this.f46143t0;
+        int i14 = (int) sw0Var.f30696a;
+        int i15 = (int) sw0Var.f30697b;
+        TextureView textureView = this.f46144u0;
+        if (textureView != null) {
+            float f7 = this.f46148y0;
+            if (f7 >= 1.0f) {
+                i12 = (int) (f7 * i15);
+            } else {
+                i12 = i14;
+            }
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+            float f10 = this.f46148y0;
+            if (f10 >= 1.0f) {
+                i13 = i15;
+            } else {
+                i13 = (int) (i14 / f10);
+            }
+            textureView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
         }
-        super.onMeasure(i10, i11);
+        setMeasuredDimension(i14, i15);
     }
 
-    @Override
-    public void setAlpha(float f7) {
-        k2[] k2VarArr;
-        n2 n2Var = this.f46326k0;
-        super.setAlpha((!n2Var.f46569y || (k2VarArr = n2Var.H) == null || k2VarArr.length <= 0) ? 0.0f : 0.0f);
-    }
-
-    public void setCancelState(boolean z10) {
-        this.f46325j0 = 2;
-        g(LocaleController.getString(R.string.Cancel), z10, true);
-    }
-
-    public void setCutOutState(boolean z10) {
-        this.f46325j0 = 0;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        er erVar = new er(R.drawable.media_magic_cut, 0);
-        erVar.setSize(AndroidUtilities.dp(22.0f));
-        erVar.setTranslateX(AndroidUtilities.dp(1.0f));
-        erVar.setTranslateY(AndroidUtilities.dp(2.0f));
-        erVar.spaceScaleX = 1.2f;
-        spannableStringBuilder.setSpan(erVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationCutObject));
-        g(spannableStringBuilder, z10, true);
-    }
-
-    public void setEraseState(boolean z10) {
-        this.f46325j0 = 3;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        er erVar = new er(R.drawable.media_button_erase, 0);
-        erVar.setSize(AndroidUtilities.dp(20.0f));
-        erVar.setTranslateX(AndroidUtilities.dp(-3.0f));
-        spannableStringBuilder.setSpan(erVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationErase));
-        g(spannableStringBuilder, z10, true);
-    }
-
-    public void setOutlineState(boolean z10) {
-        this.f46325j0 = 6;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        er erVar = new er(R.drawable.media_sticker_stroke, 0);
-        erVar.setSize(AndroidUtilities.dp(20.0f));
-        erVar.setTranslateX(AndroidUtilities.dp(-3.0f));
-        spannableStringBuilder.setSpan(erVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationOutline));
-        g(spannableStringBuilder, z10, true);
-    }
-
-    public void setRad(int i10) {
-        this.m0 = i10;
-        setForeground(h6.Z(h6.w0(h6.f20913i6, this.f46327l0), i10, i10));
-    }
-
-    public void setRestoreState(boolean z10) {
-        this.f46325j0 = 4;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        er erVar = new er(R.drawable.media_button_restore, 0);
-        erVar.setSize(AndroidUtilities.dp(20.0f));
-        erVar.setTranslateX(AndroidUtilities.dp(-3.0f));
-        spannableStringBuilder.setSpan(erVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationRestore));
-        g(spannableStringBuilder, z10, true);
-    }
-
-    public void setUndoCutState(boolean z10) {
-        this.f46325j0 = 1;
-    }
-
-    public void setUndoState(boolean z10) {
-        this.f46325j0 = 5;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        er erVar = new er(R.drawable.photo_undo2, 0);
-        erVar.setSize(AndroidUtilities.dp(20.0f));
-        erVar.setTranslateX(AndroidUtilities.dp(-3.0f));
-        spannableStringBuilder.setSpan(erVar, 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationUndo));
-        g(spannableStringBuilder, z10, true);
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        if (Build.VERSION.SDK_INT < 24) {
-            super.setVisibility(8);
-        } else {
-            super.setVisibility(i10);
+    public void setDraw(boolean z10) {
+        if (this.A0 != z10) {
+            this.A0 = z10;
+            invalidate();
         }
     }
 }

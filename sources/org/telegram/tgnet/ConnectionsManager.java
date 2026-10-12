@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import ai.ha;
+import ai.i5;
 import ai.o3;
 import ai.p8;
 import android.content.Context;
@@ -65,12 +66,12 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.StatsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kh;
+import org.telegram.messenger.nh;
+import org.telegram.messenger.v0;
 import org.telegram.messenger.voip.m0;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.l81;
-import org.telegram.ui.ds0;
-import org.telegram.ui.vg0;
+import org.telegram.ui.Components.q81;
+import org.telegram.ui.xg0;
 public class ConnectionsManager extends BaseController {
     private static final int CORE_POOL_SIZE;
     public static final int CPU_COUNT;
@@ -201,7 +202,7 @@ public class ConnectionsManager extends BaseController {
                                 arrayList.add(jSONObject.getString("data"));
                             }
                         }
-                        Collections.sort(arrayList, new j(0));
+                        Collections.sort(arrayList, new k(0));
                         StringBuilder sb3 = new StringBuilder();
                         for (int i12 = 0; i12 < arrayList.size(); i12++) {
                             sb3.append(((String) arrayList.get(i12)).replace("\"", ""));
@@ -274,7 +275,7 @@ public class ConnectionsManager extends BaseController {
 
         @Override
         public void onPostExecute(NativeByteBuffer nativeByteBuffer) {
-            Utilities.stageQueue.postRunnable(new k(this, nativeByteBuffer, 0));
+            Utilities.stageQueue.postRunnable(new l(this, nativeByteBuffer, 0));
         }
     }
 
@@ -355,7 +356,7 @@ public class ConnectionsManager extends BaseController {
                             arrayList.add(jSONObject.getString("data"));
                         }
                     }
-                    Collections.sort(arrayList, new j(1));
+                    Collections.sort(arrayList, new k(1));
                     StringBuilder sb3 = new StringBuilder();
                     for (int i12 = 0; i12 < arrayList.size(); i12++) {
                         sb3.append(((String) arrayList.get(i12)).replace("\"", ""));
@@ -413,7 +414,7 @@ public class ConnectionsManager extends BaseController {
 
         @Override
         public void onPostExecute(NativeByteBuffer nativeByteBuffer) {
-            Utilities.stageQueue.postRunnable(new k(this, nativeByteBuffer, 1));
+            Utilities.stageQueue.postRunnable(new l(this, nativeByteBuffer, 1));
         }
     }
 
@@ -623,7 +624,7 @@ public class ConnectionsManager extends BaseController {
         this.connectionState = native_getConnectionState(this.currentAccount);
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (i10 != 0) {
-            File file = new File(filesDirFixed, hg.c.h(i10, "account"));
+            File file = new File(filesDirFixed, hg.c.i(i10, "account"));
             file.mkdirs();
             filesDirFixed = file;
         }
@@ -669,8 +670,8 @@ public class ConnectionsManager extends BaseController {
         init(SharedConfig.buildVersion(), 231, BuildVars.APP_ID, str8, str, str6, str2, str7, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, dSTSavings, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
-    public void checkWebProxyInternal(pi.b bVar, int i10, RequestTimeDelegate requestTimeDelegate) {
-        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f45962f, requestTimeDelegate);
+    public void checkWebProxyInternal(oi.b bVar, int i10, RequestTimeDelegate requestTimeDelegate) {
+        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f16916f, requestTimeDelegate);
     }
 
     public static int generateClassGuid() {
@@ -792,10 +793,10 @@ public class ConnectionsManager extends BaseController {
     public static void lambda$onIntegrityCheckClassic$25(int i10, long j3, int i11, String str, IntegrityTokenResponse integrityTokenResponse) {
         String str2 = integrityTokenResponse.token();
         if (str2 == null) {
-            StringBuilder j10 = hg.c.j(i10, "account", ": integrity check gave null token in ");
-            j10.append(System.currentTimeMillis() - j3);
-            j10.append("ms");
-            FileLog.e(j10.toString());
+            StringBuilder l4 = hg.c.l(i10, "account", ": integrity check gave null token in ");
+            l4.append(System.currentTimeMillis() - j3);
+            l4.append("ms");
+            FileLog.e(l4.toString());
             native_receivedIntegrityCheckClassic(i10, i11, str, "PLAYINTEGRITY_FAILED_EXCEPTION_NULL");
             return;
         }
@@ -808,11 +809,11 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void lambda$onIntegrityCheckClassic$26(int i10, long j3, int i11, String str, Exception exc) {
-        StringBuilder j10 = hg.c.j(i10, "account", ": integrity check failed to give a token in ");
-        j10.append(System.currentTimeMillis() - j3);
-        j10.append("ms");
-        FileLog.e(j10.toString(), exc);
-        native_receivedIntegrityCheckClassic(i10, i11, str, "PLAYINTEGRITY_FAILED_EXCEPTION_" + vg0.f1(exc));
+        StringBuilder l4 = hg.c.l(i10, "account", ": integrity check failed to give a token in ");
+        l4.append(System.currentTimeMillis() - j3);
+        l4.append("ms");
+        FileLog.e(l4.toString(), exc);
+        native_receivedIntegrityCheckClassic(i10, i11, str, "PLAYINTEGRITY_FAILED_EXCEPTION_" + xg0.f1(exc));
     }
 
     public static void lambda$onIntegrityCheckClassic$27(int i10, String str, String str2, int i11) {
@@ -822,7 +823,7 @@ public class ConnectionsManager extends BaseController {
         sb2.append(": server requests integrity classic check with project = ");
         sb2.append(str);
         sb2.append(" nonce = ");
-        hg.c.t(str2, sb2);
+        hg.c.v(str2, sb2);
         try {
             IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new g(i10, currentTimeMillis, str2, i11)).addOnFailureListener(new g(i10, currentTimeMillis, str2, i11));
         } catch (Exception unused) {
@@ -967,7 +968,7 @@ public class ConnectionsManager extends BaseController {
                 i17 = 0;
                 tLObject2 = null;
             }
-            if ((i10 & 2) != 0 && l81.f28266k0.isEmpty()) {
+            if ((i10 & 2) != 0 && q81.f29776k0.isEmpty()) {
                 y2.f.b(ApplicationLoader.applicationContext).d(i17, Math.max(0L, (System.currentTimeMillis() - j3) - native_getCurrentPingTime(this.currentAccount)));
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -1018,7 +1019,7 @@ public class ConnectionsManager extends BaseController {
 
     public static void lambda$sendRequestTyped$3(Executor executor, Utilities.Callback2 callback2, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (executor != null) {
-            executor.execute(new org.telegram.messenger.video.f(callback2, tLObject, tL_error, 2));
+            executor.execute(new h((Object) callback2, (Object) tLObject, (Object) tL_error, 0));
         } else {
             callback2.run(tLObject, tL_error);
         }
@@ -1029,7 +1030,7 @@ public class ConnectionsManager extends BaseController {
             getMessagesController().lambda$processUpdates$377(updates, false);
         }
         if (executor != null) {
-            executor.execute(new org.telegram.messenger.video.f(callback2, updates, tL_error, 3));
+            executor.execute(new h((Object) callback2, (Object) updates, (Object) tL_error, 1));
         } else {
             callback2.run(updates, tL_error);
         }
@@ -1154,7 +1155,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onConnectionStateChanged(int i10, int i11) {
-        AndroidUtilities.runOnUIThread(new kh(i11, i10, 2));
+        AndroidUtilities.runOnUIThread(new nh(i11, i10, 2));
     }
 
     public static void onIntegrityCheckClassic(int i10, int i11, String str, String str2) {
@@ -1208,7 +1209,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onRequestNewServerIpAndPort(int i10, int i11) {
-        Utilities.globalQueue.postRunnable(new kh(i10, i11, 1));
+        Utilities.globalQueue.postRunnable(new nh(i10, i11, 1));
     }
 
     public static void onRequestQuickAck(int i10, int i11) {
@@ -1246,7 +1247,7 @@ public class ConnectionsManager extends BaseController {
                     FileLog.d("java received " + TLdeserialize);
                 }
                 KeepAliveJob.finishJob();
-                Utilities.stageQueue.postRunnable(new h(i10, TLdeserialize, 0));
+                Utilities.stageQueue.postRunnable(new i(i10, TLdeserialize, 0));
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d(String.format("java received unknown constructor 0x%x", Integer.valueOf(readInt32)));
             }
@@ -1283,7 +1284,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void setProxySettings(boolean z10, pi.b bVar) {
+    public static void setProxySettings(boolean z10, oi.b bVar) {
         String str;
         String str2;
         String str3;
@@ -1292,13 +1293,13 @@ public class ConnectionsManager extends BaseController {
         int i11;
         String str5 = "";
         if (z10 && bVar != null && bVar.f()) {
-            String str6 = bVar.f45959b;
-            int i12 = bVar.f45960c;
+            String str6 = bVar.f16913b;
+            int i12 = bVar.f16914c;
             String str7 = bVar.d;
-            String str8 = bVar.f45961e;
-            String str9 = bVar.f45962f;
-            if (bVar.f45958a == 3) {
-                i10 = pi.k.m(str6, str9);
+            String str8 = bVar.f16915e;
+            String str9 = bVar.f16916f;
+            if (bVar.f16912a == 3) {
+                i10 = oi.k.m(str6, str9);
                 if (i10 == 0) {
                     i10 = 9;
                 }
@@ -1307,12 +1308,12 @@ public class ConnectionsManager extends BaseController {
                 str5 = "127.0.0.1";
                 str = str2;
             } else {
-                synchronized (pi.k.f45984y) {
+                synchronized (oi.k.f16937y) {
                     try {
-                        pi.k kVar = pi.k.f45985z;
+                        oi.k kVar = oi.k.f16938z;
                         if (kVar != null) {
                             kVar.o();
-                            pi.k.f45985z = null;
+                            oi.k.f16938z = null;
                         }
                     } finally {
                     }
@@ -1324,7 +1325,7 @@ public class ConnectionsManager extends BaseController {
                 str3 = str9;
             }
         } else {
-            pi.k.n();
+            oi.k.n();
             str = "";
             str2 = str;
             str3 = str2;
@@ -1414,33 +1415,33 @@ public class ConnectionsManager extends BaseController {
         native_setNetworkAvailable(this.currentAccount, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType(), ApplicationLoader.isConnectionSlow());
     }
 
-    public long checkProxy(pi.b bVar, RequestTimeDelegate requestTimeDelegate) {
+    public long checkProxy(oi.b bVar, RequestTimeDelegate requestTimeDelegate) {
         if (bVar != null && bVar.f()) {
-            if (bVar.f45958a == 3) {
-                pi.f fVar = pi.f.f45971e;
+            if (bVar.f16912a == 3) {
+                oi.f fVar = oi.f.f16925e;
                 if (fVar == null) {
-                    synchronized (pi.f.class) {
+                    synchronized (oi.f.class) {
                         try {
-                            fVar = pi.f.f45971e;
+                            fVar = oi.f.f16925e;
                             if (fVar == null) {
-                                fVar = new pi.f(0);
-                                pi.f.f45971e = fVar;
+                                fVar = new oi.f(0);
+                                oi.f.f16925e = fVar;
                             }
                         } finally {
                         }
                     }
                 }
-                pi.f fVar2 = fVar;
-                m4.w wVar = new m4.w(this, 8);
-                if (bVar.f45958a == 3 && bVar.f() && requestTimeDelegate != null) {
-                    AndroidUtilities.runOnUIThread(new ds0(fVar2, wVar, bVar, requestTimeDelegate, 22));
+                oi.f fVar2 = fVar;
+                m4.x xVar = new m4.x(this, 9);
+                if (bVar.f16912a == 3 && bVar.f() && requestTimeDelegate != null) {
+                    AndroidUtilities.runOnUIThread(new i5(fVar2, xVar, bVar, requestTimeDelegate, 25));
                     return 0L;
                 } else if (requestTimeDelegate != null) {
                     requestTimeDelegate.run(-1L);
                     return 0L;
                 }
             } else {
-                return native_checkProxy(this.currentAccount, bVar.f45959b, bVar.f45960c, bVar.d, bVar.f45961e, bVar.f45962f, requestTimeDelegate);
+                return native_checkProxy(this.currentAccount, bVar.f16913b, bVar.f16914c, bVar.d, bVar.f16915e, bVar.f16916f, requestTimeDelegate);
             }
         }
         return 0L;
@@ -1563,17 +1564,17 @@ public class ConnectionsManager extends BaseController {
         String str11;
         Context context;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-        pi.b c10 = pi.b.c(sharedPreferences);
+        oi.b c10 = oi.b.c(sharedPreferences);
         if (sharedPreferences.getBoolean("proxy_enabled", false) && c10.f()) {
-            if (c10.f45958a == 3) {
-                int m10 = pi.k.m(c10.f45959b, c10.f45962f);
+            if (c10.f16912a == 3) {
+                int m10 = oi.k.m(c10.f16913b, c10.f16916f);
                 int i14 = this.currentAccount;
                 if (m10 == 0) {
                     m10 = 9;
                 }
-                native_setProxySettings(i14, "127.0.0.1", m10, "", "", c10.f45962f);
+                native_setProxySettings(i14, "127.0.0.1", m10, "", "", c10.f16916f);
             } else {
-                native_setProxySettings(this.currentAccount, c10.f45959b, c10.f45960c, c10.d, c10.f45961e, c10.f45962f);
+                native_setProxySettings(this.currentAccount, c10.f16913b, c10.f16914c, c10.d, c10.f16915e, c10.f16916f);
             }
         }
         try {
@@ -1654,7 +1655,7 @@ public class ConnectionsManager extends BaseController {
                 this.appResumeCount++;
             }
             if (BuildVars.LOGS_ENABLED) {
-                org.telegram.messenger.q.o(this.appResumeCount, new StringBuilder("app resume count "));
+                v0.o(this.appResumeCount, new StringBuilder("app resume count "));
             }
             if (this.appResumeCount < 0) {
                 this.appResumeCount = 0;

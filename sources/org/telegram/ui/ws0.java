@@ -1,11 +1,21 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class ws0 extends zu0 {
-    public final PhotoViewer f43904t;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+public final class ws0 implements Runnable {
+    public final PhotoViewer f43672a;
 
-    public ws0(PhotoViewer photoViewer, View view) {
-        super(photoViewer, view);
-        this.f43904t = photoViewer;
+    public ws0(PhotoViewer photoViewer) {
+        this.f43672a = photoViewer;
+    }
+
+    @Override
+    public final void run() {
+        PhotoViewer photoViewer = this.f43672a;
+        MessageObject messageObject = photoViewer.T4;
+        if (messageObject == null) {
+            return;
+        }
+        FileLoader.getInstance(messageObject.currentAccount).setLoadingVideo(photoViewer.T4.getDocument(), true, false);
     }
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.internal.SignInConfiguration;
 import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
-import com.google.android.gms.common.api.m;
 import java.util.Set;
 public abstract class h {
     public static final a5.a f323a = new a5.a("GoogleSignInCommon", new String[0]);
@@ -24,11 +23,11 @@ public abstract class h {
     }
 
     public static void b(Context context) {
-        i.X(context).Y();
-        Set<m> set = m.f6731a;
+        i.Y(context).a0();
+        Set<com.google.android.gms.common.api.m> set = com.google.android.gms.common.api.m.f6730a;
         synchronized (set) {
         }
-        for (m mVar : set) {
+        for (com.google.android.gms.common.api.m mVar : set) {
             mVar.e();
         }
         com.google.android.gms.common.api.internal.h.a();

@@ -1,117 +1,152 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-public final class h81 {
-    public final boolean f26997a;
-    public final int f26998b;
-    public final int f26999c;
-    public final ArrayList d;
+public final class h81 extends Drawable {
+    public static final int[] f26684r = {10, 7, 26, 16, 10, 25};
+    public final Paint f26685a;
+    public final TextPaint f26686b;
+    public final Path f26687c;
+    public boolean d;
+    public final boolean f26688e;
+    public Path f26689f;
+    public int f26690g;
+    public float h;
+    public float f26691i;
+    public boolean f26692j;
+    public boolean f26693k;
+    public boolean f26694l;
+    public long f26695m;
+    public g81 f26696n;
+    public long f26697o;
+    public String f26698p;
+    public float f26699q;
 
-    public h81(j81 j81Var) {
-        ArrayList arrayList = new ArrayList();
-        this.d = arrayList;
-        this.f26997a = j81Var.f27643b;
-        this.f26998b = j81Var.f27648i;
-        this.f26999c = j81Var.f27649j;
-        arrayList.add(j81Var);
-    }
-
-    public final j81 a() {
-        ArrayList arrayList = this.d;
-        j81 j81Var = null;
-        if (arrayList.isEmpty()) {
-            return null;
-        }
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            j81 j81Var2 = (j81) obj;
-            if (j81Var2.b()) {
-                return j81Var2;
-            }
-        }
-        long j3 = Long.MAX_VALUE;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            j81 j81Var3 = (j81) arrayList.get(i11);
-            if (j81Var3.f27650k < j3 && l81.Y(j81Var3.f27652m)) {
-                j3 = j81Var3.f27650k;
-                j81Var = j81Var3;
-            }
-        }
-        if (j81Var != null) {
-            return j81Var;
-        }
-        return (j81) arrayList.get(0);
-    }
-
-    public final int b() {
-        int min = Math.min(this.f26998b, this.f26999c);
-        if (Math.abs(min - 2160) < 55) {
-            return 2160;
-        }
-        if (Math.abs(min - 1440) < 55) {
-            return 1440;
-        }
-        if (Math.abs(min - 1080) < 55) {
-            return 1080;
-        }
-        if (Math.abs(min - 720) < 55) {
-            return 720;
-        }
-        if (Math.abs(min - 480) < 55) {
-            return 480;
-        }
-        if (Math.abs(min - 360) < 55) {
-            return 360;
-        }
-        if (Math.abs(min - 240) < 55) {
-            return 240;
-        }
-        if (Math.abs(min - 144) < 55) {
-            return 144;
-        }
-        return min;
-    }
-
-    public final String toString() {
-        String str;
-        boolean z10 = SharedConfig.debugVideoQualities;
-        boolean z11 = this.f26997a;
-        String str2 = "";
-        if (z10) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f26998b);
-            sb2.append("x");
-            sb2.append(this.f26999c);
-            if (!z11) {
-                str = "";
+    public h81(boolean z10) {
+        Paint paint = new Paint(1);
+        this.f26685a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f26686b = textPaint;
+        Path path = new Path();
+        this.f26687c = path;
+        this.f26699q = 1.0f;
+        this.f26688e = z10;
+        paint.setColor(-1);
+        textPaint.setColor(-1);
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        path.reset();
+        for (int i10 = 0; i10 < 3; i10++) {
+            int[] iArr = f26684r;
+            if (i10 == 0) {
+                int i11 = i10 * 2;
+                this.f26687c.moveTo(AndroidUtilities.dp(iArr[i11]), AndroidUtilities.dp(iArr[i11 + 1]));
             } else {
-                str = " (" + LocaleController.getString(R.string.QualitySource) + ")";
+                int i12 = i10 * 2;
+                this.f26687c.lineTo(AndroidUtilities.dp(iArr[i12]), AndroidUtilities.dp(iArr[i12 + 1]));
             }
-            sb2.append(str);
-            sb2.append("\n");
-            ArrayList arrayList = this.d;
-            sb2.append(AndroidUtilities.formatFileSize((long) ((j81) arrayList.get(0)).f27651l).replace(" ", ""));
-            sb2.append("/s");
-            if (((j81) arrayList.get(0)).f27652m != null) {
-                str2 = ", " + ((j81) arrayList.get(0)).f27652m;
-            }
-            sb2.append(str2);
-            return sb2.toString();
         }
-        StringBuilder sb3 = new StringBuilder();
-        sb3.append(b());
-        sb3.append("p");
-        if (z11) {
-            str2 = " (" + LocaleController.getString(R.string.QualitySource) + ")";
+        this.f26687c.close();
+    }
+
+    public final void a() {
+        g81 g81Var = this.f26696n;
+        if (g81Var != null) {
+            g81Var.invalidate();
+        } else {
+            invalidateSelf();
         }
-        sb3.append(str2);
-        return sb3.toString();
+    }
+
+    public final boolean b() {
+        return this.f26692j;
+    }
+
+    public final void c(org.telegram.ui.vs0 vs0Var) {
+        this.f26696n = vs0Var;
+    }
+
+    public final void d(boolean z10) {
+        boolean z11 = this.d;
+        if (z11 == z10 && this.h >= 1.0f && this.f26693k) {
+            return;
+        }
+        if (z11 != z10) {
+            this.f26697o = 0L;
+            this.f26698p = null;
+        }
+        this.d = z10;
+        this.f26692j = true;
+        this.h = 0.0f;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.h81.draw(android.graphics.Canvas):void");
+    }
+
+    public final void e(boolean z10) {
+        if (this.f26693k != z10) {
+            this.f26693k = z10;
+            this.f26698p = null;
+            this.f26697o = 0L;
+            this.h = 0.0f;
+        }
+    }
+
+    public final void f(boolean z10) {
+        this.f26694l = z10;
+        a();
+    }
+
+    public final void g(long j3) {
+        this.f26697o = j3;
+        if (j3 >= 1000) {
+            this.f26698p = LocaleController.formatPluralString("Seconds", (int) (j3 / 1000), new Object[0]);
+        } else {
+            this.f26698p = null;
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f26685a.setAlpha(i10);
+        this.f26686b.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f26685a.setColorFilter(colorFilter);
     }
 }

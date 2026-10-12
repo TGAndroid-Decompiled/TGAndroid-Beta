@@ -7,19 +7,19 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.LaunchActivity;
 public final class w3 implements DialogInterface.OnDismissListener {
-    public final int f35693a;
-    public final Object f35694b;
+    public final int f35469a;
+    public final Object f35470b;
 
     public w3(Object obj, int i10) {
-        this.f35693a = i10;
-        this.f35694b = obj;
+        this.f35469a = i10;
+        this.f35470b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f35693a) {
+        switch (this.f35469a) {
             case 0:
-                TLRPC.User user = (TLRPC.User) this.f35694b;
+                TLRPC.User user = (TLRPC.User) this.f35470b;
                 org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != null) {
                     U.presentFragment(new l8(user));
@@ -27,7 +27,7 @@ public final class w3 implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 1:
-                TL_wallet.WalletTransactionPeer walletTransactionPeer = (TL_wallet.WalletTransactionPeer) this.f35694b;
+                TL_wallet.WalletTransactionPeer walletTransactionPeer = (TL_wallet.WalletTransactionPeer) this.f35470b;
                 org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
                 if (U2 != null) {
                     U2.presentFragment(new l8(walletTransactionPeer.address));
@@ -35,7 +35,7 @@ public final class w3 implements DialogInterface.OnDismissListener {
                 }
                 return;
             default:
-                l8 l8Var = (l8) this.f35694b;
+                l8 l8Var = (l8) this.f35470b;
                 EditTextBoldCursor editTextBoldCursor = l8Var.E;
                 if (editTextBoldCursor != null) {
                     editTextBoldCursor.requestFocus();

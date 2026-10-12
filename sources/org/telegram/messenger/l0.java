@@ -1,34 +1,27 @@
 package org.telegram.messenger;
+public final class l0 implements Runnable {
+    public final int f18116a;
+    public final BotForumHelper f18117b;
+    public final long f18118c;
+    public final int d;
+    public final long f18119e;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class l0 implements Utilities.Callback2 {
-    public final int f18425a;
-
-    public l0(int i10) {
-        this.f18425a = i10;
+    public l0(BotForumHelper botForumHelper, long j3, int i10, long j10, int i11) {
+        this.f18116a = i11;
+        this.f18117b = botForumHelper;
+        this.f18118c = j3;
+        this.d = i10;
+        this.f18119e = j10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18425a) {
+    public final void run() {
+        switch (this.f18116a) {
             case 0:
-                BotForumHelper.lambda$stopStreaming$2((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                MessagesController.lambda$revertWelcomeEphemeralMessage$125((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 2:
-                MessagesController.lambda$toggleCommunityCollapsedInDialogs$253((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 3:
-                MessagesController.lambda$deleteEphemeralMessage$126((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 4:
-                MessagesController.lambda$deleteEphemeralMessage$127((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                BotForumHelper.a(this.f18117b, this.f18118c, this.d, this.f18119e);
                 return;
             default:
-                MessagesController.lambda$deleteAllReactionsFrom$130((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                BotForumHelper.d(this.f18117b, this.f18118c, this.d, this.f18119e);
                 return;
         }
     }

@@ -17,62 +17,62 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.fr;
+import org.telegram.ui.Components.hr;
 public final class a extends View {
-    public final ImageReceiver f4700a;
-    public final String f4701b;
-    public final String f4702c;
+    public final ImageReceiver f4699a;
+    public final String f4700b;
+    public final String f4701c;
     public final TextPaint d;
-    public StaticLayout f4703e;
-    public float f4704f;
+    public StaticLayout f4702e;
+    public float f4703f;
     public float h;
-    public final TextPaint f4705n;
-    public StaticLayout f4706r;
-    public float f4707s;
+    public final TextPaint f4704n;
+    public StaticLayout f4705r;
+    public float f4706s;
     public float v;
 
-    public a(Context context, MediaController.PhotoEntry photoEntry, String str, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+    public a(Context context, MediaController.PhotoEntry photoEntry, String str, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
         String str2;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f4700a = imageReceiver;
+        this.f4699a = imageReceiver;
         TextPaint textPaint = new TextPaint(1);
         this.d = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f4705n = textPaint2;
+        this.f4704n = textPaint2;
         setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         setBackground(org.telegram.ui.ActionBar.h6.L0(false));
         setMinimumWidth(AndroidUtilities.dp(196.0f));
         setLayoutParams(new LinearLayout.LayoutParams(-1, 48));
         int i11 = org.telegram.ui.ActionBar.h6.E8;
-        textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+        textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-        textPaint2.setColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+        textPaint2.setColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
         textPaint2.setAlpha(102);
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         String str3 = "";
         String str4 = "" + ((Object) str);
-        this.f4701b = str4;
-        this.f4702c = hg.c.h(i10, "");
+        this.f4700b = str4;
+        this.f4701c = hg.c.i(i10, "");
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
-        fr frVar = new fr(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
-        frVar.f26552w = false;
+        hr hrVar = new hr(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
+        hrVar.f26897w = false;
         int dp = AndroidUtilities.dp(18.0f);
         int dp2 = AndroidUtilities.dp(18.0f);
-        frVar.f26547e = dp;
-        frVar.f26548f = dp2;
+        hrVar.f26892e = dp;
+        hrVar.f26893f = dp2;
         if (photoEntry != null && (str2 = photoEntry.thumbPath) != null) {
-            imageReceiver.setImage(ImageLocation.getForPath(str2), "30.0_30.0", (ImageLocation) null, (String) null, frVar, (Object) null, 0);
+            imageReceiver.setImage(ImageLocation.getForPath(str2), "30.0_30.0", (ImageLocation) null, (String) null, hrVar, (Object) null, 0);
         } else if (photoEntry != null && photoEntry.path != null) {
             if (photoEntry.isVideo) {
-                imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, frVar, (Object) null, 0);
+                imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, hrVar, (Object) null, 0);
             } else {
-                imageReceiver.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, frVar, (Object) null, 0);
+                imageReceiver.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, hrVar, (Object) null, 0);
             }
         } else {
-            imageReceiver.setImageBitmap(frVar);
+            imageReceiver.setImageBitmap(hrVar);
         }
         StringBuilder sb2 = new StringBuilder();
         sb2.append((Object) str4);
@@ -86,21 +86,21 @@ public final class a extends View {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float paddingLeft = getPaddingLeft();
-        ImageReceiver imageReceiver = this.f4700a;
+        ImageReceiver imageReceiver = this.f4699a;
         imageReceiver.setImageCoords(paddingLeft, (getMeasuredHeight() - AndroidUtilities.dp(30.0f)) / 2.0f, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
         imageReceiver.draw(canvas);
         float dp = paddingLeft + AndroidUtilities.dp(30.0f) + AndroidUtilities.dp(12.0f);
-        if (this.f4703e != null) {
+        if (this.f4702e != null) {
             canvas.save();
-            canvas.translate(dp - this.h, (getMeasuredHeight() - this.f4703e.getHeight()) / 2.0f);
-            this.f4703e.draw(canvas);
-            dp = dp + this.f4704f + AndroidUtilities.dp(6.0f);
+            canvas.translate(dp - this.h, (getMeasuredHeight() - this.f4702e.getHeight()) / 2.0f);
+            this.f4702e.draw(canvas);
+            dp = dp + this.f4703f + AndroidUtilities.dp(6.0f);
             canvas.restore();
         }
-        if (this.f4706r != null) {
+        if (this.f4705r != null) {
             canvas.save();
-            canvas.translate(dp - this.v, AndroidUtilities.dpf2(1.6f) + ((getMeasuredHeight() - this.f4706r.getHeight()) / 2.0f));
-            this.f4706r.draw(canvas);
+            canvas.translate(dp - this.v, AndroidUtilities.dpf2(1.6f) + ((getMeasuredHeight() - this.f4705r.getHeight()) / 2.0f));
+            this.f4705r.draw(canvas);
             canvas.restore();
         }
     }
@@ -108,13 +108,13 @@ public final class a extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f4700a.onAttachedToWindow();
+        this.f4699a.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f4700a.onDetachedFromWindow();
+        this.f4699a.onDetachedFromWindow();
     }
 
     @Override
@@ -123,47 +123,47 @@ public final class a extends View {
         float f10;
         float f11;
         int size = (((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(12.0f)) - getPaddingLeft()) - getPaddingRight();
-        StaticLayout staticLayout = this.f4703e;
+        StaticLayout staticLayout = this.f4702e;
         if (staticLayout == null || staticLayout.getWidth() != size) {
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            String str = this.f4701b;
+            String str = this.f4700b;
             TextPaint textPaint = this.d;
             CharSequence ellipsize = TextUtils.ellipsize(str, textPaint, size, truncateAt);
             int max = Math.max(0, size);
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
             StaticLayout staticLayout2 = new StaticLayout(ellipsize, textPaint, max, alignment, 1.0f, 0.0f, false);
-            this.f4703e = staticLayout2;
+            this.f4702e = staticLayout2;
             int lineCount = staticLayout2.getLineCount();
             float f12 = 0.0f;
             if (lineCount > 0) {
-                f7 = this.f4703e.getLineLeft(0);
+                f7 = this.f4702e.getLineLeft(0);
             } else {
                 f7 = 0.0f;
             }
             this.h = f7;
-            if (this.f4703e.getLineCount() > 0) {
-                f10 = this.f4703e.getLineWidth(0);
+            if (this.f4702e.getLineCount() > 0) {
+                f10 = this.f4702e.getLineWidth(0);
             } else {
                 f10 = 0.0f;
             }
-            this.f4704f = f10;
+            this.f4703f = f10;
             int dp = size - ((int) (f10 + AndroidUtilities.dp(8.0f)));
-            TextPaint textPaint2 = this.f4705n;
-            StaticLayout staticLayout3 = new StaticLayout(TextUtils.ellipsize(this.f4702c, textPaint2, dp, truncateAt), textPaint2, Math.max(0, dp), alignment, 1.0f, 0.0f, false);
-            this.f4706r = staticLayout3;
+            TextPaint textPaint2 = this.f4704n;
+            StaticLayout staticLayout3 = new StaticLayout(TextUtils.ellipsize(this.f4701c, textPaint2, dp, truncateAt), textPaint2, Math.max(0, dp), alignment, 1.0f, 0.0f, false);
+            this.f4705r = staticLayout3;
             if (staticLayout3.getLineCount() > 0) {
-                f11 = this.f4706r.getLineLeft(0);
+                f11 = this.f4705r.getLineLeft(0);
             } else {
                 f11 = 0.0f;
             }
             this.v = f11;
-            if (this.f4706r.getLineCount() > 0) {
-                f12 = this.f4706r.getLineWidth(0);
+            if (this.f4705r.getLineCount() > 0) {
+                f12 = this.f4705r.getLineWidth(0);
             }
-            this.f4707s = f12;
+            this.f4706s = f12;
         }
         if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            setMeasuredDimension((int) Math.min(AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(30.0f) + getPaddingLeft() + this.f4704f + AndroidUtilities.dp(8.0f) + this.f4707s + getPaddingRight(), View.MeasureSpec.getSize(i10)), AndroidUtilities.dp(48.0f));
+            setMeasuredDimension((int) Math.min(AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(30.0f) + getPaddingLeft() + this.f4703f + AndroidUtilities.dp(8.0f) + this.f4706s + getPaddingRight(), View.MeasureSpec.getSize(i10)), AndroidUtilities.dp(48.0f));
         } else if (View.MeasureSpec.getMode(i10) == 1073741824) {
             setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(48.0f));
         }

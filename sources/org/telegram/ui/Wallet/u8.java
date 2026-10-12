@@ -22,25 +22,25 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.ai;
+import org.telegram.messenger.am;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_toncenter;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.es0;
-import org.telegram.ui.Components.f71;
-import org.telegram.ui.Components.fr;
-import org.telegram.ui.Components.g71;
-import org.telegram.ui.Components.ij;
-import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.nh0;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.u9;
-public final class u8 extends g71 {
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.hr;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.js0;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.kj;
+import org.telegram.ui.Components.qh0;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.zc;
+import org.telegram.ui.y9;
+public final class u8 extends k71 {
     public TextView E;
     public FrameLayout F;
     public TextView G;
@@ -58,23 +58,23 @@ public final class u8 extends g71 {
     public int X;
     public int Y;
     public TL_wallet.nftItem d;
-    public String f35647e;
-    public boolean f35648f;
-    public o h;
-    public boolean f35649n;
+    public String f35423e;
+    public boolean f35424f;
+    public n h;
+    public boolean f35425n;
     public gg.b2 v;
-    public String f35652w;
-    public String f35653x;
-    public int f35654y;
-    public final ArrayList f35650r = new ArrayList();
-    public final ArrayList f35651s = new ArrayList();
+    public String f35428w;
+    public String f35429x;
+    public int f35430y;
+    public final ArrayList f35426r = new ArrayList();
+    public final ArrayList f35427s = new ArrayList();
     public final r8 H = new NotificationCenter.NotificationCenterDelegate() {
         @Override
         public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
-            f71 f71Var;
+            j71 j71Var;
             u8 u8Var = u8.this;
-            if (!u8Var.f35649n && (f71Var = u8Var.f26675a) != null) {
-                f71Var.W2.N(true);
+            if (!u8Var.f35425n && (j71Var = u8Var.f27773a) != null) {
+                j71Var.W2.N(true);
             }
         }
     };
@@ -95,27 +95,27 @@ public final class u8 extends g71 {
         TL_toncenter.performApiRequest performapirequest = new TL_toncenter.performApiRequest();
         performapirequest.endpoint = "/api/v3/dns/records";
         performapirequest.query = "domain=" + Uri.encode(str) + "&limit=2";
-        u8Var.f35654y = ConnectionsManager.getInstance(i11).sendRequestTyped(performapirequest, new Object(), new ai.m0(24, str, k4Var), MessagesController.getInstance(i11).webFileDatacenterId, 0);
+        u8Var.f35430y = ConnectionsManager.getInstance(i11).sendRequestTyped(performapirequest, new Object(), new ai.m0(24, str, k4Var), MessagesController.getInstance(i11).webFileDatacenterId, 0);
     }
 
     public static void Z(u8 u8Var, l0 l0Var, TLRPC.User user, String str, TL_wallet.walletTransaction wallettransaction, String str2) {
         u8Var.h = null;
-        if (u8Var.f35649n) {
+        if (u8Var.f35425n) {
             return;
         }
         u8Var.V.setLoading(false);
-        if (wallettransaction != null && l0.b(u8Var.f35647e, l0Var.r())) {
+        if (wallettransaction != null && l0.b(u8Var.f35423e, l0Var.r())) {
             if (user != null) {
                 TL_wallet.walletTransactionPeerUser wallettransactionpeeruser = new TL_wallet.walletTransactionPeerUser();
-                wallettransactionpeeruser.user_id = user.f20215id;
+                wallettransactionpeeruser.user_id = user.f19949id;
                 wallettransactionpeeruser.address = str;
                 wallettransaction.peer = wallettransactionpeeruser;
             }
             c5.s0(u8Var.getParentActivity(), u8Var.currentAccount, wallettransaction, new v(u8Var, l0Var, user, str), new d(u8Var, 10), null, null, u8Var.getResourceProvider());
             return;
         }
-        u8Var.f35648f = false;
-        ad a02 = ad.a0(u8Var);
+        u8Var.f35424f = false;
+        zc a02 = zc.a0(u8Var);
         if (str2 == null) {
             str2 = LocaleController.getString(R.string.WalletCollectibleTransferPrepareFailed);
         }
@@ -147,18 +147,18 @@ public final class u8 extends g71 {
             return;
         }
         view.setVisibility(0);
-        view.animate().alpha(f7).scaleX(f10).scaleY(f10).setDuration(320L).setInterpolator(is.h).withEndAction(new es0(14, view, z10)).start();
+        view.animate().alpha(f7).scaleX(f10).scaleY(f10).setDuration(320L).setInterpolator(js.h).withEndAction(new js0(14, view, z10)).start();
     }
 
     public static boolean b0(TLRPC.User user) {
-        if (user != null && !user.bot && !user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f20215id)) {
+        if (user != null && !user.bot && !user.self && !UserObject.isDeleted(user) && !UserObject.isService(user.f19949id)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final void U(ArrayList arrayList, d71 d71Var) {
+    public final void U(ArrayList arrayList, h71 h71Var) {
         float f7;
         ArrayList arrayList2;
         int i10;
@@ -171,23 +171,23 @@ public final class u8 extends g71 {
         float f14;
         float f15;
         if (this.L != null) {
-            arrayList.add(q61.C(AndroidUtilities.dp(4.0f)));
-            d71Var.U();
+            arrayList.add(u61.C(AndroidUtilities.dp(4.0f)));
+            h71Var.U();
             com.google.android.gms.internal.vision.e2.n(R.string.WalletRecipient, arrayList);
             ai.f0 f0Var = this.L;
-            q61 q61Var = new q61(-1);
-            q61Var.f30160c = f0Var;
-            q61Var.f30180z = 50;
-            arrayList.add(q61Var);
-            d71Var.T();
+            u61 u61Var = new u61(-1);
+            u61Var.f31069c = f0Var;
+            u61Var.f31089z = 50;
+            arrayList.add(u61Var);
+            h71Var.T();
             String trim = this.M.getText().toString().trim();
             String lowerCase = trim.toLowerCase(Locale.ROOT);
             float f16 = 12.0f;
             int i13 = 0;
-            if (this.f35652w != null) {
+            if (this.f35428w != null) {
                 if (this.F == null) {
                     FrameLayout frameLayout = new FrameLayout(getParentActivity());
-                    frameLayout.setBackground(org.telegram.ui.ActionBar.h6.g0(getThemedColor(org.telegram.ui.ActionBar.h6.f20913i6), 2, -1));
+                    frameLayout.setBackground(org.telegram.ui.ActionBar.h6.g0(getThemedColor(org.telegram.ui.ActionBar.h6.f20650i6), 2, -1));
                     boolean z10 = LocaleController.isRTL;
                     if (z10) {
                         i12 = 5;
@@ -195,7 +195,7 @@ public final class u8 extends g71 {
                         i12 = 3;
                     }
                     ImageView imageView = new ImageView(getParentActivity());
-                    imageView.setImageDrawable(new fr(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(46.0f), getThemedColor(org.telegram.ui.ActionBar.h6.Oh)), getParentActivity().getResources().getDrawable(R.drawable.menu_gram_24).mutate()));
+                    imageView.setImageDrawable(new hr(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(46.0f), getThemedColor(org.telegram.ui.ActionBar.h6.Oh)), getParentActivity().getResources().getDrawable(R.drawable.menu_gram_24).mutate()));
                     int i14 = i12 | 16;
                     if (z10) {
                         f10 = 0.0f;
@@ -207,10 +207,10 @@ public final class u8 extends g71 {
                     } else {
                         f11 = 0.0f;
                     }
-                    frameLayout.addView(imageView, w7.x5.a(46.0f, f10, 0.0f, f11, 0.0f, 46, i14));
+                    frameLayout.addView(imageView, w7.w5.a(46.0f, f10, 0.0f, f11, 0.0f, 46, i14));
                     TextView textView = new TextView(getParentActivity());
                     this.E = textView;
-                    ai.j(16.0f, R.string.WalletGramWalletAddress, 1, textView);
+                    am.j(16.0f, R.string.WalletGramWalletAddress, 1, textView);
                     textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.G6));
                     textView.setTypeface(AndroidUtilities.bold());
                     textView.setSingleLine();
@@ -225,11 +225,11 @@ public final class u8 extends g71 {
                     } else {
                         f13 = 16.0f;
                     }
-                    frameLayout.addView(textView, w7.x5.a(24.0f, f12, 8.0f, f13, 0.0f, -1, 48));
+                    frameLayout.addView(textView, w7.w5.a(24.0f, f12, 8.0f, f13, 0.0f, -1, 48));
                     TextView textView2 = new TextView(getParentActivity());
                     this.G = textView2;
                     textView2.setTextSize(1, 14.0f);
-                    this.G.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f21207y6));
+                    this.G.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f20945y6));
                     this.G.setSingleLine();
                     this.G.setEllipsize(TextUtils.TruncateAt.MIDDLE);
                     this.G.setGravity(i12);
@@ -244,25 +244,25 @@ public final class u8 extends g71 {
                     } else {
                         f15 = 16.0f;
                     }
-                    frameLayout.addView(textView3, w7.x5.a(22.0f, f14, 32.0f, f15, 0.0f, -1, 48));
+                    frameLayout.addView(textView3, w7.w5.a(22.0f, f14, 32.0f, f15, 0.0f, -1, 48));
                     frameLayout.setOnClickListener(new o8(this, 0));
                     this.F = frameLayout;
                 }
                 TextView textView4 = this.E;
-                String str = this.f35653x;
+                String str = this.f35429x;
                 if (str == null) {
                     str = LocaleController.getString(R.string.WalletGramWalletAddress);
                 }
                 textView4.setText(str);
-                this.G.setText(this.f35652w);
-                arrayList.add(q61.C(AndroidUtilities.dp(12.0f)));
-                d71Var.U();
+                this.G.setText(this.f35428w);
+                arrayList.add(u61.C(AndroidUtilities.dp(12.0f)));
+                h71Var.U();
                 FrameLayout frameLayout2 = this.F;
-                q61 q61Var2 = new q61(-1);
-                q61Var2.f30160c = frameLayout2;
-                q61Var2.f30180z = 60;
-                arrayList.add(q61Var2);
-                d71Var.T();
+                u61 u61Var2 = new u61(-1);
+                u61Var2.f31069c = frameLayout2;
+                u61Var2.f31089z = 60;
+                arrayList.add(u61Var2);
+                h71Var.T();
                 return;
             }
             if (TextUtils.isEmpty(lowerCase)) {
@@ -276,26 +276,26 @@ public final class u8 extends g71 {
                     i15++;
                     float f17 = f16;
                     TLRPC.User user = getMessagesController().getUser(Long.valueOf(tL_topPeer.peer.user_id));
-                    if (b0(user) && hashSet.add(Long.valueOf(user.f20215id))) {
+                    if (b0(user) && hashSet.add(Long.valueOf(user.f19949id))) {
                         arrayList2.add(user);
                     }
                     f16 = f17;
                 }
                 f7 = f16;
-                ArrayList arrayList4 = this.f35650r;
+                ArrayList arrayList4 = this.f35426r;
                 int size2 = arrayList4.size();
                 int i16 = 0;
                 while (i16 < size2) {
                     Object obj = arrayList4.get(i16);
                     i16++;
                     TLRPC.User user2 = (TLRPC.User) obj;
-                    if (hashSet.add(Long.valueOf(user2.f20215id))) {
+                    if (hashSet.add(Long.valueOf(user2.f19949id))) {
                         arrayList2.add(user2);
                     }
                 }
             } else {
                 f7 = 12.0f;
-                arrayList2 = this.f35651s;
+                arrayList2 = this.f35427s;
             }
             int size3 = arrayList2.size();
             int i17 = 0;
@@ -305,21 +305,21 @@ public final class u8 extends g71 {
                 i18++;
                 TLRPC.User user3 = (TLRPC.User) obj2;
                 if (i17 == 0) {
-                    arrayList.add(q61.C(AndroidUtilities.dp(f7)));
-                    d71Var.U();
+                    arrayList.add(u61.C(AndroidUtilities.dp(f7)));
+                    h71Var.U();
                     if (TextUtils.isEmpty(lowerCase)) {
                         com.google.android.gms.internal.vision.e2.n(R.string.Recent, arrayList);
                     }
                 }
-                q61 v = q61.v(user3);
+                u61 v = u61.v(user3);
                 if (!TextUtils.isEmpty(lowerCase)) {
-                    v.f30167l = AndroidUtilities.generateSearchName(user3.first_name, user3.last_name, trim);
+                    v.f31076l = AndroidUtilities.generateSearchName(user3.first_name, user3.last_name, trim);
                     String publicUsername = UserObject.getPublicUsername(user3);
                     if (!TextUtils.isEmpty(publicUsername)) {
-                        v.f30168m = AndroidUtilities.generateSearchName(sc.v.i("@", publicUsername), null, "@".concat(trim));
+                        v.f31077m = AndroidUtilities.generateSearchName(sc.v.i("@", publicUsername), null, "@".concat(trim));
                     }
                     i11 = i13;
-                    v.F = new q(user3, v.f30167l, v.f30168m, 8);
+                    v.F = new p(user3, v.f31076l, v.f31077m, 8);
                 } else {
                     i11 = i13;
                 }
@@ -330,20 +330,20 @@ public final class u8 extends g71 {
             int i19 = i13;
             if (this.K) {
                 if (i17 == 0) {
-                    arrayList.add(q61.C(AndroidUtilities.dp(f7)));
-                    d71Var.U();
+                    arrayList.add(u61.C(AndroidUtilities.dp(f7)));
+                    h71Var.U();
                 }
-                if (this.f35653x != null) {
+                if (this.f35429x != null) {
                     i10 = 1;
                 } else {
                     i10 = 3;
                 }
                 for (int i20 = i19; i20 < i10; i20++) {
-                    arrayList.add(q61.o((-1) - i20, 18));
+                    arrayList.add(u61.o((-1) - i20, 18));
                 }
             }
             if (i17 > 0 || this.K) {
-                d71Var.T();
+                h71Var.T();
             }
             if (!this.K && i17 <= 0 && !TextUtils.isEmpty(lowerCase)) {
                 String string = LocaleController.getString(R.string.SearchEmptyViewTitle);
@@ -351,10 +351,10 @@ public final class u8 extends g71 {
                 Object[] objArr = new Object[1];
                 objArr[i19] = lowerCase;
                 String formatString = LocaleController.formatString(i21, objArr);
-                int i22 = ij.f27456a;
-                q61 J = q61.J(ij.class);
-                J.f30167l = string;
-                J.f30168m = formatString;
+                int i22 = kj.f27882a;
+                u61 J = u61.J(kj.class);
+                J.f31076l = string;
+                J.f31077m = formatString;
                 arrayList.add(J);
             }
         }
@@ -372,19 +372,19 @@ public final class u8 extends g71 {
     }
 
     @Override
-    public final void W(q61 q61Var, View view) {
-        Object obj = q61Var.G;
+    public final void W(u61 u61Var, View view) {
+        Object obj = u61Var.G;
         if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
             int i10 = this.currentAccount;
-            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new ei.b2(i10, user.f20215id, 1));
+            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new ei.b2(i10, user.f19949id, 1));
             AndroidUtilities.hideKeyboard(this.M);
             f0(null, user);
         }
     }
 
     @Override
-    public final boolean X(q61 q61Var, View view) {
+    public final boolean X(u61 u61Var, View view) {
         return false;
     }
 
@@ -397,20 +397,20 @@ public final class u8 extends g71 {
             getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 44);
             return;
         }
-        u9.e0(getParentActivity(), true, 1, new t8(this));
+        y9.e0(getParentActivity(), true, 1, new t8(this));
     }
 
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f26675a);
-        this.f26675a.p1();
-        this.f26675a.setPadding(0, 0, 0, AndroidUtilities.dp(68.0f));
-        this.f26675a.setClipToPadding(false);
-        f71 f71Var = this.f26675a;
-        f71Var.W2.f25649r = false;
-        f71Var.j(new nh0(this, 11));
-        ai.f0 f0Var = new ai.f0(this, context, 25);
+        this.actionBar.setAdaptiveBackground(this.f27773a);
+        this.f27773a.p1();
+        this.f27773a.setPadding(0, 0, 0, AndroidUtilities.dp(68.0f));
+        this.f27773a.setClipToPadding(false);
+        j71 j71Var = this.f27773a;
+        j71Var.W2.f26675r = false;
+        j71Var.j(new qh0(this, 11));
+        ai.f0 f0Var = new ai.f0(this, context, 26);
         this.S = (ClipboardManager) context.getSystemService("clipboard");
         ci.g2 g2Var = new ci.g2(context);
         this.M = g2Var;
@@ -427,12 +427,12 @@ public final class u8 extends g71 {
         this.M.setGravity(16);
         this.M.setInputType(524289);
         this.M.setImeOptions(33554437);
-        f0Var.addView(this.M, w7.x5.a(-1.0f, 8.0f, 0.0f, 52.0f, 0.0f, -1, 119));
+        f0Var.addView(this.M, w7.w5.a(-1.0f, 8.0f, 0.0f, 52.0f, 0.0f, -1, 119));
         TextView textView = new TextView(context);
         this.N = textView;
         textView.setText(LocaleController.getString(R.string.WalletPaste));
         TextView textView2 = this.N;
-        int i10 = org.telegram.ui.ActionBar.h6.f21007n6;
+        int i10 = org.telegram.ui.ActionBar.h6.f20744n6;
         textView2.setTextColor(getThemedColor(i10));
         this.N.setTextSize(1, 14.0f);
         this.N.setTypeface(AndroidUtilities.bold());
@@ -443,9 +443,9 @@ public final class u8 extends g71 {
         int m13 = org.telegram.ui.ActionBar.h6.m1(0.18f, getThemedColor(i10));
         textView3.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, m12, m13, m13));
         this.N.setOnClickListener(new o8(this, 2));
-        w7.z5.b(this.N, 0.04f, 1.2f);
-        f0Var.addView(this.N, w7.x5.a(32.0f, 0.0f, 0.0f, 62.0f, 0.0f, 58, 21));
-        this.M.addTextChangedListener(new ci.h2(this, 16));
+        w7.y5.b(this.N, 0.04f, 1.2f);
+        f0Var.addView(this.N, w7.w5.a(32.0f, 0.0f, 0.0f, 62.0f, 0.0f, 58, 21));
+        this.M.addTextChangedListener(new ci.h2(this, 17));
         ImageView imageView = new ImageView(context);
         this.O = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -454,15 +454,15 @@ public final class u8 extends g71 {
         this.O.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.m1(0.12f, getThemedColor(i10)), 1, -1));
         this.O.setContentDescription(LocaleController.getString(R.string.WalletScanQRCode));
         this.O.setOnClickListener(new o8(this, 3));
-        f0Var.addView(this.O, w7.x5.a(40.0f, 0.0f, 0.0f, 20.0f, 0.0f, 32, 21));
+        f0Var.addView(this.O, w7.w5.a(40.0f, 0.0f, 0.0f, 20.0f, 0.0f, 32, 21));
         e0(false);
         this.L = f0Var;
         gg.b2 b2Var = new gg.b2(true);
         this.v = b2Var;
-        b2Var.f10531a = new k2.g0(this, 16);
+        b2Var.f10530a = new l2.g(this, 14);
         getNotificationCenter().addObserver(this.H, NotificationCenter.reloadHints);
         MediaDataController.getInstance(this.currentAccount).loadHints(true);
-        this.f35650r.clear();
+        this.f35426r.clear();
         int i11 = this.currentAccount;
         MessagesStorage.getInstance(i11).getStorageQueue().postRunnable(new gg.n(i11, 0, new p8(this), 0));
         if (!TextUtils.isEmpty(null)) {
@@ -473,7 +473,7 @@ public final class u8 extends g71 {
         FrameLayout frameLayout = new FrameLayout(context);
         this.U = frameLayout;
         frameLayout.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f));
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.f20766a7);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.f20503a7);
         this.U.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.h6.m1(0.0f, themedColor), themedColor, themedColor}));
         ci.d dVar = new ci.d(context, getResourceProvider(), true);
         dVar.setRoundRadius(24);
@@ -483,24 +483,24 @@ public final class u8 extends g71 {
         this.V.setOnClickListener(new o8(this, 1));
         ci.d dVar2 = this.V;
         if (dVar2 != null) {
-            if (this.f35652w == null) {
+            if (this.f35428w == null) {
                 z10 = false;
             }
             dVar2.setEnabled(z10);
         }
-        this.U.addView(this.V, w7.x5.e(-1, 48, 119));
-        ((FrameLayout) this.fragmentView).addView(this.U, w7.x5.e(-1, 68, 87));
+        this.U.addView(this.V, w7.w5.e(-1, 48, 119));
+        ((FrameLayout) this.fragmentView).addView(this.U, w7.w5.e(-1, 68, 87));
         h0();
-        this.f26675a.W2.N(false);
+        this.f27773a.W2.N(false);
         return this.fragmentView;
     }
 
     public final void d0(String str) {
         String userName;
         String publicUsername;
-        ArrayList arrayList = this.f35651s;
+        ArrayList arrayList = this.f35427s;
         arrayList.clear();
-        if (!TextUtils.isEmpty(str) && this.f35652w == null && this.f35653x == null) {
+        if (!TextUtils.isEmpty(str) && this.f35428w == null && this.f35429x == null) {
             String lowerCase = str.toLowerCase(Locale.ROOT);
             HashSet hashSet = new HashSet();
             ArrayList<TLRPC.Dialog> arrayList2 = getMessagesController().dialogsUsersOnly;
@@ -511,16 +511,16 @@ public final class u8 extends g71 {
                 TLRPC.Dialog dialog = arrayList2.get(i11);
                 i11++;
                 TLRPC.Dialog dialog2 = dialog;
-                if (dialog2 != null && dialog2.f20072id > 0) {
-                    TLRPC.User user = getMessagesController().getUser(Long.valueOf(dialog2.f20072id));
+                if (dialog2 != null && dialog2.f19806id > 0) {
+                    TLRPC.User user = getMessagesController().getUser(Long.valueOf(dialog2.f19806id));
                     if (b0(user) && (((userName = UserObject.getUserName(user)) != null && userName.toLowerCase(Locale.ROOT).contains(lowerCase)) || ((publicUsername = UserObject.getPublicUsername(user)) != null && publicUsername.toLowerCase(Locale.ROOT).contains(lowerCase)))) {
-                        if (hashSet.add(Long.valueOf(user.f20215id))) {
+                        if (hashSet.add(Long.valueOf(user.f19949id))) {
                             arrayList.add(user);
                         }
                     }
                 }
             }
-            ArrayList arrayList3 = this.v.f10534e;
+            ArrayList arrayList3 = this.v.f10533e;
             int size2 = arrayList3.size();
             while (i10 < size2) {
                 Object obj = arrayList3.get(i10);
@@ -528,26 +528,26 @@ public final class u8 extends g71 {
                 TLObject tLObject = (TLObject) obj;
                 if (tLObject instanceof TLRPC.User) {
                     TLRPC.User user2 = (TLRPC.User) tLObject;
-                    if (b0(user2) && hashSet.add(Long.valueOf(user2.f20215id))) {
+                    if (b0(user2) && hashSet.add(Long.valueOf(user2.f19949id))) {
                         arrayList.add(user2);
                     }
                 }
             }
-            f71 f71Var = this.f26675a;
-            if (f71Var != null) {
-                f71Var.W2.N(true);
+            j71 j71Var = this.f27773a;
+            if (j71Var != null) {
+                j71Var.W2.N(true);
                 return;
             }
             return;
         }
-        f71 f71Var2 = this.f26675a;
-        if (f71Var2 != null) {
-            f71Var2.W2.N(true);
+        j71 j71Var2 = this.f27773a;
+        if (j71Var2 != null) {
+            j71Var2.W2.N(true);
         }
     }
 
     public final void e0(boolean z10) {
-        if (!this.f35649n && this.M != null && this.O != null) {
+        if (!this.f35425n && this.M != null && this.O != null) {
             ClipboardManager clipboardManager = this.S;
             if (clipboardManager != null) {
                 this.R = clipboardManager.hasPrimaryClip();
@@ -566,8 +566,8 @@ public final class u8 extends g71 {
                 l8Var = new l8(user);
             } else {
                 l8 l8Var2 = new l8(str);
-                if (TextUtils.equals(str, this.f35652w)) {
-                    str2 = this.f35653x;
+                if (TextUtils.equals(str, this.f35428w)) {
+                    str2 = this.f35429x;
                 } else {
                     str2 = null;
                 }
@@ -575,31 +575,31 @@ public final class u8 extends g71 {
                 l8Var = l8Var2;
             }
             presentFragment(l8Var);
-        } else if (this.f35648f) {
+        } else if (this.f35424f) {
         } else {
-            this.f35648f = true;
+            this.f35424f = true;
             this.V.setLoading(true);
             l0 v = l0.v(this.currentAccount);
-            q qVar = new q((g71) this, v, (Object) user, 7);
+            p pVar = new p((k71) this, v, (Object) user, 7);
             if (user != null) {
-                v.W(user, new ai.m0(29, this, qVar));
+                v.W(user, new ai.m0(29, this, pVar));
             } else {
-                qVar.run(str);
+                pVar.run(str);
             }
         }
     }
 
     public final void g0(TL_wallet.nftItem nftitem) {
         this.d = nftitem;
-        this.f35647e = l0.v(this.currentAccount).r();
+        this.f35423e = l0.v(this.currentAccount).r();
     }
 
     public final void h0() {
         int max = Math.max(0, this.X - this.W);
-        f71 f71Var = this.f26675a;
-        if (f71Var != null) {
-            f71Var.setPadding(0, 0, 0, AndroidUtilities.dp(68.0f) + this.W + max);
-            this.f26675a.setClipToPadding(false);
+        j71 j71Var = this.f27773a;
+        if (j71Var != null) {
+            j71Var.setPadding(0, 0, 0, AndroidUtilities.dp(68.0f) + this.W + max);
+            this.f27773a.setClipToPadding(false);
         }
         FrameLayout frameLayout = this.U;
         if (frameLayout != null) {
@@ -609,7 +609,7 @@ public final class u8 extends g71 {
             this.U.setLayoutParams(layoutParams);
             if (this.Y != max) {
                 this.U.animate().cancel();
-                this.U.animate().translationY(-max).setDuration(320L).setInterpolator(is.h).start();
+                this.U.animate().translationY(-max).setDuration(320L).setInterpolator(js.h).start();
                 this.Y = max;
             }
         }
@@ -659,7 +659,7 @@ public final class u8 extends g71 {
 
     @Override
     public final void onFragmentDestroy() {
-        this.f35649n = true;
+        this.f35425n = true;
         ClipboardManager clipboardManager = this.S;
         if (clipboardManager != null) {
             clipboardManager.removePrimaryClipChangedListener(this.T);
@@ -672,8 +672,8 @@ public final class u8 extends g71 {
         if (imageView != null) {
             imageView.animate().cancel();
         }
-        if (this.f35654y != 0) {
-            getConnectionsManager().cancelRequest(this.f35654y, true);
+        if (this.f35430y != 0) {
+            getConnectionsManager().cancelRequest(this.f35430y, true);
         }
         FrameLayout frameLayout = this.U;
         if (frameLayout != null) {
@@ -684,9 +684,9 @@ public final class u8 extends g71 {
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
         }
-        o oVar = this.h;
-        if (oVar != null) {
-            oVar.run();
+        n nVar = this.h;
+        if (nVar != null) {
+            nVar.run();
         }
         super.onFragmentDestroy();
     }
@@ -699,7 +699,7 @@ public final class u8 extends g71 {
 
     @Override
     public final r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
-        this.X = k1Var.f46901a.f(8).d;
+        this.X = k1Var.f46992a.f(8).d;
         return super.onInsetsInternal(view, k1Var);
     }
 
@@ -721,7 +721,7 @@ public final class u8 extends g71 {
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f20404a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint));
+            alertDialog$Builder.f20141a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint));
             alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new p8(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
             alertDialog$Builder.m(R.raw.permission_request_camera, 72, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.L5, false), null);

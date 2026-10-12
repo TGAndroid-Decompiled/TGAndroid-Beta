@@ -1,45 +1,48 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class xb implements Runnable {
-    public final int f44067a;
-    public final bc f44068b;
+import org.telegram.messenger.MessageObject;
+public final class xb extends w7.x5 {
+    public MessageObject f43875a;
+    public int f43876b = 0;
+    public boolean f43877c = true;
+    public int d = 0;
+    public int f43878e;
+    public final yb f43879f;
 
-    public xb(bc bcVar, int i10) {
-        this.f44067a = i10;
-        this.f44068b = bcVar;
+    public xb(yb ybVar) {
+        this.f43879f = ybVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44067a) {
-            case 0:
-                CountDownLatch countDownLatch = new CountDownLatch(2);
-                bc bcVar = this.f44068b;
-                bcVar.a(countDownLatch, null);
-                bcVar.b(countDownLatch, null);
-                try {
-                    countDownLatch.await();
-                } catch (InterruptedException unused) {
-                }
-                AndroidUtilities.runOnUIThread(new xb(bcVar, 3));
-                return;
-            case 1:
-                bc bcVar2 = this.f44068b;
-                bcVar2.H = false;
-                bcVar2.d(true);
-                return;
-            case 2:
-                bc bcVar3 = this.f44068b;
-                bcVar3.H = false;
-                bcVar3.d(true);
-                return;
-            default:
-                bc bcVar4 = this.f44068b;
-                bcVar4.H = false;
-                bcVar4.d(true);
-                return;
+    public final void a() {
+        MessageObject messageObject = this.f43875a;
+        yb ybVar = this.f43879f;
+        if (messageObject != null) {
+            int indexOf = ybVar.f44424o0.indexOf(messageObject) + ybVar.E.f42478f;
+            if (indexOf >= 0) {
+                ybVar.f44436x.i1(indexOf, this.f43878e, false);
+            }
+        } else {
+            ybVar.f44436x.i1(this.f43876b, this.d, this.f43877c);
+        }
+        this.f43875a = null;
+        ybVar.V = true;
+        ybVar.d1();
+        AndroidUtilities.runOnUIThread(new pu0(this, 21));
+    }
+
+    @Override
+    public final void c() {
+        yb ybVar = this.f43879f;
+        ybVar.K0 = ybVar.getNotificationCenter().setAnimationInProgress(ybVar.K0, yb.R0);
+    }
+
+    @Override
+    public final void d(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            this.f43879f.h.add((org.telegram.ui.Cells.u1) view);
         }
     }
 }

@@ -1,51 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public abstract class d40 extends org.telegram.ui.ActionBar.e3 {
-    public z4.g f25603b;
-    public a40 f25604c;
-    public LinearLayout d;
-    public TextView[] f25605e;
-    public float f25606f;
-    public int h;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.accessibility.AccessibilityEvent;
+import android.widget.ImageView;
+public final class d40 extends ImageView {
+    public final int f25235a;
+    public final int f25236b;
+    public final Object f25237c;
 
-    public static void o(org.telegram.ui.f50 f50Var) {
-        TextView textView;
-        TextView[] textViewArr = f50Var.f25605e;
-        int i10 = f50Var.h;
-        TextView textView2 = textViewArr[i10];
-        if (i10 < textViewArr.length - 1) {
-            textView = textViewArr[i10 + 1];
-        } else {
-            textView = null;
-        }
-        f50Var.containerView.getMeasuredWidth();
-        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
-        float measuredWidth2 = (f50Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
-        if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * f50Var.f25606f;
-        }
-        for (int i11 = 0; i11 < textViewArr.length; i11++) {
-            int i12 = f50Var.h;
-            float f7 = 0.9f;
-            float f10 = 0.7f;
-            if (i11 >= i12 && i11 <= i12 + 1) {
-                if (i11 == i12) {
-                    float f11 = f50Var.f25606f;
-                    f10 = 1.0f - (0.3f * f11);
-                    f7 = 1.0f - (f11 * 0.1f);
-                } else {
-                    float f12 = f50Var.f25606f;
-                    f10 = 0.7f + (0.3f * f12);
-                    f7 = 0.9f + (f12 * 0.1f);
+    public d40(Object obj, Context context, int i10, int i11) {
+        super(context);
+        this.f25235a = i11;
+        this.f25237c = obj;
+        this.f25236b = i10;
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f25235a) {
+            case 1:
+                super.onDraw(canvas);
+                org.telegram.ui.a20 a20Var = (org.telegram.ui.a20) this.f25237c;
+                ma0 ma0Var = a20Var.f35675s;
+                if (a20Var.f35674r) {
+                    int i10 = this.f25236b / 2;
+                    ma0Var.setBounds(i10, i10, getWidth() - i10, getHeight() - i10);
+                    ma0Var.draw(canvas);
+                    return;
                 }
-            }
-            textViewArr[i11].setAlpha(f10);
-            textViewArr[i11].setScaleX(f7);
-            textViewArr[i11].setScaleY(f7);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        f50Var.d.setTranslationX(measuredWidth2);
-        f50Var.f25604c.invalidate();
+    }
+
+    @Override
+    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        switch (this.f25235a) {
+            case 0:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                if (accessibilityEvent.getEventType() == 32768) {
+                    ((e40) this.f25237c).f25588c.f25883b.x(this.f25236b, true);
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                return;
+        }
+    }
+
+    @Override
+    public boolean verifyDrawable(Drawable drawable) {
+        switch (this.f25235a) {
+            case 1:
+                if (drawable != ((org.telegram.ui.a20) this.f25237c).f35675s && !super.verifyDrawable(drawable)) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.verifyDrawable(drawable);
+        }
     }
 }

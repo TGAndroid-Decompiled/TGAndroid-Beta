@@ -1,36 +1,52 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class wy implements View.OnClickListener {
-    public final boolean[] f32808a;
-    public final org.telegram.ui.ActionBar.z2 f32809b;
-    public final xy f32810c;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class wy extends z4.a implements ge0 {
+    public final d00 f32579c;
 
-    public wy(xy xyVar, boolean[] zArr, org.telegram.ui.ActionBar.z2 z2Var) {
-        this.f32810c = xyVar;
-        this.f32808a = zArr;
-        this.f32809b = z2Var;
+    public wy(d00 d00Var) {
+        this.f32579c = d00Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        az azVar = this.f32810c.f33087a;
-        boolean[] zArr = this.f32808a;
-        if (zArr[0]) {
-            return;
+    public final void a(z4.g gVar, Object obj) {
+        gVar.removeView((View) obj);
+    }
+
+    @Override
+    public final int b() {
+        return this.f32579c.f25085e.size();
+    }
+
+    @Override
+    public final CharSequence d(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    return null;
+                }
+                return LocaleController.getString(R.string.AccDescrStickers);
+            }
+            return LocaleController.getString(R.string.AccDescrGIFs);
         }
-        zArr[0] = true;
-        org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(azVar.F.getContext(), 3, null)};
-        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
-        b00 b00Var = azVar.F;
-        String str = azVar.f24710w;
-        if (str == null) {
-            str = b00Var.W0[0];
+        return LocaleController.getString(R.string.Emoji);
+    }
+
+    @Override
+    public final Object e(z4.g gVar, int i10) {
+        FrameLayout frameLayout = ((zz) this.f32579c.f25085e.get(i10)).f33526b;
+        gVar.addView(frameLayout);
+        return frameLayout;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
         }
-        tL_messages_getEmojiURL.lang_code = str;
-        AndroidUtilities.runOnUIThread(new zk(this, a2VarArr, ConnectionsManager.getInstance(b00Var.f24731c1).sendRequest(tL_messages_getEmojiURL, new ai.t5(this, a2VarArr, this.f32809b, 8)), 3), 1000L);
+        return false;
     }
 }

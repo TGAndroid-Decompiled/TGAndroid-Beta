@@ -1,50 +1,785 @@
 package xh;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import androidx.recyclerview.widget.RecyclerView;
-import ci.bb;
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import ci.b7;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rm0;
-public final class y4 extends s4.o0 {
-    public final PointF f51737a = new PointF();
-    public final z4 f51738b;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.GiftAuctionController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.b5;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.db;
+import org.telegram.ui.Components.gd0;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.vm0;
+import org.telegram.ui.Components.wm0;
+import org.telegram.ui.Components.yw0;
+import org.telegram.ui.Components.zc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.eo;
+import w7.w5;
+import yh.n5;
+import yh.p7;
+public class y4 extends db implements NotificationCenter.NotificationCenterDelegate, GiftAuctionController.OnAuctionUpdateListener {
+    public final boolean X;
+    public final int Y;
+    public final long Z;
+    public final boolean f51836a0;
+    public final boolean f51837b0;
+    public final TL_stars.StarGift f51838c0;
+    public GiftAuctionController.Auction f51839d0;
+    public final rg.k f51840e0;
+    public final String f51841f0;
+    public final Runnable f51842g0;
+    public final s4 f51843h0;
+    public final LinearLayout f51844i0;
+    public final long f51845j0;
+    public final org.telegram.ui.Cells.w0 f51846k0;
+    public final TLRPC.MessageAction f51847l0;
+    public final MessageObject m0;
+    public final ci.d f51848n0;
+    public final FrameLayout f51849o0;
+    public boolean f51850p0;
+    public boolean f51851q0;
+    public boolean f51852r0;
+    public final t4 f51853s0;
+    public h71 f51854t0;
+    public int f51855u0;
+    public final gr[] f51856v0;
+    public boolean f51857w0;
 
-    public y4(z4 z4Var) {
-        this.f51738b = z4Var;
+    public y4(Context context, int i10, final TL_stars.StarGift starGift, final rg.k kVar, long j3, Runnable runnable, final boolean z10, final boolean z11) {
+        super(context, null, true, false, 2, null);
+        boolean z12;
+        float f7;
+        long j10;
+        String str;
+        Integer num;
+        int themedColor;
+        int i11;
+        boolean z13;
+        int i12;
+        long j11;
+        int i13;
+        int i14;
+        float f10;
+        int i15;
+        int i16;
+        boolean z14;
+        long j12;
+        long j13;
+        this.f51851q0 = false;
+        this.f51852r0 = false;
+        this.f51855u0 = -2;
+        new AnimationNotificationsLocker();
+        this.f51856v0 = new gr[1];
+        this.f51857w0 = false;
+        if (j3 == UserConfig.getInstance(i10).getClientUserId()) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        this.X = z12;
+        setImageReceiverNumLevel(0, 4);
+        fixNavigationBar();
+        this.I = AndroidUtilities.dp(4.0f);
+        this.J = AndroidUtilities.dp(-10.0f);
+        if (z12) {
+            this.f51850p0 = true;
+        }
+        this.Y = i10;
+        this.Z = j3;
+        this.f51838c0 = starGift;
+        if (starGift != null && starGift.auction) {
+            f7 = 4.0f;
+            this.f51839d0 = GiftAuctionController.getInstance(i10).subscribeToGiftAuction(starGift.f20031id, this);
+        } else {
+            f7 = 4.0f;
+        }
+        this.f51840e0 = kVar;
+        this.f51842g0 = runnable;
+        this.f51836a0 = z10;
+        this.f51837b0 = z11;
+        if (z10) {
+            this.f51851q0 = true;
+        } else if (z11) {
+            this.f51851q0 = false;
+        }
+        this.v = 0.2f;
+        if (j3 >= 0) {
+            j10 = 0;
+            this.f51841f0 = UserObject.getForcedFirstName(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
+        } else {
+            j10 = 0;
+            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j3));
+            if (chat == null) {
+                str = "";
+            } else {
+                str = chat.title;
+            }
+            this.f51841f0 = str;
+        }
+        org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, this.resourcesProvider, false);
+        this.f51846k0 = w0Var;
+        w0Var.setDelegate(new Object());
+        s4 s4Var = new s4(this, context);
+        this.f51843h0 = s4Var;
+        Drawable e7 = b7.e(null, i10, j3, h6.I.q());
+        s4Var.V(e7);
+        fh.c cVar = new fh.c();
+        if (e7 instanceof ColorDrawable) {
+            num = Integer.valueOf(((ColorDrawable) e7).getColor());
+        } else {
+            if (e7 instanceof gd0) {
+                gd0 gd0Var = (gd0) e7;
+                if (gd0Var.f26413q < 0) {
+                    num = -16777216;
+                } else {
+                    int[] iArr = gd0Var.f26395a;
+                    if (iArr != null && iArr.length > 0) {
+                        num = Integer.valueOf(iArr[0]);
+                    }
+                }
+            }
+            num = null;
+        }
+        if (num != null) {
+            themedColor = num.intValue();
+        } else {
+            themedColor = getThemedColor(h6.f20630h5);
+        }
+        cVar.a(themedColor);
+        ch.f fVar = new ch.f(cVar);
+        c6 c6Var = this.resourcesProvider;
+        int i17 = h6.f20630h5;
+        fVar.o(new dh.b(i17, c6Var));
+        fVar.q(AndroidUtilities.dp(20.0f));
+        fVar.p(AndroidUtilities.dp(f7));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f51844i0 = linearLayout;
+        linearLayout.setOrientation(1);
+        if (starGift != null) {
+            i11 = 6;
+            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = new TLRPC.TL_messageActionStarGift();
+            tL_messageActionStarGift.gift = starGift;
+            tL_messageActionStarGift.flags |= 2;
+            tL_messageActionStarGift.message = new TLRPC.TL_textWithEntities();
+            tL_messageActionStarGift.convert_stars = starGift.convert_stars;
+            tL_messageActionStarGift.forceIn = true;
+            this.f51847l0 = tL_messageActionStarGift;
+            z13 = z12;
+            i12 = i17;
+        } else {
+            boolean z15 = z12;
+            i11 = 6;
+            if (kVar != null && kVar.f47515b != null) {
+                TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode = new TLRPC.TL_messageActionGiftCode();
+                tL_messageActionGiftCode.unclaimed = true;
+                tL_messageActionGiftCode.via_giveaway = false;
+                tL_messageActionGiftCode.months = kVar.d();
+                tL_messageActionGiftCode.flags |= 4;
+                tL_messageActionGiftCode.currency = kVar.a();
+                long e10 = kVar.e();
+                tL_messageActionGiftCode.amount = e10;
+                z13 = z15;
+                if (kVar.h != null) {
+                    i12 = i17;
+                    tL_messageActionGiftCode.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_messageActionGiftCode.currency) - 6) * e10);
+                } else {
+                    i12 = i17;
+                }
+                tL_messageActionGiftCode.flags |= 16;
+                tL_messageActionGiftCode.message = new TLRPC.TL_textWithEntities();
+                this.f51847l0 = tL_messageActionGiftCode;
+            } else {
+                z13 = z15;
+                i12 = i17;
+                if (kVar != null && kVar.f47514a != null) {
+                    TLRPC.TL_messageActionGiftPremium tL_messageActionGiftPremium = new TLRPC.TL_messageActionGiftPremium();
+                    tL_messageActionGiftPremium.months = kVar.d();
+                    tL_messageActionGiftPremium.currency = kVar.a();
+                    long e11 = kVar.e();
+                    tL_messageActionGiftPremium.amount = e11;
+                    if (kVar.h != null) {
+                        tL_messageActionGiftPremium.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_messageActionGiftPremium.currency) - 6) * e11);
+                    }
+                    tL_messageActionGiftPremium.flags |= 2;
+                    tL_messageActionGiftPremium.message = new TLRPC.TL_textWithEntities();
+                    this.f51847l0 = tL_messageActionGiftPremium;
+                } else {
+                    throw new RuntimeException("SendGiftSheet with no star gift and no premium tier");
+                }
+            }
+        }
+        TLRPC.MessageAction messageAction = this.f51847l0;
+        if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
+            TLRPC.TL_messageActionStarGift tL_messageActionStarGift2 = (TLRPC.TL_messageActionStarGift) messageAction;
+            boolean z16 = this.f51851q0;
+            if (!z16 && (!z13 || starGift == null || !starGift.can_upgrade)) {
+                z14 = false;
+            } else {
+                z14 = true;
+            }
+            tL_messageActionStarGift2.can_upgrade = z14;
+            if (!z13 && z16) {
+                j12 = starGift.upgrade_stars;
+            } else {
+                j12 = j10;
+            }
+            tL_messageActionStarGift2.upgrade_stars = j12;
+            if (z16) {
+                j13 = j10;
+            } else {
+                j13 = starGift.convert_stars;
+            }
+            tL_messageActionStarGift2.convert_stars = j13;
+        }
+        TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
+        tL_messageService.f19823id = 1;
+        tL_messageService.dialog_id = j3;
+        tL_messageService.from_id = MessagesController.getInstance(i10).getPeer(UserConfig.getInstance(i10).getClientUserId());
+        tL_messageService.peer_id = MessagesController.getInstance(i10).getPeer(j3);
+        tL_messageService.action = this.f51847l0;
+        if (starGift != null) {
+            j11 = MessagesController.getInstance(i10).getSendPaidMessagesStars(j3);
+        } else {
+            j11 = j10;
+        }
+        this.f51845j0 = j11;
+        MessageObject messageObject = new MessageObject(i10, tL_messageService, false, false);
+        this.m0 = messageObject;
+        w0Var.Y(messageObject, true);
+        if (j11 > j10) {
+            i13 = 0;
+        } else {
+            i13 = 8;
+        }
+        linearLayout.addView(w0Var, w5.t(-1, -1, 119, 0, i13, 0, 8));
+        s4Var.addView(linearLayout, w5.e(-1, -1, 119));
+        yw0 yw0Var = (yw0) this.containerView;
+        if (starGift != null) {
+            i14 = R.string.Gift2Message;
+        } else {
+            i14 = R.string.Gift2MessageOptional;
+        }
+        t4 t4Var = new t4(this, context, yw0Var, LocaleController.getString(i14), MessagesController.getInstance(i10).stargiftsMessageLengthMax, this.resourcesProvider, fVar, i10);
+        this.f51853s0 = t4Var;
+        org.telegram.ui.Cells.e3 e3Var = t4Var.f21886b;
+        e3Var.getEditText().addTextChangedListener(new org.telegram.ui.Cells.i3());
+        e3Var.Q = true;
+        t4Var.setShowLimitWhenNear(50);
+        this.Q = e3Var;
+        t4Var.setShowLimitOnFocus(true);
+        t4Var.setDivider(false);
+        org.telegram.ui.Cells.g gVar = new org.telegram.ui.Cells.g(t4Var, 3);
+        e3Var.getEditText().setImeOptions(i11);
+        e3Var.getEditText().setOnEditorActionListener(new m.t2(gVar, 1));
+        int i18 = this.backgroundPaddingLeft;
+        t4Var.setPadding(i18, 0, i18, 0);
+        s4.j jVar = new s4.j();
+        jVar.C = false;
+        jVar.f47929m = false;
+        jVar.n(350L);
+        jVar.o(js.h);
+        jVar.D = 40L;
+        this.d.setItemAnimator(jVar);
+        this.f51854t0.N(false);
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        int i19 = i12;
+        linearLayout2.setBackgroundColor(h6.w0(i19, this.resourcesProvider));
+        int i20 = this.backgroundPaddingLeft;
+        linearLayout2.setPadding(i20, 0, i20, 0);
+        this.containerView.addView(linearLayout2, w5.e(-1, -2, 87));
+        View view = new View(context);
+        view.setBackgroundColor(h6.w0(h6.K5, this.resourcesProvider));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(w5.z(-1.0f), w5.z(1.0f / AndroidUtilities.density));
+        layoutParams.gravity = 55;
+        linearLayout2.addView(view, layoutParams);
+        if (starGift == null) {
+            f10 = 0.0f;
+        } else {
+            f10 = starGift.availability_remains / starGift.availability_total;
+        }
+        float clamp = Utilities.clamp(f10, 1.0f, 0.0f);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setBackground(h6.c0(AndroidUtilities.dp(6.0f), h6.w0(h6.f20503a7, this.resourcesProvider)));
+        if (starGift != null && starGift.auction) {
+            FrameLayout frameLayout2 = new FrameLayout(context);
+            this.f51849o0 = frameLayout2;
+            frameLayout2.addView(frameLayout, w5.k(10.0f, 14.0f, 10.0f, 14.0f, -1, 30));
+            frameLayout2.setBackgroundColor(h6.w0(i19, this.resourcesProvider));
+        } else {
+            if (starGift != null && starGift.limited) {
+                i15 = 0;
+            } else {
+                i15 = 8;
+            }
+            frameLayout.setVisibility(i15);
+            linearLayout2.addView(frameLayout, w5.k(10.0f, 10.0f, 10.0f, 0.0f, -1, 30));
+            this.f51849o0 = null;
+        }
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 13.0f);
+        textView.setGravity(19);
+        textView.setTypeface(AndroidUtilities.bold());
+        int i21 = h6.G6;
+        textView.setTextColor(h6.w0(i21, this.resourcesProvider));
+        if (starGift != null) {
+            textView.setText(LocaleController.formatPluralStringComma("Gift2AvailabilityLeft", starGift.availability_remains));
+        }
+        TextView g10 = org.telegram.ui.Cells.c1.g(frameLayout, textView, w5.a(-1.0f, 11.0f, 0.0f, 11.0f, 0.0f, -1, 3), context);
+        g10.setTextSize(1, 13.0f);
+        g10.setGravity(21);
+        g10.setTypeface(AndroidUtilities.bold());
+        g10.setTextColor(h6.w0(i21, this.resourcesProvider));
+        if (starGift != null) {
+            g10.setText(LocaleController.formatPluralStringComma("Gift2AvailabilitySold", starGift.availability_total - starGift.availability_remains));
+        }
+        frameLayout.addView(g10, w5.a(-1.0f, 11.0f, 0.0f, 11.0f, 0.0f, -1, 5));
+        View v4Var = new v4(context, starGift, clamp);
+        v4Var.setBackground(h6.c0(AndroidUtilities.dp(6.0f), h6.w0(h6.Oh, this.resourcesProvider)));
+        frameLayout.addView(v4Var, w5.e(-1, -1, 119));
+        w4 w4Var = new w4(context, clamp);
+        w4Var.setWillNotDraw(false);
+        frameLayout.addView(w4Var, w5.e(-1, -1, 119));
+        TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 13.0f);
+        textView2.setGravity(19);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setTextColor(-1);
+        if (starGift != null) {
+            textView2.setText(LocaleController.formatPluralStringComma("Gift2AvailabilityLeft", starGift.availability_remains));
+        }
+        w4Var.addView(textView2, w5.a(-1.0f, 11.0f, 0.0f, 11.0f, 0.0f, -1, 3));
+        TextView textView3 = new TextView(context);
+        textView3.setTextSize(1, 13.0f);
+        textView3.setGravity(21);
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextColor(-1);
+        if (starGift != null) {
+            textView3.setText(LocaleController.formatPluralStringComma("Gift2AvailabilitySold", starGift.availability_total - starGift.availability_remains));
+        }
+        w4Var.addView(textView3, w5.a(-1.0f, 11.0f, 0.0f, 11.0f, 0.0f, -1, 5));
+        ci.d dVar = new ci.d(context, this.resourcesProvider, true);
+        this.f51848n0 = dVar;
+        dVar.e();
+        a0(false);
+        linearLayout2.addView(dVar, w5.t(-1, 48, 119, 10, 10, 10, 10));
+        dVar.setOnClickListener(new p(this, j3, context, runnable, starGift));
+        gg.a0 a0Var = this.f25294c;
+        this.P = true;
+        a0Var.k1(true);
+        this.f51854t0.N(false);
+        this.f25294c.h1(this.f51854t0.f26678x.size(), AndroidUtilities.dp(200.0f));
+        wm0 wm0Var = this.d;
+        int i22 = this.backgroundPaddingLeft;
+        if (starGift != null && starGift.limited && this.f51849o0 == null) {
+            i16 = 40;
+        } else {
+            i16 = 0;
+        }
+        wm0Var.setPadding(i22, 0, i22, AndroidUtilities.dp(68 + i16));
+        this.d.i(new x4(this));
+        this.d.setOnItemClickListener(new km0() {
+            @Override
+            public final void d(int i23, View view2) {
+                boolean z17;
+                long j14;
+                TL_stars.StarGift starGift2;
+                y4 y4Var = y4.this;
+                TL_stars.StarGift starGift3 = y4Var.f51838c0;
+                boolean z18 = y4Var.X;
+                org.telegram.ui.Cells.w0 w0Var2 = y4Var.f51846k0;
+                TLRPC.MessageAction messageAction2 = y4Var.f51847l0;
+                MessageObject messageObject2 = y4Var.m0;
+                h71 h71Var = y4Var.f51854t0;
+                if (!y4Var.P) {
+                    i23--;
+                }
+                u61 G = h71Var.G(i23);
+                if (G != null) {
+                    int i24 = G.d;
+                    if (i24 == 1) {
+                        boolean z19 = !y4Var.f51850p0;
+                        y4Var.f51850p0 = z19;
+                        if (messageAction2 instanceof TLRPC.TL_messageActionStarGift) {
+                            ((TLRPC.TL_messageActionStarGift) messageAction2).name_hidden = z19;
+                        }
+                        messageObject2.updateMessageText();
+                        w0Var2.Y(messageObject2, true);
+                        y4Var.f51854t0.N(true);
+                    } else if (i24 == 2) {
+                        if (!z10 && !z11) {
+                            boolean z20 = y4Var.f51851q0;
+                            y4Var.f51851q0 = !z20;
+                            if (messageAction2 instanceof TLRPC.TL_messageActionStarGift) {
+                                TLRPC.TL_messageActionStarGift tL_messageActionStarGift3 = (TLRPC.TL_messageActionStarGift) messageAction2;
+                                if (z20 && (!z18 || (starGift2 = starGift) == null || !starGift2.can_upgrade)) {
+                                    z17 = false;
+                                } else {
+                                    z17 = true;
+                                }
+                                tL_messageActionStarGift3.can_upgrade = z17;
+                                long j15 = 0;
+                                if (z18 || z20) {
+                                    j14 = 0;
+                                } else {
+                                    j14 = starGift3.upgrade_stars;
+                                }
+                                tL_messageActionStarGift3.upgrade_stars = j14;
+                                if (z20) {
+                                    j15 = starGift3.convert_stars;
+                                }
+                                tL_messageActionStarGift3.convert_stars = j15;
+                            }
+                            messageObject2.updateMessageText();
+                            w0Var2.Y(messageObject2, true);
+                            y4Var.f51854t0.N(true);
+                            y4Var.a0(true);
+                            return;
+                        }
+                        int i25 = -y4Var.f51855u0;
+                        y4Var.f51855u0 = i25;
+                        AndroidUtilities.shakeViewSpring(view2, i25);
+                    } else if (i24 == 3) {
+                        boolean z21 = y4Var.f51852r0;
+                        y4Var.f51852r0 = !z21;
+                        boolean z22 = messageAction2 instanceof TLRPC.TL_messageActionGiftPremium;
+                        rg.k kVar2 = kVar;
+                        if (z22) {
+                            TLRPC.TL_messageActionGiftPremium tL_messageActionGiftPremium2 = (TLRPC.TL_messageActionGiftPremium) messageAction2;
+                            if (!z21) {
+                                tL_messageActionGiftPremium2.currency = "XTR";
+                                tL_messageActionGiftPremium2.amount = kVar2.g();
+                            } else {
+                                tL_messageActionGiftPremium2.currency = kVar2.a();
+                                long e12 = kVar2.e();
+                                tL_messageActionGiftPremium2.amount = e12;
+                                if (kVar2.h != null) {
+                                    tL_messageActionGiftPremium2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_messageActionGiftPremium2.currency) - 6) * e12);
+                                }
+                            }
+                        } else if (messageAction2 instanceof TLRPC.TL_messageActionGiftCode) {
+                            TLRPC.TL_messageActionGiftCode tL_messageActionGiftCode2 = (TLRPC.TL_messageActionGiftCode) messageAction2;
+                            if (!z21) {
+                                tL_messageActionGiftCode2.currency = "XTR";
+                                tL_messageActionGiftCode2.amount = kVar2.g();
+                            } else {
+                                tL_messageActionGiftCode2.currency = kVar2.a();
+                                long e13 = kVar2.e();
+                                tL_messageActionGiftCode2.amount = e13;
+                                if (kVar2.h != null) {
+                                    tL_messageActionGiftCode2.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(tL_messageActionGiftCode2.currency) - 6) * e13);
+                                }
+                            }
+                        }
+                        messageObject2.updateMessageText();
+                        w0Var2.Y(messageObject2, true);
+                        y4Var.f51854t0.N(true);
+                        y4Var.a0(true);
+                    }
+                }
+            }
+        });
+        this.f25295e.setTitle(A());
+    }
+
+    public static void Q(y4 y4Var, TLRPC.User user, Boolean bool, String str) {
+        if (bool.booleanValue()) {
+            Runnable runnable = y4Var.f51842g0;
+            if (runnable != null) {
+                runnable.run();
+            }
+            AndroidUtilities.hideKeyboard(y4Var.f51853s0);
+            y4Var.dismiss();
+            AndroidUtilities.runOnUIThread(new p4(1, user), 250L);
+        } else if (!TextUtils.isEmpty(str)) {
+            hg.c.s(R.string.UnknownErrorCode, new Object[]{str}, new zc(y4Var.topBulletinContainer, y4Var.resourcesProvider), R.raw.error, 36);
+        }
+        y4Var.f51848n0.setLoading(false);
+    }
+
+    public static void R(y4 y4Var, TLRPC.User user, Boolean bool, String str) {
+        if (bool.booleanValue()) {
+            Runnable runnable = y4Var.f51842g0;
+            if (runnable != null) {
+                runnable.run();
+            }
+            AndroidUtilities.hideKeyboard(y4Var.f51853s0);
+            y4Var.dismiss();
+            AndroidUtilities.runOnUIThread(new p4(2, user), 250L);
+        } else if (!TextUtils.isEmpty(str)) {
+            hg.c.s(R.string.UnknownErrorCode, new Object[]{str}, new zc(y4Var.topBulletinContainer, y4Var.resourcesProvider), R.raw.error, 36);
+        }
+        y4Var.f51848n0.setLoading(false);
+    }
+
+    public static void T(xh.y4 r17, long r18, android.content.Context r20, java.lang.Runnable r21, org.telegram.tgnet.tl.TL_stars.StarGift r22) {
+        throw new UnsupportedOperationException("Method not decompiled: xh.y4.T(xh.y4, long, android.content.Context, java.lang.Runnable, org.telegram.tgnet.tl.TL_stars$StarGift):void");
+    }
+
+    public static void V(y4 y4Var) {
+        new yh.s3(y4Var.getContext(), y4Var.Y, y4Var.Z, y4Var.resourcesProvider, null).W1(y4Var.f51838c0.f20031id, y4Var.f51841f0);
     }
 
     @Override
-    public final void c(Canvas canvas, RecyclerView recyclerView) {
-        float f7;
-        float f10;
-        bb bbVar;
-        float height = recyclerView.getHeight();
-        z4 z4Var = this.f51738b;
-        u4 u4Var = z4Var.f51762s0;
-        t4 t4Var = z4Var.f51752h0;
-        rm0 rm0Var = z4Var.d;
-        PointF pointF = this.f51737a;
-        if (hh.j.b(t4Var, rm0Var, pointF)) {
-            f7 = pointF.x;
-            height = Math.min(height, pointF.y);
-            f10 = Math.max(0.0f, pointF.y + t4Var.getMeasuredHeight());
+    public final CharSequence A() {
+        int i10;
+        if (this.X) {
+            i10 = R.string.Gift2TitleSelf2;
         } else {
-            f7 = 0.0f;
-            f10 = 0.0f;
+            i10 = R.string.Gift2Title;
         }
-        if (hh.j.b(u4Var, rm0Var, pointF)) {
-            height = Math.min(height, pointF.y);
-            f10 = Math.max(f10, pointF.y + u4Var.getMeasuredHeight() + AndroidUtilities.dp(12.0f));
+        return LocaleController.getString(i10);
+    }
+
+    public final TLRPC.TL_textWithEntities X() {
+        if (MessagesController.getInstance(this.Y).getSendPaidMessagesStars(this.Z) > 0) {
+            return null;
         }
-        if (height < f10 && (bbVar = t4Var.L) != null) {
-            float height2 = (f10 - height) / bbVar.getHeight();
-            canvas.save();
-            canvas.clipRect(0.0f, height, recyclerView.getWidth(), f10);
-            canvas.translate(f7, height);
-            canvas.scale(height2, height2);
-            t4Var.L.draw(canvas);
-            canvas.restore();
+        TLRPC.MessageAction messageAction = this.f51847l0;
+        if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
+            return ((TLRPC.TL_messageActionStarGift) messageAction).message;
         }
+        if (messageAction instanceof TLRPC.TL_messageActionGiftCode) {
+            return ((TLRPC.TL_messageActionGiftCode) messageAction).message;
+        }
+        if (!(messageAction instanceof TLRPC.TL_messageActionGiftPremium)) {
+            return null;
+        }
+        return ((TLRPC.TL_messageActionGiftPremium) messageAction).message;
+    }
+
+    public zc Y() {
+        org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
+        if (U == null) {
+            return null;
+        }
+        return zc.a0(U);
+    }
+
+    public final void Z(boolean z10) {
+        int i10 = this.Y;
+        MessagesController messagesController = MessagesController.getInstance(i10);
+        long j3 = this.Z;
+        TLRPC.UserFull userFull = messagesController.getUserFull(j3);
+        TLObject userOrChat = MessagesController.getInstance(i10).getUserOrChat(j3);
+        int i11 = 0;
+        if (userFull != null && (userOrChat instanceof TLRPC.User)) {
+            TLRPC.User user = (TLRPC.User) userOrChat;
+            user.premium = true;
+            MessagesController.getInstance(i10).putUser(user, true);
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(user.f19949id), userFull);
+        }
+        org.telegram.ui.ActionBar.m2 m2Var = this.f25297n;
+        if (m2Var != null) {
+            ArrayList arrayList = new ArrayList(((LaunchActivity) m2Var.getParentActivity()).O().getFragmentStack());
+            b5 parentLayout = m2Var.getParentLayout();
+            int size = arrayList.size();
+            eo eoVar = null;
+            while (i11 < size) {
+                Object obj = arrayList.get(i11);
+                i11++;
+                org.telegram.ui.ActionBar.m2 m2Var2 = (org.telegram.ui.ActionBar.m2) obj;
+                if (m2Var2 instanceof eo) {
+                    eoVar = (eo) m2Var2;
+                    if (eoVar.a() != j3) {
+                        m2Var2.removeSelfFromStack();
+                    }
+                } else if (m2Var2 instanceof ProfileActivity) {
+                    if (z10 && parentLayout.getLastFragment() == m2Var2) {
+                        m2Var2.finishFragment();
+                    } else {
+                        m2Var2.removeSelfFromStack();
+                    }
+                }
+            }
+            if (eoVar == null || eoVar.a() != j3) {
+                ((ActionBarLayout) parentLayout).Q(new eo(sc.v.f(j3, "user_id")), true);
+            }
+        }
+        dismiss();
+    }
+
+    public final void a0(boolean z10) {
+        long j3;
+        long j10;
+        String str;
+        GiftAuctionController.Auction auction = this.f51839d0;
+        int i10 = this.Y;
+        ci.d dVar = this.f51848n0;
+        if (auction != null) {
+            int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
+            if (this.f51839d0.isUpcoming(currentTime)) {
+                int i11 = this.f51839d0.gift.auction_start_date - currentTime;
+                dVar.g(LocaleController.getString(R.string.Gift2AuctionPlaceAEarlyBid), z10, true);
+                dVar.f(LocaleController.formatString(R.string.Gift2AuctionStartsIn, LocaleController.formatTTLString(i11)), z10);
+                return;
+            }
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f51839d0.auctionStateActive;
+            if (tL_starGiftAuctionState != null) {
+                int i12 = tL_starGiftAuctionState.end_date - currentTime;
+                dVar.g(LocaleController.getString(R.string.Gift2AuctionPlaceABid), z10, true);
+                dVar.f(LocaleController.formatString(R.string.Gift2AuctionTimeLeft, LocaleController.formatTTLString(i12)), z10);
+                return;
+            }
+            dVar.g(LocaleController.getString(R.string.Gift2AuctionPlaceABid), z10, true);
+            dVar.f(null, z10);
+            return;
+        }
+        TL_stars.StarGift starGift = this.f51838c0;
+        gr[] grVarArr = this.f51856v0;
+        if (starGift != null) {
+            long j11 = n5.y(i10, false).p().amount;
+            long j12 = starGift.stars;
+            if (this.f51851q0) {
+                j3 = starGift.upgrade_stars;
+            } else {
+                j3 = 0;
+            }
+            long j13 = j12 + j3;
+            if (TextUtils.isEmpty(this.f51853s0.getText())) {
+                j10 = 0;
+            } else {
+                j10 = this.f51845j0;
+            }
+            long j14 = j13 + j10;
+            if (this.X) {
+                str = "Gift2SendSelf";
+            } else {
+                str = "Gift2Send";
+            }
+            dVar.g(p7.W0(false, LocaleController.formatPluralStringComma(str, (int) j14), grVarArr), z10, true);
+            if (n5.y(i10, false).f53137e && j14 > j11) {
+                dVar.f(LocaleController.formatPluralStringComma("Gift2SendYourBalance", (int) j11), z10);
+                return;
+            } else {
+                dVar.f(null, z10);
+                return;
+            }
+        }
+        rg.k kVar = this.f51840e0;
+        if (kVar != null) {
+            if (this.f51852r0) {
+                dVar.g(p7.S0(LocaleController.formatString(R.string.Gift2SendPremiumStars, LocaleController.formatNumber(kVar.g(), ',')), 1.0f, grVarArr), z10, true);
+                grVarArr[0].spaceScaleX = 0.85f;
+            } else {
+                dVar.g(new SpannableStringBuilder(LocaleController.formatString(R.string.Gift2SendPremium, kVar.c())), z10, true);
+            }
+            dVar.f(null, z10);
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.starBalanceUpdated) {
+            a0(true);
+            h71 h71Var = this.f51854t0;
+            if (h71Var != null && this.f51840e0 != null) {
+                h71Var.N(true);
+            }
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        t4 t4Var = this.f51853s0;
+        org.telegram.ui.Cells.e3 e3Var = t4Var.f21886b;
+        org.telegram.ui.Cells.e3 e3Var2 = t4Var.f21886b;
+        if (e3Var.getEmojiPadding() > 0) {
+            e3Var2.k(true);
+        } else if (e3Var2.v) {
+            e3Var2.d();
+        } else {
+            e3Var2.r();
+            if (this.f51839d0 != null) {
+                GiftAuctionController.getInstance(this.Y).unsubscribeFromGiftAuction(this.f51839d0.giftId, this);
+            }
+            this.f51857w0 = true;
+            super.dismiss();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.Y).addObserver(this, NotificationCenter.starBalanceUpdated);
+    }
+
+    @Override
+    public final void onBackPressed() {
+        t4 t4Var = this.f51853s0;
+        org.telegram.ui.Cells.e3 e3Var = t4Var.f21886b;
+        org.telegram.ui.Cells.e3 e3Var2 = t4Var.f21886b;
+        if (e3Var.getEmojiPadding() > 0) {
+            e3Var2.k(true);
+        } else if (e3Var2.v) {
+            e3Var2.d();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.Y).removeObserver(this, NotificationCenter.starBalanceUpdated);
+    }
+
+    @Override
+    public final void onOpenAnimationEnd() {
+        super.onOpenAnimationEnd();
+        this.d.a0();
+    }
+
+    @Override
+    public final void onUpdate(GiftAuctionController.Auction auction) {
+        this.f51839d0 = auction;
+    }
+
+    @Override
+    public final void show() {
+        t4 t4Var = this.f51853s0;
+        if (t4Var != null) {
+            t4Var.f21886b.s();
+        }
+        super.show();
+    }
+
+    @Override
+    public final vm0 x(wm0 wm0Var) {
+        h71 h71Var = new h71(this.d, getContext(), this.Y, 0, true, new m4(this, 0), this.resourcesProvider);
+        this.f51854t0 = h71Var;
+        h71Var.f26675r = false;
+        return h71Var;
     }
 }

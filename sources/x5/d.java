@@ -3,31 +3,31 @@ package x5;
 import android.os.Parcel;
 import android.os.Parcelable;
 import java.util.Arrays;
-import w7.d0;
+import w7.c0;
 public final class d extends o6.a {
     public static final Parcelable.Creator<d> CREATOR = new h(0);
-    public final boolean f50793a;
+    public final boolean f50900a;
 
     public d(boolean z10) {
-        this.f50793a = z10;
+        this.f50900a = z10;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof d) || this.f50793a != ((d) obj).f50793a) {
+        if (!(obj instanceof d) || this.f50900a != ((d) obj).f50900a) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f50793a)});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f50900a)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = d0.q(parcel, 20293);
-        d0.s(parcel, 1, 4);
-        parcel.writeInt(this.f50793a ? 1 : 0);
-        d0.r(parcel, q6);
+        int q6 = c0.q(parcel, 20293);
+        c0.s(parcel, 1, 4);
+        parcel.writeInt(this.f50900a ? 1 : 0);
+        c0.r(parcel, q6);
     }
 }

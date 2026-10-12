@@ -1,33 +1,31 @@
 package org.telegram.messenger;
 
+import android.content.SharedPreferences;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class n7 implements RequestDelegate {
-    public final int f18639a;
-    public final MediaDataController f18640b;
-    public final int f18641c;
+    public final int f18357a;
+    public final MediaDataController f18358b;
+    public final SharedPreferences f18359c;
 
-    public n7(MediaDataController mediaDataController, int i10, int i11) {
-        this.f18639a = i11;
-        this.f18640b = mediaDataController;
-        this.f18641c = i10;
+    public n7(MediaDataController mediaDataController, SharedPreferences sharedPreferences, int i10) {
+        this.f18357a = i10;
+        this.f18358b = mediaDataController;
+        this.f18359c = sharedPreferences;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18639a) {
+        switch (this.f18357a) {
             case 0:
-                this.f18640b.lambda$loadArchivedStickersCount$72(this.f18641c, tLObject, tL_error);
+                this.f18358b.lambda$loadSavedReactions$241(this.f18359c, tLObject, tL_error);
                 return;
             case 1:
-                this.f18640b.lambda$fetchEmojiStatuses$234(this.f18641c, tLObject, tL_error);
-                return;
-            case 2:
-                this.f18640b.lambda$loadRecents$50(this.f18641c, tLObject, tL_error);
+                this.f18358b.lambda$loadReplyIcons$245(this.f18359c, tLObject, tL_error);
                 return;
             default:
-                this.f18640b.lambda$loadRecents$51(this.f18641c, tLObject, tL_error);
+                this.f18358b.lambda$loadRestrictedStatusEmojis$247(this.f18359c, tLObject, tL_error);
                 return;
         }
     }

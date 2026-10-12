@@ -396,10 +396,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f17290id;
+        private int f17006id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f17290id = i10;
+            this.f17006id = i10;
             this.args = objArr;
         }
     }
@@ -477,9 +477,9 @@ public class NotificationCenter {
                 } else {
                     lVar.getClass();
                 }
-                StringBuilder j3 = hg.c.j(i11, "Index ", " must be in 0..");
-                j3.append(lVar.f30b - 1);
-                throw new IndexOutOfBoundsException(j3.toString());
+                StringBuilder l4 = hg.c.l(i11, "Index ", " must be in 0..");
+                l4.append(lVar.f30b - 1);
+                throw new IndexOutOfBoundsException(l4.toString());
             }
             this.ids.f30b = 0;
             this.notificationCenter = null;
@@ -915,7 +915,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(hg.c.h(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(hg.c.i(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -943,7 +943,7 @@ public class NotificationCenter {
                 }
             }
             if (j3 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new vg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j3)));
+                AndroidUtilities.runOnUIThread(new yg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j3)));
             }
         }
     }
@@ -963,18 +963,18 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder k10 = hg.c.k("key=", keyAt, " CHANGED: ", intValue, " -> ");
-                k10.append(intValue2);
-                Log.i("ObserverDiff", k10.toString());
+                StringBuilder m10 = hg.c.m("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                m10.append(intValue2);
+                Log.i("ObserverDiff", m10.toString());
             }
         }
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder j3 = hg.c.j(keyAt2, "key=", " ADDED (size=");
-                j3.append(sparseArray2.valueAt(i11));
-                j3.append(")");
-                Log.i("ObserverDiff", j3.toString());
+                StringBuilder l4 = hg.c.l(keyAt2, "key=", " ADDED (size=");
+                l4.append(sparseArray2.valueAt(i11));
+                l4.append(")");
+                Log.i("ObserverDiff", l4.toString());
             }
         }
     }
@@ -1035,7 +1035,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new vg(this, 1);
+        this.checkForExpiredNotifications = new yg(this, 1);
     }
 
     public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
@@ -1055,7 +1055,7 @@ public class NotificationCenter {
     }
 
     public static void listenEmojiLoading(View view) {
-        getGlobalInstance().listen(view, emojiLoaded, new b1(view, 2));
+        getGlobalInstance().listen(view, emojiLoaded, new e1(view, 2));
     }
 
     private void postNotificationDebounced(int i10, Object[] objArr) {
@@ -1063,9 +1063,9 @@ public class NotificationCenter {
         if (this.alreadyPostedRunnubles.indexOfKey(hashCode) >= 0) {
             return;
         }
-        y4 y4Var = new y4(this, i10, objArr, hashCode);
-        this.alreadyPostedRunnubles.put(hashCode, y4Var);
-        AndroidUtilities.runOnUIThread(y4Var, 250L);
+        b5 b5Var = new b5(this, i10, objArr, hashCode);
+        this.alreadyPostedRunnubles.put(hashCode, b5Var);
+        AndroidUtilities.runOnUIThread(b5Var, 250L);
     }
 
     public static void sanitize() {
@@ -1220,7 +1220,7 @@ public class NotificationCenter {
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
             return new ei.l3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 11);
         }
-        return new w1(17);
+        return new z1(17);
     }
 
     public void onAnimationFinish(int i10) {
@@ -1353,7 +1353,7 @@ public class NotificationCenter {
     }
 
     public void postNotificationNameOnUIThread(int i10, Object... objArr) {
-        AndroidUtilities.runOnUIThread(new r4(this, i10, objArr, 19));
+        AndroidUtilities.runOnUIThread(new u4(this, i10, objArr, 19));
     }
 
     public void removeDelayed(Runnable runnable) {
@@ -1395,7 +1395,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f17290id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f17006id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }
@@ -1517,9 +1517,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            vg vgVar = new vg(this, 1);
-            this.checkForExpiredNotifications = vgVar;
-            AndroidUtilities.runOnUIThread(vgVar, 5017L);
+            yg ygVar = new yg(this, 1);
+            this.checkForExpiredNotifications = ygVar;
+            AndroidUtilities.runOnUIThread(ygVar, 5017L);
         }
         return this.animationInProgressPointer;
     }

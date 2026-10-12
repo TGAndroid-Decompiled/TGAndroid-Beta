@@ -3,18 +3,18 @@ package q1;
 import android.text.InputFilter;
 import android.widget.TextView;
 import androidx.emoji2.text.l;
-import w7.o6;
-public final class g extends o6 {
-    public final f f46023a;
+import w7.n6;
+public final class g extends n6 {
+    public final f f45851a;
 
     public g(TextView textView) {
-        this.f46023a = new f(textView);
+        this.f45851a = new f(textView);
     }
 
     @Override
     public final InputFilter[] a(InputFilter[] inputFilterArr) {
         boolean z10;
-        if (l.f2604j != null) {
+        if (l.f2602j != null) {
             z10 = true;
         } else {
             z10 = false;
@@ -22,13 +22,13 @@ public final class g extends o6 {
         if (!z10) {
             return inputFilterArr;
         }
-        return this.f46023a.a(inputFilterArr);
+        return this.f45851a.a(inputFilterArr);
     }
 
     @Override
     public final void b(boolean z10) {
         boolean z11;
-        if (l.f2604j != null) {
+        if (l.f2602j != null) {
             z11 = true;
         } else {
             z11 = false;
@@ -36,20 +36,20 @@ public final class g extends o6 {
         if (!z11) {
             return;
         }
-        this.f46023a.b(z10);
+        this.f45851a.b(z10);
     }
 
     @Override
     public final void c(boolean z10) {
         boolean z11;
-        f fVar = this.f46023a;
-        if (l.f2604j != null) {
+        f fVar = this.f45851a;
+        if (l.f2602j != null) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (!z11) {
-            fVar.f46022c = z10;
+            fVar.f45850c = z10;
         } else {
             fVar.c(z10);
         }

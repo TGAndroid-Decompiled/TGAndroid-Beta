@@ -2,27 +2,27 @@ package vg;
 
 import android.content.Context;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
-import w7.x5;
+import w7.w5;
 public final class i extends c {
-    public final h5 f49719s;
+    public final h5 f49826s;
     public Object v;
 
-    public i(Context context, d6 d6Var) {
-        super(context, d6Var);
+    public i(Context context, c6 c6Var) {
+        super(context, c6Var);
         int i10;
         float f7;
         float f10;
-        this.f49697c.setVisibility(8);
-        h5 h5Var = this.f49698e;
+        this.f49804c.setVisibility(8);
+        h5 h5Var = this.f49805e;
         int i11 = h6.B6;
-        h5Var.setTextColor(h6.w0(i11, d6Var));
+        h5Var.setTextColor(h6.w0(i11, c6Var));
         h5 h5Var2 = new h5(context);
-        this.f49719s = h5Var2;
+        this.f49826s = h5Var2;
         h5Var2.setTextSize(16);
-        h5Var2.setTextColor(h6.w0(i11, d6Var));
+        h5Var2.setTextColor(h6.w0(i11, c6Var));
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
@@ -42,7 +42,7 @@ public final class i extends c {
         } else {
             f10 = 20.0f;
         }
-        h5Var2.setLayoutParams(x5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i12));
+        h5Var2.setLayoutParams(w5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i12));
     }
 
     @Override

@@ -1,76 +1,39 @@
 package l5;
 
-import android.content.Context;
-import com.google.android.gms.internal.vision.e2;
-import j$.util.DesugarCollections;
-import java.nio.charset.Charset;
-import java.util.Collections;
-import java.util.Set;
-import java.util.concurrent.Executor;
-import org.telegram.ui.web.t0;
+import java.util.HashMap;
+import org.telegram.ui.gs0;
 public final class s {
-    public static volatile j f15473e;
-    public final u5.a f15474a;
-    public final u5.a f15475b;
-    public final q5.b f15476c;
-    public final da.c d;
+    public final i f15179a;
+    public final String f15180b;
+    public final i5.c f15181c;
+    public final i5.e d;
+    public final t f15182e;
 
-    public s(u5.a aVar, u5.a aVar2, q5.b bVar, da.c cVar, com.google.firebase.messaging.s sVar) {
-        this.f15474a = aVar;
-        this.f15475b = aVar2;
-        this.f15476c = bVar;
-        this.d = cVar;
-        ((Executor) sVar.f7970b).execute(new t0(sVar, 24));
+    public s(i iVar, String str, i5.c cVar, i5.e eVar, t tVar) {
+        this.f15179a = iVar;
+        this.f15180b = str;
+        this.f15181c = cVar;
+        this.d = eVar;
+        this.f15182e = tVar;
     }
 
-    public static s a() {
-        j jVar = f15473e;
-        if (jVar != null) {
-            return (s) jVar.f15457f.mo27get();
+    public final void a(i5.a aVar, i5.g gVar) {
+        i5.e eVar = this.d;
+        if (eVar != null) {
+            t tVar = this.f15182e;
+            q5.b bVar = tVar.f15186c;
+            i b10 = this.f15179a.b(aVar.f12009c);
+            ?? obj = new Object();
+            obj.f7954f = new HashMap();
+            obj.d = Long.valueOf(tVar.f15184a.W());
+            obj.f7953e = Long.valueOf(tVar.f15185b.W());
+            obj.f7950a = this.f15180b;
+            obj.f7952c = new m(this.f15181c, (byte[]) eVar.apply(aVar.f12008b));
+            obj.f7951b = aVar.f12007a;
+            q5.a aVar2 = (q5.a) bVar;
+            aVar2.f45934b.execute(new gs0(aVar2, b10, gVar, obj.g(), 22));
+            return;
         }
-        throw new IllegalStateException("Not initialized!");
-    }
-
-    public static void b(Context context) {
-        if (f15473e == null) {
-            synchronized (s.class) {
-                try {
-                    if (f15473e == null) {
-                        l2.f fVar = new l2.f(1, false);
-                        context.getClass();
-                        fVar.f15370b = context;
-                        f15473e = fVar.j();
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-        }
-    }
-
-    public final q c(k kVar) {
-        Set singleton;
-        byte[] bytes;
-        if (kVar != null) {
-            singleton = DesugarCollections.unmodifiableSet(j5.a.d);
-        } else {
-            singleton = Collections.singleton(new i5.c("proto"));
-        }
-        aa.a a2 = i.a();
-        kVar.getClass();
-        a2.f384b = "cct";
-        j5.a aVar = (j5.a) kVar;
-        String str = aVar.f14023a;
-        String str2 = aVar.f14024b;
-        if (str2 == null && str == null) {
-            bytes = null;
-        } else {
-            if (str2 == null) {
-                str2 = "";
-            }
-            bytes = e2.j("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
-        }
-        a2.f385c = bytes;
-        return new q(singleton, a2.d(), this);
+        throw new NullPointerException("Null transformer");
     }
 }

@@ -1,14 +1,19 @@
 package w3;
-public final class f {
-    public final int f49892a;
-    public final int f49893b;
-    public final int f49894c;
-    public final int d;
 
-    public f(int i10, int i11, int i12, int i13) {
-        this.f49892a = i10;
-        this.f49893b = i11;
-        this.f49894c = i12;
-        this.d = i13;
+import e2.v;
+import f2.t;
+public final class f implements d9.e, t {
+    public final i f50001a;
+
+    @Override
+    public Object apply(Object obj) {
+        p pVar = (p) obj;
+        this.f50001a.getClass();
+        return pVar;
+    }
+
+    @Override
+    public void b(long j3, v vVar) {
+        c3.b.d(j3, vVar, this.f50001a.K);
     }
 }

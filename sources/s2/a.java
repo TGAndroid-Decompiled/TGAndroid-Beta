@@ -4,12 +4,12 @@ import b2.s;
 import q3.i;
 import s3.c;
 import sc.v;
-import w7.l;
+import w7.k;
 public final class a {
-    public static final a f47715a = new Object();
+    public static final a f47822a = new Object();
 
-    public final l a(s sVar) {
-        String str = sVar.f3643r;
+    public final k a(s sVar) {
+        String str = sVar.f3641r;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -61,7 +61,7 @@ public final class a {
     }
 
     public final boolean b(s sVar) {
-        String str = sVar.f3643r;
+        String str = sVar.f3641r;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

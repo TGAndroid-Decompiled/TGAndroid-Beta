@@ -2,89 +2,60 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
-import android.view.MotionEvent;
-import j$.util.Objects;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class jx extends og.d {
-    public boolean W2;
-    public final b00 X2;
+public final class jx extends FrameLayout {
+    public final boolean f27656a;
+    public final d00 f27657b;
 
-    public jx(b00 b00Var, Context context) {
-        super(context, null);
-        this.X2 = b00Var;
+    public jx(d00 d00Var, Context context, boolean z10) {
+        super(context);
+        this.f27657b = d00Var;
+        this.f27656a = z10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.X2.f24762m2.h++;
-    }
-
-    @Override
-    public final void k0(int i10, int i11) {
-        int i12;
-        ah.h hVar;
-        b00 b00Var = this.X2;
-        wz wzVar = b00Var.f24805z0;
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = b00Var.f24755j2) != null) {
-            hVar.f(i10, i11);
-        }
-        if (b00Var.C0 != null) {
-            nx nxVar = b00Var.B0;
-            if (b00Var.D0.canScrollVertically(-1)) {
-                i12 = AndroidUtilities.getShadowHeight();
-            } else {
-                i12 = 0;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        d00 d00Var = this.f27657b;
+        px pxVar = d00Var.B0;
+        lx lxVar = d00Var.D0;
+        ox oxVar = d00Var.G0;
+        if (!this.f27656a && (view == lxVar || view == oxVar)) {
+            canvas.save();
+            float y3 = pxVar.getY() + pxVar.getMeasuredHeight() + 1.0f;
+            if (view == lxVar) {
+                y3 = Math.max(y3, oxVar.getY() + oxVar.getMeasuredHeight() + 1.0f);
             }
-            nxVar.setUnderlineHeight(i12);
+            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * d00Var.f25071a.f16087e), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
         }
-        if (wzVar != null && getAdapter() == wzVar && wzVar.d == 0) {
-            wz wzVar2 = wzVar.O.f31759w;
-            if (!wzVar2.Q.G0.F && !wzVar2.f32819y) {
-                if (b00Var.E0.N0() + 50 > wzVar.h()) {
-                    uz uzVar = wzVar.O;
-                    Objects.requireNonNull(uzVar);
-                    AndroidUtilities.runOnUIThread(new ix(uzVar, 0));
-                }
-            }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        d00 d00Var = this.f27657b;
+        d00Var.K0 = true;
+        d00Var.Y();
+        gg.f1 f1Var = d00Var.T0;
+        if (f1Var != null) {
+            f1Var.a();
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        b00 b00Var = this.X2;
-        if (!b00Var.f24740f) {
-            org.telegram.ui.qt q6 = org.telegram.ui.qt.q();
-            jx jxVar = b00Var.D0;
-            b00Var.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, jxVar, b00Var.f24746g2, this.f30570n2);
-            if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-                return false;
-            }
-            return true;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        d00 d00Var = this.f27657b;
+        d00Var.K0 = false;
+        d00Var.Y();
+        gg.f1 f1Var = d00Var.T0;
+        if (f1Var != null) {
+            f1Var.a();
         }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        b00 b00Var = this.X2;
-        if (b00Var.I0 && b00Var.f24802y0.h() > 0) {
-            this.W2 = true;
-            b00Var.E0.h1(0, 0);
-            b00Var.I0 = false;
-            this.W2 = false;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        b00Var.r(true);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W2) {
-            return;
-        }
-        super.requestLayout();
     }
 }

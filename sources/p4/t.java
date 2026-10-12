@@ -1,13 +1,39 @@
 package p4;
-public final class t {
-    public final x f45504a;
-    public final s f45505b;
-    public r f45506c = r.f45490c;
-    public int d;
-    public long f45507e;
+public abstract class t {
+    public abstract void e(w wVar);
 
-    public t(x xVar, s sVar) {
-        this.f45504a = xVar;
-        this.f45505b = sVar;
+    public void h(y yVar, w wVar, int i10) {
+        g(wVar);
+    }
+
+    public void j(y yVar, w wVar, int i10) {
+        i();
+    }
+
+    public void a() {
+    }
+
+    public void b() {
+    }
+
+    public void c() {
+    }
+
+    public void i() {
+    }
+
+    public void d(w wVar) {
+    }
+
+    public void f(w wVar) {
+    }
+
+    public void g(w wVar) {
+    }
+
+    public void k(w wVar) {
+    }
+
+    public void l(a0 a0Var) {
     }
 }

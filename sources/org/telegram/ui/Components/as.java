@@ -1,48 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
+import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class as implements View.OnClickListener {
-    public final int f24654a;
-    public final long f24655b;
-    public final Object f24656c;
-    public final Object d;
-    public final Object f24657e;
+import org.telegram.tgnet.tl.TL_phone;
+public final class as implements RequestDelegate {
+    public final int f24466a;
+    public final fs f24467b;
+    public final ci.d f24468c;
 
-    public as(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f24654a = i10;
-        this.f24656c = obj;
-        this.d = obj2;
-        this.f24657e = obj3;
-        this.f24655b = j3;
+    public as(fs fsVar, ci.d dVar, int i10) {
+        this.f24466a = i10;
+        this.f24467b = fsVar;
+        this.f24468c = dVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f24654a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f24466a) {
             case 0:
-                es.T((es) this.f24656c, (Context) this.d, (ci.d) this.f24657e, this.f24655b);
-                return;
-            case 1:
-                org.telegram.ui.sy syVar = (org.telegram.ui.sy) this.f24656c;
-                syVar.finishPreviewFragment();
-                AndroidUtilities.runOnUIThread(new p31(syVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.f24657e, this.f24655b, 1), 100L);
+                final fs fsVar = this.f24467b;
+                final ci.d dVar = this.f24468c;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                fs fsVar2 = fsVar;
+                                fsVar2.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    fsVar2.f26158b0 = groupcallstreamrtmpurl.url;
+                                    fsVar2.f26159c0 = groupcallstreamrtmpurl.key;
+                                    fsVar2.f26160d0 = new SpannableStringBuilder(fsVar2.f26159c0);
+                                    fsVar2.f26161e0.N(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                fs fsVar3 = fsVar;
+                                fsVar3.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    fsVar3.f26158b0 = groupcallstreamrtmpurl2.url;
+                                    fsVar3.f26159c0 = groupcallstreamrtmpurl2.key;
+                                    fsVar3.f26160d0 = new SpannableStringBuilder(fsVar3.f26159c0);
+                                    fsVar3.f26161e0.N(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                tg.z.Q((tg.z) this.f24656c, (TL_stories.PrepaidGiveaway) this.d, this.f24655b, (org.telegram.ui.ActionBar.m2) this.f24657e);
+                final fs fsVar2 = this.f24467b;
+                final ci.d dVar2 = this.f24468c;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                fs fsVar22 = fsVar2;
+                                fsVar22.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    fsVar22.f26158b0 = groupcallstreamrtmpurl.url;
+                                    fsVar22.f26159c0 = groupcallstreamrtmpurl.key;
+                                    fsVar22.f26160d0 = new SpannableStringBuilder(fsVar22.f26159c0);
+                                    fsVar22.f26161e0.N(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                fs fsVar3 = fsVar2;
+                                fsVar3.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    fsVar3.f26158b0 = groupcallstreamrtmpurl2.url;
+                                    fsVar3.f26159c0 = groupcallstreamrtmpurl2.key;
+                                    fsVar3.f26160d0 = new SpannableStringBuilder(fsVar3.f26159c0);
+                                    fsVar3.f26161e0.N(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
         }
-    }
-
-    public as(tg.z zVar, TL_stories.PrepaidGiveaway prepaidGiveaway, long j3, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f24654a = 2;
-        this.f24656c = zVar;
-        this.d = prepaidGiveaway;
-        this.f24655b = j3;
-        this.f24657e = m2Var;
     }
 }

@@ -14,23 +14,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
-import w7.x5;
+import w7.w5;
 public final class u extends FrameLayout {
-    public final h5 f11379a;
-    public final vh.n f11380b;
-    public final h5 f11381c;
-    public final d6 d;
-    public boolean f11382e;
-    public TL_account.TL_businessChatLink f11383f;
+    public final h5 f11378a;
+    public final vh.n f11379b;
+    public final h5 f11380c;
+    public final c6 d;
+    public boolean f11381e;
+    public TL_account.TL_businessChatLink f11382f;
 
-    public u(Context context, d6 d6Var) {
+    public u(Context context, c6 c6Var) {
         super(context);
         int i10;
         int i11;
-        this.d = d6Var;
+        this.d = c6Var;
         setWillNotDraw(false);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -39,9 +39,9 @@ public final class u extends FrameLayout {
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         imageView.setBackground(h6.K(AndroidUtilities.dp(36.0f), h6.x0(null, h6.Oh, false)));
         imageView.setOnClickListener(new ai.v0(this, 25));
-        addView(imageView, x5.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
+        addView(imageView, w5.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
         h5 h5Var = new h5(context);
-        this.f11379a = h5Var;
+        this.f11378a = h5Var;
         h5Var.setTextSize(15);
         h5Var.setTextColor(h6.x0(null, h6.G6, false));
         if (LocaleController.isRTL) {
@@ -50,11 +50,11 @@ public final class u extends FrameLayout {
             i10 = 3;
         }
         h5Var.setGravity(i10);
-        addView(h5Var, x5.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
+        addView(h5Var, w5.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
         h5 h5Var2 = new h5(context);
-        this.f11381c = h5Var2;
+        this.f11380c = h5Var2;
         h5Var2.setTextSize(14);
-        int i12 = h6.f21225z6;
+        int i12 = h6.f20963z6;
         h5Var2.setTextColor(h6.x0(null, i12, false));
         if (LocaleController.isRTL) {
             i11 = 3;
@@ -62,28 +62,28 @@ public final class u extends FrameLayout {
             i11 = 5;
         }
         h5Var2.setGravity(i11);
-        addView(h5Var2, x5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
+        addView(h5Var2, w5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
         vh.n nVar = new vh.n(context);
-        this.f11380b = nVar;
+        this.f11379b = nVar;
         nVar.setTextSize(1, 13.0f);
         nVar.setMaxLines(1);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
-        nVar.setTextColor(h6.w0(i12, d6Var));
+        nVar.setTextColor(h6.w0(i12, c6Var));
         nVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        nVar.f49857r = false;
+        nVar.f49964r = false;
         nVar.setUseAlphaForEmoji(false);
         NotificationCenter.listenEmojiLoading(nVar);
-        addView(nVar, x5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
+        addView(nVar, w5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
         super.onDraw(canvas);
-        if (this.f11382e) {
+        if (this.f11381e) {
             Paint U0 = h6.U0("paintDivider", this.d);
             if (U0 == null) {
-                U0 = h6.f20944k0;
+                U0 = h6.f20681k0;
             }
             Paint paint = U0;
             float f10 = 64.0f;
@@ -106,8 +106,8 @@ public final class u extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         boolean z11 = LocaleController.isRTL;
-        h5 h5Var = this.f11381c;
-        h5 h5Var2 = this.f11379a;
+        h5 h5Var = this.f11380c;
+        h5 h5Var2 = this.f11378a;
         if (z11) {
             h5Var2.setPadding(h5Var.getTextWidth(), 0, 0, 0);
         } else {
@@ -117,6 +117,6 @@ public final class u extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.f11382e ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.f11381e ? 1 : 0), 1073741824));
     }
 }

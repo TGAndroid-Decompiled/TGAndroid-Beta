@@ -1,52 +1,98 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class et0 extends s4.o0 {
-    public final ys0 f26206a;
+import android.view.accessibility.AccessibilityNodeInfo;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class et0 extends g00 {
+    public final sw0 X;
+    public final dt0 Y;
+    public final hw0 Z;
 
-    public et0(ys0 ys0Var) {
-        this.f26206a = ys0Var;
+    public et0(hw0 hw0Var, dt0 dt0Var) {
+        super(100, false);
+        this.Z = hw0Var;
+        this.Y = dt0Var;
+        this.X = new Object();
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
-        boolean z10;
-        boolean z11;
-        if (view instanceof org.telegram.ui.Cells.t7) {
-            org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-            ys0 ys0Var = this.f26206a;
-            ys0Var.f32556r.getClass();
-            int R = RecyclerView.R(t7Var);
-            int i10 = ys0Var.f32557s.J;
-            boolean z12 = true;
-            if (R < i10) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public final int A() {
+        if (this.Y.h.getAdapter() != this.Z.O) {
+            return 0;
+        }
+        return B();
+    }
+
+    @Override
+    public final sw0 D1(int i10) {
+        TLRPC.Document document;
+        int i11;
+        int i12;
+        s4.i0 adapter = this.Y.h.getAdapter();
+        hw0 hw0Var = this.Z;
+        wv0[] wv0VarArr = hw0Var.f26968t1;
+        if (adapter == hw0Var.O && !wv0VarArr[5].f32553a.isEmpty()) {
+            document = ((MessageObject) wv0VarArr[5].f32553a.get(i10)).getDocument();
+        } else {
+            document = null;
+        }
+        sw0 sw0Var = this.X;
+        sw0Var.f30697b = 100.0f;
+        sw0Var.f30696a = 100.0f;
+        if (document != null) {
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f19827w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
+                sw0Var.f30696a = i11;
+                sw0Var.f30697b = i12;
             }
-            t7Var.f23090a0 = z10;
-            int i11 = R % i10;
-            if (i11 == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
+            ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
+            for (int i13 = 0; i13 < arrayList.size(); i13++) {
+                TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                    sw0Var.f30696a = documentAttribute.f19809w;
+                    sw0Var.f30697b = documentAttribute.h;
+                    break;
+                }
             }
-            t7Var.V = z11;
-            if (i11 != i10 - 1) {
-                z12 = false;
+        }
+        return sw0Var;
+    }
+
+    @Override
+    public final void U(pf.e eVar, s4.a1 a1Var, View view, s0.d dVar) {
+        e.a aVar;
+        super.U(eVar, a1Var, view, dVar);
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f47818a;
+        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
+        if (collectionItemInfo != null) {
+            aVar = new e.a(collectionItemInfo);
+        } else {
+            aVar = null;
+        }
+        if (aVar != null) {
+            Object obj = aVar.f8387a;
+            if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
+                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
             }
-            t7Var.W = z12;
-            rect.left = 0;
-            rect.top = 0;
-            rect.bottom = 0;
-            rect.right = 0;
+        }
+    }
+
+    @Override
+    public final void z0(s4.a1 a1Var, int[] iArr) {
+        super.z0(a1Var, iArr);
+        dt0 dt0Var = this.Y;
+        int i10 = dt0Var.F;
+        if (i10 != 0 && !hw0.p0(i10)) {
+            if (dt0Var.F == 1) {
+                iArr[1] = Math.max(iArr[1], AndroidUtilities.dp(56.0f) * 2);
+                return;
+            }
             return;
         }
-        rect.left = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        rect.right = 0;
+        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.u7.a(1) * 2);
     }
 }

@@ -1,22 +1,11 @@
 package w7;
 public abstract class o {
-    public static float a(float f7, float f10, float f11) {
-        if (f7 < f10) {
-            return f10;
-        }
-        if (f7 > f11) {
-            return f11;
-        }
-        return f7;
-    }
-
-    public static int b(int i10, int i11, int i12) {
-        if (i10 < i11) {
-            return i11;
-        }
-        if (i10 > i12) {
-            return i12;
-        }
-        return i10;
+    public static m1.c a(String name) {
+        he.d dVar = ae.o0.f483b;
+        ae.k1 k1Var = new ae.k1();
+        dVar.getClass();
+        fe.e b10 = ae.g0.b(v7.v8.c(dVar, k1Var));
+        kotlin.jvm.internal.i.e(name, "name");
+        return new m1.c(name, m1.a.f15643b, b10);
     }
 }

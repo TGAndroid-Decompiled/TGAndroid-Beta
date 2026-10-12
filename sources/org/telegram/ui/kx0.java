@@ -1,149 +1,49 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BuildVars;
-import org.telegram.tgnet.TLRPC;
-public final class kx0 {
-    public final TLRPC.TL_premiumSubscriptionOption f39472a;
-    public int f39473b;
-    public long f39474c;
-    public long d;
-    public long f39475e;
-    public c5.o f39476f;
-    public c5.n f39477g;
-    public int h;
+import android.content.Context;
+import android.view.ViewGroup;
+public final class kx0 extends org.telegram.ui.Components.vm0 {
+    public final Context f39599c;
+    public final lx0 d;
 
-    public kx0(TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption) {
-        this.f39472a = tL_premiumSubscriptionOption;
+    public kx0(lx0 lx0Var, Context context) {
+        this.d = lx0Var;
+        this.f39599c = context;
     }
 
-    public final void a() {
-        c5.o oVar = this.f39476f;
-        if (oVar != null && this.f39477g == null) {
-            ArrayList arrayList = oVar.h;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                c5.n nVar = (c5.n) obj;
-                String str = ((c5.l) nVar.f4275b.f4273a.get(0)).d;
-                int i11 = this.f39472a.months;
-                if (i11 == 12) {
-                    if (str.equals("P1Y")) {
-                        this.f39477g = nVar;
-                        return;
-                    }
-                } else {
-                    Locale locale = Locale.ROOT;
-                    if (str.equals("P" + i11 + "M")) {
-                        this.f39477g = nVar;
-                        return;
-                    }
-                }
-            }
-        }
+    @Override
+    public final boolean D(s4.d1 d1Var) {
+        return !((nx0) this.d.f39866n.d.get(d1Var.b())).f40495a.current;
     }
 
-    public final String b() {
-        boolean useInvoiceBilling = BuildVars.useInvoiceBilling();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f39472a;
-        if (!useInvoiceBilling && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f39476f != null) {
-                a();
-                c5.n nVar = this.f39477g;
-                if (nVar == null) {
-                    return "";
-                }
-                return ((c5.l) nVar.f4275b.f4273a.get(0)).f4272c;
-            }
-            return "";
-        }
-        return tL_premiumSubscriptionOption.currency;
+    @Override
+    public final int h() {
+        return this.d.f39866n.d.size();
     }
 
-    public final int c() {
-        if (this.f39473b == 0) {
-            if (h() == 0) {
-                return 0;
-            }
-            if (this.f39475e != 0) {
-                int i10 = (int) ((1.0d - (i() / this.f39475e)) * 100.0d);
-                this.f39473b = i10;
-                if (i10 == 0) {
-                    this.f39473b = -1;
-                }
-            }
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        boolean z10;
+        rg.q1 q1Var = (rg.q1) d1Var.f47889a;
+        PremiumPreviewFragment premiumPreviewFragment = this.d.f39866n;
+        nx0 nx0Var = (nx0) premiumPreviewFragment.d.get(i10);
+        boolean z11 = true;
+        if (i10 != h() - 1) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return this.f39473b;
+        q1Var.a(nx0Var, z10);
+        if (premiumPreviewFragment.f33969e != i10) {
+            z11 = false;
+        }
+        q1Var.c(z11, false);
     }
 
-    public final String d() {
-        if (!BuildVars.useInvoiceBilling() && this.f39472a.store_product != null) {
-            if (this.f39476f == null) {
-                return "";
-            }
-            return BillingController.getInstance().formatCurrency(g(), b(), 6);
-        }
-        return BillingController.getInstance().formatCurrency(g(), b());
-    }
-
-    public final String e() {
-        if (!BuildVars.useInvoiceBilling() && this.f39472a.store_product != null) {
-            if (this.f39476f == null) {
-                return "";
-            }
-            return BillingController.getInstance().formatCurrency(h(), b(), 6);
-        }
-        return BillingController.getInstance().formatCurrency(h(), b());
-    }
-
-    public final String f() {
-        if (!BuildVars.useInvoiceBilling() && this.f39472a.store_product != null) {
-            if (this.f39476f == null) {
-                return "";
-            }
-            return BillingController.getInstance().formatCurrency(i(), b(), 6);
-        }
-        return BillingController.getInstance().formatCurrency(i(), b());
-    }
-
-    public final long g() {
-        boolean useInvoiceBilling = BuildVars.useInvoiceBilling();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f39472a;
-        if (!useInvoiceBilling && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f39476f != null) {
-                a();
-                c5.n nVar = this.f39477g;
-                if (nVar == null) {
-                    return 0L;
-                }
-                return ((c5.l) nVar.f4275b.f4273a.get(0)).f4271b;
-            }
-            return 0L;
-        }
-        return tL_premiumSubscriptionOption.amount;
-    }
-
-    public final long h() {
-        if (this.f39474c == 0) {
-            long g10 = g();
-            if (g10 != 0) {
-                this.f39474c = g10 / this.f39472a.months;
-            }
-        }
-        return this.f39474c;
-    }
-
-    public final long i() {
-        if (this.d == 0) {
-            long g10 = g();
-            if (g10 != 0) {
-                this.d = (long) ((g10 / this.f39472a.months) * 12.0d);
-            }
-        }
-        return this.d;
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        jx0 jx0Var = new jx0(this, this.f39599c);
+        jx0Var.setCirclePaintProvider(new ns0(3, this, jx0Var));
+        return new s4.d1(jx0Var);
     }
 }

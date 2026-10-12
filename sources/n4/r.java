@@ -1,58 +1,33 @@
 package n4;
 
-import android.content.Context;
-import android.media.session.MediaSession;
-import android.os.Bundle;
-import android.os.RemoteCallbackList;
-import java.util.List;
-public class r {
-    public final MediaSession f16675a;
-    public final q f16676b;
-    public final w f16677c;
-    public final Bundle f16678e;
-    public f0 f16680g;
-    public List h;
-    public m f16681i;
-    public int f16682j;
-    public int f16683k;
-    public p f16684l;
-    public z f16685m;
-    public final Object d = new Object();
-    public final RemoteCallbackList f16679f = new RemoteCallbackList();
+import android.os.Binder;
+import android.os.IBinder;
+import java.lang.ref.WeakReference;
+public final class r extends Binder implements h {
+    public static final int f16341b = 0;
+    public final WeakReference f16342a;
 
-    public r(Context context, String str, Bundle bundle) {
-        MediaSession a2 = a(context, str, bundle);
-        this.f16675a = a2;
-        q qVar = new q(this);
-        this.f16676b = qVar;
-        this.f16677c = new w(a2.getSessionToken(), qVar);
-        this.f16678e = bundle;
-        a2.setFlags(3);
+    public r(s sVar) {
+        attachInterface(this, "android.support.v4.media.session.IMediaSession");
+        this.f16342a = new WeakReference(sVar);
     }
 
-    public MediaSession a(Context context, String str, Bundle bundle) {
-        return new MediaSession(context, str);
-    }
-
-    public final p b() {
-        p pVar;
-        synchronized (this.d) {
-            pVar = this.f16684l;
+    public final void F0(f fVar) {
+        s sVar = (s) this.f16342a.get();
+        if (sVar != null && fVar != null) {
+            sVar.f16347f.register(fVar, new a0("android.media.session.MediaController", Binder.getCallingPid(), Binder.getCallingUid()));
+            synchronized (sVar.d) {
+            }
         }
-        return pVar;
     }
 
-    public z c() {
-        z zVar;
-        synchronized (this.d) {
-            zVar = this.f16685m;
-        }
-        return zVar;
+    @Override
+    public final boolean onTransact(int r33, android.os.Parcel r34, android.os.Parcel r35, int r36) {
+        throw new UnsupportedOperationException("Method not decompiled: n4.r.onTransact(int, android.os.Parcel, android.os.Parcel, int):boolean");
     }
 
-    public void d(z zVar) {
-        synchronized (this.d) {
-            this.f16685m = zVar;
-        }
+    @Override
+    public final IBinder asBinder() {
+        return this;
     }
 }

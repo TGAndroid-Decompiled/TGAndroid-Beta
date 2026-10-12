@@ -1,62 +1,59 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class aa1 extends org.telegram.ui.Components.g91 {
-    public final boolean f35990a;
-    public final boolean f35991b;
-    public final boolean f35992c;
-    public final FrameLayout d;
-    public final ab1 f35993e;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class aa1 implements bh.a {
+    public final RectF f35743a = new RectF();
+    public final y8 f35744b;
+    public final db1 f35745c;
 
-    public aa1(ab1 ab1Var, boolean z10, boolean z11, boolean z12, FrameLayout frameLayout) {
-        this.f35993e = ab1Var;
-        this.f35990a = z10;
-        this.f35991b = z11;
-        this.f35992c = z12;
-        this.d = frameLayout;
+    public aa1(db1 db1Var, y8 y8Var) {
+        this.f35745c = db1Var;
+        this.f35744b = y8Var;
     }
 
     @Override
-    public final View d(int i10) {
-        ab1 ab1Var = this.f35993e;
-        if (ab1Var.f36011l0) {
-            return ab1Var.f36009j0;
-        }
-        boolean z10 = this.f35990a;
-        FrameLayout frameLayout = this.d;
-        if (z10) {
+    public final void b(ah.a aVar, RectF rectF) {
+        aVar.f538a = true;
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        ah.n nVar;
+        fc fcVar;
+        fc fcVar2;
+        db1 db1Var = this.f35745c;
+        db1Var.fragmentView.getMeasuredWidth();
+        db1Var.fragmentView.getMeasuredHeight();
+        canvas.drawColor(db1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6));
+        for (int i10 = 0; i10 < 3; i10++) {
             if (i10 == 0) {
-                return frameLayout;
+                nVar = db1Var.T;
+                fcVar = db1Var.S;
+            } else if (i10 == 1 && (fcVar2 = db1Var.f36736j0) != null) {
+                nVar = fcVar2.G;
+                fcVar = fcVar2;
+            } else {
+                oe oeVar = db1Var.f36737k0;
+                if (oeVar != null) {
+                    nVar = oeVar.f40656b1;
+                    fcVar = oeVar;
+                } else {
+                    nVar = null;
+                    fcVar = null;
+                }
             }
-            i10--;
-        }
-        if (this.f35991b) {
-            if (i10 == 0) {
-                return ab1Var.f36009j0;
+            if (nVar != null && fcVar != null) {
+                y8 y8Var = this.f35744b;
+                RectF rectF2 = this.f35743a;
+                hh.j.c(fcVar, y8Var, rectF2);
+                if (rectF2.right > 0.0f) {
+                    db1Var.fragmentView.getMeasuredWidth();
+                }
+                canvas.save();
+                nVar.f(canvas, rectF);
+                canvas.restore();
             }
-            i10--;
         }
-        if (this.f35992c && i10 == 0) {
-            return ab1Var.f36010k0;
-        }
-        return frameLayout;
-    }
-
-    @Override
-    public final int e() {
-        if (this.f35993e.f36011l0) {
-            return 1;
-        }
-        return (this.f35990a ? 1 : 0) + (this.f35991b ? 1 : 0) + (this.f35992c ? 1 : 0);
-    }
-
-    @Override
-    public final int h(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
     }
 }

@@ -1,89 +1,61 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class dh1 implements Runnable {
-    public final int f37051a;
-    public final hh1 f37052b;
-    public final TLRPC.TL_error f37053c;
+public final class dh1 implements RequestDelegate {
+    public final int f36827a;
+    public final kh1 f36828b;
 
-    public dh1(hh1 hh1Var, TLRPC.TL_error tL_error, int i10) {
-        this.f37051a = i10;
-        this.f37052b = hh1Var;
-        this.f37053c = tL_error;
+    public dh1(kh1 kh1Var, int i10) {
+        this.f36827a = i10;
+        this.f36828b = kh1Var;
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        String formatPluralString2;
-        int i10 = this.f37051a;
-        TLRPC.TL_error tL_error = this.f37053c;
-        hh1 hh1Var = this.f37052b;
-        switch (i10) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f36827a) {
             case 0:
-                hh1Var.w0();
-                if (tL_error == null) {
-                    hh1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hh1Var.getParentActivity());
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new yg1(hh1Var, 3));
-                    String string = LocaleController.getString(R.string.PasswordReset);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20404a;
-                    a2Var.T = string;
-                    a2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
-                    Dialog showDialog = hh1Var.showDialog(a2Var);
-                    if (showDialog != null) {
-                        showDialog.setCanceledOnTouchOutside(false);
-                        showDialog.setCancelable(false);
-                        return;
+                final kh1 kh1Var = this.f36828b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                kh1.b0(kh1Var, tL_error, tLObject);
+                                return;
+                            default:
+                                kh1.h0(kh1Var, tL_error, tLObject);
+                                return;
+                        }
                     }
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue < 60) {
-                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-                    } else {
-                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-                    }
-                    hh1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-                    return;
-                } else {
-                    hh1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
-                    return;
-                }
+                });
+                return;
             case 1:
-                hh1Var.w0();
-                if (tL_error == null) {
-                    if (hh1Var.getParentActivity() != null) {
-                        hh1Var.u0(new zg1(hh1Var, 5));
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("CODE_INVALID")) {
-                    hh1Var.y0();
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue2 < 60) {
-                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
-                    } else {
-                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
-                    }
-                    hh1Var.G0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
-                    return;
-                } else {
-                    hh1Var.G0(LocaleController.getString(R.string.AppName), tL_error.text);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new gh1(this.f36828b, tL_error, 0));
+                return;
             case 2:
-                hh1.e0(hh1Var, tL_error);
+                AndroidUtilities.runOnUIThread(new gh1(this.f36828b, tL_error, 1));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new gh1(this.f36828b, tL_error, 2));
                 return;
             default:
-                hh1.Z(hh1Var, tL_error);
+                final kh1 kh1Var2 = this.f36828b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                kh1.b0(kh1Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                kh1.h0(kh1Var2, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

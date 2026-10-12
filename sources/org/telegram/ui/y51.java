@@ -1,23 +1,44 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class y51 extends f71 {
-    public final View Q;
-    public final TL_stars.TL_starGiftUnique R;
-    public final z51 S;
+import java.util.ArrayList;
+public final class y51 extends g.o {
+    public final int f44307c;
+    public final n71 d;
 
-    public y51(z51 z51Var, Context context, Runnable runnable, View view, s61 s61Var, org.telegram.ui.ActionBar.d6 d6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(z51Var.f44622e, context, runnable, view, s61Var, d6Var);
-        this.S = z51Var;
-        this.Q = view2;
-        this.R = tL_starGiftUnique;
+    public y51(n71 n71Var, int i10) {
+        this.f44307c = i10;
+        this.d = n71Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.S.f44622e.X0 = null;
+    public final int i(int i10) {
+        int i11;
+        ArrayList arrayList;
+        int i12;
+        switch (this.f44307c) {
+            case 0:
+                n71 n71Var = this.d;
+                if (n71Var.f40304w0.indexOfKey(i10) < 0 && n71Var.f40312z0.indexOfKey(i10) < 0 && i10 != n71Var.f40267f && i10 != n71Var.f40309y && i10 != n71Var.f40282n && i10 != n71Var.h && i10 != n71Var.v && i10 != n71Var.f40253a && i10 != n71Var.f40306x) {
+                    if ((i10 >= n71Var.E && i10 < n71Var.F) || n71Var.Q) {
+                        return 8;
+                    }
+                    return 5;
+                }
+                return n71Var.f40292r0.J;
+            default:
+                n71 n71Var2 = this.d;
+                x61 x61Var = n71Var2.f40289q0;
+                int j3 = x61Var.j(i10);
+                if (j3 == 6) {
+                    return n71Var2.f40292r0.J;
+                }
+                if (j3 != 5) {
+                    n71 n71Var3 = x61Var.f43779s;
+                    if (n71Var3.W != 14 ? i10 <= (i11 = x61Var.f43774c) || (i10 - i11) - 1 >= n71Var3.C1.size() : (arrayList = n71Var3.B1) == null || i10 < (i12 = x61Var.f43774c) || i10 - i12 >= arrayList.size()) {
+                        return 5;
+                    }
+                }
+                return 8;
+        }
     }
 }

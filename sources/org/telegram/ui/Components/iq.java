@@ -1,103 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.Random;
-public final class iq {
-    public float f27492g;
-    public float f27495k;
-    public final Path f27487a = new Path();
-    public final float[] f27488b = new float[4];
-    public final float[] f27489c = new float[4];
-    public final Matrix d = new Matrix();
-    public final float h = 1.0f;
-    public final Random f27493i = new Random();
-    public final int f27491f = 6;
-    public final float f27490e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f27494j = new float[6];
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class iq extends FrameLayout {
+    public final TextView[] f27260a;
+    public final ik0[] f27261b;
+    public final ImageView f27262c;
+    public AnimatorSet d;
+    public tg f27263e;
+    public float f27264f;
+    public final org.telegram.ui.ActionBar.c6 h;
 
-    public iq() {
-        for (int i10 = 0; i10 < this.f27491f; i10++) {
-            this.f27494j[i10] = (this.f27493i.nextInt() % 100) / 100.0f;
+    public iq(Activity activity, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(activity);
+        float f7;
+        float f10;
+        this.f27260a = new TextView[2];
+        this.f27261b = new ik0[2];
+        this.h = c6Var;
+        FrameLayout frameLayout = new FrameLayout(activity);
+        frameLayout.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20807qf, c6Var)));
+        frameLayout.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        addView(frameLayout, w7.w5.a(-2.0f, 0.0f, 0.0f, 0.0f, 6.0f, -2, 51));
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f27261b[i10] = new ImageView(activity);
+            this.f27261b[i10].setScaleType(ImageView.ScaleType.CENTER);
+            ik0 ik0Var = this.f27261b[i10];
+            if (i10 == 0) {
+                f7 = 0.0f;
+            } else {
+                f7 = 24.0f;
+            }
+            frameLayout.addView(ik0Var, w7.w5.a(24.0f, 0.0f, f7, 0.0f, 0.0f, 24, 51));
+            this.f27260a[i10] = new TextView(activity);
+            this.f27260a[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20788pf, this.h));
+            this.f27260a[i10].setTextSize(1, 14.0f);
+            this.f27260a[i10].setMaxLines(1);
+            this.f27260a[i10].setSingleLine(true);
+            this.f27260a[i10].setMaxWidth(AndroidUtilities.dp(250.0f));
+            this.f27260a[i10].setGravity(51);
+            this.f27260a[i10].setPivotX(0.0f);
+            TextView textView = this.f27260a[i10];
+            if (i10 == 0) {
+                f10 = 2.0f;
+            } else {
+                f10 = 26.0f;
+            }
+            frameLayout.addView(textView, w7.w5.a(-2.0f, 32.0f, f10, 10.0f, 0.0f, -2, 51));
+            if (i10 == 0) {
+                this.f27261b[i10].f(R.raw.ticks_single, 24, 24, null);
+                this.f27260a[i10].setText(LocaleController.getString(R.string.HintSent));
+            } else {
+                this.f27261b[i10].f(R.raw.ticks_double, 24, 24, null);
+                this.f27260a[i10].setText(LocaleController.getString(R.string.HintRead));
+            }
+            this.f27261b[i10].d();
         }
+        ImageView imageView = new ImageView(activity);
+        this.f27262c = imageView;
+        imageView.setImageResource(R.drawable.tooltip_arrow);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20807qf, this.h), PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.w5.a(6.0f, 0.0f, 0.0f, 0.0f, 0.0f, 14, 83));
     }
 
-    public final void a(float f7, float f10, Canvas canvas, Paint paint) {
-        float f11;
-        int i10;
-        float f12;
-        iq iqVar = this;
-        float f13 = iqVar.f27492g;
-        float f14 = (f13 - 0.0f) - 0.0f;
-        float f15 = f13 + 0.0f + 0.0f;
-        float max = Math.max(f14, f15);
-        float f16 = iqVar.f27490e;
-        float f17 = max * f16 * iqVar.h;
-        Path path = iqVar.f27487a;
-        path.reset();
-        int i11 = 0;
-        while (true) {
-            int i12 = iqVar.f27491f;
-            if (i11 < i12) {
-                Matrix matrix = iqVar.d;
-                matrix.reset();
-                float f18 = 360.0f / i12;
-                matrix.setRotate(i11 * f18, f7, f10);
-                if (i11 % 2 == 0) {
-                    f11 = f14;
-                } else {
-                    f11 = f15;
-                }
-                float f19 = iqVar.f27495k;
-                float[] fArr = iqVar.f27494j;
-                float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = iqVar.f27488b;
-                fArr2[0] = f7;
-                float f21 = f10 - f20;
-                fArr2[1] = f21;
-                float f22 = f15;
-                fArr2[2] = com.google.android.gms.internal.vision.e2.w(f19, fArr[i11], f16, f7 + f17);
-                fArr2[3] = f21;
-                matrix.mapPoints(fArr2);
-                int i13 = i11 + 1;
-                if (i13 >= i12) {
-                    i10 = 0;
-                } else {
-                    i10 = i13;
-                }
-                if (i10 % 2 == 0) {
-                    f12 = f14;
-                } else {
-                    f12 = f22;
-                }
-                float f23 = iqVar.f27495k;
-                float[] fArr3 = iqVar.f27489c;
-                fArr3[0] = f7;
-                float f24 = f10 - ((fArr[i10] * f23) + f12);
-                fArr3[1] = f24;
-                float f25 = f14;
-                fArr3[2] = com.google.android.gms.internal.vision.e2.w(f23, fArr[i10], f16, f7 - f17);
-                fArr3[3] = f24;
-                matrix.reset();
-                matrix.setRotate(f18 * i10, f7, f10);
-                matrix.mapPoints(fArr3);
-                if (i11 == 0) {
-                    path.moveTo(fArr2[0], fArr2[1]);
-                }
-                path.cubicTo(fArr2[2], fArr2[3], fArr3[2], fArr3[3], fArr3[0], fArr3[1]);
-                i11 = i13;
-                f15 = f22;
-                f14 = f25;
-                iqVar = this;
-            } else {
-                canvas.save();
-                canvas.rotate(0.0f, f7, f10);
-                canvas.drawPath(path, paint);
-                canvas.restore();
-                return;
-            }
+    public final void a() {
+        if (getTag() == null) {
+            return;
         }
+        setTag(null);
+        tg tgVar = this.f27263e;
+        if (tgVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(tgVar);
+            this.f27263e = null;
+        }
+        AnimatorSet animatorSet = this.d;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.d = null;
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.d = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.0f));
+        this.d.addListener(new hq(this, 1));
+        this.d.setDuration(180L);
+        this.d.start();
+    }
+
+    public float getBaseTranslationY() {
+        return this.f27264f;
     }
 }

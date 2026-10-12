@@ -1,33 +1,35 @@
 package org.telegram.messenger;
 
-import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.TLRPC;
 public final class uf implements Runnable {
-    public final int f19387a;
-    public final MessagesStorage f19388b;
-    public final long f19389c;
-    public final boolean[] d;
-    public final CountDownLatch f19390e;
+    public final int f19108a = 0;
+    public final int f19109b;
+    public final MessagesStorage f19110c;
+    public final long d;
+    public final long f19111e;
+    public final int f19112f;
+    public final Object h;
 
-    public uf(int i10, long j3, CountDownLatch countDownLatch, MessagesStorage messagesStorage, boolean[] zArr) {
-        this.f19387a = i10;
-        this.f19388b = messagesStorage;
-        this.f19389c = j3;
-        this.d = zArr;
-        this.f19390e = countDownLatch;
+    public uf(int i10, int i11, long j3, long j10, MessagesStorage messagesStorage, TLRPC.InputChannel inputChannel) {
+        this.f19110c = messagesStorage;
+        this.d = j3;
+        this.f19109b = i10;
+        this.h = inputChannel;
+        this.f19112f = i11;
+        this.f19111e = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19387a) {
-            case 0:
-                this.f19388b.lambda$checkMessageByRandomId$153(this.f19389c, this.d, this.f19390e);
-                return;
-            case 1:
-                this.f19388b.lambda$isMigratedChat$141(this.f19389c, this.d, this.f19390e);
-                return;
-            default:
-                this.f19388b.lambda$hasInviteMeMessage$143(this.f19389c, this.d, this.f19390e);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.uf.run():void");
+    }
+
+    public uf(org.telegram.ui.Cells.g6 g6Var, int i10, MessagesStorage messagesStorage, long j3, long j10, int i11) {
+        this.h = g6Var;
+        this.f19109b = i10;
+        this.f19110c = messagesStorage;
+        this.d = j3;
+        this.f19111e = j10;
+        this.f19112f = i11;
     }
 }

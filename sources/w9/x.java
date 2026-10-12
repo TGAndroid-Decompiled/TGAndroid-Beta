@@ -1,32 +1,56 @@
 package w9;
 
-import android.os.Looper;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-public abstract class x {
-    public static final ExecutorService f50424a = h.a("awaitEvenIfOnMainThread task continuation executor");
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class x implements Continuation {
+    public final int f50529a;
+    public final TaskCompletionSource f50530b;
 
-    public static Object a(Task task) {
-        CountDownLatch countDownLatch = new CountDownLatch(1);
-        task.continueWith(f50424a, new r5.d(countDownLatch, 12));
-        if (Looper.getMainLooper() == Looper.myLooper()) {
-            countDownLatch.await(3L, TimeUnit.SECONDS);
-        } else {
-            countDownLatch.await(4L, TimeUnit.SECONDS);
+    public x(int i10, TaskCompletionSource taskCompletionSource) {
+        this.f50529a = i10;
+        this.f50530b = taskCompletionSource;
+    }
+
+    @Override
+    public final Object then(Task task) {
+        switch (this.f50529a) {
+            case 0:
+                boolean isSuccessful = task.isSuccessful();
+                TaskCompletionSource taskCompletionSource = this.f50530b;
+                if (isSuccessful) {
+                    taskCompletionSource.trySetResult(task.getResult());
+                    return null;
+                } else if (task.getException() != null) {
+                    taskCompletionSource.trySetException(task.getException());
+                    return null;
+                } else {
+                    return null;
+                }
+            case 1:
+                boolean isSuccessful2 = task.isSuccessful();
+                TaskCompletionSource taskCompletionSource2 = this.f50530b;
+                if (isSuccessful2) {
+                    taskCompletionSource2.trySetResult(task.getResult());
+                    return null;
+                } else if (task.getException() != null) {
+                    taskCompletionSource2.trySetException(task.getException());
+                    return null;
+                } else {
+                    return null;
+                }
+            default:
+                boolean isSuccessful3 = task.isSuccessful();
+                TaskCompletionSource taskCompletionSource3 = this.f50530b;
+                if (isSuccessful3) {
+                    taskCompletionSource3.setResult(task.getResult());
+                    return null;
+                } else if (task.getException() != null) {
+                    taskCompletionSource3.setException(task.getException());
+                    return null;
+                } else {
+                    return null;
+                }
         }
-        if (task.isSuccessful()) {
-            return task.getResult();
-        }
-        if (!task.isCanceled()) {
-            if (task.isComplete()) {
-                throw new IllegalStateException(task.getException());
-            }
-            throw new TimeoutException();
-        }
-        throw new CancellationException("Task is already canceled");
     }
 }

@@ -1,13 +1,13 @@
 package yh;
 public final class j8 {
-    public final float f52879a;
-    public final float f52880b;
-    public final float f52881c;
+    public final float f52982a;
+    public final float f52983b;
+    public final float f52984c;
     public float d;
 
     public j8(float f7, float f10, float f11) {
-        this.f52879a = f7;
-        this.f52880b = f10;
-        this.f52881c = f11;
+        this.f52982a = f7;
+        this.f52983b = f10;
+        this.f52984c = f11;
     }
 }

@@ -6,22 +6,22 @@ import android.widget.Scroller;
 import androidx.recyclerview.widget.RecyclerView;
 import ci.s9;
 import java.util.ArrayList;
-import org.telegram.ui.Components.f71;
-import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.p71;
 public final class x4 extends s4.r0 {
-    public RecyclerView f35724a;
-    public f71 f35726c;
+    public RecyclerView f35500a;
+    public j71 f35502c;
     public boolean d;
-    public boolean f35727e;
-    public boolean f35728f;
-    public float f35729g;
+    public boolean f35503e;
+    public boolean f35504f;
+    public float f35505g;
     public float h;
-    public final c5 f35731j;
-    public final s9 f35725b = new s9(this);
-    public final o f35730i = new o(this, 7);
+    public final c5 f35507j;
+    public final s9 f35501b = new s9(this);
+    public final n f35506i = new n(this, 7);
 
     public x4(c5 c5Var) {
-        this.f35731j = c5Var;
+        this.f35507j = c5Var;
     }
 
     @Override
@@ -29,28 +29,28 @@ public final class x4 extends s4.r0 {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.x4.a(int, int):boolean");
     }
 
-    public final void b(f71 f71Var) {
-        f71 f71Var2 = this.f35726c;
-        if (f71Var2 != null) {
-            f71Var2.removeCallbacks(this.f35730i);
+    public final void b(j71 j71Var) {
+        j71 j71Var2 = this.f35502c;
+        if (j71Var2 != null) {
+            j71Var2.removeCallbacks(this.f35506i);
         }
-        this.f35726c = f71Var;
-        RecyclerView recyclerView = this.f35724a;
-        if (recyclerView != f71Var) {
-            s9 s9Var = this.f35725b;
+        this.f35502c = j71Var;
+        RecyclerView recyclerView = this.f35500a;
+        if (recyclerView != j71Var) {
+            s9 s9Var = this.f35501b;
             if (recyclerView != null) {
-                ArrayList arrayList = recyclerView.f3168w0;
+                ArrayList arrayList = recyclerView.f3166w0;
                 if (arrayList != null) {
                     arrayList.remove(s9Var);
                 }
-                this.f35724a.setOnFlingListener(null);
+                this.f35500a.setOnFlingListener(null);
             }
-            this.f35724a = f71Var;
-            if (f71Var != null) {
-                if (f71Var.getOnFlingListener() == null) {
-                    this.f35724a.j(s9Var);
-                    this.f35724a.setOnFlingListener(this);
-                    new Scroller(this.f35724a.getContext(), new DecelerateInterpolator());
+            this.f35500a = j71Var;
+            if (j71Var != null) {
+                if (j71Var.getOnFlingListener() == null) {
+                    this.f35500a.j(s9Var);
+                    this.f35500a.setOnFlingListener(this);
+                    new Scroller(this.f35500a.getContext(), new DecelerateInterpolator());
                     e();
                     return;
                 }
@@ -60,20 +60,20 @@ public final class x4 extends s4.r0 {
     }
 
     public final void c() {
-        this.f35727e = false;
-        this.f35728f = false;
+        this.f35503e = false;
+        this.f35504f = false;
         this.d = false;
-        f71 f71Var = this.f35726c;
-        if (f71Var != null) {
-            f71Var.removeCallbacks(this.f35730i);
+        j71 j71Var = this.f35502c;
+        if (j71Var != null) {
+            j71Var.removeCallbacks(this.f35506i);
         }
     }
 
     public final View d(s4.p0 p0Var) {
-        f71 f71Var;
-        if (!this.f35727e && (f71Var = this.f35726c) != null && f71Var.getScrollState() == 0) {
-            c5 c5Var = this.f35731j;
-            l71 n02 = c5Var.n0();
+        j71 j71Var;
+        if (!this.f35503e && (j71Var = this.f35502c) != null && j71Var.getScrollState() == 0) {
+            c5 c5Var = this.f35507j;
+            p71 n02 = c5Var.n0();
             if ((n02 == null || n02.getScrollState() == 0) && this.d) {
                 this.d = false;
                 if (c5Var.o0()) {
@@ -97,14 +97,14 @@ public final class x4 extends s4.r0 {
     public final void e() {
         s4.p0 layoutManager;
         View d;
-        RecyclerView recyclerView = this.f35724a;
+        RecyclerView recyclerView = this.f35500a;
         if (recyclerView != null && (layoutManager = recyclerView.getLayoutManager()) != null && (d = d(layoutManager)) != null) {
             int[] iArr = {0, s4.p0.z(d) - layoutManager.F()};
             int i10 = iArr[0];
             if (i10 == 0 && iArr[1] == 0) {
                 return;
             }
-            this.f35724a.v0(i10, iArr[1], null);
+            this.f35500a.v0(i10, iArr[1], null);
         }
     }
 }

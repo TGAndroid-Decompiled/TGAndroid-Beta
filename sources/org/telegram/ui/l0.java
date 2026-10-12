@@ -1,697 +1,162 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
-import android.text.Editable;
+import android.app.Activity;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import j$.util.Objects;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class l0 implements TextWatcher {
-    public final int f39496a;
-    public final Object f39497b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class l0 extends org.telegram.ui.web.u1 {
+    public final i4 B0;
 
-    public l0(Object obj, int i10) {
-        this.f39496a = i10;
-        this.f39497b = obj;
+    public l0(i4 i4Var, Activity activity) {
+        super(activity);
+        this.B0 = i4Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        org.telegram.ui.web.k kVar;
-        String obj;
-        String str;
-        boolean z10;
-        String str2;
-        int i10;
-        tt ttVar;
-        boolean z11;
-        String str3;
-        Object obj2;
-        String str4;
-        boolean z12;
-        String str5;
-        tt ttVar2;
-        String str6;
-        switch (this.f39496a) {
-            case 0:
-                h4 h4Var = (h4) this.f39497b;
-                if (h4Var.f38307h0.W && (kVar = h4Var.f38308i0) != null) {
-                    if (editable == null) {
-                        obj = null;
-                    } else {
-                        obj = editable.toString();
+    public final org.telegram.ui.web.f2 getInstantViewLoader() {
+        m3 m3Var = this.B0.f38661u0[0];
+        if (!m3Var.f()) {
+            org.telegram.ui.web.f2 f2Var = m3Var.f39901y;
+            if (f2Var != null) {
+                f2Var.a();
+                org.telegram.ui.web.f2 f2Var2 = m3Var.f39901y;
+                TLRPC.TL_webPage tL_webPage = f2Var2.f43250j;
+                if (tL_webPage != null) {
+                    org.telegram.ui.web.h2.o(tL_webPage);
+                    f2Var2.f43250j = null;
+                }
+                m3Var.f39901y = null;
+                return null;
+            }
+        } else if (m3Var.getWebView() == null) {
+            org.telegram.ui.web.f2 f2Var3 = m3Var.f39901y;
+            if (f2Var3 != null) {
+                f2Var3.a();
+                org.telegram.ui.web.f2 f2Var4 = m3Var.f39901y;
+                TLRPC.TL_webPage tL_webPage2 = f2Var4.f43250j;
+                if (tL_webPage2 != null) {
+                    org.telegram.ui.web.h2.o(tL_webPage2);
+                    f2Var4.f43250j = null;
+                }
+                m3Var.f39901y = null;
+            }
+        } else {
+            org.telegram.ui.web.f2 f2Var5 = m3Var.f39901y;
+            if (f2Var5 != null && (f2Var5.f43247f != m3Var.getWebView().f43480b || m3Var.f39901y.f43246e != m3Var.getWebView().getProgress())) {
+                m3Var.f39901y.d(m3Var.getWebView());
+                return m3Var.f39901y;
+            } else if (m3Var.f39901y != null && TextUtils.equals(m3Var.getWebView().getUrl(), m3Var.f39901y.d)) {
+                return m3Var.f39901y;
+            } else {
+                org.telegram.ui.web.f2 f2Var6 = m3Var.f39901y;
+                if (f2Var6 != null) {
+                    f2Var6.a();
+                    org.telegram.ui.web.f2 f2Var7 = m3Var.f39901y;
+                    TLRPC.TL_webPage tL_webPage3 = f2Var7.f43250j;
+                    if (tL_webPage3 != null) {
+                        org.telegram.ui.web.h2.o(tL_webPage3);
+                        f2Var7.f43250j = null;
                     }
-                    kVar.setInput(obj);
-                    return;
+                    m3Var.f39901y = null;
                 }
-                return;
-            case 1:
-                return;
-            case 2:
-                uo uoVar = (uo) this.f39497b;
-                uoVar.f42710r.n(5L, uoVar.v.getText().toString(), null);
-                ai.z5 z5Var = uoVar.f42695e;
-                if (z5Var != null) {
-                    z5Var.invalidate();
-                    return;
+                org.telegram.ui.web.f2 f2Var8 = new org.telegram.ui.web.f2(m3Var.K.X);
+                m3Var.f39901y = f2Var8;
+                org.telegram.ui.web.y0 webView = m3Var.getWebView();
+                if (!f2Var8.f43244b) {
+                    f2Var8.f43244b = true;
+                    f2Var8.d = webView.getUrl();
+                    f2Var8.f43246e = webView.getProgress();
+                    f2Var8.f43247f = webView.f43480b;
+                    f2Var8.f43252l = org.telegram.ui.web.h2.e(webView, new org.telegram.ui.web.e2(f2Var8, 0));
+                    TLRPC.TL_messages_getWebPage tL_messages_getWebPage = new TLRPC.TL_messages_getWebPage();
+                    tL_messages_getWebPage.url = f2Var8.d;
+                    tL_messages_getWebPage.hash = 0;
+                    f2Var8.f43251k = ConnectionsManager.getInstance(f2Var8.f43243a).sendRequest(tL_messages_getWebPage, new ai.o8(f2Var8, 18));
                 }
-                return;
-            case 3:
-                ((ip) this.f39497b).V();
-                return;
-            case 4:
-                mq mqVar = (mq) this.f39497b;
-                nq nqVar = mqVar.f40084e;
-                if (!mqVar.d) {
-                    nqVar.S = editable.toString();
-                    s4.d1 K = nqVar.f40343b.K(nqVar.f40370u0);
-                    if (K != null) {
-                        nq.f0(nqVar, K.f47782a);
-                        return;
-                    }
-                    return;
+                return m3Var.f39901y;
+            }
+        }
+        return null;
+    }
+
+    public final void j(float f7) {
+        int d = i0.a.d(this.f43415a0, this.f43443w, this.f43447y);
+        org.telegram.ui.ActionBar.f2 f2Var = this.M;
+        f2Var.a(d);
+        f2Var.b(i0.a.d(this.f43415a0, this.f43443w, this.f43447y));
+        this.L.invalidate();
+        i4 i4Var = this.B0;
+        org.telegram.ui.web.k kVar = i4Var.f38650i0;
+        if (kVar != null) {
+            kVar.setOpenProgress(f7);
+        }
+        v3 v3Var = i4Var.K;
+        if (v3Var != null) {
+            v3Var.i();
+        }
+    }
+
+    public final void k(boolean z10) {
+        float f7;
+        long j3;
+        if (this.W != z10) {
+            ValueAnimator valueAnimator = this.f43444w0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.W = z10;
+            fi.o oVar = this.f43417b0;
+            if (z10) {
+                int i10 = this.f43419c0;
+                int i11 = SharedConfig.searchEngineType;
+                if (i10 != i11) {
+                    this.f43419c0 = i11;
+                    oVar.setHint(LocaleController.formatString(R.string.AddressPlaceholder, org.telegram.ui.web.n1.a().f43350a));
                 }
-                return;
-            case 5:
-                return;
-            case 6:
-                c70 c70Var = (c70) this.f39497b;
-                if (c70Var.f36627f.f31038r.length() != 0) {
-                    a70 a70Var = c70Var.v;
-                    boolean z13 = a70Var.f35940n;
-                    if (!z13) {
-                        c70Var.T = true;
-                        c70Var.S = true;
-                        if (!z13) {
-                            a70Var.f35940n = true;
-                            a70Var.l();
-                        }
-                        c70Var.f36635n.setFastScrollVisible(false);
-                        c70Var.f36635n.setVerticalScrollBarEnabled(true);
-                    }
-                    c70Var.v.L(c70Var.f36627f.f31038r.getText().toString());
-                    c70Var.f36642s.e(true, false);
-                    return;
-                }
-                c70Var.T = false;
-                c70Var.S = false;
-                a70 a70Var2 = c70Var.v;
-                if (a70Var2.f35940n) {
-                    a70Var2.f35940n = false;
-                    a70Var2.l();
-                }
-                c70Var.v.L(null);
-                c70Var.f36635n.setFastScrollVisible(true);
-                c70Var.f36635n.setVerticalScrollBarEnabled(false);
-                c70Var.q0(0);
-                return;
-            case 7:
-            case 8:
-            case 9:
-                return;
-            case 10:
-                ug0 ug0Var = (ug0) this.f39497b;
-                HashMap hashMap = ug0Var.F;
-                ArrayList arrayList = ug0Var.E;
-                ak0 ak0Var = ug0Var.f42586a;
-                rg0 rg0Var = ug0Var.f42587b;
-                if (!ug0Var.I) {
-                    int i11 = 1;
-                    ug0Var.I = true;
-                    int i12 = 0;
-                    String d = hf.b.d(ak0Var.getText().toString(), false);
-                    ak0Var.setText(d);
-                    String str7 = null;
-                    if (d.length() == 0) {
-                        ug0Var.setCountryButtonText(null);
-                        rg0Var.setHintText((String) null);
-                        ug0Var.f42595x = 1;
-                        z11 = false;
-                    } else {
-                        int i13 = 4;
-                        if (d.length() > 4) {
-                            while (true) {
-                                if (i13 >= i11) {
-                                    String substring = d.substring(i12, i13);
-                                    List list = (List) hashMap.get(substring);
-                                    if (list == null) {
-                                        obj2 = str7;
-                                    } else if (list.size() > i11) {
-                                        String string = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + substring, str7);
-                                        Object obj3 = (tt) sc.v.h(i11, list);
-                                        if (string != null) {
-                                            int size = arrayList.size();
-                                            int i14 = i12;
-                                            while (true) {
-                                                if (i14 < size) {
-                                                    Object obj4 = arrayList.get(i14);
-                                                    i14++;
-                                                    tt ttVar3 = (tt) obj4;
-                                                    if (Objects.equals(ttVar3.d, string)) {
-                                                        obj3 = ttVar3;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        obj2 = obj3;
-                                    } else {
-                                        obj2 = (tt) list.get(i12);
-                                    }
-                                    if (obj2 != null) {
-                                        str = d.substring(i13) + rg0Var.getText().toString();
-                                        ak0Var.setText(substring);
-                                        d = substring;
-                                        z10 = true;
-                                    } else {
-                                        i13--;
-                                        i11 = 1;
-                                        i12 = 0;
-                                        str7 = null;
-                                    }
-                                } else {
-                                    str = null;
-                                    z10 = false;
-                                }
-                            }
-                            if (!z10) {
-                                str = d.substring(1) + rg0Var.getText().toString();
-                                d = d.substring(0, 1);
-                                ak0Var.setText(d);
-                            }
-                        } else {
-                            str = null;
-                            z10 = false;
-                        }
-                        int size2 = arrayList.size();
-                        tt ttVar4 = null;
-                        int i15 = 0;
-                        int i16 = 0;
-                        while (i16 < size2) {
-                            Object obj5 = arrayList.get(i16);
-                            i16++;
-                            tt ttVar5 = (tt) obj5;
-                            if (ttVar5.f42295c.startsWith(d)) {
-                                int i17 = i15 + 1;
-                                str3 = str;
-                                if (ttVar5.f42295c.equals(d)) {
-                                    if (ttVar4 == null || !ttVar4.f42295c.equals(ttVar5.f42295c)) {
-                                        i15 = i17;
-                                    }
-                                    ttVar4 = ttVar5;
-                                } else {
-                                    i15 = i17;
-                                }
-                            } else {
-                                str3 = str;
-                            }
-                            str = str3;
-                        }
-                        String str8 = str;
-                        if (i15 == 1 && ttVar4 != null && str8 == null) {
-                            str2 = d.substring(ttVar4.f42295c.length()) + rg0Var.getText().toString();
-                            d = ttVar4.f42295c;
-                            ak0Var.setText(d);
-                        } else {
-                            str2 = str8;
-                        }
-                        List list2 = (List) hashMap.get(d);
-                        if (list2 == null) {
-                            i10 = 0;
-                            ttVar = null;
-                        } else if (list2.size() > 1) {
-                            String string2 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + d, null);
-                            tt ttVar6 = (tt) sc.v.h(1, list2);
-                            if (string2 != null) {
-                                int size3 = arrayList.size();
-                                int i18 = 0;
-                                while (i18 < size3) {
-                                    Object obj6 = arrayList.get(i18);
-                                    i18++;
-                                    ttVar = (tt) obj6;
-                                    if (Objects.equals(ttVar.d, string2)) {
-                                        i10 = 0;
-                                    }
-                                }
-                            }
-                            ttVar = ttVar6;
-                            i10 = 0;
-                        } else {
-                            i10 = 0;
-                            ttVar = (tt) list2.get(0);
-                        }
-                        if (ttVar == null) {
-                            ug0Var.setCountryButtonText(null);
-                            rg0Var.setHintText((String) null);
-                            ug0Var.f42595x = 2;
-                        } else {
-                            ug0Var.H = true;
-                            ug0Var.f42596y = ttVar;
-                            ug0Var.t(d, ttVar);
-                            ug0Var.f42595x = i10;
-                        }
-                        if (!z10) {
-                            ak0Var.setSelection(ak0Var.getText().length());
-                        }
-                        if (str2 != null) {
-                            rg0Var.requestFocus();
-                            rg0Var.setText(str2);
-                            rg0Var.setSelection(rg0Var.length());
-                        }
-                        z11 = false;
-                    }
-                    ug0Var.I = z11;
-                    return;
-                }
-                return;
-            case 11:
-                ck0 ck0Var = (ck0) this.f39497b;
-                HashMap hashMap2 = ck0Var.f36810x;
-                ArrayList arrayList2 = ck0Var.f36809w;
-                if (!ck0Var.E) {
-                    ck0Var.E = true;
-                    String d10 = hf.b.d(ck0Var.O.getText().toString(), false);
-                    ck0Var.O.setText(d10);
-                    String str9 = null;
-                    if (d10.length() == 0) {
-                        ck0Var.v(null);
-                        ck0Var.Q.setHintText((String) null);
-                    } else {
-                        int i19 = 4;
-                        if (d10.length() > 4) {
-                            while (true) {
-                                if (i19 >= 1) {
-                                    str4 = d10.substring(0, i19);
-                                    List list3 = (List) hashMap2.get(str4);
-                                    Object obj7 = str9;
-                                    if (list3 != null) {
-                                        if (list3.size() > 1) {
-                                            String string3 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + str4, str9);
-                                            Object obj8 = (tt) sc.v.h(1, list3);
-                                            if (string3 != null) {
-                                                int size4 = arrayList2.size();
-                                                int i20 = 0;
-                                                while (true) {
-                                                    if (i20 < size4) {
-                                                        Object obj9 = arrayList2.get(i20);
-                                                        i20++;
-                                                        tt ttVar7 = (tt) obj9;
-                                                        if (Objects.equals(ttVar7.d, string3)) {
-                                                            obj8 = ttVar7;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            obj7 = obj8;
-                                        } else {
-                                            obj7 = (tt) list3.get(0);
-                                        }
-                                    }
-                                    if (obj7 != null) {
-                                        str5 = d10.substring(i19) + ck0Var.Q.getText().toString();
-                                        ck0Var.O.setText(str4);
-                                        z12 = true;
-                                    } else {
-                                        i19--;
-                                        str9 = null;
-                                    }
-                                } else {
-                                    str4 = d10;
-                                    z12 = false;
-                                    str5 = null;
-                                }
-                            }
-                            if (!z12) {
-                                str5 = str4.substring(1) + ck0Var.Q.getText().toString();
-                                ak0 ak0Var2 = ck0Var.O;
-                                str4 = str4.substring(0, 1);
-                                ak0Var2.setText(str4);
-                            }
-                        } else {
-                            str4 = d10;
-                            z12 = false;
-                            str5 = null;
-                        }
-                        int size5 = arrayList2.size();
-                        int i21 = 0;
-                        int i22 = 0;
-                        tt ttVar8 = null;
-                        while (i22 < size5) {
-                            Object obj10 = arrayList2.get(i22);
-                            i22++;
-                            tt ttVar9 = (tt) obj10;
-                            if (ttVar9.f42295c.startsWith(str4)) {
-                                i21++;
-                                if (ttVar9.f42295c.equals(str4)) {
-                                    ttVar8 = ttVar9;
-                                }
-                            }
-                        }
-                        if (i21 == 1 && ttVar8 != null && str5 == null) {
-                            str5 = str4.substring(ttVar8.f42295c.length()) + ck0Var.Q.getText().toString();
-                            ak0 ak0Var3 = ck0Var.O;
-                            String str10 = ttVar8.f42295c;
-                            ak0Var3.setText(str10);
-                            str4 = str10;
-                        }
-                        List list4 = (List) hashMap2.get(str4);
-                        if (list4 == null) {
-                            ttVar2 = null;
-                        } else if (list4.size() > 1) {
-                            String string4 = MessagesController.getGlobalMainSettings().getString("phone_code_last_matched_" + str4, null);
-                            tt ttVar10 = (tt) sc.v.h(1, list4);
-                            if (string4 != null) {
-                                int size6 = arrayList2.size();
-                                int i23 = 0;
-                                while (i23 < size6) {
-                                    Object obj11 = arrayList2.get(i23);
-                                    i23++;
-                                    tt ttVar11 = (tt) obj11;
-                                    if (Objects.equals(ttVar11.d, string4)) {
-                                        ttVar2 = ttVar11;
-                                    }
-                                }
-                            }
-                            ttVar2 = ttVar10;
-                        } else {
-                            ttVar2 = (tt) list4.get(0);
-                        }
-                        if (ttVar2 != null) {
-                            ck0Var.G = true;
-                            ck0Var.w(str4, ttVar2);
-                        } else {
-                            ck0Var.v(null);
-                            ck0Var.Q.setHintText((String) null);
-                        }
-                        if (!z12) {
-                            ak0 ak0Var4 = ck0Var.O;
-                            ak0Var4.setSelection(ak0Var4.getText().length());
-                        }
-                        if (str5 != null && str5.length() != 0) {
-                            ck0Var.Q.requestFocus();
-                            ck0Var.Q.setText(str5);
-                            ak0 ak0Var5 = ck0Var.Q;
-                            ak0Var5.setSelection(ak0Var5.length());
-                        }
-                    }
-                    ck0Var.E = false;
-                    ck0.s(ck0Var);
-                    return;
-                }
-                return;
-            case 12:
-                mn0 mn0Var = (mn0) this.f39497b;
-                if (!mn0Var.Z0 && mn0Var.T0 != 0 && mn0Var.Y[0].length() == mn0Var.T0) {
-                    mn0Var.L.callOnClick();
-                    return;
-                }
-                return;
-            case 13:
-                uo0 uo0Var = (uo0) this.f39497b;
-                if (uo0Var.f42733c0 != 0 && editable.length() == uo0Var.f42733c0) {
-                    uo0Var.A0(false);
-                    return;
-                }
-                return;
-            case 14:
-                zq0 zq0Var = ((ar0) this.f39497b).f36192s0;
-                if (zq0Var != null) {
-                    zq0Var.b(editable);
-                    return;
-                }
-                return;
-            case 15:
-                a61 a61Var = (a61) this.f39497b;
-                org.telegram.ui.Cells.c6 c6Var = a61Var.h;
-                if (c6Var.getText() != null && AndroidUtilities.trim(c6Var.getText(), null).length() != 0) {
-                    str6 = c6Var.getText().toString();
-                } else {
-                    str6 = null;
-                }
-                a61Var.f44306y.v(str6, true, true);
-                x61 x61Var = a61Var.f44301n;
-                if (x61Var != null) {
-                    x61Var.G1(null);
-                    a61Var.f44301n.H1(TextUtils.isEmpty(str6), true);
-                }
-                if (c6Var != null) {
-                    c6Var.clearAnimation();
-                    c6Var.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.is.h).start();
-                }
-                a61Var.c(false);
-                return;
-            case 16:
-                String trim = editable.toString().trim();
-                af1 af1Var = (af1) this.f39497b;
-                String str11 = af1Var.f36093n;
-                if (trim.length() > 0) {
-                    af1Var.f36093n = trim.substring(0, 1).toUpperCase();
-                } else {
-                    af1Var.f36093n = "";
-                }
-                if (!str11.equals(af1Var.f36093n)) {
-                    org.telegram.ui.Components.n90 n90Var = new org.telegram.ui.Components.n90(1, null);
-                    n90Var.a(af1Var.f36093n);
-                    org.telegram.ui.Components.wm0 wm0Var = af1Var.v;
-                    if (wm0Var != null) {
-                        wm0Var.b(n90Var, true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f39497b;
-                ng1 ng1Var = twoStepVerificationActivity.V;
-                if (twoStepVerificationActivity.U) {
-                    AndroidUtilities.cancelRunOnUIThread(ng1Var);
-                    ng1Var.run();
-                    return;
-                }
-                return;
+            }
+            oVar.setVisibility(0);
+            float f10 = 0.0f;
+            if (!this.f43441u0 && !z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.M.c(f7, true);
+            float f11 = this.f43415a0;
+            if (z10) {
+                f10 = 1.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
+            this.f43444w0 = ofFloat;
+            ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.s0(this, 7));
+            this.f43444w0.addListener(new h70(13, this, z10));
+            this.f43444w0.setInterpolator(org.telegram.ui.Components.js.h);
+            this.f43444w0.setDuration(360L);
+            this.f43444w0.start();
+            AndroidUtilities.cancelRunOnUIThread(new org.telegram.ui.web.p1(this, 1));
+            org.telegram.ui.web.p1 p1Var = new org.telegram.ui.web.p1(this, 1);
+            if (this.W) {
+                j3 = 100;
+            } else {
+                j3 = 0;
+            }
+            AndroidUtilities.runOnUIThread(p1Var, j3);
+        }
+        org.telegram.ui.web.k kVar = this.B0.f38650i0;
+        if (kVar != null) {
+            kVar.setOpened(z10);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        boolean z10;
-        int i13 = this.f39496a;
-        Object obj = this.f39497b;
-        switch (i13) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                return;
-            case 5:
-                zr zrVar = (zr) obj;
-                if (charSequence.length() != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                zrVar.f37119x = z10;
-                zrVar.v = 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                zrVar.F = ofFloat;
-                ofFloat.addUpdateListener(new b3(zrVar, 9));
-                if (!zrVar.f37119x) {
-                    org.telegram.messenger.ai.l(1.5f, zrVar.F);
-                    zrVar.F.setDuration(350L);
-                } else {
-                    zrVar.F.setDuration(220L);
-                }
-                zrVar.F.start();
-                zrVar.hideActionMode();
-                return;
-            case 6:
-                return;
-            case 7:
-                ee0 ee0Var = (ee0) obj;
-                xd0 xd0Var = ee0Var.S;
-                if (ee0Var.R) {
-                    ee0Var.removeCallbacks(xd0Var);
-                    xd0Var.run();
-                    return;
-                }
-                return;
-            case 8:
-                ye0 ye0Var = (ye0) obj;
-                we0 we0Var = ye0Var.f44378x;
-                if (ye0Var.f44377w) {
-                    ye0Var.removeCallbacks(we0Var);
-                    we0Var.run();
-                    return;
-                }
-                return;
-            case 9:
-                yf0 yf0Var = (yf0) obj;
-                kf0 kf0Var = yf0Var.f44414r0;
-                if (yf0Var.f44412q0) {
-                    yf0Var.removeCallbacks(kf0Var);
-                    kf0Var.run();
-                    return;
-                }
-                return;
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f39496a) {
-            case 0:
-                return;
-            case 1:
-                ld ldVar = (ld) this.f39497b;
-                ldVar.d0(ldVar.f39655w.getText().toString());
-                return;
-            case 2:
-                return;
-            case 3:
-                ip ipVar = (ip) this.f39497b;
-                if (!ipVar.m0) {
-                    String obj = ipVar.f38769a.getText().toString();
-                    na naVar = ipVar.O;
-                    if (naVar != null) {
-                        naVar.b(obj);
-                    }
-                    ipVar.W(obj);
-                    return;
-                }
-                return;
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            default:
-                return;
-        }
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(Editable editable) {
-    }
-
-    private final void d(Editable editable) {
-    }
-
-    private final void e(Editable editable) {
-    }
-
-    private final void A(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void B(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void C(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void D(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void E(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void F(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void G(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void H(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void I(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void g(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void h(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void i(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void j(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void k(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void l(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void m(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void n(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void o(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void p(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void q(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void r(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void s(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void t(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void u(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void v(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void w(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void x(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void y(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void z(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        ((ViewGroup.MarginLayoutParams) this.B0.f38650i0.getLayoutParams()).topMargin = getMeasuredHeight();
     }
 }

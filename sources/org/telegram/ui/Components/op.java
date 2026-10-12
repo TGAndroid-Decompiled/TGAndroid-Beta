@@ -1,22 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class op implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f29576a = false;
-    public final cq f29577b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+public final class op implements Utilities.Callback {
+    public final int f29266a;
+    public final eq f29267b;
 
-    public op(cq cqVar) {
-        this.f29577b = cqVar;
+    public op(eq eqVar, int i10) {
+        this.f29266a = i10;
+        this.f29267b = eqVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        cq cqVar = this.f29577b;
-        cqVar.S = floatValue;
-        cqVar.R.invalidate();
-        if (!this.f29576a && cqVar.S > 0.5f) {
-            this.f29576a = true;
+    public final void run(Object obj) {
+        switch (this.f29266a) {
+            case 0:
+                eq eqVar = this.f29267b;
+                eqVar.f25753f0 = (TL_stories.TL_premium_boostsStatus) obj;
+                eqVar.f25751e0 = true;
+                eqVar.G(true);
+                eqVar.f25749d0 = false;
+                return;
+            default:
+                eq.o(this.f29267b, (ChannelBoostsController.CanApplyBoost) obj);
+                return;
         }
     }
 }

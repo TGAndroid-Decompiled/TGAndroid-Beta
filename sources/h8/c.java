@@ -5,18 +5,18 @@ import android.os.RemoteException;
 import java.util.HashMap;
 import n6.m;
 public final class c {
-    public final i8.f f11033a;
-    public h f11034b;
+    public final i8.f f11032a;
+    public h f11033b;
 
     public c(i8.f fVar) {
         new HashMap();
         m.h(fVar);
-        this.f11033a = fVar;
+        this.f11032a = fVar;
     }
 
     public final void a(int i10) {
         try {
-            i8.f fVar = this.f11033a;
+            i8.f fVar = this.f11032a;
             Parcel N0 = fVar.N0();
             N0.writeInt(i10);
             fVar.R0(N0, 16);

@@ -3,23 +3,23 @@ package ii;
 import org.telegram.ui.Cells.n9;
 import org.telegram.ui.Cells.o9;
 public interface k0 {
-    void A(CharSequence charSequence);
+    o9 E();
 
-    n9 C();
+    void I(CharSequence charSequence);
 
-    a G();
+    n9 L();
 
-    boolean H();
+    a N();
 
-    void I(int i10, int i11);
+    boolean P();
 
-    void M();
+    void R(int i10, int i11);
 
-    void Q();
+    void V();
 
     void c(i1 i1Var);
 
-    void g();
+    void e0();
 
-    o9 y();
+    void g();
 }

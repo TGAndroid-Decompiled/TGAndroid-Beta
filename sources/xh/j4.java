@@ -1,95 +1,28 @@
 package xh;
 
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.zj;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.p80;
-import yh.f5;
-public final class j4 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.u0 f51440a;
-    public final long f51441b;
-    public final m4 f51442c;
+import org.telegram.ui.Components.g00;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.u61;
+public final class j4 extends g.o {
+    public final l4 f51539c;
 
-    public j4(m4 m4Var, org.telegram.ui.ActionBar.u0 u0Var, long j3) {
-        this.f51442c = m4Var;
-        this.f51440a = u0Var;
-        this.f51441b = j3;
+    public j4(l4 l4Var) {
+        this.f51539c = l4Var;
     }
 
     @Override
-    public final void b(int i10) {
-        d6 d6Var;
+    public final int i(int i10) {
         int i11;
-        int i12;
-        boolean canUserDoAction;
-        org.telegram.ui.ActionBar.e1 e1Var;
-        org.telegram.ui.ActionBar.e1 e1Var2;
-        m4 m4Var = this.f51442c;
-        f5 f5Var = m4Var.Y;
-        if (i10 == 1) {
-            p80 p80Var = m4Var.f51501d0;
-            if (p80Var != null) {
-                p80Var.u();
-            }
-            org.telegram.ui.ActionBar.c3 c3Var = m4Var.container;
-            d6Var = ((org.telegram.ui.ActionBar.e3) m4Var).resourcesProvider;
-            p80 F = p80.F(c3Var, d6Var, this.f51440a);
-            m4Var.f51501d0 = F;
-            i11 = ((org.telegram.ui.ActionBar.e3) m4Var).currentAccount;
-            long clientUserId = UserConfig.getInstance(i11).getClientUserId();
-            long j3 = this.f51441b;
-            if (j3 == clientUserId) {
-                canUserDoAction = true;
-            } else if (j3 < 0) {
-                i12 = ((org.telegram.ui.ActionBar.e3) m4Var).currentAccount;
-                canUserDoAction = ChatObject.canUserDoAction(MessagesController.getInstance(i12).getChat(Long.valueOf(-j3)), 5);
-            } else {
-                canUserDoAction = false;
-            }
-            org.telegram.ui.ActionBar.e1 e1Var3 = new org.telegram.ui.ActionBar.e1(0, F.f29754e, F.d, false, false);
-            F.d(e1Var3);
-            F.k();
-            org.telegram.ui.ActionBar.e1 h = F.h();
-            h.setText(LocaleController.getString(R.string.Gift2FilterUnlimited));
-            org.telegram.ui.ActionBar.e1 h10 = F.h();
-            h10.setText(LocaleController.getString(R.string.Gift2FilterLimited));
-            org.telegram.ui.ActionBar.e1 h11 = F.h();
-            h11.setText(LocaleController.getString(R.string.Gift2FilterUpgradable));
-            org.telegram.ui.ActionBar.e1 h12 = F.h();
-            h12.setText(LocaleController.getString(R.string.Gift2FilterUnique));
-            if (canUserDoAction) {
-                F.k();
-                org.telegram.ui.ActionBar.e1 h13 = F.h();
-                h13.setText(LocaleController.getString(R.string.Gift2FilterDisplayed));
-                org.telegram.ui.ActionBar.e1 h14 = F.h();
-                h14.setText(LocaleController.getString(R.string.Gift2FilterHidden));
-                e1Var = h13;
-                e1Var2 = h14;
-            } else {
-                e1Var = null;
-                e1Var2 = null;
-            }
-            zj zjVar = new zj(this, e1Var3, h, h10, h11, h12, canUserDoAction, e1Var, e1Var2, 4);
-            zjVar.run();
-            e1Var3.setOnClickListener(new a(4, this, zjVar));
-            s2.j(h, f5Var, zjVar, 1);
-            s2.j(h10, f5Var, zjVar, 2);
-            s2.j(h11, f5Var, zjVar, 4);
-            s2.j(h12, f5Var, zjVar, 8);
-            if (canUserDoAction) {
-                s2.j(e1Var, f5Var, zjVar, 256);
-                s2.j(e1Var2, f5Var, zjVar, 512);
-            }
-            F.Y = true;
-            F.J = false;
-            F.f29779s = 0;
-            F.Z();
-        } else if (i10 == -1) {
-            m4Var.dismiss();
+        l4 l4Var = this.f51539c;
+        g00 g00Var = l4Var.f51570a0;
+        h71 h71Var = l4Var.f51574e0;
+        if (h71Var == null) {
+            return g00Var.J;
         }
+        u61 G = h71Var.G(i10 - 1);
+        if (G != null && (i11 = G.f31085u) != -1) {
+            return i11;
+        }
+        return g00Var.J;
     }
 }

@@ -1,126 +1,113 @@
 package w9;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
-import ci.u5;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.sessions.FirebaseSessionsRegistrar;
-import java.io.File;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.hh1;
-import xh.h4;
-import yh.s3;
-public final class v implements Continuation, d9.e, q9.d, z1, GenericProvider, e2.h, Vector.TLDeserializer {
-    public final int f50421a;
+import java.util.Locale;
+import java.util.UUID;
+import java.util.regex.Pattern;
+public final class v {
+    public static final Pattern f50522g = Pattern.compile("[^\\p{Alnum}]");
+    public static final String h = Pattern.quote("/");
+    public final d9.f f50523a;
+    public final Context f50524b;
+    public final String f50525c;
+    public final qa.d d;
+    public final s f50526e;
+    public c f50527f;
 
-    public v(int i10) {
-        this.f50421a = i10;
-    }
-
-    @Override
-    public void accept(Object obj) {
-        ((ExecutorService) obj).shutdown();
-    }
-
-    @Override
-    public java.lang.Object apply(java.lang.Object r26) {
-        throw new UnsupportedOperationException("Method not decompiled: w9.v.apply(java.lang.Object):java.lang.Object");
-    }
-
-    @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i10, z10);
-    }
-
-    @Override
-    public void f(a2 a2Var, int i10) {
-        switch (this.f50421a) {
-            case 3:
-                a2Var.dismiss();
+    public v(Context context, String str, qa.d dVar, s sVar) {
+        if (context != null) {
+            if (str != null) {
+                this.f50524b = context;
+                this.f50525c = str;
+                this.d = dVar;
+                this.f50526e = sVar;
+                this.f50523a = new Object();
                 return;
-            case 4:
-                a2Var.dismiss();
-                return;
-            case 8:
-                s3.e2(new hh1(6, null));
-                return;
-            default:
-                int i11 = s3.f53279r1;
-                return;
-        }
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        Integer num = (Integer) obj;
-        int i10 = h4.f51388k0;
-        return 0;
-    }
-
-    @Override
-    public Object then(Task task) {
-        boolean z10;
-        File file;
-        if (task.isSuccessful()) {
-            b bVar = (b) task.getResult();
-            t9.b bVar2 = t9.b.f48369a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f50340b);
-            z10 = true;
-            if (bVar.f50341c.delete()) {
-                bVar2.b("Deleted report file: " + file.getPath());
-            } else {
-                bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
             }
+            throw new IllegalArgumentException("appIdentifier must not be null");
+        }
+        throw new IllegalArgumentException("appContext must not be null");
+    }
+
+    public final synchronized String a(String str, SharedPreferences sharedPreferences) {
+        String lowerCase;
+        String uuid = UUID.randomUUID().toString();
+        if (uuid == null) {
+            lowerCase = null;
         } else {
-            Log.w("FirebaseCrashlytics", "Crashlytics report could not be enqueued to DataTransport", task.getException());
-            z10 = false;
+            lowerCase = f50522g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
         }
-        return Boolean.valueOf(z10);
+        String str2 = "Created new Crashlytics installation ID: " + lowerCase + " for FID: " + str;
+        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+            Log.v("FirebaseCrashlytics", str2, null);
+        }
+        sharedPreferences.edit().putString("crashlytics.installation.id", lowerCase).putString("firebase.installation.id", str).apply();
+        return lowerCase;
     }
 
-    @Override
-    public Object y0(u5 u5Var) {
-        switch (this.f50421a) {
-            case 2:
-                Set y3 = u5Var.y(xa.a.class);
-                xa.c cVar = xa.c.f51226c;
-                if (cVar == null) {
-                    synchronized (xa.c.class) {
-                        try {
-                            cVar = xa.c.f51226c;
-                            if (cVar == null) {
-                                cVar = new xa.c(0);
-                                xa.c.f51226c = cVar;
-                            }
-                        } finally {
-                        }
-                    }
+    public final synchronized c b() {
+        String str;
+        c cVar = this.f50527f;
+        if (cVar != null && (cVar.f50449b != null || !this.f50526e.a())) {
+            return this.f50527f;
+        }
+        t9.b bVar = t9.b.f48476a;
+        bVar.c("Determining Crashlytics installation ID...");
+        SharedPreferences sharedPreferences = this.f50524b.getSharedPreferences("com.google.firebase.crashlytics", 0);
+        String string = sharedPreferences.getString("firebase.installation.id", null);
+        bVar.c("Cached Firebase Installation ID: " + string);
+        if (this.f50526e.a()) {
+            try {
+                str = (String) y.a(((qa.c) this.d).d());
+            } catch (Exception e7) {
+                Log.w("FirebaseCrashlytics", "Failed to retrieve Firebase Installation ID.", e7);
+                str = null;
+            }
+            bVar.c("Fetched Firebase Installation ID: " + str);
+            if (str == null) {
+                if (string == null) {
+                    str = "SYN_" + UUID.randomUUID().toString();
+                } else {
+                    str = string;
                 }
-                return new xa.b(y3, cVar);
-            case 19:
-                return FirebaseSessionsRegistrar.e(u5Var);
-            case 20:
-                return FirebaseSessionsRegistrar.f(u5Var);
-            case 21:
-                return FirebaseSessionsRegistrar.a(u5Var);
-            case 22:
-                return FirebaseSessionsRegistrar.b(u5Var);
-            case 23:
-                return FirebaseSessionsRegistrar.d(u5Var);
-            default:
-                return FirebaseSessionsRegistrar.c(u5Var);
+            }
+            if (str.equals(string)) {
+                this.f50527f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
+            } else {
+                this.f50527f = new c(a(str, sharedPreferences), str);
+            }
+        } else if (string != null && string.startsWith("SYN_")) {
+            this.f50527f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
+        } else {
+            this.f50527f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
         }
+        bVar.c("Install IDs: " + this.f50527f);
+        return this.f50527f;
     }
 
-    public v(Object obj, int i10) {
-        this.f50421a = i10;
+    public final String c() {
+        String str;
+        d9.f fVar = this.f50523a;
+        Context context = this.f50524b;
+        synchronized (fVar) {
+            try {
+                if (fVar.f8209a == null) {
+                    String installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
+                    if (installerPackageName == null) {
+                        installerPackageName = "";
+                    }
+                    fVar.f8209a = installerPackageName;
+                }
+                if ("".equals(fVar.f8209a)) {
+                    str = null;
+                } else {
+                    str = fVar.f8209a;
+                }
+            } finally {
+            }
+        }
+        return str;
     }
 }

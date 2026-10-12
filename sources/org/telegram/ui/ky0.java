@@ -1,67 +1,105 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ky0 implements Runnable {
-    public final int f39480a;
-    public final ProfileActivity f39481b;
-    public final TLRPC.TL_error f39482c;
-    public final TLObject d;
-    public final TLRPC.TL_channels_getParticipants f39483e;
+import android.os.Bundle;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class ky0 implements View.OnClickListener {
+    public final int f39600a;
+    public final ProfileActivity f39601b;
 
-    public ky0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i10) {
-        this.f39480a = i10;
-        this.f39481b = profileActivity;
-        this.f39482c = tL_error;
-        this.d = tLObject;
-        this.f39483e = tL_channels_getParticipants;
+    public ky0(ProfileActivity profileActivity, int i10) {
+        this.f39600a = i10;
+        this.f39601b = profileActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39480a) {
+    public final void onClick(View view) {
+        int i10 = this.f39600a;
+        ProfileActivity profileActivity = this.f39601b;
+        switch (i10) {
             case 0:
-                ProfileActivity profileActivity = this.f39481b;
-                profileActivity.getNotificationCenter().doOnIdle(new ky0(profileActivity, this.f39482c, this.d, this.f39483e, 1));
+                ProfileActivity.i0(profileActivity);
                 return;
-            default:
-                ProfileActivity profileActivity2 = this.f39481b;
-                if (this.f39482c == null) {
-                    profileActivity2.getClass();
-                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
-                    profileActivity2.getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
-                    profileActivity2.getMessagesController().putChats(tL_channels_channelParticipants.chats, false);
-                    if (tL_channels_channelParticipants.users.size() < 200) {
-                        profileActivity2.D1 = true;
-                    }
-                    if (this.f39483e.offset == 0) {
-                        profileActivity2.C1.b();
-                        profileActivity2.f34416u2.participants = new TLRPC.TL_chatParticipants();
-                        profileActivity2.getMessagesStorage().putUsersAndChats(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
-                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f34313f1, tL_channels_channelParticipants.participants);
-                    }
-                    for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
-                        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
-                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i10);
-                        tL_chatChannelParticipant.channelParticipant = channelParticipant;
-                        tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
-                        long peerId = MessageObject.getPeerId(channelParticipant.peer);
-                        tL_chatChannelParticipant.user_id = peerId;
-                        tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
-                        if (profileActivity2.C1.h(peerId) < 0) {
-                            TLRPC.ChatFull chatFull = profileActivity2.f34416u2;
-                            if (chatFull.participants == null) {
-                                chatFull.participants = new TLRPC.TL_chatParticipants();
+            case 1:
+                if (profileActivity.v.getTag() == null) {
+                    profileActivity.u4();
+                    return;
+                }
+                return;
+            case 2:
+                profileActivity.finishPreviewFragment();
+                return;
+            case 3:
+                profileActivity.R4();
+                return;
+            case 4:
+                ProfileActivity.g0(profileActivity);
+                return;
+            case 5:
+                ProfileActivity.a0(profileActivity);
+                return;
+            case 6:
+                profileActivity.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", profileActivity.f34088f1);
+                bundle.putLong("user_id", profileActivity.f34080e1);
+                profileActivity.presentFragment(new g31(bundle));
+                return;
+            case 7:
+                ProfileActivity.h0(profileActivity);
+                return;
+            case 8:
+                profileActivity.Q4();
+                return;
+            case 9:
+                profileActivity.Q4();
+                return;
+            case 10:
+                if (profileActivity.getParentLayout() != null && profileActivity.getParentLayout().getFragmentStack() != null) {
+                    int i11 = 0;
+                    while (i11 < profileActivity.getParentLayout().getFragmentStack().size()) {
+                        org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) profileActivity.getParentLayout().getFragmentStack().get(i11);
+                        if (m2Var instanceof vy) {
+                            vy vyVar = (vy) m2Var;
+                            px pxVar = vyVar.F3;
+                            if (pxVar != null) {
+                                org.telegram.ui.ActionBar.m2 fragment = pxVar.getFragment();
+                                if ((fragment instanceof hg1) && (-((hg1) fragment).f38376a) == profileActivity.a()) {
+                                    vyVar.F3.a();
+                                }
                             }
-                            profileActivity2.f34416u2.participants.participants.add(tL_chatChannelParticipant);
-                            profileActivity2.C1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
+                        } else if (m2Var instanceof eo) {
+                            if (((eo) m2Var).a() == profileActivity.a()) {
+                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(m2Var, false);
+                                i11--;
+                            }
+                        } else if (m2Var instanceof hg1) {
+                            if ((-((hg1) m2Var).f38376a) == profileActivity.a()) {
+                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(m2Var, false);
+                                i11--;
+                            }
+                        } else if ((m2Var instanceof ProfileActivity) && m2Var != profileActivity) {
+                            ProfileActivity profileActivity2 = (ProfileActivity) m2Var;
+                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f34161q1) {
+                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(m2Var, false);
+                                i11--;
+                            }
                         }
+                        i11++;
                     }
                 }
-                profileActivity2.B1 = false;
-                profileActivity2.F4();
-                profileActivity2.e5(true, false);
+                profileActivity.J1 = 0;
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("chat_id", profileActivity.f34088f1);
+                HashSet hashSet = hg1.f38375n1;
+                profileActivity.presentFragment(hg1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
+                return;
+            case 11:
+                profileActivity.t4(view);
+                return;
+            default:
+                profileActivity.t4(view);
                 return;
         }
     }

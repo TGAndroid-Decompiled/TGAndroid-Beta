@@ -1,13 +1,106 @@
 package org.telegram.ui.Components;
-public final class qt {
-    public s4.d1 f30321a;
-    public s4.d1 f30322b;
-    public int f30323c;
-    public int d;
-    public int f30324e;
-    public int f30325f;
 
-    public final String toString() {
-        return "ChangeInfo{oldHolder=" + this.f30321a + ", newHolder=" + this.f30322b + ", fromX=" + this.f30323c + ", fromY=" + this.d + ", toX=" + this.f30324e + ", toY=" + this.f30325f + '}';
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class qt extends AnimatorListenerAdapter {
+    public final int f29927a;
+    public final s4.d1 f29928b;
+    public final int f29929c;
+    public final View d;
+    public final int f29930e;
+    public final ViewPropertyAnimator f29931f;
+    public final s4.g1 h;
+
+    public qt(s4.g1 g1Var, s4.d1 d1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
+        this.f29927a = i12;
+        this.h = g1Var;
+        this.f29928b = d1Var;
+        this.f29929c = i10;
+        this.d = view;
+        this.f29930e = i11;
+        this.f29931f = viewPropertyAnimator;
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f29927a) {
+            case 0:
+                int i10 = this.f29929c;
+                View view = this.d;
+                if (i10 != 0) {
+                    view.setTranslationX(0.0f);
+                }
+                if (this.f29930e != 0) {
+                    view.setTranslationY(0.0f);
+                }
+                View view2 = this.f29928b.f47889a;
+                if (view2 instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view2).setMoving(false);
+                    return;
+                } else if (view2 instanceof gg.l) {
+                    ((gg.l) view2).f10709a = false;
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                int i11 = this.f29929c;
+                View view3 = this.d;
+                if (i11 != 0) {
+                    view3.setTranslationX(0.0f);
+                }
+                if (this.f29930e != 0) {
+                    view3.setTranslationY(0.0f);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29927a) {
+            case 0:
+                this.f29931f.setListener(null);
+                tt ttVar = (tt) this.h;
+                s4.d1 d1Var = this.f29928b;
+                ttVar.v(d1Var);
+                ttVar.f30974w.remove(d1Var);
+                ttVar.A();
+                View view = d1Var.f47889a;
+                if (view instanceof org.telegram.ui.Cells.s2) {
+                    ((org.telegram.ui.Cells.s2) view).setMoving(false);
+                } else if (view instanceof gg.l) {
+                    ((gg.l) view).f10709a = false;
+                }
+                View view2 = this.d;
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
+                return;
+            default:
+                this.f29931f.setListener(null);
+                s4.j jVar = (s4.j) this.h;
+                s4.d1 d1Var2 = this.f29928b;
+                jVar.P(d1Var2);
+                jVar.v(d1Var2);
+                jVar.f47959z.remove(d1Var2);
+                jVar.G();
+                jVar.z(d1Var2);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f29927a) {
+            case 0:
+                ((tt) this.h).getClass();
+                return;
+            default:
+                ((s4.j) this.h).getClass();
+                return;
+        }
     }
 }

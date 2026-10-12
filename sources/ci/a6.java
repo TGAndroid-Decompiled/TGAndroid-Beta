@@ -2,38 +2,38 @@ package ci;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jh;
-import org.telegram.ui.Components.wi;
-public final class a6 implements wi {
+import org.telegram.ui.Components.lh;
+import org.telegram.ui.Components.yi;
+public final class a6 implements yi {
     @Override
     public final boolean Y1() {
         return false;
     }
 
     @Override
-    public final void f0(jh jhVar) {
-        jhVar.run();
+    public final void d0(lh lhVar) {
+        lhVar.run();
     }
 
     @Override
-    public final boolean i0() {
+    public final boolean g0() {
         return false;
     }
 
     @Override
-    public final void a1(Object obj) {
-    }
-
-    @Override
-    public final void p1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void B0() {
+    public final void A0() {
     }
 
     @Override
     public final void P0() {
+    }
+
+    @Override
+    public final void Z0(Object obj) {
+    }
+
+    @Override
+    public final void p1(TLRPC.User user) {
     }
 
     @Override

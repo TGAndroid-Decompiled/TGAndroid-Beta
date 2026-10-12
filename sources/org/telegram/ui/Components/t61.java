@@ -1,54 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class t61 extends MetricAffectingSpan {
-    public final CharSequence f31125a;
-    public final int f31126b;
-    public final int f31127c;
-    public final byte d;
-    public final u11 f31128e;
+import android.content.Context;
+import android.util.LongSparseArray;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+public abstract class t61 {
+    private ArrayList<View> cache;
+    public final int viewType;
 
-    public t61(CharSequence charSequence, int i10, int i11, byte b10, u11 u11Var) {
-        this.f31125a = charSequence;
-        this.f31126b = i10;
-        this.f31127c = i11;
-        this.d = b10;
-        this.f31128e = u11Var;
+    public t61() {
+        int i10 = u61.J;
+        u61.J = i10 + 1;
+        this.viewType = i10;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20864fc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.ec, false));
+    public static void setup(t61 t61Var) {
+        if (u61.L == null) {
+            u61.L = new HashMap();
         }
-        u11 u11Var = this.f31128e;
-        if (u11Var != null) {
-            u11Var.a(textPaint);
+        if (u61.K == null) {
+            u61.K = new LongSparseArray();
+        }
+        Class<?> cls = t61Var.getClass();
+        if (!u61.L.containsKey(cls)) {
+            u61.L.put(cls, t61Var);
+            u61.K.put(t61Var.viewType, t61Var);
+        }
+    }
+
+    public boolean contentsEquals(u61 u61Var, u61 u61Var2) {
+        return u61Var.H(u61Var2);
+    }
+
+    public abstract View createView(Context context, wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var);
+
+    public boolean equals(u61 u61Var, u61 u61Var2) {
+        return u61Var.I(u61Var2);
+    }
+
+    public View getCached() {
+        ArrayList<View> arrayList = this.cache;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            return this.cache.remove(0);
+        }
+        return null;
+    }
+
+    public boolean isClickable() {
+        return !(this instanceof kj);
+    }
+
+    public boolean isShadow() {
+        return false;
+    }
+
+    public void precache(org.telegram.ui.ActionBar.m2 m2Var, int i10) {
+        precache(m2Var.getContext(), m2Var.getCurrentAccount(), m2Var.getClassGuid(), m2Var.getResourceProvider(), i10);
+    }
+
+    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var, int i12) {
+        if (context == null) {
             return;
         }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
+        if (this.cache == null) {
+            this.cache = new ArrayList<>();
+        }
+        int i13 = 0;
+        while (i13 < this.cache.size() - i12) {
+            Context context2 = context;
+            this.cache.add(createView(context2, null, i10, i11, c6Var));
+            i13++;
+            context = context2;
+        }
     }
 
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        u11 u11Var = this.f31128e;
-        if (u11Var != null) {
-            u11Var.a(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
-        }
+    public void attachedView(wm0 wm0Var, View view, u61 u61Var) {
+    }
+
+    public void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
     }
 }

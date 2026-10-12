@@ -1,9 +1,11 @@
 package xh;
 
-import org.telegram.ui.Components.l71;
-public final class e3 extends l71 {
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.p71;
+public final class e3 extends p71 {
     @Override
-    public final Integer W0(int i10) {
-        return 0;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.35f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
     }
 }

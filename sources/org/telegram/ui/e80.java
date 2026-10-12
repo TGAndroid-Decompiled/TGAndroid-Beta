@@ -1,86 +1,246 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.Utilities;
-public final class e80 implements Runnable {
-    public final int f37267a;
-    public final f80 f37268b;
-    public final String f37269c;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class e80 extends z4.a {
+    public final int f37027c;
+    public final NotificationCenter.NotificationCenterDelegate d;
 
-    public e80(f80 f80Var, String str, int i10) {
-        this.f37267a = i10;
-        this.f37268b = f80Var;
-        this.f37269c = str;
+    public e80(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f37027c = i10;
+        this.d = notificationCenterDelegate;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f37267a) {
+    public final void a(z4.g gVar, Object obj) {
+        switch (this.f37027c) {
             case 0:
-                Utilities.searchQueue.postRunnable(new e80(this.f37268b, this.f37269c, 1));
+                gVar.removeView((View) obj);
+                return;
+            case 1:
+                gVar.removeView((View) obj);
                 return;
             default:
-                f80 f80Var = this.f37268b;
-                String str = this.f37269c;
-                g80 g80Var = f80Var.f37633b;
-                String lowerCase = str.trim().toLowerCase();
-                if (lowerCase.isEmpty()) {
-                    ArrayList arrayList = new ArrayList();
-                    ArrayList arrayList2 = new ArrayList();
-                    g80Var.getClass();
-                    AndroidUtilities.runOnUIThread(new vq(g80Var, arrayList, arrayList2, 12));
-                    return;
+                gVar.removeView((View) obj);
+                return;
+        }
+    }
+
+    @Override
+    public final int b() {
+        switch (this.f37027c) {
+            case 0:
+                return ((f80) this.d).F.length;
+            case 1:
+                if (((zd1) this.d).f44732b != 0) {
+                    return 1;
                 }
-                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                if (lowerCase.equals(translitString) || translitString.isEmpty()) {
-                    translitString = null;
-                }
-                int i11 = 0;
-                if (translitString != null) {
-                    i10 = 1;
+                return 2;
+            default:
+                return ((rg.y0) this.d).d.size();
+        }
+    }
+
+    @Override
+    public int c(Object obj) {
+        switch (this.f37027c) {
+            case 1:
+                return -1;
+            default:
+                return super.c(obj);
+        }
+    }
+
+    @Override
+    public final Object e(z4.g gVar, int i10) {
+        View view;
+        boolean z10;
+        float f7;
+        org.telegram.ui.ActionBar.c6 c6Var;
+        org.telegram.ui.ActionBar.c6 c6Var2;
+        org.telegram.ui.ActionBar.c6 c6Var3;
+        int i11;
+        switch (this.f37027c) {
+            case 0:
+                TextView textView = new TextView(gVar.getContext());
+                f80 f80Var = (f80) this.d;
+                textView.setTag(f80Var.f37665a);
+                TextView textView2 = new TextView(gVar.getContext());
+                textView2.setTag(f80Var.f37666b);
+                ci.m6 m6Var = new ci.m6(gVar.getContext(), textView, textView2);
+                int i12 = org.telegram.ui.ActionBar.h6.G6;
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
+                textView.setTextSize(1, 26.0f);
+                textView.setTypeface(AndroidUtilities.bold());
+                textView.setGravity(17);
+                m6Var.addView(textView, w7.w5.a(-2.0f, 18.0f, 244.0f, 18.0f, 0.0f, -1, 51));
+                textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
+                textView2.setTextSize(1, 15.0f);
+                textView2.setLineSpacing(AndroidUtilities.dpf2(2.33f), 1.0f);
+                textView2.setGravity(17);
+                m6Var.addView(textView2, w7.w5.a(-2.0f, 16.0f, 286.0f, 16.0f, 0.0f, -1, 51));
+                gVar.addView(m6Var, 0);
+                textView.setText(f80Var.F[i10]);
+                textView2.setText(AndroidUtilities.replaceTags(f80Var.G[i10]));
+                return m6Var;
+            case 1:
+                zd1 zd1Var = (zd1) this.d;
+                if (i10 == 0) {
+                    view = zd1Var.f44782t0;
                 } else {
-                    i10 = 0;
+                    view = zd1Var.m0;
                 }
-                int i12 = i10 + 1;
-                String[] strArr = new String[i12];
-                strArr[0] = lowerCase;
-                if (translitString != null) {
-                    strArr[1] = translitString;
-                }
-                ArrayList arrayList3 = new ArrayList();
-                ArrayList arrayList4 = new ArrayList();
-                int i13 = 0;
-                while (i13 < g80Var.f38021n.f39264w.size()) {
-                    ContactsController.Contact contact = (ContactsController.Contact) g80Var.f38021n.f39264w.get(i13);
-                    String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
-                    String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
-                    if (lowerCase2.equals(translitString2)) {
-                        translitString2 = null;
-                    }
-                    int i14 = i11;
-                    int i15 = i14;
-                    while (true) {
-                        if (i14 < i12) {
-                            String str2 = strArr[i14];
-                            if (lowerCase2.startsWith(str2) || org.telegram.messenger.ai.w(" ", str2, lowerCase2) || (translitString2 != null && (translitString2.startsWith(str2) || org.telegram.messenger.ai.w(" ", str2, translitString2)))) {
-                                i15 = 1;
-                            }
-                            if (i15 != 0) {
-                                arrayList4.add(AndroidUtilities.generateSearchName(contact.first_name, contact.last_name, str2));
-                                arrayList3.add(contact);
-                            } else {
-                                i14++;
-                            }
+                gVar.addView(view);
+                return view;
+            default:
+                rg.y0 y0Var = (rg.y0) this.d;
+                rg.x0 x0Var = new rg.x0(y0Var, y0Var.getContext(), i10);
+                gVar.addView(x0Var);
+                x0Var.f47724a = i10;
+                mx0 mx0Var = (mx0) y0Var.d.get(i10);
+                int i13 = mx0Var.f40143a;
+                String str = mx0Var.d;
+                CharSequence charSequence = mx0Var.f40145c;
+                int i14 = 8;
+                TextView textView3 = x0Var.f47725b;
+                org.telegram.ui.Components.ia0 ia0Var = x0Var.f47726c;
+                if (i13 != 0 && i13 != 14 && i13 != 28) {
+                    if (y0Var.E) {
+                        int i15 = y0Var.f47744y;
+                        if (i15 == 4) {
+                            textView3.setText(LocaleController.getString(R.string.AdditionalReactions));
+                            i11 = R.string.AdditionalReactionsDescription;
+                        } else if (i15 == 3) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewNoAds));
+                            i11 = R.string.PremiumPreviewNoAdsDescription2;
+                        } else if (i15 == 24) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewTags));
+                            i11 = R.string.PremiumPreviewTagsDescription;
+                        } else if (i15 == 10) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewAppIcon));
+                            i11 = R.string.PremiumPreviewAppIconDescription2;
+                        } else if (i15 == 2) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewDownloadSpeed));
+                            i11 = R.string.PremiumPreviewDownloadSpeedDescription2;
+                        } else if (i15 == 9) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewAdvancedChatManagement));
+                            i11 = R.string.PremiumPreviewAdvancedChatManagementDescription2;
+                        } else if (i15 == 8) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewVoiceToText));
+                            i11 = R.string.PremiumPreviewVoiceToTextDescription2;
+                        } else if (i15 == 13) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewTranslations));
+                            i11 = R.string.PremiumPreviewTranslationsDescription;
+                        } else if (i15 == 38) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewEffects));
+                            i11 = R.string.PremiumPreviewEffectsDescription;
+                        } else if (i15 == 22) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewWallpaper));
+                            i11 = R.string.PremiumPreviewWallpaperDescription;
+                        } else if (i15 == 23) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewProfileColor));
+                            i11 = R.string.PremiumPreviewProfileColorDescription;
+                        } else if (i15 == 41) {
+                            textView3.setText(LocaleController.getString(R.string.PremiumPreviewSharingDisable));
+                            i11 = R.string.PremiumPreviewSharingDisableDescription;
+                        } else {
+                            textView3.setText(charSequence);
+                            ia0Var.setText(AndroidUtilities.replaceTags(str));
+                            x0Var.h = false;
                         }
+                        org.telegram.ui.Cells.c1.o(i11, ia0Var);
+                        x0Var.h = false;
+                    } else {
+                        textView3.setText(charSequence);
+                        ia0Var.setText(AndroidUtilities.replaceTags(str));
+                        x0Var.h = false;
                     }
-                    i13++;
-                    i11 = 0;
+                } else {
+                    textView3.setText("");
+                    ia0Var.setText("");
+                    x0Var.h = true;
                 }
-                AndroidUtilities.runOnUIThread(new vq(g80Var, arrayList3, arrayList4, 12));
+                ia0Var.setMaxWidth(ci.d4.a(ia0Var.getText(), ia0Var.getPaint()));
+                x0Var.requestLayout();
+                if (mx0Var.f40143a == 40) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (z10 && x0Var.d == null) {
+                    LinearLayout linearLayout = new LinearLayout(x0Var.getContext());
+                    x0Var.d = linearLayout;
+                    linearLayout.setOrientation(1);
+                    Context context = x0Var.getContext();
+                    c6Var = ((org.telegram.ui.ActionBar.e3) y0Var).resourcesProvider;
+                    ei.k kVar = new ei.k(context, c6Var, true);
+                    kVar.a(LocaleController.getString(R.string.GiftsFeature1Title), LocaleController.getString(R.string.GiftsFeature1Text), R.drawable.menu_feature_unique);
+                    x0Var.d.addView(r2[0], w7.w5.n(-1, -2));
+                    Context context2 = x0Var.getContext();
+                    c6Var2 = ((org.telegram.ui.ActionBar.e3) y0Var).resourcesProvider;
+                    ei.k kVar2 = new ei.k(context2, c6Var2, true);
+                    kVar2.a(LocaleController.getString(R.string.GiftsFeature2Title), LocaleController.getString(R.string.GiftsFeature2Text), R.drawable.menu_feature_tradable);
+                    x0Var.d.addView(r2[1], w7.w5.n(-1, -2));
+                    Context context3 = x0Var.getContext();
+                    c6Var3 = ((org.telegram.ui.ActionBar.e3) y0Var).resourcesProvider;
+                    ei.k kVar3 = new ei.k(context3, c6Var3, true);
+                    ei.k[] kVarArr = {kVar, kVar2, kVar3};
+                    kVar3.a(LocaleController.getString(R.string.GiftsFeature3Title), LocaleController.getString(R.string.GiftsFeature3Text), R.drawable.menu_wear);
+                    x0Var.d.addView(kVarArr[2], w7.w5.n(-1, -2));
+                    x0Var.addView(x0Var.d, w7.w5.k(0.0f, -4.0f, 0.0f, 0.0f, -1, -2));
+                }
+                LinearLayout linearLayout2 = x0Var.d;
+                if (linearLayout2 != null) {
+                    if (z10) {
+                        i14 = 0;
+                    }
+                    linearLayout2.setVisibility(i14);
+                }
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) ia0Var.getLayoutParams();
+                if (z10) {
+                    f7 = 6.0f;
+                } else {
+                    f7 = 10.0f;
+                }
+                marginLayoutParams.topMargin = AndroidUtilities.dp(f7);
+                return x0Var;
+        }
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        switch (this.f37027c) {
+            case 0:
+                return view.equals(obj);
+            case 1:
+                if (obj == view) {
+                    return true;
+                }
+                return false;
+            default:
+                if (view == obj) {
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public void h(int i10) {
+        switch (this.f37027c) {
+            case 0:
+                f80 f80Var = (f80) this.d;
+                f80Var.f37668e.setCurrentPage(i10);
+                f80Var.H = i10;
+                return;
+            default:
                 return;
         }
     }

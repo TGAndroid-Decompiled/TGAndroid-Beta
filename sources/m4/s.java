@@ -3,14 +3,14 @@ package m4;
 import java.util.List;
 import v7.w7;
 public final class s {
-    public final e9.i0 f16284a;
-    public final int f16285b;
-    public final long f16286c;
+    public final e9.i0 f15970a;
+    public final int f15971b;
+    public final long f15972c;
 
     public s(long j3, int i10, List list) {
-        this.f16284a = e9.i0.v(list);
-        this.f16285b = i10;
-        this.f16286c = j3;
+        this.f15970a = e9.i0.v(list);
+        this.f15971b = i10;
+        this.f15972c = j3;
     }
 
     public final boolean equals(Object obj) {
@@ -21,13 +21,13 @@ public final class s {
             return false;
         }
         s sVar = (s) obj;
-        if (this.f16284a.equals(sVar.f16284a) && this.f16285b == sVar.f16285b && this.f16286c == sVar.f16286c) {
+        if (this.f15970a.equals(sVar.f15970a) && this.f15971b == sVar.f15971b && this.f15972c == sVar.f15972c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return w7.b(this.f16286c) + (((this.f16284a.hashCode() * 31) + this.f16285b) * 31);
+        return w7.b(this.f15972c) + (((this.f15970a.hashCode() * 31) + this.f15971b) * 31);
     }
 }

@@ -7,27 +7,27 @@ import org.telegram.messenger.FileLog;
 import ru.noties.jlatexmath.JLatexMathAndroid;
 import ru.noties.jlatexmath.JLatexMathDrawable;
 public final class s {
-    public static volatile boolean f12663e = false;
-    public final Bitmap f12664a;
-    public final int f12665b;
-    public final int f12666c;
+    public static volatile boolean f12675e = false;
+    public final Bitmap f12676a;
+    public final int f12677b;
+    public final int f12678c;
     public final int d;
 
     public s(Bitmap bitmap, int i10, int i11, int i12) {
-        this.f12664a = bitmap;
-        this.f12665b = i10;
-        this.f12666c = i11;
+        this.f12676a = bitmap;
+        this.f12677b = i10;
+        this.f12678c = i11;
         this.d = i12;
     }
 
     public static s a(String str, float f7, boolean z10) {
         if (str != null && !str.isEmpty()) {
             try {
-                if (!f12663e) {
+                if (!f12675e) {
                     synchronized (s.class) {
-                        if (!f12663e) {
+                        if (!f12675e) {
                             JLatexMathAndroid.init(ApplicationLoader.applicationContext);
-                            f12663e = true;
+                            f12675e = true;
                         }
                     }
                 }

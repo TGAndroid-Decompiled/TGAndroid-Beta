@@ -1,100 +1,20 @@
 package org.telegram.ui;
+public final class ib extends org.telegram.ui.ActionBar.m1 {
+    public final yb f38833o;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class ib extends rb {
-    public final hh.k f38676x0;
-    public final ub f38677y0;
-
-    public ib(ub ubVar, Context context) {
-        super(ubVar, context);
-        this.f38677y0 = ubVar;
-        this.f38676x0 = new hh.k();
+    public ib(yb ybVar, hb hbVar) {
+        super(hbVar, -2, -2);
+        this.f38833o = ybVar;
     }
 
     @Override
-    public final void U(Drawable drawable) {
-        if (drawable instanceof org.telegram.ui.Components.cd0) {
-            ((org.telegram.ui.Components.cd0) drawable).p();
+    public final void dismiss() {
+        d(true);
+        yb ybVar = this.f38833o;
+        if (ybVar.F0 != this) {
+            return;
         }
-        hh.k kVar = this.f38676x0;
-        fh.a c10 = kVar.c(drawable);
-        AndroidUtilities.computePerceivedBrightness(kVar.a(c10));
-        ub ubVar = this.f38677y0;
-        ubVar.f42502a.f9941a = c10;
-        jh.f fVar = ubVar.W;
-        if (fVar != null) {
-            fVar.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        com.google.firebase.messaging.m mVar = com.google.firebase.messaging.m.f7949e;
-        if (mVar != null && mVar.f7950a) {
-            q4 q4Var = (q4) com.google.firebase.messaging.m.m().d;
-            if (q4Var != null) {
-                q4Var.onTouchEvent(motionEvent);
-                return true;
-            }
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-        if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
-            long dialogId = playingMessageObject.getDialogId();
-            ub ubVar = this.f38677y0;
-            if (dialogId == (-ubVar.f42511f.f20068id)) {
-                MediaController.getInstance().setTextureView(ubVar.Q0(false), ubVar.f42510e0, ubVar.f42508d0, true);
-            }
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ib.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        ub ubVar = this.f38677y0;
-        fh.a aVar = ubVar.f42502a.f9941a;
-        if (aVar instanceof fh.b) {
-            ((fh.b) aVar).b(size, size2);
-        }
-        setMeasuredDimension(size, size2);
-        int paddingTop = size2 - getPaddingTop();
-        measureChildWithMargins(ub.a0(ubVar), i10, 0, i11, 0);
-        int measuredHeight = ub.b0(ubVar).getMeasuredHeight();
-        if (ub.c0(ubVar).getVisibility() == 0) {
-            paddingTop -= measuredHeight;
-        }
-        int childCount = getChildCount();
-        for (int i12 = 0; i12 < childCount; i12++) {
-            View childAt = getChildAt(i12);
-            if (childAt != null && childAt.getVisibility() != 8 && childAt != ub.d0(ubVar)) {
-                if (childAt != ubVar.v && childAt != ubVar.f42519n) {
-                    if (childAt == ubVar.H) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
-                    } else {
-                        measureChildWithMargins(childAt, i10, 0, i11, 0);
-                    }
-                } else {
-                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(AndroidUtilities.dp(10.0f), View.MeasureSpec.getSize(i11)) + (ubVar.f42509e * 2), 1073741824));
-                }
-            }
-        }
+        org.telegram.ui.Components.sc.e();
+        ybVar.F0 = null;
     }
 }

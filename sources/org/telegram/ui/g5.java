@@ -1,137 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public abstract class g5 extends androidx.fragment.app.v {
-    public int O = -1;
+public final class g5 {
+    public static final g5 d;
+    public static final g5 f37929e;
+    public static final g5 f37930f;
+    public static final g5 h;
+    public static final g5 f37931n;
+    public static final g5 f37932r;
+    public static final g5[] f37933s;
+    public final String f37934a;
+    public final int f37935b;
+    public final int f37936c;
 
-    public final boolean u(int i10, String[] strArr, int[] iArr) {
-        boolean z10;
-        String string;
-        int i11;
-        int i12;
-        if (iArr == null) {
-            iArr = new int[0];
-        }
-        if (strArr == null) {
-            strArr = new String[0];
-        }
-        if (iArr.length > 0 && iArr[0] == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i10 == 104) {
-            if (z10) {
-                g60 g60Var = g60.D3;
-                if (g60Var != null) {
-                    g60Var.f37954n.callOnClick();
-                    return true;
-                }
-            } else {
-                x(R.raw.permission_request_camera, LocaleController.getString(R.string.VoipNeedCameraPermission));
-                return true;
-            }
-        } else if (i10 != 4 && i10 != 151) {
-            if (i10 == 5) {
-                if (!z10) {
-                    x(R.raw.permission_request_contacts, LocaleController.getString(R.string.PermissionNoContactsSharing));
-                    return false;
-                }
-                ContactsController.getInstance(this.O).forceImportContacts();
-                return true;
-            } else if (i10 != 3 && i10 != 150) {
-                if (i10 != 18 && i10 != 19 && i10 != 20 && i10 != 22) {
-                    if (i10 == 2) {
-                        NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-                        if (z10) {
-                            i12 = NotificationCenter.locationPermissionGranted;
-                        } else {
-                            i12 = NotificationCenter.locationPermissionDenied;
-                        }
-                        globalInstance.lambda$postNotificationNameOnUIThread$1(i12, new Object[0]);
-                        return true;
-                    } else if (i10 == 211) {
-                        NotificationCenter globalInstance2 = NotificationCenter.getGlobalInstance();
-                        if (z10) {
-                            i11 = NotificationCenter.locationPermissionGranted;
-                        } else {
-                            i11 = NotificationCenter.locationPermissionDenied;
-                        }
-                        globalInstance2.lambda$postNotificationNameOnUIThread$1(i11, 1);
-                        return true;
-                    }
-                } else if (!z10) {
-                    x(R.raw.permission_request_camera, LocaleController.getString(R.string.PermissionNoCameraWithHint));
-                }
-            } else {
-                int min = Math.min(strArr.length, iArr.length);
-                boolean z11 = true;
-                boolean z12 = true;
-                for (int i13 = 0; i13 < min; i13++) {
-                    if ("android.permission.RECORD_AUDIO".equals(strArr[i13])) {
-                        if (iArr[i13] == 0) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                    } else if ("android.permission.CAMERA".equals(strArr[i13])) {
-                        if (iArr[i13] == 0) {
-                            z12 = true;
-                        } else {
-                            z12 = false;
-                        }
-                    }
-                }
-                if (i10 == 150 && (!z11 || !z12)) {
-                    x(R.raw.permission_request_camera, LocaleController.getString(R.string.PermissionNoCameraMicVideo));
-                    return true;
-                } else if (!z11) {
-                    x(R.raw.permission_request_microphone, LocaleController.getString(R.string.PermissionNoAudioWithHint));
-                    return true;
-                } else if (!z12) {
-                    x(R.raw.permission_request_camera, LocaleController.getString(R.string.PermissionNoCameraWithHint));
-                    return true;
-                } else {
-                    if (SharedConfig.inappCamera) {
-                        CameraController.getInstance().initCamera(null);
-                    }
-                    return false;
-                }
-            }
-        } else if (!z10) {
-            int i14 = R.raw.permission_request_folder;
-            if (i10 == 151) {
-                string = LocaleController.getString(R.string.PermissionNoStorageAvatar);
-            } else {
-                string = LocaleController.getString(R.string.PermissionStorageWithHint);
-            }
-            x(i14, string);
-            return true;
-        } else {
-            ImageLoader.getInstance().checkMediaPaths();
-            return true;
-        }
-        return true;
+    static {
+        g5 g5Var = new g5(0, R.string.OpenProfile, R.drawable.msg_openprofile, "OPEN_PROFILE", "OpenProfile");
+        d = g5Var;
+        g5 g5Var2 = new g5(1, R.string.OpenChannel2, R.drawable.msg_channel, "OPEN_CHANNEL", "OpenChannel2");
+        f37929e = g5Var2;
+        int i10 = R.string.OpenGroup2;
+        int i11 = R.drawable.msg_discussion;
+        g5 g5Var3 = new g5(2, i10, i11, "OPEN_GROUP", "OpenGroup2");
+        f37930f = g5Var3;
+        g5 g5Var4 = new g5(3, R.string.SendMessage, i11, "SEND_MESSAGE", "SendMessage");
+        h = g5Var4;
+        g5 g5Var5 = new g5(4, R.string.Mention, R.drawable.msg_mention, "MENTION", "Mention");
+        f37931n = g5Var5;
+        g5 g5Var6 = new g5(5, R.string.AvatarPreviewSearchMessages, R.drawable.msg_search, "SEARCH_MESSAGES", "AvatarPreviewSearchMessages");
+        f37932r = g5Var6;
+        f37933s = new g5[]{g5Var, g5Var2, g5Var3, g5Var4, g5Var5, g5Var6};
     }
 
-    public final org.telegram.ui.ActionBar.a2 v(int i10, String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
-        alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-        alertDialog$Builder.f20404a.T = AndroidUtilities.replaceTags(str);
-        alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new y0(this, 4));
-        alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-        return alertDialog$Builder.f20404a;
+    public g5(int i10, int i11, int i12, String str, String str2) {
+        this.f37934a = str2;
+        this.f37935b = i11;
+        this.f37936c = i12;
     }
 
-    public final void x(int i10, String str) {
-        v(i10, str).show();
+    public static g5 valueOf(String str) {
+        return (g5) Enum.valueOf(g5.class, str);
+    }
+
+    public static g5[] values() {
+        return (g5[]) f37933s.clone();
     }
 }

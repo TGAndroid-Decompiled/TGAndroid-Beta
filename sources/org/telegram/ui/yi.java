@@ -1,29 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class yi implements NotificationCenter.NotificationCenterDelegate {
-    public final int f44472a;
-    public final ai.d9 f44473b;
-    public final zn f44474c;
-    public final zn d;
+import android.app.Activity;
+public final class yi extends org.telegram.ui.Cells.w0 {
+    public final eo f44484t2;
 
-    public yi(zn znVar, int i10, ai.d9 d9Var, zn znVar2) {
-        this.d = znVar;
-        this.f44472a = i10;
-        this.f44473b = d9Var;
-        this.f44474c = znVar2;
+    public yi(Activity activity, org.telegram.ui.ActionBar.c6 c6Var, eo eoVar) {
+        super(activity, c6Var, false);
+        this.f44484t2 = eoVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12;
-        int i13 = NotificationCenter.messagesDidLoad;
-        if (i10 == i13 && ((Integer) objArr[10]).intValue() == this.f44472a) {
-            this.f44473b.run();
-            AndroidUtilities.runOnUIThread(new i2.a0(this.f44474c, i10, i11, objArr), 50L);
-            i12 = ((org.telegram.ui.ActionBar.m2) this.d).currentAccount;
-            NotificationCenter.getInstance(i12).removeObserver(this, i13);
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        float y3 = getY();
+        eo eoVar = this.f44484t2;
+        a0(eoVar.R0.getY() + y3, eoVar.X0.getBackgroundSizeY());
     }
 }

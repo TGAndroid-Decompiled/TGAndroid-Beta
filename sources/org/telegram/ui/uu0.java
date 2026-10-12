@@ -1,70 +1,84 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.widget.ImageView;
-public final class uu0 extends ImageView {
-    public int f42803a;
-    public boolean f42804b;
-    public boolean f42805c;
-    public boolean d;
-    public org.telegram.ui.Components.l81 f42806e;
-    public final org.telegram.ui.Components.is f42807f;
-    public ValueAnimator h;
-    public final PhotoViewer f42808n;
+import android.widget.FrameLayout;
+import androidx.core.widget.NestedScrollView;
+public final class uu0 extends org.telegram.ui.Components.b21 {
+    public boolean f42593a;
+    public float f42594b;
+    public NestedScrollView f42595c;
+    public FrameLayout d;
 
-    public uu0(Context context, PhotoViewer photoViewer) {
+    public uu0(Context context) {
         super(context);
-        this.f42808n = photoViewer;
-        this.f42803a = 0;
-        this.f42804b = false;
-        this.f42805c = false;
-        this.d = false;
-        this.f42807f = org.telegram.ui.Components.is.f27502i;
-        setAlpha(0.0f);
+        this.f42593a = false;
+        this.f42594b = 1.0f;
     }
 
-    public static void a(uu0 uu0Var) {
-        PhotoViewer photoViewer = uu0Var.f42808n;
-        org.telegram.ui.Components.l81 l81Var = photoViewer.F2;
-        if (l81Var != null && l81Var.p() != -9223372036854775807L) {
-            long max = Math.max(0L, photoViewer.F2.p() - photoViewer.F2.n());
-            float max2 = 1.0f - Math.max(Math.min(((float) max) / 250.0f, 1.0f), 0.0f);
-            if (max2 <= 0.0f) {
-                ValueAnimator valueAnimator = uu0Var.h;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    uu0Var.h = null;
-                }
-                uu0Var.setAlpha(0.0f);
-                return;
-            } else if (photoViewer.F2.y()) {
-                if (uu0Var.h == null) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 1.0f);
-                    uu0Var.h = ofFloat;
-                    ofFloat.addUpdateListener(new b3(uu0Var, 24));
-                    uu0Var.h.setDuration(max);
-                    uu0Var.h.setInterpolator(uu0Var.f42807f);
-                    uu0Var.h.start();
-                    uu0Var.setAlpha(max2);
-                    return;
-                }
-                return;
-            } else {
-                ValueAnimator valueAnimator2 = uu0Var.h;
-                if (valueAnimator2 != null) {
-                    valueAnimator2.cancel();
-                    uu0Var.h = null;
-                }
-                uu0Var.setAlpha(max2);
-                return;
-            }
+    public final void b(int i10, boolean z10) {
+        super.setVisibility(i10);
+        if (this.f42593a && z10) {
+            this.f42595c.setVisibility(i10);
         }
-        ValueAnimator valueAnimator3 = uu0Var.h;
-        if (valueAnimator3 != null) {
-            valueAnimator3.cancel();
-            uu0Var.h = null;
+    }
+
+    @Override
+    public float getAlpha() {
+        if (this.f42593a) {
+            return this.f42594b;
         }
-        uu0Var.setAlpha(0.0f);
+        return super.getAlpha();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (this.d != null && getParent() == this.d) {
+            this.f42593a = true;
+            this.f42595c.setVisibility(getVisibility());
+            this.f42595c.setAlpha(this.f42594b);
+            super.setAlpha(1.0f);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f42593a) {
+            this.f42593a = false;
+            this.f42595c.setVisibility(8);
+            super.setAlpha(this.f42594b);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        this.f42594b = f7;
+        if (this.f42593a) {
+            this.f42595c.setAlpha(f7);
+        } else {
+            super.setAlpha(f7);
+        }
+    }
+
+    public void setContainer(FrameLayout frameLayout) {
+        this.d = frameLayout;
+    }
+
+    public void setScrollView(NestedScrollView nestedScrollView) {
+        this.f42595c = nestedScrollView;
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        if (this.f42593a) {
+            this.f42595c.invalidate();
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        b(i10, true);
     }
 }

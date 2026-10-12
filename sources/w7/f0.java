@@ -1,15 +1,16 @@
 package w7;
-
-import android.os.StrictMode;
-import java.util.concurrent.Callable;
 public abstract class f0 {
-    public static Object a(Callable callable) {
-        StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
-        try {
-            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
-            return callable.call();
-        } finally {
-            StrictMode.setThreadPolicy(threadPolicy);
+    public static boolean a(int i10, int i11) {
+        if ((i10 & i11) != 0) {
+            return true;
         }
+        return false;
+    }
+
+    public static int b(int i10, int i11, boolean z10) {
+        if (z10) {
+            return i10 | i11;
+        }
+        return i10 & (~i11);
     }
 }

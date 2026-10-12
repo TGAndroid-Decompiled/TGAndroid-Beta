@@ -5,23 +5,23 @@ import android.graphics.Matrix;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class q5 implements pg.u {
-    public boolean f5786a;
-    public final pg.u0 f5787b;
-    public final nb f5788c;
+    public boolean f5785a;
+    public final pg.t0 f5786b;
+    public final nb f5787c;
 
-    public q5(nb nbVar, pg.u0 u0Var) {
-        this.f5788c = nbVar;
-        this.f5787b = u0Var;
+    public q5(nb nbVar, pg.t0 t0Var) {
+        this.f5787c = nbVar;
+        this.f5786b = t0Var;
     }
 
     @Override
     public final void a() {
-        this.f5786a = true;
+        this.f5785a = true;
     }
 
     @Override
     public final void b(Canvas canvas) {
-        f6 f6Var = this.f5788c.O0;
+        f6 f6Var = this.f5787c.O0;
         Matrix matrix = f6Var.getMatrix();
         canvas.save();
         canvas.translate(f6Var.getX(), f6Var.getY());
@@ -32,22 +32,22 @@ public final class q5 implements pg.u {
 
     @Override
     public final boolean c() {
-        return this.f5786a;
+        return this.f5785a;
     }
 
     @Override
     public final void d() {
-        this.f5786a = false;
+        this.f5785a = false;
     }
 
     @Override
     public final View e() {
-        return this.f5788c;
+        return this.f5787c;
     }
 
     @Override
     public final FrameLayout f() {
-        return this.f5788c.V0;
+        return this.f5787c.V0;
     }
 
     @Override
@@ -57,14 +57,14 @@ public final class q5 implements pg.u {
 
     @Override
     public final void h(int i10) {
-        nb nbVar = this.f5788c;
+        nb nbVar = this.f5787c;
         nbVar.H0(false);
-        pg.u0 u0Var = this.f5787b;
-        u0Var.h(i10, true);
-        u0Var.g();
+        pg.t0 t0Var = this.f5786b;
+        t0Var.h(i10, true);
+        t0Var.g();
         nbVar.setNewColor(i10);
-        p5 p5Var = nbVar.f5831w1;
-        p5Var.setSelectedColorIndex(u0Var.d());
+        p5 p5Var = nbVar.f5830w1;
+        p5Var.setSelectedColorIndex(t0Var.d());
         p5Var.getAdapter().l();
     }
 }

@@ -1,27 +1,29 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.concurrent.CountDownLatch;
 public final class k3 implements Runnable {
-    public final int f18354a;
-    public final FileRefController f18355b;
-    public final TLRPC.TL_messages_sendMultiMedia f18356c;
-    public final Object[] d;
+    public final int f18029a;
+    public final FilePathDatabase f18030b;
+    public final String f18031c;
+    public final boolean[] d;
+    public final CountDownLatch f18032e;
 
-    public k3(FileRefController fileRefController, TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia, Object[] objArr, int i10) {
-        this.f18354a = i10;
-        this.f18355b = fileRefController;
-        this.f18356c = tL_messages_sendMultiMedia;
-        this.d = objArr;
+    public k3(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch, int i10) {
+        this.f18029a = i10;
+        this.f18030b = filePathDatabase;
+        this.f18031c = str;
+        this.d = zArr;
+        this.f18032e = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f18354a) {
+        switch (this.f18029a) {
             case 0:
-                this.f18355b.lambda$onUpdateObjectReference$30(this.f18356c, this.d);
+                FilePathDatabase.g(this.f18030b, this.f18031c, this.d, this.f18032e);
                 return;
             default:
-                this.f18355b.lambda$sendErrorToObject$41(this.f18356c, this.d);
+                FilePathDatabase.e(this.f18030b, this.f18031c, this.d, this.f18032e);
                 return;
         }
     }

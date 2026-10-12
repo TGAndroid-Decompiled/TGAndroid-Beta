@@ -1,82 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.FlagSecureReason;
-public final class wh implements FlagSecureReason.FlagSecureCondition, mv0, r0.n, yf.a0, org.telegram.ui.ActionBar.z1 {
-    public final zn f43808a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wh implements Runnable {
+    public final int f43524a;
+    public final eo f43525b;
+    public final int f43526c;
+    public final TLObject d;
+    public final TLRPC.TL_error f43527e;
+    public final int f43528f;
+    public final MessageObject h;
+    public final TLRPC.TL_messages_getDiscussionMessage f43529n;
+    public final TLRPC.Chat f43530r;
+    public final int f43531s;
+    public final MessageObject v;
 
-    public wh(zn znVar) {
-        this.f43808a = znVar;
+    public wh(eo eoVar, int i10, TLObject tLObject, TLRPC.TL_error tL_error, int i11, MessageObject messageObject, TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, TLRPC.Chat chat, int i12, MessageObject messageObject2, int i13) {
+        this.f43524a = i13;
+        this.f43525b = eoVar;
+        this.f43526c = i10;
+        this.d = tLObject;
+        this.f43527e = tL_error;
+        this.f43528f = i11;
+        this.h = messageObject;
+        this.f43529n = tL_messages_getDiscussionMessage;
+        this.f43530r = chat;
+        this.f43531s = i12;
+        this.v = messageObject2;
     }
 
     @Override
-    public r0.k1 M0(View view, r0.k1 k1Var) {
-        zn znVar = this.f43808a;
-        r0.k1 z82 = znVar.z8(k1Var);
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(z82, false);
-        int i10 = defaultWindowInsets.f11575a;
-        int i11 = defaultWindowInsets.f11577c;
-        if (znVar.Ua != i10 || znVar.Va != i11) {
-            znVar.Ua = i10;
-            znVar.Va = i11;
-            znVar.X0.requestLayout();
+    public final void run() {
+        switch (this.f43524a) {
+            case 0:
+                eo eoVar = this.f43525b;
+                eoVar.k8(new wh(eoVar, this.f43526c, this.d, this.f43527e, this.f43528f, this.h, this.f43529n, this.f43530r, this.f43531s, this.v, 1));
+                return;
+            default:
+                eo eoVar2 = this.f43525b;
+                if (this.f43526c == eoVar2.f37265fc) {
+                    eoVar2.f37288hc = -1;
+                    TLObject tLObject = this.d;
+                    if (tLObject != null) {
+                        eoVar2.f37349mc = (TLRPC.messages_Messages) tLObject;
+                    } else if ("CHANNEL_PRIVATE".equals(this.f43527e.text)) {
+                        MessagesController.showCantOpenAlert(eoVar2, LocaleController.getString(R.string.ChannelCantOpenBannedByAdmin));
+                        eoVar2.f37301ic = 0;
+                        eoVar2.f37313jc = false;
+                        eoVar2.f37478x0.f1();
+                        return;
+                    }
+                    eoVar2.Ca(eoVar2.f37337lc, eoVar2.f37349mc, this.f43528f, this.h, this.f43529n, this.f43530r, this.f43531s, this.v);
+                    return;
+                }
+                return;
         }
-        znVar.v.k(z82);
-        ai.f0 f0Var = znVar.K3;
-        if (f0Var != null) {
-            f0Var.setPadding(i10, 0, i11, 0);
-        }
-        znVar.q7();
-        znVar.u7();
-        znVar.u9();
-        boolean p5 = z82.f46901a.p(8);
-        if (znVar.Ta != p5) {
-            znVar.Ta = p5;
-            znVar.X0.S();
-        }
-        ci.h1 h1Var = znVar.f44932q1;
-        if (h1Var != null) {
-            r0.i0.b(h1Var, z82);
-        }
-        return r0.k1.f46900b;
-    }
-
-    @Override
-    public void a(int i10) {
-        zn.X0(this.f43808a, i10);
-    }
-
-    @Override
-    public void b(float[] fArr) {
-        zn znVar = this.f43808a;
-        fArr[1] = znVar.f45023x0.getBottom() - znVar.Ba;
-        fArr[0] = (znVar.f45023x0.getTop() + znVar.f44967s9) - AndroidUtilities.dp(4.0f);
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        zn znVar = this.f43808a;
-        znVar.getClass();
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            znVar.getParentActivity().startActivity(intent);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
-    }
-
-    @Override
-    public boolean run() {
-        zn znVar = this.f43808a;
-        if (znVar.h == null && !znVar.D9()) {
-            return false;
-        }
-        return true;
     }
 }

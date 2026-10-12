@@ -1,30 +1,53 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class mk implements Runnable {
-    public final zn f39998a;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class mk extends FragmentContextView {
+    public final int R0;
+    public final eo S0;
 
-    public mk(zn znVar) {
-        this.f39998a = znVar;
+    public mk(eo eoVar, Context context, eo eoVar2, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, eoVar2, null, true, c6Var);
+        this.R0 = i10;
+        switch (i10) {
+            case 1:
+                this.S0 = eoVar;
+                super(context, eoVar2, null, false, c6Var);
+                return;
+            default:
+                this.S0 = eoVar;
+                return;
+        }
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        zn znVar = this.f39998a;
-        MessageObject messageObject = znVar.f44778d5;
-        if (messageObject != null && znVar.T8 != null) {
-            int max = Math.max(0, messageObject.messageOwner.ttl_period - (znVar.getConnectionsManager().getCurrentTime() - znVar.f44778d5.messageOwner.date));
-            if (max < 86400) {
-                formatPluralString = AndroidUtilities.formatDuration(max, false, true);
-            } else {
-                formatPluralString = LocaleController.formatPluralString("Days", Math.round(max / 86400.0f), new Object[0]);
-            }
-            znVar.T8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
-            AndroidUtilities.runOnUIThread(znVar.U8, 1000L);
+    public final void setVisibility(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.R0) {
+            case 0:
+                eo eoVar = this.S0;
+                org.telegram.ui.Components.hh hhVar = eoVar.M0;
+                FrameLayout frameLayout = eoVar.a2;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                hhVar.i(frameLayout, z10, true);
+                return;
+            default:
+                eo eoVar2 = this.S0;
+                org.telegram.ui.Components.hh hhVar2 = eoVar2.M0;
+                FrameLayout frameLayout2 = eoVar2.Y1;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                hhVar2.i(frameLayout2, z11, true);
+                return;
         }
     }
 }

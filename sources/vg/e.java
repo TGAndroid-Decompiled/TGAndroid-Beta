@@ -8,7 +8,7 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.j9;
 import org.telegram.ui.Components.y9;
-import w7.x5;
+import w7.w5;
 public final class e extends d {
     @Override
     public final void d() {
@@ -24,7 +24,7 @@ public final class e extends d {
         } else {
             i10 = 3;
         }
-        this.f49697c.setLayoutParams(x5.a(40.0f, 16.0f, 0.0f, 16.0f, 0.0f, 40, i10 | 16));
+        this.f49804c.setLayoutParams(w5.a(40.0f, 16.0f, 0.0f, 16.0f, 0.0f, 40, i10 | 16));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -42,7 +42,7 @@ public final class e extends d {
         } else {
             f10 = 20.0f;
         }
-        this.d.setLayoutParams(x5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i13));
+        this.d.setLayoutParams(w5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i13));
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i12 = 5;
@@ -58,14 +58,14 @@ public final class e extends d {
         } else {
             f12 = 20.0f;
         }
-        this.f49698e.setLayoutParams(x5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
+        this.f49805e.setLayoutParams(w5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f49698e.setTextColor(h6.w0(h6.f21080r5, this.f49695a));
+        this.f49805e.setTextColor(h6.w0(h6.f20817r5, this.f49802a));
         boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         a6 a6Var = this.d;
-        j9 j9Var = this.f49696b;
+        j9 j9Var = this.f49803b;
         if (z10) {
             TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
             j9Var.g(26);
@@ -85,7 +85,7 @@ public final class e extends d {
             }
             setSubtitle(LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_prepaidGiveaway.months, new Object[0])));
         }
-        y9 y9Var = this.f49697c;
+        y9 y9Var = this.f49804c;
         y9Var.setImageDrawable(j9Var);
         y9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
     }

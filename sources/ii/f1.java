@@ -3,24 +3,24 @@ package ii;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class f1 implements TextWatcher {
-    public final i1 f12405a;
+    public final i1 f12414a;
 
     public f1(i1 i1Var) {
-        this.f12405a = i1Var;
+        this.f12414a = i1Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         Editable editable2;
-        i1 i1Var = this.f12405a;
-        if (!i1Var.h && i1Var.f12472c != null) {
+        i1 i1Var = this.f12414a;
+        if (!i1Var.h && i1Var.f12474c != null) {
             if (i1Var.E && editable.length() > 0) {
                 editable2 = editable;
-                h6.o(editable2, 0, editable.length(), 1, true, i1Var.L);
+                g6.o(editable2, 0, editable.length(), 1, true, i1Var.L);
             } else {
                 editable2 = editable;
             }
-            if (!i1Var.f12478w && !i1Var.f12475n && !i1Var.f12476r) {
+            if (!i1Var.f12480w && !i1Var.f12477n && !i1Var.f12478r) {
                 i1Var.h = true;
                 boolean z10 = false;
                 for (int length = editable2.length() - 1; length >= 0; length--) {
@@ -31,29 +31,29 @@ public final class f1 implements TextWatcher {
                 }
                 i1Var.h = false;
                 if (z10) {
-                    i1Var.f12472c.k(i1Var);
+                    i1Var.f12474c.l(i1Var);
                     return;
                 } else {
-                    i1Var.f12472c.L(editable2);
+                    i1Var.f12474c.S(editable2);
                     return;
                 }
             }
-            i1Var.f12472c.L(editable2);
+            i1Var.f12474c.S(editable2);
         }
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         h1 h1Var;
-        i1 i1Var = this.f12405a;
-        if (!i1Var.h && (h1Var = i1Var.f12472c) != null) {
-            h1Var.i(i11, i12);
+        i1 i1Var = this.f12414a;
+        if (!i1Var.h && (h1Var = i1Var.f12474c) != null) {
+            h1Var.j(i11, i12);
         }
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        i1 i1Var = this.f12405a;
+        i1 i1Var = this.f12414a;
         boolean z10 = true;
         i1Var.J = true;
         i1Var.q();

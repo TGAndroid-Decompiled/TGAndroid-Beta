@@ -1,41 +1,374 @@
 package m;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.View;
-import android.widget.AdapterView;
-import androidx.appcompat.widget.SearchView;
-public final class x1 implements AdapterView.OnItemSelectedListener {
-    public final int f15926a;
-    public final Object f15927b;
+import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.LinearLayout;
+public abstract class x1 extends ViewGroup {
+    public int E;
+    public boolean f15611a;
+    public int f15612b;
+    public int f15613c;
+    public int d;
+    public int f15614e;
+    public int f15615f;
+    public float h;
+    public boolean f15616n;
+    public int[] f15617r;
+    public int[] f15618s;
+    public Drawable v;
+    public int f15619w;
+    public int f15620x;
+    public int f15621y;
 
-    public x1(Object obj, int i10) {
-        this.f15926a = i10;
-        this.f15927b = obj;
+    public x1(Context context, AttributeSet attributeSet, int i10) {
+        super(context, attributeSet, i10);
+        this.f15611a = true;
+        this.f15612b = -1;
+        this.f15613c = 0;
+        this.f15614e = 8388659;
+        int[] iArr = f.a.f9534n;
+        f3 Q = f3.Q(context, attributeSet, iArr, i10);
+        r0.i0.i(this, context, iArr, attributeSet, (TypedArray) Q.f15424c, i10);
+        TypedArray typedArray = (TypedArray) Q.f15424c;
+        int i11 = typedArray.getInt(1, -1);
+        if (i11 >= 0) {
+            setOrientation(i11);
+        }
+        int i12 = typedArray.getInt(0, -1);
+        if (i12 >= 0) {
+            setGravity(i12);
+        }
+        boolean z10 = typedArray.getBoolean(2, true);
+        if (!z10) {
+            setBaselineAligned(z10);
+        }
+        this.h = typedArray.getFloat(4, -1.0f);
+        this.f15612b = typedArray.getInt(3, -1);
+        this.f15616n = typedArray.getBoolean(7, false);
+        setDividerDrawable(Q.F(5));
+        this.f15621y = typedArray.getInt(8, 0);
+        this.E = typedArray.getDimensionPixelSize(6, 0);
+        Q.R();
+    }
+
+    public final void c(Canvas canvas, int i10) {
+        this.v.setBounds(getPaddingLeft() + this.E, i10, (getWidth() - getPaddingRight()) - this.E, this.f15620x + i10);
+        this.v.draw(canvas);
     }
 
     @Override
-    public final void onItemSelected(AdapterView adapterView, View view, int i10, long j3) {
-        r1 r1Var;
-        switch (this.f15926a) {
-            case 0:
-                if (i10 != -1 && (r1Var = ((d2) this.f15927b).f15713c) != null) {
-                    r1Var.setListSelectionHidden(false);
-                    return;
+    public boolean checkLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return layoutParams instanceof w1;
+    }
+
+    public final void d(Canvas canvas, int i10) {
+        this.v.setBounds(i10, getPaddingTop() + this.E, this.f15619w + i10, (getHeight() - getPaddingBottom()) - this.E);
+        this.v.draw(canvas);
+    }
+
+    @Override
+    public w1 generateDefaultLayoutParams() {
+        int i10 = this.d;
+        if (i10 == 0) {
+            return new LinearLayout.LayoutParams(-2, -2);
+        }
+        if (i10 == 1) {
+            return new LinearLayout.LayoutParams(-1, -2);
+        }
+        return null;
+    }
+
+    @Override
+    public w1 generateLayoutParams(AttributeSet attributeSet) {
+        return new LinearLayout.LayoutParams(getContext(), attributeSet);
+    }
+
+    @Override
+    public w1 generateLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        return new LinearLayout.LayoutParams(layoutParams);
+    }
+
+    @Override
+    public int getBaseline() {
+        int i10;
+        if (this.f15612b < 0) {
+            return super.getBaseline();
+        }
+        int childCount = getChildCount();
+        int i11 = this.f15612b;
+        if (childCount > i11) {
+            View childAt = getChildAt(i11);
+            int baseline = childAt.getBaseline();
+            if (baseline == -1) {
+                if (this.f15612b == 0) {
+                    return -1;
                 }
-                return;
-            default:
-                ((SearchView) this.f15927b).n(i10);
-                return;
+                throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout points to a View that doesn't know how to get its baseline.");
+            }
+            int i12 = this.f15613c;
+            if (this.d == 1 && (i10 = this.f15614e & 112) != 48) {
+                if (i10 != 16) {
+                    if (i10 == 80) {
+                        i12 = ((getBottom() - getTop()) - getPaddingBottom()) - this.f15615f;
+                    }
+                } else {
+                    i12 = hg.c.C(((getBottom() - getTop()) - getPaddingTop()) - getPaddingBottom(), this.f15615f, 2, i12);
+                }
+            }
+            return i12 + ((LinearLayout.LayoutParams) ((w1) childAt.getLayoutParams())).topMargin + baseline;
+        }
+        throw new RuntimeException("mBaselineAlignedChildIndex of LinearLayout set to an index that is out of bounds.");
+    }
+
+    public int getBaselineAlignedChildIndex() {
+        return this.f15612b;
+    }
+
+    public Drawable getDividerDrawable() {
+        return this.v;
+    }
+
+    public int getDividerPadding() {
+        return this.E;
+    }
+
+    public int getDividerWidth() {
+        return this.f15619w;
+    }
+
+    public int getGravity() {
+        return this.f15614e;
+    }
+
+    public int getOrientation() {
+        return this.d;
+    }
+
+    public int getShowDividers() {
+        return this.f15621y;
+    }
+
+    public int getVirtualChildCount() {
+        return getChildCount();
+    }
+
+    public float getWeightSum() {
+        return this.h;
+    }
+
+    public final boolean h(int i10) {
+        if (i10 == 0) {
+            if ((this.f15621y & 1) == 0) {
+                return false;
+            }
+            return true;
+        } else if (i10 == getChildCount()) {
+            if ((this.f15621y & 4) == 0) {
+                return false;
+            }
+            return true;
+        } else {
+            if ((this.f15621y & 2) != 0) {
+                for (int i11 = i10 - 1; i11 >= 0; i11--) {
+                    if (getChildAt(i11).getVisibility() != 8) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 
     @Override
-    public final void onNothingSelected(AdapterView adapterView) {
-        int i10 = this.f15926a;
+    public final void onDraw(Canvas canvas) {
+        int right;
+        int left;
+        int i10;
+        int left2;
+        int bottom;
+        if (this.v != null) {
+            int i11 = 0;
+            if (this.d == 1) {
+                int virtualChildCount = getVirtualChildCount();
+                while (i11 < virtualChildCount) {
+                    View childAt = getChildAt(i11);
+                    if (childAt != null && childAt.getVisibility() != 8 && h(i11)) {
+                        c(canvas, (childAt.getTop() - ((LinearLayout.LayoutParams) ((w1) childAt.getLayoutParams())).topMargin) - this.f15620x);
+                    }
+                    i11++;
+                }
+                if (h(virtualChildCount)) {
+                    View childAt2 = getChildAt(virtualChildCount - 1);
+                    if (childAt2 == null) {
+                        bottom = (getHeight() - getPaddingBottom()) - this.f15620x;
+                    } else {
+                        bottom = childAt2.getBottom() + ((LinearLayout.LayoutParams) ((w1) childAt2.getLayoutParams())).bottomMargin;
+                    }
+                    c(canvas, bottom);
+                    return;
+                }
+                return;
+            }
+            int virtualChildCount2 = getVirtualChildCount();
+            boolean a2 = u3.a(this);
+            while (i11 < virtualChildCount2) {
+                View childAt3 = getChildAt(i11);
+                if (childAt3 != null && childAt3.getVisibility() != 8 && h(i11)) {
+                    w1 w1Var = (w1) childAt3.getLayoutParams();
+                    if (a2) {
+                        left2 = childAt3.getRight() + ((LinearLayout.LayoutParams) w1Var).rightMargin;
+                    } else {
+                        left2 = (childAt3.getLeft() - ((LinearLayout.LayoutParams) w1Var).leftMargin) - this.f15619w;
+                    }
+                    d(canvas, left2);
+                }
+                i11++;
+            }
+            if (h(virtualChildCount2)) {
+                View childAt4 = getChildAt(virtualChildCount2 - 1);
+                if (childAt4 == null) {
+                    if (a2) {
+                        right = getPaddingLeft();
+                    } else {
+                        left = getWidth() - getPaddingRight();
+                        i10 = this.f15619w;
+                        right = left - i10;
+                    }
+                } else {
+                    w1 w1Var2 = (w1) childAt4.getLayoutParams();
+                    if (a2) {
+                        left = childAt4.getLeft() - ((LinearLayout.LayoutParams) w1Var2).leftMargin;
+                        i10 = this.f15619w;
+                        right = left - i10;
+                    } else {
+                        right = childAt4.getRight() + ((LinearLayout.LayoutParams) w1Var2).rightMargin;
+                    }
+                }
+                d(canvas, right);
+            }
+        }
     }
 
-    private final void a(AdapterView adapterView) {
+    @Override
+    public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        super.onInitializeAccessibilityEvent(accessibilityEvent);
+        accessibilityEvent.setClassName("androidx.appcompat.widget.LinearLayoutCompat");
     }
 
-    private final void b(AdapterView adapterView) {
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("androidx.appcompat.widget.LinearLayoutCompat");
+    }
+
+    @Override
+    public void onLayout(boolean r23, int r24, int r25, int r26, int r27) {
+        throw new UnsupportedOperationException("Method not decompiled: m.x1.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public void onMeasure(int r39, int r40) {
+        throw new UnsupportedOperationException("Method not decompiled: m.x1.onMeasure(int, int):void");
+    }
+
+    public void setBaselineAligned(boolean z10) {
+        this.f15611a = z10;
+    }
+
+    public void setBaselineAlignedChildIndex(int i10) {
+        if (i10 >= 0 && i10 < getChildCount()) {
+            this.f15612b = i10;
+            return;
+        }
+        throw new IllegalArgumentException("base aligned child index out of range (0, " + getChildCount() + ")");
+    }
+
+    public void setDividerDrawable(Drawable drawable) {
+        if (drawable == this.v) {
+            return;
+        }
+        this.v = drawable;
+        boolean z10 = false;
+        if (drawable != null) {
+            this.f15619w = drawable.getIntrinsicWidth();
+            this.f15620x = drawable.getIntrinsicHeight();
+        } else {
+            this.f15619w = 0;
+            this.f15620x = 0;
+        }
+        if (drawable == null) {
+            z10 = true;
+        }
+        setWillNotDraw(z10);
+        requestLayout();
+    }
+
+    public void setDividerPadding(int i10) {
+        this.E = i10;
+    }
+
+    public void setGravity(int i10) {
+        if (this.f15614e != i10) {
+            if ((8388615 & i10) == 0) {
+                i10 |= 8388611;
+            }
+            if ((i10 & 112) == 0) {
+                i10 |= 48;
+            }
+            this.f15614e = i10;
+            requestLayout();
+        }
+    }
+
+    public void setHorizontalGravity(int i10) {
+        int i11 = i10 & 8388615;
+        int i12 = this.f15614e;
+        if ((8388615 & i12) != i11) {
+            this.f15614e = i11 | ((-8388616) & i12);
+            requestLayout();
+        }
+    }
+
+    public void setMeasureWithLargestChildEnabled(boolean z10) {
+        this.f15616n = z10;
+    }
+
+    public void setOrientation(int i10) {
+        if (this.d != i10) {
+            this.d = i10;
+            requestLayout();
+        }
+    }
+
+    public void setShowDividers(int i10) {
+        if (i10 != this.f15621y) {
+            requestLayout();
+        }
+        this.f15621y = i10;
+    }
+
+    public void setVerticalGravity(int i10) {
+        int i11 = i10 & 112;
+        int i12 = this.f15614e;
+        if ((i12 & 112) != i11) {
+            this.f15614e = i11 | (i12 & (-113));
+            requestLayout();
+        }
+    }
+
+    public void setWeightSum(float f7) {
+        this.h = Math.max(0.0f, f7);
+    }
+
+    @Override
+    public final boolean shouldDelayChildPressedState() {
+        return false;
     }
 }

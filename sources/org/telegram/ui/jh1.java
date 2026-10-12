@@ -1,88 +1,125 @@
 package org.telegram.ui;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.Build;
+import android.util.Property;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class jh1 extends ViewGroup {
-    public final Paint f39095a;
-    public View f39096b;
-    public boolean f39097c;
+public final class jh1 extends ScrollView {
+    public final int[] f39213a;
+    public final Rect f39214b;
+    public boolean f39215c;
+    public final kh1 d;
 
-    public jh1(Context context) {
+    public jh1(kh1 kh1Var, Context context) {
         super(context);
-        this.f39095a = new Paint(1);
-        setClipToPadding(false);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int paddingBottom = getPaddingBottom();
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-        int h = i0.a.h(org.telegram.ui.ActionBar.h6.m1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20822d6, false)), x02);
-        Paint paint = this.f39095a;
-        paint.setColor(x02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
-        paint.setColor(h);
-        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.dispatchDraw(canvas);
+        this.d = kh1Var;
+        this.f39213a = new int[2];
+        this.f39214b = new Rect();
+        this.f39215c = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
+        this.f39215c = false;
+        super.onLayout(z10, i10, i11, i12, i13);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        org.telegram.ui.ActionBar.k kVar;
         boolean z10;
-        int i12;
-        View view = this.f39096b;
-        if (view != null && view.getVisibility() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int size = View.MeasureSpec.getSize(i10);
-        if (z10) {
-            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
-        } else {
-            i12 = 0;
-        }
-        setMeasuredDimension(size, i12);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-        if (this.f39097c != z10) {
-            this.f39097c = z10;
-            WeakHashMap weakHashMap = r0.i0.f46890a;
-            r0.y.c(this);
+        boolean z11;
+        Integer num;
+        float f7;
+        org.telegram.ui.ActionBar.k kVar2;
+        super.onScrollChanged(i10, i11, i12, i13);
+        kh1 kh1Var = this.d;
+        TextView textView = kh1Var.f39501c;
+        if (textView != null) {
+            int[] iArr = this.f39213a;
+            textView.getLocationOnScreen(iArr);
+            int measuredHeight = kh1Var.f39501c.getMeasuredHeight() + iArr[1];
+            kVar = ((org.telegram.ui.ActionBar.m2) kh1Var).actionBar;
+            if (measuredHeight < kVar.getBottom()) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (kh1Var.f39501c.getTag() == null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (z10 != z11) {
+                TextView textView2 = kh1Var.f39501c;
+                if (z10) {
+                    num = null;
+                } else {
+                    num = 1;
+                }
+                textView2.setTag(num);
+                AnimatorSet animatorSet = kh1Var.K;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                    kh1Var.K = null;
+                }
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                kh1Var.K = animatorSet2;
+                ci.r6 r6Var = kh1Var.f39517y;
+                float f10 = 0.0f;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                float[] fArr = {f7};
+                Property property = View.ALPHA;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(r6Var, property, fArr);
+                kVar2 = ((org.telegram.ui.ActionBar.m2) kh1Var).actionBar;
+                org.telegram.ui.ActionBar.h5 titleTextView = kVar2.getTitleTextView();
+                if (z10) {
+                    f10 = 1.0f;
+                }
+                animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(titleTextView, property, f10));
+                kh1Var.K.setDuration(150L);
+                kh1Var.K.addListener(new gp0(this, 26));
+                kh1Var.K.start();
+            }
         }
     }
 
     @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        this.f39096b = view;
+    public final void requestChildFocus(View view, View view2) {
+        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f39215c) {
+            scrollToDescendant(view2);
+        }
+        super.requestChildFocus(view, view2);
     }
 
     @Override
-    public final void setPadding(int i10, int i11, int i12, int i13) {
-        super.setPadding(i10, i11, i12, i13);
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            getChildAt(i14).setPadding(i10, i11, i12, i13);
+    public final void requestLayout() {
+        this.f39215c = true;
+        super.requestLayout();
+    }
+
+    @Override
+    public final void scrollToDescendant(View view) {
+        Rect rect = this.f39214b;
+        view.getDrawingRect(rect);
+        offsetDescendantRectToMyCoords(view, rect);
+        rect.bottom = AndroidUtilities.dp(120.0f) + rect.bottom;
+        int computeScrollDeltaToGetChildRectOnScreen = computeScrollDeltaToGetChildRectOnScreen(rect);
+        if (computeScrollDeltaToGetChildRectOnScreen < 0) {
+            computeScrollDeltaToGetChildRectOnScreen -= (getMeasuredHeight() - view.getMeasuredHeight()) / 2;
+        }
+        if (computeScrollDeltaToGetChildRectOnScreen != 0) {
+            smoothScrollBy(0, computeScrollDeltaToGetChildRectOnScreen);
         }
     }
 }

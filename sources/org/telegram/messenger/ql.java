@@ -1,28 +1,26 @@
 package org.telegram.messenger;
-public final class ql implements Runnable {
-    public final int f19031a;
-    public final UnconfirmedAuthController f19032b;
 
-    public ql(UnconfirmedAuthController unconfirmedAuthController, int i10) {
-        this.f19031a = i10;
-        this.f19032b = unconfirmedAuthController;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ql implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final TranslateController f18728a;
+    public final TL_stories.StoryItem f18729b;
+    public final TranslateController.StoryKey f18730c;
+
+    public ql(TranslateController translateController, TL_stories.StoryItem storyItem, TranslateController.StoryKey storyKey) {
+        this.f18728a = translateController;
+        this.f18729b = storyItem;
+        this.f18730c = storyKey;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19031a) {
-            case 0:
-                UnconfirmedAuthController.h(this.f19032b);
-                return;
-            case 1:
-                UnconfirmedAuthController.a(this.f19032b);
-                return;
-            case 2:
-                UnconfirmedAuthController.d(this.f19032b);
-                return;
-            default:
-                UnconfirmedAuthController.f(this.f19032b);
-                return;
-        }
+    public void run(Exception exc) {
+        this.f18728a.lambda$detectStoryLanguage$34(this.f18729b, this.f18730c, exc);
+    }
+
+    @Override
+    public void run(String str) {
+        this.f18728a.lambda$detectStoryLanguage$32(this.f18729b, this.f18730c, str);
     }
 }

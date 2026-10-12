@@ -1,33 +1,31 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-public final class vv0 extends org.telegram.ui.Cells.d6 {
-    public final xv0 F;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class vv0 extends AnimatorListenerAdapter {
+    public final int f42861a;
+    public final cw0 f42862b;
 
-    public vv0(xv0 xv0Var, Context context, int i10) {
-        super(context, i10, null, null);
-        this.F = xv0Var;
+    public vv0(cw0 cw0Var, int i10) {
+        this.f42861a = i10;
+        this.f42862b = cw0Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
-        if (c6Var.isFocused() && c6Var.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                zn.n8(menu, this.F.d.f45131f.h, false, true, true, true);
-            }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f42861a) {
+            case 0:
+                this.f42862b.R.setTranslationY(0.0f);
+                return;
+            case 1:
+                this.f42862b.R.setTranslationY(0.0f);
+                return;
+            default:
+                cw0 cw0Var = this.f42862b;
+                cw0Var.getClass();
+                cw0Var.R.setTranslationY(0.0f);
+                cw0Var.l0();
+                return;
         }
-    }
-
-    @Override
-    public final void i(boolean z10) {
-        zv0.d0(this.F.d, this, z10);
-    }
-
-    @Override
-    public final void j(org.telegram.ui.Cells.d6 d6Var) {
-        zv0.e0(this.F.d, d6Var);
     }
 }

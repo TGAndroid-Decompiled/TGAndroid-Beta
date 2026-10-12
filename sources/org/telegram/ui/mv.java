@@ -1,56 +1,42 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mv implements Runnable {
-    public final int f40115a;
-    public final Context f40116b;
+import java.util.ArrayList;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
+public final class mv implements py, et {
+    public final pv f40138a;
 
-    public mv(Context context, int i10) {
-        this.f40115a = i10;
-        this.f40116b = context;
+    public mv(pv pvVar) {
+        this.f40138a = pvVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40115a) {
-            case 0:
-                org.telegram.ui.ActionBar.h6.J(this.f40116b, false);
-                return;
-            case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f40116b);
-                if (findActivity == null) {
-                    findActivity = LaunchActivity.G1;
-                }
-                if (findActivity != null && !findActivity.isFinishing()) {
-                    findActivity.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                of.f.s(this.f40116b, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                of.f.s(this.f40116b, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                of.f.s(this.f40116b, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                of.f.s(this.f40116b, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                of.f.s(this.f40116b, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                of.f.s(this.f40116b, "https://promote.telegram.org/guidelines");
-                return;
-            default:
-                of.f.s(this.f40116b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
-                return;
+    public boolean B() {
+        return false;
+    }
+
+    @Override
+    public boolean K(vy vyVar) {
+        return false;
+    }
+
+    @Override
+    public void b(TLRPC.User user) {
+        this.f40138a.l0(user);
+    }
+
+    @Override
+    public boolean w(vy vyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, hg1 hg1Var) {
+        if (!arrayList.isEmpty()) {
+            long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            if (DialogObject.isUserDialog(j3)) {
+                pv pvVar = this.f40138a;
+                pvVar.l0(pvVar.getMessagesController().getUser(Long.valueOf(j3)));
+                return true;
+            }
+            return true;
         }
+        return true;
     }
 }

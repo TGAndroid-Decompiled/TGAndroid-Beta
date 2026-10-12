@@ -2,36 +2,18 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ag extends AnimatorListenerAdapter {
-    public final int f24594a;
-    public final ChatActivityEnterView f24595b;
+    public final ChatActivityEnterView f24304a;
 
-    public ag(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f24595b = chatActivityEnterView;
-        this.f24594a = i10;
+    public ag(ChatActivityEnterView chatActivityEnterView) {
+        this.f24304a = chatActivityEnterView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f24595b;
-        if (animator.equals(chatActivityEnterView.f23992t2)) {
-            int i10 = this.f24594a;
-            if (i10 != 3 && chatActivityEnterView.E0 != null && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                chatActivityEnterView.E0.requestFocus();
-            }
-            chatActivityEnterView.y();
-            if (i10 != 3) {
-                ug ugVar = chatActivityEnterView.O1;
-                if (ugVar != null) {
-                    ugVar.setVisibility(8);
-                }
-                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.N1;
-                if (recordCircle != null) {
-                    recordCircle.d();
-                }
-            }
-        }
+        ChatActivityEnterView chatActivityEnterView = this.f24304a;
+        chatActivityEnterView.f23663h1.setAllowDraw(true);
+        chatActivityEnterView.N1.setTransformToSeekbar(1.0f);
+        chatActivityEnterView.z0();
     }
 }

@@ -1,196 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class xh1 extends org.telegram.ui.Components.zl0 {
-    public final Context f44108c;
-    public final gg.b2 f44110f;
-    public Runnable h;
-    public boolean f44111n;
-    public final int f44113s;
-    public final UsersSelectActivity v;
-    public ArrayList d = new ArrayList();
-    public ArrayList f44109e = new ArrayList();
-    public final ArrayList f44112r = new ArrayList();
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class xh1 implements TextWatcher {
+    public final UsersSelectActivity f43976a;
 
-    public xh1(UsersSelectActivity usersSelectActivity, Context context) {
-        boolean z10;
-        boolean z11;
-        this.v = usersSelectActivity;
-        this.f44108c = context;
-        if (usersSelectActivity.F) {
-            this.f44113s = 0;
-        } else {
-            int i10 = usersSelectActivity.f34663x;
-            if (i10 == 2) {
-                this.f44113s = (!usersSelectActivity.H ? 1 : 0) + 5;
-            } else if (i10 == 0) {
-                if (usersSelectActivity.I) {
-                    this.f44113s = 7;
-                } else {
-                    this.f44113s = 5;
+    public xh1(UsersSelectActivity usersSelectActivity) {
+        this.f43976a = usersSelectActivity;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        UsersSelectActivity usersSelectActivity = this.f43976a;
+        if (usersSelectActivity.f34431c.length() != 0) {
+            ai1 ai1Var = usersSelectActivity.h;
+            boolean z10 = ai1Var.f35846n;
+            if (!z10) {
+                usersSelectActivity.M = true;
+                usersSelectActivity.L = true;
+                if (!z10) {
+                    ai1Var.f35846n = true;
+                    ai1Var.l();
                 }
-            } else {
-                this.f44113s = 0;
+                usersSelectActivity.d.setFastScrollVisible(false);
+                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
+                usersSelectActivity.f34433f.d.setText(LocaleController.getString(R.string.NoResult));
             }
-        }
-        int i11 = usersSelectActivity.f34663x;
-        if (i11 != 2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i11 != 2) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        ArrayList<TLRPC.Dialog> allDialogs = usersSelectActivity.getMessagesController().getAllDialogs();
-        int size = allDialogs.size();
-        int i12 = 0;
-        boolean z12 = false;
-        while (i12 < size) {
-            TLRPC.Dialog dialog = allDialogs.get(i12);
-            if (!DialogObject.isEncryptedDialog(dialog.f20072id)) {
-                if (DialogObject.isUserDialog(dialog.f20072id)) {
-                    TLRPC.User user = usersSelectActivity.getMessagesController().getUser(Long.valueOf(dialog.f20072id));
-                    if (user != null && ((usersSelectActivity.G || !UserObject.isUserSelf(user)) && (!user.bot || z10))) {
-                        this.f44112r.add(user);
-                        if (UserObject.isUserSelf(user)) {
-                            z12 = true;
-                        }
-                    }
-                } else {
-                    TLRPC.Chat chat = usersSelectActivity.getMessagesController().getChat(Long.valueOf(-dialog.f20072id));
-                    if (z11 && chat != null) {
-                        this.f44112r.add(chat);
-                    }
-                }
-            }
-            i12++;
-            z12 = z12;
-        }
-        if (!z12 && usersSelectActivity.G) {
-            this.f44112r.add(0, usersSelectActivity.getMessagesController().getUser(Long.valueOf(usersSelectActivity.getUserConfig().clientUserId)));
-        }
-        gg.b2 b2Var = new gg.b2(false);
-        this.f44110f = b2Var;
-        b2Var.f10544p = false;
-        b2Var.f10531a = new gq0(this, 24);
-    }
-
-    @Override
-    public final void A(s4.d1 d1Var) {
-        View view = d1Var.f47782a;
-        if (view instanceof org.telegram.ui.Cells.g4) {
-            ((org.telegram.ui.Cells.g4) view).f22150a.getImageReceiver().cancelLoadImage();
-        }
-    }
-
-    @Override
-    public final boolean D(s4.d1 d1Var) {
-        if (d1Var.f47786f == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final String F(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void G(org.telegram.ui.Components.rm0 rm0Var, float f7, int[] iArr) {
-        iArr[0] = (int) (h() * f7);
-        iArr[1] = 0;
-    }
-
-    public final void L(String str) {
-        boolean z10;
-        boolean z11;
-        if (this.h != null) {
-            Utilities.searchQueue.cancelRunnable(this.h);
-            this.h = null;
-        }
-        int i10 = this.v.f34663x;
-        if (i10 != 2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i10 != 2) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (str == null) {
-            this.d.clear();
-            this.f44109e.clear();
-            this.f44110f.f(null, null);
-            this.f44110f.g(null, true, false, false, false, 0L, false, 0, 0);
-            l();
+            usersSelectActivity.f34433f.e(true, true);
+            usersSelectActivity.h.L(usersSelectActivity.f34431c.getText().toString());
             return;
         }
-        DispatchQueue dispatchQueue = Utilities.searchQueue;
-        wh1 wh1Var = new wh1(this, str, z11, z10, 0);
-        this.h = wh1Var;
-        dispatchQueue.postRunnable(wh1Var, 300L);
+        usersSelectActivity.M = false;
+        usersSelectActivity.L = false;
+        ai1 ai1Var2 = usersSelectActivity.h;
+        if (ai1Var2.f35846n) {
+            ai1Var2.f35846n = false;
+            ai1Var2.l();
+        }
+        usersSelectActivity.h.L(null);
+        usersSelectActivity.d.setFastScrollVisible(true);
+        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
+        usersSelectActivity.f34433f.d.setText(LocaleController.getString(R.string.NoContacts));
     }
 
     @Override
-    public final int h() {
-        if (this.f44111n) {
-            int size = this.d.size();
-            gg.b2 b2Var = this.f44110f;
-            return b2Var.f10534e.size() + b2Var.d.size() + size;
-        }
-        UsersSelectActivity usersSelectActivity = this.v;
-        int i10 = 0;
-        if (!usersSelectActivity.F) {
-            int i11 = usersSelectActivity.f34663x;
-            if (i11 == 2) {
-                i10 = (!usersSelectActivity.H ? 1 : 0) + 3;
-            } else if (i11 == 0) {
-                i10 = usersSelectActivity.I ? 7 : 5;
-            }
-        }
-        return this.f44112r.size() + i10;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final int j(int i10) {
-        int i11;
-        if (!this.f44111n) {
-            UsersSelectActivity usersSelectActivity = this.v;
-            if (!usersSelectActivity.F ? !((i11 = usersSelectActivity.f34663x) != 2 ? i11 != 0 || (!usersSelectActivity.I ? !(i10 == 0 || i10 == 4) : !(i10 == 0 || i10 == 6)) : i10 != 0 && i10 != (!usersSelectActivity.H ? 1 : 0) + 4) : i10 == 0) {
-                return 2;
-            }
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.d1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xh1.v(s4.d1, int):void");
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View g4Var;
-        Context context = this.f44108c;
-        if (i10 != 1) {
-            g4Var = new org.telegram.ui.Cells.v3(context, null);
-        } else {
-            g4Var = new org.telegram.ui.Cells.g4(1, 0, context, true);
-        }
-        return new s4.d1(g4Var);
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

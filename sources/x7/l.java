@@ -2,23 +2,23 @@ package x7;
 
 import java.io.Serializable;
 public final class l extends d implements Serializable {
-    public final Object f50961b;
-    public final e9.l f50962c;
+    public final Object f51068b;
+    public final e9.l f51069c;
 
     public l(Object obj, e9.l lVar) {
         super(0, false);
-        this.f50961b = obj;
-        this.f50962c = lVar;
+        this.f51068b = obj;
+        this.f51069c = lVar;
     }
 
     @Override
     public final Object getKey() {
-        return this.f50961b;
+        return this.f51068b;
     }
 
     @Override
     public final Object getValue() {
-        return this.f50962c;
+        return this.f51069c;
     }
 
     @Override

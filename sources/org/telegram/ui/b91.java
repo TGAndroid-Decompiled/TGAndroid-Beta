@@ -1,37 +1,39 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-public final class b91 extends org.telegram.ui.Components.p61 {
-    public static final int f36344a = 0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class b91 implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
+    public final k91 f36115a;
 
-    static {
-        org.telegram.ui.Components.p61.setup(new org.telegram.ui.Components.p61());
+    public b91(k91 k91Var) {
+        this.f36115a = k91Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.q61 q61Var, boolean z10, org.telegram.ui.Components.d71 d71Var, org.telegram.ui.Components.l71 l71Var) {
-        ((c91) view).set(q61Var.f30180z);
+    public r0.k1 M0(View view, r0.k1 k1Var) {
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+        int i10 = defaultWindowInsets.d;
+        k91 k91Var = this.f36115a;
+        k91Var.S = i10;
+        k91Var.f39417c.setPadding(0, AndroidUtilities.dp(12.0f) + defaultWindowInsets.f11575b, 0, k91Var.S + k91Var.T);
+        return r0.k1.f46991b;
     }
 
     @Override
-    public final boolean contentsEquals(org.telegram.ui.Components.q61 q61Var, org.telegram.ui.Components.q61 q61Var2) {
-        if (q61Var.f30180z == q61Var2.f30180z) {
-            return true;
-        }
-        return false;
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(k91.U(this.f36115a, (org.telegram.ui.Components.u61) obj, (View) obj2));
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.rm0 rm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new c91(context, d6Var);
-    }
-
-    @Override
-    public final boolean equals(org.telegram.ui.Components.q61 q61Var, org.telegram.ui.Components.q61 q61Var2) {
-        if (q61Var.d == q61Var2.d) {
-            return true;
-        }
-        return false;
+    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        k91.f0(this.f36115a, (org.telegram.ui.Components.u61) obj);
     }
 }

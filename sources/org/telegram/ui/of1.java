@@ -1,217 +1,211 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.Build;
 import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.TopicsController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class of1 extends org.telegram.ui.ActionBar.j {
-    public final Context f40568a;
-    public final eg1 f40569b;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class of1 extends org.telegram.ui.Components.yw0 {
+    public boolean f40704w0;
+    public final Paint f40705x0;
+    public final hg1 f40706y0;
 
-    public of1(eg1 eg1Var, Context context) {
-        this.f40569b = eg1Var;
-        this.f40568a = context;
+    public of1(hg1 hg1Var, Context context) {
+        super(context, null);
+        this.f40706y0 = hg1Var;
+        setWillNotDraw(false);
+        this.f40705x0 = new Paint();
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        TLRPC.ChatParticipants chatParticipants;
-        boolean z10;
-        int i12;
-        boolean z11;
-        bg1 bg1Var;
-        TLRPC.TL_forumTopic tL_forumTopic;
-        eg1 eg1Var = this.f40569b;
-        TopicsController topicsController = eg1Var.f37381s;
-        ArrayList arrayList = eg1Var.f37348b;
-        HashSet hashSet = eg1Var.f37346a0;
-        long j3 = eg1Var.f37345a;
-        if (i10 == -1) {
-            if (hashSet.size() > 0) {
-                eg1Var.C0();
-                return;
-            } else {
-                eg1Var.finishFragment();
+    public final void J(Canvas canvas, float f7, Rect rect, Paint paint, boolean z10) {
+        if (Build.VERSION.SDK_INT >= 29 && SharedConfig.chatBlurEnabled()) {
+            hg1 hg1Var = this.f40706y0;
+            if (hg1Var.f38394g1 != null) {
+                canvas.save();
+                canvas.translate(0.0f, -f7);
+                hg1Var.f38394g1.v(canvas, rect.left, rect.top + f7, rect.right, rect.bottom + f7);
+                canvas.restore();
+                int alpha = paint.getAlpha();
+                paint.setAlpha(178);
+                canvas.drawRect(rect, paint);
+                paint.setAlpha(alpha);
                 return;
             }
         }
-        TLRPC.TL_forumTopic tL_forumTopic2 = null;
-        int i13 = 0;
-        switch (i10) {
-            case 1:
-                eg1Var.getMessagesController().getTopicsController().toggleViewForumAsMessages(j3, true);
-                eg1Var.I = true;
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", j3);
-                zn znVar = new zn(bundle);
-                znVar.f44856ja = true;
-                eg1Var.presentFragment(znVar);
-                return;
-            case 2:
-                TLRPC.ChatFull chatFull = eg1Var.getMessagesController().getChatFull(j3);
-                TLRPC.ChatFull chatFull2 = eg1Var.J;
-                if (chatFull2 != null && (chatParticipants = chatFull2.participants) != null) {
-                    chatFull.participants = chatParticipants;
-                }
-                if (chatFull != null) {
-                    a0.i iVar = new a0.i();
-                    if (chatFull.participants != null) {
-                        while (i13 < chatFull.participants.participants.size()) {
-                            iVar.k(null, chatFull.participants.participants.get(i13).user_id);
-                            i13++;
-                        }
+        canvas.drawRect(rect, paint);
+    }
+
+    @Override
+    public final void L(Canvas canvas, ArrayList arrayList) {
+        int i10 = 0;
+        while (true) {
+            hg1 hg1Var = this.f40706y0;
+            if (i10 < hg1Var.N.getChildCount()) {
+                View childAt = hg1Var.N.getChildAt(i10);
+                if (childAt.getY() < AndroidUtilities.dp(100.0f) && childAt.getVisibility() == 0) {
+                    int save = canvas.save();
+                    canvas.translate(childAt.getX() + hg1Var.N.getX(), childAt.getY() + hg1Var.N.getY() + getY());
+                    if (arrayList != null && (childAt instanceof org.telegram.ui.Components.vw0)) {
+                        arrayList.add((org.telegram.ui.Components.vw0) childAt);
                     }
-                    long j10 = chatFull.f20069id;
-                    i11 = ((org.telegram.ui.ActionBar.m2) eg1Var).currentAccount;
-                    mf1 mf1Var = new mf1(this, this.f40568a, i11, iVar, chatFull.f20069id, eg1Var, j10);
-                    mf1Var.f25666l0 = new ai.z1(this, j10, 11);
-                    mf1Var.show();
-                    return;
+                    childAt.draw(canvas);
+                    canvas.restoreToCount(save);
                 }
+                i10++;
+            } else {
                 return;
-            case 3:
-                af1 a02 = af1.a0(j3, 0L);
-                eg1Var.presentFragment(a02);
-                AndroidUtilities.runOnUIThread(new ve1(a02, 1), 200L);
-                return;
-            case 4:
-            case 5:
-                if (hashSet.size() > 0) {
-                    eg1Var.C0 = true;
-                    eg1Var.N0 = true;
-                    TopicsController topicsController2 = eg1Var.f37381s;
-                    long j11 = eg1Var.f37345a;
-                    int intValue = ((Integer) hashSet.iterator().next()).intValue();
-                    if (i10 == 4) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    topicsController2.pinTopic(j11, intValue, z10, eg1Var);
-                }
-                eg1Var.C0();
-                return;
-            case 6:
-                Iterator it = hashSet.iterator();
-                while (it.hasNext()) {
-                    eg1Var.getNotificationsController().muteDialog(-j3, ((Integer) it.next()).intValue(), eg1Var.B0);
-                }
-                eg1Var.C0();
-                return;
-            case 7:
-                eg1Var.D0(hashSet, new mz0(this, 20));
-                return;
-            case 8:
-                ArrayList arrayList2 = new ArrayList(hashSet);
-                for (int i14 = 0; i14 < arrayList2.size(); i14++) {
-                    TLRPC.TL_forumTopic findTopic = topicsController.findTopic(j3, ((Integer) arrayList2.get(i14)).intValue());
-                    if (findTopic != null) {
-                        eg1Var.getMessagesController().markMentionsAsRead(-j3, findTopic.f20120id);
-                        MessagesController messagesController = eg1Var.getMessagesController();
-                        long j12 = -j3;
-                        int i15 = findTopic.top_message;
-                        TLRPC.Message message = findTopic.topMessage;
-                        if (message != null) {
-                            i12 = message.date;
-                        } else {
-                            i12 = 0;
-                        }
-                        messagesController.markDialogAsRead(j12, i15, 0, i12, false, findTopic.f20120id, 0, true, 0);
-                        eg1Var.getMessagesStorage().updateRepliesMaxReadId(eg1Var.f37345a, findTopic.f20120id, findTopic.top_message, 0, true);
-                    }
-                }
-                eg1Var.C0();
-                return;
-            case 9:
-            case 10:
-                eg1Var.N0 = true;
-                ArrayList arrayList3 = new ArrayList(hashSet);
-                for (int i16 = 0; i16 < arrayList3.size(); i16++) {
-                    int intValue2 = ((Integer) arrayList3.get(i16)).intValue();
-                    if (i10 == 9) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    topicsController.toggleCloseTopic(j3, intValue2, z11);
-                }
-                eg1Var.C0();
-                return;
-            case 11:
-                TLRPC.Chat chat = eg1Var.getMessagesController().getChat(Long.valueOf(j3));
-                org.telegram.ui.Components.g5.r(eg1Var, false, chat, null, false, true, false, false, new js0(18, this, chat));
-                return;
-            case 12:
-            case 13:
-                int i17 = 0;
-                while (true) {
-                    if (i17 < eg1Var.N.getChildCount()) {
-                        View childAt = eg1Var.N.getChildAt(i17);
-                        if ((childAt instanceof bg1) && (tL_forumTopic = (bg1Var = (bg1) childAt).N) != null && tL_forumTopic.f20120id == 1) {
-                            tL_forumTopic2 = tL_forumTopic;
-                        } else {
-                            i17++;
-                        }
-                    } else {
-                        bg1Var = null;
-                    }
-                }
-                if (tL_forumTopic2 == null) {
-                    while (true) {
-                        if (i13 < arrayList.size()) {
-                            if (arrayList.get(i13) != null && ((vf1) arrayList.get(i13)).f43040c != null && ((vf1) arrayList.get(i13)).f43040c.f20120id == 1) {
-                                tL_forumTopic2 = ((vf1) arrayList.get(i13)).f43040c;
-                            } else {
-                                i13++;
-                            }
-                        }
-                    }
-                }
-                if (tL_forumTopic2 != null) {
-                    if (eg1Var.f37388x <= 0) {
-                        eg1Var.E = true;
-                        eg1Var.f37390y = 2;
-                    }
-                    eg1Var.getMessagesController().getTopicsController().toggleShowTopic(j3, 1, tL_forumTopic2.hidden);
-                    if (bg1Var != null) {
-                        eg1Var.f37350b1 = bg1Var;
-                    }
-                    eg1Var.N.A1(!tL_forumTopic2.hidden, bg1Var);
-                    eg1Var.U0(true, true);
-                    if (bg1Var != null) {
-                        bg1Var.setTopicIcon(bg1Var.f36410c5);
-                    }
-                }
-                eg1Var.C0();
-                return;
-            case 14:
-                if (ChatObject.hasAdminRights(eg1Var.getMessagesController().getChat(Long.valueOf(j3)))) {
-                    u5 u5Var = new u5(-j3);
-                    TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = eg1Var.X;
-                    u5Var.R = tL_premium_boostsStatus;
-                    if (tL_premium_boostsStatus != null) {
-                        u5Var.getMessagesController().getBoostsController().userCanBoostChannel(u5Var.P, u5Var.R, new l5(u5Var, 0));
-                    }
-                    eg1Var.presentFragment(u5Var);
-                    return;
-                }
-                eg1Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(-j3));
-                return;
-            case 15:
-                b41.M(-j3, eg1Var);
-                return;
-            default:
-                return;
+            }
         }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        int measuredWidth;
+        int measuredHeight;
+        hg1 hg1Var = this.f40706y0;
+        fh.d dVar = hg1Var.f38396h1;
+        fh.d dVar2 = hg1Var.f38394g1;
+        ah.h hVar = hg1Var.f38392f1;
+        if (Build.VERSION.SDK_INT >= 31 && hVar != null) {
+            hg1Var.x0();
+            vy vyVar = hg1Var.M0;
+            if (vyVar != null) {
+                measuredWidth = vyVar.fragmentView.getMeasuredWidth();
+            } else {
+                measuredWidth = getMeasuredWidth();
+            }
+            vy vyVar2 = hg1Var.M0;
+            if (vyVar2 != null) {
+                measuredHeight = vyVar2.fragmentView.getMeasuredHeight();
+            } else {
+                measuredHeight = getMeasuredHeight();
+            }
+            if (dVar2 != null && !dVar2.f9937n && dVar2.f(measuredWidth, measuredHeight)) {
+                hVar.b(dVar2.a(measuredWidth, measuredHeight), -3);
+                dVar2.c();
+            }
+            if (dVar != null && !dVar.f9937n && dVar.f(measuredWidth, measuredHeight)) {
+                hVar.b(dVar.a(measuredWidth, measuredHeight), -2);
+                dVar.c();
+            }
+        }
+        super.dispatchDraw(canvas);
+        if (hg1Var.isInPreviewMode()) {
+            int themedColor = hg1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6);
+            Paint paint = this.f40705x0;
+            paint.setColor(themedColor);
+            paint.setAlpha((int) (hg1Var.W * 255.0f));
+            canvas2 = canvas;
+            canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.statusBarHeight, paint);
+            canvas2.drawLine(0.0f, 0.0f, 0.0f, getHeight(), org.telegram.ui.ActionBar.h6.f20681k0);
+        } else {
+            canvas2 = canvas;
+        }
+        if (hg1Var.M0 == null) {
+            AndroidUtilities.drawNavigationBarProtection(canvas2, this, hg1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6), hg1Var.f38389e1);
+        }
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        org.telegram.ui.ActionBar.k kVar3;
+        float f7;
+        hg1 hg1Var = this.f40706y0;
+        kVar = ((org.telegram.ui.ActionBar.m2) hg1Var).actionBar;
+        if (view == kVar && !hg1Var.isInPreviewMode()) {
+            kVar2 = ((org.telegram.ui.ActionBar.m2) hg1Var).actionBar;
+            float y3 = kVar2.getY();
+            kVar3 = ((org.telegram.ui.ActionBar.m2) hg1Var).actionBar;
+            float height = kVar3.getHeight();
+            org.telegram.ui.Components.t91 t91Var = hg1Var.f38378a1;
+            if (t91Var != null && t91Var.getVisibility() != 8) {
+                f7 = hg1Var.f38378a1.getMeasuredHeight();
+            } else {
+                f7 = 0.0f;
+            }
+            int i10 = (int) (y3 + ((int) ((f7 * hg1Var.W) + height)));
+            ((ActionBarLayout) hg1Var.getParentLayout()).p(canvas, (int) ((1.0f - hg1Var.W) * 255.0f), i10);
+            float f10 = hg1Var.W;
+            if (f10 > 0.0f) {
+                if (f10 < 1.0f) {
+                    int alpha = org.telegram.ui.ActionBar.h6.f20681k0.getAlpha();
+                    org.telegram.ui.ActionBar.h6.f20681k0.setAlpha((int) (alpha * hg1Var.W));
+                    float f11 = i10;
+                    canvas.drawLine(0.0f, f11, getMeasuredWidth(), f11, org.telegram.ui.ActionBar.h6.f20681k0);
+                    org.telegram.ui.ActionBar.h6.f20681k0.setAlpha(alpha);
+                } else {
+                    float f12 = i10;
+                    canvas.drawLine(0.0f, f12, getMeasuredWidth(), f12, org.telegram.ui.ActionBar.h6.f20681k0);
+                }
+            }
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.of1.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        hg1 hg1Var = this.f40706y0;
+        z51 z51Var = hg1Var.f38407o0;
+        if (z51Var != null) {
+            this.f40704w0 = true;
+            ViewGroup.LayoutParams layoutParams = z51Var.getLayoutParams();
+            int dp = AndroidUtilities.dp(51.0f);
+            int i13 = hg1Var.f38389e1;
+            layoutParams.height = dp + i13;
+            hg1Var.f38407o0.setPadding(0, 0, 0, i13);
+            this.f40704w0 = false;
+        }
+        int i14 = 0;
+        for (int i15 = 0; i15 < getChildCount(); i15++) {
+            View childAt = getChildAt(i15);
+            if (childAt instanceof org.telegram.ui.ActionBar.k) {
+                childAt.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
+                i14 = childAt.getMeasuredHeight();
+            }
+        }
+        int i16 = 0;
+        while (i16 < getChildCount()) {
+            View childAt2 = getChildAt(i16);
+            if (!(childAt2 instanceof org.telegram.ui.ActionBar.k)) {
+                if (childAt2.getFitsSystemWindows()) {
+                    measureChildWithMargins(childAt2, i10, 0, i11, 0);
+                } else {
+                    i12 = i14;
+                    measureChildWithMargins(childAt2, i10, 0, i11, i12);
+                    i16++;
+                    i14 = i12;
+                }
+            }
+            i12 = i14;
+            i16++;
+            i14 = i12;
+        }
+        setMeasuredDimension(size, size2);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f40704w0) {
+            return;
+        }
+        super.requestLayout();
     }
 }

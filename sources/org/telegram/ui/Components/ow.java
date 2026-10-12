@@ -1,11 +1,21 @@
 package org.telegram.ui.Components;
-public final class ow extends rg.c1 {
+
+import android.content.Context;
+public final class ow extends y9 {
+    public final rw G;
+
+    public ow(rw rwVar, Context context) {
+        super(context);
+        this.G = rwVar;
+    }
+
     @Override
     public final void invalidate() {
         if (zg.d0.b(this)) {
             return;
         }
         super.invalidate();
+        this.G.f();
     }
 
     @Override

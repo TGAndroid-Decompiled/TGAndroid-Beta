@@ -1,68 +1,217 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-public final class rf1 extends s4.j {
-    public Runnable F;
-    public int G;
-    public final eg1 H;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.TopicsController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class rf1 extends org.telegram.ui.ActionBar.j {
+    public final Context f41629a;
+    public final hg1 f41630b;
 
-    public rf1(eg1 eg1Var) {
-        this.H = eg1Var;
+    public rf1(hg1 hg1Var, Context context) {
+        this.f41630b = hg1Var;
+        this.f41629a = context;
     }
 
     @Override
-    public final void F() {
-        if (this.G == -1) {
-            this.G = this.H.getNotificationCenter().setAnimationInProgress(this.G, null, false);
-            Runnable runnable = this.F;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.F = null;
+    public final void b(int i10) {
+        int i11;
+        TLRPC.ChatParticipants chatParticipants;
+        boolean z10;
+        int i12;
+        boolean z11;
+        eg1 eg1Var;
+        TLRPC.TL_forumTopic tL_forumTopic;
+        hg1 hg1Var = this.f41630b;
+        TopicsController topicsController = hg1Var.f38412s;
+        ArrayList arrayList = hg1Var.f38379b;
+        HashSet hashSet = hg1Var.f38377a0;
+        long j3 = hg1Var.f38376a;
+        if (i10 == -1) {
+            if (hashSet.size() > 0) {
+                hg1Var.C0();
+                return;
+            } else {
+                hg1Var.finishFragment();
+                return;
             }
         }
-    }
-
-    @Override
-    public final void N() {
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.F = null;
-        }
-        qf1 qf1Var = new qf1(this, 0);
-        this.F = qf1Var;
-        AndroidUtilities.runOnUIThread(qf1Var);
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        qf1 qf1Var = new qf1(this, 1);
-        this.F = qf1Var;
-        AndroidUtilities.runOnUIThread(qf1Var);
-    }
-
-    @Override
-    public final void z(s4.d1 d1Var) {
-        eg1 eg1Var = this.H;
-        View view = eg1Var.f37350b1;
-        if (view == d1Var.f47782a) {
-            view.setTranslationX(0.0f);
-            if1 if1Var = eg1Var.O;
-            if (if1Var != null) {
-                if1Var.F.clear();
-            }
-            View view2 = eg1Var.f37350b1;
-            if (view2 instanceof bg1) {
-                bg1 bg1Var = (bg1) view2;
-                bg1Var.setTopicIcon(bg1Var.f36410c5);
-            }
-            eg1Var.f37350b1 = null;
+        TLRPC.TL_forumTopic tL_forumTopic2 = null;
+        int i13 = 0;
+        switch (i10) {
+            case 1:
+                hg1Var.getMessagesController().getTopicsController().toggleViewForumAsMessages(j3, true);
+                hg1Var.I = true;
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", j3);
+                eo eoVar = new eo(bundle);
+                eoVar.f37311ja = true;
+                hg1Var.presentFragment(eoVar);
+                return;
+            case 2:
+                TLRPC.ChatFull chatFull = hg1Var.getMessagesController().getChatFull(j3);
+                TLRPC.ChatFull chatFull2 = hg1Var.J;
+                if (chatFull2 != null && (chatParticipants = chatFull2.participants) != null) {
+                    chatFull.participants = chatParticipants;
+                }
+                if (chatFull != null) {
+                    a0.i iVar = new a0.i();
+                    if (chatFull.participants != null) {
+                        while (i13 < chatFull.participants.participants.size()) {
+                            iVar.k(null, chatFull.participants.participants.get(i13).user_id);
+                            i13++;
+                        }
+                    }
+                    long j10 = chatFull.f19803id;
+                    i11 = ((org.telegram.ui.ActionBar.m2) hg1Var).currentAccount;
+                    pf1 pf1Var = new pf1(this, this.f41629a, i11, iVar, chatFull.f19803id, hg1Var, j10);
+                    pf1Var.f26334l0 = new ai.z1(this, j10, 11);
+                    pf1Var.show();
+                    return;
+                }
+                return;
+            case 3:
+                df1 a02 = df1.a0(j3, 0L);
+                hg1Var.presentFragment(a02);
+                AndroidUtilities.runOnUIThread(new ye1(a02, 1), 200L);
+                return;
+            case 4:
+            case 5:
+                if (hashSet.size() > 0) {
+                    hg1Var.C0 = true;
+                    hg1Var.N0 = true;
+                    TopicsController topicsController2 = hg1Var.f38412s;
+                    long j11 = hg1Var.f38376a;
+                    int intValue = ((Integer) hashSet.iterator().next()).intValue();
+                    if (i10 == 4) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    topicsController2.pinTopic(j11, intValue, z10, hg1Var);
+                }
+                hg1Var.C0();
+                return;
+            case 6:
+                Iterator it = hashSet.iterator();
+                while (it.hasNext()) {
+                    hg1Var.getNotificationsController().muteDialog(-j3, ((Integer) it.next()).intValue(), hg1Var.B0);
+                }
+                hg1Var.C0();
+                return;
+            case 7:
+                hg1Var.D0(hashSet, new pz0(this, 20));
+                return;
+            case 8:
+                ArrayList arrayList2 = new ArrayList(hashSet);
+                for (int i14 = 0; i14 < arrayList2.size(); i14++) {
+                    TLRPC.TL_forumTopic findTopic = topicsController.findTopic(j3, ((Integer) arrayList2.get(i14)).intValue());
+                    if (findTopic != null) {
+                        hg1Var.getMessagesController().markMentionsAsRead(-j3, findTopic.f19854id);
+                        MessagesController messagesController = hg1Var.getMessagesController();
+                        long j12 = -j3;
+                        int i15 = findTopic.top_message;
+                        TLRPC.Message message = findTopic.topMessage;
+                        if (message != null) {
+                            i12 = message.date;
+                        } else {
+                            i12 = 0;
+                        }
+                        messagesController.markDialogAsRead(j12, i15, 0, i12, false, findTopic.f19854id, 0, true, 0);
+                        hg1Var.getMessagesStorage().updateRepliesMaxReadId(hg1Var.f38376a, findTopic.f19854id, findTopic.top_message, 0, true);
+                    }
+                }
+                hg1Var.C0();
+                return;
+            case 9:
+            case 10:
+                hg1Var.N0 = true;
+                ArrayList arrayList3 = new ArrayList(hashSet);
+                for (int i16 = 0; i16 < arrayList3.size(); i16++) {
+                    int intValue2 = ((Integer) arrayList3.get(i16)).intValue();
+                    if (i10 == 9) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    topicsController.toggleCloseTopic(j3, intValue2, z11);
+                }
+                hg1Var.C0();
+                return;
+            case 11:
+                TLRPC.Chat chat = hg1Var.getMessagesController().getChat(Long.valueOf(j3));
+                org.telegram.ui.Components.g5.r(hg1Var, false, chat, null, false, true, false, false, new ns0(17, this, chat));
+                return;
+            case 12:
+            case 13:
+                int i17 = 0;
+                while (true) {
+                    if (i17 < hg1Var.N.getChildCount()) {
+                        View childAt = hg1Var.N.getChildAt(i17);
+                        if ((childAt instanceof eg1) && (tL_forumTopic = (eg1Var = (eg1) childAt).N) != null && tL_forumTopic.f19854id == 1) {
+                            tL_forumTopic2 = tL_forumTopic;
+                        } else {
+                            i17++;
+                        }
+                    } else {
+                        eg1Var = null;
+                    }
+                }
+                if (tL_forumTopic2 == null) {
+                    while (true) {
+                        if (i13 < arrayList.size()) {
+                            if (arrayList.get(i13) != null && ((yf1) arrayList.get(i13)).f44469c != null && ((yf1) arrayList.get(i13)).f44469c.f19854id == 1) {
+                                tL_forumTopic2 = ((yf1) arrayList.get(i13)).f44469c;
+                            } else {
+                                i13++;
+                            }
+                        }
+                    }
+                }
+                if (tL_forumTopic2 != null) {
+                    if (hg1Var.f38419x <= 0) {
+                        hg1Var.E = true;
+                        hg1Var.f38421y = 2;
+                    }
+                    hg1Var.getMessagesController().getTopicsController().toggleShowTopic(j3, 1, tL_forumTopic2.hidden);
+                    if (eg1Var != null) {
+                        hg1Var.f38381b1 = eg1Var;
+                    }
+                    hg1Var.N.A1(!tL_forumTopic2.hidden, eg1Var);
+                    hg1Var.U0(true, true);
+                    if (eg1Var != null) {
+                        eg1Var.setTopicIcon(eg1Var.f37092c5);
+                    }
+                }
+                hg1Var.C0();
+                return;
+            case 14:
+                if (ChatObject.hasAdminRights(hg1Var.getMessagesController().getChat(Long.valueOf(j3)))) {
+                    y5 y5Var = new y5(-j3);
+                    TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = hg1Var.X;
+                    y5Var.R = tL_premium_boostsStatus;
+                    if (tL_premium_boostsStatus != null) {
+                        y5Var.getMessagesController().getBoostsController().userCanBoostChannel(y5Var.P, y5Var.R, new p5(y5Var, 0));
+                    }
+                    hg1Var.presentFragment(y5Var);
+                    return;
+                }
+                hg1Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(-j3));
+                return;
+            case 15:
+                e41.M(-j3, hg1Var);
+                return;
+            default:
+                return;
         }
     }
 }

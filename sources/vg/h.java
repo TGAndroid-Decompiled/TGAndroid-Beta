@@ -7,15 +7,15 @@ import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
-import w7.x5;
+import w7.w5;
 public final class h extends FrameLayout {
-    public final h5 f49717a;
-    public long f49718b;
+    public final h5 f49824a;
+    public long f49825b;
 
-    public h(Context context, d6 d6Var) {
+    public h(Context context, c6 c6Var) {
         super(context);
         int i10;
         int i11;
@@ -26,7 +26,7 @@ public final class h extends FrameLayout {
         float f12;
         h5 h5Var = new h5(context);
         h5Var.setTextSize(16);
-        h5Var.setTextColor(h6.w0(h6.f20930j5, d6Var));
+        h5Var.setTextColor(h6.w0(h6.f20667j5, c6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
@@ -35,9 +35,9 @@ public final class h extends FrameLayout {
         h5Var.setGravity(i10);
         addView(h5Var);
         h5 h5Var2 = new h5(context);
-        this.f49717a = h5Var2;
+        this.f49824a = h5Var2;
         h5Var2.setTextSize(16);
-        h5Var2.setTextColor(h6.w0(h6.L6, d6Var));
+        h5Var2.setTextColor(h6.w0(h6.L6, c6Var));
         if (LocaleController.isRTL) {
             i11 = 3;
         } else {
@@ -63,7 +63,7 @@ public final class h extends FrameLayout {
         } else {
             f10 = 0.0f;
         }
-        h5Var.setLayoutParams(x5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i13));
+        h5Var.setLayoutParams(w5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i13));
         boolean z11 = LocaleController.isRTL;
         int i14 = (z11 ? 3 : 5) | 16;
         if (z11) {
@@ -76,12 +76,12 @@ public final class h extends FrameLayout {
         } else {
             f12 = 21.0f;
         }
-        h5Var2.setLayoutParams(x5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
-        setBackgroundColor(h6.w0(h6.f20893h5, d6Var));
+        h5Var2.setLayoutParams(w5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
+        setBackgroundColor(h6.w0(h6.f20630h5, c6Var));
     }
 
     public long getSelectedTime() {
-        return this.f49718b;
+        return this.f49825b;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j3) {
-        this.f49718b = j3;
+        this.f49825b = j3;
         Date date = new Date(j3);
-        this.f49717a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
+        this.f49824a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
     }
 }

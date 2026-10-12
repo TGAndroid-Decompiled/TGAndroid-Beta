@@ -2,84 +2,42 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.graphics.Paint;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.camera.CameraView;
-public final class um extends CameraView {
-    public final ai.x4 f31638a;
-    public boolean f31639b;
-    public final ChatAttachAlertPhotoLayout f31640c;
+public final class um extends TextView {
+    public float f31202a;
+    public boolean f31203b;
+    public final Paint f31204c;
 
-    public um(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, boolean z10, boolean z11) {
-        super(context, z10, z11);
-        this.f31640c = chatAttachAlertPhotoLayout;
-        this.f31638a = new ai.x4(this, 7);
+    public um(Context context, Paint paint) {
+        super(context);
+        this.f31204c = paint;
+        this.f31202a = 0.0f;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f31640c;
-        yi yiVar = chatAttachAlertPhotoLayout.f30245b;
-        if (AndroidUtilities.makingGlobalBlurBitmap) {
-            return;
-        }
-        if (!this.f31639b && (chatAttachAlertPhotoLayout.f24060d0 || !chatAttachAlertPhotoLayout.f24056b0)) {
-            float translationY = (yiVar.getContainerView().getTranslationY() + (yiVar.J0[1] + chatAttachAlertPhotoLayout.W0)) - chatAttachAlertPhotoLayout.P.getTranslationY();
-            ci.i iVar = yiVar.E2;
-            if (iVar != null) {
-                f7 = iVar.d() + AndroidUtilities.dp(8.0f);
-            } else {
-                f7 = 0.0f;
+    public final void onDraw(Canvas canvas) {
+        int i10 = (int) ((this.f31202a * 130.0f) + 125.0f);
+        Paint paint = this.f31204c;
+        paint.setAlpha(i10);
+        if (!this.f31203b) {
+            float f7 = this.f31202a - 0.026666667f;
+            this.f31202a = f7;
+            if (f7 <= 0.0f) {
+                this.f31202a = 0.0f;
+                this.f31203b = true;
             }
-            int min = (int) Math.min(translationY - f7, getMeasuredHeight());
-            boolean z10 = chatAttachAlertPhotoLayout.f24060d0;
-            if (z10) {
-                RectF rectF = AndroidUtilities.rectTmp;
-                float f10 = chatAttachAlertPhotoLayout.f24080n1;
-                boolean z11 = ChatAttachAlertPhotoLayout.f24049q1;
-                float f11 = 1.0f - chatAttachAlertPhotoLayout.f24062e0;
-                rectF.set((0.0f * f11) + f10, (f11 * chatAttachAlertPhotoLayout.W) + chatAttachAlertPhotoLayout.f24075k1, chatAttachAlertPhotoLayout.f24077m1, AndroidUtilities.lerp(Math.min(min, chatAttachAlertPhotoLayout.l1), getMeasuredHeight(), chatAttachAlertPhotoLayout.f24062e0));
-            } else if (!z10 && !chatAttachAlertPhotoLayout.f24056b0) {
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                boolean z12 = ChatAttachAlertPhotoLayout.f24049q1;
-                rectF2.set(0.0f, chatAttachAlertPhotoLayout.W, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
-                return;
-            } else {
-                AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), Math.min(min, getMeasuredHeight()));
+        } else {
+            float f10 = this.f31202a + 0.026666667f;
+            this.f31202a = f10;
+            if (f10 >= 1.0f) {
+                this.f31202a = 1.0f;
+                this.f31203b = false;
             }
-            canvas.save();
-            canvas.clipRect(AndroidUtilities.rectTmp);
-            super.dispatchDraw(canvas);
-            canvas.restore();
-            return;
         }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f31640c;
-        sc.a(chatAttachAlertPhotoLayout.P, this.f31638a);
-        chatAttachAlertPhotoLayout.E.invalidate();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        sc.h(this.f31640c.P);
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        this.f31640c.E.invalidate();
-    }
-
-    @Override
-    public final void showTexture(boolean z10, boolean z11) {
-        super.showTexture(z10, z11);
-        this.f31640c.E.invalidate();
+        super.onDraw(canvas);
+        canvas.drawCircle(AndroidUtilities.dp(14.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(4.0f), paint);
+        invalidate();
     }
 }

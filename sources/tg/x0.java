@@ -2,12 +2,12 @@ package tg;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 public final class x0 extends xg.i {
     public final y0 J;
 
-    public x0(y0 y0Var, Context context, d6 d6Var) {
-        super(context, d6Var);
+    public x0(y0 y0Var, Context context, c6 c6Var) {
+        super(context, c6Var);
         this.J = y0Var;
     }
 
@@ -16,7 +16,7 @@ public final class x0 extends xg.i {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(78.0f) + getMeasuredHeight();
         y0 y0Var = this.J;
-        y0Var.f48546p0 = dp;
-        y0Var.f48545o0.G();
+        y0Var.f48653p0 = dp;
+        y0Var.f48652o0.G();
     }
 }

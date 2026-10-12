@@ -18,31 +18,31 @@ import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.ec;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.n61;
+import org.telegram.ui.Components.r61;
 import org.telegram.ui.Components.sc;
 import org.telegram.ui.Components.y9;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.hh1;
-import org.telegram.ui.qt;
-import org.telegram.ui.zn;
+import org.telegram.ui.eo;
+import org.telegram.ui.kh1;
+import org.telegram.ui.ut;
 public final class r0 implements Runnable {
-    public final int f11359a = 0;
-    public final Object f11360b;
-    public final Object f11361c;
+    public final int f11358a = 0;
+    public final Object f11359b;
+    public final Object f11360c;
     public final boolean d;
-    public final Object f11362e;
-    public final Object f11363f;
+    public final Object f11361e;
+    public final Object f11362f;
     public final Object h;
-    public final TLObject f11364n;
+    public final TLObject f11363n;
 
     public r0(u0 u0Var, TLRPC.TL_error tL_error, TLObject tLObject, int[] iArr, ArrayList arrayList, boolean z10, TLRPC.User user) {
-        this.f11363f = u0Var;
-        this.f11360b = tL_error;
-        this.f11361c = tLObject;
+        this.f11362f = u0Var;
+        this.f11359b = tL_error;
+        this.f11360c = tLObject;
         this.h = iArr;
-        this.f11362e = arrayList;
+        this.f11361e = arrayList;
         this.d = z10;
-        this.f11364n = user;
+        this.f11363n = user;
     }
 
     @Override
@@ -52,20 +52,20 @@ public final class r0 implements Runnable {
         TLRPC.User user;
         int i10;
         String formatString;
-        int i11 = this.f11359a;
+        int i11 = this.f11358a;
         boolean z10 = this.d;
-        TLObject tLObject = this.f11364n;
-        Object obj = this.f11362e;
+        TLObject tLObject = this.f11363n;
+        Object obj = this.f11361e;
         Object obj2 = this.h;
-        Object obj3 = this.f11361c;
-        Object obj4 = this.f11360b;
-        Object obj5 = this.f11363f;
+        Object obj3 = this.f11360c;
+        Object obj4 = this.f11359b;
+        Object obj5 = this.f11362f;
         switch (i11) {
             case 0:
                 u0.U((u0) obj5, (TLRPC.TL_error) obj4, (TLObject) obj3, (int[]) obj2, (ArrayList) obj, this.d, (TLRPC.User) tLObject);
                 return;
             case 1:
-                ((SendMessagesHelper) obj5).lambda$performSendMessageRequestMulti$76((TLRPC.TL_error) obj4, (TLObject) obj3, this.d, (ArrayList) obj, (ArrayList) obj2, this.f11364n);
+                ((SendMessagesHelper) obj5).lambda$performSendMessageRequestMulti$76((TLRPC.TL_error) obj4, (TLObject) obj3, this.d, (ArrayList) obj, (ArrayList) obj2, this.f11363n);
                 return;
             case 2:
                 ArrayList arrayList2 = (ArrayList) obj;
@@ -74,7 +74,7 @@ public final class r0 implements Runnable {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
                 arrayList2.add(new MediaController.PhotoEntry(0, 0, 0L, ((File) obj5).getAbsolutePath(), 0, false, 0, 0, 0L));
                 PhotoViewer.t1().K2(m2Var.getParentActivity(), null, m2Var.getResourceProvider());
-                PhotoViewer.t1().g2(arrayList2, 0, 11, false, new Object(), (zn) obj3);
+                PhotoViewer.t1().g2(arrayList2, 0, 11, false, new Object(), (eo) obj3);
                 PhotoViewer t12 = PhotoViewer.t1();
                 if (z10) {
                     document = document2;
@@ -82,14 +82,14 @@ public final class r0 implements Runnable {
                     document = null;
                 }
                 t12.Y0(document2, document, false, null);
-                qt q6 = qt.q();
+                ut q6 = ut.q();
                 if (!z10) {
                     tL_messages_stickerSet = null;
                 }
                 q6.T = tL_messages_stickerSet;
                 return;
             case 3:
-                hh1.d0((hh1) obj5, (TLRPC.TL_error) obj4, this.d, (TLObject) obj3, (byte[]) obj2, (String) obj, (TL_account.passwordInputSettings) tLObject);
+                kh1.d0((kh1) obj5, (TLRPC.TL_error) obj4, this.d, (TLObject) obj3, (byte[]) obj2, (String) obj, (TL_account.passwordInputSettings) tLObject);
                 return;
             default:
                 wh.l lVar = (wh.l) obj5;
@@ -98,14 +98,14 @@ public final class r0 implements Runnable {
                 TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) obj2;
                 TLRPC.User user2 = (TLRPC.User) tLObject;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) obj;
-                int i12 = lVar.f50558k;
-                ArrayList arrayList3 = lVar.f50553e;
-                m2 m2Var2 = lVar.f50555g;
+                int i12 = lVar.f50665k;
+                ArrayList arrayList3 = lVar.f50660e;
+                m2 m2Var2 = lVar.f50662g;
                 if (m2Var2 != null && m2Var2.getParentActivity() != null) {
                     if (tL_error == null) {
                         TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject2;
                         if (!tL_updates.chats.isEmpty()) {
-                            MessagesController.getInstance(i12).loadFullChat(tL_updates.chats.get(0).f20068id, 0, true);
+                            MessagesController.getInstance(i12).loadFullChat(tL_updates.chats.get(0).f19802id, 0, true);
                         }
                         int i13 = 0;
                         while (true) {
@@ -117,11 +117,11 @@ public final class r0 implements Runnable {
                                 }
                             }
                         }
-                        wh.g gVar = lVar.f50554f;
-                        wh.l lVar2 = gVar.f50532c;
+                        wh.g gVar = lVar.f50661f;
+                        wh.l lVar2 = gVar.f50639c;
                         int i14 = 0;
                         while (true) {
-                            arrayList = lVar2.f50552c;
+                            arrayList = lVar2.f50659c;
                             if (i14 < arrayList.size()) {
                                 user = user2;
                                 if (((TLRPC.TL_chatInviteImporter) arrayList.get(i14)).user_id != tL_chatInviteImporter.user_id) {
@@ -135,38 +135,38 @@ public final class r0 implements Runnable {
                         }
                         if (i14 >= 0) {
                             arrayList.remove(i14);
-                            gVar.u((!gVar.f50532c.B ? 1 : 0) + i14);
+                            gVar.u((!gVar.f50639c.B ? 1 : 0) + i14);
                             if (arrayList.isEmpty()) {
                                 gVar.u(1);
                             }
                         }
-                        lVar.f(lVar.f50567t, false, true);
+                        lVar.f(lVar.f50674t, false, true);
                         if (z10) {
                             ec ecVar = new ec(m2Var2.getParentActivity(), m2Var2.getResourceProvider());
                             int dp = AndroidUtilities.dp(15.0f);
-                            y9 y9Var = ecVar.f26046a;
+                            y9 y9Var = ecVar.f25657a;
                             y9Var.setRoundRadius(dp);
                             TLRPC.User user3 = user;
                             y9Var.e(user3, new j9(0, user3));
                             String firstName = UserObject.getFirstName(user3);
-                            if (lVar.f50550a) {
+                            if (lVar.f50657a) {
                                 formatString = LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, firstName);
                             } else {
                                 formatString = LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, firstName);
                             }
                             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
                             int indexOf = formatString.indexOf(firstName);
-                            spannableStringBuilder.setSpan(new n61(AndroidUtilities.bold()), indexOf, firstName.length() + indexOf, 18);
-                            ecVar.f26047b.setText(spannableStringBuilder);
+                            spannableStringBuilder.setSpan(new r61(AndroidUtilities.bold()), indexOf, firstName.length() + indexOf, 18);
+                            ecVar.f25658b.setText(spannableStringBuilder);
                             if (arrayList3.isEmpty()) {
                                 sc.g(m2Var2, ecVar, 2750).j();
                             } else {
                                 sc.f(lVar.h, ecVar, 2750).j();
                             }
                         }
-                        org.telegram.ui.ActionBar.y o9 = m2Var2.getActionBar().o();
-                        if (TextUtils.isEmpty(lVar.f50567t) && lVar.f50559l) {
-                            org.telegram.ui.ActionBar.u0 k10 = o9.k(0);
+                        org.telegram.ui.ActionBar.y p5 = m2Var2.getActionBar().p();
+                        if (TextUtils.isEmpty(lVar.f50674t) && lVar.f50666l) {
+                            org.telegram.ui.ActionBar.u0 k10 = p5.k(0);
                             if (arrayList3.isEmpty()) {
                                 i10 = 8;
                             } else {
@@ -184,43 +184,43 @@ public final class r0 implements Runnable {
         }
     }
 
-    public r0(File file, ArrayList arrayList, m2 m2Var, zn znVar, TLRPC.Document document, boolean z10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        this.f11363f = file;
-        this.f11362e = arrayList;
-        this.f11360b = m2Var;
-        this.f11361c = znVar;
+    public r0(File file, ArrayList arrayList, m2 m2Var, eo eoVar, TLRPC.Document document, boolean z10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        this.f11362f = file;
+        this.f11361e = arrayList;
+        this.f11359b = m2Var;
+        this.f11360c = eoVar;
         this.h = document;
         this.d = z10;
-        this.f11364n = tL_messages_stickerSet;
+        this.f11363n = tL_messages_stickerSet;
     }
 
     public r0(SendMessagesHelper sendMessagesHelper, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject2) {
-        this.f11363f = sendMessagesHelper;
-        this.f11360b = tL_error;
-        this.f11361c = tLObject;
+        this.f11362f = sendMessagesHelper;
+        this.f11359b = tL_error;
+        this.f11360c = tLObject;
         this.d = z10;
-        this.f11362e = arrayList;
+        this.f11361e = arrayList;
         this.h = arrayList2;
-        this.f11364n = tLObject2;
+        this.f11363n = tLObject2;
     }
 
-    public r0(hh1 hh1Var, TLRPC.TL_error tL_error, boolean z10, TLObject tLObject, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
-        this.f11363f = hh1Var;
-        this.f11360b = tL_error;
+    public r0(kh1 kh1Var, TLRPC.TL_error tL_error, boolean z10, TLObject tLObject, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f11362f = kh1Var;
+        this.f11359b = tL_error;
         this.d = z10;
-        this.f11361c = tLObject;
+        this.f11360c = tLObject;
         this.h = bArr;
-        this.f11362e = str;
-        this.f11364n = passwordinputsettings;
+        this.f11361e = str;
+        this.f11363n = passwordinputsettings;
     }
 
     public r0(wh.l lVar, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
-        this.f11363f = lVar;
-        this.f11360b = tL_error;
-        this.f11361c = tLObject;
+        this.f11362f = lVar;
+        this.f11359b = tL_error;
+        this.f11360c = tLObject;
         this.h = tL_chatInviteImporter;
         this.d = z10;
-        this.f11364n = user;
-        this.f11362e = tL_messages_hideChatJoinRequest;
+        this.f11363n = user;
+        this.f11361e = tL_messages_hideChatJoinRequest;
     }
 }

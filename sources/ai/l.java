@@ -7,58 +7,53 @@ import android.graphics.drawable.Drawable;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.FactCheckController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.hr0;
-import org.telegram.ui.my;
-import org.telegram.ui.rx;
-import org.telegram.ui.sy;
-import org.telegram.ui.uo;
+import org.telegram.ui.kr0;
+import org.telegram.ui.py;
+import org.telegram.ui.ux;
+import org.telegram.ui.vy;
+import org.telegram.ui.xo;
 public final class l implements Utilities.Callback {
-    public final int f1311a;
-    public final long f1312b;
-    public final Object f1313c;
+    public final int f1309a;
+    public final long f1310b;
+    public final Object f1311c;
     public final Object d;
-    public final Object f1314e;
+    public final Object f1312e;
 
-    public l(Object obj, long j3, Object obj2, Object obj3, int i10) {
-        this.f1311a = i10;
-        this.f1313c = obj;
-        this.f1312b = j3;
+    public l(Object obj, Object obj2, long j3, Object obj3, int i10) {
+        this.f1309a = i10;
+        this.f1311c = obj;
         this.d = obj2;
-        this.f1314e = obj3;
+        this.f1310b = j3;
+        this.f1312e = obj3;
     }
 
     @Override
     public final void run(Object obj) {
         j jVar;
-        int i10 = this.f1311a;
-        long j3 = this.f1312b;
-        Object obj2 = this.f1314e;
+        int i10 = this.f1309a;
+        long j3 = this.f1310b;
+        Object obj2 = this.f1312e;
         Object obj3 = this.d;
-        Object obj4 = this.f1313c;
+        Object obj4 = this.f1311c;
         switch (i10) {
             case 0:
                 b0 b0Var = (b0) obj4;
                 a0 a0Var = (a0) obj2;
                 ((org.telegram.ui.ActionBar.a2) obj3).dismiss();
                 if (((Boolean) obj).booleanValue()) {
-                    ci.lc D = ci.lc.D(b0Var.f668e0.getParentActivity(), b0Var.f669f);
+                    ci.lc D = ci.lc.D(b0Var.f670e0.getParentActivity(), b0Var.f671f);
                     D.N = j3;
-                    ci.bc bcVar = D.f5466c1;
+                    ci.bc bcVar = D.f5465c1;
                     if (bcVar != null) {
                         bcVar.setDialogId(j3);
                     }
@@ -77,7 +72,7 @@ public final class l implements Utilities.Callback {
                     return;
                 }
                 ChannelBoostsController boostsController = messagesController.getBoostsController();
-                long j10 = this.f1312b;
+                long j10 = this.f1310b;
                 boostsController.userCanBoostChannel(j10, tL_premium_boostsStatus, new l(m9Var, callback, j10, tL_premium_boostsStatus, 2));
                 callback.run(Boolean.FALSE);
                 return;
@@ -108,48 +103,39 @@ public final class l implements Utilities.Callback {
                 callback2.run(Boolean.FALSE);
                 return;
             case 3:
-                ((FactCheckController) obj4).lambda$loadMissing$3(this.f1312b, (ArrayList) obj3, (HashMap) obj2, (ArrayList) obj);
+                xo.Y((xo) obj4, (org.telegram.ui.ActionBar.a2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f1310b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             case 4:
-                ((MessagesController) obj4).lambda$checkSensitive$451(this.f1312b, (boolean[]) obj3, (Runnable) obj2, (Boolean) obj);
-                return;
-            case 5:
-                ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f1312b, (TLRPC.TL_textWithEntities) obj);
-                return;
-            case 6:
-                uo.Y((uo) obj4, (org.telegram.ui.ActionBar.a2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f1312b, (ChannelBoostsController.CanApplyBoost) obj);
-                return;
-            case 7:
-                rx rxVar = (rx) obj4;
+                ux uxVar = (ux) obj4;
                 org.telegram.ui.ActionBar.m2[] m2VarArr = (org.telegram.ui.ActionBar.m2[]) obj2;
                 Runnable runnable = (Runnable) obj;
-                rxVar.getClass();
+                uxVar.getClass();
                 ((org.telegram.ui.ActionBar.a2) obj3).dismiss();
-                sy syVar = rxVar.f41558b;
-                syVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
-                my myVar = syVar.C2;
-                syVar.removeSelfFromStack();
+                vy vyVar = uxVar.f42605b;
+                vyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
+                py pyVar = vyVar.C2;
+                vyVar.removeSelfFromStack();
                 if (m2VarArr[1] != null) {
                     m2VarArr[0].removeSelfFromStack();
                     m2VarArr[1].finishFragment();
                 } else {
                     m2VarArr[0].finishFragment();
                 }
-                if (myVar != null) {
+                if (pyVar != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(-j3, 0L));
-                    myVar.w(syVar, arrayList, null, false, syVar.J2, syVar.K2, syVar.L2, null);
+                    pyVar.w(vyVar, arrayList, null, false, vyVar.J2, vyVar.K2, vyVar.L2, null);
                     return;
                 }
                 return;
-            case 8:
+            case 5:
                 PhotoViewer photoViewer = (PhotoViewer) obj4;
                 String str = (String) obj3;
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj2;
                 Bitmap bitmap = (Bitmap) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 if (bitmap == null) {
-                    AndroidUtilities.runOnUIThread(new hr0(photoViewer, 16));
+                    AndroidUtilities.runOnUIThread(new kr0(photoViewer, 16));
                     return;
                 }
                 try {
@@ -163,38 +149,30 @@ public final class l implements Utilities.Callback {
                     float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
                     canvas.scale(max, max);
                     canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f1312b, str, createBitmap, 6));
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f1310b, str, createBitmap, 6));
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
-                    AndroidUtilities.runOnUIThread(new hr0(photoViewer, 17));
+                    AndroidUtilities.runOnUIThread(new kr0(photoViewer, 17));
                     return;
                 }
-            case 9:
-                xh.d1 d1Var = (xh.d1) obj3;
+            case 6:
+                xh.c1 c1Var = (xh.c1) obj3;
                 of.e eVar = (of.e) obj;
                 eVar.d();
-                d1Var.w1(j3, new f4((xh.r1) obj4, eVar, (Utilities.Callback) obj2, d1Var, 19));
+                c1Var.w1(j3, new f4((xh.q1) obj4, eVar, (Utilities.Callback) obj2, c1Var, 19));
                 return;
             default:
-                yh.s3.t0((yh.s3) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f1312b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
+                yh.s3.t0((yh.s3) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f1310b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
         }
     }
 
-    public l(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f1311a = i10;
-        this.f1313c = obj;
-        this.d = obj2;
-        this.f1312b = j3;
-        this.f1314e = obj3;
-    }
-
     public l(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f1311a = i10;
-        this.f1313c = obj;
+        this.f1309a = i10;
+        this.f1311c = obj;
         this.d = obj2;
-        this.f1314e = obj3;
-        this.f1312b = j3;
+        this.f1312e = obj3;
+        this.f1310b = j3;
     }
 }

@@ -3,17 +3,17 @@ package fi;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class y extends s4.t0 {
-    public final k0 f10071a;
+    public final k0 f10070a;
 
     public y(k0 k0Var) {
-        this.f10071a = k0Var;
+        this.f10070a = k0Var;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        k0 k0Var = this.f10071a;
+        k0 k0Var = this.f10070a;
         if (k0Var.G.I1) {
-            AndroidUtilities.hideKeyboard(k0Var.E.f31038r);
+            AndroidUtilities.hideKeyboard(k0Var.E.f31362r);
         }
     }
 }

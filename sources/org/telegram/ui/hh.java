@@ -1,28 +1,21 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class hh implements View.OnClickListener {
-    public final int f38443a;
-    public final org.telegram.ui.Components.p80 f38444b;
+import org.telegram.messenger.Utilities;
+public final class hh implements Utilities.Callback {
+    public final int f38424a;
+    public final long f38425b;
+    public final long f38426c;
+    public final Object d;
 
-    public hh(org.telegram.ui.Components.p80 p80Var, int i10) {
-        this.f38443a = i10;
-        this.f38444b = p80Var;
+    public hh(Object obj, long j3, long j10, int i10) {
+        this.f38424a = i10;
+        this.d = obj;
+        this.f38425b = j3;
+        this.f38426c = j10;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f38443a;
-        org.telegram.ui.Components.p80 p80Var = this.f38444b;
-        switch (i10) {
-            case 0:
-                p80Var.s();
-                return;
-            default:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                p80Var.s();
-                return;
-        }
+    public final void run(java.lang.Object r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hh.run(java.lang.Object):void");
     }
 }

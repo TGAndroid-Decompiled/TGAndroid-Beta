@@ -14,6 +14,7 @@ public class AppGlobalConfig {
     public final ConfigInt aicomposeToneSavedLimitDefault;
     public final ConfigInt aicomposeToneSavedLimitPremium;
     public final ConfigInt aicomposeToneTitleLengthMax;
+    public final ConfigBoolean audioRecorderV2Disabled;
     public final ConfigInt botAdditionalUsernamesLimit;
     public final ConfigStringSet botAllowedSuffixes;
     public final ConfigInt botsCreateLimitDefault;
@@ -397,6 +398,7 @@ public class AppGlobalConfig {
         this.settingsDisplayPasskeys = ofBoolean("settings_display_passkeys", BuildVars.DEBUG_VERSION);
         this.disableBlurInLightTheme = ofBoolean("android_disable_blur_in_light_theme", false);
         this.disableBlurInDarkTheme = ofBoolean("android_disable_blur_in_dark_theme", false);
+        this.audioRecorderV2Disabled = ofBoolean("android_audio_recorder_v2_disabled", false);
         this.noForwardsRequestExpirePeriod = ofTime("no_forwards_request_expire_period", 86400L, timeUnit);
         this.pollClosePeriodMax = ofTime("poll_close_period_max", 2592000L, timeUnit);
         this.musicSearchUsername = ofString("music_search_username", null);

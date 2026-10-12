@@ -1,56 +1,83 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class jj0 extends LinearLayout {
-    public static final int d = 0;
-    public final TextView[] f39101a;
-    public final TextView[] f39102b;
-    public final kj0 f39103c;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stats;
+public final class jj0 extends na1 {
+    public final kj0 v;
 
-    public jj0(kj0 kj0Var, Context context) {
-        super(context);
-        float f7;
-        this.f39103c = kj0Var;
-        this.f39101a = new TextView[4];
-        this.f39102b = new TextView[4];
-        setOrientation(1);
-        setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        for (int i10 = 0; i10 < 2; i10++) {
-            LinearLayout e7 = org.telegram.messenger.ai.e(context, 0);
-            for (int i11 = 0; i11 < 2; i11++) {
-                LinearLayout e10 = org.telegram.messenger.ai.e(context, 1);
-                LinearLayout e11 = org.telegram.messenger.ai.e(context, 0);
-                int i12 = (i10 * 2) + i11;
-                this.f39101a[i12] = new TextView(context);
-                this.f39102b[i12] = new TextView(context);
-                this.f39101a[i12].setTypeface(AndroidUtilities.bold());
-                this.f39101a[i12].setTextSize(1, 17.0f);
-                this.f39102b[i12].setTextSize(1, 13.0f);
-                this.f39102b[i12].setGravity(3);
-                e11.addView(this.f39101a[i12]);
-                e10.addView(e11);
-                e10.addView(this.f39102b[i12]);
-                e7.addView(e10, w7.x5.l(1.0f, -1, -2));
+    public jj0(kj0 kj0Var, Context context, int i10, ig.f fVar, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, i10, fVar, c6Var);
+        this.v = kj0Var;
+    }
+
+    @Override
+    public final void c() {
+        int i10;
+        int i11;
+        int i12;
+        mj0 mj0Var = this.v.d;
+        if (this.f40342r.f40892c <= 0) {
+            performClick();
+            ig.g gVar = this.f40337b;
+            if (gVar.f12190t0.G) {
+                long selectedDate = gVar.getSelectedDate();
+                if (this.f40343s == 4) {
+                    pa1 pa1Var = this.f40342r;
+                    pa1Var.f40893e = new jg.e(pa1Var.d, selectedDate);
+                    g(false);
+                } else if (this.f40342r.f40895g == null) {
+                } else {
+                    f();
+                    String str = this.f40342r.f40895g + "_" + selectedDate;
+                    jg.b bVar = (jg.b) mj0Var.v.get(str);
+                    if (bVar != null) {
+                        this.f40342r.f40893e = bVar;
+                        g(false);
+                        return;
+                    }
+                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
+                    tL_loadAsyncGraph.token = this.f40342r.f40895g;
+                    if (selectedDate != 0) {
+                        tL_loadAsyncGraph.f20035x = selectedDate;
+                        tL_loadAsyncGraph.flags |= 1;
+                    }
+                    ?? obj = new Object();
+                    mj0Var.f40071w = obj;
+                    mj0Var.f40067f.getClass();
+                    obj.f36388a = RecyclerView.R(this);
+                    gVar.f12190t0.d(true, false);
+                    i10 = ((org.telegram.ui.ActionBar.m2) mj0Var).currentAccount;
+                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new ea(this, str, (Object) obj, 25), null, null, 0, mj0Var.f40058a.stats_dc, 1, true);
+                    i11 = ((org.telegram.ui.ActionBar.m2) mj0Var).currentAccount;
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
+                    i12 = ((org.telegram.ui.ActionBar.m2) mj0Var).classGuid;
+                    connectionsManager.bindRequestToGuid(sendRequest, i12);
+                }
             }
-            if (i10 == 0) {
-                f7 = 16.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            addView(e7, w7.x5.a(-2.0f, 0.0f, 0.0f, 0.0f, f7, -1, 0));
         }
     }
 
-    public final void a() {
-        for (int i10 = 0; i10 < 4; i10++) {
-            TextView textView = this.f39101a[i10];
-            int i11 = org.telegram.ui.ActionBar.h6.G6;
-            kj0 kj0Var = this.f39103c;
-            textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, kj0Var.getResourceProvider()));
-            this.f39102b[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225z6, kj0Var.getResourceProvider()));
+    @Override
+    public final void f() {
+        kj0 kj0Var = this.v;
+        mj0 mj0Var = kj0Var.d;
+        cb1 cb1Var = mj0Var.f40071w;
+        if (cb1Var != null) {
+            cb1Var.f36389b = true;
         }
+        int childCount = mj0Var.f40067f.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            View childAt = kj0Var.d.f40067f.getChildAt(i10);
+            if (childAt instanceof na1) {
+                ((na1) childAt).f40337b.f12190t0.d(false, true);
+            }
+        }
+    }
+
+    @Override
+    public final void b(pa1 pa1Var) {
     }
 }

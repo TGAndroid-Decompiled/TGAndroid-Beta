@@ -1,82 +1,46 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class oe implements Runnable {
-    public final int f18788a;
-    public final MessagesStorage f18789b;
-    public final ArrayList f18790c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_aicompose;
+import org.telegram.tgnet.tl.TL_payments;
+public final class oe implements Utilities.Callback2 {
+    public final int f18481a;
+    public final Object f18482b;
 
-    public oe(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
-        this.f18788a = i10;
-        this.f18789b = messagesStorage;
-        this.f18790c = arrayList;
+    public oe(Object obj, int i10) {
+        this.f18481a = i10;
+        this.f18482b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18788a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18481a) {
             case 0:
-                this.f18789b.lambda$markMessagesAsDeletedInternal$230(this.f18790c);
+                MessagesController.AnonymousClass5.lambda$getRemote$0((Utilities.Callback4) this.f18482b, (TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                this.f18789b.lambda$markVoiceMessageContentAsRead$216(this.f18790c);
+                ((AiTonesController) this.f18482b).lambda$request$0((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                this.f18789b.lambda$emptyMessagesMedia$96(this.f18790c);
+                ((ChatThemeController) this.f18482b).lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 3:
-                this.f18789b.lambda$emptyMessagesMedia$97(this.f18790c);
+                ((GiftAuctionController) this.f18482b).lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
                 return;
             case 4:
-                this.f18789b.lambda$loadUserInfo$128(this.f18790c);
+                ((MediaDataController) this.f18482b).lambda$loadHints$148((TLRPC.contacts_TopPeers) obj, (TLRPC.TL_error) obj2);
                 return;
             case 5:
-                this.f18789b.lambda$replaceMessageIfExists$233(this.f18790c);
+                MessagesController.lambda$getNextReactionMentionInternal$3((q0.a) this.f18482b, (TLRPC.messages_Messages) obj, (TLRPC.TL_error) obj2);
                 return;
             case 6:
-                this.f18789b.lambda$markMessagesAsDeletedByRandoms$220(this.f18790c);
-                return;
-            case 7:
-                this.f18789b.lambda$deleteFromDownloadQueue$183(this.f18790c);
-                return;
-            case 8:
-                this.f18789b.lambda$deleteContacts$147(this.f18790c);
-                return;
-            case 9:
-                this.f18789b.lambda$updateMessageVerifyFlags$195(this.f18790c);
-                return;
-            case 10:
-                this.f18789b.lambda$putMessagesInternal$198(this.f18790c);
-                return;
-            case 11:
-                this.f18789b.lambda$putMessagesInternal$197(this.f18790c);
-                return;
-            case 12:
-                this.f18789b.lambda$markMessagesAsDeletedByRandoms$221(this.f18790c);
-                return;
-            case 13:
-                this.f18789b.lambda$markMessagesAsDeletedInternal$224(this.f18790c);
-                return;
-            case 14:
-                this.f18789b.lambda$markMessagesAsDeletedInternal$227(this.f18790c);
-                return;
-            case 15:
-                this.f18789b.lambda$onReactionsUpdate$105(this.f18790c);
-                return;
-            case 16:
-                this.f18789b.lambda$deleteDialog$88(this.f18790c);
-                return;
-            case 17:
-                this.f18789b.lambda$saveDialogFiltersOrder$75(this.f18790c);
-                return;
-            case 18:
-                this.f18789b.lambda$putMessages$236(this.f18790c);
-                return;
-            case 19:
-                this.f18789b.lambda$putMessages$237(this.f18790c);
+                MessagesController.lambda$createCommunity$254((Utilities.Callback2) this.f18482b, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f18789b.lambda$putWebPages$187(this.f18790c);
+                ((SendMessagesHelper) this.f18482b).lambda$deletePollOption$30((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

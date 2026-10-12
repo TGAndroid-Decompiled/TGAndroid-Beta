@@ -3,33 +3,33 @@ package gb;
 import java.lang.reflect.Type;
 import java.util.Collection;
 public final class c extends db.u {
-    public final int f10442a = 0;
-    public final Object f10443b;
-    public final Object f10444c;
+    public final int f10441a = 0;
+    public final Object f10442b;
+    public final Object f10443c;
 
-    public c(db.g gVar, Type type, db.u uVar, fb.n nVar) {
-        this.f10443b = new o(gVar, uVar, type);
-        this.f10444c = nVar;
+    public c(db.g gVar, Type type, db.u uVar, fb.o oVar) {
+        this.f10442b = new o(gVar, uVar, type);
+        this.f10443c = oVar;
     }
 
     @Override
     public final Object read(lb.a aVar) {
-        switch (this.f10442a) {
+        switch (this.f10441a) {
             case 0:
                 if (aVar.x() == 9) {
                     aVar.t();
                     return null;
                 }
-                Collection collection = (Collection) ((fb.n) this.f10444c).v2();
+                Collection collection = (Collection) ((fb.o) this.f10443c).w2();
                 aVar.a();
                 while (aVar.k()) {
-                    collection.add(((db.u) ((o) this.f10443b).f10480c).read(aVar));
+                    collection.add(((db.u) ((o) this.f10442b).f10479c).read(aVar));
                 }
                 aVar.e();
                 return collection;
             default:
-                Class cls = (Class) this.f10443b;
-                Object read = ((x0) this.f10444c).f10507c.read(aVar);
+                Class cls = (Class) this.f10442b;
+                Object read = ((x0) this.f10443c).f10506c.read(aVar);
                 if (read != null && !cls.isInstance(read)) {
                     throw new RuntimeException("Expected a " + cls.getName() + " but was " + read.getClass().getName() + "; at path " + aVar.j());
                 }
@@ -39,7 +39,7 @@ public final class c extends db.u {
 
     @Override
     public final void write(lb.b bVar, Object obj) {
-        switch (this.f10442a) {
+        switch (this.f10441a) {
             case 0:
                 Collection<Object> collection = (Collection) obj;
                 if (collection == null) {
@@ -48,18 +48,18 @@ public final class c extends db.u {
                 }
                 bVar.b();
                 for (Object obj2 : collection) {
-                    ((o) this.f10443b).write(bVar, obj2);
+                    ((o) this.f10442b).write(bVar, obj2);
                 }
                 bVar.e();
                 return;
             default:
-                ((x0) this.f10444c).f10507c.write(bVar, obj);
+                ((x0) this.f10443c).f10506c.write(bVar, obj);
                 return;
         }
     }
 
     public c(x0 x0Var, Class cls) {
-        this.f10444c = x0Var;
-        this.f10443b = cls;
+        this.f10443c = x0Var;
+        this.f10442b = cls;
     }
 }

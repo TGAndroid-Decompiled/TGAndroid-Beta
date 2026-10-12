@@ -1,92 +1,39 @@
 package ii;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
 import android.view.View;
-import j$.util.Objects;
-import java.util.LinkedHashSet;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.l71;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.rm0;
-public final class o5 extends p61 {
-    public static final int f12607a = 0;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class o5 extends ViewGroup {
+    public final int f12604a;
+    public final p5 f12605b;
 
-    static {
-        p61.setup(new p61());
+    public o5(p5 p5Var, Context context) {
+        super(context);
+        this.f12605b = p5Var;
+        this.f12604a = AndroidUtilities.dp(16.0f);
+        setClipChildren(false);
+        setClipToPadding(false);
     }
 
     @Override
-    public final void bindView(View view, q61 q61Var, boolean z10, d71 d71Var, l71 l71Var) {
-        boolean z11;
-        q5 q5Var = (q5) view;
-        a aVar = (a) q61Var.G;
-        d3 d3Var = (d3) q61Var.H;
-        s5 s5Var = q5Var.v;
-        boolean z12 = true;
-        if (q5Var.f12250a != aVar) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        q5Var.f12250a = aVar;
-        q5Var.E = d3Var;
-        q5Var.f12647y = LocaleController.isRTL;
-        q5Var.c(aVar);
-        TL_iv.PageBlock pageBlock = aVar.f12233b;
-        if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
-            return;
-        }
-        j6 j6Var = new j6((TL_iv.pageBlockTable) pageBlock);
-        q5Var.F = j6Var;
-        s5Var.setModel(j6Var);
-        LinkedHashSet linkedHashSet = q5Var.H;
-        Objects.requireNonNull(linkedHashSet);
-        s5Var.setSelectionProvider(new ei.c5(linkedHashSet, 21));
-        q5Var.y();
-        i1 i1Var = q5Var.f12643r;
-        a aVar2 = q5Var.f12250a;
-        if (aVar2 != null) {
-            TL_iv.PageBlock pageBlock2 = aVar2.f12233b;
-            if (pageBlock2 instanceof TL_iv.pageBlockTable) {
-                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
-                if (pageblocktable.title == null) {
-                    pageblocktable.title = new TL_iv.textEmpty();
-                }
-                String l4 = h6.l(pageblocktable.title);
-                SpannableStringBuilder r10 = h6.r(pageblocktable.title, null, true);
-                a aVar3 = q5Var.f12250a;
-                if (!aVar3.f12248s) {
-                    aVar3.f12248s = true;
-                    if (r10.length() != 0 && (h6.q(0, r10.length(), r10) & 1) == 0) {
-                        z12 = false;
-                    }
-                    aVar3.f12247r = z12;
-                }
-                i1Var.setAutoBold(q5Var.f12250a.f12247r);
-                if (z11 || !String.valueOf(i1Var.getText()).equals(l4)) {
-                    i1Var.setTextSilently(Emoji.replaceEmoji(r10, i1Var.getPaint().getFontMetricsInt(), false));
-                    i1Var.invalidateEffects();
-                }
-            }
-        }
-        q5Var.e();
-        q5Var.f12645w.requestLayout();
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        p5 p5Var = this.f12605b;
+        int measuredWidth = p5Var.v.getMeasuredWidth();
+        int measuredHeight = p5Var.v.getMeasuredHeight();
+        r5 r5Var = p5Var.v;
+        int i14 = this.f12604a;
+        r5Var.layout(-i14, 0, measuredWidth - i14, measuredHeight);
     }
 
     @Override
-    public final View createView(Context context, rm0 rm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        q5 q5Var = new q5(context, d6Var);
-        q5Var.setBackground(new b2(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20822d6, d6Var)));
-        return q5Var;
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int i12 = this.f12604a;
+        int max = Math.max(0, size + i12);
+        p5 p5Var = this.f12605b;
+        p5Var.v.measure(View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE), i11);
+        int measuredWidth = p5Var.v.getMeasuredWidth();
+        setMeasuredDimension(Math.max(0, measuredWidth - i12), p5Var.v.getMeasuredHeight());
     }
 }

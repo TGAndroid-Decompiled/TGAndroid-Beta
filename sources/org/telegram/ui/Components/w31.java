@@ -1,29 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class w31 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32626a;
-    public final y31 f32627b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class w31 extends s4.t0 {
+    public final int f32258a;
+    public final h41 f32259b;
 
-    public w31(y31 y31Var, int i10) {
-        this.f32626a = i10;
-        this.f32627b = y31Var;
+    public w31(h41 h41Var, int i10) {
+        this.f32258a = i10;
+        this.f32259b = h41Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32626a) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f32258a) {
             case 0:
-                ai.o4 o4Var = this.f32627b.f33133f;
-                o4Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                o4Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                o4Var.invalidate();
+                h41 h41Var = this.f32259b;
+                if (h41Var.k()) {
+                    h41Var.l();
+                    return;
+                }
                 return;
             default:
-                y31 y31Var = this.f32627b;
-                y31Var.getClass();
-                y31Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y31Var.h();
+                h41 h41Var2 = this.f32259b;
+                if (h41Var2.k()) {
+                    h41Var2.l();
+                    return;
+                }
                 return;
         }
     }

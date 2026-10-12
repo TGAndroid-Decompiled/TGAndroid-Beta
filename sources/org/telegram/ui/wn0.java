@@ -1,190 +1,63 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class wn0 implements TextWatcher {
-    public boolean f43866a;
-    public String f43867b;
-    public boolean f43868c;
-    public int d;
-    public int f43869e;
-    public boolean f43870f;
-    public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
-    public final uo0 f43871n;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class wn0 implements Runnable {
+    public final int f43569a;
+    public final xo0 f43570b;
+    public final TLRPC.TL_error f43571c;
+    public final TLObject d;
 
-    public wn0(uo0 uo0Var) {
-        this.f43871n = uo0Var;
-    }
-
-    public final int a(String str) {
-        int i10 = 0;
-        while (true) {
-            char[] cArr = this.h;
-            if (i10 < cArr.length) {
-                int indexOf = str.indexOf(cArr[i10]);
-                if (indexOf >= 0) {
-                    return indexOf;
-                }
-                i10++;
-            } else {
-                return -1;
-            }
-        }
+    public wn0(xo0 xo0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f43569a = i10;
+        this.f43570b = xo0Var;
+        this.f43571c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        long j3;
-        boolean z10;
-        String str;
-        String str2;
-        String substring;
-        uo0 uo0Var = this.f43871n;
-        if (uo0Var.m0) {
-            return;
-        }
-        Long l4 = uo0Var.H0;
-        if (l4 != null) {
-            j3 = l4.longValue();
-        } else {
-            j3 = 0;
-        }
-        String str3 = this.f43867b;
-        if (str3 == null) {
-            str3 = LocaleController.fixNumbers(editable.toString());
-        }
-        int a2 = a(str3);
-        if (a2 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int currencyExpDivider = LocaleController.getCurrencyExpDivider(uo0Var.C0.invoice.currency);
-        if (a2 >= 0) {
-            str = str3.substring(0, a2);
-        } else {
-            str = str3;
-        }
-        String str4 = "";
-        if (a2 < 0) {
-            str2 = "";
-        } else {
-            str2 = str3.substring(a2 + 1);
-        }
-        long longValue = Utilities.parseLong(hf.b.d(str, false)).longValue() * currencyExpDivider;
-        long longValue2 = Utilities.parseLong(hf.b.d(str2, false)).longValue();
-        String p5 = a1.g.p(longValue2, "");
-        String str5 = "" + (currencyExpDivider - 1);
-        if (a2 > 0 && p5.length() > str5.length()) {
-            if (this.f43869e - a2 < p5.length()) {
-                substring = p5.substring(0, str5.length());
-            } else {
-                substring = p5.substring(p5.length() - str5.length());
-            }
-            longValue2 = Utilities.parseLong(substring).longValue();
-        }
-        Long valueOf = Long.valueOf(longValue + longValue2);
-        uo0Var.H0 = valueOf;
-        if (uo0Var.C0.invoice.max_tip_amount != 0) {
-            long longValue3 = valueOf.longValue();
-            long j10 = uo0Var.C0.invoice.max_tip_amount;
-            if (longValue3 > j10) {
-                uo0Var.H0 = Long.valueOf(j10);
-            }
-        }
-        int selectionStart = uo0Var.f42740f[0].getSelectionStart();
-        uo0Var.m0 = true;
-        if (uo0Var.H0.longValue() == 0) {
-            uo0Var.f42740f[0].setText("");
-        } else {
-            EditTextBoldCursor editTextBoldCursor = uo0Var.f42740f[0];
-            str4 = LocaleController.getInstance().formatCurrencyString(uo0Var.H0.longValue(), false, z10, true, uo0Var.C0.invoice.currency);
-            editTextBoldCursor.setText(str4);
-        }
-        if (j3 < uo0Var.H0.longValue() && j3 != 0 && this.f43866a && selectionStart >= 0) {
-            EditTextBoldCursor editTextBoldCursor2 = uo0Var.f42740f[0];
-            editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
-        } else if (this.f43868c && this.d != uo0Var.f42740f[0].length()) {
-            EditTextBoldCursor editTextBoldCursor3 = uo0Var.f42740f[0];
-            editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
-        } else if (!this.f43870f && z10 && a2 >= 0) {
-            int a10 = a(str4);
-            if (a10 > 0) {
-                uo0Var.f42740f[0].setSelection(a10 + 1);
-            } else {
-                EditTextBoldCursor editTextBoldCursor4 = uo0Var.f42740f[0];
-                editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
-            }
-        } else {
-            EditTextBoldCursor editTextBoldCursor5 = uo0Var.f42740f[0];
-            editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
-        }
-        this.f43870f = z10;
-        uo0Var.L0();
-        this.f43867b = null;
-        uo0Var.m0 = false;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int length;
-        boolean z10;
-        String str;
-        if (!this.f43871n.m0) {
-            this.f43866a = !TextUtils.isEmpty(charSequence);
-            this.f43867b = null;
-            if (charSequence == null) {
-                length = 0;
-            } else {
-                length = charSequence.length();
-            }
-            this.d = length;
-            this.f43869e = i10;
-            if (i11 == 1 && i12 == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.f43868c = z10;
-            if (z10) {
-                String fixNumbers = LocaleController.fixNumbers(charSequence);
-                char charAt = fixNumbers.charAt(i10);
-                int a2 = a(fixNumbers);
-                if (a2 >= 0) {
-                    str = fixNumbers.substring(a2 + 1);
-                } else {
-                    str = "";
-                }
-                long longValue = Utilities.parseLong(hf.b.d(str, false)).longValue();
-                if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
-                    if (a2 > 0 && i10 > a2 && longValue == 0) {
-                        this.f43867b = fixNumbers.substring(0, a2 - 1);
+    public final void run() {
+        switch (this.f43569a) {
+            case 0:
+                xo0 xo0Var = this.f43570b;
+                xo0Var.f44097e0 = false;
+                if (this.f43571c == null) {
+                    TL_account.Password password = (TL_account.Password) this.d;
+                    xo0Var.f44086a0 = password;
+                    if (!TwoStepVerificationActivity.i0(password, false)) {
+                        org.telegram.ui.Components.g5.w0(xo0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
+                        return;
+                    }
+                    TLRPC.PaymentForm paymentForm = xo0Var.C0;
+                    if (paymentForm != null && xo0Var.f44086a0.has_password) {
+                        paymentForm.password_missing = false;
+                        paymentForm.can_save_credentials = true;
+                        xo0Var.K0();
+                    }
+                    TwoStepVerificationActivity.m0(xo0Var.f44086a0);
+                    xo0 xo0Var2 = xo0Var.f44100f0;
+                    if (xo0Var2 != null) {
+                        xo0Var2.C0(xo0Var.f44086a0);
+                    }
+                    if (!xo0Var.f44086a0.has_password && xo0Var.f44094d0 == null) {
+                        un0 un0Var = new un0(xo0Var, 3);
+                        xo0Var.f44094d0 = un0Var;
+                        AndroidUtilities.runOnUIThread(un0Var, 5000L);
                         return;
                     }
                     return;
                 }
-                while (true) {
-                    int i13 = i10 - 1;
-                    if (i13 >= 0) {
-                        char charAt2 = fixNumbers.charAt(i13);
-                        if (charAt2 >= '0' && charAt2 <= '9') {
-                            this.f43867b = fixNumbers.substring(0, i13) + fixNumbers.substring(i10);
-                            return;
-                        }
-                        i10 = i13;
-                    } else {
-                        return;
-                    }
-                }
-            }
+                return;
+            case 1:
+                xo0.V(this.f43570b, this.f43571c, this.d);
+                return;
+            default:
+                xo0.X(this.f43570b, this.f43571c, this.d);
+                return;
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -4,9 +4,9 @@ import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.zn;
-public final class x extends zn {
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.eo;
+public final class x extends eo {
     public final m0 Qc;
 
     public x(m0 m0Var) {
@@ -30,7 +30,7 @@ public final class x extends zn {
     }
 
     @Override
-    public final d6 getResourceProvider() {
+    public final c6 getResourceProvider() {
         return this.Qc.Q1;
     }
 

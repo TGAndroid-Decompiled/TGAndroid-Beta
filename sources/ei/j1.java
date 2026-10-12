@@ -23,7 +23,7 @@ public final class j1 implements org.telegram.ui.Cells.t0 {
     }
 
     @Override
-    public final boolean x2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
+    public final boolean y2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
         return false;
     }
 
@@ -36,23 +36,23 @@ public final class j1 implements org.telegram.ui.Cells.t0 {
     }
 
     @Override
-    public final void W0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public final void V0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
     }
 
     @Override
-    public final void d0(org.telegram.ui.Cells.w0 w0Var) {
+    public final void b0(org.telegram.ui.Cells.w0 w0Var) {
     }
 
     @Override
-    public final void o0(org.telegram.ui.Cells.w0 w0Var) {
+    public final void n0(org.telegram.ui.Cells.w0 w0Var) {
     }
 
     @Override
-    public final void w0(org.telegram.ui.Cells.w0 w0Var) {
+    public final void v0(org.telegram.ui.Cells.w0 w0Var) {
     }
 
     @Override
-    public final void X(org.telegram.ui.Cells.w0 w0Var, int i10) {
+    public final void U(org.telegram.ui.Cells.w0 w0Var, int i10) {
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class j1 implements org.telegram.ui.Cells.t0 {
     }
 
     @Override
-    public final void k0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
+    public final void i0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
     }
 
     @Override
@@ -72,6 +72,6 @@ public final class j1 implements org.telegram.ui.Cells.t0 {
     }
 
     @Override
-    public final void z2(org.telegram.ui.Cells.w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    public final void B2(org.telegram.ui.Cells.w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 }

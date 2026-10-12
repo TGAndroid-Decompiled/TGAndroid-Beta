@@ -1,70 +1,124 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class s6 extends og.a {
-    public final int f41626c;
-    public CharSequence d;
-    public String f41627e;
-    public int f41628f;
-    public long f41629g;
-    public int h;
-    public boolean f41630i;
-    public boolean f41631j;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class s6 extends View {
+    public final int f41815a = 0;
+    public Paint f41816b;
+    public Paint f41817c;
+    public float d;
+    public Object f41818e;
 
-    public s6(int i10, String str) {
-        super(i10, true);
-        this.f41626c = -1;
-        this.d = str;
+    public s6(Context context) {
+        super(context);
     }
 
-    public static s6 b(int i10, long j3, String str, int i11) {
-        s6 s6Var = new s6(11);
-        s6Var.f41628f = i10;
-        s6Var.d = str;
-        s6Var.f41629g = j3;
-        s6Var.h = i11;
-        s6Var.f41631j = false;
-        return s6Var;
+    public void a() {
+        this.f41816b.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, ((pg.x) this.f41818e).f45723f}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && s6.class == obj.getClass()) {
-                s6 s6Var = (s6) obj;
-                int i10 = this.f17211a;
-                if (i10 == s6Var.f17211a) {
-                    if (i10 != 9 && i10 != 10 && i10 != 8 && i10 != 4 && i10 != 2 && i10 != 0 && i10 != 13) {
-                        if (i10 == 3) {
-                            return Objects.equals(this.d, s6Var.d);
-                        }
-                        if (i10 == 1) {
-                            return Objects.equals(this.f41627e, s6Var.f41627e);
-                        }
-                        if (i10 == 11) {
-                            if (this.f41628f != s6Var.f41628f || this.f41629g != s6Var.f41629g) {
-                                return false;
-                            }
-                        } else if (i10 != 7 || this.f41626c != s6Var.f41626c) {
-                            return false;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+    public void b(float f7) {
+        float dp = AndroidUtilities.dp(6.0f);
+        float a2 = w7.n.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f41817c.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
+        this.d = a2;
+        pg.x xVar = (pg.x) this.f41818e;
+        xVar.o(i0.a.k(xVar.f45723f, (int) (a2 * 255.0f)), 1);
+        invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        switch (this.f41815a) {
+            case 0:
+                super.onDraw(canvas);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.f41817c);
+                rectF.set(0.0f, 0.0f, ((org.telegram.ui.Components.g6) this.f41818e).d(this.d, false) * getMeasuredWidth(), getMeasuredHeight());
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.f41816b);
+                return;
+            default:
+                super.onDraw(canvas);
+                float height = getHeight() / 2.0f;
+                float dp = AndroidUtilities.dp(6.0f);
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                float f7 = height - dp;
+                float f10 = height + dp;
+                rectF2.set(dp, f7, getWidth() - dp, f10);
+                canvas.save();
+                pg.x xVar = (pg.x) this.f41818e;
+                xVar.f45722e.rewind();
+                xVar.f45722e.addRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+                canvas.clipPath(xVar.f45722e);
+                qg.i1.x1(canvas, rectF2, AndroidUtilities.dp(6.0f));
+                canvas.restore();
+                rectF2.set(dp, f7, getWidth() - dp, f10);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f41816b);
+                float dp2 = AndroidUtilities.dp(13.0f);
+                Paint paint = this.f41817c;
+                float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
+                float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * this.d) + dp) - strokeWidth);
+                canvas.drawCircle(max, height, dp2, paint);
+                qg.i1.y1(max, height, strokeWidth, i0.a.k(xVar.f45723f, (int) (this.d * 255.0f)), canvas);
+                return;
         }
-        return true;
     }
 
-    public s6(int i10, int i11) {
-        super(7, true);
-        this.f41626c = i10;
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f41815a) {
+            case 1:
+                super.onSizeChanged(i10, i11, i12, i13);
+                a();
+                return;
+            default:
+                super.onSizeChanged(i10, i11, i12, i13);
+                return;
+        }
     }
 
-    public s6(int i10) {
-        super(i10, true);
-        this.f41626c = -1;
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f41815a) {
+            case 1:
+                int actionMasked = motionEvent.getActionMasked();
+                if (actionMasked != 0) {
+                    if (actionMasked != 1) {
+                        if (actionMasked != 2) {
+                            if (actionMasked == 3) {
+                                getParent().requestDisallowInterceptTouchEvent(false);
+                            }
+                        }
+                    } else {
+                        b(motionEvent.getX());
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                    return true;
+                }
+                getParent().requestDisallowInterceptTouchEvent(true);
+                b(motionEvent.getX());
+                return true;
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public s6(pg.x xVar, Context context) {
+        super(context);
+        this.f41818e = xVar;
+        this.f41816b = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f41817c = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
     }
 }

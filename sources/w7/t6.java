@@ -1,12 +1,14 @@
 package w7;
 
-import java.util.Date;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 public abstract class t6 {
-    public static long a(Date date) {
-        return (date.getTime() / 1000) + 2082844800;
-    }
-
-    public static Date b(long j3) {
-        return new Date((j3 - 2082844800) * 1000);
+    public static void a(InputStream inputStream, ByteArrayOutputStream byteArrayOutputStream) {
+        byte[] bArr = new byte[8192];
+        int read = inputStream.read(bArr);
+        while (read >= 0) {
+            byteArrayOutputStream.write(bArr, 0, read);
+            read = inputStream.read(bArr);
+        }
     }
 }

@@ -1,87 +1,60 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.ColorDrawable;
-import android.view.ViewGroup;
-import java.io.File;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-public final class m7 extends e7 {
-    public org.telegram.ui.Cells.s7 f39857n;
-    public final ArrayList f39858r;
-    public org.telegram.ui.Components.fr f39859s;
-    public final q7 v;
+import org.telegram.messenger.LocaleController;
+public final class m7 extends FrameLayout {
+    public final org.telegram.ui.Components.fq f39932a;
+    public final FrameLayout f39933b;
+    public final TextView f39934c;
+    public boolean d;
+    public int f39935e;
+    public final int f39936f;
+    public final i7 h;
 
-    public m7(q7 q7Var) {
-        super(q7Var, 1);
-        this.v = q7Var;
-        this.f39858r = new ArrayList();
+    public m7(i7 i7Var, Context context, int i10) {
+        super(context);
+        this.f39936f = i10;
+        this.h = i7Var;
+        org.telegram.ui.Components.fq fqVar = new org.telegram.ui.Components.fq(context, 21, null);
+        this.f39932a = fqVar;
+        fqVar.setDrawBackgroundAsArc(14);
+        fqVar.b(org.telegram.ui.ActionBar.h6.f20651i7, org.telegram.ui.ActionBar.h6.f20616g7, org.telegram.ui.ActionBar.h6.f20688k7);
+        View view = new View(getContext());
+        view.setOnClickListener(new a(this, 8));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f39933b = frameLayout;
+        TextView textView = new TextView(context);
+        this.f39934c = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setGravity(5);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20744n6, false));
+        if (LocaleController.isRTL) {
+            addView(fqVar, w7.w5.a(24.0f, 0.0f, 0.0f, 18.0f, 0.0f, 24, 21));
+            addView(view, w7.w5.a(40.0f, 0.0f, 0.0f, 0.0f, 0.0f, 40, 21));
+            addView(frameLayout, w7.w5.a(-2.0f, 90.0f, 0.0f, 40.0f, 0.0f, -1, 0));
+            addView(textView, w7.w5.a(-2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 69, 19));
+            return;
+        }
+        addView(fqVar, w7.w5.a(24.0f, 18.0f, 0.0f, 0.0f, 0.0f, 24, 19));
+        addView(view, w7.w5.a(40.0f, 0.0f, 0.0f, 0.0f, 0.0f, 40, 19));
+        addView(frameLayout, w7.w5.a(-2.0f, 48.0f, 0.0f, 90.0f, 0.0f, -1, 0));
+        addView(textView, w7.w5.a(-2.0f, 0.0f, 0.0f, 21.0f, 0.0f, 69, 21));
     }
 
     @Override
-    public final void F() {
-        boolean z10;
-        super.F();
-        ArrayList arrayList = this.f39858r;
-        arrayList.clear();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f36962e;
-            if (i10 < arrayList2.size()) {
-                String path = ((k7) arrayList2.get(i10)).d.f54815a.getPath();
-                if (((k7) arrayList2.get(i10)).d.d == 1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
-                i10++;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.d) {
+            if (LocaleController.isRTL) {
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(48.0f), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f20681k0);
             } else {
-                return;
+                canvas.drawLine(getMeasuredWidth() - AndroidUtilities.dp(90.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f20681k0);
             }
         }
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        boolean z10;
-        if (this.f39859s == null) {
-            org.telegram.ui.Components.fr frVar = new org.telegram.ui.Components.fr(new ColorDrawable(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.X9, false)), org.telegram.ui.ActionBar.h6.R4);
-            this.f39859s = frVar;
-            frVar.f26552w = true;
-        }
-        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) d1Var.f47782a;
-        zh.a aVar = ((k7) this.f36962e.get(i10)).d;
-        Object tag = t7Var.getTag();
-        ImageReceiver imageReceiver = t7Var.f23093c;
-        if (aVar == tag) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        t7Var.setTag(aVar);
-        int max = (int) Math.max(100.0f, AndroidUtilities.getRealScreenSize().x / AndroidUtilities.density);
-        int i11 = aVar.d;
-        File file = aVar.f54815a;
-        if (i11 == 1) {
-            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a1.g.l(max, max, "_"), this.f39859s, null, null, 0);
-            t7Var.m(AndroidUtilities.formatFileSize(aVar.f54817c), true);
-        } else {
-            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a1.g.l(max, max, "_"), this.f39859s, null, null, 0);
-            t7Var.m(AndroidUtilities.formatFileSize(aVar.f54817c), false);
-        }
-        t7Var.i(this.v.f41090f.f54828j.contains(aVar), z10);
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        if (this.f39857n == null) {
-            this.f39857n = new org.telegram.ui.Cells.s7(viewGroup.getContext(), null);
-        }
-        l7 l7Var = new l7(this, viewGroup.getContext(), this.f39857n, this.v.d.getCurrentAccount());
-        l7Var.setStyle(1);
-        return new s4.d1(l7Var);
     }
 }

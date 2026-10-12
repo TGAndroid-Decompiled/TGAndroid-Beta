@@ -1,30 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class fy0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f26582a;
-    public final View f26583b;
-    public final FrameLayout f26584c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class fy0 extends AnimatorListenerAdapter {
+    public final int f26188a;
+    public final gy0 f26189b;
 
-    public fy0(FrameLayout frameLayout, View view, int i10) {
-        this.f26582a = i10;
-        this.f26584c = frameLayout;
-        this.f26583b = view;
+    public fy0(gy0 gy0Var, int i10) {
+        this.f26188a = i10;
+        this.f26189b = gy0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f26582a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f26188a) {
             case 0:
-                gy0 gy0Var = (gy0) this.f26584c;
-                gy0Var.f26896b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                gy0Var.invalidate();
-                ((pn0) this.f26583b).invalidate();
+                this.f26189b.f26561s.setVisibility(8);
+                return;
+            case 1:
+                this.f26189b.f26561s.setVisibility(8);
                 return;
             default:
-                ((p91) this.f26584c).E(this.f26583b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f26189b.f26561s.setVisibility(8);
                 return;
         }
     }

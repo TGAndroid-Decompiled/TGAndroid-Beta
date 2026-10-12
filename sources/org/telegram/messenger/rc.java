@@ -1,25 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_update;
+import j$.util.concurrent.ConcurrentHashMap;
+import yf.r;
 public final class rc implements Runnable {
-    public final int f19087a;
-    public final MessagesController f19088b;
-    public final TL_update.TL_updatePeerBlocked f19089c;
+    public final int f18765a;
+    public final MessagesController f18766b;
+    public final r f18767c;
+    public final ConcurrentHashMap d;
+    public final ConcurrentHashMap f18768e;
 
-    public rc(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
-        this.f19087a = i10;
-        this.f19088b = messagesController;
-        this.f19089c = tL_updatePeerBlocked;
+    public rc(MessagesController messagesController, r rVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i10) {
+        this.f18765a = i10;
+        this.f18766b = messagesController;
+        this.f18767c = rVar;
+        this.d = concurrentHashMap;
+        this.f18768e = concurrentHashMap2;
     }
 
     @Override
     public final void run() {
-        switch (this.f19087a) {
+        switch (this.f18765a) {
             case 0:
-                this.f19088b.lambda$processUpdateArray$394(this.f19089c);
+                this.f18766b.lambda$processUpdateArray$404(this.f18767c, this.d, this.f18768e);
+                return;
+            case 1:
+                this.f18766b.lambda$processUpdateArray$408(this.f18767c, this.d, this.f18768e);
                 return;
             default:
-                this.f19088b.lambda$processUpdateArray$393(this.f19089c);
+                this.f18766b.lambda$processUpdateArray$403(this.f18767c, this.d, this.f18768e);
                 return;
         }
     }

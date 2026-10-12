@@ -14,7 +14,7 @@ import org.telegram.messenger.AndroidUtilities;
 public abstract class v {
     public static z3.b a(z3.m mVar, byte[] bArr, int i10) {
         f0 u10 = i0.u();
-        mVar.P(bArr, 0, i10, z3.l.f53629c, new r5.d(u10, 29));
+        mVar.f0(bArr, 0, i10, z3.l.f53732c, new r5.d(u10, 29));
         return new z3.b(u10.i());
     }
 
@@ -60,18 +60,18 @@ public abstract class v {
         return bundle;
     }
 
-    public static ia.c g(int i10, n4.x xVar) {
+    public static ia.c g(int i10, n4.y yVar) {
         Map unmodifiableMap;
         z7.s sVar = new z7.s(i10);
-        if (((HashMap) xVar.f16695c) == null) {
-            xVar.f16695c = new HashMap();
+        if (((HashMap) yVar.f16363c) == null) {
+            yVar.f16363c = new HashMap();
         }
-        ((HashMap) xVar.f16695c).put(z7.w.class, sVar);
-        String str = (String) xVar.f16694b;
-        if (((HashMap) xVar.f16695c) == null) {
+        ((HashMap) yVar.f16363c).put(z7.w.class, sVar);
+        String str = (String) yVar.f16362b;
+        if (((HashMap) yVar.f16363c) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) xVar.f16695c));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) yVar.f16363c));
         }
         return new ia.c(str, unmodifiableMap);
     }

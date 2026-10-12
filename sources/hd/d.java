@@ -2,12 +2,12 @@ package hd;
 
 import java.io.Serializable;
 public final class d implements Serializable {
-    public final Object f11083a;
-    public final Object f11084b;
+    public final Object f11082a;
+    public final Object f11083b;
 
     public d(Object obj, Object obj2) {
-        this.f11083a = obj;
-        this.f11084b = obj2;
+        this.f11082a = obj;
+        this.f11083b = obj2;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class d implements Serializable {
             return false;
         }
         d dVar = (d) obj;
-        if (kotlin.jvm.internal.i.a(this.f11083a, dVar.f11083a) && kotlin.jvm.internal.i.a(this.f11084b, dVar.f11084b)) {
+        if (kotlin.jvm.internal.i.a(this.f11082a, dVar.f11082a) && kotlin.jvm.internal.i.a(this.f11083b, dVar.f11083b)) {
             return true;
         }
         return false;
@@ -27,14 +27,14 @@ public final class d implements Serializable {
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        Object obj = this.f11083a;
+        Object obj = this.f11082a;
         if (obj == null) {
             hashCode = 0;
         } else {
             hashCode = obj.hashCode();
         }
         int i11 = hashCode * 31;
-        Object obj2 = this.f11084b;
+        Object obj2 = this.f11083b;
         if (obj2 != null) {
             i10 = obj2.hashCode();
         }
@@ -42,6 +42,6 @@ public final class d implements Serializable {
     }
 
     public final String toString() {
-        return "(" + this.f11083a + ", " + this.f11084b + ')';
+        return "(" + this.f11082a + ", " + this.f11083b + ')';
     }
 }

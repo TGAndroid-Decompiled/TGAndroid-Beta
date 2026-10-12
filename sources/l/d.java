@@ -1,14 +1,14 @@
 package l;
 
-import m.j2;
+import m.k2;
 public final class d {
-    public final j2 f15247a;
-    public final k f15248b;
-    public final int f15249c;
+    public final k2 f14956a;
+    public final k f14957b;
+    public final int f14958c;
 
-    public d(j2 j2Var, k kVar, int i10) {
-        this.f15247a = j2Var;
-        this.f15248b = kVar;
-        this.f15249c = i10;
+    public d(k2 k2Var, k kVar, int i10) {
+        this.f14956a = k2Var;
+        this.f14957b = kVar;
+        this.f14958c = i10;
     }
 }

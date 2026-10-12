@@ -1,46 +1,57 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Point;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class oi0 extends ez {
-    public final int[] N;
-    public final cj0 O;
+import org.telegram.messenger.MessageObject;
+public final class oi0 extends s4.i0 {
+    public final Context f40727c;
+    public final org.telegram.ui.ActionBar.c6 d;
+    public final ej0 f40728e;
 
-    public oi0(cj0 cj0Var, ni0 ni0Var, int i10) {
-        super(i10, ni0Var);
-        this.O = cj0Var;
-        this.N = new int[2];
+    public oi0(ej0 ej0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f40728e = ej0Var;
+        this.f40727c = context;
+        this.d = c6Var;
     }
 
     @Override
-    public final void g(dz dzVar) {
-        cj0 cj0Var = this.O;
-        vi0 vi0Var = cj0Var.K;
-        if (dzVar != null) {
-            if (cj0Var.f36773l0 != null) {
-                dzVar.f37180c = true;
-                float f7 = (ez.f() * AndroidUtilities.density) / 1.3f;
-                float f10 = f7 / 3.0f;
-                dzVar.d = f10;
-                dzVar.f37181e = f10;
-                dzVar.f37178a = Utilities.clamp(cj0Var.f36773l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
-                dzVar.f37179b = cj0Var.f36773l0.bottom - (f7 / 2.0f);
-                return;
-            }
-            org.telegram.ui.Cells.u1 u1Var = cj0Var.Q;
-            if (u1Var != null && u1Var.isAttachedToWindow() && cj0Var.Q.getMessageObject() != null && cj0Var.Q.getMessageObject().getId() == cj0Var.R) {
-                org.telegram.ui.Cells.u1 u1Var2 = cj0Var.Q;
-                int[] iArr = this.N;
-                u1Var2.getLocationOnScreen(iArr);
-                dzVar.f37180c = true;
-                float f11 = (ez.f() * AndroidUtilities.density) / 1.3f;
-                float f12 = f11 / 3.0f;
-                dzVar.d = f12;
-                dzVar.f37181e = f12;
-                float f13 = f11 / 2.0f;
-                dzVar.f37178a = Utilities.clamp(((vi0Var.getScaleX() * cj0Var.Q.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
-                dzVar.f37179b = ((vi0Var.getScaleY() * cj0Var.Q.getTimeY()) + iArr[1]) - f13;
-            }
+    public final int h() {
+        return this.f40728e.N.size();
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        ej0 ej0Var = this.f40728e;
+        ArrayList arrayList = ej0Var.N;
+        boolean z10 = true;
+        MessageObject messageObject = (MessageObject) arrayList.get((h() - 1) - i10);
+        org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) d1Var.f47889a;
+        MessageObject.GroupedMessages l4 = ej0Var.l(messageObject);
+        int i11 = 0;
+        if (l4 == null) {
+            z10 = false;
         }
+        u1Var.setInvalidatesParent(z10);
+        u1Var.X3(messageObject, l4, false, false, false, false);
+        if (!ej0Var.P.i() && arrayList.size() >= 10) {
+            i11 = arrayList.size() % 10;
+        }
+        if (i10 == i11 && !messageObject.needDrawForwarded()) {
+            ej0Var.Q = u1Var;
+            Point point = AndroidUtilities.displaySize;
+            u1Var.Z3(point.x, point.y);
+            ej0Var.R = messageObject.getId();
+        }
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        ej0 ej0Var = this.f40728e;
+        dj0 dj0Var = new dj0(ej0Var, this.f40727c, ej0Var.f37129c, this.d);
+        dj0Var.setDelegate(new na.d(17));
+        return new s4.d1(dj0Var);
     }
 }

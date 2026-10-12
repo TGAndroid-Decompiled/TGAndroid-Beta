@@ -2,17 +2,17 @@ package pg;
 
 import java.io.RandomAccessFile;
 public final class j0 {
-    public final int f45733a;
-    public final int f45734b;
-    public final int f45735c;
+    public final int f45550a;
+    public final int f45551b;
+    public final int f45552c;
     public final int d;
 
     public j0(RandomAccessFile randomAccessFile) {
         randomAccessFile.readUnsignedShort();
-        this.f45733a = randomAccessFile.readUnsignedShort();
+        this.f45550a = randomAccessFile.readUnsignedShort();
         randomAccessFile.readUnsignedShort();
-        this.f45734b = randomAccessFile.readUnsignedShort();
-        this.f45735c = randomAccessFile.readUnsignedShort();
+        this.f45551b = randomAccessFile.readUnsignedShort();
+        this.f45552c = randomAccessFile.readUnsignedShort();
         this.d = randomAccessFile.readUnsignedShort();
     }
 }

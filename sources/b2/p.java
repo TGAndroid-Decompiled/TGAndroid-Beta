@@ -11,12 +11,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
-    public final int f3504a;
-    public boolean f3505b;
-    public Object f3506c;
+    public final int f3502a;
+    public boolean f3503b;
+    public Object f3504c;
 
     public p(int i10) {
-        this.f3504a = i10;
+        this.f3502a = i10;
     }
 
     public static p g(Bundle bundle) {
@@ -42,32 +42,21 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
 
     @Override
     public void D(int i10, int i11) {
-        this.f3505b = true;
-        ((s4.i0) this.f3506c).p(i10, i11);
+        this.f3503b = true;
+        ((s4.i0) this.f3504c).p(i10, i11);
     }
 
     @Override
-    public void K0(int i10, int i11) {
-        this.f3505b = true;
-        ((s4.i0) this.f3506c).t(i10, i11);
-    }
-
-    @Override
-    public void W(Object obj) {
-        this.f3505b = true;
-        pb.c cVar = (pb.c) this.f3506c;
-        cVar.getClass();
-        Void r32 = (Void) obj;
-        SignInHubActivity signInHubActivity = (SignInHubActivity) cVar.f45612b;
-        signInHubActivity.setResult(signInHubActivity.R, signInHubActivity.S);
-        signInHubActivity.finish();
+    public void L0(int i10, int i11) {
+        this.f3503b = true;
+        ((s4.i0) this.f3504c).t(i10, i11);
     }
 
     @Override
     public void a(x9.h hVar, int i10) {
-        StringBuilder sb2 = (StringBuilder) this.f3506c;
-        if (this.f3505b) {
-            this.f3505b = false;
+        StringBuilder sb2 = (StringBuilder) this.f3504c;
+        if (this.f3503b) {
+            this.f3503b = false;
         } else {
             sb2.append(", ");
         }
@@ -75,30 +64,30 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
     }
 
     public void b(int i10) {
-        e2.d.g(!this.f3505b);
-        ((SparseBooleanArray) this.f3506c).append(i10, true);
+        e2.d.g(!this.f3503b);
+        ((SparseBooleanArray) this.f3504c).append(i10, true);
     }
 
     public void c(q qVar) {
-        for (int i10 = 0; i10 < qVar.f3532a.size(); i10++) {
+        for (int i10 = 0; i10 < qVar.f3530a.size(); i10++) {
             b(qVar.a(i10));
         }
     }
 
     public q d() {
-        e2.d.g(!this.f3505b);
-        this.f3505b = true;
-        return new q((SparseBooleanArray) this.f3506c);
+        e2.d.g(!this.f3503b);
+        this.f3503b = true;
+        return new q((SparseBooleanArray) this.f3504c);
     }
 
     public void e() {
         synchronized (this) {
             try {
-                if (this.f3505b) {
+                if (this.f3503b) {
                     return;
                 }
-                this.f3505b = true;
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f3506c;
+                this.f3503b = true;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f3504c;
                 if (cancellationSignal != null) {
                     try {
                         cancellationSignal.cancel();
@@ -119,18 +108,12 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
     }
 
     public boolean f() {
-        return this.f3505b;
-    }
-
-    @Override
-    public void f0(int i10, int i11) {
-        this.f3505b = true;
-        ((s4.i0) this.f3506c).s(i10, i11);
+        return this.f3503b;
     }
 
     public boolean h(int i10, CharSequence charSequence) {
         if (charSequence != null && i10 >= 0 && charSequence.length() - i10 >= 0) {
-            p0.e eVar = (p0.e) this.f3506c;
+            p0.e eVar = (p0.e) this.f3504c;
             if (eVar == null) {
                 return f();
             }
@@ -138,7 +121,7 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
             boolean z10 = true;
             for (int i11 = 0; i11 < i10 && z10; i11++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i11));
-                p pVar = p0.f.f45224a;
+                p pVar = p0.f.f45036a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {
@@ -168,28 +151,45 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
         throw new IllegalArgumentException();
     }
 
+    @Override
+    public void h0(Object obj) {
+        this.f3503b = true;
+        a6.m mVar = (a6.m) this.f3504c;
+        mVar.getClass();
+        Void r32 = (Void) obj;
+        SignInHubActivity signInHubActivity = (SignInHubActivity) mVar.f330b;
+        signInHubActivity.setResult(signInHubActivity.R, signInHubActivity.S);
+        signInHubActivity.finish();
+    }
+
     public void i(x3 x3Var) {
-        if (this.f3505b) {
+        if (this.f3503b) {
             com.google.android.gms.internal.play_billing.u.h("BillingLogger", "Skipping logging since initialization failed.");
             return;
         }
         try {
-            ((l5.r) this.f3506c).a(new i5.a(null, x3Var, i5.d.f12013a, null), new j2.e(16));
+            ((l5.s) this.f3504c).a(new i5.a(null, x3Var, i5.d.f12012a, null), new j2.e(16));
         } catch (Throwable unused) {
             com.google.android.gms.internal.play_billing.u.h("BillingLogger", "logging failed.");
         }
     }
 
     @Override
+    public void i0(int i10, int i11) {
+        this.f3503b = true;
+        ((s4.i0) this.f3504c).s(i10, i11);
+    }
+
+    @Override
     public void j1(int i10, int i11) {
-        ((s4.i0) this.f3506c).r(i10, i11, null);
+        ((s4.i0) this.f3504c).r(i10, i11, null);
     }
 
     public String toString() {
-        switch (this.f3504a) {
+        switch (this.f3502a) {
             case 5:
                 StringBuilder sb2 = new StringBuilder("MediaRouteProviderDescriptor{ routes=");
-                List list = (List) this.f3506c;
+                List list = (List) this.f3504c;
                 sb2.append(Arrays.toString(list.toArray()));
                 sb2.append(", isValid=");
                 int size = list.size();
@@ -209,47 +209,47 @@ public final class p implements s4.f0, androidx.lifecycle.a0, x9.i {
                 sb2.append(" }");
                 return sb2.toString();
             case 8:
-                return ((pb.c) this.f3506c).toString();
+                return ((a6.m) this.f3504c).toString();
             default:
                 return super.toString();
         }
     }
 
     public p(Object obj, int i10) {
-        this.f3504a = i10;
-        this.f3506c = obj;
+        this.f3502a = i10;
+        this.f3504c = obj;
     }
 
     public p() {
-        this.f3504a = 0;
-        this.f3506c = new SparseBooleanArray();
+        this.f3502a = 0;
+        this.f3504c = new SparseBooleanArray();
     }
 
     public p(ArrayList arrayList, boolean z10) {
-        this.f3504a = 5;
+        this.f3502a = 5;
         if (arrayList.isEmpty()) {
-            this.f3506c = Collections.EMPTY_LIST;
+            this.f3504c = Collections.EMPTY_LIST;
         } else {
-            this.f3506c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
+            this.f3504c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
         }
-        this.f3505b = z10;
+        this.f3503b = z10;
     }
 
     public p(p0.e eVar, boolean z10) {
         this(eVar, 4);
-        this.f3504a = 4;
-        this.f3505b = z10;
+        this.f3502a = 4;
+        this.f3503b = z10;
     }
 
-    public p(a6.d dVar, pb.c cVar) {
-        this.f3504a = 8;
-        this.f3505b = false;
-        this.f3506c = cVar;
+    public p(a6.d dVar, a6.m mVar) {
+        this.f3502a = 8;
+        this.f3503b = false;
+        this.f3504c = mVar;
     }
 
     public p(StringBuilder sb2) {
-        this.f3504a = 9;
-        this.f3506c = sb2;
-        this.f3505b = true;
+        this.f3502a = 9;
+        this.f3504c = sb2;
+        this.f3503b = true;
     }
 }

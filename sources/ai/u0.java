@@ -8,39 +8,39 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.fm0;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.ib0;
-public final class u0 implements fm0 {
-    public final int f1782a;
-    public final Object f1783b;
-    public final Object f1784c;
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.s80;
+import org.telegram.ui.kb0;
+public final class u0 implements km0 {
+    public final int f1780a;
+    public final Object f1781b;
+    public final Object f1782c;
     public final Object d;
 
     public u0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f1782a = i10;
-        this.f1783b = obj;
-        this.f1784c = obj2;
+        this.f1780a = i10;
+        this.f1781b = obj;
+        this.f1782c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void d(int i10, View view) {
-        int i11 = this.f1782a;
+        int i11 = this.f1780a;
         boolean z10 = true;
         Object obj = this.d;
-        Object obj2 = this.f1784c;
-        Object obj3 = this.f1783b;
+        Object obj2 = this.f1782c;
+        Object obj3 = this.f1781b;
         switch (i11) {
             case 0:
                 s3 s3Var = (s3) obj3;
                 h1 h1Var = (h1) view;
                 m1 m1Var = h1Var.K;
-                p80 F = p80.F((ViewGroup) obj2, new d(), view);
+                s80 F = s80.F((ViewGroup) obj2, new d(), view);
                 F.p(15, -1, LocaleController.formatString(R.string.LiveStoryMessageSent, LocaleController.formatDateTime(m1Var.d, true)));
                 F.k();
                 F.c(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new a1.f(5, (kc) obj, m1Var), false);
-                F.l(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new a1.f(6, s3Var, h1Var), !m1Var.f1383e);
+                F.l(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new a1.f(6, s3Var, h1Var), !m1Var.f1381e);
                 if (s3Var.M != UserConfig.getInstance(s3Var.N).getClientUserId() && !s3Var.f()) {
                     z10 = false;
                 }
@@ -48,7 +48,7 @@ public final class u0 implements fm0 {
                 F.Z();
                 return;
             case 1:
-                ci.d8.R((ci.d8) obj3, (Utilities.Callback) obj2, (org.telegram.ui.ActionBar.d6) obj, view, i10);
+                ci.d8.R((ci.d8) obj3, (Utilities.Callback) obj2, (org.telegram.ui.ActionBar.c6) obj, view, i10);
                 return;
             case 2:
                 ci.u8.Q((ci.u8) obj3, (Context) obj2, (ci.b7) obj, view, i10);
@@ -58,16 +58,16 @@ public final class u0 implements fm0 {
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj2;
                 Context context = (Context) obj;
                 org.telegram.ui.Cells.s sVar = (org.telegram.ui.Cells.s) view;
-                ib0 ib0Var = (ib0) tVar.V2.get(i10);
-                if (ib0Var.f38682e && !UserConfig.hasPremiumOnAccounts()) {
+                kb0 kb0Var = (kb0) tVar.V2.get(i10);
+                if (kb0Var.f39439e && !UserConfig.hasPremiumOnAccounts()) {
                     m2Var.showDialog(new rg.y0(m2Var, 10, true));
                     return;
-                } else if (!w7.e6.a(ib0Var)) {
+                } else if (!w7.d6.a(kb0Var)) {
                     s4.e0 e0Var = new s4.e0(context);
-                    e0Var.f47951a = i10;
+                    e0Var.f48058a = i10;
                     tVar.W2.w0(e0Var);
-                    w7.e6.b(ib0Var);
-                    int i12 = org.telegram.ui.Cells.s.f22764f;
+                    w7.d6.b(kb0Var);
+                    int i12 = org.telegram.ui.Cells.s.f22499f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);
@@ -75,7 +75,7 @@ public final class u0 implements fm0 {
                             sVar2.b(false, true);
                         }
                     }
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 5, ib0Var);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 5, kb0Var);
                     return;
                 } else {
                     return;

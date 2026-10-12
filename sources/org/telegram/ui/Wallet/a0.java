@@ -3,23 +3,23 @@ package org.telegram.ui.Wallet;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.uf0;
+import org.telegram.ui.og0;
 public final class a0 implements Runnable, NotificationCenter.NotificationCenterDelegate {
-    public boolean f34665a;
-    public final NotificationCenter f34666b;
-    public final uf0 f34667c;
+    public boolean f34440a;
+    public final NotificationCenter f34441b;
+    public final og0 f34442c;
     public final l0 d;
 
-    public a0(NotificationCenter notificationCenter, uf0 uf0Var, l0 l0Var) {
-        this.f34666b = notificationCenter;
-        this.f34667c = uf0Var;
+    public a0(NotificationCenter notificationCenter, og0 og0Var, l0 l0Var) {
+        this.f34441b = notificationCenter;
+        this.f34442c = og0Var;
         this.d = l0Var;
     }
 
     public final void a() {
-        if (!this.f34665a) {
+        if (!this.f34440a) {
             l0 l0Var = this.d;
-            if (l0Var.f35222e != null) {
+            if (l0Var.f34997e != null) {
                 ArrayList arrayList = l0Var.C;
                 int size = arrayList.size();
                 int i10 = 0;
@@ -44,12 +44,12 @@ public final class a0 implements Runnable, NotificationCenter.NotificationCenter
 
     @Override
     public final void run() {
-        if (this.f34665a) {
+        if (this.f34440a) {
             return;
         }
-        this.f34665a = true;
+        this.f34440a = true;
         AndroidUtilities.cancelRunOnUIThread(this);
-        this.f34666b.removeObserver(this, NotificationCenter.walletUpdate);
-        this.f34667c.run();
+        this.f34441b.removeObserver(this, NotificationCenter.walletUpdate);
+        this.f34442c.run();
     }
 }

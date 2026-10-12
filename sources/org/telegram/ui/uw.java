@@ -1,76 +1,112 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class uw implements Runnable {
-    public final int f42811a;
-    public final ry f42812b;
+import android.content.Context;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class uw implements org.telegram.ui.Components.x00 {
+    public final Context f42600a;
+    public final vy f42601b;
 
-    public uw(ry ryVar, int i10) {
-        this.f42811a = i10;
-        this.f42812b = ryVar;
+    public uw(Context context, vy vyVar) {
+        this.f42601b = vyVar;
+        this.f42600a = context;
     }
 
-    @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f42811a) {
-            case 0:
-                this.f42812b.d.l();
+    public final int a(int i10) {
+        vy vyVar = this.f42601b;
+        if (vyVar.R0 != 3) {
+            if (i10 == vyVar.f43007z0.getDefaultTabId()) {
+                return vyVar.getMessagesStorage().getMainUnreadCount();
+            }
+            ArrayList<MessagesController.DialogFilter> dialogFilters = vyVar.getMessagesController().getDialogFilters();
+            if (i10 >= 0 && i10 < dialogFilters.size()) {
+                return vyVar.getMessagesController().getDialogFilters().get(i10).unreadCount;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    public final void b(float f7) {
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        vy vyVar = this.f42601b;
+        if (i10 != 0 || vyVar.f42903e0[1].getVisibility() == 0 || vyVar.f42931j2) {
+            if (vyVar.f42922h3) {
+                uy uyVar = vyVar.f42903e0[0];
+                uyVar.setTranslationX((-f7) * uyVar.getMeasuredWidth());
+                uy[] uyVarArr = vyVar.f42903e0;
+                uyVarArr[1].setTranslationX(uyVarArr[0].getMeasuredWidth() - (f7 * vyVar.f42903e0[0].getMeasuredWidth()));
+            } else {
+                uy uyVar2 = vyVar.f42903e0[0];
+                uyVar2.setTranslationX(uyVar2.getMeasuredWidth() * f7);
+                uy[] uyVarArr2 = vyVar.f42903e0;
+                uyVarArr2[1].setTranslationX((f7 * uyVarArr2[0].getMeasuredWidth()) - vyVar.f42903e0[0].getMeasuredWidth());
+            }
+            if (i10 == 0) {
+                uy[] uyVarArr3 = vyVar.f42903e0;
+                uy uyVar3 = uyVarArr3[0];
+                uyVarArr3[0] = uyVarArr3[1];
+                uyVarArr3[1] = uyVar3;
+                uyVar3.setVisibility(8);
+                vy.c1(vyVar, true);
+                vyVar.Q4(false);
+                vyVar.f43007z0.O = false;
+                vyVar.o3(vyVar.f42903e0[0]);
+                vyVar.f42903e0[0].d.getClass();
+                vyVar.f42903e0[1].d.getClass();
+            }
+        }
+    }
+
+    public final void c(org.telegram.ui.Components.z00 z00Var, boolean z10) {
+        int i10;
+        int i11;
+        vy vyVar = this.f42601b;
+        int i12 = vyVar.f42903e0[0].h;
+        int i13 = z00Var.f33234a;
+        if (i12 != i13) {
+            if (z00Var.f33238f) {
+                vyVar.f43007z0.i(i13);
+                i11 = ((org.telegram.ui.ActionBar.m2) vyVar).currentAccount;
+                vyVar.showDialog(new rg.j0(3, i11, this.f42600a, vyVar, null));
                 return;
-            case 1:
-                ry ryVar = this.f42812b;
-                sy syVar = ryVar.K;
-                oy oyVar = ryVar.f41564a;
-                if (oyVar != null && oyVar.getScrollState() == 0 && ryVar.f41564a.getChildCount() > 0 && ryVar.f41564a.getLayoutManager() != null) {
-                    int i10 = 1;
-                    if (ryVar.f41571s == 0 && syVar.W3() && ryVar.v == 2) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    float f7 = syVar.N;
-                    s4.d0 d0Var = (s4.d0) ryVar.f41564a.getLayoutManager();
-                    View view = null;
-                    int i11 = Integer.MAX_VALUE;
-                    int i12 = -1;
-                    for (int i13 = 0; i13 < ryVar.f41564a.getChildCount(); i13++) {
-                        int R = RecyclerView.R(ryVar.f41564a.getChildAt(i13));
-                        View childAt = ryVar.f41564a.getChildAt(i13);
-                        if (R != -1 && childAt != null && childAt.getTop() < i11) {
-                            i11 = childAt.getTop();
-                            i12 = R;
-                            view = childAt;
-                        }
-                    }
-                    if (view != null) {
-                        float top = view.getTop() - ryVar.f41564a.getPaddingTop();
-                        if (syVar.K) {
-                            f7 = 0.0f;
-                        }
-                        if (ryVar.f41564a.getScrollState() != 1) {
-                            if (z10 && i12 == 0 && ((ryVar.f41564a.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f7 < 0.0f) {
-                                top = f7;
-                            } else {
-                                i10 = i12;
-                            }
-                            d0Var.h1(i10, (int) top);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+            }
+            ArrayList<MessagesController.DialogFilter> dialogFilters = vyVar.getMessagesController().getDialogFilters();
+            if (!z00Var.f33237e && ((i10 = z00Var.f33234a) < 0 || i10 >= dialogFilters.size())) {
                 return;
-            default:
-                ry ryVar2 = this.f42812b;
-                ryVar2.d.W(ryVar2.I);
-                ryVar2.K.Q = true;
-                oy oyVar2 = ryVar2.f41564a;
-                oyVar2.f40678b3 = true;
-                ryVar2.H = false;
-                oyVar2.invalidate();
-                return;
+            }
+            uy uyVar = vyVar.f42903e0[1];
+            uyVar.h = z00Var.f33234a;
+            uyVar.setVisibility(0);
+            uy[] uyVarArr = vyVar.f42903e0;
+            uyVarArr[1].setTranslationX(uyVarArr[0].getMeasuredWidth());
+            vy.c1(vyVar, false);
+            vyVar.O4(true);
+            vyVar.f42922h3 = z10;
+        }
+    }
+
+    public final void d(MessagesController.DialogFilter dialogFilter) {
+        boolean isChatlist = dialogFilter.isChatlist();
+        vy vyVar = this.f42601b;
+        if (isChatlist) {
+            org.telegram.ui.Components.v10.U(vyVar, dialogFilter.f17003id, null);
+            return;
+        }
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vyVar.getParentActivity());
+        alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.FilterDelete);
+        alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.FilterDeleteAlert);
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new tw(0, this, dialogFilter));
+        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+        vyVar.showDialog(a2Var);
+        TextView textView = (TextView) a2Var.d(-1);
+        if (textView != null) {
+            textView.setTextColor(vyVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20799q7));
         }
     }
 }

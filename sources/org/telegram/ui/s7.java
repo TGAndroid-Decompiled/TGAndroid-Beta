@@ -1,79 +1,116 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class s7 extends FrameLayout {
-    public final int f41645a;
-    public int f41646b;
-    public final NotificationCenter.NotificationCenterDelegate f41647c;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class s7 extends i7 {
+    public final u7 f41825n;
 
-    public s7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
-        super(context);
-        this.f41645a = i10;
-        this.f41647c = notificationCenterDelegate;
-        this.f41646b = -1;
+    public s7(u7 u7Var) {
+        super(u7Var, 3);
+        this.f41825n = u7Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f41645a) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int measuredWidth = (getMeasuredWidth() + getMeasuredHeight()) << 16;
-                if (this.f41646b != measuredWidth) {
-                    this.f41646b = measuredWidth;
-                    ((f8) this.f41647c).L.l();
-                    return;
-                }
-                return;
-            case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int i14 = i13 - i11;
-                int i15 = this.f41646b;
-                if (i15 != -1 && Math.abs(i15 - i14) > AndroidUtilities.dp(20.0f)) {
-                    nq nqVar = (nq) this.f41647c;
-                    nqVar.f40343b.x0(nqVar.V - 1);
-                }
-                this.f41646b = i14;
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                Point point = AndroidUtilities.displaySize;
-                int i16 = point.x + point.y;
-                int i17 = this.f41646b;
-                if (i17 > 0 && i17 != i16) {
-                    setVisibility(8);
-                    org.telegram.ui.Components.r30 r30Var = (org.telegram.ui.Components.r30) this.f41647c;
-                    r30Var.f30399w = false;
-                    r30Var.a();
-                }
-                this.f41646b = i16;
-                return;
+    public final void v(s4.d1 d1Var, int i10) {
+        boolean z10;
+        boolean z11;
+        float f7;
+        m7 m7Var = (m7) d1Var.f47889a;
+        org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) m7Var.f39933b.getChildAt(0);
+        zh.a aVar = ((o7) this.f38270e.get(i10)).d;
+        if (aVar == m7Var.getTag()) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        if (i10 != this.f38270e.size() - 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        m7Var.setTag(aVar);
+        u7 u7Var = this.f41825n;
+        if (aVar.f54922f == null) {
+            TLRPC.TL_message tL_message = new TLRPC.TL_message();
+            tL_message.out = true;
+            tL_message.f19823id = i10;
+            tL_message.peer_id = new TLRPC.TL_peerUser();
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_message.from_id = tL_peerUser;
+            TLRPC.Peer peer = tL_message.peer_id;
+            long clientUserId = UserConfig.getInstance(u7Var.d.getCurrentAccount()).getClientUserId();
+            tL_peerUser.user_id = clientUserId;
+            peer.user_id = clientUserId;
+            tL_message.date = (int) (System.currentTimeMillis() / 1000);
+            tL_message.message = "";
+            tL_message.attachPath = aVar.f54918a.getPath();
+            TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+            tL_message.media = tL_messageMediaDocument;
+            tL_messageMediaDocument.flags |= 3;
+            tL_messageMediaDocument.document = new TLRPC.TL_document();
+            tL_message.flags |= 768;
+            tL_message.dialog_id = aVar.f54919b;
+            String fileExtension = FileLoader.getFileExtension(aVar.f54918a);
+            TLRPC.Document document = tL_message.media.document;
+            document.f19808id = 0L;
+            document.access_hash = 0L;
+            document.file_reference = new byte[0];
+            document.date = tL_message.date;
+            if (fileExtension.length() <= 0) {
+                fileExtension = "mp3";
+            }
+            document.mime_type = "audio/".concat(fileExtension);
+            TLRPC.Document document2 = tL_message.media.document;
+            document2.size = aVar.f54920c;
+            document2.dc_id = 0;
+            TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
+            if (aVar.f54921e == null) {
+                c3.j0 j0Var = new c3.j0();
+                aVar.f54921e = j0Var;
+                j0Var.f4130b = true;
+                Utilities.globalQueue.postRunnable(new r1(u7Var, aVar, tL_documentAttributeAudio, 4));
+            }
+            tL_documentAttributeAudio.flags |= 3;
+            tL_message.media.document.attributes.add(tL_documentAttributeAudio);
+            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+            tL_documentAttributeFilename.file_name = aVar.f54918a.getName();
+            tL_message.media.document.attributes.add(tL_documentAttributeFilename);
+            MessageObject messageObject = new MessageObject(u7Var.d.getCurrentAccount(), tL_message, false, false);
+            aVar.f54922f = messageObject;
+            messageObject.mediaExists = true;
+        }
+        i7Var.f(aVar.f54922f, z11);
+        boolean z12 = aVar.f54921e.f4130b;
+        boolean z13 = !z12;
+        if (!z10) {
+            if (!z12) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            i7Var.f22048g0 = f7;
+        }
+        if (i7Var.f22047f0 != z13) {
+            i7Var.f22047f0 = z13;
+            i7Var.invalidate();
+        }
+        m7Var.d = z11;
+        m7Var.f39934c.setText(AndroidUtilities.formatFileSize(aVar.f54920c));
+        m7Var.f39932a.a(this.f41825n.f42382f.f54931j.contains(aVar), z10);
     }
 
     @Override
-    public void setVisibility(int i10) {
-        switch (this.f41645a) {
-            case 2:
-                super.setVisibility(i10);
-                if (i10 == 8) {
-                    this.f41646b = -1;
-                    return;
-                }
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
-        }
-    }
-
-    public s7(f8 f8Var, Context context) {
-        super(context);
-        this.f41645a = 0;
-        this.f41647c = f8Var;
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        m7 m7Var = new m7(this, viewGroup.getContext(), 1);
+        m7Var.f39935e = 3;
+        r7 r7Var = new r7(this, viewGroup.getContext(), m7Var);
+        r7Var.setCheckForButtonPress(true);
+        m7Var.f39933b.addView(r7Var);
+        return new s4.d1(m7Var);
     }
 }

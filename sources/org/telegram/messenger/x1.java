@@ -1,23 +1,33 @@
 package org.telegram.messenger;
+public final class x1 implements Runnable {
+    public final int f19517a;
+    public final String f19518b;
 
-import org.telegram.messenger.NotificationCenter;
-public final class x1 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f19792a;
-    public final Object f19793b;
-
-    public x1(Object obj, int i10) {
-        this.f19792a = i10;
-        this.f19793b = obj;
+    public x1(String str, int i10) {
+        this.f19517a = i10;
+        this.f19518b = str;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
-        switch (this.f19792a) {
+    public final void run() {
+        switch (this.f19517a) {
             case 0:
-                ContactsLoadingObserver.a((ContactsLoadingObserver) this.f19793b, i10, i11, objArr);
+                ContactsController.lambda$markAsContacted$49(this.f19518b);
+                return;
+            case 1:
+                FileLog.lambda$w$8(this.f19518b);
+                return;
+            case 2:
+                FileLog.lambda$e$4(this.f19518b);
+                return;
+            case 3:
+                FileLog.lambda$d$7(this.f19518b);
+                return;
+            case 4:
+                GcmPushListenerService.c(this.f19518b);
                 return;
             default:
-                ((TelegramMediaSession) this.f19793b).lambda$new$0(i10, i11, objArr);
+                SmsReceiver.a(this.f19518b);
                 return;
         }
     }

@@ -1,34 +1,67 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class xc0 extends s4.t0 {
-    public final gd0 f44074a;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLRPC;
+public final class xc0 implements org.telegram.ui.Components.tu0 {
+    public final id0 f43890a;
 
-    public xc0(gd0 gd0Var) {
-        this.f44074a = gd0Var;
+    public xc0(id0 id0Var) {
+        this.f43890a = id0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
+    public final void R() {
+        int c02;
         boolean z10;
-        if (i10 != 0) {
+        id0 id0Var = this.f43890a;
+        yc0 yc0Var = id0Var.K0;
+        if (yc0Var == null) {
+            c02 = 0;
+        } else {
+            c02 = yc0Var.c0(8);
+        }
+        id0Var.L0.setText(LocaleController.formatPluralString("LocationStories", c02, new Object[0]));
+        wc0 wc0Var = id0Var.T;
+        if (c02 > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        gd0 gd0Var = this.f44074a;
-        gd0Var.Q = z10;
-        if (!z10 && gd0Var.L != null) {
-            gd0Var.L = null;
+        if (wc0Var.f10802i0 != z10) {
+            wc0Var.f10802i0 = z10;
+            wc0Var.l();
+            id0Var.U.v0(0, AndroidUtilities.dp(200.0f), null);
         }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        gd0 gd0Var = this.f44074a;
-        gd0Var.z0(false);
-        if (gd0Var.L != null) {
-            gd0Var.N += i11;
-        }
+    public final boolean T() {
+        return false;
+    }
+
+    @Override
+    public final org.telegram.ui.Components.wm0 f() {
+        return this.f43890a.U;
+    }
+
+    @Override
+    public final TLRPC.Chat g() {
+        return null;
+    }
+
+    @Override
+    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
+        return false;
+    }
+
+    @Override
+    public final boolean q() {
+        return true;
+    }
+
+    @Override
+    public final void E() {
     }
 }

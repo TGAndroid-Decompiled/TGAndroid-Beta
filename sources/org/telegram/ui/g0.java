@@ -1,40 +1,37 @@
 package org.telegram.ui;
-public final class g0 extends org.telegram.ui.ActionBar.e5 {
-    public final int f37851f;
-    public final Object h;
 
-    public g0(Object obj, int i10) {
-        this.f37851f = i10;
-        this.h = obj;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class g0 implements Utilities.Callback0Return {
+    public final i4 f37880a;
+    public final String f37881b;
+    public final boolean[] f37882c;
+    public final of.e d;
+
+    public g0(i4 i4Var, String str, boolean[] zArr, of.e eVar) {
+        this.f37880a = i4Var;
+        this.f37881b = str;
+        this.f37882c = zArr;
+        this.d = eVar;
     }
 
     @Override
-    public boolean h() {
-        switch (this.f37851f) {
-            case 0:
-                h4 h4Var = (h4) this.h;
-                org.telegram.ui.Cells.o9 o9Var = h4Var.P0;
-                if (o9Var != null && o9Var.x()) {
-                    h4Var.P0.f(false);
-                    return false;
-                }
-                return true;
-            case 1:
-            default:
-                return super.h();
-            case 2:
-                return !((org.telegram.ui.Wallet.b2) this.h).f34720m;
+    public final Object run() {
+        String str = this.f37881b;
+        if (!of.f.f(Uri.parse(str), false, this.f37882c)) {
+            return Boolean.FALSE;
         }
-    }
-
-    @Override
-    public void onOpenAnimationEnd() {
-        switch (this.f37851f) {
-            case 1:
-                ((org.telegram.ui.Components.nr0) this.h).Y = true;
-                return;
-            default:
-                return;
+        i4 i4Var = this.f37880a;
+        of.e eVar = this.d;
+        if (eVar != null) {
+            eVar.f16870c = new org.telegram.ui.ActionBar.f6(2, i4Var, eVar);
+        } else {
+            v3 v3Var = i4Var.K;
+            if (v3Var != null) {
+                v3Var.dismiss(true);
+            }
         }
+        of.f.r(i4Var.L, Uri.parse(str), true, true, false, eVar, null, true, true, false);
+        return Boolean.TRUE;
     }
 }

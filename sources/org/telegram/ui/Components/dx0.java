@@ -1,18 +1,51 @@
 package org.telegram.ui.Components;
-public final class dx0 {
-    public float f25882a;
-    public float f25883b;
-    public float f25884c;
-    public float d;
-    public float f25885e;
-    public float f25886f;
-    public float f25887g;
-    public float h;
-    public float f25888i;
-    public int f25889j;
-    public final ex0 f25890k;
 
-    public dx0(ex0 ex0Var) {
-        this.f25890k = ex0Var;
+import android.os.Bundle;
+import android.widget.LinearLayout;
+public abstract class dx0 extends LinearLayout {
+    public boolean a() {
+        return this instanceof org.telegram.ui.ge0;
+    }
+
+    public boolean b() {
+        return this instanceof org.telegram.ui.ge0;
+    }
+
+    public boolean c(boolean z10) {
+        return true;
+    }
+
+    public String getHeaderName() {
+        return "";
+    }
+
+    public void d() {
+    }
+
+    public void f() {
+    }
+
+    public void g() {
+    }
+
+    public void h(String str) {
+    }
+
+    public void i() {
+    }
+
+    public void j() {
+    }
+
+    public void k(Bundle bundle) {
+    }
+
+    public void l(Bundle bundle) {
+    }
+
+    public void n() {
+    }
+
+    public void m(Bundle bundle, boolean z10) {
     }
 }

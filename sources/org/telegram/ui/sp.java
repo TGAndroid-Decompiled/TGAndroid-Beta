@@ -1,33 +1,21 @@
 package org.telegram.ui;
-
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
 public final class sp implements Runnable {
-    public final int f41805a;
-    public final tp f41806b;
-    public final String f41807c;
+    public final int f41970a;
+    public final tp f41971b;
 
-    public sp(tp tpVar, String str, int i10) {
-        this.f41805a = i10;
-        this.f41806b = tpVar;
-        this.f41807c = str;
+    public sp(tp tpVar, int i10) {
+        this.f41970a = i10;
+        this.f41971b = tpVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f41805a) {
+        switch (this.f41970a) {
             case 0:
-                tp tpVar = this.f41806b;
-                String str = this.f41807c;
-                tpVar.getClass();
-                AndroidUtilities.runOnUIThread(new sp(tpVar, str, 1));
+                this.f41971b.f42261x.d.P = false;
                 return;
             default:
-                tp tpVar2 = this.f41806b;
-                String str2 = this.f41807c;
-                tpVar2.f42253f = null;
-                Utilities.searchQueue.postRunnable(new q1(tpVar2, str2, new ArrayList(tpVar2.h.v), 28));
+                this.f41971b.f42261x.d.P = false;
                 return;
         }
     }

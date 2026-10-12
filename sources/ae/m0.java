@@ -2,7 +2,7 @@ package ae;
 
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 public final class m0 extends fe.s {
-    public static final AtomicIntegerFieldUpdater f475e = AtomicIntegerFieldUpdater.newUpdater(m0.class, "_decision$volatile");
+    public static final AtomicIntegerFieldUpdater f477e = AtomicIntegerFieldUpdater.newUpdater(m0.class, "_decision$volatile");
     private volatile int _decision$volatile;
 
     @Override
@@ -14,7 +14,7 @@ public final class m0 extends fe.s {
     public final void g(Object obj) {
         AtomicIntegerFieldUpdater atomicIntegerFieldUpdater;
         do {
-            atomicIntegerFieldUpdater = f475e;
+            atomicIntegerFieldUpdater = f477e;
             int i10 = atomicIntegerFieldUpdater.get(this);
             if (i10 != 0) {
                 if (i10 == 1) {

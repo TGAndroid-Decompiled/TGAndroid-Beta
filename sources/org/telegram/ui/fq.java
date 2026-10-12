@@ -1,83 +1,79 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
-public final class fq implements Runnable {
-    public final int f37774a;
-    public final nq f37775b;
+public final class fq implements org.telegram.ui.ActionBar.z1, MessagesController.ErrorDelegate, MessagesStorage.LongCallback {
+    public final int f37823a;
+    public final qq f37824b;
 
-    public fq(nq nqVar, int i10) {
-        this.f37774a = i10;
-        this.f37775b = nqVar;
+    public fq(qq qqVar, int i10) {
+        this.f37823a = i10;
+        this.f37824b = qqVar;
     }
 
     @Override
-    public final void run() {
-        TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        int i10 = this.f37774a;
-        nq nqVar = this.f37775b;
-        int i11 = 1;
-        switch (i10) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        TLRPC.TL_chatAdminRights o02;
+        switch (this.f37823a) {
             case 0:
-                TLRPC.User user = nqVar.v;
-                kq kqVar = nqVar.X0;
-                if (kqVar != null) {
-                    if (nqVar.K) {
-                        tL_chatAdminRights = nqVar.M;
-                    } else {
-                        tL_chatAdminRights = null;
-                    }
-                    kqVar.b(0, tL_chatAdminRights, null, nqVar.S);
-                }
-                Bundle i12 = a1.g.i("scrollToTopOnResume", true);
-                i12.putLong("chat_id", nqVar.f40372w.f20068id);
-                if (!nqVar.getMessagesController().checkCanOpenChat(i12, nqVar)) {
-                    nqVar.t0(false);
-                    return;
-                }
-                zn znVar = new zn(i12);
-                nqVar.presentFragment(znVar, true);
-                if (org.telegram.ui.Components.ad.a(znVar)) {
-                    boolean z10 = nqVar.Z0;
-                    if (z10 && nqVar.K) {
-                        String str = user.first_name;
-                        org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(znVar.getParentActivity(), znVar.f44796ea);
-                        acVar.d(R.raw.ic_admin, "Shield");
-                        acVar.f24555b.setText(AndroidUtilities.replaceTags(LocaleController.formatString("UserAddedAsAdminHint", R.string.UserAddedAsAdminHint, str)));
-                        org.telegram.ui.Components.sc.g(znVar, acVar, 1500).j();
-                        return;
-                    } else if (!z10 && !nqVar.L && nqVar.K) {
-                        org.telegram.ui.Components.ad.C(znVar, user.first_name).j();
-                        return;
-                    } else {
-                        return;
-                    }
-                }
+                this.f37824b.r0(true);
                 return;
             case 1:
-                nqVar.r0(false);
-                return;
-            default:
-                if (nqVar.f40365r) {
-                    long j3 = nqVar.f40360n;
-                    org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(nqVar.getParentActivity(), 3, null)};
-                    nqVar.getMessagesController().toggleChatJoinRequest(nqVar.f40367s, j3, true, false, true, new wg(a2VarArr, 2), new wg(a2VarArr, 3));
-                    a2VarArr[0].q(300L);
-                }
-                kq kqVar2 = nqVar.X0;
-                if (kqVar2 != null) {
-                    TLRPC.TL_chatAdminRights tL_chatAdminRights2 = nqVar.M;
-                    if (!tL_chatAdminRights2.change_info && !tL_chatAdminRights2.post_messages && !tL_chatAdminRights2.manage_direct_messages && !tL_chatAdminRights2.manage_welcome_messages && !tL_chatAdminRights2.edit_messages && !tL_chatAdminRights2.delete_messages && !tL_chatAdminRights2.ban_users && !tL_chatAdminRights2.invite_users && ((!nqVar.G || !tL_chatAdminRights2.manage_topics) && !tL_chatAdminRights2.pin_messages && !tL_chatAdminRights2.manage_ranks && !tL_chatAdminRights2.add_admins && !tL_chatAdminRights2.anonymous && !tL_chatAdminRights2.manage_call && ((!nqVar.E || (!tL_chatAdminRights2.post_stories && !tL_chatAdminRights2.edit_stories && !tL_chatAdminRights2.delete_stories)) && !tL_chatAdminRights2.other))) {
-                        i11 = 0;
-                    }
-                    kqVar2.b(i11, tL_chatAdminRights2, nqVar.O, nqVar.S);
-                    nqVar.finishFragment();
+                qq qqVar = this.f37824b;
+                qqVar.t0(true);
+                iq iqVar = new iq(qqVar, 0);
+                if (!qqVar.K && !qqVar.L) {
+                    qqVar.getMessagesController().addUserToChat(qqVar.f41415w.f19802id, qqVar.v, 0, qqVar.Y0, qqVar, true, iqVar, new fq(qqVar, 3));
                     return;
                 }
+                MessagesController messagesController = qqVar.getMessagesController();
+                long j3 = qqVar.f41415w.f19802id;
+                TLRPC.User user = qqVar.v;
+                if (qqVar.K) {
+                    o02 = qqVar.M;
+                } else {
+                    o02 = qq.o0(false);
+                }
+                messagesController.setUserAdminRole(j3, user, o02, qqVar.S, false, qqVar, qqVar.Z0, qqVar.K, qqVar.Y0, iqVar, new fq(qqVar, 2));
                 return;
+            case 2:
+            case 3:
+            default:
+                qq qqVar2 = this.f37824b;
+                qqVar2.getClass();
+                qqVar2.presentFragment(new kh1(6, null));
+                return;
+            case 4:
+                this.f37824b.finishFragment();
+                return;
+            case 5:
+                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+                qq qqVar3 = this.f37824b;
+                o oVar = new o(19, qqVar3, twoStepVerificationActivity);
+                twoStepVerificationActivity.Z = 0;
+                twoStepVerificationActivity.f34410b0 = oVar;
+                qqVar3.presentFragment(twoStepVerificationActivity);
+                return;
+        }
+    }
+
+    @Override
+    public void run(long j3) {
+        qq.U(this.f37824b, j3);
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        switch (this.f37823a) {
+            case 2:
+                this.f37824b.t0(false);
+                return true;
+            case 3:
+                this.f37824b.t0(false);
+                return true;
+            default:
+                return qq.W(this.f37824b, tL_error);
         }
     }
 }

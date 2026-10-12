@@ -2,11 +2,11 @@ package cf;
 
 import v7.e5;
 public final class h extends a {
-    public char f4639g;
+    public char f4638g;
     public int h;
-    public int f4640i;
-    public String f4641j;
-    public String f4642k;
+    public int f4639i;
+    public String f4640j;
+    public String f4641k;
 
     @Override
     public final void a(e5 e5Var) {

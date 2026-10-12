@@ -6,28 +6,28 @@ import androidx.media3.exoplayer.hls.HlsMediaSource$Factory;
 import java.lang.reflect.GenericDeclaration;
 import java.util.HashMap;
 public final class g {
-    public boolean f4234a;
-    public Object f4235b;
-    public Object f4236c;
+    public boolean f4233a;
+    public Object f4234b;
+    public Object f4235c;
     public Object d;
-    public Object f4237e = new h0(this, true);
-    public Object f4238f = new h0(this, false);
+    public Object f4236e = new h0(this, true);
+    public Object f4237f = new h0(this, false);
 
     public g(Context context, q qVar, pf.b bVar) {
-        this.f4235b = context;
-        this.f4236c = qVar;
+        this.f4234b = context;
+        this.f4235c = qVar;
         this.d = bVar;
     }
 
     public d9.j a(int i10) {
         d9.j jVar;
         d9.j jVar2;
-        HashMap hashMap = (HashMap) this.f4236c;
+        HashMap hashMap = (HashMap) this.f4235c;
         d9.j jVar3 = (d9.j) hashMap.get(Integer.valueOf(i10));
         if (jVar3 != null) {
             return jVar3;
         }
-        final pf.b bVar = (pf.b) this.f4237e;
+        final pf.b bVar = (pf.b) this.f4236e;
         bVar.getClass();
         if (i10 != 0) {
             if (i10 != 1) {
@@ -45,12 +45,12 @@ public final class g {
                                         case 2:
                                             return p.e((Class) this, bVar);
                                         default:
-                                            return new u0(bVar, (c3.m) ((c5.g) this).f4235b);
+                                            return new u0(bVar, (c3.m) ((c5.g) this).f4234b);
                                     }
                                 }
                             };
                         } else {
-                            throw new IllegalArgumentException(hg.c.h(i10, "Unrecognized contentType: "));
+                            throw new IllegalArgumentException(hg.c.i(i10, "Unrecognized contentType: "));
                         }
                     } else {
                         jVar = new i2.o(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(u2.e0.class), 3);
@@ -68,7 +68,7 @@ public final class g {
                                 case 2:
                                     return p.e((Class) asSubclass, bVar);
                                 default:
-                                    return new u0(bVar, (c3.m) ((c5.g) asSubclass).f4235b);
+                                    return new u0(bVar, (c3.m) ((c5.g) asSubclass).f4234b);
                             }
                         }
                     };
@@ -86,7 +86,7 @@ public final class g {
                             case 2:
                                 return p.e((Class) asSubclass2, bVar);
                             default:
-                                return new u0(bVar, (c3.m) ((c5.g) asSubclass2).f4235b);
+                                return new u0(bVar, (c3.m) ((c5.g) asSubclass2).f4234b);
                         }
                     }
                 };
@@ -105,7 +105,7 @@ public final class g {
                         case 2:
                             return p.e((Class) asSubclass3, bVar);
                         default:
-                            return new u0(bVar, (c3.m) ((c5.g) asSubclass3).f4235b);
+                            return new u0(bVar, (c3.m) ((c5.g) asSubclass3).f4234b);
                     }
                 }
             };

@@ -54,11 +54,11 @@ public final class EncryptedFileDataSource extends c {
 
     @Override
     public long open(m mVar) {
-        Uri uri = mVar.f10266a;
-        long j3 = mVar.f10270f;
-        long j10 = mVar.f10269e;
+        Uri uri = mVar.f10265a;
+        long j3 = mVar.f10269f;
+        long j10 = mVar.f10268e;
         this.uri = uri;
-        File file = new File(mVar.f10266a.getPath());
+        File file = new File(mVar.f10265a.getPath());
         EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), v.v(file.getName(), ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(j10);

@@ -13,11 +13,11 @@ public final class ac extends j0 {
         this.D0 = true;
         this.M0 = new r4(this, 1);
         this.O0 = -1;
-        this.f1543y0 = i10;
+        this.f1541y0 = i10;
         this.H0 = new c6(context);
         this.N0 = kcVar2;
         la laVar = new la(this, context, kcVar2, dVar);
-        this.f1544z0 = laVar;
+        this.f1542z0 = laVar;
         setAdapter(laVar);
         a1.c cVar = new a1.c(this, 8);
         if (this.m0 != null) {
@@ -27,8 +27,8 @@ public final class ac extends j0 {
         }
         this.m0 = cVar;
         setChildrenDrawingOrderEnabled(true);
-        this.f53675o0 = 1;
-        this.f53674n0 = 2;
+        this.f53778o0 = 1;
+        this.f53777n0 = 2;
         if (z10) {
             s();
         }

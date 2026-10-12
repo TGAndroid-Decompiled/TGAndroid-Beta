@@ -1,77 +1,66 @@
 package xh;
 
-import org.telegram.tgnet.TLRPC;
-public final class s4 implements org.telegram.ui.Cells.t0 {
-    @Override
-    public final org.telegram.ui.ActionBar.m2 T0() {
-        return null;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.ui.Components.yw0;
+public final class s4 extends yw0 {
+    public int f51744w0;
+    public final y4 f51745x0;
+
+    public s4(y4 y4Var, Context context) {
+        super(context, null);
+        this.f51745x0 = y4Var;
+        this.f51744w0 = -1;
     }
 
     @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final long d() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final boolean x2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
+    public final boolean P() {
         return false;
     }
 
     @Override
-    public final void E1(long j3) {
+    public final boolean Q() {
+        return false;
     }
 
     @Override
-    public final void F1(org.telegram.ui.Cells.w0 w0Var) {
+    public final void T() {
+        this.f51745x0.d.invalidate();
     }
 
     @Override
-    public final void W0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.L) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j3);
     }
 
     @Override
-    public final void d0(org.telegram.ui.Cells.w0 w0Var) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        y4 y4Var = this.f51745x0;
+        LinearLayout linearLayout = y4Var.f51844i0;
+        linearLayout.setTranslationY(((i13 - i11) - linearLayout.getMeasuredHeight()) / 2.0f);
+        y4Var.f51846k0.a0(y4Var.f51846k0.getY() + y4Var.f51844i0.getY(), getBackgroundSizeY());
     }
 
     @Override
-    public final void o0(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void w0(org.telegram.ui.Cells.w0 w0Var) {
-    }
-
-    @Override
-    public final void X(org.telegram.ui.Cells.w0 w0Var, int i10) {
-    }
-
-    @Override
-    public final void n2(org.telegram.ui.Cells.w0 w0Var, String str) {
-    }
-
-    @Override
-    public final void P1(org.telegram.ui.Cells.w0 w0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
-    }
-
-    @Override
-    public final void k0(org.telegram.ui.Cells.w0 w0Var, int i10, int i11) {
-    }
-
-    @Override
-    public final void m1(org.telegram.ui.Cells.w0 w0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
-    }
-
-    @Override
-    public final void z2(org.telegram.ui.Cells.w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    public final void onMeasure(int i10, int i11) {
+        if (this.f51744w0 != -1) {
+            super.onMeasure(i10, i11);
+            int measuredHeight = getMeasuredHeight();
+            int i12 = this.f51744w0;
+            if (measuredHeight < i12) {
+                i11 = View.MeasureSpec.makeMeasureSpec(Math.max(i12, getMeasuredHeight()), Integer.MIN_VALUE);
+            }
+        }
+        super.onMeasure(i10, i11);
+        int i13 = this.f51744w0;
+        if (i13 == -1) {
+            this.f51744w0 = Math.max(i13, getMeasuredHeight());
+        }
     }
 }

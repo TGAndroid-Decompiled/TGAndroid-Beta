@@ -1,80 +1,37 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.view.View;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class qh1 extends org.telegram.ui.Components.g71 {
-    public oh1 d;
-    public long f41219e;
-    public mh1 f41220f;
-    public String h;
-    public org.telegram.ui.ActionBar.u0 f41221n;
-    public boolean f41222r;
+import android.text.Editable;
+public final class qh1 extends org.telegram.ui.Cells.j3 {
+    public final int f41337x;
+    public final UserInfoActivity f41338y;
 
-    @Override
-    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.d71 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qh1.U(java.util.ArrayList, org.telegram.ui.Components.d71):void");
+    public qh1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, str, false, false, -1, c6Var);
+        this.f41337x = i10;
+        this.f41338y = userInfoActivity;
     }
 
     @Override
-    public final CharSequence V() {
-        return LocaleController.getString(R.string.EditProfileChannelTitle);
-    }
-
-    @Override
-    public final void W(org.telegram.ui.Components.q61 q61Var, View view) {
-        mh1 mh1Var = this.f41220f;
-        int i10 = q61Var.d;
-        if (i10 == 1) {
-            mh1Var.run(null);
-            finishFragment();
-        } else if (i10 == 2) {
-            this.f41222r = true;
-            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-            if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
-                presentFragment(new ld(org.telegram.ui.Cells.c1.f(0, "step")));
+    public final void b(Editable editable) {
+        switch (this.f41337x) {
+            case 0:
+                this.f41338y.b0(true);
                 return;
-            }
-            presentFragment(new h(0));
-            globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-        } else if (q61Var.f17211a == 12) {
-            finishFragment();
-            mh1Var.run(getMessagesController().getChat(Long.valueOf(-q61Var.f30178x)));
+            case 1:
+                this.f41338y.b0(true);
+                return;
+            default:
+                UserInfoActivity userInfoActivity = this.f41338y;
+                userInfoActivity.b0(true);
+                userInfoActivity.e0();
+                return;
         }
     }
 
-    @Override
-    public final boolean X(org.telegram.ui.Components.q61 q61Var, View view) {
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context) {
-        org.telegram.ui.ActionBar.u0 c10 = this.actionBar.o().c(0, R.drawable.outline_header_search, getResourceProvider());
-        c10.F();
-        c10.H = new hg.e2(this, 19);
-        this.f41221n = c10;
-        c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f41221n.setContentDescription(LocaleController.getString(R.string.Search));
-        this.f41221n.setVisibility(8);
-        super.createView(context);
-        this.f26675a.p1();
-        this.actionBar.setAdaptiveBackground(this.f26675a);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        if (this.f41222r) {
-            oh1 oh1Var = this.d;
-            oh1Var.f40583c = false;
-            oh1Var.f40585f.add(new ph1(this, 0));
-            this.f41222r = false;
-        }
+    public qh1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, str, true, false, i10, c6Var);
+        this.f41337x = 2;
+        this.f41338y = userInfoActivity;
     }
 }

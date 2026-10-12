@@ -6,21 +6,21 @@ import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class n4 extends FrameLayout {
-    public final int f1462a;
-    public final f6 f1463b;
+    public final int f1460a;
+    public final f6 f1461b;
 
     public n4(f6 f6Var, Context context, int i10) {
         super(context);
-        this.f1462a = i10;
-        this.f1463b = f6Var;
+        this.f1460a = i10;
+        this.f1461b = f6Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int x10;
-        switch (this.f1462a) {
+        switch (this.f1460a) {
             case 0:
-                f6 f6Var = this.f1463b;
+                f6 f6Var = this.f1461b;
                 if (f6Var.F2.getVisibility() == 0 && f6Var.F2.getLayoutParams().width != (x10 = (int) (((f6Var.A2.getX() + f6Var.A2.getMeasuredWidth()) - f6Var.F2.getX()) + AndroidUtilities.dp(10.0f)))) {
                     f6Var.F2.getLayoutParams().width = x10;
                     f6Var.F2.invalidate();
@@ -30,7 +30,7 @@ public final class n4 extends FrameLayout {
                 return;
             case 1:
                 super.dispatchDraw(canvas);
-                f6 f6Var2 = this.f1463b;
+                f6 f6Var2 = this.f1461b;
                 if (f6Var2.D1 && f6Var2.R0 != null) {
                     canvas.save();
                     float f7 = 0.0f;
@@ -50,7 +50,7 @@ public final class n4 extends FrameLayout {
                 return;
             default:
                 super.dispatchDraw(canvas);
-                f6 f6Var3 = this.f1463b;
+                f6 f6Var3 = this.f1461b;
                 if (f6Var3.D1 && f6Var3.Q0 != null) {
                     canvas.save();
                     float f10 = 0.0f;
@@ -73,14 +73,14 @@ public final class n4 extends FrameLayout {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f1462a) {
+        switch (this.f1460a) {
             case 1:
-                if (drawable != this.f1463b.R0 && !super.verifyDrawable(drawable)) {
+                if (drawable != this.f1461b.R0 && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
             case 2:
-                if (drawable != this.f1463b.Q0 && !super.verifyDrawable(drawable)) {
+                if (drawable != this.f1461b.Q0 && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;

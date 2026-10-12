@@ -1,55 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class m41 extends org.telegram.ui.ActionBar.m2 {
-    public static final int[] f39844c = {750000, 1000000, 1200000, 2000000};
-    public org.telegram.ui.Components.rm0 f39845a;
-    public l41 f39846b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+public final class m41 extends AnimatorListenerAdapter {
+    public final int f39908a;
+    public final n41 f39909b;
 
-    public static String U(int i10) {
-        if (i10 % 1000000 == 0) {
-            return (i10 / 1000000) + " Mbps";
-        } else if (i10 > 1000000) {
-            return String.format(Locale.US, "%.1f Mbps", Float.valueOf(i10 / 1000000.0f));
-        } else {
-            return (i10 / 1000) + " kbps";
-        }
-    }
-
-    public final void V(int i10, CharSequence[] charSequenceArr, v20 v20Var) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-        alertDialog$Builder.f20404a.R = LocaleController.getString(i10);
-        alertDialog$Builder.f(charSequenceArr, new lg.j(11, this, v20Var));
-        showDialog(alertDialog$Builder.f20404a);
+    public m41(n41 n41Var, int i10) {
+        this.f39908a = i10;
+        this.f39909b = n41Var;
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.RoundVideoSettings));
-        this.actionBar.setActionBarMenuOnItemClick(new u70(this, 27));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20766a7, false));
-        this.fragmentView = frameLayout;
-        org.telegram.ui.Components.rm0 rm0Var = new org.telegram.ui.Components.rm0(context, null);
-        this.f39845a = rm0Var;
-        rm0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f39845a);
-        this.f39845a.setLayoutManager(new s4.d0());
-        this.f39845a.setVerticalScrollBarEnabled(false);
-        org.telegram.ui.Components.rm0 rm0Var2 = this.f39845a;
-        l41 l41Var = new l41(context);
-        this.f39846b = l41Var;
-        rm0Var2.setAdapter(l41Var);
-        this.f39845a.setOnItemClickListener(new y21(this, 3));
-        frameLayout.addView(this.f39845a, w7.x5.d(-1.0f, -1));
-        return this.fragmentView;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39908a) {
+            case 0:
+                n41 n41Var = this.f39909b;
+                if (n41Var.h != null) {
+                    n41Var.h = null;
+                    n41Var.f40204e = 0.0f;
+                    n41Var.g();
+                    n41Var.f40206n.unlock();
+                    wx wxVar = n41Var.f40201a;
+                    if (wxVar != null) {
+                        wxVar.onPause();
+                        n41Var.f40201a.onFragmentDestroy();
+                        n41Var.removeAllViews();
+                        n41Var.f40201a = null;
+                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                    }
+                    n41Var.d(false);
+                    return;
+                }
+                return;
+            default:
+                n41 n41Var2 = this.f39909b;
+                if (n41Var2.h != null) {
+                    n41Var2.h = null;
+                    n41Var2.d(true);
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,80 +1,57 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.SpannableStringBuilder;
-import android.text.TextWatcher;
+import android.view.View;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class ja implements TextWatcher {
-    public final ka f38989a;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ja implements org.telegram.ui.Components.km0 {
+    public final ua f39165a;
 
-    public ja(ka kaVar) {
-        this.f38989a = kaVar;
+    public ja(ua uaVar) {
+        this.f39165a = uaVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        qa qaVar = this.f38989a.f39278c;
-        if (qaVar.f41118r.startsWith("@")) {
-            qaVar.f41118r = qaVar.f41118r.substring(1);
-        }
-        if (qaVar.f41118r.length() > 0) {
-            StringBuilder sb2 = new StringBuilder("https://");
-            i10 = ((org.telegram.ui.ActionBar.m2) qaVar).currentAccount;
-            sb2.append(MessagesController.getInstance(i10).linkPrefix);
-            sb2.append("/");
-            sb2.append(qaVar.f41118r);
-            String sb3 = sb2.toString();
-            String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, sb3);
-            int indexOf = formatString.indexOf(sb3);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Cells.i(sb3, qaVar, 3), indexOf, sb3.length() + indexOf, 33);
+    public final void d(int i10, View view) {
+        int i11;
+        int i12;
+        int i13;
+        boolean z10 = view instanceof ra;
+        ua uaVar = this.f39165a;
+        if (z10) {
+            ra raVar = (ra) view;
+            TLRPC.TL_username tL_username = raVar.v;
+            if (tL_username != null && !raVar.f41584r) {
+                if (tL_username.editable && uaVar.f42439x == 0) {
+                    uaVar.f42431b.x0(0);
+                    uaVar.e0(true);
+                    return;
+                }
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(uaVar.getParentActivity(), 0, uaVar.getResourceProvider());
+                if (tL_username.active) {
+                    i11 = R.string.UsernameDeactivateLink;
+                } else {
+                    i11 = R.string.UsernameActivateLink;
+                }
+                alertDialog$Builder.f20141a.R = LocaleController.getString(i11);
+                if (tL_username.active) {
+                    i12 = R.string.UsernameDeactivateLinkProfileMessage;
+                } else {
+                    i12 = R.string.UsernameActivateLinkProfileMessage;
+                }
+                alertDialog$Builder.f20141a.T = LocaleController.getString(i12);
+                if (tL_username.active) {
+                    i13 = R.string.Hide;
+                } else {
+                    i13 = R.string.Show;
+                }
+                alertDialog$Builder.k(LocaleController.getString(i13), new ha(this, tL_username, i10, view, 0));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new m4.r0(26));
+                alertDialog$Builder.o();
             }
+        } else if (view instanceof oa) {
+            uaVar.e0(true);
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        ka kaVar = this.f38989a;
-        qa qaVar = kaVar.f39278c;
-        String str = qaVar.f41118r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        qaVar.f41118r = charSequence2;
-        qa qaVar2 = kaVar.f39278c;
-        na naVar = qaVar2.E;
-        if (naVar != null && str != null) {
-            naVar.b(qaVar2.f41118r);
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        ka kaVar = this.f38989a;
-        qa qaVar = kaVar.f39278c;
-        String str = qaVar.f41118r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        qaVar.f41118r = charSequence2;
-        qa qaVar2 = kaVar.f39278c;
-        na naVar = qaVar2.E;
-        if (naVar != null && str != null) {
-            naVar.b(qaVar2.f41118r);
-        }
-        if (qaVar.f41117n) {
-            return;
-        }
-        qaVar.d0(qaVar.f41118r);
     }
 }

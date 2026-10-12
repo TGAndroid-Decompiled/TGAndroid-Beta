@@ -1,66 +1,55 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
 public final class ht implements View.OnClickListener {
-    public final ArrayList f38535a;
-    public final boolean f38536b;
-    public final mt f38537c;
+    public final int f38520a;
+    public final ut f38521b;
 
-    public ht(mt mtVar, ArrayList arrayList, boolean z10) {
-        this.f38537c = mtVar;
-        this.f38535a = arrayList;
-        this.f38536b = z10;
+    public ht(ut utVar, int i10) {
+        this.f38520a = i10;
+        this.f38521b = utVar;
     }
 
     @Override
     public final void onClick(View view) {
-        qt qtVar = this.f38537c.f40107a;
-        if (qtVar.f41288w != null) {
-            int intValue = ((Integer) view.getTag()).intValue();
-            ArrayList arrayList = this.f38535a;
-            if (((Integer) arrayList.get(intValue)).intValue() != 0 && ((Integer) arrayList.get(intValue)).intValue() != 6) {
-                if (((Integer) arrayList.get(intValue)).intValue() == 1) {
-                    ot otVar = qtVar.f41278l;
-                    if (otVar != null) {
-                        otVar.M(qtVar.f41265a0, qtVar.f41275i);
+        switch (this.f38520a) {
+            case 0:
+                ut utVar = this.f38521b;
+                utVar.K = false;
+                utVar.f42591z.invalidate();
+                utVar.n();
+                return;
+            case 1:
+                ut utVar2 = this.f38521b;
+                Activity activity = utVar2.f42588w;
+                if (activity instanceof LaunchActivity) {
+                    LaunchActivity launchActivity = (LaunchActivity) activity;
+                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
+                        launchActivity.O().getLastFragment().dismissCurrentDialog();
                     }
-                } else if (((Integer) arrayList.get(intValue)).intValue() == 2) {
-                    MediaDataController.getInstance(qtVar.f41284r).addRecentSticker(2, qtVar.f41267b0, qtVar.W, (int) (System.currentTimeMillis() / 1000), this.f38536b);
-                } else if (((Integer) arrayList.get(intValue)).intValue() == 3) {
-                    TLRPC.Document document = qtVar.W;
-                    Object obj = qtVar.f41267b0;
-                    String str = qtVar.Y;
-                    ot otVar2 = qtVar.f41278l;
-                    if (otVar2 == null) {
-                        return;
-                    }
-                    org.telegram.ui.Components.g5.K(qtVar.f41288w, otVar2.a(), new a1.d(otVar2, document, str, obj, 10));
-                } else if (((Integer) arrayList.get(intValue)).intValue() == 4) {
-                    MediaDataController.getInstance(qtVar.f41284r).addRecentSticker(0, qtVar.f41267b0, qtVar.W, (int) (System.currentTimeMillis() / 1000), true);
-                } else if (((Integer) arrayList.get(intValue)).intValue() == 5) {
-                    qtVar.f41278l.k(qtVar.X);
-                } else if (((Integer) arrayList.get(intValue)).intValue() == 7) {
-                    qtVar.f41278l.p(qtVar.W);
-                } else if (((Integer) arrayList.get(intValue)).intValue() == 8) {
-                    qtVar.f41278l.F(qtVar.W);
+                    launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
                 }
-            } else {
-                ot otVar3 = qtVar.f41278l;
-                if (otVar3 != null) {
-                    TLRPC.Document document2 = qtVar.W;
-                    String str2 = qtVar.Y;
-                    boolean z10 = true;
-                    Object obj2 = qtVar.f41267b0;
-                    if (((Integer) arrayList.get(intValue)).intValue() != 0) {
-                        z10 = false;
-                    }
-                    otVar3.n(document2, str2, obj2, z10, 0, 0);
+                utVar2.K = false;
+                utVar2.f42591z.invalidate();
+                utVar2.n();
+                return;
+            case 2:
+                ut utVar3 = this.f38521b;
+                st stVar = utVar3.f42578l;
+                if (stVar != null) {
+                    stVar.K();
                 }
-            }
-            qtVar.p();
+                utVar3.p();
+                return;
+            default:
+                ut utVar4 = this.f38521b;
+                st stVar2 = utVar4.f42578l;
+                if (stVar2 != null) {
+                    stVar2.s();
+                }
+                utVar4.p();
+                return;
         }
     }
 }

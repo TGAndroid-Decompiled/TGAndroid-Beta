@@ -1,10 +1,72 @@
 package org.telegram.ui;
-public final class er0 {
-    public final int f37464a;
-    public final fr0 f37465b;
 
-    public er0(fr0 fr0Var, int i10) {
-        this.f37464a = i10;
-        this.f37465b = fr0Var;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class er0 implements org.telegram.ui.Components.xn0 {
+    public final ir0 f37537a;
+
+    public er0(ir0 ir0Var) {
+        this.f37537a = ir0Var;
+    }
+
+    @Override
+    public final void d(int i10, boolean z10) {
+        boolean z11;
+        ir0 ir0Var = this.f37537a;
+        if (ir0Var.f38979n[0].f38125e == i10) {
+            return;
+        }
+        if (i10 == ir0Var.h.getFirstTabId()) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        ir0Var.f38977e = z11;
+        gr0 gr0Var = ir0Var.f38979n[1];
+        gr0Var.f38125e = i10;
+        gr0Var.setVisibility(0);
+        ir0Var.j0(true);
+        ir0Var.v = z10;
+        if (i10 == 0) {
+            ir0Var.f38976c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
+        } else {
+            ir0Var.f38976c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
+        }
+    }
+
+    @Override
+    public final boolean k1(int i10, View view) {
+        return false;
+    }
+
+    @Override
+    public final void v0(float f7) {
+        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+        ir0 ir0Var = this.f37537a;
+        if (i10 != 0 || ir0Var.f38979n[1].getVisibility() == 0) {
+            if (ir0Var.v) {
+                gr0 gr0Var = ir0Var.f38979n[0];
+                gr0Var.setTranslationX((-f7) * gr0Var.getMeasuredWidth());
+                gr0[] gr0VarArr = ir0Var.f38979n;
+                gr0VarArr[1].setTranslationX(gr0VarArr[0].getMeasuredWidth() - (f7 * ir0Var.f38979n[0].getMeasuredWidth()));
+            } else {
+                gr0 gr0Var2 = ir0Var.f38979n[0];
+                gr0Var2.setTranslationX(gr0Var2.getMeasuredWidth() * f7);
+                gr0[] gr0VarArr2 = ir0Var.f38979n;
+                gr0VarArr2[1].setTranslationX((f7 * gr0VarArr2[0].getMeasuredWidth()) - ir0Var.f38979n[0].getMeasuredWidth());
+            }
+            if (i10 == 0) {
+                gr0[] gr0VarArr3 = ir0Var.f38979n;
+                gr0 gr0Var3 = gr0VarArr3[0];
+                gr0VarArr3[0] = gr0VarArr3[1];
+                gr0VarArr3[1] = gr0Var3;
+                gr0Var3.setVisibility(8);
+            }
+        }
+    }
+
+    @Override
+    public final void C() {
     }
 }

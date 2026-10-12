@@ -7,7 +7,7 @@ public final class f0 extends com.google.android.gms.common.api.internal.w {
     }
 
     public final a1 i() {
-        this.f6697b = true;
-        return i0.t(this.f6696a, this.f6698c);
+        this.f6696b = true;
+        return i0.t(this.f6695a, this.f6697c);
     }
 }

@@ -1,26 +1,26 @@
 package ci;
 public final class lb implements pc {
-    public final bi.v f5456a;
+    public final bi.v f5455a;
 
     public lb(bi.v vVar) {
-        this.f5456a = vVar;
+        this.f5455a = vVar;
     }
 
     @Override
-    public final void y(float f7, boolean z10) {
-        this.f5456a.run(Boolean.FALSE, Float.valueOf(f7));
+    public final void B(float f7, boolean z10) {
+        this.f5455a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override
-    public final void B(long j3) {
+    public final void A(float f7) {
     }
 
     @Override
-    public final void C(boolean z10) {
+    public final void E(long j3) {
     }
 
     @Override
-    public final void I(float f7) {
+    public final void F(boolean z10) {
     }
 
     @Override
@@ -32,19 +32,27 @@ public final class lb implements pc {
     }
 
     @Override
-    public final void S(float f7) {
+    public final void Q(float f7) {
     }
 
     @Override
-    public final void V(long j3) {
+    public final void R() {
     }
 
     @Override
-    public final void b(int i10) {
+    public final void W(float f7) {
     }
 
     @Override
-    public final void e(float f7) {
+    public final void Z(long j3) {
+    }
+
+    @Override
+    public final void d(int i10) {
+    }
+
+    @Override
+    public final void f(float f7) {
     }
 
     @Override
@@ -52,35 +60,27 @@ public final class lb implements pc {
     }
 
     @Override
-    public final void p(float f7) {
+    public final void p() {
     }
 
     @Override
-    public final void q(boolean z10) {
+    public final void q(float f7) {
     }
 
     @Override
-    public final void w(float f7) {
+    public final void r(boolean z10) {
     }
 
     @Override
-    public final void Q() {
+    public final void I(float f7, int i10) {
     }
 
     @Override
-    public final void o() {
+    public final void P(float f7, int i10) {
     }
 
     @Override
-    public final void G(float f7, int i10) {
-    }
-
-    @Override
-    public final void M(float f7, int i10) {
-    }
-
-    @Override
-    public final void T(int i10, long j3) {
+    public final void Y(int i10, long j3) {
     }
 
     @Override
@@ -88,6 +88,6 @@ public final class lb implements pc {
     }
 
     @Override
-    public final void s(float f7, int i10) {
+    public final void t(float f7, int i10) {
     }
 }

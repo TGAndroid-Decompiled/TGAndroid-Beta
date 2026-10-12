@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 public final class c6 {
-    public final BitmapShader[] f25239a = new BitmapShader[3];
-    public final Bitmap f25240b;
-    public final int f25241c;
+    public final BitmapShader[] f24832a = new BitmapShader[3];
+    public final Bitmap f24833b;
+    public final int f24834c;
     public final int d;
-    public int f25242e;
-    public boolean f25243f;
+    public int f24835e;
+    public boolean f24836f;
 
     public c6(Bitmap bitmap) {
-        this.f25240b = bitmap;
-        this.f25241c = bitmap.getWidth();
+        this.f24833b = bitmap;
+        this.f24834c = bitmap.getWidth();
         this.d = bitmap.getHeight();
     }
 }

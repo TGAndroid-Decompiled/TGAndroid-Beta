@@ -3,38 +3,38 @@ package org.telegram.ui.web;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.rm0;
-public final class g extends p61 {
-    public static final int f43527a = 0;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.wm0;
+public final class g extends t61 {
+    public static final int f43254a = 0;
 
     static {
-        p61.setup(new p61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(android.view.View r27, org.telegram.ui.Components.q61 r28, boolean r29, org.telegram.ui.Components.d71 r30, org.telegram.ui.Components.l71 r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.g.bindView(android.view.View, org.telegram.ui.Components.q61, boolean, org.telegram.ui.Components.d71, org.telegram.ui.Components.l71):void");
+    public final void bindView(android.view.View r27, org.telegram.ui.Components.u61 r28, boolean r29, org.telegram.ui.Components.h71 r30, org.telegram.ui.Components.p71 r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.g.bindView(android.view.View, org.telegram.ui.Components.u61, boolean, org.telegram.ui.Components.h71, org.telegram.ui.Components.p71):void");
     }
 
     @Override
-    public final boolean contentsEquals(q61 q61Var, q61 q61Var2) {
-        if (q61Var.H == q61Var2.H && TextUtils.equals(q61Var.f30168m, q61Var2.f30168m)) {
+    public final boolean contentsEquals(u61 u61Var, u61 u61Var2) {
+        if (u61Var.H == u61Var2.H && TextUtils.equals(u61Var.f31077m, u61Var2.f31077m)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, rm0 rm0Var, int i10, int i11, d6 d6Var) {
-        return new h(context, d6Var);
+    public final View createView(Context context, wm0 wm0Var, int i10, int i11, c6 c6Var) {
+        return new h(context, c6Var);
     }
 
     @Override
-    public final boolean equals(q61 q61Var, q61 q61Var2) {
-        if (q61Var.H == q61Var2.H && TextUtils.isEmpty(q61Var.f30168m) == TextUtils.isEmpty(q61Var2.f30168m)) {
+    public final boolean equals(u61 u61Var, u61 u61Var2) {
+        if (u61Var.H == u61Var2.H && TextUtils.isEmpty(u61Var.f31077m) == TextUtils.isEmpty(u61Var2.f31077m)) {
             return true;
         }
         return false;

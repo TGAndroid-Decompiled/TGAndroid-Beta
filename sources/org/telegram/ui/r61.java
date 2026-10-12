@@ -1,21 +1,7 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class r61 extends rg.c1 {
-    public final s61 M;
-
-    public r61(s61 s61Var, Context context) {
-        super(context, 2, null);
-        this.M = s61Var;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        s61 s61Var = this.M;
-        if (s61Var.getParent() instanceof View) {
-            ((View) s61Var.getParent()).invalidate();
-        }
-    }
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class r61 extends FrameLayout {
+    public TextView f41517a;
 }

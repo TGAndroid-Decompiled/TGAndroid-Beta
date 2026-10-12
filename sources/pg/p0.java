@@ -1,29 +1,24 @@
 package pg;
-
-import m.f3;
 public final class p0 implements Runnable {
-    public final int f45784a;
-    public final s0 f45785b;
+    public final int f45600a;
+    public final r0 f45601b;
+    public final a5.a f45602c;
 
-    public p0(s0 s0Var, int i10) {
-        this.f45784a = i10;
-        this.f45785b = s0Var;
+    public p0(r0 r0Var, a5.a aVar, int i10) {
+        this.f45600a = i10;
+        this.f45601b = r0Var;
+        this.f45602c = aVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f45784a) {
+        switch (this.f45600a) {
             case 0:
-                s0 s0Var = this.f45785b;
-                s0Var.f45825c = null;
-                f3 f3Var = s0Var.f45823a;
-                if (f3Var != null) {
-                    f3Var.g();
-                    return;
-                }
+                this.f45601b.p(this.f45602c, true);
                 return;
             default:
-                this.f45785b.b();
+                r0 r0Var = this.f45601b;
+                r0Var.f45632f.f(new p0(r0Var, this.f45602c, 0));
                 return;
         }
     }

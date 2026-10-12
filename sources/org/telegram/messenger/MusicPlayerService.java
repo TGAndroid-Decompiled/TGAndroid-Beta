@@ -134,7 +134,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         } else {
             j9Var = new org.telegram.ui.Components.j9((TLRPC.Chat) tLObject);
         }
-        j9Var.f27668r = 1;
+        j9Var.f27411r = 1;
         float f11 = i11;
         Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(f11), AndroidUtilities.dp(f11), Bitmap.Config.ARGB_8888);
         j9Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -203,7 +203,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (MediaController.getInstance().isDownloadingCurrentMessage()) {
             android.support.v4.media.session.d0 d0Var = this.playbackState;
             d0Var.c(6, 0L, 1.0f);
-            d0Var.f2078e = 0L;
+            d0Var.f2076e = 0L;
         } else {
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null && playingMessageObject.isMusic()) {
@@ -238,7 +238,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 i10 = 2;
             }
             d0Var3.c(i10, j3, getPlaybackSpeed(z10, playingMessageObject));
-            d0Var3.f2078e = j10;
+            d0Var3.f2076e = j10;
             if (playingMessageObject != null && playingMessageObject.isMusic()) {
                 int i13 = SharedConfig.repeatMode;
                 if (i13 != 1) {
@@ -357,7 +357,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         }
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.imageReceiver = imageReceiver;
-        imageReceiver.setDelegate(new d0(this, 9));
+        imageReceiver.setDelegate(new e0(this, 9));
         this.mediaSession = new android.support.v4.media.session.a0(this, "telegramAudioPlayer", null, null);
         this.playbackState = new android.support.v4.media.session.d0();
         this.albumArtPlaceholder = Bitmap.createBitmap(AndroidUtilities.dp(102.0f), AndroidUtilities.dp(102.0f), Bitmap.Config.ARGB_8888);
@@ -514,7 +514,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         }
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject == null) {
-            AndroidUtilities.runOnUIThread(new f1(this, 28));
+            AndroidUtilities.runOnUIThread(new i1(this, 28));
             return 1;
         }
         if (supportLockScreenControls) {

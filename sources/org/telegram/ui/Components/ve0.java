@@ -1,89 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import java.util.WeakHashMap;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
-import org.telegram.ui.LaunchActivity;
-public final class ve0 extends Dialog {
-    public final FrameLayout f31868a;
-    public final ue0 f31869b;
+public final class ve0 extends FrameLayout {
+    public final ImageView f31495a;
+    public final TextView f31496b;
+    public final TextView f31497c;
 
-    public ve0(LaunchActivity launchActivity) {
-        super(launchActivity, R.style.TransparentDialog);
-        AndroidUtilities.enableEdgeToEdge(getWindow());
-        FrameLayout frameLayout = new FrameLayout(launchActivity);
-        this.f31868a = frameLayout;
-        zd0 zd0Var = new zd0(3);
-        WeakHashMap weakHashMap = r0.i0.f46890a;
-        r0.a0.i(frameLayout, zd0Var);
-        ue0 ue0Var = new ue0(this, launchActivity);
-        this.f31869b = ue0Var;
-        frameLayout.addView(ue0Var, w7.x5.e(-1, -1, 119));
-    }
-
-    public static void a(ve0 ve0Var) {
-        super.dismiss();
+    public ve0(Context context) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f31495a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.fingerprint);
+        addView(imageView, w7.w5.e(-1, -1, 119));
+        TextView textView = new TextView(context);
+        this.f31496b = textView;
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 26.0f);
+        textView.setGravity(17);
+        addView(textView, w7.w5.a(-2.0f, 0.0f, -5.33f, 0.0f, 0.0f, -1, 17));
+        TextView textView2 = new TextView(context);
+        this.f31497c = textView2;
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setTextSize(1, 10.0f);
+        textView2.setTextColor(Integer.MAX_VALUE);
+        textView2.setGravity(17);
+        addView(textView2, w7.w5.a(-2.0f, 0.0f, 14.0f, 0.0f, 0.0f, -1, 17));
     }
 
     @Override
-    public final void dismiss() {
-        LaunchActivity launchActivity;
-        if (this.f31869b.h() && (launchActivity = LaunchActivity.G1) != null) {
-            launchActivity.moveTaskToBack(true);
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
-    @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        LaunchActivity launchActivity;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            if (this.f31869b.h() && (launchActivity = LaunchActivity.G1) != null) {
-                launchActivity.moveTaskToBack(true);
+    public void setImage(int i10) {
+        ImageView imageView = this.f31495a;
+        imageView.setVisibility(0);
+        this.f31496b.setVisibility(8);
+        this.f31497c.setVisibility(8);
+        imageView.setImageResource(i10);
+    }
+
+    public void setNum(int i10) {
+        this.f31495a.setVisibility(8);
+        TextView textView = this.f31496b;
+        textView.setVisibility(0);
+        TextView textView2 = this.f31497c;
+        textView2.setVisibility(0);
+        String str = "";
+        textView.setText("" + i10);
+        if (i10 != 0) {
+            switch (i10) {
+                case 2:
+                    str = "ABC";
+                    break;
+                case 3:
+                    str = "DEF";
+                    break;
+                case 4:
+                    str = "GHI";
+                    break;
+                case 5:
+                    str = "JKL";
+                    break;
+                case 6:
+                    str = "MNO";
+                    break;
+                case 7:
+                    str = "PQRS";
+                    break;
+                case 8:
+                    str = "TUV";
+                    break;
+                case 9:
+                    str = "WXYZ";
+                    break;
             }
-            return true;
+        } else {
+            str = "+";
         }
-        return super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override
-    public final void onBackPressed() {
-        LaunchActivity launchActivity;
-        if (this.f31869b.h() && (launchActivity = LaunchActivity.G1) != null) {
-            launchActivity.moveTaskToBack(true);
-        }
-    }
-
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        FrameLayout frameLayout = this.f31868a;
-        setContentView(frameLayout, layoutParams);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        int i10 = attributes.flags & (-3);
-        attributes.flags = i10;
-        attributes.softInputMode = 16;
-        if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            attributes.flags = i10 | 8192;
-            AndroidUtilities.logFlagSecure();
-        }
-        attributes.flags |= -2013198976;
-        window.setAttributes(attributes);
-        frameLayout.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar((Dialog) this, false);
+        textView2.setText(str);
     }
 }

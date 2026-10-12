@@ -1,10 +1,10 @@
 package yf;
 public final class d {
-    public final int f52247a;
-    public int f52248b;
-    public int f52249c;
+    public final int f52350a;
+    public int f52351b;
+    public int f52352c;
 
     public d(int i10) {
-        this.f52247a = i10;
+        this.f52350a = i10;
     }
 }

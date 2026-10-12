@@ -1,23 +1,23 @@
 package i2;
 public final class l1 extends u2.r {
-    public final int f11779f = 0;
-    public final Object f11780g;
+    public final int f11778f = 0;
+    public final Object f11779g;
 
     public l1(b2.k1 k1Var, b2.k0 k0Var) {
         super(k1Var);
-        this.f11780g = k0Var;
+        this.f11779g = k0Var;
     }
 
     @Override
     public b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
-        switch (this.f11779f) {
+        switch (this.f11778f) {
             case 0:
-                b2.k1 k1Var = this.f48799e;
+                b2.k1 k1Var = this.f48906e;
                 b2.h1 f7 = k1Var.f(i10, h1Var, z10);
-                if (k1Var.m(f7.f3329c, (b2.j1) this.f11780g, 0L).a()) {
-                    f7.h(h1Var.f3327a, h1Var.f3328b, h1Var.f3329c, h1Var.d, h1Var.f3330e, b2.b.f3239c, true);
+                if (k1Var.m(f7.f3327c, (b2.j1) this.f11779g, 0L).a()) {
+                    f7.h(h1Var.f3325a, h1Var.f3326b, h1Var.f3327c, h1Var.d, h1Var.f3328e, b2.b.f3237c, true);
                 } else {
-                    f7.f3331f = true;
+                    f7.f3329f = true;
                 }
                 return f7;
             default:
@@ -27,12 +27,12 @@ public final class l1 extends u2.r {
 
     @Override
     public b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        switch (this.f11779f) {
+        switch (this.f11778f) {
             case 1:
                 super.m(i10, j1Var, j3);
-                b2.k0 k0Var = (b2.k0) this.f11780g;
-                j1Var.f3381c = k0Var;
-                b2.f0 f0Var = k0Var.f3400b;
+                b2.k0 k0Var = (b2.k0) this.f11779g;
+                j1Var.f3379c = k0Var;
+                b2.f0 f0Var = k0Var.f3398b;
                 j1Var.getClass();
                 return j1Var;
             default:
@@ -42,6 +42,6 @@ public final class l1 extends u2.r {
 
     public l1(b2.k1 k1Var) {
         super(k1Var);
-        this.f11780g = new b2.j1();
+        this.f11779g = new b2.j1();
     }
 }

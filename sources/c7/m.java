@@ -5,9 +5,9 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class m extends o6.a {
     public static final Parcelable.Creator<m> CREATOR = new r0(18);
-    public final c f4498a;
-    public final Boolean f4499b;
-    public final j0 f4500c;
+    public final c f4497a;
+    public final Boolean f4498b;
+    public final j0 f4499c;
     public final e0 d;
 
     public m(String str, Boolean bool, String str2, String str3) {
@@ -23,14 +23,14 @@ public final class m extends o6.a {
                 throw new IllegalArgumentException(e7);
             }
         }
-        this.f4498a = a2;
-        this.f4499b = bool;
+        this.f4497a = a2;
+        this.f4498b = bool;
         if (str2 == null) {
             a10 = null;
         } else {
             a10 = j0.a(str2);
         }
-        this.f4500c = a10;
+        this.f4499c = a10;
         if (str3 != null) {
             e0Var = e0.a(str3);
         }
@@ -40,7 +40,7 @@ public final class m extends o6.a {
     public final e0 b() {
         e0 e0Var = this.d;
         if (e0Var == null) {
-            Boolean bool = this.f4499b;
+            Boolean bool = this.f4498b;
             if (bool == null || !bool.booleanValue()) {
                 return null;
             }
@@ -54,22 +54,22 @@ public final class m extends o6.a {
             return false;
         }
         m mVar = (m) obj;
-        if (!n6.m.l(this.f4498a, mVar.f4498a) || !n6.m.l(this.f4499b, mVar.f4499b) || !n6.m.l(this.f4500c, mVar.f4500c) || !n6.m.l(b(), mVar.b())) {
+        if (!n6.m.l(this.f4497a, mVar.f4497a) || !n6.m.l(this.f4498b, mVar.f4498b) || !n6.m.l(this.f4499c, mVar.f4499c) || !n6.m.l(b(), mVar.b())) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4498a, this.f4499b, this.f4500c, b()});
+        return Arrays.hashCode(new Object[]{this.f4497a, this.f4498b, this.f4499c, b()});
     }
 
     public final String toString() {
-        String valueOf = String.valueOf(this.f4498a);
-        String valueOf2 = String.valueOf(this.f4500c);
+        String valueOf = String.valueOf(this.f4497a);
+        String valueOf2 = String.valueOf(this.f4499c);
         String valueOf3 = String.valueOf(this.d);
         StringBuilder w10 = a1.g.w("AuthenticatorSelectionCriteria{\n attachment=", valueOf, ", \n requireResidentKey=");
-        w10.append(this.f4499b);
+        w10.append(this.f4498b);
         w10.append(", \n requireUserVerification=");
         w10.append(valueOf2);
         w10.append(", \n residentKeyRequirement=");
@@ -80,28 +80,28 @@ public final class m extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         String str;
         String str2;
-        int q6 = w7.d0.q(parcel, 20293);
+        int q6 = w7.c0.q(parcel, 20293);
         String str3 = null;
-        c cVar = this.f4498a;
+        c cVar = this.f4497a;
         if (cVar == null) {
             str = null;
         } else {
-            str = cVar.f4453a;
+            str = cVar.f4452a;
         }
-        w7.d0.l(parcel, 2, str);
-        w7.d0.a(parcel, 3, this.f4499b);
-        j0 j0Var = this.f4500c;
+        w7.c0.l(parcel, 2, str);
+        w7.c0.a(parcel, 3, this.f4498b);
+        j0 j0Var = this.f4499c;
         if (j0Var == null) {
             str2 = null;
         } else {
-            str2 = j0Var.f4490a;
+            str2 = j0Var.f4489a;
         }
-        w7.d0.l(parcel, 4, str2);
+        w7.c0.l(parcel, 4, str2);
         e0 b10 = b();
         if (b10 != null) {
-            str3 = b10.f4462a;
+            str3 = b10.f4461a;
         }
-        w7.d0.l(parcel, 5, str3);
-        w7.d0.r(parcel, q6);
+        w7.c0.l(parcel, 5, str3);
+        w7.c0.r(parcel, q6);
     }
 }

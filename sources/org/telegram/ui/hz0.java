@@ -1,37 +1,43 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.SharedConfig;
-public final class hz0 implements DialogInterface.OnClickListener {
-    public final int f38565a;
-    public final int f38566b;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class hz0 extends s4.j {
+    public int F = -1;
+    public final ProfileActivity G;
 
-    public hz0(int i10, int i11) {
-        this.f38565a = i11;
-        this.f38566b = i10;
+    public hz0(ProfileActivity profileActivity) {
+        this.G = profileActivity;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f38565a) {
-            case 0:
-                int i11 = 2 - i10;
-                if (i11 == this.f38566b) {
-                    SharedConfig.overrideDevicePerformanceClass(-1);
-                    return;
-                } else {
-                    SharedConfig.overrideDevicePerformanceClass(i11);
-                    return;
-                }
-            default:
-                int i12 = 2 - i10;
-                if (i12 == this.f38566b) {
-                    SharedConfig.overrideDevicePerformanceClass(-1);
-                    return;
-                } else {
-                    SharedConfig.overrideDevicePerformanceClass(i12);
-                    return;
-                }
+    public final long K(long j3, long j10, long j11) {
+        return 0L;
+    }
+
+    @Override
+    public final void N() {
+        AndroidUtilities.runOnUIThread(new uk0(this, 29));
+    }
+
+    @Override
+    public final void P(s4.d1 d1Var) {
+        this.G.U4();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f47950p.isEmpty();
+        boolean isEmpty2 = this.f47952r.isEmpty();
+        boolean isEmpty3 = this.f47953s.isEmpty();
+        boolean isEmpty4 = this.f47951q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new c3(this, 26));
+            ofFloat.setDuration(this.f47982e);
+            ofFloat.start();
+            this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
         }
+        super.m();
     }
 }

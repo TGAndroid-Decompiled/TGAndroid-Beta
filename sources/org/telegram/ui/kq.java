@@ -1,8 +1,8 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public interface kq {
-    void a(TLRPC.User user);
-
-    void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str);
+import android.content.DialogInterface;
+public final class kq implements DialogInterface.OnClickListener {
+    @Override
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+    }
 }

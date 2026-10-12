@@ -1,115 +1,74 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mu extends FrameLayout {
-    public final ImageView f40109a;
-    public final TextView f40110b;
-    public final ImageView f40111c;
-    public final TextView d;
-    public boolean f40112e;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.tgnet.tl.TL_stories;
+public final class mu implements Utilities.Callback {
+    public final int f40132a;
+    public final long f40133b;
+    public final Object f40134c;
+    public final Object d;
 
-    public mu(xu xuVar, Context context) {
-        super(context);
-        int i10;
-        int i11;
-        setBackgroundColor(xuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20822d6));
-        ImageView imageView = new ImageView(context);
-        this.f40109a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        addView(imageView, w7.x5.a(28.0f, 18.0f, 0.0f, 18.0f, 0.0f, 28, i10 | 16));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setWeightSum(2.0f);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(linearLayout, w7.x5.i(-1.0f, -2.0f, i11 | 16, 64.0f, 0.0f, 20.0f, 0.0f));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(0);
-        if (LocaleController.isRTL) {
-            linearLayout2.setGravity(5);
-        }
-        linearLayout2.setWeightSum(2.0f);
-        TextView textView = new TextView(context);
-        this.f40110b = textView;
-        textView.setTextSize(1, 16.0f);
-        int i12 = org.telegram.ui.ActionBar.h6.G6;
-        textView.setTextColor(xuVar.getThemedColor(i12));
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setSingleLine();
-        textView.setLines(1);
-        ImageView imageView2 = new ImageView(context);
-        this.f40111c = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        imageView2.setImageResource(R.drawable.arrow_more);
-        imageView2.setColorFilter(new PorterDuffColorFilter(xuVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
-        imageView2.setTranslationY(AndroidUtilities.dp(1.0f));
-        imageView2.setVisibility(8);
-        if (LocaleController.isRTL) {
-            linearLayout2.addView(imageView2, w7.x5.t(16, 16, 21, 3, 0, 0, 0));
-            linearLayout2.addView(textView, w7.x5.q(-2, -2, 21));
-        } else {
-            linearLayout2.addView(textView, w7.x5.q(-2, -2, 16));
-            linearLayout2.addView(imageView2, w7.x5.t(16, 16, 16, 3, 0, 0, 0));
-        }
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 16.0f);
-        textView2.setTextColor(xuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21025o6));
-        textView2.setGravity(LocaleController.isRTL ? 3 : 5);
-        if (LocaleController.isRTL) {
-            linearLayout.addView(textView2, w7.x5.q(-2, -2, 19));
-            linearLayout.addView(linearLayout2, w7.x5.o(0, -2, 2.0f, 21));
-            return;
-        }
-        linearLayout.addView(linearLayout2, w7.x5.o(0, -2, 2.0f, 16));
-        linearLayout.addView(textView2, w7.x5.q(-2, -2, 21));
+    public mu(Object obj, Object obj2, long j3, int i10) {
+        this.f40132a = i10;
+        this.f40134c = obj;
+        this.d = obj2;
+        this.f40133b = j3;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
+    public final void run(Object obj) {
+        boolean z10;
         int i10;
-        super.onDraw(canvas);
-        if (this.f40112e) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(64.0f);
-            }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(64.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f20944k0);
+        switch (this.f40132a) {
+            case 0:
+                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f40134c;
+                Long l4 = (Long) obj;
+                AndroidUtilities.cancelRunOnUIThread((lu) this.d);
+                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f40133b <= 120) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                dataSettingsActivity.W = z10;
+                dataSettingsActivity.Y = l4.longValue();
+                dataSettingsActivity.X = false;
+                if (dataSettingsActivity.f33575a != null && (i10 = dataSettingsActivity.f33582s) >= 0) {
+                    dataSettingsActivity.n0(i10);
+                    return;
+                }
+                return;
+            case 1:
+                Runnable runnable = (Runnable) obj;
+                ((org.telegram.ui.ActionBar.a2) this.d).q(150L);
+                vy vyVar = ((ux) this.f40134c).f42605b;
+                Boolean bool = vyVar.G.bot_participant;
+                if (bool != null && bool.booleanValue()) {
+                    vyVar.getMessagesController().addUserToChat(this.f40133b, vyVar.getMessagesController().getUser(Long.valueOf(vyVar.H)), 0, null, vyVar, false, runnable, new sf(8, runnable));
+                    return;
+                }
+                runnable.run();
+                return;
+            case 2:
+                ProfileActivity.k0((ProfileActivity) this.f40134c, (Context) this.d, this.f40133b, (TL_payments.connectedBotStarRef) obj);
+                return;
+            default:
+                yh.s3 s3Var = (yh.s3) this.f40134c;
+                MessagesController messagesController = (MessagesController) this.d;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < messagesController.channelEmojiStatusLevelMin) {
+                    ChannelBoostsController boostsController = messagesController.getBoostsController();
+                    long j3 = this.f40133b;
+                    boostsController.userCanBoostChannel(j3, tL_premium_boostsStatus, new ai.l(s3Var, tL_premium_boostsStatus, j3, messagesController, 7));
+                    return;
+                }
+                s3Var.f53403k0.setLoading(false);
+                s3Var.t2(true);
+                return;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

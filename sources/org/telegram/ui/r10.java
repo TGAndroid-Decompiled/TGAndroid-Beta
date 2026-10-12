@@ -1,46 +1,80 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
+import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class r10 implements org.telegram.ui.Cells.m7 {
-    public final s10 f41330a;
+public final class r10 extends org.telegram.ui.Components.vm0 {
+    public final y10 f41465c;
 
-    public r10(s10 s10Var) {
-        this.f41330a = s10Var;
+    public r10(y10 y10Var) {
+        this.f41465c = y10Var;
     }
 
     @Override
-    public final void a(String str, boolean z10) {
-        v10 v10Var = this.f41330a.v;
-        if (z10) {
-            org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) v10Var.K, (org.telegram.ui.ActionBar.d6) null, false);
-            e3Var.fixNavigationBar();
-            e3Var.title = str;
-            e3Var.bigTitle = false;
-            CharSequence[] charSequenceArr = {LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)};
-            lg.j jVar = new lg.j(7, this, str);
-            e3Var.items = charSequenceArr;
-            e3Var.onClickListener = jVar;
-            v10Var.L.showDialog(e3Var);
-            return;
+    public final boolean D(s4.d1 d1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        y10 y10Var = this.f41465c;
+        if (y10Var.f44250f.isEmpty()) {
+            return 0;
         }
-        SpannableStringBuilder[] spannableStringBuilderArr = v10.f42861s0;
-        v10Var.g(str);
+        return y10Var.f44250f.size() + (!y10Var.N ? 1 : 0);
     }
 
     @Override
-    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
-        v10 v10Var = this.f41330a.v;
-        SpannableStringBuilder[] spannableStringBuilderArr = v10.f42861s0;
-        org.telegram.ui.Components.mv.J(v10Var.L, messageObject, v10Var.f42873g0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    public final int j(int i10) {
+        if (i10 >= this.f41465c.f44250f.size()) {
+            return 3;
+        }
+        return 0;
     }
 
     @Override
-    public final boolean e() {
-        return !this.f41330a.v.f42881o0.g();
+    public final void v(s4.d1 d1Var, int i10) {
+        boolean z10;
+        boolean z11;
+        if (d1Var.f47893f == 0) {
+            org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) d1Var.f47889a;
+            y10 y10Var = this.f41465c;
+            MessageObject messageObject = (MessageObject) y10Var.f44250f.get(i10);
+            s2Var.O = y10Var.f44261p0;
+            s2Var.W(messageObject.getDialogId(), messageObject, messageObject.messageOwner.date, false, false);
+            if (i10 != h() - 1) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            s2Var.f22620s2 = z10;
+            if (s2Var.getMessage() != null && s2Var.getMessage().getId() == messageObject.getId()) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            s2Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.sk(this, s2Var, messageObject, z11, 1));
+        }
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        gg.z zVar;
+        if (i10 != 0) {
+            if (i10 != 3) {
+                org.telegram.ui.Cells.v3 v3Var = new org.telegram.ui.Cells.v3(viewGroup.getContext(), null);
+                v3Var.setText(LocaleController.getString(R.string.SearchMessages));
+                zVar = v3Var;
+            } else {
+                org.telegram.ui.Components.m10 m10Var = new org.telegram.ui.Components.m10(viewGroup.getContext(), null);
+                m10Var.setIsSingleCell(true);
+                m10Var.setViewType(1);
+                zVar = m10Var;
+            }
+        } else {
+            zVar = new gg.z(2, viewGroup.getContext(), true);
+        }
+        return com.google.android.gms.internal.vision.e2.k(zVar, zVar, -1, -2);
     }
 }

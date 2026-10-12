@@ -1,13 +1,13 @@
 package de;
 public final class i implements c {
-    public final kotlin.jvm.internal.n f8329a;
-    public final c f8330b;
-    public final k1.n f8331c;
+    public final kotlin.jvm.internal.n f8327a;
+    public final c f8328b;
+    public final k1.n f8329c;
 
     public i(kotlin.jvm.internal.n nVar, c cVar, k1.n nVar2) {
-        this.f8329a = nVar;
-        this.f8330b = cVar;
-        this.f8331c = nVar2;
+        this.f8327a = nVar;
+        this.f8328b = cVar;
+        this.f8329c = nVar2;
     }
 
     @Override

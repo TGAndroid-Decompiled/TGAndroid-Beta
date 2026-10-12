@@ -1,57 +1,72 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class wc extends org.telegram.ui.Components.qm0 {
-    public final int f43341c;
-    public final org.telegram.ui.ActionBar.d6 d;
-    public final yc f43342e;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+public final class wc extends FrameLayout {
+    public final org.telegram.ui.ActionBar.c6 f43130a;
+    public final hc1 f43131b;
+    public final s4.d0 f43132c;
+    public final int d;
+    public int f43133e;
 
-    public wc(yc ycVar, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f43342e = ycVar;
-        this.f43341c = i10;
-        this.d = d6Var;
+    public wc(int i10, Activity activity, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(activity);
+        this.d = i10;
+        this.f43130a = c6Var;
+        hc1 hc1Var = new hc1(activity, 3, c6Var);
+        this.f43131b = hc1Var;
+        hc1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
+        hc1Var.setClipToPadding(false);
+        hc1Var.setAdapter(new uc(this, activity, c6Var, i10));
+        s4.d0 d0Var = new s4.d0();
+        this.f43132c = d0Var;
+        d0Var.j1(0);
+        hc1Var.setLayoutManager(d0Var);
+        addView(hc1Var, w7.w5.d(-1.0f, -1));
     }
 
-    @Override
-    public final boolean D(s4.d1 d1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.f43342e.f44345c.size();
-    }
-
-    @Override
-    public final void v(s4.d1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wc.v(s4.d1, int):void");
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new org.telegram.ui.Components.a31(this.f43341c, 3, viewGroup.getContext(), this.d));
-    }
-
-    @Override
-    public final void y(s4.d1 d1Var) {
-        TLRPC.WallPaper wallPaper;
-        yc ycVar = this.f43342e;
-        ArrayList arrayList = ycVar.f44345c;
-        int b10 = d1Var.b();
-        View view = d1Var.f47782a;
-        if (b10 >= 0 && b10 < arrayList.size()) {
-            org.telegram.ui.Components.bq bqVar = (org.telegram.ui.Components.bq) arrayList.get(b10);
-            org.telegram.ui.Components.a31 a31Var = (org.telegram.ui.Components.a31) view;
-            a31Var.g(bqVar.d, false);
-            if (bqVar.f25058a.f20504b) {
-                wallPaper = null;
-            } else {
-                wallPaper = ycVar.v;
+    public final void a(int i10, boolean z10) {
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.d).peerColors;
+        int i11 = 0;
+        if (peerColors != null) {
+            int i12 = 0;
+            while (true) {
+                if (i12 >= peerColors.colors.size()) {
+                    break;
+                } else if (peerColors.colors.get(i12).f17005id == i10) {
+                    i11 = i12;
+                    break;
+                } else {
+                    i12++;
+                }
             }
-            a31Var.setFallbackWallpaper(wallPaper);
         }
+        if (i11 != this.f43133e) {
+            this.f43133e = i11;
+            if (!z10) {
+                this.f43132c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
+            }
+            AndroidUtilities.forEachViews((RecyclerView) this.f43131b, (Utilities.Callback<View>) new ai.j3(3, this, z10));
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (getParent() != null) {
+            ViewParent parent = getParent();
+            boolean z10 = true;
+            if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                z10 = false;
+            }
+            parent.requestDisallowInterceptTouchEvent(z10);
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

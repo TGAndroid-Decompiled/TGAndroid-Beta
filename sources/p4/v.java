@@ -1,269 +1,37 @@
 package p4;
 
 import android.content.ComponentName;
-import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.net.Uri;
-import android.os.Bundle;
-import android.text.TextUtils;
 import com.google.android.gms.internal.vision.h3;
-import j$.util.DesugarCollections;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import m.f3;
 public final class v {
-    public final u f45514a;
-    public final String f45515b;
-    public final String f45516c;
-    public String d;
-    public String f45517e;
-    public Uri f45518f;
-    public boolean f45519g;
-    public final boolean h;
-    public int f45520i;
-    public boolean f45521j;
-    public int f45523l;
-    public int f45524m;
-    public int f45525n;
-    public int f45526o;
-    public int f45527p;
-    public int f45528q;
-    public Bundle f45530s;
-    public IntentSender f45531t;
-    public m f45532u;
-    public a0.f f45533w;
-    public final ArrayList f45522k = new ArrayList();
-    public int f45529r = -1;
-    public ArrayList v = new ArrayList();
+    public final h3 f45330a;
+    public final ArrayList f45331b = new ArrayList();
+    public final boolean f45332c;
+    public final k2.g0 d;
+    public b2.p f45333e;
 
-    public v(u uVar, String str, String str2, boolean z10) {
-        this.f45514a = uVar;
-        this.f45515b = str;
-        this.f45516c = str2;
-        this.h = z10;
+    public v(h3 h3Var, boolean z10) {
+        this.f45330a = h3Var;
+        this.d = (k2.g0) h3Var.d;
+        this.f45332c = z10;
     }
 
-    public static p a() {
-        x.b();
-        q qVar = x.c().f45398e;
-        if (qVar instanceof p) {
-            return (p) qVar;
-        }
-        return null;
-    }
-
-    public final l2.f b(v vVar) {
-        if (vVar != null) {
-            String str = vVar.f45516c;
-            a0.f fVar = this.f45533w;
-            if (fVar != null && fVar.containsKey(str)) {
-                return new l2.f((o) this.f45533w.get(str), 17);
-            }
-            return null;
-        }
-        throw new NullPointerException("route must not be null");
-    }
-
-    public final h3 c() {
-        u uVar = this.f45514a;
-        uVar.getClass();
-        x.b();
-        return uVar.f45510a;
-    }
-
-    public final boolean d() {
-        x.b();
-        v vVar = x.c().v;
-        if (vVar != null) {
-            if (vVar != this && this.f45525n != 3) {
-                if (TextUtils.equals(((ComponentName) ((f3) c().d).f15729b).getPackageName(), "android") && m("android.media.intent.category.LIVE_AUDIO") && !m("android.media.intent.category.LIVE_VIDEO")) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        throw new IllegalStateException("There is no default route.  The media router has not yet been fully initialized.");
-    }
-
-    public final boolean e() {
-        if (DesugarCollections.unmodifiableList(this.v).size() >= 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean f() {
-        if (this.f45532u != null && this.f45519g) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean g() {
-        x.b();
-        if (x.c().e() == this) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean h(r rVar) {
-        if (rVar != null) {
-            x.b();
-            ArrayList arrayList = this.f45522k;
-            if (arrayList != null) {
-                rVar.a();
-                if (!rVar.f45492b.isEmpty()) {
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        IntentFilter intentFilter = (IntentFilter) obj;
-                        if (intentFilter != null) {
-                            for (String str : rVar.f45492b) {
-                                if (intentFilter.hasCategory(str)) {
-                                    return true;
-                                }
-                            }
-                            continue;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        throw new IllegalArgumentException("selector must not be null");
-    }
-
-    public final int i(p4.m r18) {
-        throw new UnsupportedOperationException("Method not decompiled: p4.v.i(p4.m):int");
-    }
-
-    public final void j(int i10) {
-        q qVar;
-        q qVar2;
-        x.b();
-        e c10 = x.c();
-        int min = Math.min(this.f45528q, Math.max(0, i10));
-        HashMap hashMap = c10.f45396b;
-        if (this == c10.d && (qVar2 = c10.f45398e) != null) {
-            qVar2.f(min);
-        } else if (!hashMap.isEmpty() && (qVar = (q) hashMap.get(this.f45516c)) != null) {
-            qVar.f(min);
-        }
-    }
-
-    public final void k(int i10) {
-        q qVar;
-        q qVar2;
-        x.b();
-        if (i10 != 0) {
-            e c10 = x.c();
-            HashMap hashMap = c10.f45396b;
-            if (this == c10.d && (qVar2 = c10.f45398e) != null) {
-                qVar2.i(i10);
-            } else if (!hashMap.isEmpty() && (qVar = (q) hashMap.get(this.f45516c)) != null) {
-                qVar.i(i10);
-            }
-        }
-    }
-
-    public final void l() {
-        x.b();
-        x.c().i(this, 3);
-    }
-
-    public final boolean m(String str) {
-        x.b();
-        ArrayList arrayList = this.f45522k;
+    public final w a(String str) {
+        ArrayList arrayList = this.f45331b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            if (((IntentFilter) obj).hasCategory(str)) {
-                return true;
+            w wVar = (w) obj;
+            if (wVar.f45337b.equals(str)) {
+                return wVar;
             }
         }
-        return false;
-    }
-
-    public final void n(Collection collection) {
-        this.v.clear();
-        if (this.f45533w == null) {
-            this.f45533w = new a0.m(0);
-        }
-        this.f45533w.clear();
-        Iterator it = collection.iterator();
-        while (it.hasNext()) {
-            o oVar = (o) it.next();
-            v a2 = this.f45514a.a(oVar.f45467a.d());
-            if (a2 != null) {
-                this.f45533w.put(a2.f45516c, oVar);
-                int i10 = oVar.f45468b;
-                if (i10 == 2 || i10 == 3) {
-                    this.v.add(a2);
-                }
-            }
-        }
-        x.c().f45395a.b(259, this);
+        return null;
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("MediaRouter.RouteInfo{ uniqueId=");
-        sb2.append(this.f45516c);
-        sb2.append(", name=");
-        sb2.append(this.d);
-        sb2.append(", description=");
-        sb2.append(this.f45517e);
-        sb2.append(", iconUri=");
-        sb2.append(this.f45518f);
-        sb2.append(", enabled=");
-        sb2.append(this.f45519g);
-        sb2.append(", isSystemRoute=");
-        sb2.append(this.h);
-        sb2.append(", connectionState=");
-        sb2.append(this.f45520i);
-        sb2.append(", canDisconnect=");
-        sb2.append(this.f45521j);
-        sb2.append(", playbackType=");
-        sb2.append(this.f45523l);
-        sb2.append(", playbackStream=");
-        sb2.append(this.f45524m);
-        sb2.append(", deviceType=");
-        sb2.append(this.f45525n);
-        sb2.append(", volumeHandling=");
-        sb2.append(this.f45526o);
-        sb2.append(", volume=");
-        sb2.append(this.f45527p);
-        sb2.append(", volumeMax=");
-        sb2.append(this.f45528q);
-        sb2.append(", presentationDisplayId=");
-        sb2.append(this.f45529r);
-        sb2.append(", extras=");
-        sb2.append(this.f45530s);
-        sb2.append(", settingsIntent=");
-        sb2.append(this.f45531t);
-        sb2.append(", providerPackageName=");
-        sb2.append(((ComponentName) this.f45514a.d.f15729b).getPackageName());
-        if (e()) {
-            sb2.append(", members=[");
-            int size = this.v.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                if (i10 > 0) {
-                    sb2.append(", ");
-                }
-                if (this.v.get(i10) != this) {
-                    sb2.append(((v) this.v.get(i10)).f45516c);
-                }
-            }
-            sb2.append(']');
-        }
-        sb2.append(" }");
-        return sb2.toString();
+        return "MediaRouter.RouteProviderInfo{ packageName=" + ((ComponentName) this.d.f14466b).getPackageName() + " }";
     }
 }

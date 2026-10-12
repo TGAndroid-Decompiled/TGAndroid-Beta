@@ -6,23 +6,23 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.jh;
-import org.telegram.ui.Components.wi;
+import org.telegram.ui.Components.aj;
+import org.telegram.ui.Components.lh;
 import org.telegram.ui.Components.yi;
-public final class n implements wi {
-    public final yi f12577a;
-    public final r f12578b;
+public final class n implements yi {
+    public final aj f12572a;
+    public final r f12573b;
 
-    public n(r rVar, yi yiVar) {
-        this.f12578b = rVar;
-        this.f12577a = yiVar;
+    public n(r rVar, aj ajVar) {
+        this.f12573b = rVar;
+        this.f12572a = ajVar;
     }
 
     @Override
     public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        yi yiVar = this.f12577a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = yiVar.f33301j0;
-        x3 x3Var = this.f12578b.f12649r;
+        aj ajVar = this.f12572a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ajVar.f24354j0;
+        x3 x3Var = this.f12573b.f12645r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -46,7 +46,7 @@ public final class n implements wi {
             }
         }
         x3Var.Z3 = null;
-        yiVar.dismiss(true);
+        ajVar.dismiss(true);
     }
 
     @Override
@@ -55,29 +55,29 @@ public final class n implements wi {
     }
 
     @Override
-    public final void f0(jh jhVar) {
-        NotificationCenter.getInstance(this.f12578b.f12648n).doOnIdle(jhVar);
+    public final void d0(lh lhVar) {
+        NotificationCenter.getInstance(this.f12573b.f12644n).doOnIdle(lhVar);
     }
 
     @Override
-    public final boolean i0() {
+    public final boolean g0() {
         return false;
     }
 
     @Override
-    public final void a1(Object obj) {
-    }
-
-    @Override
-    public final void p1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void B0() {
+    public final void A0() {
     }
 
     @Override
     public final void P0() {
+    }
+
+    @Override
+    public final void Z0(Object obj) {
+    }
+
+    @Override
+    public final void p1(TLRPC.User user) {
     }
 
     @Override

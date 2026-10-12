@@ -4,25 +4,25 @@ import android.os.Bundle;
 import j$.util.Objects;
 public final class d1 extends c1 {
     public static final String d;
-    public static final String f3268e;
-    public final int f3269b;
-    public final float f3270c;
+    public static final String f3266e;
+    public final int f3267b;
+    public final float f3268c;
 
     static {
-        String str = e2.d0.f8531a;
+        String str = e2.d0.f8529a;
         d = Integer.toString(1, 36);
-        f3268e = Integer.toString(2, 36);
+        f3266e = Integer.toString(2, 36);
     }
 
     public d1(int i10) {
         e2.d.a("maxStars must be a positive integer", i10 > 0);
-        this.f3269b = i10;
-        this.f3270c = -1.0f;
+        this.f3267b = i10;
+        this.f3268c = -1.0f;
     }
 
     @Override
     public final boolean b() {
-        if (this.f3270c != -1.0f) {
+        if (this.f3268c != -1.0f) {
             return true;
         }
         return false;
@@ -31,9 +31,9 @@ public final class d1 extends c1 {
     @Override
     public final Bundle c() {
         Bundle bundle = new Bundle();
-        bundle.putInt(c1.f3263a, 2);
-        bundle.putInt(d, this.f3269b);
-        bundle.putFloat(f3268e, this.f3270c);
+        bundle.putInt(c1.f3261a, 2);
+        bundle.putInt(d, this.f3267b);
+        bundle.putFloat(f3266e, this.f3268c);
         return bundle;
     }
 
@@ -42,14 +42,14 @@ public final class d1 extends c1 {
             return false;
         }
         d1 d1Var = (d1) obj;
-        if (this.f3269b != d1Var.f3269b || this.f3270c != d1Var.f3270c) {
+        if (this.f3267b != d1Var.f3267b || this.f3268c != d1Var.f3268c) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f3269b), Float.valueOf(this.f3270c));
+        return Objects.hash(Integer.valueOf(this.f3267b), Float.valueOf(this.f3268c));
     }
 
     public d1(int i10, float f7) {
@@ -59,7 +59,7 @@ public final class d1 extends c1 {
             z10 = true;
         }
         e2.d.a("starRating is out of range [0, maxStars]", z10);
-        this.f3269b = i10;
-        this.f3270c = f7;
+        this.f3267b = i10;
+        this.f3268c = f7;
     }
 }

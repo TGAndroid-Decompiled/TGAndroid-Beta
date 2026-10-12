@@ -4,10 +4,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.et;
-import org.telegram.ui.ot;
-public final class r1 implements ot {
+import org.telegram.ui.Components.s80;
+import org.telegram.ui.jt;
+import org.telegram.ui.st;
+public final class r1 implements st {
     @Override
     public final MessageObject A() {
         return null;
@@ -99,7 +99,7 @@ public final class r1 implements ot {
     }
 
     @Override
-    public final p80 j(m6 m6Var) {
+    public final s80 j(m6 m6Var) {
         return null;
     }
 
@@ -136,6 +136,14 @@ public final class r1 implements ot {
     }
 
     @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
     public final void O(String str) {
     }
 
@@ -156,27 +164,19 @@ public final class r1 implements ot {
     }
 
     @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
     public final void s() {
     }
 
     @Override
     public final void u() {
+    }
+
+    @Override
+    public final void v(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void z(String str) {
     }
 
     @Override
@@ -192,7 +192,7 @@ public final class r1 implements ot {
     }
 
     @Override
-    public final void f(CharSequence charSequence, String str, et etVar) {
+    public final void f(CharSequence charSequence, String str, jt jtVar) {
     }
 
     @Override

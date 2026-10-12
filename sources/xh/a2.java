@@ -1,69 +1,43 @@
 package xh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.j5;
-import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.su;
-public final class a2 extends su {
-    public final j5 f51286c;
-    public int d;
-    public final q6 f51287e;
-    public final s2 f51288f;
+import org.telegram.messenger.Utilities;
+public final class a2 implements TextView.OnEditorActionListener {
+    public final z1 f51392a;
+    public final Utilities.Callback f51393b;
+    public final org.telegram.ui.ActionBar.a2[] f51394c;
+    public final View d;
 
-    public a2(s2 s2Var, Context context, d6 d6Var) {
-        super(context, d6Var);
-        this.f51288f = s2Var;
-        this.f51286c = new j5(this);
-        q6 q6Var = new q6(false, true, true);
-        this.f51287e = q6Var;
-        q6Var.n(0.2f, 160L, is.h);
-        q6Var.w(AndroidUtilities.dp(15.33f));
-        q6Var.setCallback(this);
-        q6Var.f30134b = 5;
+    public a2(z1 z1Var, Utilities.Callback callback, org.telegram.ui.ActionBar.a2[] a2VarArr, View view) {
+        this.f51392a = z1Var;
+        this.f51393b = callback;
+        this.f51394c = a2VarArr;
+        this.d = view;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.d < 0) {
-            i10 = h6.f21043p7;
-        } else {
-            i10 = h6.P5;
-        }
-        int a2 = this.f51286c.a(h6.w0(i10, this.f51288f.f51636f), false);
-        q6 q6Var = this.f51287e;
-        q6Var.u(a2);
-        q6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        q6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        q6 q6Var = this.f51287e;
-        if (q6Var != null) {
-            this.d = 12 - charSequence.length();
-            q6Var.a();
-            String str = "";
-            if (this.d <= 4) {
-                str = "" + this.d;
-            }
-            q6Var.t(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f51287e && !super.verifyDrawable(drawable)) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        if (i10 != 6) {
             return false;
         }
+        z1 z1Var = this.f51392a;
+        String obj = z1Var.getText().toString();
+        if (obj.length() > 0 && obj.length() <= 12) {
+            this.f51393b.run(obj);
+            org.telegram.ui.ActionBar.a2 a2Var = this.f51394c[0];
+            if (a2Var != null) {
+                a2Var.dismiss();
+            }
+            View view = this.d;
+            if (view != null) {
+                view.requestFocus();
+            }
+            return true;
+        }
+        AndroidUtilities.shakeView(z1Var);
         return true;
     }
 }

@@ -12,10 +12,10 @@ public class AudioBufferConverter {
     private void checkChannels(int i10, int i11) {
         if (i10 != 6 || (i11 != 1 && i11 != 2)) {
             if (i10 != 1 && i10 != 2) {
-                throw new UnsupportedOperationException(hg.c.i(i10, "Input channel count (", ") not supported."));
+                throw new UnsupportedOperationException(hg.c.j(i10, "Input channel count (", ") not supported."));
             }
             if (i11 != 1 && i11 != 2) {
-                throw new UnsupportedOperationException(hg.c.i(i11, "Output channel count (", ") not supported."));
+                throw new UnsupportedOperationException(hg.c.j(i11, "Output channel count (", ") not supported."));
             }
         }
     }
@@ -36,10 +36,10 @@ public class AudioBufferConverter {
         checkChannels(i11, i13);
         int R1 = this.mRemixer.R1(shortBuffer.remaining(), i11, i13);
         ShortBuffer createBuffer = createBuffer(R1);
-        this.mRemixer.Y0(shortBuffer, i11, createBuffer, i13);
+        this.mRemixer.X0(shortBuffer, i11, createBuffer, i13);
         createBuffer.rewind();
         ShortBuffer createBuffer2 = createBuffer(((int) Math.ceil((R1 * i12) / i10)) + 10);
-        this.mResampler.x0(createBuffer, i10, createBuffer2, i12, i13);
+        this.mResampler.w0(createBuffer, i10, createBuffer2, i12, i13);
         createBuffer2.limit(createBuffer2.position());
         createBuffer2.rewind();
         return createBuffer2;

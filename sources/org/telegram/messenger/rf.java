@@ -1,35 +1,41 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class rf implements Runnable {
-    public final int f19095a = 0;
-    public final int f19096b;
-    public final MessagesStorage f19097c;
+    public final int f18790a;
+    public final MessagesStorage f18791b;
+    public final int f18792c;
     public final long d;
-    public final long f19098e;
-    public final int f19099f;
-    public final Object h;
 
-    public rf(int i10, int i11, long j3, long j10, MessagesStorage messagesStorage, TLRPC.InputChannel inputChannel) {
-        this.f19097c = messagesStorage;
+    public rf(MessagesStorage messagesStorage, int i10, long j3, int i11) {
+        this.f18790a = i11;
+        this.f18791b = messagesStorage;
+        this.f18792c = i10;
         this.d = j3;
-        this.f19096b = i10;
-        this.h = inputChannel;
-        this.f19099f = i11;
-        this.f19098e = j10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.rf.run():void");
-    }
-
-    public rf(org.telegram.ui.Cells.g6 g6Var, int i10, MessagesStorage messagesStorage, long j3, long j10, int i11) {
-        this.h = g6Var;
-        this.f19096b = i10;
-        this.f19097c = messagesStorage;
-        this.d = j3;
-        this.f19098e = j10;
-        this.f19099f = i11;
+        switch (this.f18790a) {
+            case 0:
+                this.f18791b.lambda$saveChannelPts$34(this.f18792c, this.d);
+                return;
+            case 1:
+                this.f18791b.lambda$markMessageAsMention$113(this.f18792c, this.d);
+                return;
+            case 2:
+                this.f18791b.lambda$setDialogPinned$251(this.f18792c, this.d);
+                return;
+            case 3:
+                this.f18791b.lambda$setDialogTtl$60(this.f18792c, this.d);
+                return;
+            case 4:
+                this.f18791b.lambda$deleteDialog$90(this.f18792c, this.d);
+                return;
+            case 5:
+                this.f18791b.lambda$updateChatOnlineCount$135(this.f18792c, this.d);
+                return;
+            default:
+                this.f18791b.lambda$saveChatLinksCount$133(this.f18792c, this.d);
+                return;
+        }
     }
 }

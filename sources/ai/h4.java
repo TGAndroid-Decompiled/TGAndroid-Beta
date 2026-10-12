@@ -5,16 +5,16 @@ import android.content.Context;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.yi;
-import org.telegram.ui.ok;
-import org.telegram.ui.sm;
-import org.telegram.ui.zn;
-public final class h4 extends yi {
+import org.telegram.ui.Components.aj;
+import org.telegram.ui.eo;
+import org.telegram.ui.sk;
+import org.telegram.ui.wm;
+public final class h4 extends aj {
     public final int S2;
     public final NotificationCenter.NotificationCenterDelegate T2;
 
-    public h4(org.telegram.ui.ActionBar.m2 m2Var, Activity activity, org.telegram.ui.ActionBar.m2 m2Var2, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(activity, m2Var2, false, false, true, d6Var);
+    public h4(org.telegram.ui.ActionBar.m2 m2Var, Activity activity, org.telegram.ui.ActionBar.m2 m2Var2, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(activity, m2Var2, false, false, true, c6Var);
         this.S2 = i10;
         this.T2 = (NotificationCenter.NotificationCenterDelegate) m2Var;
     }
@@ -34,19 +34,19 @@ public final class h4 extends yi {
                 super.dismissInternal();
                 return;
             case 2:
-                zn znVar = (zn) notificationCenterDelegate;
-                h4 h4Var2 = znVar.J1;
-                if (h4Var2 != null && (h4Var2.isShowing() || this.f33346x0)) {
-                    Activity parentActivity = znVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.m2) znVar).classGuid;
+                eo eoVar = (eo) notificationCenterDelegate;
+                h4 h4Var2 = eoVar.J1;
+                if (h4Var2 != null && (h4Var2.isShowing() || this.f24399x0)) {
+                    Activity parentActivity = eoVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.m2) eoVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 super.dismissInternal();
-                znVar.Y9(false, true);
-                sm smVar = znVar.X0;
-                if (smVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f46890a;
-                    r0.y.c(smVar);
+                eoVar.Y9(false, true);
+                wm wmVar = eoVar.X0;
+                if (wmVar != null) {
+                    WeakHashMap weakHashMap = r0.i0.f46981a;
+                    r0.y.c(wmVar);
                     return;
                 }
                 return;
@@ -59,7 +59,7 @@ public final class h4 extends yi {
     @Override
     public final void onDismissAnimationStart() {
         int i10;
-        ok okVar;
+        sk skVar;
         switch (this.S2) {
             case 0:
                 f6 f6Var = (f6) this.T2;
@@ -67,9 +67,9 @@ public final class h4 extends yi {
                 if (h4Var != null) {
                     h4Var.setFocusable(false);
                 }
-                b4 b4Var = f6Var.f952b2;
+                b4 b4Var = f6Var.f950b2;
                 if (b4Var != null && b4Var.getEditField() != null) {
-                    f6Var.f952b2.getEditField().requestFocus();
+                    f6Var.f950b2.getEditField().requestFocus();
                     return;
                 }
                 return;
@@ -86,44 +86,44 @@ public final class h4 extends yi {
                 }
                 return;
             default:
-                zn znVar = (zn) this.T2;
-                boolean z10 = this.f33346x0;
+                eo eoVar = (eo) this.T2;
+                boolean z10 = this.f24399x0;
                 boolean M = this.B0.M();
                 if (!M) {
-                    znVar.D3 = false;
-                    ok okVar2 = znVar.Y;
-                    if (okVar2 != null) {
+                    eoVar.D3 = false;
+                    sk skVar2 = eoVar.Y;
+                    if (skVar2 != null) {
                         if (!z10) {
-                            okVar2.N();
+                            skVar2.Q();
                         }
-                        if (znVar.Y.getEditField() != null) {
-                            znVar.Y.getEditField().clearFocus();
+                        if (eoVar.Y.getEditField() != null) {
+                            eoVar.Y.getEditField().clearFocus();
                         }
                     }
                 }
                 if (!z10) {
-                    h4 h4Var4 = znVar.J1;
+                    h4 h4Var4 = eoVar.J1;
                     if (h4Var4 != null) {
                         h4Var4.setFocusable(false);
                     }
-                    if (M && (okVar = znVar.Y) != null && okVar.getEditField() != null) {
-                        znVar.Y.getEditField().requestFocus();
+                    if (M && (skVar = eoVar.Y) != null && skVar.getEditField() != null) {
+                        eoVar.Y.getEditField().requestFocus();
                     }
-                    h4 h4Var5 = znVar.J1;
+                    h4 h4Var5 = eoVar.J1;
                     if (h4Var5 != null && h4Var5.isShowing()) {
-                        Activity parentActivity = znVar.getParentActivity();
-                        i10 = ((org.telegram.ui.ActionBar.m2) znVar).classGuid;
+                        Activity parentActivity = eoVar.getParentActivity();
+                        i10 = ((org.telegram.ui.ActionBar.m2) eoVar).classGuid;
                         AndroidUtilities.requestAdjustResize(parentActivity, i10);
                     }
-                    znVar.Y9(false, false);
+                    eoVar.Y9(false, false);
                     return;
                 }
                 return;
         }
     }
 
-    public h4(f6 f6Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null, false, false, true, d6Var);
+    public h4(f6 f6Var, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, null, false, false, true, c6Var);
         this.S2 = 0;
         this.T2 = f6Var;
     }

@@ -1,39 +1,52 @@
 package org.telegram.ui;
-public final class cf1 implements Runnable {
-    public final int f36721a;
-    public final eg1 f36722b;
 
-    public cf1(eg1 eg1Var, int i10) {
-        this.f36721a = i10;
-        this.f36722b = eg1Var;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class cf1 extends n71 {
+    public boolean f36414d2;
+    public final df1 f36415e2;
+
+    public cf1(df1 df1Var, df1 df1Var2, Activity activity) {
+        super(df1Var2, activity, false, null, 3, null);
+        this.f36415e2 = df1Var;
+        this.f36414d2 = true;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36721a) {
-            case 0:
-                eg1 eg1Var = this.f36722b;
-                eg1Var.x0();
-                eg1Var.B0();
-                return;
-            case 1:
-                this.f36722b.x0();
-                return;
-            case 2:
-                this.f36722b.O0(true);
-                return;
-            case 3:
-                this.f36722b.finishPreviewFragment();
-                return;
-            case 4:
-                eg1 eg1Var2 = this.f36722b;
-                eg1Var2.A0 = null;
-                eg1Var2.U0(true, false);
-                return;
-            default:
-                eg1 eg1Var3 = this.f36722b;
-                eg1Var3.N.postOnAnimation(new cf1(eg1Var3, 1));
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.f36414d2) {
+            this.f36414d2 = false;
+            this.f36415e2.f36789f.s(null);
         }
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i10;
+        int i11;
+        long j3;
+        df1 df1Var = this.f36415e2;
+        i10 = ((org.telegram.ui.ActionBar.m2) df1Var).currentAccount;
+        boolean z10 = false;
+        if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
+            MediaDataController mediaDataController = df1Var.getMediaDataController();
+            i11 = ((org.telegram.ui.ActionBar.m2) df1Var).currentAccount;
+            TLRPC.TL_messages_stickerSet stickerSetByEmojiOrName = mediaDataController.getStickerSetByEmojiOrName(UserConfig.getInstance(i11).defaultTopicIcons);
+            if (stickerSetByEmojiOrName == null) {
+                j3 = 0;
+            } else {
+                j3 = stickerSetByEmojiOrName.set.f19829id;
+            }
+            if (j3 == MediaDataController.getStickerSetId(document)) {
+                z10 = true;
+            }
+        }
+        df1Var.b0(l4, z10);
     }
 }

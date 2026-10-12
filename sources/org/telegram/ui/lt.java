@@ -1,22 +1,22 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import android.view.ViewGroup;
 public final class lt extends org.telegram.ui.ActionBar.m1 {
-    public final mt f39759o;
+    public final qt f39839o;
 
-    public lt(mt mtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f39759o = mtVar;
+    public lt(qt qtVar, ViewGroup viewGroup) {
+        super(viewGroup, -2, -2);
+        this.f39839o = qtVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        qt qtVar = this.f39759o.f40107a;
-        qtVar.f41277k = null;
-        qtVar.K = false;
-        if (qtVar.R) {
-            qtVar.n();
+        ut utVar = this.f39839o.f41429a;
+        utVar.f42577k = null;
+        utVar.K = false;
+        if (utVar.R) {
+            utVar.n();
         }
     }
 }

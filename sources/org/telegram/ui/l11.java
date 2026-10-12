@@ -1,113 +1,95 @@
 package org.telegram.ui;
 
-import j$.time.LocalDate;
-import j$.time.Period;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.BirthdayController;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class l11 {
-    public final int f39514a;
-    public boolean f39515b;
-    public n11 f39516c;
-    public final boolean[] f39519g;
-    public boolean f39520i;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList f39517e = new ArrayList();
-    public final ArrayList f39518f = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final ArrayList f39521j = new ArrayList();
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class l11 extends Drawable implements org.telegram.ui.ActionBar.g5 {
+    public final org.telegram.ui.Components.q6 f39622a;
+    public final Paint f39623b;
+    public int f39624c;
+    public float d;
+    public float f39625e;
+    public final org.telegram.ui.Cells.l0 f39626f;
+    public org.telegram.ui.Cells.w0 h;
 
-    public l11(int i10, int i11) {
-        boolean[] zArr = new boolean[2];
-        this.f39519g = zArr;
-        this.f39514a = i11;
-        if (i11 <= 0) {
-            zArr[0] = true;
-        } else {
-            ArrayList arrayList = new ArrayList();
-            HashSet hashSet = new HashSet();
-            String h = hg.c.h(i11, "");
-            for (int i12 = 0; i12 < h.length(); i12++) {
-                int charAt = h.charAt(i12) - '0';
-                if (charAt >= 0 && charAt <= 9) {
-                    arrayList.add(Integer.valueOf(charAt));
-                    hashSet.add(Integer.valueOf(charAt));
-                }
-            }
-            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            String[] strArr = o11.f40415s;
-            tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
-            MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName, 0, false, new y(this, hashSet, arrayList, 11));
-        }
-        String str = o11.f40415s[Utilities.random.nextInt(3)];
-        TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
-        tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
-        MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName2, 0, false, new et(14, this, str));
+    public l11(String str) {
+        Paint paint = new Paint(1);
+        this.f39623b = paint;
+        this.d = 1.0f;
+        this.f39625e = 1.0f;
+        this.f39626f = new org.telegram.ui.Cells.l0(this);
+        org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(false, false, false);
+        this.f39622a = q6Var;
+        q6Var.setCallback(new zr(1, this));
+        q6Var.t(str, true, true);
+        q6Var.w(AndroidUtilities.dp(11.0f));
+        q6Var.f29712b = 17;
+        paint.setColor(520093696);
     }
 
-    public static l11 c(int i10, TLRPC.UserFull userFull, l11 l11Var) {
-        int i11;
-        TL_account.TL_birthday tL_birthday;
-        if (LiteMode.isEnabled(2) && BirthdayController.isToday(userFull)) {
-            if (userFull != null && (tL_birthday = userFull.birthday) != null && (tL_birthday.flags & 1) != 0) {
-                i11 = Period.between(LocalDate.of(tL_birthday.year, tL_birthday.month, tL_birthday.day), LocalDate.now()).getYears();
-            } else {
-                i11 = 0;
-            }
-            if (l11Var != null) {
-                if (l11Var.f39514a == i11) {
-                    return l11Var;
-                }
-                l11Var.b(false);
-            }
-            return new l11(i10, i11);
-        } else if (l11Var != null) {
-            l11Var.b(false);
-            return null;
-        } else {
-            return null;
+    public final void a(int i10) {
+        Paint paint = this.f39623b;
+        if (paint.getColor() != i10) {
+            paint.setColor(i10);
+            invalidateSelf();
         }
     }
 
-    public final void a() {
-        if (!this.f39515b && this.f39518f.size() >= this.f39517e.size()) {
-            boolean[] zArr = this.f39519g;
-            int i10 = 0;
-            if (zArr[0] && zArr[1]) {
-                this.f39515b = true;
-                ArrayList arrayList = this.h;
-                int size = arrayList.size();
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((Runnable) obj).run();
-                }
-                arrayList.clear();
-            }
-        }
-    }
-
-    public final void b(boolean z10) {
-        if (!z10 && !this.f39521j.isEmpty()) {
-            this.f39520i = true;
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7 = this.d * this.f39625e;
+        if (f7 <= 0.0f) {
             return;
         }
-        this.h.clear();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f39517e;
-            if (i10 < arrayList.size()) {
-                ((n11) arrayList.get(i10)).onDetachedFromWindow();
-                i10++;
-            } else {
-                arrayList.clear();
-                return;
-            }
-        }
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getBounds());
+        canvas.save();
+        float a2 = this.f39626f.a(0.1f);
+        canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
+        Paint paint = this.f39623b;
+        int alpha = paint.getAlpha();
+        paint.setAlpha((int) (alpha * f7));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), paint);
+        paint.setAlpha(alpha);
+        int i10 = this.f39624c;
+        org.telegram.ui.Components.q6 q6Var = this.f39622a;
+        q6Var.u(i10);
+        q6Var.B = (int) (f7 * 255.0f);
+        q6Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        q6Var.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getAlpha() {
+        return (int) (this.d * 255.0f);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(17.33f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return (int) (this.f39622a.d + AndroidUtilities.dp(11.0f));
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10 / 255.0f;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

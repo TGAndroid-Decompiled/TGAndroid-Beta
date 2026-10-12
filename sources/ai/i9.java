@@ -14,12 +14,12 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
 public final class i9 implements RequestDelegate {
-    public final int f1158a;
-    public final l9 f1159b;
+    public final int f1156a;
+    public final l9 f1157b;
 
     public i9(l9 l9Var, int i10) {
-        this.f1158a = i10;
-        this.f1159b = l9Var;
+        this.f1156a = i10;
+        this.f1157b = l9Var;
     }
 
     @Override
@@ -34,18 +34,18 @@ public final class i9 implements RequestDelegate {
         ArrayList arrayList;
         int i12;
         int i13;
-        switch (this.f1158a) {
+        switch (this.f1156a) {
             case 0:
-                l9 l9Var = this.f1159b;
+                l9 l9Var = this.f1157b;
                 long j3 = l9Var.J;
-                String str = l9Var.f1353f;
-                boolean z12 = l9Var.f1350b;
-                ci.l8 l8Var = l9Var.f1351c;
-                int i14 = l9Var.M.f1406a;
+                String str = l9Var.f1351f;
+                boolean z12 = l9Var.f1348b;
+                ci.l8 l8Var = l9Var.f1349c;
+                int i14 = l9Var.M.f1404a;
                 if (tLObject instanceof TLRPC.Updates) {
                     l9Var.I = false;
                     TLRPC.Updates updates3 = (TLRPC.Updates) tLObject;
-                    if (l8Var.f5397b0) {
+                    if (l8Var.f5396b0) {
                         MessagesController.getInstance(i14).lambda$processUpdates$377(updates3, false);
                         AndroidUtilities.runOnUIThread(new j9(l9Var, 1));
                         return;
@@ -56,10 +56,10 @@ public final class i9 implements RequestDelegate {
                     while (i15 < updates3.updates.size()) {
                         if (updates3.updates.get(i15) instanceof TL_stories.TL_updateStory) {
                             TL_stories.StoryItem storyItem2 = ((TL_stories.TL_updateStory) updates3.updates.get(i15)).story;
-                            storyItem2.attachPath = l9Var.f1352e;
+                            storyItem2.attachPath = l9Var.f1350e;
                             storyItem2.firstFramePath = str;
                             storyItem2.justUploaded = !z12;
-                            int i17 = storyItem2.f20305id;
+                            int i17 = storyItem2.f20041id;
                             if (storyItem == null) {
                                 storyItem = storyItem2;
                             } else {
@@ -151,9 +151,9 @@ public final class i9 implements RequestDelegate {
                                         }
                                         storyItem.pinned = z11;
                                         storyItem.dialogId = UserConfig.getInstance(i11).clientUserId;
-                                        storyItem.attachPath = l9Var.f1352e;
+                                        storyItem.attachPath = l9Var.f1350e;
                                         storyItem.firstFramePath = str;
-                                        storyItem.f20305id = tL_updateStoryID.f20325id;
+                                        storyItem.f20041id = tL_updateStoryID.f20061id;
                                         storyItem.justUploaded = !z10;
                                         i15 = i10 + 1;
                                         z12 = z10;
@@ -180,7 +180,7 @@ public final class i9 implements RequestDelegate {
                         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i22).getInputPeer(j3);
                         tL_stories_deleteStories.peer = inputPeer;
                         if (inputPeer != null) {
-                            tL_stories_deleteStories.f20308id.add(Integer.valueOf(i16));
+                            tL_stories_deleteStories.f20044id.add(Integer.valueOf(i16));
                             ConnectionsManager.getInstance(i22).sendRequest(tL_stories_deleteStories, new i9(l9Var, 1));
                         }
                     } else {
@@ -206,9 +206,9 @@ public final class i9 implements RequestDelegate {
                     }
                 } else if (tLObject instanceof TL_bots.botPreviewMedia) {
                     l9Var.L = (TL_bots.botPreviewMedia) tLObject;
-                } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && l8Var.f5400c0 != null && (d5Var = l8Var.f5402d0) != null) {
+                } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && l8Var.f5399c0 != null && (d5Var = l8Var.f5401d0) != null) {
                     d5Var.run(new k9(l9Var, 0));
-                    l8Var.f5402d0 = null;
+                    l8Var.f5401d0 = null;
                     return;
                 } else if (tL_error != null && !z12) {
                     AndroidUtilities.runOnUIThread(new a1.f(20, l9Var, tL_error));
@@ -216,7 +216,7 @@ public final class i9 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new j9(l9Var, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new k8(this.f1159b.M, 2));
+                AndroidUtilities.runOnUIThread(new k8(this.f1157b.M, 2));
                 return;
         }
     }

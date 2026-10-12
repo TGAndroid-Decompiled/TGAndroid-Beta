@@ -1,238 +1,99 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.view.View;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class jn implements ot {
-    public final TLRPC.TL_messageMediaPoll f39118a;
-    public final TLRPC.PollAnswer f39119b;
-    public final org.telegram.ui.Cells.u1 f39120c;
-    public final ln d;
+public final class jn extends org.telegram.ui.Components.sr0 {
+    public final MessageObject f39253b1;
+    public final pn f39254c1;
 
-    public jn(ln lnVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.u1 u1Var) {
-        this.d = lnVar;
-        this.f39118a = tL_messageMediaPoll;
-        this.f39119b = pollAnswer;
-        this.f39120c = u1Var;
+    public jn(pn pnVar, Activity activity, eo eoVar, ArrayList arrayList, boolean z10, boolean z11, org.telegram.ui.ActionBar.c6 c6Var, boolean z12, MessageObject messageObject) {
+        super(activity, eoVar, arrayList, null, null, z10, null, null, false, false, z11, null, c6Var);
+        this.f39254c1 = pnVar;
+        this.f39253b1 = messageObject;
+        this.f30630a0 = z12;
     }
 
     @Override
-    public final MessageObject A() {
-        return this.f39120c.getMessageObject();
-    }
-
-    @Override
-    public final boolean B() {
-        return false;
-    }
-
-    @Override
-    public final boolean D() {
-        return false;
-    }
-
-    @Override
-    public final boolean E(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final void K() {
-        ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f39119b);
-        SendMessagesHelper sendMessagesHelper = this.d.f39735a.getSendMessagesHelper();
-        org.telegram.ui.Cells.u1 u1Var = this.f39120c;
-        sendMessagesHelper.sendVote(u1Var.getMessageObject(), arrayList, null);
-        u1Var.S0(true);
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        zn znVar = this.d.f39735a;
-        if (inputStickerSet != null && znVar.getParentActivity() != null) {
-            TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f20088id = inputStickerSet.f20088id;
-            org.telegram.ui.Components.yy0 yy0Var = new org.telegram.ui.Components.yy0(znVar.getParentActivity(), znVar, tL_inputStickerSetID, null, znVar.Y, znVar.f44796ea);
-            yy0Var.setCalcMandatoryInsets(znVar.C9());
-            yy0Var.f33486i0 = z10;
-            znVar.showDialog(yy0Var);
+    public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        pn pnVar = this.f39254c1;
+        eo eoVar = pnVar.f40998a;
+        int i11 = eo.Hc;
+        eoVar.T7();
+        if (pnVar.f40998a.y3 != null && z10) {
+            if (iVar.m() == 1) {
+                if (((TLRPC.Dialog) iVar.n(0)).f19806id != pnVar.f40998a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.zc.a0(pnVar.f40998a).g0(i10, ((TLRPC.Dialog) iVar.n(0)).f19806id)) {
+                    pnVar.f40998a.y3.k(((TLRPC.Dialog) iVar.n(0)).f19806id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
+                    return;
+                }
+                return;
+            }
+            pnVar.f40998a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
         }
     }
 
     @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return this.d.f39735a.T5;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        if (this.d.f39735a.R3 == 1) {
-            return true;
+    public final void T0(final View view) {
+        ci.ec ecVar;
+        eo eoVar = this.f39254c1.f40998a;
+        MessageObject.GroupedMessages groupedMessages = null;
+        if (view instanceof org.telegram.ui.Cells.f7) {
+            ecVar = ci.gc.b((org.telegram.ui.Cells.f7) view);
+        } else {
+            ecVar = null;
         }
-        return false;
+        ArrayList arrayList = new ArrayList();
+        MessageObject messageObject = this.f39253b1;
+        if (messageObject.getGroupId() != 0) {
+            groupedMessages = (MessageObject.GroupedMessages) eoVar.f37484x6.f(messageObject.getGroupId());
+        }
+        if (groupedMessages != null) {
+            arrayList.addAll(groupedMessages.messages);
+        } else {
+            arrayList.add(messageObject);
+        }
+        final ci.lc D = ci.lc.D(eoVar.getParentActivity(), this.currentAccount);
+        D.R = new Utilities.Callback4() {
+            @Override
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                Long l4 = (Long) obj;
+                Runnable runnable = (Runnable) obj2;
+                Long l10 = (Long) obj4;
+                boolean booleanValue = ((Boolean) obj3).booleanValue();
+                ci.lc lcVar = D;
+                ci.ec ecVar2 = null;
+                if (booleanValue) {
+                    jn jnVar = jn.this;
+                    AndroidUtilities.runOnUIThread(new nh(12, jnVar, l10));
+                    jnVar.dismiss();
+                    lcVar.X(null);
+                } else {
+                    View view2 = view;
+                    if ((view2 instanceof org.telegram.ui.Cells.f7) && view2.isAttachedToWindow()) {
+                        ecVar2 = ci.gc.b((org.telegram.ui.Cells.f7) view2);
+                    }
+                    lcVar.X(ecVar2);
+                }
+                AndroidUtilities.runOnUIThread(runnable);
+            }
+        };
+        D.T(ecVar, ci.l8.y(arrayList));
     }
 
     @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return this.f39118a;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer h() {
-        return this.f39119b;
-    }
-
-    @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.p80 j(ci.m6 m6Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean m(int i10) {
-        return false;
-    }
-
-    @Override
-    public final boolean q() {
-        return false;
-    }
-
-    @Override
-    public final void s() {
-        SendMessagesHelper sendMessagesHelper = this.d.f39735a.getSendMessagesHelper();
-        org.telegram.ui.Cells.u1 u1Var = this.f39120c;
-        sendMessagesHelper.sendVote(u1Var.getMessageObject(), null, null);
-        u1Var.S0(true);
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void o(String str) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void f(CharSequence charSequence, String str, et etVar) {
-    }
-
-    @Override
-    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+    public final void dismissInternal() {
+        int i10;
+        eo eoVar = this.f39254c1.f40998a;
+        Activity parentActivity = eoVar.getParentActivity();
+        i10 = ((org.telegram.ui.ActionBar.m2) eoVar).classGuid;
+        AndroidUtilities.requestAdjustResize(parentActivity, i10);
+        super.dismissInternal();
+        if (eoVar.Y.getVisibility() == 0) {
+            eoVar.fragmentView.requestLayout();
+        }
     }
 }

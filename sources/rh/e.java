@@ -12,32 +12,32 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.jq;
+import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.lq;
 import yf.p;
 public final class e extends qh.e implements Drawable.Callback, me.d {
-    public final String f47677b;
+    public final String f47767b;
     public final Drawable d;
-    public final jq f47680f;
+    public final lq f47770f;
     public qh.d h;
-    public TLRPC.WebPage f47681n;
-    public final me.b f47682r;
-    public final me.b f47683s;
-    public final a5.a f47678c = new a5.a((char) 0, 15);
-    public final Paint f47679e = new Paint(1);
+    public TLRPC.WebPage f47771n;
+    public final me.b f47772r;
+    public final me.b f47773s;
+    public final a5.a f47768c = new a5.a((char) 0, 15);
+    public final Paint f47769e = new Paint(1);
 
     public e(String str) {
-        jq jqVar = new jq(-1);
-        this.f47680f = jqVar;
-        is isVar = is.h;
-        this.f47682r = new me.b(0, this, isVar, 320L, false);
-        this.f47683s = new me.b(0, this, isVar, 320L, false);
-        this.f47677b = str;
-        this.f46786a.setRoundRadius(AndroidUtilities.dp(7.0f));
+        lq lqVar = new lq(-1);
+        this.f47770f = lqVar;
+        js jsVar = js.h;
+        this.f47772r = new me.b(0, this, jsVar, 320L, false);
+        this.f47773s = new me.b(0, this, jsVar, 320L, false);
+        this.f47767b = str;
+        this.f46614a.setRoundRadius(AndroidUtilities.dp(7.0f));
         this.d = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
-        jqVar.setCallback(this);
-        jqVar.b(h6.x0(null, h6.f21026o7, false));
-        jqVar.f27807a = AndroidUtilities.dp(15.0f);
+        lqVar.setCallback(this);
+        lqVar.b(h6.x0(null, h6.f20763o7, false));
+        lqVar.f28260a = AndroidUtilities.dp(15.0f);
     }
 
     @Override
@@ -56,20 +56,20 @@ public final class e extends qh.e implements Drawable.Callback, me.d {
     public final void c(Canvas canvas, int i10, int i11) {
         float f7 = i10;
         float f10 = i11;
-        ImageReceiver imageReceiver = this.f46786a;
+        ImageReceiver imageReceiver = this.f46614a;
         imageReceiver.setImageCoords(0.0f, 0.0f, f7, f10);
         imageReceiver.draw(canvas);
-        jq jqVar = this.f47680f;
-        jqVar.setBounds(0, 0, i10, i11);
-        int x02 = h6.x0(null, h6.f20766a7, false);
-        me.b bVar = this.f47683s;
-        int d = i0.a.d(bVar.f16401e, x02, 1073741824);
-        Paint paint = this.f47679e;
+        lq lqVar = this.f47770f;
+        lqVar.setBounds(0, 0, i10, i11);
+        int x02 = h6.x0(null, h6.f20503a7, false);
+        me.b bVar = this.f47773s;
+        int d = i0.a.d(bVar.f16087e, x02, 1073741824);
+        Paint paint = this.f47769e;
         paint.setColor(d);
         canvas.drawRoundRect(0.0f, 0.0f, f7, f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), paint);
-        int d10 = i0.a.d(bVar.f16401e, h6.x0(null, h6.f21026o7, false), -1);
+        int d10 = i0.a.d(bVar.f16087e, h6.x0(null, h6.f20763o7, false), -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        a5.a aVar = this.f47678c;
+        a5.a aVar = this.f47768c;
         aVar.getClass();
         if (((PorterDuffColorFilter) aVar.f300c) == null || aVar.f299b != d10 || ((PorterDuff.Mode) aVar.d) != mode) {
             aVar.f300c = new PorterDuffColorFilter(d10, mode);
@@ -79,9 +79,9 @@ public final class e extends qh.e implements Drawable.Callback, me.d {
         Drawable drawable = this.d;
         drawable.setColorFilter((PorterDuffColorFilter) aVar.f300c);
         p.e(this.d, f7 / 2.0f, f10 / 2.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
-        me.b bVar2 = this.f47682r;
-        p.b(canvas, drawable, 1.0f - bVar2.f16401e);
-        p.b(canvas, jqVar, bVar2.f16401e);
+        me.b bVar2 = this.f47772r;
+        p.b(canvas, drawable, 1.0f - bVar2.f16087e);
+        p.b(canvas, lqVar, bVar2.f16087e);
     }
 
     @Override
@@ -101,7 +101,7 @@ public final class e extends qh.e implements Drawable.Callback, me.d {
     }
 
     @Override
-    public final void A(float f7, int i10) {
+    public final void C(float f7, int i10) {
     }
 
     @Override

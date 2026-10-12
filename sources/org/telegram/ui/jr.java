@@ -1,27 +1,56 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class jr implements x60 {
-    public final c70 f39144a;
-    public final sr f39145b;
+public final class jr implements or {
+    public final wr f39267a;
 
-    public jr(sr srVar, c70 c70Var) {
-        this.f39145b = srVar;
-        this.f39144a = c70Var;
+    public jr(wr wrVar) {
+        this.f39267a = wrVar;
     }
 
     @Override
-    public final void i(TLRPC.User user) {
-        this.f39145b.t0(user.f20215id, null, null, null, "", true, 0, false);
-    }
-
-    @Override
-    public final void j(int i10, ArrayList arrayList) {
-        if (this.f39144a.getParentActivity() == null) {
-            return;
+    public final void c(long j3, TLObject tLObject) {
+        wr wrVar = this.f39267a;
+        if (wrVar.K.f(j3) == null) {
+            pr w02 = wrVar.w0();
+            wrVar.F.add(tLObject);
+            wrVar.K.k(tLObject, j3);
+            wrVar.z0(wrVar.F);
+            wrVar.A0(w02);
         }
-        sr srVar = this.f39145b;
-        srVar.getMessagesController().addUsersToChat(srVar.f41856r, srVar, arrayList, i10, new g3(this, 2), new ir(0), null);
+    }
+
+    @Override
+    public final void d(long j3) {
+        wr wrVar = this.f39267a;
+        if (wrVar.K.f(j3) == null) {
+            pr w02 = wrVar.w0();
+            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
+            if (j3 > 0) {
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                tL_channelParticipantBanned.peer = tL_peerUser;
+                tL_peerUser.user_id = j3;
+            } else {
+                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                tL_channelParticipantBanned.peer = tL_peerChannel;
+                tL_peerChannel.channel_id = -j3;
+            }
+            tL_channelParticipantBanned.date = wrVar.getConnectionsManager().getCurrentTime();
+            tL_channelParticipantBanned.kicked_by = wrVar.getAccountInstance().getUserConfig().clientUserId;
+            wrVar.f43649s.kicked_count++;
+            wrVar.F.add(tL_channelParticipantBanned);
+            wrVar.K.k(tL_channelParticipantBanned, j3);
+            wrVar.z0(wrVar.F);
+            wrVar.A0(w02);
+        }
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
+    }
+
+    @Override
+    public final void b(long j3) {
     }
 }

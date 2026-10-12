@@ -1,69 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hs0 implements Runnable {
-    public final int f27227a;
-    public final org.telegram.ui.ActionBar.a2[] f27228b;
-    public final int f27229c;
-    public final int d;
+    public final int f26901a = 0;
+    public final hw0 f26902b;
+    public final org.telegram.ui.ActionBar.c6 f26903c;
+    public final MessageObject d;
+    public final int f26904e;
 
-    public hs0(org.telegram.ui.ActionBar.a2[] a2VarArr, int i10, int i11, int i12) {
-        this.f27227a = i12;
-        this.f27228b = a2VarArr;
-        this.f27229c = i10;
-        this.d = i11;
+    public hs0(hw0 hw0Var, org.telegram.ui.ActionBar.c6 c6Var, int i10, MessageObject messageObject) {
+        this.f26902b = hw0Var;
+        this.f26903c = c6Var;
+        this.f26904e = i10;
+        this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f27227a) {
+        switch (this.f26901a) {
             case 0:
-                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f27228b;
-                org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
-                if (a2Var != null) {
-                    final int i10 = this.f27229c;
-                    final int i11 = this.d;
-                    a2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    a2VarArr[0].show();
+                org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(this.f26902b.getContext(), 3, this.f26903c)};
+                int i10 = this.f26904e;
+                int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new dt(a2VarArr, 1));
+                if (sendVote != 0) {
+                    AndroidUtilities.runOnUIThread(new ms0(a2VarArr, i10, sendVote, 0), 500L);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f27228b;
-                org.telegram.ui.ActionBar.a2 a2Var2 = a2VarArr2[0];
-                if (a2Var2 != null) {
-                    final int i12 = this.f27229c;
-                    final int i13 = this.d;
-                    a2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
-                                    return;
-                            }
-                        }
-                    });
-                    a2VarArr2[0].show();
-                    return;
+                hw0 hw0Var = this.f26902b;
+                Context context = hw0Var.getContext();
+                org.telegram.ui.ActionBar.c6 c6Var = this.f26903c;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                a2Var.P0 = false;
+                MessageObject messageObject = this.d;
+                if (messageObject.isQuiz()) {
+                    a2Var.R = LocaleController.getString(R.string.StopQuizAlertTitle);
+                    a2Var.T = LocaleController.getString(R.string.StopQuizAlertText);
+                } else {
+                    a2Var.R = LocaleController.getString(R.string.StopPollAlertTitle);
+                    a2Var.T = LocaleController.getString(R.string.StopPollAlertText);
                 }
+                alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new org.telegram.ui.ha(hw0Var, c6Var, messageObject, this.f26904e, 4));
+                hg.c.r(R.string.Cancel, alertDialog$Builder, null);
                 return;
         }
+    }
+
+    public hs0(hw0 hw0Var, org.telegram.ui.ActionBar.c6 c6Var, MessageObject messageObject, int i10) {
+        this.f26902b = hw0Var;
+        this.f26903c = c6Var;
+        this.d = messageObject;
+        this.f26904e = i10;
     }
 }

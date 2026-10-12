@@ -1,71 +1,48 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class al implements Runnable {
-    public final int f24619a;
-    public final gl f24620b;
+import android.text.TextUtils;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class al implements Utilities.Callback2 {
+    public final int f24429a;
+    public final il f24430b;
 
-    public al(gl glVar, int i10) {
-        this.f24619a = i10;
-        this.f24620b = glVar;
+    public al(il ilVar, int i10) {
+        this.f24429a = i10;
+        this.f24430b = ilVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24619a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f24429a) {
             case 0:
-                this.f24620b.Z();
-                return;
-            case 1:
-                gl glVar = this.f24620b;
-                EditTextBoldCursor editTextBoldCursor = glVar.P;
-                if (!glVar.H && !glVar.K0 && !glVar.f30245b.isDismissed() && glVar.I0 && glVar.Q0 == null && editTextBoldCursor.hasFocus() && glVar.isShown()) {
-                    AndroidUtilities.showKeyboard(editTextBoldCursor);
-                    return;
-                }
-                return;
-            case 2:
-                gl glVar2 = this.f24620b;
-                if (!glVar2.H && glVar2.I0 && glVar2.isShown()) {
-                    glVar2.c0();
-                    return;
-                }
-                return;
-            case 3:
-                gl glVar3 = this.f24620b;
-                if (!glVar3.H) {
-                    float f7 = glVar3.f26795j0;
-                    if (f7 < 1.0f && glVar3.f26794i0 == null) {
-                        o1.k kVar = new o1.k(new o1.j(f7));
-                        glVar3.f26794i0 = kVar;
-                        o1.l lVar = new o1.l(1.0f);
-                        lVar.a(0.55f);
-                        lVar.b(65.0f);
-                        kVar.f17024u = lVar;
-                        glVar3.f26794i0.e(0.001f);
-                        glVar3.f26794i0.b(new m7(glVar3, 4));
-                        glVar3.f26794i0.a(new jb(glVar3, 2));
-                        glVar3.f26794i0.h();
-                        return;
+                TL_wallet.walletUserAddress walletuseraddress = (TL_wallet.walletUserAddress) obj;
+                String str = (String) obj2;
+                il ilVar = this.f24430b;
+                TLRPC.User user = ilVar.f27209r;
+                if (!ilVar.H) {
+                    ilVar.F = false;
+                    if (TextUtils.equals(str, "WALLET_USER_UNAVAILABLE")) {
+                        ilVar.G = true;
                     }
-                    return;
-                }
-                return;
-            case 4:
-                gl glVar4 = this.f24620b;
-                if (glVar4.I0 && !glVar4.H) {
-                    glVar4.b0();
-                    if (glVar4.J0) {
-                        glVar4.c0();
-                        return;
+                    if (walletuseraddress != null && walletuseraddress.user_id == user.f19949id) {
+                        ilVar.f27220y = walletuseraddress.address;
+                        ilVar.E = walletuseraddress.public_key;
                     }
+                    ilVar.v.a(ilVar.f27220y, user);
+                    ilVar.g0();
+                    ilVar.Y();
                     return;
                 }
                 return;
             default:
-                gl glVar5 = this.f24620b;
-                if (!glVar5.m0) {
-                    glVar5.f26797l0.setVisibility(4);
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
+                String str2 = (String) obj2;
+                il ilVar2 = this.f24430b;
+                if (!ilVar2.H && wallettransaction != null) {
+                    ilVar2.f27195d0 = wallettransaction.fee;
+                    ilVar2.h0();
                     return;
                 }
                 return;

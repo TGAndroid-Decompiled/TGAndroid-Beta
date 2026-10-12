@@ -1,15 +1,32 @@
 package org.telegram.ui.Components;
-public final class kn0 implements Runnable {
-    public final int f28111a;
-    public final pn0 f28112b;
 
-    public kn0(pn0 pn0Var, int i10) {
-        this.f28111a = i10;
-        this.f28112b = pn0Var;
+import org.telegram.messenger.AndroidUtilities;
+public final class kn0 implements Runnable {
+    public final int f27900a;
+    public final mn0 f27901b;
+
+    public kn0(mn0 mn0Var, int i10) {
+        this.f27900a = i10;
+        this.f27901b = mn0Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kn0.run():void");
+        switch (this.f27900a) {
+            case 0:
+                mn0 mn0Var = this.f27901b;
+                mn0Var.getClass();
+                AndroidUtilities.runOnUIThread(new kn0(mn0Var, 2));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new kn0(this.f27901b, 3));
+                return;
+            case 2:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+        }
     }
 }

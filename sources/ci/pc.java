@@ -1,44 +1,44 @@
 package ci;
 public interface pc {
-    void B(long j3);
+    void A(float f7);
 
-    void C(boolean z10);
+    void B(float f7, boolean z10);
 
-    void G(float f7, int i10);
+    void E(long j3);
 
-    void I(float f7);
+    void F(boolean z10);
+
+    void I(float f7, int i10);
 
     void K(float f7);
 
-    void M(float f7, int i10);
-
     void O(float f7);
 
-    void Q();
+    void P(float f7, int i10);
 
-    void S(float f7);
+    void Q(float f7);
 
-    void T(int i10, long j3);
+    void R();
 
-    void V(long j3);
+    void W(float f7);
 
-    void b(int i10);
+    void Y(int i10, long j3);
 
-    void e(float f7);
+    void Z(long j3);
+
+    void d(int i10);
+
+    void f(float f7);
 
     void g(float f7);
 
     void h(long j3, boolean z10);
 
-    void o();
+    void p();
 
-    void p(float f7);
+    void q(float f7);
 
-    void q(boolean z10);
+    void r(boolean z10);
 
-    void s(float f7, int i10);
-
-    void w(float f7);
-
-    void y(float f7, boolean z10);
+    void t(float f7, int i10);
 }

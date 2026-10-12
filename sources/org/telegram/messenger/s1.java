@@ -1,27 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class s1 implements Runnable {
-    public final int f19138a;
-    public final ContactsController f19139b;
-    public final HashMap f19140c;
-    public final HashMap d;
+    public final int f18831a;
+    public final ContactsController f18832b;
+    public final TLRPC.TL_error f18833c;
+    public final TLObject d;
 
-    public s1(ContactsController contactsController, HashMap hashMap, HashMap hashMap2, int i10) {
-        this.f19138a = i10;
-        this.f19139b = contactsController;
-        this.f19140c = hashMap;
-        this.d = hashMap2;
+    public s1(int i10, ContactsController contactsController, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f18831a = i10;
+        this.f18832b = contactsController;
+        this.f18833c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f19138a) {
+        switch (this.f18831a) {
             case 0:
-                this.f19139b.lambda$processLoadedContacts$35(this.f19140c, this.d);
+                this.f18832b.lambda$loadGlobalPrivacySetting$60(this.f18833c, this.d);
                 return;
             default:
-                this.f19139b.lambda$processLoadedContacts$34(this.f19140c, this.d);
+                this.f18832b.lambda$loadPrivacySettings$62(this.f18833c, this.d);
                 return;
         }
     }

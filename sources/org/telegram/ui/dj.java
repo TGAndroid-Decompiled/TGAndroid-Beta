@@ -1,35 +1,58 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class dj implements ValueAnimator.AnimatorUpdateListener {
-    public final int f37066a;
-    public final org.telegram.ui.ActionBar.m2 f37067b;
+import android.text.style.CharacterStyle;
+import org.telegram.messenger.AndroidUtilities;
+public final class dj extends of.e {
+    public final int d;
+    public final int f36835e;
+    public final org.telegram.ui.Cells.u1 f36836f;
+    public final eo f36837g;
+    public final Object h;
 
-    public dj(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f37066a = i10;
-        this.f37067b = m2Var;
+    public dj(eo eoVar, int i10, Object obj, org.telegram.ui.Cells.u1 u1Var, int i11) {
+        this.d = i11;
+        this.f36837g = eoVar;
+        this.f36835e = i10;
+        this.h = obj;
+        this.f36836f = u1Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f37066a) {
+    public final void c(boolean z10) {
+        switch (this.d) {
             case 0:
-                zn znVar = (zn) this.f37067b;
-                znVar.f44880la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                znVar.X0.invalidate();
-                return;
-            case 1:
-                sy syVar = (sy) this.f37067b;
-                syVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = syVar.fragmentView;
-                if (view != null) {
-                    view.invalidate();
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ai.p8(this, this.f36835e, 19), 240L);
                     return;
                 }
                 return;
             default:
-                ((wd1) this.f37067b).f43422x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ai.p8(this, this.f36835e, 22), 240L);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void d() {
+        switch (this.d) {
+            case 0:
+                int i10 = this.f36835e;
+                eo eoVar = this.f36837g;
+                eoVar.f37475wb = i10;
+                eoVar.f37489xb = 1;
+                eoVar.f37501yb = (CharacterStyle) this.h;
+                this.f36836f.invalidate();
+                return;
+            default:
+                int i11 = this.f36835e;
+                eo eoVar2 = this.f36837g;
+                eoVar2.f37475wb = i11;
+                eoVar2.f37489xb = 3;
+                eoVar2.f37513zb = (String) this.h;
+                this.f36836f.invalidate();
                 return;
         }
     }

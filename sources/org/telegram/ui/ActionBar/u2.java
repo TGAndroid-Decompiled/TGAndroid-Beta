@@ -2,19 +2,19 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
 public final class u2 implements Runnable {
-    public final int f21602a;
-    public final Object f21603b;
+    public final int f21340a;
+    public final Object f21341b;
 
     public u2(Object obj, int i10) {
-        this.f21602a = i10;
-        this.f21603b = obj;
+        this.f21340a = i10;
+        this.f21341b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f21602a) {
+        switch (this.f21340a) {
             case 0:
-                e3 e3Var = (e3) this.f21603b;
+                e3 e3Var = (e3) this.f21341b;
                 if (e3Var.startAnimationRunnable == this && !e3.access$000(e3Var)) {
                     e3Var.startAnimationRunnable = null;
                     e3.access$2400(e3Var);
@@ -22,7 +22,7 @@ public final class u2 implements Runnable {
                 }
                 return;
             case 1:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f21603b;
+                ActionBarLayout actionBarLayout = (ActionBarLayout) this.f21341b;
                 if (actionBarLayout.d == this) {
                     actionBarLayout.d = null;
                     actionBarLayout.d0(false, true, false);
@@ -30,18 +30,18 @@ public final class u2 implements Runnable {
                 }
                 return;
             case 2:
-                o1 o1Var = (o1) this.f21603b;
-                ValueAnimator valueAnimator = o1Var.f21454m;
+                o1 o1Var = (o1) this.f21341b;
+                ValueAnimator valueAnimator = o1Var.f21192m;
                 if (valueAnimator != null && !valueAnimator.isRunning()) {
-                    o1Var.f21454m.start();
+                    o1Var.f21192m.start();
                     return;
                 }
                 return;
             default:
-                t4 t4Var = (t4) this.f21603b;
+                t4 t4Var = (t4) this.f21341b;
                 t4Var.k();
                 t4Var.j();
-                t4Var.f21542f.setAlpha(1.0f);
+                t4Var.f21280f.setAlpha(1.0f);
                 return;
         }
     }

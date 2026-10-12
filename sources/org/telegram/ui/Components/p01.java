@@ -1,93 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class p01 extends FrameLayout {
-    public final s01 f29666a;
-    public boolean f29667b;
-    public boolean f29668c;
-    public boolean d;
-    public boolean f29669e;
+import android.graphics.Rect;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class p01 extends j1.b {
+    public final Rect f29340o;
+    public final r01 f29341p;
 
-    public p01(s01 s01Var, View view, boolean z10) {
-        super(s01Var.getContext());
-        this.d = false;
-        this.f29669e = true;
-        this.f29666a = s01Var;
-        setWillNotDraw(false);
-        if (!z10) {
-            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-        }
-        addView(view, w7.x5.d(-1.0f, -1));
+    public p01(r01 r01Var, r01 r01Var2) {
+        super(r01Var2);
+        this.f29341p = r01Var;
+        this.f29340o = new Rect();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        boolean z10 = this.f29667b;
-        s01 s01Var = this.f29666a;
-        if (z10 || this.f29668c) {
-            canvas2 = canvas;
-            float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = s01Var.f30687c;
-            boolean z11 = this.f29667b;
-            if (z11 && this.d) {
-                f7 = dp;
-            } else {
-                f7 = 0.0f;
+    public final int g(float f7, float f10) {
+        int i10;
+        r01 r01Var = this.f29341p;
+        int childCount = r01Var.getChildCount();
+        for (int i11 = 0; i11 < childCount; i11++) {
+            k01 d = r01Var.d(i11);
+            int i12 = d.f27699k;
+            if (i12 > 0 && (i10 = d.f27700l) > 0) {
+                int i13 = d.f27704p;
+                if (f7 >= i13 && f7 < i13 + i12) {
+                    int i14 = d.f27705q;
+                    if (f10 >= i14 && f10 < i14 + i10) {
+                        return i11;
+                    }
+                }
             }
-            fArr[1] = f7;
-            fArr[0] = f7;
-            if (z11 && this.f29669e) {
-                f10 = dp;
-            } else {
-                f10 = 0.0f;
-            }
-            fArr[3] = f10;
-            fArr[2] = f10;
-            boolean z12 = this.f29668c;
-            if (z12 && this.f29669e) {
-                f11 = dp;
-            } else {
-                f11 = 0.0f;
-            }
-            fArr[5] = f11;
-            fArr[4] = f11;
-            if (!z12 || !this.d) {
-                dp = 0.0f;
-            }
-            fArr[7] = dp;
-            fArr[6] = dp;
-            s01Var.f30686b.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = s01Var.h;
-            float width = getWidth() - s01Var.h;
-            float height = getHeight();
-            float f14 = s01Var.h;
-            if (this.f29668c) {
-                f12 = -1.0f;
-            } else {
-                f12 = 1.0f;
-            }
-            rectF.set(f13, f13, width, (f14 * f12) + height);
-            if (!this.f29669e) {
-                rectF.right += s01Var.f30689f;
-            }
-            s01Var.f30686b.addRoundRect(rectF, s01Var.f30687c, Path.Direction.CW);
-            canvas2.drawPath(s01Var.f30686b, s01Var.f30688e);
-        } else {
-            float f15 = s01Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f15, f15, getWidth() - s01Var.h, getHeight() + s01Var.h, s01Var.f30688e);
         }
-        super.onDraw(canvas2);
+        return Integer.MIN_VALUE;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        r01 r01Var = this.f29341p;
+        int childCount = r01Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            k01 d = r01Var.d(i10);
+            if (d.f27699k > 0 && d.f27700l > 0) {
+                arrayList.add(Integer.valueOf(i10));
+            }
+        }
+    }
+
+    @Override
+    public final boolean k(int i10, int i11) {
+        return false;
+    }
+
+    @Override
+    public final void l(int i10, s0.d dVar) {
+        String str;
+        Rect rect = this.f29340o;
+        if (i10 >= 0) {
+            r01 r01Var = this.f29341p;
+            if (i10 < r01Var.getChildCount()) {
+                k01 d = r01Var.d(i10);
+                int i11 = d.f27704p;
+                int i12 = d.f27705q;
+                rect.set(i11, i12, d.f27699k + i11, d.f27700l + i12);
+                dVar.h(rect);
+                dVar.i("android.widget.TextView");
+                dVar.k(true);
+                j01 j01Var = d.f27692b;
+                if (j01Var != null) {
+                    str = j01Var.getText();
+                } else {
+                    str = null;
+                }
+                dVar.p((str == null || str.length() == 0) ? " " : " ");
+                TL_iv.pageTableCell pagetablecell = d.f27693c;
+                if (pagetablecell != null && pagetablecell.header) {
+                    dVar.l(true);
+                    return;
+                }
+                return;
+            }
+        }
+        rect.set(0, 0, 1, 1);
+        dVar.h(rect);
+        dVar.q(false);
+        dVar.j("");
     }
 }

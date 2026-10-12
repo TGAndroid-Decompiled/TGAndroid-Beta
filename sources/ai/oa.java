@@ -22,10 +22,10 @@ public abstract class oa extends z4.g {
     public kc N0;
     public int O0;
     public float P0;
-    public long f1541w0;
-    public ArrayList f1542x0;
-    public int f1543y0;
-    public la f1544z0;
+    public long f1539w0;
+    public ArrayList f1540x0;
+    public int f1541y0;
+    public la f1542z0;
 
     public static boolean C(ArrayList arrayList, ArrayList arrayList2) {
         if (arrayList == null && arrayList2 == null) {
@@ -48,7 +48,7 @@ public abstract class oa extends z4.g {
         while (true) {
             if (i10 < getChildCount()) {
                 na naVar = (na) getChildAt(i10);
-                if (naVar.d && !naVar.f1487a.O1.d()) {
+                if (naVar.d && !naVar.f1485a.O1.d()) {
                     break;
                 }
                 i10++;
@@ -68,15 +68,15 @@ public abstract class oa extends z4.g {
                     if (!naVar.d) {
                         this.O0 = -1;
                         naVar.a(true);
-                        if (this.f1542x0 != null) {
-                            f6 f6Var = naVar.f1487a;
-                            long j3 = naVar.f1488b;
-                            ArrayList arrayList = naVar.f1489c;
+                        if (this.f1540x0 != null) {
+                            f6 f6Var = naVar.f1485a;
+                            long j3 = naVar.f1486b;
+                            ArrayList arrayList = naVar.f1487c;
                             f6Var.B1 = j3;
-                            f6Var.f1027z1 = arrayList;
+                            f6Var.f1025z1 = arrayList;
                             f6Var.o0(0);
                         } else {
-                            naVar.f1487a.U0(0, naVar.f1488b);
+                            naVar.f1485a.U0(0, naVar.f1486b);
                         }
                     }
                 }
@@ -93,13 +93,13 @@ public abstract class oa extends z4.g {
         boolean z11 = false;
         if (z10) {
             int currentItem = getCurrentItem();
-            ArrayList arrayList = this.f1542x0;
+            ArrayList arrayList = this.f1540x0;
             if (arrayList == null) {
                 arrayList = this.A0;
             }
             if (currentItem < arrayList.size() - 1) {
                 int currentItem2 = getCurrentItem() + 1;
-                if (kcVar.f1253a && Build.VERSION.SDK_INT < 33) {
+                if (kcVar.f1251a && Build.VERSION.SDK_INT < 33) {
                     z11 = true;
                 }
                 x(currentItem2, !z11);
@@ -110,7 +110,7 @@ public abstract class oa extends z4.g {
             return false;
         }
         int currentItem3 = getCurrentItem() - 1;
-        if (kcVar.f1253a && Build.VERSION.SDK_INT < 33) {
+        if (kcVar.f1251a && Build.VERSION.SDK_INT < 33) {
             z11 = true;
         }
         x(currentItem3, !z11);
@@ -131,8 +131,8 @@ public abstract class oa extends z4.g {
     }
 
     public long getCurrentDialogId() {
-        if (this.f1542x0 != null) {
-            return this.f1541w0;
+        if (this.f1540x0 != null) {
+            return this.f1539w0;
         }
         if (getCurrentItem() < this.A0.size()) {
             return ((Long) this.A0.get(getCurrentItem())).longValue();

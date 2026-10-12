@@ -1,15 +1,32 @@
 package org.telegram.ui.Components;
+public final class l01 {
+    public final int f27984a;
+    public final int f27985b;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.tl.TL_iv;
-public interface l01 {
-    e01 createTextLayout(TL_iv.pageTableCell pagetablecell, int i10);
+    public l01(int i10, int i11) {
+        this.f27984a = i10;
+        this.f27985b = i11;
+    }
 
-    Paint getHeaderPaint();
+    public final int a() {
+        return this.f27985b - this.f27984a;
+    }
 
-    Paint getLinePaint();
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || l01.class != obj.getClass()) {
+            return false;
+        }
+        l01 l01Var = (l01) obj;
+        if (this.f27985b == l01Var.f27985b && this.f27984a == l01Var.f27984a) {
+            return true;
+        }
+        return false;
+    }
 
-    Paint getStripPaint();
-
-    void onLayoutChild(e01 e01Var, int i10, int i11);
+    public final int hashCode() {
+        return (this.f27984a * 31) + this.f27985b;
+    }
 }

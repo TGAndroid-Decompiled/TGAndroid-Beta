@@ -1,15 +1,104 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
-public interface mb0 {
-    void e(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10);
+public final class mb0 extends g00 {
+    public final sw0 X;
+    public final tb0 Y;
 
-    Paint.FontMetricsInt f();
+    public mb0(tb0 tb0Var) {
+        super(100, false);
+        this.Y = tb0Var;
+        this.X = new Object();
+    }
 
-    void i(TLRPC.TL_document tL_document, String str, Object obj);
+    @Override
+    public final int A() {
+        tb0 tb0Var = this.Y;
+        if (tb0Var.f30842f.I() == null && tb0Var.f30842f.U == null) {
+            return B();
+        }
+        return B() - 1;
+    }
 
-    void k(int i10, int i11, CharSequence charSequence, boolean z10);
-
-    void n(String str);
+    @Override
+    public final sw0 D1(int i10) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        float f7;
+        sw0 sw0Var = this.X;
+        int i11 = 0;
+        sw0Var.f30698c = false;
+        tb0 tb0Var = this.Y;
+        if (i10 == 0) {
+            sw0Var.f30696a = this.f48004m;
+            sw0Var.f30697b = tb0Var.f30841e.h;
+            sw0Var.f30698c = true;
+            return sw0Var;
+        }
+        int i12 = i10 - 1;
+        if (tb0Var.f30842f.I() == null && tb0Var.f30842f.U == null) {
+            i10 = i12;
+        }
+        sw0Var.f30696a = 0.0f;
+        sw0Var.f30697b = 0.0f;
+        Object J = tb0Var.f30842f.J(i10);
+        if (J instanceof TLRPC.BotInlineResult) {
+            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
+            TLRPC.Document document = botInlineResult.document;
+            if (document != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
+                float f10 = 100.0f;
+                if (closestPhotoSizeWithSize2 != null) {
+                    f7 = closestPhotoSizeWithSize2.f19827w;
+                } else {
+                    f7 = 100.0f;
+                }
+                sw0Var.f30696a = f7;
+                if (closestPhotoSizeWithSize2 != null) {
+                    f10 = closestPhotoSizeWithSize2.h;
+                }
+                sw0Var.f30697b = f10;
+                while (i11 < botInlineResult.document.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i11);
+                    if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i11++;
+                    } else {
+                        sw0Var.f30696a = documentAttribute.f19809w;
+                        sw0Var.f30697b = documentAttribute.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.content != null) {
+                while (i11 < botInlineResult.content.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute2 = botInlineResult.content.attributes.get(i11);
+                    if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i11++;
+                    } else {
+                        sw0Var.f30696a = documentAttribute2.f19809w;
+                        sw0Var.f30697b = documentAttribute2.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.thumb != null) {
+                while (i11 < botInlineResult.thumb.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute3 = botInlineResult.thumb.attributes.get(i11);
+                    if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i11++;
+                    } else {
+                        sw0Var.f30696a = documentAttribute3.f19809w;
+                        sw0Var.f30697b = documentAttribute3.h;
+                        break;
+                    }
+                }
+            } else {
+                TLRPC.Photo photo = botInlineResult.photo;
+                if (photo != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize())) != null) {
+                    sw0Var.f30696a = closestPhotoSizeWithSize.f19827w;
+                    sw0Var.f30697b = closestPhotoSizeWithSize.h;
+                }
+            }
+        }
+        return sw0Var;
+    }
 }

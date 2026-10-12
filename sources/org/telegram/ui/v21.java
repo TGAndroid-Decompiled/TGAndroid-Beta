@@ -1,29 +1,30 @@
 package org.telegram.ui;
-public final class v21 implements Runnable {
-    public final int f42895a;
-    public final x21 f42896b;
-    public final int f42897c;
-    public final int d;
 
-    public v21(x21 x21Var, int i10, int i11, int i12) {
-        this.f42895a = i12;
-        this.f42896b = x21Var;
-        this.f42897c = i10;
-        this.d = i11;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class v21 implements ResultCallback {
+    public final g31 f42650a;
+
+    public v21(g31 g31Var) {
+        this.f42650a = g31Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42895a) {
-            case 0:
-                this.f42896b.b(this.f42897c, this.d);
-                return;
-            case 1:
-                this.f42896b.b(this.f42897c, this.d);
-                return;
-            default:
-                this.f42896b.b(this.f42897c, this.d);
-                return;
-        }
+    public final void onComplete(Object obj) {
+        List list = (List) obj;
+        this.f42650a.b0(list);
+        g31.S = list;
+    }
+
+    @Override
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.m.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f42650a.getParentActivity(), tL_error.text, 0).show();
     }
 }

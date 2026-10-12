@@ -1,37 +1,63 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class pk0 implements Runnable {
-    public final int f40934a;
-    public final qk0 f40935b;
-    public final String f40936c;
+import j$.util.Objects;
+public final class pk0 extends og.a {
+    public int f40982c;
+    public int d;
+    public CharSequence f40983e;
+    public CharSequence f40984f;
+    public wk0 f40985g;
+    public int h;
+    public boolean f40986i;
 
-    public pk0(qk0 qk0Var, String str, int i10) {
-        this.f40934a = i10;
-        this.f40935b = qk0Var;
-        this.f40936c = str;
+    public static pk0 b(int i10, String str, boolean z10) {
+        ?? aVar = new og.a(1, true);
+        aVar.f40982c = i10;
+        aVar.f40983e = str;
+        aVar.f40986i = z10;
+        return aVar;
+    }
+
+    public static pk0 c(int i10, String str, String str2) {
+        ?? aVar = new og.a(5, true);
+        aVar.f40982c = i10;
+        aVar.f40983e = str;
+        aVar.f40984f = str2;
+        return aVar;
+    }
+
+    public static pk0 d(int i10, String str) {
+        ?? aVar = new og.a(4, true);
+        aVar.f40982c = i10;
+        aVar.f40983e = str;
+        return aVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40934a) {
-            case 0:
-                qk0 qk0Var = this.f40935b;
-                String str = this.f40936c;
-                qk0Var.getClass();
-                AndroidUtilities.runOnUIThread(new pk0(qk0Var, str, 1));
-                return;
-            default:
-                qk0 qk0Var2 = this.f40935b;
-                String str2 = this.f40936c;
-                gg.b2 b2Var = qk0Var2.h;
-                int i10 = qk0Var2.f41230n.f33896s;
-                boolean z10 = true;
-                b2Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
-                Utilities.searchQueue.postRunnable(new nf0(qk0Var2, str2, new ArrayList(qk0Var2.f41230n.f33897w), 8));
-                return;
+    public final boolean a(og.a aVar) {
+        if (this != aVar) {
+            if (pk0.class == aVar.getClass()) {
+                pk0 pk0Var = (pk0) aVar;
+                if (this.f40982c == pk0Var.f40982c && this.d == pk0Var.d && this.h == pk0Var.h && this.f40986i == pk0Var.f40986i && Objects.equals(this.f40983e, pk0Var.f40983e) && Objects.equals(this.f40984f, pk0Var.f40984f) && this.f40985g == pk0Var.f40985g) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && pk0.class == obj.getClass()) {
+            pk0 pk0Var = (pk0) obj;
+            if (this.f40982c == pk0Var.f40982c && this.h == pk0Var.h && ((this.f16876a == 8 || (this.d == pk0Var.d && Objects.equals(this.f40983e, pk0Var.f40983e) && (this.f16876a == 6 || Objects.equals(this.f40984f, pk0Var.f40984f)))) && this.f40985g == pk0Var.f40985g)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,41 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
-public final class gj extends l71 {
-    public final kj f26772d3;
+import org.telegram.messenger.MessagesController;
+public final class gj implements TextWatcher {
+    public final mj f26442a;
 
-    public gj(kj kjVar, Context context, int i10, d dVar, cj cjVar, cj cjVar2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, 0, false, dVar, cjVar, cjVar2, d6Var);
-        this.f26772d3 = kjVar;
+    public gj(mj mjVar) {
+        this.f26442a = mjVar;
     }
 
     @Override
-    public final void D1() {
-        kj kjVar = this.f26772d3;
-        kjVar.f30245b.b2(kjVar, 0);
-    }
-
-    @Override
-    public final boolean E0(float f7) {
-        int i10;
-        yi yiVar = this.f26772d3.f30245b;
-        int dp = AndroidUtilities.dp(30.0f) + yiVar.f33287e2[0];
-        if (!yiVar.f33292g0) {
-            i10 = AndroidUtilities.statusBarHeight;
-        } else {
-            i10 = 0;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        mj mjVar = this.f26442a;
+        bj bjVar = mjVar.f28575f0;
+        TextUtils.isEmpty(mjVar.f28587y);
+        mjVar.f28587y = editable.toString().trim();
+        bj bjVar2 = mjVar.f28570a0;
+        AndroidUtilities.cancelRunOnUIThread(bjVar2);
+        boolean z11 = true;
+        if (!TextUtils.isEmpty(mjVar.f28587y)) {
+            String str = mjVar.f28587y;
+            if (str != null && str.length() >= 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            mjVar.W = z10;
+            if (!TextUtils.equals(mjVar.V, mjVar.f28587y)) {
+                mjVar.L.clear();
+                mjVar.f28571b0 = 0;
+                mjVar.f28572c0 = false;
+            }
+            AndroidUtilities.runOnUIThread(bjVar2, 1500L);
         }
-        if (f7 < dp + i10) {
-            return false;
+        AndroidUtilities.cancelRunOnUIThread(bjVar);
+        if (!TextUtils.isEmpty(mjVar.f28587y)) {
+            String str2 = mjVar.f28587y;
+            if (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(mjVar.f30574b.M1).config.musicSearchUsername.get())) {
+                z11 = false;
+            }
+            mjVar.m0 = z11;
+            if (!TextUtils.equals(mjVar.f28574e0, mjVar.f28587y)) {
+                mjVar.M.clear();
+                mjVar.f28576g0 = false;
+            }
+            AndroidUtilities.runOnUIThread(bjVar, 1500L);
         }
-        return true;
+        mjVar.S();
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        kj kjVar = this.f26772d3;
-        kjVar.f30245b.b2(kjVar, 0);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

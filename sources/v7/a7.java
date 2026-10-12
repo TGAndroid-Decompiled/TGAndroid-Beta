@@ -112,7 +112,7 @@ public abstract class a7 {
                 createBitmap.copyPixelsFromBuffer(wrap);
                 return createBitmap;
             }
-            throw new IOException(hg.c.h(c12, "Only 8-bit PGM supported (maxval=255), got: "));
+            throw new IOException(hg.c.i(c12, "Only 8-bit PGM supported (maxval=255), got: "));
         }
         throw new IOException(sc.v.i("Not a binary PGM (P5), got: ", b10));
     }

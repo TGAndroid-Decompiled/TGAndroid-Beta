@@ -2,9 +2,9 @@ package l;
 
 import android.view.View;
 import androidx.appcompat.view.menu.ActionMenuItemView;
-import m.u1;
-public final class b extends u1 {
-    public final int f15236s = 0;
+import m.v1;
+public final class b extends v1 {
+    public final int f14945s = 0;
     public final View v;
 
     public b(ActionMenuItemView actionMenuItemView) {
@@ -15,10 +15,10 @@ public final class b extends u1 {
     @Override
     public final b0 b() {
         m.d dVar;
-        switch (this.f15236s) {
+        switch (this.f14945s) {
             case 0:
-                c cVar = ((ActionMenuItemView) this.v).f2195x;
-                if (cVar != null && (dVar = ((m.e) cVar).f15722a.J) != null) {
+                c cVar = ((ActionMenuItemView) this.v).f2193x;
+                if (cVar != null && (dVar = ((m.e) cVar).f15407a.J) != null) {
                     return dVar.a();
                 }
                 return null;
@@ -34,11 +34,11 @@ public final class b extends u1 {
     @Override
     public final boolean c() {
         b0 b10;
-        switch (this.f15236s) {
+        switch (this.f14945s) {
             case 0:
                 ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.v;
                 j jVar = actionMenuItemView.v;
-                if (jVar != null && jVar.a(actionMenuItemView.f2191n) && (b10 = b()) != null && b10.a()) {
+                if (jVar != null && jVar.a(actionMenuItemView.f2189n) && (b10 = b()) != null && b10.a()) {
                     return true;
                 }
                 return false;
@@ -50,7 +50,7 @@ public final class b extends u1 {
 
     @Override
     public boolean d() {
-        switch (this.f15236s) {
+        switch (this.f14945s) {
             case 1:
                 m.h hVar = ((m.g) this.v).d;
                 if (hVar.K != null) {

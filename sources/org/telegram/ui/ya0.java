@@ -1,55 +1,42 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ya0 implements MessagesController.MessagesLoadedCallback {
-    public final n70 f44327a;
-    public final boolean[] f44328b;
-    public final Bundle f44329c;
-    public final TLRPC.ChatInvite d;
-    public final LaunchActivity f44330e;
+public final class ya0 implements Runnable {
+    public final int f44378a;
+    public final za0 f44379b;
+    public final AccountInstance f44380c;
+    public final long d;
+    public final org.telegram.ui.ActionBar.m2 f44381e;
 
-    public ya0(LaunchActivity launchActivity, n70 n70Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
-        this.f44330e = launchActivity;
-        this.f44327a = n70Var;
-        this.f44328b = zArr;
-        this.f44329c = bundle;
-        this.d = chatInvite;
+    public ya0(za0 za0Var, AccountInstance accountInstance, long j3, org.telegram.ui.ActionBar.m2 m2Var, int i10) {
+        this.f44378a = i10;
+        this.f44379b = za0Var;
+        this.f44380c = accountInstance;
+        this.d = j3;
+        this.f44381e = m2Var;
     }
 
     @Override
-    public final void onError() {
-        LaunchActivity launchActivity = this.f44330e;
-        if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.g5.t0((org.telegram.ui.ActionBar.m2) hg.c.g(1, launchActivity.f33845d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
+    public final void run() {
+        switch (this.f44378a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ya0(this.f44379b, this.f44380c, this.d, this.f44381e, 1));
+                return;
+            default:
+                AccountInstance accountInstance = this.f44380c;
+                MessagesController messagesController = accountInstance.getMessagesController();
+                long j3 = this.d;
+                long j10 = -j3;
+                boolean z10 = false;
+                ChatObject.Call groupCall = messagesController.getGroupCall(j10, false);
+                TLRPC.Chat chat = accountInstance.getMessagesController().getChat(Long.valueOf(j10));
+                accountInstance.getMessagesController().getInputPeer(j3);
+                org.telegram.ui.Components.voip.g2.l(chat, null, false, Boolean.valueOf((groupCall == null || !groupCall.call.rtmp_stream) ? true : true), this.f44379b.f44686g, this.f44381e, accountInstance);
+                return;
         }
-        try {
-            this.f44327a.run();
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
-    }
-
-    @Override
-    public final void onMessagesLoaded(boolean z10) {
-        try {
-            this.f44327a.run();
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
-        if (this.f44328b[0]) {
-            return;
-        }
-        zn znVar = new zn(this.f44329c);
-        TLRPC.ChatInvite chatInvite = this.d;
-        if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
-            znVar.K5 = chatInvite;
-        }
-        ((ActionBarLayout) this.f44330e.O()).P(znVar);
     }
 }

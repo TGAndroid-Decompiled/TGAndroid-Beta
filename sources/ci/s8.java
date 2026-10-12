@@ -5,20 +5,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.l71;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.rm0;
-public final class s8 extends p61 {
-    public static final int f5957a = 0;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.p71;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.wm0;
+public final class s8 extends t61 {
+    public static final int f5956a = 0;
 
     static {
-        p61.setup(new p61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(View view, q61 q61Var, boolean z10, d71 d71Var, l71 l71Var) {
+    public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
         TLRPC.WebPage webPage;
         boolean z11;
         float f7;
@@ -27,17 +27,17 @@ public final class s8 extends p61 {
         float f12;
         String str;
         t8 t8Var = (t8) view;
-        Object obj = q61Var.G;
+        Object obj = u61Var.G;
         if (obj instanceof TLRPC.WebPage) {
             webPage = (TLRPC.WebPage) obj;
         } else {
             webPage = null;
         }
-        View.OnClickListener onClickListener = q61Var.D;
-        org.telegram.ui.Components.r6 r6Var = t8Var.f6023e;
+        View.OnClickListener onClickListener = u61Var.D;
+        org.telegram.ui.Components.r6 r6Var = t8Var.f6022e;
         org.telegram.ui.Components.r6 r6Var2 = t8Var.d;
-        ImageView imageView = t8Var.f6022c;
-        ImageView imageView2 = t8Var.f6021b;
+        ImageView imageView = t8Var.f6021c;
+        ImageView imageView2 = t8Var.f6020b;
         if (webPage != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
             z11 = true;
         } else {
@@ -87,13 +87,13 @@ public final class s8 extends p61 {
             r6Var.c(webPage.description, false, true);
         } else {
             r6Var2.c(t8Var.h, false, true);
-            r6Var.c(t8Var.f6025n, false, true);
+            r6Var.c(t8Var.f6024n, false, true);
         }
-        t8Var.f6024f.setOnClickListener(onClickListener);
+        t8Var.f6023f.setOnClickListener(onClickListener);
     }
 
     @Override
-    public final View createView(Context context, rm0 rm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
         return new t8(context);
     }
 }

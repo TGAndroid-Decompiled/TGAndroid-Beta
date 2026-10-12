@@ -217,7 +217,7 @@ public class LiteMode {
             onFlagsUpdate(PRESET_POWER_SAVER, getValue(true));
         }
         if (onPowerSaverAppliedListeners != null) {
-            AndroidUtilities.runOnUIThread(new y3(2, z10));
+            AndroidUtilities.runOnUIThread(new b4(2, z10));
         }
     }
 
@@ -272,7 +272,7 @@ public class LiteMode {
     }
 
     public static void setPowerSaverLevel(int i10) {
-        powerSaverLevel = w7.o.b(i10, 0, 100);
+        powerSaverLevel = w7.n.b(i10, 0, 100);
         savePreference();
         getValue(false);
     }

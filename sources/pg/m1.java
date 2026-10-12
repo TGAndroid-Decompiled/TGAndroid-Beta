@@ -1,140 +1,174 @@
 package pg;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class m1 {
-    public static final DispatchQueue f45760m = new DispatchQueue("ShapeDetector");
-    public static final double f45761n = Math.sqrt(125000.0d) / 2.0d;
-    public int f45762a;
-    public ArrayList f45763b;
-    public ArrayList f45764c;
-    public boolean d;
-    public ii.q1 f45765e;
-    public Context f45766f;
-    public SharedPreferences f45767g;
-    public boolean h;
-    public ArrayList f45768i;
-    public AtomicBoolean f45769j;
-    public AtomicBoolean f45770k;
-    public i1 f45771l;
+import v7.z6;
+public final class m1 extends p1 {
+    public final int f45585f;
+    public final q1 f45586g;
 
-    public static k1 a(ArrayList arrayList) {
-        if (arrayList.size() <= 0) {
-            return null;
-        }
-        double d = ((j1) arrayList.get(0)).f45736a;
-        double d10 = ((j1) arrayList.get(0)).f45737b;
-        ?? obj = new Object();
-        obj.f45745a = d;
-        obj.f45746b = d10;
-        obj.f45747c = d;
-        obj.d = d10;
-        for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            j1 j1Var = (j1) arrayList.get(i10);
-            double d11 = j1Var.f45736a;
-            double d12 = j1Var.f45737b;
-            if (obj.f45745a >= d11) {
-                obj.f45745a = d11;
-            }
-            if (obj.f45746b >= d12) {
-                obj.f45746b = d12;
-            }
-            if (obj.f45747c <= d11) {
-                obj.f45747c = d11;
-            }
-            if (obj.d <= d12) {
-                obj.d = d12;
-            }
-        }
-        return obj;
+    public m1(q1 q1Var, int i10) {
+        this.f45585f = i10;
+        this.f45586g = q1Var;
     }
 
-    public static j1 b(ArrayList arrayList) {
-        j1 j1Var = new j1(0.0d, 0.0d);
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            j1 j1Var2 = (j1) arrayList.get(i10);
-            j1Var.f45736a += j1Var2.f45736a;
-            j1Var.f45737b += j1Var2.f45737b;
+    @Override
+    public final void a() {
+        switch (this.f45585f) {
+            case 0:
+                q1 q1Var = this.f45586g;
+                g1 g1Var = q1Var.h;
+                double atan2 = Math.atan2(g1Var.f45535c - g1Var.f45540j, g1Var.f45534b - g1Var.f45539i) + 3.141592653589793d;
+                g1 g1Var2 = q1Var.h;
+                double d = g1Var2.f45541k / 5.5f;
+                this.d = g1Var2.f45534b + ((float) (Math.cos(atan2) * d));
+                this.f45606e = q1Var.h.f45535c + ((float) (Math.sin(atan2) * d));
+                return;
+            case 1:
+                g1 g1Var3 = this.f45586g.h;
+                float f7 = g1Var3.f45535c;
+                this.d = g1Var3.f45534b + g1Var3.d;
+                this.f45606e = f7;
+                return;
+            case 2:
+                q1 q1Var2 = this.f45586g;
+                g1 g1Var4 = q1Var2.h;
+                float min = Math.min(g1Var4.d, g1Var4.f45536e);
+                float cos = (((float) Math.cos(-0.3141592653589793d)) * min) + q1Var2.h.f45534b;
+                float f10 = q1Var2.h.f45535c;
+                this.d = cos;
+                this.f45606e = (((float) Math.sin(-0.3141592653589793d)) * min) + f10;
+                return;
+            case 3:
+                g1 g1Var5 = this.f45586g.h;
+                this.d = g1Var5.f45534b;
+                this.f45606e = g1Var5.f45535c - Math.abs(g1Var5.f45536e);
+                return;
+            case 4:
+                g1 g1Var6 = this.f45586g.h;
+                float f11 = g1Var6.f45539i;
+                float f12 = g1Var6.f45540j;
+                g1Var6.f45539i = f11;
+                g1Var6.f45540j = f12;
+                this.d = f11;
+                this.f45606e = f12;
+                return;
+            default:
+                g1 g1Var7 = this.f45586g.h;
+                this.d = g1Var7.f45534b;
+                this.f45606e = g1Var7.f45535c;
+                return;
         }
-        j1Var.f45736a /= arrayList.size();
-        j1Var.f45737b /= arrayList.size();
-        return j1Var;
     }
 
-    public static double d(ArrayList arrayList, j1 j1Var, ArrayList arrayList2, double d) {
-        j1 j1Var2 = j1Var;
-        double cos = Math.cos(d);
-        double sin = Math.sin(d);
-        int min = Math.min(arrayList.size(), arrayList2.size());
-        double d10 = 0.0d;
-        int i10 = 0;
-        while (i10 < min) {
-            j1 j1Var3 = (j1) arrayList.get(i10);
-            double d11 = j1Var3.f45736a;
-            double d12 = cos;
-            double d13 = j1Var2.f45736a;
-            double d14 = d11 - d13;
-            double d15 = j1Var3.f45737b;
-            double d16 = j1Var2.f45737b;
-            double d17 = d15 - d16;
-            d10 += ((j1) arrayList2.get(i10)).a(((d14 * d12) - (d17 * sin)) + d13, (d17 * d12) + (d14 * sin) + d16);
-            i10++;
-            j1Var2 = j1Var;
-            cos = d12;
-        }
-        return d10 / arrayList.size();
-    }
-
-    public static int e(int i10, ArrayList arrayList) {
-        int max = Math.max(1, arrayList.size() / 4);
-        while (max < arrayList.size() - 1) {
-            j1 j1Var = (j1) arrayList.get(max - 1);
-            j1 j1Var2 = (j1) arrayList.get(max);
-            int i11 = max + 1;
-            j1 j1Var3 = (j1) arrayList.get(i11);
-            j1Var.getClass();
-            double a2 = j1Var.a(j1Var2.f45736a, j1Var2.f45737b);
-            double a10 = j1Var.a(j1Var3.f45736a, j1Var3.f45737b);
-            double a11 = j1Var2.a(j1Var3.f45736a, j1Var3.f45737b);
-            if ((Math.acos((((a10 * a10) + (a2 * a2)) - (a11 * a11)) / ((a2 * 2.0d) * a10)) / 3.141592653589793d) * 180.0d > 18.0d) {
-                if (i10 > 0) {
-                    i10--;
-                } else {
-                    return max;
+    @Override
+    public final void b(float f7, float f10) {
+        switch (this.f45585f) {
+            case 0:
+                q1 q1Var = this.f45586g;
+                g1 g1Var = q1Var.h;
+                double atan2 = Math.atan2(g1Var.f45535c - g1Var.f45540j, g1Var.f45534b - g1Var.f45539i) + 1.5707963267948966d;
+                g1 g1Var2 = q1Var.h;
+                g1 g1Var3 = q1Var.h;
+                float f11 = g1Var3.f45534b;
+                float f12 = g1Var3.f45535c;
+                q1Var.getClass();
+                g1Var3.f45541k = Math.min((z6.a(g1Var2.f45534b, g1Var2.f45535c, g1Var2.f45539i, g1Var2.f45540j) * 5.5f) / 2.0f, Math.max(100.0f, (-((float) ((Math.cos(atan2) * (f12 - f10)) - (Math.sin(atan2) * (f11 - f7))))) * 5.5f));
+                a();
+                return;
+            case 1:
+                this.d = f7;
+                this.f45606e = f10;
+                g1 g1Var4 = this.f45586g.h;
+                float a2 = z6.a(g1Var4.f45534b, g1Var4.f45535c, f7, f10);
+                g1Var4.f45536e = a2;
+                g1Var4.d = a2;
+                return;
+            case 2:
+                q1 q1Var2 = this.f45586g;
+                g1 g1Var5 = q1Var2.h;
+                float a10 = z6.a(g1Var5.f45534b, g1Var5.f45535c, f7, f10);
+                g1Var5.f45536e = a10;
+                g1Var5.d = a10;
+                g1 g1Var6 = q1Var2.h;
+                g1Var6.h = (float) ((((float) Math.atan2(g1Var6.f45535c - f10, f7 - g1Var6.f45534b)) - 0.3141592653589793d) + g1Var6.h);
+                a();
+                return;
+            case 3:
+                q1 q1Var3 = this.f45586g;
+                g1 g1Var7 = q1Var3.h;
+                g1Var7.h = (float) ((((float) Math.atan2(g1Var7.f45535c - f10, f7 - g1Var7.f45534b)) - 1.5707963267948966d) + g1Var7.h);
+                for (int i10 = 0; i10 < q1Var3.f45620m.size(); i10++) {
+                    p1 p1Var = (p1) q1Var3.f45620m.get(i10);
+                    if (p1Var instanceof o1) {
+                        p1Var.a();
+                    }
                 }
-            }
-            max = i11;
+                return;
+            case 4:
+                g1 g1Var8 = this.f45586g.h;
+                g1Var8.f45539i = f7;
+                g1Var8.f45540j = f10;
+                this.d = f7;
+                this.f45606e = f10;
+                float f13 = g1Var8.f45535c;
+                float f14 = g1Var8.f45536e;
+                float f15 = f13 - f14;
+                int i11 = (f10 > f15 ? 1 : (f10 == f15 ? 0 : -1));
+                if (i11 > 0 && f10 < f13 + f14) {
+                    float f16 = g1Var8.f45534b;
+                    if (f7 <= f16) {
+                        float f17 = f16 - g1Var8.d;
+                        if (f7 > f17) {
+                            this.d = f17;
+                        }
+                    }
+                    if (f7 > f13) {
+                        float f18 = f16 + g1Var8.d;
+                        if (f7 < f18) {
+                            this.d = f18;
+                        }
+                    }
+                }
+                float f19 = this.d;
+                float f20 = g1Var8.f45534b;
+                float f21 = g1Var8.d;
+                if (f19 > f20 - f21 && f19 < f20 + f21) {
+                    if (f10 <= f13 && i11 > 0) {
+                        this.f45606e = f15;
+                    } else if (f10 > f13) {
+                        float f22 = f13 + f14;
+                        if (f10 < f22) {
+                            this.f45606e = f22;
+                        }
+                    }
+                }
+                g1Var8.f45539i = f19;
+                g1Var8.f45540j = this.f45606e;
+                return;
+            default:
+                int i12 = 0;
+                while (true) {
+                    q1 q1Var4 = this.f45586g;
+                    if (i12 < q1Var4.f45620m.size()) {
+                        p1 p1Var2 = (p1) q1Var4.f45620m.get(i12);
+                        if (p1Var2 != this) {
+                            p1Var2.a();
+                        }
+                        i12++;
+                    } else {
+                        g1 g1Var9 = q1Var4.h;
+                        g1Var9.f45534b = f7;
+                        g1Var9.f45535c = f10;
+                        this.d = f7;
+                        this.f45606e = f10;
+                        return;
+                    }
+                }
         }
-        return -1;
     }
 
-    public static ArrayList f(ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList();
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            j1 j1Var = (j1) arrayList.get(i10);
-            arrayList2.add(new j1(j1Var.f45736a, j1Var.f45737b));
-        }
-        return arrayList2;
-    }
-
-    public final void c() {
-        ArrayList arrayList;
-        synchronized (this) {
-            this.f45763b.clear();
-        }
-        f45760m.cancelRunnable(this.f45771l);
-        this.f45770k.set(false);
-        this.d = false;
-        if (this.h && (arrayList = this.f45768i) != null) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f45766f);
-            alertDialog$Builder.f20404a.R = "Shape?";
-            alertDialog$Builder.f(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new lg.j(14, this, arrayList));
-            alertDialog$Builder.o();
-            this.f45768i = null;
-        }
+    public m1(q1 q1Var, int i10, boolean z10) {
+        super(0);
+        this.f45585f = i10;
+        this.f45586g = q1Var;
     }
 }

@@ -1,29 +1,56 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class xz implements DialogInterface.OnDismissListener {
-    public final int f44239a;
-    public final EditTextBoldCursor f44240b;
+public abstract class xz extends FrameLayout {
+    public FrameLayout f44203a;
+    public org.telegram.ui.ActionBar.h5 f44204b;
+    public org.telegram.ui.ActionBar.h5 f44205c;
+    public ImageView d;
+    public ci.g9 f44206e;
+    public ai.q4 f44207f;
+    public ai.q4 h;
+    public TextView f44208n;
+    public org.telegram.ui.ActionBar.m2 f44209r;
+    public String f44210s;
+    public float v;
+    public ValueAnimator f44211w;
+    public org.telegram.ui.ActionBar.m1 f44212x;
+    public float[] f44213y;
 
-    public xz(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f44239a = i10;
-        this.f44240b = editTextBoldCursor;
+    public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
+        float f7 = 0.0f;
+        float f10 = 0.0f;
+        FrameLayout frameLayout3 = frameLayout;
+        while (frameLayout3 != frameLayout2) {
+            float y3 = frameLayout3.getY() + f7;
+            f10 += frameLayout3.getX();
+            if (frameLayout3 instanceof ScrollView) {
+                y3 -= frameLayout3.getScrollY();
+            }
+            f7 = y3;
+            if (!(frameLayout3.getParent() instanceof View)) {
+                break;
+            }
+            ?? r32 = (View) frameLayout3.getParent();
+            boolean z10 = r32 instanceof ViewGroup;
+            frameLayout3 = r32;
+            if (!z10) {
+                return;
+            }
+        }
+        fArr[0] = f10 - frameLayout2.getPaddingLeft();
+        fArr[1] = f7 - frameLayout2.getPaddingTop();
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f44239a) {
-            case 0:
-                AndroidUtilities.hideKeyboard(this.f44240b);
-                return;
-            case 1:
-                AndroidUtilities.hideKeyboard(this.f44240b);
-                return;
-            default:
-                AndroidUtilities.hideKeyboard(this.f44240b);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(127.0f), 1073741824));
     }
 }

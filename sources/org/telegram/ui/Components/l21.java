@@ -2,36 +2,32 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import org.telegram.ui.Components.ThemeEditorView;
 public final class l21 extends AnimatorListenerAdapter {
-    public final boolean f28179a;
-    public final ThemeEditorView.EditorAlert f28180b;
+    public final int f28008a;
+    public final ThemeEditorView f28009b;
 
-    public l21(ThemeEditorView.EditorAlert editorAlert, boolean z10) {
-        this.f28180b = editorAlert;
-        this.f28179a = z10;
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        AnimatorSet[] animatorSetArr = this.f28180b.f24396x;
-        AnimatorSet animatorSet = animatorSetArr[0];
-        if (animatorSet != null && animatorSet.equals(animator)) {
-            animatorSetArr[0] = null;
-        }
+    public l21(ThemeEditorView themeEditorView, int i10) {
+        this.f28008a = i10;
+        this.f28009b = themeEditorView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f28180b;
-        AnimatorSet[] animatorSetArr = editorAlert.f24396x;
-        AnimatorSet animatorSet = animatorSetArr[0];
-        if (animatorSet != null && animatorSet.equals(animator)) {
-            if (!this.f28179a) {
-                editorAlert.f24395w[0].setVisibility(4);
-            }
-            animatorSetArr[0] = null;
+        switch (this.f28008a) {
+            case 0:
+                ThemeEditorView themeEditorView = this.f28009b;
+                j21 j21Var = themeEditorView.f24126a;
+                if (j21Var != null) {
+                    j21Var.setBackground(null);
+                    themeEditorView.h.removeView(themeEditorView.f24126a);
+                    return;
+                }
+                return;
+            default:
+                ThemeEditorView themeEditorView2 = this.f28009b;
+                org.telegram.ui.ActionBar.h6.s1(themeEditorView2.f24136m, true, false, false);
+                themeEditorView2.a();
+                return;
         }
     }
 }

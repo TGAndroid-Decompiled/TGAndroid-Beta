@@ -1,13 +1,18 @@
 package org.telegram.ui.Components;
-public final class qo0 extends s4.j {
-    public final org.telegram.ui.cy F;
+public final class qo0 {
+    public zg.n0 f29873a;
+    public int f29874b;
+    public String f29875c;
+    public int d;
 
-    public qo0(org.telegram.ui.cy cyVar) {
-        this.F = cyVar;
-    }
-
-    @Override
-    public final void P(s4.d1 d1Var) {
-        this.F.invalidate();
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof qo0)) {
+            return false;
+        }
+        qo0 qo0Var = (qo0) obj;
+        if (this.f29874b != qo0Var.f29874b || this.f29873a.h != qo0Var.f29873a.h || this.d != qo0Var.d) {
+            return false;
+        }
+        return true;
     }
 }

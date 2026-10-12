@@ -1,25 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class r7 implements Runnable {
-    public final int f19058a;
-    public final MediaDataController f19059b;
-    public final ArrayList f19060c;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class r7 implements Utilities.Callback2 {
+    public final int f18748a;
+    public final MediaDataController f18749b;
+    public final String f18750c;
+    public final Utilities.Callback d;
 
-    public r7(MediaDataController mediaDataController, ArrayList arrayList, int i10) {
-        this.f19058a = i10;
-        this.f19059b = mediaDataController;
-        this.f19060c = arrayList;
+    public r7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i10) {
+        this.f18748a = i10;
+        this.f18749b = mediaDataController;
+        this.f18750c = str;
+        this.d = callback;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19058a) {
+    public final void run(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
+        switch (this.f18748a) {
             case 0:
-                this.f19059b.lambda$loadRepliesOfDraftReplies$0(this.f19060c);
+                this.f18749b.lambda$getStickerSet$32(this.f18750c, this.d, bool, tL_messages_stickerSet);
                 return;
             default:
-                this.f19059b.lambda$broadcastPinnedMessage$168(this.f19060c);
+                this.f18749b.lambda$getStickerSet$35(this.f18750c, this.d, bool, tL_messages_stickerSet);
                 return;
         }
     }

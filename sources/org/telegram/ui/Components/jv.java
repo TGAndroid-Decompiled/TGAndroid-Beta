@@ -1,109 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.util.HashMap;
-import java.util.Locale;
+import android.content.Context;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-public final class jv extends org.telegram.ui.ActionBar.e5 {
-    public final boolean f27850f;
-    public final mv h;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class jv extends WebViewClient {
+    public final ov f27653a;
 
-    public jv(mv mvVar, boolean z10) {
-        this.h = mvVar;
-        this.f27850f = z10;
+    public jv(ov ovVar) {
+        this.f27653a = ovVar;
     }
 
     @Override
-    public final boolean h() {
-        mv mvVar = this.h;
-        ha1 ha1Var = mvVar.f28943c;
-        boolean z10 = ha1Var.T;
-        if (z10) {
-            if (z10) {
-                ha1Var.T = false;
-                ha1Var.m();
-                ha1Var.l(false);
-            }
-            return false;
+    public final void onPageFinished(WebView webView, String str) {
+        super.onPageFinished(webView, str);
+        ov ovVar = this.f27653a;
+        ImageView imageView = ovVar.f29304x;
+        if (!ovVar.f29305y) {
+            ovVar.f29300n.setVisibility(4);
+            ovVar.h.setVisibility(4);
+            imageView.setEnabled(true);
+            imageView.setAlpha(1.0f);
         }
+    }
+
+    @Override
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        org.telegram.ui.ActionBar.c6 c6Var;
+        ov ovVar = this.f27653a;
         try {
-            mvVar.f28947r.getWindow().clearFlags(128);
+            if (!AndroidUtilities.isSafeToShow(ovVar.getContext())) {
+                return true;
+            }
+            Context context = ovVar.getContext();
+            c6Var = ((org.telegram.ui.ActionBar.e3) ovVar).resourcesProvider;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, c6Var);
+            alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20141a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new pq(this, 10));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
             return true;
         } catch (Exception e7) {
             FileLog.e(e7);
-            return true;
+            return false;
         }
     }
 
     @Override
-    public final void onOpenAnimationEnd() {
-        String str;
-        int intValue;
-        mv mvVar = this.h;
-        int i10 = mvVar.Q;
-        RadialProgressView radialProgressView = mvVar.f28946n;
-        gv gvVar = mvVar.f28942b;
-        ha1 ha1Var = mvVar.f28943c;
-        if (this.f27850f && mvVar.f28943c.g(mvVar.K, null, null, mvVar.I, true)) {
-            radialProgressView.setVisibility(4);
-            gvVar.setVisibility(4);
-            ha1Var.setVisibility(0);
-            return;
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        if (this.f27653a.f29305y) {
+            of.f.s(webView.getContext(), str);
+            return true;
         }
-        radialProgressView.setVisibility(0);
-        gvVar.setVisibility(0);
-        mvVar.f28948s.setVisibility(0);
-        mvVar.v.setVisibility(4);
-        gvVar.setKeepScreenOn(true);
-        ha1Var.setVisibility(4);
-        ha1Var.getControlsView().setVisibility(4);
-        ha1Var.getTextureView().setVisibility(4);
-        if (ha1Var.getTextureImageView() != null) {
-            ha1Var.getTextureImageView().setVisibility(4);
-        }
-        mvVar.f28943c.g(null, null, null, null, false);
-        HashMap hashMap = new HashMap();
-        hashMap.put("Referer", "messenger.telegram.org");
-        try {
-            String youtubeId = ha1Var.getYoutubeId();
-            if (youtubeId != null) {
-                mvVar.h.setVisibility(0);
-                mvVar.f28951y = true;
-                gvVar.addJavascriptInterface(new lv(mvVar), "YoutubeProxy");
-                String str2 = mvVar.I;
-                if (str2 != null) {
-                    try {
-                        Uri parse = Uri.parse(str2);
-                        if (i10 > 0) {
-                            str = "" + i10;
-                        } else {
-                            str = null;
-                        }
-                        if (str == null && (str = parse.getQueryParameter("t")) == null) {
-                            str = parse.getQueryParameter("time_continue");
-                        }
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                    }
-                    if (str != null) {
-                        if (str.contains("m")) {
-                            String[] split = str.split("m");
-                            intValue = (Utilities.parseInt((CharSequence) split[0]).intValue() * 60) + Utilities.parseInt((CharSequence) split[1]).intValue();
-                        } else {
-                            intValue = Utilities.parseInt((CharSequence) str).intValue();
-                        }
-                        mvVar.f28942b.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var observer;   var videoEl;   var playing;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function hideControls() {        playing = !videoEl.paused;       videoEl.controls = 0;       observer.observe(videoEl, {attributes: true});    }    function showControls() {        playing = !videoEl.paused;       observer.disconnect();       videoEl.controls = 1;    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>", youtubeId, Integer.valueOf(intValue)), "text/html", "UTF-8", "https://youtube.com");
-                        return;
-                    }
-                }
-                intValue = 0;
-                mvVar.f28942b.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var observer;   var videoEl;   var playing;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function hideControls() {        playing = !videoEl.paused;       videoEl.controls = 0;       observer.observe(videoEl, {attributes: true});    }    function showControls() {        playing = !videoEl.paused;       observer.disconnect();       videoEl.controls = 1;    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>", youtubeId, Integer.valueOf(intValue)), "text/html", "UTF-8", "https://youtube.com");
-                return;
-            }
-            gvVar.loadUrl(mvVar.K, hashMap);
-        } catch (Exception e10) {
-            FileLog.e(e10);
-        }
+        return super.shouldOverrideUrlLoading(webView, str);
     }
 }

@@ -1,40 +1,43 @@
 package org.telegram.ui;
+public final class ap implements Runnable {
+    public final int f35913a;
+    public final lp f35914b;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ap extends org.telegram.ui.Components.fp0 {
-    public final ip f36155r;
-
-    public ap(ip ipVar, Context context, xd xdVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, xdVar, d6Var, false);
-        this.f36155r = ipVar;
+    public ap(lp lpVar, int i10) {
+        this.f35913a = i10;
+        this.f35914b = lpVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.f36155r.L && super.onInterceptTouchEvent(motionEvent)) {
-            return true;
+    public final void run() {
+        switch (this.f35913a) {
+            case 0:
+                lp lpVar = this.f35914b;
+                lpVar.f39802c0 = true;
+                lpVar.b0();
+                return;
+            case 1:
+                lp lpVar2 = this.f35914b;
+                lpVar2.X = lpVar2.getMessagesController().getChat(Long.valueOf(lpVar2.Z));
+                lpVar2.Y();
+                return;
+            case 2:
+                this.f35914b.a0(false);
+                return;
+            case 3:
+                lp lpVar3 = this.f35914b;
+                lpVar3.f39802c0 = true;
+                if (lpVar3.f39797a.length() > 0) {
+                    lpVar3.W(lpVar3.f39797a.getText().toString());
+                }
+                lpVar3.b0();
+                return;
+            case 4:
+                this.f35914b.Y();
+                return;
+            default:
+                this.f35914b.a0(true);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (!this.f36155r.L && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-        return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 }

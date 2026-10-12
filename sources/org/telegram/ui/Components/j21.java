@@ -1,21 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class j21 extends rm0 {
-    public final ThemeEditorView.EditorAlert V2;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class j21 extends FrameLayout {
+    public static final int f27351e = 0;
+    public float f27352a;
+    public float f27353b;
+    public boolean f27354c;
+    public final ThemeEditorView d;
 
-    public j21(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        super(context, null);
-        this.V2 = editorAlert;
+    public j21(ThemeEditorView themeEditorView, Activity activity) {
+        super(activity);
+        this.d = themeEditorView;
     }
 
     @Override
-    public final boolean E0(float f7) {
-        if (f7 >= AndroidUtilities.dp(48.0f) + this.V2.E + AndroidUtilities.statusBarHeight) {
-            return true;
-        }
-        return false;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j21.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

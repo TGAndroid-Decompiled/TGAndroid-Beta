@@ -1,193 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.RectF;
-import android.text.StaticLayout;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class z00 extends View {
-    public float E;
-    public float F;
-    public boolean G;
-    public boolean H;
-    public int I;
-    public int J;
-    public StaticLayout K;
-    public StaticLayout L;
-    public StaticLayout M;
-    public CharSequence N;
-    public x5 O;
-    public StaticLayout P;
-    public x5 Q;
-    public StaticLayout R;
-    public x5 S;
-    public StaticLayout T;
-    public boolean U;
-    public boolean V;
-    public boolean W;
-    public ValueAnimator f33506a;
-    public float f33507a0;
-    public x00 f33508b;
-    public int f33509b0;
-    public int f33510c;
-    public int f33511c0;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+public final class z00 {
+    public int f33234a;
+    public CharSequence f33235b;
+    public int f33236c;
     public int d;
-    public int f33512d0;
-    public int f33513e;
-    public float f33514e0;
-    public final RectF f33515f;
-    public float f33516f0;
-    public float f33517g0;
-    public CharSequence h;
-    public float f33518h0;
-    public float f33519i0;
-    public float f33520j0;
-    public float f33521k0;
-    public boolean f33522l0;
-    public final b10 m0;
-    public boolean f33523n;
-    public x5 f33524r;
-    public StaticLayout f33525s;
-    public int v;
-    public boolean f33526w;
-    public float f33527x;
-    public float f33528y;
+    public boolean f33237e;
+    public boolean f33238f;
+    public boolean f33239g;
+    public final d10 h;
 
-    public z00(b10 b10Var, Context context) {
-        super(context);
-        this.m0 = b10Var;
-        this.f33515f = new RectF();
-        this.I = -1;
+    public z00(d10 d10Var, int i10, Spannable spannable, boolean z10) {
+        this.h = d10Var;
+        this.f33234a = i10;
+        this.f33235b = spannable;
+        this.f33239g = z10;
     }
 
-    public final void a() {
-        this.f33526w = false;
-        this.H = false;
-        this.U = false;
-        this.G = false;
-        this.W = false;
-        this.f33506a = null;
-        invalidate();
-    }
-
-    public final void b(float f7, int i10) {
-        if (i10 == 6) {
-            this.f33528y = 0.0f;
-            return;
-        }
-        AnimatorSet animatorSet = new AnimatorSet();
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, AndroidUtilities.dp(f7));
-        ofFloat.addUpdateListener(new s00(this, 1));
-        animatorSet.playTogether(ofFloat);
-        animatorSet.setDuration(50L);
-        animatorSet.addListener(new y00(this, i10, f7, 0));
-        animatorSet.start();
-    }
-
-    @Override
-    public int getId() {
-        return this.f33508b.f32824a;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
+    public final int a(boolean z10) {
         int i10;
         int i11;
-        int i12;
-        this.f33522l0 = true;
-        super.onAttachedToWindow();
-        int i13 = 26;
-        if (this.f33508b.f32829g) {
-            i10 = 26;
-        } else {
-            i10 = 0;
-        }
-        this.f33524r = b6.update(i10, this, this.f33524r, this.f33525s);
-        if (this.f33508b.f32829g) {
-            i11 = 26;
-        } else {
-            i11 = 0;
-        }
-        this.O = b6.update(i11, this, this.O, this.P);
-        if (this.f33508b.f32829g) {
-            i12 = 26;
-        } else {
-            i12 = 0;
-        }
-        this.Q = b6.update(i12, this, this.Q, this.R);
-        if (!this.f33508b.f32829g) {
-            i13 = 0;
-        }
-        this.S = b6.update(i13, this, this.S, this.T);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        this.f33522l0 = false;
-        super.onDetachedFromWindow();
-        this.f33526w = false;
-        this.H = false;
-        this.U = false;
-        this.G = false;
-        this.W = false;
-        ValueAnimator valueAnimator = this.f33506a;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.f33506a.removeAllUpdateListeners();
-            this.f33506a.cancel();
-            this.f33506a = null;
-        }
-        invalidate();
-        b6.release(this, this.f33524r);
-        b6.release(this, this.O);
-        b6.release(this, this.Q);
-        b6.release(this, this.S);
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r42) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z00.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        int i10;
-        int i11;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        x00 x00Var = this.f33508b;
-        if (x00Var != null && (i11 = this.m0.L) != -1 && x00Var.f32824a == i11) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        accessibilityNodeInfo.setSelected(z10);
-        accessibilityNodeInfo.addAction(16);
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenMenu2)));
-        if (this.f33508b != null) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f33508b.f32825b);
-            x00 x00Var2 = this.f33508b;
-            if (x00Var2 != null) {
-                i10 = x00Var2.d;
-            } else {
+        CharSequence charSequence = this.f33235b;
+        d10 d10Var = this.h;
+        int ceil = (int) Math.ceil(ci.d4.g(charSequence, d10Var.f25165b));
+        this.f33236c = ceil;
+        int i12 = 0;
+        if (z10) {
+            i10 = ((org.telegram.ui.uw) d10Var.J).a(this.f33234a);
+            if (i10 < 0) {
                 i10 = 0;
             }
-            if (i10 > 0) {
-                sb2.append("\n");
-                sb2.append(LocaleController.formatPluralString("AccDescrUnreadCount", i10, new Object[0]));
+            if (z10) {
+                this.d = i10;
             }
-            accessibilityNodeInfo.setContentDescription(sb2);
+        } else {
+            i10 = this.d;
         }
+        if (i10 > 0) {
+            i11 = AndroidUtilities.dp(-2.0f) + AndroidUtilities.dp(10.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(d10Var.f25167c.measureText(String.format("%d", Integer.valueOf(i10)))));
+        } else {
+            if (!this.f33237e && d10Var.f25180n) {
+                i12 = AndroidUtilities.dp(12.333f);
+            }
+            i11 = i12;
+        }
+        return Math.max(AndroidUtilities.dp(16.0f), ceil + i11);
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(24.0f) + this.f33508b.a(false) + this.m0.N, View.MeasureSpec.getSize(i11));
+    public final void b(String str) {
+        TextPaint textPaint = this.h.f25165b;
+        if (TextUtils.equals(this.f33235b, str)) {
+            return;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        this.f33235b = spannableStringBuilder;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false);
+        this.f33235b = replaceEmoji;
+        this.f33235b = MessageObject.replaceAnimatedEmoji(replaceEmoji, null, textPaint.getFontMetricsInt());
+        this.f33239g = false;
     }
 }

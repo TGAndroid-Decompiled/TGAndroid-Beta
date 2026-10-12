@@ -1,20 +1,13 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesStorage;
-public final class iy0 implements org.telegram.ui.ActionBar.q0, MessagesStorage.StringCallback {
-    public final yy0 f27530a;
-
-    public iy0(yy0 yy0Var) {
-        this.f27530a = yy0Var;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class iy0 extends oc {
+    public iy0(LaunchActivity launchActivity, int i10, TLRPC.Document document) {
+        this(launchActivity, null, 1, i10, document, null);
     }
 
-    @Override
-    public void m(int i10) {
-        yy0.E(this.f27530a, i10);
-    }
-
-    @Override
-    public void run(String str) {
-        new p50(r1.getContext(), r1.f33492o0, null, this.f27530a.resourcesProvider).show();
+    public iy0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.c6 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.iy0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.c6):void");
     }
 }

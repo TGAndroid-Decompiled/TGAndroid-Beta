@@ -6,85 +6,85 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.fh;
-import org.telegram.ui.Components.uw0;
-import org.telegram.ui.cj;
-import org.telegram.ui.zn;
+import org.telegram.ui.Components.hh;
+import org.telegram.ui.Components.zw0;
+import org.telegram.ui.eo;
+import org.telegram.ui.gj;
 public final class x5 extends AnimatorListenerAdapter {
-    public final int f6299a;
-    public int f6300b;
-    public final Object f6301c;
+    public final int f6298a;
+    public int f6299b;
+    public final Object f6300c;
     public final Object d;
-    public final Object f6302e;
+    public final Object f6301e;
 
-    public x5(uw0 uw0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
-        this.f6299a = i11;
-        this.f6302e = uw0Var;
-        this.f6301c = viewGroup;
+    public x5(zw0 zw0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
+        this.f6298a = i11;
+        this.f6301e = zw0Var;
+        this.f6300c = viewGroup;
         this.d = viewGroup2;
-        this.f6300b = i10;
+        this.f6299b = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f6299a) {
+        switch (this.f6298a) {
             case 0:
-                q6 q6Var = (q6) this.f6302e;
+                q6 q6Var = (q6) this.f6301e;
                 q6Var.Y0 = q6Var.Z0;
                 q6Var.Z0 = -1;
                 q6Var.W0.invalidate();
-                View view = (View) this.f6301c;
+                View view = (View) this.f6300c;
                 if (view != null && ((View) this.d) != null) {
                     view.setVisibility(8);
                 }
-                if (animator == q6Var.f5790b1) {
-                    q6Var.f5790b1 = null;
+                if (animator == q6Var.f5789b1) {
+                    q6Var.f5789b1 = null;
                     return;
                 }
                 return;
             case 1:
-                zn znVar = (zn) this.f6302e;
-                znVar.O5 = true;
-                ((org.telegram.ui.ActionBar.m2) znVar).fragmentBeginToShow = true;
-                znVar.V9 = null;
-                AndroidUtilities.runOnUIThread(new cj(this, 0), 32L);
+                eo eoVar = (eo) this.f6301e;
+                eoVar.O5 = true;
+                ((org.telegram.ui.ActionBar.m2) eoVar).fragmentBeginToShow = true;
+                eoVar.V9 = null;
+                AndroidUtilities.runOnUIThread(new gj(this, 0), 32L);
                 super.onAnimationEnd(animator);
-                znVar.X0.invalidate();
-                znVar.X0.setSkipBackgroundDrawing(false);
-                znVar.S9 = false;
-                zn znVar2 = (zn) this.f6301c;
-                znVar2.U9 = 0.0f;
-                znVar2.fragmentView.invalidate();
-                znVar2.f45023x0.invalidate();
-                znVar2.T9 = null;
-                znVar.fragmentView.setAlpha(1.0f);
+                eoVar.X0.invalidate();
+                eoVar.X0.setSkipBackgroundDrawing(false);
+                eoVar.S9 = false;
+                eo eoVar2 = (eo) this.f6300c;
+                eoVar2.U9 = 0.0f;
+                eoVar2.fragmentView.invalidate();
+                eoVar2.f37478x0.invalidate();
+                eoVar2.T9 = null;
+                eoVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
-                znVar.f44735a1.setTranslationY(0.0f);
-                znVar2.f44735a1.setTranslationY(0.0f);
-                znVar2.f44735a1.getAvatarImageView().setTranslationY(0.0f);
-                znVar.f44735a1.getAvatarImageView().setScaleX(1.0f);
-                znVar.f44735a1.getAvatarImageView().setScaleY(1.0f);
-                znVar.f44735a1.getAvatarImageView().setAlpha(1.0f);
-                znVar2.f44735a1.getAvatarImageView().setScaleX(1.0f);
-                znVar2.f44735a1.getAvatarImageView().setScaleY(1.0f);
-                znVar2.f44735a1.getAvatarImageView().setAlpha(1.0f);
-                fh fhVar = znVar2.M0;
-                if (fhVar != null) {
-                    fhVar.setAlpha(1.0f);
+                eoVar.f37190a1.setTranslationY(0.0f);
+                eoVar2.f37190a1.setTranslationY(0.0f);
+                eoVar2.f37190a1.getAvatarImageView().setTranslationY(0.0f);
+                eoVar.f37190a1.getAvatarImageView().setScaleX(1.0f);
+                eoVar.f37190a1.getAvatarImageView().setScaleY(1.0f);
+                eoVar.f37190a1.getAvatarImageView().setAlpha(1.0f);
+                eoVar2.f37190a1.getAvatarImageView().setScaleX(1.0f);
+                eoVar2.f37190a1.getAvatarImageView().setScaleY(1.0f);
+                eoVar2.f37190a1.getAvatarImageView().setAlpha(1.0f);
+                hh hhVar = eoVar2.M0;
+                if (hhVar != null) {
+                    hhVar.setAlpha(1.0f);
                     return;
                 }
                 return;
             default:
-                qg.m0 m0Var = (qg.m0) this.f6302e;
-                m0Var.f46500g1 = m0Var.f46502h1;
-                m0Var.f46502h1 = -1;
-                m0Var.f46498f1.invalidate();
-                View view2 = (View) this.f6301c;
+                qg.m0 m0Var = (qg.m0) this.f6301e;
+                m0Var.f46308g1 = m0Var.f46310h1;
+                m0Var.f46310h1 = -1;
+                m0Var.f46306f1.invalidate();
+                View view2 = (View) this.f6300c;
                 if (view2 != null && ((View) this.d) != null) {
                     view2.setVisibility(8);
                 }
-                if (animator == m0Var.f46506j1) {
-                    m0Var.f46506j1 = null;
+                if (animator == m0Var.f46314j1) {
+                    m0Var.f46314j1 = null;
                     return;
                 }
                 return;
@@ -96,14 +96,14 @@ public final class x5 extends AnimatorListenerAdapter {
         View view;
         int i10;
         View view2;
-        switch (this.f6299a) {
+        switch (this.f6298a) {
             case 0:
-                q6 q6Var = (q6) this.f6302e;
-                qg.w1 w1Var = q6Var.f5794d1;
-                if (((View) this.f6301c) != null && (view = (View) this.d) != null) {
+                q6 q6Var = (q6) this.f6301e;
+                qg.w1 w1Var = q6Var.f5793d1;
+                if (((View) this.f6300c) != null && (view = (View) this.d) != null) {
                     view.setVisibility(0);
                 }
-                if (this.f6300b == 2) {
+                if (this.f6299b == 2) {
                     w1Var.b(0.5f, 2.0f);
                     return;
                 }
@@ -117,16 +117,16 @@ public final class x5 extends AnimatorListenerAdapter {
                 }
             case 1:
                 super.onAnimationStart(animator);
-                i10 = ((org.telegram.ui.ActionBar.m2) ((zn) this.f6302e)).currentAccount;
-                this.f6300b = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f6300b, null);
+                i10 = ((org.telegram.ui.ActionBar.m2) ((eo) this.f6301e)).currentAccount;
+                this.f6299b = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f6299b, null);
                 return;
             default:
-                qg.m0 m0Var = (qg.m0) this.f6302e;
+                qg.m0 m0Var = (qg.m0) this.f6301e;
                 qg.w1 w1Var2 = m0Var.l1;
-                if (((View) this.f6301c) != null && (view2 = (View) this.d) != null) {
+                if (((View) this.f6300c) != null && (view2 = (View) this.d) != null) {
                     view2.setVisibility(0);
                 }
-                if (this.f6300b == 2) {
+                if (this.f6299b == 2) {
                     w1Var2.b(0.5f, 2.0f);
                     return;
                 }
@@ -141,10 +141,10 @@ public final class x5 extends AnimatorListenerAdapter {
         }
     }
 
-    public x5(zn znVar, zn znVar2, Runnable runnable) {
-        this.f6299a = 1;
-        this.f6302e = znVar;
-        this.f6301c = znVar2;
+    public x5(eo eoVar, eo eoVar2, Runnable runnable) {
+        this.f6298a = 1;
+        this.f6301e = eoVar;
+        this.f6300c = eoVar2;
         this.d = runnable;
     }
 }

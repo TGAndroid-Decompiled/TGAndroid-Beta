@@ -8,39 +8,39 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import v7.z7;
 public final class a0 implements f {
-    public static final LinkedHashSet f14320r = new LinkedHashSet();
-    public static final Object f14321s = new Object();
-    public final k0 f14322a;
-    public final na.d f14323b;
-    public final de.m f14324c = new de.m(new m(this, null, 1));
+    public static final LinkedHashSet f14317r = new LinkedHashSet();
+    public static final Object f14318s = new Object();
+    public final k0 f14319a;
+    public final na.d f14320b;
+    public final de.m f14321c = new de.m(new m(this, null, 1));
     public final String d = ".tmp";
-    public final hd.g f14325e = z7.a(new k0(this, 1));
-    public final de.o f14326f = new de.o(c0.f14333a);
+    public final hd.g f14322e = z7.a(new k0(this, 1));
+    public final de.o f14323f = new de.o(c0.f14330a);
     public List h;
-    public final com.google.firebase.messaging.s f14327n;
+    public final com.google.firebase.messaging.s f14324n;
 
     public a0(k0 k0Var, List list, na.d dVar, d0 d0Var) {
-        this.f14322a = k0Var;
-        this.f14323b = dVar;
+        this.f14319a = k0Var;
+        this.f14320b = dVar;
         this.h = id.g.m(list);
-        this.f14327n = new com.google.firebase.messaging.s(d0Var, new je.g(this, 1), new m(this, null, 0));
+        this.f14324n = new com.google.firebase.messaging.s(d0Var, new je.g(this, 1), new m(this, null, 0));
     }
 
     public static final java.lang.Object a(k1.a0 r8, k1.j r9, ld.c r10) {
         throw new UnsupportedOperationException("Method not decompiled: k1.a0.a(k1.a0, k1.j, ld.c):java.lang.Object");
     }
 
-    public final File b() {
-        return (File) this.f14325e.a();
+    @Override
+    public final Object b(sd.p pVar, ld.c cVar) {
+        ae.t a2 = g0.a();
+        this.f14324n.f(new j(pVar, a2, (b0) this.f14323f.c(), cVar.getContext()));
+        Object h = a2.h(cVar);
+        kd.a aVar = kd.a.f14780a;
+        return h;
     }
 
-    @Override
-    public final Object c(sd.p pVar, ld.c cVar) {
-        ae.t a2 = g0.a();
-        this.f14327n.f(new j(pVar, a2, (b0) this.f14326f.c(), cVar.getContext()));
-        Object h = a2.h(cVar);
-        kd.a aVar = kd.a.f14783a;
-        return h;
+    public final File c() {
+        return (File) this.f14322e.a();
     }
 
     public final java.lang.Object d(ld.c r13) {
@@ -61,7 +61,7 @@ public final class a0 implements f {
 
     @Override
     public final de.b getData() {
-        return this.f14324c;
+        return this.f14321c;
     }
 
     public final java.lang.Object h(ld.c r6) {

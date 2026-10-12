@@ -8,17 +8,17 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.g60;
-public final class s4 implements g60 {
-    public final f6 f1700a;
+import org.telegram.ui.Components.j60;
+public final class s4 implements j60 {
+    public final f6 f1698a;
 
     public s4(f6 f6Var) {
-        this.f1700a = f6Var;
+        this.f1698a = f6Var;
     }
 
     @Override
     public final long a() {
-        return this.f1700a.B1;
+        return this.f1698a.B1;
     }
 
     @Override
@@ -28,17 +28,17 @@ public final class s4 implements g60 {
 
     @Override
     public final int getClassGuid() {
-        return this.f1700a.f1028z2;
+        return this.f1698a.f1026z2;
     }
 
     @Override
     public final View getFragmentView() {
-        return this.f1700a;
+        return this.f1698a;
     }
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.f1700a.getContext());
+        return AndroidUtilities.findActivity(this.f1698a.getContext());
     }
 
     @Override
@@ -48,8 +48,8 @@ public final class s4 implements g60 {
         boolean z12;
         AccountInstance accountInstance3;
         AccountInstance accountInstance4;
-        f6 f6Var = this.f1700a;
-        TL_stories.StoryItem storyItem = f6Var.O1.f822a;
+        f6 f6Var = this.f1698a;
+        TL_stories.StoryItem storyItem = f6Var.O1.f820a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             storyItem.dialogId = f6Var.B1;
             if (photoEntry.isVideo) {

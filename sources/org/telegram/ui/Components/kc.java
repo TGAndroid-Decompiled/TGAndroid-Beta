@@ -6,28 +6,28 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.widget.ImageView;
 public class kc extends pb {
-    public final ImageView f28022a;
-    public final ea0 f28023b;
+    public final ImageView f27817a;
+    public final ia0 f27818b;
 
-    public kc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
+    public kc(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, c6Var);
         int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.Hi);
         ImageView imageView = new ImageView(context);
-        this.f28022a = imageView;
+        this.f27817a = imageView;
         imageView.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-        addView(imageView, w7.x5.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
-        ea0 ea0Var = new ea0(context, null);
-        this.f28023b = ea0Var;
-        ea0Var.setDisablePaddingsOffsetY(true);
-        ea0Var.setSingleLine();
-        ea0Var.setTextColor(themedColor);
-        ea0Var.setTypeface(Typeface.SANS_SERIF);
-        ea0Var.setTextSize(1, 15.0f);
-        addView(ea0Var, w7.x5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        addView(imageView, w7.w5.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
+        ia0 ia0Var = new ia0(context, null);
+        this.f27818b = ia0Var;
+        ia0Var.setDisablePaddingsOffsetY(true);
+        ia0Var.setSingleLine();
+        ia0Var.setTextColor(themedColor);
+        ia0Var.setTypeface(Typeface.SANS_SERIF);
+        ia0Var.setTextSize(1, 15.0f);
+        addView(ia0Var, w7.w5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return this.f28023b.getText();
+        return this.f27818b.getText();
     }
 }

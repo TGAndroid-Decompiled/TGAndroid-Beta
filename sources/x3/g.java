@@ -3,9 +3,9 @@ package x3;
 import c3.b0;
 import c3.p;
 public interface g {
-    long c(p pVar);
+    b0 A1();
 
-    b0 d();
+    void A2(long j3);
 
-    void h(long j3);
+    long L0(p pVar);
 }

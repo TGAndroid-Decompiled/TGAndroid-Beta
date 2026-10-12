@@ -1,19 +1,42 @@
 package pi;
+public final class d implements Runnable {
+    public final int f45772a;
+    public final s f45773b;
+    public final Throwable f45774c;
 
-import a3.h0;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestTimeDelegate;
-public final class d implements RequestTimeDelegate {
-    public final f f45966a;
-    public final e f45967b;
-
-    public d(f fVar, e eVar) {
-        this.f45966a = fVar;
-        this.f45967b = eVar;
+    public d(s sVar, Throwable th2, int i10) {
+        this.f45772a = i10;
+        this.f45773b = sVar;
+        this.f45774c = th2;
     }
 
     @Override
-    public void run(long j3) {
-        AndroidUtilities.runOnUIThread(new h0(this.f45966a, this.f45967b, j3, 29));
+    public final void run() {
+        Exception runtimeException;
+        Exception runtimeException2;
+        switch (this.f45772a) {
+            case 0:
+                s sVar = this.f45773b;
+                sVar.getClass();
+                Throwable th2 = this.f45774c;
+                if (th2 instanceof Exception) {
+                    runtimeException = (Exception) th2;
+                } else {
+                    runtimeException = new RuntimeException(th2);
+                }
+                sVar.g(runtimeException);
+                return;
+            default:
+                s sVar2 = this.f45773b;
+                sVar2.getClass();
+                Throwable th3 = this.f45774c;
+                if (th3 instanceof Exception) {
+                    runtimeException2 = (Exception) th3;
+                } else {
+                    runtimeException2 = new RuntimeException(th3);
+                }
+                sVar2.g(runtimeException2);
+                return;
+        }
     }
 }

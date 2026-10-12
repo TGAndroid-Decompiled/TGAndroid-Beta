@@ -1,25 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.text.TextWatcher;
-public final class o21 implements TextWatcher {
-    public final int f29373a;
-    public final p21 f29374b;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class o21 extends wm0 {
+    public final ThemeEditorView.EditorAlert V2;
 
-    public o21(p21 p21Var, int i10) {
-        this.f29374b = p21Var;
-        this.f29373a = i10;
+    public o21(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context, null);
+        this.V2 = editorAlert;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o21.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final boolean E0(float f7) {
+        if (f7 >= AndroidUtilities.dp(48.0f) + this.V2.E + AndroidUtilities.statusBarHeight) {
+            return true;
+        }
+        return false;
     }
 }

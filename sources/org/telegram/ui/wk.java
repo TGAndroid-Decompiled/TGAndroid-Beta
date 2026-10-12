@@ -1,36 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class wk implements Runnable {
-    public final int f43853a;
-    public final zn f43854b;
+import android.content.Context;
+public final class wk extends jh.e {
+    public final eo L;
 
-    public wk(zn znVar, int i10) {
-        this.f43853a = i10;
-        this.f43854b = znVar;
+    public wk(eo eoVar, Context context, org.telegram.ui.ActionBar.c6 c6Var, oj ojVar, ah.c cVar) {
+        super(cVar, context, ojVar, c6Var);
+        this.L = eoVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.fh fhVar;
-        FrameLayout frameLayout;
-        switch (this.f43853a) {
-            case 0:
-                zn znVar = this.f43854b;
-                AnimatorSet animatorSet = znVar.V9;
-                if (animatorSet != null && !animatorSet.isRunning()) {
-                    znVar.V9.start();
-                    return;
-                }
-                return;
-            default:
-                zn znVar2 = this.f43854b;
-                if (znVar2.O2 == this && (fhVar = znVar2.M0) != null && (frameLayout = znVar2.N2) != null) {
-                    fhVar.i(frameLayout, false, true);
-                    return;
-                }
-                return;
+    public final void setVisibility(int i10) {
+        boolean z10;
+        super.setVisibility(i10);
+        j6.l lVar = this.L.Bc;
+        boolean z11 = false;
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        if (getMeasuredWidth() > 0) {
+            z11 = true;
+        }
+        lVar.i(3, z10, z11);
     }
 }

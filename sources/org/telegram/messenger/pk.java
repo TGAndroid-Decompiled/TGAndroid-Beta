@@ -1,144 +1,120 @@
 package org.telegram.messenger;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-import android.util.LongSparseArray;
-import android.util.SparseIntArray;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.MediaDataController;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class pk implements Runnable {
-    public final int f18925a;
-    public final Object f18926b;
-    public final Object f18927c;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.n71;
+public final class pk implements Utilities.Callback {
+    public final int f18609a = 0;
+    public final boolean f18610b;
+    public final NotificationCenter.NotificationCenterDelegate f18611c;
     public final Object d;
-    public final Object f18928e;
+    public final Object f18612e;
+    public final Object f18613f;
+    public final Object f18614g;
 
-    public pk(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f18925a = i10;
-        this.d = obj;
-        this.f18927c = obj2;
-        this.f18928e = obj3;
-        this.f18926b = obj4;
+    public pk(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10) {
+        this.f18611c = sendMessagesHelper;
+        this.d = arrayList;
+        this.f18612e = arrayList2;
+        this.f18613f = arrayList3;
+        this.f18614g = delayedMessage;
+        this.f18610b = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18925a) {
+    public final void run(Object obj) {
+        ArrayList<TLRPC.Document> arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        switch (this.f18609a) {
             case 0:
-                ((SendMessagesHelper.ImportingHistory.AnonymousClass1) this.d).lambda$run$0((TLObject) this.f18927c, (TLRPC.TL_messages_initHistoryImport) this.f18928e, (TLRPC.TL_error) this.f18926b);
+                ((SendMessagesHelper) this.f18611c).lambda$performSendMessageRequestMulti$67((ArrayList) this.d, (ArrayList) this.f18612e, (ArrayList) this.f18613f, (SendMessagesHelper.DelayedMessage) this.f18614g, this.f18610b, (TLObject) obj);
                 return;
             case 1:
-                ((SendMessagesHelper.ImportingStickers.AnonymousClass1) this.d).lambda$run$0((TLRPC.TL_error) this.f18926b, (TLRPC.TL_stickers_createStickerSet) this.f18928e, (TLObject) this.f18927c);
-                return;
-            case 2:
-                ((TranslateController) this.d).lambda$detectPhotoLanguage$41((MessageObject) this.f18927c, (TranslateController.MessageKey) this.f18928e, (Utilities.Callback) this.f18926b);
-                return;
-            case 3:
-                ((TranslateController) this.d).lambda$detectStoryLanguage$31((TL_stories.StoryItem) this.f18927c, (String) this.f18928e, (TranslateController.StoryKey) this.f18926b);
-                return;
-            case 4:
-                AndroidUtilities.lambda$showProxyAlert$21((boolean[]) this.d, (org.telegram.ui.Components.cd[]) this.f18927c, (pi.b) this.f18928e, (Activity) this.f18926b);
-                return;
-            case 5:
-                ((FilePathDatabase) this.d).lambda$lookupFiles$7((ArrayList) this.f18927c, (LongSparseArray) this.f18928e, (CountDownLatch) this.f18926b);
-                return;
-            case 6:
-                ((FilePathDatabase) this.d).lambda$checkMediaExistance$2((ArrayList) this.f18927c, (long[]) this.f18928e, (CountDownLatch) this.f18926b);
-                return;
-            case 7:
-                ((FileRefController) this.d).lambda$requestReferenceFromServer$0((String) this.f18927c, (String) this.f18928e, (ai.u8) this.f18926b);
-                return;
-            case 8:
-                ((ImageLoader) this.d).lambda$replaceImageInCache$5((String) this.f18927c, (String) this.f18928e, (ImageLocation) this.f18926b);
-                return;
-            case 9:
-                ((LocationController) this.d).lambda$loadSharingLocations$16((ArrayList) this.f18927c, (ArrayList) this.f18928e, (ArrayList) this.f18926b);
-                return;
-            case 10:
-                ((MediaController) this.d).lambda$generateWaveform$39((String) this.f18927c, (String) this.f18928e, (MessageObject) this.f18926b);
-                return;
-            case 11:
-                ((MediaController) this.d).lambda$prepareResumedRecording$24((File) this.f18927c, (TLRPC.TL_document) this.f18928e, (MediaDataController.DraftVoice) this.f18926b);
-                return;
-            case 12:
-                ((MediaController) this.d).lambda$generateWaveform$38((String) this.f18927c, (byte[]) this.f18928e, (MessageObject) this.f18926b);
-                return;
-            case 13:
-                ((MediaDataController) this.d).lambda$getEmojiSuggestions$220((String[]) this.f18927c, (MediaDataController.KeywordResultCallback) this.f18928e, (ArrayList) this.f18926b);
-                return;
-            case 14:
-                MediaDataController.lambda$getEmojiSuggestions$223((CountDownLatch) this.d, (MediaDataController.KeywordResultCallback) this.f18927c, (ArrayList) this.f18928e, (String) this.f18926b);
-                return;
-            case 15:
-                MediaDataController.lambda$getAnimatedEmojiByKeywords$217((String) this.d, (ArrayList) this.f18927c, (ArrayList) this.f18928e, (Utilities.Callback) this.f18926b);
-                return;
-            case 16:
-                ((MediaDataController) this.d).lambda$getEmojiNames$219((String[]) this.f18927c, (String) this.f18928e, (Utilities.Callback) this.f18926b);
-                return;
-            case 17:
-                ((MediaDataController) this.d).lambda$fillWithAnimatedEmoji$228((boolean[]) this.f18927c, (ArrayList[]) this.f18928e, (u6) this.f18926b);
-                return;
-            case 18:
-                ((MediaDataController) this.d).lambda$loadSavedReactions$240((TLRPC.TL_error) this.f18926b, (TLObject) this.f18927c, (SharedPreferences) this.f18928e);
-                return;
-            case 19:
-                ((MessagesController) this.d).lambda$addUsersToChannel$271((TLRPC.TL_error) this.f18926b, (org.telegram.ui.ActionBar.m2) this.f18927c, (TLRPC.TL_channels_inviteToChannel) this.f18928e);
-                return;
-            case 20:
-                ((MessagesController) this.d).lambda$getDifference$356((TLRPC.updates_Difference) this.f18927c, (a0.i) this.f18928e, (a0.i) this.f18926b);
-                return;
-            case 21:
-                ((MessagesController) this.d).lambda$createChat$255((TLRPC.TL_error) this.f18926b, (org.telegram.ui.ActionBar.m2) this.f18927c, (TLRPC.TL_messages_createChat) this.f18928e);
-                return;
-            case 22:
-                ((MessagesController) this.d).lambda$createChat$258((TLRPC.TL_error) this.f18926b, (org.telegram.ui.ActionBar.m2) this.f18927c, (TLRPC.TL_channels_createChannel) this.f18928e);
-                return;
-            case 23:
-                ((MessagesController) this.d).lambda$setUserAdminRole$105((TLRPC.TL_error) this.f18926b, (org.telegram.ui.ActionBar.m2) this.f18927c, (TLRPC.TL_messages_editChatAdmin) this.f18928e);
-                return;
-            case 24:
-                ((MessagesController) this.d).lambda$completeDialogsReset$210((TLRPC.messages_Dialogs) this.f18927c, (a0.i) this.f18928e, (a0.i) this.f18926b);
-                return;
-            case 25:
-                ((MessagesController) this.d).lambda$getDifference$355((ArrayList) this.f18927c, (TLRPC.updates_Difference) this.f18928e, (a0.i) this.f18926b);
-                return;
-            case 26:
-                ((MessagesStorage) this.d).lambda$putEncryptedChat$178((TLRPC.EncryptedChat) this.f18927c, (TLRPC.User) this.f18928e, (TLRPC.Dialog) this.f18926b);
-                return;
-            case 27:
-                ((MessagesStorage) this.d).lambda$addRecentLocalFile$82((TLRPC.Document) this.f18927c, (String) this.f18928e, (String) this.f18926b);
-                return;
-            case 28:
-                ((MessagesStorage) this.d).lambda$markMessagesAsRead$219((LongSparseIntArray) this.f18927c, (LongSparseIntArray) this.f18928e, (SparseIntArray) this.f18926b);
-                return;
+                ProfileActivity profileActivity = (ProfileActivity) this.f18611c;
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) this.d;
+                TLRPC.User user = (TLRPC.User) this.f18612e;
+                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.f18613f;
+                String str = (String) this.f18614g;
+                Integer num = (Integer) obj;
+                profileActivity.getClass();
+                boolean z10 = this.f18610b;
+                if (channelParticipant != null) {
+                    profileActivity.A4(num.intValue(), user, chatParticipant, channelParticipant.admin_rights, channelParticipant.banned_rights, channelParticipant.rank, z10);
+                    return;
+                } else {
+                    profileActivity.A4(num.intValue(), user, chatParticipant, null, null, str, z10);
+                    return;
+                }
             default:
-                ((SavedMessagesController) this.d).lambda$loadDialogs$2((TLObject) this.f18927c, (ArrayList) this.f18928e, (TLRPC.TL_error) this.f18926b);
+                n71 n71Var = (n71) this.f18611c;
+                LinkedHashSet linkedHashSet = (LinkedHashSet) this.f18612e;
+                String str2 = (String) this.f18613f;
+                HashMap hashMap = (HashMap) this.f18614g;
+                ArrayList arrayList3 = (ArrayList) this.d;
+                Runnable runnable = (Runnable) obj;
+                int i10 = n71Var.V;
+                boolean z11 = false;
+                if (this.f18610b) {
+                    ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i10).getStickerSets(5);
+                    for (int i11 = 0; i11 < stickerSets.size(); i11++) {
+                        if (stickerSets.get(i11).documents != null && (arrayList2 = stickerSets.get(i11).documents) != null) {
+                            for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                                String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(arrayList2.get(i12), null);
+                                long j3 = arrayList2.get(i12).f19808id;
+                                if (findAnimatedEmojiEmoticon != null && !linkedHashSet.contains(Long.valueOf(j3)) && str2.contains(findAnimatedEmojiEmoticon.toLowerCase())) {
+                                    linkedHashSet.add(Long.valueOf(j3));
+                                }
+                            }
+                        }
+                    }
+                    ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = MediaDataController.getInstance(i10).getFeaturedEmojiSets();
+                    for (int i13 = 0; i13 < featuredEmojiSets.size(); i13++) {
+                        if ((featuredEmojiSets.get(i13) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).documents) != null) {
+                            for (int i14 = 0; i14 < arrayList.size(); i14++) {
+                                String findAnimatedEmojiEmoticon2 = MessageObject.findAnimatedEmojiEmoticon(arrayList.get(i14), null);
+                                long j10 = arrayList.get(i14).f19808id;
+                                if (findAnimatedEmojiEmoticon2 != null && !linkedHashSet.contains(Long.valueOf(j10)) && str2.contains(findAnimatedEmojiEmoticon2)) {
+                                    linkedHashSet.add(Long.valueOf(j10));
+                                }
+                            }
+                        }
+                    }
+                    runnable.run();
+                    return;
+                }
+                MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+                String[] strArr = n71.a2;
+                ai.h6 h6Var = new ai.h6(n71Var, linkedHashSet, hashMap, arrayList3, runnable);
+                if (n71Var.W == 3) {
+                    z11 = true;
+                }
+                mediaDataController.getEmojiSuggestions(strArr, str2, false, h6Var, null, true, z11, false, 30);
                 return;
         }
     }
 
-    public pk(BaseController baseController, TLRPC.TL_error tL_error, Object obj, Object obj2, int i10) {
-        this.f18925a = i10;
-        this.d = baseController;
-        this.f18926b = tL_error;
-        this.f18927c = obj;
-        this.f18928e = obj2;
+    public pk(ProfileActivity profileActivity, TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z10, String str) {
+        this.f18611c = profileActivity;
+        this.d = channelParticipant;
+        this.f18612e = user;
+        this.f18613f = chatParticipant;
+        this.f18610b = z10;
+        this.f18614g = str;
     }
 
-    public pk(SendMessagesHelper.ImportingStickers.AnonymousClass1 anonymousClass1, TLRPC.TL_error tL_error, TLRPC.TL_stickers_createStickerSet tL_stickers_createStickerSet, TLObject tLObject) {
-        this.f18925a = 1;
-        this.d = anonymousClass1;
-        this.f18926b = tL_error;
-        this.f18928e = tL_stickers_createStickerSet;
-        this.f18927c = tLObject;
+    public pk(n71 n71Var, boolean z10, LinkedHashSet linkedHashSet, String str, HashMap hashMap, ArrayList arrayList) {
+        this.f18611c = n71Var;
+        this.f18610b = z10;
+        this.f18612e = linkedHashSet;
+        this.f18613f = str;
+        this.f18614g = hashMap;
+        this.d = arrayList;
     }
 }

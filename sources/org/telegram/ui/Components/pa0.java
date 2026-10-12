@@ -1,202 +1,68 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class pa0 extends v7.e5 {
-    public int f29825a;
-    public final TL_iv.PageBlock f29826b;
-    public TL_iv.textConcat f29827c = new TL_iv.textConcat();
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pa0 extends View {
+    public final TextPaint f29475a;
+    public final Paint f29476b;
+    public final String f29477c;
+    public final Rect d;
+    public View f29478e;
 
-    public pa0(TL_iv.PageBlock pageBlock) {
-        this.f29826b = pageBlock;
+    public pa0(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f29475a = textPaint;
+        this.f29476b = new Paint(1);
+        this.d = new Rect();
+        this.f29477c = LocaleController.getString(R.string.LoginOrSingInWithGoogle);
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        a();
     }
 
-    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
-        if (textconcat.texts.isEmpty()) {
-            return new TL_iv.textEmpty();
-        }
-        if (textconcat.texts.size() == 1) {
-            return textconcat.texts.get(0);
-        }
-        return textconcat;
-    }
-
-    @Override
-    public final void a(cf.b bVar) {
-        int i10 = this.f29825a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f29825a = i10 + 1;
-        try {
-            v(bVar);
-        } finally {
-            this.f29825a--;
-        }
-    }
-
-    @Override
-    public final void b(cf.c cVar) {
-        int i10 = this.f29825a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f29825a = i10 + 1;
-        try {
-            v(cVar);
-        } finally {
-            this.f29825a--;
-        }
+    public final void a() {
+        this.f29475a.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20945y6, false));
+        this.f29476b.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ii, false));
+        invalidate();
     }
 
     @Override
-    public final void c(cf.d dVar) {
-        TL_iv.textFixed textfixed = new TL_iv.textFixed();
-        textfixed.text = sa0.j(dVar.h);
-        w(textfixed);
-    }
-
-    @Override
-    public final void d(cf.e eVar) {
-        if (eVar instanceof ve.a) {
-            TL_iv.textStrike textstrike = new TL_iv.textStrike();
-            textstrike.text = y(eVar);
-            w(textstrike);
-        } else if (eVar instanceof ad.e) {
-            w(sa0.c(((ad.e) eVar).f421g));
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        super.onDraw(canvas);
+        View view = this.f29478e;
+        Rect rect = this.d;
+        if (view != null) {
+            dp = ((((getWidth() - rect.width()) - AndroidUtilities.dp(8.0f)) - this.f29478e.getPaddingLeft()) - this.f29478e.getPaddingRight()) / 2.0f;
         } else {
-            v(eVar);
+            dp = AndroidUtilities.dp(64.0f);
         }
+        Paint paint = this.f29476b;
+        canvas.drawLine((((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f)) - dp, getHeight() / 2.0f, ((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, ((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f) + dp, getHeight() / 2.0f, paint);
+        int height = getHeight();
+        canvas.drawText(this.f29477c, (getWidth() - rect.width()) / 2.0f, (rect.height() + height) / 2.0f, this.f29475a);
     }
 
     @Override
-    public final void e(cf.g gVar) {
-        TL_iv.textItalic textitalic = new TL_iv.textItalic();
-        textitalic.text = y(gVar);
-        w(textitalic);
-    }
-
-    @Override
-    public final void i(cf.k kVar) {
-        w(y(kVar));
-    }
-
-    @Override
-    public final void k(cf.n nVar) {
-        if (nVar instanceof ad.a) {
-            if (!this.f29827c.texts.isEmpty()) {
-                w(sa0.j("\n"));
-            }
-            w(sa0.c(((ad.a) nVar).f415g));
-            w(sa0.j("\n"));
-            return;
+    public final void onMeasure(int i10, int i11) {
+        View view = this.f29478e;
+        if (view != null) {
+            i10 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(view.getMeasuredWidth()), 1073741824);
         }
-        v(nVar);
+        super.onMeasure(i10, i11);
+        String str = this.f29477c;
+        this.f29475a.getTextBounds(str, 0, str.length(), this.d);
     }
 
-    @Override
-    public final void l(cf.o oVar) {
-        int i10 = this.f29825a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f29825a = i10 + 1;
-        try {
-            v(oVar);
-        } finally {
-            this.f29825a--;
-        }
-    }
-
-    @Override
-    public final void m(cf.q qVar) {
-        int i10 = this.f29825a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f29825a = i10 + 1;
-        try {
-            v(qVar);
-        } finally {
-            this.f29825a--;
-        }
-    }
-
-    @Override
-    public final void n(cf.r rVar) {
-        if (!this.f29827c.texts.isEmpty()) {
-            w(sa0.j("\n\n"));
-        }
-        v(rVar);
-    }
-
-    @Override
-    public final void o(cf.s sVar) {
-        w(sa0.j(sVar.f4656g));
-    }
-
-    @Override
-    public final void q(cf.d dVar) {
-        w(sa0.j(dVar.h));
-    }
-
-    @Override
-    public final void r(cf.g gVar) {
-        w(sa0.j("\n"));
-    }
-
-    @Override
-    public final void s(cf.k kVar) {
-        String str = kVar.h;
-        if (str == null) {
-            str = "";
-        }
-        String trim = str.trim();
-        if (trim.startsWith("mailto:")) {
-            TL_iv.RichText textemail = new TL_iv.textEmail();
-            textemail.text = y(kVar);
-            textemail.email = trim.substring(7);
-            w(textemail);
-        } else if (trim.startsWith("tel:")) {
-            TL_iv.textPhone textphone = new TL_iv.textPhone();
-            textphone.text = y(kVar);
-            textphone.phone = trim.substring(4);
-            w(textphone);
-        } else {
-            TL_iv.RichText texturl = new TL_iv.textUrl();
-            texturl.text = y(kVar);
-            texturl.url = trim;
-            w(texturl);
-        }
-    }
-
-    @Override
-    public final void t(cf.g gVar) {
-        String str;
-        if (this.f29826b instanceof TL_iv.pageBlockBlockquote) {
-            str = "\n";
-        } else {
-            str = " ";
-        }
-        w(sa0.j(str));
-    }
-
-    @Override
-    public final void u(cf.g gVar) {
-        TL_iv.textBold textbold = new TL_iv.textBold();
-        textbold.text = y(gVar);
-        w(textbold);
-    }
-
-    public final void w(TL_iv.RichText richText) {
-        this.f29827c.texts.add(richText);
-    }
-
-    public final TL_iv.RichText y(cf.p pVar) {
-        TL_iv.textConcat textconcat = this.f29827c;
-        this.f29827c = new TL_iv.textConcat();
-        v(pVar);
-        TL_iv.RichText x10 = x(this.f29827c);
-        this.f29827c = textconcat;
-        return x10;
+    public void setMeasureAfter(View view) {
+        this.f29478e = view;
     }
 }

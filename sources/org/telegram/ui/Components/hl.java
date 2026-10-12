@@ -1,73 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.location.Location;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class hl implements Runnable {
-    public final int f27164a;
-    public final xl f27165b;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class hl implements TextWatcher {
+    public boolean f26807a;
+    public final TextView f26808b;
 
-    public hl(xl xlVar, int i10) {
-        this.f27164a = i10;
-        this.f27165b = xlVar;
+    public hl(hg.b1 b1Var, TextView textView) {
+        this.f26808b = textView;
+        this.f26807a = TextUtils.isEmpty(b1Var.getText());
     }
 
     @Override
-    public final void run() {
-        Location location;
-        switch (this.f27164a) {
-            case 0:
-                xl xlVar = this.f27165b;
-                double[] dArr = xlVar.f30245b.A2;
-                xlVar.e0(dArr[0], dArr[1]);
-                return;
-            case 1:
-                xl.P(this.f27165b);
-                return;
-            case 2:
-                this.f27165b.b0();
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new hl(this.f27165b, 4));
-                return;
-            case 4:
-                View view = this.f27165b.M;
-                view.setTag(1);
-                view.animate().alpha(0.0f).setDuration(180L).start();
-                return;
-            case 5:
-                xl xlVar2 = this.f27165b;
-                gg.s0 s0Var = xlVar2.O;
-                if (xlVar2.f33017t0) {
-                    xlVar2.f33017t0 = false;
-                    return;
-                }
-                IMapsProvider.IMap iMap = xlVar2.H;
-                if (iMap != null && (location = xlVar2.f33014r0) != null) {
-                    location.setLatitude(iMap.getCameraPosition().target.latitude);
-                    xlVar2.f33014r0.setLongitude(xlVar2.H.getCameraPosition().target.longitude);
-                }
-                s0Var.L(xlVar2.f33014r0);
-                s0Var.I();
-                return;
-            case 6:
-                ul ulVar = this.f27165b.F;
-                if (ulVar != null) {
-                    ulVar.a();
-                    return;
-                }
-                return;
-            case 7:
-                View view2 = this.f27165b.M;
-                if (view2.getTag() == null) {
-                    view2.animate().alpha(0.0f).setDuration(180L).start();
-                    return;
-                }
-                return;
-            default:
-                this.f27165b.e0(0.0d, 0.0d);
-                return;
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        boolean isEmpty = TextUtils.isEmpty(editable);
+        if (isEmpty != this.f26807a) {
+            this.f26807a = isEmpty;
+            if (isEmpty) {
+                i10 = R.string.Remove;
+            } else {
+                i10 = R.string.Add;
+            }
+            this.f26808b.setText(LocaleController.getString(i10));
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

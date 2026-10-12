@@ -2,9 +2,9 @@ package uf;
 
 import ai.o4;
 public final class b {
-    public final o4 f49019a;
+    public final o4 f49126a;
 
     public b(o4 o4Var) {
-        this.f49019a = o4Var;
+        this.f49126a = o4Var;
     }
 }

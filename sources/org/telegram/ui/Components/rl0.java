@@ -1,214 +1,357 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class rl0 implements View.OnLayoutChangeListener {
-    public final s4.i0 f30540a;
-    public final ArrayList f30541b;
-    public final boolean f30542c;
-    public final sl0 d;
-    public final ul0 f30543e;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class rl0 extends LinearLayout implements me.d {
+    public int E;
+    public uf F;
+    public qe G;
+    public boolean H;
+    public boolean I;
+    public boolean J;
+    public boolean K;
+    public boolean L;
+    public final ci.h2 M;
+    public final org.telegram.ui.ActionBar.c6 f30178a;
+    public final hf f30179b;
+    public final ai.f0 f30180c;
+    public final TextView d;
+    public final TextView f30181e;
+    public final ql0 f30182f;
+    public final TextView h;
+    public final LinearLayout f30183n;
+    public float f30184r;
+    public final TextView f30185s;
+    public final Paint v;
+    public final RectF f30186w;
+    public final me.b f30187x;
+    public int f30188y;
 
-    public rl0(ul0 ul0Var, s4.i0 i0Var, ArrayList arrayList, boolean z10, sl0 sl0Var) {
-        this.f30543e = ul0Var;
-        this.f30540a = i0Var;
-        this.f30541b = arrayList;
-        this.f30542c = z10;
-        this.d = sl0Var;
-    }
+    public rl0(Context context, org.telegram.ui.ActionBar.c6 c6Var, hf hfVar) {
+        super(context);
+        this.v = new Paint(1);
+        this.f30186w = new RectF();
+        this.f30187x = new me.b(0, this, js.h, 220L, true);
+        this.M = new ci.h2(this, 11);
+        this.f30178a = c6Var;
+        this.f30179b = hfVar;
+        setOrientation(1);
+        setClipChildren(false);
+        setClipToPadding(false);
+        setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
+        ai.f0 f0Var = new ai.f0(this, context, 16);
+        this.f30180c = f0Var;
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, AndroidUtilities.dp(36.0f));
+        int dp = AndroidUtilities.dp(8.0f);
+        layoutParams.rightMargin = dp;
+        layoutParams.leftMargin = dp;
+        addView(f0Var, layoutParams);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+        String string = LocaleController.getString(R.string.RecordedAudioSendVoice);
+        TextView textView = new TextView(getContext());
+        textView.setText(string);
+        textView.setTextSize(2, 14.0f);
+        textView.setGravity(17);
+        textView.setFocusable(true);
+        this.d = textView;
+        String string2 = LocaleController.getString(R.string.RecordedAudioSendText);
+        TextView textView2 = new TextView(getContext());
+        textView2.setText(string2);
+        textView2.setTextSize(2, 14.0f);
+        textView2.setGravity(17);
+        textView2.setFocusable(true);
+        this.f30181e = textView2;
+        linearLayout.addView(textView, new LinearLayout.LayoutParams(0, -1, 1.0f));
+        linearLayout.addView(textView2, new LinearLayout.LayoutParams(0, -1, 1.0f));
+        f0Var.addView(linearLayout, new FrameLayout.LayoutParams(-1, -1));
+        textView.setOnClickListener(new View.OnClickListener(this) {
+            public final rl0 f29548b;
 
-    @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        final ArrayList arrayList;
-        int i18;
-        int height;
-        int i19;
-        long min;
-        View view2;
-        ul0 ul0Var = this.f30543e;
-        HashMap hashMap = (HashMap) ul0Var.f31637k;
-        rm0 rm0Var = (rm0) ul0Var.f31632e;
-        rm0Var.removeOnLayoutChangeListener(this);
-        final ArrayList arrayList2 = new ArrayList();
-        rm0Var.B0();
-        int childCount = rm0Var.getChildCount();
-        int i20 = 0;
-        int i21 = 0;
-        int i22 = 0;
-        int i23 = 0;
-        boolean z10 = false;
-        while (true) {
-            arrayList = this.f30541b;
-            if (i20 >= childCount) {
-                break;
+            {
+                this.f29548b = this;
             }
-            View childAt = rm0Var.getChildAt(i20);
-            arrayList2.add(childAt);
-            if (childAt.getTop() < i21) {
-                i21 = childAt.getTop();
-            }
-            if (childAt.getBottom() > i22) {
-                i22 = childAt.getBottom();
-            }
-            if (childAt instanceof org.telegram.ui.Cells.o4) {
-                ((org.telegram.ui.Cells.o4) childAt).c(true, false);
-            }
-            s4.i0 i0Var = this.f30540a;
-            if (i0Var != null && (i0Var.f47837b || ul0Var.f31631c)) {
-                rm0Var.getClass();
-                long i24 = i0Var.i(RecyclerView.R(childAt));
-                if (hashMap.containsKey(Long.valueOf(i24)) && (view2 = (View) hashMap.get(Long.valueOf(i24))) != null) {
-                    if (view2 instanceof org.telegram.ui.Cells.o4) {
-                        ((org.telegram.ui.Cells.o4) view2).c(false, false);
-                    }
-                    arrayList.remove(view2);
-                    w7.y5 y5Var = (w7.y5) ul0Var.f31635i;
-                    if (y5Var != null) {
-                        y5Var.d(view2);
-                    }
-                    int top = childAt.getTop() - view2.getTop();
-                    if (top != 0) {
-                        i23 = top;
-                    }
-                    z10 = true;
-                }
-            }
-            i20++;
-        }
-        hashMap.clear();
-        int size = arrayList.size();
-        int i25 = 0;
-        int i26 = 0;
-        int i27 = Integer.MAX_VALUE;
-        while (i26 < size) {
-            Object obj = arrayList.get(i26);
-            i26++;
-            View view3 = (View) obj;
-            int bottom = view3.getBottom();
-            int top2 = view3.getTop();
-            if (bottom > i25) {
-                i25 = bottom;
-            }
-            if (top2 < i27) {
-                i27 = top2;
-            }
-            if (view3.getParent() == null) {
-                rm0Var.addView(view3);
-                ((s4.d0) ul0Var.f31633f).M(view3);
-            }
-            if (view3 instanceof org.telegram.ui.Cells.o4) {
-                ((org.telegram.ui.Cells.o4) view3).c(true, true);
-            }
-        }
-        if (i27 == Integer.MAX_VALUE) {
-            i18 = 0;
-        } else {
-            i18 = i27;
-        }
-        w7.y5 y5Var2 = (w7.y5) ul0Var.f31635i;
-        if (y5Var2 != null) {
-            y5Var2.b();
-        }
-        if (arrayList.isEmpty()) {
-            i19 = Math.abs(i23);
-        } else {
-            boolean z11 = this.f30542c;
-            if (!z11) {
-                i25 = rm0Var.getHeight() - i18;
-            }
-            if (z11) {
-                height = -i21;
-            } else {
-                height = i22 - rm0Var.getHeight();
-            }
-            i19 = height + i25;
-        }
-        final int paddingBottom = rm0Var.getPaddingBottom();
-        ValueAnimator valueAnimator = (ValueAnimator) ul0Var.f31634g;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            ((ValueAnimator) ul0Var.f31634g).cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ul0Var.f31634g = ofFloat;
-        final boolean z12 = this.f30542c;
-        final int i28 = i19;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+
             @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                boolean z13;
-                int i29;
-                ul0 ul0Var2 = rl0.this.f30543e;
-                rm0 rm0Var2 = (rm0) ul0Var2.f31632e;
-                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                ArrayList arrayList3 = arrayList;
-                int size2 = arrayList3.size();
-                int i30 = 0;
-                while (true) {
-                    z13 = z12;
-                    i29 = i28;
-                    if (i30 >= size2) {
-                        break;
-                    }
-                    View view4 = (View) arrayList3.get(i30);
-                    float y3 = view4.getY();
-                    if (view4.getY() + view4.getMeasuredHeight() >= 0.0f && y3 <= rm0Var2.getMeasuredHeight()) {
-                        if (z13) {
-                            view4.setTranslationY((-i29) * floatValue);
-                        } else {
-                            view4.setTranslationY(i29 * floatValue);
-                        }
-                    }
-                    i30++;
-                }
-                int paddingBottom2 = paddingBottom - rm0Var2.getPaddingBottom();
-                ArrayList arrayList4 = arrayList2;
-                int size3 = arrayList4.size();
-                for (int i31 = 0; i31 < size3; i31++) {
-                    View view5 = (View) arrayList4.get(i31);
-                    if (z13) {
-                        view5.setTranslationY(((1.0f - floatValue) * i29) + paddingBottom2);
-                    } else {
-                        view5.setTranslationY((1.0f - floatValue) * (-i29));
-                    }
-                }
-                rm0Var2.invalidate();
-                tl0 tl0Var = (tl0) ul0Var2.h;
-                if (tl0Var != null) {
-                    tl0Var.a();
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        this.f29548b.setSendAsText(false);
+                        return;
+                    default:
+                        this.f29548b.setSendAsText(true);
+                        return;
                 }
             }
         });
-        ((ValueAnimator) ul0Var.f31634g).addListener(new ai.z(28, this, arrayList2));
-        long j3 = 300;
-        if (ul0Var.d) {
-            if (z10) {
-                ((ValueAnimator) ul0Var.f31634g).setDuration(150L);
-                ((ValueAnimator) ul0Var.f31634g).setInterpolator(is.f27501g);
-            } else {
-                long measuredHeight = ((i28 / rm0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
-                if (measuredHeight >= 300) {
-                    j3 = measuredHeight;
-                }
-                ((ValueAnimator) ul0Var.f31634g).setDuration(Math.min(j3, 1300L));
-                ((ValueAnimator) ul0Var.f31634g).setInterpolator(is.h);
+        textView2.setOnClickListener(new View.OnClickListener(this) {
+            public final rl0 f29548b;
+
+            {
+                this.f29548b = this;
             }
-        } else {
-            if (z10) {
-                min = 600;
-            } else {
-                long measuredHeight2 = ((i28 / rm0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
-                if (measuredHeight2 >= 300) {
-                    j3 = measuredHeight2;
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        this.f29548b.setSendAsText(false);
+                        return;
+                    default:
+                        this.f29548b.setSendAsText(true);
+                        return;
                 }
-                min = Math.min(j3, 1300L);
             }
-            ((ValueAnimator) ul0Var.f31634g).setDuration(min);
-            ((ValueAnimator) ul0Var.f31634g).setInterpolator(is.h);
+        });
+        ql0 ql0Var = new ql0(this, context, hfVar);
+        this.f30182f = ql0Var;
+        ql0Var.setMinimumHeight(AndroidUtilities.dp(44.0f));
+        ql0Var.setClipChildren(false);
+        LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(-1, -2);
+        layoutParams2.topMargin = AndroidUtilities.dp(6.0f);
+        addView(ql0Var, layoutParams2);
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        this.f30183n = linearLayout2;
+        linearLayout2.setGravity(16);
+        linearLayout2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        addView(linearLayout2, 1, new LinearLayout.LayoutParams(-1, AndroidUtilities.dp(28.0f)));
+        TextView textView3 = new TextView(context);
+        this.h = textView3;
+        textView3.setTextSize(2, 12.0f);
+        textView3.setSingleLine(true);
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout2, textView3, new LinearLayout.LayoutParams(0, -2, 1.0f), context);
+        this.f30185s = h;
+        h.setTextSize(2, 13.0f);
+        h.setGravity(17);
+        h.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        h.setText(LocaleController.getString(R.string.RecordedAudioRecognizeAgain));
+        h.setOnClickListener(new f90(hfVar, 9));
+        linearLayout2.addView(h, new LinearLayout.LayoutParams(-2, -1));
+        d();
+        e();
+    }
+
+    private void setEditorText(String str) {
+        uf ufVar = this.F;
+        if (ufVar == null) {
+            return;
         }
-        ((ValueAnimator) ul0Var.f31634g).start();
+        this.L = true;
+        try {
+            ufVar.setText(str);
+            uf ufVar2 = this.F;
+            ufVar2.setSelection(ufVar2.length());
+        } finally {
+            this.L = false;
+        }
+    }
+
+    public final void a(float f7) {
+        uf ufVar = this.F;
+        if (ufVar != null) {
+            ufVar.setAlpha((0.28f * f7) + 0.72f);
+            this.F.setTranslationX((1.0f - f7) * AndroidUtilities.dp(8.0f));
+            this.F.setImportantForAccessibility(0);
+        }
+        qe qeVar = this.G;
+        if (qeVar != null) {
+            qeVar.setAlpha(f7);
+        }
+        this.d.setTextColor(i0.a.d(f7, this.f30188y, this.E));
+        this.f30181e.setTextColor(i0.a.d(f7, this.E, this.f30188y));
+        this.f30180c.invalidate();
+        ChatActivityEnterView chatActivityEnterView = this.f30179b.f26765a;
+        int i10 = ChatActivityEnterView.Q5;
+        chatActivityEnterView.X1(f7);
+    }
+
+    public final boolean b() {
+        uf ufVar = this.F;
+        if (ufVar != null && this.K && !this.H && !this.I && !this.J && !TextUtils.isEmpty(AndroidUtilities.getTrimmedString(ufVar.getText()))) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void c() {
+        uf ufVar = this.F;
+        if (ufVar != null && ufVar.isFocused()) {
+            AndroidUtilities.hideKeyboard(this.F);
+            this.F.clearFocus();
+        }
+    }
+
+    public final void d() {
+        int i10 = org.telegram.ui.ActionBar.h6.Yd;
+        org.telegram.ui.ActionBar.c6 c6Var = this.f30178a;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(i10, c6Var);
+        this.f30188y = w02;
+        int i11 = org.telegram.ui.ActionBar.h6.Ud;
+        this.E = org.telegram.ui.ActionBar.h6.w0(i11, c6Var);
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        int i12 = 16777215 & w02;
+        gradientDrawable.setColor((Math.round(Color.alpha(w02) * 0.08f) << 24) | i12);
+        gradientDrawable.setCornerRadius(AndroidUtilities.dp(10.0f));
+        this.f30180c.setBackground(gradientDrawable);
+        this.v.setColor((Math.round(Color.alpha(w02) * 0.18f) << 24) | i12);
+        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
+        this.f30181e.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
+        this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Vd, c6Var));
+        TextView textView = this.f30185s;
+        textView.setTextColor(w02);
+        textView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20650i6, c6Var), 1, -1));
+        a(this.f30187x.f16087e);
+    }
+
+    public final void e() {
+        Typeface typeface;
+        int i10;
+        boolean z10;
+        me.b bVar = this.f30187x;
+        boolean z11 = bVar.f16088f;
+        TextView textView = this.d;
+        textView.setSelected(!z11);
+        TextView textView2 = this.f30181e;
+        textView2.setSelected(z11);
+        Typeface typeface2 = null;
+        if (!z11) {
+            typeface = AndroidUtilities.bold();
+        } else {
+            typeface = null;
+        }
+        textView.setTypeface(typeface);
+        if (z11) {
+            typeface2 = AndroidUtilities.bold();
+        }
+        textView2.setTypeface(typeface2);
+        uf ufVar = this.F;
+        int i11 = 0;
+        boolean z12 = true;
+        if (ufVar != null) {
+            if (z11 && this.K && !this.H && !this.I && !this.J) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            ufVar.setEnabled(z10);
+        }
+        qe qeVar = this.G;
+        if (qeVar != null) {
+            if (!z11 || !this.K || this.H || this.I || this.J) {
+                z12 = false;
+            }
+            qeVar.setEnabled(z12);
+        }
+        if (!this.I && !this.J) {
+            i10 = 8;
+        } else {
+            i10 = 0;
+        }
+        this.f30185s.setVisibility(i10);
+        if (!this.I && !this.J) {
+            i11 = 8;
+        }
+        this.f30183n.setVisibility(i11);
+        boolean z13 = this.I;
+        TextView textView3 = this.h;
+        if (z13) {
+            textView3.setText(LocaleController.getString(R.string.RecordedAudioTranscriptionFailed));
+        } else if (this.J) {
+            textView3.setText(LocaleController.getString(R.string.RecordedAudioTranscriptOutdated));
+        } else {
+            textView3.setText("");
+        }
+        a(bVar.f16087e);
+    }
+
+    public int getEditorBottom() {
+        return this.f30182f.getBottom();
+    }
+
+    public Editable getText() {
+        uf ufVar = this.F;
+        if (ufVar == null) {
+            return null;
+        }
+        return ufVar.getText();
+    }
+
+    public float getTextModeProgress() {
+        return this.f30187x.f16087e;
+    }
+
+    @Override
+    public final void n(int i10, float f7, float f10, me.e eVar) {
+        a(f7);
+    }
+
+    public void setHeightOffset(float f7) {
+        if (this.f30184r == f7) {
+            return;
+        }
+        this.f30184r = f7;
+        this.f30180c.setTranslationY(f7);
+        this.f30183n.setTranslationY(f7);
+        this.f30182f.invalidate();
+    }
+
+    public void setPartialText(String str) {
+        setEditorText(str);
+    }
+
+    public void setSendAsText(boolean z10) {
+        me.b bVar = this.f30187x;
+        if (bVar.f16088f == z10) {
+            return;
+        }
+        if (!z10) {
+            c();
+        }
+        bVar.a(z10, isAttachedToWindow());
+        e();
+        ChatActivityEnterView chatActivityEnterView = this.f30179b.f26765a;
+        if (!chatActivityEnterView.f23665h3.f30187x.f16088f) {
+            chatActivityEnterView.o0(false, false, false);
+        }
+        chatActivityEnterView.U1();
+        chatActivityEnterView.J0.invalidate();
+    }
+
+    public void setSendButtonWidth(int i10) {
+        if (this.F != null) {
+            int max = Math.max(AndroidUtilities.dp(50.0f), i10);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.F.getLayoutParams();
+            if (layoutParams.rightMargin != max) {
+                layoutParams.rightMargin = max;
+                this.F.setLayoutParams(layoutParams);
+            }
+        }
+    }
+
+    public void setTranscript(String str) {
+        this.J = false;
+        this.I = false;
+        this.H = false;
+        this.K = true;
+        setEditorText(str);
+        e();
+    }
+
+    @Override
+    public final void C(float f7, int i10) {
     }
 }

@@ -1,29 +1,72 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class e01 implements kq {
-    public final sy f37201a;
-    public final f01 f37202b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+public final class e01 extends AnimatorListenerAdapter {
+    public final int f36952a;
+    public final boolean f36953b;
+    public final ProfileActivity f36954c;
 
-    public e01(f01 f01Var, sy syVar) {
-        this.f37202b = f01Var;
-        this.f37201a = syVar;
+    public e01(ProfileActivity profileActivity, boolean z10, int i10) {
+        this.f36952a = i10;
+        this.f36954c = profileActivity;
+        this.f36953b = z10;
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        f01 f01Var = this.f37202b;
-        f01Var.f37533b.N1 = true;
-        this.f37201a.removeSelfFromStack();
-        NotificationCenter notificationCenter = f01Var.f37533b.getNotificationCenter();
-        ProfileActivity profileActivity = f01Var.f37533b;
-        int i11 = NotificationCenter.closeChats;
-        notificationCenter.removeObserver(profileActivity, i11);
-        f01Var.f37533b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f36952a) {
+            case 1:
+                this.f36954c.f34087f0 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
     }
 
     @Override
-    public final void a(TLRPC.User user) {
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        org.telegram.ui.Cells.z3 z3Var;
+        switch (this.f36952a) {
+            case 0:
+                ProfileActivity profileActivity = this.f36954c;
+                boolean z10 = this.f36953b;
+                ProfileActivity.n1(profileActivity, z10);
+                profileActivity.Y.setClickable(true);
+                if (z10) {
+                    org.telegram.ui.ActionBar.u0 u0Var = profileActivity.U0;
+                    if (u0Var.F.getWidth() != 0 && !u0Var.f21314e.isFocused()) {
+                        u0Var.f21314e.requestFocus();
+                        AndroidUtilities.showKeyboard(u0Var.f21314e);
+                    }
+                }
+                profileActivity.k4(true);
+                profileActivity.V1 = null;
+                profileActivity.fragmentView.invalidate();
+                if (z10) {
+                    profileActivity.U4 = true;
+                    profileActivity.F4();
+                    Activity parentActivity = profileActivity.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.m2) profileActivity).classGuid;
+                    AndroidUtilities.requestAdjustResize(parentActivity, i10);
+                    profileActivity.P.setPreventMoving(false);
+                    return;
+                }
+                return;
+            default:
+                ProfileActivity profileActivity2 = this.f36954c;
+                if (profileActivity2.f34087f0 != null && (z3Var = profileActivity2.f34094g0) != null) {
+                    if (!this.f36953b) {
+                        z3Var.setVisibility(4);
+                    }
+                    profileActivity2.f34087f0 = null;
+                    return;
+                }
+                return;
+        }
     }
 }

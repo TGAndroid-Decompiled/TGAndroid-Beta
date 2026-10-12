@@ -1,6 +1,7 @@
 package da;
 
 import org.json.JSONObject;
+import t7.t;
 public interface d {
-    b D(rb.a aVar, JSONObject jSONObject);
+    b v2(t tVar, JSONObject jSONObject);
 }

@@ -1,33 +1,39 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.UndoView;
-public final class kl extends UndoView {
-    public final zn f39408f0;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class kl implements org.telegram.ui.Components.ml0 {
+    public final eo f39541a;
 
-    public kl(zn znVar, Activity activity, zn znVar2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity, znVar2, true, d6Var);
-        this.f39408f0 = znVar;
+    public kl(eo eoVar) {
+        this.f39541a = eoVar;
     }
 
     @Override
-    public final void b(CharacterStyle characterStyle) {
-        this.f39408f0.X7(characterStyle, false, null, null);
+    public final void h(android.view.View r24, zg.n0 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kl.h(android.view.View, zg.n0, boolean, boolean):void");
     }
 
     @Override
-    public final void k(long j3, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        float f7;
-        int i11;
-        ik ikVar = this.f39408f0.X1;
-        if (ikVar != null && (((i11 = ikVar.U) == 1 || i11 == 3) && ikVar.T)) {
-            f7 = AndroidUtilities.dp(ikVar.getStyleHeight());
-        } else {
-            f7 = 0.0f;
-        }
-        setAdditionalTranslationY(f7);
-        super.k(j3, i10, obj, obj2, runnable, runnable2);
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final void p() {
+    }
+
+    @Override
+    public final void o(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

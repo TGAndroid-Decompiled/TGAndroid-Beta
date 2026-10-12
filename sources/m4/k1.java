@@ -4,17 +4,17 @@ import android.os.Bundle;
 import j$.util.Objects;
 public final class k1 {
     public static final String d;
-    public static final String f16185e;
-    public static final String f16186f;
-    public final int f16187a;
-    public final String f16188b;
-    public final Bundle f16189c;
+    public static final String f15873e;
+    public static final String f15874f;
+    public final int f15875a;
+    public final String f15876b;
+    public final Bundle f15877c;
 
     static {
-        String str = e2.d0.f8531a;
+        String str = e2.d0.f8529a;
         d = Integer.toString(0, 36);
-        f16185e = Integer.toString(1, 36);
-        f16186f = Integer.toString(2, 36);
+        f15873e = Integer.toString(1, 36);
+        f15874f = Integer.toString(2, 36);
     }
 
     public k1(int i10) {
@@ -23,11 +23,11 @@ public final class k1 {
 
     public final Bundle a() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d, this.f16187a);
-        bundle.putString(f16185e, this.f16188b);
-        Bundle bundle2 = this.f16189c;
+        bundle.putInt(d, this.f15875a);
+        bundle.putString(f15873e, this.f15876b);
+        Bundle bundle2 = this.f15877c;
         if (!bundle2.isEmpty()) {
-            bundle.putBundle(f16186f, bundle2);
+            bundle.putBundle(f15874f, bundle2);
         }
         return bundle;
     }
@@ -40,14 +40,14 @@ public final class k1 {
             return false;
         }
         k1 k1Var = (k1) obj;
-        if (this.f16187a == k1Var.f16187a && Objects.equals(this.f16188b, k1Var.f16188b)) {
+        if (this.f15875a == k1Var.f15875a && Objects.equals(this.f15876b, k1Var.f15876b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f16187a), this.f16188b);
+        return Objects.hash(Integer.valueOf(this.f15875a), this.f15876b);
     }
 
     public k1(String str, int i10, Bundle bundle) {
@@ -56,8 +56,8 @@ public final class k1 {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f16187a = i10;
-        this.f16188b = str;
-        this.f16189c = bundle;
+        this.f15875a = i10;
+        this.f15876b = str;
+        this.f15877c = bundle;
     }
 }

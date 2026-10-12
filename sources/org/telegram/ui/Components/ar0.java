@@ -1,54 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ar0 implements TextWatcher {
-    public final nr0 f24653a;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class ar0 implements View.OnTouchListener {
+    public final int f24463a;
+    public final Rect f24464b;
+    public final sr0 f24465c;
 
-    public ar0(nr0 nr0Var) {
-        this.f24653a = nr0Var;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        nr0 nr0Var = this.f24653a;
-        fr0 fr0Var = nr0Var.K;
-        by0 by0Var = nr0Var.Q;
-        t20 t20Var = nr0Var.f29265y0;
-        if (!TextUtils.isEmpty(t20Var.f31038r.getText())) {
-            nr0Var.L0(false);
-        }
-        if (nr0Var.A0) {
-            String obj = t20Var.f31038r.getText().toString();
-            if (obj.length() != 0) {
-                if (by0Var != null) {
-                    by0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                }
-            } else if (nr0Var.F.getAdapter() != fr0Var) {
-                int G0 = nr0.G0(nr0Var);
-                by0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                by0Var.e(false, true);
-                nr0Var.L0(false);
-                fr0Var.l();
-                if (G0 > 0) {
-                    nr0Var.H.h1(0, -G0);
-                }
-            }
-            jr0 jr0Var = nr0Var.M;
-            if (jr0Var != null) {
-                jr0Var.E(obj);
-            }
+    public ar0(sr0 sr0Var, int i10) {
+        this.f24463a = i10;
+        switch (i10) {
+            case 1:
+                this.f24465c = sr0Var;
+                this.f24464b = new Rect();
+                return;
+            default:
+                this.f24465c = sr0Var;
+                this.f24464b = new Rect();
+                return;
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        sr0 sr0Var;
+        org.telegram.ui.ActionBar.m1 m1Var;
+        sr0 sr0Var2;
+        org.telegram.ui.ActionBar.m1 m1Var2;
+        switch (this.f24463a) {
+            case 0:
+                if (motionEvent.getActionMasked() == 0 && (m1Var = (sr0Var = this.f24465c).J0) != null && m1Var.isShowing()) {
+                    Rect rect = this.f24464b;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        sr0Var.J0.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            default:
+                if (motionEvent.getActionMasked() == 0 && (m1Var2 = (sr0Var2 = this.f24465c).J0) != null && m1Var2.isShowing()) {
+                    Rect rect2 = this.f24464b;
+                    view.getHitRect(rect2);
+                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        sr0Var2.J0.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+        }
     }
 }

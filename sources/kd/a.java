@@ -1,16 +1,16 @@
 package kd;
 
-import w7.v;
+import w7.u;
 public final class a {
-    public static final a f14783a;
-    public static final a[] f14784b;
+    public static final a f14780a;
+    public static final a[] f14781b;
 
     static {
         ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
-        f14783a = r02;
+        f14780a = r02;
         a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
-        f14784b = aVarArr;
-        v.a(aVarArr);
+        f14781b = aVarArr;
+        u.a(aVarArr);
     }
 
     public static a valueOf(String str) {
@@ -18,6 +18,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f14784b.clone();
+        return (a[]) f14781b.clone();
     }
 }

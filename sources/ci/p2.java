@@ -20,15 +20,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.ff0;
-import org.telegram.ui.Components.ja0;
+import org.telegram.ui.Components.if0;
+import org.telegram.ui.Components.na0;
 public final class p2 extends View {
-    public final Paint f5717a;
-    public final TextPaint f5718b;
-    public final ArrayList f5719c;
+    public final Paint f5716a;
+    public final TextPaint f5717b;
+    public final ArrayList f5718c;
     public float[] d;
-    public d1 f5720e;
-    public final r2 f5721f;
+    public d1 f5719e;
+    public final r2 f5720f;
 
     public p2(r2 r2Var, Context context) {
         super(context);
@@ -36,27 +36,27 @@ public final class p2 extends View {
         String a2;
         int i10;
         int i11;
-        this.f5721f = r2Var;
+        this.f5720f = r2Var;
         Paint paint = new Paint(1);
-        this.f5717a = paint;
+        this.f5716a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f5718b = textPaint;
+        this.f5717b = textPaint;
         paint.setColor(436207615);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         textPaint.setTextSize(AndroidUtilities.dpf2(21.3f));
         textPaint.setColor(-1);
         ArrayList arrayList = new ArrayList();
-        this.f5719c = arrayList;
+        this.f5718c = arrayList;
         setPadding(0, 0, 0, 0);
         if (r2Var.n0(4)) {
             m2 m2Var = new m2(this, 4, R.drawable.msg_limit_links, LocaleController.getString(R.string.StoryWidgetLink));
             i11 = ((org.telegram.ui.ActionBar.e3) r2Var).currentAccount;
             if (!UserConfig.getInstance(i11).isPremium()) {
                 Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
-                m2Var.f5583j = mutate;
+                m2Var.f5582j = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.m1(0.6f, -1), PorterDuff.Mode.SRC_IN));
                 Paint paint2 = new Paint(1);
-                m2Var.f5587n = paint2;
+                m2Var.f5586n = paint2;
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             }
             arrayList.add(m2Var);
@@ -65,13 +65,13 @@ public final class p2 extends View {
             arrayList.add(new m2(this, 0, R.drawable.map_pin3, LocaleController.getString(R.string.StoryWidgetLocation)));
         }
         if (r2Var.n0(5)) {
-            kd kdVar = ld.f5544b;
+            kd kdVar = ld.f5543b;
             m2[] m2VarArr = {null};
             StringBuilder sb2 = new StringBuilder();
             if (kdVar == null) {
                 str = "🌤";
             } else {
-                str = kdVar.f5351c;
+                str = kdVar.f5350c;
             }
             sb2.append(str);
             sb2.append(" ");
@@ -91,9 +91,9 @@ public final class p2 extends View {
             if (MessagesController.getInstance(i10).storyWeatherPreload) {
                 spannableStringBuilder = replaceEmoji;
                 spannableStringBuilder = replaceEmoji;
-                if (ff0.d("android.permission.ACCESS_COARSE_LOCATION") && kdVar == null) {
+                if (if0.d("android.permission.ACCESS_COARSE_LOCATION") && kdVar == null) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
-                    spannableStringBuilder2.setSpan(new ja0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
+                    spannableStringBuilder2.setSpan(new na0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
                     m2VarArr[0] = new m2(this, spannableStringBuilder2);
                     ld.a(false, new ai.h3(1, this, m2VarArr));
                     spannableStringBuilder = spannableStringBuilder2;
@@ -115,7 +115,7 @@ public final class p2 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.f5719c;
+        ArrayList arrayList = this.f5718c;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -136,28 +136,28 @@ public final class p2 extends View {
             Object obj = arrayList.get(i12);
             i12++;
             l2 l2Var = (l2) obj;
-            int i13 = l2Var.f5381e - 1;
+            int i13 = l2Var.f5380e - 1;
             float[] fArr2 = this.d;
             float f7 = fArr2[i13];
             if (f7 > 0.0f) {
                 fArr2[i13] = f7 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i13] = fArr3[i13] + l2Var.h.d(l2Var.f5379b, false);
+            fArr3[i13] = fArr3[i13] + l2Var.h.d(l2Var.f5378b, false);
         }
         int size2 = arrayList.size();
         while (i10 < size2) {
             Object obj2 = arrayList.get(i10);
             i10++;
             l2 l2Var2 = (l2) obj2;
-            l2Var2.a(canvas, com.google.android.gms.internal.vision.e2.z((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[l2Var2.f5381e - 1], 2.0f, getPaddingLeft()) + l2Var2.d, org.telegram.messenger.q.D(48.0f, l2Var2.f5381e - 1, AndroidUtilities.dp(12.0f)));
+            l2Var2.a(canvas, com.google.android.gms.internal.vision.e2.z((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[l2Var2.f5380e - 1], 2.0f, getPaddingLeft()) + l2Var2.d, org.telegram.messenger.v0.D(48.0f, l2Var2.f5380e - 1, AndroidUtilities.dp(12.0f)));
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ArrayList arrayList = this.f5719c;
+        ArrayList arrayList = this.f5718c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -170,7 +170,7 @@ public final class p2 extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ArrayList arrayList = this.f5719c;
+        ArrayList arrayList = this.f5718c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -184,7 +184,7 @@ public final class p2 extends View {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        ArrayList arrayList = this.f5719c;
+        ArrayList arrayList = this.f5718c;
         int size2 = arrayList.size();
         int i12 = 0;
         int i13 = 1;
@@ -195,15 +195,15 @@ public final class p2 extends View {
             i14++;
             l2 l2Var = (l2) obj;
             l2Var.d = f7;
-            float dp = l2Var.f5379b + AndroidUtilities.dp(10.0f) + f7;
+            float dp = l2Var.f5378b + AndroidUtilities.dp(10.0f) + f7;
             if (dp > paddingLeft) {
                 i13++;
                 l2Var.d = 0.0f;
-                f7 = l2Var.f5379b + AndroidUtilities.dp(10.0f) + 0.0f;
+                f7 = l2Var.f5378b + AndroidUtilities.dp(10.0f) + 0.0f;
             } else {
                 f7 = dp;
             }
-            l2Var.f5381e = i13;
+            l2Var.f5380e = i13;
         }
         float[] fArr = this.d;
         if (fArr != null && fArr.length == i13) {
@@ -216,16 +216,16 @@ public final class p2 extends View {
             Object obj2 = arrayList.get(i12);
             i12++;
             l2 l2Var2 = (l2) obj2;
-            int i15 = l2Var2.f5381e - 1;
+            int i15 = l2Var2.f5380e - 1;
             float[] fArr2 = this.d;
             float f10 = fArr2[i15];
             if (f10 > 0.0f) {
                 fArr2[i15] = f10 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i15] = fArr3[i15] + l2Var2.f5379b;
+            fArr3[i15] = fArr3[i15] + l2Var2.f5378b;
         }
-        setMeasuredDimension(size, org.telegram.messenger.q.D(12.0f, i13 - 1, org.telegram.messenger.q.D(36.0f, i13, AndroidUtilities.dp(24.0f))));
+        setMeasuredDimension(size, org.telegram.messenger.v0.D(12.0f, i13 - 1, org.telegram.messenger.v0.D(36.0f, i13, AndroidUtilities.dp(24.0f))));
     }
 
     @Override
@@ -233,7 +233,7 @@ public final class p2 extends View {
         l2 l2Var;
         d1 d1Var;
         boolean z10;
-        ArrayList arrayList = this.f5719c;
+        ArrayList arrayList = this.f5718c;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -241,7 +241,7 @@ public final class p2 extends View {
                 Object obj = arrayList.get(i10);
                 i10++;
                 l2Var = (l2) obj;
-                if (l2Var.f5382f.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (l2Var.f5381f.contains(motionEvent.getX(), motionEvent.getY())) {
                     break;
                 }
             } else {
@@ -256,20 +256,20 @@ public final class p2 extends View {
             i11++;
             l2 l2Var2 = (l2) obj2;
             if (l2Var2 != l2Var) {
-                l2Var2.f5383g.c(false);
+                l2Var2.f5382g.c(false);
             }
         }
         if (l2Var != null) {
-            org.telegram.ui.Components.bd bdVar = l2Var.f5383g;
+            org.telegram.ui.Components.ad adVar = l2Var.f5382g;
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            bdVar.c(z10);
+            adVar.c(z10);
         }
-        if (motionEvent.getAction() == 1 && l2Var != null && (d1Var = this.f5720e) != null) {
-            d1Var.run(Integer.valueOf(l2Var.f5378a));
+        if (motionEvent.getAction() == 1 && l2Var != null && (d1Var = this.f5719e) != null) {
+            d1Var.run(Integer.valueOf(l2Var.f5377a));
         }
         if (l2Var == null) {
             return false;

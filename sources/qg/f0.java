@@ -1,20 +1,20 @@
 package qg;
 
-import org.telegram.ui.au0;
+import org.telegram.ui.cu0;
 public final class f0 implements c {
-    public final au0 f46358a;
+    public final cu0 f46180a;
 
-    public f0(au0 au0Var) {
-        this.f46358a = au0Var;
+    public f0(cu0 cu0Var) {
+        this.f46180a = cu0Var;
     }
 
     @Override
     public final void a() {
-        this.f46358a.s0(null, true);
+        this.f46180a.s0(null, true);
     }
 
     @Override
     public final j b() {
-        return this.f46358a.S0;
+        return this.f46180a.S0;
     }
 }

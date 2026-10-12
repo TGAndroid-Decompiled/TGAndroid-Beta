@@ -6,44 +6,44 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 public final class w implements ThreadFactory {
-    public final int f4296a;
-    public final Object f4297b;
-    public final Serializable f4298c;
+    public final int f4295a;
+    public final Object f4296b;
+    public final Serializable f4297c;
 
     public w(c cVar) {
-        this.f4296a = 0;
-        this.f4297b = Executors.defaultThreadFactory();
-        this.f4298c = new AtomicInteger(1);
+        this.f4295a = 0;
+        this.f4296b = Executors.defaultThreadFactory();
+        this.f4297c = new AtomicInteger(1);
     }
 
     @Override
     public final Thread newThread(Runnable runnable) {
-        switch (this.f4296a) {
+        switch (this.f4295a) {
             case 0:
-                Thread newThread = ((ThreadFactory) this.f4297b).newThread(runnable);
-                int andIncrement = ((AtomicInteger) this.f4298c).getAndIncrement();
+                Thread newThread = ((ThreadFactory) this.f4296b).newThread(runnable);
+                int andIncrement = ((AtomicInteger) this.f4297c).getAndIncrement();
                 newThread.setName("PlayBillingLibrary-" + andIncrement);
                 return newThread;
             case 1:
-                Thread newThread2 = ((ThreadFactory) this.f4297b).newThread(new l5.o(2, runnable));
-                newThread2.setName((String) this.f4298c);
+                Thread newThread2 = ((ThreadFactory) this.f4296b).newThread(new l5.p(2, runnable));
+                newThread2.setName((String) this.f4297c);
                 return newThread2;
             default:
-                Thread newThread3 = Executors.defaultThreadFactory().newThread(new w9.s(runnable));
-                newThread3.setName(((String) this.f4297b) + ((AtomicLong) this.f4298c).getAndIncrement());
+                Thread newThread3 = Executors.defaultThreadFactory().newThread(new w9.t(runnable));
+                newThread3.setName(((String) this.f4296b) + ((AtomicLong) this.f4297c).getAndIncrement());
                 return newThread3;
         }
     }
 
     public w(String str) {
-        this.f4296a = 1;
-        this.f4297b = Executors.defaultThreadFactory();
-        this.f4298c = str;
+        this.f4295a = 1;
+        this.f4296b = Executors.defaultThreadFactory();
+        this.f4297c = str;
     }
 
     public w(String str, AtomicLong atomicLong) {
-        this.f4296a = 2;
-        this.f4297b = str;
-        this.f4298c = atomicLong;
+        this.f4295a = 2;
+        this.f4296b = str;
+        this.f4297c = atomicLong;
     }
 }

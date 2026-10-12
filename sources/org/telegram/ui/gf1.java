@@ -1,64 +1,54 @@
 package org.telegram.ui;
 
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class gf1 extends s4.d0 {
-    public boolean I;
-    public final eg1 J;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class gf1 implements wh.c, MessagesController.ErrorDelegate, r0.n, org.telegram.ui.Components.nm0 {
+    public final hg1 f38037a;
 
-    public gf1(eg1 eg1Var) {
-        this.J = eg1Var;
+    public gf1(hg1 hg1Var) {
+        this.f38037a = hg1Var;
     }
 
     @Override
-    public final void b0(pf.e eVar, s4.a1 a1Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            try {
-                super.b0(eVar, a1Var);
-                return;
-            } catch (IndexOutOfBoundsException unused) {
-                throw new RuntimeException("Inconsistency detected. ");
-            }
+    public r0.k1 M0(View view, r0.k1 k1Var) {
+        int i10 = k1Var.f46992a.f(519).d;
+        hg1 hg1Var = this.f38037a;
+        hg1Var.f38389e1 = i10;
+        dg1 dg1Var = hg1Var.f38411r0;
+        if (dg1Var != null) {
+            dg1Var.setPadding(0, 0, 0, i10);
         }
-        try {
-            super.b0(eVar, a1Var);
-        } catch (IndexOutOfBoundsException e7) {
-            FileLog.e(e7);
-            AndroidUtilities.runOnUIThread(new mz0(this, 19));
+        xf1 xf1Var = hg1Var.f38405n;
+        if (xf1Var != null) {
+            xf1Var.f43926a.setTranslationY((-hg1Var.f38389e1) - hg1Var.f38386d1);
         }
+        hg1Var.h.setTranslationY(((-hg1Var.X0) - hg1Var.f38389e1) - hg1Var.f38386d1);
+        hg1Var.B0();
+        return r0.k1.f46991b;
     }
 
     @Override
-    public final void b1(View view, View view2, int i10, int i11) {
-        this.I = true;
-        super.b1(view, view2, i10, i11);
-        this.I = false;
+    public boolean mo17c(float f7, float f10, int i10, View view) {
+        return hg1.W(this.f38037a, view, f7);
     }
 
     @Override
-    public final void h1(int i10, int i11) {
-        if (this.I) {
-            i11 -= this.J.N.getPaddingTop();
-        }
-        super.h1(i10, i11);
+    public void g(boolean z10, boolean z11) {
+        hg1 hg1Var = this.f38037a;
+        hg1Var.U0.i(hg1Var.R0.c(), z10, z11);
     }
 
     @Override
-    public final int o0(int r19, pf.e r20, s4.a1 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gf1.o0(int, pf.e, s4.a1):int");
+    public boolean run(TLRPC.TL_error tL_error) {
+        return hg1.U(this.f38037a, tL_error);
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
-        if (this.J.f37388x > 0 && i10 == 1) {
-            super.v0(recyclerView, a1Var, i10);
-            return;
-        }
-        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
-        oVar.f47951a = i10;
-        w0(oVar);
+    public void h() {
+    }
+
+    @Override
+    public void q(float f7) {
     }
 }

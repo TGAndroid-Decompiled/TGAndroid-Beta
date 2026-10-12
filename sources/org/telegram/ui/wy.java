@@ -1,50 +1,38 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-public final class wy implements DialogInterface.OnClickListener {
-    public final int f43921a;
-    public final int f43922b;
-    public final Object f43923c;
+import org.telegram.messenger.DownloadController;
+public final class wy implements DownloadController.FileDownloadProgressListener {
+    public long f43691a;
+    public long f43692b;
+    public final String f43693c;
+    public final xy d;
 
-    public wy(Object obj, int i10, int i11) {
-        this.f43921a = i11;
-        this.f43923c = obj;
-        this.f43922b = i10;
+    public wy(xy xyVar, String str) {
+        this.d = xyVar;
+        this.f43693c = str;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f43921a) {
-            case 0:
-                bz bzVar = ((xy) this.f43923c).f44235b;
-                if (i10 == 0) {
-                    bzVar.f36506e.remove(this.f43922b - bzVar.f36508n);
-                    bzVar.Z();
-                    az azVar = bzVar.f36507f;
-                    if (azVar != null) {
-                        azVar.a();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f43923c, this.f43922b, i10);
-                return;
-            default:
-                ThemeActivity themeActivity = (ThemeActivity) this.f43923c;
-                themeActivity.getClass();
-                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                edit.putInt("sortContactsBy", i10);
-                edit.commit();
-                gc1 gc1Var = themeActivity.f34591a;
-                if (gc1Var != null) {
-                    gc1Var.m(this.f43922b);
-                    return;
-                }
-                return;
-        }
+    public final int getObserverTag() {
+        return 0;
+    }
+
+    @Override
+    public final void onProgressDownload(String str, long j3, long j10) {
+        this.f43692b = j3;
+        this.f43691a = j10;
+        this.d.c();
+    }
+
+    @Override
+    public final void onSuccessDownload(String str) {
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z10) {
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j3, long j10, boolean z10) {
     }
 }

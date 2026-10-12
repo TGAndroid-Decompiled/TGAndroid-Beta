@@ -5,18 +5,18 @@ import android.os.RemoteException;
 import n6.m;
 import s7.i;
 public final class f {
-    public final s7.a f14081a;
+    public final s7.a f14079a;
 
     public f(s7.a aVar) {
         m.h(aVar);
-        this.f14081a = aVar;
+        this.f14079a = aVar;
     }
 
     public final void a(xa.c cVar) {
         try {
-            i iVar = (i) this.f14081a;
+            i iVar = (i) this.f14079a;
             Parcel N0 = iVar.N0();
-            s7.b.c(N0, (x6.a) cVar.f51228b);
+            s7.b.c(N0, (x6.a) cVar.f51335b);
             iVar.R0(N0, 18);
         } catch (RemoteException e7) {
             throw new RuntimeException(e7);
@@ -29,8 +29,8 @@ public final class f {
             return false;
         }
         try {
-            s7.a aVar = this.f14081a;
-            s7.a aVar2 = ((f) obj).f14081a;
+            s7.a aVar = this.f14079a;
+            s7.a aVar2 = ((f) obj).f14079a;
             i iVar = (i) aVar;
             Parcel N0 = iVar.N0();
             s7.b.c(N0, aVar2);
@@ -47,7 +47,7 @@ public final class f {
 
     public final int hashCode() {
         try {
-            i iVar = (i) this.f14081a;
+            i iVar = (i) this.f14079a;
             Parcel M0 = iVar.M0(iVar.N0(), 17);
             int readInt = M0.readInt();
             M0.recycle();

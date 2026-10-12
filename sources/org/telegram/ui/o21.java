@@ -1,57 +1,89 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-public final class o21 implements Runnable {
-    public final int f40435a;
-    public final d31 f40436b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class o21 implements TextWatcher {
+    public final int f40545a;
+    public final q21 f40546b;
 
-    public o21(d31 d31Var, int i10) {
-        this.f40435a = i10;
-        this.f40436b = d31Var;
+    public o21(q21 q21Var, int i10) {
+        this.f40545a = i10;
+        this.f40546b = q21Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40435a) {
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f40545a) {
             case 0:
-                c31 c31Var = this.f40436b.f36920f;
-                if (c31Var != null) {
-                    c31Var.f36576s.setClickable(true);
-                    return;
-                }
+                this.f40546b.U(true);
                 return;
             case 1:
-                d31 d31Var = this.f40436b;
-                d31Var.c0(0, d31Var.J, true);
-                org.telegram.ui.Components.dk0 animatedDrawable = d31Var.F.getAnimatedDrawable();
-                if (d31Var.I == null && animatedDrawable != null) {
-                    d31Var.I = Bitmap.createBitmap(animatedDrawable.f25805b, animatedDrawable.f25807c, Bitmap.Config.ARGB_8888);
-                    animatedDrawable.b();
-                    animatedDrawable.C0 = 33;
-                    animatedDrawable.a(d31Var.I);
-                    animatedDrawable.c();
+                q21 q21Var = this.f40546b;
+                if (!q21Var.K) {
+                    EditTextBoldCursor editTextBoldCursor = q21Var.f41150a[1];
+                    int selectionStart = editTextBoldCursor.getSelectionStart();
+                    String obj = editTextBoldCursor.getText().toString();
+                    StringBuilder sb2 = new StringBuilder(obj.length());
+                    int i10 = 0;
+                    while (i10 < obj.length()) {
+                        int i11 = i10 + 1;
+                        String substring = obj.substring(i10, i11);
+                        if ("0123456789".contains(substring)) {
+                            sb2.append(substring);
+                        }
+                        i10 = i11;
+                    }
+                    q21Var.K = true;
+                    int intValue = Utilities.parseInt((CharSequence) sb2.toString()).intValue();
+                    if (intValue >= 0 && intValue <= 65535 && obj.equals(sb2.toString())) {
+                        if (selectionStart >= 0) {
+                            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+                        }
+                    } else if (intValue < 0) {
+                        editTextBoldCursor.setText("0");
+                    } else if (intValue > 65535) {
+                        editTextBoldCursor.setText("65535");
+                    } else {
+                        editTextBoldCursor.setText(sb2.toString());
+                    }
+                    q21Var.K = false;
+                    q21Var.U(true);
                     return;
                 }
                 return;
-            case 2:
-                int i10 = R.raw.default_pattern;
-                d31 d31Var2 = this.f40436b;
-                AndroidUtilities.runOnUIThread(new tt0(27, d31Var2, SvgHelper.getBitmap(i10, d31Var2.f36924w.getWidth(), d31Var2.f36924w.getHeight(), -16777216)));
-                return;
-            case 3:
-                d31 d31Var3 = this.f40436b;
-                n7.z0 z0Var = d31Var3.f36916a;
-                z0Var.f16905b = d31Var3.J.b(((org.telegram.ui.ActionBar.m2) ((d31) z0Var.f16906c)).currentAccount, d31Var3.K ? 1 : 0);
-                return;
-            case 4:
-                d31.W(this.f40436b);
-                return;
             default:
-                d31.U(this.f40436b);
+                this.f40546b.U(true);
                 return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f40545a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f40545a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

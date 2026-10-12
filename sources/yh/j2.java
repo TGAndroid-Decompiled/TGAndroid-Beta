@@ -10,26 +10,26 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public final class j2 extends Drawable {
-    public final Paint f52836a;
-    public final LinearGradient[] f52837b;
-    public final Matrix f52838c;
+    public final Paint f52939a;
+    public final LinearGradient[] f52940b;
+    public final Matrix f52941c;
     public final org.telegram.ui.Components.g6 d;
-    public final Path f52839e;
-    public final b8 f52840f;
-    public int f52841g;
+    public final Path f52942e;
+    public final b8 f52943f;
+    public int f52944g;
     public int h;
 
     public j2() {
         Paint paint = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f52836a = new Paint(1);
-        this.f52837b = new LinearGradient[2];
-        this.f52838c = new Matrix();
-        this.d = new org.telegram.ui.Components.g6(1.0f, new f0(this, 2), 0L, 420L, is.h);
-        this.f52839e = new Path();
-        this.f52840f = new b8(1, 45);
+        this.f52939a = new Paint(1);
+        this.f52940b = new LinearGradient[2];
+        this.f52941c = new Matrix();
+        this.d = new org.telegram.ui.Components.g6(1.0f, new f0(this, 2), 0L, 420L, js.h);
+        this.f52942e = new Path();
+        this.f52943f = new b8(1, 45);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setColor(117440511);
@@ -40,12 +40,12 @@ public final class j2 extends Drawable {
     }
 
     public final void a(int i10, int i11) {
-        if (this.f52841g == i10 && this.h == i11) {
+        if (this.f52944g == i10 && this.h == i11) {
             return;
         }
-        LinearGradient[] linearGradientArr = this.f52837b;
+        LinearGradient[] linearGradientArr = this.f52940b;
         linearGradientArr[0] = linearGradientArr[1];
-        this.f52841g = i10;
+        this.f52944g = i10;
         this.h = i11;
         linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.d.d(0.0f, true);
@@ -59,18 +59,18 @@ public final class j2 extends Drawable {
         int i10 = 0;
         float d = this.d.d(1.0f, false);
         while (true) {
-            LinearGradient[] linearGradientArr = this.f52837b;
+            LinearGradient[] linearGradientArr = this.f52940b;
             if (i10 < linearGradientArr.length) {
                 if (linearGradientArr[i10] != null) {
                     float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
                     if (pow > 0.0f) {
-                        Matrix matrix = this.f52838c;
+                        Matrix matrix = this.f52941c;
                         matrix.reset();
                         RectF rectF = AndroidUtilities.rectTmp;
                         matrix.postScale(rectF.width() / 100.0f, 1.0f);
                         linearGradientArr[i10].setLocalMatrix(matrix);
                         LinearGradient linearGradient = linearGradientArr[i10];
-                        Paint paint = this.f52836a;
+                        Paint paint = this.f52939a;
                         paint.setShader(linearGradient);
                         paint.setAlpha((int) (pow * 255.0f));
                         canvas.drawRoundRect(rectF, dp, dp, paint);
@@ -78,13 +78,13 @@ public final class j2 extends Drawable {
                 }
                 i10++;
             } else {
-                Path path = this.f52839e;
+                Path path = this.f52942e;
                 path.rewind();
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 path.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
-                b8 b8Var = this.f52840f;
+                b8 b8Var = this.f52943f;
                 b8Var.g(rectF2);
                 b8Var.h = 30.0f;
                 b8Var.d();

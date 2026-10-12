@@ -5,10 +5,10 @@ import com.google.android.gms.vision.face.internal.client.FaceParcel;
 import com.google.android.gms.vision.face.internal.client.LandmarkParcel;
 import s4.c0;
 public final class j implements Parcelable.Creator {
-    public final int f45564a;
+    public final int f45382a;
 
     public j(int i10) {
-        this.f45564a = i10;
+        this.f45382a = i10;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class j implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f45564a) {
+        switch (this.f45382a) {
             case 0:
                 return new i[i10];
             case 1:

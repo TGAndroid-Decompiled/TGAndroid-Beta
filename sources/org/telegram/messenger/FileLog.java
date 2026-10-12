@@ -96,7 +96,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.o("_", name == null ? db.k.f8262a : new db.m(name));
+            lVar.o("_", name == null ? db.k.f8260a : new db.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -115,7 +115,7 @@ public class FileLog {
                                         }
                                     }
                                 }
-                                lVar.o(field.getName(), ((a4.l) nVar).X(obj));
+                                lVar.o(field.getName(), ((a4.l) nVar).o0(obj));
                             }
                         } catch (IllegalAccessException e7) {
                             e7.printStackTrace();
@@ -169,8 +169,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(db.b bVar) {
                     HashSet hashSet3 = FileLog.privateFields;
-                    Field field = bVar.f8245a;
-                    Field field2 = bVar.f8245a;
+                    Field field = bVar.f8243a;
+                    Field field2 = bVar.f8243a;
                     if (!hashSet3.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -180,26 +180,26 @@ public class FileLog {
                     return true;
                 }
             };
-            fb.f fVar = fb.f.f9814c;
+            fb.g gVar = fb.g.f9813c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             db.c cVar = db.g.h;
-            db.p pVar = db.g.f8253i;
-            db.q qVar = db.g.f8254j;
+            db.p pVar = db.g.f8251i;
+            db.q qVar = db.g.f8252j;
             ArrayDeque arrayDeque = new ArrayDeque();
             db.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
-            fb.f clone = fVar.clone();
-            ArrayList arrayList3 = new ArrayList(fVar.f9815a);
-            clone.f9815a = arrayList3;
+            fb.g clone = gVar.clone();
+            ArrayList arrayList3 = new ArrayList(gVar.f9814a);
+            clone.f9814a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z11 = byteArrayHexAdapter instanceof db.o;
             if (!db.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
                     kb.a aVar2 = new kb.a(byte[].class);
-                    if (aVar2.f14779b == aVar2.f14778a) {
+                    if (aVar2.f14776b == aVar2.f14775a) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -207,7 +207,7 @@ public class FileLog {
                     arrayList.add(new gb.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
                 kb.a aVar3 = new kb.a(byte[].class);
-                gb.x0 x0Var = gb.h1.f10452a;
+                gb.x0 x0Var = gb.h1.f10451a;
                 arrayList.add(new gb.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
@@ -221,7 +221,7 @@ public class FileLog {
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z12 = jb.f.f14102a;
+                    boolean z12 = jb.f.f14100a;
                     gson = new db.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }
@@ -297,7 +297,7 @@ public class FileLog {
 
     public static void dumpUnparsedMessage(TLObject tLObject, long j3, int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
-            postProtocolDump(new w4(tLObject, gsonDisabled, System.currentTimeMillis(), j3, i10));
+            postProtocolDump(new z4(tLObject, gsonDisabled, System.currentTimeMillis(), j3, i10));
         }
     }
 
@@ -599,7 +599,7 @@ public class FileLog {
             if (dispatchQueue == null) {
                 atomicInteger.decrementAndGet();
             } else {
-                dispatchQueue.postRunnable(new e3(0, runnable));
+                dispatchQueue.postRunnable(new h3(0, runnable));
             }
         } catch (Throwable th2) {
             pendingProtocolDumps.decrementAndGet();
@@ -612,7 +612,7 @@ public class FileLog {
             ensureInitied();
             Log.w("tmessages", str);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new u1(str, 1));
+                getInstance().logQueue.postRunnable(new x1(str, 1));
             }
         }
     }
@@ -635,7 +635,7 @@ public class FileLog {
             ensureInitied();
             Log.d("tmessages", str);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new u1(str, 3));
+                getInstance().logQueue.postRunnable(new x1(str, 3));
             }
         }
     }
@@ -645,7 +645,7 @@ public class FileLog {
             ensureInitied();
             Log.e("tmessages", str, th2);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new f2(6, str, th2));
+                getInstance().logQueue.postRunnable(new f2(7, str, th2));
             }
         }
     }
@@ -661,7 +661,7 @@ public class FileLog {
             ensureInitied();
             th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new f3(1, th2));
+                getInstance().logQueue.postRunnable(new i3(1, th2));
                 return;
             }
             th2.printStackTrace();
@@ -676,7 +676,7 @@ public class FileLog {
             ensureInitied();
             Log.e("tmessages", str);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new u1(str, 2));
+                getInstance().logQueue.postRunnable(new x1(str, 2));
             }
         }
     }
@@ -707,7 +707,7 @@ public class FileLog {
             ensureInitied();
             th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new f3(0, th2));
+                getInstance().logQueue.postRunnable(new i3(0, th2));
             } else {
                 th2.printStackTrace();
             }

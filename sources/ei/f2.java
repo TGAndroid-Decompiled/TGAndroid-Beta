@@ -3,21 +3,21 @@ package ei;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
 public final class f2 implements n4, GenericProvider, org.telegram.ui.ActionBar.z1 {
-    public final k3 f9061a;
+    public final k3 f9059a;
 
     public f2(k3 k3Var) {
-        this.f9061a = k3Var;
+        this.f9059a = k3Var;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        this.f9061a.k(false);
+        this.f9059a.k(false);
     }
 
     @Override
     public void j(boolean z10) {
-        k3 k3Var = this.f9061a;
-        if (k3Var.f9157d0 && z10) {
+        k3 k3Var = this.f9059a;
+        if (k3Var.f9155d0 && z10) {
             return;
         }
         k3Var.k(true);
@@ -27,7 +27,7 @@ public final class f2 implements n4, GenericProvider, org.telegram.ui.ActionBar.
     public Object provide(Object obj) {
         boolean z10;
         Void r22 = (Void) obj;
-        if (this.f9061a.f9158e.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
+        if (this.f9059a.f9156e.getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
             z10 = true;
         } else {
             z10 = false;

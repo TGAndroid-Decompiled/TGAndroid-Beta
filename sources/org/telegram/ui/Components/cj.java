@@ -1,24 +1,67 @@
 package org.telegram.ui.Components;
 
+import android.util.SparseIntArray;
 import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
-public final class cj implements Utilities.Callback5, Utilities.Callback5Return {
-    public final kj f25372a;
+import org.telegram.messenger.WebFile;
+public final class cj implements Utilities.CallbackReturn {
+    public final int f24948a;
+    public final Object f24949b;
 
-    @Override
-    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f25372a.P((q61) obj, (View) obj2);
+    public cj(Object obj, int i10) {
+        this.f24948a = i10;
+        this.f24949b = obj;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f25372a.P((q61) obj, (View) obj2);
-        return Boolean.TRUE;
+    public final Object run(Object obj) {
+        int i10;
+        switch (this.f24948a) {
+            case 0:
+                return Boolean.valueOf(mj.N((mj) this.f24949b, (MessageObject) obj));
+            case 1:
+                rh.f fVar = (rh.f) this.f24949b;
+                View view = (View) obj;
+                ImageReceiver imageReceiver = new ImageReceiver(view);
+                int i11 = R.raw.map_placeholder;
+                int i12 = org.telegram.ui.ActionBar.h6.Pb;
+                if (org.telegram.ui.ActionBar.h6.I.q()) {
+                    i10 = 3;
+                } else {
+                    i10 = 6;
+                }
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(i11, i12, i10 * 0.12f);
+                svgThumb.setAspectCenter(true);
+                svgThumb.setColorKey(org.telegram.ui.ActionBar.h6.f20806qe);
+                imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(fVar.f47774b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (ImageLocation) null, (String) null, new wq(svgThumb), (Object) null, 0);
+                view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.q8(imageReceiver, 1));
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(14.0f));
+                return new gd(imageReceiver, view.getContext().getResources().getDrawable(R.drawable.map_pin).mutate());
+            case 2:
+                int i13 = ((SparseIntArray) this.f24949b).get(((Integer) obj).intValue(), -1);
+                if (i13 == -1) {
+                    return Boolean.TRUE;
+                }
+                boolean z10 = true;
+                if (i13 != 1) {
+                    z10 = false;
+                }
+                return Boolean.valueOf(z10);
+            default:
+                p71 p71Var = (p71) this.f24949b;
+                View view2 = (View) obj;
+                p71Var.getClass();
+                if (view2.getParent() != p71Var) {
+                    return Boolean.FALSE;
+                }
+                return Boolean.valueOf(!h71.K(p71Var.T(view2).f47893f));
+        }
     }
 }

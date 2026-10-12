@@ -1,36 +1,54 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageView;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class qx extends ImageView {
-    public final b00 f30339a;
+public final class qx extends FrameLayout {
+    public final Paint f29944a;
+    public final d00 f29945b;
 
-    public qx(b00 b00Var, Context context) {
+    public qx(d00 d00Var, Context context) {
         super(context);
-        this.f30339a = b00Var;
+        this.f29945b = d00Var;
+        this.f29944a = new Paint();
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        bz bzVar;
-        int action = motionEvent.getAction();
-        b00 b00Var = this.f30339a;
-        if (action == 0) {
-            b00Var.P1 = true;
-            b00Var.Q1 = false;
-            AndroidUtilities.runOnUIThread(new nd(b00Var, 350, 4), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            b00Var.P1 = false;
-            if (!b00Var.Q1 && (bzVar = b00Var.f24785t1) != null && bzVar.k()) {
-                try {
-                    b00Var.f24797x.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        d00 d00Var = this.f29945b;
+        px pxVar = d00Var.B0;
+        float dp = AndroidUtilities.dp(50.0f) * d00Var.f25134t1.p();
+        if (dp > getMeasuredHeight()) {
+            return;
         }
-        super.onTouchEvent(motionEvent);
-        return true;
+        canvas.save();
+        if (dp != 0.0f) {
+            canvas.clipRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight());
+        }
+        int A = d00Var.A(org.telegram.ui.ActionBar.h6.He);
+        Paint paint = this.f29944a;
+        paint.setColor(A);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), pxVar.getExpandedOffset() + AndroidUtilities.dp(36.0f), paint);
+        super.dispatchDraw(canvas);
+        if (pxVar.f31231s != null) {
+            canvas.save();
+            float f7 = pxVar.f31212c0 - pxVar.f31213d0;
+            float f10 = pxVar.v;
+            if (f10 > 0.0f) {
+                f7 = ((pxVar.f31231s.getX() - pxVar.getScrollX()) * pxVar.v) + ((1.0f - f10) * f7);
+            }
+            canvas.translate(f7, 0.0f);
+            pxVar.f31231s.draw(canvas);
+            canvas.restore();
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f29945b.Y();
     }
 }

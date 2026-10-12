@@ -2,15 +2,15 @@ package p4;
 
 import android.os.Bundle;
 public final class n {
-    public final Bundle f45465a;
-    public r f45466b;
+    public final Bundle f45277a;
+    public s f45278b;
 
-    public n(r rVar, boolean z10) {
-        if (rVar != null) {
+    public n(s sVar, boolean z10) {
+        if (sVar != null) {
             Bundle bundle = new Bundle();
-            this.f45465a = bundle;
-            this.f45466b = rVar;
-            bundle.putBundle("selector", rVar.f45491a);
+            this.f45277a = bundle;
+            this.f45278b = sVar;
+            bundle.putBundle("selector", sVar.f45311a);
             bundle.putBoolean("activeScan", z10);
             return;
         }
@@ -18,26 +18,26 @@ public final class n {
     }
 
     public final void a() {
-        if (this.f45466b == null) {
-            r b10 = r.b(this.f45465a.getBundle("selector"));
-            this.f45466b = b10;
+        if (this.f45278b == null) {
+            s b10 = s.b(this.f45277a.getBundle("selector"));
+            this.f45278b = b10;
             if (b10 == null) {
-                this.f45466b = r.f45490c;
+                this.f45278b = s.f45310c;
             }
         }
     }
 
     public final boolean b() {
-        return this.f45465a.getBoolean("activeScan");
+        return this.f45277a.getBoolean("activeScan");
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof n) {
             n nVar = (n) obj;
             a();
-            r rVar = this.f45466b;
+            s sVar = this.f45278b;
             nVar.a();
-            if (rVar.equals(nVar.f45466b) && b() == nVar.b()) {
+            if (sVar.equals(nVar.f45278b) && b() == nVar.b()) {
                 return true;
             }
         }
@@ -46,20 +46,20 @@ public final class n {
 
     public final int hashCode() {
         a();
-        return this.f45466b.hashCode() ^ b();
+        return this.f45278b.hashCode() ^ b();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("DiscoveryRequest{ selector=");
         a();
-        sb2.append(this.f45466b);
+        sb2.append(this.f45278b);
         sb2.append(", activeScan=");
         sb2.append(b());
         sb2.append(", isValid=");
         a();
-        r rVar = this.f45466b;
-        rVar.a();
-        sb2.append(!rVar.f45492b.contains(null));
+        s sVar = this.f45278b;
+        sVar.a();
+        sb2.append(!sVar.f45312b.contains(null));
         sb2.append(" }");
         return sb2.toString();
     }

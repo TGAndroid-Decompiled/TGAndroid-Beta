@@ -1,38 +1,28 @@
 package org.telegram.ui.Components;
+public final class xp0 implements o1.g {
+    public final int f32822a;
+    public final gq0 f32823b;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-public final class xp0 extends s4.t0 {
-    public final hf f33048a;
-
-    public xp0(hf hfVar) {
-        this.f33048a = hfVar;
+    public xp0(gq0 gq0Var, int i10) {
+        this.f32822a = i10;
+        this.f32823b = gq0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        float f7;
-        hf hfVar = this.f33048a;
-        View view = hfVar.f25068u;
-        if (hfVar.f25069w.I0() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f32822a) {
+            case 0:
+                this.f32823b.f26486o.setScaleX(1.0f / f7);
+                return;
+            case 1:
+                this.f32823b.f26486o.setScaleY(1.0f / f7);
+                return;
+            case 2:
+                this.f32823b.f26486o.setScaleX(1.0f / f7);
+                return;
+            default:
+                this.f32823b.f26486o.setScaleY(1.0f / f7);
+                return;
         }
-        Boolean bool = hfVar.f25070x;
-        if (bool != null && z10 == bool.booleanValue()) {
-            return;
-        }
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        animate.alpha(f7).setDuration(150L).start();
-        hfVar.f25070x = Boolean.valueOf(z10);
     }
 }

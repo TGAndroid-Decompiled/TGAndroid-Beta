@@ -1,55 +1,30 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.video.VideoFramesRewinder;
-import org.telegram.messenger.video.VideoPlayerRewinder;
-public final class jt0 extends VideoPlayerRewinder {
-    public final PhotoViewer f39155a;
+import android.animation.ValueAnimator;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class jt0 extends ViewOutlineProvider {
+    public final int f39279a;
+    public final float f39280b;
+    public final Object f39281c;
 
-    public jt0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
-        super(videoFramesRewinder);
-        this.f39155a = photoViewer;
+    public jt0(Object obj, float f7, int i10) {
+        this.f39279a = i10;
+        this.f39281c = obj;
+        this.f39280b = f7;
     }
 
     @Override
-    public final void onRewindCanceled() {
-        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-        PhotoViewer photoViewer = this.f39155a;
-        PhotoViewer.k(photoViewer, obtain);
-        photoViewer.f34154z1.f(false);
-        org.telegram.ui.Components.hh0.f27101p0.Q.f(false);
-    }
-
-    @Override
-    public final void onRewindStart(boolean z10) {
-        PhotoViewer photoViewer = this.f39155a;
-        photoViewer.f34154z1.e(false);
-        photoViewer.f34154z1.d(!z10);
-        photoViewer.f34154z1.f(true);
-        photoViewer.f33966e0.invalidate();
-        org.telegram.ui.Components.hh0.v(z10);
-    }
-
-    @Override
-    public final void updateRewindProgressUi(long j3, float f7, boolean z10) {
-        PhotoViewer photoViewer = this.f39155a;
-        photoViewer.f34154z1.g(Math.abs(j3));
-        if (z10) {
-            photoViewer.f34072q3.h(f7, false);
-            photoViewer.f34081r3.invalidate();
-        }
-        org.telegram.ui.Components.hh0 hh0Var = org.telegram.ui.Components.hh0.f27101p0;
-        hh0Var.Q.g(0L);
-        if (z10) {
-            hh0Var.Z = f7;
-            ai.o4 o4Var = hh0Var.f27105b0;
-            if (o4Var != null) {
-                o4Var.invalidate();
-            }
-            org.telegram.ui.Components.gh0 gh0Var = hh0Var.h;
-            if (gh0Var != null) {
-                gh0Var.invalidate();
-            }
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f39279a) {
+            case 0:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f39280b) * ((Float) ((ValueAnimator) this.f39281c).getAnimatedValue()).floatValue() * AndroidUtilities.dp(10.0f));
+                return;
+            default:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f39280b) * (1.0f - ((PhotoViewer) this.f39281c).W) * AndroidUtilities.dp(10.0f));
+                return;
         }
     }
 }

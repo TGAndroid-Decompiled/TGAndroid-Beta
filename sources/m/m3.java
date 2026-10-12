@@ -1,95 +1,35 @@
 package m;
 
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.content.Context;
 import android.view.View;
 import android.view.Window;
-import androidx.appcompat.widget.Toolbar;
-public final class m3 implements k1 {
-    public Toolbar f15796a;
-    public int f15797b;
-    public View f15798c;
-    public Drawable d;
-    public Drawable f15799e;
-    public Drawable f15800f;
-    public boolean f15801g;
-    public CharSequence h;
-    public CharSequence f15802i;
-    public CharSequence f15803j;
-    public Window.Callback f15804k;
-    public boolean f15805l;
-    public h f15806m;
-    public int f15807n;
-    public Drawable f15808o;
+public final class m3 implements View.OnClickListener {
+    public final l.a f15483a;
+    public final n3 f15484b;
 
-    public final void a(int i10) {
-        View view;
-        Toolbar toolbar = this.f15796a;
-        int i11 = this.f15797b ^ i10;
-        this.f15797b = i10;
-        if (i11 != 0) {
-            if ((i11 & 4) != 0) {
-                if ((i10 & 4) != 0) {
-                    b();
-                }
-                if ((this.f15797b & 4) != 0) {
-                    Drawable drawable = this.f15800f;
-                    if (drawable == null) {
-                        drawable = this.f15808o;
-                    }
-                    toolbar.setNavigationIcon(drawable);
-                } else {
-                    toolbar.setNavigationIcon((Drawable) null);
-                }
-            }
-            if ((i11 & 3) != 0) {
-                c();
-            }
-            if ((i11 & 8) != 0) {
-                if ((i10 & 8) != 0) {
-                    toolbar.setTitle(this.h);
-                    toolbar.setSubtitle(this.f15802i);
-                } else {
-                    toolbar.setTitle((CharSequence) null);
-                    toolbar.setSubtitle((CharSequence) null);
-                }
-            }
-            if ((i11 & 16) != 0 && (view = this.f15798c) != null) {
-                if ((i10 & 16) != 0) {
-                    toolbar.addView(view);
-                } else {
-                    toolbar.removeView(view);
-                }
-            }
-        }
+    public m3(n3 n3Var) {
+        this.f15484b = n3Var;
+        Context context = n3Var.f15497a.getContext();
+        CharSequence charSequence = n3Var.h;
+        ?? obj = new Object();
+        obj.f14933e = 4096;
+        obj.f14935g = 4096;
+        obj.f14939l = null;
+        obj.f14940m = null;
+        obj.f14941n = false;
+        obj.f14942o = false;
+        obj.f14943p = 16;
+        obj.f14936i = context;
+        obj.f14930a = charSequence;
+        this.f15483a = obj;
     }
 
-    public final void b() {
-        Toolbar toolbar = this.f15796a;
-        if ((this.f15797b & 4) != 0) {
-            if (TextUtils.isEmpty(this.f15803j)) {
-                toolbar.setNavigationContentDescription(this.f15807n);
-            } else {
-                toolbar.setNavigationContentDescription(this.f15803j);
-            }
+    @Override
+    public final void onClick(View view) {
+        n3 n3Var = this.f15484b;
+        Window.Callback callback = n3Var.f15505k;
+        if (callback != null && n3Var.f15506l) {
+            callback.onMenuItemSelected(0, this.f15483a);
         }
-    }
-
-    public final void c() {
-        Drawable drawable;
-        int i10 = this.f15797b;
-        if ((i10 & 2) != 0) {
-            if ((i10 & 1) != 0) {
-                drawable = this.f15799e;
-                if (drawable == null) {
-                    drawable = this.d;
-                }
-            } else {
-                drawable = this.d;
-            }
-        } else {
-            drawable = null;
-        }
-        this.f15796a.setLogo(drawable);
     }
 }

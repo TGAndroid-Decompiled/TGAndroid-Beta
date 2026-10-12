@@ -1,24 +1,49 @@
 package org.telegram.messenger;
-public final class fb implements Runnable {
-    public final int f17866a;
-    public final q0.a f17867b;
-    public final int f17868c;
 
-    public fb(q0.a aVar, int i10, int i11) {
-        this.f17866a = i11;
-        this.f17867b = aVar;
-        this.f17868c = i10;
+import org.telegram.messenger.FileLoadOperation;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class fb implements RequestDelegate {
+    public final int f17597a;
+    public final int f17598b;
+    public final Object f17599c;
+    public final Object d;
+
+    public fb(Object obj, int i10, Object obj2, int i11) {
+        this.f17597a = i11;
+        this.f17599c = obj;
+        this.f17598b = i10;
+        this.d = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17866a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17597a) {
             case 0:
-                MessagesController.lambda$getNextReactionMentionInternal$1(this.f17867b, this.f17868c);
+                ((MessagesController) this.f17599c).lambda$checkChatlistFolderUpdate$481(this.f17598b, (MessagesController.ChatlistUpdatesStat) this.d, tLObject, tL_error);
+                return;
+            case 1:
+                ((FileLoadOperation) this.f17599c).lambda$startDownloadRequest$29(this.f17598b, (FileLoadOperation.RequestInfo) this.d, tLObject, tL_error);
+                return;
+            case 2:
+                ((MediaDataController) this.f17599c).lambda$toggleStickerSetInternal$117((TLRPC.StickerSet) this.d, this.f17598b, tLObject, tL_error);
+                return;
+            case 3:
+                ((MediaDataController) this.f17599c).lambda$loadStickers$97(this.f17598b, (Utilities.Callback) this.d, tLObject, tL_error);
                 return;
             default:
-                MessagesController.lambda$getNextReactionMentionInternal$2(this.f17867b, this.f17868c);
+                ((MessagesController) this.f17599c).lambda$registerForPush$323(this.f17598b, (String) this.d, tLObject, tL_error);
                 return;
         }
+    }
+
+    public fb(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
+        this.f17597a = 2;
+        this.f17599c = mediaDataController;
+        this.d = stickerSet;
+        this.f17598b = i10;
     }
 }

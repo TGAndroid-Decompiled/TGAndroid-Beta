@@ -1,64 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class rb0 extends Drawable {
-    public Paint f30485a;
-    public Paint f30486b;
-    public long f30487c;
-    public float d;
-    public boolean f30488e;
-    public boolean f30489f;
-    public float f30490g;
-    public float h;
-    public float f30491i;
-    public float f30492j;
-    public float f30493k;
-    public long f30494l;
-    public org.telegram.ui.Cells.u1 f30495m;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class rb0 extends s4.o0 {
+    public final sb0 f30137a;
 
-    public final void a() {
-        int i10;
-        int i11;
-        Rect bounds = getBounds();
-        float centerX = bounds.centerX();
-        float centerY = bounds.centerY();
-        float f7 = bounds.left - centerX;
-        float f10 = bounds.top - centerY;
-        this.f30490g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.vision.e2.y(i11, centerY, f10, f7 * (i10 - centerX))));
+    public rb0(sb0 sb0Var) {
+        this.f30137a = sb0Var;
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.rb0.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f30485a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        a();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f30485a.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setBounds(Rect rect) {
-        super.setBounds(rect);
-        a();
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
+        int R;
+        int i10 = 0;
+        rect.left = 0;
+        rect.right = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        s4.p0 layoutManager = recyclerView.getLayoutManager();
+        tb0 tb0Var = this.f30137a.Z2;
+        if (layoutManager == tb0Var.d && (R = RecyclerView.R(view)) != 0 && !tb0Var.f30842f.N()) {
+            if (tb0Var.f30842f.I() == null && tb0Var.f30842f.U == null) {
+                rect.top = AndroidUtilities.dp(2.0f);
+            } else if (R != 0) {
+                R--;
+                mb0 mb0Var = tb0Var.d;
+                mb0Var.B1();
+                if (R > mb0Var.U) {
+                    rect.top = AndroidUtilities.dp(2.0f);
+                }
+            } else {
+                return;
+            }
+            if (!tb0Var.d.E1(R)) {
+                i10 = AndroidUtilities.dp(2.0f);
+            }
+            rect.right = i10;
+        }
     }
 }

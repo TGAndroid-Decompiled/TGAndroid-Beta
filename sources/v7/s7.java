@@ -8,6 +8,6 @@ public abstract class s7 {
     }
 
     public static Drawable b(Context context, int i10) {
-        return m.m2.d().g(context, i10);
+        return m.n2.d().g(context, i10);
     }
 }

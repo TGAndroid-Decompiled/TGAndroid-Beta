@@ -1,20 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class tt0 implements View.OnLayoutChangeListener {
-    public final cw0 f31336a;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class tt0 extends FragmentContextView {
+    public final hw0 R0;
 
-    public tt0(cw0 cw0Var) {
-        this.f31336a = cw0Var;
+    public tt0(hw0 hw0Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, hw0 hw0Var2, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, m2Var, hw0Var2, false, c6Var);
+        this.R0 = hw0Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        cw0 cw0Var = this.f31336a;
-        org.telegram.ui.ActionBar.u0 u0Var = cw0Var.f25517n0;
-        if (u0Var == null) {
-            return;
+    public final void setVisibility(int i10) {
+        boolean z10;
+        hw0 hw0Var = this.R0;
+        ct ctVar = hw0Var.P0;
+        FrameLayout frameLayout = hw0Var.Q0;
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        cw0Var.f25517n0.setTranslationX(((View) u0Var.getParent()).getMeasuredWidth() - cw0Var.f25517n0.getRight());
+        ctVar.i(frameLayout, z10, true);
     }
 }

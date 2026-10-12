@@ -47,7 +47,7 @@ public class VoipAudioManager {
     }
 
     public void lambda$isBluetoothAndSpeakerOnAsync$4(Utilities.Callback2 callback2) {
-        AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.l(callback2, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 2));
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.k(callback2, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 2));
     }
 
     public static void lambda$stopBluetooth$2(AudioManager audioManager) {
@@ -69,7 +69,7 @@ public class VoipAudioManager {
     }
 
     public void isBluetoothAndSpeakerOnAsync(Utilities.Callback2<Boolean, Boolean> callback2) {
-        Utilities.globalQueue.postRunnable(new ki.k0(25, this, callback2));
+        Utilities.globalQueue.postRunnable(new m4.w(23, this, callback2));
     }
 
     public boolean isBluetoothOn() {
@@ -114,7 +114,7 @@ public class VoipAudioManager {
                 return;
             }
             this.isSpeakerphoneOn = Boolean.FALSE;
-            Utilities.globalQueue.postRunnable(new ki.k0(24, audioManager, findBluetoothDevice));
+            Utilities.globalQueue.postRunnable(new m4.w(22, audioManager, findBluetoothDevice));
             return;
         }
         audioManager.startBluetoothSco();

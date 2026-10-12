@@ -1,72 +1,163 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import java.io.File;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.opengl.GLES20;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class f21 implements v91 {
-    public final ThemeEditorView f26303a;
+import org.telegram.messenger.FileLog;
+public final class f21 {
+    public final int[] A;
+    public final int[] B;
+    public Bitmap C;
+    public final boolean D;
+    public final g21 E;
+    public final ArrayList f25846a;
+    public long f25847b;
+    public float f25848c;
+    public boolean d;
+    public final Runnable f25849e;
+    public Runnable f25850f;
+    public float f25851g;
+    public float h;
+    public final float f25852i;
+    public final float f25853j;
+    public final float f25854k;
+    public final float f25855l;
+    public final float f25856m;
+    public boolean f25857n;
+    public final boolean f25858o;
+    public final float[] f25859p;
+    public final float[] f25860q;
+    public final Matrix f25861r;
+    public int f25862s;
+    public final int f25863t;
+    public final int f25864u;
+    public int v;
+    public int f25865w;
+    public float f25866x;
+    public final float f25867y;
+    public int f25868z;
 
-    public f21(ThemeEditorView themeEditorView) {
-        this.f26303a = themeEditorView;
+    public f21(g21 g21Var, Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.E = g21Var;
+        this.f25846a = new ArrayList();
+        this.f25847b = -1L;
+        this.f25848c = 0.0f;
+        this.d = true;
+        this.f25851g = 0.0f;
+        this.h = 0.0f;
+        this.f25852i = 0.0f;
+        this.f25853j = 0.0f;
+        this.f25854k = AndroidUtilities.density;
+        this.f25855l = 1.5f;
+        this.f25856m = 1.15f;
+        this.f25857n = true;
+        this.f25858o = false;
+        this.f25859p = new float[9];
+        this.f25860q = new float[9];
+        Matrix matrix2 = new Matrix();
+        this.f25861r = matrix2;
+        this.f25867y = (float) (Math.random() * 2.0d);
+        this.A = new int[1];
+        this.B = new int[2];
+        this.D = true;
+        float[] fArr = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f};
+        matrix.mapPoints(fArr);
+        this.f25852i = fArr[0];
+        this.f25853j = fArr[1];
+        this.f25863t = (int) v7.z6.a(fArr[2], fArr[3], fArr[6], fArr[7]);
+        this.f25864u = (int) v7.z6.a(fArr[4], fArr[5], fArr[6], fArr[7]);
+        this.f25858o = true;
+        matrix2.set(matrix);
+        c();
+        this.f25849e = runnable;
+        this.f25850f = runnable2;
+        this.f25855l = 4.0f;
+        this.f25848c = -0.1f;
+        this.C = bitmap;
     }
 
-    @Override
+    public static void b(Canvas canvas, org.telegram.ui.Cells.u1 u1Var, int i10, float f7, float f10) {
+        float f11;
+        canvas.save();
+        if (u1Var.a()) {
+            f11 = u1Var.getAlpha();
+        } else {
+            f11 = 1.0f;
+        }
+        canvas.translate(f7, f10);
+        boolean z10 = true;
+        u1Var.setInvalidatesParent(true);
+        if (i10 == 0) {
+            u1Var.m2(f11, canvas, true);
+        } else if (i10 == 1) {
+            u1Var.W1(canvas, f11);
+        } else if (i10 == 2) {
+            if (u1Var.getCurrentPosition() == null || (u1Var.getCurrentPosition().flags & 1) != 0) {
+                z10 = false;
+            }
+            u1Var.I1(f11, canvas, z10);
+        } else if (u1Var.getCurrentPosition() == null || (u1Var.getCurrentPosition().flags & 1) != 0) {
+            u1Var.d2(canvas, f11, null);
+            u1Var.N1(canvas, f11);
+        }
+        u1Var.setInvalidatesParent(false);
+        canvas.restore();
+    }
+
     public final void a() {
-        int i10 = 0;
-        while (true) {
-            ThemeEditorView themeEditorView = this.f26303a;
-            if (i10 < themeEditorView.f24379c.size()) {
-                org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) themeEditorView.f24379c.get(i10);
-                int x02 = org.telegram.ui.ActionBar.h6.x0(j6Var.f21286j, j6Var.f21283f, false);
-                j6Var.f21285i = x02;
-                if (i10 == 0) {
-                    themeEditorView.f24386l.f24388b.c(x02);
-                }
-                i10++;
-            } else {
-                ThemeEditorView.EditorAlert editorAlert = themeEditorView.f24386l;
-                int i11 = ThemeEditorView.EditorAlert.M;
-                editorAlert.M(true);
-                return;
+        try {
+            GLES20.glDeleteBuffers(2, this.B, 0);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+        g21 g21Var = this.E;
+        int i10 = g21Var.f26239w;
+        if (i10 != 0) {
+            try {
+                GLES20.glDeleteProgram(i10);
+            } catch (Exception e10) {
+                FileLog.e(e10);
             }
+            g21Var.f26239w = 0;
+        }
+        try {
+            GLES20.glDeleteTextures(1, this.A, 0);
+        } catch (Exception e11) {
+            FileLog.e(e11);
+        }
+        Runnable runnable = this.f25850f;
+        if (runnable != null) {
+            i21.b(runnable);
+            this.f25850f = null;
         }
     }
 
-    @Override
-    public final void b(File file, Bitmap bitmap, boolean z10) {
-        org.telegram.ui.ActionBar.g6 g6Var = this.f26303a.f24387m;
-        org.telegram.ui.ActionBar.h6.ul.delete(org.telegram.ui.ActionBar.h6.Nd);
-        org.telegram.ui.ActionBar.h6.ul.delete(org.telegram.ui.ActionBar.h6.Od);
-        org.telegram.ui.ActionBar.h6.ul.delete(org.telegram.ui.ActionBar.h6.Pd);
-        org.telegram.ui.ActionBar.h6.ul.delete(org.telegram.ui.ActionBar.h6.Qd);
-        org.telegram.ui.ActionBar.h6.ul.delete(org.telegram.ui.ActionBar.h6.Rd);
-        org.telegram.ui.ActionBar.h6.f20888h0 = null;
-        g6Var.v(null);
-        if (bitmap != null) {
-            org.telegram.ui.ActionBar.h6.f20853f0 = new BitmapDrawable(bitmap);
-            org.telegram.ui.ActionBar.h6.s1(g6Var, false, false, false);
-            int[] calcDrawableColor = AndroidUtilities.calcDrawableColor(org.telegram.ui.ActionBar.h6.f20853f0);
-            int i10 = calcDrawableColor[0];
-            org.telegram.ui.ActionBar.h6.f20799c0 = i10;
-            org.telegram.ui.ActionBar.h6.X = i10;
-            int i11 = calcDrawableColor[1];
-            org.telegram.ui.ActionBar.h6.f20816d0 = i11;
-            org.telegram.ui.ActionBar.h6.f20779b0 = i11;
-            Drawable drawable = org.telegram.ui.ActionBar.h6.f20836e0;
-            if (drawable != null) {
-                org.telegram.ui.ActionBar.h6.i(drawable);
-            }
-            org.telegram.ui.ActionBar.h6.h(org.telegram.ui.ActionBar.h6.f20836e0);
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
-            return;
-        }
-        org.telegram.ui.ActionBar.h6.f20853f0 = null;
-        org.telegram.ui.ActionBar.h6.f20836e0 = null;
-        org.telegram.ui.ActionBar.h6.s1(g6Var, false, false, false);
-        org.telegram.ui.ActionBar.h6.p1(true);
+    public final void c() {
+        Matrix matrix = this.f25861r;
+        float[] fArr = this.f25860q;
+        matrix.getValues(fArr);
+        float f7 = fArr[0];
+        float[] fArr2 = this.f25859p;
+        fArr2[0] = f7;
+        fArr2[1] = fArr[3];
+        fArr2[2] = fArr[6];
+        fArr2[3] = fArr[1];
+        fArr2[4] = fArr[4];
+        fArr2[5] = fArr[7];
+        fArr2[6] = fArr[2];
+        fArr2[7] = fArr[5];
+        fArr2[8] = fArr[8];
+        this.f25857n = false;
+    }
+
+    public f21(org.telegram.ui.Components.g21 r31, java.util.ArrayList r32, java.lang.Runnable r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f21.<init>(org.telegram.ui.Components.g21, java.util.ArrayList, java.lang.Runnable):void");
+    }
+
+    public f21(org.telegram.ui.Components.g21 r10, android.view.View r11, float r12, java.lang.Runnable r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f21.<init>(org.telegram.ui.Components.g21, android.view.View, float, java.lang.Runnable):void");
     }
 }

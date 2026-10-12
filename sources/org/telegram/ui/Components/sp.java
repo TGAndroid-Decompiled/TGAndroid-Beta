@@ -1,29 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.vd1;
-public final class sp implements vd1 {
-    public final int f30903a;
-    public final tp f30904b;
+import android.graphics.Bitmap;
+import org.telegram.ui.zd1;
+public final class sp extends zd1 {
+    public final int f30606k2;
 
-    public sp(tp tpVar, int i10) {
-        this.f30903a = i10;
-        this.f30904b = tpVar;
+    public sp(Object obj, Bitmap bitmap, boolean z10, int i10) {
+        super(obj, bitmap, z10);
+        this.f30606k2 = i10;
     }
 
     @Override
-    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f30903a) {
+    public final boolean U0() {
+        switch (this.f30606k2) {
             case 0:
-                cq cqVar = this.f30904b.f31315a;
-                cqVar.Y.dismissInternal();
-                cqVar.dismiss();
-                return;
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
             default:
-                cq cqVar2 = this.f30904b.f31315a;
-                cqVar2.Y.dismissInternal();
-                cqVar2.dismiss();
-                return;
+                return true;
         }
     }
 }

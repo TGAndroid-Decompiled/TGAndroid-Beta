@@ -1,18 +1,18 @@
 package z7;
 public final class ma {
-    public final Long f54099a;
-    public final Long f54100b;
-    public final Long f54101c;
+    public final Long f54202a;
+    public final Long f54203b;
+    public final Long f54204c;
     public final Long d;
-    public final Long f54102e;
-    public final Long f54103f;
+    public final Long f54205e;
+    public final Long f54206f;
 
     public ma(x7.z6 z6Var) {
-        this.f54099a = z6Var.f51171a;
-        this.f54100b = z6Var.f51172b;
-        this.f54101c = z6Var.f51173c;
+        this.f54202a = z6Var.f51278a;
+        this.f54203b = z6Var.f51279b;
+        this.f54204c = z6Var.f51280c;
         this.d = z6Var.d;
-        this.f54102e = z6Var.f51174e;
-        this.f54103f = z6Var.f51175f;
+        this.f54205e = z6Var.f51281e;
+        this.f54206f = z6Var.f51282f;
     }
 }

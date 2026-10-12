@@ -12,7 +12,7 @@ public final class p6 extends g7 {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        this.X2.f1339n = View.MeasureSpec.getSize(i11);
+        this.X2.f1337n = View.MeasureSpec.getSize(i11);
         super.onMeasure(i10, i11);
     }
 }

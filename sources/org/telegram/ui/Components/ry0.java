@@ -1,55 +1,86 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class ry0 extends s4.y {
-    public int f30665e;
-    public final yy0 f30666f;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import java.io.Serializable;
+import java.util.HashMap;
+import org.telegram.messenger.NotificationCenter;
+public final class ry0 implements TextWatcher {
+    public final int f30279a = 0;
+    public final EditTextBoldCursor f30280b;
+    public final Serializable f30281c;
+    public final Object d;
+    public final NotificationCenter.NotificationCenterDelegate f30282e;
 
-    public ry0(yy0 yy0Var) {
-        this.f30666f = yy0Var;
-        this.d = 15;
-        this.f30665e = -1;
+    public ry0(dz0 dz0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
+        this.f30282e = dz0Var;
+        this.f30281c = iArr;
+        this.d = textView;
+        this.f30280b = editTextBoldCursor;
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2) {
-        int i10 = d1Var.f47786f;
-        if (i10 != 3 && i10 == d1Var2.f47786f) {
-            yy0 yy0Var = this.f30666f;
-            if (yy0Var.S == null) {
-                return false;
-            }
-            int b10 = d1Var.b();
-            int b11 = d1Var2.b();
-            yy0Var.S.documents.add(b11, yy0Var.S.documents.remove(b10));
-            yy0Var.d.p(b10, b11);
-            this.f30665e = b11;
-            return true;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        switch (this.f30279a) {
+            case 0:
+                return;
+            default:
+                org.telegram.ui.pn0 pn0Var = (org.telegram.ui.pn0) this.f30282e;
+                String str = (String) this.f30281c;
+                if (((HashMap) this.d) == pn0Var.f41044t1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                EditTextBoldCursor editTextBoldCursor = this.f30280b;
+                org.telegram.ui.pn0.I0(pn0Var, editTextBoldCursor, str, editable, z10);
+                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
+                EditTextBoldCursor editTextBoldCursor2 = pn0Var.Y[intValue];
+                if (intValue == 6) {
+                    pn0Var.X0(true);
+                    return;
+                }
+                return;
         }
-        return false;
     }
 
     @Override
-    public final void p(s4.d1 d1Var, int i10) {
-        yy0 yy0Var = this.f30666f;
-        if (i10 == 0 && yy0Var.f33482f != null && this.f30665e > 0) {
-            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
-            tL_stickers_changeStickerPosition.position = this.f30665e;
-            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(yy0Var.f33482f, "").document;
-            this.f30665e = -1;
-            yy0Var.f33482f = null;
-        } else if (i10 == 2) {
-            yy0Var.f33482f = ((org.telegram.ui.Cells.f8) d1Var.f47782a).getSticker();
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f30279a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f30279a) {
+            case 0:
+                if (((int[]) this.f30281c)[0] == 2) {
+                    ((dz0) this.f30282e).n0((TextView) this.d, this.f30280b.getText().toString(), false);
+                    return;
+                }
+                return;
+            default:
+                return;
         }
     }
 
-    @Override
-    public final void q(s4.d1 d1Var) {
+    public ry0(org.telegram.ui.pn0 pn0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
+        this.f30282e = pn0Var;
+        this.f30280b = editTextBoldCursor;
+        this.f30281c = str;
+        this.d = hashMap;
     }
 
-    @Override
-    public final void o(RecyclerView recyclerView, s4.d1 d1Var, s4.d1 d1Var2, int i10, int i11, int i12) {
+    private final void a(Editable editable) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

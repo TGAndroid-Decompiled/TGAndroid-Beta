@@ -1,17 +1,51 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class ps implements Utilities.Callback2 {
-    public final int f29954a;
-    public final ws f29955b;
+import android.content.Context;
+import android.widget.PopupWindow;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public abstract class ps {
+    public final org.telegram.ui.ActionBar.m1 f29580a;
+    public boolean f29581b;
 
-    public ps(ws wsVar, int i10) {
-        this.f29954a = i10;
-        this.f29955b = wsVar;
+    public ps(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, c6Var);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new yk(this, 1));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new s(this, 27));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
+        b(actionBarPopupWindow$ActionBarPopupWindowLayout);
+        org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f29580a = m1Var;
+        m1Var.f21144b = false;
+        m1Var.setAnimationStyle(R.style.PopupContextAnimation2);
+        m1Var.setOutsideTouchable(true);
+        m1Var.setClippingEnabled(true);
+        m1Var.setInputMethodMode(2);
+        m1Var.setSoftInputMode(0);
+        m1Var.getContentView().setFocusableInTouchMode(true);
+        if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
+            m1Var.setFocusable(true);
+        }
+        m1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public final void onDismiss() {
+                ps psVar = ps.this;
+                psVar.c();
+                psVar.f29581b = false;
+            }
+        });
     }
 
-    @Override
-    public final void run(java.lang.Object r13, java.lang.Object r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ps.run(java.lang.Object, java.lang.Object):void");
+    public final void a() {
+        org.telegram.ui.ActionBar.m1 m1Var = this.f29580a;
+        if (m1Var != null) {
+            m1Var.d(true);
+        }
     }
+
+    public abstract void b(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
+
+    public abstract void c();
 }

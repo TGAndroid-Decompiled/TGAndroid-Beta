@@ -1,77 +1,82 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.text.TextPaint;
-import android.text.style.LineHeightSpan;
-import android.text.style.MetricAffectingSpan;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class xj0 extends MetricAffectingSpan implements LineHeightSpan {
-    public yj0 f32990a;
+public final class xj0 extends Drawable {
+    public final View f32787a;
+    public final Paint f32788b;
+    public final Path f32789c;
+    public int d;
+    public boolean f32790e;
+    public final g6 f32791f;
 
-    @Override
-    public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
-        int i14;
-        int i15;
-        yj0 yj0Var = this.f32990a;
-        if (yj0Var.f33367b) {
-            int i16 = 2;
-            if (yj0Var.f33370f) {
-                i14 = 7;
-            } else {
-                i14 = 2;
-            }
-            if (i10 <= yj0Var.f33368c) {
-                int i17 = fontMetricsInt.ascent;
-                if (yj0Var.f33371n) {
-                    i15 = 2;
-                } else {
-                    i15 = 0;
-                }
-                fontMetricsInt.ascent = i17 - AndroidUtilities.dp(i15 + i14);
-                int i18 = fontMetricsInt.top;
-                if (!this.f32990a.f33371n) {
-                    i16 = 0;
-                }
-                fontMetricsInt.top = i18 - AndroidUtilities.dp(i16 + i14);
-            }
-            if (i11 >= this.f32990a.d) {
-                float f7 = i14;
-                fontMetricsInt.descent = AndroidUtilities.dp(f7) + fontMetricsInt.descent;
-                fontMetricsInt.bottom = AndroidUtilities.dp(f7) + fontMetricsInt.bottom;
-            }
-        }
+    public xj0(View view) {
+        Paint paint = new Paint(1);
+        this.f32788b = paint;
+        Path path = new Path();
+        this.f32789c = path;
+        this.d = 255;
+        this.f32787a = view;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        this.f32791f = new g6(view, 0L, 350L, js.h);
+        float dpf2 = AndroidUtilities.dpf2(4.66f);
+        float dpf22 = AndroidUtilities.dpf2(2.16f);
+        path.rewind();
+        path.moveTo(dpf2 / 2.0f, 0.0f);
+        float f7 = (-dpf2) / 2.0f;
+        path.lineTo(f7, 0.0f);
+        float f10 = f7 + dpf22;
+        path.lineTo(f10, -dpf22);
+        path.moveTo(f7, 0.0f);
+        path.lineTo(f10, dpf22);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        float f7;
-        if (textPaint == null) {
-            return;
-        }
-        if (this.f32990a.f33366a) {
-            f7 = 16.0f;
-        } else {
-            f7 = SharedConfig.fontSize - 2;
-        }
-        textPaint.setTextSize(AndroidUtilities.dp(f7));
+    public final void draw(Canvas canvas) {
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        float e7 = this.f32791f.e(this.f32790e);
+        float dpf2 = AndroidUtilities.dpf2(2.51f);
+        canvas.save();
+        canvas.translate(centerX, centerY);
+        canvas.save();
+        canvas.translate(dpf2, dpf2);
+        canvas.rotate(45.0f);
+        canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e7), 1.0f);
+        Path path = this.f32789c;
+        Paint paint = this.f32788b;
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.save();
+        float f7 = -dpf2;
+        canvas.translate(f7, f7);
+        canvas.rotate(225.0f);
+        canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e7), 1.0f);
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.restore();
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        float f7;
-        float f10;
-        if (this.f32990a.f33366a) {
-            f7 = 16.0f;
-        } else {
-            f7 = SharedConfig.fontSize - 2;
-        }
-        textPaint.setTextSize(AndroidUtilities.dp(f7));
-        if (this.f32990a.f33366a) {
-            f10 = 1.1f;
-        } else {
-            f10 = 1.0f;
-        }
-        textPaint.setTextScaleX(f10);
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+        this.f32788b.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

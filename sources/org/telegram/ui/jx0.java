@@ -1,15 +1,28 @@
 package org.telegram.ui;
-public final class jx0 {
-    public final int f39171a;
-    public final int f39172b;
-    public final CharSequence f39173c;
-    public final String d;
-    public int f39174e;
 
-    public jx0(int i10, int i11, String str, String str2) {
-        this.f39171a = i10;
-        this.f39172b = i11;
-        this.f39173c = str;
-        this.d = str2;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class jx0 extends rg.q1 {
+    public final kx0 N;
+
+    public jx0(kx0 kx0Var, Context context) {
+        super(context);
+        this.N = kx0Var;
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        TextView textView = this.f47626r;
+        if (textView.getVisibility() == 0) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
+            kx0 kx0Var = this.N;
+            kx0Var.d.f39866n.f33980n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f47625n.h, kx0Var.d.f39866n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), kx0Var.d.f39866n.f33980n0.f47393f);
+        }
+        super.dispatchDraw(canvas);
     }
 }

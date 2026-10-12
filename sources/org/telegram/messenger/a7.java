@@ -1,37 +1,38 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLObject;
 public final class a7 implements Runnable {
-    public final int f17342a;
-    public final MediaDataController f17343b;
-    public final TLObject f17344c;
+    public final int f17047a;
+    public final MediaDataController f17048b;
+    public final String f17049c;
 
-    public a7(MediaDataController mediaDataController, TLObject tLObject, int i10) {
-        this.f17342a = i10;
-        this.f17343b = mediaDataController;
-        this.f17344c = tLObject;
+    public a7(MediaDataController mediaDataController, String str, int i10) {
+        this.f17047a = i10;
+        this.f17048b = mediaDataController;
+        this.f17049c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f17342a) {
+        switch (this.f17047a) {
             case 0:
-                this.f17343b.lambda$checkPremiumGiftStickers$75(this.f17344c);
+                MediaDataController.h3(this.f17048b, this.f17049c);
                 return;
             case 1:
-                this.f17343b.lambda$loadReactions$13(this.f17344c);
+                MediaDataController.x1(this.f17048b, this.f17049c);
                 return;
             case 2:
-                this.f17343b.lambda$checkTonGiftStickers$77(this.f17344c);
+                MediaDataController.Y0(this.f17048b, this.f17049c);
                 return;
             case 3:
-                this.f17343b.lambda$checkDefaultTopicIcons$81(this.f17344c);
+                MediaDataController.e1(this.f17048b, this.f17049c);
                 return;
             case 4:
-                this.f17343b.lambda$clearRecentStickers$18(this.f17344c);
+                MediaDataController.E(this.f17048b, this.f17049c);
+                return;
+            case 5:
+                MediaDataController.U0(this.f17048b, this.f17049c);
                 return;
             default:
-                this.f17343b.lambda$checkGenericAnimations$79(this.f17344c);
+                MediaDataController.l(this.f17048b, this.f17049c);
                 return;
         }
     }

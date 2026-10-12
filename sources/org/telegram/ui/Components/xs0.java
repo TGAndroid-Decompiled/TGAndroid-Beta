@@ -1,37 +1,41 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Rect;
-public final class xs0 extends org.telegram.ui.z11 {
-    public final cw0 H;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+public final class xs0 extends xh.r2 {
+    public final hw0 U;
 
-    public xs0(cw0 cw0Var, Context context, tw0 tw0Var, ai.y8 y8Var, ws0 ws0Var) {
-        super(context, tw0Var, y8Var, ws0Var);
-        this.H = cw0Var;
+    public xs0(int i10, long j3, Context context, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.c6 c6Var, hw0 hw0Var) {
+        super(i10, j3, context, m2Var, c6Var);
+        this.U = hw0Var;
     }
 
     @Override
-    public final void a() {
-        bt0 bt0Var;
-        Rect rect = this.F;
-        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
-        setClipBounds(rect);
-        invalidate();
-        cw0 cw0Var = this.H;
-        vu0[] vu0VarArr = cw0Var.f25512k0;
-        if (vu0VarArr != null) {
-            for (vu0 vu0Var : vu0VarArr) {
-                if (vu0Var != null && (bt0Var = vu0Var.h) != null) {
-                    int paddingLeft = bt0Var.getPaddingLeft();
-                    int Z = cw0Var.Z(vu0Var.F);
-                    int paddingRight = vu0Var.h.getPaddingRight();
-                    bt0 bt0Var2 = vu0Var.h;
-                    int Y = cw0Var.Y(cw0Var.v0());
-                    bt0Var2.f31721c3 = Y;
-                    bt0Var.setPadding(paddingLeft, Z, paddingRight, Y);
-                }
-            }
+    public final void p(boolean z10) {
+        float f7;
+        float f10;
+        hw0 hw0Var = this.U;
+        TextView textView = hw0Var.f26959q0;
+        textView.setVisibility(0);
+        ViewPropertyAnimator animate = textView.animate();
+        float f11 = 1.0f;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
         }
-        cw0Var.K();
+        ViewPropertyAnimator alpha = animate.alpha(f7);
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.4f;
+        }
+        ViewPropertyAnimator scaleX = alpha.scaleX(f10);
+        if (!z10) {
+            f11 = 0.4f;
+        }
+        scaleX.scaleY(f11).withEndAction(new js0(1, this, z10)).start();
+        hw0Var.q1(true);
     }
 }

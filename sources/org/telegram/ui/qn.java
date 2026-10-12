@@ -1,49 +1,58 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.view.View;
-public final class qn implements ValueAnimator.AnimatorUpdateListener {
-    public final int f41240a;
-    public final rn f41241b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class qn extends w7.x5 {
+    public MessageObject f41365a;
+    public int f41366b = 0;
+    public boolean f41367c = true;
+    public int d = 0;
+    public int f41368e;
+    public boolean f41369f;
+    public int f41370g;
+    public final eo h;
 
-    public qn(rn rnVar, int i10) {
-        this.f41240a = i10;
-        this.f41241b = rnVar;
+    public qn(eo eoVar) {
+        this.h = eoVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f41240a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rn rnVar = this.f41241b;
-                rnVar.f41511f = floatValue;
-                View view = rnVar.h.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rn rnVar2 = this.f41241b;
-                rnVar2.f41511f = floatValue2;
-                View view2 = rnVar2.h.fragmentView;
-                if (view2 != null) {
-                    view2.invalidate();
-                    return;
-                }
-                return;
-            default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rn rnVar3 = this.f41241b;
-                rnVar3.f41511f = floatValue3;
-                View view3 = rnVar3.h.fragmentView;
-                if (view3 != null) {
-                    view3.invalidate();
-                    return;
-                }
-                return;
+    public final void a() {
+        MessageObject messageObject = this.f41365a;
+        eo eoVar = this.h;
+        if (messageObject != null) {
+            eoVar.A0.T();
+            int indexOf = eoVar.f37444u6.indexOf(this.f41365a) + eoVar.A0.J;
+            if (indexOf >= 0) {
+                eoVar.f37502z0.i1(indexOf, (int) ((this.f41368e + this.f41370g) - eoVar.f37422s9), this.f41369f);
+            }
+        } else {
+            eoVar.A0.T();
+            eoVar.f37502z0.i1(this.f41366b, this.d, this.f41367c);
+        }
+        this.f41365a = null;
+        eoVar.f37340m3 = true;
+        eoVar.ad(false);
+        AndroidUtilities.runOnUIThread(new gj(this, 9));
+    }
+
+    @Override
+    public final void c() {
+        eo eoVar = this.h;
+        eoVar.I9 = eoVar.getNotificationCenter().setAnimationInProgress(eoVar.I9, eo.Nc);
+        bl blVar = eoVar.f37474wa;
+        if (blVar.f42003n) {
+            blVar.d();
+        }
+    }
+
+    @Override
+    public final void d(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+            u1Var.setDelegate(null);
+            u1Var.setResourcesProvider(null);
         }
     }
 }

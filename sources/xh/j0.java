@@ -8,35 +8,35 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.qg;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.pn;
-public final class j0 implements qg {
-    public final TL_stars.TL_starGiftUnique f51414a;
-    public final l0 f51415b;
+import org.telegram.ui.Components.sg;
+import org.telegram.ui.tn;
+public final class j0 implements sg {
+    public final TL_stars.TL_starGiftUnique f51535a;
+    public final l0 f51536b;
 
     public j0(l0 l0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f51415b = l0Var;
-        this.f51414a = tL_starGiftUnique;
+        this.f51536b = l0Var;
+        this.f51535a = tL_starGiftUnique;
     }
 
     @Override
-    public final void B1(CharSequence charSequence) {
+    public final void C1(CharSequence charSequence) {
         a(charSequence);
     }
 
     @Override
-    public final boolean C1() {
+    public final boolean D1() {
         return false;
     }
 
     @Override
-    public final boolean I0() {
+    public final boolean H0() {
         return true;
     }
 
     @Override
-    public final TLRPC.TL_channels_sendAsPeers P() {
+    public final TLRPC.TL_channels_sendAsPeers J() {
         return null;
     }
 
@@ -44,11 +44,11 @@ public final class j0 implements qg {
         int i10;
         int i11;
         boolean z10;
-        l0 l0Var = this.f51415b;
-        r6 r6Var = l0Var.f51460w;
-        a5 a5Var = l0Var.f51453b;
+        l0 l0Var = this.f51536b;
+        r6 r6Var = l0Var.f51558w;
+        z4 z4Var = l0Var.f51551b;
         i10 = ((org.telegram.ui.ActionBar.e3) l0Var).currentAccount;
-        a5Var.a(this.f51414a, UserConfig.getInstance(i10).getClientUserId(), l0Var.f51457n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        z4Var.a(this.f51535a, UserConfig.getInstance(i10).getClientUserId(), l0Var.f51555n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         l0Var.F = codePointCount;
         int i12 = l0Var.E;
@@ -72,10 +72,10 @@ public final class j0 implements qg {
             r6Var.animate().setListener(null).cancel();
             r6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                r6Var.setTextColor(l0Var.getThemedColor(h6.f21043p7));
+                r6Var.setTextColor(l0Var.getThemedColor(h6.f20780p7));
                 return;
             } else {
-                r6Var.setTextColor(l0Var.getThemedColor(h6.f21207y6));
+                r6Var.setTextColor(l0Var.getThemedColor(h6.f20945y6));
                 return;
             }
         }
@@ -113,7 +113,7 @@ public final class j0 implements qg {
     }
 
     @Override
-    public final pn u0() {
+    public final tn t0() {
         return null;
     }
 
@@ -137,31 +137,11 @@ public final class j0 implements qg {
     }
 
     @Override
-    public final void c0(boolean z10) {
+    public final void D2() {
     }
 
     @Override
-    public final void g1(int i10) {
-    }
-
-    @Override
-    public final void l2(int i10) {
-    }
-
-    @Override
-    public final void p2(boolean z10) {
-    }
-
-    @Override
-    public final void z(float f7) {
-    }
-
-    @Override
-    public final void B2() {
-    }
-
-    @Override
-    public final void F2() {
+    public final void G() {
     }
 
     @Override
@@ -169,7 +149,7 @@ public final class j0 implements qg {
     }
 
     @Override
-    public final void J() {
+    public final void H2() {
     }
 
     @Override
@@ -185,11 +165,19 @@ public final class j0 implements qg {
     }
 
     @Override
-    public final void Z0() {
+    public final void X() {
     }
 
     @Override
-    public final void a0() {
+    public final void Y0() {
+    }
+
+    @Override
+    public final void Z(boolean z10) {
+    }
+
+    @Override
+    public final void g1(int i10) {
     }
 
     @Override
@@ -205,11 +193,19 @@ public final class j0 implements qg {
     }
 
     @Override
+    public final void l2(int i10) {
+    }
+
+    @Override
     public final void o2() {
     }
 
     @Override
-    public final void q0() {
+    public final void p0() {
+    }
+
+    @Override
+    public final void p2(boolean z10) {
     }
 
     @Override
@@ -233,19 +229,23 @@ public final class j0 implements qg {
     }
 
     @Override
+    public final void y0() {
+    }
+
+    @Override
     public final void y1() {
     }
 
     @Override
-    public final void z0() {
+    public final void z(float f7) {
     }
 
     @Override
-    public final void K0(int i10, int i11) {
+    public final void J0(int i10, int i11) {
     }
 
     @Override
-    public final void V(float f7, int i10) {
+    public final void K(float f7, int i10) {
     }
 
     @Override
@@ -253,7 +253,7 @@ public final class j0 implements qg {
     }
 
     @Override
-    public final void K(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
+    public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
     }
 
     @Override

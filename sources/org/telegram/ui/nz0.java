@@ -1,34 +1,78 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class nz0 extends k01 {
-    public nz0(Context context) {
-        super(context);
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class nz0 extends s4.t0 {
+    public final int f40512a;
+    public final ProfileActivity f40513b;
+
+    public nz0(ProfileActivity profileActivity, int i10) {
+        this.f40512a = i10;
+        this.f40513b = profileActivity;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ai.m4 m4Var;
-        super.dispatchDraw(canvas);
-        org.telegram.ui.Components.s5 s5Var = this.f33191e;
-        if (s5Var != null && (m4Var = s5Var.f30739k) != null) {
-            m4Var.startAnimation();
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        switch (this.f40512a) {
+            case 0:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f40513b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            default:
+                ProfileActivity profileActivity = this.f40513b;
+                boolean z11 = true;
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
+                }
+                if (profileActivity.F0 && i10 != 2) {
+                    profileActivity.F0 = false;
+                }
+                org.telegram.ui.ActionBar.u0 u0Var = profileActivity.U0;
+                if (u0Var != null) {
+                    if (i10 != 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    profileActivity.f34224z1 = z10;
+                    if (z10 || profileActivity.f34156p2) {
+                        z11 = false;
+                    }
+                    u0Var.setEnabled(z11);
+                }
+                m01 m01Var = profileActivity.O;
+                boolean z12 = profileActivity.f34048a.I1;
+                m01Var.getClass();
+                return;
         }
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
-            return;
+    public void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f40512a) {
+            case 1:
+                ProfileActivity profileActivity = this.f40513b;
+                org.telegram.ui.Components.c50 c50Var = profileActivity.X;
+                boolean z10 = true;
+                if (c50Var != null) {
+                    c50Var.b(true);
+                }
+                profileActivity.A3();
+                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f34063c.N0() > profileActivity.f34200v4 - 8) {
+                    profileActivity.R3(false);
+                }
+                m01 m01Var = profileActivity.O;
+                if (m01Var.getY() > 0.0f) {
+                    z10 = false;
+                }
+                m01Var.setPinnedToTop(z10);
+                profileActivity.U4();
+                return;
+            default:
+                return;
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

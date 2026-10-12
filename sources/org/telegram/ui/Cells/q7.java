@@ -23,58 +23,58 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.fq;
 import org.telegram.ui.PhotoViewer;
 public final class q7 extends FrameLayout {
-    public final org.telegram.ui.Components.y9 f22715a;
-    public final TextView f22716b;
-    public final q5 f22717c;
+    public final org.telegram.ui.Components.y9 f22450a;
+    public final TextView f22451b;
+    public final q5 f22452c;
     public final View d;
-    public final dq f22718e;
-    public final FrameLayout f22719f;
+    public final fq f22453e;
+    public final FrameLayout f22454f;
     public AnimatorSet h;
-    public MessageObject f22720n;
-    public final u7 f22721r;
+    public MessageObject f22455n;
+    public final u7 f22456r;
 
     public q7(u7 u7Var, Context context) {
         super(context);
-        this.f22721r = u7Var;
+        this.f22456r = u7Var;
         setWillNotDraw(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f22719f = frameLayout;
-        addView(frameLayout, w7.x5.d(-1.0f, -1));
+        this.f22454f = frameLayout;
+        addView(frameLayout, w7.w5.d(-1.0f, -1));
         org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f22715a = y9Var;
+        this.f22450a = y9Var;
         y9Var.getImageReceiver().setNeedsQualityThumb(true);
         y9Var.getImageReceiver().setShouldGenerateQualityThumb(true);
-        frameLayout.addView(y9Var, w7.x5.d(-1.0f, -1));
+        frameLayout.addView(y9Var, w7.w5.d(-1.0f, -1));
         q5 q5Var = new q5(context, 1);
-        q5Var.f22714b = new RectF();
-        this.f22717c = q5Var;
+        q5Var.f22449b = new RectF();
+        this.f22452c = q5Var;
         q5Var.setWillNotDraw(false);
         q5Var.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
-        frameLayout.addView(q5Var, w7.x5.a(17.0f, 4.0f, 0.0f, 0.0f, 4.0f, -2, 83));
+        frameLayout.addView(q5Var, w7.w5.a(17.0f, 4.0f, 0.0f, 0.0f, 4.0f, -2, 83));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.play_mini_video);
-        q5Var.addView(imageView, w7.x5.e(-2, -2, 19));
+        q5Var.addView(imageView, w7.w5.e(-2, -2, 19));
         TextView textView = new TextView(context);
-        this.f22716b = textView;
+        this.f22451b = textView;
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 12.0f);
         textView.setImportantForAccessibility(2);
-        q5Var.addView(textView, w7.x5.a(-2.0f, 13.0f, -0.7f, 0.0f, 0.0f, -2, 19));
+        q5Var.addView(textView, w7.w5.a(-2.0f, 13.0f, -0.7f, 0.0f, 0.0f, -2, 19));
         View view = new View(context);
         this.d = view;
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.L0(false));
-        addView(view, w7.x5.d(-1.0f, -1));
-        dq dqVar = new dq(context, 21, null);
-        this.f22718e = dqVar;
-        dqVar.setVisibility(4);
-        dqVar.b(-1, org.telegram.ui.ActionBar.h6.Lh, org.telegram.ui.ActionBar.h6.f20951k7);
-        dqVar.setDrawUnchecked(false);
-        dqVar.setDrawBackgroundAsArc(1);
-        addView(dqVar, w7.x5.a(24.0f, 0.0f, 1.0f, 1.0f, 0.0f, 24, 53));
+        addView(view, w7.w5.d(-1.0f, -1));
+        fq fqVar = new fq(context, 21, null);
+        this.f22453e = fqVar;
+        fqVar.setVisibility(4);
+        fqVar.b(-1, org.telegram.ui.ActionBar.h6.Lh, org.telegram.ui.ActionBar.h6.f20688k7);
+        fqVar.setDrawUnchecked(false);
+        fqVar.setDrawBackgroundAsArc(1);
+        addView(fqVar, w7.w5.a(24.0f, 0.0f, 1.0f, 1.0f, 0.0f, 24, 53));
     }
 
     @Override
@@ -89,29 +89,29 @@ public final class q7 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (!this.f22718e.f25859a.f24125q) {
-            org.telegram.ui.Components.y9 y9Var = this.f22715a;
-            if (y9Var.getImageReceiver().hasBitmapImage() && y9Var.getImageReceiver().getCurrentAlpha() == 1.0f && !PhotoViewer.N1(this.f22720n)) {
+        if (!this.f22453e.f26150a.f23874q) {
+            org.telegram.ui.Components.y9 y9Var = this.f22450a;
+            if (y9Var.getImageReceiver().hasBitmapImage() && y9Var.getImageReceiver().getCurrentAlpha() == 1.0f && !PhotoViewer.N1(this.f22455n)) {
                 return;
             }
         }
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f22721r.f23543n);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f22456r.f23287n);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f22720n.isLivePhoto()) {
+        if (this.f22455n.isLivePhoto()) {
             accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachLivePhoto));
-        } else if (this.f22720n.isVideo()) {
+        } else if (this.f22455n.isVideo()) {
             StringBuilder sb2 = new StringBuilder();
             c1.l(R.string.AttachVideo, ", ", sb2);
-            sb2.append(LocaleController.formatDuration((int) this.f22720n.getDuration()));
+            sb2.append(LocaleController.formatDuration((int) this.f22455n.getDuration()));
             accessibilityNodeInfo.setText(sb2.toString());
         } else {
             accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachPhoto));
         }
-        if (this.f22718e.f25859a.f24125q) {
+        if (this.f22453e.f26150a.f23874q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }
@@ -126,17 +126,17 @@ public final class q7 extends FrameLayout {
     public void setMessageObject(MessageObject messageObject) {
         int i10;
         int i11;
-        this.f22720n = messageObject;
-        this.f22715a.getImageReceiver().setVisible(!PhotoViewer.N1(messageObject), false);
-        if (!TextUtils.isEmpty(MessagesController.getInstance(this.f22721r.f23545s).getRestrictionReason(messageObject.messageOwner.restriction_reason))) {
-            this.f22717c.setVisibility(4);
-            this.f22715a.setImageResource(R.drawable.photo_placeholder_in);
+        this.f22455n = messageObject;
+        this.f22450a.getImageReceiver().setVisible(!PhotoViewer.N1(messageObject), false);
+        if (!TextUtils.isEmpty(MessagesController.getInstance(this.f22456r.f23289s).getRestrictionReason(messageObject.messageOwner.restriction_reason))) {
+            this.f22452c.setVisibility(4);
+            this.f22450a.setImageResource(R.drawable.photo_placeholder_in);
             return;
         }
         TLRPC.PhotoSize photoSize = null;
         if (messageObject.isVideo()) {
-            this.f22717c.setVisibility(0);
-            this.f22716b.setText(AndroidUtilities.formatShortDuration((int) messageObject.getDuration()));
+            this.f22452c.setVisibility(0);
+            this.f22451b.setText(AndroidUtilities.formatShortDuration((int) messageObject.getDuration()));
             TLRPC.Document document = messageObject.getDocument();
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 50);
             TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320);
@@ -145,28 +145,28 @@ public final class q7 extends FrameLayout {
             }
             if (closestPhotoSizeWithSize != null) {
                 if (messageObject.strippedThumb != null) {
-                    this.f22715a.i(ImageLocation.getForDocument(photoSize, document), "100_100", null, messageObject.strippedThumb, messageObject);
+                    this.f22450a.i(ImageLocation.getForDocument(photoSize, document), "100_100", null, messageObject.strippedThumb, messageObject);
                     return;
                 } else {
-                    this.f22715a.m(ImageLocation.getForDocument(photoSize, document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "b", ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.photo_placeholder_in), null, 0, messageObject);
+                    this.f22450a.m(ImageLocation.getForDocument(photoSize, document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "b", ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.photo_placeholder_in), null, 0, messageObject);
                     return;
                 }
             }
-            this.f22715a.setImageResource(R.drawable.photo_placeholder_in);
+            this.f22450a.setImageResource(R.drawable.photo_placeholder_in);
             return;
         }
         TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
         if ((messageMedia instanceof TLRPC.TL_messageMediaPhoto) && messageMedia.photo != null && !messageObject.photoThumbs.isEmpty()) {
-            this.f22717c.setVisibility(4);
+            this.f22452c.setVisibility(4);
             TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
             TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 320, false, closestPhotoSizeWithSize3, false);
-            if (!messageObject.mediaExists && !DownloadController.getInstance(this.f22721r.f23545s).canDownloadMedia(messageObject)) {
+            if (!messageObject.mediaExists && !DownloadController.getInstance(this.f22456r.f23289s).canDownloadMedia(messageObject)) {
                 BitmapDrawable bitmapDrawable = messageObject.strippedThumb;
                 if (bitmapDrawable != null) {
-                    this.f22715a.m(null, null, null, null, bitmapDrawable, null, 0, messageObject);
+                    this.f22450a.m(null, null, null, null, bitmapDrawable, null, 0, messageObject);
                     return;
                 } else {
-                    this.f22715a.m(null, null, ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), "b", ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.photo_placeholder_in), null, 0, messageObject);
+                    this.f22450a.m(null, null, ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), "b", ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.photo_placeholder_in), null, 0, messageObject);
                     return;
                 }
             }
@@ -174,7 +174,7 @@ public final class q7 extends FrameLayout {
                 photoSize = closestPhotoSizeWithSize3;
             }
             if (messageObject.strippedThumb != null) {
-                ImageReceiver imageReceiver = this.f22715a.getImageReceiver();
+                ImageReceiver imageReceiver = this.f22450a.getImageReceiver();
                 ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject);
                 long j3 = 0;
                 BitmapDrawable bitmapDrawable2 = messageObject.strippedThumb;
@@ -190,7 +190,7 @@ public final class q7 extends FrameLayout {
                 return;
             }
             long j10 = 0;
-            ImageReceiver imageReceiver2 = this.f22715a.getImageReceiver();
+            ImageReceiver imageReceiver2 = this.f22450a.getImageReceiver();
             ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject);
             ImageLocation forObject3 = ImageLocation.getForObject(photoSize, messageObject.photoThumbsObject);
             if (closestPhotoSizeWithSize4 != null) {
@@ -204,7 +204,7 @@ public final class q7 extends FrameLayout {
             imageReceiver2.setImage(forObject2, "100_100", forObject3, "b", j10, null, messageObject, i10);
             return;
         }
-        this.f22717c.setVisibility(4);
-        this.f22715a.setImageResource(R.drawable.photo_placeholder_in);
+        this.f22452c.setVisibility(4);
+        this.f22450a.setImageResource(R.drawable.photo_placeholder_in);
     }
 }

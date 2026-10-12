@@ -1,30 +1,18 @@
 package org.telegram.ui.Components;
+public final class e61 {
+    public final n61 f25609a;
+    public final q61 f25610b;
 
-import android.util.SparseArray;
-import org.telegram.tgnet.TLRPC;
-public final class e61 extends g.o {
-    public final m61 f26001c;
-
-    public e61(m61 m61Var) {
-        this.f26001c = m61Var;
+    public e61(q61 q61Var, n61 n61Var) {
+        this.f25610b = q61Var;
+        this.f25609a = n61Var;
     }
 
-    @Override
-    public final int i(int i10) {
-        m61 m61Var = this.f26001c;
-        s4.i0 adapter = m61Var.f28761n.getAdapter();
-        l61 l61Var = m61Var.f28763s;
-        if (adapter == l61Var) {
-            if ((l61Var.d.get(i10) instanceof Integer) || i10 >= l61Var.f28217w) {
-                return l61Var.v;
-            }
-            return 1;
-        }
-        gg.f2 f2Var = m61Var.v;
-        SparseArray sparseArray = f2Var.f10602s;
-        if (i10 != f2Var.f10605y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
-            return 1;
-        }
-        return f2Var.f10598e.a();
+    public final int a() {
+        return this.f25610b.f29744s.v;
+    }
+
+    public final void b(boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e61.b(boolean):void");
     }
 }

@@ -357,7 +357,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             AndroidUtilities.runOnUIThread(new c(this, 2));
         } catch (Exception e7) {
             FileLog.e(e7, !"APP_PAUSED".equals(e7.getMessage()));
-            AndroidUtilities.runOnUIThread(new t4(this, z10, e7, runnable, 9));
+            AndroidUtilities.runOnUIThread(new t4(this, z10, e7, runnable, 8));
         }
     }
 
@@ -484,7 +484,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             } else if (obj instanceof Camera2Session) {
                 ((Camera2Session) obj).setRecordingVideo(true);
             }
-            AndroidUtilities.runOnUIThread(new t1(this, iCameraView, file, z10, runnable, 13));
+            AndroidUtilities.runOnUIThread(new t1(this, iCameraView, file, z10, runnable, 12));
         } catch (Exception e10) {
             FileLog.e(e10);
         }
@@ -822,7 +822,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             return;
         }
         this.loadingCameras = true;
-        this.threadPool.execute(new x0(this, z10, runnable, 9));
+        this.threadPool.execute(new x0(this, z10, runnable, 7));
     }
 
     public void close(CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable, Runnable runnable2) {

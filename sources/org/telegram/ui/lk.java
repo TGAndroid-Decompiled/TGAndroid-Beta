@@ -1,30 +1,224 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class lk extends org.telegram.ui.Components.jp {
-    public final zn f39727f;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class lk implements st {
+    public final eo f39774a;
 
-    public lk(zn znVar, Context context) {
-        super(context);
-        this.f39727f = znVar;
+    public lk(eo eoVar) {
+        this.f39774a = eoVar;
     }
 
     @Override
-    public final void a(boolean z10) {
-        zn znVar = this.f39727f;
-        znVar.w7();
-        znVar.u7();
-        znVar.x7();
-        znVar.y7();
-        el elVar = znVar.f44758bb;
-        if (elVar != null) {
-            elVar.setTranslationY(znVar.f45018w9 + getCurrentHeight());
+    public final MessageObject A() {
+        return null;
+    }
+
+    @Override
+    public final boolean B() {
+        return false;
+    }
+
+    @Override
+    public final boolean D() {
+        return false;
+    }
+
+    @Override
+    public final boolean E(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final String G(boolean z10) {
+        return null;
+    }
+
+    @Override
+    public final boolean I() {
+        return false;
+    }
+
+    @Override
+    public final boolean J() {
+        return false;
+    }
+
+    @Override
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+        if (inputStickerSet != null) {
+            eo eoVar = this.f39774a;
+            if (eoVar.getParentActivity() != null) {
+                TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
+                tL_inputStickerSetID.f19822id = inputStickerSet.f19822id;
+                org.telegram.ui.Components.dz0 dz0Var = new org.telegram.ui.Components.dz0(eoVar.getParentActivity(), eoVar, tL_inputStickerSetID, null, eoVar.Y, eoVar.f37251ea);
+                dz0Var.setCalcMandatoryInsets(eoVar.C9());
+                dz0Var.f25489i0 = z10;
+                eoVar.showDialog(dz0Var);
+            }
         }
-        if (z10) {
-            znVar.D9 = true;
-            znVar.nc();
-            return;
+    }
+
+    @Override
+    public final boolean N(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final Boolean P(TLRPC.Document document) {
+        return null;
+    }
+
+    @Override
+    public final boolean Q() {
+        return true;
+    }
+
+    @Override
+    public final long a() {
+        return this.f39774a.T5;
+    }
+
+    @Override
+    public final boolean b() {
+        return this.f39774a.G6();
+    }
+
+    @Override
+    public final boolean c() {
+        if (this.f39774a.R3 == 1) {
+            return true;
         }
-        znVar.t9();
+        return false;
+    }
+
+    @Override
+    public final TLRPC.TL_messageMediaPoll d() {
+        return null;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PollAnswer h() {
+        return null;
+    }
+
+    @Override
+    public final boolean i() {
+        return true;
+    }
+
+    @Override
+    public final org.telegram.ui.Components.s80 j(ci.m6 m6Var) {
+        return null;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final boolean m(int i10) {
+        return true;
+    }
+
+    @Override
+    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+        this.f39774a.Y.d(document, str, obj, null, true, z10, i10, i11);
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
+    }
+
+    @Override
+    public final void C(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void F(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void H(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void O(String str) {
+    }
+
+    @Override
+    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
+    }
+
+    @Override
+    public final void o(String str) {
+    }
+
+    @Override
+    public final void p(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void r(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void v(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void z(String str) {
+    }
+
+    @Override
+    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    }
+
+    @Override
+    public final void x(TLObject tLObject, Object obj) {
+    }
+
+    @Override
+    public final void f(CharSequence charSequence, String str, jt jtVar) {
+    }
+
+    @Override
+    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
     }
 }

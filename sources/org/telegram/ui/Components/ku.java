@@ -1,62 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
-import org.telegram.messenger.AndroidUtilities;
-public final class ku extends ShapeDrawable {
-    public final int f28139a = 0;
-    public final EditTextBoldCursor f28140b;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class ku implements ViewTreeObserver.OnPreDrawListener {
+    public final int f27948a;
+    public final View f27949b;
 
-    public ku(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
-        super(rectShape);
-        this.f28140b = editTextBoldCursor;
+    public ku(int i10, View view) {
+        this.f27948a = i10;
+        this.f27949b = view;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f28139a) {
+    public final boolean onPreDraw() {
+        switch (this.f27948a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f28140b;
-                if (editTextBoldCursor.drawInMaim) {
-                    editTextBoldCursor.cursorDrawn = true;
-                    return;
-                } else {
-                    super.draw(canvas);
-                    return;
+                org.telegram.ui.ActionBar.g4 g4Var = ((EditTextBoldCursor) this.f27949b).floatingActionMode;
+                if (g4Var != null) {
+                    g4Var.c();
+                    return true;
                 }
+                return true;
             default:
-                super.draw(canvas);
-                this.f28140b.cursorDrawn = true;
-                return;
+                ((q80) this.f27949b).invalidate();
+                return true;
         }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        int i10;
-        switch (this.f28139a) {
-            case 0:
-                i10 = this.f28140b.cursorSize;
-                return AndroidUtilities.dp(i10 + 20);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        float f7;
-        switch (this.f28139a) {
-            case 0:
-                f7 = this.f28140b.cursorWidth;
-                return AndroidUtilities.dp(f7);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    public ku(EditTextBoldCursor editTextBoldCursor) {
-        this.f28140b = editTextBoldCursor;
     }
 }

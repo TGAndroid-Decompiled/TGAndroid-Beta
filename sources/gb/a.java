@@ -6,7 +6,7 @@ public class a implements db.v {
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
         Type componentType;
-        Type type = aVar.f14779b;
+        Type type = aVar.f14776b;
         boolean z10 = type instanceof GenericArrayType;
         if (!z10 && (!(type instanceof Class) || !((Class) type).isArray())) {
             return null;

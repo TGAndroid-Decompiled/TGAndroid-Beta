@@ -1,105 +1,196 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class bn0 extends px0 {
-    public float d;
-    public final Paint f25049f;
-    public boolean f25045a = false;
-    public long f25046b = 0;
-    public boolean f25047c = false;
-    public int f25048e = 1;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.ArrayList;
+public final class bn0 extends Drawable implements Animator.AnimatorListener {
+    public final Context f24692a;
+    public ColorFilter f24693b;
+    public Drawable d;
+    public Drawable f24695e;
+    public ValueAnimator f24696f;
+    public boolean f24698r;
+    public int f24694c = 0;
+    public float h = 1.0f;
+    public final ArrayList f24697n = new ArrayList();
 
-    public bn0(boolean z10) {
-        if (z10) {
-            this.f25049f = new Paint(1);
+    public bn0(Context context) {
+        this.f24692a = context;
+    }
+
+    public final void a(int i10, boolean z10) {
+        if (this.f24694c == i10) {
+            return;
         }
+        b(this.f24692a.getDrawable(i10).mutate(), z10);
+        this.f24694c = i10;
     }
 
-    @Override
-    public final void b(int i10) {
-        Paint paint = this.f25049f;
-        if (paint != null) {
-            paint.setColor(i10);
+    public final void b(Drawable drawable, boolean z10) {
+        if (drawable == null) {
+            this.d = null;
+            this.f24695e = null;
+            invalidateSelf();
+            return;
         }
+        if (getBounds() == null || getBounds().isEmpty()) {
+            z10 = false;
+        }
+        Drawable drawable2 = this.d;
+        if (drawable == drawable2) {
+            drawable2.setColorFilter(this.f24693b);
+            return;
+        }
+        this.f24694c = 0;
+        this.f24695e = drawable2;
+        this.d = drawable;
+        drawable.setColorFilter(this.f24693b);
+        c(this.d, getBounds());
+        c(this.f24695e, getBounds());
+        ValueAnimator valueAnimator = this.f24696f;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f24696f.cancel();
+        }
+        if (!z10) {
+            this.h = 1.0f;
+            this.f24695e = null;
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f24696f = ofFloat;
+        ofFloat.addUpdateListener(new m80(this, 11));
+        this.f24696f.addListener(this);
+        this.f24696f.setDuration(150L);
+        this.f24696f.start();
     }
 
-    @Override
-    public final void c(boolean z10) {
-        this.f25045a = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f25046b = System.currentTimeMillis();
-        this.f25047c = true;
-        invalidateSelf();
+    public final void c(Drawable drawable, Rect rect) {
+        int height;
+        int intrinsicHeight;
+        int width;
+        int intrinsicWidth;
+        if (drawable == null) {
+            return;
+        }
+        if (this.f24698r) {
+            drawable.setBounds(rect);
+            return;
+        }
+        if (drawable.getIntrinsicHeight() < 0) {
+            height = rect.top;
+            intrinsicHeight = rect.bottom;
+        } else {
+            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
+            intrinsicHeight = drawable.getIntrinsicHeight() + height;
+        }
+        if (drawable.getIntrinsicWidth() < 0) {
+            width = rect.left;
+            intrinsicWidth = rect.right;
+        } else {
+            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
+            intrinsicWidth = drawable.getIntrinsicWidth() + width;
+        }
+        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        float f7;
-        Paint paint = this.f25049f;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f20801c2;
-        }
-        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
-        float dp = AndroidUtilities.dp(6.0f);
-        if (this.f25045a) {
-            f7 = 8.0f;
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        if (this.h != 1.0f && this.d != null) {
+            canvas.save();
+            float f7 = this.h;
+            canvas.scale(f7, f7, centerX, centerY);
+            this.d.setAlpha((int) (this.h * 255.0f));
+            this.d.draw(canvas);
+            canvas.restore();
         } else {
-            f7 = 9.0f;
-        }
-        canvas.drawCircle(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(4.0f), paint);
-        if (this.f25047c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f25046b;
-            this.f25046b = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
+            Drawable drawable = this.d;
+            if (drawable != null) {
+                drawable.setAlpha(255);
+                this.d.draw(canvas);
             }
-            float f10 = this.d;
-            int i10 = this.f25048e;
-            float f11 = (((float) (i10 * j3)) / 400.0f) + f10;
-            this.d = f11;
-            if (i10 > 0 && f11 >= 1.0f) {
-                this.f25048e = -1;
-                this.d = 1.0f;
-            } else if (i10 < 0 && f11 <= 0.0f) {
-                this.f25048e = 1;
-                this.d = 0.0f;
-            }
-            a();
         }
-    }
-
-    @Override
-    public final void e() {
-        this.f25047c = false;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(10.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(12.0f);
+        float f10 = this.h;
+        if (f10 != 1.0f && this.f24695e != null) {
+            float f11 = 1.0f - f10;
+            canvas.save();
+            canvas.scale(f11, f11, centerX, centerY);
+            this.f24695e.setAlpha((int) (f11 * 255.0f));
+            this.f24695e.draw(canvas);
+            canvas.restore();
+            return;
+        }
+        Drawable drawable2 = this.f24695e;
+        if (drawable2 != null) {
+            drawable2.setAlpha(255);
+            this.f24695e.draw(canvas);
+        }
     }
 
     @Override
     public final int getOpacity() {
-        return 0;
+        return -2;
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        ArrayList arrayList = this.f24697n;
+        if (arrayList != null) {
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                ((View) arrayList.get(i10)).invalidate();
+            }
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.f24695e = null;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        c(this.d, rect);
+        c(this.f24695e, rect);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
+        this.f24693b = colorFilter;
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
+        Drawable drawable2 = this.f24695e;
+        if (drawable2 != null) {
+            drawable2.setColorFilter(colorFilter);
+        }
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+    }
+
+    @Override
+    public final void onAnimationRepeat(Animator animator) {
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
     }
 }

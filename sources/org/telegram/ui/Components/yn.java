@@ -1,40 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class yn extends s4.e0 {
-    public final hg.f0 f33437r;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+public final class yn implements lk {
+    public final Utilities.Callback f33135a;
+    public final un f33136b;
+    public final org.telegram.ui.ActionBar.m2 f33137c;
 
-    public yn(hg.f0 f0Var, Context context) {
-        super(context);
-        this.f33437r = f0Var;
+    public yn(Utilities.Callback callback, org.telegram.ui.ActionBar.m2 m2Var, un unVar) {
+        this.f33135a = callback;
+        this.f33136b = unVar;
+        this.f33137c = m2Var;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int i11;
-        lo loVar = (lo) this.f33437r.V;
-        if (loVar.V0) {
-            i10 = -1;
+    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
+        if (!arrayList.isEmpty()) {
+            this.f33135a.run(new rh.c((String) arrayList.get(0)));
         }
-        int k10 = super.k(i10, view);
-        if (loVar.V0) {
-            k10 += AndroidUtilities.dp(160.0f);
-        }
-        if (!loVar.V0) {
-            k10 = org.telegram.messenger.q.A(7.0f, loVar.R0 - AndroidUtilities.statusBarHeight, k10);
-        }
-        if (loVar.V0 && k10 == 0 && (i11 = loVar.W0) >= 0) {
-            lo.N(loVar, i11);
-            loVar.W0 = -1;
-        }
-        loVar.V0 = false;
-        return k10;
+        this.f33136b.dismiss(true);
     }
 
     @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
+        if (!arrayList.isEmpty()) {
+            this.f33135a.run(new rh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
+        }
+        this.f33136b.dismiss(true);
+    }
+
+    @Override
+    public final void x() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.f33137c.getParentActivity().startActivityForResult(intent, 28);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
+    }
+
+    @Override
+    public final void O() {
     }
 }

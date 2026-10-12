@@ -1,33 +1,38 @@
 package xh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class c3 extends AnimatorListenerAdapter {
-    public final int f51317a;
-    public final boolean f51318b;
-    public final i4 f51319c;
+import android.os.Bundle;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.k10;
+import org.telegram.ui.Components.sc;
+import org.telegram.ui.Components.zc;
+import org.telegram.ui.eo;
+public final class c3 extends eo {
+    public boolean Qc;
+    public final TL_stars.TL_starGiftUnique Rc;
+    public final long Sc;
 
-    public c3(i4 i4Var, boolean z10, int i10) {
-        this.f51317a = i10;
-        this.f51319c = i4Var;
-        this.f51318b = z10;
+    public c3(Bundle bundle, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
+        super(bundle);
+        this.Rc = tL_starGiftUnique;
+        this.Sc = j3;
+        this.Qc = false;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f51317a) {
-            case 0:
-                if (!this.f51318b) {
-                    this.f51319c.f51413y.setVisibility(8);
-                    return;
-                }
-                return;
-            default:
-                if (!this.f51318b) {
-                    this.f51319c.f51411w.setVisibility(8);
-                    return;
-                }
-                return;
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Qc) {
+            this.Qc = true;
+            sc O = zc.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
+            O.f30548r = false;
+            O.j();
+            k10 k10Var = this.f37346m9;
+            if (k10Var != null) {
+                k10Var.c(true);
+            }
         }
     }
 }

@@ -1,28 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.TextView;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class gx0 extends rg.q1 {
-    public final hx0 N;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class gx0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38171a;
+    public final Object f38172b;
+    public final View f38173c;
+    public final Object d;
 
-    public gx0(hx0 hx0Var, Context context) {
-        super(context);
-        this.N = hx0Var;
+    public gx0(Object obj, ViewGroup viewGroup, Object obj2, int i10) {
+        this.f38171a = i10;
+        this.f38172b = obj;
+        this.f38173c = viewGroup;
+        this.d = obj2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f47536r;
-        if (textView.getVisibility() == 0) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
-            hx0 hx0Var = this.N;
-            hx0Var.d.f38833n.f34205n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f47535n.h, hx0Var.d.f38833n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), hx0Var.d.f38833n.f34205n0.f47303f);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float dp;
+        switch (this.f38171a) {
+            case 0:
+                lx0 lx0Var = (lx0) this.f38172b;
+                PremiumPreviewFragment premiumPreviewFragment = lx0Var.f39866n;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = this.f38173c;
+                view.setAlpha(floatValue);
+                view.setScaleX(floatValue);
+                view.setScaleY(floatValue);
+                float animatedFraction = ((ValueAnimator) this.d).getAnimatedFraction();
+                for (int i10 = 0; i10 < premiumPreviewFragment.U.getChildCount(); i10++) {
+                    View childAt = premiumPreviewFragment.U.getChildAt(i10);
+                    if (childAt != lx0Var.f39864e) {
+                        if (childAt == lx0Var.f39863c) {
+                            dp = 0.0f - (AndroidUtilities.dp(15.0f) * animatedFraction);
+                        } else {
+                            dp = 0.0f + (AndroidUtilities.dp(8.0f) * animatedFraction);
+                        }
+                        childAt.setTranslationY((view.getMeasuredHeight() * animatedFraction) + dp);
+                    }
+                }
+                return;
+            default:
+                nb1 nb1Var = (nb1) this.f38172b;
+                nb1Var.getClass();
+                nb1Var.f40346a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((ChatActivityEnterView) this.f38173c).getEditField().setAlpha(nb1Var.f40346a);
+                ((org.telegram.ui.Components.zi) this.d).invalidate();
+                return;
         }
-        super.dispatchDraw(canvas);
     }
 }

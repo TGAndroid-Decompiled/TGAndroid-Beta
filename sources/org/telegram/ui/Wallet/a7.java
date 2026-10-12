@@ -4,25 +4,25 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class a7 implements Runnable {
-    public final int f34697a;
-    public final c7 f34698b;
+    public final int f34472a;
+    public final c7 f34473b;
 
     public a7(c7 c7Var, int i10) {
-        this.f34697a = i10;
-        this.f34698b = c7Var;
+        this.f34472a = i10;
+        this.f34473b = c7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34697a) {
+        switch (this.f34472a) {
             case 0:
-                c7 c7Var = this.f34698b;
+                c7 c7Var = this.f34473b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(c7Var.getParentActivity(), 0, c7Var.getResourceProvider());
-                alertDialog$Builder.f20404a.T = LocaleController.getString(R.string.WalletEnterSecretPhraseInfo);
-                org.telegram.messenger.q.p(R.string.OK, alertDialog$Builder, null);
+                alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.WalletEnterSecretPhraseInfo);
+                org.telegram.messenger.v0.p(R.string.OK, alertDialog$Builder, null);
                 return;
             default:
-                this.f34698b.Y();
+                this.f34473b.Y();
                 return;
         }
     }

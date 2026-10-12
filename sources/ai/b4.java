@@ -16,61 +16,61 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.NumberTextView;
-import org.telegram.ui.zn;
+import org.telegram.ui.eo;
 public final class b4 extends ChatActivityEnterView {
-    public ValueAnimator f700o5;
-    public int p5;
-    public int f701q5;
-    public int f702r5;
-    public final f6 f703s5;
+    public ValueAnimator R5;
+    public int S5;
+    public int T5;
+    public int U5;
+    public final f6 V5;
 
     public b4(f6 f6Var, Activity activity, f6 f6Var2, y3 y3Var) {
         super(activity, f6Var2, null, true, y3Var);
-        this.f703s5 = f6Var;
+        this.V5 = f6Var;
     }
 
     @Override
-    public final void A0(int i10, int i11) {
-        f6 f6Var = this.f703s5;
-        if (f6Var.f952b2 != null) {
-            this.f23961n3 = true;
-            this.f701q5 = this.E0.getMeasuredHeight();
-            this.f702r5 = this.E0.getScrollY();
+    public final void E0(int i10, int i11) {
+        f6 f6Var = this.V5;
+        if (f6Var.f950b2 != null) {
+            this.P3 = true;
+            this.T5 = this.E0.getMeasuredHeight();
+            this.U5 = this.E0.getScrollY();
             invalidate();
             f6Var.invalidate();
-            this.p5 = f6Var.f952b2.getBackgroundTop();
+            this.S5 = f6Var.f950b2.getBackgroundTop();
         }
     }
 
     @Override
-    public final void J1(int i10, boolean z10) {
-        super.J1(i10, z10);
-        S1();
+    public final void O1(int i10, boolean z10) {
+        super.O1(i10, z10);
+        Y1();
     }
 
     @Override
-    public final void O1(boolean z10) {
+    public final void S1(boolean z10) {
         boolean z11;
-        f6 f6Var = this.f703s5;
+        f6 f6Var = this.V5;
         if (!f6Var.F1 && !f6Var.G1) {
             z11 = false;
         } else {
             z11 = true;
         }
-        P1(z11, z10);
+        T1(z11, z10);
     }
 
     @Override
-    public final boolean Q0() {
+    public final boolean V0() {
         long messageMinPrice;
         int i10;
         int i11;
         if (this.A1.getAlpha() < 0.5f) {
-            F0();
+            J0();
             return false;
         }
-        f6 f6Var = this.f703s5;
-        if (f6Var.O1.f826f) {
+        f6 f6Var = this.V5;
+        if (f6Var.O1.f824f) {
             long j3 = f6Var.L3;
             messageMinPrice = f6Var.getMessageMinPrice();
             long max = Math.max(j3, messageMinPrice);
@@ -84,11 +84,11 @@ public final class b4 extends ChatActivityEnterView {
                 i10 = 400;
             }
             if (length > i10) {
-                NumberTextView numberTextView = this.f23886b0;
+                NumberTextView numberTextView = this.f23623b0;
                 if (numberTextView != null) {
                     AndroidUtilities.shakeViewSpring(numberTextView, 3.5f);
                     try {
-                        this.f23886b0.performHapticFeedback(3, 2);
+                        this.f23623b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }
@@ -112,24 +112,24 @@ public final class b4 extends ChatActivityEnterView {
             AndroidUtilities.hideKeyboard(this);
             f6Var.L3 = 0L;
             f6Var.r0(true);
-            I(true);
+            L(true);
             return true;
         }
-        return super.Q0();
+        return super.V0();
     }
 
     @Override
-    public final boolean R0(int i10, boolean z10, int i11, boolean z11, long j3) {
-        f6 f6Var = this.f703s5;
+    public final boolean W0(int i10, boolean z10, int i11, boolean z11, long j3) {
+        f6 f6Var = this.V5;
         if (MessagesController.getInstance(f6Var.C2).isFrozen()) {
             org.telegram.ui.b.b(f6Var.C2);
             return false;
         }
-        return super.R0(i10, z10, i11, z11, j3);
+        return super.W0(i10, z10, i11, z11, j3);
     }
 
-    public final void S1() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.b4.S1():void");
+    public final void Y1() {
+        throw new UnsupportedOperationException("Method not decompiled: ai.b4.Y1():void");
     }
 
     @Override
@@ -140,30 +140,30 @@ public final class b4 extends ChatActivityEnterView {
         if (!isEnabled()) {
             RectF rectF = AndroidUtilities.rectTmp;
             float width = getWidth();
-            f6 f6Var = this.f703s5;
-            if (f6Var.f976i2 != null) {
-                f7 = this.f24017y * 1.5f;
+            f6 f6Var = this.V5;
+            if (f6Var.f974i2 != null) {
+                f7 = this.f23764y * 1.5f;
             } else {
                 f7 = 0.0f;
             }
             rectF.set(0.0f, 0.0f, width + f7, getHeight());
             boolean contains = rectF.contains(motionEvent.getX(), motionEvent.getY());
             if (motionEvent.getAction() == 0) {
-                if (contains && (textView2 = f6Var.f976i2) != null) {
+                if (contains && (textView2 = f6Var.f974i2) != null) {
                     textView2.setPressed(true);
                 }
             } else if (motionEvent.getAction() == 1) {
-                TextView textView3 = f6Var.f976i2;
+                TextView textView3 = f6Var.f974i2;
                 if (textView3 != null) {
                     if (contains && textView3.isPressed()) {
                         f6.h0(f6Var);
                     }
-                    f6Var.f976i2.setPressed(false);
+                    f6Var.f974i2.setPressed(false);
                 }
-            } else if (motionEvent.getAction() == 3 && (textView = f6Var.f976i2) != null) {
+            } else if (motionEvent.getAction() == 3 && (textView = f6Var.f974i2) != null) {
                 textView.setPressed(false);
             }
-            TextView textView4 = f6Var.f976i2;
+            TextView textView4 = f6Var.f974i2;
             if (textView4 == null || !textView4.isPressed()) {
                 return false;
             }
@@ -173,22 +173,8 @@ public final class b4 extends ChatActivityEnterView {
     }
 
     @Override
-    public final void f0(Menu menu) {
-        zn.n8(menu, null, false, !this.f703s5.O1.f826f, true, true);
-    }
-
-    @Override
-    public final void f1(float f7, float f10, float f11, boolean z10) {
-        LinearLayout linearLayout = this.f703s5.f970g2;
-        if (linearLayout != null) {
-            linearLayout.setTranslationX((1.0f - f11) * f7);
-        }
-        super.f1(f7, f10, f11, z10);
-    }
-
-    @Override
     public final int getMessagesCount() {
-        if (this.f703s5.O1.f826f) {
+        if (this.V5.O1.f824f) {
             return 1;
         }
         return super.getMessagesCount();
@@ -197,8 +183,8 @@ public final class b4 extends ChatActivityEnterView {
     @Override
     public final long getStarsPrice() {
         long messageMinPrice;
-        f6 f6Var = this.f703s5;
-        if (f6Var.O1.f826f) {
+        f6 f6Var = this.V5;
+        if (f6Var.O1.f824f) {
             messageMinPrice = f6Var.getMessageMinPrice();
             return Math.max(messageMinPrice, f6Var.L3);
         }
@@ -206,18 +192,32 @@ public final class b4 extends ChatActivityEnterView {
     }
 
     @Override
-    public final boolean p1(Runnable runnable) {
-        this.f703s5.n0(runnable);
+    public final void i0(Menu menu) {
+        eo.n8(menu, null, false, !this.V5.O1.f824f, true, true);
+    }
+
+    @Override
+    public final void j1(float f7, float f10, float f11, boolean z10) {
+        LinearLayout linearLayout = this.V5.f968g2;
+        if (linearLayout != null) {
+            linearLayout.setTranslationX((1.0f - f11) * f7);
+        }
+        super.j1(f7, f10, f11, z10);
+    }
+
+    @Override
+    public final boolean t() {
+        return this.V5.D0(true);
+    }
+
+    @Override
+    public final boolean t1(Runnable runnable) {
+        this.V5.n0(runnable);
         return true;
     }
 
     @Override
-    public final boolean s() {
-        return this.f703s5.D0(true);
-    }
-
-    @Override
-    public final void v0() {
-        S1();
+    public final void z0() {
+        Y1();
     }
 }

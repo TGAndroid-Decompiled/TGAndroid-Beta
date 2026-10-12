@@ -1,25 +1,62 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class me1 extends AnimatorListenerAdapter {
-    public final int f39960a;
-    public final ne1 f39961b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class me1 extends org.telegram.ui.Cells.u1 {
+    public final Path Ge;
+    public final Paint He;
+    public final int Ie;
+    public final int Je;
+    public final int Ke;
+    public final oe1 Le;
 
-    public me1(ne1 ne1Var, int i10) {
-        this.f39960a = i10;
-        this.f39961b = ne1Var;
+    public me1(oe1 oe1Var, Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11, int i12, int i13) {
+        super(context, i10, false, null, c6Var);
+        this.Le = oe1Var;
+        this.Ie = i11;
+        this.Je = i12;
+        this.Ke = i13;
+        this.Ge = new Path();
+        this.He = new Paint(1);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39960a) {
-            case 0:
-                this.f39961b.h.f42208s.setVisibility(8);
-                return;
-            default:
-                this.f39961b.h.f42201a.setVisibility(8);
-                return;
-        }
+    public final void Y1(Canvas canvas) {
+        this.f22998i6 = 0;
+        this.f23012j6 = this.Y5.size() - 1;
+        super.Y1(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        int O2 = O2(this.Ie);
+        float H2 = H2(O2);
+        float G2 = G2(O2);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getPollButtonsLeft(), H2, getPollButtonsRight(), G2);
+        Path path = this.Ge;
+        path.rewind();
+        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
+        Paint paint = this.He;
+        paint.setColor(0);
+        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.m1(this.Le.f40698x * 0.2f, -16777216));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        canvas.clipPath(path);
+        S1(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(this.Je, this.Ke);
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
     }
 }

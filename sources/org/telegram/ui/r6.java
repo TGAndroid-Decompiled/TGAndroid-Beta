@@ -1,7 +1,15 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class r6 {
-    public long f41370a;
-    public final ArrayList f41371b = new ArrayList();
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class r6 extends n6 {
+    public final b7 d;
+
+    public r6(b7 b7Var, Context context) {
+        super(context);
+        this.d = b7Var;
+        ((ViewGroup.MarginLayoutParams) this.f40232a.getLayoutParams()).topMargin = AndroidUtilities.dp(5.0f);
+        this.f40232a.setOnClickListener(new a(this, 6));
+    }
 }

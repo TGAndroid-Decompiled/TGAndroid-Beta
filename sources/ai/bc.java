@@ -13,16 +13,16 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.tgnet.TLRPC;
 public final class bc implements y5 {
-    public final e9 f731a;
-    public final ArrayList f732b;
-    public final Context f733c;
+    public final e9 f729a;
+    public final ArrayList f730b;
+    public final Context f731c;
     public final kc d;
 
     public bc(kc kcVar, e9 e9Var, ArrayList arrayList, Context context) {
         this.d = kcVar;
-        this.f731a = e9Var;
-        this.f732b = arrayList;
-        this.f733c = context;
+        this.f729a = e9Var;
+        this.f730b = arrayList;
+        this.f731c = context;
     }
 
     public final void a(int i10, long j3) {
@@ -37,9 +37,9 @@ public final class bc implements y5 {
     public final void b(boolean z10) {
         int i10;
         kc kcVar = this.d;
-        org.telegram.ui.ActionBar.m2 m2Var = kcVar.f1267f;
-        if (kcVar.f1256b) {
-            if (!kcVar.f1259c) {
+        org.telegram.ui.ActionBar.m2 m2Var = kcVar.f1265f;
+        if (kcVar.f1254b) {
+            if (!kcVar.f1257c) {
                 if (z10) {
                     AndroidUtilities.requestAdjustNothing(m2Var.getParentActivity(), m2Var.getClassGuid());
                     return;
@@ -50,7 +50,7 @@ public final class bc implements y5 {
             }
             return;
         }
-        WindowManager.LayoutParams layoutParams = kcVar.f1291r;
+        WindowManager.LayoutParams layoutParams = kcVar.f1289r;
         if (z10) {
             i10 = 48;
         } else {
@@ -58,7 +58,7 @@ public final class bc implements y5 {
         }
         layoutParams.softInputMode = i10;
         try {
-            kcVar.f1282n.updateViewLayout(kcVar.f1294s, layoutParams);
+            kcVar.f1280n.updateViewLayout(kcVar.f1292s, layoutParams);
         } catch (Exception e7) {
             FileLog.e(e7);
         }
@@ -85,16 +85,16 @@ public final class bc implements y5 {
             }
             boolean equals = TextUtils.equals(uri2, uri3);
             boolean z10 = true;
-            if (equals && (jcVar = kcVar.f1310z0) != null) {
+            if (equals && (jcVar = kcVar.f1308z0) != null) {
                 if (equals) {
                     kcVar.G0 = e6Var;
-                    e6Var.f884c = jcVar;
-                    e6Var.f883b = null;
+                    e6Var.f882c = jcVar;
+                    e6Var.f881b = null;
                     jcVar.setSpeed(kc.B1);
                     e6 e6Var2 = kcVar.G0;
-                    e6Var2.f882a = kcVar.f1310z0.firstFrameRendered;
-                    e6Var2.f885e = kcVar.f1309y0;
-                    e6Var2.f886f = kcVar.B0;
+                    e6Var2.f880a = kcVar.f1308z0.firstFrameRendered;
+                    e6Var2.f883e = kcVar.f1307y0;
+                    e6Var2.f884f = kcVar.B0;
                     e6Var2.d = kcVar.C0;
                     FileLog.d("StoryViewer requestPlayer: same url");
                 }
@@ -106,25 +106,25 @@ public final class bc implements y5 {
                 }
                 d2 d2Var = kcVar.A0;
                 if (d2Var != null) {
-                    if (d2Var.f811n) {
+                    if (d2Var.f809n) {
                         d2Var.s(null);
                     } else {
                         d2Var.e();
                     }
                     kcVar.A0 = null;
                 }
-                jc jcVar2 = kcVar.f1310z0;
+                jc jcVar2 = kcVar.f1308z0;
                 if (jcVar2 != null) {
                     jcVar2.release(null);
-                    kcVar.f1310z0 = null;
+                    kcVar.f1308z0 = null;
                 }
                 e6 e6Var3 = kcVar.G0;
                 if (e6Var3 != null) {
-                    e6Var3.f884c = null;
-                    e6Var3.f883b = null;
-                    e6Var3.f882a = false;
-                    e6Var3.f885e = null;
-                    e6Var3.f886f = null;
+                    e6Var3.f882c = null;
+                    e6Var3.f881b = null;
+                    e6Var3.f880a = false;
+                    e6Var3.f883e = null;
+                    e6Var3.f884f = null;
                     e6Var3.d = null;
                     e6Var3.b();
                     kcVar.G0 = null;
@@ -136,43 +136,43 @@ public final class bc implements y5 {
                         if (i10 >= arrayList.size()) {
                             break;
                         } else if (((jc) arrayList.get(i10)).uri.equals(uri)) {
-                            kcVar.f1310z0 = (jc) arrayList.remove(i10);
+                            kcVar.f1308z0 = (jc) arrayList.remove(i10);
                             break;
                         } else {
                             i10++;
                         }
                     }
-                    if (kcVar.f1310z0 == null) {
+                    if (kcVar.f1308z0 == null) {
                         jc jcVar3 = new jc(kcVar, kcVar.C0, kcVar.B0);
-                        kcVar.f1310z0 = jcVar3;
+                        kcVar.f1308z0 = jcVar3;
                         jcVar3.document = document;
                     }
-                    jc jcVar4 = kcVar.f1310z0;
+                    jc jcVar4 = kcVar.f1308z0;
                     jcVar4.uri = uri;
                     jcVar4.setSpeed(kc.B1);
                     e6 e6Var4 = kcVar.G0;
-                    jc jcVar5 = kcVar.f1310z0;
-                    e6Var4.f884c = jcVar5;
-                    e6Var4.f882a = false;
-                    e6Var4.f885e = kcVar.f1309y0;
-                    e6Var4.f886f = kcVar.B0;
+                    jc jcVar5 = kcVar.f1308z0;
+                    e6Var4.f882c = jcVar5;
+                    e6Var4.f880a = false;
+                    e6Var4.f883e = kcVar.f1307y0;
+                    e6Var4.f884f = kcVar.B0;
                     e6Var4.d = kcVar.C0;
-                    e6Var4.f883b = null;
+                    e6Var4.f881b = null;
                     FileStreamLoadOperation.setPriorityForDocument(jcVar5.document, 3);
-                    FileLoader.getInstance(kcVar.h).changePriority(3, kcVar.f1310z0.document, null, null, null, null, null);
+                    FileLoader.getInstance(kcVar.h).changePriority(3, kcVar.f1308z0.document, null, null, null, null, null);
                     if (j3 == 0) {
-                        long j11 = kcVar.f1298t1;
+                        long j11 = kcVar.f1296t1;
                         if (j11 != 0) {
-                            kcVar.G0.f882a = true;
+                            kcVar.G0.f880a = true;
                             j10 = j11;
                             FileLog.d("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                            ((jc) kcVar.G0.f884c).start(false, kcVar.w(), uri, j10, kc.D1, kc.B1);
+                            ((jc) kcVar.G0.f882c).start(false, kcVar.w(), uri, j10, kc.D1, kc.B1);
                             kcVar.G0.b();
                         }
                     }
                     j10 = j3;
                     FileLog.d("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                    ((jc) kcVar.G0.f884c).start(false, kcVar.w(), uri, j10, kc.D1, kc.B1);
+                    ((jc) kcVar.G0.f882c).start(false, kcVar.w(), uri, j10, kc.D1, kc.B1);
                     kcVar.G0.b();
                 } else {
                     FileLog.d("StoryViewer requestPlayer: url is null (1)");
@@ -182,7 +182,7 @@ public final class bc implements y5 {
                 z10 = false;
             }
             i(false, z10);
-            kcVar.f1298t1 = 0L;
+            kcVar.f1296t1 = 0L;
             kcVar.P();
             return;
         }
@@ -192,7 +192,7 @@ public final class bc implements y5 {
         }
         d2 d2Var2 = kcVar.A0;
         if (d2Var2 != null) {
-            if (d2Var2.f811n) {
+            if (d2Var2.f809n) {
                 d2Var2.s(null);
             } else {
                 d2Var2.e();
@@ -200,30 +200,30 @@ public final class bc implements y5 {
             kcVar.A0 = null;
         }
         FileLog.d("StoryViewer requestPlayer ignored, because closed: " + kcVar.H0 + ", " + kcVar.U);
-        e6Var.f882a = false;
-        e6Var.f884c = null;
-        e6Var.f883b = null;
+        e6Var.f880a = false;
+        e6Var.f882c = null;
+        e6Var.f881b = null;
     }
 
     public final void d(float f7) {
         kc kcVar = this.d;
-        if (kcVar.f1292r0 != f7) {
-            kcVar.f1292r0 = f7;
+        if (kcVar.f1290r0 != f7) {
+            kcVar.f1290r0 = f7;
             kcVar.v.invalidate();
         }
     }
 
     public final void e() {
-        this.d.f1281m1 = false;
+        this.d.f1279m1 = false;
     }
 
     public final void f(boolean z10) {
         jc jcVar;
         kc kcVar = this.d;
-        if (!kcVar.f1269f1 && z10 && kcVar.f1278k0) {
-            kcVar.f1278k0 = false;
+        if (!kcVar.f1267f1 && z10 && kcVar.f1276k0) {
+            kcVar.f1276k0 = false;
             e6 e6Var = kcVar.G0;
-            if (e6Var != null && (jcVar = (jc) e6Var.f884c) != null) {
+            if (e6Var != null && (jcVar = (jc) e6Var.f882c) != null) {
                 jcVar.setSeeking(false);
             }
             f6 t10 = kcVar.t();
@@ -231,7 +231,7 @@ public final class bc implements y5 {
                 t10.invalidate();
             }
         }
-        kcVar.f1269f1 = z10;
+        kcVar.f1267f1 = z10;
         kcVar.P();
     }
 
@@ -282,38 +282,38 @@ public final class bc implements y5 {
     public final void j() {
         int indexOf;
         kc kcVar = this.d;
-        e9 e9Var = this.f731a;
+        e9 e9Var = this.f729a;
         if (e9Var != null) {
-            if (kcVar.f1283n0.f1542x0 == null) {
+            if (kcVar.f1281n0.f1540x0 == null) {
                 return;
             }
-            ArrayList arrayList = new ArrayList(kcVar.f1283n0.f1542x0);
-            if (kcVar.f1283n0.getCurrentPeerView() == null) {
+            ArrayList arrayList = new ArrayList(kcVar.f1281n0.f1540x0);
+            if (kcVar.f1281n0.getCurrentPeerView() == null) {
                 indexOf = -1;
             } else {
-                indexOf = arrayList.indexOf(kcVar.f1283n0.getCurrentPeerView().getCurrentDay());
+                indexOf = arrayList.indexOf(kcVar.f1281n0.getCurrentPeerView().getCurrentDay());
             }
             if (indexOf >= 0) {
                 arrayList.remove(indexOf);
-                if (!kcVar.f1283n0.E(true)) {
+                if (!kcVar.f1281n0.E(true)) {
                     kcVar.q(false);
                     return;
                 }
-                kcVar.f1283n0.G0 = new a3.k0(this, e9Var, arrayList, 7);
+                kcVar.f1281n0.G0 = new a3.k0(this, e9Var, arrayList, 7);
                 return;
             }
             kcVar.q(false);
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f732b);
-        int indexOf2 = arrayList2.indexOf(Long.valueOf(kcVar.f1283n0.getCurrentPeerView().getCurrentPeer()));
+        ArrayList arrayList2 = new ArrayList(this.f730b);
+        int indexOf2 = arrayList2.indexOf(Long.valueOf(kcVar.f1281n0.getCurrentPeerView().getCurrentPeer()));
         if (indexOf2 >= 0) {
             arrayList2.remove(indexOf2);
-            if (!kcVar.f1283n0.E(true)) {
+            if (!kcVar.f1281n0.E(true)) {
                 kcVar.q(false);
                 return;
             }
-            kcVar.f1283n0.G0 = new s1(this, arrayList2, indexOf2, 2);
+            kcVar.f1281n0.G0 = new s1(this, arrayList2, indexOf2, 2);
             return;
         }
         kcVar.q(false);

@@ -1,5 +1,9 @@
 package w7;
+
+import android.graphics.Path;
 public abstract class f6 {
-    public static int f50073a = 22336;
-    public static org.telegram.ui.Wallet.w0 f50074b;
+    public static void a(Path path, float f7, float f10) {
+        path.rewind();
+        path.addRoundRect(0.0f, 0.0f, f7, f10, (f7 * 0.15f) / 2.0f, (0.15f * f10) / 1.212122f, Path.Direction.CW);
+    }
 }

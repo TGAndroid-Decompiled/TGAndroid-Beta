@@ -1,56 +1,32 @@
 package org.telegram.ui.Components;
+public final class vq0 extends g.o {
+    public final int f32177c;
+    public final sr0 d;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class vq0 implements View.OnTouchListener {
-    public final int f32525a;
-    public final Rect f32526b;
-    public final nr0 f32527c;
-
-    public vq0(nr0 nr0Var, int i10) {
-        this.f32525a = i10;
-        switch (i10) {
-            case 1:
-                this.f32527c = nr0Var;
-                this.f32526b = new Rect();
-                return;
-            default:
-                this.f32527c = nr0Var;
-                this.f32526b = new Rect();
-                return;
-        }
+    public vq0(sr0 sr0Var, int i10) {
+        this.f32177c = i10;
+        this.d = sr0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        nr0 nr0Var;
-        org.telegram.ui.ActionBar.m1 m1Var;
-        nr0 nr0Var2;
-        org.telegram.ui.ActionBar.m1 m1Var2;
-        switch (this.f32525a) {
+    public final int i(int i10) {
+        switch (this.f32177c) {
             case 0:
-                if (motionEvent.getActionMasked() == 0 && (m1Var = (nr0Var = this.f32527c).J0) != null && m1Var.isShowing()) {
-                    Rect rect = this.f32526b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        nr0Var.J0.d(true);
-                        return false;
-                    }
-                    return false;
+                if (i10 == 0) {
+                    return this.d.H.J;
                 }
-                return false;
+                return 1;
+            case 1:
+                or0 or0Var = this.d.M;
+                if (i10 != or0Var.f29279w && i10 != or0Var.f29280x && i10 != or0Var.f29281y && i10 != or0Var.F && or0Var.j(i10) != 0) {
+                    return 1;
+                }
+                return 4;
             default:
-                if (motionEvent.getActionMasked() == 0 && (m1Var2 = (nr0Var2 = this.f32527c).J0) != null && m1Var2.isShowing()) {
-                    Rect rect2 = this.f32526b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        nr0Var2.J0.d(true);
-                        return false;
-                    }
-                    return false;
+                if (i10 == 0) {
+                    return this.d.I.J;
                 }
-                return false;
+                return 1;
         }
     }
 }

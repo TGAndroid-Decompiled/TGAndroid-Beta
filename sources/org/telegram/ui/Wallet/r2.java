@@ -1,19 +1,19 @@
 package org.telegram.ui.Wallet;
 
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.hb0;
+import org.telegram.ui.jb0;
 public final class r2 extends TwoStepVerificationActivity {
-    public final hb0 f35533d0;
+    public final jb0 f35310d0;
 
-    public r2(hb0 hb0Var) {
-        this.f35533d0 = hb0Var;
+    public r2(jb0 jb0Var) {
+        this.f35310d0 = jb0Var;
     }
 
     @Override
     public final void onFragmentDestroy() {
-        hb0 hb0Var = this.f35533d0;
-        if (((Runnable) hb0Var.d) != null && !hb0Var.f38406c) {
-            hb0Var.b();
+        jb0 jb0Var = this.f35310d0;
+        if (((Runnable) jb0Var.d) != null && !jb0Var.f39173c) {
+            jb0Var.b();
         }
         super.onFragmentDestroy();
     }

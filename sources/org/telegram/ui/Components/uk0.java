@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public interface uk0 {
-    void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction);
+    void e(ArrayList arrayList);
 }

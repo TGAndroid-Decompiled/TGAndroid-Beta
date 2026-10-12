@@ -1,54 +1,21 @@
 package org.telegram.ui.Components;
+public final class rw0 extends o1.i {
+    public final pw0 f30270a;
+    public final qw0 f30271b;
+    public float f30272c = 1.0f;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Region;
-import android.graphics.text.MeasuredText;
-public final class rw0 extends Canvas {
-    @Override
-    public final boolean clipPath(Path path) {
-        return false;
+    public rw0(pw0 pw0Var, qw0 qw0Var) {
+        this.f30270a = pw0Var;
+        this.f30271b = qw0Var;
     }
 
     @Override
-    public final void drawText(CharSequence charSequence, int i10, int i11, float f7, float f10, Paint paint) {
+    public final float a(Object obj) {
+        return this.f30270a.get(obj) * this.f30272c;
     }
 
     @Override
-    public final void drawTextOnPath(String str, Path path, float f7, float f10, Paint paint) {
-    }
-
-    @Override
-    public final void drawTextRun(MeasuredText measuredText, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-    }
-
-    @Override
-    public final boolean clipPath(Path path, Region.Op op) {
-        return false;
-    }
-
-    @Override
-    public final void drawText(String str, float f7, float f10, Paint paint) {
-    }
-
-    @Override
-    public final void drawTextOnPath(char[] cArr, int i10, int i11, Path path, float f7, float f10, Paint paint) {
-    }
-
-    @Override
-    public final void drawTextRun(CharSequence charSequence, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-    }
-
-    @Override
-    public final void drawText(String str, int i10, int i11, float f7, float f10, Paint paint) {
-    }
-
-    @Override
-    public final void drawTextRun(char[] cArr, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-    }
-
-    @Override
-    public final void drawText(char[] cArr, int i10, int i11, float f7, float f10, Paint paint) {
+    public final void b(Object obj, float f7) {
+        this.f30271b.b(obj, f7 / this.f30272c);
     }
 }

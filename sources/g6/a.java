@@ -10,8 +10,8 @@ import java.util.Random;
 import java.util.regex.Pattern;
 import org.json.JSONObject;
 public abstract class a {
-    public static final Pattern f10320a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
-    public static final Random f10321b = new Random(SystemClock.elapsedRealtime());
+    public static final Pattern f10319a = Pattern.compile("urn:x-cast:[-A-Za-z0-9_]+(\\.[-A-Za-z0-9_]+)*");
+    public static final Random f10320b = new Random(SystemClock.elapsedRealtime());
 
     public static String a(String str, JSONObject jSONObject) {
         if (jSONObject != null && jSONObject.has(str)) {

@@ -15,32 +15,32 @@ import z7.tf;
 import z7.vf;
 import z7.xf;
 public final class r extends b2.g {
-    public final int f48352b;
+    public final int f48459b;
 
     public r(int i10) {
         super(4);
-        this.f48352b = i10;
+        this.f48459b = i10;
     }
 
     @Override
     public final Object N0(Object obj) {
-        switch (this.f48352b) {
+        switch (this.f48459b) {
             case 0:
                 qb.g c10 = qb.g.c();
                 Context b10 = qb.g.c().b();
                 ArrayList arrayList = new ArrayList();
                 ((o) obj).getClass();
-                Object obj2 = new Object();
-                j5.a aVar = j5.a.f14021e;
-                l5.s.b(b10);
-                l5.s.a().c(aVar);
+                na.d dVar = new na.d(23);
+                j5.a aVar = j5.a.f14019e;
+                l5.t.b(b10);
+                l5.t.a().c(aVar);
                 j5.a.d.contains(new i5.c("json"));
-                arrayList.add(obj2);
+                arrayList.add(dVar);
                 return new q(c10.b(), (qb.k) c10.a(qb.k.class));
             case 1:
                 w8 w8Var = (w8) obj;
                 qb.g c11 = qb.g.c();
-                return new z8(c11.b(), (qb.k) c11.a(qb.k.class), new x8(qb.g.c().b(), w8Var), w8Var.f49472a);
+                return new z8(c11.b(), (qb.k) c11.a(qb.k.class), new x8(qb.g.c().b(), w8Var), w8Var.f49579a);
             case 2:
                 qb.g c12 = qb.g.c();
                 return new la(c12.b(), (qb.k) c12.a(qb.k.class), new ka(qb.g.c().b(), (ia) obj));

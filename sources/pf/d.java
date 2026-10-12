@@ -19,40 +19,40 @@ import java.util.logging.Level;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
-import org.telegram.ui.Components.ah;
-import org.telegram.ui.v20;
+import org.telegram.ui.Components.ch;
+import org.telegram.ui.c80;
 import t7.t;
 import zc.i;
 public final class d extends i {
-    public static final f f45631l;
-    public static final HashMap f45632m;
-    public final ExtendedDefaultDataSourceFactory f45633e;
-    public final v20 f45634f;
-    public final t f45635g;
+    public static final f f45448l;
+    public static final HashMap f45449m;
+    public final ExtendedDefaultDataSourceFactory f45450e;
+    public final c80 f45451f;
+    public final t f45452g;
     public final HashMap h;
-    public Pair f45636i;
-    public boolean f45637j;
-    public final AtomicInteger f45638k;
+    public Pair f45453i;
+    public boolean f45454j;
+    public final AtomicInteger f45455k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f45631l = fVar;
+        f45448l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f45632m = hashMap;
+        f45449m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
 
     public d() {
-        this.f54479c = new n(10);
+        this.f54582c = new n(10);
         this.h = new HashMap();
-        this.f45636i = null;
-        this.f45637j = false;
-        this.f45638k = new AtomicInteger();
-        this.f45634f = new v20(28);
-        this.f45635g = new Object();
-        this.f45633e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+        this.f45453i = null;
+        this.f45454j = false;
+        this.f45455k = new AtomicInteger();
+        this.f45451f = new c80(26);
+        this.f45452g = new Object();
+        this.f45450e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
     public static String i() {
@@ -87,9 +87,9 @@ public final class d extends i {
     @Override
     public final zc.g e(zc.d dVar) {
         String str;
-        int incrementAndGet = this.f45638k.incrementAndGet();
-        StringBuilder j3 = hg.c.j(incrementAndGet, "Request ", " ");
-        switch (dVar.f54455g) {
+        int incrementAndGet = this.f45455k.incrementAndGet();
+        StringBuilder l4 = hg.c.l(incrementAndGet, "Request ", " ");
+        switch (dVar.f54558g) {
             case 1:
                 str = "GET";
                 break;
@@ -142,62 +142,62 @@ public final class d extends i {
                 str = "null";
                 break;
         }
-        j3.append(str);
-        j3.append(" ");
-        j3.append(dVar.f54454f);
-        j3.append(" ");
-        j3.append((String) dVar.f54456i.get("range"));
-        Log.d("CAST_SERVER", j3.toString());
+        l4.append(str);
+        l4.append(" ");
+        l4.append(dVar.f54557f);
+        l4.append(" ");
+        l4.append((String) dVar.f54559i.get("range"));
+        Log.d("CAST_SERVER", l4.toString());
         try {
             zc.g k10 = k(dVar);
-            ah ahVar = k10.f54471e;
-            ahVar.put("Access-Control-Allow-Origin", "*");
-            ahVar.put("Access-Control-Max-Age", "3628800");
-            ahVar.put("Access-Control-Allow-Methods", "*");
-            ahVar.put("Access-Control-Allow-Headers", "*");
+            ch chVar = k10.f54574e;
+            chVar.put("Access-Control-Allow-Origin", "*");
+            chVar.put("Access-Control-Max-Age", "3628800");
+            chVar.put("Access-Control-Allow-Methods", "*");
+            chVar.put("Access-Control-Allow-Headers", "*");
             return k10;
         } catch (Throwable unused) {
             Log.d("CAST_SERVER", "Error " + incrementAndGet);
             zc.g c10 = i.c(zc.f.INTERNAL_ERROR, "text/plain", "Error reading file");
-            ah ahVar2 = c10.f54471e;
-            ahVar2.put("Access-Control-Allow-Origin", "*");
-            ahVar2.put("Access-Control-Max-Age", "3628800");
-            ahVar2.put("Access-Control-Allow-Methods", "*");
-            ahVar2.put("Access-Control-Allow-Headers", "*");
+            ch chVar2 = c10.f54574e;
+            chVar2.put("Access-Control-Allow-Origin", "*");
+            chVar2.put("Access-Control-Max-Age", "3628800");
+            chVar2.put("Access-Control-Allow-Methods", "*");
+            chVar2.put("Access-Control-Allow-Headers", "*");
             return c10;
         }
     }
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f45637j) {
+            if (this.f45454j) {
                 try {
-                    i.d(this.f54477a);
-                    n nVar = this.f54479c;
+                    i.d(this.f54580a);
+                    n nVar = this.f54582c;
                     nVar.getClass();
-                    ArrayList arrayList = new ArrayList((List) nVar.f8689c);
+                    ArrayList arrayList = new ArrayList((List) nVar.f8687c);
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
                         zc.a aVar = (zc.a) obj;
-                        i.d(aVar.f54440a);
-                        i.d(aVar.f54441b);
+                        i.d(aVar.f54543a);
+                        i.d(aVar.f54544b);
                     }
-                    Thread thread = this.f54478b;
+                    Thread thread = this.f54581b;
                     if (thread != null) {
                         thread.join();
                     }
                 } catch (Exception e7) {
                     i.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e7);
                 }
-                this.f45637j = false;
+                this.f45454j = false;
             }
-        } else if (!this.f45637j) {
+        } else if (!this.f45454j) {
             try {
                 f();
-                this.f45637j = true;
+                this.f45454j = true;
             } catch (IOException e10) {
                 throw new RuntimeException(e10);
             }
@@ -210,16 +210,16 @@ public final class d extends i {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f45636i = new Pair(str, file);
+            this.f45453i = new Pair(str, file);
         } else {
-            Pair pair = this.f45636i;
+            Pair pair = this.f45453i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f45636i.second).delete();
+                    ((File) this.f45453i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f45636i = null;
+            this.f45453i = null;
         }
         h();
     }

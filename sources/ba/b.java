@@ -21,19 +21,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 import w9.j;
 import y9.a2;
 public final class b {
-    public static final Charset f3792e = Charset.forName("UTF-8");
-    public static final int f3793f = 15;
-    public static final z9.a f3794g = new Object();
+    public static final Charset f3790e = Charset.forName("UTF-8");
+    public static final int f3791f = 15;
+    public static final z9.a f3792g = new Object();
     public static final d h = new d(8);
-    public static final a f3795i = new a(0);
-    public final AtomicInteger f3796a = new AtomicInteger(0);
-    public final c f3797b;
-    public final da.c f3798c;
+    public static final a f3793i = new a(0);
+    public final AtomicInteger f3794a = new AtomicInteger(0);
+    public final c f3795b;
+    public final da.c f3796c;
     public final j d;
 
     public b(c cVar, da.c cVar2, j jVar) {
-        this.f3797b = cVar;
-        this.f3798c = cVar2;
+        this.f3795b = cVar;
+        this.f3796c = cVar2;
         this.d = jVar;
     }
 
@@ -54,7 +54,7 @@ public final class b {
                 if (read > 0) {
                     byteArrayOutputStream.write(bArr, 0, read);
                 } else {
-                    String str = new String(byteArrayOutputStream.toByteArray(), f3792e);
+                    String str = new String(byteArrayOutputStream.toByteArray(), f3790e);
                     fileInputStream.close();
                     return str;
                 }
@@ -70,7 +70,7 @@ public final class b {
     }
 
     public static void f(File file, String str) {
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), f3792e);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), f3790e);
         try {
             outputStreamWriter.write(str);
             outputStreamWriter.close();
@@ -86,9 +86,9 @@ public final class b {
 
     public final ArrayList b() {
         ArrayList arrayList = new ArrayList();
-        c cVar = this.f3797b;
-        arrayList.addAll(c.e(cVar.f3802e.listFiles()));
-        arrayList.addAll(c.e(cVar.f3803f.listFiles()));
+        c cVar = this.f3795b;
+        arrayList.addAll(c.e(cVar.f3800e.listFiles()));
+        arrayList.addAll(c.e(cVar.f3801f.listFiles()));
         d dVar = h;
         Collections.sort(arrayList, dVar);
         List e7 = c.e(cVar.d.listFiles());
@@ -98,29 +98,29 @@ public final class b {
     }
 
     public final NavigableSet c() {
-        return new TreeSet(c.e(this.f3797b.f3801c.list())).descendingSet();
+        return new TreeSet(c.e(this.f3795b.f3799c.list())).descendingSet();
     }
 
     public final void d(a2 a2Var, String str, boolean z10) {
         String str2;
-        c cVar = this.f3797b;
-        int i10 = this.f3798c.d().f8226a.f6762a;
-        f3794g.getClass();
-        String T = z9.a.f54304a.T(a2Var);
-        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f3796a.getAndIncrement()));
+        c cVar = this.f3795b;
+        int i10 = this.f3796c.d().f8224a.f6761a;
+        f3792g.getClass();
+        String k02 = z9.a.f54407a.k0(a2Var);
+        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f3794a.getAndIncrement()));
         if (z10) {
             str2 = "_";
         } else {
             str2 = "";
         }
         try {
-            f(cVar.b(str, g.q("event", format, str2)), T);
+            f(cVar.b(str, g.q("event", format, str2)), k02);
         } catch (IOException e7) {
             Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e7);
         }
         a aVar = new a(1);
         cVar.getClass();
-        File file = new File(cVar.f3801c, str);
+        File file = new File(cVar.f3799c, str);
         file.mkdirs();
         List<File> e10 = c.e(file.listFiles(aVar));
         Collections.sort(e10, new d(9));

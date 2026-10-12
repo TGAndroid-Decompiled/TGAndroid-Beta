@@ -1,34 +1,15 @@
 package org.telegram.ui.Components;
+public final class jf0 implements u0.g, f5 {
+    public final uf0 f27491a;
 
-import android.app.Activity;
-import android.graphics.Rect;
-import android.view.View;
-import androidx.core.widget.NestedScrollView;
-public final class jf0 extends NestedScrollView {
-    public View W;
-    public final rf0 f27724a0;
-
-    public jf0(rf0 rf0Var, Activity activity) {
-        super(activity);
-        this.f27724a0 = rf0Var;
+    public jf0(uf0 uf0Var) {
+        this.f27491a = uf0Var;
     }
 
     @Override
-    public final int f(Rect rect) {
-        if (this.W != null && this.f27724a0.d.getTop() == getPaddingTop()) {
-            int f7 = super.f(rect);
-            int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - (((this.W.getTop() - getScrollY()) + rect.top) + f7);
-            if (currentActionBarHeight > 0) {
-                return org.telegram.messenger.ai.z(10.0f, currentActionBarHeight, f7);
-            }
-            return f7;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void requestChildFocus(View view, View view2) {
-        this.W = view2;
-        super.requestChildFocus(view, view2);
+    public void J(int i10, int i11, boolean z10) {
+        uf0 uf0Var = this.f27491a;
+        uf0Var.K.a(uf0Var.N, z10, i10, 0L);
+        uf0Var.dismiss();
     }
 }

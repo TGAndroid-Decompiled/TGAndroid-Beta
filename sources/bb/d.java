@@ -1,36 +1,30 @@
 package bb;
 
-import java.util.regex.Pattern;
-public final class d {
-    public final qa.d f3814a;
-    public final aa.a f3815b;
-    public final l f3816c;
-    public final je.d d = je.e.a();
+import android.util.Log;
+import sd.p;
+import v7.a8;
+public final class d extends ld.j implements p {
+    public Object f3812a;
 
-    public d(jd.h hVar, qa.d dVar, za.b bVar, aa.a aVar, k1.f fVar) {
-        this.f3814a = dVar;
-        this.f3815b = aVar;
-        this.f3816c = new l(fVar);
+    @Override
+    public final jd.c create(Object obj, jd.c cVar) {
+        ?? jVar = new ld.j(2, cVar);
+        jVar.f3812a = obj;
+        return jVar;
     }
 
-    public static String b(String str) {
-        Pattern compile = Pattern.compile("/");
-        kotlin.jvm.internal.i.d(compile, "compile(...)");
-        String replaceAll = compile.matcher(str).replaceAll("");
-        kotlin.jvm.internal.i.d(replaceAll, "replaceAll(...)");
-        return replaceAll;
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        hd.i iVar = hd.i.f11090a;
+        ((d) create((String) obj, (jd.c) obj2)).invokeSuspend(iVar);
+        return iVar;
     }
 
-    public final Boolean a() {
-        e eVar = this.f3816c.f3842b;
-        if (eVar != null) {
-            return eVar.f3817a;
-        }
-        kotlin.jvm.internal.i.h("sessionConfigs");
-        throw null;
-    }
-
-    public final java.lang.Object c(jd.c r25) {
-        throw new UnsupportedOperationException("Method not decompiled: bb.d.c(jd.c):java.lang.Object");
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        kd.a aVar = kd.a.f14780a;
+        a8.b(obj);
+        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f3812a));
+        return hd.i.f11090a;
     }
 }

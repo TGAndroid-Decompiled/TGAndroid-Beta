@@ -449,9 +449,9 @@ public abstract class JobIntentService extends Service {
                 this.mJobId = i10;
             } else if (this.mJobId == i10) {
             } else {
-                StringBuilder j3 = c.j(i10, "Given job ID ", " is different than previous ");
-                j3.append(this.mJobId);
-                throw new IllegalArgumentException(j3.toString());
+                StringBuilder l4 = c.l(i10, "Given job ID ", " is different than previous ");
+                l4.append(this.mJobId);
+                throw new IllegalArgumentException(l4.toString());
             }
         }
 

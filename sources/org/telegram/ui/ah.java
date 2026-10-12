@@ -1,49 +1,117 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.Utilities;
-public final class ah implements Utilities.Callback0Return {
-    public final int f36123a;
-    public final zn f36124b;
+import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class ah implements bw0, py {
+    public final boolean f35799a;
+    public final int f35800b;
+    public final Object f35801c;
+    public final Object d;
 
-    public ah(zn znVar, int i10) {
-        this.f36123a = i10;
-        this.f36124b = znVar;
+    public ah(eo eoVar, boolean z10, MessageObject messageObject, int i10) {
+        this.f35801c = eoVar;
+        this.f35799a = z10;
+        this.d = messageObject;
+        this.f35800b = i10;
     }
 
     @Override
-    public final Object run() {
-        boolean z10;
-        switch (this.f36123a) {
-            case 0:
-                this.f36124b.getClass();
-                if (org.telegram.ui.Components.d21.c() && LiteMode.isEnabled(65536)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            default:
-                if (LiteMode.isEnabled(65536) && org.telegram.ui.Components.d21.c()) {
-                    zn znVar = this.f36124b;
-                    org.telegram.ui.Components.d21 d21Var = znVar.f44996v0;
-                    if (d21Var == null || d21Var.f25593e) {
-                        if (znVar.getParentActivity() != null && org.telegram.ui.Components.d21.c() && znVar.f45023x0 != null && znVar.X0 != null) {
-                            org.telegram.ui.Components.d21 d21Var2 = znVar.f44996v0;
-                            if (d21Var2 != null) {
-                                AndroidUtilities.removeFromParent(d21Var2);
-                            }
-                            org.telegram.ui.Components.d21 d21Var3 = new org.telegram.ui.Components.d21(znVar.getParentActivity(), new org.telegram.ui.ActionBar.a6(26, znVar, r2));
-                            znVar.f44996v0 = d21Var3;
-                            org.telegram.ui.Components.d21[] d21VarArr = {d21Var3};
-                            sm smVar = znVar.X0;
-                            smVar.addView(d21Var3, smVar.indexOfChild(znVar.f45023x0) + 1, w7.x5.d(-1.0f, -1));
-                        }
+    public boolean B() {
+        return false;
+    }
+
+    @Override
+    public boolean K(vy vyVar) {
+        return false;
+    }
+
+    @Override
+    public void a(TLRPC.MessageMedia messageMedia) {
+        int i10;
+        eo eoVar = (eo) this.f35801c;
+        MessageObject messageObject = (MessageObject) this.d;
+        if (this.f35799a) {
+            TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
+            tL_messages_appendTodoList.peer = eoVar.getMessagesController().getInputPeer(messageObject.getDialogId());
+            tL_messages_appendTodoList.msg_id = messageObject.getId();
+            if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
+                TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
+                int i11 = 0;
+                int i12 = 0;
+                while (true) {
+                    i10 = this.f35800b;
+                    if (i11 >= i10) {
+                        break;
                     }
-                    return znVar.f44996v0;
+                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f19947id);
+                    i11++;
                 }
-                return null;
+                while (i10 < tL_messageMediaToDo.todo.list.size()) {
+                    TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i10);
+                    if (todoItem.f19947id <= i12) {
+                        todoItem.f19947id = i12 + 1;
+                    }
+                    tL_messages_appendTodoList.list.add(todoItem);
+                    i12 = Math.max(i12, todoItem.f19947id);
+                    i10++;
+                }
+                TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
+                if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
+                    tL_messageMediaToDo.completions = ((TLRPC.TL_messageMediaToDo) messageMedia2).completions;
+                }
+            }
+            messageObject.messageOwner.media = messageMedia;
+            eoVar.getConnectionsManager().sendRequest(tL_messages_appendTodoList, null);
+            return;
         }
+        if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
+            TLRPC.MessageMedia messageMedia3 = messageObject.messageOwner.media;
+            if (messageMedia3 instanceof TLRPC.TL_messageMediaToDo) {
+                ((TLRPC.TL_messageMediaToDo) messageMedia).completions = ((TLRPC.TL_messageMediaToDo) messageMedia3).completions;
+            }
+        }
+        messageObject.messageOwner.media = messageMedia;
+        eoVar.getSendMessagesHelper().editMessage(messageObject, null, null, null, null, null, null, false, false, null);
+    }
+
+    @Override
+    public boolean w(vy vyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, hg1 hg1Var) {
+        LaunchActivity launchActivity = (LaunchActivity) this.f35801c;
+        String str = (String) this.d;
+        Pattern pattern = LaunchActivity.B1;
+        long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("scrollToTopOnResume", true);
+        bundle.putBoolean("hasUrl", this.f35799a);
+        if (DialogObject.isEncryptedDialog(j3)) {
+            bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j3));
+        } else if (DialogObject.isUserDialog(j3)) {
+            bundle.putLong("user_id", j3);
+        } else {
+            bundle.putLong("chat_id", -j3);
+        }
+        int i12 = this.f35800b;
+        if (MessagesController.getInstance(i12).checkCanOpenChat(bundle, vyVar)) {
+            NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+            MediaDataController.getInstance(i12).saveDraft(j3, 0, str, null, null, false, 0L);
+            ((ActionBarLayout) launchActivity.O()).S(new eo(bundle), true, false);
+        }
+        return true;
+    }
+
+    public ah(LaunchActivity launchActivity, boolean z10, int i10, String str) {
+        this.f35801c = launchActivity;
+        this.f35799a = z10;
+        this.f35800b = i10;
+        this.d = str;
     }
 }

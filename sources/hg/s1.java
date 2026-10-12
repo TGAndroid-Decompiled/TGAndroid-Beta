@@ -5,40 +5,40 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.is;
 import org.telegram.ui.Components.j5;
+import org.telegram.ui.Components.js;
 import org.telegram.ui.Components.q6;
 public final class s1 extends EditTextBoldCursor {
-    public final j5 f11371b;
-    public int f11372c;
+    public final j5 f11370b;
+    public int f11371c;
     public final q6 d;
-    public final d6 f11373e;
+    public final c6 f11372e;
 
-    public s1(Context context, d6 d6Var) {
+    public s1(Context context, c6 c6Var) {
         super(context);
-        this.f11373e = d6Var;
-        this.f11371b = new j5(this);
+        this.f11372e = c6Var;
+        this.f11370b = new j5(this);
         q6 q6Var = new q6(false, true, true);
         this.d = q6Var;
-        q6Var.n(0.2f, 160L, is.h);
+        q6Var.n(0.2f, 160L, js.h);
         q6Var.w(AndroidUtilities.dp(15.33f));
         q6Var.setCallback(this);
-        q6Var.f30134b = 5;
+        q6Var.f29712b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f11372c < 0) {
-            i10 = h6.f21043p7;
+        if (this.f11371c < 0) {
+            i10 = h6.f20780p7;
         } else {
             i10 = h6.P5;
         }
-        int a2 = this.f11371b.a(h6.w0(i10, this.f11373e), false);
+        int a2 = this.f11370b.a(h6.w0(i10, this.f11372e), false);
         q6 q6Var = this.d;
         q6Var.u(a2);
         q6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -55,11 +55,11 @@ public final class s1 extends EditTextBoldCursor {
         super.onTextChanged(charSequence, i10, i11, i12);
         q6 q6Var = this.d;
         if (q6Var != null) {
-            this.f11372c = 32 - charSequence.length();
+            this.f11371c = 32 - charSequence.length();
             q6Var.a();
             String str = "";
-            if (this.f11372c <= 4) {
-                str = "" + this.f11372c;
+            if (this.f11371c <= 4) {
+                str = "" + this.f11371c;
             }
             q6Var.t(str, true, true);
         }

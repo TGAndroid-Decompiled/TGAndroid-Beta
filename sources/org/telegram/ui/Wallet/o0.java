@@ -4,20 +4,20 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class o0 implements Runnable {
-    public final int f35378a = 1;
-    public final Utilities.Callback f35379b;
-    public final long f35380c;
+    public final int f35146a = 1;
+    public final Utilities.Callback f35147b;
+    public final long f35148c;
     public final long d;
-    public final Object f35381e;
-    public final Object f35382f;
+    public final Object f35149e;
+    public final Object f35150f;
     public final Object h;
 
     public o0(long j3, long j10, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error, yh.s3 s3Var) {
-        this.f35381e = s3Var;
-        this.f35379b = callback;
-        this.f35382f = tL_error;
+        this.f35149e = s3Var;
+        this.f35147b = callback;
+        this.f35150f = tL_error;
         this.h = tLObject;
-        this.f35380c = j3;
+        this.f35148c = j3;
         this.d = j10;
     }
 
@@ -27,11 +27,11 @@ public final class o0 implements Runnable {
     }
 
     public o0(q0 q0Var, String str, i0 i0Var, long j3, long j10, Utilities.Callback callback) {
-        this.f35381e = q0Var;
-        this.f35382f = str;
+        this.f35149e = q0Var;
+        this.f35150f = str;
         this.h = i0Var;
-        this.f35380c = j3;
+        this.f35148c = j3;
         this.d = j10;
-        this.f35379b = callback;
+        this.f35147b = callback;
     }
 }

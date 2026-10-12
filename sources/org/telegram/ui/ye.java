@@ -1,76 +1,93 @@
 package org.telegram.ui;
 
-import java.util.HashSet;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.app.Activity;
+import android.net.Uri;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 public final class ye implements Runnable {
-    public final int f44363a;
-    public final Object f44364b;
-    public final Object f44365c;
-    public final Object d;
-    public final Object f44366e;
-    public final Object f44367f;
-    public final Object h;
-    public final Object f44368n;
+    public final int f44459a;
+    public final eo f44460b;
+    public final String f44461c;
 
-    public ye(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f44363a = i10;
-        this.f44364b = obj;
-        this.d = obj2;
-        this.f44366e = obj3;
-        this.f44367f = obj4;
-        this.f44365c = obj5;
-        this.h = obj6;
-        this.f44368n = obj7;
+    public ye(eo eoVar, String str, int i10) {
+        this.f44459a = i10;
+        this.f44460b = eoVar;
+        this.f44461c = str;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ye.run():void");
-    }
-
-    public ye(Object obj, Object obj2, Object obj3, String str, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f44363a = i10;
-        this.f44364b = obj;
-        this.d = obj2;
-        this.f44366e = obj3;
-        this.f44365c = str;
-        this.f44367f = obj4;
-        this.h = obj5;
-        this.f44368n = obj6;
-    }
-
-    public ye(Object obj, Object obj2, String str, TLObject tLObject, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f44363a = i10;
-        this.f44364b = obj;
-        this.d = obj2;
-        this.f44365c = str;
-        this.f44366e = tLObject;
-        this.f44367f = obj3;
-        this.h = obj4;
-        this.f44368n = obj5;
-    }
-
-    public ye(ln lnVar, org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
-        this.f44363a = 2;
-        this.f44364b = lnVar;
-        this.d = a2Var;
-        this.f44367f = tLObject;
-        this.f44365c = hashSet;
-        this.h = tL_inputGroupCallInviteMessage;
-        this.f44366e = messageObject;
-        this.f44368n = tL_error;
-    }
-
-    public ye(zn znVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, cf cfVar, String str, of.e eVar) {
-        this.f44363a = 1;
-        this.f44364b = znVar;
-        this.d = tL_error;
-        this.f44366e = tLObject;
-        this.f44367f = tLObject2;
-        this.h = cfVar;
-        this.f44365c = str;
-        this.f44368n = eVar;
+        switch (this.f44459a) {
+            case 0:
+                eo.q1(this.f44460b, this.f44461c);
+                return;
+            case 1:
+                eo.u1(this.f44460b, this.f44461c);
+                return;
+            case 2:
+                i4.f(this.f44461c, r1.currentAccount, r1.X0, null, this.f44460b.f37251ea);
+                return;
+            case 3:
+                eo eoVar = this.f44460b;
+                String str = this.f44461c;
+                if (str != null) {
+                    eoVar.getClass();
+                    if (str.length() != 0) {
+                        eoVar.getMessagesController().sendBotStart(eoVar.f37253f, str);
+                        return;
+                    }
+                }
+                eoVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", eoVar.T5, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 4:
+                this.f44460b.qa(this.f44461c);
+                return;
+            case 5:
+                this.f44460b.ia(this.f44461c, false);
+                return;
+            case 6:
+                Activity parentActivity = this.f44460b.getParentActivity();
+                of.f.s(parentActivity, "tel:" + this.f44461c);
+                return;
+            case 7:
+                AndroidUtilities.addToClipboard(this.f44461c);
+                org.telegram.messenger.am.p(R.string.PhoneCopied, org.telegram.ui.Components.zc.a0(this.f44460b));
+                return;
+            case 8:
+                eo.d1(this.f44460b, this.f44461c);
+                return;
+            case 9:
+                Activity parentActivity2 = this.f44460b.getParentActivity();
+                of.f.s(parentActivity2, "tel:" + this.f44461c);
+                return;
+            case 10:
+                AndroidUtilities.addToClipboard(this.f44461c);
+                org.telegram.messenger.am.p(R.string.PhoneCopied, org.telegram.ui.Components.zc.a0(this.f44460b));
+                return;
+            case 11:
+                eo eoVar2 = this.f44460b;
+                eoVar2.getClass();
+                eoVar2.presentFragment(new org.telegram.ui.Wallet.l8(this.f44461c));
+                return;
+            case 12:
+                eo eoVar3 = this.f44460b;
+                String str2 = eoVar3.getMessagesController().tonBlockchainExplorerUrl;
+                if (TextUtils.isEmpty(str2)) {
+                    str2 = "https://tonviewer.com/";
+                } else if (!str2.endsWith("/")) {
+                    str2 = str2.concat("/");
+                }
+                Activity parentActivity3 = eoVar3.getParentActivity();
+                StringBuilder v = a1.g.v(str2);
+                v.append(Uri.encode(this.f44461c));
+                of.f.u(parentActivity3, v.toString());
+                return;
+            default:
+                Activity parentActivity4 = this.f44460b.getParentActivity();
+                of.f.s(parentActivity4, "https://fragment.com/username/" + this.f44461c);
+                return;
+        }
     }
 }

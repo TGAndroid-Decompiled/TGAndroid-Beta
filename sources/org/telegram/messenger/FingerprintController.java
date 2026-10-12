@@ -58,7 +58,7 @@ public class FingerprintController {
                 keyPairGenerator2.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
-                AndroidUtilities.runOnUIThread(new y3(1, z10));
+                AndroidUtilities.runOnUIThread(new b4(1, z10));
             } catch (InvalidAlgorithmParameterException e7) {
                 FileLog.e(e7);
             } catch (Exception e10) {

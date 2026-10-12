@@ -1,32 +1,52 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class wi1 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Cells.u1 f43825a;
-    public final org.telegram.ui.Components.xi f43826b;
-    public final xi1 f43827c;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class wi1 extends View {
+    public final Paint f43539a;
+    public final org.telegram.ui.Components.l9 f43540b;
+    public org.telegram.ui.Components.r11 f43541c;
 
-    public wi1(xi1 xi1Var, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.Components.xi xiVar) {
-        this.f43827c = xi1Var;
-        this.f43825a = u1Var;
-        this.f43826b = xiVar;
+    public wi1(Activity activity) {
+        super(activity);
+        Paint paint = new Paint(1);
+        this.f43539a = paint;
+        paint.setColor(-14538189);
+        org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(this, false);
+        this.f43540b = l9Var;
+        l9Var.f28122p = AndroidUtilities.dp(100.0f);
+        l9Var.f28121o = AndroidUtilities.dp(30.0f);
+        l9Var.f28129x = false;
+        l9Var.f28125s = AndroidUtilities.dp(24.0f);
+        l9Var.j(AndroidUtilities.dp(18.0f));
+        l9Var.f28126t = 0.58f;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f43825a.setEnterTransitionInProgress(false);
-        org.telegram.ui.Components.xi xiVar = this.f43826b;
-        xi1 xi1Var = this.f43827c;
-        ((ArrayList) xiVar.f32985c).remove(xi1Var);
-        xiVar.a();
-        ((ViewGroup) xiVar.d).invalidate();
-        ChatActivityEnterView.RecordCircle recordCircle = xi1Var.f44121g;
-        if (recordCircle != null) {
-            recordCircle.N = false;
+    public final void onDraw(Canvas canvas) {
+        if (this.f43541c == null) {
+            return;
         }
+        org.telegram.ui.Components.l9 l9Var = this.f43540b;
+        float e7 = l9Var.e() + AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(7.0f) + this.f43541c.f29988c + AndroidUtilities.dp(13.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((getWidth() - e7) / 2.0f, 0.0f, (getWidth() + e7) / 2.0f, getHeight());
+        float dp = AndroidUtilities.dp(30.0f) / 2.0f;
+        canvas.drawRoundRect(rectF, dp, dp, this.f43539a);
+        canvas.save();
+        canvas.translate(rectF.left + AndroidUtilities.dp(4.0f), 0.0f);
+        l9Var.i(canvas);
+        canvas.translate(l9Var.A + AndroidUtilities.dp(7.0f), 0.0f);
+        this.f43541c.c(0.0f, dp, 1.0f, -1, canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(30.0f));
     }
 }

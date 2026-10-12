@@ -17,8 +17,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.e40;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.g40;
+import org.telegram.ui.Components.js;
 public abstract class ca extends ScrollView {
     public final Paint E;
     public final Matrix F;
@@ -27,36 +27,36 @@ public abstract class ca extends ScrollView {
     public float I;
     public int J;
     public boolean K;
-    public final g2 f4844a;
-    public final int f4845b;
-    public final ba f4846c;
+    public final g2 f4843a;
+    public final int f4844b;
+    public final ba f4845c;
     public final ArrayList d;
-    public e40 f4847e;
-    public final m9 f4848f;
+    public g40 f4846e;
+    public final m9 f4847f;
     public boolean h;
-    public Utilities.Callback f4849n;
-    public final org.telegram.ui.Components.g6 f4850r;
-    public final LinearGradient f4851s;
+    public Utilities.Callback f4848n;
+    public final org.telegram.ui.Components.g6 f4849r;
+    public final LinearGradient f4850s;
     public final Paint v;
-    public final Matrix f4852w;
-    public final org.telegram.ui.Components.g6 f4853x;
-    public final LinearGradient f4854y;
+    public final Matrix f4851w;
+    public final org.telegram.ui.Components.g6 f4852x;
+    public final LinearGradient f4853y;
 
-    public ca(Context context, org.telegram.ui.ActionBar.d6 d6Var, m9 m9Var) {
+    public ca(Context context, org.telegram.ui.ActionBar.c6 c6Var, m9 m9Var) {
         super(context);
         int i10;
         this.d = new ArrayList();
-        is isVar = is.h;
-        this.f4850r = new org.telegram.ui.Components.g6(this, 0L, 300L, isVar);
+        js jsVar = js.h;
+        this.f4849r = new org.telegram.ui.Components.g6(this, 0L, 300L, jsVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f4851s = linearGradient;
+        this.f4850s = linearGradient;
         Paint paint = new Paint(1);
         this.v = paint;
-        this.f4852w = new Matrix();
-        this.f4853x = new org.telegram.ui.Components.g6(this, 0L, 300L, isVar);
+        this.f4851w = new Matrix();
+        this.f4852x = new org.telegram.ui.Components.g6(this, 0L, 300L, jsVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f4854y = linearGradient2;
+        this.f4853y = linearGradient2;
         Paint paint2 = new Paint(1);
         this.E = paint2;
         this.F = new Matrix();
@@ -65,23 +65,23 @@ public abstract class ca extends ScrollView {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f4848f = m9Var;
+        this.f4847f = m9Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20822d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
         ba baVar = new ba(this, context);
-        this.f4846c = baVar;
-        addView(baVar, w7.x5.d(-2.0f, -1));
+        this.f4845c = baVar;
+        addView(baVar, w7.w5.d(-2.0f, -1));
         g2 g2Var = new g2(this, context, 1);
-        this.f4844a = g2Var;
+        this.f4843a = g2Var;
         if (Build.VERSION.SDK_INT >= 25) {
             g2Var.setRevealOnFocusHint(false);
         }
         g2Var.setTextSize(1, 16.0f);
-        g2Var.setHintColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Xh, d6Var));
-        g2Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+        g2Var.setHintColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Xh, c6Var));
+        g2Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, c6Var));
         int i11 = org.telegram.ui.ActionBar.h6.Yh;
-        g2Var.setCursorColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
-        g2Var.setHandlesColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+        g2Var.setCursorColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
+        g2Var.setHandlesColor(org.telegram.ui.ActionBar.h6.w0(i11, c6Var));
         g2Var.setCursorWidth(1.5f);
         g2Var.setInputType(g2Var.getInputType() | 176);
         g2Var.setSingleLine(true);
@@ -99,7 +99,7 @@ public abstract class ca extends ScrollView {
         g2Var.setGravity(i10 | 16);
         baVar.addView(g2Var);
         g2Var.setHintText(LocaleController.getString(R.string.Search));
-        this.f4845b = (int) g2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
+        this.f4844b = (int) g2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
         g2Var.addTextChangedListener(new z9(this));
     }
 
@@ -110,19 +110,19 @@ public abstract class ca extends ScrollView {
         canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
-        float e7 = this.f4850r.e(canScrollVertically(-1));
-        Matrix matrix = this.f4852w;
+        float e7 = this.f4849r.e(canScrollVertically(-1));
+        Matrix matrix = this.f4851w;
         matrix.reset();
         matrix.postTranslate(0.0f, scrollY2);
-        this.f4851s.setLocalMatrix(matrix);
+        this.f4850s.setLocalMatrix(matrix);
         Paint paint = this.v;
         paint.setAlpha((int) (e7 * 255.0f));
         canvas.drawRect(0.0f, scrollY2, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
-        float e10 = this.f4853x.e(canScrollVertically(1));
+        float e10 = this.f4852x.e(canScrollVertically(1));
         Matrix matrix2 = this.F;
         matrix2.reset();
         matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
-        this.f4854y.setLocalMatrix(matrix2);
+        this.f4853y.setLocalMatrix(matrix2);
         Paint paint2 = this.E;
         paint2.setAlpha((int) (e10 * 255.0f));
         canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), getHeight() + scrollY, paint2);
@@ -142,26 +142,26 @@ public abstract class ca extends ScrollView {
             return false;
         }
         rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top = org.telegram.messenger.q.C(20.0f, this.H, rect.top);
-        rect.bottom = org.telegram.messenger.q.C(50.0f, this.H, rect.bottom);
+        rect.top = org.telegram.messenger.v0.C(20.0f, this.H, rect.top);
+        rect.bottom = org.telegram.messenger.v0.C(50.0f, this.H, rect.bottom);
         return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 
     public void setContainerHeight(float f7) {
         this.I = f7;
-        ba baVar = this.f4846c;
+        ba baVar = this.f4845c;
         if (baVar != null) {
             baVar.requestLayout();
         }
     }
 
     public void setOnSearchTextChange(Utilities.Callback<String> callback) {
-        this.f4849n = callback;
+        this.f4848n = callback;
     }
 
     public void setText(CharSequence charSequence) {
         this.h = true;
-        this.f4844a.setText(charSequence);
+        this.f4843a.setText(charSequence);
         this.h = false;
     }
 }

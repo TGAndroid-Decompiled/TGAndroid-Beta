@@ -3,18 +3,18 @@ package he;
 import fe.v;
 import java.util.concurrent.TimeUnit;
 public abstract class k {
-    public static final String f11118a;
-    public static final long f11119b;
-    public static final int f11120c;
+    public static final String f11117a;
+    public static final long f11118b;
+    public static final int f11119c;
     public static final int d;
-    public static final long f11121e;
-    public static final g f11122f;
-    public static final com.google.android.gms.internal.cast.a f11123g;
+    public static final long f11120e;
+    public static final g f11121f;
+    public static final com.google.android.gms.internal.cast.a f11122g;
     public static final com.google.android.gms.internal.cast.a h;
 
     static {
         String str;
-        int i10 = v.f9916a;
+        int i10 = v.f9915a;
         try {
             str = System.getProperty("kotlinx.coroutines.scheduler.default.name");
         } catch (SecurityException unused) {
@@ -23,17 +23,17 @@ public abstract class k {
         if (str == null) {
             str = "DefaultDispatcher";
         }
-        f11118a = str;
-        f11119b = fe.a.i("kotlinx.coroutines.scheduler.resolution.ns", 100000L, 1L, Long.MAX_VALUE);
-        int i11 = v.f9916a;
+        f11117a = str;
+        f11118b = fe.a.i("kotlinx.coroutines.scheduler.resolution.ns", 100000L, 1L, Long.MAX_VALUE);
+        int i11 = v.f9915a;
         if (i11 < 2) {
             i11 = 2;
         }
-        f11120c = fe.a.j(i11, 8, "kotlinx.coroutines.scheduler.core.pool.size");
+        f11119c = fe.a.j(i11, 8, "kotlinx.coroutines.scheduler.core.pool.size");
         d = fe.a.j(2097150, 4, "kotlinx.coroutines.scheduler.max.pool.size");
-        f11121e = TimeUnit.SECONDS.toNanos(fe.a.i("kotlinx.coroutines.scheduler.keep.alive.sec", 60L, 1L, Long.MAX_VALUE));
-        f11122f = g.f11113a;
-        f11123g = new com.google.android.gms.internal.cast.a(0);
+        f11120e = TimeUnit.SECONDS.toNanos(fe.a.i("kotlinx.coroutines.scheduler.keep.alive.sec", 60L, 1L, Long.MAX_VALUE));
+        f11121f = g.f11112a;
+        f11122g = new com.google.android.gms.internal.cast.a(0);
         h = new com.google.android.gms.internal.cast.a(1);
     }
 }

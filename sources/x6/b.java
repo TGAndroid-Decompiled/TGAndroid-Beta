@@ -5,11 +5,11 @@ import android.os.IInterface;
 import java.lang.reflect.Field;
 import n6.m;
 public final class b extends b8.b implements a {
-    public final Object f50809b;
+    public final Object f50916b;
 
     public b(Object obj) {
         super("com.google.android.gms.dynamic.IObjectWrapper", 7);
-        this.f50809b = obj;
+        this.f50916b = obj;
     }
 
     public static a K0(IBinder iBinder) {
@@ -25,7 +25,7 @@ public final class b extends b8.b implements a {
 
     public static Object L0(a aVar) {
         if (aVar instanceof b) {
-            return ((b) aVar).f50809b;
+            return ((b) aVar).f50916b;
         }
         IBinder asBinder = aVar.asBinder();
         Field[] declaredFields = asBinder.getClass().getDeclaredFields();
@@ -51,6 +51,6 @@ public final class b extends b8.b implements a {
             }
             throw new IllegalArgumentException("IObjectWrapper declared field not private!");
         }
-        throw new IllegalArgumentException(hg.c.h(declaredFields.length, "Unexpected number of IObjectWrapper declared fields: "));
+        throw new IllegalArgumentException(hg.c.i(declaredFields.length, "Unexpected number of IObjectWrapper declared fields: "));
     }
 }

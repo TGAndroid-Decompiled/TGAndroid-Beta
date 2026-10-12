@@ -1,42 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-public final class i61 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27346a;
-    public int f27347b;
-    public final int f27348c;
-    public final Object d;
+import android.util.SparseArray;
+import org.telegram.tgnet.TLRPC;
+public final class i61 extends g.o {
+    public final q61 f27077c;
 
-    public i61(org.telegram.ui.bv bvVar, int i10, int i11) {
-        this.f27346a = 1;
-        this.d = bvVar;
-        this.f27347b = i10;
-        this.f27348c = i11;
+    public i61(q61 q61Var) {
+        this.f27077c = q61Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27346a) {
-            case 0:
-                int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f27348c);
-                m61 m61Var = (m61) this.d;
-                m61Var.N = true;
-                m61Var.f28761n.scrollBy(0, floatValue - this.f27347b);
-                m61Var.N = false;
-                this.f27347b = floatValue;
-                return;
-            default:
-                ((org.telegram.ui.bv) this.d).f36496c.d.setColorFilter(new PorterDuffColorFilter(i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f27347b, this.f27348c), PorterDuff.Mode.SRC_IN));
-                return;
+    public final int i(int i10) {
+        q61 q61Var = this.f27077c;
+        s4.i0 adapter = q61Var.f29742n.getAdapter();
+        p61 p61Var = q61Var.f29744s;
+        if (adapter == p61Var) {
+            if ((p61Var.d.get(i10) instanceof Integer) || i10 >= p61Var.f29433w) {
+                return p61Var.v;
+            }
+            return 1;
         }
-    }
-
-    public i61(m61 m61Var, int i10) {
-        this.f27346a = 0;
-        this.d = m61Var;
-        this.f27348c = i10;
-        this.f27347b = 0;
+        gg.f2 f2Var = q61Var.v;
+        SparseArray sparseArray = f2Var.f10601s;
+        if (i10 != f2Var.f10604y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return f2Var.f10597e.a();
     }
 }

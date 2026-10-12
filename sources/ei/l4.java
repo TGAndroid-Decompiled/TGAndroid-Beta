@@ -2,31 +2,31 @@ package ei;
 
 import android.view.ViewGroup;
 import java.util.LinkedList;
-import org.telegram.ui.Components.cd0;
-import org.telegram.ui.Components.jh;
-import org.telegram.ui.Components.ji;
-import org.telegram.ui.Components.rg;
-import org.telegram.ui.Components.te0;
+import org.telegram.ui.Components.aj;
+import org.telegram.ui.Components.gd0;
+import org.telegram.ui.Components.lh;
+import org.telegram.ui.Components.li;
+import org.telegram.ui.Components.tg;
 import org.telegram.ui.Components.wb;
-import org.telegram.ui.Components.yi;
+import org.telegram.ui.Components.xe0;
 public final class l4 implements o1.f {
-    public final int f9208a;
-    public final Object f9209b;
-    public final Object f9210c;
+    public final int f9206a;
+    public final Object f9207b;
+    public final Object f9208c;
 
     public l4(int i10, Object obj, Object obj2) {
-        this.f9208a = i10;
-        this.f9209b = obj;
-        this.f9210c = obj2;
+        this.f9206a = i10;
+        this.f9207b = obj;
+        this.f9208c = obj2;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
         ViewGroup viewGroup;
-        switch (this.f9208a) {
+        switch (this.f9206a) {
             case 0:
-                o4 o4Var = (o4) this.f9209b;
-                Runnable runnable = (Runnable) this.f9210c;
+                o4 o4Var = (o4) this.f9207b;
+                Runnable runnable = (Runnable) this.f9208c;
                 if (hVar == o4Var.G) {
                     o4Var.G = null;
                     if (runnable != null) {
@@ -38,49 +38,49 @@ public final class l4 implements o1.f {
                     }
                     float f11 = o4Var.h;
                     if (f11 != -1.0f) {
-                        boolean z11 = o4Var.f9265s;
-                        o4Var.f9265s = true;
+                        boolean z11 = o4Var.f9263s;
+                        o4Var.f9263s = true;
                         o4Var.setOffsetY(f11);
                         o4Var.h = -1.0f;
-                        o4Var.f9265s = z11;
+                        o4Var.f9263s = z11;
                     }
-                    o4Var.f9263n = -2.1474836E9f;
+                    o4Var.f9261n = -2.1474836E9f;
                     return;
                 }
                 return;
             case 1:
-                rg rgVar = (rg) this.f9210c;
-                ((wb) this.f9209b).setInOutOffset(0.0f);
+                tg tgVar = (tg) this.f9208c;
+                ((wb) this.f9207b).setInOutOffset(0.0f);
                 if (!z10) {
-                    rgVar.run();
+                    tgVar.run();
                     return;
                 }
                 return;
             case 2:
-                yi.t((yi) this.f9209b, (org.telegram.messenger.video.f) this.f9210c);
+                aj.t((aj) this.f9207b, (org.telegram.tgnet.h) this.f9208c);
                 return;
             case 3:
-                yi yiVar = (yi) ((ji) this.f9209b).d;
-                yiVar.C0.setTranslationY(0.0f);
-                yiVar.C0.l(yiVar.f33317o2);
-                viewGroup = ((org.telegram.ui.ActionBar.e3) yiVar).containerView;
+                aj ajVar = (aj) ((li) this.f9207b).d;
+                ajVar.C0.setTranslationY(0.0f);
+                ajVar.C0.l(ajVar.f24370o2);
+                viewGroup = ((org.telegram.ui.ActionBar.e3) ajVar).containerView;
                 viewGroup.invalidate();
-                ((jh) this.f9210c).run();
-                yiVar.e2(0);
+                ((lh) this.f9208c).run();
+                ajVar.e2(0);
                 return;
             default:
-                te0 te0Var = (te0) this.f9209b;
-                cd0 cd0Var = (cd0) this.f9210c;
-                LinkedList linkedList = te0Var.Q;
-                te0Var.P = null;
-                cd0Var.D = null;
-                cd0Var.z();
+                xe0 xe0Var = (xe0) this.f9207b;
+                gd0 gd0Var = (gd0) this.f9208c;
+                LinkedList linkedList = xe0Var.Q;
+                xe0Var.P = null;
+                gd0Var.D = null;
+                gd0Var.z();
                 if (!z10) {
-                    cd0Var.h = 1.0f;
-                    cd0Var.z();
+                    gd0Var.h = 1.0f;
+                    gd0Var.z();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        te0Var.R.poll();
+                        xe0Var.R.poll();
                         return;
                     }
                     return;

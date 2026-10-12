@@ -6,37 +6,37 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.l71;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.rm0;
-public final class x6 extends p61 {
-    public static final int f53500a = 0;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.p71;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.wm0;
+public final class x6 extends t61 {
+    public static final int f53603a = 0;
 
     static {
-        p61.setup(new p61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(View view, q61 q61Var, boolean z10, d71 d71Var, l71 l71Var) {
+    public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
         boolean z11;
         int i10;
         y6 y6Var = (y6) view;
-        org.telegram.ui.Components.r6 r6Var = y6Var.f53569a;
-        ImageView imageView = y6Var.f53570b;
-        int i11 = y6Var.f53571c;
-        int i12 = q61Var.d;
+        org.telegram.ui.Components.r6 r6Var = y6Var.f53672a;
+        ImageView imageView = y6Var.f53673b;
+        int i11 = y6Var.f53674c;
+        int i12 = u61Var.d;
         if (i11 == i12) {
             z11 = true;
         } else {
             z11 = false;
         }
-        y6Var.f53571c = i12;
-        r6Var.c(q61Var.f30167l, z11, true);
-        if (q61Var.f30172q) {
-            i10 = org.telegram.ui.ActionBar.h6.f21025o6;
+        y6Var.f53674c = i12;
+        r6Var.c(u61Var.f31076l, z11, true);
+        if (u61Var.f31081q) {
+            i10 = org.telegram.ui.ActionBar.h6.f20762o6;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.G6;
         }
@@ -46,12 +46,12 @@ public final class x6 extends p61 {
         float f7 = 180.0f;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
-            if (q61Var.f30162f) {
+            if (u61Var.f31071f) {
                 f7 = 0.0f;
             }
-            animate.rotation(f7).setDuration(340L).setInterpolator(is.h);
+            animate.rotation(f7).setDuration(340L).setInterpolator(js.h);
         } else {
-            if (q61Var.f30162f) {
+            if (u61Var.f31071f) {
                 f7 = 0.0f;
             }
             imageView.setRotation(f7);
@@ -61,7 +61,7 @@ public final class x6 extends p61 {
     }
 
     @Override
-    public final View createView(Context context, rm0 rm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
         return new y6(context);
     }
 }

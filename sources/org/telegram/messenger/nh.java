@@ -1,35 +1,32 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class nh implements Utilities.Callback2 {
-    public final int f18705a = 0;
-    public final int f18706b;
-    public final Object f18707c;
-    public final Object d;
+import org.telegram.tgnet.ConnectionsManager;
+public final class nh implements Runnable {
+    public final int f18397a;
+    public final int f18398b;
+    public final int f18399c;
 
-    public nh(Context context, int i10, Utilities.Callback2 callback2) {
-        this.f18707c = callback2;
-        this.d = context;
-        this.f18706b = i10;
+    public nh(int i10, int i11, int i12) {
+        this.f18397a = i12;
+        this.f18398b = i10;
+        this.f18399c = i11;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18705a) {
+    public final void run() {
+        switch (this.f18397a) {
             case 0:
-                PasskeysController.lambda$create$7((Utilities.Callback2) this.f18707c, (Context) this.d, this.f18706b, (v0.c) obj, (Throwable) obj2);
+                PasskeysController.lambda$login$11(this.f18398b, this.f18399c);
+                return;
+            case 1:
+                ConnectionsManager.B(this.f18398b, this.f18399c);
+                return;
+            case 2:
+                ConnectionsManager.r(this.f18398b, this.f18399c);
                 return;
             default:
-                ((TranslateController) this.f18707c).lambda$pushToSummarize$19(this.f18706b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                ConnectionsManager.getInstance(this.f18398b).cancelRequest(this.f18399c, true);
                 return;
         }
-    }
-
-    public nh(TranslateController translateController, int i10, Utilities.Callback callback) {
-        this.f18707c = translateController;
-        this.f18706b = i10;
-        this.d = callback;
     }
 }

@@ -1,77 +1,69 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class cp extends org.telegram.ui.Cells.e9 {
-    public ValueAnimator v;
-    public int f36832w;
-    public final ip f36833x;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class cp implements View.OnClickListener {
+    public final int f36465a;
+    public final lp f36466b;
 
-    public cp(ip ipVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 12, d6Var);
-        this.f36833x = ipVar;
-        this.f36832w = -1;
+    public cp(lp lpVar, int i10) {
+        this.f36465a = i10;
+        this.f36466b = lpVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f36832w != -1) {
-            ip ipVar = this.f36833x;
-            if (ipVar.h != null) {
-                ArrayList arrayList = new ArrayList();
-                boolean z11 = false;
-                for (int i14 = 0; i14 < ipVar.h.getChildCount(); i14++) {
-                    View childAt = ipVar.h.getChildAt(i14);
-                    if (z11) {
-                        arrayList.add(childAt);
-                    } else if (childAt == this) {
-                        z11 = true;
+    public final void onClick(View view) {
+        int i10 = this.f36465a;
+        lp lpVar = this.f36466b;
+        switch (i10) {
+            case 0:
+                TLRPC.Chat currentChannel = ((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel();
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lpVar.getParentActivity());
+                String string = LocaleController.getString(R.string.AppName);
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                a2Var.R = string;
+                if (lpVar.f39798a0) {
+                    a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", R.string.RevokeLinkAlertChannel, lpVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
+                } else {
+                    a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlert", R.string.RevokeLinkAlert, lpVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
+                }
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new o(16, lpVar, currentChannel));
+                lpVar.showDialog(a2Var);
+                return;
+            case 1:
+                if (!lpVar.V) {
+                    lpVar.V = true;
+                    lpVar.b0();
+                    return;
+                }
+                return;
+            case 2:
+                if (lpVar.V) {
+                    if (!lpVar.f39802c0) {
+                        lpVar.Z();
+                        return;
                     }
+                    lpVar.V = false;
+                    lpVar.b0();
+                    return;
                 }
-                float height = this.f36832w - getHeight();
-                ValueAnimator valueAnimator = this.v;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.v = ofFloat;
-                ofFloat.addUpdateListener(new lg(arrayList, height, 1));
-                this.v.setInterpolator(org.telegram.ui.Components.is.h);
-                this.v.setDuration(350L);
-                this.v.start();
-            }
+                return;
+            case 3:
+                ai0 ai0Var = new ai0(lpVar.Z, 0L, 0);
+                ai0Var.g0(lpVar.Y, lpVar.f39813l0);
+                lpVar.presentFragment(ai0Var);
+                return;
+            default:
+                boolean z10 = !lpVar.f39800b0;
+                lpVar.f39800b0 = z10;
+                ((org.telegram.ui.Cells.w8) view).setChecked(z10);
+                return;
         }
-        this.f36832w = getHeight();
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence) {
-        String str;
-        if (charSequence != 0) {
-            charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-            int indexOf = charSequence.toString().indexOf(10);
-            ip ipVar = this.f36833x;
-            if (indexOf >= 0) {
-                charSequence.replace(indexOf, indexOf + 1, " ");
-                charSequence.setSpan(new ForegroundColorSpan(ipVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21043p7)), 0, indexOf, 33);
-            }
-            org.telegram.ui.Components.n61[] n61VarArr = (org.telegram.ui.Components.n61[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.n61.class);
-            ci.g2 g2Var = ipVar.f38769a;
-            if (g2Var != null && g2Var.getText() != null) {
-                str = ipVar.f38769a.getText().toString();
-            } else {
-                str = "";
-            }
-            for (int i10 = 0; i10 < n61VarArr.length; i10++) {
-                charSequence.setSpan(new org.telegram.ui.Cells.i(5, (Object) this, str), charSequence.getSpanStart(n61VarArr[i10]), charSequence.getSpanEnd(n61VarArr[i10]), 33);
-                charSequence.removeSpan(n61VarArr[i10]);
-            }
-        }
-        super.setText(charSequence);
     }
 }

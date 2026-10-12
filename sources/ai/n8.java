@@ -23,50 +23,50 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class n8 implements Runnable {
-    public final int f1480a;
-    public final long f1481b;
-    public final int f1482c;
+    public final int f1478a;
+    public final long f1479b;
+    public final int f1480c;
     public final Object d;
-    public final Object f1483e;
-    public final Object f1484f;
+    public final Object f1481e;
+    public final Object f1482f;
 
     public n8(Context context, int i10, GiftAuctionController.Auction auction, long j3, Runnable runnable) {
-        this.f1480a = 12;
+        this.f1478a = 12;
         this.d = context;
-        this.f1482c = i10;
-        this.f1483e = auction;
-        this.f1481b = j3;
-        this.f1484f = runnable;
+        this.f1480c = i10;
+        this.f1481e = auction;
+        this.f1479b = j3;
+        this.f1482f = runnable;
     }
 
     @Override
     public final void run() {
         boolean z10;
         boolean z11;
-        int i10 = this.f1480a;
+        int i10 = this.f1478a;
         TL_stories.StoryItem storyItem = null;
         String str = null;
         storyItem = null;
         int i11 = 0;
-        long j3 = this.f1481b;
-        int i12 = this.f1482c;
-        Object obj = this.f1484f;
-        Object obj2 = this.f1483e;
+        long j3 = this.f1479b;
+        int i12 = this.f1480c;
+        Object obj = this.f1482f;
+        Object obj2 = this.f1481e;
         Object obj3 = this.d;
         switch (i10) {
             case 0:
                 m9 m9Var = (m9) obj3;
                 TLObject tLObject = (TLObject) obj2;
                 String str2 = (String) obj;
-                int i13 = m9Var.f1406a;
-                HashSet hashSet = m9Var.f1423t;
+                int i13 = m9Var.f1404a;
+                HashSet hashSet = m9Var.f1421t;
                 if (tLObject != null) {
                     TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
                     MessagesController.getInstance(i13).putUsers(tL_stories_stories.users, false);
                     MessagesController.getInstance(i13).putChats(tL_stories_stories.chats, false);
                     while (true) {
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f20305id == i12) {
+                            if (tL_stories_stories.stories.get(i11).f20041id == i12) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -93,37 +93,37 @@ public final class n8 implements Runnable {
                     }
                 }
                 hashSet.add(str2);
-                m9Var.f1415l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
+                m9Var.f1413l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
                 return;
             case 1:
-                ((BotForumHelper) obj3).lambda$beforeSendingFinalRequest$3((long[]) obj2, this.f1481b, this.f1482c, (Runnable) obj);
+                ((BotForumHelper) obj3).lambda$beforeSendingFinalRequest$3((long[]) obj2, this.f1479b, this.f1480c, (Runnable) obj);
                 return;
             case 2:
-                ((MediaDataController) obj3).lambda$loadStickers$100((TLObject) obj2, this.f1482c, (Utilities.Callback) obj, this.f1481b);
+                ((MediaDataController) obj3).lambda$loadStickers$100((TLObject) obj2, this.f1480c, (Utilities.Callback) obj, this.f1479b);
                 return;
             case 3:
-                ((MessagesStorage) obj3).lambda$checkMessageId$154(this.f1481b, this.f1482c, (boolean[]) obj2, (CountDownLatch) obj);
+                ((MessagesStorage) obj3).lambda$checkMessageId$154(this.f1479b, this.f1480c, (boolean[]) obj2, (CountDownLatch) obj);
                 return;
             case 4:
-                ((MessagesStorage) obj3).lambda$overwriteChannel$190(this.f1481b, this.f1482c, (TLRPC.TL_updates_channelDifferenceTooLong) obj2, (Runnable) obj);
+                ((MessagesStorage) obj3).lambda$overwriteChannel$190(this.f1479b, this.f1480c, (TLRPC.TL_updates_channelDifferenceTooLong) obj2, (Runnable) obj);
                 return;
             case 5:
-                ((MessagesStorage) obj3).lambda$updateMessageVoiceTranscription$109(this.f1482c, this.f1481b, (TLRPC.Message) obj2, (String) obj);
+                ((MessagesStorage) obj3).lambda$updateMessageVoiceTranscription$109(this.f1480c, this.f1479b, (TLRPC.Message) obj2, (String) obj);
                 return;
             case 6:
-                ((MessagesStorage) obj3).lambda$setDialogsFolderId$244((ArrayList) obj2, (ArrayList) obj, this.f1482c, this.f1481b);
+                ((MessagesStorage) obj3).lambda$setDialogsFolderId$244((ArrayList) obj2, (ArrayList) obj, this.f1480c, this.f1479b);
                 return;
             case 7:
-                ((SendMessagesHelper) obj3).lambda$completeSendingGramTransfer$6((MessageObject) obj2, (TLRPC.Message) obj, this.f1481b, this.f1482c);
+                ((SendMessagesHelper) obj3).lambda$completeSendingGramTransfer$6((MessageObject) obj2, (TLRPC.Message) obj, this.f1479b, this.f1480c);
                 return;
             case 8:
-                ((TelegramMediaSession) obj3).lambda$loadMusicForDialog$6(this.f1482c, this.f1481b, (ArrayList) obj2, (ArrayList) obj);
+                ((TelegramMediaSession) obj3).lambda$loadMusicForDialog$6(this.f1480c, this.f1479b, (ArrayList) obj2, (ArrayList) obj);
                 return;
             case 9:
-                ((TopicsController) obj3).lambda$loadTopics$2((TLRPC.TL_messages_savedDialogs) obj2, this.f1481b, (a0.i) obj, this.f1482c);
+                ((TopicsController) obj3).lambda$loadTopics$2((TLRPC.TL_messages_savedDialogs) obj2, this.f1479b, (a0.i) obj, this.f1480c);
                 return;
             case 10:
-                ((TopicsController) obj3).lambda$loadTopics$3((TLRPC.TL_messages_savedDialogsSlice) obj2, this.f1481b, (a0.i) obj, this.f1482c);
+                ((TopicsController) obj3).lambda$loadTopics$3((TLRPC.TL_messages_savedDialogsSlice) obj2, this.f1479b, (a0.i) obj, this.f1480c);
                 return;
             case 11:
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj3;
@@ -143,15 +143,15 @@ public final class n8 implements Runnable {
                     return;
                 }
             case 12:
-                new xh.z4((Context) obj3, this.f1482c, ((GiftAuctionController.Auction) obj2).gift, null, this.f1481b, (Runnable) obj, false, false).show();
+                new xh.y4((Context) obj3, this.f1480c, ((GiftAuctionController.Auction) obj2).gift, null, this.f1479b, (Runnable) obj, false, false).show();
                 return;
             case 13:
                 yh.n nVar = (yh.n) obj;
                 TLObject tLObject2 = (TLObject) obj2;
-                int i15 = ((yh.o) obj3).f53064a;
+                int i15 = ((yh.o) obj3).f53167a;
                 boolean[] zArr = nVar.d;
-                boolean[] zArr2 = nVar.f53012b;
-                ArrayList[] arrayListArr = nVar.f53011a;
+                boolean[] zArr2 = nVar.f53115b;
+                ArrayList[] arrayListArr = nVar.f53114a;
                 zArr[i12] = false;
                 if (tLObject2 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
@@ -164,14 +164,14 @@ public final class n8 implements Runnable {
                         z10 = true;
                     }
                     zArr2[i12] = z10;
-                    boolean[] zArr3 = nVar.f53014e;
+                    boolean[] zArr3 = nVar.f53117e;
                     if ((starsStatus.flags & 1) == 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     zArr3[i12] = z11;
-                    String[] strArr = nVar.f53013c;
+                    String[] strArr = nVar.f53116c;
                     if (!z11) {
                         str = starsStatus.next_offset;
                     }
@@ -184,83 +184,83 @@ public final class n8 implements Runnable {
                 ci.d dVar = (ci.d) obj3;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f20296id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f20032id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
-                int i16 = this.f1482c;
-                ConnectionsManager.getInstance(i16).sendRequest(tL_fulfillStarsSubscription, new l8(dVar, (org.telegram.ui.ActionBar.e3[]) obj, i16, this.f1481b, 7));
+                int i16 = this.f1480c;
+                ConnectionsManager.getInstance(i16).sendRequest(tL_fulfillStarsSubscription, new l8(dVar, (org.telegram.ui.ActionBar.e3[]) obj, i16, this.f1479b, 7));
                 return;
         }
     }
 
     public n8(Object obj, int i10, long j3, Object obj2, Serializable serializable, int i11) {
-        this.f1480a = i11;
+        this.f1478a = i11;
         this.d = obj;
-        this.f1482c = i10;
-        this.f1481b = j3;
-        this.f1483e = obj2;
-        this.f1484f = serializable;
+        this.f1480c = i10;
+        this.f1479b = j3;
+        this.f1481e = obj2;
+        this.f1482f = serializable;
     }
 
     public n8(Object obj, TLObject tLObject, int i10, Object obj2, long j3, int i11) {
-        this.f1480a = i11;
+        this.f1478a = i11;
         this.d = obj;
-        this.f1483e = tLObject;
-        this.f1482c = i10;
-        this.f1484f = obj2;
-        this.f1481b = j3;
+        this.f1481e = tLObject;
+        this.f1480c = i10;
+        this.f1482f = obj2;
+        this.f1479b = j3;
     }
 
     public n8(BotForumHelper botForumHelper, long[] jArr, long j3, int i10, Runnable runnable) {
-        this.f1480a = 1;
+        this.f1478a = 1;
         this.d = botForumHelper;
-        this.f1483e = jArr;
-        this.f1481b = j3;
-        this.f1482c = i10;
-        this.f1484f = runnable;
+        this.f1481e = jArr;
+        this.f1479b = j3;
+        this.f1480c = i10;
+        this.f1482f = runnable;
     }
 
     public n8(MessagesStorage messagesStorage, long j3, int i10, Object obj, Object obj2, int i11) {
-        this.f1480a = i11;
+        this.f1478a = i11;
         this.d = messagesStorage;
-        this.f1481b = j3;
-        this.f1482c = i10;
-        this.f1483e = obj;
-        this.f1484f = obj2;
+        this.f1479b = j3;
+        this.f1480c = i10;
+        this.f1481e = obj;
+        this.f1482f = obj2;
     }
 
     public n8(MessagesStorage messagesStorage, ArrayList arrayList, ArrayList arrayList2, int i10, long j3) {
-        this.f1480a = 6;
+        this.f1478a = 6;
         this.d = messagesStorage;
-        this.f1483e = arrayList;
-        this.f1484f = arrayList2;
-        this.f1482c = i10;
-        this.f1481b = j3;
+        this.f1481e = arrayList;
+        this.f1482f = arrayList2;
+        this.f1480c = i10;
+        this.f1479b = j3;
     }
 
     public n8(SendMessagesHelper sendMessagesHelper, MessageObject messageObject, TLRPC.Message message, long j3, int i10) {
-        this.f1480a = 7;
+        this.f1478a = 7;
         this.d = sendMessagesHelper;
-        this.f1483e = messageObject;
-        this.f1484f = message;
-        this.f1481b = j3;
-        this.f1482c = i10;
+        this.f1481e = messageObject;
+        this.f1482f = message;
+        this.f1479b = j3;
+        this.f1480c = i10;
     }
 
     public n8(TopicsController topicsController, TLRPC.messages_SavedDialogs messages_saveddialogs, long j3, a0.i iVar, int i10, int i11) {
-        this.f1480a = i11;
+        this.f1478a = i11;
         this.d = topicsController;
-        this.f1483e = messages_saveddialogs;
-        this.f1481b = j3;
-        this.f1484f = iVar;
-        this.f1482c = i10;
+        this.f1481e = messages_saveddialogs;
+        this.f1479b = j3;
+        this.f1482f = iVar;
+        this.f1480c = i10;
     }
 
     public n8(yh.o oVar, yh.n nVar, int i10, TLObject tLObject, long j3) {
-        this.f1480a = 13;
+        this.f1478a = 13;
         this.d = oVar;
-        this.f1484f = nVar;
-        this.f1482c = i10;
-        this.f1483e = tLObject;
-        this.f1481b = j3;
+        this.f1482f = nVar;
+        this.f1480c = i10;
+        this.f1481e = tLObject;
+        this.f1479b = j3;
     }
 }

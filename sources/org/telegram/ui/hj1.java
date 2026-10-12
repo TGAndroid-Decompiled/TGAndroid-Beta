@@ -1,16 +1,43 @@
 package org.telegram.ui;
 
-import java.io.File;
-public final class hj1 {
-    public String f38495a;
-    public int f38496b;
-    public int f38497c;
-    public File d;
-    public final File f38498e;
+import android.widget.EditText;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class hj1 extends org.telegram.ui.ActionBar.e5 {
+    public final WallpapersListActivity f38448f;
 
-    public hj1(File file, File file2, String str) {
-        this.f38495a = str;
-        this.d = file;
-        this.f38498e = file2;
+    public hj1(WallpapersListActivity wallpapersListActivity) {
+        this.f38448f = wallpapersListActivity;
+    }
+
+    @Override
+    public final void k() {
+        WallpapersListActivity wallpapersListActivity = this.f38448f;
+        mj1 mj1Var = wallpapersListActivity.J;
+        mj1Var.f40077n = null;
+        mj1Var.E(null, true);
+        wallpapersListActivity.L.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
+    }
+
+    @Override
+    public final void m() {
+        WallpapersListActivity wallpapersListActivity = this.f38448f;
+        wallpapersListActivity.H.setAdapter(wallpapersListActivity.I);
+        wallpapersListActivity.H.invalidate();
+        wallpapersListActivity.J.E(null, true);
+        wallpapersListActivity.L.setSearchFieldCaption(null);
+        k();
+    }
+
+    @Override
+    public final void n() {
+        WallpapersListActivity wallpapersListActivity = this.f38448f;
+        wallpapersListActivity.H.setAdapter(wallpapersListActivity.J);
+        wallpapersListActivity.H.invalidate();
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        this.f38448f.J.E(editText.getText().toString(), false);
     }
 }

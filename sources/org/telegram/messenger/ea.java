@@ -1,33 +1,40 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class ea implements RequestDelegate {
-    public final int f17774a;
-    public final BaseController f17775b;
-    public final int f17776c;
+import org.telegram.tgnet.tl.TL_account;
+public final class ea implements Utilities.Callback2 {
+    public final int f17499a;
+    public final MessagesController f17500b;
 
-    public ea(BaseController baseController, int i10, int i11) {
-        this.f17774a = i11;
-        this.f17775b = baseController;
-        this.f17776c = i10;
+    public ea(MessagesController messagesController, int i10) {
+        this.f17499a = i10;
+        this.f17500b = messagesController;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17774a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f17499a) {
             case 0:
-                ((MessagesController) this.f17775b).lambda$migrateDialogs$215(this.f17776c, tLObject, tL_error);
+                this.f17500b.lambda$updateWebBrowserSettings$520((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                ((MessagesController) this.f17775b).lambda$loadPinnedDialogs$366(this.f17776c, tLObject, tL_error);
+                this.f17500b.lambda$removeWebBrowserException$518((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                ((MessagesController) this.f17775b).lambda$loadGlobalNotificationsSettings$200(this.f17776c, tLObject, tL_error);
+                this.f17500b.lambda$addWebBrowserException$516((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 3:
+                this.f17500b.lambda$loadStakeDiceInfo$510((TLRPC.EmojiGameInfo) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 4:
+                this.f17500b.lambda$deleteReactionsFromMessage$131((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 5:
+                this.f17500b.lambda$loadWebBrowserConfig$512((Long) obj, (TL_account.TL_webBrowserSettings) obj2);
                 return;
             default:
-                ((ContactsController) this.f17775b).lambda$loadPrivacySettings$65(this.f17776c, tLObject, tL_error);
+                this.f17500b.lambda$clearAllWebBrowserExceptions$519((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

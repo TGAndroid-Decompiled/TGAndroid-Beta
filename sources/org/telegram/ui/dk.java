@@ -1,277 +1,146 @@
 package org.telegram.ui;
 
-import android.os.Build;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
-public final class dk extends s4.t0 {
-    public boolean f37073b;
-    public final zn d;
-    public float f37072a = 0.0f;
-    public final int f37074c = AndroidUtilities.dp(100.0f);
+public final class dk extends s4.t {
+    public boolean S;
+    public final eo T;
 
-    public dk(zn znVar) {
-        this.d = znVar;
+    public dk(eo eoVar, boolean z10) {
+        super(z10);
+        this.T = eoVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        zn znVar = this.d;
-        if (i10 == 0) {
-            org.telegram.ui.Cells.u1 u1Var = znVar.f44921p2;
-            if (u1Var != null) {
-                znVar.f44898n2.e(u1Var, -1, znVar.f44933q2, znVar.f44946r2, true);
-                znVar.f44921p2 = null;
+    public final boolean B1(int i10) {
+        int i11;
+        MessageObject messageObject;
+        MessageObject.GroupedMessages c92;
+        byte b10;
+        eo eoVar = this.T;
+        qm qmVar = eoVar.A0;
+        int i12 = qmVar.J;
+        if (i10 >= i12 && i10 < qmVar.K && (i11 = i10 - i12) >= 0 && i11 < qmVar.L().size() && (c92 = eoVar.c9((messageObject = (MessageObject) eoVar.A0.L().get(i11)))) != null) {
+            MessageObject.GroupedMessagePosition position = c92.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = c92.posArray.size();
+                for (int i13 = 0; i13 < size; i13++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = c92.posArray.get(i13);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
+                    }
+                }
             }
-            znVar.j3 = false;
-            znVar.f44862k3 = false;
-            znVar.f44874l3 = false;
-            znVar.f44885m3 = false;
-            znVar.k9(true);
-            znVar.l9(true);
-            if (SharedConfig.getDevicePerformanceClass() == 0) {
-                int i11 = zn.Hc;
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-            }
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startSpoilers, new Object[0]);
-            znVar.f45023x0.setOverScrollMode(0);
-            znVar.f44770c9.V();
-            znVar.ad(false);
-            znVar.v9(1);
-            znVar.f44968sa = false;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
+        }
+        return false;
+    }
+
+    @Override
+    public final int G() {
+        if (this.S) {
+            return (int) this.T.f37422s9;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int J() {
+        if (this.S) {
+            return (int) this.T.f37422s9;
+        }
+        return F();
+    }
+
+    @Override
+    public final int K() {
+        if (this.S) {
+            return (int) ((this.f48005n - this.T.f37422s9) - C());
+        }
+        return super.K();
+    }
+
+    @Override
+    public final int X0() {
+        return (int) this.T.f37422s9;
+    }
+
+    @Override
+    public final void b0(pf.e eVar, s4.a1 a1Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            super.b0(eVar, a1Var);
             return;
         }
-        ci.d4 d4Var = znVar.f45037y1;
-        if (d4Var != null && d4Var.V) {
-            d4Var.e(true);
-        }
-        org.telegram.ui.Components.r6 r6Var = znVar.W2;
-        if (r6Var != null && r6Var.getVisibility() == 0 && znVar.C9()) {
-            AndroidUtilities.hideKeyboard(znVar.getParentActivity().getCurrentFocus());
-        }
-        if (i10 == 2) {
-            znVar.D4 = true;
-            znVar.f44874l3 = true;
-        } else if (i10 == 1) {
-            znVar.f44921p2 = null;
-            znVar.D4 = true;
-            znVar.j3 = true;
-            znVar.f44862k3 = true;
-            znVar.f44885m3 = true;
-            znVar.f44874l3 = true;
-        }
-        if (SharedConfig.getDevicePerformanceClass() == 0) {
-            int i12 = zn.Hc;
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopSpoilers, new Object[0]);
-        zg.t tVar = znVar.Y9;
-        if (tVar != null && tVar.d()) {
-            znVar.Y9.setHiddenByScroll(true);
+        try {
+            super.b0(eVar, a1Var);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            AndroidUtilities.runOnUIThread(new gj(this, 3));
         }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        boolean z11;
-        ah.h hVar;
-        boolean z12;
-        boolean z13;
-        zn znVar = this.d;
-        zn znVar2 = znVar.f44783da;
-        if (znVar2 == null) {
-            znVar2 = znVar;
+    public final void i1(int i10, int i11, boolean z10) {
+        if (!z10) {
+            i11 = (int) ((i11 - F()) + this.T.f37422s9);
         }
-        znVar.f45023x0.invalidate();
-        boolean z14 = true;
-        if (i11 < 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f37073b = z10;
-        int L0 = znVar.f45047z0.L0();
-        aa.a aVar = null;
-        if (((i11 != 0 && znVar.f44968sa && recyclerView.getScrollState() == 2) || recyclerView.getScrollState() == 1) && znVar.N4 != 0) {
-            if (this.f37073b && !znVar.O4) {
-                if (!znVar.f45023x0.V1 && L0 != -1) {
-                    int N0 = znVar.f45047z0.N0();
-                    MessageObject messageObject = null;
-                    while (true) {
-                        if (N0 >= L0) {
-                            View m10 = znVar.f45047z0.m(N0);
-                            if (m10 instanceof org.telegram.ui.Cells.u1) {
-                                messageObject = ((org.telegram.ui.Cells.u1) m10).getMessageObject();
-                            } else if (m10 instanceof org.telegram.ui.Cells.w0) {
-                                messageObject = ((org.telegram.ui.Cells.w0) m10).getMessageObject();
-                            }
-                            if (messageObject != null && znVar.N4 == messageObject.getId()) {
-                                z13 = true;
-                                break;
-                            }
-                            N0--;
-                        } else {
-                            z13 = false;
-                            break;
-                        }
-                    }
-                    if (!z13 && messageObject != null && messageObject.getId() < znVar.N4) {
-                        znVar.N4 = 0;
-                    }
-                }
-            } else {
-                znVar.N4 = 0;
-            }
-        }
-        if (recyclerView.getScrollState() == 1) {
-            znVar.O4 = false;
-            if (!znVar.D4 && i11 != 0) {
-                znVar.D4 = true;
-            }
-        }
-        if (i11 != 0) {
-            znVar.v9(1);
-            znVar.X0.getClass();
-            znVar.m9(true);
-        }
-        if (i11 != 0 && znVar.j3 && !znVar.f44802f3) {
-            if (znVar.L7 != Integer.MAX_VALUE) {
-                znVar.Ma();
-                znVar.ad(false);
-            }
-            znVar.Jb(true);
-        }
-        if (znVar.y9() && i11 != 0 && znVar.f44862k3 && !znVar.f44802f3) {
-            if (znVar.L7 != Integer.MAX_VALUE) {
-                znVar.Ma();
-                znVar.ad(false);
-            }
-            znVar.Kb(true);
-        }
-        znVar.d7(true);
-        if (L0 != -1) {
-            znVar.A0.h();
-            if (L0 == 0 && znVar.E6[0]) {
-                if (i11 >= 0) {
-                    znVar.f44820g9 = false;
-                    znVar.zc();
-                }
-            } else {
-                aa.a[] aVarArr = znVar.f44848j1.f14199e;
-                if (1 < aVarArr.length) {
-                    aVar = aVarArr[1];
-                }
-                if (aVar != null && ((me.b) aVar.f385c).f16402f) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                int i12 = this.f37074c;
-                if (i11 > 0) {
-                    if (!z12) {
-                        float f7 = this.f37072a + i11;
-                        this.f37072a = f7;
-                        if (f7 > i12) {
-                            this.f37072a = 0.0f;
-                            znVar.f44820g9 = true;
-                            znVar.zc();
-                            znVar.f44860k1 = true;
-                        }
-                    }
-                } else if (znVar.f44860k1 && z12) {
-                    float f10 = this.f37072a + i11;
-                    this.f37072a = f10;
-                    if (f10 < (-i12)) {
-                        znVar.f44820g9 = false;
-                        znVar.zc();
-                        this.f37072a = 0.0f;
-                    }
-                }
-            }
-        }
-        znVar.w9();
-        znVar.f44770c9.G();
-        ArrayList arrayList = znVar.f45033xa.F;
-        for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            if (!((dz) arrayList.get(i13)).f37180c) {
-                ((dz) arrayList.get(i13)).f37179b -= i11;
-            }
-        }
-        zg.j0 j0Var = zg.j0.B;
-        if (j0Var != null) {
-            j0Var.f54688r -= i11;
-            if (i11 != 0) {
-                j0Var.f54691u = true;
-            }
-        }
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = znVar2.F) != null) {
-            hVar.f(i10, i11);
-        }
-        znVar.l7(false);
-        ci.d4 d4Var = znVar.f45024x1;
-        if (d4Var != null) {
-            if (d4Var.V) {
-                d4Var.e(true);
-            } else if (!znVar.Vb) {
-                znVar.Ub = System.currentTimeMillis();
-                AndroidUtilities.cancelRunOnUIThread(new sg(znVar, 29));
-                AndroidUtilities.runOnUIThread(new ck(znVar, 0), 2000L);
-            }
-        }
-        yl ylVar = znVar.B1;
-        if (ylVar != null && ylVar.V) {
-            ylVar.e(true);
-        }
-        ci.d4 d4Var2 = znVar.f45048z1;
-        if (d4Var2 != null && d4Var2.V) {
-            d4Var2.e(true);
-        } else {
-            AndroidUtilities.cancelRunOnUIThread(new ck(znVar, 1));
-            AndroidUtilities.runOnUIThread(new ck(znVar, 2), 2000L);
-        }
-        ci.d4 d4Var3 = znVar.A1;
-        if (d4Var3 != null) {
-            d4Var3.e(true);
-        }
-        ok okVar = znVar.Y;
-        if (okVar != null) {
-            okVar.j0();
-        }
-        yh.w3 w3Var = znVar.f44942qc;
-        if (w3Var != null) {
-            w3Var.invalidate();
-        }
-        hh.a aVar2 = znVar.Qb;
-        if (aVar2 != null && aVar2.f11471b > 0) {
-            int childCount = aVar2.f11470a.getChildCount();
-            int i14 = 0;
-            while (true) {
-                if (i14 < childCount) {
-                    View childAt = aVar2.f11470a.getChildAt(i14);
-                    if (childAt instanceof org.telegram.ui.Cells.u1) {
-                        z11 = aVar2.a(((org.telegram.ui.Cells.u1) childAt).getMessageObject());
-                    } else if (childAt instanceof org.telegram.ui.Cells.w0) {
-                        z11 = aVar2.a(((org.telegram.ui.Cells.w0) childAt).getMessageObject());
-                    } else {
-                        z11 = false;
-                    }
-                    if (z11) {
-                        break;
-                    }
-                    i14++;
-                } else {
-                    z14 = false;
-                    break;
-                }
-            }
-            if (!z14) {
-                aVar2.c(0, 0L);
-            }
-        }
+        super.i1(i10, i11, z10);
+    }
+
+    @Override
+    public final int j(s4.a1 a1Var) {
+        this.S = true;
+        int B0 = B0(a1Var);
+        this.S = false;
+        return B0;
+    }
+
+    @Override
+    public final int k(s4.a1 a1Var) {
+        this.S = true;
+        int C0 = C0(a1Var);
+        this.S = false;
+        return C0;
+    }
+
+    @Override
+    public final int l(s4.a1 a1Var) {
+        this.S = true;
+        int D0 = D0(a1Var);
+        this.S = false;
+        return D0;
+    }
+
+    @Override
+    public final int o0(int r11, pf.e r12, s4.a1 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dk.o0(int, pf.e, s4.a1):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
+        this.T.f37423sa = false;
+        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
+        oVar.f48058a = i10;
+        w0(oVar);
+    }
+
+    @Override
+    public final boolean y0() {
+        return true;
     }
 }

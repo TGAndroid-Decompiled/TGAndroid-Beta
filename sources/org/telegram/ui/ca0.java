@@ -1,107 +1,108 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Pattern;
-import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedPrefsHelper;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ca0 implements my {
-    public final int f36687a = 1;
-    public final LaunchActivity f36688b;
-    public final String f36689c;
-    public final int d;
-    public final TLRPC.User f36690e;
+public final class ca0 implements Runnable {
+    public final LaunchActivity f36377a;
+    public final org.telegram.ui.ActionBar.m2 f36378b;
+    public final int f36379c;
+    public final TLRPC.User d;
+    public final TLRPC.TL_messages_botApp f36380e;
+    public final AtomicBoolean f36381f;
+    public final String h;
+    public final boolean f36382n;
+    public final boolean f36383r;
+    public final boolean f36384s;
+    public final boolean v;
 
-    public ca0(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f36688b = launchActivity;
-        this.f36689c = str;
-        this.d = i10;
-        this.f36690e = user;
+    public ca0(LaunchActivity launchActivity, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z10, boolean z11, boolean z12, boolean z13) {
+        this.f36377a = launchActivity;
+        this.f36378b = m2Var;
+        this.f36379c = i10;
+        this.d = user;
+        this.f36380e = tL_messages_botApp;
+        this.f36381f = atomicBoolean;
+        this.h = str;
+        this.f36382n = z10;
+        this.f36383r = z11;
+        this.f36384s = z12;
+        this.v = z13;
     }
 
     @Override
-    public final boolean C() {
-        switch (this.f36687a) {
-            case 0:
-                return false;
-            default:
-                return false;
+    public final void run() {
+        TLRPC.TL_attachMenuBot tL_attachMenuBot;
+        String formatString;
+        Pattern pattern = LaunchActivity.B1;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f36378b;
+        if (m2Var != null && LaunchActivity.C1) {
+            LaunchActivity launchActivity = this.f36377a;
+            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
+                TLRPC.User user = this.d;
+                long j3 = user.f19949id;
+                TLRPC.TL_messages_botApp tL_messages_botApp = this.f36380e;
+                TLRPC.BotApp botApp = tL_messages_botApp.app;
+                boolean z10 = this.f36381f.get();
+                int i10 = this.f36379c;
+                String str = this.h;
+                boolean z11 = this.f36382n;
+                boolean z12 = this.f36383r;
+                ei.e5 b10 = ei.e5.b(i10, j3, j3, null, null, 3, 0, 0L, botApp, z10, str, user, 0, z11, z12);
+                if (launchActivity.P() == null || launchActivity.P().k(b10) == null) {
+                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f19949id, true);
+                    ei.k3 k3Var = new ei.k3(launchActivity, m2Var.getResourceProvider());
+                    ei.b3 b3Var = k3Var.f9180x;
+                    if (b3Var != null) {
+                        b3Var.setWasOpenedByLinkIntent(this.f36384s);
+                    }
+                    k3Var.x(!z11);
+                    if (z12) {
+                        k3Var.y(true, false, k3Var.f9157e0);
+                    }
+                    k3Var.A0 = false;
+                    k3Var.f9164k0 = launchActivity;
+                    k3Var.t(m2Var, b10);
+                    k3Var.show();
+                    if (tL_messages_botApp.inactive || this.v) {
+                        TLRPC.User user2 = MessagesController.getInstance(k3Var.G).getUser(Long.valueOf(k3Var.H));
+                        ArrayList<TLRPC.TL_attachMenuBot> arrayList = MediaDataController.getInstance(k3Var.G).getAttachMenuBots().bots;
+                        int size = arrayList.size();
+                        int i11 = 0;
+                        while (true) {
+                            if (i11 < size) {
+                                TLRPC.TL_attachMenuBot tL_attachMenuBot2 = arrayList.get(i11);
+                                i11++;
+                                tL_attachMenuBot = tL_attachMenuBot2;
+                                if (tL_attachMenuBot.bot_id == k3Var.H) {
+                                    break;
+                                }
+                            } else {
+                                tL_attachMenuBot = null;
+                                break;
+                            }
+                        }
+                        if (tL_attachMenuBot != null) {
+                            boolean z13 = tL_attachMenuBot.show_in_side_menu;
+                            if (z13 && tL_attachMenuBot.show_in_attach_menu) {
+                                formatString = LocaleController.formatString(R.string.BotAttachMenuShortcatAddedAttachAndSide, user2.first_name);
+                            } else if (z13) {
+                                formatString = LocaleController.formatString(R.string.BotAttachMenuShortcatAddedSide, user2.first_name);
+                            } else {
+                                formatString = LocaleController.formatString(R.string.BotAttachMenuShortcatAddedAttach, user2.first_name);
+                            }
+                            AndroidUtilities.runOnUIThread(new ci.y8(18, k3Var, formatString), 200L);
+                        }
+                    }
+                }
+            }
         }
-    }
-
-    @Override
-    public final boolean K(sy syVar) {
-        switch (this.f36687a) {
-            case 0:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final boolean w(sy syVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        int i12 = this.f36687a;
-        TLRPC.User user = this.f36690e;
-        int i13 = this.d;
-        String str = this.f36689c;
-        LaunchActivity launchActivity = this.f36688b;
-        switch (i12) {
-            case 0:
-                Pattern pattern = LaunchActivity.B1;
-                long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-                Bundle i14 = a1.g.i("scrollToTopOnResume", true);
-                if (DialogObject.isEncryptedDialog(j3)) {
-                    i14.putInt("enc_id", DialogObject.getEncryptedChatId(j3));
-                } else if (DialogObject.isUserDialog(j3)) {
-                    i14.putLong("user_id", j3);
-                } else {
-                    i14.putLong("chat_id", -j3);
-                }
-                i14.putString("attach_bot", UserObject.getPublicUsername(user));
-                if (str != null) {
-                    i14.putString("attach_bot_start_command", str);
-                }
-                if (MessagesController.getInstance(i13).checkCanOpenChat(i14, syVar)) {
-                    NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                    ((ActionBarLayout) launchActivity.O()).S(new zn(i14), true, false);
-                }
-                return true;
-            default:
-                Pattern pattern2 = LaunchActivity.B1;
-                long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-                TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
-                TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f20130id = tL_inputGameShortName;
-                tL_inputGameShortName.short_name = str;
-                tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
-                SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j10), tL_inputMediaGame, 0L, 0L);
-                Bundle i15 = a1.g.i("scrollToTopOnResume", true);
-                if (DialogObject.isEncryptedDialog(j10)) {
-                    i15.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
-                } else if (DialogObject.isUserDialog(j10)) {
-                    i15.putLong("user_id", j10);
-                } else {
-                    i15.putLong("chat_id", -j10);
-                }
-                if (MessagesController.getInstance(i13).checkCanOpenChat(i15, syVar)) {
-                    NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                    ((ActionBarLayout) launchActivity.O()).S(new zn(i15), true, false);
-                }
-                return true;
-        }
-    }
-
-    public ca0(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f36688b = launchActivity;
-        this.f36690e = user;
-        this.f36689c = str;
-        this.d = i10;
     }
 }

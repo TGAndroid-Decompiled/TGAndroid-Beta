@@ -1,83 +1,179 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.tgnet.TLRPC;
-public final class r11 extends org.telegram.ui.ActionBar.j {
-    public final String f41331a;
-    public final u11 f41332b;
+import android.graphics.Canvas;
+import android.graphics.PointF;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class r11 extends View {
+    public static final String[] f41466s = {"🎉", "🎆", "🎈"};
+    public final ProfileActivity f41467a;
+    public o11 f41468b;
+    public o11 f41469c;
+    public final PointF d;
+    public boolean f41470e;
+    public boolean f41471f;
+    public float h;
+    public long f41472n;
+    public boolean f41473r;
 
-    public r11(u11 u11Var, String str) {
-        this.f41332b = u11Var;
-        this.f41331a = str;
+    public r11(ProfileActivity profileActivity, o11 o11Var) {
+        super(profileActivity.getParentActivity());
+        this.d = new PointF();
+        this.h = 1.0f;
+        this.f41473r = false;
+        this.f41467a = profileActivity;
+        this.f41468b = o11Var;
+    }
+
+    public final boolean a() {
+        o11 o11Var = this.f41468b;
+        if (!o11Var.f40533b || this.h < 1.0f) {
+            return false;
+        }
+        if (o11Var.f40534c.getLottieAnimation() != null) {
+            this.f41468b.f40534c.getLottieAnimation().N(0, false, false);
+            this.f41468b.f40534c.getLottieAnimation().H(true);
+        }
+        this.f41473r = true;
+        this.h = 0.0f;
+        invalidate();
+        return true;
+    }
+
+    public final void b(o11 o11Var) {
+        if (this.f41468b != o11Var && o11Var != null) {
+            ArrayList arrayList = o11Var.f40535e;
+            if (this.f41473r) {
+                this.f41469c = o11Var;
+                return;
+            }
+            if (this.f41471f) {
+                for (int i10 = 0; i10 < this.f41468b.f40535e.size(); i10++) {
+                    ((q11) this.f41468b.f40535e.get(i10)).setParentView(null);
+                }
+                this.f41471f = false;
+            }
+            o11 o11Var2 = this.f41468b;
+            ArrayList arrayList2 = o11Var2.f40539j;
+            arrayList2.remove(this);
+            if (arrayList2.isEmpty() && o11Var2.f40538i) {
+                o11Var2.b(true);
+                o11Var2.f40538i = false;
+            }
+            this.f41468b = o11Var;
+            if (!this.f41471f) {
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    ((q11) arrayList.get(i11)).setParentView(this);
+                }
+                this.f41471f = true;
+            }
+        }
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        u11 u11Var = this.f41332b;
-        long j3 = u11Var.f42351f;
-        long j10 = u11Var.f42350e;
-        String str = this.f41331a;
-        if (i10 == -1) {
-            if (!u11Var.h && u11Var.f42352n) {
-                i17 = ((org.telegram.ui.ActionBar.m2) u11Var).currentAccount;
-                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i17).edit();
-                edit.putInt("notify2_" + str, 0).apply();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f41468b.f40539j.add(this);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f41471f) {
+            for (int i10 = 0; i10 < this.f41468b.f40535e.size(); i10++) {
+                ((q11) this.f41468b.f40535e.get(i10)).setParentView(null);
             }
-        } else if (i10 == 1) {
-            i11 = ((org.telegram.ui.ActionBar.m2) u11Var).currentAccount;
-            SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i11);
-            SharedPreferences.Editor edit2 = notificationsSettings.edit();
-            edit2.putBoolean("custom_" + str, true);
-            i12 = ((org.telegram.ui.ActionBar.m2) u11Var).currentAccount;
-            TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(i12).dialogs_dict.f(j10);
-            if (u11Var.f42352n) {
-                edit2.putInt("notify2_" + str, 0);
-                if (j3 == 0) {
-                    i16 = ((org.telegram.ui.ActionBar.m2) u11Var).currentAccount;
-                    MessagesStorage.getInstance(i16).setDialogFlags(j10, 0L);
-                    if (dialog != null) {
-                        dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
-                    }
-                }
-            } else {
-                edit2.putInt("notify2_" + str, 2);
-                if (j3 == 0) {
-                    i13 = ((org.telegram.ui.ActionBar.m2) u11Var).currentAccount;
-                    NotificationsController.getInstance(i13).removeNotificationsForDialog(j10);
-                    i14 = ((org.telegram.ui.ActionBar.m2) u11Var).currentAccount;
-                    MessagesStorage.getInstance(i14).setDialogFlags(j10, 1L);
-                    if (dialog != null) {
-                        TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
-                        dialog.notify_settings = tL_peerNotifySettings;
-                        tL_peerNotifySettings.mute_until = Integer.MAX_VALUE;
-                    }
-                }
-            }
-            edit2.apply();
-            i15 = ((org.telegram.ui.ActionBar.m2) u11Var).currentAccount;
-            NotificationsController.getInstance(i15).updateServerNotificationsSettings(j10, j3);
-            if (u11Var.f42353r != null) {
-                ?? obj = new Object();
-                obj.d = j10;
-                obj.f42673b = true;
-                int c10 = org.telegram.messenger.q.c("notify2_", str, notificationsSettings, 0);
-                obj.f42674c = c10;
-                if (c10 != 0) {
-                    obj.f42672a = org.telegram.messenger.q.c("notifyuntil_", str, notificationsSettings, 0);
-                }
-                u11Var.f42353r.v(obj);
-            }
+            this.f41471f = false;
         }
-        u11Var.finishFragment();
+        o11 o11Var = this.f41468b;
+        ArrayList arrayList = o11Var.f40539j;
+        arrayList.remove(this);
+        if (arrayList.isEmpty() && o11Var.f40538i) {
+            o11Var.b(true);
+            o11Var.f40538i = false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f41468b.f40533b) {
+            boolean z10 = true;
+            if (!this.f41471f) {
+                for (int i10 = 0; i10 < this.f41468b.f40535e.size(); i10++) {
+                    ((q11) this.f41468b.f40535e.get(i10)).setParentView(this);
+                }
+                this.f41471f = true;
+                if (!this.f41470e) {
+                    this.f41470e = true;
+                    post(new pz0(this, 4));
+                }
+            }
+            if (!this.f41473r) {
+                return;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            this.h = Utilities.clamp(this.h + (((float) Utilities.clamp(currentTimeMillis - this.f41472n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
+            this.f41472n = currentTimeMillis;
+            ProfileActivity profileActivity = this.f41467a;
+            gz0 gz0Var = profileActivity.f34048a;
+            int i11 = profileActivity.U2;
+            PointF pointF = this.d;
+            float f7 = 2.0f;
+            if (i11 >= 0) {
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= gz0Var.getChildCount()) {
+                        break;
+                    }
+                    View childAt = gz0Var.getChildAt(i12);
+                    if (i11 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.c9)) {
+                        vh.n nVar = ((org.telegram.ui.Cells.c9) childAt).f21693a;
+                        pointF.set(nVar.getX() + childAt.getX() + gz0Var.getX() + AndroidUtilities.dp(12.0f), (nVar.getMeasuredHeight() / 2.0f) + nVar.getY() + childAt.getY() + gz0Var.getY());
+                        break;
+                    }
+                    i12++;
+                }
+            }
+            float f10 = hz.f();
+            this.f41468b.f40534c.setImageCoords((getWidth() - AndroidUtilities.dp(f10)) / 2.0f, Math.max(0.0f, pointF.y - (AndroidUtilities.dp(f10) * 0.5f)), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10));
+            canvas.save();
+            canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
+            this.f41468b.f40534c.draw(canvas);
+            this.f41468b.f40534c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            canvas.restore();
+            int dp = AndroidUtilities.dp(110.0f);
+            int size = this.f41468b.d.size() - 1;
+            while (size >= 0) {
+                q11 q11Var = (q11) this.f41468b.d.get(size);
+                float f11 = size;
+                float cascade = AndroidUtilities.cascade(this.h, f11, this.f41468b.d.size(), 1.8f);
+                float f12 = dp;
+                float f13 = 0.88f * f12;
+                boolean z11 = z10;
+                float u10 = com.google.android.gms.internal.vision.e2.u(f13, this.f41468b.d.size() - 1, getWidth(), f7);
+                float f14 = pointF.x;
+                float f15 = f7;
+                float f16 = pointF.y;
+                float f17 = ((u10 - f14) * cascade) + (f13 * f11) + f14;
+                float interpolation = org.telegram.ui.Components.js.h.getInterpolation(Utilities.clamp(cascade / 0.4f, 1.0f, 0.0f));
+                float f18 = (f12 / f15) * interpolation;
+                float f19 = f12 * interpolation;
+                q11Var.setImageCoords(f17 - f18, (f16 - ((f16 + f12) * ((float) Math.pow(this.h, 2.0d)))) - f18, f19, f19);
+                q11Var.draw(canvas);
+                size--;
+                z10 = z11;
+                f7 = f15;
+            }
+            if (this.h >= 1.0f) {
+                this.f41473r = false;
+                b(this.f41469c);
+                this.f41469c = null;
+                return;
+            }
+            invalidate();
+        }
     }
 }

@@ -1,50 +1,20 @@
 package org.telegram.ui;
+public final class s9 extends y9 {
+    public final t9 f41832h0;
 
-import android.content.Intent;
-import android.graphics.Point;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.SendMessagesHelper;
-public final class s9 implements iq0 {
-    public final u9 f41678a;
-
-    public s9(u9 u9Var) {
-        this.f41678a = u9Var;
+    public s9(t9 t9Var, int i10) {
+        super(i10);
+        this.f41832h0 = t9Var;
     }
 
     @Override
-    public final void a(ArrayList arrayList) {
-        u9 u9Var = this.f41678a;
-        try {
-            if (!arrayList.isEmpty()) {
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
-                if (sendingMediaInfo.path != null) {
-                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
-                    la.h g02 = u9Var.g0(null, 0, 0, 0, ImageLoader.loadBitmap(sendingMediaInfo.path, null, realScreenSize.x, realScreenSize.y, true));
-                    if (g02 != null) {
-                        t9 t9Var = u9Var.M;
-                        if (t9Var != null) {
-                            t9Var.K((String) g02.f15501b);
-                        }
-                        u9Var.removeSelfFromStack();
-                    }
-                }
-            }
-        } catch (Throwable th2) {
-            FileLog.e(th2);
-        }
+    public final void finishFragment() {
+        setFinishing(true);
+        this.f41832h0.dismiss();
     }
 
     @Override
-    public final void b() {
-        try {
-            Intent intent = new Intent("android.intent.action.PICK");
-            intent.setType("image/*");
-            this.f41678a.getParentActivity().startActivityForResult(intent, 11);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
+    public final void removeSelfFromStack() {
+        this.f41832h0.dismiss();
     }
 }

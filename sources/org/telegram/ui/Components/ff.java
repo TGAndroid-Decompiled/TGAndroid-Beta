@@ -4,23 +4,23 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.widget.ImageView;
 public final class ff extends AnimatorListenerAdapter {
-    public final int f26459a;
-    public final boolean f26460b;
-    public final ChatActivityEnterView f26461c;
+    public final int f26048a;
+    public final boolean f26049b;
+    public final ChatActivityEnterView f26050c;
 
     public ff(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
-        this.f26459a = i10;
-        this.f26461c = chatActivityEnterView;
-        this.f26460b = z10;
+        this.f26048a = i10;
+        this.f26050c = chatActivityEnterView;
+        this.f26049b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f26459a) {
+        switch (this.f26048a) {
             case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f26461c;
-                if (animator.equals(chatActivityEnterView.f23987s2)) {
-                    chatActivityEnterView.f23987s2 = null;
+                ChatActivityEnterView chatActivityEnterView = this.f26050c;
+                if (animator.equals(chatActivityEnterView.f23728s2)) {
+                    chatActivityEnterView.f23728s2 = null;
                     return;
                 }
                 return;
@@ -35,12 +35,12 @@ public final class ff extends AnimatorListenerAdapter {
         int i10;
         cf cfVar;
         float f7;
-        switch (this.f26459a) {
+        switch (this.f26048a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f26461c;
-                if (chatActivityEnterView.f23951l5) {
-                    ImageView imageView = chatActivityEnterView.f24007w1;
-                    if (this.f26460b) {
+                ChatActivityEnterView chatActivityEnterView = this.f26050c;
+                if (chatActivityEnterView.O5) {
+                    ImageView imageView = chatActivityEnterView.f23752w1;
+                    if (this.f26049b) {
                         i10 = 0;
                     } else {
                         i10 = 8;
@@ -50,35 +50,35 @@ public final class ff extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f26461c;
-                if (animator.equals(chatActivityEnterView2.f23987s2)) {
-                    chatActivityEnterView2.f23969p1.setVisibility(8);
-                    if (this.f26460b && (cfVar = chatActivityEnterView2.J1) != null) {
+                ChatActivityEnterView chatActivityEnterView2 = this.f26050c;
+                if (animator.equals(chatActivityEnterView2.f23728s2)) {
+                    chatActivityEnterView2.f23708p1.setVisibility(8);
+                    if (this.f26049b && (cfVar = chatActivityEnterView2.J1) != null) {
                         cfVar.setVisibility(8);
                     }
-                    chatActivityEnterView2.f23987s2 = null;
+                    chatActivityEnterView2.f23728s2 = null;
                     return;
                 }
                 return;
             case 2:
-                ChatActivityEnterView chatActivityEnterView3 = this.f26461c;
+                ChatActivityEnterView chatActivityEnterView3 = this.f26050c;
                 chatActivityEnterView3.M1 = null;
-                if (!this.f26460b) {
+                if (!this.f26049b) {
                     chatActivityEnterView3.J1.setVisibility(8);
                     return;
                 }
                 return;
             default:
-                if (this.f26460b) {
+                if (this.f26049b) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                ChatActivityEnterView chatActivityEnterView4 = this.f26461c;
-                chatActivityEnterView4.f24006w0 = f7;
-                gg ggVar = chatActivityEnterView4.U0;
-                if (ggVar != null) {
-                    ggVar.Y();
+                ChatActivityEnterView chatActivityEnterView4 = this.f26050c;
+                chatActivityEnterView4.f23751w0 = f7;
+                ig igVar = chatActivityEnterView4.U0;
+                if (igVar != null) {
+                    igVar.Y();
                     return;
                 }
                 return;

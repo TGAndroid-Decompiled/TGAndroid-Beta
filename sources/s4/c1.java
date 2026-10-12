@@ -7,31 +7,31 @@ import java.util.Arrays;
 import java.util.WeakHashMap;
 import org.telegram.ui.Cells.m2;
 public final class c1 implements Runnable {
-    public int f47762a;
-    public int f47763b;
-    public OverScroller f47764c;
+    public int f47869a;
+    public int f47870b;
+    public OverScroller f47871c;
     public Interpolator d;
-    public boolean f47765e;
-    public boolean f47766f;
+    public boolean f47872e;
+    public boolean f47873f;
     public final RecyclerView h;
 
     public c1(RecyclerView recyclerView) {
         this.h = recyclerView;
         m2 m2Var = RecyclerView.R0;
         this.d = m2Var;
-        this.f47765e = false;
-        this.f47766f = false;
-        this.f47764c = new OverScroller(recyclerView.getContext(), m2Var);
+        this.f47872e = false;
+        this.f47873f = false;
+        this.f47871c = new OverScroller(recyclerView.getContext(), m2Var);
     }
 
     public final void a() {
-        if (this.f47765e) {
-            this.f47766f = true;
+        if (this.f47872e) {
+            this.f47873f = true;
             return;
         }
         RecyclerView recyclerView = this.h;
         recyclerView.removeCallbacks(this);
-        WeakHashMap weakHashMap = r0.i0.f46890a;
+        WeakHashMap weakHashMap = r0.i0.f46981a;
         recyclerView.postOnAnimation(this);
     }
 
@@ -75,12 +75,12 @@ public final class c1 implements Runnable {
         }
         if (this.d != interpolator) {
             this.d = interpolator;
-            this.f47764c = new OverScroller(recyclerView.getContext(), interpolator);
+            this.f47871c = new OverScroller(recyclerView.getContext(), interpolator);
         }
-        this.f47763b = 0;
-        this.f47762a = 0;
+        this.f47870b = 0;
+        this.f47869a = 0;
         recyclerView.setScrollState(2);
-        this.f47764c.startScroll(0, 0, i10, i11, i15);
+        this.f47871c.startScroll(0, 0, i10, i11, i15);
         a();
     }
 
@@ -97,24 +97,24 @@ public final class c1 implements Runnable {
         int i14;
         RecyclerView recyclerView = this.h;
         int[] iArr = recyclerView.J0;
-        if (recyclerView.f3169x == null) {
+        if (recyclerView.f3167x == null) {
             recyclerView.O0 = true;
             recyclerView.removeCallbacks(this);
-            this.f47764c.abortAnimation();
+            this.f47871c.abortAnimation();
             return;
         }
-        this.f47766f = false;
-        this.f47765e = true;
+        this.f47873f = false;
+        this.f47872e = true;
         recyclerView.p();
-        OverScroller overScroller = this.f47764c;
+        OverScroller overScroller = this.f47871c;
         recyclerView.P0 = true;
         if (overScroller.computeScrollOffset()) {
             int currX = overScroller.getCurrX();
             int currY = overScroller.getCurrY();
-            int i15 = currX - this.f47762a;
-            int i16 = currY - this.f47763b;
-            this.f47762a = currX;
-            this.f47763b = currY;
+            int i15 = currX - this.f47869a;
+            int i16 = currY - this.f47870b;
+            this.f47869a = currX;
+            this.f47870b = currY;
             int[] iArr2 = recyclerView.J0;
             iArr2[0] = 0;
             iArr2[1] = 0;
@@ -128,7 +128,7 @@ public final class c1 implements Runnable {
             if (recyclerView.getOverScrollMode() != 2) {
                 recyclerView.o(i10, i11);
             }
-            if (recyclerView.f3167w != null) {
+            if (recyclerView.f3165w != null) {
                 iArr[0] = 0;
                 iArr[1] = 0;
                 recyclerView.t0(i10, i11, iArr);
@@ -136,13 +136,13 @@ public final class c1 implements Runnable {
                 i13 = iArr[1];
                 i10 -= i12;
                 i11 -= i13;
-                z0 z0Var = recyclerView.f3169x.f47890e;
-                if (z0Var != null && !z0Var.d && z0Var.f47954e) {
-                    int b10 = recyclerView.f3165u0.b();
+                z0 z0Var = recyclerView.f3167x.f47997e;
+                if (z0Var != null && !z0Var.d && z0Var.f48061e) {
+                    int b10 = recyclerView.f3163u0.b();
                     if (b10 == 0) {
                         z0Var.h();
-                    } else if (z0Var.f47951a >= b10) {
-                        z0Var.f47951a = b10 - 1;
+                    } else if (z0Var.f48058a >= b10) {
+                        z0Var.f48058a = b10 - 1;
                         z0Var.c(i12, i13);
                     } else {
                         z0Var.c(i12, i13);
@@ -152,7 +152,7 @@ public final class c1 implements Runnable {
                 i12 = 0;
                 i13 = 0;
             }
-            if (!recyclerView.f3171y.isEmpty()) {
+            if (!recyclerView.f3169y.isEmpty()) {
                 recyclerView.invalidate();
             }
             int[] iArr3 = recyclerView.J0;
@@ -183,7 +183,7 @@ public final class c1 implements Runnable {
             } else {
                 z12 = true;
             }
-            z0 z0Var2 = recyclerView.f3169x.f47890e;
+            z0 z0Var2 = recyclerView.f3167x.f47997e;
             if ((z0Var2 == null || !z0Var2.d) && z12) {
                 if (recyclerView.getOverScrollMode() != 2) {
                     int currVelocity = (int) overScroller.getCurrVelocity();
@@ -206,8 +206,8 @@ public final class c1 implements Runnable {
                         }
                     } else if (i14 > 0) {
                         recyclerView.A();
-                        if (recyclerView.f3139a0.isFinished()) {
-                            recyclerView.f3139a0.onAbsorb(i14);
+                        if (recyclerView.f3137a0.isFinished()) {
+                            recyclerView.f3137a0.onAbsorb(i14);
                         }
                     }
                     if (currVelocity < 0) {
@@ -217,16 +217,16 @@ public final class c1 implements Runnable {
                         }
                     } else if (currVelocity > 0) {
                         recyclerView.y();
-                        if (recyclerView.f3141b0.isFinished()) {
-                            recyclerView.f3141b0.onAbsorb(currVelocity);
+                        if (recyclerView.f3139b0.isFinished()) {
+                            recyclerView.f3139b0.onAbsorb(currVelocity);
                         }
                     }
                     if (i14 != 0 || currVelocity != 0) {
-                        WeakHashMap weakHashMap = r0.i0.f46890a;
+                        WeakHashMap weakHashMap = r0.i0.f46981a;
                         recyclerView.postInvalidateOnAnimation();
                     }
                 }
-                a0.h hVar = recyclerView.f3164t0;
+                a0.h hVar = recyclerView.f3162t0;
                 int[] iArr4 = (int[]) hVar.f18c;
                 if (iArr4 != null) {
                     Arrays.fill(iArr4, -1);
@@ -234,21 +234,21 @@ public final class c1 implements Runnable {
                 hVar.d = 0;
             } else {
                 a();
-                q qVar = recyclerView.f3163s0;
+                q qVar = recyclerView.f3161s0;
                 if (qVar != null) {
                     qVar.a(recyclerView, i12, i13);
                 }
             }
         }
         recyclerView.P0 = false;
-        z0 z0Var3 = recyclerView.f3169x.f47890e;
+        z0 z0Var3 = recyclerView.f3167x.f47997e;
         if (z0Var3 != null && z0Var3.d) {
             z0Var3.c(0, 0);
         }
-        this.f47765e = false;
-        if (this.f47766f) {
+        this.f47872e = false;
+        if (this.f47873f) {
             recyclerView.removeCallbacks(this);
-            WeakHashMap weakHashMap2 = r0.i0.f46890a;
+            WeakHashMap weakHashMap2 = r0.i0.f46981a;
             recyclerView.postOnAnimation(this);
             return;
         }

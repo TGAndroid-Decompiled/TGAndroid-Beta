@@ -1,22 +1,23 @@
 package org.telegram.ui.Components;
-public final class dy extends w7.y5 {
-    public final b00 f25891a;
 
-    public dy(b00 b00Var) {
-        this.f25891a = b00Var;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class dy extends s4.s {
+    public final d00 Q;
+
+    public dy(d00 d00Var) {
+        super(8);
+        this.Q = d00Var;
     }
 
     @Override
-    public final void a() {
-        b00 b00Var = this.f25891a;
-        b00Var.f24741f0 = false;
-        b00Var.P.z1();
-    }
-
-    @Override
-    public final void b() {
-        b00 b00Var = this.f25891a;
-        b00Var.P.z1();
-        b00Var.f24741f0 = true;
+    public final void v0(RecyclerView recyclerView, s4.a1 a1Var, int i10) {
+        try {
+            ci.l1 l1Var = new ci.l1(this, recyclerView.getContext(), 2);
+            l1Var.f48058a = i10;
+            w0(l1Var);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
     }
 }

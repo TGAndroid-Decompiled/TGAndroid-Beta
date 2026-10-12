@@ -1,22 +1,22 @@
 package org.telegram.ui.Components;
 public final class ib implements q0.a {
-    public final int f27407a;
-    public final Object f27408b;
+    public final int f27134a;
+    public final Object f27135b;
 
     public ib(Object obj, int i10) {
-        this.f27407a = i10;
-        this.f27408b = obj;
+        this.f27134a = i10;
+        this.f27135b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f27407a) {
+        switch (this.f27134a) {
             case 0:
-                sc scVar = (sc) this.f27408b;
+                sc scVar = (sc) this.f27135b;
                 Float f7 = (Float) obj;
-                qb qbVar = scVar.f30839p;
+                qb qbVar = scVar.f30546p;
                 if (qbVar != null) {
-                    wb wbVar = scVar.f30829e;
+                    wb wbVar = scVar.f30536e;
                     if (!wbVar.top) {
                         qbVar.c(wbVar.getHeight() - f7.floatValue());
                         return;
@@ -25,9 +25,9 @@ public final class ib implements q0.a {
                 }
                 return;
             default:
-                wi wiVar = ((yi) this.f27408b).f33280c2;
-                if (wiVar != null) {
-                    wiVar.a1(obj);
+                yi yiVar = ((aj) this.f27135b).f24333c2;
+                if (yiVar != null) {
+                    yiVar.Z0(obj);
                     return;
                 }
                 return;

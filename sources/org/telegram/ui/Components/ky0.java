@@ -1,51 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ky0 implements Runnable {
-    public final int f28158a;
-    public final TLObject f28159b;
-    public final Utilities.Callback f28160c;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ky0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27962a;
+    public final View f27963b;
+    public final FrameLayout f27964c;
 
-    public ky0(TLObject tLObject, Utilities.Callback callback, int i10) {
-        this.f28158a = i10;
-        this.f28159b = tLObject;
-        this.f28160c = callback;
+    public ky0(FrameLayout frameLayout, View view, int i10) {
+        this.f27962a = i10;
+        this.f27964c = frameLayout;
+        this.f27963b = view;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f28158a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27962a) {
             case 0:
-                TLObject tLObject = this.f28159b;
-                if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
-                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
-                    MediaDataController.getInstance(UserConfig.selectedAccount).putStickerSet(tL_messages_stickerSet);
-                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f20095id)) {
-                        MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tL_messages_stickerSet, 2, null, false, false);
-                    }
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                this.f28160c.run(Boolean.valueOf(z10));
+                ly0 ly0Var = (ly0) this.f27964c;
+                ly0Var.f28312b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ly0Var.invalidate();
+                ((un0) this.f27963b).invalidate();
                 return;
             default:
-                TLObject tLObject2 = this.f28159b;
-                boolean z11 = tLObject2 instanceof TL_account.paidMessagesRevenue;
-                Utilities.Callback callback = this.f28160c;
-                if (z11) {
-                    callback.run(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject2).stars_amount));
-                    return;
-                } else {
-                    callback.run(0L);
-                    return;
-                }
+                ((u91) this.f27964c).E(this.f27963b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

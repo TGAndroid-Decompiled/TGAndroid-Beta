@@ -1,79 +1,170 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ii implements z4.e {
-    public final AtomicBoolean f38720a;
-    public final LinearLayout f38721b;
-    public final int f38722c;
-    public final HorizontalScrollView d;
-    public final SparseIntArray f38723e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f38724f;
-    public final int[] f38725g;
+import android.graphics.Bitmap;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+public final class ii implements ViewTreeObserver.OnPreDrawListener {
+    public final int f38911a;
+    public final Object f38912b;
 
-    public ii(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f38720a = atomicBoolean;
-        this.f38721b = linearLayout;
-        this.f38722c = i10;
-        this.d = horizontalScrollView;
-        this.f38723e = sparseIntArray;
-        this.f38724f = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f38725g = iArr;
+    public ii(Object obj, int i10) {
+        this.f38911a = i10;
+        this.f38912b = obj;
     }
 
     @Override
-    public final void a(int i10) {
-        this.f38724f.getSwipeBack().f(this.f38725g[0], this.f38723e.get(i10), true);
-    }
+    public final boolean onPreDraw() {
+        switch (this.f38911a) {
+            case 0:
+                eo eoVar = (eo) this.f38912b;
+                uj ujVar = eoVar.f37190a1;
+                if (ujVar != null) {
+                    ujVar.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                return eoVar.w8();
+            case 1:
+                ((ci.r6) this.f38912b).invalidate();
+                return true;
+            case 2:
+                View view = ((x70) this.f38912b).fragmentView;
+                if (view != null) {
+                    view.getViewTreeObserver().removeOnPreDrawListener(this);
+                    int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                    if (rotation != 3 && rotation != 1) {
+                        ((x70) this.f38912b).f43785f.setOrientation(1);
+                    } else {
+                        ((x70) this.f38912b).f43785f.setOrientation(0);
+                    }
+                    View view2 = ((x70) this.f38912b).fragmentView;
+                    view2.setPadding(view2.getPaddingLeft(), 0, ((x70) this.f38912b).fragmentView.getPaddingRight(), ((x70) this.f38912b).fragmentView.getPaddingBottom());
+                }
+                return true;
+            case 3:
+                mq0 mq0Var = (mq0) this.f38912b;
+                if (mq0Var.getParentActivity() != null) {
+                    int rotation2 = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                    mq0Var.f40111f = 2;
+                    if (!AndroidUtilities.isTablet() && (rotation2 == 3 || rotation2 == 1)) {
+                        mq0Var.f40111f = 4;
+                    }
+                    mq0Var.f40112n.l();
+                }
+                org.telegram.ui.Components.wm0 wm0Var = ((mq0) this.f38912b).h;
+                if (wm0Var != null) {
+                    wm0Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                return true;
+            case 4:
+                PhotoViewer photoViewer = (PhotoViewer) this.f38912b;
+                photoViewer.f33903w3.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = photoViewer.f33913x3;
+                if (imageView != null) {
+                    if (photoViewer.J3) {
+                        AndroidUtilities.runOnUIThread(new Runnable(this) {
+                            public final ii f40477b;
 
-    @Override
-    public final void b(float f7, int i10, int i11) {
-        HorizontalScrollView horizontalScrollView;
-        SparseIntArray sparseIntArray;
-        float f10;
-        if (!this.f38720a.get()) {
-            float f11 = -1.0f;
-            float f12 = -1.0f;
-            int i12 = 0;
-            while (true) {
-                LinearLayout linearLayout = this.f38721b;
-                int childCount = linearLayout.getChildCount();
-                horizontalScrollView = this.d;
-                if (i12 >= childCount) {
-                    break;
-                }
-                org.telegram.ui.Components.wk0 wk0Var = (org.telegram.ui.Components.wk0) linearLayout.getChildAt(i12);
-                if (i12 == i10) {
-                    f10 = 1.0f - f7;
-                } else if (i12 == (i10 + 1) % this.f38722c) {
-                    f10 = f7;
-                } else {
-                    f10 = 0.0f;
-                }
-                wk0Var.setOutlineProgress(f10);
-                if (i12 == i10) {
-                    f11 = wk0Var.getX() - ((horizontalScrollView.getWidth() - wk0Var.getWidth()) / 2.0f);
-                }
-                if (i12 == i10 + 1) {
-                    f12 = wk0Var.getX() - ((horizontalScrollView.getWidth() - wk0Var.getWidth()) / 2.0f);
-                }
-                i12++;
-            }
-            if (f11 != -1.0f && f12 != -1.0f) {
-                horizontalScrollView.setScrollX((int) com.google.android.gms.internal.vision.e2.y(f12, f11, f7, f11));
-            }
-            int i13 = this.f38723e.get(i10, 0);
-            this.f38724f.getSwipeBack().f(this.f38725g[0], (int) ((sparseIntArray.get(i10 + 1, 0) * f7) + ((1.0f - f7) * i13)), false);
-        }
-    }
+                            {
+                                this.f40477b = this;
+                            }
 
-    @Override
-    public final void c(int i10) {
-        if (i10 == 0) {
-            this.f38720a.set(false);
+                            @Override
+                            public final void run() {
+                                switch (r2) {
+                                    case 0:
+                                        PhotoViewer photoViewer2 = (PhotoViewer) this.f40477b.f38912b;
+                                        photoViewer2.f33913x3.setVisibility(4);
+                                        photoViewer2.f33913x3.setImageDrawable(null);
+                                        Bitmap bitmap = photoViewer2.C3;
+                                        if (bitmap != null) {
+                                            bitmap.recycle();
+                                            photoViewer2.C3 = null;
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        PhotoViewer photoViewer3 = (PhotoViewer) this.f40477b.f38912b;
+                                        if (photoViewer3.J3) {
+                                            photoViewer3.S0();
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        }, 300L);
+                    } else {
+                        imageView.setVisibility(4);
+                        photoViewer.f33913x3.setImageDrawable(null);
+                        Bitmap bitmap = photoViewer.C3;
+                        if (bitmap != null) {
+                            bitmap.recycle();
+                            photoViewer.C3 = null;
+                        }
+                    }
+                }
+                AndroidUtilities.runOnUIThread(new Runnable(this) {
+                    public final ii f40477b;
+
+                    {
+                        this.f40477b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                PhotoViewer photoViewer2 = (PhotoViewer) this.f40477b.f38912b;
+                                photoViewer2.f33913x3.setVisibility(4);
+                                photoViewer2.f33913x3.setImageDrawable(null);
+                                Bitmap bitmap2 = photoViewer2.C3;
+                                if (bitmap2 != null) {
+                                    bitmap2.recycle();
+                                    photoViewer2.C3 = null;
+                                    return;
+                                }
+                                return;
+                            default:
+                                PhotoViewer photoViewer3 = (PhotoViewer) this.f40477b.f38912b;
+                                if (photoViewer3.J3) {
+                                    photoViewer3.S0();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                photoViewer.G3 = 0;
+                return true;
+            case 5:
+                ProfileActivity profileActivity = (ProfileActivity) this.f38912b;
+                if (profileActivity.fragmentView != null) {
+                    profileActivity.A3();
+                    profileActivity.k4(true);
+                    profileActivity.fragmentView.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                return true;
+            default:
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f38912b;
+                int[][] iArr = WallpapersListActivity.f35608k0;
+                if (wallpapersListActivity.getParentActivity() != null) {
+                    int rotation3 = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                    if (AndroidUtilities.isTablet()) {
+                        wallpapersListActivity.R = 3;
+                    } else if (rotation3 != 3 && rotation3 != 1) {
+                        wallpapersListActivity.R = 3;
+                    } else {
+                        wallpapersListActivity.R = 5;
+                    }
+                    wallpapersListActivity.C0();
+                }
+                org.telegram.ui.Components.wm0 wm0Var2 = ((WallpapersListActivity) this.f38912b).H;
+                if (wm0Var2 != null) {
+                    wm0Var2.getViewTreeObserver().removeOnPreDrawListener(this);
+                }
+                return true;
         }
     }
 }

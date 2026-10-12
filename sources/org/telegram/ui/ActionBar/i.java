@@ -9,17 +9,17 @@ import android.transition.ChangeBounds;
 import android.transition.TransitionValues;
 import android.view.View;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.j91;
+import org.telegram.ui.Components.o91;
 public final class i extends ChangeBounds {
-    public final int f21237a;
+    public final int f20975a;
 
     public i(int i10) {
-        this.f21237a = i10;
+        this.f20975a = i10;
     }
 
     @Override
     public final void captureEndValues(TransitionValues transitionValues) {
-        switch (this.f21237a) {
+        switch (this.f20975a) {
             case 0:
                 super.captureEndValues(transitionValues);
                 View view = transitionValues.view;
@@ -31,11 +31,11 @@ public final class i extends ChangeBounds {
             default:
                 super.captureEndValues(transitionValues);
                 View view2 = transitionValues.view;
-                if (view2 instanceof org.telegram.ui.Components.voip.k) {
-                    int i10 = ((org.telegram.ui.Components.voip.k) view2).f32113n;
-                    int i11 = ((org.telegram.ui.Components.voip.k) view2).f32114r;
-                    int i12 = ((org.telegram.ui.Components.voip.k) view2).f32115s;
-                    int i13 = ((org.telegram.ui.Components.voip.k) view2).v;
+                if (view2 instanceof org.telegram.ui.Components.voip.j) {
+                    int i10 = ((org.telegram.ui.Components.voip.j) view2).f31743n;
+                    int i11 = ((org.telegram.ui.Components.voip.j) view2).f31744r;
+                    int i12 = ((org.telegram.ui.Components.voip.j) view2).f31745s;
+                    int i13 = ((org.telegram.ui.Components.voip.j) view2).v;
                     transitionValues.values.put("back_color_end_close", Integer.valueOf(i10));
                     transitionValues.values.put("round_end_close", Integer.valueOf(i11));
                     transitionValues.values.put("decline_call_alpha_end_close", Integer.valueOf(i12));
@@ -48,7 +48,7 @@ public final class i extends ChangeBounds {
 
     @Override
     public final void captureStartValues(TransitionValues transitionValues) {
-        switch (this.f21237a) {
+        switch (this.f20975a) {
             case 0:
                 super.captureStartValues(transitionValues);
                 View view = transitionValues.view;
@@ -60,11 +60,11 @@ public final class i extends ChangeBounds {
             default:
                 super.captureStartValues(transitionValues);
                 View view2 = transitionValues.view;
-                if (view2 instanceof org.telegram.ui.Components.voip.k) {
-                    int i10 = ((org.telegram.ui.Components.voip.k) view2).f32113n;
-                    int i11 = ((org.telegram.ui.Components.voip.k) view2).f32114r;
-                    int i12 = ((org.telegram.ui.Components.voip.k) view2).f32115s;
-                    int i13 = ((org.telegram.ui.Components.voip.k) view2).v;
+                if (view2 instanceof org.telegram.ui.Components.voip.j) {
+                    int i10 = ((org.telegram.ui.Components.voip.j) view2).f31743n;
+                    int i11 = ((org.telegram.ui.Components.voip.j) view2).f31744r;
+                    int i12 = ((org.telegram.ui.Components.voip.j) view2).f31745s;
+                    int i13 = ((org.telegram.ui.Components.voip.j) view2).v;
                     transitionValues.values.put("back_color_end_close", Integer.valueOf(i10));
                     transitionValues.values.put("round_end_close", Integer.valueOf(i11));
                     transitionValues.values.put("decline_call_alpha_end_close", Integer.valueOf(i12));
@@ -77,7 +77,7 @@ public final class i extends ChangeBounds {
 
     @Override
     public final Animator createAnimator(ViewGroup viewGroup, final TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f21237a) {
+        switch (this.f20975a) {
             case 0:
                 if (transitionValues != null && (transitionValues.view instanceof h5)) {
                     AnimatorSet animatorSet = new AnimatorSet();
@@ -97,7 +97,7 @@ public final class i extends ChangeBounds {
                 }
                 return super.createAnimator(viewGroup, transitionValues, transitionValues2);
             default:
-                if (transitionValues != null && transitionValues2 != null && (transitionValues.view instanceof org.telegram.ui.Components.voip.k)) {
+                if (transitionValues != null && transitionValues2 != null && (transitionValues.view instanceof org.telegram.ui.Components.voip.j)) {
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     Animator createAnimator2 = super.createAnimator(viewGroup, transitionValues, transitionValues2);
                     if (createAnimator2 != null) {
@@ -114,16 +114,16 @@ public final class i extends ChangeBounds {
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                             switch (r2) {
                                 case 0:
-                                    ((k) transitionValues.view).f32113n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31743n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 1:
-                                    ((k) transitionValues.view).f32114r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31744r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 2:
-                                    ((k) transitionValues.view).f32115s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31745s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 default:
-                                    ((k) transitionValues.view).v = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).v = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                             }
                         }
@@ -135,16 +135,16 @@ public final class i extends ChangeBounds {
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                             switch (r2) {
                                 case 0:
-                                    ((k) transitionValues.view).f32113n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31743n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 1:
-                                    ((k) transitionValues.view).f32114r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31744r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 2:
-                                    ((k) transitionValues.view).f32115s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31745s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 default:
-                                    ((k) transitionValues.view).v = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).v = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                             }
                         }
@@ -156,16 +156,16 @@ public final class i extends ChangeBounds {
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                             switch (r2) {
                                 case 0:
-                                    ((k) transitionValues.view).f32113n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31743n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 1:
-                                    ((k) transitionValues.view).f32114r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31744r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 2:
-                                    ((k) transitionValues.view).f32115s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31745s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 default:
-                                    ((k) transitionValues.view).v = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).v = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                             }
                         }
@@ -177,22 +177,22 @@ public final class i extends ChangeBounds {
                         public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                             switch (r2) {
                                 case 0:
-                                    ((k) transitionValues.view).f32113n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31743n = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 1:
-                                    ((k) transitionValues.view).f32114r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31744r = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 case 2:
-                                    ((k) transitionValues.view).f32115s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).f31745s = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                                 default:
-                                    ((k) transitionValues.view).v = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
+                                    ((j) transitionValues.view).v = ((Integer) valueAnimator2.getAnimatedValue()).intValue();
                                     return;
                             }
                         }
                     });
                     animatorSet2.playTogether(ofInt3);
-                    animatorSet2.addListener(new j91(transitionValues, 3));
+                    animatorSet2.addListener(new o91(transitionValues, 3));
                     return animatorSet2;
                 }
                 return super.createAnimator(viewGroup, transitionValues, transitionValues2);

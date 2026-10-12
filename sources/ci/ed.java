@@ -2,17 +2,17 @@ package ci;
 
 import java.io.File;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.im;
+import org.telegram.ui.Components.km;
 public final class ed implements Utilities.Callback {
-    public final int f5056a;
-    public final boolean f5057b;
-    public final Object f5058c;
+    public final int f5055a;
+    public final boolean f5056b;
+    public final Object f5057c;
     public final Object d;
 
     public ed(Object obj, boolean z10, Object obj2, int i10) {
-        this.f5056a = i10;
-        this.f5058c = obj;
-        this.f5057b = z10;
+        this.f5055a = i10;
+        this.f5057c = obj;
+        this.f5056b = z10;
         this.d = obj2;
     }
 
@@ -21,17 +21,17 @@ public final class ed implements Utilities.Callback {
         throw new UnsupportedOperationException("Method not decompiled: ci.ed.run(java.lang.Object):void");
     }
 
-    public ed(im imVar, File file, boolean z10) {
-        this.f5056a = 1;
-        this.f5058c = imVar;
+    public ed(km kmVar, File file, boolean z10) {
+        this.f5055a = 1;
+        this.f5057c = kmVar;
         this.d = file;
-        this.f5057b = z10;
+        this.f5056b = z10;
     }
 
     public ed(boolean z10, Object obj, Object obj2, int i10) {
-        this.f5056a = i10;
-        this.f5057b = z10;
-        this.f5058c = obj;
+        this.f5055a = i10;
+        this.f5056b = z10;
+        this.f5057c = obj;
         this.d = obj2;
     }
 }

@@ -5,19 +5,19 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class o0 implements Runnable {
-    public final int f1503a;
-    public final s3 f1504b;
+    public final int f1501a;
+    public final s3 f1502b;
 
     public o0(s3 s3Var, int i10) {
-        this.f1503a = i10;
-        this.f1504b = s3Var;
+        this.f1501a = i10;
+        this.f1502b = s3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f1503a) {
+        switch (this.f1501a) {
             case 0:
-                s3 s3Var = this.f1504b;
+                s3 s3Var = this.f1502b;
                 if (s3Var.O != null && !s3Var.U) {
                     AndroidUtilities.cancelRunOnUIThread(s3Var.V);
                     s3Var.U = true;
@@ -28,8 +28,8 @@ public final class o0 implements Runnable {
                 }
                 return;
             case 1:
-                s3 s3Var2 = this.f1504b;
-                AndroidUtilities.cancelRunOnUIThread(s3Var2.f1511d0);
+                s3 s3Var2 = this.f1502b;
+                AndroidUtilities.cancelRunOnUIThread(s3Var2.f1509d0);
                 org.telegram.ui.Components.sc scVar = s3Var2.W;
                 if (scVar != null) {
                     scVar.b();
@@ -45,9 +45,9 @@ public final class o0 implements Runnable {
                 s3Var2.j();
                 return;
             default:
-                s3 s3Var3 = this.f1504b;
-                s3Var3.f1512e.N(true);
-                s3Var3.f1517n.N(true);
+                s3 s3Var3 = this.f1502b;
+                s3Var3.f1510e.N(true);
+                s3Var3.f1515n.N(true);
                 return;
         }
     }

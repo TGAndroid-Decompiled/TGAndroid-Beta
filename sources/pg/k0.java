@@ -9,30 +9,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.s21;
-import org.telegram.ui.v20;
+import org.telegram.ui.c80;
+import org.telegram.ui.w21;
 public final class k0 {
-    public static final k0 f45738e;
-    public static final List f45739f;
-    public static final List f45740g;
+    public static final k0 f45556e;
+    public static final List f45557f;
+    public static final List f45558g;
     public static ArrayList h;
-    public static boolean f45741i;
-    public final String f45742a;
-    public final String f45743b;
-    public final String f45744c;
+    public static boolean f45559i;
+    public final String f45560a;
+    public final String f45561b;
+    public final String f45562c;
     public final n7.z0 d;
 
     static {
-        k0 k0Var = new k0("roboto", "PhotoEditorTypefaceRoboto", new n7.z0(new v20(29)));
-        f45738e = k0Var;
-        f45739f = Arrays.asList(k0Var, new k0("italic", "PhotoEditorTypefaceItalic", new n7.z0(new e0(0))), new k0("serif", "PhotoEditorTypefaceSerif", new n7.z0(new e0(1))), new k0("condensed", "PhotoEditorTypefaceCondensed", new n7.z0(new e0(2))), new k0("mono", "PhotoEditorTypefaceMono", new n7.z0(new e0(3))), new k0("mw_bold", "PhotoEditorTypefaceMerriweather", new n7.z0(new e0(4))));
-        f45740g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
+        k0 k0Var = new k0("roboto", "PhotoEditorTypefaceRoboto", new n7.z0(new c80(27)));
+        f45556e = k0Var;
+        f45557f = Arrays.asList(k0Var, new k0("italic", "PhotoEditorTypefaceItalic", new n7.z0(new c80(28))), new k0("serif", "PhotoEditorTypefaceSerif", new n7.z0(new c80(29))), new k0("condensed", "PhotoEditorTypefaceCondensed", new n7.z0(new e0(0))), new k0("mono", "PhotoEditorTypefaceMono", new n7.z0(new e0(1))), new k0("mw_bold", "PhotoEditorTypefaceMerriweather", new n7.z0(new e0(2))));
+        f45558g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
     public k0(String str, String str2, n7.z0 z0Var) {
-        this.f45742a = str;
-        this.f45743b = str2;
-        this.f45744c = null;
+        this.f45560a = str;
+        this.f45561b = str2;
+        this.f45562c = null;
         this.d = z0Var;
     }
 
@@ -43,11 +43,11 @@ public final class k0 {
     public static List c() {
         ArrayList arrayList = h;
         if (arrayList == null) {
-            if (arrayList == null && !f45741i) {
-                f45741i = true;
-                Utilities.themeQueue.postRunnable(new s21(12));
+            if (arrayList == null && !f45559i) {
+                f45559i = true;
+                Utilities.themeQueue.postRunnable(new w21(12));
             }
-            return f45739f;
+            return f45557f;
         }
         return arrayList;
     }
@@ -58,9 +58,9 @@ public final class k0 {
             return null;
         }
         randomAccessFile.seek(i10 + j0Var.d);
-        byte[] bArr = new byte[j0Var.f45735c];
+        byte[] bArr = new byte[j0Var.f45552c];
         randomAccessFile.read(bArr);
-        if (j0Var.f45733a == 1) {
+        if (j0Var.f45550a == 1) {
             charset = StandardCharsets.UTF_16BE;
         } else {
             charset = StandardCharsets.UTF_8;
@@ -70,16 +70,16 @@ public final class k0 {
 
     public final Typeface d() {
         n7.z0 z0Var = this.d;
-        if (((Typeface) z0Var.f16906c) == null) {
-            z0Var.f16906c = ((i0) z0Var.f16905b).a();
+        if (((Typeface) z0Var.f16573c) == null) {
+            z0Var.f16573c = ((i0) z0Var.f16572b).a();
         }
-        return (Typeface) z0Var.f16906c;
+        return (Typeface) z0Var.f16573c;
     }
 
     public k0(Font font, String str) {
-        this.f45742a = str;
-        this.f45744c = str;
-        this.f45743b = null;
-        this.d = new n7.z0(new m4.w(font, 16));
+        this.f45560a = str;
+        this.f45562c = str;
+        this.f45561b = null;
+        this.d = new n7.z0(new m4.x(font, 17));
     }
 }

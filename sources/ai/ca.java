@@ -27,24 +27,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ai;
+import org.telegram.messenger.am;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ba0;
-import org.telegram.ui.Components.bd;
+import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.fa0;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.ja0;
+import org.telegram.ui.Components.js;
 public final class ca implements Runnable {
-    public final int f788a;
-    public final Object f789b;
-    public final Object f790c;
+    public final int f786a;
+    public final Object f787b;
+    public final Object f788c;
 
     public ca(int i10, Object obj, Object obj2) {
-        this.f788a = i10;
-        this.f789b = obj;
-        this.f790c = obj2;
+        this.f786a = i10;
+        this.f787b = obj;
+        this.f788c = obj2;
     }
 
     @Override
@@ -55,18 +55,18 @@ public final class ca implements Runnable {
         float f10 = 1.0f;
         float f11 = 0.0f;
         int i10 = 0;
-        switch (this.f788a) {
+        switch (this.f786a) {
             case 0:
-                da daVar = (da) this.f789b;
-                View view = (View) this.f790c;
+                da daVar = (da) this.f787b;
+                View view = (View) this.f788c;
                 daVar.getClass();
                 try {
                     view.performHapticFeedback(0);
                 } catch (Exception unused) {
                 }
-                bd bdVar = daVar.H;
-                if (bdVar != null) {
-                    bdVar.c(false);
+                ad adVar = daVar.H;
+                if (adVar != null) {
+                    adVar.c(false);
                 }
                 ViewParent parent = view.getParent();
                 if (parent instanceof ViewGroup) {
@@ -76,57 +76,57 @@ public final class ca implements Runnable {
                 daVar.e();
                 return;
             case 1:
-                wa waVar = (wa) this.f789b;
-                fa0 fa0Var = (fa0) this.f790c;
-                fa0 fa0Var2 = waVar.f1868a;
-                if (fa0Var == fa0Var2 && fa0Var2 != null) {
-                    CharacterStyle characterStyle = fa0Var2.f26421i;
+                wa waVar = (wa) this.f787b;
+                ja0 ja0Var = (ja0) this.f788c;
+                ja0 ja0Var2 = waVar.f1866a;
+                if (ja0Var == ja0Var2 && ja0Var2 != null) {
+                    CharacterStyle characterStyle = ja0Var2.f27435i;
                     if (characterStyle instanceof URLSpan) {
                         xa xaVar = waVar.v;
-                        ba0 ba0Var = waVar.f1870c;
-                        Objects.requireNonNull(ba0Var);
-                        xaVar.J.H((URLSpan) characterStyle, xaVar, new a3.d(ba0Var, 18));
-                        waVar.f1868a = null;
+                        fa0 fa0Var = waVar.f1868c;
+                        Objects.requireNonNull(fa0Var);
+                        xaVar.J.H((URLSpan) characterStyle, xaVar, new a3.d(fa0Var, 18));
+                        waVar.f1866a = null;
                         return;
                     }
                     return;
                 }
                 return;
             case 2:
-                nb nbVar = (nb) this.f789b;
-                ci.d4 d4Var = (ci.d4) this.f790c;
+                nb nbVar = (nb) this.f787b;
+                ci.d4 d4Var = (ci.d4) this.f788c;
                 nbVar.d.removeView(d4Var);
-                if (d4Var == nbVar.f1493c) {
-                    nbVar.f1492b = null;
+                if (d4Var == nbVar.f1491c) {
+                    nbVar.f1490b = null;
                     nbVar.invalidate();
                     nbVar.b(false);
                     return;
                 }
                 return;
             case 3:
-                jc jcVar = (jc) this.f790c;
-                kc kcVar = ((bc) this.f789b).d;
-                f6 currentPeerView = kcVar.f1283n0.getCurrentPeerView();
-                if (currentPeerView != null && (b5Var = currentPeerView.f955c1) != null && (e6Var = kcVar.G0) != null && ((jc) e6Var.f884c) == jcVar) {
+                jc jcVar = (jc) this.f788c;
+                kc kcVar = ((bc) this.f787b).d;
+                f6 currentPeerView = kcVar.f1281n0.getCurrentPeerView();
+                if (currentPeerView != null && (b5Var = currentPeerView.f953c1) != null && (e6Var = kcVar.G0) != null && ((jc) e6Var.f882c) == jcVar) {
                     b5Var.invalidate();
                     return;
                 }
                 return;
             case 4:
-                ViewGroup container = (ViewGroup) this.f789b;
+                ViewGroup container = (ViewGroup) this.f787b;
                 kotlin.jvm.internal.i.e(container, "$container");
                 container.endViewTransition(null);
                 throw null;
             case 5:
-                ((v0.i) this.f789b).onError(this.f790c);
+                ((v0.i) this.f787b).onError(this.f788c);
                 return;
             case 6:
-                ((v0.i) this.f789b).onResult((v0.o) this.f790c);
+                ((v0.i) this.f787b).onResult((v0.o) this.f788c);
                 return;
             case 7:
-                bi.z zVar = (bi.z) this.f789b;
-                String str = (String) this.f790c;
-                ArrayList arrayList = zVar.f3944f;
+                bi.z zVar = (bi.z) this.f787b;
+                String str = (String) this.f788c;
+                ArrayList arrayList = zVar.f3943f;
                 while (true) {
                     if (i10 < arrayList.size()) {
                         if (!TextUtils.equals(((v8) arrayList.get(i10)).E, str)) {
@@ -137,35 +137,35 @@ public final class ca implements Runnable {
                     }
                 }
                 if (i10 >= 0) {
-                    zVar.f3946r.d(str.hashCode(), i10 + 1);
+                    zVar.f3945r.d(str.hashCode(), i10 + 1);
                     return;
                 }
                 return;
             case 8:
-                ((c1.e) this.f789b).e().onError(((kotlin.jvm.internal.p) this.f790c).f15219a);
+                ((c1.e) this.f787b).e().onError(((kotlin.jvm.internal.p) this.f788c).f14928a);
                 return;
             case 9:
-                ((c1.e) this.f789b).e().onError((w0.h) this.f790c);
+                ((c1.e) this.f787b).e().onError((w0.h) this.f788c);
                 return;
             case 10:
-                ((c1.e) this.f789b).e().onResult((v0.o) this.f790c);
+                ((c1.e) this.f787b).e().onResult((v0.o) this.f788c);
                 return;
             case 11:
-                c2.d.f4003a = (AudioManager) ((Context) this.f789b).getSystemService("audio");
-                ((e2.g) this.f790c).e();
+                c2.d.f4002a = (AudioManager) ((Context) this.f787b).getSystemService("audio");
+                ((e2.g) this.f788c).e();
                 return;
             case 12:
-                ca.c cVar = (ca.c) this.f789b;
-                CountDownLatch countDownLatch = (CountDownLatch) this.f790c;
+                ca.c cVar = (ca.c) this.f787b;
+                CountDownLatch countDownLatch = (CountDownLatch) this.f788c;
                 try {
-                    l5.s.a().d.e(cVar.h.f15469a.b(i5.d.f12015c), 1);
+                    l5.t.a().d.e(cVar.h.f15179a.b(i5.d.f12014c), 1);
                 } catch (SQLException unused2) {
                 }
                 countDownLatch.countDown();
                 return;
             case 13:
-                ci.d dVar = (ci.d) this.f789b;
-                org.telegram.ui.Cells.g gVar = (org.telegram.ui.Cells.g) this.f790c;
+                ci.d dVar = (ci.d) this.f787b;
+                org.telegram.ui.Cells.g gVar = (org.telegram.ui.Cells.g) this.f788c;
                 int i11 = dVar.F - 1;
                 dVar.F = i11;
                 dVar.b(i11, true);
@@ -177,28 +177,28 @@ public final class ca implements Runnable {
                 gVar.run();
                 return;
             case 14:
-                ((Utilities.Callback) this.f789b).run((ArrayList) this.f790c);
+                ((Utilities.Callback) this.f787b).run((ArrayList) this.f788c);
                 return;
             case 15:
-                ci.v1 v1Var = (ci.v1) this.f789b;
-                TLObject tLObject = (TLObject) this.f790c;
-                ci.y1 y1Var = v1Var.f6125s;
+                ci.v1 v1Var = (ci.v1) this.f787b;
+                TLObject tLObject = (TLObject) this.f788c;
+                ci.y1 y1Var = v1Var.f6124s;
                 if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
-                    ci.r2 r2Var = y1Var.f6345r;
+                    ci.r2 r2Var = y1Var.f6344r;
                     MessagesController.getInstance(ci.r2.F(r2Var)).putUsers(tL_contacts_resolvedPeer.users, false);
                     MessagesController.getInstance(ci.r2.G(r2Var)).putChats(tL_contacts_resolvedPeer.chats, false);
                     MessagesStorage.getInstance(ci.r2.I(r2Var)).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
                 }
-                v1Var.f6123n = true;
+                v1Var.f6122n = true;
                 v1Var.G();
                 return;
             case 16:
-                ((ci.w2) this.f789b).e(0.0f, 240L, (Runnable) this.f790c);
+                ((ci.w2) this.f787b).e(0.0f, 240L, (Runnable) this.f788c);
                 return;
             case 17:
-                ci.q6 q6Var = (ci.q6) this.f789b;
-                View view2 = (View) this.f790c;
+                ci.q6 q6Var = (ci.q6) this.f787b;
+                View view2 = (View) this.f788c;
                 q6Var.getClass();
                 if (view2 instanceof qg.j) {
                     qg.j jVar = (qg.j) view2;
@@ -208,8 +208,8 @@ public final class ca implements Runnable {
                 }
                 return;
             case 18:
-                TLRPC.MessageMedia messageMedia = (TLRPC.MessageMedia) this.f789b;
-                TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint = (TL_stories.TL_mediaAreaGeoPoint) this.f790c;
+                TLRPC.MessageMedia messageMedia = (TLRPC.MessageMedia) this.f787b;
+                TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint = (TL_stories.TL_mediaAreaGeoPoint) this.f788c;
                 try {
                     List<Address> fromLocationName = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocationName(messageMedia.title, 1);
                     if (fromLocationName.size() > 0) {
@@ -222,70 +222,70 @@ public final class ca implements Runnable {
                     return;
                 }
             case 19:
-                ((Utilities.Callback) this.f789b).run((Bitmap) this.f790c);
+                ((Utilities.Callback) this.f787b).run((Bitmap) this.f788c);
                 return;
             case 20:
-                ci.b7.a((ci.b7) this.f789b, (ci.l8) this.f790c);
+                ci.b7.a((ci.b7) this.f787b, (ci.l8) this.f788c);
                 return;
             case 21:
-                ci.l8 l8Var = (ci.l8) this.f790c;
-                ci.b7 b7Var = (ci.b7) ((aa.a) this.f789b).d;
-                Bitmap bitmap = b7Var.f4755a;
+                ci.l8 l8Var = (ci.l8) this.f788c;
+                ci.b7 b7Var = (ci.b7) ((aa.a) this.f787b).d;
+                Bitmap bitmap = b7Var.f4754a;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    if (l8Var.M0 == b7Var.f4755a) {
+                    if (l8Var.M0 == b7Var.f4754a) {
                         l8Var.M0 = null;
                     }
-                    b7Var.f4755a = null;
+                    b7Var.f4754a = null;
                     b7Var.invalidate();
                     return;
                 }
                 return;
             case 22:
-                ci.f7 f7Var = (ci.f7) this.f789b;
-                AtomicReference atomicReference = f7Var.f5069a;
+                ci.f7 f7Var = (ci.f7) this.f787b;
+                AtomicReference atomicReference = f7Var.f5068a;
                 ?? obj = new Object();
-                obj.f7664a = 256;
-                atomicReference.set(new r8.n(new com.google.android.gms.internal.vision.u2((Context) this.f790c, (com.google.android.gms.internal.vision.x1) obj)));
-                f7Var.a(f7Var.f5073f);
+                obj.f7663a = 256;
+                atomicReference.set(new r8.n(new com.google.android.gms.internal.vision.u2((Context) this.f788c, (com.google.android.gms.internal.vision.x1) obj)));
+                f7Var.a(f7Var.f5072f);
                 return;
             case 23:
-                ((ci.f7) this.f789b).f5071c.run((ci.d7) this.f790c);
+                ((ci.f7) this.f787b).f5070c.run((ci.d7) this.f788c);
                 return;
             case 24:
-                ci.p pVar = (ci.p) this.f789b;
-                qg.b2 b2Var = (qg.b2) this.f790c;
-                ci.n7 n7Var = pVar.f5679a;
-                if (b2Var.getWidth() <= 0) {
+                ci.p pVar = (ci.p) this.f787b;
+                qg.c2 c2Var = (qg.c2) this.f788c;
+                ci.n7 n7Var = pVar.f5678a;
+                if (c2Var.getWidth() <= 0) {
                     n7Var.animate().scaleX(0.0f).scaleY(1.0f).withEndAction(new androidx.fragment.app.a0(pVar, 20)).start();
                     return;
                 }
-                float width = b2Var.getWidth() / n7Var.getWidth();
-                ValueAnimator valueAnimator = pVar.f5687w;
+                float width = c2Var.getWidth() / n7Var.getWidth();
+                ValueAnimator valueAnimator = pVar.f5686w;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                pVar.f5687w = ValueAnimator.ofFloat(0.0f, 1.0f);
-                pVar.f5687w.addUpdateListener(new ci.m7(pVar, n7Var.getScaleX(), width, ((b2Var.getWidth() / 2.0f) + b2Var.getX()) - ((n7Var.getWidth() / 2.0f) + n7Var.getX()), ((b2Var.getHeight() / 2.0f) + b2Var.getY()) - ((n7Var.getHeight() / 2.0f) + n7Var.getY()), 0));
-                pVar.f5687w.addListener(new z(4, pVar, b2Var));
-                pVar.f5687w.setDuration(320L);
-                pVar.f5687w.setInterpolator(is.h);
-                pVar.v = b2Var;
-                pVar.f5687w.start();
+                pVar.f5686w = ValueAnimator.ofFloat(0.0f, 1.0f);
+                pVar.f5686w.addUpdateListener(new ci.m7(pVar, n7Var.getScaleX(), width, ((c2Var.getWidth() / 2.0f) + c2Var.getX()) - ((n7Var.getWidth() / 2.0f) + n7Var.getX()), ((c2Var.getHeight() / 2.0f) + c2Var.getY()) - ((n7Var.getHeight() / 2.0f) + n7Var.getY()), 0));
+                pVar.f5686w.addListener(new z(4, pVar, c2Var));
+                pVar.f5686w.setDuration(320L);
+                pVar.f5686w.setInterpolator(js.h);
+                pVar.v = c2Var;
+                pVar.f5686w.start();
                 return;
             case 25:
-                ci.d8 d8Var = (ci.d8) this.f789b;
+                ci.d8 d8Var = (ci.d8) this.f787b;
                 d8Var.L0 = false;
-                d8Var.f4946b0.addAll((ArrayList) this.f790c);
-                d8Var.f4960q0.N(true);
+                d8Var.f4945b0.addAll((ArrayList) this.f788c);
+                d8Var.f4959q0.N(true);
                 return;
             case 26:
-                ci.d8.S((ci.d8) this.f789b, (TLObject) this.f790c);
+                ci.d8.S((ci.d8) this.f787b, (TLObject) this.f788c);
                 return;
             case 27:
-                ci.l8 l8Var2 = (ci.l8) this.f789b;
-                TLObject tLObject2 = (TLObject) this.f790c;
-                l8Var2.f5406e1 = 0;
+                ci.l8 l8Var2 = (ci.l8) this.f787b;
+                TLObject tLObject2 = (TLObject) this.f788c;
+                l8Var2.f5405e1 = 0;
                 if (tLObject2 instanceof Vector) {
                     l8Var2.V0 = new ArrayList();
                     Vector vector = (Vector) tLObject2;
@@ -303,7 +303,7 @@ public final class ca implements Runnable {
                         }
                         if (document != null) {
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_inputDocument.f20080id = document.f20074id;
+                            tL_inputDocument.f19814id = document.f19808id;
                             tL_inputDocument.access_hash = document.access_hash;
                             tL_inputDocument.file_reference = document.file_reference;
                             l8Var2.V0.add(tL_inputDocument);
@@ -313,13 +313,13 @@ public final class ca implements Runnable {
                 }
                 return;
             case 28:
-                ci.u8.S((ci.u8) this.f789b, (TLObject) this.f790c);
+                ci.u8.S((ci.u8) this.f787b, (TLObject) this.f788c);
                 return;
             default:
-                ci.u8 u8Var = (ci.u8) this.f789b;
-                TextView textView = (TextView) this.f790c;
+                ci.u8 u8Var = (ci.u8) this.f787b;
+                TextView textView = (TextView) this.f788c;
                 ClipboardManager clipboardManager = (ClipboardManager) u8Var.getContext().getSystemService("clipboard");
-                org.telegram.ui.Cells.h3 h3Var = u8Var.Y.f22325b;
+                org.telegram.ui.Cells.h3 h3Var = u8Var.Y.f22080b;
                 if ((TextUtils.isEmpty(h3Var.getText()) || TextUtils.equals(h3Var.getText(), "https://") || TextUtils.isEmpty(h3Var.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     i10 = 1;
                 }
@@ -337,7 +337,7 @@ public final class ca implements Runnable {
                 if (i10 == 0) {
                     f10 = 0.7f;
                 }
-                ai.t(scaleX.scaleY(f10), is.h, 300L);
+                am.t(scaleX.scaleY(f10), js.h, 300L);
                 return;
         }
     }

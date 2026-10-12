@@ -1,121 +1,92 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class x80 extends qm0 {
-    public final Context f32888c;
-    public final y80 d;
+public final class x80 extends FrameLayout {
+    public final c90 f32677a;
 
-    public x80(y80 y80Var, Context context) {
-        this.d = y80Var;
-        this.f32888c = context;
+    public x80(c90 c90Var, Context context) {
+        super(context);
+        this.f32677a = c90Var;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        return true;
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        c90 c90Var = this.f32677a;
+        Drawable drawable = c90Var.f24864b;
+        int i11 = c90Var.f24869r;
+        i10 = ((org.telegram.ui.ActionBar.e3) c90Var).backgroundPaddingTop;
+        drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
+        drawable.draw(canvas);
     }
 
     @Override
-    public final int h() {
-        return this.d.h.size();
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            c90 c90Var = this.f32677a;
+            if (c90Var.f24869r != 0 && motionEvent.getY() < c90Var.f24869r) {
+                c90Var.dismiss();
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final int j(int i10) {
-        return 0;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        c90.q(this.f32677a);
     }
 
     @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        int i11;
-        TLObject chat;
-        String str;
+    public final void onMeasure(int i10, int i11) {
         int i12;
-        View view = d1Var.f47782a;
-        y80 y80Var = this.d;
-        long peerId = MessageObject.getPeerId((TLRPC.Peer) y80Var.h.get(i10));
-        if (peerId > 0) {
-            i12 = ((org.telegram.ui.ActionBar.e3) y80Var).currentAccount;
-            chat = MessagesController.getInstance(i12).getUser(Long.valueOf(peerId));
-            str = LocaleController.getString(R.string.VoipGroupPersonalAccount);
+        int i13;
+        int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
+        c90 c90Var = this.f32677a;
+        TextView textView = c90Var.f24867f;
+        measureChildWithMargins(textView, i10, 0, i11, 0);
+        int measuredHeight = textView.getMeasuredHeight();
+        y80 y80Var = c90Var.d;
+        ((FrameLayout.LayoutParams) y80Var.getLayoutParams()).topMargin = AndroidUtilities.dp(65.0f) + measuredHeight;
+        getMeasuredWidth();
+        int D = org.telegram.messenger.v0.D(58.0f, c90Var.h.size(), AndroidUtilities.dp(80.0f));
+        i12 = ((org.telegram.ui.ActionBar.e3) c90Var).backgroundPaddingTop;
+        int C = org.telegram.messenger.v0.C(55.0f, i12 + D, measuredHeight);
+        int i14 = size / 5;
+        if (C < i14 * 3) {
+            i13 = size - C;
         } else {
-            i11 = ((org.telegram.ui.ActionBar.e3) y80Var).currentAccount;
-            chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-peerId));
-            str = null;
+            i13 = i14 * 2;
         }
-        boolean z10 = false;
-        if (y80Var.f33182s == 0) {
-            org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
-            if (peerId == MessageObject.getPeerId(y80Var.v)) {
-                z10 = true;
-            }
-            g7Var.c(peerId, z10, null);
-            return;
+        if (y80Var.getPaddingTop() != i13) {
+            c90Var.f24868n = true;
+            y80Var.setPadding(0, i13, 0, 0);
+            c90Var.f24868n = false;
         }
-        org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
-        if (i10 != h() - 1) {
-            z10 = true;
-        }
-        g4Var.e(chat, null, str, z10);
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
     @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        boolean z10;
-        View g4Var;
-        y80 y80Var = this.d;
-        if (y80Var.f33182s == 0) {
-            g4Var = new org.telegram.ui.Cells.g7(this.f32888c, 2, null);
-            g4Var.setLayoutParams(new s4.q0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(100.0f)));
-        } else {
-            if (y80Var.f33182s == 2) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            g4Var = new org.telegram.ui.Cells.g4(2, 0, this.f32888c, null, false, z10);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f32677a.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
         }
-        return new s4.d1(g4Var);
+        return false;
     }
 
     @Override
-    public final void y(s4.d1 d1Var) {
-        long j3;
-        d1Var.b();
-        long peerId = MessageObject.getPeerId(this.d.v);
-        View view = d1Var.f47782a;
-        boolean z10 = true;
-        if (view instanceof org.telegram.ui.Cells.g4) {
-            org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
-            Object object = g4Var.getObject();
-            if (object != null) {
-                if (object instanceof TLRPC.Chat) {
-                    j3 = -((TLRPC.Chat) object).f20068id;
-                } else {
-                    j3 = ((TLRPC.User) object).f20215id;
-                }
-            } else {
-                j3 = 0;
-            }
-            if (peerId != j3) {
-                z10 = false;
-            }
-            g4Var.c(z10, false);
+    public final void requestLayout() {
+        if (this.f32677a.f24868n) {
             return;
         }
-        org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
-        if (peerId != g7Var.getCurrentDialog()) {
-            z10 = false;
-        }
-        g7Var.b(z10, false);
+        super.requestLayout();
     }
 }

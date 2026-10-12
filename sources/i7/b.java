@@ -5,14 +5,14 @@ import android.content.Intent;
 import android.os.Parcelable;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.j;
-import w7.e0;
+import w7.d0;
 public final class b extends j {
-    public static final com.google.android.gms.common.api.e f12035l = new com.google.android.gms.common.api.e("Auth.Api.Identity.SignIn.API", new a8.d(6), new Object());
-    public final String f12036k;
+    public static final com.google.android.gms.common.api.e f12034l = new com.google.android.gms.common.api.e("Auth.Api.Identity.SignIn.API", new a8.d(6), new Object());
+    public final String f12035k;
 
     public b(Context context, x5.i iVar) {
-        super(context, f12035l, iVar, com.google.android.gms.common.api.i.f6536c);
-        this.f12036k = e.a();
+        super(context, f12034l, iVar, com.google.android.gms.common.api.i.f6535c);
+        this.f12035k = e.a();
     }
 
     public final x5.g f(Intent intent) {
@@ -25,7 +25,7 @@ public final class b extends j {
             if (byteArrayExtra == null) {
                 a2 = null;
             } else {
-                a2 = e0.a(byteArrayExtra, creator);
+                a2 = d0.a(byteArrayExtra, creator);
             }
             Status status2 = (Status) a2;
             if (status2 != null) {
@@ -33,7 +33,7 @@ public final class b extends j {
                     Parcelable.Creator<x5.g> creator2 = x5.g.CREATOR;
                     byte[] byteArrayExtra2 = intent.getByteArrayExtra("sign_in_credential");
                     if (byteArrayExtra2 != null) {
-                        bVar = e0.a(byteArrayExtra2, creator2);
+                        bVar = d0.a(byteArrayExtra2, creator2);
                     }
                     x5.g gVar = (x5.g) bVar;
                     if (gVar != null) {
@@ -43,7 +43,7 @@ public final class b extends j {
                 }
                 throw new com.google.android.gms.common.api.f(status2);
             }
-            throw new com.google.android.gms.common.api.f(Status.f6523r);
+            throw new com.google.android.gms.common.api.f(Status.f6522r);
         }
         throw new com.google.android.gms.common.api.f(status);
     }

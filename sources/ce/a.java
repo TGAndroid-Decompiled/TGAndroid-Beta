@@ -1,13 +1,13 @@
 package ce;
 
-import w7.v;
+import w7.u;
 public final class a {
-    public static final a[] f4605a;
+    public static final a[] f4604a;
 
     static {
         a[] aVarArr = {new Enum("SUSPEND", 0), new Enum("DROP_OLDEST", 1), new Enum("DROP_LATEST", 2)};
-        f4605a = aVarArr;
-        v.a(aVarArr);
+        f4604a = aVarArr;
+        u.a(aVarArr);
     }
 
     public static a valueOf(String str) {
@@ -15,6 +15,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f4605a.clone();
+        return (a[]) f4604a.clone();
     }
 }

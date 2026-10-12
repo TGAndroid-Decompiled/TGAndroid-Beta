@@ -2,6 +2,8 @@ package org.telegram.ui.Cells;
 
 import org.telegram.tgnet.TLRPC;
 public interface t0 {
+    void B2(w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
+
     void E1(long j3);
 
     void F1(w0 w0Var);
@@ -10,29 +12,27 @@ public interface t0 {
 
     org.telegram.ui.ActionBar.m2 T0();
 
-    void W0(TLRPC.TL_chatInviteExported tL_chatInviteExported);
+    void U(w0 w0Var, int i10);
 
-    void X(w0 w0Var, int i10);
+    void V0(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 
     long a();
 
-    long d();
+    void b0(w0 w0Var);
 
-    void d0(w0 w0Var);
+    long d();
 
     boolean f();
 
-    void k0(w0 w0Var, int i10, int i11);
+    void i0(w0 w0Var, int i10, int i11);
 
     void m1(w0 w0Var, TLRPC.Document document, TLRPC.VideoSize videoSize);
 
+    void n0(w0 w0Var);
+
     void n2(w0 w0Var, String str);
 
-    void o0(w0 w0Var);
+    void v0(w0 w0Var);
 
-    void w0(w0 w0Var);
-
-    boolean x2(w0 w0Var, float f7, float f10);
-
-    void z2(w0 w0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
+    boolean y2(w0 w0Var, float f7, float f10);
 }

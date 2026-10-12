@@ -1,67 +1,65 @@
 package w9;
 
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.android.gms.tasks.Tasks;
-import java.io.File;
-import java.io.IOException;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executor;
-import java.util.concurrent.atomic.AtomicReference;
-import n7.z0;
-public final class k implements Callable {
-    public final long f50359a;
-    public final Throwable f50360b;
-    public final Thread f50361c;
-    public final da.c d;
-    public final m f50362e;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeoutException;
+import org.telegram.ui.l71;
+public final class k implements l71 {
+    public Object f50465a;
 
-    public k(m mVar, long j3, Throwable th2, Thread thread, da.c cVar) {
-        this.f50362e = mVar;
-        this.f50359a = j3;
-        this.f50360b = th2;
-        this.f50361c = thread;
-        this.d = cVar;
+    public k(Object obj) {
+        this.f50465a = obj;
     }
 
-    @Override
-    public final Object call() {
-        ba.c cVar;
-        String str;
-        long j3 = this.f50359a;
-        long j10 = j3 / 1000;
-        m mVar = this.f50362e;
-        String e7 = mVar.e();
-        if (e7 == null) {
-            Log.e("FirebaseCrashlytics", "Tried to write a fatal exception while no session was open.", null);
-            return Tasks.forResult(null);
+    public void a(da.c cVar, Thread thread, Throwable th2) {
+        n nVar = (n) this.f50465a;
+        synchronized (nVar) {
+            String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", str, null);
+            }
+            try {
+                try {
+                    y.a(nVar.f50476e.l(new l(nVar, System.currentTimeMillis(), th2, thread, cVar)));
+                } catch (TimeoutException unused) {
+                    Log.e("FirebaseCrashlytics", "Cannot send reports. Timed out while fetching settings.", null);
+                }
+            } catch (Exception e7) {
+                Log.e("FirebaseCrashlytics", "Error handling uncaught exception", e7);
+            }
         }
-        mVar.f50368c.D();
-        com.google.firebase.messaging.n nVar = mVar.f50376m;
-        nVar.getClass();
-        String concat = "Persisting fatal event for session ".concat(e7);
-        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-            Log.v("FirebaseCrashlytics", concat, null);
+    }
+
+    public void b(IBinder iBinder) {
+        synchronized (((HashMap) this.f50465a)) {
+            if (iBinder != null) {
+                try {
+                    iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            new y8.a();
+            for (Map.Entry entry : ((HashMap) this.f50465a).entrySet()) {
+                if (entry.getValue() == null) {
+                    try {
+                        throw null;
+                        break;
+                    } catch (RemoteException unused) {
+                        String valueOf = String.valueOf(entry.getKey());
+                        Log.w("WearableClient", "onPostInitHandler: Didn't add: " + valueOf + "/null");
+                    }
+                } else {
+                    throw new ClassCastException();
+                }
+            }
         }
-        nVar.v(this.f50360b, this.f50361c, e7, "crash", j10, true);
-        try {
-            cVar = mVar.f50371g;
-            str = ".ae" + j3;
-            cVar.getClass();
-        } catch (IOException e10) {
-            Log.w("FirebaseCrashlytics", "Could not create app exception marker file.", e10);
-        }
-        if (!new File(cVar.f3800b, str).createNewFile()) {
-            throw new IOException("Create new file failed.");
-        }
-        da.c cVar2 = this.d;
-        mVar.c(false, cVar2);
-        new f(mVar.f50370f);
-        m.a(mVar, f.f50348b, Boolean.FALSE);
-        if (!mVar.f50367b.a()) {
-            return Tasks.forResult(null);
-        }
-        Executor executor = (Executor) mVar.f50369e.f7970b;
-        return ((TaskCompletionSource) ((AtomicReference) cVar2.f8237i).get()).getTask().onSuccessTask(executor, new z0(this, executor, e7));
+    }
+
+    public k() {
+        this.f50465a = new HashMap();
     }
 }

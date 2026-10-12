@@ -1,13 +1,13 @@
 package ai;
 
-import org.telegram.ui.Components.g30;
-public final class n9 extends g30 {
-    public int f1485n;
-    public int f1486o;
+import org.telegram.ui.Components.i30;
+public final class n9 extends i30 {
+    public int f1483n;
+    public int f1484o;
 
     @Override
     public final void e() {
-        d(org.telegram.ui.ActionBar.h6.x0(null, this.f1485n, false), org.telegram.ui.ActionBar.h6.x0(null, this.f1486o, false), 0, 0);
+        d(org.telegram.ui.ActionBar.h6.x0(null, this.f1483n, false), org.telegram.ui.ActionBar.h6.x0(null, this.f1484o, false), 0, 0);
         super.e();
     }
 }

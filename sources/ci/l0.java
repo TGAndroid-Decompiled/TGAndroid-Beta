@@ -10,91 +10,91 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public abstract class l0 extends FrameLayout {
     public boolean E;
-    public final b7 f5365a;
-    public qg.x1 f5366b;
-    public final org.telegram.ui.Components.g6 f5367c;
+    public final b7 f5364a;
+    public qg.y1 f5365b;
+    public final org.telegram.ui.Components.g6 f5366c;
     public final org.telegram.ui.Components.g6 d;
-    public final k0 f5368e;
-    public final FrameLayout f5369f;
+    public final k0 f5367e;
+    public final FrameLayout f5368f;
     public final g0 h;
-    public final lg.f f5370n;
-    public final FrameLayout f5371r;
-    public float f5372s;
+    public final lg.f f5369n;
+    public final FrameLayout f5370r;
+    public float f5371s;
     public final int[] v;
-    public final int[] f5373w;
-    public final int[] f5374x;
-    public final lg.g f5375y;
+    public final int[] f5372w;
+    public final int[] f5373x;
+    public final lg.g f5374y;
 
     public l0(Context context, b7 b7Var) {
         super(context);
-        this.f5372s = 0.0f;
+        this.f5371s = 0.0f;
         this.v = new int[2];
-        this.f5373w = new int[2];
-        this.f5374x = new int[2];
-        this.f5375y = new Object();
-        this.f5365a = b7Var;
+        this.f5372w = new int[2];
+        this.f5373x = new int[2];
+        this.f5374y = new Object();
+        this.f5364a = b7Var;
         k0 k0Var = new k0(this, context);
-        this.f5368e = k0Var;
-        is isVar = is.h;
-        this.f5367c = new org.telegram.ui.Components.g6(k0Var, 0L, 320L, isVar);
-        this.d = new org.telegram.ui.Components.g6(k0Var, 0L, 320L, isVar);
+        this.f5367e = k0Var;
+        js jsVar = js.h;
+        this.f5366c = new org.telegram.ui.Components.g6(k0Var, 0L, 320L, jsVar);
+        this.d = new org.telegram.ui.Components.g6(k0Var, 0L, 320L, jsVar);
         g0 g0Var = new g0(this, context, 1);
         this.h = g0Var;
-        g0Var.setListener(new pb.c(this, 12));
+        g0Var.setListener(new a6.m(this, 10));
         addView(g0Var);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f5369f = frameLayout;
-        addView(frameLayout, w7.x5.e(-1, -1, 119));
+        this.f5368f = frameLayout;
+        addView(frameLayout, w7.w5.e(-1, -1, 119));
         lg.f fVar = new lg.f(context);
-        this.f5370n = fVar;
+        this.f5369n = fVar;
         fVar.setListener(new xa.c(this, 10));
-        frameLayout.addView(fVar, w7.x5.a(-2.0f, 0.0f, 0.0f, 0.0f, 52.0f, -1, 81));
+        frameLayout.addView(fVar, w7.w5.a(-2.0f, 0.0f, 0.0f, 0.0f, 52.0f, -1, 81));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f5371r = frameLayout2;
-        frameLayout.addView(frameLayout2, w7.x5.a(52.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
+        this.f5370r = frameLayout2;
+        frameLayout.addView(frameLayout2, w7.w5.a(52.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
         TextView textView = new TextView(context);
         com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
         textView.setBackground(org.telegram.ui.ActionBar.h6.g0(-12763843, 0, -1));
         textView.setTextColor(-1);
         textView.setPadding(org.telegram.ui.Cells.c1.b(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView, w7.x5.e(-2, -1, 115));
+        frameLayout2.addView(textView, w7.w5.e(-2, -1, 115));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final l0 f5219b;
+            public final l0 f5218b;
 
             {
-                this.f5219b = this;
+                this.f5218b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        ((wb) this.f5219b).F.k0(-1, false, true);
+                        ((wb) this.f5218b).F.k0(-1, false, true);
                         return;
                     case 1:
-                        l0 l0Var = this.f5219b;
+                        l0 l0Var = this.f5218b;
                         l0Var.h.l(true);
-                        lg.f fVar2 = l0Var.f5370n;
+                        lg.f fVar2 = l0Var.f5369n;
                         fVar2.setRotated(false);
                         fVar2.setMirrored(false);
                         fVar2.b(0.0f);
                         return;
                     default:
-                        l0 l0Var2 = this.f5219b;
-                        qg.x1 x1Var = l0Var2.f5366b;
-                        if (x1Var != null) {
-                            x1Var.G0 = new MediaController.CropState();
-                            l0Var2.h.b(l0Var2.f5366b.G0);
-                            qg.x1 x1Var2 = l0Var2.f5366b;
-                            x1Var2.G0.orientation = x1Var2.getOrientation();
-                            l0Var2.f5366b.k();
-                            l0Var2.f5366b.requestLayout();
-                            l0Var2.f5366b.f46744z0.requestLayout();
-                            l0Var2.f5366b.f46744z0.invalidate();
-                            l0Var2.f5366b.f46744z0.post(new androidx.fragment.app.a0(l0Var2, 8));
+                        l0 l0Var2 = this.f5218b;
+                        qg.y1 y1Var = l0Var2.f5365b;
+                        if (y1Var != null) {
+                            y1Var.G0 = new MediaController.CropState();
+                            l0Var2.h.b(l0Var2.f5365b.G0);
+                            qg.y1 y1Var2 = l0Var2.f5365b;
+                            y1Var2.G0.orientation = y1Var2.getOrientation();
+                            l0Var2.f5365b.k();
+                            l0Var2.f5365b.requestLayout();
+                            l0Var2.f5365b.f46579z0.requestLayout();
+                            l0Var2.f5365b.f46579z0.invalidate();
+                            l0Var2.f5365b.f46579z0.post(new androidx.fragment.app.a0(l0Var2, 8));
                         }
                         ((wb) l0Var2).F.k0(-1, false, true);
                         return;
@@ -107,41 +107,41 @@ public abstract class l0 extends FrameLayout {
         textView2.setBackground(org.telegram.ui.ActionBar.h6.g0(-12763843, 0, -1));
         textView2.setTextColor(-1);
         textView2.setPadding(org.telegram.ui.Cells.c1.b(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView2, w7.x5.e(-2, -1, 113));
+        frameLayout2.addView(textView2, w7.w5.e(-2, -1, 113));
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final l0 f5219b;
+            public final l0 f5218b;
 
             {
-                this.f5219b = this;
+                this.f5218b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        ((wb) this.f5219b).F.k0(-1, false, true);
+                        ((wb) this.f5218b).F.k0(-1, false, true);
                         return;
                     case 1:
-                        l0 l0Var = this.f5219b;
+                        l0 l0Var = this.f5218b;
                         l0Var.h.l(true);
-                        lg.f fVar2 = l0Var.f5370n;
+                        lg.f fVar2 = l0Var.f5369n;
                         fVar2.setRotated(false);
                         fVar2.setMirrored(false);
                         fVar2.b(0.0f);
                         return;
                     default:
-                        l0 l0Var2 = this.f5219b;
-                        qg.x1 x1Var = l0Var2.f5366b;
-                        if (x1Var != null) {
-                            x1Var.G0 = new MediaController.CropState();
-                            l0Var2.h.b(l0Var2.f5366b.G0);
-                            qg.x1 x1Var2 = l0Var2.f5366b;
-                            x1Var2.G0.orientation = x1Var2.getOrientation();
-                            l0Var2.f5366b.k();
-                            l0Var2.f5366b.requestLayout();
-                            l0Var2.f5366b.f46744z0.requestLayout();
-                            l0Var2.f5366b.f46744z0.invalidate();
-                            l0Var2.f5366b.f46744z0.post(new androidx.fragment.app.a0(l0Var2, 8));
+                        l0 l0Var2 = this.f5218b;
+                        qg.y1 y1Var = l0Var2.f5365b;
+                        if (y1Var != null) {
+                            y1Var.G0 = new MediaController.CropState();
+                            l0Var2.h.b(l0Var2.f5365b.G0);
+                            qg.y1 y1Var2 = l0Var2.f5365b;
+                            y1Var2.G0.orientation = y1Var2.getOrientation();
+                            l0Var2.f5365b.k();
+                            l0Var2.f5365b.requestLayout();
+                            l0Var2.f5365b.f46579z0.requestLayout();
+                            l0Var2.f5365b.f46579z0.invalidate();
+                            l0Var2.f5365b.f46579z0.post(new androidx.fragment.app.a0(l0Var2, 8));
                         }
                         ((wb) l0Var2).F.k0(-1, false, true);
                         return;
@@ -154,41 +154,41 @@ public abstract class l0 extends FrameLayout {
         textView3.setBackground(org.telegram.ui.ActionBar.h6.g0(-12763843, 0, -1));
         textView3.setTextColor(-15098625);
         textView3.setPadding(org.telegram.ui.Cells.c1.b(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
-        frameLayout2.addView(textView3, w7.x5.e(-2, -1, 117));
+        frameLayout2.addView(textView3, w7.w5.e(-2, -1, 117));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final l0 f5219b;
+            public final l0 f5218b;
 
             {
-                this.f5219b = this;
+                this.f5218b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        ((wb) this.f5219b).F.k0(-1, false, true);
+                        ((wb) this.f5218b).F.k0(-1, false, true);
                         return;
                     case 1:
-                        l0 l0Var = this.f5219b;
+                        l0 l0Var = this.f5218b;
                         l0Var.h.l(true);
-                        lg.f fVar2 = l0Var.f5370n;
+                        lg.f fVar2 = l0Var.f5369n;
                         fVar2.setRotated(false);
                         fVar2.setMirrored(false);
                         fVar2.b(0.0f);
                         return;
                     default:
-                        l0 l0Var2 = this.f5219b;
-                        qg.x1 x1Var = l0Var2.f5366b;
-                        if (x1Var != null) {
-                            x1Var.G0 = new MediaController.CropState();
-                            l0Var2.h.b(l0Var2.f5366b.G0);
-                            qg.x1 x1Var2 = l0Var2.f5366b;
-                            x1Var2.G0.orientation = x1Var2.getOrientation();
-                            l0Var2.f5366b.k();
-                            l0Var2.f5366b.requestLayout();
-                            l0Var2.f5366b.f46744z0.requestLayout();
-                            l0Var2.f5366b.f46744z0.invalidate();
-                            l0Var2.f5366b.f46744z0.post(new androidx.fragment.app.a0(l0Var2, 8));
+                        l0 l0Var2 = this.f5218b;
+                        qg.y1 y1Var = l0Var2.f5365b;
+                        if (y1Var != null) {
+                            y1Var.G0 = new MediaController.CropState();
+                            l0Var2.h.b(l0Var2.f5365b.G0);
+                            qg.y1 y1Var2 = l0Var2.f5365b;
+                            y1Var2.G0.orientation = y1Var2.getOrientation();
+                            l0Var2.f5365b.k();
+                            l0Var2.f5365b.requestLayout();
+                            l0Var2.f5365b.f46579z0.requestLayout();
+                            l0Var2.f5365b.f46579z0.invalidate();
+                            l0Var2.f5365b.f46579z0.post(new androidx.fragment.app.a0(l0Var2, 8));
                         }
                         ((wb) l0Var2).F.k0(-1, false, true);
                         return;
@@ -199,25 +199,25 @@ public abstract class l0 extends FrameLayout {
     }
 
     public int getCurrentHeight() {
-        qg.x1 x1Var = this.f5366b;
-        if (x1Var == null) {
+        qg.y1 y1Var = this.f5365b;
+        if (y1Var == null) {
             return 1;
         }
-        if (x1Var.getOrientation() != 90 && this.f5366b.getOrientation() != 270) {
-            return this.f5366b.getContentHeight();
+        if (y1Var.getOrientation() != 90 && this.f5365b.getOrientation() != 270) {
+            return this.f5365b.getContentHeight();
         }
-        return this.f5366b.getContentWidth();
+        return this.f5365b.getContentWidth();
     }
 
     public int getCurrentWidth() {
-        qg.x1 x1Var = this.f5366b;
-        if (x1Var == null) {
+        qg.y1 y1Var = this.f5365b;
+        if (y1Var == null) {
             return 1;
         }
-        if (x1Var.getOrientation() != 90 && this.f5366b.getOrientation() != 270) {
-            return this.f5366b.getContentWidth();
+        if (y1Var.getOrientation() != 90 && this.f5365b.getOrientation() != 270) {
+            return this.f5365b.getContentWidth();
         }
-        return this.f5366b.getContentHeight();
+        return this.f5365b.getContentHeight();
     }
 
     @Override
@@ -226,39 +226,39 @@ public abstract class l0 extends FrameLayout {
     }
 
     public float getAppearProgress() {
-        return this.f5372s;
+        return this.f5371s;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         g0 g0Var = this.h;
         g0Var.setTopPadding(AndroidUtilities.dp(52.0f));
-        g0Var.setBottomPadding(AndroidUtilities.dp(116.0f) + this.f5369f.getPaddingBottom());
+        g0Var.setBottomPadding(AndroidUtilities.dp(116.0f) + this.f5368f.getPaddingBottom());
         super.onLayout(z10, i10, i11, i12, i13);
     }
 
-    public void set(qg.x1 x1Var) {
-        if (x1Var == null) {
+    public void set(qg.y1 y1Var) {
+        if (y1Var == null) {
             return;
         }
-        this.f5366b = x1Var;
+        this.f5365b = y1Var;
         setVisibility(0);
         this.E = false;
         g0 g0Var = this.h;
         boolean z10 = true;
         g0Var.J = true;
         getLocationOnScreen(this.v);
-        this.f5365a.getLocationOnScreen(this.f5373w);
-        x1Var.getLocationOnScreen(this.f5374x);
-        MediaController.CropState cropState = x1Var.G0;
+        this.f5364a.getLocationOnScreen(this.f5372w);
+        y1Var.getLocationOnScreen(this.f5373x);
+        MediaController.CropState cropState = y1Var.G0;
         if (cropState == null) {
             cropState = null;
         }
-        g0Var.p(x1Var.getOrientation(), this.f5375y, cropState);
+        g0Var.p(y1Var.getOrientation(), this.f5374y, cropState);
         float rotation = g0Var.getRotation();
-        lg.f fVar = this.f5370n;
+        lg.f fVar = this.f5369n;
         fVar.setRotation(rotation);
-        org.telegram.ui.Components.g6 g6Var = this.f5367c;
+        org.telegram.ui.Components.g6 g6Var = this.f5366c;
         if (cropState != null) {
             fVar.b(cropState.cropRotate);
             if (cropState.transformRotation == 0) {
@@ -275,20 +275,20 @@ public abstract class l0 extends FrameLayout {
             g6Var.d(0.0f, false);
         }
         g0Var.r(false);
-        k0 k0Var = this.f5368e;
+        k0 k0Var = this.f5367e;
         k0Var.setVisibility(0);
         k0Var.invalidate();
     }
 
     public void setAppearProgress(float f7) {
-        if (Math.abs(this.f5372s - f7) < 0.001f) {
+        if (Math.abs(this.f5371s - f7) < 0.001f) {
             return;
         }
-        this.f5372s = f7;
-        this.f5368e.invalidate();
+        this.f5371s = f7;
+        this.f5367e.invalidate();
         g0 g0Var = this.h;
-        CropAreaView cropAreaView = g0Var.f15611a;
-        CropAreaView cropAreaView2 = g0Var.f15611a;
+        CropAreaView cropAreaView = g0Var.f15318a;
+        CropAreaView cropAreaView2 = g0Var.f15318a;
         cropAreaView.setDimAlpha(0.5f * f7);
         cropAreaView2.setFrameAlpha(f7);
         cropAreaView2.invalidate();

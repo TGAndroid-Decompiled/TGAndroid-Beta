@@ -1,39 +1,63 @@
 package p4;
-public abstract class s {
-    public abstract void e(v vVar);
 
-    public void h(x xVar, v vVar, int i10) {
-        g(vVar);
+import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+public final class s {
+    public static final s f45310c = new s(new Bundle(), null);
+    public final Bundle f45311a;
+    public List f45312b;
+
+    public s(Bundle bundle, ArrayList arrayList) {
+        this.f45311a = bundle;
+        this.f45312b = arrayList;
     }
 
-    public void j(x xVar, v vVar, int i10) {
-        i();
+    public static s b(Bundle bundle) {
+        if (bundle == null) {
+            return null;
+        }
+        return new s(bundle, null);
     }
 
-    public void a() {
+    public final void a() {
+        if (this.f45312b == null) {
+            ArrayList<String> stringArrayList = this.f45311a.getStringArrayList("controlCategories");
+            this.f45312b = stringArrayList;
+            if (stringArrayList == null || stringArrayList.isEmpty()) {
+                this.f45312b = Collections.EMPTY_LIST;
+            }
+        }
     }
 
-    public void b() {
+    public final ArrayList c() {
+        a();
+        return new ArrayList(this.f45312b);
     }
 
-    public void c() {
+    public final boolean d() {
+        a();
+        return this.f45312b.isEmpty();
     }
 
-    public void i() {
+    public final boolean equals(Object obj) {
+        if (obj instanceof s) {
+            s sVar = (s) obj;
+            a();
+            sVar.a();
+            return this.f45312b.equals(sVar.f45312b);
+        }
+        return false;
     }
 
-    public void d(v vVar) {
+    public final int hashCode() {
+        a();
+        return this.f45312b.hashCode();
     }
 
-    public void f(v vVar) {
-    }
-
-    public void g(v vVar) {
-    }
-
-    public void k(v vVar) {
-    }
-
-    public void l(z zVar) {
+    public final String toString() {
+        return "MediaRouteSelector{ controlCategories=" + Arrays.toString(c().toArray()) + " }";
     }
 }

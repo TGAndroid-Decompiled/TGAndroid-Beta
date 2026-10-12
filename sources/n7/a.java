@@ -12,9 +12,9 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public abstract class a {
-    public static volatile cc.k f16818b;
-    public static final Object f16817a = new Object();
-    public static final b1 f16819c = new b1("id");
+    public static volatile cc.k f16485b;
+    public static final Object f16484a = new Object();
+    public static final b1 f16486c = new b1("id");
     public static final b1 d = new b1("type");
 
     public static int a(int i10, int i11) {
@@ -25,7 +25,7 @@ public abstract class a {
             int i13 = i10 - (i11 * i12);
             if (i13 != 0) {
                 int i14 = ((i10 ^ i11) >> 31) | 1;
-                switch (n0.f16867a[roundingMode.ordinal()]) {
+                switch (n0.f16534a[roundingMode.ordinal()]) {
                     case 1:
                         throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
                     case 2:
@@ -193,7 +193,7 @@ public abstract class a {
         }
         if (i10 >= 0) {
             if (i11 < 0) {
-                throw new IllegalArgumentException(hg.c.h(i11, "negative size: "));
+                throw new IllegalArgumentException(hg.c.i(i11, "negative size: "));
             }
             c10 = c("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
         } else {
@@ -215,15 +215,15 @@ public abstract class a {
     public static final void g(StringBuilder sb2, Iterator it, na.d dVar) {
         if (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
-            sb2.append(na.d.J3(entry.getKey()));
+            sb2.append(na.d.C3(entry.getKey()));
             sb2.append(" : ");
-            sb2.append(na.d.J3(entry.getValue()));
+            sb2.append(na.d.C3(entry.getValue()));
             while (it.hasNext()) {
                 sb2.append(",\n  ");
                 Map.Entry entry2 = (Map.Entry) it.next();
-                sb2.append(na.d.J3(entry2.getKey()));
+                sb2.append(na.d.C3(entry2.getKey()));
                 sb2.append(" : ");
-                sb2.append(na.d.J3(entry2.getValue()));
+                sb2.append(na.d.C3(entry2.getValue()));
             }
         }
     }
@@ -245,7 +245,7 @@ public abstract class a {
         if (collection instanceof SortedSet) {
             obj = ((SortedSet) collection).comparator();
             if (obj == null) {
-                obj = v.f16890b;
+                obj = v.f16557b;
             }
         } else if (collection instanceof c0) {
             obj = ((s) ((c0) collection)).d;
@@ -282,8 +282,8 @@ public abstract class a {
             if (d10 != null) {
                 try {
                     try {
-                        byte b10 = d10.f16827a;
-                        byte b11 = d10.f16828b;
+                        byte b10 = d10.f16494a;
+                        byte b11 = d10.f16495b;
                         int i10 = 0;
                         if (b10 != Byte.MIN_VALUE) {
                             if (b10 != -96) {
@@ -337,8 +337,8 @@ public abstract class a {
                                 TreeMap treeMap = new TreeMap();
                                 while (i10 < i11) {
                                     z0 z0Var = z0VarArr[i10];
-                                    if (!treeMap.containsKey((d1) z0Var.f16905b)) {
-                                        treeMap.put((d1) z0Var.f16905b, (d1) z0Var.f16906c);
+                                    if (!treeMap.containsKey((d1) z0Var.f16572b)) {
+                                        treeMap.put((d1) z0Var.f16572b, (d1) z0Var.f16573c);
                                         i10++;
                                     } else {
                                         throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");
@@ -425,6 +425,6 @@ public abstract class a {
         if (i11 >= 0) {
             return c("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
         }
-        throw new IllegalArgumentException(hg.c.h(i11, "negative size: "));
+        throw new IllegalArgumentException(hg.c.i(i11, "negative size: "));
     }
 }

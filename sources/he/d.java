@@ -5,12 +5,12 @@ import ae.z0;
 import fe.v;
 import java.util.concurrent.Executor;
 public final class d extends z0 implements Executor {
-    public static final d f11112c = new b0();
+    public static final d f11111c = new b0();
     public static final b0 d;
 
     static {
-        b0 b0Var = l.f11124c;
-        int i10 = v.f9916a;
+        b0 b0Var = l.f11123c;
+        int i10 = v.f9915a;
         if (64 >= i10) {
             i10 = 64;
         }
@@ -21,13 +21,13 @@ public final class d extends z0 implements Executor {
                 if (j3 >= 1) {
                     b0Var = new fe.i(b0Var, j3);
                 } else {
-                    throw new IllegalArgumentException(hg.c.h(j3, "Expected positive parallelism level, but got ").toString());
+                    throw new IllegalArgumentException(hg.c.i(j3, "Expected positive parallelism level, but got ").toString());
                 }
             }
             d = b0Var;
             return;
         }
-        throw new IllegalArgumentException(hg.c.h(j3, "Expected positive parallelism level, but got ").toString());
+        throw new IllegalArgumentException(hg.c.i(j3, "Expected positive parallelism level, but got ").toString());
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class d extends z0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(jd.i.f14128a, runnable);
+        c(jd.i.f14126a, runnable);
     }
 
     @Override

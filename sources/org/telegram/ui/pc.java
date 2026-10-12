@@ -1,56 +1,107 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.messenger.MessagesController;
-public final class pc extends org.telegram.ui.Components.qm0 {
-    public final Context f40853c;
-    public final org.telegram.ui.ActionBar.d6 d;
-    public final int f40854e;
-    public final rc f40855f;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+public final class pc extends View {
+    public final int f40909a;
+    public final Canvas f40910b;
+    public final float f40911c;
+    public final float d;
+    public final float f40912e;
+    public final Paint f40913f;
+    public final Bitmap h;
+    public final Paint f40914n;
+    public final float f40915r;
+    public final float f40916s;
+    public final org.telegram.ui.ActionBar.m2 v;
 
-    public pc(rc rcVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        this.f40855f = rcVar;
-        this.f40853c = context;
-        this.d = d6Var;
-        this.f40854e = i10;
+    public pc(org.telegram.ui.ActionBar.m2 m2Var, Activity activity, Canvas canvas, float f7, float f10, float f11, Paint paint, Bitmap bitmap, Paint paint2, float f12, float f13, int i10) {
+        super(activity);
+        this.f40909a = i10;
+        this.v = m2Var;
+        this.f40910b = canvas;
+        this.f40911c = f7;
+        this.d = f10;
+        this.f40912e = f11;
+        this.f40913f = paint;
+        this.h = bitmap;
+        this.f40914n = paint2;
+        this.f40915r = f12;
+        this.f40916s = f13;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f40854e).peerColors;
-        if (peerColors == null) {
-            return 0;
+    public final void onDraw(Canvas canvas) {
+        switch (this.f40909a) {
+            case 0:
+                super.onDraw(canvas);
+                fd fdVar = (fd) this.v;
+                boolean z10 = fdVar.J;
+                Paint paint = this.f40914n;
+                float f7 = this.f40912e;
+                float f10 = this.d;
+                float f11 = this.f40911c;
+                if (z10) {
+                    float f12 = fdVar.f37738n0;
+                    if (f12 > 0.0f) {
+                        this.f40910b.drawCircle(f11, f10, f7 * f12, this.f40913f);
+                    }
+                    canvas.drawBitmap(this.h, 0.0f, 0.0f, paint);
+                } else {
+                    canvas.drawCircle(f11, f10, (1.0f - fdVar.f37738n0) * f7, paint);
+                }
+                canvas.save();
+                canvas.translate(this.f40915r, this.f40916s);
+                fdVar.L.draw(canvas);
+                canvas.restore();
+                return;
+            case 1:
+                super.onDraw(canvas);
+                cq0 cq0Var = (cq0) this.v;
+                boolean z11 = cq0Var.S;
+                Paint paint2 = this.f40914n;
+                float f13 = this.f40912e;
+                float f14 = this.d;
+                float f15 = this.f40911c;
+                if (z11) {
+                    float f16 = cq0Var.Y;
+                    if (f16 > 0.0f) {
+                        this.f40910b.drawCircle(f15, f14, f13 * f16, this.f40913f);
+                    }
+                    canvas.drawBitmap(this.h, 0.0f, 0.0f, paint2);
+                } else {
+                    canvas.drawCircle(f15, f14, (1.0f - cq0Var.Y) * f13, paint2);
+                }
+                canvas.save();
+                canvas.translate(this.f40915r, this.f40916s);
+                cq0Var.K.draw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.onDraw(canvas);
+                zd1 zd1Var = (zd1) this.v;
+                boolean a2 = zd1Var.f44729a.a();
+                Paint paint3 = this.f40914n;
+                float f17 = this.f40912e;
+                float f18 = this.d;
+                float f19 = this.f40911c;
+                if (a2) {
+                    float f20 = zd1Var.f44759i2;
+                    if (f20 > 0.0f) {
+                        this.f40910b.drawCircle(f19, f18, f17 * f20, this.f40913f);
+                    }
+                    canvas.drawBitmap(this.h, 0.0f, 0.0f, paint3);
+                } else {
+                    canvas.drawCircle(f19, f18, (1.0f - zd1Var.f44759i2) * f17, paint3);
+                }
+                canvas.save();
+                canvas.translate(this.f40915r, this.f40916s);
+                zd1Var.O1.draw(canvas);
+                canvas.restore();
+                return;
         }
-        return peerColors.colors.size();
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        boolean z10;
-        qc qcVar = (qc) d1Var.f47782a;
-        qcVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20822d6, this.d));
-        if (i10 == this.f40855f.f41445e) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        qcVar.f41178s = z10;
-        qcVar.v.f(z10, true);
-        qcVar.invalidate();
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f40854e).peerColors;
-        if (peerColors != null && i10 >= 0 && i10 < peerColors.colors.size()) {
-            qcVar.a(peerColors.colors.get(i10));
-        }
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new qc(this.f40855f, this.f40853c));
     }
 }

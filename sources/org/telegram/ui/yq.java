@@ -1,30 +1,19 @@
 package org.telegram.ui;
+public final class yq implements Runnable {
+    public final int f44537a;
+    public final Object f44538b;
+    public final Object f44539c;
+    public final Object d;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class yq implements kq {
-    public final TLObject f44512a;
-    public final sr f44513b;
-
-    public yq(sr srVar, TLObject tLObject) {
-        this.f44513b = srVar;
-        this.f44512a = tLObject;
+    public yq(Object obj, Object obj2, Object obj3, int i10) {
+        this.f44537a = i10;
+        this.f44538b = obj;
+        this.f44539c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        sr.c0(this.f44513b, user);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f44512a;
-        if (tLObject instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
-            channelParticipant.admin_rights = tL_chatAdminRights;
-            channelParticipant.banned_rights = tL_chatBannedRights;
-            channelParticipant.rank = str;
-            sr.W(this.f44513b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yq.run():void");
     }
 }

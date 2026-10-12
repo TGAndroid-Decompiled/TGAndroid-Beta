@@ -1,49 +1,125 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class yd extends org.telegram.ui.Components.ae0 {
-    public final int L;
-    public final Object M;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stats;
+public final class yd implements RequestDelegate {
+    public final int f44453a;
+    public final oe f44454b;
 
-    public yd(Object obj, Context context, int i10) {
-        super(context, null);
-        this.L = i10;
-        this.M = obj;
+    public yd(oe oeVar, int i10) {
+        this.f44453a = i10;
+        this.f44454b = oeVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.L) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f44453a) {
             case 0:
-                je jeVar = (je) this.M;
-                org.telegram.ui.Components.l71 l71Var = jeVar.f39029a1;
-                fi.o oVar = jeVar.Y0;
-                if (oVar != null && !oVar.isFocusable()) {
-                    oVar.setFocusable(true);
-                    oVar.setFocusableInTouchMode(true);
-                    int y12 = l71Var.y1(3);
-                    if (y12 >= 0 && y12 < l71Var.W2.f25652x.size()) {
-                        l71Var.B0();
-                        l71Var.x0(y12);
-                    }
-                    oVar.requestFocus();
+                if (tL_error != null) {
+                    AndroidUtilities.runOnUIThread(new pu0(tL_error, 22));
+                    return;
+                } else if (tLObject instanceof TLRPC.Updates) {
+                    oe oeVar = this.f44454b;
+                    AndroidUtilities.runOnUIThread(new sd(oeVar, 4));
+                    MessagesController.getInstance(oeVar.f40679y0).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
+                    return;
+                } else {
+                    return;
                 }
-                return super.dispatchTouchEvent(motionEvent);
+            case 1:
+                final oe oeVar2 = this.f44454b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
+                                    TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject2;
+                                    pa1 f02 = db1.f0(tL_payments_starsRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0, false);
+                                    oe oeVar3 = oeVar2;
+                                    oeVar3.f40668o1 = f02;
+                                    TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
+                                    if (statsGraph != null) {
+                                        statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
+                                    }
+                                    oeVar3.f40669p1 = db1.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
+                                    pa1 pa1Var = oeVar3.f40668o1;
+                                    if (pa1Var != null) {
+                                        pa1Var.f40901n = true;
+                                    }
+                                    oeVar3.f40664j1 = tL_payments_starsRevenueStats.usd_rate;
+                                    oeVar3.g0(true, tL_payments_starsRevenueStats.status);
+                                    oeVar3.f40657c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.js.h).withEndAction(new sd(oeVar3, 6)).start();
+                                    oeVar3.a0();
+                                    return;
+                                }
+                                return;
+                            default:
+                                TLObject tLObject3 = tLObject;
+                                boolean z10 = tLObject3 instanceof TLRPC.TL_payments_starsRevenueStats;
+                                oe oeVar4 = oeVar2;
+                                if (z10) {
+                                    oeVar4.Z((TLRPC.TL_payments_starsRevenueStats) tLObject3);
+                                    return;
+                                } else {
+                                    oeVar4.getClass();
+                                    return;
+                                }
+                        }
+                    }
+                });
+                return;
             default:
-                yh.g gVar = (yh.g) this.M;
-                fi.o oVar2 = gVar.Q;
-                if (oVar2 != null && !oVar2.isFocusable()) {
-                    gVar.Q.setFocusable(true);
-                    gVar.Q.setFocusableInTouchMode(true);
-                    int y13 = gVar.f52681e.y1(1);
-                    if (y13 >= 0 && y13 < gVar.f52681e.W2.f25652x.size()) {
-                        gVar.f52681e.B0();
-                        gVar.f52681e.x0(y13);
+                final oe oeVar3 = this.f44454b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
+                                    TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject2;
+                                    pa1 f02 = db1.f0(tL_payments_starsRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0, false);
+                                    oe oeVar32 = oeVar3;
+                                    oeVar32.f40668o1 = f02;
+                                    TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
+                                    if (statsGraph != null) {
+                                        statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
+                                    }
+                                    oeVar32.f40669p1 = db1.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
+                                    pa1 pa1Var = oeVar32.f40668o1;
+                                    if (pa1Var != null) {
+                                        pa1Var.f40901n = true;
+                                    }
+                                    oeVar32.f40664j1 = tL_payments_starsRevenueStats.usd_rate;
+                                    oeVar32.g0(true, tL_payments_starsRevenueStats.status);
+                                    oeVar32.f40657c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.js.h).withEndAction(new sd(oeVar32, 6)).start();
+                                    oeVar32.a0();
+                                    return;
+                                }
+                                return;
+                            default:
+                                TLObject tLObject3 = tLObject;
+                                boolean z10 = tLObject3 instanceof TLRPC.TL_payments_starsRevenueStats;
+                                oe oeVar4 = oeVar3;
+                                if (z10) {
+                                    oeVar4.Z((TLRPC.TL_payments_starsRevenueStats) tLObject3);
+                                    return;
+                                } else {
+                                    oeVar4.getClass();
+                                    return;
+                                }
+                        }
                     }
-                    gVar.Q.requestFocus();
-                }
-                return super.dispatchTouchEvent(motionEvent);
+                });
+                return;
         }
     }
 }

@@ -1,19 +1,42 @@
 package org.telegram.ui;
-public final class lx extends s4.d0 {
-    public final ry I;
-    public final mx J;
 
-    public lx(mx mxVar, ry ryVar) {
-        this.J = mxVar;
-        this.I = ryVar;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class lx {
+    public final int f39858a;
+    public final mx f39859b;
+    public final View f39860c;
+
+    public lx(mx mxVar, View view, int i10) {
+        this.f39858a = i10;
+        this.f39859b = mxVar;
+        this.f39860c = view;
     }
 
-    @Override
-    public final int R0() {
-        ry ryVar = this.I;
-        if (ryVar.f41571s == 0 && this.J.W.W3() && ryVar.v == 2) {
-            return 1;
+    public final void a(boolean z10) {
+        switch (this.f39858a) {
+            case 0:
+                View view = this.f39860c;
+                if (view instanceof ai.a0) {
+                    this.f39859b.O0.E0.i((ai.a0) view, false);
+                    if (z10) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.xh(17), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                View view2 = this.f39860c;
+                if (view2 instanceof ai.a0) {
+                    this.f39859b.O0.E0.i((ai.a0) view2, false);
+                    if (z10) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.xh(17), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        return 0;
     }
 }

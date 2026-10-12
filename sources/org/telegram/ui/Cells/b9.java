@@ -1,13 +1,13 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import org.telegram.ui.Components.ea0;
-public final class b9 extends ea0 {
+import org.telegram.ui.Components.ia0;
+public final class b9 extends ia0 {
     public final int L;
     public final c9 M;
 
-    public b9(c9 c9Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, d6Var);
+    public b9(c9 c9Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, c6Var);
         this.L = i10;
         this.M = c9Var;
     }

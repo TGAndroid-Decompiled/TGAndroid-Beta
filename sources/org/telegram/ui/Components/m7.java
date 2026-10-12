@@ -2,49 +2,49 @@ package org.telegram.ui.Components;
 
 import android.view.ViewGroup;
 public final class m7 implements o1.g {
-    public final int f28767a;
-    public final Object f28768b;
+    public final int f28417a;
+    public final Object f28418b;
 
     public m7(Object obj, int i10) {
-        this.f28767a = i10;
-        this.f28768b = obj;
+        this.f28417a = i10;
+        this.f28418b = obj;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
         ViewGroup viewGroup;
-        switch (this.f28767a) {
+        switch (this.f28417a) {
             case 0:
-                ((l8) this.f28768b).T.setBufferedProgress(f7 / 1000.0f);
+                ((l8) this.f28418b).T.setBufferedProgress(f7 / 1000.0f);
                 return;
             case 1:
-                sc scVar = (sc) this.f28768b;
-                scVar.f30838o = (int) f7;
+                sc scVar = (sc) this.f28418b;
+                scVar.f30545o = (int) f7;
                 scVar.l();
                 return;
             case 2:
-                if (Math.abs(f7) > ((wb) this.f28768b).getWidth()) {
+                if (Math.abs(f7) > ((wb) this.f28418b).getWidth()) {
                     hVar.c();
                     return;
                 }
                 return;
             case 3:
-                yi yiVar = (yi) ((ji) this.f28768b).d;
-                qi qiVar = yiVar.C0;
-                if (qiVar == yiVar.m0 || qiVar == yiVar.f33312n0 || (yiVar.F && yiVar.f33343w1 != null)) {
-                    yiVar.e2(1);
+                aj ajVar = (aj) ((li) this.f28418b).d;
+                si siVar = ajVar.C0;
+                if (siVar == ajVar.m0 || siVar == ajVar.f24365n0 || (ajVar.F && ajVar.f24396w1 != null)) {
+                    ajVar.e2(1);
                 }
-                yiVar.C0.l(yiVar.f33317o2);
-                viewGroup = ((org.telegram.ui.ActionBar.e3) yiVar).containerView;
+                ajVar.C0.l(ajVar.f24370o2);
+                viewGroup = ((org.telegram.ui.ActionBar.e3) ajVar).containerView;
                 viewGroup.invalidate();
                 return;
             case 4:
-                gl glVar = (gl) this.f28768b;
-                glVar.f26795j0 = f7;
-                glVar.k0();
+                il ilVar = (il) this.f28418b;
+                ilVar.f27201j0 = f7;
+                ilVar.k0();
                 return;
             default:
-                ((cd0) this.f28768b).z();
+                ((gd0) this.f28418b).z();
                 return;
         }
     }

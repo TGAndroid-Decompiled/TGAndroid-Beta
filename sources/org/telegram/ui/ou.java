@@ -1,54 +1,46 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class ou extends og.a {
-    public final int f40641c;
-    public final int d;
-    public final int f40642e;
-    public final CharSequence f40643f;
-    public final CharSequence f40644g;
-    public final int h;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+public final class ou implements DialogInterface.OnClickListener {
+    public final DataSettingsActivity f40771a;
+    public final SharedPreferences f40772b;
+    public final int f40773c;
 
-    public ou(int i10, String str) {
-        super(i10, false);
-        this.f40643f = str;
+    public ou(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i10) {
+        this.f40771a = dataSettingsActivity;
+        this.f40772b = sharedPreferences;
+        this.f40773c = i10;
     }
 
-    public static ou b(CharSequence charSequence, String str) {
-        return new ou(-1, 0, 0, 0, charSequence, str);
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof ou)) {
-            return false;
-        }
-        ou ouVar = (ou) obj;
-        CharSequence charSequence = ouVar.f40643f;
-        int i10 = ouVar.f17211a;
-        int i11 = this.f17211a;
-        if (i10 != i11) {
-            return false;
-        }
-        CharSequence charSequence2 = this.f40643f;
-        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
-            if (i11 != 2) {
-                return true;
+    @Override
+    public final void onClick(DialogInterface dialogInterface, int i10) {
+        int i11;
+        DataSettingsActivity dataSettingsActivity = this.f40771a;
+        dataSettingsActivity.getClass();
+        if (i10 != 0) {
+            i11 = 3;
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        i11 = -1;
+                    } else {
+                        i11 = 2;
+                    }
+                } else {
+                    i11 = 1;
+                }
             }
-            if (ouVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || ouVar.d != this.d || ouVar.f40642e != this.f40642e || ouVar.f40641c != this.f40641c) {
-                return false;
-            }
-            return true;
+        } else {
+            i11 = 0;
         }
-        return TextUtils.equals(charSequence2, charSequence);
-    }
-
-    public ou(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
-        super(2, false);
-        this.h = i10;
-        this.f40641c = i11;
-        this.d = i12;
-        this.f40642e = i13;
-        this.f40643f = charSequence;
-        this.f40644g = charSequence2;
+        if (i11 != -1) {
+            this.f40772b.edit().putInt("VoipDataSaving", i11).commit();
+            dataSettingsActivity.V = true;
+        }
+        pu puVar = dataSettingsActivity.f33575a;
+        if (puVar != null) {
+            puVar.m(this.f40773c);
+        }
     }
 }

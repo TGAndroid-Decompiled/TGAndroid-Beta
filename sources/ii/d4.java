@@ -1,32 +1,27 @@
 package ii;
 
-import android.os.Bundle;
 import java.util.ArrayList;
+import java.util.HashMap;
 public final class d4 {
-    public ArrayList f12347a = new ArrayList();
+    public String f12344a;
+    public boolean f12345b;
+    public String f12346c;
+    public HashMap d;
+    public final ArrayList f12347e = new ArrayList();
 
-    public p4.r a() {
-        if (this.f12347a == null) {
-            return p4.r.f45490c;
+    public final String a(String str) {
+        HashMap hashMap = this.d;
+        if (hashMap == null) {
+            return null;
         }
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", this.f12347a);
-        return new p4.r(bundle, this.f12347a);
+        return (String) hashMap.get(str);
     }
 
-    public void b(StringBuilder sb2) {
-        String str;
-        if (((Boolean) hg.c.x(1, this.f12347a)).booleanValue()) {
-            str = "</ol>";
-        } else {
-            str = "</ul>";
+    public final boolean b(String str) {
+        HashMap hashMap = this.d;
+        if (hashMap != null && hashMap.containsKey(str)) {
+            return true;
         }
-        sb2.append(str);
-    }
-
-    public void c(StringBuilder sb2) {
-        while (!this.f12347a.isEmpty()) {
-            b(sb2);
-        }
+        return false;
     }
 }

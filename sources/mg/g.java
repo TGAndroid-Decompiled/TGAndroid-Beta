@@ -5,39 +5,39 @@ import android.text.TextPaint;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import m.f3;
+import k2.g0;
 import m1.j;
-import m2.t;
+import n4.l;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.w1;
 import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.l91;
-import org.telegram.ui.Components.lp0;
-import org.telegram.ui.Components.m91;
-import org.telegram.ui.Components.n91;
-import org.telegram.ui.Components.o91;
-import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.q91;
+import org.telegram.ui.Components.qp0;
+import org.telegram.ui.Components.r91;
+import org.telegram.ui.Components.s91;
 import org.telegram.ui.Components.t6;
+import org.telegram.ui.Components.t91;
+import org.telegram.ui.Components.vm0;
 import org.telegram.ui.LaunchActivity;
 import s4.d1;
 import s4.q0;
-import w7.x5;
-public final class g extends qm0 {
-    public final int f16487c = 0;
+import w7.w5;
+public final class g extends vm0 {
+    public final int f16173c = 0;
     public final Context d;
-    public final FrameLayout f16488e;
+    public final FrameLayout f16174e;
 
     public g(i iVar, LaunchActivity launchActivity) {
-        this.f16488e = iVar;
+        this.f16174e = iVar;
         this.d = launchActivity;
     }
 
     @Override
     public final boolean D(d1 d1Var) {
-        switch (this.f16487c) {
+        switch (this.f16173c) {
             case 0:
-                if (j.d(3)[d1Var.f47786f] == 1) {
+                if (j.d(3)[d1Var.f47893f] == 1) {
                     return true;
                 }
                 return false;
@@ -48,19 +48,19 @@ public final class g extends qm0 {
 
     @Override
     public final int h() {
-        switch (this.f16487c) {
+        switch (this.f16173c) {
             case 0:
-                return ((i) this.f16488e).E.size();
+                return ((i) this.f16174e).E.size();
             default:
-                return ((o91) this.f16488e).h.size();
+                return ((t91) this.f16174e).h.size();
         }
     }
 
     @Override
     public long i(int i10) {
-        switch (this.f16487c) {
+        switch (this.f16173c) {
             case 1:
-                return ((l91) ((o91) this.f16488e).h.get(i10)).f28314a;
+                return ((q91) ((t91) this.f16174e).h.get(i10)).f29806a;
             default:
                 return super.i(i10);
         }
@@ -68,9 +68,9 @@ public final class g extends qm0 {
 
     @Override
     public final int j(int i10) {
-        switch (this.f16487c) {
+        switch (this.f16173c) {
             case 0:
-                return j.c(((a) ((i) this.f16488e).E.get(i10)).f16472b);
+                return j.c(((a) ((i) this.f16174e).E.get(i10)).f16158b);
             default:
                 return 0;
         }
@@ -79,24 +79,24 @@ public final class g extends qm0 {
     @Override
     public final void v(d1 d1Var, int i10) {
         boolean z10;
-        n91 n91Var;
-        switch (this.f16487c) {
+        s91 s91Var;
+        switch (this.f16173c) {
             case 0:
-                View view = d1Var.f47782a;
-                a aVar = (a) ((i) this.f16488e).E.get(i10);
-                int i11 = aVar.f16472b;
-                t6 t6Var = aVar.f16475f;
-                CharSequence charSequence = aVar.f16471a;
+                View view = d1Var.f47889a;
+                a aVar = (a) ((i) this.f16174e).E.get(i10);
+                int i11 = aVar.f16158b;
+                t6 t6Var = aVar.f16161f;
+                CharSequence charSequence = aVar.f16157a;
                 int c10 = j.c(i11);
                 if (c10 != 0) {
                     if (c10 != 1) {
                         if (c10 == 2) {
                             h hVar = (h) view;
-                            hVar.f16493f = charSequence.toString();
+                            hVar.f16179f = charSequence.toString();
                             hVar.d = ((Float) t6Var.get(null)).floatValue();
-                            hVar.f16490b = aVar.d;
-                            hVar.f16491c = aVar.f16474e;
-                            hVar.f16492e = t6Var;
+                            hVar.f16176b = aVar.d;
+                            hVar.f16177c = aVar.f16160e;
+                            hVar.f16178e = t6Var;
                             hVar.invalidate();
                             return;
                         }
@@ -108,23 +108,23 @@ public final class g extends qm0 {
                     return;
                 }
                 w1 w1Var = (w1) view;
-                w1Var.setTextColor(h6.x0(null, h6.f20930j5, false));
+                w1Var.setTextColor(h6.x0(null, h6.f20667j5, false));
                 w1Var.a(0, charSequence);
                 return;
             default:
-                m91 m91Var = (m91) d1Var.f47782a;
-                o91 o91Var = (o91) this.f16488e;
-                l91 l91Var = (l91) o91Var.h.get(i10);
-                m91Var.f28808a = l91Var;
-                m91Var.setContentDescription(l91Var.f28315b);
-                m91Var.setAlpha(1.0f);
-                m91Var.requestLayout();
-                if (o91Var.m0 && (n91Var = o91Var.f29457y) != null && ((t) n91Var).p(i10)) {
+                r91 r91Var = (r91) d1Var.f47889a;
+                t91 t91Var = (t91) this.f16174e;
+                q91 q91Var = (q91) t91Var.h.get(i10);
+                r91Var.f30108a = q91Var;
+                r91Var.setContentDescription(q91Var.f29807b);
+                r91Var.setAlpha(1.0f);
+                r91Var.requestLayout();
+                if (t91Var.m0 && (s91Var = t91Var.f30827y) != null && ((l) s91Var).b(i10)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                m91Var.setReordering(z10);
+                r91Var.setReordering(z10);
                 return;
         }
     }
@@ -132,7 +132,7 @@ public final class g extends qm0 {
     @Override
     public final d1 x(ViewGroup viewGroup, int i10) {
         FrameLayout frameLayout;
-        switch (this.f16487c) {
+        switch (this.f16173c) {
             case 0:
                 int c10 = j.c(j.d(3)[i10]);
                 Context context = this.d;
@@ -145,12 +145,12 @@ public final class g extends qm0 {
                         TextPaint textPaint = new TextPaint(1);
                         frameLayout2.h = textPaint;
                         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-                        lp0 lp0Var = new lp0(context);
-                        frameLayout2.f16489a = lp0Var;
-                        lp0Var.setReportChanges(true);
-                        lp0Var.setDelegate(new f3((Object) frameLayout2, 1));
-                        lp0Var.setImportantForAccessibility(2);
-                        frameLayout2.addView(lp0Var, x5.a(38.0f, 5.0f, 29.0f, 47.0f, 0.0f, -1, 83));
+                        qp0 qp0Var = new qp0(context);
+                        frameLayout2.f16175a = qp0Var;
+                        qp0Var.setReportChanges(true);
+                        qp0Var.setDelegate(new g0((Object) frameLayout2, 5));
+                        qp0Var.setImportantForAccessibility(2);
+                        frameLayout2.addView(qp0Var, w5.a(38.0f, 5.0f, 29.0f, 47.0f, 0.0f, -1, 83));
                         frameLayout = frameLayout2;
                     }
                 } else {
@@ -159,12 +159,12 @@ public final class g extends qm0 {
                 frameLayout.setLayoutParams(new q0(-1, -2));
                 return new d1(frameLayout);
             default:
-                return new d1(new m91((o91) this.f16488e, this.d));
+                return new d1(new r91((t91) this.f16174e, this.d));
         }
     }
 
-    public g(o91 o91Var, Context context) {
-        this.f16488e = o91Var;
+    public g(t91 t91Var, Context context) {
+        this.f16174e = t91Var;
         this.d = context;
     }
 }

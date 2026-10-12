@@ -6,30 +6,30 @@ import android.graphics.Rect;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import w7.x5;
+import w7.w5;
 public abstract class c extends FrameLayout {
-    public final LinearLayout f17236a;
-    public float f17237b;
-    public final Rect f17238c;
+    public final LinearLayout f16901a;
+    public float f16902b;
+    public final Rect f16903c;
     public final Rect d;
-    public final Paint f17239e;
+    public final Paint f16904e;
 
     public c(Context context) {
         super(context);
-        this.f17238c = new Rect();
+        this.f16903c = new Rect();
         this.d = new Rect();
-        this.f17239e = new Paint(1);
+        this.f16904e = new Paint(1);
         setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f17236a = linearLayout;
+        this.f16901a = linearLayout;
         linearLayout.setOrientation(0);
-        addView(linearLayout, x5.d(-1.0f, -1));
+        addView(linearLayout, w5.d(-1.0f, -1));
     }
 
     public void setLensVisibility(float f7) {
-        this.f17237b = f7;
+        this.f16902b = f7;
         int dp = AndroidUtilities.dp(f7 * 7.0f);
-        Rect rect = this.f17238c;
+        Rect rect = this.f16903c;
         Rect rect2 = this.d;
         rect2.set(rect);
         int i10 = -dp;

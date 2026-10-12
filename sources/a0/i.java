@@ -9,8 +9,8 @@ public final class i implements Cloneable {
 
     public i(int i10) {
         if (i10 == 0) {
-            this.f20b = b0.a.f3187b;
-            this.f21c = b0.a.f3188c;
+            this.f20b = b0.a.f3185b;
+            this.f21c = b0.a.f3186c;
             return;
         }
         int i11 = i10 * 8;
@@ -195,7 +195,7 @@ public final class i implements Cloneable {
             }
             return this.f20b[i10];
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final void k(Object obj, long j3) {
@@ -332,7 +332,7 @@ public final class i implements Cloneable {
             }
             return this.f21c[i10];
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final String toString() {

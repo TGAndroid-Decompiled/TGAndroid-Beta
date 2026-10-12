@@ -1,8 +1,26 @@
 package org.telegram.ui;
-public interface nm {
-    void O0(int i10);
 
-    void V(boolean z10, boolean z11);
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+public final class nm extends org.telegram.ui.Components.t6 {
+    public final pm f40431b;
 
-    void o0(String str);
+    public nm(pm pmVar) {
+        super("progress", 0);
+        this.f40431b = pmVar;
+    }
+
+    @Override
+    public final void c(Object obj, float f7) {
+        ((MessageObject.SendAnimationData) obj).progress = f7;
+        View view = this.f40431b.f40994b.Q.fragmentView;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        return Float.valueOf(((MessageObject.SendAnimationData) obj).progress);
+    }
 }

@@ -1,10 +1,12 @@
 package v2;
-public interface l {
-    public static final rb.a B = new rb.a(24);
 
-    long c();
+import t7.t;
+public interface l {
+    public static final t B = new Object();
 
     long l();
 
     boolean next();
+
+    long v();
 }

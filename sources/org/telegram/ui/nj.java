@@ -1,27 +1,54 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
-public final class nj implements MessagesStorage.BooleanCallback {
-    public final boolean f40299a;
-    public final oj f40300b;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class nj extends org.telegram.ui.Components.c50 {
+    public final int I;
 
-    public nj(oj ojVar, boolean z10) {
-        this.f40300b = ojVar;
-        this.f40299a = z10;
+    public nj(int i10, int i11, Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        super(i10, context, c6Var, z10);
+        this.I = i11;
     }
 
     @Override
-    public final void run(boolean z10) {
-        zn znVar = this.f40300b.f40590b;
-        if (z10) {
-            TLRPC.User user = znVar.f44798f;
-            boolean z11 = this.f40299a;
-            if (user != null || z11) {
-                znVar.getMessagesStorage().getMessagesCount(znVar.T5, new mj(1, this, z11));
-                return;
-            }
+    public int c() {
+        switch (this.I) {
+            case 0:
+                return AndroidUtilities.dp(56.0f) / 2;
+            default:
+                return super.c();
         }
-        znVar.va(znVar.f44777d4, z10);
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.I) {
+            case 1:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+                return;
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused2) {
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
+        }
     }
 }

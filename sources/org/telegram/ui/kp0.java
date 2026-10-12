@@ -1,59 +1,104 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-public final class kp0 extends org.telegram.ui.Components.rm0 {
-    public final int V2;
-    public final tp0 W2;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class kp0 extends FrameLayout {
+    public long f39566a;
+    public TL_stars.starGiftAttributeBackdrop f39567b;
+    public TL_stars.starGiftAttributePattern f39568c;
+    public final FrameLayout d;
+    public final xh.f1 f39569e;
+    public final org.telegram.ui.Components.y9 f39570f;
+    public final xh.j1 h;
+    public TLRPC.Document f39571n;
 
-    public kp0(tp0 tp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, d6Var);
-        this.W2 = tp0Var;
-        this.V2 = i10;
-    }
-
-    @Override
-    public final Integer W0(int i10) {
-        tp0 tp0Var = this.W2;
-        if ((i10 >= tp0Var.f42258b0 && i10 < tp0Var.f42260c0) || (i10 >= tp0Var.f42261d0 && i10 < tp0Var.f42263e0)) {
-            return 0;
-        }
-        return super.W0(i10);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        tp0 tp0Var = this.W2;
-        if (tp0Var.G && tp0Var.E != null && tp0Var.F != null) {
-            int save = canvas.save();
-            canvas.translate(tp0Var.E.getLeft() + tp0Var.F.getLeft(), tp0Var.F.getTop());
-            tp0Var.E.draw(canvas);
-            canvas.restoreToCount(save);
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        yh.f5 f5Var;
-        super.onLayout(z10, i10, i11, i12, i13);
-        tp0 tp0Var = this.W2;
-        zp0 zp0Var = tp0Var.f42275p0;
-        tp0Var.h();
-        if (tp0Var.K != null) {
-            if (tp0Var.J != null && tp0Var.c()) {
-                tp0Var.J.g(false);
-                return;
-            }
+    public kp0(Context context, org.telegram.ui.ActionBar.c6 c6Var, boolean z10) {
+        super(context);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.d = frameLayout;
+        xh.f1 f1Var = new xh.f1(frameLayout, c6Var, false);
+        this.f39569e = f1Var;
+        frameLayout.setBackground(f1Var);
+        addView(frameLayout, w7.w5.e(-1, -1, 119));
+        w7.y5.b(frameLayout, 0.025f, 1.25f);
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.f39570f = y9Var;
+        frameLayout.addView(y9Var, w7.w5.a(80.0f, 0.0f, 12.0f, 0.0f, 12.0f, 80, 17));
+        if (z10) {
+            xh.j1 j1Var = new xh.j1(context);
+            this.h = j1Var;
+            addView(j1Var, w7.w5.a(-2.0f, 0.0f, 2.0f, 1.0f, 0.0f, -2, 53));
             return;
         }
-        if (this.V2 == 1) {
-            f5Var = zp0Var.f45074c;
+        this.h = null;
+    }
+
+    public final void a(int i10, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        int i11;
+        int i12;
+        this.f39566a = tL_starGiftUnique.f20031id;
+        boolean z10 = true;
+        if (i10 % 3 != 1) {
+            z10 = false;
+        }
+        if (z10) {
+            i11 = AndroidUtilities.dp(4.0f);
         } else {
-            f5Var = zp0Var.f45072b;
+            i11 = 0;
         }
-        if (f5Var != null && tp0Var.c()) {
-            f5Var.a();
+        if (z10) {
+            i12 = AndroidUtilities.dp(4.0f);
+        } else {
+            i12 = 0;
         }
+        setPadding(i11, 0, i12, 0);
+        c(tL_starGiftUnique.getDocument(), tL_starGiftUnique);
+        this.f39567b = (TL_stars.starGiftAttributeBackdrop) yh.n5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        this.f39568c = (TL_stars.starGiftAttributePattern) yh.n5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.f39567b;
+        xh.f1 f1Var = this.f39569e;
+        f1Var.d(stargiftattributebackdrop);
+        f1Var.e(this.f39568c);
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        float f7;
+        this.f39569e.f(z10, z11);
+        if (z10) {
+            f7 = 0.9f;
+        } else {
+            f7 = 1.0f;
+        }
+        org.telegram.ui.Components.y9 y9Var = this.f39570f;
+        if (z11) {
+            y9Var.animate().scaleX(f7).scaleY(f7).start();
+            return;
+        }
+        y9Var.animate().cancel();
+        y9Var.setScaleX(f7);
+        y9Var.setScaleY(f7);
+    }
+
+    public final void c(TLRPC.Document document, TL_stars.StarGift starGift) {
+        org.telegram.ui.Components.y9 y9Var = this.f39570f;
+        if (document == null) {
+            y9Var.b();
+            this.f39571n = null;
+        } else if (this.f39571n == document) {
+        } else {
+            this.f39571n = document;
+            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
+            y9Var.l(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20503a7, 0.3f), starGift);
+        }
+    }
+
+    public long getGiftId() {
+        return this.f39566a;
     }
 }

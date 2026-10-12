@@ -1,30 +1,25 @@
 package org.telegram.ui;
 
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class jg1 extends og.a {
-    public final TLRPC.TL_forumTopic f39086c;
+public final class jg1 implements w11 {
+    public final TLRPC.TL_forumTopic f39206a;
+    public final kg1 f39207b;
 
-    public jg1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i10, false);
-        this.f39086c = tL_forumTopic;
+    public jg1(kg1 kg1Var, TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f39207b = kg1Var;
+        this.f39206a = tL_forumTopic;
     }
 
-    public final boolean equals(Object obj) {
-        TLRPC.TL_forumTopic tL_forumTopic;
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || jg1.class != obj.getClass()) {
-            return false;
-        }
-        jg1 jg1Var = (jg1) obj;
-        if (this.f17211a != jg1Var.f17211a) {
-            return false;
-        }
-        TLRPC.TL_forumTopic tL_forumTopic2 = this.f39086c;
-        if (tL_forumTopic2 == null || (tL_forumTopic = jg1Var.f39086c) == null || tL_forumTopic2.f20120id == tL_forumTopic.f20120id) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void b0() {
+        ng1 ng1Var = this.f39207b.f39491a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f39206a;
+        ng1.U(ng1Var, tL_forumTopic.f19854id);
+        AndroidUtilities.runOnUIThread(new w31(19, this, tL_forumTopic), 300L);
+    }
+
+    @Override
+    public final void v(wk0 wk0Var) {
     }
 }

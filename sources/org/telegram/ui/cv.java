@@ -1,24 +1,10 @@
 package org.telegram.ui;
-public final class cv extends g.o {
-    public final int f36867c;
 
+import android.view.MotionEvent;
+import android.view.View;
+public final class cv implements View.OnTouchListener {
     @Override
-    public int h(int i10, int i11) {
-        switch (this.f36867c) {
-            case 1:
-                return i10 % i11;
-            default:
-                return super.h(i10, i11);
-        }
-    }
-
-    @Override
-    public final int i(int i10) {
-        switch (this.f36867c) {
-            case 0:
-                return 1;
-            default:
-                return 1;
-        }
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        return true;
     }
 }

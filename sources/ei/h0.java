@@ -10,25 +10,25 @@ import android.graphics.drawable.Drawable;
 import ci.rc;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public final class h0 extends Drawable {
-    public final Paint f9085a = new Paint(1);
-    public final RectF f9086b = new RectF();
-    public final int f9087c;
+    public final Paint f9083a = new Paint(1);
+    public final RectF f9084b = new RectF();
+    public final int f9085c;
     public final Path d;
-    public boolean f9088e;
-    public int f9089f;
-    public final g6 f9090g;
+    public boolean f9086e;
+    public int f9087f;
+    public final g6 f9088g;
     public final g6 h;
 
     public h0(int i10) {
         Path path = new Path();
         this.d = path;
         rc rcVar = new rc(this, 6);
-        is isVar = is.h;
-        this.f9090g = new g6(rcVar, 320L, isVar, 0);
-        this.h = new g6(new rc(this, 6), 320L, isVar, 0);
-        this.f9087c = i10;
+        js jsVar = js.h;
+        this.f9088g = new g6(rcVar, 320L, jsVar, 0);
+        this.h = new g6(new rc(this, 6), 320L, jsVar, 0);
+        this.f9085c = i10;
         path.moveTo(-AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(0.0f, -AndroidUtilities.dp(6.16f));
@@ -38,14 +38,14 @@ public final class h0 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f9086b;
+        RectF rectF = this.f9084b;
         rectF.set(bounds);
         rectF.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        int i10 = this.f9087c;
-        Paint paint = this.f9085a;
+        int i10 = this.f9085c;
+        Paint paint = this.f9083a;
         canvas.drawRoundRect(rectF, i10, i10, paint);
-        float e7 = this.f9090g.e(this.f9088e);
-        float dp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.h.d(this.f9089f, false);
+        float e7 = this.f9088g.e(this.f9086e);
+        float dp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.h.d(this.f9087f, false);
         if (e7 > 0.0f) {
             canvas.save();
             canvas.translate(dp, com.google.android.gms.internal.vision.e2.y(1.0f, e7, AndroidUtilities.dp(6.16f), AndroidUtilities.dp(8.0f)));

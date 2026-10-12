@@ -1,117 +1,55 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class xg implements yv0, my {
-    public final boolean f44098a;
-    public final int f44099b;
-    public final Object f44100c;
-    public final Object d;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class xg implements View.OnKeyListener {
+    public final int f43929a;
+    public final Object f43930b;
 
-    public xg(zn znVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f44100c = znVar;
-        this.f44098a = z10;
-        this.d = messageObject;
-        this.f44099b = i10;
+    public xg(Object obj, int i10) {
+        this.f43929a = i10;
+        this.f43930b = obj;
     }
 
     @Override
-    public boolean C() {
-        return false;
-    }
-
-    @Override
-    public boolean K(sy syVar) {
-        return false;
-    }
-
-    @Override
-    public void a(TLRPC.MessageMedia messageMedia) {
-        int i10;
-        zn znVar = (zn) this.f44100c;
-        MessageObject messageObject = (MessageObject) this.d;
-        if (this.f44098a) {
-            TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
-            tL_messages_appendTodoList.peer = znVar.getMessagesController().getInputPeer(messageObject.getDialogId());
-            tL_messages_appendTodoList.msg_id = messageObject.getId();
-            if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
-                TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
-                int i11 = 0;
-                int i12 = 0;
-                while (true) {
-                    i10 = this.f44099b;
-                    if (i11 >= i10) {
-                        break;
+    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
+        switch (this.f43929a) {
+            case 0:
+                eo eoVar = (eo) this.f43930b;
+                eoVar.getClass();
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
+                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
+                    eoVar.xa();
+                    return true;
+                }
+                return false;
+            case 1:
+                pn0 pn0Var = (pn0) this.f43930b;
+                if (i10 == 67) {
+                    if (pn0Var.Y[2].length() == 0) {
+                        pn0Var.Y[1].requestFocus();
+                        EditTextBoldCursor editTextBoldCursor2 = pn0Var.Y[1];
+                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                        pn0Var.Y[1].dispatchKeyEvent(keyEvent);
+                        return true;
                     }
-                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20213id);
-                    i11++;
+                } else {
+                    pn0Var.getClass();
                 }
-                while (i10 < tL_messageMediaToDo.todo.list.size()) {
-                    TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i10);
-                    if (todoItem.f20213id <= i12) {
-                        todoItem.f20213id = i12 + 1;
+                return false;
+            default:
+                zv0 zv0Var = (zv0) this.f43930b;
+                EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
+                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
+                    ImageView imageView = zv0Var.f21737f;
+                    if (imageView != null) {
+                        imageView.callOnClick();
                     }
-                    tL_messages_appendTodoList.list.add(todoItem);
-                    i12 = Math.max(i12, todoItem.f20213id);
-                    i10++;
+                    return true;
                 }
-                TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
-                if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
-                    tL_messageMediaToDo.completions = ((TLRPC.TL_messageMediaToDo) messageMedia2).completions;
-                }
-            }
-            messageObject.messageOwner.media = messageMedia;
-            znVar.getConnectionsManager().sendRequest(tL_messages_appendTodoList, null);
-            return;
+                return false;
         }
-        if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
-            TLRPC.MessageMedia messageMedia3 = messageObject.messageOwner.media;
-            if (messageMedia3 instanceof TLRPC.TL_messageMediaToDo) {
-                ((TLRPC.TL_messageMediaToDo) messageMedia).completions = ((TLRPC.TL_messageMediaToDo) messageMedia3).completions;
-            }
-        }
-        messageObject.messageOwner.media = messageMedia;
-        znVar.getSendMessagesHelper().editMessage(messageObject, null, null, null, null, null, null, false, false, null);
-    }
-
-    @Override
-    public boolean w(sy syVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f44100c;
-        String str = (String) this.d;
-        Pattern pattern = LaunchActivity.B1;
-        long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("scrollToTopOnResume", true);
-        bundle.putBoolean("hasUrl", this.f44098a);
-        if (DialogObject.isEncryptedDialog(j3)) {
-            bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j3));
-        } else if (DialogObject.isUserDialog(j3)) {
-            bundle.putLong("user_id", j3);
-        } else {
-            bundle.putLong("chat_id", -j3);
-        }
-        int i12 = this.f44099b;
-        if (MessagesController.getInstance(i12).checkCanOpenChat(bundle, syVar)) {
-            NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-            MediaDataController.getInstance(i12).saveDraft(j3, 0, str, null, null, false, 0L);
-            ((ActionBarLayout) launchActivity.O()).S(new zn(bundle), true, false);
-        }
-        return true;
-    }
-
-    public xg(LaunchActivity launchActivity, boolean z10, int i10, String str) {
-        this.f44100c = launchActivity;
-        this.f44098a = z10;
-        this.f44099b = i10;
-        this.d = str;
     }
 }

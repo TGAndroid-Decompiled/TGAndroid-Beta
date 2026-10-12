@@ -1,68 +1,54 @@
 package org.telegram.messenger;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
+import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 public final class p6 implements Runnable {
-    public final int f18843a;
-    public final int f18844b;
-    public final Object f18845c;
+    public final int f18535a = 0;
+    public final boolean f18536b;
+    public final int f18537c;
+    public final long d;
+    public final int f18538e;
+    public final boolean f18539f;
+    public final Object h;
+    public final Serializable f18540n;
+    public final Object f18541r;
 
-    public p6(int i10, Object obj, int i11) {
-        this.f18843a = i11;
-        this.f18844b = i10;
-        this.f18845c = obj;
+    public p6(MediaController mediaController, File file, TLRPC.TL_document tL_document, int i10, boolean z10, int i11, boolean z11, long j3) {
+        this.h = mediaController;
+        this.f18540n = file;
+        this.f18541r = tL_document;
+        this.f18537c = i10;
+        this.f18536b = z10;
+        this.f18538e = i11;
+        this.f18539f = z11;
+        this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f18843a) {
+        switch (this.f18535a) {
             case 0:
-                ((MediaController.AnonymousClass4) this.f18845c).lambda$onCallStateChanged$0(this.f18844b);
-                return;
-            case 1:
-                MessagesController.AnonymousClass1.lambda$setLocal$2(this.f18844b, (TLRPC.TL_help_appConfig) this.f18845c);
-                return;
-            case 2:
-                MessagesController.AnonymousClass4.lambda$setLocal$2(this.f18844b, (TLRPC.messages_AvailableEffects) this.f18845c);
-                return;
-            case 3:
-                MessagesController.AnonymousClass5.lambda$setLocal$1(this.f18844b, (TL_account.TL_webBrowserSettings) this.f18845c);
-                return;
-            case 4:
-                AutoDeleteMediaTask.b(this.f18844b, (File) this.f18845c);
-                return;
-            case 5:
-                FileLoader.lambda$deleteFiles$16((ArrayList) this.f18845c, this.f18844b);
-                return;
-            case 6:
-                ((FilesMigrationService) this.f18845c).lambda$updateProgress$1(this.f18844b);
-                return;
-            case 7:
-                MediaController.lambda$saveFile$47((org.telegram.ui.ActionBar.a2) this.f18845c, this.f18844b);
-                return;
-            case 8:
-                PushListenerController.lambda$sendRegistrationToServer$1((String) this.f18845c, this.f18844b);
-                return;
-            case 9:
-                PushListenerController.lambda$processRemoteMessage$2(this.f18844b, (TLRPC.TL_updates) this.f18845c);
-                return;
-            case 10:
-                SendMessagesHelper.lambda$handleError$122(this.f18844b, (AccountInstance) this.f18845c);
+                ((MediaController) this.h).lambda$stopRecordingInternal$41((File) this.f18540n, (TLRPC.TL_document) this.f18541r, this.f18537c, this.f18536b, this.f18538e, this.f18539f, this.d);
                 return;
             default:
-                Utilities.lambda$doCallbacks$0(this.f18844b, (Utilities.Callback[]) this.f18845c);
+                int i10 = this.f18538e;
+                boolean z10 = this.f18539f;
+                ((MessagesStorage) this.h).lambda$updatePinnedMessages$138(this.f18536b, (HashMap) this.f18540n, this.f18537c, this.d, (ArrayList) this.f18541r, i10, z10);
                 return;
         }
     }
 
-    public p6(Object obj, int i10, int i11) {
-        this.f18843a = i11;
-        this.f18845c = obj;
-        this.f18844b = i10;
+    public p6(MessagesStorage messagesStorage, boolean z10, HashMap hashMap, int i10, long j3, ArrayList arrayList, int i11, boolean z11) {
+        this.h = messagesStorage;
+        this.f18536b = z10;
+        this.f18540n = hashMap;
+        this.f18537c = i10;
+        this.d = j3;
+        this.f18541r = arrayList;
+        this.f18538e = i11;
+        this.f18539f = z11;
     }
 }

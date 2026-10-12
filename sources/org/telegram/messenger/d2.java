@@ -1,32 +1,26 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
 public final class d2 implements Runnable {
-    public final int f17645a;
-    public final Utilities.Callback f17646b;
-    public final ArrayList f17647c;
+    public final int f17359a;
+    public final DownloadController f17360b;
+    public final MessageObject f17361c;
 
-    public d2(Utilities.Callback callback, ArrayList arrayList, int i10) {
-        this.f17645a = i10;
-        this.f17646b = callback;
-        this.f17647c = arrayList;
+    public d2(DownloadController downloadController, MessageObject messageObject, int i10) {
+        this.f17359a = i10;
+        this.f17360b = downloadController;
+        this.f17361c = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f17645a) {
+        switch (this.f17359a) {
             case 0:
-                this.f17646b.run(this.f17647c);
+                this.f17360b.lambda$startDownloadFile$4(this.f17361c);
                 return;
             case 1:
-                this.f17646b.run(this.f17647c);
-                return;
-            case 2:
-                MediaDataController.lambda$loadStickers$92(this.f17646b, this.f17647c);
+                this.f17360b.lambda$onDownloadFail$9(this.f17361c);
                 return;
             default:
-                this.f17646b.run(this.f17647c);
+                this.f17360b.lambda$onDownloadComplete$6(this.f17361c);
                 return;
         }
     }

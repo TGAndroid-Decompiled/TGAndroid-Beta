@@ -3,13 +3,13 @@ package i2;
 import ai.e6;
 import android.content.Context;
 public class l {
-    public final Context f11773a;
-    public final r2.h f11774b;
-    public int f11775c = 0;
+    public final Context f11772a;
+    public final l5.j f11773b;
+    public int f11774c = 0;
 
     public l(Context context) {
-        this.f11773a = context;
-        this.f11774b = new r2.h(context, 0);
+        this.f11772a = context;
+        this.f11773b = new l5.j(context, 1);
     }
 
     public k2.d0 a(Context context) {

@@ -1,59 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.WallpapersListActivity;
-public final class lp implements View.OnClickListener {
-    public final int f28555a;
-    public final cq f28556b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class lp extends FrameLayout {
+    public t91 f28256a;
+    public float f28257b;
+    public boolean f28258c;
+    public float d;
+    public ValueAnimator f28259e;
 
-    public lp(cq cqVar, int i10) {
-        this.f28555a = i10;
-        this.f28556b = cqVar;
+    public abstract void a(boolean z10);
+
+    public final void b(boolean z10) {
+        float f7;
+        this.f28258c = z10;
+        ValueAnimator valueAnimator = this.f28259e;
+        if (valueAnimator != null) {
+            this.f28259e = null;
+            valueAnimator.cancel();
+        }
+        if (z10) {
+            setVisibility(0);
+        }
+        float f10 = this.d;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+        this.f28259e = ofFloat;
+        ofFloat.addUpdateListener(new m6(this, 13));
+        this.f28259e.setInterpolator(js.h);
+        this.f28259e.setDuration(320L);
+        this.f28259e.addListener(new ea(4, this, z10));
+        this.f28259e.start();
+    }
+
+    public int getCurrentHeight() {
+        return (int) (getMeasuredHeight() * this.f28257b);
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f28555a) {
-            case 0:
-                cq cqVar = this.f28556b;
-                yi yiVar = cqVar.Y;
-                if (yiVar.B0 == yiVar.f33301j0) {
-                    cqVar.f25422a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
-                    cqVar.Y.F1();
-                    nj njVar = cqVar.Y.f33325r0;
-                    boolean z10 = cqVar.N;
-                    bb bbVar = njVar.v;
-                    ((ArrayList) bbVar.f24967e).clear();
-                    WallpapersListActivity.z0((ArrayList) bbVar.f24967e, z10);
-                    bbVar.l();
-                    return;
-                }
-                cqVar.f25422a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
-                yi yiVar2 = cqVar.Y;
-                yiVar2.U1(yiVar2.f33301j0);
-                return;
-            case 1:
-                cq cqVar2 = this.f28556b;
-                if (cqVar2.x()) {
-                    cqVar2.C(true);
-                    cqVar2.G(true);
-                    return;
-                }
-                cqVar2.dismiss();
-                return;
-            case 2:
-                cq cqVar3 = this.f28556b;
-                if (cqVar3.T == null) {
-                    cqVar3.E(!cqVar3.N);
-                    return;
-                }
-                return;
-            default:
-                this.f28556b.u(false);
-                return;
+    public final boolean isShown() {
+        return this.f28258c;
+    }
+
+    public void setShown(float f7) {
+        this.f28257b = f7;
+        t91 t91Var = this.f28256a;
+        if (t91Var != null) {
+            t91Var.setPivotX(t91Var.getWidth() / 2.0f);
+            this.f28256a.setPivotY(0.0f);
+            this.f28256a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+            this.f28256a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
         }
+        setAlpha(f7);
+        invalidate();
+    }
+
+    public void setTabs(t91 t91Var) {
+        this.f28256a = t91Var;
+        addView(t91Var, w7.w5.d(-1.0f, -1));
     }
 }

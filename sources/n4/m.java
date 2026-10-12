@@ -1,58 +1,51 @@
 package n4;
 
-import android.media.MediaMetadata;
+import android.graphics.Bitmap;
+import android.media.MediaDescription;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 public final class m implements Parcelable {
-    public static final Parcelable.Creator<m> CREATOR;
-    public static final a0.f f16665c;
-    public static final String[] d;
-    public final Bundle f16666a;
-    public MediaMetadata f16667b;
+    public static final Parcelable.Creator<m> CREATOR = new m8.h(3);
+    public final String f16326a;
+    public final CharSequence f16327b;
+    public final CharSequence f16328c;
+    public final CharSequence d;
+    public final Bitmap f16329e;
+    public final Uri f16330f;
+    public final Bundle h;
+    public final Uri f16331n;
+    public MediaDescription f16332r;
 
-    static {
-        ?? mVar = new a0.m(0);
-        f16665c = mVar;
-        mVar.put("android.media.metadata.TITLE", 1);
-        mVar.put("android.media.metadata.ARTIST", 1);
-        mVar.put("android.media.metadata.DURATION", 0);
-        mVar.put("android.media.metadata.ALBUM", 1);
-        mVar.put("android.media.metadata.AUTHOR", 1);
-        mVar.put("android.media.metadata.WRITER", 1);
-        mVar.put("android.media.metadata.COMPOSER", 1);
-        mVar.put("android.media.metadata.COMPILATION", 1);
-        mVar.put("android.media.metadata.DATE", 1);
-        mVar.put("android.media.metadata.YEAR", 0);
-        mVar.put("android.media.metadata.GENRE", 1);
-        mVar.put("android.media.metadata.TRACK_NUMBER", 0);
-        mVar.put("android.media.metadata.NUM_TRACKS", 0);
-        mVar.put("android.media.metadata.DISC_NUMBER", 0);
-        mVar.put("android.media.metadata.ALBUM_ARTIST", 1);
-        mVar.put("android.media.metadata.ART", 2);
-        mVar.put("android.media.metadata.ART_URI", 1);
-        mVar.put("android.media.metadata.ALBUM_ART", 2);
-        mVar.put("android.media.metadata.ALBUM_ART_URI", 1);
-        mVar.put("android.media.metadata.USER_RATING", 3);
-        mVar.put("android.media.metadata.RATING", 3);
-        mVar.put("android.media.metadata.DISPLAY_TITLE", 1);
-        mVar.put("android.media.metadata.DISPLAY_SUBTITLE", 1);
-        mVar.put("android.media.metadata.DISPLAY_DESCRIPTION", 1);
-        mVar.put("android.media.metadata.DISPLAY_ICON", 2);
-        mVar.put("android.media.metadata.DISPLAY_ICON_URI", 1);
-        mVar.put("android.media.metadata.MEDIA_ID", 1);
-        mVar.put("android.media.metadata.BT_FOLDER_TYPE", 0);
-        mVar.put("android.media.metadata.MEDIA_URI", 1);
-        mVar.put("android.media.metadata.ADVERTISEMENT", 0);
-        mVar.put("android.media.metadata.DOWNLOAD_STATUS", 0);
-        d = new String[]{"android.media.metadata.TITLE", "android.media.metadata.ARTIST", "android.media.metadata.ALBUM", "android.media.metadata.ALBUM_ARTIST", "android.media.metadata.WRITER", "android.media.metadata.AUTHOR", "android.media.metadata.COMPOSER", "android.media.metadata.DISPLAY_SUBTITLE", "android.media.metadata.DISPLAY_DESCRIPTION"};
-        CREATOR = new m8.h(4);
+    public m(String str, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, Bitmap bitmap, Uri uri, Bundle bundle, Uri uri2) {
+        this.f16326a = str;
+        this.f16327b = charSequence;
+        this.f16328c = charSequence2;
+        this.d = charSequence3;
+        this.f16329e = bitmap;
+        this.f16330f = uri;
+        this.h = bundle;
+        this.f16331n = uri2;
     }
 
-    public m(Bundle bundle) {
-        Bundle bundle2 = new Bundle(bundle);
-        this.f16666a = bundle2;
-        x.H(bundle2);
+    public final MediaDescription a() {
+        MediaDescription mediaDescription = this.f16332r;
+        if (mediaDescription != null) {
+            return mediaDescription;
+        }
+        MediaDescription.Builder builder = new MediaDescription.Builder();
+        builder.setMediaId(this.f16326a);
+        builder.setTitle(this.f16327b);
+        builder.setSubtitle(this.f16328c);
+        builder.setDescription(this.d);
+        builder.setIconBitmap(this.f16329e);
+        builder.setIconUri(this.f16330f);
+        builder.setExtras(this.h);
+        builder.setMediaUri(this.f16331n);
+        MediaDescription build = builder.build();
+        this.f16332r = build;
+        return build;
     }
 
     @Override
@@ -60,14 +53,12 @@ public final class m implements Parcelable {
         return 0;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeBundle(this.f16666a);
+    public final String toString() {
+        return ((Object) this.f16327b) + ", " + ((Object) this.f16328c) + ", " + ((Object) this.d);
     }
 
-    public m(Parcel parcel) {
-        Bundle readBundle = parcel.readBundle(x.class.getClassLoader());
-        readBundle.getClass();
-        this.f16666a = readBundle;
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        a().writeToParcel(parcel, i10);
     }
 }

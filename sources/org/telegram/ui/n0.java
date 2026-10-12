@@ -1,48 +1,99 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class n0 extends ClickableSpan {
-    public final int f40135a;
-    public final Object f40136b;
-    public final Object f40137c;
-    public final Object d;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class n0 extends Drawable {
+    public final int f40163a;
+    public final Bitmap f40164b;
+    public final Paint f40165c;
 
-    public n0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f40135a = i10;
-        this.f40136b = obj;
-        this.f40137c = obj2;
-        this.d = obj3;
+    public n0(Bitmap bitmap, Paint paint, int i10) {
+        this.f40163a = i10;
+        this.f40164b = bitmap;
+        this.f40165c = paint;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40135a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f40163a) {
             case 0:
-                ((t70) this.f40136b).c((f4) this.f40137c, (org.telegram.ui.Components.q11) this.d);
+                Bitmap bitmap = this.f40164b;
+                if (bitmap != null) {
+                    canvas.save();
+                    canvas.translate(getBounds().left, getBounds().top);
+                    canvas.scale(getBounds().width() / bitmap.getWidth(), getBounds().height() / bitmap.getHeight());
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, this.f40165c);
+                    canvas.restore();
+                    return;
+                }
                 return;
             default:
-                org.telegram.ui.ActionBar.a2 a2Var = ((org.telegram.ui.ActionBar.a2[]) this.f40136b)[0];
-                if (a2Var != null) {
-                    a2Var.dismiss();
+                Bitmap bitmap2 = this.f40164b;
+                if (bitmap2 != null) {
+                    canvas.save();
+                    canvas.translate(getBounds().left, getBounds().top);
+                    canvas.scale(getBounds().width() / bitmap2.getWidth(), getBounds().height() / bitmap2.getHeight());
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, this.f40165c);
+                    canvas.restore();
+                    return;
                 }
-                of.f.s((Context) this.f40137c, "https://t.me/" + ((String) this.d));
                 return;
         }
     }
 
     @Override
-    public void updateDrawState(TextPaint textPaint) {
-        switch (this.f40135a) {
-            case 1:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
+    public final int getIntrinsicHeight() {
+        switch (this.f40163a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
             default:
-                super.updateDrawState(textPaint);
-                return;
+                return AndroidUtilities.dp(24.0f);
         }
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        switch (this.f40163a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return AndroidUtilities.dp(24.0f);
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f40163a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        int i11 = this.f40163a;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i10 = this.f40163a;
+    }
+
+    private final void a(int i10) {
+    }
+
+    private final void b(int i10) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
+    }
+
+    private final void d(ColorFilter colorFilter) {
     }
 }

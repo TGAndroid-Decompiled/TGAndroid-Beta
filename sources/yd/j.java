@@ -37,8 +37,8 @@ public abstract class j extends i {
         }
         vd.d dVar = new vd.d(i10, length, 1);
         boolean z13 = charSequence instanceof String;
-        int i11 = dVar.f49667c;
-        int i12 = dVar.f49666b;
+        int i11 = dVar.f49774c;
+        int i12 = dVar.f49773b;
         if (z13 && e2.t(string)) {
             if ((i11 > 0 && i10 <= i12) || (i11 < 0 && i12 <= i10)) {
                 int i13 = i10;
@@ -131,7 +131,7 @@ public abstract class j extends i {
             }
             return charSequence.toString();
         }
-        throw new IllegalArgumentException(hg.c.i(i10, "Desired length ", " is less than zero."));
+        throw new IllegalArgumentException(hg.c.j(i10, "Desired length ", " is less than zero."));
     }
 
     public static String g(String str, String str2, String newValue) {

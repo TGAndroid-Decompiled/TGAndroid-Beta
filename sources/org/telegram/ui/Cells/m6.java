@@ -1,15 +1,15 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.qo;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.so;
+import org.telegram.ui.Components.wm0;
 import org.telegram.ui.LaunchActivity;
 public final class m6 extends ai.da {
     public final int S = 0;
     public final View T;
 
-    public m6(o6 o6Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(d6Var, false);
+    public m6(o6 o6Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(c6Var, false);
         this.T = o6Var;
     }
 
@@ -24,13 +24,13 @@ public final class m6 extends ai.da {
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(xaVar.getContext(), j3, ai.v9.a((rm0) xaVar.getParent()));
+                    R.getOrCreateStoryViewer().D(xaVar.getContext(), j3, ai.v9.a((wm0) xaVar.getParent()));
                     return;
                 }
                 return;
             default:
-                qo qoVar = (qo) this.T;
-                qoVar.H.getOrCreateStoryViewer().D(qoVar.getContext(), j3, new org.telegram.ui.Components.s(this, 25));
+                so soVar = (so) this.T;
+                soVar.H.getOrCreateStoryViewer().D(soVar.getContext(), j3, new org.telegram.ui.Components.s(this, 25));
                 return;
         }
     }
@@ -40,8 +40,8 @@ public final class m6 extends ai.da {
         this.T = xaVar;
     }
 
-    public m6(qo qoVar) {
+    public m6(so soVar) {
         super(null, true);
-        this.T = qoVar;
+        this.T = soVar;
     }
 }

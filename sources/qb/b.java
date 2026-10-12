@@ -1,33 +1,22 @@
 package qb;
 
-import android.graphics.Paint;
-import android.media.MediaCodecInfo;
-import android.media.MediaCodecList;
+import android.content.Context;
 import android.media.MediaDrmException;
-import android.os.Bundle;
-import android.text.Editable;
 import android.text.style.CharacterStyle;
-import android.util.Log;
 import ci.u5;
-import com.google.android.gms.tasks.SuccessContinuation;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import ei.l4;
-import j$.util.DesugarCollections;
+import j$.util.Objects;
 import java.nio.ShortBuffer;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 import java.util.concurrent.Executors;
+import m.y0;
 import n7.z0;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.MessageObject;
@@ -40,306 +29,147 @@ import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.b6;
-import org.telegram.ui.Components.dm;
 import org.telegram.ui.Components.fb;
+import org.telegram.ui.Components.fm;
 import org.telegram.ui.Components.hb;
 import org.telegram.ui.Components.ib;
 import org.telegram.ui.Components.jb;
-import org.telegram.ui.Components.jh;
-import org.telegram.ui.Components.rg;
+import org.telegram.ui.Components.lh;
+import org.telegram.ui.Components.tg;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.vb;
 import org.telegram.ui.Components.wb;
-import org.telegram.ui.Components.wi;
-import org.telegram.ui.pv0;
-import org.xml.sax.Attributes;
-import r2.v;
-public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, v, u9.a, SuccessContinuation, z3.k {
-    public static b f46181b;
-    public final int f46182a;
+import org.telegram.ui.Components.yi;
+import org.telegram.ui.sv0;
+import sc.v;
+public class b implements bg.a, cg.a, df.b, fb.o, yi, n5.b, n2.q, q9.d, vb, l1, r0.r, u5.a, Continuation, x9.c, y6.d, z3.k {
+    public static b f46006b;
+    public final int f46007a;
 
     public b(int i10) {
-        this.f46182a = i10;
-    }
-
-    public static Calendar I3() {
-        if (f46181b == null) {
-            f46181b = new b(26);
-        }
-        f46181b.getClass();
-        return Calendar.getInstance();
-    }
-
-    public static yf.k J3(Editable editable, int i10) {
-        Object[] objArr = (yf.k[]) editable.getSpans(0, editable.length(), yf.k.class);
-        if (objArr.length != 0) {
-            for (int length = objArr.length; length > 0; length--) {
-                int i11 = length - 1;
-                if (editable.getSpanFlags(objArr[i11]) == 17) {
-                    yf.k kVar = objArr[i11];
-                    if (kVar.f52299a == i10) {
-                        return kVar;
-                    }
-                }
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public static boolean K3(boolean z10, String str, Editable editable, Attributes attributes) {
-        int i10;
-        boolean z11 = false;
-        Object obj = null;
-        if (str.startsWith("animated-emoji")) {
-            if (z10) {
-                String a2 = yf.j.a("data-document-id", attributes);
-                if (a2 != null) {
-                    editable.setSpan(new b6(Long.parseLong(a2), (Paint.FontMetricsInt) null), editable.length(), editable.length(), 17);
-                    return true;
-                }
-            } else {
-                Object[] spans = editable.getSpans(0, editable.length(), b6.class);
-                if (spans.length != 0) {
-                    int length = spans.length;
-                    while (true) {
-                        if (length <= 0) {
-                            break;
-                        }
-                        int i11 = length - 1;
-                        if (editable.getSpanFlags(spans[i11]) == 17) {
-                            obj = spans[i11];
-                            break;
-                        }
-                        length--;
-                    }
-                }
-                Object obj2 = (b6) obj;
-                if (obj2 != null) {
-                    int spanStart = editable.getSpanStart(obj2);
-                    editable.removeSpan(obj2);
-                    if (spanStart != editable.length()) {
-                        editable.setSpan(obj2, spanStart, editable.length(), 33);
-                        return true;
-                    }
-                    return true;
-                }
-            }
-            return false;
-        } else if (str.equals("spoiler")) {
-            if (z10) {
-                editable.setSpan(new yf.k(0), editable.length(), editable.length(), 17);
-                return true;
-            }
-            Object J3 = J3(editable, 0);
-            if (J3 != null) {
-                int spanStart2 = editable.getSpanStart(J3);
-                editable.removeSpan(J3);
-                if (spanStart2 != editable.length()) {
-                    editable.setSpan(J3, spanStart2, editable.length(), 33);
-                    return true;
-                }
-                return true;
-            }
-            return false;
-        } else if (str.equals("pre")) {
-            if (z10) {
-                String a10 = yf.j.a("language", attributes);
-                if (a10 == null) {
-                    a10 = yf.j.a("lang", attributes);
-                }
-                if (a10 == null) {
-                    a10 = yf.j.a("lng", attributes);
-                }
-                editable.setSpan(new yf.k(a10), editable.length(), editable.length(), 17);
-                return true;
-            }
-            Object J32 = J3(editable, 1);
-            if (J32 != null) {
-                int spanStart3 = editable.getSpanStart(J32);
-                editable.removeSpan(J32);
-                if (spanStart3 != editable.length()) {
-                    editable.setSpan(J32, spanStart3, editable.length(), 33);
-                    return true;
-                }
-                return true;
-            }
-            return false;
-        } else {
-            int i12 = 3;
-            if (str.equals("blockquote")) {
-                if (z10) {
-                    String a11 = yf.j.a("class", attributes);
-                    if (yf.j.a("data-collapsed", attributes) != null || (a11 != null && a11.contains("telegram-collapsed-quote"))) {
-                        z11 = true;
-                    }
-                    if (!z11) {
-                        i12 = 2;
-                    }
-                    editable.setSpan(new yf.k(i12), editable.length(), editable.length(), 17);
-                    return true;
-                }
-                yf.k[] kVarArr = (yf.k[]) editable.getSpans(0, editable.length(), yf.k.class);
-                for (int length2 = kVarArr.length - 1; length2 >= 0; length2--) {
-                    yf.k kVar = kVarArr[length2];
-                    if (editable.getSpanFlags(kVar) == 17 && ((i10 = kVar.f52299a) == 2 || i10 == 3)) {
-                        obj = kVar;
-                        break;
-                    }
-                }
-                if (obj != null) {
-                    int spanStart4 = editable.getSpanStart(obj);
-                    editable.removeSpan(obj);
-                    if (spanStart4 != editable.length()) {
-                        editable.setSpan(obj, spanStart4, editable.length(), 33);
-                        return true;
-                    }
-                    return true;
-                }
-                return false;
-            }
-            if (str.equals("details")) {
-                if (z10) {
-                    editable.setSpan(new yf.k(3), editable.length(), editable.length(), 17);
-                    return true;
-                }
-                Object J33 = J3(editable, 3);
-                if (J33 != null) {
-                    int spanStart5 = editable.getSpanStart(J33);
-                    editable.removeSpan(J33);
-                    if (spanStart5 != editable.length()) {
-                        editable.setSpan(J33, spanStart5, editable.length(), 33);
-                    }
-                    return true;
-                }
-            }
-            return false;
-        }
+        this.f46007a = i10;
     }
 
     @Override
     public void A(u1 u1Var) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void A0(u1 u1Var, TLRPC.User user, float f7, float f10) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void A1(u1 u1Var, float f7, float f10) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public boolean A2(int i10) {
-        switch (this.f46182a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
+        int i10 = this.f46007a;
     }
 
     @Override
     public void B(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public df.a C(z0 z0Var) {
-        return new ze.h(z0Var);
+    public void B0(u1 u1Var, float f7, float f10, boolean z10) {
+        int i10 = this.f46007a;
     }
 
     @Override
-    public void C0(u1 u1Var, float f7, float f10, boolean z10) {
-        int i10 = this.f46182a;
+    public void B1(u1 u1Var, float f7, float f10) {
+        int i10 = this.f46007a;
     }
 
     @Override
-    public void C2() {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public boolean D(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        return false;
-    }
-
-    @Override
-    public boolean D0(MessageObject messageObject) {
-        switch (this.f46182a) {
-            case 17:
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public boolean D1(b2.s sVar) {
-        return false;
-    }
-
-    @Override
-    public void D2(u1 u1Var, int i10, int i11) {
-        int i12 = this.f46182a;
-    }
-
-    @Override
-    public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void E0(u1 u1Var) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public p9 E2() {
-        switch (this.f46182a) {
-            case 17:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public int F() {
-        return MediaCodecList.getCodecCount();
-    }
-
-    @Override
-    public void F0() {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void G(u1 u1Var) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void G0(u1 u1Var, TLObject tLObject, boolean z10) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void H(byte[] bArr) {
+    public void C(byte[] bArr, byte[] bArr2) {
         throw new IllegalStateException();
     }
 
     @Override
-    public void H0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f46182a;
+    public boolean C0(MessageObject messageObject) {
+        switch (this.f46007a) {
+            case 17:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public boolean C2(int i10) {
+        switch (this.f46007a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public void D0(u1 u1Var) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void E0() {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void E2() {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void F(u1 u1Var) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void F0(u1 u1Var, TLObject tLObject, boolean z10) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void F2(u1 u1Var, int i10, int i11) {
+        int i12 = this.f46007a;
+    }
+
+    @Override
+    public void G(wb wbVar, hb hbVar, tg tgVar, fm fmVar) {
+        wbVar.setInOutOffset(wbVar.getMeasuredHeight());
+        fmVar.accept(Float.valueOf(wbVar.getTranslationY()));
+        o1.k kVar = new o1.k(wbVar, wb.IN_OUT_OFFSET_Y, 0.0f);
+        kVar.f16690u.a(0.8f);
+        kVar.f16690u.b(400.0f);
+        kVar.a(new l4(1, wbVar, tgVar));
+        kVar.b(new ub(fmVar, wbVar, 1));
+        kVar.h();
+        hbVar.run();
+    }
+
+    @Override
+    public void G0(u1 u1Var, float f7, float f10) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public p9 G2() {
+        switch (this.f46007a) {
+            case 17:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public boolean H(b2.s sVar) {
+        String str = sVar.f3641r;
+        if (!Objects.equals(str, "text/x-ssa") && !Objects.equals(str, "text/vtt") && !Objects.equals(str, "application/x-mp4-vtt") && !Objects.equals(str, "application/x-subrip") && !Objects.equals(str, "application/x-quicktime-tx3g") && !Objects.equals(str, "application/pgs") && !Objects.equals(str, "application/vobsub") && !Objects.equals(str, "application/dvbsubs") && !Objects.equals(str, "application/ttml+xml")) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean H1() {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -349,52 +179,56 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public void I(MessageObject.TextLayoutBlock textLayoutBlock) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public n2.o J(byte[] bArr, List list, int i10, HashMap hashMap) {
+    public void I0(u1 u1Var) {
+        int i10 = this.f46007a;
+    }
+
+    public boolean I3(CharSequence charSequence) {
+        return false;
+    }
+
+    @Override
+    public byte[] J(byte[] bArr, byte[] bArr2) {
         throw new IllegalStateException();
     }
 
     @Override
-    public void J0(u1 u1Var) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
     public void J1(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public int K() {
-        return 1;
+    public df.a K(z0 z0Var) {
+        return new ze.h(z0Var);
+    }
+
+    @Override
+    public void K0(u1 u1Var) {
+        int i10 = this.f46007a;
     }
 
     @Override
     public void K1(u1 u1Var, boolean z10) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void L(u1 u1Var) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void L0(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void M(int i10, u1 u1Var) {
-        int i11 = this.f46182a;
+        int i11 = this.f46007a;
     }
 
     @Override
     public boolean M1(u1 u1Var, TLRPC.Chat chat) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -404,26 +238,22 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public void N(MessageObject messageObject) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void N0(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void N1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        int i10 = this.f46182a;
-    }
-
-    public boolean N3(CharSequence charSequence) {
-        return false;
+        int i10 = this.f46007a;
     }
 
     @Override
     public boolean O(u1 u1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -433,7 +263,7 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public boolean O1() {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -442,15 +272,18 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void P(Bundle bundle) {
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Skipping logging Crashlytics event to Firebase, no Firebase Analytics", null);
+    public boolean P() {
+        switch (this.f46007a) {
+            case 17:
+                return false;
+            default:
+                return false;
         }
     }
 
     @Override
-    public boolean Q() {
-        switch (this.f46182a) {
+    public boolean Q(u1 u1Var) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -460,12 +293,12 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public void Q1(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public boolean R(u1 u1Var) {
-        switch (this.f46182a) {
+    public boolean R() {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -475,7 +308,7 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public boolean R0(long j3) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -489,33 +322,28 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public boolean S() {
-        switch (this.f46182a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
+    public void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+        int i11 = this.f46007a;
     }
 
     @Override
     public void S0(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void S1(MessageObject messageObject) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public void T(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
-        int i11 = this.f46182a;
+    public void T(u1 u1Var) {
+        int i10 = this.f46007a;
     }
 
     @Override
     public void T1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
             default:
                 of.f.s(u1Var.getContext(), str);
@@ -524,18 +352,18 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void U(u1 u1Var) {
-        int i10 = this.f46182a;
+    public void U(byte[] bArr) {
+        throw new IllegalStateException();
     }
 
     @Override
-    public int U0(b2.s sVar) {
-        return 1;
+    public void U0(int i10, u1 u1Var) {
+        int i11 = this.f46007a;
     }
 
     @Override
     public CharacterStyle U1(u1 u1Var) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return null;
             default:
@@ -544,28 +372,33 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void V0(int i10, u1 u1Var) {
-        int i11 = this.f46182a;
+    public int V() {
+        switch (this.f46007a) {
+            case 17:
+                return 0;
+            default:
+                return 0;
+        }
     }
 
     @Override
     public void V1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        int i12 = this.f46182a;
+        int i12 = this.f46007a;
     }
 
     @Override
-    public int W() {
-        switch (this.f46182a) {
-            case 17:
-                return 0;
-            default:
-                return 0;
-        }
+    public long W() {
+        return System.currentTimeMillis();
+    }
+
+    @Override
+    public void W0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+        int i10 = this.f46007a;
     }
 
     @Override
     public boolean W1(u1 u1Var, MessageObject messageObject) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -574,32 +407,12 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public boolean X() {
-        return false;
+    public n2.o X(byte[] bArr, List list, int i10, HashMap hashMap) {
+        throw new IllegalStateException();
     }
 
     @Override
-    public void X0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void X1() {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public hh.a Y() {
-        switch (this.f46182a) {
-            case 17:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public void Y0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
+    public void X0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11) {
         if (i11 != 1 && i11 != 2) {
             throw new IllegalArgumentException("Output must be 2 or 1 channels");
         }
@@ -612,8 +425,23 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
                 shortBuffer2.put(s10);
                 shortBuffer2.put(s11);
             } else if (i11 == 1) {
-                shortBuffer2.put(na.d.v3(s10, s11));
+                shortBuffer2.put(na.d.o3(s10, s11));
             }
+        }
+    }
+
+    @Override
+    public void X1() {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public hh.a Y() {
+        switch (this.f46007a) {
+            case 17:
+                return null;
+            default:
+                return null;
         }
     }
 
@@ -623,33 +451,18 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public boolean Z(String str, byte[] bArr) {
-        throw new IllegalStateException();
+    public int Z() {
+        return 1;
     }
 
     @Override
     public void Z1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public MediaCodecInfo a(int i10) {
-        return MediaCodecList.getCodecInfoAt(i10);
-    }
-
-    @Override
-    public void a2(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public Map b(byte[] bArr) {
-        throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean b0(u1 u1Var) {
-        switch (this.f46182a) {
+    public boolean a0(u1 u1Var) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -658,13 +471,38 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void b1(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-        int i10 = this.f46182a;
+    public void a1(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void a2(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public Map b(byte[] bArr) {
+        throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean b0(String str, byte[] bArr) {
+        throw new IllegalStateException();
+    }
+
+    @Override
+    public boolean b1(u1 u1Var, boolean z10) {
+        switch (this.f46007a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
     }
 
     @Override
     public boolean b2(u1 u1Var, TLRPC.PollAnswer pollAnswer) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -675,8 +513,8 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     @Override
     public void c(wb wbVar, hb hbVar, fb fbVar, ib ibVar) {
         o1.k kVar = new o1.k(wbVar, wb.IN_OUT_OFFSET_Y, wbVar.getHeight());
-        kVar.f17024u.a(0.8f);
-        kVar.f17024u.b(400.0f);
+        kVar.f16690u.a(0.8f);
+        kVar.f16690u.b(400.0f);
         kVar.a(new jb(fbVar, 1));
         kVar.b(new ub(ibVar, wbVar, 0));
         kVar.h();
@@ -684,8 +522,8 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public boolean c1(u1 u1Var, boolean z10) {
-        switch (this.f46182a) {
+    public boolean c0(u1 u1Var, TLRPC.User user) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -694,13 +532,23 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void d1(u1 u1Var) {
-        int i10 = this.f46182a;
+    public void c1(u1 u1Var) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public String d() {
+        return null;
+    }
+
+    @Override
+    public void d0(lh lhVar) {
+        lhVar.run();
     }
 
     @Override
     public boolean e() {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -709,18 +557,18 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public boolean e0(u1 u1Var, TLRPC.User user) {
-        switch (this.f46182a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
+    public void e0(int i10) {
+        int i11 = this.f46007a;
     }
 
     @Override
-    public pv0 e2() {
-        switch (this.f46182a) {
+    public void e1(u1 u1Var) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public sv0 e2() {
+        switch (this.f46007a) {
             case 17:
                 return null;
             default:
@@ -730,7 +578,7 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public boolean f() {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return true;
             default:
@@ -739,18 +587,18 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void f0(jh jhVar) {
-        jhVar.run();
-    }
-
-    @Override
-    public void f1(u1 u1Var) {
-        int i10 = this.f46182a;
+    public boolean f0() {
+        switch (this.f46007a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
     }
 
     @Override
     public String g(u1 u1Var) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return null;
             default:
@@ -759,13 +607,13 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void g0(int i10) {
-        int i11 = this.f46182a;
+    public boolean g0() {
+        return false;
     }
 
     @Override
     public boolean g2(long j3) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -775,70 +623,27 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public Object mo27get() {
-        switch (this.f46182a) {
-            case 12:
-                return new l5.p(Executors.newSingleThreadExecutor());
-            default:
-                ob.a aVar = new ob.a(24);
-                HashMap hashMap = new HashMap();
-                Set set = Collections.EMPTY_SET;
-                if (set != null) {
-                    hashMap.put(i5.d.f12013a, new r5.b(30000L, 86400000L, set));
-                    if (set != null) {
-                        hashMap.put(i5.d.f12015c, new r5.b(1000L, 86400000L, set));
-                        if (set != null) {
-                            Set unmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(r5.c.f47108b)));
-                            if (unmodifiableSet != null) {
-                                hashMap.put(i5.d.f12014b, new r5.b(86400000L, 86400000L, unmodifiableSet));
-                                if (hashMap.keySet().size() >= i5.d.values().length) {
-                                    new HashMap();
-                                    return new r5.a(aVar, hashMap);
-                                }
-                                throw new IllegalStateException("Not all priorities have been configured");
-                            }
-                            throw new NullPointerException("Null flags");
-                        }
-                        throw new NullPointerException("Null flags");
-                    }
-                    throw new NullPointerException("Null flags");
-                }
-                throw new NullPointerException("Null flags");
-        }
+        return new l5.q(Executors.newSingleThreadExecutor());
     }
 
     @Override
-    public n2.p h() {
-        throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean h0() {
-        switch (this.f46182a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
+    public void h0(u1 u1Var, float f7, float f10) {
+        int i10 = this.f46007a;
     }
 
     @Override
     public void h2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
-        int i11 = this.f46182a;
+        int i11 = this.f46007a;
     }
 
     @Override
     public void i(u1 u1Var, bi.f fVar) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public boolean i0() {
-        return false;
+        int i10 = this.f46007a;
     }
 
     @Override
     public boolean i1(int i10, u1 u1Var) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -848,7 +653,7 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public boolean i2(u1 u1Var, TLRPC.TodoItem todoItem) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -858,35 +663,12 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
-        int i13 = this.f46182a;
+        int i13 = this.f46007a;
     }
 
     @Override
-    public void j0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void k() {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void k2(u1 u1Var) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public boolean l(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        if ("secure-playback".equals(str) && "video/avc".equals(str2)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public int l0(u1 u1Var) {
-        switch (this.f46182a) {
+    public int j0(u1 u1Var) {
+        switch (this.f46007a) {
             case 17:
                 return 0;
             default:
@@ -895,44 +677,135 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public h2.b m(byte[] bArr) {
+    public void k() {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void k0(u1 u1Var) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public void k2(u1 u1Var) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public n2.p l() {
         throw new IllegalStateException();
     }
 
     @Override
-    public void m0(u1 u1Var) {
-        int i10 = this.f46182a;
+    public z3.m m(b2.s sVar) {
+        String str = sVar.f3641r;
+        List list = sVar.f3644u;
+        if (str != null) {
+            char c10 = 65535;
+            switch (str.hashCode()) {
+                case -1351681404:
+                    if (str.equals("application/dvbsubs")) {
+                        c10 = 0;
+                        break;
+                    }
+                    break;
+                case -1248334819:
+                    if (str.equals("application/pgs")) {
+                        c10 = 1;
+                        break;
+                    }
+                    break;
+                case -1026075066:
+                    if (str.equals("application/x-mp4-vtt")) {
+                        c10 = 2;
+                        break;
+                    }
+                    break;
+                case -1004728940:
+                    if (str.equals("text/vtt")) {
+                        c10 = 3;
+                        break;
+                    }
+                    break;
+                case 691401887:
+                    if (str.equals("application/x-quicktime-tx3g")) {
+                        c10 = 4;
+                        break;
+                    }
+                    break;
+                case 822864842:
+                    if (str.equals("text/x-ssa")) {
+                        c10 = 5;
+                        break;
+                    }
+                    break;
+                case 1157994102:
+                    if (str.equals("application/vobsub")) {
+                        c10 = 6;
+                        break;
+                    }
+                    break;
+                case 1668750253:
+                    if (str.equals("application/x-subrip")) {
+                        c10 = 7;
+                        break;
+                    }
+                    break;
+                case 1693976202:
+                    if (str.equals("application/ttml+xml")) {
+                        c10 = '\b';
+                        break;
+                    }
+                    break;
+            }
+            switch (c10) {
+                case 0:
+                    return new b4.i(list);
+                case 1:
+                    return new com.google.firebase.messaging.s(2);
+                case 2:
+                    return new a4.l();
+                case 3:
+                    return new pf.b(19);
+                case 4:
+                    return new g4.a(list);
+                case 5:
+                    return new d4.a(list);
+                case 6:
+                    return new com.google.firebase.messaging.s(list);
+                case 7:
+                    return new e4.a();
+                case '\b':
+                    return new f4.e();
+            }
+        }
+        throw new IllegalArgumentException(v.i("Unsupported MIME type: ", str));
     }
 
     @Override
     public void m2(u1 u1Var, long j3) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void n(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
-        int i11 = this.f46182a;
+        int i11 = this.f46007a;
     }
 
     @Override
     public boolean n1(MessageObject messageObject) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
         return c1.a(messageObject);
     }
 
     @Override
     public void o(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public void p() {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public boolean p0() {
-        switch (this.f46182a) {
+    public boolean o0() {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -941,28 +814,51 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public byte[] q() {
-        throw new MediaDrmException("Attempting to open a session using a dummy ExoMediaDrm.");
+    public void p() {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public a3.l q(Context context, String str, y6.c cVar) {
+        a3.l lVar = new a3.l();
+        lVar.f155a = cVar.c(context, str);
+        int i10 = 1;
+        int a2 = cVar.a(context, str, true);
+        lVar.f156b = a2;
+        int i11 = lVar.f155a;
+        if (i11 == 0) {
+            i11 = 0;
+            if (a2 == 0) {
+                i10 = 0;
+                lVar.f157c = i10;
+                return lVar;
+            }
+        }
+        if (a2 < i11) {
+            i10 = -1;
+        }
+        lVar.f157c = i10;
+        return lVar;
     }
 
     @Override
     public void q1() {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void r(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void r0(String str) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public boolean r2(u1 u1Var, TL_iv.PageBlock pageBlock) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return false;
             default:
@@ -972,78 +868,62 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
 
     @Override
     public void s() {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public z3.m s0(b2.s sVar) {
-        throw new IllegalStateException("This SubtitleParser.Factory doesn't support any formats.");
+    public boolean s0(b6 b6Var) {
+        switch (this.f46007a) {
+            case 17:
+                return false;
+            default:
+                return false;
+        }
     }
 
     @Override
     public void s1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void s2(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
     public void t(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public boolean t0(b6 b6Var) {
-        switch (this.f46182a) {
-            case 17:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public Task then(Object obj) {
-        Void r12 = (Void) obj;
-        return Tasks.forResult(Boolean.TRUE);
+    public Object then(Task task) {
+        return null;
     }
 
     @Override
     public void u(u1 u1Var) {
-        int i10 = this.f46182a;
+        int i10 = this.f46007a;
     }
 
     @Override
-    public void v(byte[] bArr, byte[] bArr2) {
+    public void u0(u1 u1Var, float f7, float f10) {
+        int i10 = this.f46007a;
+    }
+
+    @Override
+    public h2.b v(byte[] bArr) {
         throw new IllegalStateException();
     }
 
     @Override
-    public void v0(u1 u1Var, float f7, float f10) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
     public void v1(u1 u1Var, TLRPC.Document document) {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public Object v2() {
-        switch (this.f46182a) {
-            case 8:
-                return new ArrayDeque();
-            default:
-                return new LinkedHashMap();
-        }
+        int i10 = this.f46007a;
     }
 
     @Override
     public String w(long j3) {
-        switch (this.f46182a) {
+        switch (this.f46007a) {
             case 17:
                 return null;
             default:
@@ -1052,15 +932,10 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void w2() {
-        int i10 = this.f46182a;
-    }
-
-    @Override
-    public void x0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
+    public void w0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
         if (i10 >= i11) {
             if (i12 != 1 && i12 != 2) {
-                throw new IllegalArgumentException(hg.c.h(i12, "Illegal use of DownsampleAudioResampler. Channels:"));
+                throw new IllegalArgumentException(hg.c.i(i12, "Illegal use of DownsampleAudioResampler. Channels:"));
             }
             int remaining = shortBuffer.remaining() / i12;
             int ceil = (int) Math.ceil((i11 / i10) * remaining);
@@ -1089,24 +964,26 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void y(wb wbVar, hb hbVar, rg rgVar, dm dmVar) {
-        wbVar.setInOutOffset(wbVar.getMeasuredHeight());
-        dmVar.accept(Float.valueOf(wbVar.getTranslationY()));
-        o1.k kVar = new o1.k(wbVar, wb.IN_OUT_OFFSET_Y, 0.0f);
-        kVar.f17024u.a(0.8f);
-        kVar.f17024u.b(400.0f);
-        kVar.a(new l4(1, wbVar, rgVar));
-        kVar.b(new ub(dmVar, wbVar, 1));
-        kVar.h();
-        hbVar.run();
+    public Object w2() {
+        switch (this.f46007a) {
+            case 8:
+                return new ArrayDeque();
+            default:
+                return new LinkedHashMap();
+        }
     }
 
     @Override
-    public Object y0(u5 u5Var) {
-        switch (this.f46182a) {
+    public byte[] x() {
+        throw new MediaDrmException("Attempting to open a session using a dummy ExoMediaDrm.");
+    }
+
+    @Override
+    public Object x0(u5 u5Var) {
+        switch (this.f46007a) {
             case 14:
                 return new h();
-            case 15:
+            default:
                 g gVar = (g) u5Var.a(g.class);
                 synchronized (androidx.activity.result.c.class) {
                     byte b10 = (byte) (((byte) 1) | 2);
@@ -1124,30 +1001,116 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
                     }
                 }
                 return new ob.a(0);
-            default:
-                return new Object();
         }
     }
 
     @Override
-    public void y2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
-        int i10 = this.f46182a;
+    public void x2() {
+        int i10 = this.f46007a;
     }
 
     @Override
-    public byte[] z(byte[] bArr, byte[] bArr2) {
-        throw new IllegalStateException();
+    public int y(b2.s sVar) {
+        String str = sVar.f3641r;
+        if (str != null) {
+            char c10 = 65535;
+            switch (str.hashCode()) {
+                case -1351681404:
+                    if (str.equals("application/dvbsubs")) {
+                        c10 = 0;
+                        break;
+                    }
+                    break;
+                case -1248334819:
+                    if (str.equals("application/pgs")) {
+                        c10 = 1;
+                        break;
+                    }
+                    break;
+                case -1026075066:
+                    if (str.equals("application/x-mp4-vtt")) {
+                        c10 = 2;
+                        break;
+                    }
+                    break;
+                case -1004728940:
+                    if (str.equals("text/vtt")) {
+                        c10 = 3;
+                        break;
+                    }
+                    break;
+                case 691401887:
+                    if (str.equals("application/x-quicktime-tx3g")) {
+                        c10 = 4;
+                        break;
+                    }
+                    break;
+                case 822864842:
+                    if (str.equals("text/x-ssa")) {
+                        c10 = 5;
+                        break;
+                    }
+                    break;
+                case 1157994102:
+                    if (str.equals("application/vobsub")) {
+                        c10 = 6;
+                        break;
+                    }
+                    break;
+                case 1668750253:
+                    if (str.equals("application/x-subrip")) {
+                        c10 = 7;
+                        break;
+                    }
+                    break;
+                case 1693976202:
+                    if (str.equals("application/ttml+xml")) {
+                        c10 = '\b';
+                        break;
+                    }
+                    break;
+            }
+            switch (c10) {
+                case 0:
+                case 1:
+                case 2:
+                    return 2;
+                case 3:
+                    return 1;
+                case 4:
+                    return 2;
+                case 5:
+                    return 1;
+                case 6:
+                    return 2;
+                case 7:
+                case '\b':
+                    return 1;
+            }
+        }
+        throw new IllegalArgumentException(v.i("Unsupported MIME type: ", str));
     }
 
-    public b() {
-        this.f46182a = 22;
-        new TreeMap(String.CASE_INSENSITIVE_ORDER).clear();
+    @Override
+    public void z0(u1 u1Var, TLRPC.User user, float f7, float f10) {
+        int i10 = this.f46007a;
     }
 
-    private final void I0() {
+    @Override
+    public void z2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+        int i10 = this.f46007a;
     }
 
-    private final void K0() {
+    private final void G3() {
+    }
+
+    private final void H3() {
+    }
+
+    private final void J0() {
+    }
+
+    private final void L0() {
     }
 
     private final void L3() {
@@ -1156,44 +1119,38 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     private final void M3() {
     }
 
+    private final void P3() {
+    }
+
     private final void Q3() {
     }
 
-    private final void R3() {
+    private final void T3() {
     }
 
     private final void U3() {
     }
 
-    private final void V3() {
+    private final void Y2() {
     }
 
-    private final void Y3() {
+    private final void Z2() {
     }
 
-    private final void Z3() {
+    private final void p0() {
     }
 
-    private final void a3() {
+    private final void q0() {
     }
 
-    private final void b3() {
+    private final void t2() {
     }
 
-    private final void n0() {
-    }
-
-    private final void o0() {
-    }
-
-    private final void x2() {
-    }
-
-    private final void z2() {
+    private final void u2() {
     }
 
     @Override
-    public void B0() {
+    public void A0() {
     }
 
     @Override
@@ -1201,13 +1158,17 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
+    public void a() {
+    }
+
+    @Override
     public void release() {
     }
 
-    private final void A3(u1 u1Var) {
+    private final void A1(u1 u1Var) {
     }
 
-    private final void B3(u1 u1Var) {
+    private final void A3(u1 u1Var) {
     }
 
     private final void C1(u1 u1Var) {
@@ -1216,28 +1177,37 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     private final void C3(u1 u1Var) {
     }
 
-    private final void E1(u1 u1Var) {
-    }
-
     private final void E3(u1 u1Var) {
     }
 
-    private final void G3(u1 u1Var) {
+    private final void F3(u1 u1Var) {
     }
 
-    private final void H3(u1 u1Var) {
+    private final void H0(u1 u1Var) {
+    }
+
+    private final void K2(u1 u1Var) {
+    }
+
+    private final void L2(u1 u1Var) {
     }
 
     private final void M0(u1 u1Var) {
     }
 
-    private final void M2(u1 u1Var) {
-    }
-
-    private final void N2(u1 u1Var) {
+    private final void N3(int i10) {
     }
 
     private final void O0(u1 u1Var) {
+    }
+
+    private final void O2(u1 u1Var) {
+    }
+
+    private final void O3(int i10) {
+    }
+
+    private final void P2(u1 u1Var) {
     }
 
     private final void Q2(u1 u1Var) {
@@ -1246,55 +1216,52 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     private final void R2(u1 u1Var) {
     }
 
+    private final void R3(MessageObject messageObject) {
+    }
+
     private final void S2(u1 u1Var) {
     }
 
-    private final void S3(int i10) {
+    private final void S3(MessageObject messageObject) {
     }
 
     private final void T2(u1 u1Var) {
     }
 
-    private final void T3(int i10) {
+    private final void V0(u1 u1Var) {
     }
 
-    private final void U2(u1 u1Var) {
+    private final void W2(u1 u1Var) {
     }
 
-    private final void V2(u1 u1Var) {
+    private final void X2(u1 u1Var) {
     }
 
-    private final void W0(u1 u1Var) {
+    private final void Y0(u1 u1Var) {
     }
 
-    private final void W3(MessageObject messageObject) {
+    private final void d2(u1 u1Var) {
     }
 
-    private final void X3(MessageObject messageObject) {
+    private final void f2(u1 u1Var) {
     }
 
-    private final void Y2(u1 u1Var) {
+    private final void g3(String str) {
     }
 
-    private final void Z0(u1 u1Var) {
+    private final void h3(String str) {
     }
 
-    private final void Z2(u1 u1Var) {
-    }
-
-    private final void i3(String str) {
+    private final void j1(u1 u1Var) {
     }
 
     private final void j2(u1 u1Var) {
     }
 
-    private final void j3(String str) {
-    }
-
     private final void k1(u1 u1Var) {
     }
 
-    private final void l1(u1 u1Var) {
+    private final void l1(MessageObject.TextLayoutBlock textLayoutBlock) {
     }
 
     private final void l2(u1 u1Var) {
@@ -1303,69 +1270,63 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     private final void m1(MessageObject.TextLayoutBlock textLayoutBlock) {
     }
 
-    private final void n2(u1 u1Var) {
+    private final void m3(u1 u1Var) {
     }
 
-    private final void o1(MessageObject.TextLayoutBlock textLayoutBlock) {
+    private final void n3(u1 u1Var) {
     }
 
-    private final void o2(u1 u1Var) {
+    private final void o1(u1 u1Var) {
     }
 
-    private final void o3(u1 u1Var) {
-    }
-
-    private final void p3(u1 u1Var) {
-    }
-
-    private final void q0(u1 u1Var) {
+    private final void q3(u1 u1Var) {
     }
 
     private final void r1(u1 u1Var) {
     }
 
-    private final void s3(u1 u1Var) {
+    private final void r3(u1 u1Var) {
     }
 
-    private final void t1(u1 u1Var) {
+    private final void s3(MessageObject messageObject) {
     }
 
-    private final void t3(u1 u1Var) {
+    private final void t0(u1 u1Var) {
     }
 
-    private final void u0(u1 u1Var) {
+    private final void t3(MessageObject messageObject) {
     }
 
-    private final void u3(MessageObject messageObject) {
+    private final void u3(u1 u1Var) {
     }
 
-    private final void v3(MessageObject messageObject) {
+    private final void v0(u1 u1Var) {
     }
 
-    private final void w0(u1 u1Var) {
+    private final void v3(u1 u1Var) {
     }
 
-    private final void w3(u1 u1Var) {
+    private final void w1(u1 u1Var) {
     }
 
     private final void x1(u1 u1Var) {
     }
 
-    private final void x3(u1 u1Var) {
+    private final void y0(u1 u1Var) {
     }
 
-    private final void y1(u1 u1Var) {
+    private final void y3(u1 u1Var) {
     }
 
-    private final void z0(u1 u1Var) {
-    }
-
-    @Override
-    public void V(l2.f fVar) {
+    private final void z3(u1 u1Var) {
     }
 
     @Override
-    public void a1(Object obj) {
+    public void D(byte[] bArr) {
+    }
+
+    @Override
+    public void Z0(Object obj) {
     }
 
     @Override
@@ -1373,28 +1334,31 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     }
 
     @Override
-    public void x(byte[] bArr) {
+    public void z(y0 y0Var) {
     }
 
-    private final void B1(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+    private final void B3(u1 u1Var, boolean z10) {
     }
 
     private final void D3(u1 u1Var, boolean z10) {
     }
 
-    private final void F3(u1 u1Var, boolean z10) {
+    private final void F1(int i10, u1 u1Var) {
     }
 
-    private final void L1(int i10, u1 u1Var) {
+    private final void G1(int i10, u1 u1Var) {
     }
 
-    private final void O2(u1 u1Var, TLRPC.Document document) {
+    private final void L1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
     }
 
-    private final void P1(int i10, u1 u1Var) {
+    private final void M2(u1 u1Var, TLRPC.Document document) {
     }
 
-    private final void P2(u1 u1Var, TLRPC.Document document) {
+    private final void N2(u1 u1Var, TLRPC.Document document) {
+    }
+
+    private final void P1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
     }
 
     private final void Q0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
@@ -1403,143 +1367,148 @@ public class b implements bg.a, cg.a, df.b, fb.n, wi, n5.b, n2.q, q9.d, vb, l1, 
     private final void T0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
-    private final void d0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    private final void i3(u1 u1Var, long j3) {
     }
 
-    private final void d2(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    private final void j3(u1 u1Var, long j3) {
     }
 
-    private final void f2(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    private final void m0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
-    private final void k0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    private final void n0(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
-    private final void k3(u1 u1Var, long j3) {
+    private final void p2(int i10, u1 u1Var) {
     }
 
-    private final void l3(u1 u1Var, long j3) {
+    private final void q2(int i10, u1 u1Var) {
     }
 
-    private final void t2(int i10, u1 u1Var) {
+    private final void t1(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
     }
 
     private final void u1(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
     }
 
-    private final void u2(int i10, u1 u1Var) {
+    private final void w3(u1 u1Var, bi.f fVar) {
     }
 
-    private final void w1(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom) {
+    private final void x3(u1 u1Var, bi.f fVar) {
     }
 
-    private final void y3(u1 u1Var, bi.f fVar) {
+    private final void y1(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
     private final void z1(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
     }
 
-    private final void z3(u1 u1Var, bi.f fVar) {
-    }
-
     @Override
-    public void d(byte[] bArr, j2.k kVar) {
+    public void h(byte[] bArr, j2.k kVar) {
     }
 
-    private final void B2(u1 u1Var, float f7, float f10) {
+    private final void D1(u1 u1Var, int i10, int i11) {
     }
 
-    private final void F1(u1 u1Var, int i10, int i11) {
+    private final void E1(u1 u1Var, int i10, int i11) {
     }
 
-    private final void F2(u1 u1Var, float f7, float f10) {
+    private final void U2(u1 u1Var, float f7, float f10) {
     }
 
-    private final void G1(u1 u1Var, int i10, int i11) {
+    private final void V2(u1 u1Var, float f7, float f10) {
     }
 
-    private final void W2(u1 u1Var, float f7, float f10) {
+    private final void a3(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
     }
 
-    private final void X2(u1 u1Var, float f7, float f10) {
+    private final void b3(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
     }
 
-    private final void a0(u1 u1Var, float f7, float f10) {
-    }
-
-    private final void c0(u1 u1Var, float f7, float f10) {
-    }
-
-    private final void c3(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-    }
-
-    private final void d3(u1 u1Var, CharacterStyle characterStyle, boolean z10) {
+    private final void g1(u1 u1Var, TLObject tLObject, boolean z10) {
     }
 
     private final void h1(u1 u1Var, TLObject tLObject, boolean z10) {
     }
 
-    private final void j1(u1 u1Var, TLObject tLObject, boolean z10) {
+    private final void i0(u1 u1Var, float f7, float f10) {
     }
 
-    private final void q3(u1 u1Var, float f7, float f10) {
+    private final void l0(u1 u1Var, float f7, float f10) {
     }
 
-    private final void r3(u1 u1Var, float f7, float f10) {
+    private final void o3(u1 u1Var, float f7, float f10) {
     }
 
-    private final void G2(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+    private final void p3(u1 u1Var, float f7, float f10) {
     }
 
-    private final void H2(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
+    private final void v2(u1 u1Var, float f7, float f10) {
     }
 
-    private final void e3(u1 u1Var, TLRPC.User user, float f7, float f10) {
+    private final void y2(u1 u1Var, float f7, float f10) {
     }
 
-    private final void f3(u1 u1Var, TLRPC.User user, float f7, float f10) {
+    private final void A2(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
     }
 
-    private final void g3(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    private final void B2(u1 u1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i10) {
     }
 
-    private final void h3(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
+    private final void c3(u1 u1Var, TLRPC.User user, float f7, float f10) {
     }
 
-    private final void p2(u1 u1Var, float f7, float f10, boolean z10) {
+    private final void d3(u1 u1Var, TLRPC.User user, float f7, float f10) {
     }
 
-    private final void q2(u1 u1Var, float f7, float f10, boolean z10) {
+    private final void e3(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
-    private final void I2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    private final void f3(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
-    private final void J2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
+    private final void n2(u1 u1Var, float f7, float f10, boolean z10) {
     }
 
-    private final void K2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
+    private final void o2(u1 u1Var, float f7, float f10, boolean z10) {
     }
 
-    private final void L2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
+    @Override
+    public void onScrollLimit(int i10, int i11, int i12, boolean z10) {
     }
 
-    private final void m3(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    @Override
+    public void onScrollProgress(int i10, int i11, int i12, int i13) {
     }
 
-    private final void n3(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    private final void D2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 
-    private final void e1(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    private final void H2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 
-    private final void g1(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    private final void I2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
     }
 
-    private final void O3(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+    private final void J2(u1 u1Var, int i10, float f7, float f10, boolean z10) {
     }
 
-    private final void P3(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+    private final void k3(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    }
+
+    private final void l3(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12) {
+    }
+
+    private final void d1(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    }
+
+    private final void f1(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
+    }
+
+    private final void J3(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
+    }
+
+    private final void K3(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
     }
 
     @Override

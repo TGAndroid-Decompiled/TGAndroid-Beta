@@ -1,28 +1,31 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-public final class b7 implements Runnable {
-    public final int f17437a;
-    public final MediaDataController.KeywordResultCallback f17438b;
-    public final ArrayList f17439c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b7 implements RequestDelegate {
+    public final int f17145a;
+    public final int f17146b;
+    public final String f17147c;
     public final String d;
+    public final BaseController f17148e;
 
-    public b7(MediaDataController.KeywordResultCallback keywordResultCallback, ArrayList arrayList, String str, int i10) {
-        this.f17437a = i10;
-        this.f17438b = keywordResultCallback;
-        this.f17439c = arrayList;
-        this.d = str;
+    public b7(BaseController baseController, int i10, String str, String str2, int i11) {
+        this.f17145a = i11;
+        this.f17148e = baseController;
+        this.f17146b = i10;
+        this.f17147c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17437a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17145a) {
             case 0:
-                MediaDataController.M0(this.f17438b, this.f17439c, this.d);
+                ((MediaDataController) this.f17148e).lambda$fetchNewEmojiKeywords$213(this.f17146b, this.f17147c, this.d, tLObject, tL_error);
                 return;
             default:
-                MediaDataController.J3(this.f17438b, this.f17439c, this.d);
+                ((MessagesController) this.f17148e).lambda$checkPromoInfoInternal$168(this.f17146b, this.f17147c, this.d, tLObject, tL_error);
                 return;
         }
     }

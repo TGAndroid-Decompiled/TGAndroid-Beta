@@ -7,29 +7,29 @@ import org.telegram.messenger.AndroidUtilities;
 public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
     public final void a() {
         n2 n2Var = n2.Z;
-        WindowManager.LayoutParams layoutParams = n2Var.f1448c;
+        WindowManager.LayoutParams layoutParams = n2Var.f1446c;
         int n10 = (int) (n2Var.n() * n2Var.M);
         layoutParams.width = n10;
         n2Var.J = n10;
-        WindowManager.LayoutParams layoutParams2 = n2Var.f1448c;
+        WindowManager.LayoutParams layoutParams2 = n2Var.f1446c;
         int m10 = (int) (n2Var.m() * n2Var.M);
         layoutParams2.height = m10;
         n2Var.K = m10;
-        AndroidUtilities.updateViewLayout(n2Var.f1447b, n2Var.d, n2Var.f1448c);
+        AndroidUtilities.updateViewLayout(n2Var.f1445b, n2Var.d, n2Var.f1446c);
     }
 
     @Override
     public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
         float dp;
         n2 n2Var = n2.Z;
-        n2Var.M = w7.o.a(scaleGestureDetector.getScaleFactor() * n2Var.M, 0.6f, n2Var.f1446a);
+        n2Var.M = w7.n.a(scaleGestureDetector.getScaleFactor() * n2Var.M, 0.6f, n2Var.f1444a);
         n2Var.J = (int) (n2Var.n() * n2Var.M);
         n2Var.K = (int) (n2Var.m() * n2Var.M);
         AndroidUtilities.runOnUIThread(new f(this, 3));
         o1.k kVar = n2Var.P;
-        kVar.f17014b = n2Var.N;
-        kVar.f17015c = true;
-        o1.l lVar = kVar.f17024u;
+        kVar.f16680b = n2Var.N;
+        kVar.f16681c = true;
+        o1.l lVar = kVar.f16690u;
         float focusX = scaleGestureDetector.getFocusX();
         int i10 = AndroidUtilities.displaySize.x;
         if (focusX >= i10 / 2.0f) {
@@ -37,17 +37,17 @@ public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
         } else {
             dp = AndroidUtilities.dp(16.0f);
         }
-        lVar.f17031i = dp;
+        lVar.f16697i = dp;
         o1.k kVar2 = n2Var.P;
-        if (!kVar2.f17017f) {
+        if (!kVar2.f16683f) {
             kVar2.h();
         }
         o1.k kVar3 = n2Var.Q;
-        kVar3.f17014b = n2Var.O;
-        kVar3.f17015c = true;
-        kVar3.f17024u.f17031i = w7.o.a(scaleGestureDetector.getFocusY() - (n2Var.K / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
+        kVar3.f16680b = n2Var.O;
+        kVar3.f16681c = true;
+        kVar3.f16690u.f16697i = w7.n.a(scaleGestureDetector.getFocusY() - (n2Var.K / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - n2Var.K) - AndroidUtilities.dp(16.0f));
         o1.k kVar4 = n2Var.Q;
-        if (!kVar4.f17017f) {
+        if (!kVar4.f16683f) {
             kVar4.h();
         }
         return true;
@@ -60,29 +60,29 @@ public final class h2 implements ScaleGestureDetector.OnScaleGestureListener {
             n2Var.E = false;
         }
         n2Var.F = true;
-        n2Var.f1448c.width = (int) (n2Var.n() * n2Var.f1446a);
-        n2Var.f1448c.height = (int) (n2Var.m() * n2Var.f1446a);
-        AndroidUtilities.updateViewLayout(n2Var.f1447b, n2Var.d, n2Var.f1448c);
+        n2Var.f1446c.width = (int) (n2Var.n() * n2Var.f1444a);
+        n2Var.f1446c.height = (int) (n2Var.m() * n2Var.f1444a);
+        AndroidUtilities.updateViewLayout(n2Var.f1445b, n2Var.d, n2Var.f1446c);
         return true;
     }
 
     @Override
     public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
         n2 n2Var = n2.Z;
-        if (!n2Var.P.f17017f && !n2Var.Q.f17017f) {
+        if (!n2Var.P.f16683f && !n2Var.Q.f16683f) {
             a();
             return;
         }
         ArrayList arrayList = new ArrayList();
         g2 g2Var = new g2(this, arrayList, 0);
         o1.k kVar = n2Var.P;
-        if (!kVar.f17017f) {
+        if (!kVar.f16683f) {
             arrayList.add(kVar);
         } else {
             kVar.a(g2Var);
         }
         o1.k kVar2 = n2Var.Q;
-        if (!kVar2.f17017f) {
+        if (!kVar2.f16683f) {
             arrayList.add(kVar2);
         } else {
             kVar2.a(g2Var);

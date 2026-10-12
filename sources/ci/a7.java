@@ -4,27 +4,27 @@ import android.view.TextureView;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 public final class a7 {
-    public TextureView f4721a;
-    public ii.q1 f4722b;
-    public hi.a f4723c;
+    public TextureView f4720a;
+    public ii.q1 f4721b;
+    public hi.a f4722c;
     public boolean d;
-    public int f4724e;
-    public int f4725f;
-    public boolean f4726g;
+    public int f4723e;
+    public int f4724f;
+    public boolean f4725g;
 
     public final void a(TextureView textureView) {
-        TextureView textureView2 = this.f4721a;
+        TextureView textureView2 = this.f4720a;
         if (textureView2 != textureView) {
             if (textureView2 != null) {
                 ViewParent parent = textureView2.getParent();
                 if (parent instanceof ViewGroup) {
-                    ((ViewGroup) parent).removeView(this.f4721a);
+                    ((ViewGroup) parent).removeView(this.f4720a);
                 }
-                this.f4721a = null;
+                this.f4720a = null;
             }
             this.d = false;
-            this.f4721a = textureView;
-            ii.q1 q1Var = this.f4722b;
+            this.f4720a = textureView;
+            ii.q1 q1Var = this.f4721b;
             if (q1Var != null) {
                 q1Var.run(textureView);
             }

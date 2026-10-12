@@ -5,38 +5,38 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class e1 implements TextView.OnEditorActionListener {
-    public final int f25925a;
-    public final Object f25926b;
+    public final int f25534a;
+    public final Object f25535b;
 
     public e1(Object obj, int i10) {
-        this.f25925a = i10;
-        this.f25926b = obj;
+        this.f25534a = i10;
+        this.f25535b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f25925a) {
+        switch (this.f25534a) {
             case 0:
-                org.telegram.ui.ActionBar.l5 l5Var = (org.telegram.ui.ActionBar.l5) this.f25926b;
+                org.telegram.ui.ActionBar.l5 l5Var = (org.telegram.ui.ActionBar.l5) this.f25535b;
                 if (i10 == 6) {
                     l5Var.run();
                     return true;
                 }
                 return false;
             case 1:
-                gl glVar = (gl) this.f25926b;
+                il ilVar = (il) this.f25535b;
                 if (i10 == 6) {
-                    ci.d dVar = glVar.f26797l0;
+                    ci.d dVar = ilVar.f27203l0;
                     if (dVar.W) {
                         dVar.performClick();
                         return true;
                     }
                 } else {
-                    glVar.getClass();
+                    ilVar.getClass();
                 }
                 return false;
             case 2:
-                org.telegram.ui.Cells.h3 h3Var = ((org.telegram.ui.Cells.j3) this.f25926b).f22325b;
+                org.telegram.ui.Cells.h3 h3Var = ((org.telegram.ui.Cells.j3) this.f25535b).f22080b;
                 if (i10 == 5) {
                     h3Var.requestFocus();
                     h3Var.setSelection(h3Var.length());
@@ -44,29 +44,29 @@ public final class e1 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 3:
-                rr rrVar = (rr) this.f25926b;
+                tr trVar = (tr) this.f25535b;
                 if (i10 == 6) {
-                    rrVar.run();
+                    trVar.run();
                     return true;
                 }
                 return false;
             case 4:
-                te0 te0Var = (te0) this.f25926b;
+                xe0 xe0Var = (xe0) this.f25535b;
                 if (i10 == 6) {
-                    te0Var.m(false);
+                    xe0Var.m(false);
                     return true;
                 }
-                te0Var.getClass();
+                xe0Var.getClass();
                 return false;
             case 5:
-                s4 s4Var = (s4) this.f25926b;
+                s4 s4Var = (s4) this.f25535b;
                 if (i10 == 6) {
-                    s4Var.f24634b.f33655a.callOnClick();
+                    s4Var.f26145b.f25732a.callOnClick();
                     return true;
                 }
                 return false;
             case 6:
-                ci.g2 g2Var = ((do0) this.f25926b).f25855e;
+                ci.g2 g2Var = ((io0) this.f25535b).f27250e;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
                         g2Var.hideActionMode();
@@ -77,44 +77,44 @@ public final class e1 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 7:
-                nr0 nr0Var = (nr0) this.f25926b;
+                sr0 sr0Var = (sr0) this.f25535b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(nr0Var.f29265y0.f31038r);
+                        AndroidUtilities.hideKeyboard(sr0Var.f30663y0.f31362r);
                         return false;
                     }
                     return false;
                 }
                 return false;
             case 8:
-                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f25926b;
+                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f25535b;
                 if (i10 == 5) {
-                    alertDialog$Builder.f20404a.d(-1).callOnClick();
+                    alertDialog$Builder.f20141a.d(-1).callOnClick();
                     return true;
                 }
                 return false;
             case 9:
-                org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) this.f25926b;
+                org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) this.f25535b;
                 if (i10 == 6) {
                     a2Var.d(-1).callOnClick();
                     return true;
                 }
                 return false;
             case 10:
-                w21 w21Var = (w21) this.f25926b;
+                b31 b31Var = (b31) this.f25535b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(w21Var.f32614b);
+                        AndroidUtilities.hideKeyboard(b31Var.f24563b);
                         return false;
                     }
                     return false;
                 }
                 return false;
             default:
-                t71 t71Var = (t71) this.f25926b;
+                x71 x71Var = (x71) this.f25535b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(t71Var.J);
+                        AndroidUtilities.hideKeyboard(x71Var.J);
                         return false;
                     }
                     return false;

@@ -1,18 +1,12 @@
 package w3;
+public final class g {
+    public final long f50002a;
+    public final boolean f50003b;
+    public final int f50004c;
 
-import e2.v;
-public final class g implements d9.e, f2.t {
-    public final j f49895a;
-
-    @Override
-    public Object apply(Object obj) {
-        q qVar = (q) obj;
-        this.f49895a.getClass();
-        return qVar;
-    }
-
-    @Override
-    public void b(long j3, v vVar) {
-        c3.b.d(j3, vVar, this.f49895a.K);
+    public g(int i10, long j3, boolean z10) {
+        this.f50002a = j3;
+        this.f50003b = z10;
+        this.f50004c = i10;
     }
 }

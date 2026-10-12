@@ -1,57 +1,87 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class h80 implements TextWatcher {
-    public final i80 f38341a;
+import org.telegram.messenger.Utilities;
+public final class h80 implements Runnable {
+    public final int f38290a;
+    public final i80 f38291b;
+    public final String f38292c;
 
-    public h80(i80 i80Var) {
-        this.f38341a = i80Var;
+    public h80(i80 i80Var, String str, int i10) {
+        this.f38290a = i10;
+        this.f38291b = i80Var;
+        this.f38292c = str;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        k80 k80Var = this.f38341a.f38641f;
-        if (k80Var.d.d.length() != 0) {
-            k80Var.E = true;
-            k80Var.f39266y = true;
-            g80 g80Var = k80Var.f39263s;
-            if (!g80Var.h) {
-                g80Var.h = true;
-                g80Var.l();
-            }
-            k80Var.f39263s.E(k80Var.d.d.toString());
-            k80Var.h.setFastScrollVisible(false);
-            k80Var.h.setVerticalScrollBarEnabled(true);
-            k80Var.f39262r.e(true, true);
-            k80Var.f39262r.setStickerType(1);
-            k80Var.f39262r.d.setText(LocaleController.getString(R.string.NoResult));
-            k80Var.f39262r.f25123e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-            return;
+    public final void run() {
+        int i10;
+        switch (this.f38290a) {
+            case 0:
+                Utilities.searchQueue.postRunnable(new h80(this.f38291b, this.f38292c, 1));
+                return;
+            default:
+                i80 i80Var = this.f38291b;
+                String str = this.f38292c;
+                j80 j80Var = i80Var.f38800b;
+                String lowerCase = str.trim().toLowerCase();
+                if (lowerCase.isEmpty()) {
+                    ArrayList arrayList = new ArrayList();
+                    ArrayList arrayList2 = new ArrayList();
+                    j80Var.getClass();
+                    AndroidUtilities.runOnUIThread(new yq(j80Var, arrayList, arrayList2, 12));
+                    return;
+                }
+                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+                if (lowerCase.equals(translitString) || translitString.isEmpty()) {
+                    translitString = null;
+                }
+                int i11 = 0;
+                if (translitString != null) {
+                    i10 = 1;
+                } else {
+                    i10 = 0;
+                }
+                int i12 = i10 + 1;
+                String[] strArr = new String[i12];
+                strArr[0] = lowerCase;
+                if (translitString != null) {
+                    strArr[1] = translitString;
+                }
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                int i13 = 0;
+                while (i13 < j80Var.f39150n.f40323w.size()) {
+                    ContactsController.Contact contact = (ContactsController.Contact) j80Var.f39150n.f40323w.get(i13);
+                    String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
+                    String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
+                    if (lowerCase2.equals(translitString2)) {
+                        translitString2 = null;
+                    }
+                    int i14 = i11;
+                    int i15 = i14;
+                    while (true) {
+                        if (i14 < i12) {
+                            String str2 = strArr[i14];
+                            if (lowerCase2.startsWith(str2) || org.telegram.messenger.v0.w(" ", str2, lowerCase2) || (translitString2 != null && (translitString2.startsWith(str2) || org.telegram.messenger.v0.w(" ", str2, translitString2)))) {
+                                i15 = 1;
+                            }
+                            if (i15 != 0) {
+                                arrayList4.add(AndroidUtilities.generateSearchName(contact.first_name, contact.last_name, str2));
+                                arrayList3.add(contact);
+                            } else {
+                                i14++;
+                            }
+                        }
+                    }
+                    i13++;
+                    i11 = 0;
+                }
+                AndroidUtilities.runOnUIThread(new yq(j80Var, arrayList3, arrayList4, 12));
+                return;
         }
-        k80Var.E = false;
-        k80Var.f39266y = false;
-        g80 g80Var2 = k80Var.f39263s;
-        if (g80Var2.h) {
-            g80Var2.h = false;
-            g80Var2.l();
-        }
-        k80Var.f39263s.E(null);
-        k80Var.h.setFastScrollVisible(true);
-        k80Var.h.setVerticalScrollBarEnabled(false);
-        k80Var.f39262r.e(false, true);
-        k80Var.f39262r.setStickerType(0);
-        k80Var.f39262r.d.setText(LocaleController.getString(R.string.NoContacts));
-        k80Var.f39262r.f25123e.setText("");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

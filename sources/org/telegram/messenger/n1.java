@@ -1,58 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class n1 implements Runnable {
-    public final int f18617a;
-    public final ContactsController f18618b;
-    public final ArrayList f18619c;
-    public final HashMap d;
-    public final HashMap f18620e;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n1 implements RequestDelegate {
+    public final int f18335a;
+    public final ContactsController f18336b;
 
-    public n1(ArrayList arrayList, HashMap hashMap, HashMap hashMap2, ContactsController contactsController) {
-        this.f18617a = 1;
-        this.f18618b = contactsController;
-        this.f18619c = arrayList;
-        this.d = hashMap;
-        this.f18620e = hashMap2;
+    public n1(ContactsController contactsController, int i10) {
+        this.f18335a = i10;
+        this.f18336b = contactsController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18617a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18335a) {
             case 0:
-                ArrayList arrayList = this.f18619c;
-                HashMap hashMap = this.f18620e;
-                this.f18618b.lambda$performSyncPhoneBook$15(this.d, arrayList, hashMap);
+                this.f18336b.lambda$checkInviteText$3(tLObject, tL_error);
                 return;
             case 1:
-                HashMap hashMap2 = this.d;
-                HashMap hashMap3 = this.f18620e;
-                this.f18618b.lambda$mergePhonebookAndTelegramContacts$40(this.f18619c, hashMap2, hashMap3);
-                return;
-            case 2:
-                ArrayList arrayList2 = this.f18619c;
-                HashMap hashMap4 = this.f18620e;
-                this.f18618b.lambda$performSyncPhoneBook$21(this.d, arrayList2, hashMap4);
-                return;
-            case 3:
-                ArrayList arrayList3 = this.f18619c;
-                HashMap hashMap5 = this.f18620e;
-                this.f18618b.lambda$performSyncPhoneBook$17(this.d, arrayList3, hashMap5);
+                this.f18336b.lambda$loadGlobalPrivacySetting$61(tLObject, tL_error);
                 return;
             default:
-                ArrayList arrayList4 = this.f18619c;
-                HashMap hashMap6 = this.f18620e;
-                this.f18618b.lambda$performSyncPhoneBook$23(this.d, arrayList4, hashMap6);
+                this.f18336b.lambda$loadPrivacySettings$63(tLObject, tL_error);
                 return;
         }
-    }
-
-    public n1(ContactsController contactsController, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, int i10) {
-        this.f18617a = i10;
-        this.f18618b = contactsController;
-        this.d = hashMap;
-        this.f18619c = arrayList;
-        this.f18620e = hashMap2;
     }
 }

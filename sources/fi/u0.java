@@ -16,7 +16,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.zc;
 public abstract class u0 {
     public static SpannableStringBuilder a(MessageObject messageObject, String str, String str2, boolean z10, boolean z11) {
         boolean z12;
@@ -130,7 +130,7 @@ public abstract class u0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (DialogObject.getPeerDialogId(communityPeer2.peer) == j3) {
                     if (user != null) {
-                        dialog = MessagesController.getInstance(i10).getDialog(user.f20215id);
+                        dialog = MessagesController.getInstance(i10).getDialog(user.f19949id);
                     }
                     return c(communityPeer2, chat, user, dialog);
                 }
@@ -186,7 +186,7 @@ public abstract class u0 {
         });
     }
 
-    public static void f(ad adVar, int i10, boolean z10) {
+    public static void f(zc zcVar, int i10, boolean z10) {
         int i11;
         int i12;
         String string;
@@ -213,6 +213,6 @@ public abstract class u0 {
         } else {
             string = LocaleController.getString(R.string.CommunityCommunityPending);
         }
-        adVar.G(i11, i12, string).j();
+        zcVar.G(i11, i12, string).j();
     }
 }

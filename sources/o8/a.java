@@ -12,21 +12,21 @@ import android.util.Log;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.q3;
+import m.r3;
 import n6.m;
 import n6.v;
 public final class a extends n6.g implements com.google.android.gms.common.api.c {
     public final boolean U;
-    public final q3 V;
+    public final r3 V;
     public final Bundle W;
     public final Integer X;
 
-    public a(Context context, Looper looper, q3 q3Var, Bundle bundle, k kVar, l lVar) {
-        super(context, looper, 44, q3Var, kVar, lVar, 0);
+    public a(Context context, Looper looper, r3 r3Var, Bundle bundle, k kVar, l lVar) {
+        super(context, looper, 44, r3Var, kVar, lVar, 0);
         this.U = true;
-        this.V = q3Var;
+        this.V = r3Var;
         this.W = bundle;
-        this.X = (Integer) q3Var.h;
+        this.X = (Integer) r3Var.h;
     }
 
     public final void G() {
@@ -39,7 +39,7 @@ public final class a extends n6.g implements com.google.android.gms.common.api.c
             this.V.getClass();
             Account account = new Account("<<default account>>", "com.google");
             if ("<<default account>>".equals(account.name)) {
-                googleSignInAccount = a6.b.a(this.f16736n).b();
+                googleSignInAccount = a6.b.a(this.f16403n).b();
             } else {
                 googleSignInAccount = null;
             }
@@ -86,11 +86,11 @@ public final class a extends n6.g implements com.google.android.gms.common.api.c
 
     @Override
     public final Bundle t() {
-        q3 q3Var = this.V;
-        boolean equals = this.f16736n.getPackageName().equals((String) q3Var.d);
+        r3 r3Var = this.V;
+        boolean equals = this.f16403n.getPackageName().equals((String) r3Var.d);
         Bundle bundle = this.W;
         if (!equals) {
-            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) q3Var.d);
+            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) r3Var.d);
         }
         return bundle;
     }

@@ -34,9 +34,9 @@ public class NotificationsSettingsFacade {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         NotificationsController notificationsController = NotificationsController.getInstance(this.currentAccount);
-        int c10 = q.c("notify2_", sharedPrefKey, getPreferences(), -1);
+        int c10 = v0.c("notify2_", sharedPrefKey, getPreferences(), -1);
         boolean z11 = true;
-        int c11 = q.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
+        int c11 = v0.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
         SharedPreferences.Editor edit = getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
             edit.putBoolean(sc.v.i("silent_", sharedPrefKey), peerNotifySettings.silent);
@@ -123,7 +123,7 @@ public class NotificationsSettingsFacade {
         applySoundSettings(peerNotifySettings.android_sound, edit, j3, j10, 0, false);
         edit.apply();
         if (z11) {
-            AndroidUtilities.runOnUIThread(new gh(this, 0));
+            AndroidUtilities.runOnUIThread(new jh(this, 0));
         }
     }
 
@@ -131,7 +131,7 @@ public class NotificationsSettingsFacade {
         if (peerNotifySettings == null) {
             return;
         }
-        Utilities.globalQueue.postRunnable(new a3.g0(this, j3, j10, peerNotifySettings, 10));
+        Utilities.globalQueue.postRunnable(new a3.g0(this, j3, j10, peerNotifySettings, 9));
     }
 
     public void applySoundSettings(org.telegram.tgnet.TLRPC.NotificationSound r19, android.content.SharedPreferences.Editor r20, long r21, long r23, int r25, boolean r26) {

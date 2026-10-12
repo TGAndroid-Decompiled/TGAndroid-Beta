@@ -1,198 +1,118 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class ij implements org.telegram.ui.Components.gm0 {
-    public final zn f38731a;
+import org.telegram.messenger.SharedConfig;
+public final class ij extends AnimatorListenerAdapter {
+    public final int f38923a = 1;
+    public final boolean f38924b;
+    public int f38925c;
+    public final Object d;
+    public final NotificationCenter.NotificationCenterDelegate f38926e;
 
-    public ij(zn znVar) {
-        this.f38731a = znVar;
+    public ij(org.telegram.ui.Components.hw0 hw0Var, boolean z10, int i10, org.telegram.ui.Components.av0 av0Var) {
+        this.f38926e = hw0Var;
+        this.f38924b = z10;
+        this.f38925c = i10;
+        this.d = av0Var;
     }
 
     @Override
-    public final boolean Y0(View view) {
-        String doubleTapReaction;
-        TLRPC.TL_availableReaction tL_availableReaction;
-        boolean z10;
-        MessageObject messageObject;
+    public final void onAnimationEnd(Animator animator) {
         org.telegram.ui.ActionBar.k kVar;
-        TLRPC.ChatFull chatFull;
-        zn znVar = this.f38731a;
-        if (!znVar.E9() && ((tL_availableReaction = znVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = znVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
-            if (znVar.T5 >= 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (!z10 && (chatFull = znVar.Z7) != null) {
-                if (tL_availableReaction != null) {
-                    doubleTapReaction = tL_availableReaction.reaction;
+        View m10;
+        int i10;
+        s4.i0 adapter;
+        switch (this.f38923a) {
+            case 0:
+                eo eoVar = (eo) this.f38926e;
+                eoVar.O5 = true;
+                ((org.telegram.ui.ActionBar.m2) eoVar).fragmentBeginToShow = true;
+                eoVar.V9 = null;
+                if (this.f38924b) {
+                    eoVar.f37324ka = false;
                 }
-                z10 = ChatObject.reactionIsAvailable(chatFull, doubleTapReaction);
-            }
-            if (z10) {
-                if (view instanceof org.telegram.ui.Cells.u1) {
-                    messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();
-                } else if (view instanceof org.telegram.ui.Cells.w0) {
-                    messageObject = ((org.telegram.ui.Cells.w0) view).getMessageObject();
-                }
-                if (messageObject != null && !messageObject.isDateObject && !messageObject.isSending() && messageObject.canSetReaction() && !messageObject.isEditing()) {
-                    kVar = ((org.telegram.ui.ActionBar.m2) znVar).actionBar;
-                    if (!kVar.t() && !znVar.v() && !znVar.c() && !messageObject.isSponsored()) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(float f7, float f10, int i10, View view) {
-        boolean z10;
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.Cells.u1 u1Var;
-        MessageObject messageObject;
-        MessageObject messageObject2;
-        int i11;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        zn znVar = this.f38731a;
-        z10 = ((org.telegram.ui.ActionBar.m2) znVar).inPreviewMode;
-        if (!z10) {
-            znVar.D4 = true;
-            boolean z11 = view instanceof org.telegram.ui.Cells.w0;
-            if (z11 && (messageObject2 = ((org.telegram.ui.Cells.w0) view).getMessageObject()) != null) {
-                TLRPC.MessageAction messageAction = messageObject2.messageOwner.action;
-                if (messageAction instanceof TLRPC.TL_messageActionWalletTonConnectRequest) {
-                    TLRPC.TL_messageActionWalletTonConnectRequest tL_messageActionWalletTonConnectRequest = (TLRPC.TL_messageActionWalletTonConnectRequest) messageAction;
-                    if (tL_messageActionWalletTonConnectRequest.expires > znVar.getConnectionsManager().getCurrentTime() && !messageObject2.isOut() && messageObject2.getDialogId() == 777000) {
-                        Activity parentActivity = znVar.getParentActivity();
-                        i11 = ((org.telegram.ui.ActionBar.m2) znVar).currentAccount;
-                        long j3 = tL_messageActionWalletTonConnectRequest.session_id;
-                        int id2 = messageObject2.getId();
-                        d6Var = ((org.telegram.ui.ActionBar.m2) znVar).resourceProvider;
-                        org.telegram.ui.Wallet.f2.o(parentActivity, i11, j3, id2, d6Var, null);
-                        return;
-                    }
-                    return;
-                }
-            }
-            boolean z12 = false;
-            if (z11) {
-                org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
-                if (w0Var.getMessageObject().isDateObject) {
-                    if (!znVar.Pa) {
-                        Bundle bundle = new Bundle();
-                        int i12 = w0Var.getMessageObject().messageOwner.date;
-                        bundle.putLong("dialog_id", znVar.T5);
-                        bundle.putLong("topic_id", znVar.d());
-                        bundle.putInt("type", 0);
-                        f8 f8Var = new f8(0, i12, bundle);
-                        f8Var.N = znVar;
-                        znVar.presentFragment(f8Var);
-                        return;
-                    }
-                    return;
-                }
-            }
-            if (z11) {
-                org.telegram.ui.Cells.w0 w0Var2 = (org.telegram.ui.Cells.w0) view;
-                if (w0Var2.getMessageObject() != null && (w0Var2.getMessageObject().messageOwner.action instanceof TLRPC.TL_messageActionBoostApply)) {
-                    znVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(znVar.T5));
-                    return;
-                }
-            }
-            if (z11) {
-                org.telegram.ui.Cells.w0 w0Var3 = (org.telegram.ui.Cells.w0) view;
-                if (w0Var3.getMessageObject() != null && (w0Var3.getMessageObject().messageOwner.action instanceof TLRPC.TL_messageActionSetSameChatWallPaper)) {
-                    AndroidUtilities.runOnUIThread(new ai.p8(this, w0Var3.getMessageObject().getReplyMsgId(), 21), 16L);
-                    return;
-                }
-            }
-            kVar = ((org.telegram.ui.ActionBar.m2) znVar).actionBar;
-            if (!kVar.t() && !znVar.F9()) {
-                if ((view instanceof org.telegram.ui.Cells.u1) && (messageObject = (u1Var = (org.telegram.ui.Cells.u1) view).getMessageObject()) != null && messageObject.type == 27) {
-                    messageObject.toggleChannelRecommendations();
-                    messageObject.forceUpdate = true;
-                    u1Var.t2();
-                    view.requestLayout();
-                    if (i10 >= 0) {
-                        znVar.A0.m(i10);
-                        return;
-                    }
-                    return;
-                }
-                znVar.L7(view, true, false, f7, f10, true, false, false);
+                kVar = ((org.telegram.ui.ActionBar.m2) eoVar).actionBar;
+                kVar.invalidate();
+                eoVar.X0.invalidate();
+                AndroidUtilities.runOnUIThread(new gj(this, 1), 32L);
+                ((Runnable) this.d).run();
                 return;
-            }
-            if (view instanceof org.telegram.ui.Cells.u1) {
-                org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
-                if (znVar.f44770c9.z(u1Var2.getMessageObject())) {
-                    return;
+            default:
+                int i11 = this.f38925c;
+                org.telegram.ui.Components.hw0 hw0Var = (org.telegram.ui.Components.hw0) this.f38926e;
+                int[] iArr = hw0Var.f26951m1;
+                org.telegram.ui.Components.av0[] av0VarArr = hw0Var.f26948k0;
+                hw0Var.f26956o1 = false;
+                boolean z10 = this.f38924b;
+                if (z10) {
+                    int i12 = hw0Var.f26960q1;
+                    iArr[i11] = i12;
+                    if (i11 == 0) {
+                        SharedConfig.setMediaColumnsCount(i12);
+                    } else if (hw0Var.c0(((org.telegram.ui.Components.av0) this.d).F) >= 5) {
+                        SharedConfig.setStoriesColumnsCount(hw0Var.f26960q1);
+                    }
                 }
-                z12 = !u1Var2.i3(f7);
-            }
-            zn.c2(znVar, view, z12, f7, f10);
-        }
-    }
-
-    @Override
-    public final void n0(View view, float f7, float f10) {
-        MessageObject messageObject;
-        TLRPC.ChatFull chatFull;
-        TLRPC.ChatFull chatFull2;
-        zn znVar = this.f38731a;
-        if (znVar.getParentActivity() != null && !znVar.v() && !znVar.c() && !znVar.isInPreviewMode() && !znVar.E9()) {
-            if (view instanceof org.telegram.ui.Cells.u1) {
-                messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();
-            } else if (view instanceof org.telegram.ui.Cells.w0) {
-                messageObject = ((org.telegram.ui.Cells.w0) view).getMessageObject();
-                if (messageObject.isDateObject) {
-                    return;
-                }
-            } else {
-                return;
-            }
-            MessageObject messageObject2 = messageObject;
-            if (!messageObject2.isSecret() && messageObject2.canSetReaction() && !messageObject2.isExpiredStory() && messageObject2.type != 27) {
-                TLRPC.Chat chat = znVar.f44786e;
-                if (chat == null || ChatObject.isChannelAndNotMegaGroup(chat) || ChatObject.canUserDoAction(znVar.f44786e, 26)) {
-                    boolean z10 = false;
-                    zg.j0.b(false);
-                    String doubleTapReaction = znVar.getMediaDataController().getDoubleTapReaction();
-                    if (doubleTapReaction.startsWith("animated_")) {
-                        if (znVar.T5 >= 0) {
-                            z10 = true;
-                        }
-                        if (!z10 && (chatFull2 = znVar.Z7) != null) {
-                            z10 = ChatObject.reactionIsAvailable(chatFull2, doubleTapReaction);
+                for (int i13 = 0; i13 < av0VarArr.length; i13++) {
+                    org.telegram.ui.Components.av0 av0Var = av0VarArr[i13];
+                    if (av0Var != null && av0Var.h != null && (((i10 = av0Var.F) == 0 || org.telegram.ui.Components.hw0.p0(i10)) && (adapter = av0VarArr[i13].h.getAdapter()) != null)) {
+                        int h = adapter.h();
+                        if (i13 == 0) {
+                            hw0Var.f26968t1[0].g(false);
                         }
                         if (z10) {
-                            znVar.eb(view, messageObject2, null, null, f7, f10, zg.n0.b(doubleTapReaction), true, false, false, false);
-                            return;
+                            av0VarArr[i13].f24503x.y1(iArr[i11]);
+                            av0VarArr[i13].h.a0();
+                            if (adapter.h() == h) {
+                                AndroidUtilities.updateVisibleRows(av0VarArr[i13].h);
+                            } else {
+                                adapter.l();
+                            }
                         }
-                        return;
-                    }
-                    TLRPC.TL_availableReaction tL_availableReaction = znVar.getMediaDataController().getReactionsMap().get(doubleTapReaction);
-                    if (tL_availableReaction != null && !messageObject2.isSponsored()) {
-                        if (znVar.T5 >= 0) {
-                            z10 = true;
-                        }
-                        if (!z10 && (chatFull = znVar.Z7) != null) {
-                            z10 = ChatObject.reactionIsAvailable(chatFull, tL_availableReaction.reaction);
-                        }
-                        if (z10) {
-                            znVar.eb(view, messageObject2, null, null, f7, f10, zg.n0.c(tL_availableReaction), true, false, false, false);
-                        }
+                        av0VarArr[i13].f24500r.setVisibility(8);
                     }
                 }
-            }
+                if (hw0Var.f26964s >= 0) {
+                    for (int i14 = 0; i14 < av0VarArr.length; i14++) {
+                        org.telegram.ui.Components.av0 av0Var2 = av0VarArr[i14];
+                        if (av0Var2.F == hw0Var.f26958p1) {
+                            if (z10 && (m10 = av0Var2.f24501s.m(hw0Var.f26964s)) != null) {
+                                hw0Var.v = m10.getTop();
+                            }
+                            org.telegram.ui.Components.av0 av0Var3 = av0VarArr[i14];
+                            av0Var3.f24503x.h1(hw0Var.f26964s, (-av0Var3.h.getPaddingTop()) + hw0Var.v);
+                        }
+                    }
+                } else {
+                    hw0Var.X0();
+                }
+                super.onAnimationEnd(animator);
+                return;
         }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        int i10;
+        switch (this.f38923a) {
+            case 0:
+                super.onAnimationStart(animator);
+                i10 = ((org.telegram.ui.ActionBar.m2) ((eo) this.f38926e)).currentAccount;
+                this.f38925c = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f38925c, null);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
+    }
+
+    public ij(eo eoVar, boolean z10, Runnable runnable) {
+        this.f38926e = eoVar;
+        this.f38924b = z10;
+        this.d = runnable;
     }
 }

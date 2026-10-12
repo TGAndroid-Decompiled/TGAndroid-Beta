@@ -4,53 +4,50 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.tgnet.TLRPC;
 public final class w0 extends AnimatorListenerAdapter {
-    public final h4 f43196a;
+    public final i4 f43017a;
 
-    public w0(h4 h4Var) {
-        this.f43196a = h4Var;
+    public w0(i4 i4Var) {
+        this.f43017a = i4Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        h4 h4Var = this.f43196a;
-        u3 u3Var = h4Var.K;
-        if (h4Var.f38305f0.f21779e) {
-            h4Var.f38319u0[0].setBackgroundDrawable(null);
-            l3[] l3VarArr = h4Var.f38319u0;
-            l3 l3Var = l3VarArr[1];
-            l3VarArr[1] = l3VarArr[0];
-            l3VarArr[0] = l3Var;
-            h4Var.f38307h0.i();
-            h4Var.Z0.a(h4Var.f38319u0[0].getBackgroundColor(), true);
-            h4Var.f38300a1.a(h4Var.f38319u0[1].getBackgroundColor(), true);
-            if (u3Var != null) {
-                u3Var.m();
+        i4 i4Var = this.f43017a;
+        if (i4Var.f38647f0.f21518f) {
+            i4Var.f38661u0[0].setBackgroundDrawable(null);
+            m3[] m3VarArr = i4Var.f38661u0;
+            m3 m3Var = m3VarArr[1];
+            m3VarArr[1] = m3VarArr[0];
+            m3VarArr[0] = m3Var;
+            i4Var.f38649h0.i();
+            i4Var.Z0.a(i4Var.f38661u0[0].getBackgroundColor(), true);
+            i4Var.f38642a1.a(i4Var.f38661u0[1].getBackgroundColor(), true);
+            v3 v3Var = i4Var.K;
+            if (v3Var != null) {
+                v3Var.m();
             }
-            Object x10 = hg.c.x(1, h4Var.f38303d0);
-            h4Var.O0.S(h4Var.f38319u0[0].f39530b);
-            org.telegram.ui.Cells.o9 o9Var = h4Var.O0;
-            o9Var.f22647z0 = h4Var.f38319u0[0].d;
+            Object A = hg.c.A(1, i4Var.f38645d0);
+            i4Var.O0.S(i4Var.f38661u0[0].f39892b);
+            org.telegram.ui.Cells.o9 o9Var = i4Var.O0;
+            o9Var.f22382z0 = i4Var.f38661u0[0].d;
             o9Var.f(true);
-            h4Var.i0(false);
-            h4Var.f0();
-            h4Var.f38319u0[1].b();
-            h4Var.f38319u0[1].setVisibility(8);
-            if (x10 instanceof y2) {
-                ((y2) x10).a();
+            i4Var.i0(false);
+            i4Var.f0();
+            i4Var.f38661u0[1].b();
+            i4Var.f38661u0[1].setVisibility(8);
+            if (A instanceof z2) {
+                ((z2) A).a();
             }
-            if (x10 instanceof TLRPC.WebPage) {
-                org.telegram.ui.web.i2.o((TLRPC.WebPage) x10);
+            if (A instanceof TLRPC.WebPage) {
+                org.telegram.ui.web.h2.o((TLRPC.WebPage) A);
             }
-        } else if (u3Var != null) {
-            u3Var.release();
-            h4Var.s();
         } else {
-            h4Var.U();
-            h4Var.M();
+            i4Var.U();
+            i4Var.M();
         }
-        ArticleViewer$WindowView articleViewer$WindowView = h4Var.f38305f0;
-        articleViewer$WindowView.f21779e = false;
+        ArticleViewer$WindowView articleViewer$WindowView = i4Var.f38647f0;
+        articleViewer$WindowView.f21518f = false;
         articleViewer$WindowView.d = false;
-        h4Var.T0 = false;
+        i4Var.T0 = false;
     }
 }

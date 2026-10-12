@@ -41,33 +41,33 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
     public s3 S;
     public MessageObject T;
     public TLRPC.Document U;
-    public final int f12255n;
-    public final org.telegram.ui.ActionBar.d6 f12256r;
-    public final Paint f12257s;
+    public final int f12254n;
+    public final org.telegram.ui.ActionBar.c6 f12255r;
+    public final Paint f12256s;
     public final Paint v;
-    public final TextPaint f12258w;
-    public final TextPaint f12259x;
-    public final RadialProgress2 f12260y;
+    public final TextPaint f12257w;
+    public final TextPaint f12258x;
+    public final RadialProgress2 f12259y;
 
-    public a1(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+    public a1(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f12257s = new Paint(1);
+        this.f12256s = new Paint(1);
         this.v = new Paint(1);
-        this.f12258w = new TextPaint(1);
-        this.f12259x = new TextPaint(1);
+        this.f12257w = new TextPaint(1);
+        this.f12258x = new TextPaint(1);
         int dp = AndroidUtilities.dp(10.0f);
         this.H = dp;
         int dp2 = AndroidUtilities.dp(44.0f);
         this.I = dp2;
         this.J = AndroidUtilities.dp(16.0f);
         this.K = AndroidUtilities.dp(16.0f);
-        this.f12255n = i10;
-        this.f12256r = d6Var;
+        this.f12254n = i10;
+        this.f12255r = c6Var;
         setWillNotDraw(false);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
         this.G = DownloadController.getInstance(i10).generateObserverTag();
-        RadialProgress2 radialProgress2 = new RadialProgress2(this, d6Var);
-        this.f12260y = radialProgress2;
+        RadialProgress2 radialProgress2 = new RadialProgress2(this, c6Var);
+        this.f12259y = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i11 = this.J;
         radialProgress2.q(i11, dp, i11 + dp2, dp2 + dp);
@@ -75,9 +75,9 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         this.E = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        l0 l0Var = new l0(context, d6Var, new a4.l(this, 22));
+        l0 l0Var = new l0(context, c6Var, new a4.l(this, 22));
         this.F = l0Var;
-        addView(l0Var.f12545a, w7.x5.e(-2, -2, 51));
+        addView(l0Var.f12543a, w7.w5.e(-2, -2, 51));
         e();
     }
 
@@ -99,7 +99,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
 
     @Override
     public final void e() {
-        this.f12257s.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21145uf, this.f12256r));
+        this.f12256s.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20883uf, this.f12255r));
         l0 l0Var = this.F;
         if (l0Var != null) {
             l0Var.a();
@@ -126,7 +126,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         }
         int i13 = this.J;
         int i14 = this.I;
-        this.f12260y.q(i13, i11, i13 + i14, i14 + i11);
+        this.f12259y.q(i13, i11, i13 + i14, i14 + i11);
         requestLayout();
     }
 
@@ -137,7 +137,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
 
     @Override
     public i1 getCaptionEditText() {
-        return this.F.f12545a;
+        return this.F.f12543a;
     }
 
     public int[] getColorKeys() {
@@ -151,7 +151,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
 
     @Override
     public a getRow() {
-        return this.f12250a;
+        return this.f12249a;
     }
 
     public final void h(TLRPC.Document document) {
@@ -165,10 +165,10 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         MessageObject messageObject;
         String str3;
         u uVar;
-        a aVar = this.f12250a;
+        a aVar = this.f12249a;
         ImageLocation imageLocation = null;
-        if (aVar != null && (uVar = aVar.f12237g) != null) {
-            str = uVar.f12712e;
+        if (aVar != null && (uVar = aVar.f12236g) != null) {
+            str = uVar.f12713e;
         } else {
             str = null;
         }
@@ -198,7 +198,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         if (this.M) {
             i10 = 0;
         } else {
-            i10 = this.f12252c;
+            i10 = this.f12251c;
         }
         int i12 = dp + i10;
         this.K = i12;
@@ -213,7 +213,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         }
         int i13 = this.J;
         int i14 = this.I;
-        this.f12260y.q(i13, i11, i13 + i14, i14 + i11);
+        this.f12259y.q(i13, i11, i13 + i14, i14 + i11);
         ImageReceiver imageReceiver = this.E;
         if (z10) {
             imageReceiver.setImageCoords(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
@@ -224,7 +224,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
             if (s3Var == null) {
                 messageObject = null;
             } else {
-                messageObject = s3Var.f12677a.f12810g3;
+                messageObject = s3Var.f12689a.f12809g3;
             }
             imageReceiver.setImageCoords(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
             if (closestPhotoSizeWithSize != null) {
@@ -243,8 +243,8 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
 
     public final TLRPC.Document i() {
         u uVar;
-        a aVar = this.f12250a;
-        if (aVar != null && (uVar = aVar.f12237g) != null) {
+        a aVar = this.f12249a;
+        if (aVar != null && (uVar = aVar.f12236g) != null) {
             return uVar.h;
         }
         return null;
@@ -252,8 +252,8 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
 
     public final boolean j() {
         u uVar;
-        a aVar = this.f12250a;
-        if (aVar != null && (uVar = aVar.f12237g) != null && uVar.a()) {
+        a aVar = this.f12249a;
+        if (aVar != null && (uVar = aVar.f12236g) != null && uVar.a()) {
             return true;
         }
         return false;
@@ -285,19 +285,19 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         }
         int dp3 = (i11 - dp) - AndroidUtilities.dp(16.0f);
         if (this.M) {
-            i12 = this.f12252c;
+            i12 = this.f12251c;
         } else {
             i12 = 0;
         }
         int max = Math.max(dp2, dp3 - i12);
-        TextPaint textPaint = this.f12258w;
+        TextPaint textPaint = this.f12257w;
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        TextPaint textPaint2 = this.f12259x;
+        TextPaint textPaint2 = this.f12258x;
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
         String documentFileName = FileLoader.getDocumentFileName(i13);
-        if (TextUtils.isEmpty(documentFileName) && (uVar = this.f12250a.f12237g) != null && !TextUtils.isEmpty(uVar.f12712e)) {
-            documentFileName = new File(this.f12250a.f12237g.f12712e).getName();
+        if (TextUtils.isEmpty(documentFileName) && (uVar = this.f12249a.f12236g) != null && !TextUtils.isEmpty(uVar.f12713e)) {
+            documentFileName = new File(this.f12249a.f12236g.f12713e).getName();
         }
         if (documentFileName == null) {
             documentFileName = "";
@@ -307,9 +307,9 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         this.Q = new StaticLayout(ellipsize, textPaint, max, alignment, 1.0f, 0.0f, false);
         long j3 = i13.size;
         if (j3 <= 0) {
-            u uVar2 = this.f12250a.f12237g;
-            if (uVar2 != null && !TextUtils.isEmpty(uVar2.f12712e)) {
-                j3 = new File(this.f12250a.f12237g.f12712e).length();
+            u uVar2 = this.f12249a.f12236g;
+            if (uVar2 != null && !TextUtils.isEmpty(uVar2.f12713e)) {
+                j3 = new File(this.f12249a.f12236g.f12713e).length();
             } else {
                 j3 = 0;
             }
@@ -325,7 +325,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.N = true;
-        this.f12260y.m(this);
+        this.f12259y.m(this);
         this.E.onAttachedToWindow();
         l(false);
     }
@@ -335,7 +335,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         super.onDetachedFromWindow();
         this.N = false;
         this.E.onDetachedFromWindow();
-        DownloadController.getInstance(this.f12255n).removeLoadingFileObserver(this);
+        DownloadController.getInstance(this.f12254n).removeLoadingFileObserver(this);
     }
 
     @Override
@@ -348,14 +348,14 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         float f10;
         if (i() != null) {
             boolean z10 = this.L;
-            org.telegram.ui.ActionBar.d6 d6Var = this.f12256r;
+            org.telegram.ui.ActionBar.c6 c6Var = this.f12255r;
             if (z10 && !this.E.draw(canvas)) {
-                int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Gd, d6Var);
+                int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Gd, c6Var);
                 Paint paint = this.v;
                 paint.setColor(w02);
                 canvas.drawRoundRect(this.K, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f) + this.K, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
             }
-            this.f12260y.draw(canvas);
+            this.f12259y.draw(canvas);
             if (this.L) {
                 i10 = this.K;
                 f7 = 97.0f;
@@ -364,7 +364,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
                 f7 = 54.0f;
             }
             int dp = AndroidUtilities.dp(f7) + i10;
-            this.f12258w.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Dd, d6Var));
+            this.f12257w.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Dd, c6Var));
             int dp2 = AndroidUtilities.dp(12.0f);
             if (this.Q != null) {
                 canvas.save();
@@ -372,7 +372,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
                 this.Q.draw(canvas);
                 canvas.restore();
             }
-            this.f12259x.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21012nd, d6Var));
+            this.f12258x.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20749nd, c6Var));
             StaticLayout staticLayout = this.Q;
             int i12 = 0;
             if (staticLayout == null) {
@@ -387,20 +387,20 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
                 this.R.draw(canvas);
                 canvas.restore();
             }
-            if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f12677a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
+            if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f12689a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R > textSelectionHelper.f22637p0 && R <= textSelectionHelper.f22640s0) {
+                if (R > textSelectionHelper.f22372p0 && R <= textSelectionHelper.f22375s0) {
                     if (this.M) {
                         i11 = 0;
                     } else {
-                        i11 = this.f12252c;
+                        i11 = this.f12251c;
                     }
                     float dp4 = AndroidUtilities.dp(8.0f) + i11;
                     float dp5 = AndroidUtilities.dp(2.0f);
                     int width = getWidth();
                     if (this.M) {
-                        i12 = this.f12252c;
+                        i12 = this.f12251c;
                     }
                     float dp6 = (width - i12) - AndroidUtilities.dp(8.0f);
                     if (this.L) {
@@ -408,7 +408,7 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
                     } else {
                         f10 = 64.0f;
                     }
-                    canvas.drawRoundRect(dp4, dp5, dp6, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f12257s);
+                    canvas.drawRoundRect(dp4, dp5, dp6, AndroidUtilities.dp(f10), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f12256s);
                 }
             }
         }
@@ -428,10 +428,10 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         if (z11) {
             i14 = 0;
         } else {
-            i14 = this.f12252c;
+            i14 = this.f12251c;
         }
         if (z11) {
-            i15 = this.f12252c;
+            i15 = this.f12251c;
         }
         int i16 = i12 - i10;
         if (this.L) {
@@ -453,10 +453,10 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         if (z10) {
             i12 = 0;
         } else {
-            i12 = this.f12252c;
+            i12 = this.f12251c;
         }
         if (z10) {
-            i13 = this.f12252c;
+            i13 = this.f12251c;
         }
         int h = this.F.h(i12, i13, size);
         if (this.L) {
@@ -475,12 +475,12 @@ public final class a1 extends a0 implements org.telegram.ui.ActionBar.x5, n9, m0
         } else {
             min = Math.min(1.0f, ((float) j3) / ((float) j10));
         }
-        this.f12260y.o(min, true);
+        this.f12259y.o(min, true);
     }
 
     @Override
     public final void onSuccessDownload(String str) {
-        this.f12260y.o(1.0f, true);
+        this.f12259y.o(1.0f, true);
         l(true);
     }
 

@@ -11,8 +11,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.is;
-import org.telegram.ui.Components.ym;
+import org.telegram.ui.Components.an;
+import org.telegram.ui.Components.js;
 public final class p5 extends org.telegram.ui.Components.y9 {
     public final Paint G;
     public long H;
@@ -33,31 +33,31 @@ public final class p5 extends org.telegram.ui.Components.y9 {
         MediaController.PhotoEntry photoEntry;
         Drawable drawable;
         float floatValue;
-        org.telegram.ui.Components.s5 s5Var = this.f33191e;
+        org.telegram.ui.Components.s5 s5Var = this.f33004e;
         if (s5Var != null) {
-            imageReceiver = s5Var.f30739k;
+            imageReceiver = s5Var.f30406k;
         } else {
-            imageReceiver = this.f33188a;
+            imageReceiver = this.f33001a;
         }
         if (imageReceiver != null) {
-            if (this.f33190c != -1 && this.d != -1) {
+            if (this.f33003c != -1 && this.d != -1) {
                 int height = getHeight();
                 int i10 = this.d;
-                imageReceiver.setImageCoords((getWidth() - this.f33190c) / 2, (height - i10) / 2, this.f33190c, i10);
+                imageReceiver.setImageCoords((getWidth() - this.f33003c) / 2, (height - i10) / 2, this.f33003c, i10);
                 int height2 = getHeight();
                 int i11 = this.d;
-                this.f33189b.setImageCoords((getWidth() - this.f33190c) / 2, (height2 - i11) / 2, this.f33190c, i11);
+                this.f33002b.setImageCoords((getWidth() - this.f33003c) / 2, (height2 - i11) / 2, this.f33003c, i11);
             } else {
                 imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-                this.f33189b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
+                this.f33002b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
             }
             imageReceiver.draw(canvas);
             t5 t5Var = this.K;
             if (t5Var.N) {
-                Rect rect = t5.f23075a0;
+                Rect rect = t5.f22810a0;
                 MediaController.PhotoEntry photoEntry2 = t5Var.G;
                 if (photoEntry2 == null || !photoEntry2.isAttachSpoilerRevealed) {
-                    this.f33189b.draw(canvas);
+                    this.f33002b.draw(canvas);
                     if (t5Var.M == null) {
                         if (t5Var.L == null) {
                             vh.g gVar = new vh.g();
@@ -74,7 +74,7 @@ public final class p5 extends org.telegram.ui.Components.y9 {
             int i12 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
             if (i12 != 0 && t5Var.R != null) {
                 Paint paint = this.G;
-                paint.setAlpha((int) (is.f27500f.getInterpolation(1.0f - f7) * 255.0f));
+                paint.setAlpha((int) (js.f27627f.getInterpolation(1.0f - f7) * 255.0f));
                 canvas.drawBitmap(t5Var.R, 0.0f, 0.0f, paint);
                 long min = Math.min(16L, System.currentTimeMillis() - this.H);
                 Float f10 = t5Var.S;
@@ -87,7 +87,7 @@ public final class p5 extends org.telegram.ui.Components.y9 {
                 this.H = System.currentTimeMillis();
                 invalidate();
                 if (t5Var.M != null) {
-                    t5Var.f23077b.invalidate();
+                    t5Var.f22812b.invalidate();
                 }
             } else if (i12 == 0 && (bitmap = t5Var.R) != null) {
                 bitmap.recycle();
@@ -95,9 +95,9 @@ public final class p5 extends org.telegram.ui.Components.y9 {
                 t5Var.S = null;
                 invalidate();
             }
-            if (t5Var.f23083s) {
+            if (t5Var.f22818s) {
                 r5 r5Var = t5Var.U;
-                if ((r5Var == null || !((ym) ((org.telegram.ui.Components.s) r5Var).f30680b).f33413s) && (photoEntry = t5Var.G) != null && photoEntry.isLivePhoto()) {
+                if ((r5Var == null || !((an) ((org.telegram.ui.Components.s) r5Var).f30287b).f24443s) && (photoEntry = t5Var.G) != null && photoEntry.isLivePhoto()) {
                     if (t5Var.G.isUnalivePhoto()) {
                         if (this.J == null) {
                             this.J = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();

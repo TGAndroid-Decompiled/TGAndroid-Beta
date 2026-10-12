@@ -1,85 +1,87 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class xq0 extends org.telegram.ui.ActionBar.o1 {
-    public final yq0 f33051x;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+public final class xq0 extends cv {
+    public boolean V;
+    public int W;
+    public int f32830a0;
+    public ValueAnimator f32831b0;
+    public final sr0 f32832c0;
 
-    public xq0(yq0 yq0Var, yq0 yq0Var2) {
-        super(yq0Var2);
-        this.f33051x = yq0Var;
+    public xq0(sr0 sr0Var, Context context, dr0 dr0Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, dr0Var, null, 1, true, c6Var);
+        this.f32832c0 = sr0Var;
     }
 
     @Override
-    public final boolean b() {
-        nr0 nr0Var = this.f33051x.H0;
-        if (!nr0Var.isDismissed() && nr0Var.Y) {
-            return !nr0Var.d.m();
+    public final void c(float f7) {
+        this.f32832c0.Z0();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.V) {
+            uu editText = this.f32832c0.d.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f32830a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new m80(editText, 19));
+            ValueAnimator valueAnimator = this.f32831b0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f32831b0 = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(js.f27627f);
+            ofFloat.start();
+            this.V = false;
         }
-        return false;
-    }
-
-    @Override
-    public final void e(float r9, float r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xq0.e(float, float, boolean):void");
+        super.dispatchDraw(canvas);
     }
 
     @Override
     public final void f() {
-        nr0 nr0Var = this.f33051x.H0;
-        sq0 sq0Var = nr0Var.d;
-        if (sq0Var == null || !sq0Var.m()) {
-            int i10 = nr0Var.N0;
-            AndroidUtilities.dp(20.0f);
+        super.f();
+        d00 emojiView = getEmojiView();
+        sr0 sr0Var = this.f32832c0;
+        if (emojiView != null) {
+            emojiView.f25143w0 = false;
+            emojiView.f25145w2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(sr0Var.G0.d);
         }
-        nr0Var.f29254r0 = false;
-        int i11 = nr0Var.f29251p0;
-        nr0Var.f29252q0 = i11;
-        nr0Var.F.setTopGlowOffset(i11);
-        nr0Var.f29233b.setTranslationY(nr0Var.f29251p0);
-        nr0Var.Q.setTranslationY(nr0Var.f29251p0);
-        nr0Var.F.setTranslationY(0.0f);
-        nr0Var.G.setTranslationY(0.0f);
-        nr0Var.Z0();
+        FrameLayout frameLayout = sr0Var.f30634c0;
+        if (frameLayout != null) {
+            frameLayout.bringToFront();
+        }
+        wq0 wq0Var = sr0Var.f30633c;
+        if (wq0Var != null) {
+            wq0Var.bringToFront();
+        }
+        wq0 wq0Var2 = sr0Var.f30638f;
+        if (wq0Var2 != null) {
+            wq0Var2.bringToFront();
+        }
     }
 
     @Override
-    public final void g(int i10, boolean z10) {
-        int i11;
-        yq0 yq0Var = this.f33051x;
-        nr0 nr0Var = yq0Var.H0;
-        int i12 = nr0Var.f29252q0;
-        int i13 = nr0Var.f29251p0;
-        if (i12 != i13) {
-            yq0Var.B0 = i12;
-            yq0Var.C0 = i13;
-            nr0Var.f29254r0 = true;
-            nr0Var.f29251p0 = i12;
+    public final void q(int i10, int i11) {
+        sr0 sr0Var = this.f32832c0;
+        wq0 wq0Var = sr0Var.f30633c;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.V = true;
+            this.W = getEditText().getMeasuredHeight();
+            this.f32830a0 = getEditText().getScrollY();
+            invalidate();
         } else {
-            yq0Var.B0 = -1;
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.V = false;
         }
-        int i14 = yq0Var.f33447z0;
-        int i15 = yq0Var.A0;
-        if (i14 != i15) {
-            yq0Var.D0 = 0;
-            yq0Var.E0 = 0;
-            nr0Var.f29254r0 = true;
-            if (!z10) {
-                yq0Var.E0 = 0 - (i14 - i15);
-            } else {
-                yq0Var.E0 = i14 - i15;
-            }
-            if (z10) {
-                i11 = yq0Var.B0;
-            } else {
-                i11 = yq0Var.C0;
-            }
-            nr0Var.f29251p0 = i11;
-        } else {
-            yq0Var.D0 = -1;
-        }
-        nr0Var.F.setTopGlowOffset((int) (nr0Var.f29257t0 + nr0Var.f29251p0));
-        nr0Var.f29233b.setTranslationY(nr0Var.f29257t0 + nr0Var.f29251p0);
-        nr0Var.Q.setTranslationY(nr0Var.f29257t0 + nr0Var.f29251p0);
-        yq0Var.invalidate();
+        sr0Var.f30657v0 = wq0Var.getTop() + sr0Var.f30656u0;
+        wq0Var.invalidate();
     }
 }

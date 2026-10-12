@@ -1,24 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class pl extends s4.e0 {
-    public final hg.f0 f29888r;
+import org.telegram.tgnet.TLRPC;
+public final class pl implements f5 {
+    public final int f29544a;
+    public final zl f29545b;
+    public final TLRPC.TL_messageMediaVenue f29546c;
 
-    public pl(hg.f0 f0Var, Context context) {
-        super(context);
-        this.f29888r = f0Var;
+    public pl(zl zlVar, TLRPC.TL_messageMediaVenue tL_messageMediaVenue, int i10) {
+        this.f29544a = i10;
+        this.f29545b = zlVar;
+        this.f29546c = tL_messageMediaVenue;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int k10 = super.k(i10, view);
-        xl xlVar = (xl) this.f29888r.V;
-        return k10 - (xlVar.P.getPaddingTop() - (xlVar.A0 - xlVar.f33026z0));
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 4;
+    public final void J(int i10, int i11, boolean z10) {
+        switch (this.f29544a) {
+            case 0:
+                zl zlVar = this.f29545b;
+                zlVar.f33425x0.b(this.f29546c, zlVar.f33427y0, z10, i10, 0L);
+                zlVar.f30574b.dismiss(true);
+                return;
+            default:
+                zl zlVar2 = this.f29545b;
+                zlVar2.f33425x0.b(this.f29546c, zlVar2.f33427y0, z10, i10, 0L);
+                zlVar2.f30574b.dismiss(true);
+                return;
+        }
     }
 }

@@ -1,16 +1,26 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.ClippingImageView;
 public final class gv0 {
-    public final int f38199a;
-    public final ArrayList f38200b;
-    public final bv0 f38201c;
-    public final PhotoViewer d;
-
-    public gv0(PhotoViewer photoViewer, int i10, ArrayList arrayList, bv0 bv0Var) {
-        this.d = photoViewer;
-        this.f38200b = arrayList;
-        this.f38199a = i10;
-        this.f38201c = bv0Var;
-    }
+    public ImageReceiver f38147a;
+    public int f38148b;
+    public int f38149c;
+    public View d;
+    public ImageReceiver.BitmapHolder f38150e;
+    public long f38151f;
+    public long f38152g;
+    public int[] h;
+    public int f38153i;
+    public int f38154j;
+    public boolean f38156l;
+    public ClippingImageView f38157m;
+    public int f38158n;
+    public boolean f38160p;
+    public int f38161q;
+    public boolean f38162r;
+    public boolean f38163s;
+    public float f38155k = 1.0f;
+    public boolean f38159o = true;
 }

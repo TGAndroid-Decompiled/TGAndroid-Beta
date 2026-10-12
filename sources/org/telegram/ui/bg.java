@@ -1,137 +1,72 @@
 package org.telegram.ui;
 
+import android.view.View;
+import java.io.Serializable;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class bg implements org.telegram.ui.Components.uk0 {
-    public final int f36402a;
-    public final zn f36403b;
-    public final boolean f36404c;
-    public final MessageObject d;
+import org.telegram.tgnet.tl.TL_iv;
+public final class bg implements View.OnClickListener {
+    public final int f36157a;
+    public final eo f36158b;
+    public final int f36159c;
+    public final ArrayList d;
+    public final String f36160e;
+    public final String f36161f;
+    public final Serializable h;
+    public final TLRPC.InputPeer f36162n;
+    public final int[] f36163r;
+    public final boolean f36164s;
+    public final ag v;
+    public final Object f36165w;
 
-    public bg(zn znVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f36402a = i10;
-        this.f36403b = znVar;
-        this.f36404c = z10;
-        this.d = messageObject;
+    public bg(eo eoVar, int i10, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, ag agVar, int i11) {
+        this.f36157a = i11;
+        this.f36158b = eoVar;
+        this.f36159c = i10;
+        this.d = arrayList;
+        this.f36160e = str;
+        this.f36161f = str2;
+        this.h = str3;
+        this.f36162n = inputPeer;
+        this.f36163r = iArr;
+        this.f36165w = obj;
+        this.f36164s = z10;
+        this.v = agVar;
     }
 
     @Override
-    public final void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f36402a) {
+    public final void onClick(View view) {
+        switch (this.f36157a) {
             case 0:
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final zn znVar = this.f36403b;
-                    if (j3 != znVar.getUserConfig().getClientUserId() && this.f36404c) {
-                        final ArrayList arrayList = new ArrayList(1);
-                        arrayList.add(this.d);
-                        TLObject userOrChat = znVar.getMessagesController().getUserOrChat(j3);
-                        final ArrayList arrayList2 = new ArrayList(1);
-                        arrayList2.add(userOrChat);
-                        final TLRPC.ChannelParticipant[] channelParticipantArr = new TLRPC.ChannelParticipant[1];
-                        TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
-                        tL_channels_getParticipant.channel = MessagesController.getInputChannel(znVar.f44786e);
-                        tL_channels_getParticipant.participant = MessagesController.getInputPeer(userOrChat);
-                        znVar.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant, new Object(), new Utilities.Callback2() {
-                            @Override
-                            public final void run(Object obj, Object obj2) {
-                                TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) obj;
-                                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                                switch (r5) {
-                                    case 0:
-                                        zn znVar2 = znVar;
-                                        TLRPC.ChannelParticipant[] channelParticipantArr2 = channelParticipantArr;
-                                        if (tL_channels_channelParticipant != null) {
-                                            znVar2.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
-                                            znVar2.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
-                                            channelParticipantArr2[0] = tL_channels_channelParticipant.participant;
-                                        } else {
-                                            znVar2.getClass();
-                                        }
-                                        int i10 = znVar2.R3;
-                                        ai.f fVar = new ai.f(17);
-                                        new org.telegram.ui.Components.ws(znVar2, znVar2.f44786e, arrayList, arrayList2, channelParticipantArr2, znVar2.L6, (int) znVar2.d(), i10, true, fVar).show();
-                                        return;
-                                    default:
-                                        zn znVar3 = znVar;
-                                        TLRPC.ChannelParticipant[] channelParticipantArr3 = channelParticipantArr;
-                                        if (tL_channels_channelParticipant != null) {
-                                            znVar3.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
-                                            znVar3.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
-                                            channelParticipantArr3[0] = tL_channels_channelParticipant.participant;
-                                        } else {
-                                            znVar3.getClass();
-                                        }
-                                        int i11 = znVar3.R3;
-                                        ai.f fVar2 = new ai.f(17);
-                                        new org.telegram.ui.Components.ws(znVar3, znVar3.f44786e, arrayList, arrayList2, channelParticipantArr3, znVar3.L6, (int) znVar3.d(), i11, true, fVar2).show();
-                                        return;
-                                }
-                            }
-                        });
-                        znVar.D7(true);
-                        return;
-                    }
-                    return;
-                }
+                boolean z10 = this.f36164s;
+                ag agVar = this.v;
+                eo.b0(this.f36158b, this.f36159c, this.d, this.f36160e, this.f36161f, (String) this.h, this.f36162n, this.f36163r, (TL_iv.RichMessage) this.f36165w, z10, agVar);
+                return;
+            case 1:
+                boolean z11 = this.f36164s;
+                ag agVar2 = this.v;
+                eo.d0(this.f36158b, this.f36159c, this.d, this.f36160e, this.f36161f, (String) this.h, this.f36162n, this.f36163r, (CharSequence) this.f36165w, z11, agVar2);
                 return;
             default:
-                final zn znVar2 = this.f36403b;
-                znVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != znVar2.getUserConfig().getClientUserId() && this.f36404c) {
-                    final ArrayList arrayList3 = new ArrayList(1);
-                    arrayList3.add(this.d);
-                    TLObject userOrChat2 = znVar2.getMessagesController().getUserOrChat(j3);
-                    final ArrayList arrayList4 = new ArrayList(1);
-                    arrayList4.add(userOrChat2);
-                    final TLRPC.ChannelParticipant[] channelParticipantArr2 = new TLRPC.ChannelParticipant[1];
-                    TLRPC.TL_channels_getParticipant tL_channels_getParticipant2 = new TLRPC.TL_channels_getParticipant();
-                    tL_channels_getParticipant2.channel = MessagesController.getInputChannel(znVar2.f44786e);
-                    tL_channels_getParticipant2.participant = MessagesController.getInputPeer(userOrChat2);
-                    znVar2.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant2, new Object(), new Utilities.Callback2() {
-                        @Override
-                        public final void run(Object obj, Object obj2) {
-                            TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant = (TLRPC.TL_channels_channelParticipant) obj;
-                            TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                            switch (r5) {
-                                case 0:
-                                    zn znVar22 = znVar2;
-                                    TLRPC.ChannelParticipant[] channelParticipantArr22 = channelParticipantArr2;
-                                    if (tL_channels_channelParticipant != null) {
-                                        znVar22.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
-                                        znVar22.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
-                                        channelParticipantArr22[0] = tL_channels_channelParticipant.participant;
-                                    } else {
-                                        znVar22.getClass();
-                                    }
-                                    int i10 = znVar22.R3;
-                                    ai.f fVar = new ai.f(17);
-                                    new org.telegram.ui.Components.ws(znVar22, znVar22.f44786e, arrayList3, arrayList4, channelParticipantArr22, znVar22.L6, (int) znVar22.d(), i10, true, fVar).show();
-                                    return;
-                                default:
-                                    zn znVar3 = znVar2;
-                                    TLRPC.ChannelParticipant[] channelParticipantArr3 = channelParticipantArr2;
-                                    if (tL_channels_channelParticipant != null) {
-                                        znVar3.getMessagesController().putUsers(tL_channels_channelParticipant.users, false);
-                                        znVar3.getMessagesController().putChats(tL_channels_channelParticipant.chats, false);
-                                        channelParticipantArr3[0] = tL_channels_channelParticipant.participant;
-                                    } else {
-                                        znVar3.getClass();
-                                    }
-                                    int i11 = znVar3.R3;
-                                    ai.f fVar2 = new ai.f(17);
-                                    new org.telegram.ui.Components.ws(znVar3, znVar3.f44786e, arrayList3, arrayList4, channelParticipantArr3, znVar3.L6, (int) znVar3.d(), i11, true, fVar2).show();
-                                    return;
-                            }
-                        }
-                    });
-                    znVar2.D7(true);
-                    return;
-                }
+                boolean z12 = this.f36164s;
+                ag agVar3 = this.v;
+                eo.t0(this.f36158b, this.f36159c, this.d, (String[]) this.h, this.f36160e, this.f36161f, this.f36162n, this.f36163r, (CharSequence) this.f36165w, z12, agVar3);
                 return;
         }
+    }
+
+    public bg(eo eoVar, int i10, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, ag agVar) {
+        this.f36157a = 2;
+        this.f36158b = eoVar;
+        this.f36159c = i10;
+        this.d = arrayList;
+        this.h = strArr;
+        this.f36160e = str;
+        this.f36161f = str2;
+        this.f36162n = inputPeer;
+        this.f36163r = iArr;
+        this.f36165w = charSequence;
+        this.f36164s = z10;
+        this.v = agVar;
     }
 }

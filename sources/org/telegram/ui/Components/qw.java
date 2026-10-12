@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
-
-import android.content.Context;
-import android.view.MotionEvent;
-public final class qw extends pw {
-    public final rw K;
-
-    public qw(rw rwVar, Context context, int i10) {
-        super(rwVar.f30660s, context, i10);
-        this.K = rwVar;
+public final class qw extends rg.c1 {
+    @Override
+    public final void invalidate() {
+        if (zg.d0.b(this)) {
+            return;
+        }
+        super.invalidate();
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.K.d(motionEvent);
-        return super.onTouchEvent(motionEvent);
+    public final void invalidate(int i10, int i11, int i12, int i13) {
+        if (zg.d0.b(this)) {
+            return;
+        }
+        super.invalidate(i10, i11, i12, i13);
     }
 }

@@ -6,14 +6,14 @@ public enum i1 extends b2 {
 
     @Override
     public final void d(l lVar, a aVar) {
-        f fVar = lVar.f8893m;
+        f fVar = lVar.f8891m;
         boolean j3 = aVar.j();
-        w wVar = b2.f8832a;
+        w wVar = b2.f8830a;
         if (j3) {
             lVar.l(this);
             fVar.getClass();
             lVar.j();
-            lVar.f8885c = wVar;
+            lVar.f8883c = wVar;
         } else if (aVar.n('\t', '\n', '\r', '\f', ' ')) {
             aVar.a();
         } else if (aVar.m('>')) {
@@ -21,10 +21,10 @@ public enum i1 extends b2 {
             lVar.a(wVar);
         } else if (aVar.l("PUBLIC")) {
             fVar.getClass();
-            lVar.f8885c = b2.f8855r0;
+            lVar.f8883c = b2.f8853r0;
         } else if (aVar.l("SYSTEM")) {
             fVar.getClass();
-            lVar.f8885c = b2.f8864x0;
+            lVar.f8883c = b2.f8862x0;
         } else {
             lVar.m(this);
             fVar.getClass();

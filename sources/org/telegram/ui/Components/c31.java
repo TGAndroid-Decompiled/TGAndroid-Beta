@@ -1,11 +1,21 @@
 package org.telegram.ui.Components;
-public final class c31 {
-    public float f25205a;
-    public float f25206b;
-    public float f25207c;
-    public float d;
-    public float f25208e;
-    public float f25209f;
-    public float f25210g;
-    public float h;
+
+import android.util.SparseIntArray;
+public final class c31 extends org.telegram.ui.ActionBar.d5 {
+    public final SparseIntArray T;
+
+    public c31(boolean z10, SparseIntArray sparseIntArray) {
+        super(2, z10, false, null);
+        this.T = sparseIntArray;
+    }
+
+    @Override
+    public final int g(int i10) {
+        return this.T.get(i10);
+    }
+
+    @Override
+    public final int h(int i10) {
+        return this.T.get(i10);
+    }
 }

@@ -2,15 +2,15 @@ package org.telegram.ui.Components.voip;
 
 import org.webrtc.RendererCommon;
 public final class l2 implements RendererCommon.RendererEvents {
-    public final n2 f32154a;
+    public final n2 f31793a;
 
     public l2(n2 n2Var) {
-        this.f32154a = n2Var;
+        this.f31793a = n2Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        n2 n2Var = this.f32154a;
+        n2 n2Var = this.f31793a;
         com.google.android.gms.internal.cast.p pVar = n2Var.S;
         if (pVar != null) {
             pVar.run();

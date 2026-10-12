@@ -1,92 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class re0 extends FrameLayout {
-    public final ImageView f30505a;
-    public final TextView f30506b;
-    public final TextView f30507c;
+import org.telegram.messenger.SharedConfig;
+public final class re0 extends AnimatorListenerAdapter {
+    public final int f30149a;
+    public final se0 f30150b;
 
-    public re0(Context context) {
-        super(context);
-        ImageView imageView = new ImageView(context);
-        this.f30505a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.fingerprint);
-        addView(imageView, w7.x5.e(-1, -1, 119));
-        TextView textView = new TextView(context);
-        this.f30506b = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 26.0f);
-        textView.setGravity(17);
-        addView(textView, w7.x5.a(-2.0f, 0.0f, -5.33f, 0.0f, 0.0f, -1, 17));
-        TextView textView2 = new TextView(context);
-        this.f30507c = textView2;
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setTextSize(1, 10.0f);
-        textView2.setTextColor(Integer.MAX_VALUE);
-        textView2.setGravity(17);
-        addView(textView2, w7.x5.a(-2.0f, 0.0f, 14.0f, 0.0f, 0.0f, -1, 17));
+    public re0(se0 se0Var, int i10) {
+        this.f30149a = i10;
+        this.f30150b = se0Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    public void setImage(int i10) {
-        ImageView imageView = this.f30505a;
-        imageView.setVisibility(0);
-        this.f30506b.setVisibility(8);
-        this.f30507c.setVisibility(8);
-        imageView.setImageResource(i10);
-    }
-
-    public void setNum(int i10) {
-        this.f30505a.setVisibility(8);
-        TextView textView = this.f30506b;
-        textView.setVisibility(0);
-        TextView textView2 = this.f30507c;
-        textView2.setVisibility(0);
-        String str = "";
-        textView.setText("" + i10);
-        if (i10 != 0) {
-            switch (i10) {
-                case 2:
-                    str = "ABC";
-                    break;
-                case 3:
-                    str = "DEF";
-                    break;
-                case 4:
-                    str = "GHI";
-                    break;
-                case 5:
-                    str = "JKL";
-                    break;
-                case 6:
-                    str = "MNO";
-                    break;
-                case 7:
-                    str = "PQRS";
-                    break;
-                case 8:
-                    str = "TUV";
-                    break;
-                case 9:
-                    str = "WXYZ";
-                    break;
-            }
-        } else {
-            str = "+";
+    public final void onAnimationEnd(Animator animator) {
+        EditTextBoldCursor editTextBoldCursor;
+        switch (this.f30149a) {
+            case 0:
+                xe0 xe0Var = this.f30150b.d;
+                if (!xe0Var.L) {
+                    xe0Var.T = 1.0f;
+                    xe0Var.g(1.0f);
+                    return;
+                }
+                return;
+            default:
+                se0 se0Var = this.f30150b;
+                xe0 xe0Var2 = se0Var.d;
+                if (!xe0Var2.L) {
+                    Runnable runnable = se0Var.f30559c;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                    if (SharedConfig.passcodeType == 1 && xe0Var2.f32749x.getVisibility() != 0 && (editTextBoldCursor = xe0Var2.f32746r) != null) {
+                        editTextBoldCursor.requestFocus();
+                        AndroidUtilities.showKeyboard(xe0Var2.f32746r);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        textView2.setText(str);
     }
 }

@@ -1,33 +1,68 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bm0 implements RequestDelegate {
-    public final int f36450a;
-    public final mn0 f36451b;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class bm0 implements View.OnTouchListener {
+    public final int f36205a;
+    public final pn0 f36206b;
 
-    public bm0(mn0 mn0Var, int i10) {
-        this.f36450a = i10;
-        this.f36451b = mn0Var;
+    public bm0(pn0 pn0Var, int i10) {
+        this.f36205a = i10;
+        this.f36206b = pn0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36450a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        int i10 = this.f36205a;
+        pn0 pn0Var = this.f36206b;
+        switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new nf0(this.f36451b, tL_error, tLObject, 10));
-                return;
+                if (pn0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    cu cuVar = new cu(null, false);
+                    cuVar.f36515r = new tw(24, pn0Var, view);
+                    pn0Var.presentFragment(cuVar);
+                }
+                return true;
             case 1:
-                AndroidUtilities.runOnUIThread(new uf0(17, this.f36451b, tL_error));
-                return;
+                if (pn0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pn0Var.getParentActivity());
+                    String string = LocaleController.getString(R.string.PassportSelectGender);
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f20141a;
+                    a2Var.R = string;
+                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new m4(pn0Var, 3));
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
+                    pn0Var.showDialog(a2Var);
+                }
+                return true;
             case 2:
-                AndroidUtilities.runOnUIThread(new xl0(this.f36451b, 5));
-                return;
+                if (pn0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    cu cuVar2 = new cu(null, false);
+                    cuVar2.f36515r = new cm0(pn0Var, 2);
+                    pn0Var.presentFragment(cuVar2);
+                }
+                return true;
             default:
-                AndroidUtilities.runOnUIThread(new uf0(16, this.f36451b, tLObject));
-                return;
+                if (pn0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    cu cuVar3 = new cu(null, false);
+                    cuVar3.f36515r = new cm0(pn0Var, 3);
+                    pn0Var.presentFragment(cuVar3);
+                }
+                return true;
         }
     }
 }

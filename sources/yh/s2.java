@@ -11,47 +11,47 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public final class s2 extends Drawable {
-    public Drawable f53277g;
+    public Drawable f53380g;
     public int h;
-    public int f53278i;
-    public final Paint f53273b = new Paint(1);
-    public final Shader[] f53274c = new Shader[2];
+    public int f53381i;
+    public final Paint f53376b = new Paint(1);
+    public final Shader[] f53377c = new Shader[2];
     public final Matrix d = new Matrix();
-    public final org.telegram.ui.Components.g6 f53275e = new org.telegram.ui.Components.g6(1.0f, new f0(this, 5), 0, 420, is.h);
-    public final RectF f53276f = new RectF();
-    public final int f53272a = 1;
+    public final org.telegram.ui.Components.g6 f53378e = new org.telegram.ui.Components.g6(1.0f, new f0(this, 5), 0, 420, js.h);
+    public final RectF f53379f = new RectF();
+    public final int f53375a = 1;
 
     public final void a(int i10, int i11) {
-        if (this.h == i10 && this.f53278i == i11) {
+        if (this.h == i10 && this.f53381i == i11) {
             return;
         }
-        Shader[] shaderArr = this.f53274c;
+        Shader[] shaderArr = this.f53377c;
         shaderArr[0] = shaderArr[1];
-        if (this.f53272a == 0) {
+        if (this.f53375a == 0) {
             this.h = i10;
-            this.f53278i = i11;
+            this.f53381i = i11;
             shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         } else {
             this.h = i10;
-            this.f53278i = i11;
+            this.f53381i = i11;
             shaderArr[1] = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(340.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         }
-        this.f53275e.d(0.0f, true);
+        this.f53378e.d(0.0f, true);
         invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f53276f;
+        RectF rectF = this.f53379f;
         rectF.set(bounds);
         rectF.right = rectF.width() + rectF.left;
         int i10 = 0;
-        float d = this.f53275e.d(1.0f, false);
+        float d = this.f53378e.d(1.0f, false);
         while (true) {
-            Shader[] shaderArr = this.f53274c;
+            Shader[] shaderArr = this.f53377c;
             if (i10 >= shaderArr.length) {
                 break;
             }
@@ -60,14 +60,14 @@ public final class s2 extends Drawable {
                 if (pow > 0.0f) {
                     Matrix matrix = this.d;
                     matrix.reset();
-                    if (this.f53272a == 1) {
+                    if (this.f53375a == 1) {
                         matrix.postTranslate(rectF.centerX(), AndroidUtilities.dp(145.0f));
                     } else {
                         matrix.postScale(getBounds().width() / 100.0f, 1.0f);
                     }
                     shaderArr[i10].setLocalMatrix(matrix);
                     Shader shader = shaderArr[i10];
-                    Paint paint = this.f53273b;
+                    Paint paint = this.f53376b;
                     paint.setShader(shader);
                     paint.setAlpha((int) (pow * 255.0f));
                     canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
@@ -75,10 +75,10 @@ public final class s2 extends Drawable {
             }
             i10++;
         }
-        if (this.f53277g != null) {
+        if (this.f53380g != null) {
             canvas.save();
             canvas.translate(rectF.centerX(), AndroidUtilities.dp(145.0f));
-            i0.a(canvas, 0, this.f53277g, rectF.width(), AndroidUtilities.dp(290.0f), 2.0f, 1.0f);
+            i0.a(canvas, 0, this.f53380g, rectF.width(), AndroidUtilities.dp(290.0f), 2.0f, 1.0f);
             canvas.restore();
         }
     }

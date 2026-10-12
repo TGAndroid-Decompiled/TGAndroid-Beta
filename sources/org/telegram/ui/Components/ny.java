@@ -1,633 +1,147 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.os.SystemClock;
-import android.util.SparseArray;
-import android.util.SparseIntArray;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.animation.OvershootInterpolator;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CompoundEmoji;
-import org.telegram.messenger.Emoji;
-public final class ny extends rm0 {
-    public boolean V2;
-    public final SparseArray W2;
-    public final ArrayList X2;
-    public final ArrayList Y2;
-    public final ArrayList Z2;
-    public final ArrayList f29306a3;
-    public int f29307b3;
-    public SparseArray f29308c3;
-    public final b00 f29309d3;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.SharedConfig;
+public final class ny extends au {
+    public int M;
+    public int N;
+    public ArrayList O;
+    public final ArrayList P = new ArrayList();
+    public final OvershootInterpolator Q = new OvershootInterpolator(3.0f);
+    public final py R;
 
-    public ny(b00 b00Var, Context context) {
-        super(context, null);
-        this.f29309d3 = b00Var;
-        this.W2 = new SparseArray();
-        this.X2 = new ArrayList();
-        this.Y2 = new ArrayList();
-        this.Z2 = new ArrayList();
-        this.f29306a3 = new ArrayList();
-        this.f29307b3 = -1;
-        new SparseIntArray();
-        is isVar = is.f27500f;
+    public ny(py pyVar) {
+        this.R = pyVar;
     }
 
     @Override
-    public final void J0(Canvas canvas, RectF rectF, long j3) {
-        SparseArray sparseArray;
-        ArrayList arrayList;
-        boolean z10;
-        ArrayList arrayList2;
-        int i10;
-        boolean z11;
-        Canvas canvas2 = canvas;
-        b00 b00Var = this.f29309d3;
-        ny nyVar = b00Var.P;
-        super.J0(canvas, rectF, j3);
-        canvas2.save();
-        canvas.clipRect(rectF);
-        if (this.f29307b3 != getChildCount()) {
-            z1();
-            this.f29307b3 = getChildCount();
-        }
-        int i11 = 0;
-        int i12 = 0;
-        while (true) {
-            sparseArray = this.W2;
-            int size = sparseArray.size();
-            arrayList = this.Z2;
-            if (i12 >= size) {
-                break;
-            }
-            ArrayList arrayList3 = (ArrayList) sparseArray.valueAt(i12);
-            arrayList3.clear();
-            arrayList.add(arrayList3);
-            i12++;
-        }
-        sparseArray.clear();
-        int i13 = 1;
-        if (b00Var.f24789u2 > 0 && SystemClock.elapsedRealtime() - b00Var.f24789u2 < x1() && b00Var.f24779r2 != null && b00Var.f24783s2 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        float f7 = 0.0f;
-        if (b00Var.f24735d2 != null && nyVar != null) {
-            int i14 = 0;
-            while (i14 < nyVar.getChildCount()) {
-                View childAt = nyVar.getChildAt(i14);
-                if (childAt instanceof jz) {
-                    int top = childAt.getTop() + ((int) childAt.getTranslationY());
-                    ArrayList arrayList4 = (ArrayList) sparseArray.get(top);
-                    if (arrayList4 == null) {
-                        if (!arrayList.isEmpty()) {
-                            arrayList4 = (ArrayList) hg.c.x(i13, arrayList);
-                        } else {
-                            arrayList4 = new ArrayList();
-                        }
-                        sparseArray.put(top, arrayList4);
-                    }
-                    arrayList4.add((jz) childAt);
-                }
-                if (z10 && childAt != null && RecyclerView.R(childAt) == b00Var.f24783s2 - i13) {
-                    z11 = z10;
-                    float interpolation = is.f27501g.getInterpolation(w7.o.a(((float) (SystemClock.elapsedRealtime() - b00Var.f24789u2)) / 140.0f, f7, 1.0f));
-                    if (interpolation >= 1.0f || (Build.VERSION.SDK_INT >= 30 && canvas2.quickReject(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom()))) {
-                        i10 = i14;
-                    } else {
-                        float f10 = 1.0f - interpolation;
-                        i10 = i14;
-                        canvas2.saveLayerAlpha(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom(), (int) (255.0f * f10), 31);
-                        canvas2.translate(childAt.getLeft(), childAt.getTop());
-                        float f11 = (f10 * 0.5f) + 0.5f;
-                        canvas2.scale(f11, f11, childAt.getWidth() / 2.0f, childAt.getHeight() / 2.0f);
-                        b00Var.f24779r2.draw(canvas2);
-                        canvas2.restore();
-                    }
-                } else {
-                    i10 = i14;
-                    z11 = z10;
-                }
-                i14 = i10 + 1;
-                z10 = z11;
-                f7 = 0.0f;
-                i13 = 1;
-            }
-        }
-        ArrayList arrayList5 = this.Y2;
-        arrayList5.clear();
-        ArrayList arrayList6 = this.X2;
-        arrayList5.addAll(arrayList6);
-        arrayList6.clear();
-        long currentTimeMillis = System.currentTimeMillis();
-        int i15 = 0;
-        while (true) {
-            int size2 = sparseArray.size();
-            ly lyVar = null;
-            arrayList2 = this.f29306a3;
-            if (i15 >= size2) {
-                break;
-            }
-            ArrayList arrayList7 = (ArrayList) sparseArray.valueAt(i15);
-            jz jzVar = (jz) arrayList7.get(i11);
-            int i16 = jzVar.f27879a;
-            int i17 = i11;
-            while (true) {
-                if (i17 >= arrayList5.size()) {
-                    break;
-                } else if (((ly) arrayList5.get(i17)).M == i16) {
-                    lyVar = (ly) arrayList5.get(i17);
-                    arrayList5.remove(i17);
-                    break;
-                } else {
-                    i17++;
-                }
-            }
-            if (lyVar == null) {
-                if (!arrayList2.isEmpty()) {
-                    lyVar = (ly) hg.c.x(1, arrayList2);
-                } else {
-                    lyVar = new ly(this);
-                }
-                lyVar.M = i16;
-                lyVar.e();
-            }
-            arrayList6.add(lyVar);
-            lyVar.O = arrayList7;
-            canvas2.save();
-            canvas2.translate(jzVar.getLeft(), jzVar.getY() + jzVar.getPaddingTop());
-            lyVar.N = jzVar.getLeft();
-            int measuredWidth = getMeasuredWidth() - (jzVar.getLeft() * 2);
-            int measuredHeight = jzVar.getMeasuredHeight() - jzVar.getPaddingBottom();
-            if (measuredWidth > 0 && measuredHeight > 0) {
-                if (Build.VERSION.SDK_INT >= 30 && canvas2.quickReject(0.0f, 0.0f, measuredWidth, measuredHeight)) {
-                }
-                lyVar.a(canvas2, currentTimeMillis, measuredWidth, measuredHeight, 1.0f);
-            }
-            canvas.restore();
-            invalidate();
-            i15++;
-            canvas2 = canvas;
-            i11 = 0;
-        }
-        for (int i18 = 0; i18 < arrayList5.size(); i18++) {
-            if (arrayList2.size() < 3) {
-                arrayList2.add((ly) arrayList5.get(i18));
-                ((ly) arrayList5.get(i18)).O = null;
-                ((ly) arrayList5.get(i18)).k();
-            } else {
-                ((ly) arrayList5.get(i18)).f();
-            }
-        }
-        arrayList5.clear();
-        canvas.restore();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        SparseArray sparseArray;
-        ArrayList arrayList;
-        boolean z10;
-        ArrayList arrayList2;
-        super.dispatchDraw(canvas);
-        b00 b00Var = this.f29309d3;
-        ny nyVar = b00Var.P;
-        b00Var.f24762m2.h++;
-        if (this.f29307b3 != getChildCount()) {
-            z1();
-            this.f29307b3 = getChildCount();
-        }
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            sparseArray = this.W2;
-            int size = sparseArray.size();
-            arrayList = this.Z2;
-            if (i11 >= size) {
-                break;
-            }
-            ArrayList arrayList3 = (ArrayList) sparseArray.valueAt(i11);
-            arrayList3.clear();
-            arrayList.add(arrayList3);
-            i11++;
-        }
-        sparseArray.clear();
-        if (b00Var.f24789u2 > 0 && SystemClock.elapsedRealtime() - b00Var.f24789u2 < x1() && b00Var.f24779r2 != null && b00Var.f24783s2 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (b00Var.f24735d2 != null && nyVar != null) {
-            for (int i12 = 0; i12 < nyVar.getChildCount(); i12++) {
-                View childAt = nyVar.getChildAt(i12);
-                if (childAt instanceof jz) {
-                    int top = childAt.getTop() + ((int) childAt.getTranslationY());
-                    ArrayList arrayList4 = (ArrayList) sparseArray.get(top);
-                    if (arrayList4 == null) {
-                        if (!arrayList.isEmpty()) {
-                            arrayList4 = (ArrayList) hg.c.x(1, arrayList);
-                        } else {
-                            arrayList4 = new ArrayList();
-                        }
-                        sparseArray.put(top, arrayList4);
-                    }
-                    arrayList4.add((jz) childAt);
-                }
-                if (z10 && childAt != null && RecyclerView.R(childAt) == b00Var.f24783s2 - 1) {
-                    float interpolation = is.f27501g.getInterpolation(w7.o.a(((float) (SystemClock.elapsedRealtime() - b00Var.f24789u2)) / 140.0f, 0.0f, 1.0f));
-                    if (interpolation < 1.0f) {
-                        float f7 = 1.0f - interpolation;
-                        canvas.saveLayerAlpha(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom(), (int) (255.0f * f7), 31);
-                        canvas.translate(childAt.getLeft(), childAt.getTop());
-                        float f10 = (f7 * 0.5f) + 0.5f;
-                        canvas.scale(f10, f10, childAt.getWidth() / 2.0f, childAt.getHeight() / 2.0f);
-                        b00Var.f24779r2.draw(canvas);
-                        canvas.restore();
-                    }
-                }
-            }
-        }
-        Canvas canvas2 = canvas;
-        ArrayList arrayList5 = this.Y2;
-        arrayList5.clear();
-        ArrayList arrayList6 = this.X2;
-        arrayList5.addAll(arrayList6);
-        arrayList6.clear();
-        long currentTimeMillis = System.currentTimeMillis();
-        int i13 = 0;
-        while (true) {
-            int size2 = sparseArray.size();
-            ly lyVar = null;
-            arrayList2 = this.f29306a3;
-            if (i13 >= size2) {
-                break;
-            }
-            ArrayList arrayList7 = (ArrayList) sparseArray.valueAt(i13);
-            jz jzVar = (jz) arrayList7.get(i10);
-            int i14 = jzVar.f27879a;
-            int i15 = i10;
-            while (true) {
-                if (i15 >= arrayList5.size()) {
-                    break;
-                } else if (((ly) arrayList5.get(i15)).M == i14) {
-                    lyVar = (ly) arrayList5.get(i15);
-                    arrayList5.remove(i15);
-                    break;
-                } else {
-                    i15++;
-                }
-            }
-            if (lyVar == null) {
-                if (!arrayList2.isEmpty()) {
-                    lyVar = (ly) hg.c.x(1, arrayList2);
-                } else {
-                    lyVar = new ly(this);
-                }
-                lyVar.M = i14;
-                lyVar.e();
-            }
-            arrayList6.add(lyVar);
-            lyVar.O = arrayList7;
-            canvas2.save();
-            canvas2.translate(jzVar.getLeft(), jzVar.getY() + jzVar.getPaddingTop());
-            lyVar.N = jzVar.getLeft();
-            int measuredWidth = getMeasuredWidth() - (jzVar.getLeft() * 2);
-            int measuredHeight = jzVar.getMeasuredHeight() - jzVar.getPaddingBottom();
-            if (measuredWidth > 0 && measuredHeight > 0) {
-                lyVar.a(canvas2, currentTimeMillis, measuredWidth, measuredHeight, 1.0f);
-            }
-            canvas.restore();
-            invalidate();
-            i13++;
-            canvas2 = canvas;
-            i10 = 0;
-        }
-        for (int i16 = 0; i16 < arrayList5.size(); i16++) {
-            if (arrayList2.size() < 3) {
-                arrayList2.add((ly) arrayList5.get(i16));
-                ((ly) arrayList5.get(i16)).O = null;
-                ((ly) arrayList5.get(i16)).k();
-            } else {
-                ((ly) arrayList5.get(i16)).f();
-            }
-        }
-        arrayList5.clear();
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+    public final void a(Canvas canvas, long j3, int i10, int i11, float f7) {
         boolean z10;
         boolean z11;
-        boolean z12;
-        if (motionEvent.getActionMasked() != 5 && motionEvent.getActionMasked() != 0) {
+        int i12;
+        py pyVar = this.R;
+        d00 d00Var = pyVar.f29612d3;
+        ArrayList arrayList = this.O;
+        if (arrayList == null) {
+            return;
+        }
+        boolean z12 = true;
+        if (arrayList.size() > 4 && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(16388)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        if (motionEvent.getActionMasked() != 6 && motionEvent.getActionMasked() != 1) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        if (motionEvent.getActionMasked() == 3) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        if (z10 || z11 || z12) {
-            int actionIndex = motionEvent.getActionIndex();
-            int pointerId = motionEvent.getPointerId(actionIndex);
-            if (this.f29308c3 == null) {
-                this.f29308c3 = new SparseArray();
-            }
-            float x10 = motionEvent.getX(actionIndex);
-            float y3 = motionEvent.getY(actionIndex);
-            View E = E(x10, y3);
-            if (z10) {
-                if (E != null) {
-                    ?? obj = new Object();
-                    obj.f28968a = x10;
-                    obj.f28969b = y3;
-                    obj.f28970c = SystemClock.elapsedRealtime();
-                    obj.d = E;
-                    if (E.getBackground() instanceof RippleDrawable) {
-                        E.getBackground().setState(new int[]{16842919, 16842910});
-                    }
-                    obj.d.setPressed(true);
-                    this.f29308c3.put(pointerId, obj);
-                    B0();
-                }
+        if (!z10) {
+            if (d00Var.f25138u2 > 0 && SystemClock.elapsedRealtime() - d00Var.f25138u2 < pyVar.x1()) {
+                z11 = true;
             } else {
-                my myVar = (my) this.f29308c3.get(pointerId);
-                this.f29308c3.remove(pointerId);
-                if (E != null && myVar != null) {
-                    if (Math.sqrt(Math.pow(y3 - myVar.f28969b, 2.0d) + Math.pow(x10 - myVar.f28968a, 2.0d)) < AndroidUtilities.touchSlop * 3.0f && !z12) {
-                        b00 b00Var = this.f29309d3;
-                        if (!b00Var.B1.isShowing() || SystemClock.elapsedRealtime() - myVar.f28970c < ViewConfiguration.getLongPressTimeout()) {
-                            View view = myVar.d;
-                            int R = RecyclerView.R(view);
-                            try {
-                                if (view instanceof jz) {
-                                    b00.c(b00Var, (jz) view, null);
-                                    performHapticFeedback(3, 1);
-                                } else if (view instanceof qy) {
-                                    b00Var.R.E(R, (qy) view);
-                                    performHapticFeedback(3, 1);
-                                } else {
-                                    view.callOnClick();
-                                }
-                            } catch (Exception unused) {
-                            }
-                        }
+                z11 = false;
+            }
+            for (int i13 = 0; i13 < this.O.size(); i13++) {
+                lz lzVar = (lz) this.O.get(i13);
+                if (lzVar.h != 0.0f || lzVar.f28327n != null || ((i12 = lzVar.f28322a) > d00Var.f25132s2 && i12 < d00Var.f25135t2 && z11)) {
+                    break;
+                }
+            }
+        }
+        z12 = z10;
+        if (z12) {
+            i(System.currentTimeMillis());
+            d(canvas, 1.0f);
+            k();
+            return;
+        }
+        super.a(canvas, j3, i10, i11, 1.0f);
+    }
+
+    @Override
+    public final void c(Canvas canvas) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.P;
+            if (i10 < arrayList.size()) {
+                lz lzVar = (lz) arrayList.get(i10);
+                s5 s5Var = lzVar.f28323b;
+                if (s5Var != null) {
+                    ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = lzVar.f28326f[this.K];
+                    ai.m4 m4Var = s5Var.f30406k;
+                    if (m4Var != null) {
+                        m4Var.setAlpha(s5Var.f30407l);
+                        s5Var.f30406k.draw(canvas, backgroundThreadDrawHolder);
                     }
                 }
-                if (myVar != null && (myVar.d.getBackground() instanceof RippleDrawable)) {
-                    myVar.d.getBackground().setState(new int[0]);
-                }
-                if (myVar != null) {
-                    myVar.d.setPressed(false);
-                }
-            }
-        }
-        if (!super.dispatchTouchEvent(motionEvent) && (z12 || this.f29308c3.size() <= 0)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void j0(int i10) {
-        if (i10 == 0) {
-            boolean canScrollVertically = canScrollVertically(-1);
-            b00 b00Var = this.f29309d3;
-            if (!canScrollVertically || !canScrollVertically(1)) {
-                b00Var.M(true);
-            }
-            if (!canScrollVertically(1)) {
-                b00.e(b00Var, 1, AndroidUtilities.dp(36.0f));
-            }
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        z1();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        ArrayList arrayList;
-        super.onDetachedFromWindow();
-        b6.release(this, this.f29309d3.f24735d2);
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            arrayList = this.X2;
-            if (i11 >= arrayList.size()) {
-                break;
-            }
-            ((ly) arrayList.get(i11)).f();
-            i11++;
-        }
-        while (true) {
-            ArrayList arrayList2 = this.f29306a3;
-            if (i10 < arrayList2.size()) {
-                ((ly) arrayList2.get(i10)).f();
                 i10++;
             } else {
-                arrayList2.addAll(arrayList);
-                arrayList.clear();
                 return;
             }
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        b00 b00Var = this.f29309d3;
-        if (!b00Var.f24740f) {
-            boolean r10 = org.telegram.ui.qt.q().r(motionEvent, this, b00Var.f24746g2, this.f30570n2);
-            if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-                return false;
-            }
-            return true;
-        }
-        return false;
+    public final void d(android.graphics.Canvas r20, float r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ny.d(android.graphics.Canvas, float):void");
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        b00 b00Var = this.f29309d3;
-        if (b00Var.f24733d0 && b00Var.f24730c0) {
-            this.V2 = true;
-            b00Var.Q.h1(0, 0);
-            b00Var.f24730c0 = false;
-            this.V2 = false;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        b00Var.l(true);
-        z1();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        this.V2 = true;
-        int size = View.MeasureSpec.getSize(i10);
-        b00 b00Var = this.f29309d3;
-        ay ayVar = b00Var.Q;
-        int i12 = ayVar.J;
-        if (AndroidUtilities.isTablet()) {
-            f7 = 60.0f;
-        } else {
-            f7 = 45.0f;
-        }
-        ayVar.y1(Math.max(1, size / AndroidUtilities.dp(f7)));
-        this.V2 = false;
-        super.onMeasure(i10, i11);
-        if (i12 != ayVar.J) {
-            b00Var.R.F(false);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        String str;
-        b00 b00Var = this.f29309d3;
-        int[] iArr = b00Var.D1;
-        ov ovVar = b00Var.B1;
-        if (b00Var.R1 != null && ovVar != null) {
-            if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                if (motionEvent.getAction() == 2) {
-                    float f7 = b00Var.U1;
-                    if (f7 != -10000.0f) {
-                        if (Math.abs(f7 - motionEvent.getX()) > AndroidUtilities.getPixelsInCM(0.2f, true) || Math.abs(b00Var.V1 - motionEvent.getY()) > AndroidUtilities.getPixelsInCM(0.2f, false)) {
-                            b00Var.U1 = -10000.0f;
-                            b00Var.V1 = -10000.0f;
-                        }
-                    }
-                    getLocationOnScreen(iArr);
-                    float x10 = motionEvent.getX() + iArr[0];
-                    ovVar.f29638c.getLocationOnScreen(iArr);
-                    int dp = (int) (x10 - (AndroidUtilities.dp(3.0f) + iArr[0]));
-                    boolean z10 = ovVar.d;
-                    nv nvVar = ovVar.f29638c;
-                    if (!z10) {
-                        int max = Math.max(0, Math.min(5, dp / (AndroidUtilities.dp(4.0f) + ovVar.f29639e)));
-                        if (nvVar.f29287n[0] != max) {
-                            AndroidUtilities.vibrateCursor(nvVar);
-                            int[] iArr2 = nvVar.f29287n;
-                            if (iArr2[0] != max) {
-                                iArr2[0] = max;
-                                nvVar.invalidate();
-                            }
-                        }
-                    }
-                }
-            } else {
-                if (ovVar != null && ovVar.isShowing() && !ovVar.d) {
-                    ovVar.dismiss();
-                    int i10 = ovVar.f29638c.f29287n[0];
-                    if (i10 >= 1 && i10 <= 5) {
-                        str = CompoundEmoji.skinTones.get(i10 - 1);
-                    } else {
-                        str = null;
-                    }
-                    String str2 = (String) b00Var.R1.getTag();
-                    if (!b00Var.R1.f27881c) {
-                        if (str != null) {
-                            Emoji.emojiColor.put(str2, str);
-                            str2 = b00.g(str2, str);
-                        } else {
-                            Emoji.emojiColor.remove(str2);
-                        }
-                        b00Var.R1.a(Emoji.getEmojiBigDrawable(str2), b00Var.R1.f27881c);
-                        b00.c(b00Var, b00Var.R1, null);
-                        try {
-                            performHapticFeedback(3, 1);
-                        } catch (Exception unused) {
-                        }
-                        Emoji.saveEmojiColors();
-                    } else {
-                        String replace = str2.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
-                        if (str != null) {
-                            b00.c(b00Var, b00Var.R1, b00.g(replace, str));
-                        } else {
-                            b00.c(b00Var, b00Var.R1, replace);
-                        }
-                    }
-                }
-                if (ovVar == null || !ovVar.d) {
-                    b00Var.R1 = null;
-                }
-                b00Var.U1 = -10000.0f;
-                b00Var.V1 = -10000.0f;
-            }
-            if (ovVar == null || !ovVar.d || ovVar.isShowing()) {
-                return true;
-            }
-        }
-        b00Var.S1 = motionEvent.getX();
-        b00Var.T1 = motionEvent.getY();
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.V2) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    public final long x1() {
-        b00 b00Var = this.f29309d3;
-        return Math.max(400L, Math.min(45, b00Var.f24786t2 - b00Var.f24783s2) * 35) + Math.max(600L, Math.min(55, b00Var.f24786t2 - b00Var.f24783s2) * 40) + 150;
-    }
-
-    public final void y1(View view) {
-        if (this.f29308c3 != null) {
-            int i10 = 0;
-            while (i10 < this.f29308c3.size()) {
-                my myVar = (my) this.f29308c3.valueAt(i10);
-                if (myVar.d == view) {
-                    this.f29308c3.removeAt(i10);
-                    i10--;
-                    View view2 = myVar.d;
-                    if (view2 != null && (view2.getBackground() instanceof RippleDrawable)) {
-                        myVar.d.getBackground().setState(new int[0]);
-                    }
-                    View view3 = myVar.d;
-                    if (view3 != null) {
-                        view3.setPressed(false);
-                    }
+    public final void g() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.P;
+            if (i10 < arrayList.size()) {
+                ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = ((lz) arrayList.get(i10)).f28326f;
+                if (backgroundThreadDrawHolderArr != null) {
+                    backgroundThreadDrawHolderArr[this.K].release();
                 }
                 i10++;
+            } else {
+                this.R.f29612d3.P.invalidate();
+                return;
             }
         }
     }
 
-    public final void z1() {
-        b00 b00Var = this.f29309d3;
-        int i10 = b00Var.f24729c;
-        ny nyVar = b00Var.P;
-        ny nyVar2 = b00Var.P;
-        b6[] b6VarArr = new b6[nyVar.getChildCount()];
-        for (int i11 = 0; i11 < nyVar2.getChildCount(); i11++) {
-            View childAt = nyVar2.getChildAt(i11);
-            if (childAt instanceof jz) {
-                b6VarArr[i11] = ((jz) childAt).getSpan();
+    @Override
+    public final void i(long j3) {
+        s5 s5Var;
+        PorterDuffColorFilter porterDuffColorFilter;
+        d00 d00Var = this.R.f29612d3;
+        ArrayList arrayList = this.P;
+        arrayList.clear();
+        for (int i10 = 0; i10 < this.O.size(); i10++) {
+            lz lzVar = (lz) this.O.get(i10);
+            b6 span = lzVar.getSpan();
+            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = lzVar.f28326f;
+            if (span != null && (s5Var = (s5) d00Var.f25084d2.get(lzVar.d.getDocumentId())) != null && s5Var.f30406k != null) {
+                s5Var.t(j3);
+                ai.m4 m4Var = s5Var.f30406k;
+                int i11 = this.K;
+                ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = m4Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
+                backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
+                drawInBackgroundThread.time = j3;
+                drawInBackgroundThread.overrideAlpha = 1.0f;
+                s5Var.setAlpha(255);
+                int height = (int) (lzVar.getHeight() * 0.03f);
+                Rect rect = AndroidUtilities.rectTmp2;
+                rect.set((lzVar.getPaddingLeft() + lzVar.getLeft()) - this.N, height, (lzVar.getRight() - lzVar.getPaddingRight()) - this.N, ((lzVar.getMeasuredHeight() + height) - lzVar.getPaddingTop()) - lzVar.getPaddingBottom());
+                backgroundThreadDrawHolderArr[i11].setBounds(rect);
+                lzVar.f28323b = s5Var;
+                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = backgroundThreadDrawHolderArr[i11];
+                if (s5Var.c()) {
+                    porterDuffColorFilter = d00Var.f25088e2;
+                } else {
+                    porterDuffColorFilter = null;
+                }
+                backgroundThreadDrawHolder.colorFilter = porterDuffColorFilter;
+                arrayList.add(lzVar);
             }
         }
-        b00Var.f24735d2 = b6.update(i10, this, b6VarArr, b00Var.f24735d2);
     }
 }

@@ -1,69 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeAnimator;
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class hx0 extends TimeAnimator {
-    public int f27249a;
-    public int f27250b;
-    public ValueAnimator.AnimatorUpdateListener f27251c;
-    public Float d;
-    public float[] f27252e;
+public class hx0 extends s4.e0 {
+    public final js f26984r;
+    public int f26985s;
+    public float f26986t;
 
-    @Override
-    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
-        this.f27251c = animatorUpdateListener;
+    public hx0(Context context) {
+        super(context);
+        this.f26984r = js.f27627f;
+        this.f26986t = 1.0f;
     }
 
     @Override
-    public final void end() {
-        this.f27251c = null;
-        super.end();
+    public final void g(View view, s4.y0 y0Var) {
+        int j3 = j(o(), view);
+        int k10 = k(p(), view);
+        int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
+        if (m10 > 0) {
+            y0Var.b(-j3, -k10, m10, this.f26984r);
+        }
+        AndroidUtilities.runOnUIThread(new ur0(this, 9), Math.max(0, m10));
     }
 
     @Override
-    public final Object getAnimatedValue() {
-        return this.d;
+    public final int k(int i10, View view) {
+        return super.k(i10, view) - this.f26985s;
     }
 
     @Override
-    public final void setFloatValues(float[] fArr) {
-        super.setFloatValues(fArr);
-        this.f27252e = fArr;
+    public final int m(int i10) {
+        return Math.round(Math.min(super.m(i10), 500) * this.f26986t);
     }
 
     @Override
-    public final void start() {
-        setTimeListener(new TimeAnimator.TimeListener() {
-            @Override
-            public final void onTimeUpdate(TimeAnimator timeAnimator, long j3, long j10) {
-                int i10;
-                hx0 hx0Var = hx0.this;
-                int i11 = hx0Var.f27249a;
-                if (i11 > 0 && (i10 = hx0Var.f27250b) > 0) {
-                    int i12 = i11 - 1;
-                    hx0Var.f27249a = i12;
-                    if (hx0Var.f27251c != null) {
-                        float[] fArr = hx0Var.f27252e;
-                        if (fArr != null && fArr.length == 2) {
-                            float interpolation = hx0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
-                            float[] fArr2 = hx0Var.f27252e;
-                            float f7 = fArr2[0];
-                            hx0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
-                            hx0Var.f27251c.onAnimationUpdate(hx0Var);
-                            return;
-                        }
-                        hx0Var.end();
-                        return;
-                    }
-                    return;
-                }
-                hx0Var.end();
-            }
-        });
-        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
-        this.f27249a = duration;
-        this.f27250b = duration;
-        super.start();
+    public final int n(int i10) {
+        return Math.round(Math.min(super.n(i10), 150) * this.f26986t);
+    }
+
+    @Override
+    public final void q(s4.y0 y0Var) {
+        PointF a2 = a(this.f48058a);
+        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+            s4.z0.b(a2);
+            this.f47913k = a2;
+            this.f47917o = (int) (a2.x * 10000.0f);
+            this.f47918p = (int) (a2.y * 10000.0f);
+            y0Var.b((int) (this.f47917o * 1.2f), (int) (this.f47918p * 1.2f), (int) (n(10000) * 1.2f), this.f26984r);
+            return;
+        }
+        y0Var.d = this.f48058a;
+        h();
     }
 }

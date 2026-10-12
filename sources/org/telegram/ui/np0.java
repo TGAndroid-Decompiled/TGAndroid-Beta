@@ -1,42 +1,58 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class np0 extends s4.t0 {
-    public final int f40338a;
-    public final tp0 f40339b;
+import android.content.Context;
+import android.graphics.Canvas;
+public final class np0 extends org.telegram.ui.Components.wm0 {
+    public final int V2;
+    public final wp0 W2;
 
-    public np0(tp0 tp0Var, int i10) {
-        this.f40339b = tp0Var;
-        this.f40338a = i10;
+    public np0(wp0 wp0Var, Context context, org.telegram.ui.ActionBar.c6 c6Var, int i10) {
+        super(context, c6Var);
+        this.W2 = wp0Var;
+        this.V2 = i10;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
+    public final Integer W0(int i10) {
+        wp0 wp0Var = this.W2;
+        if ((i10 >= wp0Var.f43580b0 && i10 < wp0Var.f43582c0) || (i10 >= wp0Var.f43583d0 && i10 < wp0Var.f43585e0)) {
+            return 0;
+        }
+        return super.W0(i10);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        wp0 wp0Var = this.W2;
+        if (wp0Var.G && wp0Var.E != null && wp0Var.F != null) {
+            int save = canvas.save();
+            canvas.translate(wp0Var.E.getLeft() + wp0Var.F.getLeft(), wp0Var.F.getTop());
+            wp0Var.E.draw(canvas);
+            canvas.restoreToCount(save);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         yh.f5 f5Var;
-        ah.h hVar;
-        tp0 tp0Var = this.f40339b;
-        zp0 zp0Var = tp0Var.f42275p0;
-        if (i11 != 0) {
-            zp0Var.D0(1);
-        }
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = zp0Var.f45080f0) != null) {
-            hVar.f(i10, i11);
-        }
-        tp0Var.h();
-        if (tp0Var.K != null) {
-            if (tp0Var.J != null && tp0Var.c()) {
-                tp0Var.J.g(false);
+        super.onLayout(z10, i10, i11, i12, i13);
+        wp0 wp0Var = this.W2;
+        cq0 cq0Var = wp0Var.f43597p0;
+        wp0Var.h();
+        if (wp0Var.K != null) {
+            if (wp0Var.J != null && wp0Var.c()) {
+                wp0Var.J.g(false);
                 return;
             }
             return;
         }
-        if (this.f40338a == 1) {
-            f5Var = zp0Var.f45074c;
+        if (this.V2 == 1) {
+            f5Var = cq0Var.f36478c;
         } else {
-            f5Var = zp0Var.f45072b;
+            f5Var = cq0Var.f36476b;
         }
-        if (f5Var != null && tp0Var.c()) {
+        if (f5Var != null && wp0Var.c()) {
             f5Var.a();
         }
     }

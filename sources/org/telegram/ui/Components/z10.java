@@ -1,185 +1,156 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.text.StaticLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class z10 {
-    public int f33535a;
-    public final Object f33536b;
-    public final Object f33537c;
-    public final Object d;
-    public final Object f33538e;
-    public final Object f33539f;
-    public Object f33540g;
-    public Object h;
+import android.app.Activity;
+import android.app.Application;
+import android.os.Bundle;
+import android.os.SystemClock;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public abstract class z10 implements Application.ActivityLifecycleCallbacks {
+    private static z10 Instance;
+    private int refs;
+    private boolean wasInBackground = true;
+    private long enterBackgroundTime = 0;
+    private CopyOnWriteArrayList<y10> listeners = new CopyOnWriteArrayList<>();
+    private final ArrayList<WeakReference<Activity>> resumedActivities = new ArrayList<>();
 
-    public z10(org.telegram.ui.Cells.u1 u1Var) {
-        this.f33537c = new Path();
-        this.d = new Rect();
-        this.f33539f = new RectF();
-        this.f33536b = u1Var;
-        this.f33538e = new bd(u1Var, 0.8f, 1.4f);
+    public z10(Application application) {
+        Instance = this;
+        application.registerActivityLifecycleCallbacks(this);
     }
 
-    public void a(Canvas canvas, boolean z10) {
-        Rect rect = (Rect) this.d;
-        canvas.save();
-        Path path = (Path) this.f33537c;
-        canvas.clipPath(path);
-        org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f33540g;
-        if (zVar != null) {
-            zVar.setBounds(rect);
-            ((org.telegram.ui.Cells.z) this.f33540g).draw(canvas);
-        }
-        if (z10) {
-            ia0 ia0Var = (ia0) this.h;
-            if (ia0Var == null) {
-                ia0 ia0Var2 = new ia0();
-                this.h = ia0Var2;
-                ia0Var2.D = true;
-            } else if (ia0Var.c() || ((ia0) this.h).d()) {
-                ia0 ia0Var3 = (ia0) this.h;
-                ia0Var3.f27385b = -1L;
-                ia0Var3.f27386c = -1L;
+    public static z10 getInstance() {
+        return Instance;
+    }
+
+    public final void a(Activity activity) {
+        for (int size = this.resumedActivities.size() - 1; size >= 0; size--) {
+            Activity activity2 = this.resumedActivities.get(size).get();
+            if (activity2 == null || activity2 == activity) {
+                this.resumedActivities.remove(size);
             }
-        } else {
-            ia0 ia0Var4 = (ia0) this.h;
-            if (ia0Var4 != null && !ia0Var4.d() && !((ia0) this.h).c()) {
-                ((ia0) this.h).a();
-            }
-        }
-        canvas.restore();
-        ia0 ia0Var5 = (ia0) this.h;
-        if (ia0Var5 != null && !ia0Var5.c()) {
-            ia0 ia0Var6 = (ia0) this.h;
-            ia0Var6.f27405y = path;
-            ia0Var6.g(org.telegram.ui.ActionBar.h6.m1(0.7f, this.f33535a), org.telegram.ui.ActionBar.h6.m1(1.3f, this.f33535a), org.telegram.ui.ActionBar.h6.m1(1.5f, this.f33535a), org.telegram.ui.ActionBar.h6.m1(2.0f, this.f33535a));
-            ((ia0) this.h).setBounds(rect);
-            canvas.save();
-            ((ia0) this.h).draw(canvas);
-            canvas.restore();
-            ((org.telegram.ui.Cells.u1) this.f33536b).invalidate();
         }
     }
 
-    public void b(StaticLayout[] staticLayoutArr, boolean z10) {
-        float e7;
-        float f7;
-        float dp;
-        RectF rectF = (RectF) this.f33539f;
-        int textSize = (((int) org.telegram.ui.ActionBar.h6.X2.getTextSize()) * 2) + AndroidUtilities.dp(4.0f);
-        float max = Math.max(0, Math.min(6, SharedConfig.bubbleRadius) - 1);
-        float min = Math.min(9, SharedConfig.bubbleRadius);
-        float min2 = Math.min(3, SharedConfig.bubbleRadius);
-        float f10 = -AndroidUtilities.dp(a1.g.e(min, 9.0f, 2.66f, 4.0f));
-        float f11 = -AndroidUtilities.dp(3.0f);
-        float dp2 = AndroidUtilities.dp(5.0f) + textSize;
-        float lineWidth = staticLayoutArr[0].getLineWidth(0) + AndroidUtilities.dp(e7);
-        float lineWidth2 = staticLayoutArr[1].getLineWidth(0) + AndroidUtilities.dp(e7);
-        Path path = (Path) this.f33537c;
-        path.rewind();
-        if (!z10) {
-            max = SharedConfig.bubbleRadius / 2.0f;
-        }
-        float dp3 = AndroidUtilities.dp(max) * 2;
-        rectF.set(f10, f11, f10 + dp3, dp3 + f11);
-        path.arcTo(rectF, 180.0f, 90.0f);
-        float f12 = lineWidth - lineWidth2;
-        float f13 = min2 + min;
-        if (Math.abs(f12) < AndroidUtilities.dp(f13)) {
-            f7 = Math.max(lineWidth, lineWidth2);
-        } else {
-            f7 = lineWidth;
-        }
-        if (Math.abs(f12) > AndroidUtilities.dp(f13)) {
-            float dp4 = AndroidUtilities.dp(min2) * 2;
-            if (lineWidth < lineWidth2) {
-                float y3 = com.google.android.gms.internal.vision.e2.y(dp2, f11, 0.45f, f11);
-                dp = AndroidUtilities.dp(min) * 2;
-                rectF.set(f7 - dp, f11, f7, f11 + dp);
-                path.arcTo(rectF, 270.0f, 90.0f);
-                rectF.set(lineWidth, y3 - dp4, dp4 + lineWidth, y3);
-                path.arcTo(rectF, 180.0f, -90.0f);
-                float f14 = lineWidth2 - (dp2 - y3);
-                rectF.set(f14, y3, lineWidth2, dp2);
-                path.arcTo(rectF, 270.0f, 90.0f);
-                rectF.set(f14, y3, lineWidth2, dp2);
-                path.arcTo(rectF, 0.0f, 90.0f);
+    public void addListener(y10 y10Var) {
+        this.listeners.add(y10Var);
+    }
+
+    public Activity getForegroundActivity() {
+        Activity activity = null;
+        for (int size = this.resumedActivities.size() - 1; size >= 0; size--) {
+            Activity activity2 = this.resumedActivities.get(size).get();
+            if (activity2 != null && !activity2.isFinishing() && !activity2.isDestroyed()) {
+                if (activity2.hasWindowFocus()) {
+                    return activity2;
+                }
+                if (activity == null) {
+                    activity = activity2;
+                }
             } else {
-                float y10 = com.google.android.gms.internal.vision.e2.y(dp2, f11, 0.55f, f11);
-                float f15 = y10 - f11;
-                rectF.set(f7 - f15, f11, f7, y10);
-                path.arcTo(rectF, 270.0f, 90.0f);
-                dp = AndroidUtilities.dp(min) * 2;
-                rectF.set(lineWidth - f15, f11, lineWidth, y10);
-                path.arcTo(rectF, 0.0f, 90.0f);
-                rectF.set(lineWidth2, y10, lineWidth2 + dp4, dp4 + y10);
-                path.arcTo(rectF, 270.0f, -90.0f);
-                rectF.set(lineWidth2 - dp, dp2 - dp, lineWidth2, dp2);
-                path.arcTo(rectF, 0.0f, 90.0f);
+                this.resumedActivities.remove(size);
             }
-        } else {
-            dp = AndroidUtilities.dp(min) * 2;
-            float f16 = f7 - dp;
-            rectF.set(f16, f11, f7, f11 + dp);
-            path.arcTo(rectF, 270.0f, 90.0f);
-            rectF.set(f16, dp2 - dp, f7, dp2);
-            path.arcTo(rectF, 0.0f, 90.0f);
         }
-        rectF.set(f10, dp2 - dp, dp + f10, dp2);
-        path.arcTo(rectF, 90.0f, 90.0f);
-        path.close();
-        ((Rect) this.d).set((int) f10, (int) f11, (int) Math.max(lineWidth, lineWidth2), (int) dp2);
+        return activity;
     }
 
-    public void c(int i10) {
-        if (this.f33535a != i10) {
-            org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f33540g;
-            if (zVar == null) {
-                this.f33540g = org.telegram.ui.ActionBar.h6.g0(i10, 2, -1);
-            } else {
-                org.telegram.ui.ActionBar.h6.C1(zVar, i10, true);
+    public boolean isBackground() {
+        if (this.refs == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isForeground() {
+        if (this.refs > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isWasInBackground(boolean z10) {
+        if (z10 && SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
+            this.wasInBackground = false;
+        }
+        return this.wasInBackground;
+    }
+
+    @Override
+    public void onActivityDestroyed(Activity activity) {
+        a(activity);
+    }
+
+    @Override
+    public void onActivityPaused(Activity activity) {
+        a(activity);
+    }
+
+    @Override
+    public void onActivityResumed(Activity activity) {
+        a(activity);
+        this.resumedActivities.add(new WeakReference<>(activity));
+    }
+
+    @Override
+    public void onActivityStarted(Activity activity) {
+        int i10 = this.refs + 1;
+        this.refs = i10;
+        if (i10 == 1) {
+            if (SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
+                this.wasInBackground = false;
             }
-            ((org.telegram.ui.Cells.z) this.f33540g).setCallback((org.telegram.ui.Cells.u1) this.f33536b);
-            this.f33535a = i10;
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("switch to foreground");
+            }
+            Iterator<y10> it = this.listeners.iterator();
+            while (it.hasNext()) {
+                try {
+                    it.next().onBecameForeground();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+            }
         }
     }
 
-    public void d(boolean z10) {
-        org.telegram.ui.Cells.z zVar;
-        Rect rect = (Rect) this.d;
-        float centerX = rect.centerX();
-        float centerY = rect.centerY();
-        ((bd) this.f33538e).c(z10);
-        if (z10 && (zVar = (org.telegram.ui.Cells.z) this.f33540g) != null) {
-            zVar.setHotspot(centerX, centerY);
+    @Override
+    public void onActivityStopped(Activity activity) {
+        int i10 = this.refs - 1;
+        this.refs = i10;
+        if (i10 == 0) {
+            this.enterBackgroundTime = SystemClock.elapsedRealtime();
+            this.wasInBackground = true;
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("switch to background");
+            }
+            Iterator<y10> it = this.listeners.iterator();
+            while (it.hasNext()) {
+                try {
+                    it.next().onBecameBackground();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+            }
         }
-        org.telegram.ui.Cells.z zVar2 = (org.telegram.ui.Cells.z) this.f33540g;
-        if (zVar2 != null) {
-            zVar2.setState(z10 ? new int[]{16842910, 16842919} : new int[0]);
-        }
-        ((org.telegram.ui.Cells.u1) this.f33536b).invalidate();
     }
 
-    public z10() {
-        Paint paint = new Paint();
-        this.f33536b = paint;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f33537c = new gd0(tileMode);
-        this.d = new gd0(tileMode);
-        this.f33538e = new gd0(Shader.TileMode.REPEAT);
-        this.f33539f = new Object();
-        this.f33540g = new Object();
-        this.h = new float[4];
-        paint.setFilterBitmap(true);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+    public void removeListener(y10 y10Var) {
+        this.listeners.remove(y10Var);
+    }
+
+    public void resetBackgroundVar() {
+        this.wasInBackground = false;
+    }
+
+    @Override
+    public void onActivityCreated(Activity activity, Bundle bundle) {
+    }
+
+    @Override
+    public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
     }
 }

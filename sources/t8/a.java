@@ -3,13 +3,13 @@ package t8;
 import java.util.Arrays;
 import java.util.List;
 public final class a {
-    public final int f48355a;
-    public final List f48356b;
-    public final List f48357c;
+    public final int f48462a;
+    public final List f48463b;
+    public final List f48464c;
 
-    public a(int i10, d[] dVarArr, na.d[] dVarArr2) {
-        this.f48355a = i10;
-        this.f48356b = Arrays.asList(dVarArr);
-        this.f48357c = Arrays.asList(dVarArr2);
+    public a(int i10, d[] dVarArr, ob.a[] aVarArr) {
+        this.f48462a = i10;
+        this.f48463b = Arrays.asList(dVarArr);
+        this.f48464c = Arrays.asList(aVarArr);
     }
 }

@@ -210,7 +210,7 @@ public class FileLoadOperation {
         boolean z10 = false;
         this.FULL_LOGS = false;
         this.downloadConnectionsCount = 2;
-        this.pacedDownloadRequest = new o2(this, 5);
+        this.pacedDownloadRequest = new s2(this, 5);
         this.downloadChunkSize = 32768;
         this.downloadChunkSizeBig = 131072;
         this.cdnChunkCheckSize = 131072;
@@ -223,7 +223,7 @@ public class FileLoadOperation {
         this.preloadTempBuffer = new byte[24];
         this.state = 0;
         this.uiRequestTokens = new ArrayList<>();
-        this.cancelAfterNoStreamListeners = new o2(this, 6);
+        this.cancelAfterNoStreamListeners = new s2(this, 6);
         updateParams();
         this.parentObject = obj;
         this.isStory = obj instanceof TL_stories.TL_storyItem;
@@ -234,7 +234,7 @@ public class FileLoadOperation {
             this.location = tL_inputEncryptedFileLocation;
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = imageLocation.location;
             long j10 = tL_fileLocationToBeDeprecated.volume_id;
-            tL_inputEncryptedFileLocation.f20083id = j10;
+            tL_inputEncryptedFileLocation.f19817id = j10;
             tL_inputEncryptedFileLocation.volume_id = j10;
             tL_inputEncryptedFileLocation.local_id = tL_fileLocationToBeDeprecated.local_id;
             tL_inputEncryptedFileLocation.access_hash = imageLocation.access_hash;
@@ -246,7 +246,7 @@ public class FileLoadOperation {
             TLRPC.TL_inputPeerPhotoFileLocation tL_inputPeerPhotoFileLocation = new TLRPC.TL_inputPeerPhotoFileLocation();
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = imageLocation.location;
             long j11 = tL_fileLocationToBeDeprecated2.volume_id;
-            tL_inputPeerPhotoFileLocation.f20083id = j11;
+            tL_inputPeerPhotoFileLocation.f19817id = j11;
             tL_inputPeerPhotoFileLocation.volume_id = j11;
             tL_inputPeerPhotoFileLocation.local_id = tL_fileLocationToBeDeprecated2.local_id;
             tL_inputPeerPhotoFileLocation.photo_id = imageLocation.photoId;
@@ -257,7 +257,7 @@ public class FileLoadOperation {
             TLRPC.TL_inputStickerSetThumb tL_inputStickerSetThumb = new TLRPC.TL_inputStickerSetThumb();
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = imageLocation.location;
             long j12 = tL_fileLocationToBeDeprecated3.volume_id;
-            tL_inputStickerSetThumb.f20083id = j12;
+            tL_inputStickerSetThumb.f19817id = j12;
             tL_inputStickerSetThumb.volume_id = j12;
             tL_inputStickerSetThumb.local_id = tL_fileLocationToBeDeprecated3.local_id;
             tL_inputStickerSetThumb.thumb_version = imageLocation.thumbVersion;
@@ -267,7 +267,7 @@ public class FileLoadOperation {
             if (imageLocation.photoId != 0) {
                 TLRPC.TL_inputPhotoFileLocation tL_inputPhotoFileLocation = new TLRPC.TL_inputPhotoFileLocation();
                 this.location = tL_inputPhotoFileLocation;
-                tL_inputPhotoFileLocation.f20083id = imageLocation.photoId;
+                tL_inputPhotoFileLocation.f19817id = imageLocation.photoId;
                 TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated4 = imageLocation.location;
                 tL_inputPhotoFileLocation.volume_id = tL_fileLocationToBeDeprecated4.volume_id;
                 tL_inputPhotoFileLocation.local_id = tL_fileLocationToBeDeprecated4.local_id;
@@ -281,7 +281,7 @@ public class FileLoadOperation {
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation = new TLRPC.TL_inputDocumentFileLocation();
                 this.location = tL_inputDocumentFileLocation;
                 long j13 = imageLocation.documentId;
-                tL_inputDocumentFileLocation.f20083id = j13;
+                tL_inputDocumentFileLocation.f19817id = j13;
                 this.documentId = j13;
                 TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated5 = imageLocation.location;
                 tL_inputDocumentFileLocation.volume_id = tL_fileLocationToBeDeprecated5.volume_id;
@@ -359,7 +359,7 @@ public class FileLoadOperation {
                         this.writingToFilePartsStream = true;
                     }
                     DispatchQueue dispatchQueue = filesQueue;
-                    f2 f2Var = new f2(3, this, arrayList2);
+                    f2 f2Var = new f2(4, this, arrayList2);
                     this.fileWriteRunnable = f2Var;
                     dispatchQueue.postRunnable(f2Var);
                     notifyStreamListeners();
@@ -380,7 +380,7 @@ public class FileLoadOperation {
     public void lambda$cancel$14(boolean z10) {
         if (this.state != 3 && this.state != 2) {
             this.state = 5;
-            cancelRequests(new o2(this, 4));
+            cancelRequests(new s2(this, 4));
         }
         if (z10) {
             File file = this.cacheFileFinal;
@@ -454,13 +454,13 @@ public class FileLoadOperation {
                     requestInfo.cancelling = true;
                     if (runnable == null) {
                         requestInfo.cancelled = true;
-                        q.o(requestInfo.requestToken, new StringBuilder("cancelRequests cancel "));
+                        v0.o(requestInfo.requestToken, new StringBuilder("cancelRequests cancel "));
                         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true);
                     } else {
-                        requestInfo.whenCancelled = new g0(requestInfo, iArr, runnable, 21);
+                        requestInfo.whenCancelled = new h0(requestInfo, iArr, runnable, 21);
                         iArr[0] = iArr[0] + 1;
                         FileLog.d("cancelRequests cancel " + requestInfo.requestToken + " with callback");
-                        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true, new n2(requestInfo, 1));
+                        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo.requestToken, true, new r2(requestInfo, 1));
                     }
                     int i12 = requestInfo.connectionType >>> 16;
                     iArr2[i12] = iArr2[i12] + requestInfo.chunkSize;
@@ -586,8 +586,8 @@ public class FileLoadOperation {
                 requestInfo2.cancelling = true;
                 if (z11) {
                     this.cancelledRequestInfos.add(requestInfo2);
-                    requestInfo2.whenCancelled = new r2(this, requestInfo2, 1);
-                    ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo2.requestToken, true, new n2(requestInfo2, 0));
+                    requestInfo2.whenCancelled = new v2(this, requestInfo2, 1);
+                    ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo2.requestToken, true, new r2(requestInfo2, 0));
                 } else {
                     ConnectionsManager.getInstance(this.currentAccount).cancelRequest(requestInfo2.requestToken, true);
                     requestInfo2.cancelled = true;
@@ -608,7 +608,7 @@ public class FileLoadOperation {
             }
         }
         this.requestInfos.clear();
-        AndroidUtilities.runOnUIThread(new o2(this, 0));
+        AndroidUtilities.runOnUIThread(new s2(this, 0));
         long j10 = j3;
         for (int i14 = 0; i14 < this.delayedRequestInfos.size(); i14++) {
             RequestInfo requestInfo3 = this.delayedRequestInfos.get(i14);
@@ -802,7 +802,7 @@ public class FileLoadOperation {
                 return;
             }
             randomAccessFile.seek(0L);
-            this.filePartsStream.write(filesQueueByteBuffer.f52340a, 0, i10);
+            this.filePartsStream.write(filesQueueByteBuffer.f52443a, 0, i10);
             this.writingToFilePartsStream = false;
             if (this.closeFilePartsStreamOnWriteEnd) {
                 try {
@@ -1040,7 +1040,7 @@ public class FileLoadOperation {
                 RequestInfo requestInfo2 = this.priorityRequestInfo;
                 int i10 = requestInfo2.requestToken;
                 this.requestInfos.remove(requestInfo2);
-                AndroidUtilities.runOnUIThread(new m2(this, i10, 2));
+                AndroidUtilities.runOnUIThread(new q2(this, i10, 2));
                 this.requestedBytesCount -= this.currentDownloadChunkSize;
                 removePart(this.notRequestedBytesRanges, this.priorityRequestInfo.offset, this.priorityRequestInfo.offset + this.currentDownloadChunkSize);
                 if (this.priorityRequestInfo.requestToken != 0) {
@@ -1196,7 +1196,7 @@ public class FileLoadOperation {
             sb2.append(" conType=");
             sb2.append(i11);
             sb2.append(" reqId");
-            q.o(requestInfo.requestToken, sb2);
+            v0.o(requestInfo.requestToken, sb2);
         }
         if (requestInfo == this.priorityRequestInfo) {
             if (BuildVars.DEBUG_VERSION) {
@@ -1266,7 +1266,7 @@ public class FileLoadOperation {
                 TLRPC.TL_upload_reuploadCdnFile tL_upload_reuploadCdnFile = new TLRPC.TL_upload_reuploadCdnFile();
                 tL_upload_reuploadCdnFile.file_token = this.cdnToken;
                 tL_upload_reuploadCdnFile.request_token = ((TLRPC.TL_upload_cdnFileReuploadNeeded) tLObject2).request_token;
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_reuploadCdnFile, new cb(this, i11, requestInfo, 1), null, null, 0, this.datacenterId, 1, true);
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_reuploadCdnFile, new fb(this, i11, requestInfo, 1), null, null, 0, this.datacenterId, 1, true);
             }
         } else {
             if (tLObject2 instanceof TLRPC.TL_upload_file) {
@@ -1345,7 +1345,7 @@ public class FileLoadOperation {
                 sb2.append(" of ");
                 sb2.append(this.totalBytesCount);
                 sb2.append(" prefSize=");
-                q.o(this.preloadPrefixSize, sb2);
+                v0.o(this.preloadPrefixSize, sb2);
             }
         }
         if (this.fileMetadata != null) {
@@ -1401,7 +1401,7 @@ public class FileLoadOperation {
         TLRPC.TL_upload_getCdnFileHashes tL_upload_getCdnFileHashes = new TLRPC.TL_upload_getCdnFileHashes();
         tL_upload_getCdnFileHashes.file_token = this.cdnToken;
         tL_upload_getCdnFileHashes.offset = j3;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_getCdnFileHashes, new h0(this, 2), null, null, 0, this.datacenterId, 1, true);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_getCdnFileHashes, new i0(this, 2), null, null, 0, this.datacenterId, 1, true);
     }
 
     private void requestReference(RequestInfo requestInfo) {
@@ -1475,7 +1475,7 @@ public class FileLoadOperation {
     public File getCurrentFile() {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         File[] fileArr = new File[1];
-        Utilities.stageQueue.postRunnable(new g0(this, fileArr, countDownLatch, 20));
+        Utilities.stageQueue.postRunnable(new h0(this, fileArr, countDownLatch, 20));
         try {
             countDownLatch.await();
         } catch (Exception e7) {
@@ -1572,7 +1572,7 @@ public class FileLoadOperation {
             }
         }
         if (z10) {
-            Utilities.stageQueue.postRunnable(new m2(this, i10, 0));
+            Utilities.stageQueue.postRunnable(new q2(this, i10, 0));
             return;
         }
         FileLoadOperationDelegate fileLoadOperationDelegate = this.delegate;
@@ -1587,7 +1587,7 @@ public class FileLoadOperation {
             return;
         }
         this.paused = true;
-        Utilities.stageQueue.postRunnable(new o2(this, 3));
+        Utilities.stageQueue.postRunnable(new s2(this, 3));
     }
 
     public boolean processRequestResult(org.telegram.messenger.FileLoadOperation.RequestInfo r46, org.telegram.tgnet.TLRPC.TL_error r47) {
@@ -1595,7 +1595,7 @@ public class FileLoadOperation {
     }
 
     public void removeStreamListener(FileLoadOperationStream fileLoadOperationStream) {
-        Utilities.stageQueue.postRunnable(new q2(this, fileLoadOperationStream, 0));
+        Utilities.stageQueue.postRunnable(new u2(this, fileLoadOperationStream, 0));
     }
 
     public void setDelegate(FileLoadOperationDelegate fileLoadOperationDelegate) {
@@ -1625,7 +1625,7 @@ public class FileLoadOperation {
                         start();
                         return;
                     } else if (this.state == 1) {
-                        Utilities.stageQueue.postRunnable(new p2(this, z10, 0));
+                        Utilities.stageQueue.postRunnable(new t2(this, z10, 0));
                         return;
                     } else {
                         this.isPreloadVideoOperation = z10;
@@ -1654,7 +1654,7 @@ public class FileLoadOperation {
         this.stream = fileLoadOperationStream;
         this.streamOffset = j3;
         this.streamPriority = z10;
-        Utilities.stageQueue.postRunnable(new q2(this, fileLoadOperationStream, 1));
+        Utilities.stageQueue.postRunnable(new u2(this, fileLoadOperationStream, 1));
     }
 
     public boolean start() {
@@ -1904,7 +1904,7 @@ public class FileLoadOperation {
                             fileLoadOperation.preloadStream.getChannel().read(nativeByteBuffer.buffer);
                             nativeByteBuffer.buffer.position(0);
                             requestInfo.response.bytes = nativeByteBuffer;
-                            Utilities.stageQueue.postRunnable(new r2(fileLoadOperation, requestInfo, 0));
+                            Utilities.stageQueue.postRunnable(new v2(fileLoadOperation, requestInfo, 0));
                             j11 = j3;
                         } catch (Exception unused) {
                         }
@@ -1913,7 +1913,7 @@ public class FileLoadOperation {
                     }
                     if (fileLoadOperation.streamPriorityStartOffset != j3) {
                         if (BuildVars.DEBUG_VERSION) {
-                            q.r(new StringBuilder("frame get offset = "), fileLoadOperation.streamPriorityStartOffset);
+                            hg.c.x(new StringBuilder("frame get offset = "), fileLoadOperation.streamPriorityStartOffset);
                         }
                         j11 = j3;
                         fileLoadOperation.streamPriorityStartOffset = j11;
@@ -1951,9 +1951,9 @@ public class FileLoadOperation {
                             sb2.append(" conType=");
                             sb2.append(i26);
                             sb2.append(" priority=");
-                            q.o(fileLoadOperation.priority, sb2);
+                            v0.o(fileLoadOperation.priority, sb2);
                         }
-                        AndroidUtilities.runOnUIThread(new m2(fileLoadOperation, sendRequestSync, 3));
+                        AndroidUtilities.runOnUIThread(new q2(fileLoadOperation, sendRequestSync, 3));
                         fileLoadOperation.requestsCount++;
                         if (fileLoadOperation.downloadRequestPacer != null) {
                             long uptimeMillis = SystemClock.uptimeMillis();
@@ -1989,7 +1989,7 @@ public class FileLoadOperation {
     }
 
     private void cancel(boolean z10) {
-        Utilities.stageQueue.postRunnable(new p2(this, z10, 3));
+        Utilities.stageQueue.postRunnable(new t2(this, z10, 3));
     }
 
     public boolean start(final org.telegram.messenger.FileLoadOperationStream r31, final long r32, final boolean r34) {
@@ -1999,7 +1999,7 @@ public class FileLoadOperation {
     public long[] getDownloadedLengthFromOffset(long j3, long j10) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         ?? r22 = new long[2];
-        Utilities.stageQueue.postRunnable(new t2(this, (Serializable) r22, j3, j10, countDownLatch, 0));
+        Utilities.stageQueue.postRunnable(new x2(this, (Serializable) r22, j3, j10, countDownLatch, 0));
         try {
             countDownLatch.await();
         } catch (Exception unused) {
@@ -2010,7 +2010,7 @@ public class FileLoadOperation {
     public FileLoadOperation(SecureDocument secureDocument) {
         this.FULL_LOGS = false;
         this.downloadConnectionsCount = 2;
-        this.pacedDownloadRequest = new o2(this, 5);
+        this.pacedDownloadRequest = new s2(this, 5);
         this.downloadChunkSize = 32768;
         this.downloadChunkSizeBig = 131072;
         this.cdnChunkCheckSize = 131072;
@@ -2023,12 +2023,12 @@ public class FileLoadOperation {
         this.preloadTempBuffer = new byte[24];
         this.state = 0;
         this.uiRequestTokens = new ArrayList<>();
-        this.cancelAfterNoStreamListeners = new o2(this, 6);
+        this.cancelAfterNoStreamListeners = new s2(this, 6);
         updateParams();
         TLRPC.TL_inputSecureFileLocation tL_inputSecureFileLocation = new TLRPC.TL_inputSecureFileLocation();
         this.location = tL_inputSecureFileLocation;
         TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
-        tL_inputSecureFileLocation.f20083id = tL_secureFile.f20203id;
+        tL_inputSecureFileLocation.f19817id = tL_secureFile.f19937id;
         tL_inputSecureFileLocation.access_hash = tL_secureFile.access_hash;
         this.datacenterId = tL_secureFile.dc_id;
         this.totalBytesCount = tL_secureFile.size;
@@ -2040,7 +2040,7 @@ public class FileLoadOperation {
     public FileLoadOperation(int i10, WebFile webFile) {
         this.FULL_LOGS = false;
         this.downloadConnectionsCount = 2;
-        this.pacedDownloadRequest = new o2(this, 5);
+        this.pacedDownloadRequest = new s2(this, 5);
         this.downloadChunkSize = 32768;
         this.downloadChunkSizeBig = 131072;
         this.cdnChunkCheckSize = 131072;
@@ -2053,7 +2053,7 @@ public class FileLoadOperation {
         this.preloadTempBuffer = new byte[24];
         this.state = 0;
         this.uiRequestTokens = new ArrayList<>();
-        this.cancelAfterNoStreamListeners = new o2(this, 6);
+        this.cancelAfterNoStreamListeners = new s2(this, 6);
         updateParams();
         this.currentAccount = i10;
         this.webFile = webFile;

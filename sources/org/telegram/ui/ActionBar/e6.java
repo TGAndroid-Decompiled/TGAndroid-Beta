@@ -1,52 +1,156 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class e6 extends Drawable {
-    public float[] f20613b;
-    public Path f20612a = new Path();
-    public boolean f20614c = true;
+import android.graphics.Color;
+import android.text.TextUtils;
+import android.util.SparseIntArray;
+import java.io.File;
+import java.util.Locale;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.tgnet.TLRPC;
+public final class e6 {
+    public int f20349a;
+    public g6 f20350b;
+    public int f20351c;
+    public int d;
+    public int f20352e;
+    public int f20353f;
+    public int f20354g;
+    public int h;
+    public boolean f20355i;
+    public long f20356j;
+    public long f20357k;
+    public long f20358l;
+    public long f20359m;
+    public float f20362p;
+    public boolean f20363q;
+    public TLRPC.TL_theme f20364r;
+    public TLRPC.TL_wallPaper f20365s;
+    public int f20366t;
+    public String f20367u;
+    public String v;
+    public TLRPC.InputFile f20368w;
+    public TLRPC.InputFile f20369x;
+    public z5 f20370y;
+    public boolean f20371z;
+    public int f20360n = 45;
+    public String f20361o = "";
+    public final float[] A = new float[3];
 
-    public e6(float f7, float f10) {
-        this.f20613b = r0;
-        float dp = AndroidUtilities.dp(f7);
-        float dp2 = AndroidUtilities.dp(f10);
-        float[] fArr = {dp, dp, dp, dp, dp2, dp2, dp2, dp2};
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Path path = this.f20612a;
-        if (this.f20614c) {
-            this.f20614c = false;
-            path.reset();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(getBounds());
-            path.addRoundRect(rectF, this.f20613b, Path.Direction.CW);
+    public static int a(SparseIntArray sparseIntArray, int... iArr) {
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        int i13 = 0;
+        for (int i14 = 0; i14 < iArr.length; i14++) {
+            if (sparseIntArray.indexOfKey(iArr[i14]) >= 0) {
+                try {
+                    int i15 = sparseIntArray.get(iArr[i14]);
+                    i11 += Color.red(i15);
+                    i12 += Color.green(i15);
+                    i13 += Color.blue(i15);
+                    i10++;
+                } catch (Exception unused) {
+                }
+            }
         }
-        canvas.drawPath(path, h6.f21218z);
+        if (i10 == 0) {
+            return 0;
+        }
+        return Color.argb(255, i11 / i10, i12 / i10, i13 / i10);
     }
 
-    @Override
-    public final int getOpacity() {
-        return 0;
+    public static void g(SparseIntArray sparseIntArray) {
+        for (int i10 = h6.f20967za; i10 < h6.Ga; i10++) {
+            sparseIntArray.delete(i10);
+            sparseIntArray.put(i10, h6.ql[i10]);
+        }
+        for (int i11 = h6.Ha; i11 < h6.Tb; i11++) {
+            sparseIntArray.delete(i11);
+            sparseIntArray.put(i11, h6.ql[i11]);
+        }
+        for (int i12 = h6.Ub; i12 < h6.f20547cc; i12++) {
+            sparseIntArray.delete(i12);
+            sparseIntArray.put(i12, h6.ql[i12]);
+        }
     }
 
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f20614c = true;
+    public final int b(int i10, int i11) {
+        float[] fArr = this.A;
+        Color.colorToHSV(i11, fArr);
+        float f7 = fArr[0];
+        Color.colorToHSV(i10, fArr);
+        float f10 = fArr[1];
+        if (f10 <= 0.0f) {
+            fArr[0] = f7;
+        }
+        fArr[1] = Math.max(0.0f, Math.min(1.0f, f10 + 0.6f));
+        fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] - 0.05f));
+        return Color.HSVToColor(30, fArr);
     }
 
-    @Override
-    public final void setAlpha(int i10) {
+    public final boolean c(android.util.SparseIntArray r22, android.util.SparseIntArray r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.e6.c(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final File d() {
+        if (this.f20349a < 100) {
+            if (TextUtils.isEmpty(this.f20361o)) {
+                return null;
+            }
+            File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+            Locale locale = Locale.US;
+            String m10 = this.f20350b.m();
+            int i10 = this.f20349a;
+            String str = this.f20361o;
+            return new File(filesDirFixed, m10 + "_" + i10 + "_" + str + "_v5.jpg");
+        } else if (TextUtils.isEmpty(this.f20361o)) {
+            return null;
+        } else {
+            File filesDirFixed2 = ApplicationLoader.getFilesDirFixed();
+            Locale locale2 = Locale.US;
+            String m11 = this.f20350b.m();
+            int i11 = this.f20349a;
+            String str2 = this.f20361o;
+            return new File(filesDirFixed2, m11 + "_" + i11 + "_" + str2 + "_v8_debug.jpg");
+        }
+    }
+
+    public final int e(int i10, int i11, boolean z10) {
+        int d = i0.a.d(0.25f, i10, i11);
+        float[] fArr = this.A;
+        Color.colorToHSV(d, fArr);
+        float f7 = 0.1f;
+        fArr[1] = Math.max(0.0f, Math.min(1.0f, fArr[1] - 0.1f));
+        float f10 = fArr[2];
+        if (!z10) {
+            f7 = 0.0f;
+        }
+        fArr[2] = Math.max(0.0f, Math.min(1.0f, f10 + f7));
+        return Color.HSVToColor(51, fArr);
+    }
+
+    public final int f(int i10, float f7, boolean z10) {
+        if (z10) {
+            return 520093695;
+        }
+        float[] fArr = this.A;
+        Color.colorToHSV(i10, fArr);
+        if (fArr[1] > 0.0f) {
+            float f10 = fArr[2];
+            if (f10 < 1.0f && f10 > 0.0f) {
+                fArr[0] = w7.n.a(fArr[0] + 0.22f, 0.0f, 1.0f);
+                fArr[1] = w7.n.a(fArr[1] - 0.35f, 0.0f, 1.0f);
+                fArr[2] = w7.n.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+                return Color.HSVToColor(90, fArr);
+            }
+        }
+        fArr[0] = f7;
+        fArr[1] = 0.2f;
+        fArr[2] = w7.n.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+        return Color.HSVToColor(90, fArr);
+    }
+
+    public final int h(int r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.e6.h(int, int):int");
     }
 }

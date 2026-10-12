@@ -38,27 +38,27 @@ public class SvgHelper {
 
     public static class Circle {
         float rad;
-        float f17300x1;
-        float f17301y1;
+        float f17016x1;
+        float f17017y1;
 
         public Circle(float f7, float f10, float f11) {
-            this.f17300x1 = f7;
-            this.f17301y1 = f10;
+            this.f17016x1 = f7;
+            this.f17017y1 = f10;
             this.rad = f11;
         }
     }
 
     public static class Line {
-        float f17302x1;
-        float f17303x2;
-        float f17304y1;
-        float f17305y2;
+        float f17018x1;
+        float f17019x2;
+        float f17020y1;
+        float f17021y2;
 
         public Line(float f7, float f10, float f11, float f12) {
-            this.f17302x1 = f7;
-            this.f17304y1 = f10;
-            this.f17303x2 = f11;
-            this.f17305y2 = f12;
+            this.f17018x1 = f7;
+            this.f17020y1 = f10;
+            this.f17019x2 = f11;
+            this.f17021y2 = f12;
         }
     }
 
@@ -90,20 +90,20 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int f17306n;
+        private int f17022n;
         public int pos;
-        private CharSequence f17307s;
+        private CharSequence f17023s;
 
         public ParserHelper(CharSequence charSequence, int i10) {
-            this.f17307s = charSequence;
+            this.f17023s = charSequence;
             this.pos = i10;
-            this.f17306n = charSequence.length();
+            this.f17022n = charSequence.length();
             this.current = charSequence.charAt(i10);
         }
 
         private char read() {
             int i10 = this.pos;
-            int i11 = this.f17306n;
+            int i11 = this.f17022n;
             if (i10 < i11) {
                 this.pos = i10 + 1;
             }
@@ -111,7 +111,7 @@ public class SvgHelper {
             if (i12 == i11) {
                 return (char) 0;
             }
-            return this.f17307s.charAt(i12);
+            return this.f17023s.charAt(i12);
         }
 
         private void reportUnexpectedCharacterError(char c10) {
@@ -163,8 +163,8 @@ public class SvgHelper {
         public void skipNumberSeparator() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f17306n) {
-                    char charAt = this.f17307s.charAt(i10);
+                if (i10 < this.f17022n) {
+                    char charAt = this.f17023s.charAt(i10);
                     if (charAt == '\t' || charAt == '\n' || charAt == ' ' || charAt == ',') {
                         advance();
                     } else {
@@ -179,7 +179,7 @@ public class SvgHelper {
         public void skipWhitespace() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f17306n && Character.isWhitespace(this.f17307s.charAt(i10))) {
+                if (i10 < this.f17022n && Character.isWhitespace(this.f17023s.charAt(i10))) {
                     advance();
                 } else {
                     return;
@@ -314,7 +314,7 @@ public class SvgHelper {
         private Paint backgroundPaint;
         private float colorAlpha;
         private int currentColorKey;
-        private org.telegram.ui.ActionBar.d6 currentResourcesProvider;
+        private org.telegram.ui.ActionBar.c6 currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
         private Paint overridePaint;
@@ -406,9 +406,9 @@ public class SvgHelper {
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        w1 w1Var = new w1(23);
-                        shiftRunnable = w1Var;
-                        AndroidUtilities.runOnUIThread(w1Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
+                        z1 z1Var = new z1(23);
+                        shiftRunnable = z1Var;
+                        AndroidUtilities.runOnUIThread(z1Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
                     ImageReceiver imageReceiver = this.parentImageReceiver;
                     if (imageReceiver != null && !z10) {
@@ -475,10 +475,10 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f17302x1, line.f17304y1, line.f17303x2, line.f17305y2, paint);
+                        canvas.drawLine(line.f17018x1, line.f17020y1, line.f17019x2, line.f17021y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f17300x1, circle.f17301y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f17016x1, circle.f17017y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
@@ -575,20 +575,20 @@ public class SvgHelper {
             return svgDrawable;
         }
 
-        public void setColorKey(int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        public void setColorKey(int i10, org.telegram.ui.ActionBar.c6 c6Var) {
             this.currentColorKey = i10;
-            this.currentResourcesProvider = d6Var;
+            this.currentResourcesProvider = c6Var;
         }
 
         public void setPaint(Paint paint, int i10) {
             this.overridePaintByPosition.put(i10, paint);
         }
 
-        public void setupGradient(int i10, org.telegram.ui.ActionBar.d6 d6Var, float f7, boolean z10) {
+        public void setupGradient(int i10, org.telegram.ui.ActionBar.c6 c6Var, float f7, boolean z10) {
             BitmapShader bitmapShader;
             Integer num = this.overrideColor;
-            int w02 = num == null ? org.telegram.ui.ActionBar.h6.w0(i10, d6Var) : num.intValue();
-            this.currentResourcesProvider = d6Var;
+            int w02 = num == null ? org.telegram.ui.ActionBar.h6.w0(i10, c6Var) : num.intValue();
+            this.currentResourcesProvider = c6Var;
             int[] iArr = this.currentColor;
             if (iArr[z10 ? 1 : 0] != w02) {
                 this.colorAlpha = f7;

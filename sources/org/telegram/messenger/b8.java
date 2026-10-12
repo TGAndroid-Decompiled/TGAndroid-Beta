@@ -1,30 +1,30 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class b8 implements RequestDelegate {
-    public final int f17440a;
-    public final boolean f17441b;
-    public final long f17442c;
-    public final BaseController d;
+import android.net.Uri;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+public final class b8 implements MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback {
+    public final BaseController f17149a;
+    public final Object f17150b;
+    public final Object f17151c;
+    public final Object d;
 
-    public b8(BaseController baseController, boolean z10, long j3, int i10) {
-        this.f17440a = i10;
-        this.d = baseController;
-        this.f17441b = z10;
-        this.f17442c = j3;
+    public b8(BaseController baseController, Object obj, Object obj2, Object obj3) {
+        this.f17149a = baseController;
+        this.f17150b = obj;
+        this.f17151c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17440a) {
-            case 0:
-                ((MediaDataController) this.d).lambda$loadFeaturedStickers$58(this.f17441b, this.f17442c, tLObject, tL_error);
-                return;
-            default:
-                ((MessagesController) this.d).lambda$getChannelRecommendations$485(this.f17441b, this.f17442c, tLObject, tL_error);
-                return;
-        }
+    public void run(long j3) {
+        ((SendMessagesHelper) this.f17149a).lambda$prepareImportHistory$108((Uri) this.f17150b, (ArrayList) this.f17151c, (MessagesStorage.LongCallback) this.d, j3);
+    }
+
+    @Override
+    public void run(ArrayList arrayList, String str) {
+        ((MediaDataController) this.f17149a).lambda$searchStickers$249((MediaDataController.SearchStickersKey) this.f17150b, (MediaDataController.SearchStickersResult) this.f17151c, (Utilities.Callback) this.d, arrayList, str);
     }
 }

@@ -2,12 +2,12 @@ package fe;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public class l {
-    public static final AtomicReferenceFieldUpdater f9904a = AtomicReferenceFieldUpdater.newUpdater(l.class, Object.class, "_cur$volatile");
+    public static final AtomicReferenceFieldUpdater f9903a = AtomicReferenceFieldUpdater.newUpdater(l.class, Object.class, "_cur$volatile");
     private volatile Object _cur$volatile = new n(8, false);
 
     public final boolean a(Runnable runnable) {
         while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9904a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9903a;
             n nVar = (n) atomicReferenceFieldUpdater.get(this);
             int a2 = nVar.a(runnable);
             if (a2 == 0) {
@@ -27,7 +27,7 @@ public class l {
 
     public final void b() {
         while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9904a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9903a;
             n nVar = (n) atomicReferenceFieldUpdater.get(this);
             if (nVar.b()) {
                 return;
@@ -39,18 +39,18 @@ public class l {
     }
 
     public final int c() {
-        n nVar = (n) f9904a.get(this);
+        n nVar = (n) f9903a.get(this);
         nVar.getClass();
-        long j3 = n.f9907f.get(nVar);
+        long j3 = n.f9906f.get(nVar);
         return (((int) ((j3 & 1152921503533105152L) >> 30)) - ((int) (1073741823 & j3))) & 1073741823;
     }
 
     public final Object d() {
         while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9904a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f9903a;
             n nVar = (n) atomicReferenceFieldUpdater.get(this);
             Object d = nVar.d();
-            if (d != n.f9908g) {
+            if (d != n.f9907g) {
                 return d;
             }
             n c10 = nVar.c();

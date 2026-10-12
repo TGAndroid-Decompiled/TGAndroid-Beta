@@ -10,50 +10,50 @@ import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ai;
+import org.telegram.messenger.am;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public abstract class p0 extends LinearLayout implements ph.a, me.k {
-    public final d6 f9270a;
-    public final FrameLayout f9271b;
-    public TLRPC.TL_replyKeyboardMarkup f9272c;
+    public final c6 f9268a;
+    public final FrameLayout f9269b;
+    public TLRPC.TL_replyKeyboardMarkup f9270c;
     public m0 d;
-    public int f9273e;
-    public boolean f9274f;
+    public int f9271e;
+    public boolean f9272f;
     public int h;
-    public final ArrayList f9275n;
-    public final ScrollView f9276r;
-    public int f9277s;
+    public final ArrayList f9273n;
+    public final ScrollView f9274r;
+    public int f9275s;
     public final GradientDrawable v;
-    public int f9278w;
-    public final me.l f9279x;
+    public int f9276w;
+    public final me.l f9277x;
 
-    public p0(Context context, d6 d6Var) {
+    public p0(Context context, c6 c6Var) {
         super(context);
-        this.f9275n = new ArrayList();
+        this.f9273n = new ArrayList();
         this.v = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
-        this.f9279x = new me.l(this, is.h, 320L);
-        this.f9270a = d6Var;
+        this.f9277x = new me.l(this, js.h, 320L);
+        this.f9268a = c6Var;
         setOrientation(1);
         ScrollView scrollView = new ScrollView(context);
-        this.f9276r = scrollView;
+        this.f9274r = scrollView;
         scrollView.setClipToPadding(false);
         addView(scrollView);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f9271b = frameLayout;
+        this.f9269b = frameLayout;
         scrollView.addView(frameLayout);
         e();
     }
 
     @Override
     public final void b(int i10) {
-        if (this.f9277s == i10) {
+        if (this.f9275s == i10) {
             return;
         }
-        this.f9277s = i10;
-        ScrollView scrollView = this.f9276r;
+        this.f9275s = i10;
+        ScrollView scrollView = this.f9274r;
         if (scrollView.getPaddingBottom() != i10) {
             scrollView.setPadding(0, 0, 0, i10);
         }
@@ -62,11 +62,11 @@ public abstract class p0 extends LinearLayout implements ph.a, me.k {
 
     @Override
     public final void c(me.l lVar) {
-        Iterator it = this.f9279x.iterator();
+        Iterator it = this.f9277x.iterator();
         while (it.hasNext()) {
             me.g gVar = (me.g) it.next();
             float c10 = gVar.c();
-            Object obj = gVar.f16412a;
+            Object obj = gVar.f16098a;
             float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c10);
             ((o0) obj).setAlpha(c10);
             ((o0) obj).setScaleX(lerp);
@@ -77,25 +77,25 @@ public abstract class p0 extends LinearLayout implements ph.a, me.k {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(this.f9277s);
+        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(this.f9275s);
         if (navigationBarThirdButtonsFactor > 0.0f) {
-            int m12 = h6.m1(navigationBarThirdButtonsFactor, h6.w0(h6.He, this.f9270a));
-            int i10 = this.f9278w;
+            int m12 = h6.m1(navigationBarThirdButtonsFactor, h6.w0(h6.He, this.f9268a));
+            int i10 = this.f9276w;
             GradientDrawable gradientDrawable = this.v;
             if (i10 != m12) {
                 gradientDrawable.setColors(new int[]{m12, h6.m1(0.66f, m12), i0.a.k(m12, 0)});
-                this.f9278w = m12;
+                this.f9276w = m12;
             }
-            gradientDrawable.setBounds(0, getMeasuredHeight() - this.f9277s, getMeasuredWidth(), getMeasuredHeight());
+            gradientDrawable.setBounds(0, getMeasuredHeight() - this.f9275s, getMeasuredWidth(), getMeasuredHeight());
             gradientDrawable.draw(canvas);
         }
     }
 
     public final void e() {
-        AndroidUtilities.setScrollViewEdgeEffectColor(this.f9276r, h6.w0(h6.He, this.f9270a));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this.f9274r, h6.w0(h6.He, this.f9268a));
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f9275n;
+            ArrayList arrayList = this.f9273n;
             if (i10 < arrayList.size()) {
                 ((n0) arrayList.get(i10)).a();
                 i10++;
@@ -107,14 +107,14 @@ public abstract class p0 extends LinearLayout implements ph.a, me.k {
     }
 
     public int getKeyboardHeight() {
-        TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup = this.f9272c;
+        TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup = this.f9270c;
         if (tL_replyKeyboardMarkup == null) {
             return 0;
         }
-        if (this.f9274f) {
-            return this.f9273e;
+        if (this.f9272f) {
+            return this.f9271e;
         }
-        return org.telegram.messenger.q.D(4.0f, this.f9272c.rows.size() - 1, AndroidUtilities.dp(16.0f) + (AndroidUtilities.dp(this.h) * tL_replyKeyboardMarkup.rows.size()));
+        return org.telegram.messenger.v0.D(4.0f, this.f9270c.rows.size() - 1, AndroidUtilities.dp(16.0f) + (AndroidUtilities.dp(this.h) * tL_replyKeyboardMarkup.rows.size()));
     }
 
     public void setButtons(org.telegram.tgnet.TLRPC.TL_replyKeyboardMarkup r21) {
@@ -128,21 +128,21 @@ public abstract class p0 extends LinearLayout implements ph.a, me.k {
     public void setPanelHeight(int i10) {
         TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
         int max;
-        this.f9273e = i10;
-        if (this.f9274f && (tL_replyKeyboardMarkup = this.f9272c) != null && !tL_replyKeyboardMarkup.rows.isEmpty()) {
-            if (!this.f9274f) {
+        this.f9271e = i10;
+        if (this.f9272f && (tL_replyKeyboardMarkup = this.f9270c) != null && !tL_replyKeyboardMarkup.rows.isEmpty()) {
+            if (!this.f9272f) {
                 max = 44;
             } else {
-                max = (int) Math.max(44.0f, (ai.B(4.0f, this.f9272c.rows.size() - 1, this.f9273e - AndroidUtilities.dp(16.0f)) / this.f9272c.rows.size()) / AndroidUtilities.density);
+                max = (int) Math.max(44.0f, (am.B(4.0f, this.f9270c.rows.size() - 1, this.f9271e - AndroidUtilities.dp(16.0f)) / this.f9270c.rows.size()) / AndroidUtilities.density);
             }
             this.h = max;
             int dp = AndroidUtilities.dp(max);
-            Iterator it = this.f9279x.iterator();
+            Iterator it = this.f9277x.iterator();
             while (it.hasNext()) {
                 me.g gVar = (me.g) it.next();
-                int childCount = ((o0) gVar.f16412a).getChildCount();
+                int childCount = ((o0) gVar.f16098a).getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = ((o0) gVar.f16412a).getChildAt(i11);
+                    View childAt = ((o0) gVar.f16098a).getChildAt(i11);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
                     if (layoutParams.height != dp) {
                         layoutParams.height = dp;
@@ -154,10 +154,10 @@ public abstract class p0 extends LinearLayout implements ph.a, me.k {
     }
 
     @Override
-    public final void d(float f7) {
+    public final void a() {
     }
 
     @Override
-    public final void a() {
+    public final void d(float f7) {
     }
 }

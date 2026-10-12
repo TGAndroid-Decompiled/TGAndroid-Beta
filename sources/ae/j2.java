@@ -2,7 +2,7 @@ package ae;
 
 import v7.v8;
 public final class j2 implements jd.f, jd.g {
-    public static final j2 f470a = new Object();
+    public static final j2 f472a = new Object();
 
     @Override
     public final Object fold(Object obj, sd.p pVar) {

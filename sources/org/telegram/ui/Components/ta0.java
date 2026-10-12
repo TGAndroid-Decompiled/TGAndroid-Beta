@@ -1,158 +1,202 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-import android.os.SystemClock;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ta0 extends TextView {
-    public final Matrix f31192a;
-    public LinearGradient f31193b;
-    public int f31194c;
-    public boolean d;
-    public boolean f31195e;
-    public float f31196f;
-    public long h;
-    public final nq f31197n;
-    public boolean f31198r;
-    public int f31199s;
+import org.telegram.tgnet.tl.TL_iv;
+public final class ta0 extends v7.e5 {
+    public int f30835a;
+    public final TL_iv.PageBlock f30836b;
+    public TL_iv.textConcat f30837c = new TL_iv.textConcat();
 
-    public ta0(Context context) {
-        super(context);
-        this.f31192a = new Matrix();
-        this.f31197n = new nq(this, 26);
+    public ta0(TL_iv.PageBlock pageBlock) {
+        this.f30836b = pageBlock;
     }
 
-    public final void a() {
-        float min = Math.min(AndroidUtilities.dp(10.0f) / this.f31194c, 0.49f);
-        int currentTextColor = getCurrentTextColor();
-        int i10 = 1048575 & currentTextColor;
-        this.f31193b = new LinearGradient(0.0f, 0.0f, this.f31194c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
-        if (this.d) {
-            getPaint().setShader(this.f31193b);
-        } else {
-            getPaint().setShader(null);
+    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
+        if (textconcat.texts.isEmpty()) {
+            return new TL_iv.textEmpty();
         }
-        this.f31193b.setLocalMatrix(this.f31192a);
-        invalidate();
+        if (textconcat.texts.size() == 1) {
+            return textconcat.texts.get(0);
+        }
+        return textconcat;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        boolean z10;
-        long j3;
-        boolean z11;
-        int measuredWidth = getMeasuredWidth();
-        int dp = AndroidUtilities.dp(40.0f);
-        float f10 = this.f31196f;
-        float f11 = measuredWidth;
-        if (f10 < f11) {
-            f7 = w7.o.a(f10 / AndroidUtilities.dp(10.0f), 0.0f, 1.0f);
-        } else {
-            f7 = 0.0f;
+    public final void a(cf.b bVar) {
+        int i10 = this.f30835a;
+        if (i10 >= 64) {
+            return;
         }
-        Matrix matrix = this.f31192a;
-        matrix.reset();
-        float f12 = this.f31194c;
-        matrix.postScale(com.google.android.gms.internal.vision.e2.y(1.0f, f7, AndroidUtilities.dp(10.0f) / f12, 1.0f), 1.0f, f12, 0.0f);
-        matrix.postScale(1.0f - (this.f31199s / this.f31194c), 1.0f, 0.0f, 0.0f);
-        matrix.postTranslate(this.f31196f, 0.0f);
-        this.f31193b.setLocalMatrix(matrix);
-        canvas.save();
-        canvas.translate(-this.f31196f, 0.0f);
-        super.onDraw(canvas);
-        canvas.restore();
-        if (measuredWidth > 0) {
-            float f13 = this.f31196f;
-            if (f13 > 0.0f && f13 + getWidth() > f11 && this.d && this.f31195e) {
-                float f14 = -this.f31196f;
-                float f15 = dp;
-                matrix.postTranslate(f14 - ((f14 + f11) + f15), 0.0f);
-                this.f31193b.setLocalMatrix(matrix);
-                canvas.save();
-                canvas.translate((-this.f31196f) + f11 + f15, 0.0f);
-                super.onDraw(canvas);
-                canvas.restore();
+        this.f30835a = i10 + 1;
+        try {
+            v(bVar);
+        } finally {
+            this.f30835a--;
+        }
+    }
+
+    @Override
+    public final void b(cf.c cVar) {
+        int i10 = this.f30835a;
+        if (i10 >= 64) {
+            return;
+        }
+        this.f30835a = i10 + 1;
+        try {
+            v(cVar);
+        } finally {
+            this.f30835a--;
+        }
+    }
+
+    @Override
+    public final void c(cf.d dVar) {
+        TL_iv.textFixed textfixed = new TL_iv.textFixed();
+        textfixed.text = wa0.j(dVar.h);
+        w(textfixed);
+    }
+
+    @Override
+    public final void d(cf.e eVar) {
+        if (eVar instanceof ve.a) {
+            TL_iv.textStrike textstrike = new TL_iv.textStrike();
+            textstrike.text = y(eVar);
+            w(textstrike);
+        } else if (eVar instanceof ad.e) {
+            w(wa0.c(((ad.e) eVar).f423g));
+        } else {
+            v(eVar);
+        }
+    }
+
+    @Override
+    public final void e(cf.g gVar) {
+        TL_iv.textItalic textitalic = new TL_iv.textItalic();
+        textitalic.text = y(gVar);
+        w(textitalic);
+    }
+
+    @Override
+    public final void i(cf.k kVar) {
+        w(y(kVar));
+    }
+
+    @Override
+    public final void k(cf.n nVar) {
+        if (nVar instanceof ad.a) {
+            if (!this.f30837c.texts.isEmpty()) {
+                w(wa0.j("\n"));
             }
+            w(wa0.c(((ad.a) nVar).f417g));
+            w(wa0.j("\n"));
+            return;
         }
-        if (this.f31196f < 1.0E-4d) {
-            z10 = true;
-        } else {
-            z10 = false;
+        v(nVar);
+    }
+
+    @Override
+    public final void l(cf.o oVar) {
+        int i10 = this.f30835a;
+        if (i10 >= 64) {
+            return;
         }
-        long uptimeMillis = SystemClock.uptimeMillis();
-        long j10 = this.h;
-        if (j10 != 0 && !z10) {
-            j3 = Math.min(uptimeMillis - j10, 120L);
-        } else {
-            j3 = 16;
-        }
-        this.h = uptimeMillis;
-        boolean z12 = this.d;
-        nq nqVar = this.f31197n;
-        if ((z12 && this.f31195e) || !z10) {
-            float e7 = a1.g.e((float) j3, 1000.0f, AndroidUtilities.dp(60.0f), this.f31196f);
-            this.f31196f = e7;
-            if (e7 > measuredWidth + dp) {
-                AndroidUtilities.cancelRunOnUIThread(nqVar);
-                this.f31198r = false;
-                this.f31195e = false;
-                this.f31196f = 0.0f;
-            }
-            invalidate();
-        }
-        if (this.d && !this.f31195e && !(z11 = this.f31198r) && !z11) {
-            this.f31198r = true;
-            AndroidUtilities.runOnUIThread(nqVar, 1500L);
+        this.f30835a = i10 + 1;
+        try {
+            v(oVar);
+        } finally {
+            this.f30835a--;
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10 = false;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(0, 0), i11);
-        this.f31194c = View.MeasureSpec.getSize(i10);
-        if (getMeasuredWidth() > this.f31194c - this.f31199s) {
-            z10 = true;
+    public final void m(cf.q qVar) {
+        int i10 = this.f30835a;
+        if (i10 >= 64) {
+            return;
         }
-        this.d = z10;
-        a();
-    }
-
-    public void setCustomPaddingRight(int i10) {
-        boolean z10;
-        this.f31199s = i10;
-        if (getMeasuredWidth() > this.f31194c - this.f31199s) {
-            z10 = true;
-        } else {
-            z10 = false;
+        this.f30835a = i10 + 1;
+        try {
+            v(qVar);
+        } finally {
+            this.f30835a--;
         }
-        this.d = z10;
-        if (z10) {
-            getPaint().setShader(this.f31193b);
-        } else {
-            getPaint().setShader(null);
-        }
-        invalidate();
     }
 
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(charSequence, bufferType);
-        AndroidUtilities.cancelRunOnUIThread(this.f31197n);
-        this.f31198r = false;
-        this.f31195e = false;
-        this.f31196f = 0.0f;
+    public final void n(cf.r rVar) {
+        if (!this.f30837c.texts.isEmpty()) {
+            w(wa0.j("\n\n"));
+        }
+        v(rVar);
     }
 
     @Override
-    public void setTextColor(int i10) {
-        super.setTextColor(i10);
-        a();
+    public final void o(cf.s sVar) {
+        w(wa0.j(sVar.f4655g));
+    }
+
+    @Override
+    public final void q(cf.d dVar) {
+        w(wa0.j(dVar.h));
+    }
+
+    @Override
+    public final void r(cf.g gVar) {
+        w(wa0.j("\n"));
+    }
+
+    @Override
+    public final void s(cf.k kVar) {
+        String str = kVar.h;
+        if (str == null) {
+            str = "";
+        }
+        String trim = str.trim();
+        if (trim.startsWith("mailto:")) {
+            TL_iv.RichText textemail = new TL_iv.textEmail();
+            textemail.text = y(kVar);
+            textemail.email = trim.substring(7);
+            w(textemail);
+        } else if (trim.startsWith("tel:")) {
+            TL_iv.textPhone textphone = new TL_iv.textPhone();
+            textphone.text = y(kVar);
+            textphone.phone = trim.substring(4);
+            w(textphone);
+        } else {
+            TL_iv.RichText texturl = new TL_iv.textUrl();
+            texturl.text = y(kVar);
+            texturl.url = trim;
+            w(texturl);
+        }
+    }
+
+    @Override
+    public final void t(cf.g gVar) {
+        String str;
+        if (this.f30836b instanceof TL_iv.pageBlockBlockquote) {
+            str = "\n";
+        } else {
+            str = " ";
+        }
+        w(wa0.j(str));
+    }
+
+    @Override
+    public final void u(cf.g gVar) {
+        TL_iv.textBold textbold = new TL_iv.textBold();
+        textbold.text = y(gVar);
+        w(textbold);
+    }
+
+    public final void w(TL_iv.RichText richText) {
+        this.f30837c.texts.add(richText);
+    }
+
+    public final TL_iv.RichText y(cf.p pVar) {
+        TL_iv.textConcat textconcat = this.f30837c;
+        this.f30837c = new TL_iv.textConcat();
+        v(pVar);
+        TL_iv.RichText x10 = x(this.f30837c);
+        this.f30837c = textconcat;
+        return x10;
     }
 }

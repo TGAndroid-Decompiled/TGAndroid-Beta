@@ -1,34 +1,33 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.ImageLoader;
 public final class t4 implements Runnable {
-    public final int f19251a = 0;
-    public final int f19252b;
-    public final boolean f19253c;
-    public final Object d;
+    public final int f18951a;
+    public final ImageLoader f18952b;
+    public final String f18953c;
 
-    public t4(int i10, String str, boolean z10) {
-        this.f19252b = i10;
-        this.d = str;
-        this.f19253c = z10;
+    public t4(ImageLoader imageLoader, String str, int i10) {
+        this.f18951a = i10;
+        this.f18952b = imageLoader;
+        this.f18953c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f19251a) {
+        switch (this.f18951a) {
             case 0:
-                boolean z10 = this.f19253c;
-                ImageLoader.AnonymousClass5.lambda$fileDidFailedUpload$3(this.f19252b, (String) this.d, z10);
+                this.f18952b.lambda$artworkLoadError$10(this.f18953c);
+                return;
+            case 1:
+                this.f18952b.lambda$cancelForceLoadingForImageReceiver$6(this.f18953c);
+                return;
+            case 2:
+                this.f18952b.lambda$preloadArtwork$8(this.f18953c);
+                return;
+            case 3:
+                this.f18952b.lambda$httpFileLoadError$9(this.f18953c);
                 return;
             default:
-                ((MessagesController) this.d).lambda$removeFolderTemporarily$482(this.f19252b, this.f19253c);
+                this.f18952b.lambda$fileDidFailedLoad$12(this.f18953c);
                 return;
         }
-    }
-
-    public t4(int i10, MessagesController messagesController, boolean z10) {
-        this.d = messagesController;
-        this.f19252b = i10;
-        this.f19253c = z10;
     }
 }

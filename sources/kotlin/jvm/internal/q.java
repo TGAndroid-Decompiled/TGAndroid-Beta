@@ -1,6 +1,6 @@
 package kotlin.jvm.internal;
 public abstract class q {
-    public static final r f15220a;
+    public static final r f14929a;
 
     static {
         ?? r02;
@@ -12,11 +12,11 @@ public abstract class q {
         if (r02 == 0) {
             r02 = new Object();
         }
-        f15220a = r02;
+        f14929a = r02;
     }
 
     public static d a(Class cls) {
-        f15220a.getClass();
+        f14929a.getClass();
         return new d(cls);
     }
 }

@@ -1,25 +1,22 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import org.telegram.tgnet.TLRPC;
-public final class pt extends LinearLayout {
-    public final org.telegram.ui.Components.y9 f40988a;
-    public final org.telegram.ui.ActionBar.h5 f40989b;
-    public final org.telegram.ui.ActionBar.d6 f40990c;
-    public TLRPC.StickerSetCovered d;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class pt extends org.telegram.ui.ActionBar.m1 {
+    public final qt f41091o;
 
-    public pt(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f40990c = d6Var;
-        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
-        this.f40988a = y9Var;
-        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
-        this.f40989b = h5Var;
-        h5Var.setTextSize(16);
-        h5Var.setTextColor(-1);
-        setOrientation(0);
-        addView(y9Var, w7.x5.t(24, 24, 17, 17, 0, 17, 0));
-        addView(h5Var, w7.x5.t(-2, -2, 17, 0, 0, 12, 0));
+    public pt(qt qtVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f41091o = qtVar;
+    }
+
+    @Override
+    public final void dismiss() {
+        d(true);
+        ut utVar = this.f41091o.f41429a;
+        utVar.f42577k = null;
+        utVar.K = false;
+        if (utVar.R) {
+            utVar.n();
+        }
     }
 }

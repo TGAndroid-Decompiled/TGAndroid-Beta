@@ -1,11 +1,11 @@
 package de;
 public final class g implements c {
-    public final c f8323a;
-    public final kotlin.jvm.internal.p f8324b;
+    public final c f8321a;
+    public final kotlin.jvm.internal.p f8322b;
 
     public g(c cVar, kotlin.jvm.internal.p pVar) {
-        this.f8323a = cVar;
-        this.f8324b = pVar;
+        this.f8321a = cVar;
+        this.f8322b = pVar;
     }
 
     @Override

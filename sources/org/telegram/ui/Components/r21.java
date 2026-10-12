@@ -1,56 +1,21 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-public final class r21 implements Runnable {
-    public final int f30381a;
-    public final int f30382b;
-    public final Object f30383c;
-    public final Object d;
-    public final Object f30384e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class r21 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f30021a;
 
-    public r21(int i10, Object obj, Object obj2, TLObject tLObject, int i11) {
-        this.f30381a = i11;
-        this.f30382b = i10;
-        this.f30383c = obj;
-        this.d = obj2;
-        this.f30384e = tLObject;
+    public r21(ThemeEditorView.EditorAlert editorAlert) {
+        this.f30021a = editorAlert;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r21.run():void");
-    }
-
-    public r21(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f30381a = i11;
-        this.f30383c = obj;
-        this.f30382b = i10;
-        this.d = obj2;
-        this.f30384e = obj3;
-    }
-
-    public r21(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f30381a = i11;
-        this.f30383c = obj;
-        this.d = obj2;
-        this.f30382b = i10;
-        this.f30384e = obj3;
-    }
-
-    public r21(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f30381a = i11;
-        this.f30383c = obj;
-        this.d = obj2;
-        this.f30384e = obj3;
-        this.f30382b = i10;
-    }
-
-    public r21(pg.m1 m1Var, pg.h1 h1Var, int i10, ArrayList arrayList) {
-        this.f30381a = 17;
-        this.f30383c = m1Var;
-        this.f30384e = h1Var;
-        this.f30382b = i10;
-        this.d = arrayList;
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f30021a;
+        editorAlert.f24138c.setVisibility(4);
+        editorAlert.f24140f.setVisibility(4);
+        editorAlert.f24143s.setVisibility(4);
+        editorAlert.H = false;
     }
 }

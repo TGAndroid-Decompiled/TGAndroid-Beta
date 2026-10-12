@@ -1,269 +1,87 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class pq0 extends tu0 {
-    public final ar0 f40972a;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pq0 extends org.telegram.ui.ActionBar.m2 {
+    public Bitmap f41068a;
+    public BitmapDrawable f41069b;
+    public oq0 f41070c;
+    public nq0 d;
+    public boolean f41071e;
+    public boolean f41072f;
 
-    public pq0(ar0 ar0Var) {
-        this.f40972a = ar0Var;
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackgroundColor(-13421773);
+        this.actionBar.D(-12763843, false);
+        this.actionBar.setTitleColor(-1);
+        this.actionBar.E(-1, false);
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
+        this.actionBar.setActionBarMenuOnItemClick(new o70(this, 15));
+        this.actionBar.p().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
+        nq0 nq0Var = new nq0(this, context);
+        this.d = nq0Var;
+        this.fragmentView = nq0Var;
+        nq0Var.G = getArguments().getBoolean("freeform", false);
+        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        return this.fragmentView;
     }
 
     @Override
-    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        ar0 ar0Var = this.f40972a;
-        org.telegram.ui.Cells.t5 V = ar0.V(ar0Var, i10);
-        if (V != null) {
-            org.telegram.ui.Components.y9 imageView = V.getImageView();
-            int[] iArr = new int[2];
-            imageView.getLocationInWindow(iArr);
-            dv0 dv0Var = new dv0();
-            dv0Var.f37148b = iArr[0];
-            dv0Var.f37149c = iArr[1];
-            dv0Var.d = ar0Var.K;
-            ImageReceiver imageReceiver = imageView.getImageReceiver();
-            dv0Var.f37147a = imageReceiver;
-            dv0Var.f37150e = imageReceiver.getBitmapSafe();
-            dv0Var.f37155k = V.getScale();
-            V.g(false);
-            return dv0Var;
-        }
-        return null;
+    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final void G() {
-        ar0 ar0Var = this.f40972a;
-        int childCount = ar0Var.K.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = ar0Var.K.getChildAt(i10);
-            if (childAt instanceof org.telegram.ui.Cells.t5) {
-                ((org.telegram.ui.Cells.t5) childAt).g(true);
+    public final boolean onFragmentCreate() {
+        int max;
+        if (this.f41068a == null) {
+            String string = getArguments().getString("photoPath");
+            Uri uri = (Uri) getArguments().getParcelable("photoUri");
+            if (string == null && uri == null) {
+                return false;
             }
-        }
-    }
-
-    @Override
-    public final int H() {
-        return this.f40972a.f36169b.size();
-    }
-
-    @Override
-    public final int Q(Object obj) {
-        Object obj2;
-        if (obj instanceof MediaController.PhotoEntry) {
-            obj2 = Integer.valueOf(((MediaController.PhotoEntry) obj).imageId);
-        } else if (obj instanceof MediaController.SearchImage) {
-            obj2 = ((MediaController.SearchImage) obj).f17281id;
-        } else {
-            obj2 = null;
-        }
-        if (obj2 == null) {
-            return -1;
-        }
-        ar0 ar0Var = this.f40972a;
-        if (!ar0Var.f36169b.containsKey(obj2)) {
-            return -1;
-        }
-        ar0Var.f36169b.remove(obj2);
-        int indexOf = ar0Var.f36171c.indexOf(obj2);
-        if (indexOf >= 0) {
-            ar0Var.f36171c.remove(indexOf);
-        }
-        if (ar0Var.f36174e) {
-            ar0Var.h0();
-        }
-        return indexOf;
-    }
-
-    @Override
-    public final void W(int i10) {
-        ar0 ar0Var = this.f40972a;
-        MediaController.AlbumEntry albumEntry = ar0Var.J;
-        org.telegram.ui.Cells.t5 V = ar0.V(ar0Var, i10);
-        if (V != null) {
-            if (albumEntry != null) {
-                org.telegram.ui.Components.y9 imageView = V.getImageView();
-                imageView.q(0, true);
-                MediaController.PhotoEntry photoEntry = albumEntry.photos.get(i10);
-                String str = photoEntry.thumbPath;
-                if (str != null) {
-                    imageView.f(str, null, org.telegram.ui.ActionBar.h6.R4);
-                    return;
-                } else if (photoEntry.path != null) {
-                    imageView.p(photoEntry.orientation, photoEntry.invert, true);
-                    if (photoEntry.isVideo && !photoEntry.isLivePhoto()) {
-                        imageView.f("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, org.telegram.ui.ActionBar.h6.R4);
-                        return;
-                    }
-                    imageView.f("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, org.telegram.ui.ActionBar.h6.R4);
-                    return;
-                } else {
-                    imageView.setImageDrawable(org.telegram.ui.ActionBar.h6.R4);
-                    return;
-                }
+            if (string != null && !sc.v.u(string)) {
+                return false;
             }
-            V.e((MediaController.SearchImage) ar0Var.f36176f.get(i10));
-        }
-    }
-
-    @Override
-    public final void Z(int i10) {
-        ar0 ar0Var = this.f40972a;
-        int childCount = ar0Var.K.getChildCount();
-        for (int i11 = 0; i11 < childCount; i11++) {
-            View childAt = ar0Var.K.getChildAt(i11);
-            if (childAt.getTag() != null) {
-                org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) childAt;
-                int intValue = ((Integer) childAt.getTag()).intValue();
-                MediaController.AlbumEntry albumEntry = ar0Var.J;
-                if (albumEntry == null ? !(intValue < 0 || intValue >= ar0Var.f36176f.size()) : !(intValue < 0 || intValue >= albumEntry.photos.size())) {
-                    if (intValue == i10) {
-                        t5Var.g(true);
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public final ArrayList c() {
-        return this.f40972a.f36171c;
-    }
-
-    @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        org.telegram.ui.Cells.t5 V = ar0.V(this.f40972a, i10);
-        if (V != null) {
-            return V.getImageView().getImageReceiver().getBitmapSafe();
-        }
-        return null;
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        int Y;
-        boolean z10;
-        ar0 ar0Var = this.f40972a;
-        MediaController.AlbumEntry albumEntry = ar0Var.J;
-        int i11 = -1;
-        int i12 = 1;
-        if (albumEntry != null) {
-            if (i10 < 0 || i10 >= albumEntry.photos.size()) {
-                return -1;
-            }
-            MediaController.PhotoEntry photoEntry = ar0Var.J.photos.get(i10);
-            Y = ar0Var.Y(-1, photoEntry);
-            if (Y == -1) {
-                photoEntry.editedInfo = videoEditedInfo;
-                Y = ar0Var.f36171c.indexOf(Integer.valueOf(photoEntry.imageId));
-                z10 = true;
+            if (AndroidUtilities.isTablet()) {
+                max = AndroidUtilities.dp(520.0f);
             } else {
-                photoEntry.editedInfo = null;
-                z10 = false;
+                Point point = AndroidUtilities.displaySize;
+                max = Math.max(point.x, point.y);
             }
-        } else if (i10 < 0 || i10 >= ar0Var.f36176f.size()) {
-            return -1;
-        } else {
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) ar0Var.f36176f.get(i10);
-            Y = ar0Var.Y(-1, searchImage);
-            if (Y == -1) {
-                searchImage.editedInfo = videoEditedInfo;
-                Y = ar0Var.f36171c.indexOf(searchImage.f17281id);
-                z10 = true;
-            } else {
-                searchImage.editedInfo = null;
-                z10 = false;
+            float f7 = max;
+            Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
+            this.f41068a = loadBitmap;
+            if (loadBitmap == null) {
+                return false;
             }
         }
-        int childCount = ar0Var.K.getChildCount();
-        int i13 = 0;
-        while (true) {
-            if (i13 >= childCount) {
-                break;
-            }
-            View childAt = ar0Var.K.getChildAt(i13);
-            if (((Integer) childAt.getTag()).intValue() == i10) {
-                org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) childAt;
-                if (ar0Var.f36174e) {
-                    i11 = Y;
-                }
-                t5Var.b(i11, z10, false);
-            } else {
-                i13++;
-            }
-        }
-        if (!z10) {
-            i12 = 2;
-        }
-        ar0Var.i0(i12);
-        ar0Var.f36192s0.a();
-        return Y;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        ar0 ar0Var = this.f40972a;
-        ArrayList arrayList = ar0Var.f36176f;
-        MediaController.AlbumEntry albumEntry = ar0Var.J;
-        if (ar0Var.f36169b.isEmpty()) {
-            if (albumEntry != null) {
-                if (i10 >= 0 && i10 < albumEntry.photos.size()) {
-                    MediaController.PhotoEntry photoEntry = albumEntry.photos.get(i10);
-                    photoEntry.editedInfo = videoEditedInfo;
-                    ar0Var.Y(-1, photoEntry);
-                } else {
-                    return;
-                }
-            } else if (i10 >= 0 && i10 < arrayList.size()) {
-                MediaController.SearchImage searchImage = (MediaController.SearchImage) arrayList.get(i10);
-                searchImage.editedInfo = videoEditedInfo;
-                ar0Var.Y(-1, searchImage);
-            } else {
-                return;
-            }
-        }
-        ar0Var.e0(i11, z10);
-    }
-
-    @Override
-    public final boolean u() {
-        ar0 ar0Var = this.f40972a;
-        ar0Var.f36192s0.h(0, true, true);
-        ar0Var.finishFragment();
+        this.f41069b = new BitmapDrawable(this.f41068a);
+        super.onFragmentCreate();
         return true;
     }
 
     @Override
-    public final HashMap v() {
-        return this.f40972a.f36169b;
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        ar0 ar0Var = this.f40972a;
-        MediaController.AlbumEntry albumEntry = ar0Var.J;
-        if (albumEntry != null) {
-            if (i10 < 0 || i10 >= albumEntry.photos.size() || !ar0Var.f36169b.containsKey(Integer.valueOf(ar0Var.J.photos.get(i10).imageId))) {
-                return false;
-            }
-            return true;
-        } else if (i10 < 0 || i10 >= ar0Var.f36176f.size() || !ar0Var.f36169b.containsKey(((MediaController.SearchImage) ar0Var.f36176f.get(i10)).f17281id)) {
-            return false;
-        } else {
-            return true;
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        Bitmap bitmap = this.f41068a;
+        if (bitmap != null && !this.f41071e) {
+            bitmap.recycle();
+            this.f41068a = null;
         }
-    }
-
-    @Override
-    public final boolean z() {
-        return this.f40972a.E;
+        this.f41069b = null;
     }
 }

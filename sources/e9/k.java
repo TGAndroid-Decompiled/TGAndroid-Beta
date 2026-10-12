@@ -3,19 +3,19 @@ package e9;
 import java.util.List;
 import java.util.ListIterator;
 public final class k extends c implements ListIterator {
-    public final l f8759e;
+    public final l f8757e;
 
     public k(l lVar) {
         super(lVar);
-        this.f8759e = lVar;
+        this.f8757e = lVar;
     }
 
     @Override
     public final void add(Object obj) {
-        l lVar = this.f8759e;
+        l lVar = this.f8757e;
         boolean isEmpty = lVar.isEmpty();
         c().add(obj);
-        ((v0) lVar.h).f8813e++;
+        ((v0) lVar.h).f8811e++;
         if (isEmpty) {
             lVar.i();
         }
@@ -23,7 +23,7 @@ public final class k extends c implements ListIterator {
 
     public final ListIterator c() {
         a();
-        return (ListIterator) this.f8719b;
+        return (ListIterator) this.f8717b;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class k extends c implements ListIterator {
     }
 
     public k(l lVar, int i10) {
-        super(lVar, ((List) lVar.f8765c).listIterator(i10));
-        this.f8759e = lVar;
+        super(lVar, ((List) lVar.f8763c).listIterator(i10));
+        this.f8757e = lVar;
     }
 }

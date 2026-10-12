@@ -1,39 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.ui.PhotoViewer;
-public final class qg0 implements Runnable {
-    public final int f30237a;
-    public final sg0 f30238b;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class qg0 extends LinearLayout {
+    public final LinearLayout f29834a;
+    public final LinearLayout f29835b;
 
-    public qg0(sg0 sg0Var, int i10) {
-        this.f30237a = i10;
-        this.f30238b = sg0Var;
+    public qg0(Context context) {
+        super(context);
+        setOrientation(0);
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
+        this.f29835b = a2;
+        addView(a2, w7.w5.n(-2, -1));
+        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
+        this.f29834a = a10;
+        addView(a10, w7.w5.n(-2, -1));
+    }
+
+    public final LinearLayout a(int i10, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i10);
+        linearLayout.addView(imageView, w7.w5.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, w7.w5.n(-2, -2));
+        w7.y5.a(linearLayout);
+        return linearLayout;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30237a) {
-            case 0:
-                org.telegram.ui.iu0 iu0Var = this.f30238b.f30862a;
-                RadialProgressView radialProgressView = iu0Var.f31244n;
-                View view = iu0Var.f31245r;
-                radialProgressView.setVisibility(4);
-                if (iu0Var.F) {
-                    iu0Var.F = false;
-                    iu0Var.setPlaybackSpeed(iu0Var.E);
-                }
-                view.setEnabled(true);
-                view.setAlpha(1.0f);
-                PhotoViewer photoViewer = iu0Var.f31240b;
-                if (photoViewer != null) {
-                    photoViewer.z0();
-                    return;
-                }
-                return;
-            default:
-                this.f30238b.f30862a.h.setVisibility(4);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        LinearLayout linearLayout = this.f29834a;
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int max = Math.max(0, size - paddingRight);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+        LinearLayout linearLayout2 = this.f29835b;
+        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+        layoutParams2.width = min;
+        layoutParams.width = min;
+        super.onMeasure(i10, i11);
     }
 }

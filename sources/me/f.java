@@ -1,5 +1,7 @@
 package me;
 public interface f {
+    void A();
+
     void a();
 
     void g(boolean z10);
@@ -9,6 +11,4 @@ public interface f {
     boolean i(float f7);
 
     void j();
-
-    void y();
 }

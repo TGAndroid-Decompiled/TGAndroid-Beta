@@ -1,22 +1,36 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-public final class us implements ah.m {
-    public final int f42795a;
-    public final org.telegram.ui.Components.rm0 f42796b;
+import org.telegram.messenger.MessagesStorage;
+public final class us implements MessagesStorage.IntCallback {
+    public final int f42558a;
+    public final ContactsActivity f42559b;
 
-    public us(org.telegram.ui.Components.rm0 rm0Var, int i10) {
-        this.f42795a = i10;
-        this.f42796b = rm0Var;
+    public us(ContactsActivity contactsActivity, int i10) {
+        this.f42558a = i10;
+        this.f42559b = contactsActivity;
     }
 
     @Override
-    public final boolean a(Canvas canvas, View view, long j3) {
-        switch (this.f42795a) {
+    public final void run(int i10) {
+        boolean z10;
+        switch (this.f42558a) {
             case 0:
+                ContactsActivity contactsActivity = this.f42559b;
+                contactsActivity.getClass();
+                if (i10 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                contactsActivity.f33531b0 = z10;
+                if (i10 != 0) {
+                    contactsActivity.f0(false);
+                    return;
+                }
+                return;
             default:
-                return this.f42796b.drawChild(canvas, view, j3);
+                ContactsActivity.W(this.f42559b, i10);
+                return;
         }
     }
 }

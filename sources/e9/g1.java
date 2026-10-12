@@ -1,31 +1,31 @@
 package e9;
 public final class g1 extends m0 {
-    public static final Object[] f8742r;
-    public static final g1 f8743s;
+    public static final Object[] f8740r;
+    public static final g1 f8741s;
     public final transient Object[] d;
-    public final transient int f8744e;
-    public final transient Object[] f8745f;
+    public final transient int f8742e;
+    public final transient Object[] f8743f;
     public final transient int h;
-    public final transient int f8746n;
+    public final transient int f8744n;
 
     static {
         Object[] objArr = new Object[0];
-        f8742r = objArr;
-        f8743s = new g1(0, 0, 0, objArr, objArr);
+        f8740r = objArr;
+        f8741s = new g1(0, 0, 0, objArr, objArr);
     }
 
     public g1(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.f8744e = i10;
-        this.f8745f = objArr2;
+        this.f8742e = i10;
+        this.f8743f = objArr2;
         this.h = i11;
-        this.f8746n = i12;
+        this.f8744n = i12;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f8745f;
+            Object[] objArr = this.f8743f;
             if (objArr.length != 0) {
                 int t10 = q.t(obj);
                 while (true) {
@@ -46,13 +46,13 @@ public final class g1 extends m0 {
 
     @Override
     public final int hashCode() {
-        return this.f8744e;
+        return this.f8742e;
     }
 
     @Override
     public final int n(int i10, Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i11 = this.f8746n;
+        int i11 = this.f8744n;
         System.arraycopy(objArr2, 0, objArr, i10, i11);
         return i10 + i11;
     }
@@ -64,7 +64,7 @@ public final class g1 extends m0 {
 
     @Override
     public final int p() {
-        return this.f8746n;
+        return this.f8744n;
     }
 
     @Override
@@ -84,11 +84,11 @@ public final class g1 extends m0 {
 
     @Override
     public final int size() {
-        return this.f8746n;
+        return this.f8744n;
     }
 
     @Override
     public final i0 w() {
-        return i0.t(this.f8746n, this.d);
+        return i0.t(this.f8744n, this.d);
     }
 }

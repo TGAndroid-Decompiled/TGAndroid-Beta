@@ -2,5 +2,5 @@ package pg;
 
 import java.util.ArrayList;
 public final class g0 {
-    public ArrayList f45716a;
+    public ArrayList f45532a;
 }

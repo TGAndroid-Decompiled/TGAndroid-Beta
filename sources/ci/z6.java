@@ -1,49 +1,49 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.b81;
-import org.telegram.ui.Components.j00;
-import org.telegram.ui.Components.l81;
-import org.telegram.ui.Components.m00;
+import org.telegram.ui.Components.f81;
+import org.telegram.ui.Components.l00;
+import org.telegram.ui.Components.o00;
+import org.telegram.ui.Components.q81;
 public final class z6 implements Runnable {
-    public final int f6422a;
-    public final b7 f6423b;
+    public final int f6421a;
+    public final b7 f6422b;
 
     public z6(b7 b7Var, int i10) {
-        this.f6422a = i10;
-        this.f6423b = b7Var;
+        this.f6421a = i10;
+        this.f6422b = b7Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f6422a) {
+        switch (this.f6421a) {
             case 0:
-                this.f6423b.r();
+                this.f6422b.r();
                 return;
             case 1:
-                this.f6423b.m(0L);
+                this.f6422b.m(0L);
                 return;
             case 2:
-                b7 b7Var = this.f6423b;
+                b7 b7Var = this.f6422b;
                 z6 z6Var = b7Var.K;
-                l81 l81Var = b7Var.f4762e;
-                if (l81Var != null && b7Var.F != null) {
-                    long n10 = l81Var.n();
+                q81 q81Var = b7Var.f4761e;
+                if (q81Var != null && b7Var.F != null) {
+                    long n10 = q81Var.n();
                     if (b7Var.getDuration() > 1) {
                         float duration = ((float) n10) / ((float) b7Var.getDuration());
                         boolean z11 = false;
-                        if (!b7Var.F.f6254m1) {
+                        if (!b7Var.F.f6253m1) {
                             l8 l8Var = b7Var.d;
-                            if ((duration < l8Var.Z || duration > l8Var.f5394a0) && System.currentTimeMillis() - b7Var.J > 500) {
+                            if ((duration < l8Var.Z || duration > l8Var.f5393a0) && System.currentTimeMillis() - b7Var.J > 500) {
                                 b7Var.J = System.currentTimeMillis();
-                                l81 l81Var2 = b7Var.f4762e;
+                                q81 q81Var2 = b7Var.f4761e;
                                 long duration2 = b7Var.d.Z * ((float) b7Var.getDuration());
-                                l81Var2.L(duration2, false);
+                                q81Var2.L(duration2, false);
                                 b7Var.w(true);
                                 b7Var.y(true);
                                 n10 = duration2;
-                                b7Var.F.setProgress(b7Var.f4762e.n());
+                                b7Var.F.setProgress(b7Var.f4761e.n());
                             }
                         }
                         if (n10 < b7Var.I) {
@@ -56,11 +56,11 @@ public final class z6 implements Runnable {
                             z11 = true;
                         }
                         b7Var.y(z11);
-                        b7Var.F.setProgress(b7Var.f4762e.n());
+                        b7Var.F.setProgress(b7Var.f4761e.n());
                     } else {
-                        b7Var.F.setProgress(b7Var.f4762e.n());
+                        b7Var.F.setProgress(b7Var.f4761e.n());
                     }
-                    if (b7Var.f4762e.y()) {
+                    if (b7Var.f4761e.y()) {
                         AndroidUtilities.cancelRunOnUIThread(z6Var);
                         AndroidUtilities.runOnUIThread(z6Var, 1000.0f / AndroidUtilities.screenRefreshRate);
                     }
@@ -69,10 +69,10 @@ public final class z6 implements Runnable {
                 }
                 return;
             case 3:
-                b7 b7Var2 = this.f6423b;
+                b7 b7Var2 = this.f6422b;
                 z6 z6Var2 = b7Var2.L;
-                if (b7Var2.f4788y != null && b7Var2.f4762e == null && b7Var2.f4786x == null && b7Var2.F != null && !b7Var2.j()) {
-                    long n11 = b7Var2.f4788y.n();
+                if (b7Var2.f4787y != null && b7Var2.f4761e == null && b7Var2.f4785x == null && b7Var2.F != null && !b7Var2.j()) {
+                    long n11 = b7Var2.f4787y.n();
                     l8 l8Var2 = b7Var2.d;
                     if (l8Var2 != null) {
                         float f7 = (float) n11;
@@ -80,15 +80,15 @@ public final class z6 implements Runnable {
                         float f11 = (float) l8Var2.C;
                         if ((f7 < f10 * f11 || f7 > l8Var2.F * f11) && System.currentTimeMillis() - b7Var2.J > 500) {
                             b7Var2.J = System.currentTimeMillis();
-                            l81 l81Var3 = b7Var2.f4788y;
+                            q81 q81Var3 = b7Var2.f4787y;
                             l8 l8Var3 = b7Var2.d;
                             long j3 = l8Var3.E * ((float) l8Var3.C);
-                            l81Var3.L(j3, false);
+                            q81Var3.L(j3, false);
                             n11 = j3;
                         }
                     }
                     b7Var2.F.setProgress(n11);
-                    if (b7Var2.f4788y.y()) {
+                    if (b7Var2.f4787y.y()) {
                         AndroidUtilities.cancelRunOnUIThread(z6Var2);
                         AndroidUtilities.runOnUIThread(z6Var2, 1000.0f / AndroidUtilities.screenRefreshRate);
                         return;
@@ -97,27 +97,27 @@ public final class z6 implements Runnable {
                 }
                 return;
             case 4:
-                b7 b7Var3 = this.f6423b;
+                b7 b7Var3 = this.f6422b;
                 z6 z6Var3 = b7Var3.M;
-                if (b7Var3.f4786x != null && b7Var3.f4762e == null && !b7Var3.j() && b7Var3.F != null) {
-                    long n12 = b7Var3.f4786x.n();
+                if (b7Var3.f4785x != null && b7Var3.f4761e == null && !b7Var3.j() && b7Var3.F != null) {
+                    long n12 = b7Var3.f4785x.n();
                     l8 l8Var4 = b7Var3.d;
                     if (l8Var4 != null) {
                         float f12 = (float) n12;
-                        float f13 = l8Var4.f5432s0;
-                        float f14 = (float) l8Var4.f5428q0;
-                        if ((f12 < f13 * f14 || f12 > l8Var4.f5434t0 * f14) && System.currentTimeMillis() - b7Var3.J > 500) {
+                        float f13 = l8Var4.f5431s0;
+                        float f14 = (float) l8Var4.f5427q0;
+                        if ((f12 < f13 * f14 || f12 > l8Var4.f5433t0 * f14) && System.currentTimeMillis() - b7Var3.J > 500) {
                             b7Var3.J = System.currentTimeMillis();
-                            l81 l81Var4 = b7Var3.f4786x;
+                            q81 q81Var4 = b7Var3.f4785x;
                             l8 l8Var5 = b7Var3.d;
-                            long j10 = l8Var5.f5432s0 * ((float) l8Var5.f5428q0);
-                            l81Var4.L(j10, false);
+                            long j10 = l8Var5.f5431s0 * ((float) l8Var5.f5427q0);
+                            q81Var4.L(j10, false);
                             b7Var3.w(true);
                             n12 = j10;
                         }
                     }
                     b7Var3.F.setProgress(n12);
-                    if (b7Var3.f4786x.y()) {
+                    if (b7Var3.f4785x.y()) {
                         AndroidUtilities.cancelRunOnUIThread(z6Var3);
                         AndroidUtilities.runOnUIThread(z6Var3, 1000.0f / AndroidUtilities.screenRefreshRate);
                         return;
@@ -126,16 +126,16 @@ public final class z6 implements Runnable {
                 }
                 return;
             default:
-                b7 b7Var4 = this.f6423b;
-                b81 b81Var = b7Var4.f4772n;
-                if (b81Var != null) {
-                    m00 m00Var = b81Var.f24935b;
-                    if (m00Var != null) {
-                        m00Var.postRunnable(new j00(m00Var, 0));
+                b7 b7Var4 = this.f6422b;
+                f81 f81Var = b7Var4.f4771n;
+                if (f81Var != null) {
+                    o00 o00Var = f81Var.f25964b;
+                    if (o00Var != null) {
+                        o00Var.postRunnable(new l00(o00Var, 0));
                     }
-                    b81Var.f24934a = null;
-                    b7Var4.removeView(b7Var4.f4772n);
-                    b7Var4.f4772n = null;
+                    f81Var.f25963a = null;
+                    b7Var4.removeView(b7Var4.f4771n);
+                    b7Var4.f4771n = null;
                     return;
                 }
                 return;

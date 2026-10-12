@@ -1,11 +1,14 @@
 package w7;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 public abstract class p {
-    public static m1.c a(String name) {
-        he.d dVar = ae.o0.f481b;
-        ae.k1 k1Var = new ae.k1();
-        dVar.getClass();
-        fe.e b10 = ae.g0.b(v7.v8.c(dVar, k1Var));
-        kotlin.jvm.internal.i.e(name, "name");
-        return new m1.c(name, m1.a.f15955b, b10);
+    public static void a(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
+        }
+        parcel.writeInt(0);
     }
 }

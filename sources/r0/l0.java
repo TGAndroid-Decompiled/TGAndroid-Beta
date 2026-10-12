@@ -2,40 +2,40 @@ package r0;
 
 import android.view.View;
 import java.lang.ref.WeakReference;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.am0;
 public final class l0 {
-    public final WeakReference f46902a;
+    public final WeakReference f46993a;
 
     public l0(View view) {
-        this.f46902a = new WeakReference(view);
+        this.f46993a = new WeakReference(view);
     }
 
     public final void a(float f7) {
-        View view = (View) this.f46902a.get();
+        View view = (View) this.f46993a.get();
         if (view != null) {
             view.animate().alpha(f7);
         }
     }
 
     public final void b() {
-        View view = (View) this.f46902a.get();
+        View view = (View) this.f46993a.get();
         if (view != null) {
             view.animate().cancel();
         }
     }
 
     public final void c(long j3) {
-        View view = (View) this.f46902a.get();
+        View view = (View) this.f46993a.get();
         if (view != null) {
             view.animate().setDuration(j3);
         }
     }
 
     public final void d(m0 m0Var) {
-        View view = (View) this.f46902a.get();
+        View view = (View) this.f46993a.get();
         if (view != null) {
             if (m0Var != null) {
-                view.animate().setListener(new vl0(m0Var, view, 19));
+                view.animate().setListener(new am0(m0Var, view, 19));
             } else {
                 view.animate().setListener(null);
             }
@@ -43,7 +43,7 @@ public final class l0 {
     }
 
     public final void e(float f7) {
-        View view = (View) this.f46902a.get();
+        View view = (View) this.f46993a.get();
         if (view != null) {
             view.animate().translationY(f7);
         }

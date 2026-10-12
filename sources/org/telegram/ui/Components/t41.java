@@ -1,44 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class t41 extends ClickableSpan {
-    public final URLSpan f31064a;
-    public final c51 f31065b;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class t41 extends s4.t0 {
+    public final g51 f30762a;
 
-    public t41(c51 c51Var, URLSpan uRLSpan) {
-        this.f31065b = c51Var;
-        this.f31064a = uRLSpan;
+    public t41(g51 g51Var) {
+        this.f30762a = g51Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        c51 c51Var = this.f31065b;
-        Utilities.CallbackReturn callbackReturn = c51Var.N;
-        URLSpan uRLSpan = this.f31064a;
-        if (callbackReturn != null) {
-            if (((Boolean) callbackReturn.run(uRLSpan)).booleanValue()) {
-                c51Var.dismiss();
-                return;
-            }
+    public final void a(RecyclerView recyclerView, int i10) {
+        g51 g51Var = this.f30762a;
+        s41 s41Var = g51Var.H;
+        if (i10 == 0) {
+            g51Var.G = false;
+        }
+        if ((i10 == 0 || i10 == 2) && g51Var.B(false) > 0.0f && g51Var.B(false) < AndroidUtilities.dp(96.0f) && s41Var.canScrollVertically(1) && g51.w(g51Var)) {
+            g51Var.G = true;
+            s41Var.v0(0, (int) g51Var.B(false), null);
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ViewGroup viewGroup;
+        float f7;
+        g51 g51Var = this.f30762a;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) g51Var).containerView;
+        viewGroup.invalidate();
+        boolean canScrollVertically = g51Var.H.canScrollVertically(1);
+        View view = g51Var.L;
+        Boolean bool = g51Var.Q;
+        if (bool != null && bool.booleanValue() == canScrollVertically) {
             return;
         }
-        org.telegram.ui.ActionBar.m2 m2Var = c51Var.M;
-        if (m2Var != null) {
-            g5.p0(m2Var, uRLSpan.getURL(), false, false);
+        g51Var.Q = Boolean.valueOf(canScrollVertically);
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (canScrollVertically) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
-        if (!(this.f31064a instanceof u61)) {
-            textPaint.setUnderlineText(true);
-        }
-        textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20949k5, false));
-        textPaint.setAlpha(min);
+        org.telegram.messenger.am.t(animate.alpha(f7), js.h, 320L);
     }
 }

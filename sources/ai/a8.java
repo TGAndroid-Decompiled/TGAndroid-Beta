@@ -5,23 +5,23 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.tl.TL_stories;
 public final class a8 implements Utilities.Callback {
-    public final int f646a;
-    public final m9 f647b;
+    public final int f648a;
+    public final m9 f649b;
 
     public a8(m9 m9Var, int i10) {
-        this.f646a = i10;
-        this.f647b = m9Var;
+        this.f648a = i10;
+        this.f649b = m9Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f646a) {
+        switch (this.f648a) {
             case 0:
                 e9 e9Var = (e9) obj;
-                m9 m9Var = this.f647b;
+                m9 m9Var = this.f649b;
                 HashMap hashMap = m9Var.H;
-                int i10 = e9Var.f896e;
-                int i11 = e9Var.f897f;
+                int i10 = e9Var.f894e;
+                int i11 = e9Var.f895f;
                 long j3 = e9Var.d;
                 if (i10 == 0 && i11 > 0) {
                     HashMap hashMap2 = (HashMap) hashMap.get(Long.valueOf(j3));
@@ -42,12 +42,12 @@ public final class a8 implements Utilities.Callback {
                 }
                 return;
             case 1:
-                this.f647b.f1410f = (LongSparseIntArray) obj;
+                this.f649b.f1408f = (LongSparseIntArray) obj;
                 return;
             default:
                 TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) obj;
-                m9 m9Var2 = this.f647b;
-                m9Var2.f1417n = false;
+                m9 m9Var2 = this.f649b;
+                m9Var2.f1415n = false;
                 if (tL_stories_allStories != null) {
                     m9Var2.Y(tL_stories_allStories, false, true, false);
                     m9Var2.Q(false);

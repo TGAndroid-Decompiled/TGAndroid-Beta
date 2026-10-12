@@ -3,32 +3,32 @@ package ai;
 import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fe0;
-import org.telegram.ui.Components.li0;
+import org.telegram.ui.Components.ie0;
+import org.telegram.ui.Components.mi0;
 public final class o7 implements z4.e {
-    public final int f1534a;
-    public final Object f1535b;
+    public final int f1532a;
+    public final Object f1533b;
 
     public o7(Object obj, int i10) {
-        this.f1534a = i10;
-        this.f1535b = obj;
+        this.f1532a = i10;
+        this.f1533b = obj;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
-        switch (this.f1534a) {
+        switch (this.f1532a) {
             case 0:
             case 1:
                 return;
             case 2:
-                fe0 fe0Var = (fe0) this.f1535b;
-                z4.e eVar = fe0Var.f26450c;
+                ie0 ie0Var = (ie0) this.f1533b;
+                z4.e eVar = ie0Var.f27150c;
                 if (eVar != null) {
                     eVar.a(i10);
                 }
-                for (int i11 = 0; i11 < fe0Var.d.getChildCount(); i11++) {
-                    View childAt = fe0Var.d.getChildAt(i11);
+                for (int i11 = 0; i11 < ie0Var.d.getChildCount(); i11++) {
+                    View childAt = ie0Var.d.getChildAt(i11);
                     if (i11 == i10) {
                         z10 = true;
                     } else {
@@ -48,10 +48,10 @@ public final class o7 implements z4.e {
         int i13;
         float f10;
         int i14;
-        switch (this.f1534a) {
+        switch (this.f1532a) {
             case 0:
-                t7 t7Var = (t7) this.f1535b;
-                if (t7Var.f1746w) {
+                t7 t7Var = (t7) this.f1533b;
+                if (t7Var.f1744w) {
                     m7 m7Var = t7Var.h;
                     m7Var.d.abortAnimation();
                     if (Math.abs(f7) <= 1.0f) {
@@ -60,17 +60,17 @@ public final class o7 implements z4.e {
                             valueAnimator.cancel();
                             m7Var.M = null;
                         }
-                        float f11 = (m7Var.f1473s / 2.0f) + ((-m7Var.getMeasuredWidth()) / 2.0f) + ((i12 + m7Var.f1471n) * i10);
+                        float f11 = (m7Var.f1471s / 2.0f) + ((-m7Var.getMeasuredWidth()) / 2.0f) + ((i12 + m7Var.f1469n) * i10);
                         if (f7 > 0.0f) {
-                            f10 = (m7Var.f1473s / 2.0f) + ((-m7Var.getMeasuredWidth()) / 2.0f) + ((i10 + 1) * (i14 + m7Var.f1471n));
+                            f10 = (m7Var.f1471s / 2.0f) + ((-m7Var.getMeasuredWidth()) / 2.0f) + ((i10 + 1) * (i14 + m7Var.f1469n));
                         } else {
-                            f10 = (m7Var.f1473s / 2.0f) + ((-m7Var.getMeasuredWidth()) / 2.0f) + ((i10 - 1) * (i13 + m7Var.f1471n));
+                            f10 = (m7Var.f1471s / 2.0f) + ((-m7Var.getMeasuredWidth()) / 2.0f) + ((i10 - 1) * (i13 + m7Var.f1469n));
                             f7 = -f7;
                         }
                         if (f7 == 0.0f) {
-                            m7Var.f1469e = f11;
+                            m7Var.f1467e = f11;
                         } else {
-                            m7Var.f1469e = AndroidUtilities.lerp(f11, f10, f7);
+                            m7Var.f1467e = AndroidUtilities.lerp(f11, f10, f7);
                         }
                         m7Var.L = false;
                         m7Var.invalidate();
@@ -80,16 +80,16 @@ public final class o7 implements z4.e {
                 }
                 return;
             case 1:
-                ((mi.e) this.f1535b).f16519f++;
+                ((li.e) this.f1533b).f15357f++;
                 return;
             case 2:
-                fe0 fe0Var = (fe0) this.f1535b;
-                fe0Var.h = i10;
-                fe0Var.f26453n = f7;
-                if (fe0Var.d.getChildAt(i10) != null) {
-                    fe0.a(fe0Var, i10, (int) (fe0Var.d.getChildAt(i10).getWidth() * f7));
-                    fe0Var.invalidate();
-                    z4.e eVar = fe0Var.f26450c;
+                ie0 ie0Var = (ie0) this.f1533b;
+                ie0Var.h = i10;
+                ie0Var.f27153n = f7;
+                if (ie0Var.d.getChildAt(i10) != null) {
+                    ie0.a(ie0Var, i10, (int) (ie0Var.d.getChildAt(i10).getWidth() * f7));
+                    ie0Var.invalidate();
+                    z4.e eVar = ie0Var.f27150c;
                     if (eVar != null) {
                         eVar.b(f7, i10, i11);
                         return;
@@ -98,23 +98,23 @@ public final class o7 implements z4.e {
                 }
                 return;
             default:
-                li0 li0Var = (li0) this.f1535b;
-                if (!li0Var.f28422a && Math.abs(i10 - li0Var.f28430w) == 1) {
-                    int i15 = li0Var.f28430w;
+                mi0 mi0Var = (mi0) this.f1533b;
+                if (!mi0Var.f28559a && Math.abs(i10 - mi0Var.f28567w) == 1) {
+                    int i15 = mi0Var.f28567w;
                     if (i10 > i15) {
-                        li0.a(li0Var, 0, 1, 1);
+                        mi0.a(mi0Var, 0, 1, 1);
                     } else if (i10 < i15) {
-                        li0.a(li0Var, 1, 0, 0);
-                        li0.a(li0Var, 2, 0, -1);
+                        mi0.a(mi0Var, 1, 0, 0);
+                        mi0.a(mi0Var, 2, 0, -1);
                     }
                 }
-                int i16 = li0Var.f28430w;
-                int i17 = li0Var.f28431x;
-                li0Var.f28430w = i10;
-                li0Var.f28431x = i11;
+                int i16 = mi0Var.f28567w;
+                int i17 = mi0Var.f28568x;
+                mi0Var.f28567w = i10;
+                mi0Var.f28568x = i11;
                 if (i16 != i10 || i17 != i11) {
-                    li0Var.H = true;
-                    li0Var.postInvalidateOnAnimation();
+                    mi0Var.H = true;
+                    mi0Var.postInvalidateOnAnimation();
                     return;
                 }
                 return;
@@ -123,22 +123,22 @@ public final class o7 implements z4.e {
 
     @Override
     public final void c(int i10) {
-        switch (this.f1534a) {
+        switch (this.f1532a) {
             case 0:
-                t7 t7Var = (t7) this.f1535b;
+                t7 t7Var = (t7) this.f1533b;
                 if (i10 == 1) {
-                    t7Var.f1746w = true;
+                    t7Var.f1744w = true;
                     return;
                 }
                 return;
             case 1:
                 return;
             case 2:
-                fe0 fe0Var = (fe0) this.f1535b;
+                ie0 ie0Var = (ie0) this.f1533b;
                 if (i10 == 0) {
-                    fe0.a(fe0Var, fe0Var.f26451e.getCurrentItem(), 0);
+                    ie0.a(ie0Var, ie0Var.f27151e.getCurrentItem(), 0);
                 }
-                z4.e eVar = fe0Var.f26450c;
+                z4.e eVar = ie0Var.f27150c;
                 if (eVar != null) {
                     eVar.c(i10);
                     return;

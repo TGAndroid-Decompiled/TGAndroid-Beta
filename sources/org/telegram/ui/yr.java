@@ -1,20 +1,40 @@
 package org.telegram.ui;
 
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class yr {
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f44515a;
-    public org.telegram.ui.ActionBar.a1 f44516b;
-    public org.telegram.ui.ActionBar.e1[] f44517c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f44541a;
+    public final LinearLayout f44542b;
+    public final sr0 f44543c;
 
-    public final void a(float f7, boolean z10) {
-        org.telegram.ui.ActionBar.e1[] e1VarArr = this.f44517c;
-        for (int i10 = 0; i10 < e1VarArr.length; i10++) {
-            if (z10 && ((i10 == 0 && Math.abs(f7 - 0.2f) < 0.01f) || ((i10 == 1 && Math.abs(f7 - 0.5f) < 0.1f) || ((i10 == 2 && Math.abs(f7 - 1.0f) < 0.1f) || ((i10 == 3 && Math.abs(f7 - 1.5f) < 0.1f) || (i10 == 4 && Math.abs(f7 - 2.0f) < 0.1f)))))) {
-                e1VarArr[i10].c(-9718023, -9718023);
-            } else {
-                e1VarArr[i10].c(-328966, -328966);
-            }
+    public yr(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.bi0 bi0Var, sr0 sr0Var) {
+        this.f44543c = sr0Var;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
+        this.f44541a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
+        org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
+        c10.setOnClickListener(new xr(bi0Var, 0));
+        c10.c(-328966, -328966);
+        c10.setSelectorColor(268435455);
+        View x5Var = new ai.x5(contextThemeWrapper, 11);
+        x5Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        x5Var.setBackgroundColor(-15198184);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(x5Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) x5Var.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
         }
-        this.f44516b.d(f7, true);
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(8.0f);
+        x5Var.setLayoutParams(layoutParams);
+        LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
+        this.f44542b = linearLayout;
+        linearLayout.setOrientation(1);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }
 }

@@ -1,40 +1,24 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class m11 implements ImageReceiver.ImageReceiverDelegate {
-    public final Runnable[] f39824a;
+import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
+public final class m11 extends TextView implements org.telegram.ui.ActionBar.x5 {
+    public final ProfileActivity f39886a;
 
-    public m11(Runnable[] runnableArr) {
-        this.f39824a = runnableArr;
+    public m11(ProfileActivity profileActivity, Context context) {
+        super(context);
+        this.f39886a = profileActivity;
+        e();
     }
 
     @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        if (imageReceiver.hasBitmapImage()) {
-            Runnable[] runnableArr = this.f39824a;
-            if (runnableArr[0] != null) {
-                org.telegram.ui.Components.dk0 lottieAnimation = imageReceiver.getLottieAnimation();
-                if (lottieAnimation == null) {
-                    runnableArr[0].run();
-                    runnableArr[0] = null;
-                } else if (lottieAnimation.y()) {
-                    lottieAnimation.A0 = new mz0(runnableArr, 6);
-                } else {
-                    runnableArr[0].run();
-                    runnableArr[0] = null;
-                }
-            }
-        }
+    public final void e() {
+        setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f39886a.f34223z0));
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.i5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.i5.b(this, imageReceiver);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

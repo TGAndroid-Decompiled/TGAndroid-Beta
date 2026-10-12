@@ -1,66 +1,112 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Canvas;
+import android.content.Context;
+import android.util.SparseArray;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class vu0 extends FrameLayout {
-    public ul0 E;
-    public int F;
-    public ur0 G;
-    public ei0 H;
-    public boolean I;
-    public int J;
-    public boolean K;
-    public float L;
-    public long f32550a;
-    public boolean f32551b;
-    public ObjectAnimator f32552c;
-    public s4.j d;
-    public s4.v0 f32553e;
-    public s4.v0 f32554f;
-    public bt0 h;
-    public ah.n f32555n;
-    public uu0 f32556r;
-    public dt0 f32557s;
-    public kt0 v;
-    public mt0 f32558w;
-    public zs0 f32559x;
-    public jt0 f32560y;
+import android.view.ViewGroup;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class vu0 extends vm0 {
+    public final Context f32192c;
+    public final hw0 d;
+
+    public vu0(hw0 hw0Var, Context context) {
+        this.d = hw0Var;
+        this.f32192c = context;
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ur0 ur0Var;
-        super.dispatchDraw(canvas);
-        ur0 ur0Var2 = this.G;
-        if (ur0Var2 != null && ur0Var2.getVisibility() == 0) {
-            yl0 fastScroll = this.h.getFastScroll();
-            if (fastScroll != null) {
-                float dp = AndroidUtilities.dp(36.0f) + fastScroll.getScrollBarY();
-                if (this.F == 9) {
-                    dp += AndroidUtilities.dp(64.0f);
+    public final boolean D(s4.d1 d1Var) {
+        wv0[] wv0VarArr = this.d.f26968t1;
+        if (wv0VarArr[5].f32553a.size() == 0 && !wv0VarArr[5].f32558g) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        wv0[] wv0VarArr = this.d.f26968t1;
+        if (wv0VarArr[5].f32553a.size() == 0 && !wv0VarArr[5].f32558g) {
+            return 1;
+        }
+        return wv0VarArr[5].f32553a.size();
+    }
+
+    @Override
+    public final long i(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        wv0[] wv0VarArr = this.d.f26968t1;
+        if (wv0VarArr[5].f32553a.size() == 0 && !wv0VarArr[5].f32558g) {
+            return 11;
+        }
+        return 12;
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        char c10;
+        if (d1Var.f47893f == 12) {
+            hw0 hw0Var = this.d;
+            MessageObject messageObject = (MessageObject) hw0Var.f26968t1[5].f32553a.get(i10);
+            TLRPC.Document document = messageObject.getDocument();
+            if (document != null) {
+                View view = d1Var.f47889a;
+                if (view instanceof org.telegram.ui.Cells.f2) {
+                    org.telegram.ui.Cells.f2 f2Var = (org.telegram.ui.Cells.f2) view;
+                    f2Var.d(messageObject.messageOwner.date, document, messageObject);
+                    boolean z10 = false;
+                    if (hw0Var.C1) {
+                        SparseArray[] sparseArrayArr = hw0Var.Z0;
+                        if (messageObject.getDialogId() == hw0Var.f26947j1) {
+                            c10 = 0;
+                        } else {
+                            c10 = 1;
+                        }
+                        if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
+                            z10 = true;
+                        }
+                        f2Var.c(z10, !hw0Var.f26926b1);
+                        return;
+                    }
+                    f2Var.c(false, !hw0Var.f26926b1);
                 }
-                int i10 = this.F;
-                if (i10 == 8 || cw0.w0(i10)) {
-                    dp += AndroidUtilities.dp(42.0f);
-                }
-                this.G.setPivotX(ur0Var.getMeasuredWidth());
-                this.G.setPivotY(0.0f);
-                this.G.setTranslationX((getMeasuredWidth() - this.G.getMeasuredWidth()) - AndroidUtilities.dp(16.0f));
-                this.G.setTranslationY(dp);
-            }
-            if (fastScroll.getProgress() > 0.85f) {
-                cw0.q(this, null, false);
             }
         }
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f32556r) {
-            return true;
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        hw0 hw0Var = this.d;
+        org.telegram.ui.ActionBar.c6 c6Var = hw0Var.F1;
+        Context context = this.f32192c;
+        if (i10 == 11) {
+            uu0 M = hw0.M(5, hw0Var.f26947j1, context, c6Var);
+            M.setLayoutParams(new s4.q0(-1, -1));
+            return new s4.d1(M);
         }
-        return super.drawChild(canvas, view, j3);
+        org.telegram.ui.Cells.f2 f2Var = new org.telegram.ui.Cells.f2(context, c6Var, true);
+        f2Var.setCanPreviewGif(true);
+        return new s4.d1(f2Var);
+    }
+
+    @Override
+    public final void y(s4.d1 d1Var) {
+        View view = d1Var.f47889a;
+        if (view instanceof org.telegram.ui.Cells.f2) {
+            ImageReceiver photoImage = ((org.telegram.ui.Cells.f2) view).getPhotoImage();
+            if (this.d.f26948k0[0].F == 5) {
+                photoImage.setAllowStartAnimation(true);
+                photoImage.startAnimation();
+                return;
+            }
+            photoImage.setAllowStartAnimation(false);
+            photoImage.stopAnimation();
+        }
     }
 }

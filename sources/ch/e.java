@@ -44,8 +44,8 @@ public final class e extends d {
 
     @Override
     public final void draw(Canvas canvas) {
-        c cVar = this.f4684j;
-        if (cVar.f4674m.isEmpty()) {
+        c cVar = this.f4683j;
+        if (cVar.f4673m.isEmpty()) {
             return;
         }
         boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
@@ -55,22 +55,22 @@ public final class e extends d {
             return;
         }
         if (!this.J.hasDisplayList()) {
-            aVar.d();
+            aVar.b();
             w();
         } else if (this.O) {
             w();
         }
         this.O = false;
-        int m12 = h6.m1(this.J.getAlpha() * this.f4690p, this.d);
+        int m12 = h6.m1(this.J.getAlpha() * this.f4689p, this.d);
         if (Color.alpha(m12) != 0) {
-            float f7 = this.f4688n;
-            float f10 = this.f4689o;
+            float f7 = this.f4687n;
+            float f10 = this.f4688o;
             Paint paint = this.L;
             paint.setShadowLayer(f7, 0.0f, f10, m12);
-            cVar.c(canvas, paint, this.f4687m);
+            cVar.c(canvas, paint, this.f4686m);
         }
         canvas.save();
-        Rect rect = cVar.f4674m;
+        Rect rect = cVar.f4673m;
         canvas.translate(rect.left, rect.top);
         canvas.drawRenderNode(this.J);
         canvas.restore();
@@ -89,20 +89,20 @@ public final class e extends d {
     @Override
     public final void k() {
         b();
-        c cVar = this.f4684j;
-        this.M.setStrokeWidth(cVar.f4670i);
-        this.N.setStrokeWidth(cVar.f4671j);
-        int width = cVar.f4674m.width();
-        int height = cVar.f4674m.height();
+        c cVar = this.f4683j;
+        this.M.setStrokeWidth(cVar.f4669i);
+        this.N.setStrokeWidth(cVar.f4670j);
+        int width = cVar.f4673m.width();
+        int height = cVar.f4673m.height();
         Rect rect = this.I;
         rect.set(0, 0, width, height);
-        float[] fArr = cVar.f4665b;
+        float[] fArr = cVar.f4664b;
         Outline outline = this.H;
         d.h(outline, rect, fArr);
         outline.setAlpha(1.0f);
-        if (!cVar.f4674m.isEmpty()) {
-            this.K.setPosition(0, 0, cVar.f4674m.width(), cVar.f4674m.height());
-            this.J.setPosition(0, 0, cVar.f4674m.width(), cVar.f4674m.height());
+        if (!cVar.f4673m.isEmpty()) {
+            this.K.setPosition(0, 0, cVar.f4673m.width(), cVar.f4673m.height());
+            this.J.setPosition(0, 0, cVar.f4673m.width(), cVar.f4673m.height());
             this.J.setOutline(outline);
             this.O = true;
         }
@@ -116,7 +116,7 @@ public final class e extends d {
 
     @Override
     public final void m() {
-        this.G.d();
+        this.G.b();
     }
 
     @Override
@@ -127,31 +127,31 @@ public final class e extends d {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f4686l;
-        this.f4686l = i10;
+        int i11 = this.f4685l;
+        this.f4685l = i10;
         this.J.setAlpha(i10 / 255.0f);
         this.O = true;
         if (i11 == 0 && i10 > 0) {
-            this.G.d();
+            this.G.b();
         }
     }
 
     @Override
     public final void v() {
         super.v();
-        this.L.setShadowLayer(this.f4688n, 0.0f, this.f4689o, this.d);
-        this.M.setColor(this.f4681f);
-        this.N.setColor(this.f4682g);
+        this.L.setShadowLayer(this.f4687n, 0.0f, this.f4688o, this.d);
+        this.M.setColor(this.f4680f);
+        this.N.setColor(this.f4681g);
         this.O = true;
     }
 
     @Override
     public final void w() {
-        float f7 = this.f4677a;
-        float f10 = this.f4678b;
-        c cVar = this.f4684j;
-        Rect rect = cVar.f4674m;
-        Rect rect2 = cVar.f4674m;
+        float f7 = this.f4676a;
+        float f10 = this.f4677b;
+        c cVar = this.f4683j;
+        Rect rect = cVar.f4673m;
+        Rect rect2 = cVar.f4673m;
         float f11 = rect.left + f7;
         float f12 = rect.top + f10;
         float f13 = rect.right + f7;
@@ -160,7 +160,7 @@ public final class e extends d {
         beginRecording.save();
         beginRecording.translate(-f11, -f12);
         if (this.P != null && Build.VERSION.SDK_INT >= 33) {
-            int i10 = cVar.f4668f;
+            int i10 = cVar.f4667f;
             if (i10 <= 0) {
                 i10 = AndroidUtilities.dp(11.0f);
             }
@@ -168,26 +168,26 @@ public final class e extends d {
             i iVar = this.P;
             float width = rect2.width();
             float height = rect2.height();
-            float[] fArr = cVar.f4666c;
-            iVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f4669g, cVar.h, this.f4680e);
+            float[] fArr = cVar.f4665c;
+            iVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f4668g, cVar.h, this.f4679e);
         }
         this.G.v(beginRecording, f11, f12, f13, f14);
         beginRecording.save();
         this.K.endRecording();
         RecordingCanvas beginRecording2 = this.J.beginRecording();
-        if (Color.alpha(this.f4680e) == 255) {
-            beginRecording2.drawColor(this.f4680e);
+        if (Color.alpha(this.f4679e) == 255) {
+            beginRecording2.drawColor(this.f4679e);
         } else {
             beginRecording2.drawRenderNode(this.K);
-            if (this.P == null && Color.alpha(this.f4680e) != 0) {
-                beginRecording2.drawColor(this.f4680e);
+            if (this.P == null && Color.alpha(this.f4679e) != 0) {
+                beginRecording2.drawColor(this.f4679e);
             }
         }
-        if (this.f4681f != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f4665b, cVar.f4670i, true, this.M);
+        if (this.f4680f != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f4664b, cVar.f4669i, true, this.M);
         }
-        if (this.f4682g != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f4665b, cVar.f4671j, false, this.N);
+        if (this.f4681g != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f4664b, cVar.f4670j, false, this.N);
         }
         this.J.endRecording();
     }

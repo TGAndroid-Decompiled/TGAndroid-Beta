@@ -1,92 +1,279 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.net.Uri;
-import android.text.TextUtils;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-public final class te implements Runnable {
-    public final int f42196a;
-    public final zn f42197b;
-    public final String f42198c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class te implements RequestDelegate {
+    public final int f42168a;
+    public final eo f42169b;
 
-    public te(zn znVar, String str, int i10) {
-        this.f42196a = i10;
-        this.f42197b = znVar;
-        this.f42198c = str;
+    public te(eo eoVar, int i10) {
+        this.f42168a = i10;
+        this.f42169b = eoVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42196a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f42168a) {
             case 0:
-                zn.q1(this.f42197b, this.f42198c);
+                final eo eoVar = this.f42169b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z10;
+                        switch (r3) {
+                            case 0:
+                                eo.l1(eoVar, tLObject);
+                                return;
+                            case 1:
+                                eo.V0(eoVar, tLObject);
+                                return;
+                            case 2:
+                                eo eoVar2 = eoVar;
+                                TLObject tLObject2 = tLObject;
+                                eoVar2.f37367o5 = 0;
+                                if (tLObject2 == null && eoVar2.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eoVar2.getParentActivity(), 0, eoVar2.f37251ea);
+                                    alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.EditMessageError);
+                                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                                    eoVar2.showDialog(alertDialog$Builder.f20141a);
+                                    sk skVar = eoVar2.Y;
+                                    if (skVar != null) {
+                                        skVar.e1(null, null, false);
+                                        eoVar2.j9(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                eo eoVar3 = eoVar;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
+                                    try {
+                                        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (org.telegram.ui.Components.zc.a(eoVar3)) {
+                                            org.telegram.ui.Components.zc a02 = org.telegram.ui.Components.zc.a0(eoVar3);
+                                            if (!eoVar3.K9() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z10 = true;
+                                            } else {
+                                                z10 = false;
+                                            }
+                                            a02.k(z10).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e7) {
+                                        FileLog.e(e7);
+                                        return;
+                                    }
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 1:
-                zn.u1(this.f42197b, this.f42198c);
+                final eo eoVar2 = this.f42169b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z10;
+                        switch (r3) {
+                            case 0:
+                                eo.l1(eoVar2, tLObject);
+                                return;
+                            case 1:
+                                eo.V0(eoVar2, tLObject);
+                                return;
+                            case 2:
+                                eo eoVar22 = eoVar2;
+                                TLObject tLObject2 = tLObject;
+                                eoVar22.f37367o5 = 0;
+                                if (tLObject2 == null && eoVar22.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eoVar22.getParentActivity(), 0, eoVar22.f37251ea);
+                                    alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.EditMessageError);
+                                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                                    eoVar22.showDialog(alertDialog$Builder.f20141a);
+                                    sk skVar = eoVar22.Y;
+                                    if (skVar != null) {
+                                        skVar.e1(null, null, false);
+                                        eoVar22.j9(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                eo eoVar3 = eoVar2;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
+                                    try {
+                                        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (org.telegram.ui.Components.zc.a(eoVar3)) {
+                                            org.telegram.ui.Components.zc a02 = org.telegram.ui.Components.zc.a0(eoVar3);
+                                            if (!eoVar3.K9() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z10 = true;
+                                            } else {
+                                                z10 = false;
+                                            }
+                                            a02.k(z10).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e7) {
+                                        FileLog.e(e7);
+                                        return;
+                                    }
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 2:
-                h4.f(this.f42198c, r1.currentAccount, r1.X0, null, this.f42197b.f44796ea);
+                final eo eoVar3 = this.f42169b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z10;
+                        switch (r3) {
+                            case 0:
+                                eo.l1(eoVar3, tLObject);
+                                return;
+                            case 1:
+                                eo.V0(eoVar3, tLObject);
+                                return;
+                            case 2:
+                                eo eoVar22 = eoVar3;
+                                TLObject tLObject2 = tLObject;
+                                eoVar22.f37367o5 = 0;
+                                if (tLObject2 == null && eoVar22.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eoVar22.getParentActivity(), 0, eoVar22.f37251ea);
+                                    alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.EditMessageError);
+                                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                                    eoVar22.showDialog(alertDialog$Builder.f20141a);
+                                    sk skVar = eoVar22.Y;
+                                    if (skVar != null) {
+                                        skVar.e1(null, null, false);
+                                        eoVar22.j9(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                eo eoVar32 = eoVar3;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
+                                    try {
+                                        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (org.telegram.ui.Components.zc.a(eoVar32)) {
+                                            org.telegram.ui.Components.zc a02 = org.telegram.ui.Components.zc.a0(eoVar32);
+                                            if (!eoVar32.K9() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z10 = true;
+                                            } else {
+                                                z10 = false;
+                                            }
+                                            a02.k(z10).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e7) {
+                                        FileLog.e(e7);
+                                        return;
+                                    }
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 3:
-                zn znVar = this.f42197b;
-                String str = this.f42198c;
-                if (str != null) {
-                    znVar.getClass();
-                    if (str.length() != 0) {
-                        znVar.getMessagesController().sendBotStart(znVar.f44798f, str);
-                        return;
+                final eo eoVar4 = this.f42169b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        boolean z10;
+                        switch (r3) {
+                            case 0:
+                                eo.l1(eoVar4, tLObject);
+                                return;
+                            case 1:
+                                eo.V0(eoVar4, tLObject);
+                                return;
+                            case 2:
+                                eo eoVar22 = eoVar4;
+                                TLObject tLObject2 = tLObject;
+                                eoVar22.f37367o5 = 0;
+                                if (tLObject2 == null && eoVar22.getParentActivity() != null) {
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eoVar22.getParentActivity(), 0, eoVar22.f37251ea);
+                                    alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.EditMessageError);
+                                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                                    eoVar22.showDialog(alertDialog$Builder.f20141a);
+                                    sk skVar = eoVar22.Y;
+                                    if (skVar != null) {
+                                        skVar.e1(null, null, false);
+                                        eoVar22.j9(true);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                eo eoVar32 = eoVar4;
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
+                                    try {
+                                        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
+                                        if (org.telegram.ui.Components.zc.a(eoVar32)) {
+                                            org.telegram.ui.Components.zc a02 = org.telegram.ui.Components.zc.a0(eoVar32);
+                                            if (!eoVar32.K9() && tL_exportedMessageLink.link.contains("/c/")) {
+                                                z10 = true;
+                                            } else {
+                                                z10 = false;
+                                            }
+                                            a02.k(z10).j();
+                                            return;
+                                        }
+                                        return;
+                                    } catch (Exception e7) {
+                                        FileLog.e(e7);
+                                        return;
+                                    }
+                                }
+                                return;
+                        }
                     }
-                }
-                znVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", znVar.T5, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                });
                 return;
             case 4:
-                this.f42197b.qa(this.f42198c);
-                return;
-            case 5:
-                this.f42197b.ia(this.f42198c, false);
-                return;
-            case 6:
-                Activity parentActivity = this.f42197b.getParentActivity();
-                of.f.s(parentActivity, "tel:" + this.f42198c);
-                return;
-            case 7:
-                AndroidUtilities.addToClipboard(this.f42198c);
-                org.telegram.messenger.ai.p(R.string.PhoneCopied, org.telegram.ui.Components.ad.a0(this.f42197b));
-                return;
-            case 8:
-                zn.d1(this.f42197b, this.f42198c);
-                return;
-            case 9:
-                Activity parentActivity2 = this.f42197b.getParentActivity();
-                of.f.s(parentActivity2, "tel:" + this.f42198c);
-                return;
-            case 10:
-                AndroidUtilities.addToClipboard(this.f42198c);
-                org.telegram.messenger.ai.p(R.string.PhoneCopied, org.telegram.ui.Components.ad.a0(this.f42197b));
-                return;
-            case 11:
-                zn znVar2 = this.f42197b;
-                znVar2.getClass();
-                znVar2.presentFragment(new org.telegram.ui.Wallet.l8(this.f42198c));
-                return;
-            case 12:
-                zn znVar3 = this.f42197b;
-                String str2 = znVar3.getMessagesController().tonBlockchainExplorerUrl;
-                if (TextUtils.isEmpty(str2)) {
-                    str2 = "https://tonviewer.com/";
-                } else if (!str2.endsWith("/")) {
-                    str2 = str2.concat("/");
+                eo eoVar5 = this.f42169b;
+                if (tL_error != null) {
+                    eoVar5.getClass();
+                    return;
+                } else {
+                    eoVar5.getMessagesController().lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
+                    return;
                 }
-                Activity parentActivity3 = znVar3.getParentActivity();
-                StringBuilder v = a1.g.v(str2);
-                v.append(Uri.encode(this.f42198c));
-                of.f.u(parentActivity3, v.toString());
-                return;
             default:
-                Activity parentActivity4 = this.f42197b.getParentActivity();
-                of.f.s(parentActivity4, "https://fragment.com/username/" + this.f42198c);
+                eo.e1(this.f42169b, tLObject);
                 return;
         }
     }

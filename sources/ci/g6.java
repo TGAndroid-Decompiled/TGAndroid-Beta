@@ -1,14 +1,14 @@
 package ci;
-public final class g6 implements pg.d1 {
-    public final nb f5120a;
+public final class g6 implements pg.c1 {
+    public final nb f5119a;
 
     public g6(nb nbVar) {
-        this.f5120a = nbVar;
+        this.f5119a = nbVar;
     }
 
     @Override
     public final void b() {
-        h6 h6Var = this.f5120a.P0;
+        h6 h6Var = this.f5119a.P0;
         if (h6Var != null) {
             h6Var.invalidate();
         }
@@ -16,19 +16,19 @@ public final class g6 implements pg.d1 {
 
     @Override
     public final void c() {
-        nb nbVar = this.f5120a;
-        if (nbVar.f5792c1) {
-            nbVar.f5792c1 = false;
+        nb nbVar = this.f5119a;
+        if (nbVar.f5791c1) {
+            nbVar.f5791c1 = false;
             return;
         }
-        nbVar.f5808k1.b(1);
-        nbVar.b((pg.m) pg.m.f45756a.get(0));
+        nbVar.f5807k1.b(1);
+        nbVar.b((pg.m) pg.m.f45582a.get(0));
     }
 
     @Override
     public final boolean d() {
         boolean z10;
-        nb nbVar = this.f5120a;
+        nb nbVar = this.f5119a;
         if (nbVar.J0 == null) {
             z10 = true;
         } else {
@@ -42,18 +42,18 @@ public final class g6 implements pg.d1 {
 
     @Override
     public final void e() {
-        nb nbVar = this.f5120a;
-        nbVar.D0.f45889a.e();
-        nbVar.f5794d1.setViewHidden(false);
+        nb nbVar = this.f5119a;
+        nbVar.D0.f45695a.e();
+        nbVar.f5793d1.setViewHidden(false);
     }
 
     @Override
     public final void f() {
-        nb nbVar = this.f5120a;
+        nb nbVar = this.f5119a;
         if (nbVar.J0 != null) {
             nbVar.C0(null, true);
         }
-        nbVar.f5794d1.setViewHidden(true);
+        nbVar.f5793d1.setViewHidden(true);
     }
 
     @Override

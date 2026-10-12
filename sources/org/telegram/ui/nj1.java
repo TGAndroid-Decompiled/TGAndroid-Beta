@@ -1,26 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-public final class nj1 extends org.telegram.ui.ActionBar.j {
-    public final pj1 f40301a;
+import com.google.android.gms.tasks.OnFailureListener;
+import org.telegram.messenger.FileLog;
+public final class nj1 implements OnFailureListener {
+    public final int f40427a;
+    public final ci.d f40428b;
 
-    public nj1(pj1 pj1Var) {
-        this.f40301a = pj1Var;
+    public nj1(ci.d dVar, int i10) {
+        this.f40427a = i10;
+        this.f40428b = dVar;
     }
 
     @Override
-    public final void b(int i10) {
-        pj1 pj1Var = this.f40301a;
-        MessageObject messageObject = pj1Var.f40931n;
-        if (i10 == -1) {
-            pj1Var.finishFragment();
-        } else if (i10 == 1) {
-            if (messageObject != null) {
-                messageObject.messageOwner.with_my_score = false;
-                pj1Var.showDialog(org.telegram.ui.Components.nr0.O0(pj1Var.getParentActivity(), messageObject, null, false, pj1Var.h));
-            }
-        } else if (i10 == 2) {
-            pj1.V(pj1Var.d, messageObject, pj1Var.getParentActivity(), pj1Var.f40932r, pj1Var.f40929e);
+    public final void onFailure(Exception exc) {
+        switch (this.f40427a) {
+            case 0:
+                FileLog.e("wear-auth: /answer send failed: " + exc.getMessage());
+                this.f40428b.setLoading(false);
+                return;
+            default:
+                FileLog.e("wear-auth: /token send failed: " + exc.getMessage());
+                this.f40428b.setLoading(false);
+                return;
         }
     }
 }

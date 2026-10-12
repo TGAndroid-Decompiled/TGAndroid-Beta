@@ -1,28 +1,28 @@
 package o1;
 public final class l {
-    public double f17025a;
-    public double f17026b;
-    public boolean f17027c;
+    public double f16691a;
+    public double f16692b;
+    public boolean f16693c;
     public double d;
-    public double f17028e;
-    public double f17029f;
-    public double f17030g;
+    public double f16694e;
+    public double f16695f;
+    public double f16696g;
     public double h;
-    public double f17031i;
-    public final e f17032j;
+    public double f16697i;
+    public final e f16698j;
 
     public l() {
-        this.f17025a = Math.sqrt(1500.0d);
-        this.f17026b = 0.5d;
-        this.f17027c = false;
-        this.f17031i = Double.MAX_VALUE;
-        this.f17032j = new Object();
+        this.f16691a = Math.sqrt(1500.0d);
+        this.f16692b = 0.5d;
+        this.f16693c = false;
+        this.f16697i = Double.MAX_VALUE;
+        this.f16698j = new Object();
     }
 
     public final void a(float f7) {
         if (f7 >= 0.0f) {
-            this.f17026b = f7;
-            this.f17027c = false;
+            this.f16692b = f7;
+            this.f16693c = false;
             return;
         }
         throw new IllegalArgumentException("Damping ratio must be non-negative");
@@ -30,8 +30,8 @@ public final class l {
 
     public final void b(float f7) {
         if (f7 > 0.0f) {
-            this.f17025a = Math.sqrt(f7);
-            this.f17027c = false;
+            this.f16691a = Math.sqrt(f7);
+            this.f16693c = false;
             return;
         }
         throw new IllegalArgumentException("Spring stiffness constant must be positive.");
@@ -40,52 +40,52 @@ public final class l {
     public final e c(double d, double d10, long j3) {
         double sin;
         double cos;
-        if (!this.f17027c) {
-            if (this.f17031i != Double.MAX_VALUE) {
-                double d11 = this.f17026b;
+        if (!this.f16693c) {
+            if (this.f16697i != Double.MAX_VALUE) {
+                double d11 = this.f16692b;
                 if (d11 > 1.0d) {
-                    double d12 = this.f17025a;
-                    this.f17029f = (Math.sqrt((d11 * d11) - 1.0d) * d12) + ((-d11) * d12);
-                    double d13 = this.f17026b;
-                    double d14 = this.f17025a;
-                    this.f17030g = ((-d13) * d14) - (Math.sqrt((d13 * d13) - 1.0d) * d14);
+                    double d12 = this.f16691a;
+                    this.f16695f = (Math.sqrt((d11 * d11) - 1.0d) * d12) + ((-d11) * d12);
+                    double d13 = this.f16692b;
+                    double d14 = this.f16691a;
+                    this.f16696g = ((-d13) * d14) - (Math.sqrt((d13 * d13) - 1.0d) * d14);
                 } else if (d11 >= 0.0d && d11 < 1.0d) {
-                    this.h = Math.sqrt(1.0d - (d11 * d11)) * this.f17025a;
+                    this.h = Math.sqrt(1.0d - (d11 * d11)) * this.f16691a;
                 }
-                this.f17027c = true;
+                this.f16693c = true;
             } else {
                 throw new IllegalStateException("Error: Final position of the spring must be set before the animation starts");
             }
         }
         double d15 = j3 / 1000.0d;
-        double d16 = d - this.f17031i;
-        double d17 = this.f17026b;
+        double d16 = d - this.f16697i;
+        double d17 = this.f16692b;
         int i10 = (d17 > 1.0d ? 1 : (d17 == 1.0d ? 0 : -1));
         if (i10 > 0) {
-            double d18 = this.f17030g;
-            double d19 = ((d18 * d16) - d10) / (d18 - this.f17029f);
+            double d18 = this.f16696g;
+            double d19 = ((d18 * d16) - d10) / (d18 - this.f16695f);
             double d20 = d16 - d19;
-            sin = (Math.pow(2.718281828459045d, this.f17029f * d15) * d19) + (Math.pow(2.718281828459045d, d18 * d15) * d20);
-            double d21 = this.f17030g;
+            sin = (Math.pow(2.718281828459045d, this.f16695f * d15) * d19) + (Math.pow(2.718281828459045d, d18 * d15) * d20);
+            double d21 = this.f16696g;
             double pow = Math.pow(2.718281828459045d, d21 * d15) * d20 * d21;
-            double d22 = this.f17029f;
+            double d22 = this.f16695f;
             cos = (Math.pow(2.718281828459045d, d22 * d15) * d19 * d22) + pow;
         } else if (i10 == 0) {
-            double d23 = this.f17025a;
+            double d23 = this.f16691a;
             double d24 = (d23 * d16) + d10;
             double d25 = (d24 * d15) + d16;
             double pow2 = Math.pow(2.718281828459045d, (-d23) * d15) * d25;
-            double pow3 = Math.pow(2.718281828459045d, (-this.f17025a) * d15) * d25;
-            double d26 = -this.f17025a;
+            double pow3 = Math.pow(2.718281828459045d, (-this.f16691a) * d15) * d25;
+            double d26 = -this.f16691a;
             cos = (Math.pow(2.718281828459045d, d26 * d15) * d24) + (pow3 * d26);
             sin = pow2;
         } else {
             double d27 = 1.0d / this.h;
-            double d28 = this.f17025a;
+            double d28 = this.f16691a;
             double d29 = ((d17 * d28 * d16) + d10) * d27;
             sin = ((Math.sin(this.h * d15) * d29) + (Math.cos(this.h * d15) * d16)) * Math.pow(2.718281828459045d, (-d17) * d28 * d15);
-            double d30 = this.f17025a;
-            double d31 = this.f17026b;
+            double d30 = this.f16691a;
+            double d31 = this.f16692b;
             double d32 = (-d30) * sin * d31;
             double pow4 = Math.pow(2.718281828459045d, (-d31) * d30 * d15);
             double d33 = this.h;
@@ -93,17 +93,17 @@ public final class l {
             double d34 = this.h;
             cos = (((Math.cos(d34 * d15) * d29 * d34) + sin2) * pow4) + d32;
         }
-        e eVar = this.f17032j;
-        eVar.f17003a = (float) (sin + this.f17031i);
-        eVar.f17004b = (float) cos;
+        e eVar = this.f16698j;
+        eVar.f16669a = (float) (sin + this.f16697i);
+        eVar.f16670b = (float) cos;
         return eVar;
     }
 
     public l(float f7) {
-        this.f17025a = Math.sqrt(1500.0d);
-        this.f17026b = 0.5d;
-        this.f17027c = false;
-        this.f17032j = new Object();
-        this.f17031i = f7;
+        this.f16691a = Math.sqrt(1500.0d);
+        this.f16692b = 0.5d;
+        this.f16693c = false;
+        this.f16698j = new Object();
+        this.f16697i = f7;
     }
 }

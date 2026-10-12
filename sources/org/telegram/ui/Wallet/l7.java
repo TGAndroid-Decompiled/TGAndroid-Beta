@@ -8,35 +8,35 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.ja0;
-import org.telegram.ui.Components.l71;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.rm0;
-public final class l7 extends p61 {
-    public static final int f35263a = 0;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.na0;
+import org.telegram.ui.Components.p71;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.wm0;
+public final class l7 extends t61 {
+    public static final int f35038a = 0;
 
     static {
-        p61.setup(new p61());
+        t61.setup(new t61());
     }
 
     @Override
-    public final void bindView(View view, q61 q61Var, boolean z10, d71 d71Var, l71 l71Var) {
+    public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
         float f7;
         float f10;
         m7 m7Var = (m7) view;
-        String charSequence = q61Var.f30167l.toString();
-        long j3 = q61Var.B;
-        int i10 = q61Var.f30180z;
-        boolean z11 = q61Var.f30172q;
-        TextView textView = m7Var.f35320c;
-        TextView textView2 = m7Var.f35319b;
+        String charSequence = u61Var.f31076l.toString();
+        long j3 = u61Var.B;
+        int i10 = u61Var.f31089z;
+        boolean z11 = u61Var.f31081q;
+        TextView textView = m7Var.f35088c;
+        TextView textView2 = m7Var.f35087b;
         textView2.setText(c7.X(charSequence));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (j3 < 0) {
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Loading));
-            spannableStringBuilder.setSpan(new ja0(AndroidUtilities.dp(35.0f), textView), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new na0(AndroidUtilities.dp(35.0f), textView), 0, spannableStringBuilder.length(), 33);
         } else {
             spannableStringBuilder.append((CharSequence) l0.q(j3, false));
         }
@@ -65,7 +65,7 @@ public final class l7 extends p61 {
     }
 
     @Override
-    public final View createView(Context context, rm0 rm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new m7(context, d6Var);
+    public final View createView(Context context, wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        return new m7(context, c6Var);
     }
 }

@@ -1,36 +1,74 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.UserConfig;
-public final class zy implements oz {
-    public final az f33750a;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class zy implements View.OnClickListener {
+    public final cz f33519a;
 
-    public zy(az azVar) {
-        this.f33750a = azVar;
+    public zy(cz czVar) {
+        this.f33519a = czVar;
     }
 
     @Override
-    public final void d() {
-        az azVar = this.f33750a;
-        if (azVar.F.V.F) {
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        azVar.F.V.e(true);
-        az.E(azVar, new bs(10, this, arrayList), arrayList, true);
-    }
-
-    @Override
-    public final void run() {
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f33750a.v;
-        bs bsVar = new bs(9, this, str);
-        if (Emoji.fullyConsistsOfEmojis(str)) {
-            zx0.f33729w3.fetch(UserConfig.selectedAccount, str, new org.telegram.ui.oc(22, linkedHashSet, bsVar));
+    public final void onClick(View view) {
+        int i10;
+        int i11;
+        boolean[] zArr = new boolean[1];
+        cz czVar = this.f33519a;
+        d00 d00Var = czVar.F;
+        org.telegram.ui.ActionBar.z2 z2Var = new org.telegram.ui.ActionBar.z2(d00Var.getContext(), null);
+        LinearLayout linearLayout = new LinearLayout(d00Var.getContext());
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+        ImageView imageView = new ImageView(d00Var.getContext());
+        imageView.setImageResource(R.drawable.smiles_info);
+        linearLayout.addView(imageView, w7.w5.t(-2, -2, 49, 0, 15, 0, 0));
+        TextView textView = new TextView(d00Var.getContext());
+        org.telegram.messenger.am.j(15.0f, R.string.EmojiSuggestions, 1, textView);
+        int i12 = org.telegram.ui.ActionBar.h6.f20743n5;
+        int i13 = d00.O2;
+        textView.setTextColor(d00Var.A(i12));
+        int i14 = 3;
+        if (LocaleController.isRTL) {
+            i10 = 5;
         } else {
-            bsVar.run();
+            i10 = 3;
         }
+        textView.setGravity(i10);
+        textView.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(textView, w7.w5.t(-2, -2, 51, 0, 24, 0, 0));
+        TextView textView2 = new TextView(d00Var.getContext());
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EmojiSuggestionsInfo)));
+        textView2.setTextSize(1, 15.0f);
+        textView2.setTextColor(d00Var.A(org.telegram.ui.ActionBar.h6.f20667j5));
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        textView2.setGravity(i11);
+        linearLayout.addView(textView2, w7.w5.t(-2, -2, 51, 0, 11, 0, 0));
+        TextView textView3 = new TextView(d00Var.getContext());
+        int i15 = R.string.EmojiSuggestionsUrl;
+        Object obj = czVar.f25057w;
+        if (obj == null) {
+            obj = d00Var.W0;
+        }
+        textView3.setText(LocaleController.formatString("EmojiSuggestionsUrl", i15, obj));
+        textView3.setTextSize(1, 15.0f);
+        textView3.setTextColor(d00Var.A(org.telegram.ui.ActionBar.h6.f20686k5));
+        if (LocaleController.isRTL) {
+            i14 = 5;
+        }
+        textView3.setGravity(i14);
+        linearLayout.addView(textView3, w7.w5.t(-2, -2, 51, 0, 18, 0, 16));
+        textView3.setOnClickListener(new yy(this, zArr, z2Var));
+        z2Var.b(linearLayout);
+        z2Var.f21484a.show();
     }
 }

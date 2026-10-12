@@ -7,12 +7,12 @@ import org.telegram.ui.Cells.t7;
 import s4.a1;
 import s4.o0;
 public final class k extends o0 {
-    public final int f3905a;
-    public final u f3906b;
+    public final int f3904a;
+    public final u f3905b;
 
     public k(u uVar, int i10) {
-        this.f3905a = i10;
-        this.f3906b = uVar;
+        this.f3904a = i10;
+        this.f3905b = uVar;
     }
 
     @Override
@@ -21,12 +21,12 @@ public final class k extends o0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        switch (this.f3905a) {
+        switch (this.f3904a) {
             case 0:
                 if (view instanceof t7) {
                     t7 t7Var = (t7) view;
-                    u uVar = this.f3906b;
-                    uVar.f3927f.getClass();
+                    u uVar = this.f3905b;
+                    uVar.f3926f.getClass();
                     int R = RecyclerView.R(t7Var);
                     int i10 = uVar.h.J;
                     boolean z14 = true;
@@ -35,7 +35,7 @@ public final class k extends o0 {
                     } else {
                         z10 = false;
                     }
-                    t7Var.f23090a0 = z10;
+                    t7Var.f22834a0 = z10;
                     int i11 = R % i10;
                     if (i11 == 0) {
                         z11 = true;
@@ -61,17 +61,17 @@ public final class k extends o0 {
             default:
                 if (view instanceof t7) {
                     t7 t7Var2 = (t7) view;
-                    u uVar2 = this.f3906b;
-                    uVar2.f3929r.getClass();
+                    u uVar2 = this.f3905b;
+                    uVar2.f3928r.getClass();
                     int R2 = RecyclerView.R(t7Var2);
-                    int i12 = uVar2.f3930s.J;
+                    int i12 = uVar2.f3929s.J;
                     boolean z15 = true;
                     if (R2 < i12) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    t7Var2.f23090a0 = z12;
+                    t7Var2.f22834a0 = z12;
                     int i13 = R2 % i12;
                     if (i13 == 0) {
                         z13 = true;

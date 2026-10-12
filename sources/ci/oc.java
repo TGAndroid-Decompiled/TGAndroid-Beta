@@ -5,40 +5,40 @@ import android.media.MediaFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 import org.telegram.ui.Stories.recorder.FfmpegAudioWaveformLoader;
 public final class oc {
-    public final org.telegram.ui.Components.g6 f5702a;
-    public final int f5703b;
+    public final org.telegram.ui.Components.g6 f5701a;
+    public final int f5702b;
     public final short[] d;
-    public short f5705e;
-    public final MediaExtractor f5706f;
-    public final MediaFormat f5707g;
+    public short f5704e;
+    public final MediaExtractor f5705f;
+    public final MediaFormat f5706g;
     public final long h;
-    public final FfmpegAudioWaveformLoader f5710k;
-    public final wc f5711l;
-    public int f5704c = 0;
-    public final Object f5708i = new Object();
-    public boolean f5709j = false;
+    public final FfmpegAudioWaveformLoader f5709k;
+    public final wc f5710l;
+    public int f5703c = 0;
+    public final Object f5707i = new Object();
+    public boolean f5708j = false;
 
     public oc(wc wcVar, String str, int i10) {
         long j3;
-        this.f5711l = wcVar;
-        this.f5702a = new org.telegram.ui.Components.g6(wcVar, 0L, 600L, is.h);
+        this.f5710l = wcVar;
+        this.f5701a = new org.telegram.ui.Components.g6(wcVar, 0L, 600L, js.h);
         int i11 = 0;
         MediaExtractor mediaExtractor = new MediaExtractor();
-        this.f5706f = mediaExtractor;
+        this.f5705f = mediaExtractor;
         String str2 = null;
         try {
             mediaExtractor.setDataSource(str);
             int trackCount = mediaExtractor.getTrackCount();
             while (true) {
                 if (i11 < trackCount) {
-                    MediaFormat trackFormat = this.f5706f.getTrackFormat(i11);
+                    MediaFormat trackFormat = this.f5705f.getTrackFormat(i11);
                     str2 = trackFormat.getString("mime");
                     if (str2 != null && str2.startsWith("audio/")) {
-                        this.f5706f.selectTrack(i11);
-                        this.f5707g = trackFormat;
+                        this.f5705f.selectTrack(i11);
+                        this.f5706g = trackFormat;
                         break;
                     }
                     i11++;
@@ -46,7 +46,7 @@ public final class oc {
                     break;
                 }
             }
-            MediaFormat mediaFormat = this.f5707g;
+            MediaFormat mediaFormat = this.f5706g;
             if (mediaFormat != null) {
                 this.h = mediaFormat.getLong("durationUs") / 1000000;
             }
@@ -55,8 +55,8 @@ public final class oc {
         }
         qc qcVar = wcVar.h;
         if (qcVar != null) {
-            j3 = qcVar.f5847e;
-        } else if (!wcVar.f6267s.isEmpty()) {
+            j3 = qcVar.f5846e;
+        } else if (!wcVar.f6266s.isEmpty()) {
             j3 = wcVar.getBaseDuration();
         } else if (wcVar.E) {
             j3 = wcVar.H;
@@ -64,44 +64,44 @@ public final class oc {
             j3 = this.h * 1000;
         }
         int min = Math.min(Math.round(((((float) (this.h * 1000)) / ((float) Math.min(j3, wcVar.getMaxScrollDuration()))) * i10) / Math.round(AndroidUtilities.dpf2(3.3333f))), 4000);
-        this.f5703b = min;
+        this.f5702b = min;
         this.d = new short[min];
-        if (this.h > 0 && this.f5707g != null) {
+        if (this.h > 0 && this.f5706g != null) {
             if (!"audio/mpeg".equals(str2) && !"audio/mp3".equals(str2) && !"audio/mp4a".equals(str2) && !"audio/mp4a-latm".equals(str2)) {
                 Utilities.phoneBookQueue.postRunnable(new androidx.fragment.app.a0(this, 28));
             } else {
-                this.f5710k = new FfmpegAudioWaveformLoader(str, min, new bi.v(this, 9));
+                this.f5709k = new FfmpegAudioWaveformLoader(str, min, new bi.v(this, 9));
             }
         }
     }
 
     public final void a() {
-        FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader = this.f5710k;
+        FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader = this.f5709k;
         if (ffmpegAudioWaveformLoader != null) {
             ffmpegAudioWaveformLoader.destroy();
         }
         Utilities.phoneBookQueue.cancelRunnable(new androidx.fragment.app.a0(this, 28));
-        synchronized (this.f5708i) {
-            this.f5709j = true;
+        synchronized (this.f5707i) {
+            this.f5708j = true;
         }
     }
 
     public final void b(short[] sArr, int i10) {
         for (int i11 = 0; i11 < i10; i11++) {
-            int i12 = this.f5704c;
+            int i12 = this.f5703c;
             int i13 = i12 + i11;
             short[] sArr2 = this.d;
             if (i13 >= sArr2.length) {
                 break;
             }
             sArr2[i12 + i11] = sArr[i11];
-            short s10 = this.f5705e;
+            short s10 = this.f5704e;
             short s11 = sArr[i11];
             if (s10 < s11) {
-                this.f5705e = s11;
+                this.f5704e = s11;
             }
         }
-        this.f5704c += i10;
-        this.f5711l.invalidate();
+        this.f5703c += i10;
+        this.f5710l.invalidate();
     }
 }

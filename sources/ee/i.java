@@ -3,11 +3,11 @@ package ee;
 import kotlin.jvm.internal.s;
 import sd.q;
 public abstract class i {
-    public static final q f8912a;
+    public static final q f8910a;
 
     static {
-        h hVar = h.f8911a;
+        h hVar = h.f8909a;
         s.a(3, hVar);
-        f8912a = hVar;
+        f8910a = hVar;
     }
 }

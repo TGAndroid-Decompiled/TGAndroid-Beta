@@ -1,33 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class e80 implements org.telegram.ui.ActionBar.k1 {
-    public final int f26015a;
-    public final p80 f26016b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class e80 extends AnimatorListenerAdapter {
+    public final int f25625a;
+    public final f80 f25626b;
 
-    public e80(p80 p80Var, int i10) {
-        this.f26015a = i10;
-        this.f26016b = p80Var;
+    public e80(f80 f80Var, int i10) {
+        this.f25625a = i10;
+        this.f25626b = f80Var;
     }
 
     @Override
-    public final void o(KeyEvent keyEvent) {
-        p80 p80Var;
-        k80 k80Var;
-        p80 p80Var2;
-        k80 k80Var2;
-        switch (this.f26015a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25625a) {
             case 0:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (k80Var = (p80Var = this.f26016b).f29769m) != null && k80Var.isShowing()) {
-                    p80Var.u();
-                    return;
-                }
+                f80 f80Var = this.f25626b;
+                f80Var.f25962e.f26326d0 = null;
+                f80Var.requestLayout();
                 return;
             default:
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (k80Var2 = (p80Var2 = this.f26016b).f29769m) != null && k80Var2.isShowing()) {
-                    p80Var2.u();
-                    return;
-                }
+                f80 f80Var2 = this.f25626b;
+                f80Var2.f25962e.f26326d0 = null;
+                f80Var2.f25959a = false;
                 return;
         }
     }

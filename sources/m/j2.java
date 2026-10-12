@@ -1,45 +1,96 @@
 package m;
 
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.PopupWindow;
-import java.lang.reflect.Method;
-public final class j2 extends d2 implements e2 {
-    public static final Method T;
-    public k2.g0 S;
+import android.graphics.drawable.Drawable;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.widget.HeaderViewListAdapter;
+import android.widget.ListAdapter;
+import androidx.appcompat.view.menu.ListMenuItemView;
+public final class j2 extends s1 {
+    public f2 E;
+    public l.m F;
+    public final int f15465x;
+    public final int f15466y;
 
-    static {
-        try {
-            if (Build.VERSION.SDK_INT <= 28) {
-                T = PopupWindow.class.getDeclaredMethod("setTouchModal", Boolean.TYPE);
+    public j2(Context context, boolean z10) {
+        super(context, z10);
+        if (1 == i2.a(context.getResources().getConfiguration())) {
+            this.f15465x = 21;
+            this.f15466y = 22;
+            return;
+        }
+        this.f15465x = 22;
+        this.f15466y = 21;
+    }
+
+    @Override
+    public final boolean onHoverEvent(MotionEvent motionEvent) {
+        l.h hVar;
+        int i10;
+        l.m mVar;
+        int pointToPosition;
+        int i11;
+        if (this.E != null) {
+            ListAdapter adapter = getAdapter();
+            if (adapter instanceof HeaderViewListAdapter) {
+                HeaderViewListAdapter headerViewListAdapter = (HeaderViewListAdapter) adapter;
+                i10 = headerViewListAdapter.getHeadersCount();
+                hVar = (l.h) headerViewListAdapter.getWrappedAdapter();
+            } else {
+                hVar = (l.h) adapter;
+                i10 = 0;
             }
-        } catch (NoSuchMethodException unused) {
-            Log.i("MenuPopupWindow", "Could not find method setTouchModal() on PopupWindow. Oh well.");
+            if (motionEvent.getAction() != 10 && (pointToPosition = pointToPosition((int) motionEvent.getX(), (int) motionEvent.getY())) != -1 && (i11 = pointToPosition - i10) >= 0 && i11 < hVar.getCount()) {
+                mVar = hVar.getItem(i11);
+            } else {
+                mVar = null;
+            }
+            l.m mVar2 = this.F;
+            if (mVar2 != mVar) {
+                l.k kVar = hVar.f14977a;
+                if (mVar2 != null) {
+                    this.E.e(kVar, mVar2);
+                }
+                this.F = mVar;
+                if (mVar != null) {
+                    this.E.n(kVar, mVar);
+                }
+            }
         }
+        return super.onHoverEvent(motionEvent);
     }
 
     @Override
-    public final void n0(l.k kVar, l.m mVar) {
-        k2.g0 g0Var = this.S;
-        if (g0Var != null) {
-            g0Var.n0(kVar, mVar);
+    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        l.h hVar;
+        ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
+        if (listMenuItemView != null && i10 == this.f15465x) {
+            if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
+                performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
+            }
+            return true;
+        } else if (listMenuItemView != null && i10 == this.f15466y) {
+            setSelection(-1);
+            ListAdapter adapter = getAdapter();
+            if (adapter instanceof HeaderViewListAdapter) {
+                hVar = (l.h) ((HeaderViewListAdapter) adapter).getWrappedAdapter();
+            } else {
+                hVar = (l.h) adapter;
+            }
+            hVar.f14977a.c(false);
+            return true;
+        } else {
+            return super.onKeyDown(i10, keyEvent);
         }
     }
 
-    @Override
-    public final r1 o(Context context, boolean z10) {
-        i2 i2Var = new i2(context, z10);
-        i2Var.setHoverListener(this);
-        return i2Var;
+    public void setHoverListener(f2 f2Var) {
+        this.E = f2Var;
     }
 
     @Override
-    public final void z(l.k kVar, MenuItem menuItem) {
-        k2.g0 g0Var = this.S;
-        if (g0Var != null) {
-            g0Var.z(kVar, menuItem);
-        }
+    public void setSelector(Drawable drawable) {
+        super.setSelector(drawable);
     }
 }

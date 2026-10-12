@@ -1,81 +1,104 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
+import android.content.SharedPreferences;
+import android.util.Pair;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.e41;
-import org.telegram.ui.ug1;
-import org.telegram.ui.zn;
-public final class hk implements ug1, org.telegram.ui.Components.f5, LanguageDetector.StringCallback {
-    public final boolean f18127a;
-    public final NotificationCenter.NotificationCenterDelegate f18128b;
-    public final Object f18129c;
+import org.telegram.tgnet.tl.TL_phone;
+public final class hk implements Runnable {
+    public final int f17825a;
+    public final boolean f17826b;
+    public final Object f17827c;
     public final Object d;
-    public final Object f18130e;
-    public final Object f18131f;
+    public final Object f17828e;
 
-    public hk(MessageObject messageObject, SendMessagesHelper sendMessagesHelper, TL_keyboard.KeyboardButtonProto keyboardButtonProto, zn znVar, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10) {
-        this.f18128b = sendMessagesHelper;
-        this.f18127a = z10;
-        this.f18129c = messageObject;
-        this.d = keyboardButtonProto;
-        this.f18130e = twoStepVerificationActivity;
-        this.f18131f = znVar;
+    public hk(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
+        this.f17825a = i10;
+        this.f17827c = obj;
+        this.d = obj2;
+        this.f17828e = obj3;
+        this.f17826b = z10;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f18128b;
-        TLRPC.Document document = (TLRPC.Document) this.f18129c;
-        String str = (String) this.d;
-        MessageObject.SendAnimationData sendAnimationData = (MessageObject.SendAnimationData) this.f18131f;
-        int i12 = ChatActivityEnterView.f23878n5;
-        chatActivityEnterView.d(document, str, this.f18130e, sendAnimationData, this.f18127a, z10, i10, i11);
-    }
-
-    @Override
-    public void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        ((SendMessagesHelper) this.f18128b).lambda$sendCallback$43(this.f18127a, (MessageObject) this.f18129c, (TL_keyboard.KeyboardButtonProto) this.d, (TwoStepVerificationActivity) this.f18130e, (zn) this.f18131f, tL_inputCheckPasswordSRP);
-    }
-
-    @Override
-    public void run(String str) {
-        boolean z10;
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = (ProfileActivity) this.f18128b;
-        boolean[] zArr = (boolean[]) this.d;
-        String str2 = (String) this.f18130e;
-        gg.d1 d1Var = (gg.d1) this.f18131f;
-        ((String[]) this.f18129c)[0] = str;
-        if (str != null && ((!str.equals(str2) || str.equals("und")) && ((this.f18127a && !e41.Y().contains(str)) || ((chat = profileActivity.E2) != null && ((chat.has_link || ChatObject.isPublic(chat)) && ("uk".equals(str) || "ru".equals(str))))))) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void run() {
+        switch (this.f17825a) {
+            case 0:
+                SendMessagesHelper.lambda$prepareSendingMedia$130((SendMessagesHelper.MediaSendPrepareWorker) this.f17827c, (AccountInstance) this.d, (SendMessagesHelper.SendingMediaInfo) this.f17828e, this.f17826b);
+                return;
+            case 1:
+                CacheFetcher.c((CacheFetcher) this.f17827c, (Pair) this.d, this.f17828e, this.f17826b);
+                return;
+            case 2:
+                ((ChatObject.Call) this.f17827c).lambda$loadMembers$2(this.f17826b, (TLObject) this.d, (TL_phone.getGroupParticipants) this.f17828e);
+                return;
+            case 3:
+                ((ChatThemeController) this.f17827c).lambda$requestAllChatThemes$2((List) this.d, (ResultCallback) this.f17828e, this.f17826b);
+                return;
+            case 4:
+                ((ContactsController) this.f17827c).lambda$deleteContact$56((ArrayList) this.d, this.f17826b, (String) this.f17828e);
+                return;
+            case 5:
+                ((MediaController) this.f17827c).lambda$toggleRecordingPause$28((File) this.d, this.f17826b, (TLRPC.TL_document) this.f17828e);
+                return;
+            case 6:
+                ((MediaController) this.f17827c).lambda$playEmojiSound$19((MessagesController.EmojiSound) this.f17828e, (AccountInstance) this.d, this.f17826b);
+                return;
+            case 7:
+                ((MediaDataController) this.f17827c).lambda$saveReplyMessages$178(this.f17826b, (ArrayList) this.d, (a0.i) this.f17828e);
+                return;
+            case 8:
+                ((MediaDataController) this.f17827c).lambda$loadAvatarConstructor$242((TLObject) this.d, (SharedPreferences) this.f17828e, this.f17826b);
+                return;
+            case 9:
+                ((MediaDataController) this.f17827c).lambda$broadcastPinnedMessage$167((ArrayList) this.d, this.f17826b, (ArrayList) this.f17828e);
+                return;
+            case 10:
+                ((MessagesController) this.f17827c).lambda$getBlockedPeers$111((TLObject) this.d, this.f17826b, (TLRPC.TL_contacts_getBlocked) this.f17828e);
+                return;
+            case 11:
+                ((MessagesController) this.f17827c).lambda$processUpdates$380(this.f17826b, (TLRPC.Updates) this.d, (ArrayList) this.f17828e);
+                return;
+            case 12:
+                ((MessagesController.CommonChatsList) this.f17827c).lambda$load$0((int[]) this.d, (TLObject) this.f17828e, this.f17826b);
+                return;
+            case 13:
+                ((MessagesStorage) this.f17827c).lambda$putUsersAndChats$181((List) this.d, (List) this.f17828e, this.f17826b);
+                return;
+            default:
+                ((NotificationsController) this.f17827c).lambda$removeDeletedMessagesFromNotifications$11((a0.i) this.d, this.f17826b, (ArrayList) this.f17828e);
+                return;
         }
-        zArr[0] = z10;
-        d1Var.run();
     }
 
-    public hk(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10) {
-        this.f18128b = chatActivityEnterView;
-        this.f18129c = document;
-        this.d = str;
-        this.f18130e = obj;
-        this.f18131f = sendAnimationData;
-        this.f18127a = z10;
+    public hk(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
+        this.f17825a = i10;
+        this.f17827c = obj;
+        this.d = obj2;
+        this.f17826b = z10;
+        this.f17828e = obj3;
     }
 
-    public hk(ProfileActivity profileActivity, String[] strArr, boolean[] zArr, String str, boolean z10, gg.d1 d1Var) {
-        this.f18128b = profileActivity;
-        this.f18129c = strArr;
-        this.d = zArr;
-        this.f18130e = str;
-        this.f18127a = z10;
-        this.f18131f = d1Var;
+    public hk(Object obj, boolean z10, Object obj2, Object obj3, int i10) {
+        this.f17825a = i10;
+        this.f17827c = obj;
+        this.f17826b = z10;
+        this.d = obj2;
+        this.f17828e = obj3;
+    }
+
+    public hk(MediaController mediaController, MessagesController.EmojiSound emojiSound, AccountInstance accountInstance, boolean z10) {
+        this.f17825a = 6;
+        this.f17827c = mediaController;
+        this.f17828e = emojiSound;
+        this.d = accountInstance;
+        this.f17826b = z10;
     }
 }

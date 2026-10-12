@@ -1,21 +1,15 @@
 package org.telegram.ui;
+public final class xz0 extends e71 {
+    public final ProfileActivity f44214e;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class xz0 extends org.telegram.ui.Components.nr0 {
-    public final ProfileActivity f44241b1;
-
-    public xz0(ProfileActivity profileActivity, Activity activity, String str, String str2) {
-        super(activity, null, str, false, str2, false, null);
-        this.f44241b1 = profileActivity;
+    public xz0(ProfileActivity profileActivity, wz0 wz0Var) {
+        super(wz0Var);
+        this.f44214e = profileActivity;
     }
 
     @Override
-    public final void S0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new tt0(this, iVar, i10, 21), 250L);
+    public final void dismiss() {
+        super.dismiss();
+        this.f44214e.B5 = null;
     }
 }

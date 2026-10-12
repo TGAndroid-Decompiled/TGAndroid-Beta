@@ -1,41 +1,110 @@
 package w9;
 
-import android.util.Log;
-import java.lang.Thread;
-import java.util.concurrent.atomic.AtomicBoolean;
-public final class q implements Thread.UncaughtExceptionHandler {
-    public final w3.b f50402a;
-    public final da.c f50403b;
-    public final Thread.UncaughtExceptionHandler f50404c;
-    public final t9.a d;
-    public final AtomicBoolean f50405e = new AtomicBoolean(false);
+import android.content.Context;
+import com.google.android.gms.internal.vision.e2;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import y9.o0;
+import y9.p0;
+public final class q {
+    public static final HashMap f50503f;
+    public static final String f50504g;
+    public final Context f50505a;
+    public final v f50506b;
+    public final a f50507c;
+    public final n4.y d;
+    public final da.c f50508e;
 
-    public q(w3.b bVar, da.c cVar, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, t9.a aVar) {
-        this.f50402a = bVar;
-        this.f50403b = cVar;
-        this.f50404c = uncaughtExceptionHandler;
-        this.d = aVar;
+    static {
+        HashMap hashMap = new HashMap();
+        f50503f = hashMap;
+        e2.o(5, hashMap, "armeabi", 6, "armeabi-v7a");
+        e2.o(9, hashMap, "arm64-v8a", 0, "x86");
+        hashMap.put("x86_64", 1);
+        Locale locale = Locale.US;
+        f50504g = "Crashlytics Android SDK/18.6.0";
     }
 
-    public final boolean a(Thread thread, Throwable th2) {
-        if (thread == null) {
-            Log.e("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; null thread", null);
-            return false;
-        } else if (th2 == null) {
-            Log.e("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; null throwable", null);
-            return false;
-        } else if (this.d.b()) {
-            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                Log.d("FirebaseCrashlytics", "Crashlytics will not record uncaught exception; native crash exists for session.", null);
-            }
-            return false;
-        } else {
-            return true;
+    public q(Context context, v vVar, a aVar, n4.y yVar, da.c cVar) {
+        this.f50505a = context;
+        this.f50506b = vVar;
+        this.f50507c = aVar;
+        this.d = yVar;
+        this.f50508e = cVar;
+    }
+
+    public static p0 c(com.google.firebase.messaging.s sVar, int i10) {
+        String str = (String) sVar.f7968c;
+        String str2 = (String) sVar.f7967b;
+        StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) sVar.d;
+        int i11 = 0;
+        if (stackTraceElementArr == null) {
+            stackTraceElementArr = new StackTraceElement[0];
         }
+        com.google.firebase.messaging.s sVar2 = (com.google.firebase.messaging.s) sVar.f7969e;
+        if (i10 >= 8) {
+            com.google.firebase.messaging.s sVar3 = sVar2;
+            while (sVar3 != null) {
+                sVar3 = (com.google.firebase.messaging.s) sVar3.f7969e;
+                i11++;
+            }
+        }
+        int i12 = i11;
+        List d = d(stackTraceElementArr, 4);
+        if (d != null) {
+            p0 p0Var = null;
+            if (sVar2 != null && i12 == 0) {
+                p0Var = c(sVar2, i10 + 1);
+            }
+            return new p0(str, str2, d, p0Var, i12);
+        }
+        throw new NullPointerException("Null frames");
     }
 
-    @Override
-    public final void uncaughtException(java.lang.Thread r10, java.lang.Throwable r11) {
-        throw new UnsupportedOperationException("Method not decompiled: w9.q.uncaughtException(java.lang.Thread, java.lang.Throwable):void");
+    public static List d(StackTraceElement[] stackTraceElementArr, int i10) {
+        long j3;
+        ArrayList arrayList = new ArrayList();
+        for (StackTraceElement stackTraceElement : stackTraceElementArr) {
+            ?? obj = new Object();
+            obj.f6066e = Integer.valueOf(i10);
+            long j10 = 0;
+            if (stackTraceElement.isNativeMethod()) {
+                j3 = Math.max(stackTraceElement.getLineNumber(), 0L);
+            } else {
+                j3 = 0;
+            }
+            String str = stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName();
+            String fileName = stackTraceElement.getFileName();
+            if (!stackTraceElement.isNativeMethod() && stackTraceElement.getLineNumber() > 0) {
+                j10 = stackTraceElement.getLineNumber();
+            }
+            obj.f6063a = Long.valueOf(j3);
+            if (str != null) {
+                obj.f6064b = str;
+                obj.f6065c = fileName;
+                obj.d = Long.valueOf(j10);
+                arrayList.add(obj.l());
+            } else {
+                throw new NullPointerException("Null symbol");
+            }
+        }
+        return DesugarCollections.unmodifiableList(arrayList);
+    }
+
+    public final List a() {
+        a aVar = this.f50507c;
+        String str = aVar.f50442e;
+        if (str != null) {
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f50440b));
+        }
+        throw new NullPointerException("Null name");
+    }
+
+    public final y9.u0 b(int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: w9.q.b(int):y9.u0");
     }
 }

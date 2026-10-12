@@ -10,17 +10,17 @@ import ei.o4;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.kw0;
-import org.telegram.ui.Components.lw0;
-import org.telegram.ui.Components.mw0;
-public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, z1 {
-    public final int f8086a;
+import org.telegram.ui.Components.pw0;
+import org.telegram.ui.Components.qw0;
+import org.telegram.ui.Components.rw0;
+public final class c implements d9.e, dh.d, pw0, qw0, GenericProvider, q9.d, z1 {
+    public final int f8084a;
 
     public c(int i10) {
-        this.f8086a = i10;
+        this.f8084a = i10;
     }
 
     public static ShortcutManager a(Object obj) {
@@ -37,16 +37,16 @@ public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, z1 
 
     @Override
     public Object apply(Object obj) {
-        return Integer.valueOf(((b) obj).f8085r);
+        return Integer.valueOf(((b) obj).f8083r);
     }
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f8086a) {
+        switch (this.f8084a) {
             case 17:
                 k3 k3Var = (k3) obj;
-                k3Var.f9153b = f7;
-                k3Var.f9158e.invalidate();
+                k3Var.f9151b = f7;
+                k3Var.f9156e.invalidate();
                 k3Var.W.setAlpha(f7);
                 k3Var.F();
                 k3Var.D();
@@ -67,7 +67,7 @@ public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, z1 
     }
 
     @Override
-    public int g(d6 d6Var, boolean z10) {
+    public int g(c6 c6Var, boolean z10) {
         float f7;
         float f10;
         float f11;
@@ -76,14 +76,14 @@ public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, z1 
         float f14;
         float f15;
         float f16;
-        switch (this.f8086a) {
+        switch (this.f8084a) {
             case 1:
                 if (LiteMode.isEnabled(262144)) {
                     f7 = 0.85f;
                 } else {
                     f7 = 0.76f;
                 }
-                return eh.b.m(f7, h6.w0(h6.f20822d6, d6Var), h6.w0(h6.Sd, d6Var));
+                return eh.b.m(f7, h6.w0(h6.f20559d6, c6Var), h6.w0(h6.Sd, c6Var));
             case 2:
                 if (!LiteMode.isEnabled(256)) {
                     return h6.x0(null, h6.G8, false);
@@ -101,14 +101,14 @@ public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, z1 
                 } else {
                     f11 = 0.76f;
                 }
-                return eh.b.m(f11, h6.w0(h6.f20822d6, d6Var), h6.w0(h6.Zk, d6Var));
+                return eh.b.m(f11, h6.w0(h6.f20559d6, c6Var), h6.w0(h6.Zk, c6Var));
             case 4:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
                 } else {
                     f12 = 0.76f;
                 }
-                return h6.m1(f12, h6.w0(h6.Fi, d6Var));
+                return h6.m1(f12, h6.w0(h6.Fi, c6Var));
             case 5:
                 return 855638016;
             case 6:
@@ -116,7 +116,7 @@ public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, z1 
             case 7:
                 return h6.m1(0.075f, -16777216);
             case 8:
-                return h6.m1(0.88f, h6.w0(h6.f20822d6, d6Var));
+                return h6.m1(0.88f, h6.w0(h6.f20559d6, c6Var));
             case 9:
                 int x03 = h6.x0(null, h6.G8, false);
                 if (z10) {
@@ -131,18 +131,18 @@ public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, z1 
                 } else {
                     f14 = 0.76f;
                 }
-                return eh.b.m(f14, h6.w0(h6.f20822d6, d6Var), h6.w0(h6.Yk, d6Var));
+                return eh.b.m(f14, h6.w0(h6.f20559d6, c6Var), h6.w0(h6.Yk, c6Var));
             case 11:
                 if (LiteMode.isEnabled(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.76f;
                 }
-                return h6.m1(f15, h6.w0(h6.f20822d6, d6Var));
+                return h6.m1(f15, h6.w0(h6.f20559d6, c6Var));
             case 12:
-                return h6.m1(0.78f, h6.w0(h6.f20893h5, d6Var));
+                return h6.m1(0.78f, h6.w0(h6.f20630h5, c6Var));
             case 13:
-                return h6.m1(0.7f, h6.w0(h6.f20822d6, d6Var));
+                return h6.m1(0.7f, h6.w0(h6.f20559d6, c6Var));
             case 14:
                 LiteMode.isEnabled(262144);
                 return 0;
@@ -152,32 +152,32 @@ public final class c implements d9.e, dh.d, kw0, lw0, GenericProvider, q9.d, z1 
                 } else {
                     f16 = 0.76f;
                 }
-                return h6.m1(f16, h6.w0(h6.f20822d6, d6Var));
+                return h6.m1(f16, h6.w0(h6.f20559d6, c6Var));
         }
     }
 
     @Override
     public float get(Object obj) {
-        switch (this.f8086a) {
+        switch (this.f8084a) {
             case 16:
-                return ((k3) obj).f9153b;
+                return ((k3) obj).f9151b;
             case 17:
             default:
                 return ((o4) obj).getSwipeOffsetY();
             case 18:
-                return ((j4) obj).f9134c;
+                return ((j4) obj).f9132c;
         }
     }
 
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        mw0 mw0Var = o4.f9256b0;
+        rw0 rw0Var = o4.f9254b0;
         return Boolean.FALSE;
     }
 
     @Override
-    public Object y0(u5 u5Var) {
+    public Object x0(u5 u5Var) {
         i5.f lambda$getComponents$0;
         lambda$getComponents$0 = TransportRegistrar.lambda$getComponents$0(u5Var);
         return lambda$getComponents$0;

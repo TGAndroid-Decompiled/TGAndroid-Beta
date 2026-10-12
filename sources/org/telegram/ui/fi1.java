@@ -1,102 +1,102 @@
 package org.telegram.ui;
 
 import android.view.View;
+import android.view.WindowInsets;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
-public final class fi1 implements View.OnClickListener {
-    public final int f37725a;
-    public final ui1 f37726b;
+public final class fi1 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.voip.u1, r0.n, org.telegram.ui.Components.voip.j3 {
+    public final int f37797a;
+    public final xi1 f37798b;
 
-    public fi1(ui1 ui1Var, int i10) {
-        this.f37725a = i10;
-        this.f37726b = ui1Var;
+    public fi1(xi1 xi1Var, int i10) {
+        this.f37797a = i10;
+        this.f37798b = xi1Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        VoIPService sharedInstance;
-        int i10;
-        switch (this.f37725a) {
+    public r0.k1 M0(View view, r0.k1 k1Var) {
+        WindowInsets g10 = k1Var.g();
+        xi1 xi1Var = this.f37798b;
+        xi1Var.f44013r0 = g10;
+        ((FrameLayout.LayoutParams) xi1Var.f44001j0.getLayoutParams()).bottomMargin = xi1Var.f44013r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) xi1Var.f43990e0.getLayoutParams()).bottomMargin = xi1Var.f44013r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) xi1Var.H.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) xi1Var.I.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) xi1Var.K.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop() + AndroidUtilities.dp(56.0f);
+        ((FrameLayout.LayoutParams) xi1Var.X.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop() + AndroidUtilities.dp(135.0f);
+        ((FrameLayout.LayoutParams) xi1Var.N.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop() + AndroidUtilities.dp(17.0f);
+        ((FrameLayout.LayoutParams) xi1Var.f44023y.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop() + AndroidUtilities.dp(93.0f);
+        ((FrameLayout.LayoutParams) xi1Var.O.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop();
+        ((FrameLayout.LayoutParams) xi1Var.R.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop() + AndroidUtilities.dp(118.0f);
+        ((FrameLayout.LayoutParams) xi1Var.Q.getLayoutParams()).topMargin = xi1Var.f44013r0.getSystemWindowInsetTop() + AndroidUtilities.dp(380.0f);
+        ((FrameLayout.LayoutParams) xi1Var.Z.getLayoutParams()).bottomMargin = xi1Var.f44013r0.getSystemWindowInsetBottom();
+        ((FrameLayout.LayoutParams) xi1Var.M0.getLayoutParams()).bottomMargin = xi1Var.f44013r0.getSystemWindowInsetBottom();
+        xi1Var.Y.setInsets(xi1Var.f44013r0);
+        xi1Var.Z.setInsets(xi1Var.f44013r0);
+        xi1Var.f44014s.requestLayout();
+        qi1 qi1Var = xi1Var.f44009o0;
+        if (qi1Var != null) {
+            qi1Var.setBottomPadding(xi1Var.f44013r0.getSystemWindowInsetBottom());
+        }
+        return r0.k1.f46991b;
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f37797a) {
             case 0:
-                if (VoIPService.getSharedInstance() != null) {
-                    ui1 ui1Var = this.f37726b;
-                    AndroidUtilities.cancelRunOnUIThread(ui1Var.S0);
-                    ui1Var.R0 = false;
-                    VoIPService.getSharedInstance().hangUp();
-                    return;
-                }
-                return;
-            case 1:
-                ui1 ui1Var2 = this.f37726b;
-                if (ui1Var2.f42641n0 && ui1Var2.m0 && System.currentTimeMillis() - ui1Var2.K0 > 500) {
-                    AndroidUtilities.cancelRunOnUIThread(ui1Var2.S0);
-                    ui1Var2.R0 = false;
-                    ui1Var2.K0 = System.currentTimeMillis();
-                    ui1Var2.Z.setRelativePosition(ui1Var2.Y);
-                    ui1Var2.f42612a0 = true;
-                    ui1Var2.H0 = true;
-                    ui1Var2.f42644q0 = ui1Var2.f42643p0;
-                    ui1Var2.G();
-                    return;
-                }
-                return;
-            case 2:
-                ui1 ui1Var3 = this.f37726b;
-                if (ui1Var3.H0 && System.currentTimeMillis() - ui1Var3.K0 > 500) {
-                    AndroidUtilities.cancelRunOnUIThread(ui1Var3.S0);
-                    ui1Var3.R0 = false;
-                    ui1Var3.K0 = System.currentTimeMillis();
-                    ui1Var3.Y.setRelativePosition(ui1Var3.Z);
-                    ui1Var3.f42612a0 = false;
-                    ui1Var3.H0 = false;
-                    ui1Var3.f42644q0 = ui1Var3.f42643p0;
-                    ui1Var3.G();
-                    return;
-                }
-                return;
-            case 3:
-                long currentTimeMillis = System.currentTimeMillis();
-                ui1 ui1Var4 = this.f37726b;
-                if (currentTimeMillis - ui1Var4.K0 >= 500) {
-                    ui1Var4.K0 = System.currentTimeMillis();
-                    boolean z10 = ui1Var4.C0;
-                    if (!z10 && ui1Var4.B0) {
-                        ui1Var4.l(!z10);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                long currentTimeMillis2 = System.currentTimeMillis();
-                ui1 ui1Var5 = this.f37726b;
-                if (currentTimeMillis2 - ui1Var5.K0 >= 500) {
-                    ui1Var5.K0 = System.currentTimeMillis();
-                    if (ui1Var5.B0) {
-                        ui1Var5.l(!ui1Var5.C0);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                ui1 ui1Var6 = this.f37726b;
-                if (ui1Var6.K.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
-                    ui1Var6.A();
-                    if (sharedInstance.isBluetoothOn()) {
-                        i10 = 2;
-                    } else if (sharedInstance.isSpeakerphoneOn()) {
-                        i10 = 0;
-                    } else {
-                        i10 = 1;
-                    }
-                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(ui1Var6.f42614b, false, Integer.valueOf(i10));
+                pi1 pi1Var = this.f37798b.f44017u0;
+                if (pi1Var != null) {
+                    pi1Var.b();
                     return;
                 }
                 return;
             default:
-                this.f37726b.o();
+                this.f37798b.f44017u0.b();
                 return;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.Components.voip.k3 k3Var) {
+        int i10;
+        switch (this.f37797a) {
+            case 5:
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    xi1 xi1Var = this.f37798b;
+                    AndroidUtilities.cancelRunOnUIThread(xi1Var.S0);
+                    xi1Var.R0 = false;
+                    boolean isMicMute = sharedInstance.isMicMute();
+                    boolean z10 = !isMicMute;
+                    if (xi1Var.f44020w0.isTouchExplorationEnabled()) {
+                        if (!isMicMute) {
+                            i10 = R.string.AccDescrVoipMicOff;
+                        } else {
+                            i10 = R.string.AccDescrVoipMicOn;
+                        }
+                        k3Var.announceForAccessibility(LocaleController.getString(i10));
+                    }
+                    sharedInstance.setMicMute(z10, false, true);
+                    xi1Var.f44011q0 = xi1Var.f44010p0;
+                    xi1Var.G();
+                    return;
+                }
+                return;
+            default:
+                xi1 xi1Var2 = this.f37798b;
+                AndroidUtilities.cancelRunOnUIThread(xi1Var2.S0);
+                xi1Var2.R0 = false;
+                if (xi1Var2.f43981b.checkSelfPermission("android.permission.CAMERA") != 0) {
+                    xi1Var2.f43981b.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
+                    return;
+                } else {
+                    xi1Var2.B();
+                    return;
+                }
         }
     }
 }

@@ -13,18 +13,18 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.ak0;
 import org.telegram.ui.Components.b6;
-import org.telegram.ui.Components.w61;
-import org.telegram.ui.Components.yj0;
 public abstract class l {
     public static SpannableStringBuilder a(String str) {
         Spanned fromHtml;
         boolean z10;
         try {
             if (Build.VERSION.SDK_INT >= 24) {
-                fromHtml = Html.fromHtml("<inject>" + str + "</inject>", 63, null, new j(new qb.b(27)));
+                fromHtml = Html.fromHtml("<inject>" + str + "</inject>", 63, null, new j(new rb.a(27, false)));
             } else {
-                fromHtml = Html.fromHtml("<inject>" + str + "</inject>", null, new j(new qb.b(27)));
+                fromHtml = Html.fromHtml("<inject>" + str + "</inject>", null, new j(new rb.a(27, false)));
             }
             if (fromHtml == null) {
                 return null;
@@ -62,14 +62,14 @@ public abstract class l {
                     arrayList.add(tL_messageEntityStrike);
                 } else if (obj instanceof k) {
                     k kVar = (k) obj;
-                    int i10 = kVar.f52299a;
+                    int i10 = kVar.f52402a;
                     if (i10 == 0) {
                         TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = new TLRPC.TL_messageEntitySpoiler();
                         tL_messageEntitySpoiler.offset = spanStart;
                         tL_messageEntitySpoiler.length = spanEnd - spanStart;
                         arrayList.add(tL_messageEntitySpoiler);
                     } else if (i10 == 1) {
-                        if (!TextUtils.isEmpty(kVar.f52300b)) {
+                        if (!TextUtils.isEmpty(kVar.f52403b)) {
                             arrayList2.add(kVar);
                         } else {
                             TLRPC.TL_messageEntityPre tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
@@ -101,7 +101,7 @@ public abstract class l {
                     if (charSequence.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableStringBuilder.setSpan(new w61(url, null), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new a71(url, null), spanStart2, spanEnd2, 33);
                     }
                 }
             }
@@ -110,18 +110,18 @@ public abstract class l {
                 k kVar2 = (k) arrayList2.get(i11);
                 int spanStart3 = fromHtml.getSpanStart(kVar2);
                 int spanEnd3 = fromHtml.getSpanEnd(kVar2);
-                spannableStringBuilder.setSpan(new li.h(true, kVar2.f52300b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
+                spannableStringBuilder.setSpan(new ki.h(true, kVar2.f52403b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
             }
             for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                 k kVar3 = (k) arrayList3.get(i12);
                 int spanStart4 = fromHtml.getSpanStart(kVar3);
                 int spanEnd4 = fromHtml.getSpanEnd(kVar3);
-                if (kVar3.f52299a == 3) {
+                if (kVar3.f52402a == 3) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                yj0.c(spannableStringBuilder, spanStart4, spanEnd4, z10);
+                ak0.c(spannableStringBuilder, spanStart4, spanEnd4, z10);
             }
             return spannableStringBuilder;
         } catch (Exception e7) {

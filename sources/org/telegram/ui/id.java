@@ -1,56 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class id extends org.telegram.ui.Components.gk0 {
-    public final int f38694r;
-    public final Object f38695s;
+import android.view.View;
+public final class id implements View.OnClickListener {
+    public final int f38840a;
+    public final qd f38841b;
 
-    public id(Object obj, Context context, int i10) {
-        super(context);
-        this.f38694r = i10;
-        this.f38695s = obj;
+    public id(qd qdVar, int i10) {
+        this.f38840a = i10;
+        this.f38841b = qdVar;
     }
 
     @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f38694r) {
+    public final void onClick(View view) {
+        boolean z10;
+        switch (this.f38840a) {
             case 0:
-                super.invalidate(i10, i11, i12, i13);
-                ((ld) this.f38695s).f39635f.invalidate();
+                qd.X(this.f38841b, view);
                 return;
             case 1:
-            default:
-                super.invalidate(i10, i11, i12, i13);
+                qd qdVar = this.f38841b;
+                org.telegram.ui.Components.p50 p50Var = qdVar.v;
+                if (qdVar.f41301x != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                p50Var.n(z10, new hd(qdVar, 1), new u5(qdVar, 2), 0);
+                qdVar.J.M(0);
+                qdVar.J.P(43);
+                qdVar.h.d();
                 return;
             case 2:
-                super.invalidate(i10, i11, i12, i13);
-                ((j70) this.f38695s).f38899e.invalidate();
-                return;
-            case 3:
-                super.invalidate(i10, i11, i12, i13);
-                ((ff0) this.f38695s).h.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        switch (this.f38694r) {
-            case 0:
-                super.invalidate();
-                ((ld) this.f38695s).f39635f.invalidate();
-                return;
-            case 1:
-                super.invalidate();
-                ((org.telegram.ui.Components.j30) this.f38695s).invalidate();
-                return;
-            case 2:
-                super.invalidate();
-                ((j70) this.f38695s).f38899e.invalidate();
-                return;
+                qd qdVar2 = this.f38841b;
+                if (!qdVar2.f41284j0) {
+                    qdVar2.f0();
+                    return;
+                } else if (qdVar2.f41271a0) {
+                    qdVar2.f41271a0 = false;
+                    qdVar2.h0();
+                    return;
+                } else {
+                    return;
+                }
             default:
-                super.invalidate();
-                ((ff0) this.f38695s).h.invalidate();
+                qd qdVar3 = this.f38841b;
+                if (!qdVar3.f41271a0) {
+                    qdVar3.f41271a0 = true;
+                    qdVar3.h0();
+                    return;
+                }
                 return;
         }
     }

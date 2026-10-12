@@ -8,37 +8,37 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.y9;
 public final class d9 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.d6 f34859a;
-    public final y9 f34860b;
-    public final TextView f34861c;
+    public final org.telegram.ui.ActionBar.c6 f34634a;
+    public final y9 f34635b;
+    public final TextView f34636c;
     public final TextView d;
 
-    public d9(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public d9(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
-        this.f34859a = d6Var;
+        this.f34634a = c6Var;
         y9 y9Var = new y9(context);
-        this.f34860b = y9Var;
+        this.f34635b = y9Var;
         y9Var.setRoundRadius(AndroidUtilities.dp(10.0f));
-        addView(y9Var, w7.x5.a(28.0f, 18.0f, 0.0f, 0.0f, 0.0f, 28, 19));
+        addView(y9Var, w7.w5.a(28.0f, 18.0f, 0.0f, 0.0f, 0.0f, 28, 19));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        addView(linearLayout, w7.x5.a(-2.0f, 62.0f, 0.0f, 20.0f, 0.0f, -1, 23));
+        addView(linearLayout, w7.w5.a(-2.0f, 62.0f, 0.0f, 20.0f, 0.0f, -1, 23));
         TextView textView = new TextView(context);
-        this.f34861c = textView;
+        this.f34636c = textView;
         textView.setTextSize(1, 16.0f);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2), context);
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.w5.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2), context);
         this.d = h;
         h.setTextSize(1, 14.0f);
-        linearLayout.addView(h, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        linearLayout.addView(h, w7.w5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
         e();
     }
 
     @Override
     public final void e() {
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f34859a;
-        this.f34861c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225z6, d6Var));
+        org.telegram.ui.ActionBar.c6 c6Var = this.f34634a;
+        this.f34636c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
+        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20963z6, c6Var));
     }
 
     @Override

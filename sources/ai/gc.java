@@ -4,5 +4,5 @@ public interface gc {
 
     void b(boolean z10);
 
-    boolean e1(long j3, int i10, int i11, int i12, hc hcVar);
+    boolean d1(long j3, int i10, int i11, int i12, hc hcVar);
 }

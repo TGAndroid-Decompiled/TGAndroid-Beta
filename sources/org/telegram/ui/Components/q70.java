@@ -1,42 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class q70 extends FrameLayout {
-    public final TextView f30182a;
-    public final TextView f30183b;
-    public final t70 f30184c;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class q70 implements aa0 {
+    public final r70 f29749a;
 
-    public q70(t70 t70Var, Context context) {
-        super(context);
-        this.f30184c = t70Var;
-        ImageView imageView = new ImageView(context);
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.L(46, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.R7, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Y7, false)));
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(R.drawable.large_income);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        addView(imageView, w7.x5.a(46.0f, 13.0f, 0.0f, 0.0f, 0.0f, 46, 19));
-        TextView textView = new TextView(context);
-        this.f30182a = textView;
-        com.google.android.gms.internal.vision.e2.l(16.0f, 1, textView);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        addView(textView, w7.x5.a(-2.0f, 72.0f, 9.0f, 0.0f, 0.0f, -1, 51));
-        TextView textView2 = new TextView(context);
-        this.f30183b = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21207y6, false));
-        addView(textView2, w7.x5.a(-2.0f, 72.0f, 32.0f, 0.0f, 0.0f, -1, 51));
+    public q70(r70 r70Var) {
+        this.f29749a = r70Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
+    public final void a() {
+        w70 w70Var = this.f29749a.f30067c;
+        org.telegram.ui.ActionBar.m2 m2Var = w70Var.U;
+        if (m2Var instanceof org.telegram.ui.ai0) {
+            org.telegram.ui.ai0 ai0Var = (org.telegram.ui.ai0) m2Var;
+            TLRPC.TL_chatInviteExported tL_chatInviteExported = w70Var.f32332b;
+            org.telegram.ui.wb0 wb0Var = new org.telegram.ui.wb0(1, ai0Var.f35830n);
+            wb0Var.T = ai0Var.f35838s0;
+            wb0Var.Y(tL_chatInviteExported);
+            ai0Var.presentFragment(wb0Var);
+        } else {
+            org.telegram.ui.wb0 wb0Var2 = new org.telegram.ui.wb0(1, w70Var.f32341g0);
+            wb0Var2.Y(w70Var.f32332b);
+            wb0Var2.T = new p70(this);
+            w70Var.U.presentFragment(wb0Var2);
+        }
+        w70Var.dismiss();
+    }
+
+    @Override
+    public final void c() {
+        w70 w70Var = this.f29749a.f30067c;
+        org.telegram.ui.ActionBar.m2 m2Var = w70Var.U;
+        if (m2Var instanceof org.telegram.ui.ai0) {
+            ((org.telegram.ui.ai0) m2Var).e0(w70Var.f32332b);
+        } else {
+            TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
+            tL_messages_editExportedChatInvite.link = w70Var.f32332b.link;
+            tL_messages_editExportedChatInvite.revoked = true;
+            tL_messages_editExportedChatInvite.peer = MessagesController.getInstance(w70.D(w70Var)).getInputPeer(-w70Var.f32341g0);
+            ConnectionsManager.getInstance(w70.E(w70Var)).sendRequest(tL_messages_editExportedChatInvite, new o70(this, 0));
+        }
+        w70Var.dismiss();
+    }
+
+    @Override
+    public final void j() {
+        w70 w70Var = this.f29749a.f30067c;
+        org.telegram.ui.ActionBar.m2 m2Var = w70Var.U;
+        if (m2Var instanceof org.telegram.ui.ai0) {
+            ((org.telegram.ui.ai0) m2Var).b0(w70Var.f32332b);
+        } else {
+            TLRPC.TL_messages_deleteExportedChatInvite tL_messages_deleteExportedChatInvite = new TLRPC.TL_messages_deleteExportedChatInvite();
+            tL_messages_deleteExportedChatInvite.link = w70Var.f32332b.link;
+            tL_messages_deleteExportedChatInvite.peer = MessagesController.getInstance(w70.F(w70Var)).getInputPeer(-w70Var.f32341g0);
+            ConnectionsManager.getInstance(w70.H(w70Var)).sendRequest(tL_messages_deleteExportedChatInvite, new o70(this, 1));
+        }
+        w70Var.dismiss();
+    }
+
+    @Override
+    public final void i() {
     }
 }

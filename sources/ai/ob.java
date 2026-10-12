@@ -17,37 +17,37 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ai;
+import org.telegram.messenger.am;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.bd;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.js;
 public final class ob extends View {
-    public int f1545a;
-    public int f1546b;
-    public final Matrix f1547c;
+    public int f1543a;
+    public int f1544b;
+    public final Matrix f1545c;
     public final Paint[] d;
-    public final org.telegram.ui.Components.g6 f1548e;
-    public boolean f1549f;
+    public final org.telegram.ui.Components.g6 f1546e;
+    public boolean f1547f;
     public int h;
-    public final Drawable[] f1550n;
-    public final float[] f1551r;
-    public boolean f1552s;
+    public final Drawable[] f1548n;
+    public final float[] f1549r;
+    public boolean f1550s;
     public final Paint v;
-    public final Path f1553w;
-    public final bd f1554x;
+    public final Path f1551w;
+    public final ad f1552x;
 
     public ob(Context context) {
         super(context);
-        this.f1547c = new Matrix();
+        this.f1545c = new Matrix();
         this.d = r0;
-        this.f1548e = new org.telegram.ui.Components.g6(this, 0L, 260L, is.h);
-        this.f1550n = new Drawable[2];
-        this.f1551r = new float[2];
+        this.f1546e = new org.telegram.ui.Components.g6(this, 0L, 260L, js.h);
+        this.f1548n = new Drawable[2];
+        this.f1549r = new float[2];
         Paint paint = new Paint(1);
         this.v = paint;
-        this.f1553w = new Path();
-        this.f1554x = new bd(this, 0.6f, 5.0f);
+        this.f1551w = new Path();
+        this.f1552x = new ad(this, 0.6f, 5.0f);
         Paint[] paintArr = {new Paint(1), new Paint(1)};
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -57,12 +57,12 @@ public final class ob extends View {
 
     public final void a(boolean z10, l9 l9Var, boolean z11) {
         ci.da daVar;
-        this.f1552s = z10;
-        this.f1549f = true;
+        this.f1550s = z10;
+        this.f1547f = true;
         int i10 = 0;
-        if (l9Var != null && (daVar = l9Var.f1351c.E0) != null) {
-            int i11 = daVar.f4971a;
-            org.telegram.ui.Components.g6 g6Var = this.f1548e;
+        if (l9Var != null && (daVar = l9Var.f1349c.E0) != null) {
+            int i11 = daVar.f4970a;
+            org.telegram.ui.Components.g6 g6Var = this.f1546e;
             if (i11 == 1) {
                 c(15.0f, R.drawable.msg_stories_closefriends);
                 d(-7808710, -13781445);
@@ -80,12 +80,12 @@ public final class ob extends View {
                 d(-15292942, -15630089);
                 g6Var.f(z11, !z11);
             } else {
-                this.f1549f = false;
+                this.f1547f = false;
             }
         } else {
-            this.f1549f = false;
+            this.f1547f = false;
         }
-        if (!this.f1549f) {
+        if (!this.f1547f) {
             i10 = 8;
         }
         setVisibility(i10);
@@ -94,14 +94,14 @@ public final class ob extends View {
 
     public final void b(boolean z10, TL_stories.StoryItem storyItem, boolean z11) {
         ArrayList<TLRPC.PrivacyRule> arrayList;
-        this.f1552s = z10;
-        this.f1549f = true;
+        this.f1550s = z10;
+        this.f1547f = true;
         int i10 = 0;
         if (storyItem == null) {
-            this.f1549f = false;
+            this.f1547f = false;
         } else {
             boolean z12 = storyItem.close_friends;
-            org.telegram.ui.Components.g6 g6Var = this.f1548e;
+            org.telegram.ui.Components.g6 g6Var = this.f1546e;
             if (z12) {
                 c(15.0f, R.drawable.msg_stories_closefriends);
                 d(-7808710, -13781445);
@@ -116,7 +116,7 @@ public final class ob extends View {
                     d(-15292942, -15630089);
                     g6Var.f(z11, true);
                 } else {
-                    this.f1549f = false;
+                    this.f1547f = false;
                 }
             } else {
                 c(17.33f, R.drawable.msg_folders_groups);
@@ -124,7 +124,7 @@ public final class ob extends View {
                 g6Var.f(z11, true);
             }
         }
-        if (!this.f1549f) {
+        if (!this.f1547f) {
             i10 = 8;
         }
         setVisibility(i10);
@@ -141,10 +141,10 @@ public final class ob extends View {
         } else if (i10 == R.drawable.msg_folders_channels) {
             setContentDescription(LocaleController.getString(R.string.StoryPrivacyOptionEveryone));
         }
-        Drawable[] drawableArr = this.f1550n;
+        Drawable[] drawableArr = this.f1548n;
         Drawable drawable = drawableArr[0];
         drawableArr[1] = drawable;
-        float[] fArr = this.f1551r;
+        float[] fArr = this.f1549r;
         fArr[1] = fArr[0];
         if (drawable != null && i10 == this.h) {
             return;
@@ -160,13 +160,13 @@ public final class ob extends View {
     public final void d(int i10, int i11) {
         Paint[] paintArr = this.d;
         paintArr[1].setShader(paintArr[0].getShader());
-        if (this.f1545a == i10 && this.f1546b == i11) {
+        if (this.f1543a == i10 && this.f1544b == i11) {
             return;
         }
-        this.f1545a = i10;
-        this.f1546b = i11;
+        this.f1543a = i10;
+        this.f1544b = i11;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(23.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        Matrix matrix = this.f1547c;
+        Matrix matrix = this.f1545c;
         matrix.reset();
         matrix.postTranslate(0.0f, AndroidUtilities.dp(8.0f));
         linearGradient.setLocalMatrix(matrix);
@@ -177,7 +177,7 @@ public final class ob extends View {
     public float getCenterX() {
         int dp;
         float width = (getWidth() / 2.0f) + getX();
-        if (this.f1552s) {
+        if (this.f1550s) {
             dp = 0;
         } else {
             dp = AndroidUtilities.dp(14.0f);
@@ -194,26 +194,26 @@ public final class ob extends View {
         float f10;
         float centerX;
         float centerX2;
-        if (!this.f1549f) {
+        if (!this.f1547f) {
             return;
         }
-        if (this.f1552s) {
+        if (this.f1550s) {
             dpf2 = 0.0f;
         } else {
             dpf2 = AndroidUtilities.dpf2(7.0f);
         }
-        if (this.f1552s) {
+        if (this.f1550s) {
             dpf22 = AndroidUtilities.dpf2(43.0f);
         } else {
             dpf22 = AndroidUtilities.dpf2(23.66f);
         }
         float dpf23 = AndroidUtilities.dpf2(23.66f);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(com.google.android.gms.internal.vision.e2.z(getWidth(), dpf22, 2.0f, dpf2), (getHeight() - dpf23) / 2.0f, org.telegram.messenger.q.a(getWidth(), dpf22, 2.0f, dpf2), (getHeight() + dpf23) / 2.0f);
-        float a2 = this.f1554x.a(0.075f);
+        rectF.set(com.google.android.gms.internal.vision.e2.z(getWidth(), dpf22, 2.0f, dpf2), (getHeight() - dpf23) / 2.0f, org.telegram.messenger.v0.a(getWidth(), dpf22, 2.0f, dpf2), (getHeight() + dpf23) / 2.0f);
+        float a2 = this.f1552x.a(0.075f);
         canvas.save();
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        float d = this.f1548e.d(0.0f, false);
+        float d = this.f1546e.d(0.0f, false);
         int i10 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
         Paint[] paintArr = this.d;
         if (i10 > 0) {
@@ -225,11 +225,11 @@ public final class ob extends View {
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), paintArr[0]);
         }
         float abs = Math.abs(d - 0.5f) + 0.5f;
-        Drawable[] drawableArr = this.f1550n;
+        Drawable[] drawableArr = this.f1548n;
         Drawable drawable = drawableArr[1];
-        float[] fArr = this.f1551r;
+        float[] fArr = this.f1549r;
         if (drawable != null && d > 0.5f) {
-            if (this.f1552s) {
+            if (this.f1550s) {
                 centerX2 = AndroidUtilities.dpf2(14.66f) + rectF.left;
             } else {
                 centerX2 = rectF.centerX();
@@ -239,7 +239,7 @@ public final class ob extends View {
             f7 = 0.5f;
             c10 = 0;
             f10 = 12.0f;
-            drawableArr[1].setBounds((int) ai.b(fArr[1], 2.0f, abs, centerX2), (int) (centerY - f11), (int) (f11 + centerX2), (int) a1.g.e(fArr[1], 2.0f, abs, rectF.centerY()));
+            drawableArr[1].setBounds((int) am.b(fArr[1], 2.0f, abs, centerX2), (int) (centerY - f11), (int) (f11 + centerX2), (int) a1.g.e(fArr[1], 2.0f, abs, rectF.centerY()));
             drawableArr[1].draw(canvas);
         } else {
             f7 = 0.5f;
@@ -247,18 +247,18 @@ public final class ob extends View {
             f10 = 12.0f;
         }
         if (drawableArr[c10] != null && d <= f7) {
-            if (this.f1552s) {
+            if (this.f1550s) {
                 centerX = AndroidUtilities.dpf2(14.66f) + rectF.left;
             } else {
                 centerX = rectF.centerX();
             }
             float centerY2 = rectF.centerY();
             float f12 = (fArr[c10] / 2.0f) * abs;
-            drawableArr[c10].setBounds((int) ai.b(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f12), (int) (f12 + centerX), (int) a1.g.e(fArr[c10], 2.0f, abs, rectF.centerY()));
+            drawableArr[c10].setBounds((int) am.b(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f12), (int) (f12 + centerX), (int) a1.g.e(fArr[c10], 2.0f, abs, rectF.centerY()));
             drawableArr[c10].draw(canvas);
         }
-        if (this.f1552s) {
-            Path path = this.f1553w;
+        if (this.f1550s) {
+            Path path = this.f1551w;
             path.rewind();
             path.moveTo(rectF.right - AndroidUtilities.dpf2(15.66f), rectF.centerY() - AndroidUtilities.dpf2(1.33f));
             path.lineTo(rectF.right - AndroidUtilities.dpf2(f10), AndroidUtilities.dpf2(2.33f) + rectF.centerY());
@@ -279,6 +279,6 @@ public final class ob extends View {
     @Override
     public void setPressed(boolean z10) {
         super.setPressed(z10);
-        this.f1554x.c(z10);
+        this.f1552x.c(z10);
     }
 }

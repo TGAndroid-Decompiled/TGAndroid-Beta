@@ -1,54 +1,67 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class ci extends View {
-    public final int f25363a;
-    public final yi f25364b;
+import org.telegram.messenger.LocaleController;
+public final class ci extends FrameLayout {
+    public final int f24944a;
+    public final aj f24945b;
 
-    public ci(yi yiVar, Context context, int i10) {
+    public ci(aj ajVar, Context context, int i10) {
         super(context);
-        this.f25363a = i10;
-        this.f25364b = yiVar;
+        this.f24944a = i10;
+        this.f24945b = ajVar;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.f25363a) {
-            case 0:
-                super.draw(canvas);
-                this.f25364b.f33274b0.draw(canvas);
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f24944a) {
+            case 2:
+                canvas.save();
+                canvas.clipRect(0.0f, this.f24945b.Y1, getMeasuredWidth(), getMeasuredHeight());
+                super.dispatchDraw(canvas);
+                canvas.restore();
                 return;
             default:
-                super.draw(canvas);
+                super.dispatchDraw(canvas);
                 return;
         }
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f25363a) {
-            case 1:
-                yi yiVar = this.f25364b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, yiVar.B0.getSelectedItemsCount())));
-                int ceil = (int) Math.ceil(yiVar.M0.measureText(format));
-                int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
-                int measuredWidth = getMeasuredWidth() / 2;
-                int themedColor = yiVar.getThemedColor(org.telegram.ui.ActionBar.h6.C5);
-                yiVar.M0.setColor(i0.a.k(themedColor, (int) (((yiVar.Y0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
-                yiVar.O0.setColor(yiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20893h5));
-                int i10 = max / 2;
-                int i11 = measuredWidth - i10;
-                int i12 = i10 + measuredWidth;
-                yiVar.N0.set(i11, 0.0f, i12, getMeasuredHeight());
-                canvas.drawRoundRect(yiVar.N0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), yiVar.O0);
-                yiVar.O0.setColor(yiVar.getThemedColor(org.telegram.ui.ActionBar.h6.W9));
-                yiVar.N0.set(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp(2.0f), i12 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
-                canvas.drawRoundRect(yiVar.N0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), yiVar.O0);
-                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), yiVar.M0);
+        switch (this.f24944a) {
+            case 2:
+                aj ajVar = this.f24945b;
+                ci ciVar = ajVar.G0;
+                if (ajVar.F0.getAlpha() > 0.0f) {
+                    float f7 = ajVar.Z1;
+                    if (f7 != 0.0f && f7 != ciVar.getTop() + ajVar.Z1) {
+                        ValueAnimator valueAnimator = ajVar.a2;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                        }
+                        float top = ajVar.Z1 - (ciVar.getTop() + ajVar.Y1);
+                        ajVar.Y1 = top;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                        ajVar.a2 = ofFloat;
+                        ofFloat.addUpdateListener(new m6(this, 10));
+                        ajVar.a2.setInterpolator(js.f27627f);
+                        ajVar.a2.setDuration(200L);
+                        ajVar.a2.start();
+                        ajVar.Z1 = 0.0f;
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
                 super.onDraw(canvas);
@@ -57,14 +70,110 @@ public final class ci extends View {
     }
 
     @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f25363a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                this.f25364b.f33274b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f24944a) {
+            case 3:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                aj ajVar = this.f24945b;
+                si siVar = ajVar.B0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ajVar.f24354j0;
+                if (siVar == chatAttachAlertPhotoLayout) {
+                    accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
+                } else {
+                    uk ukVar = ajVar.f24371p0;
+                    if (siVar == ukVar) {
+                        accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", ukVar.getSelectedItemsCount(), new Object[0]));
+                    } else {
+                        mj mjVar = ajVar.f24360l0;
+                        if (siVar == mjVar) {
+                            accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", mjVar.getSelectedItemsCount(), new Object[0]));
+                        }
+                    }
+                }
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
                 return;
             default:
-                super.onSizeChanged(i10, i11, i12, i13);
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f24944a) {
+            case 0:
+                if (this.f24945b.l1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f24944a) {
+            case 1:
+                aj ajVar = this.f24945b;
+                if (ajVar.H && ajVar.I != 0) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(ajVar.I))), 1073741824), i11);
+                    return;
+                }
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f24944a) {
+            case 0:
+                if (this.f24945b.l1.getVisibility() != 0) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        switch (this.f24944a) {
+            case 0:
+                super.setAlpha(f7);
+                aj ajVar = this.f24945b;
+                ajVar.e2(0);
+                viewGroup = ((org.telegram.ui.ActionBar.e3) ajVar).containerView;
+                viewGroup.invalidate();
+                return;
+            case 1:
+            default:
+                super.setAlpha(f7);
+                return;
+            case 2:
+                super.setAlpha(f7);
+                invalidate();
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        switch (this.f24944a) {
+            case 1:
+                super.setTranslationY(f7);
+                this.f24945b.B0.k();
+                return;
+            default:
+                super.setTranslationY(f7);
                 return;
         }
     }

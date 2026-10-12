@@ -8,53 +8,51 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.pv0;
+import org.telegram.ui.sv0;
 public interface l1 {
     void A(u1 u1Var);
 
-    void A0(u1 u1Var, TLRPC.User user, float f7, float f10);
-
-    void A1(u1 u1Var, float f7, float f10);
-
-    boolean A2(int i10);
-
     void B(u1 u1Var);
 
-    void C0(u1 u1Var, float f7, float f10, boolean z10);
+    void B0(u1 u1Var, float f7, float f10, boolean z10);
 
-    void C2();
+    void B1(u1 u1Var, float f7, float f10);
 
-    boolean D0(MessageObject messageObject);
+    boolean C0(MessageObject messageObject);
 
-    void D2(u1 u1Var, int i10, int i11);
+    boolean C2(int i10);
+
+    void D0(u1 u1Var);
 
     void E(u1 u1Var, BotInlineKeyboard.ButtonCustom buttonCustom);
 
-    void E0(u1 u1Var);
+    void E0();
 
-    p9 E2();
+    void E2();
 
-    void F0();
+    void F(u1 u1Var);
 
-    void G(u1 u1Var);
+    void F0(u1 u1Var, TLObject tLObject, boolean z10);
 
-    void G0(u1 u1Var, TLObject tLObject, boolean z10);
+    void F2(u1 u1Var, int i10, int i11);
 
-    void H0(u1 u1Var, float f7, float f10);
+    void G0(u1 u1Var, float f7, float f10);
+
+    p9 G2();
 
     boolean H1();
 
     void I(MessageObject.TextLayoutBlock textLayoutBlock);
 
-    void J0(u1 u1Var);
+    void I0(u1 u1Var);
 
     void J1(u1 u1Var);
+
+    void K0(u1 u1Var);
 
     void K1(u1 u1Var, boolean z10);
 
     void L(u1 u1Var);
-
-    void L0(u1 u1Var);
 
     void M(int i10, u1 u1Var);
 
@@ -70,37 +68,37 @@ public interface l1 {
 
     boolean O1();
 
-    boolean Q();
+    boolean P();
+
+    boolean Q(u1 u1Var);
 
     void Q1(u1 u1Var);
 
-    boolean R(u1 u1Var);
+    boolean R();
 
     boolean R0(long j3);
 
-    boolean S();
+    void S(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10);
 
     void S0(u1 u1Var);
 
     void S1(MessageObject messageObject);
 
-    void T(u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10);
+    void T(u1 u1Var);
 
     void T1(u1 u1Var, TLRPC.WebPage webPage, String str, boolean z10);
 
-    void U(u1 u1Var);
+    void U0(int i10, u1 u1Var);
 
     CharacterStyle U1(u1 u1Var);
 
-    void V0(int i10, u1 u1Var);
+    int V();
 
     void V1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11);
 
-    int W();
+    void W0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton);
 
     boolean W1(u1 u1Var, MessageObject messageObject);
-
-    void X0(u1 u1Var, TL_keyboard.KeyboardInlineButton keyboardInlineButton);
 
     void X1();
 
@@ -108,35 +106,37 @@ public interface l1 {
 
     void Z1(u1 u1Var, TLRPC.MessageExtendedMedia messageExtendedMedia);
 
+    boolean a0(u1 u1Var);
+
+    void a1(u1 u1Var, CharacterStyle characterStyle, boolean z10);
+
     void a2(u1 u1Var, TLRPC.User user, TLRPC.Document document, String str);
 
-    boolean b0(u1 u1Var);
-
-    void b1(u1 u1Var, CharacterStyle characterStyle, boolean z10);
+    boolean b1(u1 u1Var, boolean z10);
 
     boolean b2(u1 u1Var, TLRPC.PollAnswer pollAnswer);
 
-    boolean c1(u1 u1Var, boolean z10);
+    boolean c0(u1 u1Var, TLRPC.User user);
 
-    void d1(u1 u1Var);
+    void c1(u1 u1Var);
 
     boolean e();
 
-    boolean e0(u1 u1Var, TLRPC.User user);
+    void e0(int i10);
 
-    pv0 e2();
+    void e1(u1 u1Var);
+
+    sv0 e2();
 
     boolean f();
 
-    void f1(u1 u1Var);
+    boolean f0();
 
     String g(u1 u1Var);
 
-    void g0(int i10);
-
     boolean g2(long j3);
 
-    boolean h0();
+    void h0(u1 u1Var, float f7, float f10);
 
     void h2(u1 u1Var, int i10, float f7, float f10, boolean z10);
 
@@ -148,15 +148,13 @@ public interface l1 {
 
     void j(u1 u1Var, ArrayList arrayList, int i10, int i11, int i12);
 
-    void j0(u1 u1Var, float f7, float f10);
+    int j0(u1 u1Var);
 
     void k();
 
+    void k0(u1 u1Var);
+
     void k2(u1 u1Var);
-
-    int l0(u1 u1Var);
-
-    void m0(u1 u1Var);
 
     void m2(u1 u1Var, long j3);
 
@@ -166,9 +164,9 @@ public interface l1 {
 
     void o(u1 u1Var);
 
-    void p();
+    boolean o0();
 
-    boolean p0();
+    void p();
 
     void q1();
 
@@ -180,23 +178,25 @@ public interface l1 {
 
     void s();
 
+    boolean s0(org.telegram.ui.Components.b6 b6Var);
+
     void s1(u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto);
 
     void s2(u1 u1Var);
 
     void t(u1 u1Var);
 
-    boolean t0(org.telegram.ui.Components.b6 b6Var);
-
     void u(u1 u1Var);
 
-    void v0(u1 u1Var, float f7, float f10);
+    void u0(u1 u1Var, float f7, float f10);
 
     void v1(u1 u1Var, TLRPC.Document document);
 
     String w(long j3);
 
-    void w2();
+    void x2();
 
-    void y2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
+    void z0(u1 u1Var, TLRPC.User user, float f7, float f10);
+
+    void z2(u1 u1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
 }

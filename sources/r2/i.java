@@ -1,17 +1,29 @@
 package r2;
 
-import android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener;
-import android.media.MediaCodec;
-import android.os.Bundle;
-public final class i implements LoudnessCodecController$OnLoudnessCodecUpdateListener {
-    public final k f47013a;
+import android.media.MediaCodecInfo;
+import android.os.Build;
+import java.util.List;
+public final class i implements v {
+    public static final i f47104a = new Object();
+    public static final i f47105b = new Object();
 
-    public i(k kVar) {
-        this.f47013a = kVar;
+    public static MediaCodecInfo.VideoCapabilities.PerformancePoint c(Object obj) {
+        return (MediaCodecInfo.VideoCapabilities.PerformancePoint) obj;
     }
 
-    public final Bundle onLoudnessCodecUpdate(MediaCodec mediaCodec, Bundle bundle) {
-        this.f47013a.f47017b.getClass();
-        return bundle;
+    public List a(String str, boolean z10, boolean z11) {
+        return w.d(str, z10, z11);
+    }
+
+    @Override
+    public int b(Object obj) {
+        String str = ((o) obj).f47110a;
+        if (!str.startsWith("OMX.google") && !str.startsWith("c2.android")) {
+            if (Build.VERSION.SDK_INT < 26 && str.equals("OMX.MTK.AUDIO.DECODER.RAW")) {
+                return -1;
+            }
+            return 0;
+        }
+        return 1;
     }
 }

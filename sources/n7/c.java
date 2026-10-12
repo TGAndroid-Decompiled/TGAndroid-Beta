@@ -1,3 +1,5 @@
 package n7;
-public final class c extends la.h {
+
+import m.f3;
+public final class c extends f3 {
 }

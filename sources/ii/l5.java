@@ -5,21 +5,23 @@ import android.text.Layout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.z9;
 public final class l5 implements z9 {
-    public final Layout f12557a;
-    public final int f12558b;
-    public final int f12559c;
-    public final q5 d;
+    public final Layout f12559a;
+    public final int f12560b;
+    public final int f12561c;
+    public final int d;
+    public final TL_iv.pageTableCell f12562e;
 
-    public l5(q5 q5Var, Layout layout, int i10, int i11) {
-        this.d = q5Var;
-        this.f12557a = layout;
-        this.f12558b = i10;
-        this.f12559c = i11;
+    public l5(Layout layout, int i10, int i11, int i12, TL_iv.pageTableCell pagetablecell) {
+        this.f12559a = layout;
+        this.f12560b = i10;
+        this.f12561c = i11;
+        this.d = i12;
+        this.f12562e = pagetablecell;
     }
 
     @Override
     public final Layout getLayout() {
-        return this.f12557a;
+        return this.f12559a;
     }
 
     @Override
@@ -29,7 +31,7 @@ public final class l5 implements z9 {
 
     @Override
     public final int getRow() {
-        return 0;
+        return this.d;
     }
 
     @Override
@@ -39,25 +41,16 @@ public final class l5 implements z9 {
 
     @Override
     public final CharSequence getText() {
-        TL_iv.RichText richText;
-        a aVar = this.d.f12250a;
-        if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f12233b;
-            if ((pageBlock instanceof TL_iv.pageBlockTable) && (richText = ((TL_iv.pageBlockTable) pageBlock).title) != null) {
-                return h6.r(richText, null, true);
-            }
-            return "";
-        }
-        return "";
+        return i6.h(this.f12562e);
     }
 
     @Override
     public final int getX() {
-        return this.f12558b;
+        return this.f12560b;
     }
 
     @Override
     public final int getY() {
-        return this.f12559c;
+        return this.f12561c;
     }
 }

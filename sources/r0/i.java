@@ -3,10 +3,10 @@ package r0;
 import android.view.DisplayCutout;
 import j$.util.Objects;
 public final class i {
-    public final DisplayCutout f46889a;
+    public final DisplayCutout f46980a;
 
     public i(DisplayCutout displayCutout) {
-        this.f46889a = displayCutout;
+        this.f46980a = displayCutout;
     }
 
     public final boolean equals(Object obj) {
@@ -14,13 +14,13 @@ public final class i {
             return true;
         }
         if (obj != null && i.class == obj.getClass()) {
-            return Objects.equals(this.f46889a, ((i) obj).f46889a);
+            return Objects.equals(this.f46980a, ((i) obj).f46980a);
         }
         return false;
     }
 
     public final int hashCode() {
-        DisplayCutout displayCutout = this.f46889a;
+        DisplayCutout displayCutout = this.f46980a;
         if (displayCutout == null) {
             return 0;
         }
@@ -28,6 +28,6 @@ public final class i {
     }
 
     public final String toString() {
-        return "DisplayCutoutCompat{" + this.f46889a + "}";
+        return "DisplayCutoutCompat{" + this.f46980a + "}";
     }
 }

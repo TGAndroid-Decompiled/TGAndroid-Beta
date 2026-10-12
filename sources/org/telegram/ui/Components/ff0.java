@@ -1,130 +1,188 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.core.widget.NestedScrollView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-public abstract class ff0 {
-    public static int f26462a = 1500;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ff0 extends org.telegram.ui.ActionBar.e3 {
+    public final TextView f26051b;
+    public final TextView f26052c;
+    public final TextView d;
+    public final ik0 f26053e;
+    public final fk0 f26054f;
+    public final ba0 h;
+    public final long f26055n;
+    public boolean f26056r;
+    public TLRPC.TL_chatInviteExported f26057s;
 
-    public static boolean a() {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+    public ff0(Context context, org.telegram.ui.e70 e70Var, TLRPC.ChatFull chatFull, long j3, boolean z10) {
+        super(context, false);
+        int i10;
+        TLRPC.TL_chatInviteExported tL_chatInviteExported;
+        this.f26055n = j3;
+        setAllowNestedScroll(true);
+        setApplyBottomPadding(false);
+        setApplyTopPadding(false);
+        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f20559d6));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.addView(linearLayout);
+        ImageView imageView = new ImageView(context);
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(getThemedColor(org.telegram.ui.ActionBar.h6.f20650i6), 1, -1));
+        imageView.setColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.Ji));
+        imageView.setImageResource(R.drawable.ic_layer_close);
+        imageView.setOnClickListener(new f90(this, 4));
+        int dp = AndroidUtilities.dp(8.0f);
+        imageView.setPadding(dp, dp, dp, dp);
+        frameLayout.addView(imageView, w7.w5.a(36.0f, 6.0f, 8.0f, 8.0f, 0.0f, 36, 8388661));
+        ba0 ba0Var = new ba0(context, e70Var, this, true, z10);
+        this.h = ba0Var;
+        ba0Var.setPermanent(true);
+        ?? imageView2 = new ImageView(context);
+        this.f26053e = imageView2;
+        fk0 fk0Var = new fk0(R.raw.shared_link_enter, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f), false, null);
+        this.f26054f = fk0Var;
+        fk0Var.P(42);
+        imageView2.setAnimation(fk0Var);
+        ba0Var.d(0, null, false);
+        ba0Var.b(true);
+        ba0Var.setDelegate(new ew(this, 10));
+        TextView textView = new TextView(context);
+        this.f26051b = textView;
+        textView.setText(LocaleController.getString(R.string.InviteLink));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 20.0f);
+        textView.setGravity(1);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        TextView textView2 = new TextView(context);
+        this.f26052c = textView2;
+        if (z10) {
+            i10 = R.string.LinkInfoChannel;
+        } else {
+            i10 = R.string.LinkInfo;
         }
-        if (activity == null) {
-            return false;
+        textView2.setText(LocaleController.getString(i10));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(1);
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20667j5, false));
+        textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
+        TextView textView3 = new TextView(context);
+        this.d = textView3;
+        org.telegram.messenger.am.m(R.string.ManageInviteLinks, textView3, 17);
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        textView3.setSingleLine(true);
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setTextSize(1, 14.0f);
+        int i11 = org.telegram.ui.ActionBar.h6.Oh;
+        textView3.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
+        int dp2 = AndroidUtilities.dp(8.0f);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.x0(null, i11, false), 120);
+        textView3.setBackground(org.telegram.ui.ActionBar.h6.j0(dp2, dp2, dp2, dp2, 0, k10, k10));
+        textView3.setLetterSpacing(0.025f);
+        textView3.setOnClickListener(new ai.d0(this, chatFull, e70Var, 25));
+        linearLayout.addView((View) imageView2, w7.w5.t(90, 90, 1, 0, 33, 0, 0));
+        linearLayout.addView(textView, w7.w5.t(-1, -2, 1, 60, 10, 60, 0));
+        linearLayout.addView(textView2, w7.w5.t(-1, -2, 1, 28, 7, 28, 2));
+        linearLayout.addView(ba0Var, w7.w5.n(-1, -2));
+        linearLayout.addView(textView3, w7.w5.t(-1, 48, 1, 14, -2, 14, 6));
+        NestedScrollView nestedScrollView = new NestedScrollView(context);
+        nestedScrollView.setVerticalScrollBarEnabled(false);
+        nestedScrollView.addView(frameLayout);
+        setCustomView(nestedScrollView);
+        TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(j3));
+        if (chat != null && ChatObject.isPublic(chat)) {
+            ba0Var.setLink("https://t.me/" + ChatObject.getPublicUsername(chat));
+            textView3.setVisibility(8);
+        } else if (chatFull != null && (tL_chatInviteExported = chatFull.exported_invite) != null) {
+            ba0Var.setLink(tL_chatInviteExported.link);
+        } else {
+            r(false);
         }
-        return activity.shouldShowRequestPermissionRationale("android.permission.POST_NOTIFICATIONS");
+        s();
     }
 
-    public static void b(int i10, int i11, String[] strArr, Utilities.Callback callback) {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return;
-        }
-        for (String str : strArr) {
-            if (activity.checkSelfPermission(str) != 0) {
-                for (String str2 : strArr) {
-                    if (activity.shouldShowRequestPermissionRationale(str2)) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
-                        alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                        alertDialog$Builder.f20404a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
-                        alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new k1(activity, 2));
-                        alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                        alertDialog$Builder.f20404a.show();
-                        callback.run(Boolean.FALSE);
-                        return;
-                    }
-                }
-                e(strArr, new df0(strArr, activity, callback, 1));
-                return;
+    public static void o(ff0 ff0Var) {
+        super.dismiss();
+    }
+
+    public static void p(ff0 ff0Var, TLRPC.ChatFull chatFull, org.telegram.ui.e70 e70Var) {
+        org.telegram.ui.ai0 ai0Var = new org.telegram.ui.ai0(chatFull.f19803id, 0L, 0);
+        ai0Var.g0(chatFull, chatFull.exported_invite);
+        e70Var.presentFragment(ai0Var);
+        super.dismiss();
+    }
+
+    public static void q(ff0 ff0Var, TLRPC.TL_error tL_error, TLObject tLObject) {
+        if (tL_error == null) {
+            ff0Var.f26057s = (TLRPC.TL_chatInviteExported) tLObject;
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(ff0Var.currentAccount).getChatFull(ff0Var.f26055n);
+            if (chatFull != null) {
+                chatFull.exported_invite = ff0Var.f26057s;
             }
+            ff0Var.h.setLink(ff0Var.f26057s.link);
         }
-        callback.run(Boolean.TRUE);
+        ff0Var.f26056r = false;
     }
 
-    public static void c(int i10, int i11, String[] strArr, String[] strArr2, Utilities.Callback callback) {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
+    @Override
+    public final ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
+        a7 a7Var = new a7(this, 5);
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f26051b, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.G6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f26052c, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.f20667j5));
+        int i10 = org.telegram.ui.ActionBar.h6.Oh;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.d, 4, null, null, null, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, a7Var, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, a7Var, org.telegram.ui.ActionBar.h6.Sh));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, a7Var, org.telegram.ui.ActionBar.h6.f20744n6));
+        return arrayList;
+    }
+
+    public final void r(boolean z10) {
+        if (this.f26056r) {
             return;
         }
-        for (String str : strArr) {
-            if (activity.checkSelfPermission(str) == 0) {
-                callback.run(Boolean.TRUE);
-                return;
-            }
-        }
-        for (String str2 : strArr) {
-            if (!activity.shouldShowRequestPermissionRationale(str2)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
-                alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                alertDialog$Builder.f20404a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
-                alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new k1(activity, 1));
-                alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                alertDialog$Builder.f20404a.show();
-                callback.run(Boolean.FALSE);
-                return;
-            }
-        }
-        e(strArr2, new df0(strArr2, activity, callback, 0));
+        this.f26056r = true;
+        TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
+        tL_messages_exportChatInvite.legacy_revoke_permanent = true;
+        tL_messages_exportChatInvite.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-this.f26055n);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new ci.s3(7, this, z10));
     }
 
-    public static boolean d(String str) {
-        Context context = LaunchActivity.G1;
-        if (context == null) {
-            context = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (context != null && context.checkSelfPermission(str) == 0) {
-            return true;
-        }
-        return false;
+    public final void s() {
+        int dp = AndroidUtilities.dp(90.0f);
+        int i10 = org.telegram.ui.ActionBar.h6.Oh;
+        this.f26053e.setBackground(org.telegram.ui.ActionBar.h6.K(dp, org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
+        int dp2 = AndroidUtilities.dp(8.0f);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.x0(null, i10, false), 120);
+        this.d.setBackground(org.telegram.ui.ActionBar.h6.j0(dp2, dp2, dp2, dp2, 0, k10, k10));
+        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false);
+        fk0 fk0Var = this.f26054f;
+        fk0Var.Q(x02, "Top");
+        fk0Var.Q(x02, "Bottom");
+        fk0Var.Q(x02, "Center");
+        this.h.f();
+        setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20630h5, false));
     }
 
-    public static void e(String[] strArr, Utilities.Callback callback) {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return;
-        }
-        int i10 = f26462a;
-        f26462a = i10 + 1;
-        NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new ef0(i10, callback, notificationCenterDelegateArr)};
-        NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
-        activity.requestPermissions(strArr, i10);
-    }
-
-    public static void f() {
-        Activity activity = LaunchActivity.G1;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return;
-        }
-        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-        intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-        try {
-            activity.startActivity(intent);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
+    @Override
+    public final void show() {
+        super.show();
+        AndroidUtilities.runOnUIThread(new cd0(this, 6), 50L);
     }
 }

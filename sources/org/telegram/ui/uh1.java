@@ -1,55 +1,100 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class uh1 implements TextWatcher {
-    public final UsersSelectActivity f42604a;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class uh1 extends org.telegram.ui.Components.t61 {
+    public static final int f42524a = 0;
 
-    public uh1(UsersSelectActivity usersSelectActivity) {
-        this.f42604a = usersSelectActivity;
+    static {
+        org.telegram.ui.Components.t61.setup(new org.telegram.ui.Components.t61());
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        UsersSelectActivity usersSelectActivity = this.f42604a;
-        if (usersSelectActivity.f34656c.length() != 0) {
-            xh1 xh1Var = usersSelectActivity.h;
-            boolean z10 = xh1Var.f44111n;
-            if (!z10) {
-                usersSelectActivity.M = true;
-                usersSelectActivity.L = true;
-                if (!z10) {
-                    xh1Var.f44111n = true;
-                    xh1Var.l();
-                }
-                usersSelectActivity.d.setFastScrollVisible(false);
-                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
-                usersSelectActivity.f34658f.d.setText(LocaleController.getString(R.string.NoResult));
-            }
-            usersSelectActivity.f34658f.e(true, true);
-            usersSelectActivity.h.L(usersSelectActivity.f34656c.getText().toString());
-            return;
+    public final void bindView(View view, org.telegram.ui.Components.u61 u61Var, boolean z10, org.telegram.ui.Components.h71 h71Var, org.telegram.ui.Components.p71 p71Var) {
+        float f7;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        vh1 vh1Var = (vh1) view;
+        int i14 = u61Var.f31075k;
+        CharSequence charSequence = u61Var.f31076l;
+        CharSequence charSequence2 = u61Var.f31077m;
+        boolean z11 = u61Var.f31081q;
+        boolean z12 = u61Var.f31082r;
+        int i15 = u61Var.f31089z;
+        TextView textView = vh1Var.d;
+        TextView textView2 = vh1Var.f42799e;
+        ImageView imageView = vh1Var.f42800f;
+        vh1Var.h = z11;
+        vh1Var.f42801n = z12;
+        ImageView imageView2 = vh1Var.f42797b;
+        imageView2.setImageResource(i14);
+        int i16 = 8;
+        if (i15 != 0) {
+            imageView.setVisibility(0);
+            imageView.setImageResource(i15);
+        } else {
+            imageView.setVisibility(8);
         }
-        usersSelectActivity.M = false;
-        usersSelectActivity.L = false;
-        xh1 xh1Var2 = usersSelectActivity.h;
-        if (xh1Var2.f44111n) {
-            xh1Var2.f44111n = false;
-            xh1Var2.l();
+        textView.setText(charSequence);
+        textView2.setText(charSequence2);
+        if (!TextUtils.isEmpty(charSequence2)) {
+            i16 = 0;
         }
-        usersSelectActivity.h.L(null);
-        usersSelectActivity.d.setFastScrollVisible(true);
-        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
-        usersSelectActivity.f34658f.d.setText(LocaleController.getString(R.string.NoContacts));
+        textView2.setVisibility(i16);
+        if (TextUtils.isEmpty(charSequence2)) {
+            f7 = 15.0f;
+        } else {
+            f7 = 10.0f;
+        }
+        int dp = AndroidUtilities.dp(f7);
+        vh1Var.f42798c.setPadding(0, dp, 0, dp);
+        org.telegram.ui.ActionBar.c6 c6Var = vh1Var.f42796a;
+        if (vh1Var.f42801n) {
+            i10 = org.telegram.ui.ActionBar.h6.f20799q7;
+        } else if (vh1Var.h) {
+            i10 = org.telegram.ui.ActionBar.h6.f20744n6;
+        } else {
+            i10 = org.telegram.ui.ActionBar.h6.G6;
+        }
+        int w02 = org.telegram.ui.ActionBar.h6.w0(i10, c6Var);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView2.setColorFilter(new PorterDuffColorFilter(w02, mode));
+        if (vh1Var.f42801n) {
+            i11 = org.telegram.ui.ActionBar.h6.f20799q7;
+        } else if (vh1Var.h) {
+            i11 = org.telegram.ui.ActionBar.h6.f20744n6;
+        } else {
+            i11 = org.telegram.ui.ActionBar.h6.G6;
+        }
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, c6Var), mode));
+        if (vh1Var.f42801n) {
+            i12 = org.telegram.ui.ActionBar.h6.f20780p7;
+        } else if (vh1Var.h) {
+            i12 = org.telegram.ui.ActionBar.h6.f20744n6;
+        } else {
+            i12 = org.telegram.ui.ActionBar.h6.G6;
+        }
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, c6Var));
+        if (vh1Var.f42801n) {
+            i13 = org.telegram.ui.ActionBar.h6.f20780p7;
+        } else if (vh1Var.h) {
+            i13 = org.telegram.ui.ActionBar.h6.f20744n6;
+        } else {
+            i13 = org.telegram.ui.ActionBar.h6.f20945y6;
+        }
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(i13, c6Var));
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final View createView(Context context, org.telegram.ui.Components.wm0 wm0Var, int i10, int i11, org.telegram.ui.ActionBar.c6 c6Var) {
+        return new vh1(context, c6Var);
     }
 }

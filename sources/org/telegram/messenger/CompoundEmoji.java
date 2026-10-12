@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.Emoji;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public class CompoundEmoji {
     public static List<String> skinTones = Arrays.asList("🏻", "🏼", "🏽", "🏾", "🏿");
     private static Paint placeholderPaint = new Paint(2);
@@ -77,7 +77,7 @@ public class CompoundEmoji {
                 ArrayList<Integer> arrayList = loading;
                 if (!arrayList.contains(Integer.valueOf(this.hash))) {
                     arrayList.add(Integer.valueOf(this.hash));
-                    Utilities.globalQueue.postRunnable(new f1(this, 0));
+                    Utilities.globalQueue.postRunnable(new i1(this, 0));
                 }
             }
         }
@@ -260,7 +260,7 @@ public class CompoundEmoji {
             if (!canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
                 if (this.newLeft != null) {
                     if (this.leftUpdateT == null) {
-                        this.leftUpdateT = new org.telegram.ui.Components.g6(0.0f, new f1(this, 15), 0L, 320L, is.f27501g);
+                        this.leftUpdateT = new org.telegram.ui.Components.g6(0.0f, new i1(this, 15), 0L, 320L, js.f27628g);
                     }
                     float d = this.leftUpdateT.d(1.0f, false);
                     drawDrawableInfo(canvas, this.newLeft, bounds, Math.min(1.0f, d * 1.5f));
@@ -274,7 +274,7 @@ public class CompoundEmoji {
                 }
                 if (this.newRight != null) {
                     if (this.rightUpdateT == null) {
-                        this.rightUpdateT = new org.telegram.ui.Components.g6(0.0f, new f1(this, 15), 0L, 320L, is.f27501g);
+                        this.rightUpdateT = new org.telegram.ui.Components.g6(0.0f, new i1(this, 15), 0L, 320L, js.f27628g);
                     }
                     float d10 = this.rightUpdateT.d(1.0f, false);
                     drawDrawableInfo(canvas, this.newRight, bounds, Math.min(1.0f, 1.5f * d10));

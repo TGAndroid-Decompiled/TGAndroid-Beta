@@ -10,25 +10,25 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.cd;
-import org.telegram.ui.Components.cr;
-import org.telegram.ui.Components.hh0;
-import org.telegram.ui.Components.ms;
-import org.telegram.ui.Components.mv;
+import org.telegram.ui.Components.bd;
+import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.jh0;
+import org.telegram.ui.Components.ns;
+import org.telegram.ui.Components.ov;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class e2 implements View.OnClickListener {
-    public final int f873a;
+    public final int f871a;
 
     public e2(int i10) {
-        this.f873a = i10;
+        this.f871a = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f873a) {
+        switch (this.f871a) {
             case 0:
                 n2.j();
                 return;
@@ -39,12 +39,12 @@ public final class e2 implements View.OnClickListener {
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 3:
-                int i11 = ei.n.f9225n;
+                int i11 = ei.n.f9223n;
                 return;
             case 4:
                 return;
             case 5:
-                int i12 = jh.c.f14172e;
+                int i12 = jh.c.f14170e;
                 return;
             case 6:
                 int i13 = org.telegram.ui.Cells.x.L;
@@ -68,28 +68,28 @@ public final class e2 implements View.OnClickListener {
                 }
                 return;
             case 9:
-                int i14 = cr.f25448e0;
+                int i14 = er.f25764e0;
                 return;
             case 10:
-                int i15 = ms.f28923s;
+                int i15 = ns.f28949s;
                 return;
             case 11:
                 float[] fArr = FragmentContextView.Q0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 12:
-                hh0 hh0Var = hh0.f27101p0;
-                mv mvVar = hh0Var.U;
-                if (mvVar != null) {
-                    mvVar.H();
+                jh0 jh0Var = jh0.f27503p0;
+                ov ovVar = jh0Var.U;
+                if (ovVar != null) {
+                    ovVar.H();
                 } else {
-                    PhotoViewer photoViewer = hh0Var.V;
+                    PhotoViewer photoViewer = jh0Var.V;
                     if (photoViewer != null) {
                         photoViewer.P0();
                         MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                hh0.j(false);
+                jh0.j(false);
                 return;
             case 13:
                 org.telegram.ui.Components.voip.k1.j();
@@ -111,7 +111,7 @@ public final class e2 implements View.OnClickListener {
                 tg.m1.f0(0, null);
                 return;
             case 17:
-                ArrayList arrayList = ExternalActionActivity.f33811x;
+                ArrayList arrayList = ExternalActionActivity.f33586x;
                 return;
             case 18:
                 return;
@@ -143,22 +143,22 @@ public final class e2 implements View.OnClickListener {
                 int i16 = xh.o.A0;
                 return;
             case 25:
-                cd[] cdVarArr = xh.x.f51704p0;
+                bd[] bdVarArr = xh.x.f51801p0;
                 return;
             case 26:
-                int i17 = xh.e0.f51331f0;
+                int i17 = xh.e0.f51429f0;
                 return;
             case 27:
                 int i18 = yh.r0.D0;
                 return;
             default:
-                int i19 = zg.f.f54639e;
+                int i19 = zg.f.f54742e;
                 return;
         }
     }
 
     public e2(Object obj, int i10) {
-        this.f873a = i10;
+        this.f871a = i10;
     }
 
     private final void a(View view) {

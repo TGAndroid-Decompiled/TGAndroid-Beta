@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bz;
-import org.telegram.ui.Components.m61;
-public final class p implements bz {
-    public final r f12608a;
+import org.telegram.ui.Components.dz;
+import org.telegram.ui.Components.q61;
+public final class p implements dz {
+    public final r f12606a;
 
     public p(r rVar) {
-        this.f12608a = rVar;
+        this.f12606a = rVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class p implements bz {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        r rVar = this.f12608a;
-        if (i10 != 0 && (focusedEditTextOrNull = rVar.f12649r.getFocusedEditTextOrNull()) != null) {
+        r rVar = this.f12606a;
+        if (i10 != 0 && (focusedEditTextOrNull = rVar.f12645r.getFocusedEditTextOrNull()) != null) {
             rVar.F = focusedEditTextOrNull;
             rVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        rVar.f12653y = z10;
+        rVar.f12649y = z10;
         rVar.V();
     }
 
@@ -69,7 +69,7 @@ public final class p implements bz {
 
     @Override
     public final boolean k() {
-        i1 P = r.P(this.f12608a);
+        i1 P = r.P(this.f12606a);
         if (P == null || P.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class p implements bz {
 
     @Override
     public final void l(String str) {
-        r rVar = this.f12608a;
+        r rVar = this.f12606a;
         i1 P = r.P(rVar);
         if (P != null) {
             int Q = r.Q(rVar, P);
@@ -104,7 +104,7 @@ public final class p implements bz {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.b6 b6Var;
-        r rVar = this.f12608a;
+        r rVar = this.f12606a;
         i1 P = r.P(rVar);
         if (P != null) {
             int Q = r.Q(rVar, P);
@@ -133,7 +133,7 @@ public final class p implements bz {
 
     @Override
     public final boolean z() {
-        return this.f12608a.f12653y;
+        return this.f12606a.f12649y;
     }
 
     @Override
@@ -141,7 +141,15 @@ public final class p implements bz {
     }
 
     @Override
-    public final void o(m61 m61Var) {
+    public final void n() {
+    }
+
+    @Override
+    public final void o(q61 q61Var) {
+    }
+
+    @Override
+    public final void q() {
     }
 
     @Override
@@ -157,23 +165,15 @@ public final class p implements bz {
     }
 
     @Override
-    public final void y(long j3) {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
     public final void u() {
     }
 
     @Override
     public final void w() {
+    }
+
+    @Override
+    public final void y(long j3) {
     }
 
     @Override

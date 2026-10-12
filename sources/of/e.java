@@ -1,16 +1,16 @@
 package of;
 public class e {
-    public Runnable f17203a;
-    public Runnable f17204b;
-    public Runnable f17205c;
+    public Runnable f16868a;
+    public Runnable f16869b;
+    public Runnable f16870c;
 
     public e(Runnable runnable, Runnable runnable2) {
-        this.f17203a = runnable;
-        this.f17205c = runnable2;
+        this.f16868a = runnable;
+        this.f16870c = runnable2;
     }
 
     public final void a(boolean z10) {
-        Runnable runnable = this.f17204b;
+        Runnable runnable = this.f16869b;
         if (runnable != null) {
             runnable.run();
         }
@@ -22,21 +22,21 @@ public class e {
     }
 
     public void c(boolean z10) {
-        Runnable runnable = this.f17205c;
+        Runnable runnable = this.f16870c;
         if (runnable != null) {
             runnable.run();
         }
     }
 
     public void d() {
-        Runnable runnable = this.f17203a;
+        Runnable runnable = this.f16868a;
         if (runnable != null) {
             runnable.run();
-            this.f17203a = null;
+            this.f16868a = null;
         }
     }
 
     public final void e(Runnable runnable) {
-        this.f17204b = runnable;
+        this.f16869b = runnable;
     }
 }

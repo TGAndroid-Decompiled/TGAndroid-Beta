@@ -1,13 +1,28 @@
 package org.telegram.messenger;
+public final class v3 implements Runnable {
+    public final int f19155a;
+    public final FileUploadOperation f19156b;
 
-import android.app.Notification;
-import android.graphics.SurfaceTexture;
-public abstract class v3 {
-    public static Notification.Builder a(FilesMigrationService filesMigrationService, String str) {
-        return new Notification.Builder(filesMigrationService, str);
+    public v3(FileUploadOperation fileUploadOperation, int i10) {
+        this.f19155a = i10;
+        this.f19156b = fileUploadOperation;
     }
 
-    public static SurfaceTexture b() {
-        return new SurfaceTexture(false);
+    @Override
+    public final void run() {
+        switch (this.f19155a) {
+            case 0:
+                FileUploadOperation.f(this.f19156b);
+                return;
+            case 1:
+                FileUploadOperation.e(this.f19156b);
+                return;
+            case 2:
+                FileUploadOperation.d(this.f19156b);
+                return;
+            default:
+                FileUploadOperation.b(this.f19156b);
+                return;
+        }
     }
 }

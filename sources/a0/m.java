@@ -12,13 +12,13 @@ public class m {
         int[] iArr;
         Object[] objArr;
         if (i10 == 0) {
-            iArr = b0.a.f3186a;
+            iArr = b0.a.f3184a;
         } else {
             iArr = new int[i10];
         }
         this.f31a = iArr;
         if (i10 == 0) {
-            objArr = b0.a.f3188c;
+            objArr = b0.a.f3186c;
         } else {
             objArr = new Object[i10 << 1];
         }
@@ -77,8 +77,8 @@ public class m {
 
     public final void clear() {
         if (this.f33c > 0) {
-            this.f31a = b0.a.f3186a;
-            this.f32b = b0.a.f3188c;
+            this.f31a = b0.a.f3184a;
+            this.f32b = b0.a.f3186c;
             this.f33c = 0;
         }
         if (this.f33c <= 0) {
@@ -129,7 +129,7 @@ public class m {
         if (i10 >= 0 && i10 < this.f33c) {
             return this.f32b[i10 << 1];
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final boolean equals(Object obj) {
@@ -233,7 +233,7 @@ public class m {
             }
             throw new ConcurrentModificationException();
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final Object g(int i10, Object obj) {
@@ -244,7 +244,7 @@ public class m {
             objArr[i11] = obj;
             return obj2;
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public Object get(Object obj) {
@@ -267,7 +267,7 @@ public class m {
         if (i10 >= 0 && i10 < this.f33c) {
             return this.f32b[(i10 << 1) + 1];
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(hg.c.i(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final int hashCode() {

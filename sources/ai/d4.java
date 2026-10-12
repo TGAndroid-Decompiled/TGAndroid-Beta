@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.pb0;
-public final class d4 extends pb0 {
+import org.telegram.ui.Components.tb0;
+public final class d4 extends tb0 {
     public final f6 V;
 
-    public d4(f6 f6Var, Context context, long j3, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, j3, 0L, m2Var, d6Var);
+    public d4(f6 f6Var, Context context, long j3, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, j3, 0L, m2Var, c6Var);
         this.V = f6Var;
     }
 
@@ -23,10 +23,10 @@ public final class d4 extends pb0 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7953a);
-        canvas.drawRoundRect(rectF, f7, f7, f6Var.f989n2);
+        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f7950a);
+        canvas.drawRoundRect(rectF, f7, f7, f6Var.f987n2);
         if (rectF.top < getMeasuredHeight() - 1) {
-            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, f6Var.B0.F("paintDivider"));
+            canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, f6Var.B0.G("paintDivider"));
         }
     }
 }

@@ -1,5 +1,4 @@
 package org.telegram.ui;
-
-import android.widget.LinearLayout;
-public final class bu extends LinearLayout {
+public interface bu {
+    void V0(xt xtVar);
 }

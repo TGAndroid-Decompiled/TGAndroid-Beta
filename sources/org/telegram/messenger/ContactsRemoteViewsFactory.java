@@ -172,7 +172,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                                 j9Var.g(1);
                             }
                         } else {
-                            org.telegram.ui.Components.j9 j9Var2 = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.d6) null);
+                            org.telegram.ui.Components.j9 j9Var2 = new org.telegram.ui.Components.j9((org.telegram.ui.ActionBar.c6) null);
                             j9Var2.k(this.accountInstance.getCurrentAccount(), chat);
                             j9Var = j9Var2;
                         }

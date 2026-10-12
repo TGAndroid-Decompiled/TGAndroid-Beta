@@ -1,22 +1,24 @@
 package org.telegram.ui;
+public final class si implements org.telegram.ui.Components.ai0 {
+    public boolean f41930a = true;
+    public final org.telegram.ui.Components.nl0 f41931b;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class si extends org.telegram.ui.Components.zo {
-    public final zn M;
-
-    public si(zn znVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity, i10, document, d6Var);
-        this.M = znVar;
+    public si(org.telegram.ui.Components.nl0 nl0Var) {
+        this.f41931b = nl0Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        float y3 = getY();
-        zn znVar = this.M;
-        float y10 = znVar.R0.getY() + y3;
-        this.J = znVar.X0.getBackgroundSizeY();
-        this.I = y10;
+    public final void a(float f7, float f10) {
+        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        org.telegram.ui.Components.nl0 nl0Var = this.f41931b;
+        if (i10 == 0 && !this.f41930a) {
+            nl0Var.r(false);
+            this.f41930a = true;
+        } else if (f7 == 1.0f && this.f41930a) {
+            nl0Var.setAlpha(1.0f - f10);
+            if (f10 == 1.0f) {
+                this.f41930a = false;
+            }
+        }
     }
 }

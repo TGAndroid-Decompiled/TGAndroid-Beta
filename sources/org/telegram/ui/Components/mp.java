@@ -1,29 +1,53 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-public final class mp implements Utilities.Callback {
-    public final int f28903a;
-    public final cq f28904b;
+import org.telegram.ui.db1;
+public final class mp implements Runnable {
+    public final int f28615a;
+    public final eq f28616b;
 
-    public mp(cq cqVar, int i10) {
-        this.f28903a = i10;
-        this.f28904b = cqVar;
+    public mp(eq eqVar, int i10) {
+        this.f28615a = i10;
+        this.f28616b = eqVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f28903a) {
+    public final void run() {
+        switch (this.f28615a) {
             case 0:
-                cq cqVar = this.f28904b;
-                cqVar.f25431f0 = (TL_stories.TL_premium_boostsStatus) obj;
-                cqVar.f25429e0 = true;
-                cqVar.G(true);
-                cqVar.f25427d0 = false;
+                this.f28616b.h.l();
+                return;
+            case 1:
+                this.f28616b.u(true);
+                return;
+            case 2:
+                eq eqVar = this.f28616b;
+                org.telegram.ui.eo eoVar = eqVar.v;
+                org.telegram.ui.ActionBar.m2 d02 = db1.d0(eoVar.getMessagesController().getChat(Long.valueOf(-eoVar.a())), true);
+                ?? obj = new Object();
+                obj.f21087a = true;
+                d02.setResourceProvider(eoVar.getResourceProvider());
+                obj.f21089c = new xh(2);
+                obj.d = new mp(eqVar, 3);
+                obj.f21088b = new mp(eqVar, 4);
+                obj.f21090e = true;
+                eqVar.X = d02;
+                eoVar.showAsSheet(d02, obj);
+                return;
+            case 3:
+                this.f28616b.w();
+                return;
+            case 4:
+                this.f28616b.X = null;
+                return;
+            case 5:
+                this.f28616b.w();
+                return;
+            case 6:
+                this.f28616b.X = null;
                 return;
             default:
-                cq.o(this.f28904b, (ChannelBoostsController.CanApplyBoost) obj);
+                eq eqVar2 = this.f28616b;
+                eqVar2.U.f(eqVar2.G, true);
                 return;
         }
     }

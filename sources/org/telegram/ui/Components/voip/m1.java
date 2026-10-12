@@ -9,15 +9,15 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import w7.x5;
+import w7.w5;
 public final class m1 extends FrameLayout {
-    public final r1 f32167a;
-    public final RectF f32168b;
+    public final r1 f31803a;
+    public final RectF f31804b;
 
     public m1(Context context, r1 r1Var) {
         super(context);
-        this.f32168b = new RectF();
-        this.f32167a = r1Var;
+        this.f31804b = new RectF();
+        this.f31803a = r1Var;
         r1Var.a(this);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
@@ -31,17 +31,17 @@ public final class m1 extends FrameLayout {
         textView2.setTextColor(-1);
         textView2.setGravity(1);
         textView2.setText(LocaleController.getString(R.string.VoipRateCallDescription));
-        addView(textView, x5.a(-2.0f, 0.0f, 24.0f, 0.0f, 0.0f, -1, 3));
-        addView(textView2, x5.a(-2.0f, 0.0f, 50.0f, 0.0f, 0.0f, -1, 3));
+        addView(textView, w5.a(-2.0f, 0.0f, 24.0f, 0.0f, 0.0f, -1, 3));
+        addView(textView2, w5.a(-2.0f, 0.0f, 50.0f, 0.0f, 0.0f, -1, 3));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f32168b;
+        RectF rectF = this.f31804b;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         float x10 = ((View) getParent()).getX() + getX();
         float y3 = ((View) getParent()).getY() + getY();
-        r1 r1Var = this.f32167a;
+        r1 r1Var = this.f31803a;
         r1Var.d(x10, y3);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), r1Var.b());
         super.dispatchDraw(canvas);

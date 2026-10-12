@@ -2,15 +2,15 @@ package ci;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class a9 implements org.telegram.ui.Components.qb {
-    public final int f4728a;
+    public final int f4727a;
 
     public a9(int i10) {
-        this.f4728a = i10;
+        this.f4727a = i10;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f4728a) {
+        switch (this.f4727a) {
             case 0:
                 return true;
             case 1:
@@ -50,22 +50,22 @@ public final class a9 implements org.telegram.ui.Components.qb {
 
     @Override
     public final void b(org.telegram.ui.Components.sc scVar) {
-        int i10 = this.f4728a;
+        int i10 = this.f4727a;
     }
 
     @Override
     public final void c(float f7) {
-        int i10 = this.f4728a;
+        int i10 = this.f4727a;
     }
 
     @Override
     public final void d(org.telegram.ui.Components.sc scVar) {
-        int i10 = this.f4728a;
+        int i10 = this.f4727a;
     }
 
     @Override
     public final boolean e() {
-        switch (this.f4728a) {
+        switch (this.f4727a) {
             case 0:
                 return true;
             case 1:
@@ -107,7 +107,7 @@ public final class a9 implements org.telegram.ui.Components.qb {
     public final int f(int i10) {
         int i11;
         int dp;
-        switch (this.f4728a) {
+        switch (this.f4727a) {
             case 0:
                 return 0;
             case 1:
@@ -152,7 +152,7 @@ public final class a9 implements org.telegram.ui.Components.qb {
 
     @Override
     public final boolean g(int i10) {
-        switch (this.f4728a) {
+        switch (this.f4727a) {
             case 0:
                 return false;
             case 1:
@@ -192,7 +192,7 @@ public final class a9 implements org.telegram.ui.Components.qb {
 
     @Override
     public final int h(int i10) {
-        switch (this.f4728a) {
+        switch (this.f4727a) {
             case 0:
                 return AndroidUtilities.statusBarHeight;
             case 1:

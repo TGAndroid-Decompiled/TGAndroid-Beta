@@ -2,25 +2,25 @@ package g2;
 
 import java.io.IOException;
 public class j extends IOException {
-    public static final int f10253b = 0;
-    public final int f10254a;
+    public static final int f10252b = 0;
+    public final int f10253a;
 
     public j(int i10) {
-        this.f10254a = i10;
+        this.f10253a = i10;
     }
 
     public j(Exception exc, int i10) {
         super(exc);
-        this.f10254a = i10;
+        this.f10253a = i10;
     }
 
     public j(String str, int i10) {
         super(str);
-        this.f10254a = i10;
+        this.f10253a = i10;
     }
 
     public j(String str, Exception exc, int i10) {
         super(str, exc);
-        this.f10254a = i10;
+        this.f10253a = i10;
     }
 }

@@ -7,16 +7,16 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class b extends FutureTask {
-    public final a f50579a;
+    public final a f50686a;
 
     public b(a aVar, x xVar) {
         super(xVar);
-        this.f50579a = aVar;
+        this.f50686a = aVar;
     }
 
     @Override
     public final void done() {
-        a aVar = this.f50579a;
+        a aVar = this.f50686a;
         AtomicBoolean atomicBoolean = aVar.d;
         try {
             Object obj = get();

@@ -1,48 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class qt0 extends g.o {
-    public final int f30326c;
-    public final Object d;
-    public final ViewGroup f30327e;
-
-    public qt0(ViewGroup viewGroup, Object obj, int i10) {
-        this.f30326c = i10;
-        this.f30327e = viewGroup;
-        this.d = obj;
-    }
-
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class qt0 extends ViewOutlineProvider {
     @Override
-    public final int i(int i10) {
-        int i11;
-        switch (this.f30326c) {
-            case 0:
-                vu0 vu0Var = (vu0) this.d;
-                s4.i0 adapter = vu0Var.f32556r.getAdapter();
-                cw0 cw0Var = (cw0) this.f30327e;
-                wv0 wv0Var = cw0Var.I;
-                if (adapter == wv0Var) {
-                    if (wv0Var.j(i10) != 2) {
-                        return 1;
-                    }
-                    return vu0Var.f32557s.J;
-                } else if (cw0.v(cw0Var, adapter) == -1) {
-                    return 1;
-                } else {
-                    ((zv0) adapter).getClass();
-                    return 1;
-                }
-            default:
-                bi.i iVar = (bi.i) this.d;
-                d71 d71Var = ((l71) this.f30327e).W2;
-                if (d71Var == null) {
-                    return iVar.J;
-                }
-                q61 G = d71Var.G(i10);
-                if (G == null || (i11 = G.f30176u) == -1) {
-                    return iVar.J;
-                }
-                return i11;
-        }
+    public final void getOutline(View view, Outline outline) {
+        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(16.0f));
     }
 }

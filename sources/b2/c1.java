@@ -2,15 +2,15 @@ package b2;
 
 import android.os.Bundle;
 public abstract class c1 {
-    public static final String f3263a;
+    public static final String f3261a;
 
     static {
-        String str = e2.d0.f8531a;
-        f3263a = Integer.toString(0, 36);
+        String str = e2.d0.f8529a;
+        f3261a = Integer.toString(0, 36);
     }
 
     public static c1 a(Bundle bundle) {
-        String str = f3263a;
+        String str = f3261a;
         int i10 = bundle.getInt(str, -1);
         boolean z10 = false;
         boolean z11 = true;
@@ -24,11 +24,11 @@ public abstract class c1 {
                         }
                         e2.d.b(z11);
                         if (bundle.getBoolean(f1.d, false)) {
-                            return new f1(bundle.getBoolean(f1.f3311e, false));
+                            return new f1(bundle.getBoolean(f1.f3309e, false));
                         }
                         return new f1();
                     }
-                    throw new IllegalArgumentException(hg.c.h(i10, "Unknown RatingType: "));
+                    throw new IllegalArgumentException(hg.c.i(i10, "Unknown RatingType: "));
                 }
                 String str3 = d1.d;
                 if (bundle.getInt(str, -1) == 2) {
@@ -36,18 +36,18 @@ public abstract class c1 {
                 }
                 e2.d.b(z10);
                 int i11 = bundle.getInt(d1.d, 5);
-                float f7 = bundle.getFloat(d1.f3268e, -1.0f);
+                float f7 = bundle.getFloat(d1.f3266e, -1.0f);
                 if (f7 == -1.0f) {
                     return new d1(i11);
                 }
                 return new d1(i11, f7);
             }
-            String str4 = t0.f3658c;
+            String str4 = t0.f3656c;
             if (bundle.getInt(str, -1) == 1) {
                 z10 = true;
             }
             e2.d.b(z10);
-            float f10 = bundle.getFloat(t0.f3658c, -1.0f);
+            float f10 = bundle.getFloat(t0.f3656c, -1.0f);
             if (f10 == -1.0f) {
                 return new t0();
             }
@@ -59,7 +59,7 @@ public abstract class c1 {
         }
         e2.d.b(z11);
         if (bundle.getBoolean(u.d, false)) {
-            return new u(bundle.getBoolean(u.f3661e, false));
+            return new u(bundle.getBoolean(u.f3659e, false));
         }
         return new u();
     }

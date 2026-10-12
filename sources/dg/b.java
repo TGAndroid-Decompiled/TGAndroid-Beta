@@ -4,11 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import java.util.List;
 public final class b extends BitmapDrawable {
-    public final List f8351a;
+    public final List f8349a;
 
     public b(Bitmap bitmap, List list) {
         super(bitmap);
-        this.f8351a = list;
+        this.f8349a = list;
     }
 
     public static BitmapDrawable a(Bitmap bitmap, List list) {

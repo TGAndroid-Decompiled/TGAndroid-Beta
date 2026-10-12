@@ -5,90 +5,90 @@ import android.os.Message;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 public final class b extends Handler {
-    public final ArrayList f45388a = new ArrayList();
-    public final ArrayList f45389b = new ArrayList();
-    public final e f45390c;
+    public final ArrayList f45206a = new ArrayList();
+    public final ArrayList f45207b = new ArrayList();
+    public final e f45208c;
 
     public b(e eVar) {
-        this.f45390c = eVar;
+        this.f45208c = eVar;
     }
 
-    public static void a(t tVar, int i10, Object obj, int i11) {
-        v vVar;
-        v vVar2;
+    public static void a(u uVar, int i10, Object obj, int i11) {
+        w wVar;
+        w wVar2;
         boolean z10;
-        x xVar = tVar.f45504a;
-        s sVar = tVar.f45505b;
+        y yVar = uVar.f45320a;
+        t tVar = uVar.f45321b;
         int i12 = 65280 & i10;
         if (i12 != 256) {
             if (i12 != 512) {
                 if (i12 == 768 && i10 == 769) {
-                    sVar.l((z) obj);
+                    tVar.l((a0) obj);
                     return;
                 }
                 return;
             }
-            u uVar = (u) obj;
+            v vVar = (v) obj;
             switch (i10) {
                 case 513:
-                    sVar.a();
+                    tVar.a();
                     return;
                 case 514:
-                    sVar.c();
+                    tVar.c();
                     return;
                 case 515:
-                    sVar.b();
+                    tVar.b();
                     return;
                 default:
                     return;
             }
         }
         if (i10 != 264 && i10 != 262) {
-            vVar = (v) obj;
+            wVar = (w) obj;
         } else {
-            vVar = (v) ((q0.b) obj).f46008b;
+            wVar = (w) ((q0.b) obj).f45836b;
         }
         if (i10 != 264 && i10 != 262) {
-            vVar2 = null;
+            wVar2 = null;
         } else {
-            vVar2 = (v) ((q0.b) obj).f46007a;
+            wVar2 = (w) ((q0.b) obj).f45835a;
         }
-        if (vVar != null) {
+        if (wVar != null) {
             boolean z11 = true;
-            if ((tVar.d & 2) == 0 && !vVar.h(tVar.f45506c)) {
-                z zVar = x.c().f45413u;
-                if (zVar == null) {
+            if ((uVar.d & 2) == 0 && !wVar.h(uVar.f45322c)) {
+                a0 a0Var = y.c().f45232u;
+                if (a0Var == null) {
                     z10 = false;
                 } else {
-                    z10 = zVar.d;
+                    z10 = a0Var.d;
                 }
-                z11 = (z10 && vVar.d() && i10 == 262 && i11 == 3 && vVar2 != null) ? true ^ vVar2.d() : false;
+                z11 = (z10 && wVar.d() && i10 == 262 && i11 == 3 && wVar2 != null) ? true ^ wVar2.d() : false;
             }
             if (z11) {
                 switch (i10) {
                     case 257:
-                        sVar.d(vVar);
+                        tVar.d(wVar);
                         return;
                     case 258:
-                        sVar.f(vVar);
+                        tVar.f(wVar);
                         return;
                     case 259:
-                        sVar.e(vVar);
+                        tVar.e(wVar);
                         return;
                     case 260:
-                        sVar.k(vVar);
+                        tVar.k(wVar);
                         return;
                     case 261:
-                        sVar.getClass();
+                        tVar.getClass();
                         return;
                     case 262:
-                        sVar.h(xVar, vVar, i11);
+                        tVar.h(yVar, wVar, i11);
                         return;
                     case 263:
-                        sVar.j(xVar, vVar, i11);
+                        tVar.j(yVar, wVar, i11);
                         return;
                     case 264:
-                        sVar.h(xVar, vVar, i11);
+                        tVar.h(yVar, wVar, i11);
                         return;
                     default:
                         return;
@@ -104,52 +104,52 @@ public final class b extends Handler {
     @Override
     public final void handleMessage(Message message) {
         int q6;
-        ArrayList arrayList = this.f45388a;
-        e eVar = this.f45390c;
-        ArrayList arrayList2 = eVar.f45401i;
-        j0 j0Var = eVar.f45411s;
+        ArrayList arrayList = this.f45206a;
+        e eVar = this.f45208c;
+        ArrayList arrayList2 = eVar.f45220i;
+        k0 k0Var = eVar.f45230s;
         int i10 = message.what;
         Object obj = message.obj;
         int i11 = message.arg1;
-        if (i10 == 259 && eVar.e().f45516c.equals(((v) obj).f45516c)) {
+        if (i10 == 259 && eVar.e().f45338c.equals(((w) obj).f45338c)) {
             eVar.o(true);
         }
         int i12 = 0;
-        ArrayList arrayList3 = this.f45389b;
+        ArrayList arrayList3 = this.f45207b;
         if (i10 != 262) {
             if (i10 != 264) {
                 switch (i10) {
                     case 257:
-                        j0Var.v((v) obj);
+                        k0Var.v((w) obj);
                         break;
                     case 258:
-                        j0Var.w((v) obj);
+                        k0Var.w((w) obj);
                         break;
                     case 259:
-                        v vVar = (v) obj;
-                        j0Var.getClass();
-                        if (vVar.c() != j0Var && (q6 = j0Var.q(vVar)) >= 0) {
-                            j0Var.C((i0) j0Var.H.get(q6));
+                        w wVar = (w) obj;
+                        k0Var.getClass();
+                        if (wVar.c() != k0Var && (q6 = k0Var.q(wVar)) >= 0) {
+                            k0Var.C((j0) k0Var.H.get(q6));
                             break;
                         }
                         break;
                 }
             } else {
-                v vVar2 = (v) ((q0.b) obj).f46008b;
-                arrayList3.add(vVar2);
-                j0Var.v(vVar2);
-                j0Var.x(vVar2);
+                w wVar2 = (w) ((q0.b) obj).f45836b;
+                arrayList3.add(wVar2);
+                k0Var.v(wVar2);
+                k0Var.x(wVar2);
             }
         } else {
-            v vVar3 = (v) ((q0.b) obj).f46008b;
-            j0Var.x(vVar3);
-            if (eVar.v != null && vVar3.d()) {
+            w wVar3 = (w) ((q0.b) obj).f45836b;
+            k0Var.x(wVar3);
+            if (eVar.v != null && wVar3.d()) {
                 int size = arrayList3.size();
                 int i13 = 0;
                 while (i13 < size) {
                     Object obj2 = arrayList3.get(i13);
                     i13++;
-                    j0Var.w((v) obj2);
+                    k0Var.w((w) obj2);
                 }
                 arrayList3.clear();
             }
@@ -159,18 +159,18 @@ public final class b extends Handler {
             while (true) {
                 size2--;
                 if (size2 >= 0) {
-                    x xVar = (x) ((WeakReference) arrayList2.get(size2)).get();
-                    if (xVar == null) {
+                    y yVar = (y) ((WeakReference) arrayList2.get(size2)).get();
+                    if (yVar == null) {
                         arrayList2.remove(size2);
                     } else {
-                        arrayList.addAll(xVar.f45536b);
+                        arrayList.addAll(yVar.f45358b);
                     }
                 } else {
                     int size3 = arrayList.size();
                     while (i12 < size3) {
                         Object obj3 = arrayList.get(i12);
                         i12++;
-                        a((t) obj3, i10, obj, i11);
+                        a((u) obj3, i10, obj, i11);
                     }
                     arrayList.clear();
                     return;

@@ -6,20 +6,20 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public final class s3 extends o1 {
-    public final kc f1698h0;
-    public final f6 f1699i0;
+    public final kc f1696h0;
+    public final f6 f1697i0;
 
     public s3(f6 f6Var, Context context, kc kcVar, zb zbVar, View view, FrameLayout frameLayout, kc kcVar2) {
         super(context, kcVar, zbVar, view, frameLayout);
-        this.f1699i0 = f6Var;
-        this.f1698h0 = kcVar2;
+        this.f1697i0 = f6Var;
+        this.f1696h0 = kcVar2;
     }
 
     @Override
     public final TLRPC.Peer getDefaultSendAs() {
-        d2 d2Var = this.f1698h0.A0;
+        d2 d2Var = this.f1696h0.A0;
         if (d2Var != null) {
             return d2Var.i();
         }
@@ -28,11 +28,11 @@ public final class s3 extends o1 {
 
     @Override
     public final void h(long j3) {
-        x2 x2Var = this.f1699i0.Y1;
+        x2 x2Var = this.f1697i0.Y1;
         if (x2Var != null) {
             ArrayList arrayList = x2Var.h;
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (((w2) arrayList.get(i10)).f1843a == j3) {
+                if (((w2) arrayList.get(i10)).f1841a == j3) {
                     ((w2) arrayList.get(i10)).h = true;
                 }
             }
@@ -42,11 +42,11 @@ public final class s3 extends o1 {
     @Override
     public final void i(int i10, int i11, long j3) {
         boolean z10;
-        x2 x2Var = this.f1699i0.Y1;
+        x2 x2Var = this.f1697i0.Y1;
         if (x2Var == null) {
             return;
         }
-        int i12 = x2Var.f1895a;
+        int i12 = x2Var.f1893a;
         ArrayList arrayList = x2Var.h;
         if (arrayList.size() < 5) {
             z10 = true;
@@ -60,7 +60,7 @@ public final class s3 extends o1 {
     @Override
     public final void j() {
         boolean z10;
-        f6 f6Var = this.f1699i0;
+        f6 f6Var = this.f1697i0;
         f6Var.Z1.setCount((int) getStarsCount());
         y2 y2Var = f6Var.Z1;
         if (this.W != null) {
@@ -74,14 +74,14 @@ public final class s3 extends o1 {
     @Override
     public final void q(boolean z10, boolean z11) {
         float f7;
-        if (!z11 || this.f1515f0 != z10) {
-            this.f1515f0 = z10;
-            ValueAnimator valueAnimator = this.f1513e0;
+        if (!z11 || this.f1513f0 != z10) {
+            this.f1513f0 = z10;
+            ValueAnimator valueAnimator = this.f1511e0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f1513e0 = null;
+                this.f1511e0 = null;
             }
-            w0 w0Var = this.f1509c;
+            w0 w0Var = this.f1507c;
             w0Var.invalidate();
             float f10 = 1.0f;
             if (z11) {
@@ -90,19 +90,19 @@ public final class s3 extends o1 {
                     f10 = 0.0f;
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f10);
-                this.f1513e0 = ofFloat;
+                this.f1511e0 = ofFloat;
                 ofFloat.addUpdateListener(new a(this, 3));
-                this.f1513e0.addListener(new n(1, this, z10));
-                this.f1513e0.setDuration(420L);
-                this.f1513e0.setInterpolator(is.h);
-                this.f1513e0.start();
+                this.f1511e0.addListener(new n(1, this, z10));
+                this.f1511e0.setDuration(420L);
+                this.f1511e0.setInterpolator(js.h);
+                this.f1511e0.start();
             } else {
                 if (z10) {
                     f7 = 0.0f;
                 } else {
                     f7 = 0.5f;
                 }
-                this.f1505a.setAlpha(f7);
+                this.f1503a.setAlpha(f7);
                 if (z10) {
                     f10 = 0.0f;
                 }
@@ -110,7 +110,7 @@ public final class s3 extends o1 {
             }
             invalidate();
         }
-        c cVar = this.f1699i0.X1;
+        c cVar = this.f1697i0.X1;
         if (cVar != null) {
             cVar.a(z10, z11);
         }
@@ -119,6 +119,6 @@ public final class s3 extends o1 {
     @Override
     public final void setVisibility(int i10) {
         super.setVisibility(i10);
-        this.f1699i0.M0.setVisibility(i10);
+        this.f1697i0.M0.setVisibility(i10);
     }
 }

@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface wi {
-    void B0();
+import android.content.Context;
+import android.view.MotionEvent;
+public final class wi extends v20 {
+    public final aj J;
 
-    void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10);
+    public wi(Context context, org.telegram.ui.ActionBar.c6 c6Var, aj ajVar) {
+        super(context, c6Var);
+        this.J = ajVar;
+    }
 
-    void P0();
+    @Override
+    public int[] getColorKeys() {
+        return null;
+    }
 
-    boolean Y1();
-
-    void a1(Object obj);
-
-    void c2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10);
-
-    void f0(jh jhVar);
-
-    boolean i0();
-
-    void p1(TLRPC.User user);
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        this.J.w1(this.f31362r, true);
+        return super.onInterceptTouchEvent(motionEvent);
+    }
 }

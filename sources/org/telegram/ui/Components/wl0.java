@@ -1,87 +1,214 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.util.SparseArray;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.HashSet;
-public final class wl0 {
-    public final rm0 f32729a;
-    public boolean d;
-    public final boolean f32732e;
-    public final SparseArray f32730b = new SparseArray();
-    public final HashSet f32731c = new HashSet();
-    public final boolean f32733f = true;
-    public final ArrayList f32734g = new ArrayList();
-    public final ArrayList h = new ArrayList();
+import java.util.HashMap;
+public final class wl0 implements View.OnLayoutChangeListener {
+    public final s4.i0 f32435a;
+    public final ArrayList f32436b;
+    public final boolean f32437c;
+    public final xl0 d;
+    public final zl0 f32438e;
 
-    public wl0(rm0 rm0Var, boolean z10) {
-        this.f32729a = rm0Var;
-        this.f32732e = z10;
-        rm0Var.setItemsEnterAnimator(this);
+    public wl0(zl0 zl0Var, s4.i0 i0Var, ArrayList arrayList, boolean z10, xl0 xl0Var) {
+        this.f32438e = zl0Var;
+        this.f32435a = i0Var;
+        this.f32436b = arrayList;
+        this.f32437c = z10;
+        this.d = xl0Var;
     }
 
-    public final void a() {
-        ArrayList arrayList = this.f32734g;
-        int i10 = 0;
-        if (!arrayList.isEmpty()) {
-            ArrayList arrayList2 = new ArrayList(arrayList);
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                ((AnimatorSet) arrayList2.get(i11)).end();
-                ((AnimatorSet) arrayList2.get(i11)).cancel();
-            }
-        }
-        arrayList.clear();
+    @Override
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        final ArrayList arrayList;
+        int i18;
+        int height;
+        int i19;
+        long min;
+        View view2;
+        zl0 zl0Var = this.f32438e;
+        HashMap hashMap = (HashMap) zl0Var.f33437k;
+        wm0 wm0Var = (wm0) zl0Var.f33432e;
+        wm0Var.removeOnLayoutChangeListener(this);
+        final ArrayList arrayList2 = new ArrayList();
+        wm0Var.B0();
+        int childCount = wm0Var.getChildCount();
+        int i20 = 0;
+        int i21 = 0;
+        int i22 = 0;
+        int i23 = 0;
+        boolean z10 = false;
         while (true) {
-            ArrayList arrayList3 = this.h;
-            int size = arrayList3.size();
-            rm0 rm0Var = this.f32729a;
-            if (i10 < size) {
-                rm0Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i10));
-                i10++;
+            arrayList = this.f32436b;
+            if (i20 >= childCount) {
+                break;
+            }
+            View childAt = wm0Var.getChildAt(i20);
+            arrayList2.add(childAt);
+            if (childAt.getTop() < i21) {
+                i21 = childAt.getTop();
+            }
+            if (childAt.getBottom() > i22) {
+                i22 = childAt.getBottom();
+            }
+            if (childAt instanceof org.telegram.ui.Cells.o4) {
+                ((org.telegram.ui.Cells.o4) childAt).c(true, false);
+            }
+            s4.i0 i0Var = this.f32435a;
+            if (i0Var != null && (i0Var.f47944b || zl0Var.f33431c)) {
+                wm0Var.getClass();
+                long i24 = i0Var.i(RecyclerView.R(childAt));
+                if (hashMap.containsKey(Long.valueOf(i24)) && (view2 = (View) hashMap.get(Long.valueOf(i24))) != null) {
+                    if (view2 instanceof org.telegram.ui.Cells.o4) {
+                        ((org.telegram.ui.Cells.o4) view2).c(false, false);
+                    }
+                    arrayList.remove(view2);
+                    w7.x5 x5Var = (w7.x5) zl0Var.f33435i;
+                    if (x5Var != null) {
+                        x5Var.d(view2);
+                    }
+                    int top = childAt.getTop() - view2.getTop();
+                    if (top != 0) {
+                        i23 = top;
+                    }
+                    z10 = true;
+                }
+            }
+            i20++;
+        }
+        hashMap.clear();
+        int size = arrayList.size();
+        int i25 = 0;
+        int i26 = 0;
+        int i27 = Integer.MAX_VALUE;
+        while (i26 < size) {
+            Object obj = arrayList.get(i26);
+            i26++;
+            View view3 = (View) obj;
+            int bottom = view3.getBottom();
+            int top2 = view3.getTop();
+            if (bottom > i25) {
+                i25 = bottom;
+            }
+            if (top2 < i27) {
+                i27 = top2;
+            }
+            if (view3.getParent() == null) {
+                wm0Var.addView(view3);
+                ((s4.d0) zl0Var.f33433f).M(view3);
+            }
+            if (view3 instanceof org.telegram.ui.Cells.o4) {
+                ((org.telegram.ui.Cells.o4) view3).c(true, true);
+            }
+        }
+        if (i27 == Integer.MAX_VALUE) {
+            i18 = 0;
+        } else {
+            i18 = i27;
+        }
+        w7.x5 x5Var2 = (w7.x5) zl0Var.f33435i;
+        if (x5Var2 != null) {
+            x5Var2.b();
+        }
+        if (arrayList.isEmpty()) {
+            i19 = Math.abs(i23);
+        } else {
+            boolean z11 = this.f32437c;
+            if (!z11) {
+                i25 = wm0Var.getHeight() - i18;
+            }
+            if (z11) {
+                height = -i21;
             } else {
-                arrayList3.clear();
-                this.f32730b.clear();
-                rm0Var.invalidate();
-                this.d = true;
-                return;
+                height = i22 - wm0Var.getHeight();
             }
+            i19 = height + i25;
         }
-    }
-
-    public final void b(int i10) {
-        Animator ofFloat;
-        rm0 rm0Var = this.f32729a;
-        int childCount = rm0Var.getChildCount();
-        k10 k10Var = null;
-        for (int i11 = 0; i11 < childCount; i11++) {
-            View childAt = rm0Var.getChildAt(i11);
-            if (RecyclerView.R(childAt) >= 0 && (childAt instanceof k10)) {
-                k10Var = childAt;
+        final int paddingBottom = wm0Var.getPaddingBottom();
+        ValueAnimator valueAnimator = (ValueAnimator) zl0Var.f33434g;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            ((ValueAnimator) zl0Var.f33434g).cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        zl0Var.f33434g = ofFloat;
+        final boolean z12 = this.f32437c;
+        final int i28 = i19;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                boolean z13;
+                int i29;
+                zl0 zl0Var2 = wl0.this.f32438e;
+                wm0 wm0Var2 = (wm0) zl0Var2.f33432e;
+                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                ArrayList arrayList3 = arrayList;
+                int size2 = arrayList3.size();
+                int i30 = 0;
+                while (true) {
+                    z13 = z12;
+                    i29 = i28;
+                    if (i30 >= size2) {
+                        break;
+                    }
+                    View view4 = (View) arrayList3.get(i30);
+                    float y3 = view4.getY();
+                    if (view4.getY() + view4.getMeasuredHeight() >= 0.0f && y3 <= wm0Var2.getMeasuredHeight()) {
+                        if (z13) {
+                            view4.setTranslationY((-i29) * floatValue);
+                        } else {
+                            view4.setTranslationY(i29 * floatValue);
+                        }
+                    }
+                    i30++;
+                }
+                int paddingBottom2 = paddingBottom - wm0Var2.getPaddingBottom();
+                ArrayList arrayList4 = arrayList2;
+                int size3 = arrayList4.size();
+                for (int i31 = 0; i31 < size3; i31++) {
+                    View view5 = (View) arrayList4.get(i31);
+                    if (z13) {
+                        view5.setTranslationY(((1.0f - floatValue) * i29) + paddingBottom2);
+                    } else {
+                        view5.setTranslationY((1.0f - floatValue) * (-i29));
+                    }
+                }
+                wm0Var2.invalidate();
+                yl0 yl0Var = (yl0) zl0Var2.h;
+                if (yl0Var != null) {
+                    yl0Var.a();
+                }
             }
-        }
-        s4.p0 layoutManager = rm0Var.getLayoutManager();
-        if (k10Var != null && layoutManager != null) {
-            rm0Var.removeView(k10Var);
-            this.f32731c.add(k10Var);
-            rm0Var.addView(k10Var);
-            layoutManager.M(k10Var);
-            if (this.f32733f) {
-                ofFloat = ObjectAnimator.ofFloat(k10Var, View.ALPHA, k10Var.getAlpha(), 0.0f);
+        });
+        ((ValueAnimator) zl0Var.f33434g).addListener(new ai.z(28, this, arrayList2));
+        long j3 = 300;
+        if (zl0Var.d) {
+            if (z10) {
+                ((ValueAnimator) zl0Var.f33434g).setDuration(150L);
+                ((ValueAnimator) zl0Var.f33434g).setInterpolator(js.f27628g);
             } else {
-                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                long measuredHeight = ((i28 / wm0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
+                if (measuredHeight >= 300) {
+                    j3 = measuredHeight;
+                }
+                ((ValueAnimator) zl0Var.f33434g).setDuration(Math.min(j3, 1300L));
+                ((ValueAnimator) zl0Var.f33434g).setInterpolator(js.h);
             }
-            ofFloat.addListener(new ai.z(this, k10Var, layoutManager));
-            ofFloat.start();
-            i10--;
+        } else {
+            if (z10) {
+                min = 600;
+            } else {
+                long measuredHeight2 = ((i28 / wm0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
+                if (measuredHeight2 >= 300) {
+                    j3 = measuredHeight2;
+                }
+                min = Math.min(j3, 1300L);
+            }
+            ((ValueAnimator) zl0Var.f33434g).setDuration(min);
+            ((ValueAnimator) zl0Var.f33434g).setInterpolator(js.h);
         }
-        org.telegram.ui.zq zqVar = new org.telegram.ui.zq(this, k10Var, i10, 2);
-        this.h.add(zqVar);
-        rm0Var.getViewTreeObserver().addOnPreDrawListener(zqVar);
+        ((ValueAnimator) zl0Var.f33434g).start();
     }
 }

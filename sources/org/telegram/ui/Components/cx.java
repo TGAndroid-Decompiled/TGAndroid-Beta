@@ -1,28 +1,19 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class cx extends FrameLayout {
-    public final b00 f25548a;
+public final class cx extends pz {
+    public final d00 H;
 
-    public cx(b00 b00Var, Context context) {
-        super(context);
-        this.f25548a = b00Var;
+    public cx(d00 d00Var, Context context) {
+        super(d00Var, context, 1);
+        this.H = d00Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        b00 b00Var = this.f25548a;
-        gx gxVar = b00Var.f24767o0;
-        if (view == b00Var.f24747h0) {
-            canvas.save();
-            canvas.clipRect(0.0f, gxVar.getY() + gxVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
+    public final void setTranslationY(float f7) {
+        if (f7 != getTranslationY()) {
+            super.setTranslationY(f7);
+            this.H.J.invalidate();
         }
-        return super.drawChild(canvas, view, j3);
     }
 }

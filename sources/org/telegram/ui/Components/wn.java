@@ -1,49 +1,127 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
 import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
-public final class wn implements jk {
-    public final Utilities.Callback f32743a;
-    public final sn f32744b;
-    public final org.telegram.ui.ActionBar.m2 f32745c;
+import org.telegram.tgnet.TLRPC;
+public final class wn implements yi {
+    public final org.telegram.ui.ActionBar.m2 f32492a;
+    public final Utilities.Callback f32493b;
+    public final un f32494c;
 
-    public wn(Utilities.Callback callback, org.telegram.ui.ActionBar.m2 m2Var, sn snVar) {
-        this.f32743a = callback;
-        this.f32744b = snVar;
-        this.f32745c = m2Var;
+    public wn(Utilities.Callback callback, org.telegram.ui.ActionBar.m2 m2Var, un unVar) {
+        this.f32492a = m2Var;
+        this.f32493b = callback;
+        this.f32494c = unVar;
     }
 
     @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        if (!arrayList.isEmpty()) {
-            this.f32743a.run(new rh.c((String) arrayList.get(0)));
+    public final void I1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        un unVar = this.f32494c;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = unVar.f24354j0;
+        Utilities.Callback callback = this.f32493b;
+        if (i10 == 15) {
+            org.telegram.ui.ActionBar.m2 m2Var = this.f32492a;
+            g5.f0(m2Var.getContext(), m2Var.getResourceProvider(), null, null, new vn(0, callback), null);
+        } else if (i10 == 7 || i10 == 8) {
+            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+            if (selectedPhotosOrder.size() > 0) {
+                Object obj = selectedPhotos.get(selectedPhotosOrder.get(0));
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                String str = null;
+                if (obj instanceof MediaController.PhotoEntry) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                    String str2 = photoEntry.imagePath;
+                    if (str2 != null) {
+                        sendingMediaInfo.path = str2;
+                    } else {
+                        sendingMediaInfo.path = photoEntry.path;
+                    }
+                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                    sendingMediaInfo.coverPath = photoEntry.coverPath;
+                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
+                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+                    sendingMediaInfo.discardLivePhoto = true;
+                    sendingMediaInfo.isVideo = photoEntry.isVideo;
+                    CharSequence charSequence = photoEntry.caption;
+                    if (charSequence != null) {
+                        str = charSequence.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = photoEntry.entities;
+                    sendingMediaInfo.masks = photoEntry.stickers;
+                    sendingMediaInfo.ttl = photoEntry.ttl;
+                    sendingMediaInfo.emojiMarkup = photoEntry.emojiMarkup;
+                    sendingMediaInfo.originalPhotoEntry = photoEntry;
+                } else if (obj instanceof MediaController.SearchImage) {
+                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                    String str3 = searchImage.imagePath;
+                    if (str3 != null) {
+                        sendingMediaInfo.path = str3;
+                    } else {
+                        sendingMediaInfo.searchImage = searchImage;
+                    }
+                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                    sendingMediaInfo.coverPath = searchImage.coverPath;
+                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                    CharSequence charSequence2 = searchImage.caption;
+                    if (charSequence2 != null) {
+                        str = charSequence2.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = searchImage.entities;
+                    sendingMediaInfo.masks = searchImage.stickers;
+                    sendingMediaInfo.ttl = searchImage.ttl;
+                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                    if (botInlineResult != null && searchImage.type == 1) {
+                        sendingMediaInfo.inlineResult = botInlineResult;
+                        sendingMediaInfo.params = searchImage.params;
+                    }
+                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
+                }
+                callback.run(new rh.d(sendingMediaInfo));
+            }
         }
-        this.f32744b.dismiss(true);
+        unVar.dismiss(true);
     }
 
     @Override
-    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        if (!arrayList.isEmpty()) {
-            this.f32743a.run(new rh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
-        }
-        this.f32744b.dismiss(true);
+    public final boolean Y1() {
+        return false;
     }
 
     @Override
-    public final void x() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f32745c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e7) {
-            FileLog.e(e7);
-        }
+    public final void d0(lh lhVar) {
+        NotificationCenter.getInstance(this.f32492a.getCurrentAccount()).doOnIdle(lhVar);
     }
 
     @Override
-    public final void O() {
+    public final boolean g0() {
+        return false;
+    }
+
+    @Override
+    public final void A0() {
+    }
+
+    @Override
+    public final void P0() {
+    }
+
+    @Override
+    public final void Z0(Object obj) {
+    }
+
+    @Override
+    public final void p1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void c2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

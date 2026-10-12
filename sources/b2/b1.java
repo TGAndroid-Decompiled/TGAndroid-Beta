@@ -126,7 +126,7 @@ public interface b1 {
 
     void k(k0 k0Var, long j3);
 
-    int k0();
+    void k0(k0 k0Var);
 
     int l();
 
@@ -134,19 +134,19 @@ public interface b1 {
 
     int m();
 
-    boolean m0(int i10);
+    int m0();
 
     void n(Surface surface);
 
-    void n0(z0 z0Var);
+    boolean n0(int i10);
 
     boolean o();
 
-    void o0(boolean z10);
+    void o0(z0 z0Var);
 
     long p();
 
-    void p0(k0 k0Var);
+    void p0(boolean z10);
 
     void q(q1 q1Var);
 

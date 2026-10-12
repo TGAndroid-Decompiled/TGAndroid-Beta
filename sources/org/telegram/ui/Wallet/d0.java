@@ -6,29 +6,29 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class d0 {
-    public String f34824e;
-    public boolean f34826g;
+    public String f34599e;
+    public boolean f34601g;
     public boolean h;
-    public boolean f34827i;
-    public boolean f34828j;
-    public String f34829k;
-    public final l0 f34831m;
-    public final ArrayList f34821a = new ArrayList();
-    public final ArrayList f34822b = new ArrayList();
-    public final ArrayList f34823c = new ArrayList();
+    public boolean f34602i;
+    public boolean f34603j;
+    public String f34604k;
+    public final l0 f34606m;
+    public final ArrayList f34596a = new ArrayList();
+    public final ArrayList f34597b = new ArrayList();
+    public final ArrayList f34598c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public String f34825f = "";
-    public int f34830l = -1;
+    public String f34600f = "";
+    public int f34605l = -1;
 
     public d0(l0 l0Var) {
-        this.f34831m = l0Var;
-        this.f34824e = l0Var.r();
+        this.f34606m = l0Var;
+        this.f34599e = l0Var.r();
     }
 
     public static void a(d0 d0Var, TL_wallet.walletTransaction wallettransaction) {
         boolean z10;
-        ArrayList arrayList = d0Var.f34823c;
-        ArrayList arrayList2 = d0Var.f34822b;
+        ArrayList arrayList = d0Var.f34598c;
+        ArrayList arrayList2 = d0Var.f34597b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -64,32 +64,32 @@ public final class d0 {
     }
 
     public final void b() {
-        if (this.f34830l >= 0) {
-            ConnectionsManager.getInstance(this.f34831m.f35219a).cancelRequest(this.f34830l, true);
-            this.f34830l = -1;
+        if (this.f34605l >= 0) {
+            ConnectionsManager.getInstance(this.f34606m.f34994a).cancelRequest(this.f34605l, true);
+            this.f34605l = -1;
         }
-        if (this.f34828j) {
-            this.f34826g = false;
+        if (this.f34603j) {
+            this.f34601g = false;
             this.h = false;
         }
-        this.f34828j = false;
-        this.f34827i = false;
+        this.f34603j = false;
+        this.f34602i = false;
     }
 
     public final void c() {
         b();
-        this.f34821a.clear();
-        this.f34822b.clear();
-        this.f34823c.clear();
-        this.f34825f = "";
-        this.f34826g = false;
+        this.f34596a.clear();
+        this.f34597b.clear();
+        this.f34598c.clear();
+        this.f34600f = "";
+        this.f34601g = false;
         this.h = false;
-        this.f34829k = null;
+        this.f34604k = null;
         f();
     }
 
     public final void d() {
-        if (!this.f34827i && !this.f34826g) {
+        if (!this.f34602i && !this.f34601g) {
             e(!this.h);
         }
     }
@@ -97,14 +97,14 @@ public final class d0 {
     public final void e(boolean z10) {
         String str;
         int i10;
-        if (TextUtils.isEmpty(this.f34824e)) {
+        if (TextUtils.isEmpty(this.f34599e)) {
             return;
         }
         TL_wallet.getNfts getnfts = new TL_wallet.getNfts();
         if (z10) {
             str = "";
         } else {
-            str = this.f34825f;
+            str = this.f34600f;
         }
         getnfts.offset = str;
         if (TextUtils.isEmpty(str)) {
@@ -113,11 +113,11 @@ public final class d0 {
             i10 = 20;
         }
         getnfts.limit = i10;
-        this.f34827i = true;
-        this.f34828j = z10;
-        this.f34829k = null;
+        this.f34602i = true;
+        this.f34603j = z10;
+        this.f34604k = null;
         f();
-        this.f34830l = ConnectionsManager.getInstance(this.f34831m.f35219a).sendRequestTyped(getnfts, new Object(), new za(3, this, z10));
+        this.f34605l = ConnectionsManager.getInstance(this.f34606m.f34994a).sendRequestTyped(getnfts, new Object(), new za(3, this, z10));
     }
 
     public final void f() {
@@ -132,16 +132,16 @@ public final class d0 {
     }
 
     public final void g() {
-        ArrayList arrayList = this.f34821a;
+        ArrayList arrayList = this.f34596a;
         arrayList.clear();
-        ArrayList arrayList2 = this.f34822b;
+        ArrayList arrayList2 = this.f34597b;
         int size = arrayList2.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList2.get(i10);
             i10++;
             TL_wallet.nftItem nftitem = (TL_wallet.nftItem) obj;
-            ArrayList arrayList3 = this.f34823c;
+            ArrayList arrayList3 = this.f34598c;
             int size2 = arrayList3.size();
             int i11 = 0;
             while (true) {

@@ -1,35 +1,83 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-public final class po implements Runnable {
-    public final int f40958a;
-    public final long f40959b;
-    public final long f40960c;
-    public final org.telegram.ui.ActionBar.m2 d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class po implements org.telegram.ui.ActionBar.z1, MessagesStorage.LongCallback, dd0, MessagesStorage.BooleanCallback {
+    public final int f41060a;
+    public final xo f41061b;
 
-    public po(org.telegram.ui.ActionBar.m2 m2Var, long j3, long j10, int i10) {
-        this.f40958a = i10;
-        this.d = m2Var;
-        this.f40959b = j3;
-        this.f40960c = j10;
+    public po(xo xoVar, int i10) {
+        this.f41060a = i10;
+        this.f41061b = xoVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.d71 d71Var;
-        switch (this.f40958a) {
+    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
+        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+        tL_channelLocation.address = messageMedia.address;
+        tL_channelLocation.geo_point = messageMedia.geo;
+        xo xoVar = this.f41061b;
+        TLRPC.ChatFull chatFull = xoVar.f44081y0;
+        chatFull.location = tL_channelLocation;
+        chatFull.flags |= 32768;
+        xoVar.p0(false, true);
+        xoVar.getMessagesController().loadFullChat(xoVar.f44077w0, 0, true);
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f41060a) {
             case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f40959b, this.f40960c, new a5((uo) this.d, 4));
+                this.f41061b.j0();
+                return;
+            case 1:
+                this.f41061b.finishFragment();
+                return;
+            case 2:
+                this.f41061b.j0();
                 return;
             default:
-                org.telegram.ui.web.y1 y1Var = (org.telegram.ui.web.y1) this.d;
-                y1Var.f43775f = this.f40959b;
-                y1Var.h = this.f40960c;
-                org.telegram.ui.Components.f71 f71Var = y1Var.f26675a;
-                if (f71Var != null && (d71Var = f71Var.W2) != null && f71Var.G) {
-                    d71Var.N(true);
+                this.f41061b.finishFragment();
+                return;
+        }
+    }
+
+    @Override
+    public void run(boolean z10) {
+        xo xoVar = this.f41061b;
+        xoVar.getClass();
+        if (AndroidUtilities.isTablet()) {
+            xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-xoVar.f44077w0));
+        } else {
+            xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+        }
+        xoVar.finishFragment();
+        xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-xoVar.f44079x0.f19802id), null, xoVar.f44079x0, Boolean.valueOf(z10));
+    }
+
+    @Override
+    public void run(long j3) {
+        switch (this.f41060a) {
+            case 4:
+                this.f41061b.t0(Long.valueOf(j3));
+                return;
+            default:
+                int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+                xo xoVar = this.f41061b;
+                if (i10 == 0) {
+                    xoVar.N0 = false;
                     return;
                 }
+                xoVar.f44077w0 = j3;
+                xoVar.f44079x0 = xoVar.getMessagesController().getChat(Long.valueOf(j3));
+                xoVar.N0 = false;
+                TLRPC.ChatFull chatFull = xoVar.f44081y0;
+                if (chatFull != null) {
+                    chatFull.hidden_prehistory = true;
+                }
+                xoVar.j0();
                 return;
         }
     }

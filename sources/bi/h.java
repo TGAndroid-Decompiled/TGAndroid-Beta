@@ -1,16 +1,16 @@
 package bi;
 public final class h extends g.o {
-    public final int f3903c;
+    public final int f3902c;
     public final u d;
 
     public h(u uVar, int i10) {
-        this.f3903c = i10;
+        this.f3902c = i10;
         this.d = uVar;
     }
 
     @Override
     public final int i(int i10) {
-        switch (this.f3903c) {
+        switch (this.f3902c) {
             case 0:
                 this.d.v.getClass();
                 return 1;

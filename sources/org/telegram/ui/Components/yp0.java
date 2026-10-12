@@ -1,34 +1,34 @@
 package org.telegram.ui.Components;
+public final class yp0 implements o1.f {
+    public final int f33149a;
+    public final gq0 f33150b;
+    public final o1.k f33151c;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class yp0 extends FrameLayout {
-    public final hf f33441a;
-
-    public yp0(hf hfVar, Context context) {
-        super(context);
-        this.f33441a = hfVar;
+    public yp0(gq0 gq0Var, o1.k kVar, int i10) {
+        this.f33149a = i10;
+        this.f33150b = gq0Var;
+        this.f33151c = kVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        hf hfVar = this.f33441a;
-        View contentView = hfVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + hfVar.E, iArr[1] + hfVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f33149a) {
+            case 0:
+                if (!z10) {
+                    this.f33150b.f26496z.remove(this.f33151c);
+                    hVar.c();
+                    return;
+                }
+                return;
+            default:
+                gq0 gq0Var = this.f33150b;
+                if (!z10) {
+                    gq0Var.f26496z.remove(this.f33151c);
+                    hVar.c();
+                    return;
+                }
+                gq0Var.getClass();
+                return;
         }
-        if (!hfVar.A && !hfVar.D) {
-            hfVar.D = true;
-            hfVar.l(new o1.k[0]);
-        }
-        return true;
     }
 }

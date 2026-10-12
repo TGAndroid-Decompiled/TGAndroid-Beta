@@ -1,72 +1,15 @@
 package org.telegram.ui.Components;
+public final class ft0 extends g.o {
+    public final dt0 f26170c;
+    public final hw0 d;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ft0 extends s4.o0 {
-    public final ys0 f26571a;
-    public final cw0 f26572b;
-
-    public ft0(cw0 cw0Var, ys0 ys0Var) {
-        this.f26572b = cw0Var;
-        this.f26571a = ys0Var;
+    public ft0(hw0 hw0Var, dt0 dt0Var) {
+        this.d = hw0Var;
+        this.f26170c = dt0Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.a1 a1Var) {
-        boolean z10;
-        boolean z11;
-        ys0 ys0Var = this.f26571a;
-        int i10 = 0;
-        if (ys0Var.h.getAdapter() == this.f26572b.O) {
-            recyclerView.getClass();
-            int R = RecyclerView.R(view);
-            rect.left = 0;
-            rect.bottom = 0;
-            zs0 zs0Var = ys0Var.f32559x;
-            zs0Var.B1();
-            if (R <= zs0Var.U) {
-                rect.top = 0;
-            } else {
-                rect.top = AndroidUtilities.dp(2.0f);
-            }
-            if (!ys0Var.f32559x.E1(R)) {
-                i10 = AndroidUtilities.dp(2.0f);
-            }
-            rect.right = i10;
-        } else if (view instanceof org.telegram.ui.Cells.t7) {
-            org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-            ys0Var.h.getClass();
-            int R2 = RecyclerView.R(t7Var);
-            int i11 = ys0Var.f32559x.J;
-            boolean z12 = true;
-            if (R2 < i11) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            t7Var.f23090a0 = z10;
-            int i12 = R2 % i11;
-            if (i12 == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            t7Var.V = z11;
-            if (i12 != i11 - 1) {
-                z12 = false;
-            }
-            t7Var.W = z12;
-            rect.left = 0;
-            rect.top = 0;
-            rect.bottom = 0;
-            rect.right = 0;
-        } else {
-            rect.left = 0;
-            rect.top = 0;
-            rect.bottom = 0;
-            rect.right = 0;
-        }
+    public final int i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ft0.i(int):int");
     }
 }

@@ -1,19 +1,23 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class i71 extends e00 {
-    public final l71 X;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class i71 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final k71 f27084a;
 
-    public i71(l71 l71Var, int i10) {
-        super(i10, false);
-        this.X = l71Var;
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        return Boolean.valueOf(this.f27084a.X((u61) obj, (View) obj2));
     }
 
     @Override
-    public final int W0(s4.a1 a1Var) {
-        if (this.X.Y2) {
-            return AndroidUtilities.displaySize.y;
-        }
-        return super.W0(a1Var);
+    public void mo16run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        this.f27084a.W((u61) obj, (View) obj2);
     }
 }

@@ -1,68 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class aj extends of.e {
-    public final int d;
-    public final int f36134e;
-    public final org.telegram.ui.Cells.u1 f36135f;
-    public final zn f36136g;
+import org.telegram.messenger.MessageObject;
+public final class aj implements Runnable {
+    public final boolean f35849a;
+    public final boolean f35850b;
+    public final int f35851c;
+    public final boolean d;
+    public final org.telegram.ui.Components.nl0 f35852e;
+    public final float f35853f;
+    public final float h;
+    public final zg.n0 f35854n;
+    public final MessageObject f35855r;
+    public final eo f35856s;
 
-    public aj(zn znVar, int i10, org.telegram.ui.Cells.u1 u1Var, int i11) {
-        this.d = i11;
-        this.f36136g = znVar;
-        this.f36134e = i10;
-        this.f36135f = u1Var;
+    public aj(eo eoVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.nl0 nl0Var, float f7, float f10, zg.n0 n0Var, MessageObject messageObject) {
+        this.f35856s = eoVar;
+        this.f35849a = z10;
+        this.f35850b = z11;
+        this.f35851c = i10;
+        this.d = z12;
+        this.f35852e = nl0Var;
+        this.f35853f = f7;
+        this.h = f10;
+        this.f35854n = n0Var;
+        this.f35855r = messageObject;
     }
 
     @Override
-    public final void c(boolean z10) {
-        switch (this.d) {
-            case 0:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ai.p8(this, this.f36134e, 20), 240L);
-                    return;
+    public final void run() {
+        if (!this.f35849a) {
+            eo eoVar = this.f35856s;
+            if (eoVar.f37227cc != null) {
+                eoVar.f37227cc = null;
+                if (this.f35850b) {
+                    eoVar.k8(new zi(this, this.f35851c, this.d, this.f35852e, this.f35853f, this.h, this.f35854n, 0));
+                } else {
+                    eoVar.k8(new nh(9, this, this.f35855r));
                 }
-                return;
-            case 1:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ai.p8(this, this.f36134e, 23), 240L);
-                    return;
-                }
-                return;
-            default:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ai.p8(this, this.f36134e, 24), 240L);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                int i10 = this.f36134e;
-                zn znVar = this.f36136g;
-                znVar.f45020wb = i10;
-                znVar.f45034xb = 6;
-                this.f36135f.invalidate();
-                return;
-            case 1:
-                int i11 = this.f36134e;
-                zn znVar2 = this.f36136g;
-                znVar2.f45020wb = i11;
-                znVar2.f45034xb = 5;
-                znVar2.f45058zb = null;
-                this.f36135f.invalidate();
-                return;
-            default:
-                int i12 = this.f36134e;
-                zn znVar3 = this.f36136g;
-                znVar3.f45020wb = i12;
-                znVar3.f45034xb = 7;
-                this.f36135f.invalidate();
-                return;
+                eoVar.D7(true);
+            }
         }
     }
 }

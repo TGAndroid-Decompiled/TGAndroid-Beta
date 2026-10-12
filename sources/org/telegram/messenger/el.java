@@ -1,50 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class el implements Runnable {
-    public final int f17828a;
-    public final BaseController f17829b;
-    public final Object f17830c;
-    public final Object d;
-    public final Object f17831e;
-    public final Runnable f17832f;
-    public final long h;
+import org.telegram.messenger.Utilities;
+public final class el implements Utilities.Callback2 {
+    public final int f17550a;
+    public final TranslateController f17551b;
+    public final Utilities.Callback4 f17552c;
+    public final boolean d;
+    public final int f17553e;
+    public final String f17554f;
+    public final long f17555g;
 
-    public el(TopicsController topicsController, TLObject tLObject, long j3, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, a0.i iVar, Runnable runnable) {
-        this.f17828a = 2;
-        this.f17829b = topicsController;
-        this.f17830c = tLObject;
-        this.h = j3;
-        this.d = tL_messages_forumTopics;
-        this.f17831e = iVar;
-        this.f17832f = runnable;
+    public el(TranslateController translateController, Utilities.Callback4 callback4, boolean z10, int i10, String str, long j3, int i11) {
+        this.f17550a = i11;
+        this.f17551b = translateController;
+        this.f17552c = callback4;
+        this.d = z10;
+        this.f17553e = i10;
+        this.f17554f = str;
+        this.f17555g = j3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17828a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f17550a) {
             case 0:
-                ((TranslateController) this.f17829b).lambda$translatePhoto$43((MessageObject) this.f17830c, (String) this.d, (TranslateController.MessageKey) this.f17831e, this.f17832f, this.h);
-                return;
-            case 1:
-                ((TranslateController) this.f17829b).lambda$translatePhoto$45((MessageObject) this.f17830c, (String) this.d, (TranslateController.MessageKey) this.f17831e, this.f17832f, this.h);
+                this.f17551b.lambda$pushToTranslate$21(this.f17552c, this.d, this.f17553e, this.f17554f, this.f17555g, (String) obj, (Boolean) obj2);
                 return;
             default:
-                Runnable runnable = this.f17832f;
-                ((TopicsController) this.f17829b).lambda$reloadTopics$14((TLObject) this.f17830c, this.h, (TLRPC.TL_messages_forumTopics) this.d, (a0.i) this.f17831e, runnable);
+                this.f17551b.lambda$pushToTranslate$20(this.f17552c, this.d, this.f17553e, this.f17554f, this.f17555g, (String) obj, (Boolean) obj2);
                 return;
         }
-    }
-
-    public el(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j3, int i10) {
-        this.f17828a = i10;
-        this.f17829b = translateController;
-        this.f17830c = messageObject;
-        this.d = str;
-        this.f17831e = messageKey;
-        this.f17832f = runnable;
-        this.h = j3;
     }
 }

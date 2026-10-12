@@ -4,16 +4,16 @@ import android.view.ViewTreeObserver;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class k implements ViewTreeObserver.OnPreDrawListener {
-    public final MediaController.CropState f15591a;
-    public final int f15592b;
-    public final int f15593c;
+    public final MediaController.CropState f15298a;
+    public final int f15299b;
+    public final int f15300c;
     public final p d;
 
     public k(p pVar, MediaController.CropState cropState, int i10, int i11) {
         this.d = pVar;
-        this.f15591a = cropState;
-        this.f15592b = i10;
-        this.f15593c = i11;
+        this.f15298a = cropState;
+        this.f15299b = i10;
+        this.f15300c = i11;
     }
 
     @Override
@@ -23,63 +23,63 @@ public final class k implements ViewTreeObserver.OnPreDrawListener {
         boolean z10;
         p pVar = this.d;
         pVar.l(false);
-        CropAreaView cropAreaView = pVar.f15611a;
-        MediaController.CropState cropState = this.f15591a;
+        CropAreaView cropAreaView = pVar.f15318a;
+        MediaController.CropState cropState = this.f15298a;
         if (cropState != null) {
             float f11 = cropState.lockedAspectRatio;
             if (f11 > 1.0E-4f) {
                 cropAreaView.setLockedAspectRatio(f11);
                 o oVar = pVar.M;
                 if (oVar != null) {
-                    oVar.D(true);
+                    oVar.z(true);
                 }
             }
             pVar.setFreeform(cropState.freeform);
             float aspectRatio = cropAreaView.getAspectRatio();
             int i10 = cropState.transformRotation;
-            int i11 = this.f15592b;
-            int i12 = this.f15593c;
+            int i11 = this.f15299b;
+            int i12 = this.f15300c;
             if (i10 != 90 && i10 != 270) {
                 n nVar = pVar.L;
-                f7 = nVar.f15601a;
-                f10 = nVar.f15602b;
+                f7 = nVar.f15308a;
+                f10 = nVar.f15309b;
                 i12 = i11;
                 i11 = i12;
             } else {
                 aspectRatio = 1.0f / aspectRatio;
                 n nVar2 = pVar.L;
-                f7 = nVar2.f15602b;
-                f10 = nVar2.f15601a;
+                f7 = nVar2.f15309b;
+                f10 = nVar2.f15308a;
             }
-            if (pVar.f15620x && cropAreaView.getLockAspectRatio() > 0.0f) {
+            if (pVar.f15327x && cropAreaView.getLockAspectRatio() > 0.0f) {
                 cropAreaView.setLockedAspectRatio(1.0f / cropAreaView.getLockAspectRatio());
                 cropAreaView.setActualRect(cropAreaView.getLockAspectRatio());
             } else {
                 int currentWidth = pVar.getCurrentWidth();
                 int currentHeight = pVar.getCurrentHeight();
-                if ((i10 + pVar.L.f15606g) % 180.0f != 0.0f) {
+                if ((i10 + pVar.L.f15313g) % 180.0f != 0.0f) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                cropAreaView.e(currentWidth, currentHeight, z10, pVar.f15620x);
+                cropAreaView.e(currentWidth, currentHeight, z10, pVar.f15327x);
             }
             n.d(pVar.L, i10);
             cropAreaView.setActualRect((aspectRatio * cropState.cropPw) / cropState.cropPh);
             n nVar3 = pVar.L;
-            nVar3.f15608j = cropState.mirrored;
+            nVar3.f15315j = cropState.mirrored;
             n.e(nVar3, cropState.cropRotate);
             n nVar4 = pVar.L;
             float f12 = cropState.cropPx * i11;
-            float f13 = nVar4.f15605f;
+            float f13 = nVar4.f15312f;
             n.f(nVar4, f12 * f13, cropState.cropPy * i12 * f13);
             float max = Math.max(cropAreaView.getCropWidth() / f7, cropAreaView.getCropHeight() / f10);
             n nVar5 = pVar.L;
-            n.g(nVar5, cropState.cropScale * (max / nVar5.f15605f), 0.0f, 0.0f);
+            n.g(nVar5, cropState.cropScale * (max / nVar5.f15312f), 0.0f, 0.0f);
             pVar.r(false);
             o oVar2 = pVar.M;
             if (oVar2 != null) {
-                oVar2.R(false);
+                oVar2.T(false);
             }
         }
         cropAreaView.getViewTreeObserver().removeOnPreDrawListener(this);

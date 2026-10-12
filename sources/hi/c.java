@@ -13,28 +13,28 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.db;
-import org.telegram.ui.Components.er;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.h71;
 import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.vm0;
+import org.telegram.ui.Components.wm0;
 import org.telegram.ui.Components.y9;
-import w7.x5;
+import w7.w5;
 public final class c extends db {
     public final d1 X;
-    public d71 Y;
+    public h71 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
-        super(context, (d6) null, false);
+        super(context, (c6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        rm0 rm0Var = this.d;
+        wm0 wm0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        rm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        wm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -53,16 +53,16 @@ public final class c extends db {
         dVar2.setOnClickListener(new f2(12, this, runnable));
         d1 d1Var = new d1(context, 2);
         TextView textView = (TextView) d1Var.d;
-        TextView textView2 = (TextView) d1Var.f805c;
+        TextView textView2 = (TextView) d1Var.f803c;
         this.X = d1Var;
         d1Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((y9) d1Var.f804b).e(chat, new j9(chat));
+        ((y9) d1Var.f802b).e(chat, new j9(chat));
         textView2.setText(DialogObject.getName(chat));
         int i13 = h6.G6;
         textView2.setTextColor(getThemedColor(i13));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
-        spannableStringBuilder.setSpan(new er(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
+        spannableStringBuilder.setSpan(new gr(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
         if (isChannelAndNotMegaGroup) {
             i11 = R.string.CommunityInviteOnlyChannelInfo;
         } else {
@@ -71,21 +71,21 @@ public final class c extends db {
         spannableStringBuilder.append((CharSequence) LocaleController.getString(i11));
         textView.setTextColor(getThemedColor(i13));
         textView.setText(spannableStringBuilder);
-        this.containerView.addView(dVar2, x5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
-        this.containerView.addView(dVar, x5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar2, w5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(dVar, w5.f(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.Y.N(false);
     }
 
     @Override
-    public final CharSequence B() {
+    public final CharSequence A() {
         return null;
     }
 
     @Override
-    public final qm0 x(rm0 rm0Var) {
-        d71 d71Var = new d71(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = d71Var;
-        d71Var.f25649r = false;
-        return d71Var;
+    public final vm0 x(wm0 wm0Var) {
+        h71 h71Var = new h71(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = h71Var;
+        h71Var.f26675r = false;
+        return h71Var;
     }
 }

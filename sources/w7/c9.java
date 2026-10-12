@@ -3,13 +3,13 @@ package w7;
 import java.util.List;
 public abstract class c9 {
     public static void a(z3.d dVar, int i10, e2.h hVar) {
-        long l4 = dVar.l(i10);
-        List p5 = dVar.p(l4);
-        if (!p5.isEmpty()) {
-            if (i10 != dVar.w() - 1) {
-                long l10 = dVar.l(i10 + 1) - dVar.l(i10);
-                if (l10 > 0) {
-                    hVar.accept(new z3.a(l4, l10, p5));
+        long m10 = dVar.m(i10);
+        List v = dVar.v(m10);
+        if (!v.isEmpty()) {
+            if (i10 != dVar.B() - 1) {
+                long m11 = dVar.m(i10 + 1) - dVar.m(i10);
+                if (m11 > 0) {
+                    hVar.accept(new z3.a(m10, m11, v));
                     return;
                 }
                 return;

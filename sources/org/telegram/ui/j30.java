@@ -1,21 +1,8 @@
 package org.telegram.ui;
+public final class j30 {
+    public final i60 f39091a;
 
-import android.view.ViewGroup;
-public final class j30 extends s4.j {
-    public final g60 F;
-
-    public j30(g60 g60Var) {
-        this.F = g60Var;
-    }
-
-    @Override
-    public final void P(s4.d1 d1Var) {
-        ViewGroup viewGroup;
-        g60 g60Var = this.F;
-        g60Var.Q.invalidate();
-        g60Var.a2.invalidate();
-        viewGroup = ((org.telegram.ui.ActionBar.e3) g60Var).containerView;
-        viewGroup.invalidate();
-        g60.K0(g60Var);
+    public j30(i60 i60Var) {
+        this.f39091a = i60Var;
     }
 }

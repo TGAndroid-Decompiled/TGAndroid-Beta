@@ -1,44 +1,44 @@
 package k0;
 
+import a6.m;
 import android.hardware.fingerprint.FingerprintManager;
 import androidx.biometric.v;
 import androidx.biometric.x;
 import androidx.lifecycle.z;
 import java.lang.ref.WeakReference;
-import pb.c;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final c f14318a;
+    public final m f14316a;
 
-    public a(c cVar) {
-        this.f14318a = cVar;
+    public a(m mVar) {
+        this.f14316a = mVar;
     }
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        ((v) ((aa.a) this.f14318a.f45612b).d).a(i10, charSequence);
+        ((v) ((aa.a) this.f14316a.f330b).d).a(i10, charSequence);
     }
 
     @Override
     public final void onAuthenticationFailed() {
-        WeakReference weakReference = ((v) ((aa.a) this.f14318a.f45612b).d).f2323a;
-        if (weakReference.get() != null && ((x) weakReference.get()).f2334n) {
+        WeakReference weakReference = ((v) ((aa.a) this.f14316a.f330b).d).f2321a;
+        if (weakReference.get() != null && ((x) weakReference.get()).f2332n) {
             x xVar = (x) weakReference.get();
-            if (xVar.f2341u == null) {
-                xVar.f2341u = new z();
+            if (xVar.f2339u == null) {
+                xVar.f2339u = new z();
             }
-            x.h(xVar.f2341u, Boolean.TRUE);
+            x.h(xVar.f2339u, Boolean.TRUE);
         }
     }
 
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        WeakReference weakReference = ((v) ((aa.a) this.f14318a.f45612b).d).f2323a;
+        WeakReference weakReference = ((v) ((aa.a) this.f14316a.f330b).d).f2321a;
         if (weakReference.get() != null) {
             x xVar = (x) weakReference.get();
-            if (xVar.f2340t == null) {
-                xVar.f2340t = new z();
+            if (xVar.f2338t == null) {
+                xVar.f2338t = new z();
             }
-            x.h(xVar.f2340t, charSequence);
+            x.h(xVar.f2338t, charSequence);
         }
     }
 

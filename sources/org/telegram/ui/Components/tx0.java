@@ -1,34 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class tx0 extends AnimatorListenerAdapter {
-    public final int f31391a;
-    public final ux0 f31392b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.tgnet.TLRPC;
+public final class tx0 {
+    public final q5 f30993a;
+    public Drawable f30994b;
 
-    public tx0(ux0 ux0Var, int i10) {
-        this.f31391a = i10;
-        this.f31392b = ux0Var;
+    public tx0(FrameLayout frameLayout) {
+        this(18, frameLayout);
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31391a) {
-            case 0:
-                ux0 ux0Var = this.f31392b;
-                ux0Var.f31744y = 1.0f;
-                ux0Var.invalidate();
-                ux0Var.G = null;
-                return;
-            case 1:
-                ux0 ux0Var2 = this.f31392b;
-                ux0Var2.m(((Float) ux0Var2.v.getAnimatedValue()).floatValue());
-                ux0Var2.v = null;
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                this.f31392b.F = null;
-                return;
+    public final q5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
+        q5 q5Var = this.f30993a;
+        if (chat != null && chat.verified) {
+            Drawable drawable = this.f30994b;
+            if (drawable == null) {
+                drawable = new hr(org.telegram.ui.ActionBar.h6.f20591f1, org.telegram.ui.ActionBar.h6.f20645i1);
+            }
+            this.f30994b = drawable;
+            q5Var.g(drawable, z10);
+            q5Var.k(null);
+            return q5Var;
+        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
+            q5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
+            q5Var.k(Integer.valueOf(i10));
+            return q5Var;
+        } else if (user != null && user.verified) {
+            Drawable drawable2 = this.f30994b;
+            if (drawable2 == null) {
+                drawable2 = new hr(org.telegram.ui.ActionBar.h6.f20591f1, org.telegram.ui.ActionBar.h6.f20645i1);
+            }
+            this.f30994b = drawable2;
+            q5Var.g(drawable2, z10);
+            q5Var.k(null);
+            return q5Var;
+        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
+            q5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
+            q5Var.k(Integer.valueOf(i10));
+            return q5Var;
+        } else if (user != null && user.premium) {
+            q5Var.g(rg.b1.d().f47423e, z10);
+            q5Var.k(Integer.valueOf(i10));
+            return q5Var;
+        } else {
+            q5Var.g(null, z10);
+            q5Var.k(null);
+            return q5Var;
         }
+    }
+
+    public tx0(int i10, View view) {
+        this.f30993a = new q5(AndroidUtilities.dp(i10), view);
     }
 }

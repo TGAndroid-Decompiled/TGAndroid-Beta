@@ -1,9 +1,11 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class az0 extends AlertDialog$Builder {
-    public ArrayList f24713c;
-    public int d;
-    public org.telegram.ui.ActionBar.m2 f24714e;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public interface az0 {
+    boolean b();
+
+    boolean c();
+
+    void d(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11);
 }

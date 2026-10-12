@@ -1,55 +1,69 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class np extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public org.telegram.ui.Components.y9 f40335a;
-    public org.telegram.ui.Components.ka0 f40336b;
-    public int f40337c;
+import android.content.DialogInterface;
+import org.telegram.tgnet.ConnectionsManager;
+public final class np implements Runnable {
+    public final int f40448a;
+    public final xp f40449b;
+    public final org.telegram.ui.ActionBar.a2[] f40450c;
+    public final int d;
 
-    public final void a() {
-        boolean z10;
-        org.telegram.ui.Components.y9 y9Var = this.f40335a;
-        int i10 = this.f40337c;
-        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
-        if (stickerSetByName == null) {
-            stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
-        }
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
-        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 3) {
-            y9Var.i(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(2)), "104_104", "tgs", this.f40336b, tL_messages_stickerSet);
-            return;
-        }
-        MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-        if (tL_messages_stickerSet == null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z10);
-        y9Var.setImageDrawable(this.f40336b);
+    public np(xp xpVar, org.telegram.ui.ActionBar.a2[] a2VarArr, int i10, int i11) {
+        this.f40448a = i11;
+        this.f40449b = xpVar;
+        this.f40450c = a2VarArr;
+        this.d = i10;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
-            a();
+    public final void run() {
+        switch (this.f40448a) {
+            case 0:
+                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f40450c;
+                org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
+                if (a2Var != null) {
+                    final xp xpVar = this.f40449b;
+                    final int i10 = this.d;
+                    a2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    ConnectionsManager.getInstance(xpVar.currentAccount).cancelRequest(i10, true);
+                                    return;
+                                default:
+                                    ConnectionsManager.getInstance(xpVar.currentAccount).cancelRequest(i10, true);
+                                    return;
+                            }
+                        }
+                    });
+                    xpVar.showDialog(a2VarArr[0]);
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f40450c;
+                org.telegram.ui.ActionBar.a2 a2Var2 = a2VarArr2[0];
+                if (a2Var2 != null) {
+                    final xp xpVar2 = this.f40449b;
+                    final int i11 = this.d;
+                    a2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    ConnectionsManager.getInstance(xpVar2.currentAccount).cancelRequest(i11, true);
+                                    return;
+                                default:
+                                    ConnectionsManager.getInstance(xpVar2.currentAccount).cancelRequest(i11, true);
+                                    return;
+                            }
+                        }
+                    });
+                    xpVar2.showDialog(a2VarArr2[0]);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-        NotificationCenter.getInstance(this.f40337c).addObserver(this, NotificationCenter.diceStickersDidLoad);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f40337c).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 }

@@ -1,128 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
+import android.graphics.LinearGradient;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Shader;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
-public final class k30 extends qm0 {
-    public ChatObject.Call f27931c;
+public final class k30 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27737a;
+    public final int f27738b;
+    public final int f27739c;
     public final int d;
-    public ArrayList h;
-    public org.telegram.ui.y30 f27934n;
-    public final org.telegram.ui.g60 f27935r;
-    public final ArrayList f27932e = new ArrayList();
-    public final ArrayList f27933f = new ArrayList();
-    public boolean f27936s = false;
+    public final int f27740e;
+    public final View f27741f;
 
-    public k30(ChatObject.Call call, int i10, org.telegram.ui.g60 g60Var) {
-        this.f27931c = call;
-        this.d = i10;
-        this.f27935r = g60Var;
+    public k30(View view, int i10, int i11, int i12, int i13, int i14) {
+        this.f27737a = i14;
+        this.f27741f = view;
+        this.f27738b = i10;
+        this.f27739c = i11;
+        this.d = i12;
+        this.f27740e = i13;
     }
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        return false;
-    }
-
-    public final void E(ArrayList arrayList, org.telegram.ui.y30 y30Var) {
-        this.h = arrayList;
-        this.f27934n = y30Var;
-    }
-
-    public final void F(org.telegram.ui.u30 u30Var, boolean z10) {
-        this.f27936s = z10;
-        for (int i10 = 0; i10 < u30Var.getChildCount(); i10++) {
-            View childAt = u30Var.getChildAt(i10);
-            if (childAt instanceof j30) {
-                j30 j30Var = (j30) childAt;
-                if (j30Var.getVideoParticipant() != null) {
-                    j30Var.b(z10);
-                }
-            }
-        }
-    }
-
-    public final void G(rm0 rm0Var, boolean z10) {
-        if (this.f27931c == null) {
-            return;
-        }
-        ArrayList arrayList = this.f27932e;
-        ArrayList arrayList2 = this.f27933f;
-        if (z10) {
-            ArrayList arrayList3 = new ArrayList(arrayList2);
-            ArrayList arrayList4 = new ArrayList(arrayList);
-            arrayList2.clear();
-            ChatObject.Call call = this.f27931c;
-            if (!call.call.rtmp_stream) {
-                arrayList2.addAll(call.visibleParticipants);
-            }
-            arrayList.clear();
-            ChatObject.Call call2 = this.f27931c;
-            if (!call2.call.rtmp_stream) {
-                arrayList.addAll(call2.visibleVideoParticipants);
-            }
-            s4.o.c(new h30(this, arrayList4, arrayList3), true).b(this);
-            AndroidUtilities.updateVisibleRows(rm0Var);
-            return;
-        }
-        arrayList2.clear();
-        ChatObject.Call call3 = this.f27931c;
-        if (!call3.call.rtmp_stream) {
-            arrayList2.addAll(call3.visibleParticipants);
-        }
-        arrayList.clear();
-        ChatObject.Call call4 = this.f27931c;
-        if (!call4.call.rtmp_stream) {
-            arrayList.addAll(call4.visibleVideoParticipants);
-        }
-        l();
-    }
-
-    @Override
-    public final int h() {
-        return this.f27933f.size() + this.f27932e.size();
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        TLRPC.GroupCallParticipant groupCallParticipant;
-        ChatObject.VideoParticipant videoParticipant;
-        j30 j30Var = (j30) d1Var.f47782a;
-        ChatObject.VideoParticipant videoParticipant2 = j30Var.f27575f;
-        ArrayList arrayList = this.f27932e;
-        if (i10 < arrayList.size()) {
-            videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i10);
-            groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
-        } else {
-            int size = i10 - arrayList.size();
-            ArrayList arrayList2 = this.f27933f;
-            if (size < arrayList2.size()) {
-                groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(i10 - arrayList.size());
-                videoParticipant = null;
-            } else {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f27737a;
+        int i11 = this.f27740e;
+        int i12 = this.d;
+        int i13 = this.f27739c;
+        int i14 = this.f27738b;
+        View view = this.f27741f;
+        switch (i10) {
+            case 0:
+                l30 l30Var = (l30) view;
+                l30Var.L = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), i14, i13);
+                l30Var.M = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
+                l30Var.F.setColorFilter(new PorterDuffColorFilter(l30Var.L, PorterDuff.Mode.MULTIPLY));
+                l30Var.E.setColor(l30Var.L);
+                l30Var.f28016r.setColor(l30Var.M);
+                l30Var.J.d(i0.a.k(l30Var.M, 38));
+                l30Var.invalidate();
                 return;
-            }
+            case 1:
+                org.telegram.ui.Components.voip.u uVar = (org.telegram.ui.Components.voip.u) view;
+                uVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                uVar.D0 = i0.a.d(floatValue, i14, i13);
+                int d = i0.a.d(floatValue, i12, i11);
+                uVar.F0 = d;
+                uVar.T.setColor(d);
+                if (uVar.S > 0.0f) {
+                    uVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                yh.e8 e8Var = (yh.e8) view;
+                e8Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e8Var.f52687r = i0.a.d(floatValue2, i14, i13);
+                e8Var.f52688s = i0.a.d(floatValue2, i12, i11);
+                e8Var.f52691y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{e8Var.f52687r, e8Var.f52688s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                e8Var.invalidate();
+                return;
         }
-        j30Var.e(videoParticipant, groupCallParticipant);
-        if (videoParticipant2 != null && !videoParticipant2.equals(videoParticipant) && j30Var.K && j30Var.getRenderer() != null) {
-            j30Var.b(false);
-            if (videoParticipant != null) {
-                j30Var.b(true);
-            }
-        } else if (j30Var.K) {
-            if (j30Var.getRenderer() == null && videoParticipant != null && this.f27936s) {
-                j30Var.b(true);
-            } else if (j30Var.getRenderer() != null && videoParticipant == null) {
-                j30Var.b(false);
-            }
-        }
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new j30(this, viewGroup.getContext()));
     }
 }

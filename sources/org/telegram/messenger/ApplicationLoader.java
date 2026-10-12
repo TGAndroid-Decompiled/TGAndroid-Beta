@@ -26,10 +26,10 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.x10;
+import org.telegram.ui.Components.s80;
+import org.telegram.ui.Components.z10;
 import org.telegram.ui.IUpdateLayout;
-import org.telegram.ui.ib0;
+import org.telegram.ui.kb0;
 public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -52,7 +52,7 @@ public class ApplicationLoader extends Application {
     private static volatile ConnectivityManager.NetworkCallback networkCallback;
     private static PushListenerController.IPushListenerServiceProvider pushProvider;
     public static long startTime;
-    private final Runnable debugEverySecondChecks = new w1(3);
+    private final Runnable debugEverySecondChecks = new z1(3);
 
     public static void appCenterLog(Throwable th2) {
         applicationLoaderInstance.appCenterLogInternal(th2);
@@ -64,7 +64,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f14708a;
+            AtomicBoolean atomicBoolean = k6.g.f14705a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
@@ -164,7 +164,7 @@ public class ApplicationLoader extends Application {
     }
 
     private void initPushServices() {
-        AndroidUtilities.runOnUIThread(new w1(7), 1000L);
+        AndroidUtilities.runOnUIThread(new z1(7), 1000L);
     }
 
     public static boolean isAndroidTestEnvironment() {
@@ -319,7 +319,7 @@ public class ApplicationLoader extends Application {
     }
 
     public static void lambda$new$1() {
-        AndroidUtilities.runOnUIThread(new w1(4));
+        AndroidUtilities.runOnUIThread(new z1(4));
     }
 
     public static void logDualCamera(boolean z10, boolean z11) {
@@ -503,7 +503,7 @@ public class ApplicationLoader extends Application {
             StringBuilder sb2 = new StringBuilder("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
-            q.r(sb2, elapsedRealtime);
+            hg.c.x(sb2, elapsedRealtime);
             try {
                 PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
                 int i11 = packageInfo.versionCode % 10;
@@ -528,7 +528,7 @@ public class ApplicationLoader extends Application {
             sb3.append(", model=");
             sb3.append(Build.MODEL);
             sb3.append(", product=");
-            hg.c.t(Build.PRODUCT, sb3);
+            hg.c.v(Build.PRODUCT, sb3);
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
@@ -536,7 +536,7 @@ public class ApplicationLoader extends Application {
         NativeLoader.initNativeLibs(applicationContext);
         try {
             ConnectionsManager.native_setJava(false);
-            new x10(this) {
+            new z10(this) {
                 @Override
                 public void onActivityStarted(Activity activity) {
                     boolean isBackground = isBackground();
@@ -546,22 +546,22 @@ public class ApplicationLoader extends Application {
                     }
                 }
             };
-            new ANRDetector(new w1(5));
+            new ANRDetector(new z1(5));
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
-            AndroidUtilities.runOnUIThread(new w1(6));
-            ib0[] values = ib0.values();
+            AndroidUtilities.runOnUIThread(new z1(6));
+            kb0[] values = kb0.values();
             int length = values.length;
             while (true) {
                 if (i10 < length) {
-                    if (w7.e6.a(values[i10])) {
+                    if (w7.d6.a(values[i10])) {
                         break;
                     }
                     i10++;
                 } else {
-                    w7.e6.b(ib0.h);
+                    w7.d6.b(kb0.h);
                     break;
                 }
             }
@@ -673,7 +673,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(p80 p80Var) {
+    public void addItemOptions(s80 s80Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {

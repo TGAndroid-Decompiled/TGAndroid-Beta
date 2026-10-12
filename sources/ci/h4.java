@@ -6,27 +6,27 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public class h4 {
-    public final View f5157a;
-    public View f5158b;
-    public final Utilities.Callback f5159c;
+    public final View f5156a;
+    public View f5157b;
+    public final Utilities.Callback f5158c;
     public boolean d;
-    public boolean f5160e;
-    public boolean f5161f;
-    public boolean f5162g;
+    public boolean f5159e;
+    public boolean f5160f;
+    public boolean f5161g;
     public final Rect h = new Rect();
-    public final e4 f5163i;
-    public final f4 f5164j;
-    public int f5165k;
-    public int f5166l;
+    public final e4 f5162i;
+    public final f4 f5163j;
+    public int f5164k;
+    public int f5165l;
 
     public h4(View view, boolean z10, Utilities.Callback callback) {
         e4 e4Var = new e4(this, 0);
-        this.f5163i = e4Var;
+        this.f5162i = e4Var;
         f4 f4Var = new f4(this, 0);
-        this.f5164j = f4Var;
-        this.f5157a = view;
-        this.f5159c = callback;
-        this.f5158b = view;
+        this.f5163j = f4Var;
+        this.f5156a = view;
+        this.f5158c = callback;
+        this.f5157b = view;
         if (view.isAttachedToWindow()) {
             view.getViewTreeObserver().addOnGlobalLayoutListener(f4Var);
             view.addOnLayoutChangeListener(e4Var);
@@ -35,16 +35,16 @@ public class h4 {
     }
 
     public final void a() {
-        if (this.f5160e) {
-            if (this.f5166l >= AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight) {
-                this.f5160e = false;
+        if (this.f5159e) {
+            if (this.f5165l >= AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight) {
+                this.f5159e = false;
             } else {
                 return;
             }
         }
-        Utilities.Callback callback = this.f5159c;
+        Utilities.Callback callback = this.f5158c;
         if (callback != null) {
-            callback.run(Integer.valueOf(this.f5166l));
+            callback.run(Integer.valueOf(this.f5165l));
         }
     }
 
@@ -54,7 +54,7 @@ public class h4 {
     }
 
     public final boolean c() {
-        if (this.f5166l <= AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight && !this.f5160e) {
+        if (this.f5165l <= AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight && !this.f5159e) {
             return false;
         }
         return true;
@@ -63,40 +63,40 @@ public class h4 {
     public final void d() {
         int i10;
         if (!this.d) {
-            boolean z10 = this.f5161f;
+            boolean z10 = this.f5160f;
             boolean z11 = false;
-            View view = this.f5157a;
+            View view = this.f5156a;
             if (z10) {
-                View view2 = this.f5158b;
+                View view2 = this.f5157b;
                 if (view2 != null) {
                     view = view2;
                 }
-                WeakHashMap weakHashMap = r0.i0.f46890a;
+                WeakHashMap weakHashMap = r0.i0.f46981a;
                 r0.k1 a2 = r0.b0.a(view);
                 if (a2 != null) {
-                    i10 = a2.f46901a.f(8).d;
+                    i10 = a2.f46992a.f(8).d;
                 } else {
                     i10 = 0;
                 }
-                this.f5166l = i10;
+                this.f5165l = i10;
             } else {
                 Rect rect = this.h;
                 view.getWindowVisibleDisplayFrame(rect);
-                View view3 = this.f5158b;
+                View view3 = this.f5157b;
                 if (view3 != null) {
                     view = view3;
                 }
-                this.f5166l = view.getHeight() - rect.bottom;
+                this.f5165l = view.getHeight() - rect.bottom;
             }
-            if (this.f5162g) {
-                this.f5166l = Math.max(0, this.f5166l - AndroidUtilities.navigationBarHeight);
+            if (this.f5161g) {
+                this.f5165l = Math.max(0, this.f5165l - AndroidUtilities.navigationBarHeight);
             }
-            int i11 = this.f5165k;
-            int i12 = this.f5166l;
+            int i11 = this.f5164k;
+            int i12 = this.f5165l;
             if (i11 != i12) {
                 z11 = true;
             }
-            this.f5165k = i12;
+            this.f5164k = i12;
             if (z11) {
                 a();
             }

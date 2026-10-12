@@ -1,25 +1,26 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class u0 implements RequestDelegate {
-    public final int f19322a;
-    public final ChatMessagesMetadataController f19323b;
+    public final int f19047a;
+    public final Utilities.Callback f19048b;
 
-    public u0(ChatMessagesMetadataController chatMessagesMetadataController, int i10) {
-        this.f19322a = i10;
-        this.f19323b = chatMessagesMetadataController;
+    public u0(int i10, Utilities.Callback callback) {
+        this.f19047a = i10;
+        this.f19048b = callback;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19322a) {
+        switch (this.f19047a) {
             case 0:
-                this.f19323b.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
+                ChannelBoostsController.lambda$getBoostsStats$1(this.f19048b, tLObject, tL_error);
                 return;
             default:
-                this.f19323b.lambda$loadReactionsForMessages$3(tLObject, tL_error);
+                MessagesController.lambda$getChannelParticipant$475(this.f19048b, tLObject, tL_error);
                 return;
         }
     }

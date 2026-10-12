@@ -11,64 +11,64 @@ import android.widget.FrameLayout;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.js;
 public final class z7 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f23836a;
-    public final org.telegram.ui.Components.r6 f23837b;
-    public final org.telegram.ui.Components.r6 f23838c;
+    public final org.telegram.ui.ActionBar.c6 f23574a;
+    public final org.telegram.ui.Components.r6 f23575b;
+    public final org.telegram.ui.Components.r6 f23576c;
     public final org.telegram.ui.Components.r6 d;
-    public final j0 f23839e;
-    public int f23840f;
+    public final j0 f23577e;
+    public int f23578f;
     public int h;
-    public Utilities.Callback f23841n;
-    public y7 f23842r;
-    public CharSequence f23843s;
+    public Utilities.Callback f23579n;
+    public y7 f23580r;
+    public CharSequence f23581s;
     public float v;
-    public float f23844w;
-    public ValueAnimator f23845x;
+    public float f23582w;
+    public ValueAnimator f23583x;
 
-    public z7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public z7(Context context, org.telegram.ui.ActionBar.c6 c6Var) {
         super(context);
         this.h = Integer.MIN_VALUE;
-        this.f23844w = -1.0f;
-        this.f23836a = d6Var;
+        this.f23582w = -1.0f;
+        this.f23574a = c6Var;
         org.telegram.ui.Components.r6 r6Var = new org.telegram.ui.Components.r6(context, true, true, true);
-        this.f23837b = r6Var;
-        is isVar = is.h;
-        r6Var.b(0.3f, 220L, isVar);
+        this.f23575b = r6Var;
+        js jsVar = js.h;
+        r6Var.b(0.3f, 220L, jsVar);
         r6Var.setTextSize(AndroidUtilities.dp(13.0f));
-        int i10 = org.telegram.ui.ActionBar.h6.f21207y6;
-        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        int i10 = org.telegram.ui.ActionBar.h6.f20945y6;
+        r6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
         r6Var.setGravity(3);
         r6Var.setEmojiCacheType(19);
         r6Var.setEmojiColor(-1);
         r6Var.setImportantForAccessibility(2);
-        addView(r6Var, w7.x5.a(25.0f, 22.0f, 13.0f, 22.0f, 0.0f, -1, 48));
+        addView(r6Var, w7.w5.a(25.0f, 22.0f, 13.0f, 22.0f, 0.0f, -1, 48));
         org.telegram.ui.Components.r6 r6Var2 = new org.telegram.ui.Components.r6(context, false, true, true);
-        this.f23838c = r6Var2;
-        r6Var2.b(0.3f, 220L, isVar);
+        this.f23576c = r6Var2;
+        r6Var2.b(0.3f, 220L, jsVar);
         r6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         r6Var2.setGravity(17);
-        r6Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.I6, d6Var));
+        r6Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.I6, c6Var));
         r6Var2.setEmojiColor(-1);
         r6Var2.setEmojiCacheType(19);
         r6Var2.setImportantForAccessibility(2);
-        addView(r6Var2, w7.x5.a(25.0f, 22.0f, 13.0f, 22.0f, 0.0f, -1, 48));
+        addView(r6Var2, w7.w5.a(25.0f, 22.0f, 13.0f, 22.0f, 0.0f, -1, 48));
         org.telegram.ui.Components.r6 r6Var3 = new org.telegram.ui.Components.r6(context, true, true, true);
         this.d = r6Var3;
-        r6Var3.b(0.3f, 220L, isVar);
+        r6Var3.b(0.3f, 220L, jsVar);
         r6Var3.setTextSize(AndroidUtilities.dp(13.0f));
         r6Var3.setGravity(5);
-        r6Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        r6Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, c6Var));
         r6Var3.setEmojiColor(-1);
         r6Var3.setEmojiCacheType(19);
         r6Var3.setImportantForAccessibility(2);
-        addView(r6Var3, w7.x5.a(25.0f, 22.0f, 13.0f, 22.0f, 0.0f, -1, 48));
-        j0 j0Var = new j0(2, context, d6Var, false);
-        this.f23839e = j0Var;
+        addView(r6Var3, w7.w5.a(25.0f, 22.0f, 13.0f, 22.0f, 0.0f, -1, 48));
+        j0 j0Var = new j0(2, context, c6Var, false);
+        this.f23577e = j0Var;
         j0Var.setReportChanges(true);
         j0Var.setDelegate(new x7(this));
-        addView(j0Var, w7.x5.a(38.0f, 6.0f, 30.0f, 6.0f, 0.0f, -1, 55));
+        addView(j0Var, w7.w5.a(38.0f, 6.0f, 30.0f, 6.0f, 0.0f, -1, 55));
     }
 
     public static int[] a(int i10, int[] iArr) {
@@ -105,29 +105,29 @@ public final class z7 extends FrameLayout {
     public final float b(int i10) {
         y7 y7Var;
         int i11;
-        if (this.f23842r.f23809c != null) {
+        if (this.f23580r.f23544c != null) {
             int i12 = 1;
             while (true) {
-                int[] iArr = this.f23842r.f23809c;
+                int[] iArr = this.f23580r.f23544c;
                 if (i12 >= iArr.length) {
                     break;
                 }
                 int i13 = iArr[i12 - 1];
                 int i14 = iArr[i12];
                 if (i10 >= i13 && i10 <= i14) {
-                    return (1.0f / (iArr.length - 1)) * ((Math.round(((i10 - i13) / (i14 - i13)) * y7Var.d) / this.f23842r.d) + i11);
+                    return (1.0f / (iArr.length - 1)) * ((Math.round(((i10 - i13) / (i14 - i13)) * y7Var.d) / this.f23580r.d) + i11);
                 }
                 i12++;
             }
         }
-        return Utilities.clamp01((i10 - this.f23842r.b()) / (this.f23842r.a() - this.f23842r.b()));
+        return Utilities.clamp01((i10 - this.f23580r.b()) / (this.f23580r.a() - this.f23580r.b()));
     }
 
     public final int c(int i10) {
-        if (this.f23842r.f23809c != null) {
+        if (this.f23580r.f23544c != null) {
             int i11 = 1;
             while (true) {
-                int[] iArr = this.f23842r.f23809c;
+                int[] iArr = this.f23580r.f23544c;
                 if (i11 >= iArr.length) {
                     break;
                 }
@@ -144,53 +144,53 @@ public final class z7 extends FrameLayout {
     }
 
     public final void d(int i10, y7 y7Var, Utilities.Callback callback) {
-        this.f23840f = i10;
-        this.f23842r = y7Var;
-        this.f23841n = callback;
-        this.f23839e.e(b(i10), false);
+        this.f23578f = i10;
+        this.f23580r = y7Var;
+        this.f23579n = callback;
+        this.f23577e.e(b(i10), false);
         e(i10, false);
     }
 
     public final void e(int i10, boolean z10) {
         int i11;
         float f7;
-        y7 y7Var = this.f23842r;
-        if (y7Var != null && y7Var.f23810e != null) {
-            org.telegram.ui.Components.r6 r6Var = this.f23837b;
+        y7 y7Var = this.f23580r;
+        if (y7Var != null && y7Var.f23545e != null) {
+            org.telegram.ui.Components.r6 r6Var = this.f23575b;
             r6Var.a();
             org.telegram.ui.Components.r6 r6Var2 = this.d;
             r6Var2.a();
-            org.telegram.ui.Components.r6 r6Var3 = this.f23838c;
+            org.telegram.ui.Components.r6 r6Var3 = this.f23576c;
             r6Var3.a();
-            r6Var3.c((CharSequence) this.f23842r.f23810e.run(0, Integer.valueOf(i10)), z10, true);
-            r6Var.c((CharSequence) this.f23842r.f23810e.run(-1, Integer.valueOf(this.f23842r.b())), z10, true);
-            r6Var2.c((CharSequence) this.f23842r.f23810e.run(1, Integer.valueOf(this.f23842r.a())), z10, true);
-            if (i10 >= this.f23842r.a()) {
+            r6Var3.c((CharSequence) this.f23580r.f23545e.run(0, Integer.valueOf(i10)), z10, true);
+            r6Var.c((CharSequence) this.f23580r.f23545e.run(-1, Integer.valueOf(this.f23580r.b())), z10, true);
+            r6Var2.c((CharSequence) this.f23580r.f23545e.run(1, Integer.valueOf(this.f23580r.a())), z10, true);
+            if (i10 >= this.f23580r.a()) {
                 i11 = org.telegram.ui.ActionBar.h6.I6;
             } else {
-                i11 = org.telegram.ui.ActionBar.h6.f21207y6;
+                i11 = org.telegram.ui.ActionBar.h6.f20945y6;
             }
-            r6Var2.f30430c.v(org.telegram.ui.ActionBar.h6.w0(i11, this.f23836a), z10);
+            r6Var2.f30055c.v(org.telegram.ui.ActionBar.h6.w0(i11, this.f23574a), z10);
             r6Var2.invalidate();
-            if (i10 >= this.f23842r.a()) {
+            if (i10 >= this.f23580r.a()) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            if (Math.abs(this.f23844w - f7) >= 0.01f) {
-                ValueAnimator valueAnimator = this.f23845x;
+            if (Math.abs(this.f23582w - f7) >= 0.01f) {
+                ValueAnimator valueAnimator = this.f23583x;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    this.f23845x = null;
+                    this.f23583x = null;
                 }
-                this.f23844w = f7;
+                this.f23582w = f7;
                 if (z10) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(this.v, f7);
-                    this.f23845x = ofFloat;
+                    this.f23583x = ofFloat;
                     ofFloat.addUpdateListener(new r(this, 6));
-                    this.f23845x.addListener(new org.telegram.ui.ActionBar.y0(this, f7, 3));
-                    this.f23845x.setDuration(240L);
-                    this.f23845x.start();
+                    this.f23583x.addListener(new org.telegram.ui.ActionBar.y0(this, f7, 3));
+                    this.f23583x.setDuration(240L);
+                    this.f23583x.start();
                     return;
                 }
                 ColorMatrix colorMatrix = new ColorMatrix();
@@ -213,19 +213,19 @@ public final class z7 extends FrameLayout {
     }
 
     public void setLabel(CharSequence charSequence) {
-        this.f23843s = charSequence;
+        this.f23581s = charSequence;
     }
 
     public void setMinValueAllowed(int i10) {
         this.h = i10;
-        if (this.f23840f < i10) {
-            this.f23840f = i10;
+        if (this.f23578f < i10) {
+            this.f23578f = i10;
         }
-        if (this.f23842r == null) {
+        if (this.f23580r == null) {
             return;
         }
-        this.f23839e.setMinProgress(b(i10));
-        e(this.f23840f, false);
+        this.f23577e.setMinProgress(b(i10));
+        e(this.f23578f, false);
         invalidate();
     }
 }

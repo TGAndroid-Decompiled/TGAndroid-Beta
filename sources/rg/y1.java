@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.k4;
-public final class y1 extends k4 {
+import org.telegram.ui.l4;
+public final class y1 extends l4 {
     public final Path h;
-    public final a2 f47655n;
+    public final a2 f47745n;
 
     public y1(a2 a2Var, Context context) {
         super(context);
-        this.f47655n = a2Var;
+        this.f47745n = a2Var;
         this.h = new Path();
     }
 
@@ -28,7 +28,7 @@ public final class y1 extends k4 {
         super.onMeasure(i10, i11);
         Path path = this.h;
         path.reset();
-        a2 a2Var = this.f47655n;
+        a2 a2Var = this.f47745n;
         if (a2Var.d) {
             AndroidUtilities.rectTmp.set(0.0f, -a2Var.M, getMeasuredWidth(), getMeasuredHeight());
         } else {

@@ -100,7 +100,7 @@ public class ChannelBoostsController {
                     i12++;
                     TL_stories.TL_myBoost tL_myBoost5 = tL_myBoost4;
                     TLRPC.Peer peer = tL_myBoost5.peer;
-                    if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.f20068id)) {
+                    if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.f19802id)) {
                         arrayList3.add(tL_myBoost5);
                     }
                 }
@@ -149,25 +149,25 @@ public class ChannelBoostsController {
             LaunchActivity launchActivity = LaunchActivity.G1;
             if (launchActivity == null || !launchActivity.isFinishing()) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
-                alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.AppName);
                 HashMap hashMap = new HashMap();
                 int i10 = org.telegram.ui.ActionBar.h6.L5;
                 hashMap.put("info1", Integer.valueOf(org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
                 hashMap.put("info2", Integer.valueOf(org.telegram.ui.ActionBar.h6.x0(null, i10, false)));
                 alertDialog$Builder.m(R.raw.not_available, 52, org.telegram.ui.ActionBar.h6.x0(null, i10, false), hashMap);
-                alertDialog$Builder.f20404a.W = true;
-                alertDialog$Builder.f20404a.R = LocaleController.getString(R.string.ChannelPrivate);
-                alertDialog$Builder.f20404a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
-                q.p(R.string.Close, alertDialog$Builder, null);
+                alertDialog$Builder.f20141a.W = true;
+                alertDialog$Builder.f20141a.R = LocaleController.getString(R.string.ChannelPrivate);
+                alertDialog$Builder.f20141a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
+                v0.p(R.string.Close, alertDialog$Builder, null);
             }
         } else {
-            org.telegram.ui.Components.ad.X().f0(tL_error, false);
+            org.telegram.ui.Components.zc.X().f0(tL_error, false);
         }
         callback.run(null);
     }
 
     public static void lambda$getBoostsStats$1(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new g0(tLObject, callback, tL_error, 12));
+        AndroidUtilities.runOnUIThread(new h0(tLObject, callback, tL_error, 12));
     }
 
     public static void lambda$userCanBoostChannel$2(CanApplyBoost canApplyBoost, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Utilities.Callback callback, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
@@ -199,7 +199,7 @@ public class ChannelBoostsController {
     public void getBoostsStats(long j3, Utilities.Callback<TL_stories.TL_premium_boostsStatus> callback) {
         TL_stories.TL_premium_getBoostsStatus tL_premium_getBoostsStatus = new TL_stories.TL_premium_getBoostsStatus();
         tL_premium_getBoostsStatus.peer = this.messagesController.getInputPeer(j3);
-        this.connectionsManager.sendRequest(tL_premium_getBoostsStatus, new t0(0, callback));
+        this.connectionsManager.sendRequest(tL_premium_getBoostsStatus, new u0(0, callback));
     }
 
     public void userCanBoostChannel(long j3, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Utilities.Callback<CanApplyBoost> callback) {
@@ -207,8 +207,8 @@ public class ChannelBoostsController {
         canApplyBoost.currentPeer = this.messagesController.getPeer(j3);
         canApplyBoost.currentDialogId = j3;
         canApplyBoost.currentChat = this.messagesController.getChat(Long.valueOf(-j3));
-        g2 g2Var = new g2(canApplyBoost, tL_premium_boostsStatus, callback, 1);
-        w wVar = new w(1, canApplyBoost, callback);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new ai.t5(wVar, MessagesController.getInstance(UserConfig.selectedAccount), g2Var, 17));
+        k2 k2Var = new k2(canApplyBoost, tL_premium_boostsStatus, callback, 1);
+        x xVar = new x(1, canApplyBoost, callback);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new ai.t5(xVar, MessagesController.getInstance(UserConfig.selectedAccount), k2Var, 17));
     }
 }

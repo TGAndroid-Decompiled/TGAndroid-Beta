@@ -6,11 +6,11 @@ public class j0 extends db.u {
             aVar.t();
             return null;
         }
-        return new fb.h(aVar.v());
+        return new fb.i(aVar.v());
     }
 
     @Override
     public final void write(lb.b bVar, Object obj) {
-        bVar.q((fb.h) obj);
+        bVar.q((fb.i) obj);
     }
 }

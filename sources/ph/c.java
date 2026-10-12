@@ -4,25 +4,25 @@ import ii.q1;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.web.t0;
 public final class c {
-    public final q1 f45931a;
-    public b f45933c = b.f45927a;
+    public final q1 f45744a;
+    public b f45746c = b.f45740a;
     public final t0 d = new t0(this, 13);
-    public final long f45932b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
+    public final long f45745b = (AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f;
 
     public c(q1 q1Var) {
-        this.f45931a = q1Var;
+        this.f45744a = q1Var;
     }
 
     public final void a(b bVar, boolean z10) {
-        if (this.f45933c != bVar) {
+        if (this.f45746c != bVar) {
             t0 t0Var = this.d;
             AndroidUtilities.cancelRunOnUIThread(t0Var);
-            this.f45933c = bVar;
+            this.f45746c = bVar;
             if (z10) {
-                this.f45931a.run(bVar);
+                this.f45744a.run(bVar);
             }
-            if (bVar == b.f45928b || bVar == b.f45929c) {
-                AndroidUtilities.runOnUIThread(t0Var, this.f45932b);
+            if (bVar == b.f45741b || bVar == b.f45742c) {
+                AndroidUtilities.runOnUIThread(t0Var, this.f45745b);
             }
         }
     }

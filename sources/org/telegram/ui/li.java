@@ -1,67 +1,102 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
 import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLObject;
+import java.util.List;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class li implements View.OnClickListener {
-    public final gi0 f39713a;
-    public final org.telegram.ui.Components.rm0 f39714b;
-    public final LinearLayout f39715c;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
-    public final int[] f39716e;
-    public final zn f39717f;
+public final class li extends z4.a {
+    public final int f39753c;
+    public final SparseArray d;
+    public final boolean f39754e;
+    public final List f39755f;
+    public final MessageObject f39756g;
+    public final org.telegram.ui.Components.nk0 h;
+    public final MessageObject f39757i;
+    public final SparseIntArray f39758j;
+    public final int f39759k;
+    public final z4.g f39760l;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f39761m;
+    public final int[] f39762n;
+    public final int f39763o;
+    public final eo f39764p;
 
-    public li(zn znVar, gi0 gi0Var, org.telegram.ui.Components.rm0 rm0Var, LinearLayout linearLayout, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f39717f = znVar;
-        this.f39713a = gi0Var;
-        this.f39714b = rm0Var;
-        this.f39715c = linearLayout;
-        this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f39716e = iArr;
+    public li(eo eoVar, int i10, SparseArray sparseArray, boolean z10, List list, MessageObject messageObject, org.telegram.ui.Components.nk0 nk0Var, MessageObject messageObject2, SparseIntArray sparseIntArray, int i11, z4.g gVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr, int i12) {
+        this.f39764p = eoVar;
+        this.f39753c = i10;
+        this.d = sparseArray;
+        this.f39754e = z10;
+        this.f39755f = list;
+        this.f39756g = messageObject;
+        this.h = nk0Var;
+        this.f39757i = messageObject2;
+        this.f39758j = sparseIntArray;
+        this.f39759k = i11;
+        this.f39760l = gVar;
+        this.f39761m = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f39762n = iArr;
+        this.f39763o = i12;
     }
 
     @Override
-    public final void onClick(View view) {
-        gi0 gi0Var = this.f39713a;
-        ArrayList arrayList = gi0Var.f38133b;
-        ArrayList arrayList2 = gi0Var.f38134c;
-        zn znVar = this.f39717f;
-        if (znVar.Q8 != null && !arrayList2.isEmpty()) {
-            if (arrayList2.size() == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-                TLObject tLObject = (TLObject) arrayList2.get(0);
-                if (tLObject != null) {
-                    Bundle bundle = new Bundle();
-                    if (tLObject instanceof TLRPC.User) {
-                        bundle.putLong("user_id", ((TLRPC.User) tLObject).f20215id);
-                    } else if (tLObject instanceof TLRPC.Chat) {
-                        bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20068id);
-                    }
-                    znVar.presentFragment(new ProfileActivity(bundle, null));
-                    znVar.D7(true);
-                    return;
-                }
-                return;
-            }
-            if (SharedConfig.messageSeenHintCount > 0 && znVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-                org.telegram.ui.Components.sc t10 = new org.telegram.ui.Components.ad(org.telegram.ui.Components.nb.a(znVar.getParentActivity()), znVar.f44796ea).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
-                znVar.f44897n1 = t10;
-                t10.f30833j = 4000;
-                t10.j();
-                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
-            }
-            org.telegram.ui.Components.rm0 rm0Var = this.f39714b;
-            rm0Var.requestLayout();
-            this.f39715c.requestLayout();
-            rm0Var.getAdapter().l();
-            this.d.getSwipeBack().e(this.f39716e[0]);
+    public final void a(z4.g gVar, Object obj) {
+        gVar.removeView((View) obj);
+    }
+
+    @Override
+    public final int b() {
+        return this.f39753c;
+    }
+
+    @Override
+    public final Object e(z4.g gVar, int i10) {
+        int i11;
+        TLRPC.ReactionCount reactionCount;
+        int i12;
+        SparseArray sparseArray = this.d;
+        View view = (View) sparseArray.get(i10);
+        if (view != null) {
+            gVar.addView(view);
+            return view;
         }
+        if (this.f39754e) {
+            i11 = i10 - 1;
+        } else {
+            i11 = i10;
+        }
+        if (i11 >= 0) {
+            reactionCount = (TLRPC.ReactionCount) this.f39755f.get(i11);
+        } else {
+            reactionCount = null;
+        }
+        TLRPC.ReactionCount reactionCount2 = reactionCount;
+        Context context = gVar.getContext();
+        eo eoVar = this.f39764p;
+        bo boVar = eoVar.f37251ea;
+        i12 = ((org.telegram.ui.ActionBar.m2) eoVar).currentAccount;
+        org.telegram.ui.Components.xk0 xk0Var = new org.telegram.ui.Components.xk0(context, boVar, i12, this.f39756g, reactionCount2, true);
+        org.telegram.ui.Components.nk0 nk0Var = this.h;
+        xk0Var.h(nk0Var.getSeenUsers());
+        xk0Var.G = new z0(this, 16);
+        xk0Var.E = new o(11, this, this.f39757i);
+        xk0Var.f32804y = new ei.t4(this.f39758j, i10, this.f39759k, this.f39760l, this.f39761m, this.f39762n);
+        if (i11 < 0) {
+            xk0Var.setPredictiveCount(this.f39763o);
+            nk0Var.setSeenCallback(new h3(xk0Var, 1));
+        }
+        gVar.addView(xk0Var);
+        sparseArray.put(i10, xk0Var);
+        return xk0Var;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
+        }
+        return false;
     }
 }

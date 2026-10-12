@@ -2,87 +2,87 @@ package u2;
 
 import i2.q1;
 public final class m1 implements d0, c0 {
-    public final d0 f48757a;
-    public final long f48758b;
-    public c0 f48759c;
+    public final d0 f48864a;
+    public final long f48865b;
+    public c0 f48866c;
 
     public m1(d0 d0Var, long j3) {
-        this.f48757a = d0Var;
-        this.f48758b = j3;
+        this.f48864a = d0Var;
+        this.f48865b = j3;
     }
 
     @Override
-    public final void D(c1 c1Var) {
-        d0 d0Var = (d0) c1Var;
-        c0 c0Var = this.f48759c;
+    public final void a(d0 d0Var) {
+        c0 c0Var = this.f48866c;
         c0Var.getClass();
-        c0Var.D(this);
+        c0Var.a(this);
+    }
+
+    @Override
+    public final void b(c1 c1Var) {
+        d0 d0Var = (d0) c1Var;
+        c0 c0Var = this.f48866c;
+        c0Var.getClass();
+        c0Var.b(this);
     }
 
     @Override
     public final boolean c() {
-        return this.f48757a.c();
+        return this.f48864a.c();
     }
 
     @Override
     public final long d() {
-        long d = this.f48757a.d();
+        long d = this.f48864a.d();
         if (d == Long.MIN_VALUE) {
             return Long.MIN_VALUE;
         }
-        return d + this.f48758b;
+        return d + this.f48865b;
     }
 
     @Override
     public final void g() {
-        this.f48757a.g();
+        this.f48864a.g();
     }
 
     @Override
     public final long h(long j3) {
-        long j10 = this.f48758b;
-        return this.f48757a.h(j3 - j10) + j10;
+        long j10 = this.f48865b;
+        return this.f48864a.h(j3 - j10) + j10;
     }
 
     @Override
     public final void i(long j3) {
-        this.f48757a.i(j3 - this.f48758b);
+        this.f48864a.i(j3 - this.f48865b);
     }
 
     @Override
     public final void k(c0 c0Var, long j3) {
-        this.f48759c = c0Var;
-        this.f48757a.k(this, j3 - this.f48758b);
+        this.f48866c = c0Var;
+        this.f48864a.k(this, j3 - this.f48865b);
     }
 
     @Override
     public final long l() {
-        long l4 = this.f48757a.l();
+        long l4 = this.f48864a.l();
         if (l4 == -9223372036854775807L) {
             return -9223372036854775807L;
         }
-        return l4 + this.f48758b;
+        return l4 + this.f48865b;
     }
 
     @Override
-    public final void m(d0 d0Var) {
-        c0 c0Var = this.f48759c;
-        c0Var.getClass();
-        c0Var.m(this);
-    }
-
-    @Override
-    public final boolean n(i2.s0 s0Var) {
+    public final boolean m(i2.s0 s0Var) {
         ?? obj = new Object();
-        long j3 = s0Var.f11885a;
-        obj.f11876b = s0Var.f11886b;
-        obj.f11877c = s0Var.f11887c;
-        obj.f11875a = j3 - this.f48758b;
-        return this.f48757a.n(new i2.s0(obj));
+        long j3 = s0Var.f11884a;
+        obj.f11875b = s0Var.f11885b;
+        obj.f11876c = s0Var.f11886c;
+        obj.f11874a = j3 - this.f48865b;
+        return this.f48864a.m(new i2.s0(obj));
     }
 
     @Override
-    public final long o(x2.r[] rVarArr, boolean[] zArr, a1[] a1VarArr, boolean[] zArr2, long j3) {
+    public final long n(x2.r[] rVarArr, boolean[] zArr, a1[] a1VarArr, boolean[] zArr2, long j3) {
         a1[] a1VarArr2 = new a1[a1VarArr.length];
         int i10 = 0;
         while (true) {
@@ -92,50 +92,50 @@ public final class m1 implements d0, c0 {
             }
             l1 l1Var = (l1) a1VarArr[i10];
             if (l1Var != null) {
-                a1Var = l1Var.f48751a;
+                a1Var = l1Var.f48858a;
             }
             a1VarArr2[i10] = a1Var;
             i10++;
         }
-        d0 d0Var = this.f48757a;
-        long j10 = this.f48758b;
-        long o9 = d0Var.o(rVarArr, zArr, a1VarArr2, zArr2, j3 - j10);
+        d0 d0Var = this.f48864a;
+        long j10 = this.f48865b;
+        long n10 = d0Var.n(rVarArr, zArr, a1VarArr2, zArr2, j3 - j10);
         for (int i11 = 0; i11 < a1VarArr.length; i11++) {
             a1 a1Var2 = a1VarArr2[i11];
             if (a1Var2 == null) {
                 a1VarArr[i11] = null;
             } else {
                 a1 a1Var3 = a1VarArr[i11];
-                if (a1Var3 == null || ((l1) a1Var3).f48751a != a1Var2) {
+                if (a1Var3 == null || ((l1) a1Var3).f48858a != a1Var2) {
                     a1VarArr[i11] = new l1(a1Var2, j10);
                 }
             }
         }
-        return o9 + j10;
+        return n10 + j10;
     }
 
     @Override
-    public final n1 p() {
-        return this.f48757a.p();
+    public final n1 o() {
+        return this.f48864a.o();
     }
 
     @Override
-    public final long q() {
-        long q6 = this.f48757a.q();
-        if (q6 == Long.MIN_VALUE) {
+    public final long p() {
+        long p5 = this.f48864a.p();
+        if (p5 == Long.MIN_VALUE) {
             return Long.MIN_VALUE;
         }
-        return q6 + this.f48758b;
+        return p5 + this.f48865b;
     }
 
     @Override
-    public final long r(long j3, q1 q1Var) {
-        long j10 = this.f48758b;
-        return this.f48757a.r(j3 - j10, q1Var) + j10;
+    public final long q(long j3, q1 q1Var) {
+        long j10 = this.f48865b;
+        return this.f48864a.q(j3 - j10, q1Var) + j10;
     }
 
     @Override
-    public final void s(long j3) {
-        this.f48757a.s(j3 - this.f48758b);
+    public final void r(long j3) {
+        this.f48864a.r(j3 - this.f48865b);
     }
 }

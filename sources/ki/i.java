@@ -1,22 +1,36 @@
 package ki;
 
-import android.util.Size;
-public final class i {
-    public final o0 f14935a;
-    public final p0 f14936b;
-    public final q0 f14937c;
-    public final Size d;
-    public final Size f14938e;
-    public final float f14939f;
-    public final boolean f14940g;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class i extends MetricAffectingSpan {
+    public static final Typeface[] f14887c;
+    public final int f14888a;
+    public final int f14889b;
 
-    public i(o0 o0Var, p0 p0Var, q0 q0Var, Size size, Size size2, float f7, boolean z10) {
-        this.f14935a = o0Var;
-        this.f14936b = p0Var;
-        this.f14937c = q0Var;
-        this.d = size;
-        this.f14938e = size2;
-        this.f14939f = f7;
-        this.f14940g = z10;
+    static {
+        Typeface typeface = Typeface.MONOSPACE;
+        f14887c = new Typeface[]{typeface, Typeface.create(typeface, 1), Typeface.create(typeface, 2), Typeface.create(typeface, 3)};
+    }
+
+    public i(int i10) {
+        int i11;
+        this.f14889b = i10;
+        if ((i10 & 256) != 0) {
+            i11 = 1;
+        } else {
+            i11 = 0;
+        }
+        this.f14888a = i11 | ((i10 & 512) != 0 ? 2 : 0);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        updateMeasureState(textPaint);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.setTypeface(f14887c[this.f14888a]);
     }
 }

@@ -1,18 +1,293 @@
 package org.telegram.ui.Components;
-public final class nw extends rg.c1 {
-    @Override
-    public final void invalidate() {
-        if (zg.d0.b(this)) {
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.LinearLayout;
+import java.util.Map;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class nw extends LinearLayout {
+    public final a0.i f28970a;
+    public final Paint f28971b;
+    public final RectF f28972c;
+    public final RectF d;
+    public final RectF f28973e;
+    public final Path f28974f;
+    public final boolean h;
+    public final boolean f28975n;
+    public final vw f28976r;
+
+    public nw(vw vwVar, Context context, boolean z10, boolean z11) {
+        super(context);
+        this.f28976r = vwVar;
+        this.h = z10;
+        this.f28975n = z11;
+        this.f28970a = new a0.i();
+        this.f28971b = new Paint(1);
+        this.f28972c = new RectF();
+        this.d = new RectF();
+        this.f28973e = new RectF();
+        this.f28974f = new Path();
+    }
+
+    public final void a(RectF rectF, int i10) {
+        View childAt = getChildAt(w7.n.b(i10, 0, getChildCount() - 1));
+        if (childAt == null) {
             return;
         }
-        super.invalidate();
+        rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+        rectF.set(rectF.centerX() - (childAt.getScaleX() * (rectF.width() / 2.0f)), rectF.centerY() - (childAt.getScaleY() * (rectF.height() / 2.0f)), (childAt.getScaleX() * (rectF.width() / 2.0f)) + rectF.centerX(), (childAt.getScaleY() * (rectF.height() / 2.0f)) + rectF.centerY());
     }
 
     @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (zg.d0.b(this)) {
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        float f10;
+        vw vwVar = this.f28976r;
+        boolean z10 = vwVar.f32201n;
+        tw twVar = vwVar.G;
+        for (Map.Entry entry : vwVar.H.entrySet()) {
+            View view = (View) entry.getKey();
+            if (view != null) {
+                Rect rect = (Rect) entry.getValue();
+                canvas.save();
+                canvas.translate(rect.left, rect.top);
+                canvas.scale(view.getScaleX(), view.getScaleY(), rect.width() / 2.0f, rect.height() / 2.0f);
+                view.draw(canvas);
+                canvas.restore();
+            }
+        }
+        if (vwVar.f32203s == null) {
+            vwVar.f32203s = new g6(this, 350L, js.h);
+        }
+        g6 g6Var = vwVar.f32203s;
+        float f11 = 0.0f;
+        if (vwVar.f32202r) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        int i10 = 0;
+        float d = g6Var.d(f7, false);
+        int floor = (int) Math.floor(vwVar.K);
+        RectF rectF = this.f28972c;
+        a(rectF, floor);
+        RectF rectF2 = this.d;
+        a(rectF2, (int) Math.ceil(vwVar.K));
+        float f12 = vwVar.K - floor;
+        RectF rectF3 = this.f28973e;
+        AndroidUtilities.lerp(rectF, rectF2, f12, rectF3);
+        if (twVar != null) {
+            float f13 = vwVar.K;
+            if (vwVar.E != null) {
+                i10 = 1;
+            }
+            f11 = 1.0f - Utilities.clamp01(Math.abs(f13 - (i10 + 1)));
+        }
+        float f14 = vwVar.L;
+        float f15 = (1.0f - f14) * 4.0f * f14;
+        float A = com.google.android.gms.internal.vision.e2.A(f15, 0.3f, 1.0f, rectF3.width() / 2.0f);
+        float B = com.google.android.gms.internal.vision.e2.B(f15, 0.05f, 1.0f, rectF3.height() / 2.0f);
+        rectF3.set(rectF3.centerX() - A, rectF3.centerY() - B, rectF3.centerX() + A, rectF3.centerY() + B);
+        float dp = AndroidUtilities.dp(AndroidUtilities.lerp(8.0f, 16.0f, f11));
+        int k10 = vwVar.k();
+        Paint paint = this.f28971b;
+        paint.setColor(k10);
+        if (z10) {
+            paint.setAlpha((int) com.google.android.gms.internal.vision.e2.B(f11, 0.5f, 1.0f, paint.getAlpha() * d));
+        } else {
+            paint.setAlpha((int) (paint.getAlpha() * d));
+        }
+        Path path = this.f28974f;
+        path.rewind();
+        boolean z11 = this.f28975n;
+        if (z11) {
+            f10 = rectF3.height() / 2.0f;
+        } else {
+            f10 = dp;
+        }
+        if (z11) {
+            dp = rectF3.height() / 2.0f;
+        }
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF3, f10, dp, direction);
+        canvas.drawPath(path, paint);
+        if (z10) {
+            path.rewind();
+            a(rectF3, 1);
+            path.addRoundRect(rectF3, AndroidUtilities.dpf2(16.0f), AndroidUtilities.dpf2(16.0f), direction);
+            paint.setColor(vwVar.k());
+            paint.setAlpha((int) (paint.getAlpha() * 0.5f));
+            canvas.drawPath(path, paint);
+        }
+        if (twVar != null) {
+            path.addCircle(AndroidUtilities.dp(15.0f) + twVar.getLeft(), (twVar.getBottom() + twVar.getTop()) / 2.0f, AndroidUtilities.dp(15.0f), direction);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.f28976r.G) {
+            canvas.save();
+            canvas.clipPath(this.f28974f);
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        a0.i iVar;
+        long j3;
+        TLRPC.StickerSet stickerSet;
+        vw vwVar = this.f28976r;
+        rw rwVar = vwVar.F;
+        int i14 = (i13 - i11) / 2;
+        if (this.h) {
+            int paddingLeft = getPaddingLeft();
+            int i15 = 0;
+            while (true) {
+                int childCount = getChildCount();
+                iVar = this.f28970a;
+                if (i15 >= childCount) {
+                    break;
+                }
+                View childAt = getChildAt(i15);
+                if (childAt != rwVar && !vwVar.H.containsKey(childAt) && childAt != null) {
+                    childAt.layout(paddingLeft, i14 - (childAt.getMeasuredHeight() / 2), childAt.getMeasuredWidth() + paddingLeft, (childAt.getMeasuredHeight() / 2) + i14);
+                    boolean z11 = childAt instanceof rw;
+                    Long l4 = null;
+                    if (z11) {
+                        rw rwVar2 = (rw) childAt;
+                        Long l10 = rwVar2.f30259a;
+                        if (l10 == null) {
+                            qy qyVar = rwVar2.v;
+                            if (qyVar != null && (stickerSet = qyVar.f29947b) != null) {
+                                l4 = Long.valueOf(stickerSet.f19829id);
+                            } else {
+                                l10 = rwVar2.f30265r;
+                                if (l10 == null) {
+                                    TLRPC.Document document = rwVar2.f30266s;
+                                    if (document != null) {
+                                        l4 = Long.valueOf(document.f19808id);
+                                    }
+                                }
+                            }
+                        }
+                        l4 = l10;
+                    } else if (childAt instanceof tw) {
+                        l4 = Long.valueOf(((tw) childAt).h);
+                    }
+                    if (vwVar.O && z11) {
+                        rw rwVar3 = (rw) childAt;
+                        if (rwVar3.f30260b) {
+                            rwVar3.f30260b = false;
+                            childAt.setScaleX(0.0f);
+                            childAt.setScaleY(0.0f);
+                            childAt.setAlpha(0.0f);
+                            ViewPropertyAnimator alpha = childAt.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f);
+                            if (zg.d0.d()) {
+                                j3 = 0;
+                            } else {
+                                j3 = 200;
+                            }
+                            alpha.setDuration(j3).setInterpolator(js.h).start();
+                        }
+                    }
+                    if (l4 != null) {
+                        Integer num = (Integer) iVar.f(l4.longValue());
+                        if (num != null && num.intValue() != paddingLeft && Math.abs(num.intValue() - paddingLeft) < AndroidUtilities.dp(45.0f)) {
+                            childAt.setTranslationX(num.intValue() - paddingLeft);
+                            childAt.animate().translationX(0.0f).setDuration(250L).setInterpolator(js.h).start();
+                        }
+                        iVar.k(Integer.valueOf(paddingLeft), l4.longValue());
+                    }
+                    if ((childAt != vwVar.f32206y || vwVar.W) && (childAt != vwVar.E || vwVar.f32198b0)) {
+                        paddingLeft = org.telegram.messenger.v0.C(3.0f, childAt.getMeasuredWidth(), paddingLeft);
+                    }
+                }
+                i15++;
+            }
+            if (rwVar != null) {
+                Long l11 = rwVar.f30259a;
+                if (getPaddingRight() + rwVar.getMeasuredWidth() + paddingLeft <= vwVar.getMeasuredWidth()) {
+                    int i16 = i12 - i10;
+                    paddingLeft = (i16 - getPaddingRight()) - rwVar.getMeasuredWidth();
+                    rwVar.layout(paddingLeft, i14 - (rwVar.getMeasuredHeight() / 2), i16 - getPaddingRight(), (rwVar.getMeasuredHeight() / 2) + i14);
+                } else {
+                    rwVar.layout(paddingLeft, i14 - (rwVar.getMeasuredHeight() / 2), rwVar.getMeasuredWidth() + paddingLeft, (rwVar.getMeasuredHeight() / 2) + i14);
+                }
+                if (l11 != null) {
+                    if (iVar.f(l11.longValue()) != null && ((Integer) iVar.f(l11.longValue())).intValue() != paddingLeft) {
+                        rwVar.setTranslationX(((Integer) iVar.f(l11.longValue())).intValue() - paddingLeft);
+                        rwVar.animate().translationX(0.0f).setDuration(350L).start();
+                    }
+                    iVar.k(Integer.valueOf(paddingLeft), l11.longValue());
+                    return;
+                }
+                return;
+            }
             return;
         }
-        super.invalidate(i10, i11, i12, i13);
+        int childCount2 = (getChildCount() - (!vwVar.W ? 1 : 0)) - (!vwVar.f32198b0 ? 1 : 0);
+        int B = (int) (org.telegram.messenger.am.B(30.0f, childCount2, ((i12 - i10) - getPaddingLeft()) - getPaddingRight()) / Math.max(1, childCount2 - 1));
+        int paddingLeft2 = getPaddingLeft();
+        for (int i17 = 0; i17 < childCount2; i17++) {
+            View childAt2 = getChildAt((!vwVar.W ? 1 : 0) + (!vwVar.f32198b0 ? 1 : 0) + i17);
+            if (childAt2 != null) {
+                childAt2.layout(paddingLeft2, i14 - (childAt2.getMeasuredHeight() / 2), childAt2.getMeasuredWidth() + paddingLeft2, (childAt2.getMeasuredHeight() / 2) + i14);
+                paddingLeft2 = childAt2.getMeasuredWidth() + B + paddingLeft2;
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int i12;
+        rw rwVar;
+        rw rwVar2;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(99999999, Integer.MIN_VALUE);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        vw vwVar = this.f28976r;
+        float f10 = 0.0f;
+        if (!vwVar.W && (rwVar2 = vwVar.f32206y) != null) {
+            f7 = rwVar2.getAlpha() * AndroidUtilities.dp(33.0f);
+        } else {
+            f7 = 0.0f;
+        }
+        int i13 = paddingRight - ((int) f7);
+        if (!vwVar.f32198b0 && (rwVar = vwVar.E) != null) {
+            f10 = rwVar.getAlpha() * AndroidUtilities.dp(33.0f);
+        }
+        int i14 = i13 - ((int) f10);
+        for (int i15 = 0; i15 < getChildCount(); i15++) {
+            View childAt = getChildAt(i15);
+            if (childAt != null) {
+                childAt.measure(makeMeasureSpec, i11);
+                int measuredWidth = childAt.getMeasuredWidth();
+                if (i15 + 1 < getChildCount()) {
+                    i12 = AndroidUtilities.dp(3.0f);
+                } else {
+                    i12 = 0;
+                }
+                i14 = measuredWidth + i12 + i14;
+            }
+        }
+        if (!this.h) {
+            setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
+        } else {
+            setMeasuredDimension(Math.max(i14, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getSize(i11));
+        }
     }
 }

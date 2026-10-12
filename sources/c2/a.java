@@ -10,49 +10,49 @@ import java.security.MessageDigest;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.hd;
-import org.telegram.ui.Components.hy;
-import org.telegram.ui.Components.qg;
-import org.telegram.ui.Components.rz;
-import org.telegram.ui.Components.sf;
-import org.telegram.ui.Components.tw0;
+import org.telegram.ui.Components.gd;
+import org.telegram.ui.Components.jy;
+import org.telegram.ui.Components.sg;
+import org.telegram.ui.Components.tz;
+import org.telegram.ui.Components.uf;
+import org.telegram.ui.Components.yw0;
 import r0.m0;
-public final class a implements m0, hy {
-    public boolean f3993a;
-    public int f3994b;
-    public Object f3995c;
+public final class a implements m0, jy {
+    public boolean f3992a;
+    public int f3993b;
+    public Object f3994c;
 
     public a(FrameLayout frameLayout) {
-        this.f3995c = frameLayout;
+        this.f3994c = frameLayout;
     }
 
     @Override
     public void a() {
-        this.f3993a = true;
+        this.f3992a = true;
     }
 
     @Override
     public void b() {
         super/*android.view.ViewGroup*/.setVisibility(0);
-        this.f3993a = false;
+        this.f3992a = false;
     }
 
     @Override
     public void c() {
-        if (this.f3993a) {
+        if (this.f3992a) {
             return;
         }
-        ActionBarContextView actionBarContextView = (ActionBarContextView) this.f3995c;
-        actionBarContextView.f2221f = null;
-        super/*android.view.ViewGroup*/.setVisibility(this.f3994b);
+        ActionBarContextView actionBarContextView = (ActionBarContextView) this.f3994c;
+        actionBarContextView.f2219f = null;
+        super/*android.view.ViewGroup*/.setVisibility(this.f3993b);
     }
 
     public boolean d() {
-        rz rzVar;
-        sf sfVar;
-        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3995c;
-        if (chatActivityEnterView.f24015x3) {
-            if ((chatActivityEnterView.f24025z3 || (sfVar = chatActivityEnterView.E0) == null || sfVar.length() <= 0) && (rzVar = chatActivityEnterView.U0.f24802y0) != null && rzVar.h() > 0 && !chatActivityEnterView.f23945k3) {
+        tz tzVar;
+        uf ufVar;
+        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3994c;
+        if (chatActivityEnterView.Z3) {
+            if ((chatActivityEnterView.f23627b4 || (ufVar = chatActivityEnterView.E0) == null || ufVar.length() <= 0) && (tzVar = chatActivityEnterView.U0.f25151y0) != null && tzVar.h() > 0 && !chatActivityEnterView.M3) {
                 return true;
             }
             return false;
@@ -62,48 +62,48 @@ public final class a implements m0, hy {
 
     public void e() {
         int i10;
-        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3995c;
-        tw0 tw0Var = chatActivityEnterView.f23952m1;
+        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3994c;
+        yw0 yw0Var = chatActivityEnterView.f23689m1;
         if (d()) {
-            AnimatorSet animatorSet = chatActivityEnterView.B3;
+            AnimatorSet animatorSet = chatActivityEnterView.f23640d4;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            chatActivityEnterView.E3 = true;
-            this.f3993a = chatActivityEnterView.f24025z3;
-            chatActivityEnterView.f24025z3 = true;
+            chatActivityEnterView.f23660g4 = true;
+            this.f3992a = chatActivityEnterView.f23627b4;
+            chatActivityEnterView.f23627b4 = true;
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 1);
-            int height = ((((tw0Var.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
-            chatActivityEnterView.D3 = height;
+            int height = ((((yw0Var.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
+            chatActivityEnterView.f23654f4 = height;
             if (chatActivityEnterView.R1 == 2) {
                 int dp = AndroidUtilities.dp(175.0f);
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
-                    i10 = chatActivityEnterView.f24020y2;
+                    i10 = chatActivityEnterView.f23767y2;
                 } else {
-                    i10 = chatActivityEnterView.f24014x2;
+                    i10 = chatActivityEnterView.f23760x2;
                 }
-                chatActivityEnterView.D3 = Math.min(height, dp + i10);
+                chatActivityEnterView.f23654f4 = Math.min(height, dp + i10);
             }
-            if (chatActivityEnterView.f23904d5 == null) {
-                chatActivityEnterView.U0.getLayoutParams().height = chatActivityEnterView.D3;
+            if (chatActivityEnterView.G5 == null) {
+                chatActivityEnterView.U0.getLayoutParams().height = chatActivityEnterView.f23654f4;
             }
             chatActivityEnterView.U0.setLayerType(2, null);
-            tw0Var.requestLayout();
-            if (chatActivityEnterView.f24021y4) {
-                tw0Var.setForeground(new hd(chatActivityEnterView));
+            yw0Var.requestLayout();
+            if (chatActivityEnterView.f23628b5) {
+                yw0Var.setForeground(new gd(chatActivityEnterView));
             }
-            this.f3994b = (int) chatActivityEnterView.getTranslationY();
-            qg qgVar = chatActivityEnterView.Z2;
-            if (qgVar != null) {
-                qgVar.y1();
+            this.f3993b = (int) chatActivityEnterView.getTranslationY();
+            sg sgVar = chatActivityEnterView.Z2;
+            if (sgVar != null) {
+                sgVar.y1();
             }
         }
     }
 
     public a(MessageDigest messageDigest, int i10) {
         ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN);
-        this.f3995c = messageDigest;
-        this.f3994b = i10;
+        this.f3994c = messageDigest;
+        this.f3993b = i10;
     }
 }

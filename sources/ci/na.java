@@ -2,30 +2,30 @@ package ci;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class na implements Runnable {
-    public final int f5649a;
-    public final lc f5650b;
-    public final Runnable f5651c;
+    public final int f5648a;
+    public final lc f5649b;
+    public final Runnable f5650c;
 
     public na(lc lcVar, Runnable runnable, int i10) {
-        this.f5649a = i10;
-        this.f5650b = lcVar;
-        this.f5651c = runnable;
+        this.f5648a = i10;
+        this.f5649b = lcVar;
+        this.f5650c = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f5649a) {
+        switch (this.f5648a) {
             case 0:
-                this.f5651c.run();
-                this.f5650b.o0();
+                this.f5650c.run();
+                this.f5649b.o0();
                 return;
             default:
-                lc lcVar = this.f5650b;
+                lc lcVar = this.f5649b;
                 lcVar.e(false);
-                AndroidUtilities.cancelRunOnUIThread(lcVar.f5481g2);
-                lcVar.f5481g2 = null;
+                AndroidUtilities.cancelRunOnUIThread(lcVar.f5480g2);
+                lcVar.f5480g2 = null;
                 lcVar.S1 = false;
-                this.f5651c.run();
+                this.f5650c.run();
                 return;
         }
     }

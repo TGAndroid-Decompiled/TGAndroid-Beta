@@ -4,32 +4,32 @@ import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
 public final class e6 {
-    public boolean f882a;
-    public Object f883b;
+    public boolean f880a;
+    public Object f881b;
     public Object d;
-    public Object f887g;
-    public Object f884c = k2.b.f14408c;
-    public Object f885e = k2.e0.f14461a;
-    public Object f886f = k2.u.f14564a;
+    public Object f885g;
+    public Object f882c = k2.b.f14405c;
+    public Object f883e = k2.e0.f14458a;
+    public Object f884f = k2.u.f14561a;
 
     public e6(Context context) {
-        this.f883b = context;
+        this.f881b = context;
     }
 
     public k2.d0 a() {
-        e2.d.g(!this.f882a);
-        this.f882a = true;
+        e2.d.g(!this.f880a);
+        this.f880a = true;
         if (((aa.a) this.d) == null) {
             this.d = new aa.a(new c2.h[0]);
         }
-        if (((pf.b) this.f887g) == null) {
-            this.f887g = new pf.b((Context) this.f883b, 24);
+        if (((pf.b) this.f885g) == null) {
+            this.f885g = new pf.b((Context) this.f881b, 24);
         }
         return new k2.d0(this);
     }
 
     public void b() {
-        ArrayList arrayList = (ArrayList) this.f887g;
+        ArrayList arrayList = (ArrayList) this.f885g;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             ((View) arrayList.get(i10)).invalidate();
         }

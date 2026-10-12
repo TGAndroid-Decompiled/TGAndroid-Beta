@@ -1,16 +1,16 @@
 package f2;
 public final class k {
-    public final int f9579a;
-    public final int f9580b;
-    public final int f9581c;
+    public final int f9577a;
+    public final int f9578b;
+    public final int f9579c;
     public final int d;
-    public final int f9582e;
+    public final int f9580e;
 
     public k(int i10, int i11, int i12, int i13, int i14) {
-        this.f9579a = i10;
-        this.f9580b = i11;
-        this.f9581c = i12;
+        this.f9577a = i10;
+        this.f9578b = i11;
+        this.f9579c = i12;
         this.d = i13;
-        this.f9582e = i14;
+        this.f9580e = i14;
     }
 }

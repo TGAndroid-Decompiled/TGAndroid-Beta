@@ -1,62 +1,41 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class u6 implements Runnable {
-    public final int f19342a = 0;
-    public final boolean f19343b;
-    public final boolean f19344c;
+    public final int f19068a;
+    public final int f19069b;
+    public final int f19070c;
     public final Object d;
-    public final Object f19345e;
-    public final Object f19346f;
-    public final Object h;
-    public final Object f19347n;
 
-    public u6(MediaController.MediaLoader mediaLoader, boolean z10, TLRPC.PhotoSize photoSize, MessageObject messageObject, TLRPC.Photo photo, boolean z11, TLRPC.Document document) {
-        this.d = mediaLoader;
-        this.f19343b = z10;
-        this.f19345e = photoSize;
-        this.f19346f = messageObject;
-        this.h = photo;
-        this.f19344c = z11;
-        this.f19347n = document;
+    public u6(int i10, int i11, String str) {
+        this.f19068a = 3;
+        this.f19069b = i10;
+        this.f19070c = i11;
+        this.d = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f19342a) {
+        switch (this.f19068a) {
             case 0:
-                ((MediaController.MediaLoader) this.d).lambda$processLivePhotoMessage$5(this.f19343b, (TLRPC.PhotoSize) this.f19345e, (MessageObject) this.f19346f, (TLRPC.Photo) this.h, this.f19344c, (TLRPC.Document) this.f19347n);
+                ((MediaController.AnonymousClass8) this.d).lambda$onStateChanged$0(this.f19069b, this.f19070c);
                 return;
             case 1:
-                ((MediaDataController) this.d).lambda$fillWithAnimatedEmoji$226((Integer) this.f19345e, (ArrayList) this.f19346f, this.f19343b, this.f19344c, (ArrayList[]) this.h, (Runnable) this.f19347n);
+                ((MediaDataController) this.d).lambda$processLoadedStickers$106(this.f19069b, this.f19070c);
+                return;
+            case 2:
+                ((NotificationsController) this.d).lambda$deleteNotificationChannelGlobal$44(this.f19069b, this.f19070c);
                 return;
             default:
-                ((MessagesController) this.d).lambda$addUserToChat$301((MessagesController.ErrorDelegate) this.f19345e, (TLRPC.TL_error) this.f19346f, (org.telegram.ui.ActionBar.m2) this.h, (TLObject) this.f19347n, this.f19343b, this.f19344c);
+                PushListenerController.d(this.f19069b, this.f19070c, (String) this.d);
                 return;
         }
     }
 
-    public u6(MediaDataController mediaDataController, Integer num, ArrayList arrayList, boolean z10, boolean z11, ArrayList[] arrayListArr, Runnable runnable) {
-        this.d = mediaDataController;
-        this.f19345e = num;
-        this.f19346f = arrayList;
-        this.f19343b = z10;
-        this.f19344c = z11;
-        this.h = arrayListArr;
-        this.f19347n = runnable;
-    }
-
-    public u6(MessagesController messagesController, MessagesController.ErrorDelegate errorDelegate, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.m2 m2Var, TLObject tLObject, boolean z10, boolean z11) {
-        this.d = messagesController;
-        this.f19345e = errorDelegate;
-        this.f19346f = tL_error;
-        this.h = m2Var;
-        this.f19347n = tLObject;
-        this.f19343b = z10;
-        this.f19344c = z11;
+    public u6(Object obj, int i10, int i11, int i12) {
+        this.f19068a = i12;
+        this.d = obj;
+        this.f19069b = i10;
+        this.f19070c = i11;
     }
 }

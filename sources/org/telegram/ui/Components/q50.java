@@ -1,23 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-public final class q50 {
-    public long f30121a;
-    public float f30122b;
-    public float f30123c;
-    public boolean d;
-    public float f30124e;
-    public final RectF f30125f = new RectF();
-    public int f30126g;
-    public final Paint h;
-    public final int f30127i;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class q50 extends FrameLayout {
+    public View f29698a;
+    public TextView f29699b;
+    public ik0 f29700c;
+    public LinearLayout d;
 
-    public q50(int i10) {
-        this.f30127i = i10;
-        Paint paint = new Paint(1);
-        this.h = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
+
+    public void setGravity(int i10) {
+        this.f29699b.setGravity(i10);
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f29699b.setText(charSequence);
+    }
+
+    public void setTextColor(int i10) {
+        this.f29699b.setTextColor(i10);
     }
 }

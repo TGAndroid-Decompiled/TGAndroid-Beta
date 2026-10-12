@@ -1,23 +1,55 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-public final class ui extends t20 {
-    public final yi J;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ui extends vi {
+    public int f31172b;
+    public final aj f31173c;
 
-    public ui(Context context, org.telegram.ui.ActionBar.d6 d6Var, yi yiVar) {
-        super(context, d6Var);
-        this.J = yiVar;
+    public ui(aj ajVar, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.c6 c6Var;
+        this.f31173c = ajVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        c6Var = ((org.telegram.ui.ActionBar.e3) ajVar).resourcesProvider;
+        oh.b bVar = new oh.b(context);
+        bVar.d = c6Var;
+        bVar.Q = true;
+        TextView textView = bVar.f16890a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        bVar.a(false);
+        bVar.f16891b.setLayoutParams(w7.w5.a(24.0f, 0.0f, 4.0f, 0.0f, 0.0f, 24, 49));
+        bVar.f16898w = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.cl, c6Var);
+        bVar.f16897s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, c6Var);
+        bVar.v = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.bl, c6Var);
+        bVar.f();
+        this.f31524a = bVar;
+        addView(bVar, w7.w5.d(-1.0f, -1));
+    }
+
+    public final void a(int i10, String str, oh.a aVar) {
+        this.f31524a.setText(str);
+        this.f31524a.setTabAnimation(aVar);
+        this.f31172b = i10;
     }
 
     @Override
-    public int[] getColorKeys() {
-        return null;
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.w1(this.f31038r, true);
-        return super.onInterceptTouchEvent(motionEvent);
+    public final void onAttachedToWindow() {
+        boolean z10;
+        super.onAttachedToWindow();
+        if (this.f31172b == this.f31173c.Z0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f31524a.e(z10, false);
     }
 }

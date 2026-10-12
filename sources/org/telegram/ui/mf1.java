@@ -1,24 +1,23 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
-public final class mf1 extends org.telegram.ui.Components.d80 {
-    public final long A0;
-    public final of1 B0;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class mf1 implements View.OnClickListener {
+    public final hg1 f40033a;
 
-    public mf1(of1 of1Var, Context context, int i10, a0.i iVar, long j3, org.telegram.ui.ActionBar.m2 m2Var, long j10) {
-        super(context, i10, iVar, j3, m2Var, null);
-        this.B0 = of1Var;
-        this.A0 = j10;
+    public mf1(hg1 hg1Var) {
+        this.f40033a = hg1Var;
     }
 
     @Override
-    public final boolean Y() {
-        TLRPC.Chat chat = this.B0.f40569b.getMessagesController().getChat(Long.valueOf(this.A0));
-        if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
-            return true;
+    public final void onClick(View view) {
+        hg1 hg1Var = this.f40033a;
+        if (hg1Var.M == 1) {
+            org.telegram.ui.Components.g5.i0(hg1Var, -hg1Var.f38376a, null, hg1Var.g(), null, false, hg1Var.J, new ya(this, 5), hg1Var.getResourceProvider());
+            return;
         }
-        return false;
+        hg1Var.getMessagesController().addUserToChat(hg1Var.f38376a, hg1Var.getUserConfig().getCurrentUser(), 0, null, hg1Var, false, new ff1(hg1Var, 2), new gf1(hg1Var));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
+        hg1Var.O0(false);
     }
 }

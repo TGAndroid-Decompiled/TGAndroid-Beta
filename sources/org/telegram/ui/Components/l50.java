@@ -1,23 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class l50 {
-    public final TLObject f28202a;
-    public TLRPC.User f28203b;
-    public final int f28204c;
-    public final boolean d;
-    public boolean f28205e;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+public final class l50 implements org.telegram.ui.lq0 {
+    public final p50 f28052a;
 
-    public l50(int i10, TLObject tLObject) {
-        boolean z10;
-        this.f28202a = tLObject;
-        this.f28204c = i10;
-        if ((tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public l50(p50 p50Var) {
+        this.f28052a = p50Var;
+    }
+
+    @Override
+    public final void a(ArrayList arrayList) {
+        p50.a(this.f28052a, false, arrayList);
+    }
+
+    @Override
+    public final void b() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("image/*");
+            this.f28052a.f29378a.startActivityForResult(intent, 14);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
-        this.d = z10;
     }
 }

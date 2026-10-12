@@ -4,9 +4,9 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.e5;
-import org.telegram.ui.Components.f71;
+import org.telegram.ui.Components.j71;
 public final class n extends e5 {
-    public final i2.h0 f43626f = new i2.h0(this, 28);
+    public final i2.h0 f43346f = new i2.h0(this, 28);
     public final o h;
 
     public n(o oVar) {
@@ -16,17 +16,17 @@ public final class n extends e5 {
     @Override
     public final void m() {
         o oVar = this.h;
-        oVar.f43641s = null;
-        AndroidUtilities.cancelRunOnUIThread(this.f43626f);
-        i iVar = oVar.f43637e;
+        oVar.f43357s = null;
+        AndroidUtilities.cancelRunOnUIThread(this.f43346f);
+        i iVar = oVar.f43353e;
         if (iVar != null) {
             iVar.c();
-            oVar.f43637e = null;
+            oVar.f43353e = null;
         }
-        f71 f71Var = oVar.f26675a;
-        if (f71Var != null) {
-            f71Var.W2.N(true);
-            oVar.f26675a.V2.h1(0, 0);
+        j71 j71Var = oVar.f27773a;
+        if (j71Var != null) {
+            j71Var.W2.N(true);
+            oVar.f27773a.V2.h1(0, 0);
         }
     }
 
@@ -34,27 +34,27 @@ public final class n extends e5 {
     public final void q(EditText editText) {
         int i10;
         o oVar = this.h;
-        boolean z10 = !TextUtils.isEmpty(oVar.f43641s);
+        boolean z10 = !TextUtils.isEmpty(oVar.f43357s);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(oVar.f43641s, obj)) {
-            oVar.f43641s = obj;
-            i iVar = oVar.f43637e;
+        if (!TextUtils.equals(oVar.f43357s, obj)) {
+            oVar.f43357s = obj;
+            i iVar = oVar.f43353e;
             if (iVar != null) {
                 iVar.c();
             }
             i10 = ((org.telegram.ui.ActionBar.m2) oVar).currentAccount;
             i iVar2 = new i(obj, i10, new l(oVar, 1));
-            oVar.f43637e = iVar2;
+            oVar.f43353e = iVar2;
             iVar2.a();
-            i2.h0 h0Var = this.f43626f;
+            i2.h0 h0Var = this.f43346f;
             AndroidUtilities.cancelRunOnUIThread(h0Var);
             AndroidUtilities.runOnUIThread(h0Var, 500L);
         }
-        f71 f71Var = oVar.f26675a;
-        if (f71Var != null) {
-            f71Var.W2.N(true);
+        j71 j71Var = oVar.f27773a;
+        if (j71Var != null) {
+            j71Var.W2.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                oVar.f26675a.V2.h1(0, 0);
+                oVar.f27773a.V2.h1(0, 0);
             }
         }
     }

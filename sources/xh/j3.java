@@ -1,14 +1,31 @@
 package xh;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class j3 extends org.telegram.ui.ActionBar.e1 {
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.p71;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.wm0;
+public final class j3 extends t61 {
+    static {
+        t61.setup(new t61());
+    }
+
+    public static u61 a(String str) {
+        u61 J = u61.J(j3.class);
+        J.f31076l = str;
+        return J;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-            size = AndroidUtilities.dp(250.0f);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i11);
+    public final void bindView(View view, u61 u61Var, boolean z10, h71 h71Var, p71 p71Var) {
+        ((k3) view).set(u61Var.f31076l);
+    }
+
+    @Override
+    public final View createView(Context context, wm0 wm0Var, int i10, int i11, c6 c6Var) {
+        return new k3(context, c6Var);
     }
 }

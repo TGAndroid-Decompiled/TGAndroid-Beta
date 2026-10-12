@@ -1,32 +1,52 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class wc0 extends org.telegram.ui.Components.cw0 {
-    public final gd0 f43343f2;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserObject;
+public final class wc0 extends gg.s0 {
+    public boolean m0;
+    public final id0 f43134n0;
 
-    public wc0(gd0 gd0Var, Context context, org.telegram.ui.Components.uv0 uv0Var, gd0 gd0Var2, vc0 vc0Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 0L, uv0Var, 0, null, null, null, 8, 0, gd0Var2, vc0Var, 0, d6Var, null);
-        this.f43343f2 = gd0Var;
+    public wc0(id0 id0Var, Context context, int i10, long j3, org.telegram.ui.ActionBar.c6 c6Var, boolean z10, boolean z11) {
+        super(context, i10, j3, false, c6Var, false, z10, z11);
+        this.f43134n0 = id0Var;
+        this.m0 = true;
     }
 
     @Override
-    public final int B0() {
-        return 32;
+    public final void K() {
+        this.f43134n0.q0(null);
     }
 
     @Override
-    public final boolean N() {
-        return true;
-    }
-
-    @Override
-    public final int S0() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.f43343f2.M0;
+    public final void N(ArrayList arrayList) {
+        int i10;
+        id0 id0Var = this.f43134n0;
+        MessageObject messageObject = id0Var.B0;
+        if (messageObject != null && messageObject.isLiveLocation()) {
+            int i11 = 0;
+            if (arrayList != null) {
+                i10 = 0;
+                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                    cd0 cd0Var = (cd0) arrayList.get(i12);
+                    if (cd0Var != null && !UserObject.isUserSelf(cd0Var.f36400c)) {
+                        i10++;
+                    }
+                }
+            } else {
+                i10 = 0;
+            }
+            if (this.m0 && i10 == 1) {
+                id0Var.f38855i0 = ((cd0) arrayList.get(0)).f36398a;
+            }
+            this.m0 = false;
+            org.telegram.ui.ActionBar.u0 u0Var = id0Var.Z;
+            if (i10 != 1) {
+                i11 = 8;
+            }
+            u0Var.setVisibility(i11);
+        }
+        super.N(arrayList);
     }
 }

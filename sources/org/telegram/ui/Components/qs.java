@@ -1,22 +1,17 @@
 package org.telegram.ui.Components;
-public final class qs implements Runnable {
-    public final int f30319a;
-    public final ws f30320b;
 
-    public qs(ws wsVar, int i10) {
-        this.f30319a = i10;
-        this.f30320b = wsVar;
+import org.telegram.messenger.Utilities;
+public final class qs implements Utilities.Callback2 {
+    public final int f29922a;
+    public final xs f29923b;
+
+    public qs(xs xsVar, int i10) {
+        this.f29922a = i10;
+        this.f29923b = xsVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30319a) {
-            case 0:
-                this.f30320b.X(false);
-                return;
-            default:
-                ws.R(this.f30320b);
-                return;
-        }
+    public final void run(java.lang.Object r13, java.lang.Object r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qs.run(java.lang.Object, java.lang.Object):void");
     }
 }

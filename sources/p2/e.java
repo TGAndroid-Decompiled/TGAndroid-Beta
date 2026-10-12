@@ -1,28 +1,46 @@
 package p2;
 
-import android.net.Uri;
-import java.util.ArrayList;
-import java.util.HashMap;
+import j$.util.Objects;
 public final class e {
-    public final String f45254a;
-    public Uri f45256c;
-    public Uri d;
-    public boolean f45261j;
-    public Boolean f45266o;
-    public String f45267p;
-    public String f45268q;
-    public final HashMap f45255b = new HashMap();
-    public long f45257e = -9223372036854775807L;
-    public long f45258f = -9223372036854775807L;
-    public long f45259g = -9223372036854775807L;
-    public long h = -9223372036854775807L;
-    public ArrayList f45260i = new ArrayList();
-    public long f45262k = -9223372036854775807L;
-    public long f45263l = -9223372036854775807L;
-    public ArrayList f45264m = new ArrayList();
-    public ArrayList f45265n = new ArrayList();
+    public final String f45066a;
+    public final int f45067b;
+    public final double f45068c;
+    public final String d;
 
-    public e(String str) {
-        this.f45254a = str;
+    public e(String str, double d) {
+        this.f45066a = str;
+        this.f45067b = 2;
+        this.f45068c = d;
+        this.d = null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof e) {
+                e eVar = (e) obj;
+                if (this.f45067b == eVar.f45067b && Double.compare(this.f45068c, eVar.f45068c) == 0 && Objects.equals(this.f45066a, eVar.f45066a) && Objects.equals(this.d, eVar.d)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f45066a, Integer.valueOf(this.f45067b), Double.valueOf(this.f45068c), this.d);
+    }
+
+    public e(int i10, String str, String str2) {
+        boolean z10 = true;
+        if (i10 == 1 && !str2.startsWith("0x") && !str2.startsWith("0X")) {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        this.f45066a = str;
+        this.f45067b = i10;
+        this.d = str2;
+        this.f45068c = 0.0d;
     }
 }

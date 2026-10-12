@@ -3,5 +3,5 @@ package b5;
 import java.util.Arrays;
 import java.util.HashSet;
 public abstract class a {
-    public static final HashSet f3755a = new HashSet(Arrays.asList(n.f3774a.k()));
+    public static final HashSet f3753a = new HashSet(Arrays.asList(n.f3772a.j()));
 }

@@ -1,28 +1,132 @@
 package org.telegram.ui;
-public final class dq implements Runnable {
-    public final int f37098a;
-    public final nq f37099b;
-    public final long f37100c;
 
-    public dq(nq nqVar, long j3, int i10) {
-        this.f37098a = i10;
-        this.f37099b = nqVar;
-        this.f37100c = j3;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class dq extends s4.i0 {
+    public final Context f36860c;
+    public final eq d;
+
+    public dq(eq eqVar, Context context) {
+        this.d = eqVar;
+        this.f36860c = context;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37098a) {
-            case 0:
-                long j3 = this.f37100c;
-                nq nqVar = this.f37099b;
-                nqVar.f40360n = j3;
-                nqVar.f40365r = true;
-                nqVar.n0();
-                return;
-            default:
-                nq.Z(this.f37099b, this.f37100c);
-                return;
+    public final int h() {
+        eq eqVar = this.d;
+        ArrayList arrayList = eqVar.f37524r;
+        int i10 = 0;
+        if (eqVar.G) {
+            if (!eqVar.d.isEmpty()) {
+                i10 = arrayList.size() + 1;
+            }
+            return i10 + 1;
         }
+        if (!eqVar.d.isEmpty()) {
+            i10 = arrayList.size() + 1;
+        }
+        return i10 + 2;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (this.d.G) {
+            if (i10 == 0) {
+                return 0;
+            }
+            if (i10 != 1) {
+                return 2;
+            }
+            return 1;
+        } else if (i10 == 0) {
+            return 3;
+        } else {
+            if (i10 == 1) {
+                return 0;
+            }
+            if (i10 != 2) {
+                return 2;
+            }
+            return 1;
+        }
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        String string;
+        int i11;
+        View view = d1Var.f47889a;
+        int j3 = j(i10);
+        int i12 = 2;
+        eq eqVar = this.d;
+        if (j3 != 0) {
+            if (j3 != 1) {
+                if (j3 == 2) {
+                    org.telegram.ui.Cells.y yVar = (org.telegram.ui.Cells.y) view;
+                    ArrayList arrayList = eqVar.f37524r;
+                    if (!eqVar.G) {
+                        i12 = 3;
+                    }
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) arrayList.get(i10 - i12);
+                    boolean contains = eqVar.d.contains(tL_availableReaction.reaction);
+                    i11 = ((org.telegram.ui.ActionBar.m2) eqVar).currentAccount;
+                    yVar.a(tL_availableReaction, contains, i11);
+                    return;
+                }
+                return;
+            }
+            org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
+            m4Var.setText(LocaleController.getString(R.string.OnlyAllowThisReactions));
+            m4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20559d6, false));
+            return;
+        }
+        org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+        e9Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.B6, false));
+        if (eqVar.G) {
+            if (ChatObject.isChannelAndNotMegaGroup(eqVar.f37518a)) {
+                string = LocaleController.getString(R.string.EnableReactionsChannelInfo);
+            } else {
+                string = LocaleController.getString(R.string.EnableReactionsGroupInfo);
+            }
+            e9Var.setText(string);
+            return;
+        }
+        int i13 = eqVar.v;
+        if (i13 == 1) {
+            e9Var.setText(LocaleController.getString(R.string.EnableSomeReactionsInfo));
+        } else if (i13 == 0) {
+            e9Var.setText(LocaleController.getString(R.string.EnableAllReactionsInfo));
+        } else if (i13 == 2) {
+            e9Var.setText(LocaleController.getString(R.string.DisableReactionsInfo));
+        }
+    }
+
+    @Override
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        Context context = this.f36860c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    return new s4.d1(new org.telegram.ui.Cells.y(context, false, false));
+                }
+                FrameLayout frameLayout = new FrameLayout(context);
+                eq eqVar = this.d;
+                if (eqVar.f37525s.getParent() != null) {
+                    ((ViewGroup) eqVar.f37525s.getParent()).removeView(eqVar.f37525s);
+                }
+                frameLayout.addView(eqVar.f37525s);
+                frameLayout.setLayoutParams(new s4.q0(-1, -2));
+                return new s4.d1(frameLayout);
+            }
+            return new s4.d1(new org.telegram.ui.Cells.m4(context, 23));
+        }
+        return new s4.d1(new org.telegram.ui.Cells.e9(context));
     }
 }

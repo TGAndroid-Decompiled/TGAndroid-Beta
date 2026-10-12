@@ -1,59 +1,20 @@
 package org.telegram.ui;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class cs implements ActionMode.Callback {
-    public final ds f36846a;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class cs {
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f36499a;
+    public org.telegram.ui.ActionBar.a1 f36500b;
+    public org.telegram.ui.ActionBar.e1[] f36501c;
 
-    public cs(ds dsVar) {
-        this.f36846a = dsVar;
-    }
-
-    @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        bs bsVar;
-        ClipboardManager clipboardManager;
-        ClipData primaryClip;
-        int i10;
-        if (menuItem.getItemId() != 16908322) {
-            return true;
-        }
-        ds dsVar = this.f36846a;
-        if (dsVar.getParent() instanceof bs) {
-            bsVar = (bs) dsVar.getParent();
-        } else {
-            bsVar = null;
-        }
-        if (bsVar != null && (clipboardManager = (ClipboardManager) dsVar.getContext().getSystemService(ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
-            String charSequence = primaryClip.getItemAt(0).getText().toString();
-            try {
-                i10 = Integer.parseInt(charSequence);
-            } catch (Exception unused) {
-                i10 = -1;
-            }
-            if (i10 > 0) {
-                bsVar.c(charSequence, true);
+    public final void a(float f7, boolean z10) {
+        org.telegram.ui.ActionBar.e1[] e1VarArr = this.f36501c;
+        for (int i10 = 0; i10 < e1VarArr.length; i10++) {
+            if (z10 && ((i10 == 0 && Math.abs(f7 - 0.2f) < 0.01f) || ((i10 == 1 && Math.abs(f7 - 0.5f) < 0.1f) || ((i10 == 2 && Math.abs(f7 - 1.0f) < 0.1f) || ((i10 == 3 && Math.abs(f7 - 1.5f) < 0.1f) || (i10 == 4 && Math.abs(f7 - 2.0f) < 0.1f)))))) {
+                e1VarArr[i10].c(-9718023, -9718023);
+            } else {
+                e1VarArr[i10].c(-328966, -328966);
             }
         }
-        dsVar.hideActionMode();
-        return true;
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        menu.add(0, 16908322, 0, 17039371);
-        return true;
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return true;
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
+        this.f36500b.d(f7, true);
     }
 }

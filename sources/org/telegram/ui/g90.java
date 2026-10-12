@@ -1,33 +1,38 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-public final class g90 implements DialogInterface.OnDismissListener {
-    public final int f38026a;
-    public final LaunchActivity f38027b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.Utilities;
+public final class g90 implements Utilities.Callback {
+    public final int f37983a;
+    public final Object f37984b;
+    public final Object f37985c;
+    public final Object d;
+    public final Object f37986e;
+    public final Object f37987f;
+    public final Object f37988g;
 
-    public g90(LaunchActivity launchActivity, int i10) {
-        this.f38026a = i10;
-        this.f38027b = launchActivity;
+    public g90(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f37983a = i10;
+        this.f37984b = obj;
+        this.f37985c = obj2;
+        this.f37986e = obj3;
+        this.f37988g = obj4;
+        this.f37987f = obj5;
+        this.d = obj6;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f38026a;
-        LaunchActivity launchActivity = this.f38027b;
-        switch (i10) {
-            case 0:
-                launchActivity.f33880v1 = false;
-                return;
-            case 1:
-                Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new e90(launchActivity, 9), 30000L);
-                return;
-            default:
-                Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new e90(launchActivity, 10), 30000L);
-                return;
-        }
+    public final void run(java.lang.Object r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.g90.run(java.lang.Object):void");
+    }
+
+    public g90(LaunchActivity launchActivity, of.e eVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l4, org.telegram.ui.Cells.u1 u1Var) {
+        this.f37983a = 1;
+        this.f37984b = launchActivity;
+        this.f37985c = eVar;
+        this.d = runnable;
+        this.f37988g = channelBoostsController;
+        this.f37986e = l4;
+        this.f37987f = u1Var;
     }
 }

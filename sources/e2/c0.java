@@ -1,36 +1,40 @@
 package e2;
 
 import java.util.concurrent.ThreadFactory;
-import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.fk0;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class c0 implements ThreadFactory {
-    public final int f8530a;
+    public final int f8528a;
 
     public c0(int i10) {
-        this.f8530a = i10;
+        this.f8528a = i10;
     }
 
     @Override
     public final Thread newThread(Runnable runnable) {
-        switch (this.f8530a) {
+        switch (this.f8528a) {
             case 0:
                 return new Thread(runnable, "ExoPlayer:AudioTrackReleaseThread");
             case 1:
-                return new Thread(runnable, "RoundVideoFiles");
-            case 2:
-                return new Thread(runnable, "RoundVideoOutput");
-            case 3:
                 Thread thread = new Thread(runnable, "PrismaHighlight");
                 thread.setDaemon(true);
                 return thread;
+            case 2:
+                return new Thread(runnable, "Lottie-" + fk0.P0.getAndIncrement());
+            case 3:
+                return new Thread(runnable, "LottieLow-" + fk0.Q0.getAndIncrement());
             case 4:
-                return new Thread(runnable, "Lottie-" + dk0.P0.getAndIncrement());
-            case 5:
-                return new Thread(runnable, "LottieLow-" + dk0.Q0.getAndIncrement());
-            case 6:
                 return new Thread(runnable, "GramWalletStorage");
-            default:
+            case 5:
                 return WalletEngine2.r(runnable);
+            case 6:
+                return new Thread(runnable, "AudioRecorderFiles");
+            case 7:
+                return new Thread(runnable, "AudioRecorderOutput");
+            case 8:
+                return new Thread(runnable, "RoundVideoFiles");
+            default:
+                return new Thread(runnable, "RoundVideoOutput");
         }
     }
 }

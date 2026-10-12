@@ -1,30 +1,16 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.ui.Components.UndoView;
-public final class xl extends org.telegram.ui.Components.f30 {
-    public final zn f44136b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class xl extends wu0 {
+    public final eo f44033a;
 
-    public xl(zn znVar, Activity activity, org.telegram.ui.ActionBar.m2 m2Var) {
-        super(activity, m2Var);
-        this.f44136b = znVar;
+    public xl(eo eoVar) {
+        this.f44033a = eoVar;
     }
 
     @Override
-    public final void o() {
-        zn znVar = this.f44136b;
-        znVar.T7();
-        UndoView undoView = znVar.y3;
-        if (undoView == null) {
-            return;
-        }
-        undoView.j(75, 0L, null);
-        znVar.getMessagesController().removeSuggestion(znVar.T5, "CONVERT_GIGAGROUP");
-    }
-
-    @Override
-    public final void p() {
-        zn znVar = this.f44136b;
-        znVar.getMessagesController().convertToGigaGroup(znVar.getParentActivity(), znVar.f44786e, znVar, new y0(this, 19));
+    public final gv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return eo.E1(this.f44033a, messageObject, fileLocation, i10, z10, false);
     }
 }

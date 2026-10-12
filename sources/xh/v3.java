@@ -1,191 +1,186 @@
 package xh;
 
+import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.cj1;
-import yh.g5;
-public final class v3 implements g5 {
-    public final int f51673a;
-    public final long f51674b;
-    public final Utilities.Callback f51675c;
-    public int f51676e;
-    public long f51679i;
-    public String f51687q;
-    public boolean f51688r;
-    public boolean f51689s;
-    public boolean f51690t;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList f51677f = new ArrayList();
-    public final ArrayList f51678g = new ArrayList();
-    public final ArrayList h = new ArrayList();
-    public final HashSet f51680j = new HashSet();
-    public final HashSet f51681k = new HashSet();
-    public final HashSet f51682l = new HashSet();
-    public final HashMap f51683m = new HashMap();
-    public final HashMap f51684n = new HashMap();
-    public final HashMap f51685o = new HashMap();
-    public u3 f51686p = u3.BY_PRICE;
-    public boolean f51691u = false;
-    public int v = -1;
+import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.u61;
+public final class v3 implements Utilities.Callback2 {
+    public final int f51787a;
+    public final String[] f51788b;
+    public final f4 f51789c;
+    public final ArrayList d;
 
-    public v3(long j3, int i10, Utilities.Callback callback) {
-        this.f51673a = i10;
-        this.f51674b = j3;
-        this.f51675c = callback;
+    public v3(String[] strArr, f4 f4Var, ArrayList arrayList, int i10) {
+        this.f51787a = i10;
+        this.f51788b = strArr;
+        this.f51789c = f4Var;
+        this.d = arrayList;
     }
 
     @Override
-    public final void a() {
-        g(false);
-    }
-
-    @Override
-    public final int b(int i10) {
-        return -1;
-    }
-
-    @Override
-    public final int c() {
-        return this.f51676e;
-    }
-
-    @Override
-    public final int e() {
-        return this.d.size();
-    }
-
-    public final void f() {
-        if (this.v >= 0) {
-            ConnectionsManager.getInstance(this.f51673a).cancelRequest(this.v, true);
-            this.v = -1;
-        }
-        this.f51690t = false;
-    }
-
-    public final void g(boolean z10) {
-        if (!this.f51690t) {
-            if (z10 || !this.f51691u) {
-                this.f51690t = true;
-                TL_stars.getResaleStarGifts getresalestargifts = new TL_stars.getResaleStarGifts();
-                getresalestargifts.gift_id = this.f51674b;
-                String str = this.f51687q;
-                if (str == null) {
-                    str = "";
-                }
-                getresalestargifts.offset = str;
-                getresalestargifts.limit = 15;
-                getresalestargifts.for_craft = this.f51689s;
-                getresalestargifts.stars_only = this.f51688r;
-                u3 u3Var = this.f51686p;
-                int i10 = 0;
-                if (u3Var == u3.BY_NUMBER) {
-                    getresalestargifts.sort_by_num = true;
-                    getresalestargifts.sort_by_price = false;
-                } else if (u3Var == u3.BY_DATE) {
-                    getresalestargifts.sort_by_num = false;
-                    getresalestargifts.sort_by_price = false;
-                } else if (u3Var == u3.BY_PRICE) {
-                    getresalestargifts.sort_by_num = false;
-                    getresalestargifts.sort_by_price = true;
-                }
-                long j3 = this.f51679i;
-                int i11 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-                ArrayList arrayList = this.h;
-                ArrayList arrayList2 = this.f51678g;
-                ArrayList arrayList3 = this.f51677f;
-                if (i11 != 0) {
-                    getresalestargifts.flags = 1 | getresalestargifts.flags;
-                    getresalestargifts.attributes_hash = j3;
-                } else if (arrayList3.isEmpty() && arrayList2.isEmpty() && arrayList.isEmpty()) {
-                    getresalestargifts.flags = 1 | getresalestargifts.flags;
-                    getresalestargifts.attributes_hash = 0L;
-                }
-                HashSet hashSet = this.f51680j;
-                boolean isEmpty = hashSet.isEmpty();
-                HashSet hashSet2 = this.f51682l;
-                HashSet hashSet3 = this.f51681k;
-                if (!isEmpty || !hashSet3.isEmpty() || !hashSet2.isEmpty()) {
-                    getresalestargifts.flags |= 8;
-                    if (!hashSet.isEmpty()) {
-                        int size = arrayList3.size();
-                        int i12 = 0;
-                        while (i12 < size) {
-                            Object obj = arrayList3.get(i12);
-                            i12++;
-                            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
-                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f20074id))) {
-                                TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
-                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f20074id;
-                                getresalestargifts.attributes.add(stargiftattributeidmodel);
+    public final void run(Object obj, Object obj2) {
+        int intValue;
+        String str;
+        int intValue2;
+        boolean z10;
+        String str2;
+        int i10;
+        int i11 = this.f51787a;
+        boolean z11 = false;
+        String str3 = " ";
+        ArrayList arrayList = this.d;
+        f4 f4Var = this.f51789c;
+        String[] strArr = this.f51788b;
+        switch (i11) {
+            case 0:
+                ArrayList arrayList2 = (ArrayList) obj;
+                h71 h71Var = (h71) obj2;
+                String lowerCase = strArr[0].toLowerCase();
+                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                u3 u3Var = f4Var.f51469c;
+                boolean isEmpty = u3Var.f51771j.isEmpty();
+                int size = arrayList.size();
+                int i12 = 0;
+                while (i12 < size) {
+                    Object obj3 = arrayList.get(i12);
+                    i12++;
+                    TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
+                    boolean contains = u3Var.f51771j.contains(Long.valueOf(stargiftattributemodel.document.f19808id));
+                    boolean z12 = !contains;
+                    if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(translitSafe) || org.telegram.messenger.v0.w(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || org.telegram.messenger.v0.w(" ", translitSafe, stargiftattributemodel.name.toLowerCase())) {
+                        Integer num = (Integer) u3Var.f51774m.get(Long.valueOf(stargiftattributemodel.document.f19808id));
+                        if (num == null) {
+                            intValue = 0;
+                        } else {
+                            intValue = num.intValue();
+                        }
+                        int i13 = o3.f51666a;
+                        u61 J = u61.J(o3.class);
+                        J.G = stargiftattributemodel;
+                        J.f31076l = lowerCase;
+                        J.f31089z = intValue;
+                        if (!TextUtils.isEmpty(lowerCase)) {
+                            if (!isEmpty && !contains) {
+                                z12 = true;
+                            } else {
+                                z12 = false;
                             }
                         }
-                    }
-                    if (!hashSet3.isEmpty()) {
-                        int size2 = arrayList2.size();
-                        int i13 = 0;
-                        while (i13 < size2) {
-                            Object obj2 = arrayList2.get(i13);
-                            i13++;
-                            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj2;
-                            if (!hashSet3.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id))) {
-                                TL_stars.starGiftAttributeIdBackdrop stargiftattributeidbackdrop = new TL_stars.starGiftAttributeIdBackdrop();
-                                stargiftattributeidbackdrop.backdrop_id = stargiftattributebackdrop.backdrop_id;
-                                getresalestargifts.attributes.add(stargiftattributeidbackdrop);
-                            }
-                        }
-                    }
-                    if (!hashSet2.isEmpty()) {
-                        int size3 = arrayList.size();
-                        while (i10 < size3) {
-                            Object obj3 = arrayList.get(i10);
-                            i10++;
-                            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
-                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f20074id))) {
-                                TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
-                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f20074id;
-                                getresalestargifts.attributes.add(stargiftattributeidpattern);
-                            }
-                        }
+                        J.K(z12);
+                        arrayList2.add(J);
                     }
                 }
-                this.v = ConnectionsManager.getInstance(this.f51673a).sendRequest(getresalestargifts, new cj1(5, this, getresalestargifts));
-            }
+                if (arrayList2.isEmpty()) {
+                    arrayList2.add(j3.a(LocaleController.getString(R.string.Gift2ResaleFiltersModelEmpty)));
+                    return;
+                }
+                return;
+            case 1:
+                String str4 = " ";
+                ArrayList arrayList3 = (ArrayList) obj;
+                h71 h71Var2 = (h71) obj2;
+                String lowerCase2 = strArr[0].toLowerCase();
+                String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
+                u3 u3Var2 = f4Var.f51469c;
+                boolean isEmpty2 = u3Var2.f51772k.isEmpty();
+                int size2 = arrayList.size();
+                int i14 = 0;
+                while (i14 < size2) {
+                    Object obj4 = arrayList.get(i14);
+                    i14++;
+                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
+                    boolean contains2 = u3Var2.f51772k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                    boolean z13 = !contains2;
+                    if (!TextUtils.isEmpty(lowerCase2) && !stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) && !stargiftattributebackdrop.name.toLowerCase().startsWith(translitSafe2)) {
+                        str = str4;
+                        if (!org.telegram.messenger.v0.w(str, lowerCase2, stargiftattributebackdrop.name.toLowerCase()) && !org.telegram.messenger.v0.w(str, translitSafe2, stargiftattributebackdrop.name.toLowerCase())) {
+                            str4 = str;
+                        }
+                    } else {
+                        str = str4;
+                    }
+                    Integer num2 = (Integer) u3Var2.f51775n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                    if (num2 == null) {
+                        intValue2 = 0;
+                    } else {
+                        intValue2 = num2.intValue();
+                    }
+                    int i15 = h3.f51496a;
+                    u61 J2 = u61.J(h3.class);
+                    J2.G = stargiftattributebackdrop;
+                    J2.f31076l = lowerCase2;
+                    J2.f31089z = intValue2;
+                    if (!TextUtils.isEmpty(lowerCase2)) {
+                        if (!isEmpty2 && !contains2) {
+                            z13 = true;
+                        } else {
+                            z13 = false;
+                        }
+                    }
+                    J2.K(z13);
+                    arrayList3.add(J2);
+                    str4 = str;
+                }
+                if (arrayList3.isEmpty()) {
+                    arrayList3.add(j3.a(LocaleController.getString(R.string.Gift2ResaleFiltersBackdropEmpty)));
+                    return;
+                }
+                return;
+            default:
+                ArrayList arrayList4 = (ArrayList) obj;
+                h71 h71Var3 = (h71) obj2;
+                String lowerCase3 = strArr[0].toLowerCase();
+                String translitSafe3 = AndroidUtilities.translitSafe(lowerCase3);
+                u3 u3Var3 = f4Var.f51469c;
+                boolean isEmpty3 = u3Var3.f51773l.isEmpty();
+                int size3 = arrayList.size();
+                int i16 = 0;
+                while (i16 < size3) {
+                    Object obj5 = arrayList.get(i16);
+                    i16++;
+                    TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
+                    boolean contains3 = u3Var3.f51773l.contains(Long.valueOf(stargiftattributepattern.document.f19808id));
+                    boolean z14 = !contains3;
+                    if (!TextUtils.isEmpty(lowerCase3) && !stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) && !stargiftattributepattern.name.toLowerCase().startsWith(translitSafe3) && !org.telegram.messenger.v0.w(str3, lowerCase3, stargiftattributepattern.name.toLowerCase()) && !org.telegram.messenger.v0.w(str3, translitSafe3, stargiftattributepattern.name.toLowerCase())) {
+                        z10 = z11;
+                        str2 = str3;
+                    } else {
+                        z10 = z11;
+                        str2 = str3;
+                        Integer num3 = (Integer) u3Var3.f51776o.get(Long.valueOf(stargiftattributepattern.document.f19808id));
+                        if (num3 == null) {
+                            i10 = z10;
+                        } else {
+                            i10 = num3.intValue();
+                        }
+                        int i17 = r3.f51732a;
+                        u61 J3 = u61.J(r3.class);
+                        J3.G = stargiftattributepattern;
+                        J3.f31076l = lowerCase3;
+                        J3.f31089z = i10;
+                        if (!TextUtils.isEmpty(lowerCase3)) {
+                            if (!isEmpty3 && !contains3) {
+                                z14 = true;
+                            } else {
+                                z14 = z10;
+                            }
+                        }
+                        J3.K(z14);
+                        arrayList4.add(J3);
+                    }
+                    z11 = z10;
+                    str3 = str2;
+                }
+                if (arrayList4.isEmpty()) {
+                    arrayList4.add(j3.a(LocaleController.getString(R.string.Gift2ResaleFiltersSymbolEmpty)));
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final Object get(int i10) {
-        return this.d.get(i10);
-    }
-
-    public final void h() {
-        f();
-        this.f51687q = null;
-        this.d.clear();
-        g(true);
-        Utilities.Callback callback = this.f51675c;
-        if (callback != null) {
-            callback.run(Boolean.TRUE);
-        }
-    }
-
-    public final void i(u3 u3Var) {
-        if (this.f51686p != u3Var) {
-            this.f51686p = u3Var;
-            h();
-        }
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        return this.d.indexOf(obj);
-    }
-
-    @Override
-    public final void d() {
     }
 }

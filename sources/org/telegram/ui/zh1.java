@@ -1,13 +1,21 @@
 package org.telegram.ui;
-public final class zh1 {
-    public final org.telegram.ui.ActionBar.m2 f44702a;
-    public boolean f44703b;
-    public boolean f44704c;
-    public boolean d;
-    public boolean f44705e;
-    public float f44706f;
+public final class zh1 implements Runnable {
+    public final int f44847a;
+    public final ai1 f44848b;
+    public final String f44849c;
+    public final boolean d;
+    public final boolean f44850e;
 
-    public zh1(org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f44702a = m2Var;
+    public zh1(ai1 ai1Var, String str, boolean z10, boolean z11, int i10) {
+        this.f44847a = i10;
+        this.f44848b = ai1Var;
+        this.f44849c = str;
+        this.d = z10;
+        this.f44850e = z11;
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zh1.run():void");
     }
 }

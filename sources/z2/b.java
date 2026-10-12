@@ -9,9 +9,9 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.util.Arrays;
 public abstract class b {
-    public static final Object f53606a = new Object();
-    public static final Object f53607b = new Object();
-    public static boolean f53608c;
+    public static final Object f53709a = new Object();
+    public static final Object f53710b = new Object();
+    public static boolean f53711c;
     public static long d;
 
     public static long a() {
@@ -20,7 +20,7 @@ public abstract class b {
         byte[] bArr;
         DatagramSocket datagramSocket = new DatagramSocket();
         try {
-            synchronized (f53607b) {
+            synchronized (f53710b) {
             }
             datagramSocket.setSoTimeout(1000);
             c();
@@ -105,7 +105,7 @@ public abstract class b {
     public static void b(byte b10, byte b11, int i10, long j3) {
         if (b10 != 3) {
             if (b11 != 4 && b11 != 5) {
-                throw new IOException(c.h(b11, "SNTP: Untrusted mode: "));
+                throw new IOException(c.i(b11, "SNTP: Untrusted mode: "));
             }
             if (i10 != 0 && i10 <= 15) {
                 if (j3 != 0) {
@@ -113,13 +113,13 @@ public abstract class b {
                 }
                 throw new IOException("SNTP: Zero transmitTime");
             }
-            throw new IOException(c.h(i10, "SNTP: Untrusted stratum: "));
+            throw new IOException(c.i(i10, "SNTP: Untrusted stratum: "));
         }
         throw new IOException("SNTP: Unsynchronized server");
     }
 
     public static void c() {
-        synchronized (f53607b) {
+        synchronized (f53710b) {
         }
     }
 

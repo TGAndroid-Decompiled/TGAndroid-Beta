@@ -2,40 +2,40 @@ package ah;
 
 import android.graphics.RenderNode;
 public final class k {
-    public final RenderNode f599a;
-    public final j f600b;
-    public final a f601c = new Object();
+    public final RenderNode f601a;
+    public final j f602b;
+    public final a f603c = new Object();
     public long d = 0;
-    public int f602e;
-    public int f603f;
+    public int f604e;
+    public int f605f;
 
     public k(RenderNode renderNode, j jVar) {
-        this.f599a = renderNode;
-        this.f600b = jVar;
+        this.f601a = renderNode;
+        this.f602b = jVar;
     }
 
     public final void a() {
         long j3;
-        int width = this.f599a.getWidth();
-        int height = this.f599a.getHeight();
-        a aVar = this.f601c;
-        aVar.f537b = 0L;
+        int width = this.f601a.getWidth();
+        int height = this.f601a.getHeight();
+        a aVar = this.f603c;
+        aVar.f539b = 0L;
         boolean z10 = false;
-        aVar.f536a = false;
-        j jVar = this.f600b;
-        jVar.B0(aVar);
-        if (aVar.f536a) {
+        aVar.f538a = false;
+        j jVar = this.f602b;
+        jVar.g0(aVar);
+        if (aVar.f538a) {
             j3 = -1;
         } else {
-            j3 = aVar.f537b;
+            j3 = aVar.f539b;
         }
-        z10 = (this.f599a.hasDisplayList() && width == this.f602e && height == this.f603f && j3 == this.d && j3 != -1) ? true : true;
-        this.f602e = width;
-        this.f603f = height;
+        z10 = (this.f601a.hasDisplayList() && width == this.f604e && height == this.f605f && j3 == this.d && j3 != -1) ? true : true;
+        this.f604e = width;
+        this.f605f = height;
         this.d = j3;
         if (z10) {
-            jVar.l(this.f599a.beginRecording());
-            this.f599a.endRecording();
+            jVar.l(this.f601a.beginRecording());
+            this.f601a.endRecording();
         }
     }
 }

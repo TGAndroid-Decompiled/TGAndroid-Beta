@@ -1,19 +1,58 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
-public final class ue0 extends TimerTask {
-    public final ve0 f42572a;
+import org.telegram.messenger.Utilities;
+public final class ue0 implements Runnable {
+    public final int f42501a;
+    public final xe0 f42502b;
 
-    public ue0(ve0 ve0Var) {
-        this.f42572a = ve0Var;
+    public ue0(xe0 xe0Var, int i10) {
+        this.f42501a = i10;
+        this.f42502b = xe0Var;
     }
 
     @Override
     public final void run() {
-        if (this.f42572a.N == null) {
-            return;
+        switch (this.f42501a) {
+            case 0:
+                xe0 xe0Var = this.f42502b;
+                ci.g2 g2Var = xe0Var.f43910c;
+                g2Var.requestFocus();
+                String str = xe0Var.K;
+                if (str != null) {
+                    int i10 = 1;
+                    if (str.length() > 1) {
+                        String obj = g2Var.getText().toString();
+                        int length = obj.length();
+                        int i11 = 0;
+                        while (i11 < length && obj.charAt(i11) <= ' ') {
+                            i11++;
+                        }
+                        int length2 = xe0Var.K.length() + i11;
+                        if (length2 < 0 || length2 >= obj.length() || obj.charAt(length2) != ' ') {
+                            i10 = 0;
+                        }
+                        g2Var.setSelection(Utilities.clamp(length2 + i10, obj.length(), 0), g2Var.getText().length());
+                        return;
+                    }
+                }
+                g2Var.setSelection(0, g2Var.getText().length());
+                return;
+            case 1:
+                this.f42502b.q(true);
+                return;
+            case 2:
+                this.f42502b.o(false);
+                return;
+            default:
+                ci.g2 g2Var2 = this.f42502b.f43910c;
+                if (g2Var2 != null) {
+                    g2Var2.requestFocus();
+                    g2Var2.setSelection(g2Var2.length());
+                    AndroidUtilities.showKeyboard(g2Var2);
+                    return;
+                }
+                return;
         }
-        AndroidUtilities.runOnUIThread(new tz(this, 23));
     }
 }

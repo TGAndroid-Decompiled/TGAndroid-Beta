@@ -1,16 +1,49 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class dw0 implements View.OnClickListener {
-    public final org.telegram.ui.Components.p80 f37169a;
+import org.telegram.messenger.AndroidUtilities;
+public final class dw0 implements Runnable {
+    public final int f36920a;
+    public final ow0 f36921b;
 
-    public dw0(org.telegram.ui.Components.p80 p80Var) {
-        this.f37169a = p80Var;
+    public dw0(ow0 ow0Var, int i10) {
+        this.f36920a = i10;
+        this.f36921b = ow0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Components.sc.e();
-        this.f37169a.s();
+    public final void run() {
+        switch (this.f36920a) {
+            case 0:
+                ow0 ow0Var = this.f36921b;
+                AndroidUtilities.runOnUIThread(new dw0(ow0Var, 3));
+                org.telegram.ui.Cells.u1 u1Var = ow0Var.L;
+                if (u1Var != null) {
+                    u1Var.setVisibility(0);
+                    org.telegram.ui.Cells.u1 u1Var2 = ow0Var.L;
+                    u1Var2.L7 = null;
+                    u1Var2.invalidate();
+                }
+                an anVar = ow0Var.f40794e0;
+                if (anVar != null) {
+                    AndroidUtilities.runOnUIThread(anVar);
+                    ow0Var.f40794e0 = null;
+                    return;
+                }
+                return;
+            case 1:
+                this.f36921b.c(false);
+                return;
+            case 2:
+                this.f36921b.c(false);
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+        }
+    }
+
+    public dw0(ow0 ow0Var, boolean z10) {
+        this.f36920a = 0;
+        this.f36921b = ow0Var;
     }
 }

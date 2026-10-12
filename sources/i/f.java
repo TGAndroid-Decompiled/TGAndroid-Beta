@@ -3,54 +3,54 @@ package i;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import ii.u0;
-import org.telegram.ui.Components.hd;
-import org.telegram.ui.Components.j41;
-import org.telegram.ui.Components.qp0;
-import org.telegram.ui.Components.uq;
+import org.telegram.ui.Components.gd;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.vp0;
+import org.telegram.ui.Components.wq;
 import yh.h3;
 import zg.l0;
 public final class f implements Drawable.Callback {
-    public final int f11571a;
-    public Object f11572b;
+    public final int f11570a;
+    public Object f11571b;
 
     public f() {
-        this.f11571a = 0;
+        this.f11570a = 0;
     }
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f11571a) {
+        switch (this.f11570a) {
             case 0:
                 return;
             case 1:
-                ((u0) this.f11572b).f12722b.invalidate();
+                ((u0) this.f11571b).f12723b.invalidate();
                 return;
             case 2:
-                ((uq) this.f11572b).invalidateSelf();
+                ((wq) this.f11571b).invalidateSelf();
                 return;
             case 3:
-                ((qp0) this.f11572b).f30277b.run();
+                ((vp0) this.f11571b).f32155b.run();
                 return;
             case 4:
-                ((hd) this.f11572b).invalidateSelf();
+                ((gd) this.f11571b).invalidateSelf();
                 return;
             case 5:
-                ((j41) this.f11572b).invalidateSelf();
+                ((n41) this.f11571b).invalidateSelf();
                 return;
             case 6:
-                ((wg.a) this.f11572b).f50464c.invalidate();
+                ((wg.a) this.f11571b).f50571c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11572b).f50490c.invalidate();
+                ((wg.c) this.f11571b).f50597c.invalidate();
                 return;
             case 8:
-                ((x4.d) this.f11572b).invalidateSelf();
+                ((x4.d) this.f11571b).invalidateSelf();
                 return;
             case 9:
-                ((h3) this.f11572b).h.invalidate();
+                ((h3) this.f11571b).h.invalidate();
                 return;
             default:
-                l0 l0Var = (l0) this.f11572b;
+                l0 l0Var = (l0) this.f11571b;
                 View view = l0Var.W;
                 if (view != null) {
                     view.invalidate();
@@ -66,9 +66,9 @@ public final class f implements Drawable.Callback {
 
     @Override
     public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        switch (this.f11571a) {
+        switch (this.f11570a) {
             case 0:
-                Drawable.Callback callback = (Drawable.Callback) this.f11572b;
+                Drawable.Callback callback = (Drawable.Callback) this.f11571b;
                 if (callback != null) {
                     callback.scheduleDrawable(drawable, runnable, j3);
                     return;
@@ -77,28 +77,28 @@ public final class f implements Drawable.Callback {
             case 1:
                 return;
             case 2:
-                ((uq) this.f11572b).scheduleSelf(runnable, j3);
+                ((wq) this.f11571b).scheduleSelf(runnable, j3);
                 return;
             case 3:
                 return;
             case 4:
-                ((hd) this.f11572b).scheduleSelf(runnable, j3);
+                ((gd) this.f11571b).scheduleSelf(runnable, j3);
                 return;
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11572b).f50464c.invalidate();
+                ((wg.a) this.f11571b).f50571c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11572b).f50490c.invalidate();
+                ((wg.c) this.f11571b).f50597c.invalidate();
                 return;
             case 8:
-                ((x4.d) this.f11572b).scheduleSelf(runnable, j3);
+                ((x4.d) this.f11571b).scheduleSelf(runnable, j3);
                 return;
             case 9:
                 return;
             default:
-                View view = ((l0) this.f11572b).W;
+                View view = ((l0) this.f11571b).W;
                 if (view != null) {
                     view.scheduleDrawable(drawable, runnable, j3);
                     return;
@@ -109,9 +109,9 @@ public final class f implements Drawable.Callback {
 
     @Override
     public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f11571a) {
+        switch (this.f11570a) {
             case 0:
-                Drawable.Callback callback = (Drawable.Callback) this.f11572b;
+                Drawable.Callback callback = (Drawable.Callback) this.f11571b;
                 if (callback != null) {
                     callback.unscheduleDrawable(drawable, runnable);
                     return;
@@ -120,28 +120,28 @@ public final class f implements Drawable.Callback {
             case 1:
                 return;
             case 2:
-                ((uq) this.f11572b).unscheduleSelf(runnable);
+                ((wq) this.f11571b).unscheduleSelf(runnable);
                 return;
             case 3:
                 return;
             case 4:
-                ((hd) this.f11572b).unscheduleSelf(runnable);
+                ((gd) this.f11571b).unscheduleSelf(runnable);
                 return;
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f11572b).f50464c.invalidate();
+                ((wg.a) this.f11571b).f50571c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f11572b).f50490c.invalidate();
+                ((wg.c) this.f11571b).f50597c.invalidate();
                 return;
             case 8:
-                ((x4.d) this.f11572b).unscheduleSelf(runnable);
+                ((x4.d) this.f11571b).unscheduleSelf(runnable);
                 return;
             case 9:
                 return;
             default:
-                View view = ((l0) this.f11572b).W;
+                View view = ((l0) this.f11571b).W;
                 if (view != null) {
                     view.unscheduleDrawable(drawable, runnable);
                     return;
@@ -151,8 +151,8 @@ public final class f implements Drawable.Callback {
     }
 
     public f(Object obj, int i10) {
-        this.f11571a = i10;
-        this.f11572b = obj;
+        this.f11570a = i10;
+        this.f11571b = obj;
     }
 
     private final void a(Drawable drawable) {

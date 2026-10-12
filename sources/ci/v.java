@@ -10,11 +10,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.jw;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.i20;
-import org.telegram.ui.qt;
-public final class v extends rm0 {
+import org.telegram.ui.Components.lw;
+import org.telegram.ui.Components.wm0;
+import org.telegram.ui.l20;
+import org.telegram.ui.ut;
+public final class v extends wm0 {
     public final int V2 = 0;
     public final Object W2;
     public final KeyEvent.Callback X2;
@@ -22,7 +22,7 @@ public final class v extends rm0 {
     public v(y yVar, Context context) {
         super(context, null);
         this.X2 = yVar;
-        this.W2 = new i20();
+        this.W2 = new l20();
     }
 
     @Override
@@ -44,23 +44,23 @@ public final class v extends rm0 {
                 canvas.save();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(paddingLeft, 0.0f, AndroidUtilities.dp(12.0f) + paddingLeft, getHeight());
-                i20 i20Var = (i20) obj;
-                i20Var.b(canvas, rectF, 0, yVar.d);
+                l20 l20Var = (l20) obj;
+                l20Var.b(canvas, rectF, 0, yVar.d);
                 rectF.set(width - AndroidUtilities.dp(12.0f), 0.0f, width, getHeight());
-                i20Var.b(canvas, rectF, 2, yVar.d);
+                l20Var.b(canvas, rectF, 2, yVar.d);
                 canvas.restore();
                 canvas.restore();
                 return;
             case 1:
-                HashSet hashSet = org.telegram.ui.h4.f38275b1;
-                ((org.telegram.ui.h4) obj).n();
+                HashSet hashSet = org.telegram.ui.i4.f38617b1;
+                ((org.telegram.ui.i4) obj).n();
                 super.dispatchDraw(canvas);
                 return;
             default:
                 Paint paint = (Paint) obj;
-                jw jwVar = (jw) callback;
-                org.telegram.ui.Components.g6 g6Var = jwVar.M;
-                if (g6Var != null && jwVar.K >= 0 && jwVar.L >= 0 && jwVar.f27861n != null && this.G) {
+                lw lwVar = (lw) callback;
+                org.telegram.ui.Components.g6 g6Var = lwVar.M;
+                if (g6Var != null && lwVar.K >= 0 && lwVar.L >= 0 && lwVar.f28296n != null && this.G) {
                     float d = g6Var.d(0.0f, false);
                     if (d > 0.0f) {
                         int i11 = Integer.MAX_VALUE;
@@ -68,13 +68,13 @@ public final class v extends rm0 {
                         for (int i13 = 0; i13 < getChildCount(); i13++) {
                             View childAt = getChildAt(i13);
                             int R = RecyclerView.R(childAt);
-                            if (R != -1 && R >= jwVar.K && R <= jwVar.L) {
+                            if (R != -1 && R >= lwVar.K && R <= lwVar.L) {
                                 i11 = Math.min(i11, childAt.getTop() + ((int) childAt.getTranslationY()));
                                 i12 = Math.max(i12, childAt.getBottom() + ((int) childAt.getTranslationY()));
                             }
                         }
                         if (i11 < i12) {
-                            paint.setColor(org.telegram.ui.ActionBar.h6.m1(d, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, this.f30570n2)));
+                            paint.setColor(org.telegram.ui.ActionBar.h6.m1(d, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, this.f32467n2)));
                             canvas.drawRect(0.0f, i11, getMeasuredWidth(), i12, paint);
                         }
                         invalidate();
@@ -110,19 +110,19 @@ public final class v extends rm0 {
 
     @Override
     public void k0(int i10, int i11) {
-        org.telegram.ui.t3 t3Var;
+        org.telegram.ui.u3 u3Var;
         switch (this.V2) {
             case 1:
-                org.telegram.ui.u3 u3Var = ((org.telegram.ui.h4) this.W2).K;
-                if (u3Var != null && (t3Var = u3Var.f42370c) != null) {
-                    t3Var.invalidate();
+                org.telegram.ui.v3 v3Var = ((org.telegram.ui.i4) this.W2).K;
+                if (v3Var != null && (u3Var = v3Var.f42653c) != null) {
+                    u3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
-                jw jwVar = (jw) this.X2;
-                jwVar.f27860f.a();
-                jw.t(jwVar).invalidate();
+                lw lwVar = (lw) this.X2;
+                lwVar.f28295f.a();
+                lw.t(lwVar).invalidate();
                 return;
             default:
                 return;
@@ -134,8 +134,8 @@ public final class v extends rm0 {
         switch (this.V2) {
             case 2:
                 super.onDetachedFromWindow();
-                jw jwVar = (jw) this.X2;
-                org.telegram.ui.Components.b6.release(jw.u(jwVar), jwVar.f27857b);
+                lw lwVar = (lw) this.X2;
+                org.telegram.ui.Components.b6.release(lw.u(lwVar), lwVar.f28292b);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -155,22 +155,22 @@ public final class v extends rm0 {
                 }
                 return false;
             case 1:
-                org.telegram.ui.h4 h4Var = (org.telegram.ui.h4) this.W2;
-                if (h4Var.d != null && h4Var.f42131b == null && (((m1Var = h4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    h4Var.f42131b = null;
-                    h4Var.d = null;
-                    h4Var.f42134f = null;
-                } else if (h4Var.d != null && h4Var.f42131b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.f4)) {
+                org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.W2;
+                if (i4Var.d != null && i4Var.f43067b == null && (((m1Var = i4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    i4Var.f43067b = null;
+                    i4Var.d = null;
+                    i4Var.f43070f = null;
+                } else if (i4Var.d != null && i4Var.f43067b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.g4)) {
                     motionEvent2 = motionEvent;
-                    org.telegram.ui.h4.l(h4Var, (org.telegram.ui.f4) getAdapter(), motionEvent2, h4Var.f42134f, h4Var.d, 0, 0);
+                    org.telegram.ui.i4.l(i4Var, (org.telegram.ui.g4) getAdapter(), motionEvent2, i4Var.f43070f, i4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
                 return super.onInterceptTouchEvent(motionEvent2);
             default:
-                qt q6 = qt.q();
-                jw jwVar = (jw) this.X2;
-                boolean r10 = q6.r(motionEvent, jwVar.h, jwVar.N, this.f30570n2);
+                ut q6 = ut.q();
+                lw lwVar = (lw) this.X2;
+                boolean r10 = q6.r(motionEvent, lwVar.h, lwVar.N, this.f32467n2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                     return false;
                 }
@@ -183,11 +183,11 @@ public final class v extends rm0 {
         switch (this.V2) {
             case 1:
                 x1(z10, i10, i11, i12, i13);
-                ((org.telegram.ui.l3) this.X2).I = -1.0f;
+                ((org.telegram.ui.m3) this.X2).I = -1.0f;
                 return;
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
-                ((jw) this.X2).f27860f.a();
+                ((lw) this.X2).f28295f.a();
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -200,7 +200,7 @@ public final class v extends rm0 {
         switch (this.V2) {
             case 2:
                 View.MeasureSpec.getSize(i10);
-                ((jw) this.X2).f27866y.y1(40);
+                ((lw) this.X2).f28301y.y1(40);
                 super.onMeasure(i10, i11);
                 return;
             default:
@@ -214,11 +214,11 @@ public final class v extends rm0 {
         org.telegram.ui.ActionBar.m1 m1Var;
         switch (this.V2) {
             case 1:
-                org.telegram.ui.h4 h4Var = (org.telegram.ui.h4) this.W2;
-                if (h4Var.d != null && h4Var.f42131b == null && (((m1Var = h4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    h4Var.f42131b = null;
-                    h4Var.d = null;
-                    h4Var.f42134f = null;
+                org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.W2;
+                if (i4Var.d != null && i4Var.f43067b == null && (((m1Var = i4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    i4Var.f43067b = null;
+                    i4Var.d = null;
+                    i4Var.f43070f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:
@@ -239,15 +239,15 @@ public final class v extends rm0 {
         }
     }
 
-    public v(jw jwVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.X2 = jwVar;
+    public v(lw lwVar, Context context, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, c6Var);
+        this.X2 = lwVar;
         this.W2 = new Paint(1);
     }
 
-    public v(org.telegram.ui.l3 l3Var, Context context) {
+    public v(org.telegram.ui.m3 m3Var, Context context) {
         super(context, null);
-        this.X2 = l3Var;
-        this.W2 = l3Var.K;
+        this.X2 = m3Var;
+        this.W2 = m3Var.K;
     }
 }

@@ -5,11 +5,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.Emoji;
-public final class zb extends ea0 {
+public final class zb extends ia0 {
     public final int L;
 
-    public zb(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
+    public zb(Context context, int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        super(context, c6Var);
         this.L = i10;
     }
 

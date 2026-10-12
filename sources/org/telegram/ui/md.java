@@ -1,90 +1,242 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-public final class md implements Runnable {
-    public final int f39940a;
-    public final je f39941b;
-    public final int f39942c;
+public final class md extends org.telegram.ui.Components.yw0 {
+    public final int f40004w0;
+    public boolean f40005x0;
+    public final org.telegram.ui.ActionBar.m2 f40006y0;
 
-    public md(je jeVar, int i10, int i11) {
-        this.f39940a = i11;
-        this.f39941b = jeVar;
-        this.f39942c = i10;
+    public md(int i10, Context context, org.telegram.ui.ActionBar.m2 m2Var) {
+        super(context, null);
+        this.f40004w0 = i10;
+        this.f40006y0 = m2Var;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        String formatPluralStringSpaced;
-        int i10 = this.f39940a;
-        int i11 = this.f39942c;
-        je jeVar = this.f39941b;
-        switch (i10) {
+    public final void onLayout(boolean r12, int r13, int r14, int r15, int r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.md.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        float f10;
+        org.telegram.ui.ActionBar.k kVar3;
+        org.telegram.ui.ActionBar.k kVar4;
+        float f11;
+        org.telegram.ui.ActionBar.k kVar5;
+        int i12;
+        org.telegram.ui.ActionBar.k kVar6;
+        float f12;
+        switch (this.f40004w0) {
             case 0:
-                of.f.s(jeVar.getContext(), LocaleController.getString(i11));
-                return;
-            case 1:
-                md mdVar = jeVar.f39037i1;
-                fi.o oVar = jeVar.Y0;
-                org.telegram.ui.Components.sc.e();
-                if (jeVar.N0.amount < MessagesController.getInstance(i11).starsRevenueWithdrawalMin) {
-                    jeVar.W0 = true;
-                    jeVar.X0 = jeVar.N0.amount;
-                } else {
-                    jeVar.W0 = false;
-                    jeVar.X0 = MessagesController.getInstance(i11).starsRevenueWithdrawalMin;
+                int size = View.MeasureSpec.getSize(i10);
+                int size2 = View.MeasureSpec.getSize(i11);
+                setMeasuredDimension(size, size2);
+                int paddingTop = size2 - getPaddingTop();
+                qd qdVar = (qd) this.f40006y0;
+                measureChildWithMargins(qd.a0(qdVar), i10, 0, i11, 0);
+                if (R() > AndroidUtilities.dp(20.0f)) {
+                    this.f40005x0 = true;
+                    qdVar.f41274c.j();
+                    this.f40005x0 = false;
                 }
-                jeVar.V0 = true;
-                oVar.setText(Long.toString(jeVar.X0));
-                oVar.setSelection(oVar.getText().length());
-                jeVar.V0 = false;
-                AndroidUtilities.cancelRunOnUIThread(mdVar);
-                mdVar.run();
-                return;
-            default:
-                md mdVar2 = jeVar.f39037i1;
-                int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
-                ae aeVar = jeVar.Q0;
-                if (jeVar.X0 <= 0 && jeVar.L0 <= currentTime) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                aeVar.setEnabled(z10);
-                if (currentTime < jeVar.L0) {
-                    aeVar.g(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true, true);
-                    if (jeVar.f39036h1 == null) {
-                        jeVar.f39036h1 = new SpannableStringBuilder("l");
-                        org.telegram.ui.Components.er erVar = new org.telegram.ui.Components.er(R.drawable.mini_switch_lock, 0);
-                        erVar.setTopOffset(1);
-                        jeVar.f39036h1.setSpan(erVar, 0, 1, 33);
-                    }
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) jeVar.f39036h1).append((CharSequence) yh.g.j0(jeVar.L0 - currentTime));
-                    aeVar.f(spannableStringBuilder, true);
-                    org.telegram.ui.Components.sc scVar = jeVar.Z0;
-                    if (scVar != null) {
-                        org.telegram.ui.Components.wb wbVar = scVar.f30829e;
-                        if ((wbVar instanceof org.telegram.ui.Components.ac) && wbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.ai.r(R.string.BotStarsWithdrawalToast, new Object[]{yh.g.j0(jeVar.L0 - currentTime)}, ((org.telegram.ui.Components.ac) jeVar.Z0.f30829e).f24555b);
+                int childCount = getChildCount();
+                for (int i13 = 0; i13 < childCount; i13++) {
+                    View childAt = getChildAt(i13);
+                    if (childAt != null && childAt.getVisibility() != 8 && childAt != qd.b0(qdVar)) {
+                        org.telegram.ui.Components.cv cvVar = qdVar.f41274c;
+                        if (cvVar != null && cvVar.l(childAt)) {
+                            if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
+                            } else if (AndroidUtilities.isTablet()) {
+                                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+                                if (AndroidUtilities.isTablet()) {
+                                    f7 = 200.0f;
+                                } else {
+                                    f7 = 320.0f;
+                                }
+                                childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f7), getPaddingTop() + (paddingTop - AndroidUtilities.statusBarHeight)), 1073741824));
+                            } else {
+                                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (paddingTop - AndroidUtilities.statusBarHeight), 1073741824));
+                            }
+                        } else {
+                            measureChildWithMargins(childAt, i10, 0, i11, 0);
                         }
                     }
-                    AndroidUtilities.cancelRunOnUIThread(mdVar2);
-                    AndroidUtilities.runOnUIThread(mdVar2, 1000L);
+                }
+                return;
+            case 1:
+                int size3 = View.MeasureSpec.getSize(i10);
+                int size4 = View.MeasureSpec.getSize(i11);
+                setMeasuredDimension(size3, size4);
+                int paddingTop2 = size4 - getPaddingTop();
+                xo xoVar = (xo) this.f40006y0;
+                kVar = ((org.telegram.ui.ActionBar.m2) xoVar).actionBar;
+                measureChildWithMargins(kVar, i10, 0, i11, 0);
+                if (R() > AndroidUtilities.dp(20.0f)) {
+                    this.f40005x0 = true;
+                    xoVar.v.j();
+                    this.f40005x0 = false;
+                }
+                int childCount2 = getChildCount();
+                for (int i14 = 0; i14 < childCount2; i14++) {
+                    View childAt2 = getChildAt(i14);
+                    if (childAt2 != null && childAt2.getVisibility() != 8) {
+                        kVar2 = ((org.telegram.ui.ActionBar.m2) xoVar).actionBar;
+                        if (childAt2 != kVar2) {
+                            org.telegram.ui.Components.cv cvVar2 = xoVar.v;
+                            if (cvVar2 != null && cvVar2.l(childAt2)) {
+                                if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                                    childAt2.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt2.getLayoutParams().height, 1073741824));
+                                } else if (AndroidUtilities.isTablet()) {
+                                    int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(size3, 1073741824);
+                                    if (AndroidUtilities.isTablet()) {
+                                        f10 = 200.0f;
+                                    } else {
+                                        f10 = 320.0f;
+                                    }
+                                    childAt2.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f10), getPaddingTop() + (paddingTop2 - AndroidUtilities.statusBarHeight)), 1073741824));
+                                } else {
+                                    childAt2.measure(View.MeasureSpec.makeMeasureSpec(size3, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (paddingTop2 - AndroidUtilities.statusBarHeight), 1073741824));
+                                }
+                            } else {
+                                measureChildWithMargins(childAt2, i10, 0, i11, 0);
+                            }
+                        }
+                    }
+                }
+                return;
+            case 2:
+                int size5 = View.MeasureSpec.getSize(i10);
+                int size6 = View.MeasureSpec.getSize(i11);
+                setMeasuredDimension(size5, size6);
+                int paddingTop3 = size6 - getPaddingTop();
+                l70 l70Var = (l70) this.f40006y0;
+                kVar3 = ((org.telegram.ui.ActionBar.m2) l70Var).actionBar;
+                measureChildWithMargins(kVar3, i10, 0, i11, 0);
+                if (R() > AndroidUtilities.dp(20.0f)) {
+                    org.telegram.ui.Components.cv cvVar3 = l70Var.f39652c;
+                    if (!cvVar3.f25026e) {
+                        this.f40005x0 = true;
+                        cvVar3.j();
+                        this.f40005x0 = false;
+                    }
+                }
+                int childCount3 = getChildCount();
+                for (int i15 = 0; i15 < childCount3; i15++) {
+                    View childAt3 = getChildAt(i15);
+                    if (childAt3 != null && childAt3.getVisibility() != 8) {
+                        kVar4 = ((org.telegram.ui.ActionBar.m2) l70Var).actionBar;
+                        if (childAt3 != kVar4) {
+                            org.telegram.ui.Components.cv cvVar4 = l70Var.f39652c;
+                            if (cvVar4 != null && cvVar4.l(childAt3)) {
+                                if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                                    childAt3.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt3.getLayoutParams().height, 1073741824));
+                                } else if (AndroidUtilities.isTablet()) {
+                                    int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(size5, 1073741824);
+                                    if (AndroidUtilities.isTablet()) {
+                                        f11 = 200.0f;
+                                    } else {
+                                        f11 = 320.0f;
+                                    }
+                                    childAt3.measure(makeMeasureSpec3, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f11), getPaddingTop() + (paddingTop3 - AndroidUtilities.statusBarHeight)), 1073741824));
+                                } else {
+                                    childAt3.measure(View.MeasureSpec.makeMeasureSpec(size5, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (paddingTop3 - AndroidUtilities.statusBarHeight), 1073741824));
+                                }
+                            } else {
+                                measureChildWithMargins(childAt3, i10, 0, i11, 0);
+                            }
+                        }
+                    }
+                }
+                return;
+            default:
+                int size7 = View.MeasureSpec.getSize(i10);
+                int size8 = View.MeasureSpec.getSize(i11);
+                setMeasuredDimension(size7, size8);
+                int paddingTop4 = size8 - getPaddingTop();
+                cw0 cw0Var = (cw0) this.f40006y0;
+                kVar5 = ((org.telegram.ui.ActionBar.m2) cw0Var).actionBar;
+                measureChildWithMargins(kVar5, i10, 0, i11, 0);
+                int R = R();
+                if (R > AndroidUtilities.dp(20.0f) && !cw0Var.P && !cw0Var.B0) {
+                    this.f40005x0 = true;
+                    cw0Var.l0();
+                    this.f40005x0 = false;
+                }
+                if (R <= AndroidUtilities.dp(20.0f) && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                    i12 = cw0Var.V;
+                } else {
+                    i12 = 0;
+                }
+                if (R > AndroidUtilities.dp(20.0f) && cw0Var.B0) {
+                    i12 = AndroidUtilities.dp(120.0f);
+                }
+                int i16 = i12;
+                int childCount4 = getChildCount();
+                for (int i17 = 0; i17 < childCount4; i17++) {
+                    View childAt4 = getChildAt(i17);
+                    if (childAt4 != null && childAt4.getVisibility() != 8) {
+                        kVar6 = ((org.telegram.ui.ActionBar.m2) cw0Var).actionBar;
+                        if (childAt4 != kVar6) {
+                            org.telegram.ui.Components.d00 d00Var = cw0Var.R;
+                            if (d00Var != null && d00Var == childAt4) {
+                                if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                                    childAt4.measure(View.MeasureSpec.makeMeasureSpec(size7, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt4.getLayoutParams().height, 1073741824));
+                                } else if (AndroidUtilities.isTablet()) {
+                                    int makeMeasureSpec4 = View.MeasureSpec.makeMeasureSpec(size7, 1073741824);
+                                    if (AndroidUtilities.isTablet()) {
+                                        f12 = 200.0f;
+                                    } else {
+                                        f12 = 320.0f;
+                                    }
+                                    childAt4.measure(makeMeasureSpec4, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f12), getPaddingTop() + (paddingTop4 - AndroidUtilities.statusBarHeight)), 1073741824));
+                                } else {
+                                    childAt4.measure(View.MeasureSpec.makeMeasureSpec(size7, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (paddingTop4 - AndroidUtilities.statusBarHeight), 1073741824));
+                                }
+                            } else if (cw0Var.f36542c == childAt4) {
+                                childAt4.measure(i10, View.MeasureSpec.makeMeasureSpec(paddingTop4 - i16, 1073741824));
+                            } else {
+                                measureChildWithMargins(childAt4, i10, 0, i11, 0);
+                            }
+                        }
+                    }
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        switch (this.f40004w0) {
+            case 0:
+                if (!this.f40005x0) {
+                    super.requestLayout();
                     return;
                 }
-                aeVar.f(null, true);
-                if (jeVar.W0) {
-                    formatPluralStringSpaced = LocaleController.getString(R.string.MonetizationStarsWithdrawAll);
-                } else {
-                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("MonetizationStarsWithdraw", (int) jeVar.X0);
+                return;
+            case 1:
+                if (!this.f40005x0) {
+                    super.requestLayout();
+                    return;
                 }
-                aeVar.g(yh.p7.W0(false, formatPluralStringSpaced, jeVar.R0), true, true);
+                return;
+            case 2:
+                if (!this.f40005x0) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                if (!this.f40005x0) {
+                    super.requestLayout();
+                    return;
+                }
                 return;
         }
     }

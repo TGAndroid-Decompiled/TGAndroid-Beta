@@ -2,27 +2,27 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.FileLog;
 public final class c2 implements Runnable {
-    public final int f25171a;
-    public final org.telegram.ui.ActionBar.a2 f25172b;
+    public final int f24793a;
+    public final org.telegram.ui.ActionBar.a2 f24794b;
 
     public c2(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        this.f25171a = i10;
-        this.f25172b = a2Var;
+        this.f24793a = i10;
+        this.f24794b = a2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f25171a) {
+        switch (this.f24793a) {
             case 0:
                 try {
-                    this.f25172b.dismiss();
+                    this.f24794b.dismiss();
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
                     return;
                 }
             default:
-                this.f25172b.dismiss();
+                this.f24794b.dismiss();
                 return;
         }
     }

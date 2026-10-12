@@ -1,103 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-public final class fx0 extends CharacterStyle {
-    public final Paint f26579a;
-    public final Path f26580b;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class fx0 implements Runnable {
+    public final int f26182a;
+    public final TLRPC.Document f26183b;
+    public final int f26184c;
+    public final MessageObject d;
+    public final org.telegram.ui.Cells.u1 f26185e;
+    public final TLRPC.TL_messages_stickerSet f26186f;
 
-    public fx0() {
-        Paint paint = new Paint(1);
-        this.f26579a = paint;
-        this.f26580b = new Path();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-    }
-
-    public static void a(Canvas canvas, Layout layout) {
-        CharSequence text;
-        int lineStart;
-        int lineEnd;
-        Layout layout2 = layout;
-        if (layout2 != null && (text = layout2.getText()) != null && (text instanceof Spanned)) {
-            Spanned spanned = (Spanned) text;
-            fx0[] fx0VarArr = (fx0[]) spanned.getSpans(0, spanned.length(), fx0.class);
-            if (fx0VarArr != null && fx0VarArr.length != 0) {
-                int i10 = 0;
-                while (i10 < fx0VarArr.length) {
-                    fx0 fx0Var = fx0VarArr[i10];
-                    int spanStart = spanned.getSpanStart(fx0Var);
-                    int spanEnd = spanned.getSpanEnd(fx0Var);
-                    int lineForOffset = layout2.getLineForOffset(spanStart);
-                    int lineForOffset2 = layout2.getLineForOffset(spanEnd);
-                    int i11 = lineForOffset;
-                    while (i11 <= lineForOffset2) {
-                        float lineBottom = layout2.getLineBottom(i11) - AndroidUtilities.dp(1.0f);
-                        if (i11 == lineForOffset) {
-                            lineStart = spanStart;
-                        } else {
-                            lineStart = layout2.getLineStart(i11);
-                        }
-                        float primaryHorizontal = layout2.getPrimaryHorizontal(lineStart);
-                        if (i11 == lineForOffset2) {
-                            lineEnd = spanEnd;
-                        } else {
-                            lineEnd = layout2.getLineEnd(i11) - 1;
-                        }
-                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(lineEnd);
-                        fx0Var.getClass();
-                        float dp = AndroidUtilities.dp(1.33f);
-                        float dp2 = AndroidUtilities.dp(10.0f);
-                        float dp3 = AndroidUtilities.dp(2.0f);
-                        Paint paint = fx0Var.f26579a;
-                        Spanned spanned2 = spanned;
-                        fx0[] fx0VarArr2 = fx0VarArr;
-                        int i12 = i10;
-                        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false));
-                        paint.setStrokeWidth(dp);
-                        Path path = fx0Var.f26580b;
-                        path.rewind();
-                        path.moveTo(primaryHorizontal, lineBottom);
-                        float f7 = primaryHorizontal;
-                        while (f7 < primaryHorizontal2) {
-                            float f10 = f7;
-                            float f11 = dp2;
-                            path.quadTo((dp2 / 4.0f) + f7, lineBottom - dp3, (dp2 / 2.0f) + f10, lineBottom);
-                            float f12 = f10 + f11;
-                            path.quadTo(((f11 * 3.0f) / 4.0f) + f10, lineBottom + dp3, f12, lineBottom);
-                            f7 = f12;
-                            dp2 = f11;
-                        }
-                        if (f7 > primaryHorizontal2) {
-                            canvas.save();
-                            float f13 = dp / 2.0f;
-                            canvas.clipRect(primaryHorizontal - f13, (lineBottom - dp3) - f13, primaryHorizontal2 + f13, lineBottom + dp3 + f13);
-                            canvas.drawPath(path, paint);
-                            canvas.restore();
-                        } else {
-                            canvas.drawPath(path, paint);
-                        }
-                        i11++;
-                        layout2 = layout;
-                        spanned = spanned2;
-                        fx0VarArr = fx0VarArr2;
-                        i10 = i12;
-                    }
-                    i10++;
-                    layout2 = layout;
-                }
-            }
-        }
+    public fx0(TLRPC.Document document, int i10, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
+        this.f26182a = i11;
+        this.f26183b = document;
+        this.f26184c = i10;
+        this.d = messageObject;
+        this.f26185e = u1Var;
+        this.f26186f = tL_messages_stickerSet;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public final void run() {
+        switch (this.f26182a) {
+            case 0:
+                TLRPC.Document document = this.f26183b;
+                String attachFileName = FileLoader.getAttachFileName(document);
+                int i10 = this.f26184c;
+                DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this.d, this.f26185e);
+                FileLoader.getInstance(i10).loadFile(document, this.f26186f, 1, 1);
+                return;
+            default:
+                TLRPC.Document document2 = this.f26183b;
+                String attachFileName2 = FileLoader.getAttachFileName(document2);
+                int i11 = this.f26184c;
+                DownloadController.getInstance(i11).addLoadingFileObserver(attachFileName2, this.d, this.f26185e);
+                FileLoader.getInstance(i11).loadFile(document2, this.f26186f, 1, 1);
+                return;
+        }
     }
 }

@@ -1,67 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class eu0 implements View.OnClickListener {
-    public final int f26211a;
-    public final org.telegram.ui.ActionBar.e1 f26212b;
-    public final org.telegram.ui.ActionBar.e1 f26213c;
-    public final gu0 d;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class eu0 implements org.telegram.ui.Cells.m7 {
+    public final hw0 f25786a;
 
-    public eu0(gu0 gu0Var, org.telegram.ui.ActionBar.e1 e1Var, org.telegram.ui.ActionBar.e1 e1Var2, int i10) {
-        this.f26211a = i10;
-        this.d = gu0Var;
-        this.f26212b = e1Var;
-        this.f26213c = e1Var2;
+    public eu0(hw0 hw0Var) {
+        this.f25786a = hw0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f26211a) {
-            case 0:
-                cw0 cw0Var = this.d.d;
-                if (!cw0Var.H1) {
-                    org.telegram.ui.ActionBar.e1 e1Var = this.f26212b;
-                    boolean z10 = e1Var.getCheckView().f25859a.f24125q;
-                    org.telegram.ui.ActionBar.e1 e1Var2 = this.f26213c;
-                    if (!z10 && e1Var2.getCheckView().f25859a.f24125q) {
-                        float f7 = -cw0Var.f25530s1;
-                        cw0Var.f25530s1 = f7;
-                        AndroidUtilities.shakeViewSpring(e1Var2, f7);
-                        return;
-                    }
-                    e1Var2.setChecked(!e1Var2.getCheckView().f25859a.f24125q);
-                    if (e1Var2.getCheckView().f25859a.f24125q && e1Var.getCheckView().f25859a.f24125q) {
-                        cw0Var.f25532t1[0].f30651q = 0;
-                    } else {
-                        cw0Var.f25532t1[0].f30651q = 2;
-                    }
-                    cw0.s(cw0Var);
-                    return;
-                }
-                return;
-            default:
-                cw0 cw0Var2 = this.d.d;
-                if (!cw0Var2.H1) {
-                    org.telegram.ui.ActionBar.e1 e1Var3 = this.f26212b;
-                    boolean z11 = e1Var3.getCheckView().f25859a.f24125q;
-                    org.telegram.ui.ActionBar.e1 e1Var4 = this.f26213c;
-                    if (!z11 && e1Var4.getCheckView().f25859a.f24125q) {
-                        float f10 = -cw0Var2.f25530s1;
-                        cw0Var2.f25530s1 = f10;
-                        AndroidUtilities.shakeViewSpring(e1Var4, f10);
-                        return;
-                    }
-                    e1Var4.setChecked(!e1Var4.getCheckView().f25859a.f24125q);
-                    if (e1Var3.getCheckView().f25859a.f24125q && e1Var4.getCheckView().f25859a.f24125q) {
-                        cw0Var2.f25532t1[0].f30651q = 0;
-                    } else {
-                        cw0Var2.f25532t1[0].f30651q = 1;
-                    }
-                    cw0.s(cw0Var2);
-                    return;
-                }
-                return;
+    public final void a(String str, boolean z10) {
+        hw0 hw0Var = this.f25786a;
+        org.telegram.ui.ActionBar.m2 m2Var = hw0Var.f26972v1;
+        if (z10) {
+            org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) m2Var.getParentActivity(), (org.telegram.ui.ActionBar.c6) null, false);
+            e3Var.fixNavigationBar();
+            e3Var.title = str;
+            e3Var.bigTitle = false;
+            CharSequence[] charSequenceArr = {LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)};
+            lg.j jVar = new lg.j(6, this, str);
+            e3Var.items = charSequenceArr;
+            e3Var.onClickListener = jVar;
+            m2Var.showDialog(e3Var);
+            return;
         }
+        hw0Var.R0(str);
+    }
+
+    @Override
+    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
+        hw0 hw0Var = this.f25786a;
+        ov.J(hw0Var.f26972v1, messageObject, hw0Var.f26963r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    }
+
+    @Override
+    public final boolean e() {
+        return !this.f25786a.C1;
     }
 }

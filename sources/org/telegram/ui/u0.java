@@ -2,55 +2,55 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.tgnet.TLRPC;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import org.telegram.messenger.AndroidUtilities;
 public final class u0 extends AnimatorListenerAdapter {
-    public final h4 f42336a;
+    public final int f42322a;
+    public final int f42323b;
+    public final Object f42324c;
 
-    public u0(h4 h4Var) {
-        this.f42336a = h4Var;
+    public u0(Object obj, int i10, int i11) {
+        this.f42322a = i11;
+        this.f42324c = obj;
+        this.f42323b = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        h4 h4Var = this.f42336a;
-        u3 u3Var = h4Var.K;
-        if (h4Var.f38305f0.f21779e) {
-            h4Var.f38319u0[0].setBackgroundDrawable(null);
-            l3[] l3VarArr = h4Var.f38319u0;
-            l3 l3Var = l3VarArr[1];
-            l3VarArr[1] = l3VarArr[0];
-            l3VarArr[0] = l3Var;
-            h4Var.f38307h0.i();
-            h4Var.Z0.a(h4Var.f38319u0[0].getBackgroundColor(), true);
-            h4Var.f38300a1.a(h4Var.f38319u0[1].getBackgroundColor(), true);
-            if (u3Var != null) {
-                u3Var.m();
-            }
-            Object x10 = hg.c.x(1, h4Var.f38303d0);
-            h4Var.O0.S(h4Var.f38319u0[0].f39530b);
-            org.telegram.ui.Cells.o9 o9Var = h4Var.O0;
-            o9Var.f22647z0 = h4Var.f38319u0[0].d;
-            o9Var.f(true);
-            h4Var.i0(false);
-            h4Var.f0();
-            h4Var.f38319u0[1].b();
-            h4Var.f38319u0[1].setVisibility(8);
-            if (x10 instanceof y2) {
-                ((y2) x10).a();
-            }
-            if (x10 instanceof TLRPC.WebPage) {
-                org.telegram.ui.web.i2.o((TLRPC.WebPage) x10);
-            }
-        } else if (u3Var != null) {
-            u3Var.release();
-            h4Var.s();
-        } else {
-            h4Var.U();
-            h4Var.M();
+        switch (this.f42322a) {
+            case 0:
+                i4 i4Var = (i4) this.f42324c;
+                i4Var.f38661u0[1].b();
+                i4Var.f38661u0[1].setVisibility(8);
+                i4Var.O0.S(i4Var.f38661u0[0].f39892b);
+                org.telegram.ui.Cells.o9 o9Var = i4Var.O0;
+                m3[] m3VarArr = i4Var.f38661u0;
+                o9Var.f22382z0 = m3VarArr[0].d;
+                int i10 = this.f42323b;
+                m3VarArr[i10].setBackgroundDrawable(null);
+                i4Var.f38661u0[i10].setLayerType(0, null);
+                i4Var.f38662v0 = null;
+                i4Var.f38647f0.f21518f = false;
+                return;
+            case 1:
+                ((fv) this.f42324c).f37854c.d.setColorFilter(new PorterDuffColorFilter(this.f42323b, PorterDuff.Mode.SRC_IN));
+                super.onAnimationEnd(animator);
+                return;
+            case 2:
+                Activity activity = (Activity) this.f42324c;
+                int i11 = this.f42323b;
+                boolean z10 = false;
+                AndroidUtilities.setNavigationBarColor(activity, i11, false);
+                if (AndroidUtilities.computePerceivedBrightness(i11) >= 0.721f) {
+                    z10 = true;
+                }
+                AndroidUtilities.setLightNavigationBar(activity, z10);
+                return;
+            default:
+                ((LaunchActivity) this.f42324c).z0(this.f42323b);
+                return;
         }
-        ArticleViewer$WindowView articleViewer$WindowView = h4Var.f38305f0;
-        articleViewer$WindowView.f21779e = false;
-        articleViewer$WindowView.d = false;
-        h4Var.T0 = false;
     }
 }

@@ -1,74 +1,67 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.tgnet.tl.TL_stories;
-public final class iu implements Utilities.Callback {
-    public final int f38815a;
-    public final long f38816b;
-    public final Object f38817c;
-    public final Object d;
+import android.animation.AnimatorSet;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+public final class iu extends org.telegram.ui.Cells.d5 {
+    public final int f38996e;
+    public final org.telegram.ui.Cells.e9 f38997f;
+    public final org.telegram.ui.Cells.w8[] h;
+    public final AnimatorSet[] f38998n;
+    public final DataAutoDownloadActivity f38999r;
 
-    public iu(Object obj, Object obj2, long j3, int i10) {
-        this.f38815a = i10;
-        this.f38817c = obj;
-        this.d = obj2;
-        this.f38816b = j3;
-    }
-
-    @Override
-    public final void run(Object obj) {
-        boolean z10;
-        int i10;
-        switch (this.f38815a) {
-            case 0:
-                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f38817c;
-                Long l4 = (Long) obj;
-                AndroidUtilities.cancelRunOnUIThread((hu) this.d);
-                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f38816b <= 120) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                dataSettingsActivity.W = z10;
-                dataSettingsActivity.Y = l4.longValue();
-                dataSettingsActivity.X = false;
-                if (dataSettingsActivity.f33800a != null && (i10 = dataSettingsActivity.f33807s) >= 0) {
-                    dataSettingsActivity.n0(i10);
-                    return;
-                }
-                return;
-            case 1:
-                Runnable runnable = (Runnable) obj;
-                ((org.telegram.ui.ActionBar.a2) this.d).q(150L);
-                sy syVar = ((rx) this.f38817c).f41558b;
-                Boolean bool = syVar.G.bot_participant;
-                if (bool != null && bool.booleanValue()) {
-                    syVar.getMessagesController().addUserToChat(this.f38816b, syVar.getMessagesController().getUser(Long.valueOf(syVar.H)), 0, null, syVar, false, runnable, new nf(8, runnable));
-                    return;
-                }
-                runnable.run();
-                return;
-            case 2:
-                ProfileActivity.k0((ProfileActivity) this.f38817c, (Context) this.d, this.f38816b, (TL_payments.connectedBotStarRef) obj);
-                return;
-            default:
-                yh.s3 s3Var = (yh.s3) this.f38817c;
-                MessagesController messagesController = (MessagesController) this.d;
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < messagesController.channelEmojiStatusLevelMin) {
-                    ChannelBoostsController boostsController = messagesController.getBoostsController();
-                    long j3 = this.f38816b;
-                    boostsController.userCanBoostChannel(j3, tL_premium_boostsStatus, new ai.l(s3Var, tL_premium_boostsStatus, j3, messagesController, 10));
-                    return;
-                }
-                s3Var.f53300k0.setLoading(false);
-                s3Var.t2(true);
-                return;
+    public iu(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
+        super(activity);
+        int i11;
+        int i12;
+        int i13;
+        this.f38999r = dataAutoDownloadActivity;
+        this.f38996e = i10;
+        this.f38997f = e9Var;
+        this.h = w8VarArr;
+        this.f38998n = animatorSetArr;
+        setWillNotDraw(false);
+        TextView textView = new TextView(activity);
+        this.f21730a = textView;
+        org.telegram.messenger.am.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20667j5, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
         }
+        textView.setGravity(i11 | 48);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setImportantForAccessibility(2);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        addView(textView, w7.w5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -1, i12 | 48));
+        TextView textView2 = new TextView(activity);
+        this.f21731b = textView2;
+        org.telegram.messenger.am.u(textView2, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20743n5, false), 1, 16.0f, 1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        if (LocaleController.isRTL) {
+            i13 = 3;
+        } else {
+            i13 = 5;
+        }
+        textView2.setGravity(i13 | 48);
+        textView2.setImportantForAccessibility(2);
+        addView(textView2, w7.w5.a(-1.0f, 21.0f, 13.0f, 21.0f, 0.0f, -2, (LocaleController.isRTL ? 3 : 5) | 48));
+        org.telegram.ui.Cells.j0 j0Var = new org.telegram.ui.Cells.j0(activity);
+        this.f21732c = j0Var;
+        j0Var.setReportChanges(true);
+        j0Var.setDelegate(new org.telegram.ui.Cells.c5(this));
+        j0Var.setImportantForAccessibility(2);
+        addView(j0Var, w7.w5.a(38.0f, 6.0f, 36.0f, 6.0f, 0.0f, -1, 51));
+        setImportantForAccessibility(1);
+        setAccessibilityDelegate(j0Var.getSeekBarAccessibilityDelegate());
     }
 }

@@ -16,49 +16,48 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.p31;
 public final class q0 implements Utilities.Callback3 {
-    public final int f1603a;
-    public final Object f1604b;
-    public final Object f1605c;
+    public final int f1601a;
+    public final Object f1602b;
+    public final Object f1603c;
 
     public q0(int i10, Object obj, Object obj2) {
-        this.f1603a = i10;
-        this.f1604b = obj;
-        this.f1605c = obj2;
+        this.f1601a = i10;
+        this.f1602b = obj;
+        this.f1603c = obj2;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3) {
         ci.nb nbVar;
         String str;
-        switch (this.f1603a) {
+        switch (this.f1601a) {
             case 0:
-                s3 s3Var = (s3) this.f1604b;
-                m1 m1Var = (m1) this.f1605c;
+                s3 s3Var = (s3) this.f1602b;
+                m1 m1Var = (m1) this.f1603c;
                 Boolean bool = (Boolean) obj;
                 Boolean bool2 = (Boolean) obj3;
                 int i10 = s3Var.N;
                 if (((Boolean) obj2).booleanValue()) {
                     TL_phone.deleteGroupCallParticipantMessages deletegroupcallparticipantmessages = new TL_phone.deleteGroupCallParticipantMessages();
                     deletegroupcallparticipantmessages.call = s3Var.O;
-                    deletegroupcallparticipantmessages.participant = MessagesController.getInstance(i10).getInputPeer(m1Var.f1382c);
+                    deletegroupcallparticipantmessages.participant = MessagesController.getInstance(i10).getInputPeer(m1Var.f1380c);
                     deletegroupcallparticipantmessages.report_spam = bool.booleanValue();
                     ConnectionsManager.getInstance(i10).sendRequest(deletegroupcallparticipantmessages, null);
-                    long j3 = m1Var.f1382c;
-                    ArrayList arrayList = s3Var.f1518r;
-                    ArrayList arrayList2 = s3Var.f1519s;
+                    long j3 = m1Var.f1380c;
+                    ArrayList arrayList = s3Var.f1516r;
+                    ArrayList arrayList2 = s3Var.f1517s;
                     int i11 = 0;
                     boolean z10 = false;
                     while (i11 < arrayList.size()) {
-                        if (((m1) arrayList.get(i11)).f1382c == j3) {
+                        if (((m1) arrayList.get(i11)).f1380c == j3) {
                             m1 m1Var2 = (m1) arrayList.get(i11);
                             int i12 = 0;
                             while (true) {
                                 if (i12 < arrayList2.size()) {
-                                    if (((n1) arrayList2.get(i12)).f1445f.contains(m1Var2)) {
-                                        ((n1) arrayList2.get(i12)).f1445f.remove(m1Var2);
-                                        if (((n1) arrayList2.get(i12)).f1445f.isEmpty()) {
+                                    if (((n1) arrayList2.get(i12)).f1443f.contains(m1Var2)) {
+                                        ((n1) arrayList2.get(i12)).f1443f.remove(m1Var2);
+                                        if (((n1) arrayList2.get(i12)).f1443f.isEmpty()) {
                                             arrayList2.remove(i12);
                                             z10 = true;
                                         } else {
@@ -70,7 +69,7 @@ public final class q0 implements Utilities.Callback3 {
                                 }
                             }
                             arrayList.remove(i11);
-                            s3Var.f1512e.N(true);
+                            s3Var.f1510e.N(true);
                             i11--;
                         }
                         i11++;
@@ -78,29 +77,29 @@ public final class q0 implements Utilities.Callback3 {
                     if (z10) {
                         ConnectionsManager.getInstance(i10).getCurrentTime();
                         Collections.sort(arrayList2, new a4.d(s3Var, 4));
-                        s3Var.f1517n.N(true);
+                        s3Var.f1515n.N(true);
                         s3Var.t();
                     }
                 } else {
                     TL_phone.deleteGroupCallMessages deletegroupcallmessages = new TL_phone.deleteGroupCallMessages();
                     deletegroupcallmessages.call = s3Var.O;
-                    deletegroupcallmessages.messages.add(Integer.valueOf(m1Var.f1380a));
+                    deletegroupcallmessages.messages.add(Integer.valueOf(m1Var.f1378a));
                     ConnectionsManager.getInstance(i10).sendRequest(deletegroupcallmessages, null);
-                    s3Var.c(m1Var.f1380a);
+                    s3Var.c(m1Var.f1378a);
                 }
                 if (bool2.booleanValue()) {
                     if (s3Var.M >= 0) {
                         MessagesController.getInstance(i10).blockPeer(s3Var.M);
                         return;
                     } else {
-                        MessagesController.getInstance(i10).deleteParticipantFromChat(-s3Var.M, MessagesController.getInstance(i10).getInputPeer(m1Var.f1382c), false, true);
+                        MessagesController.getInstance(i10).deleteParticipantFromChat(-s3Var.M, MessagesController.getInstance(i10).getInputPeer(m1Var.f1380c), false, true);
                         return;
                     }
                 }
                 return;
             case 1:
-                ci.bc bcVar = (ci.bc) this.f1604b;
-                ci.p pVar = (ci.p) this.f1605c;
+                ci.bc bcVar = (ci.bc) this.f1602b;
+                ci.p pVar = (ci.p) this.f1603c;
                 File file = (File) obj;
                 String str2 = (String) obj2;
                 Long l4 = (Long) obj3;
@@ -118,21 +117,21 @@ public final class q0 implements Utilities.Callback3 {
                 }
                 ci.l8 l8Var = lcVar.K1;
                 if (l8Var != null) {
-                    l8Var.f5424o0 = file;
-                    l8Var.f5426p0 = str2;
-                    l8Var.f5428q0 = l4.longValue();
+                    l8Var.f5423o0 = file;
+                    l8Var.f5425p0 = str2;
+                    l8Var.f5427q0 = l4.longValue();
                     ci.l8 l8Var2 = lcVar.K1;
-                    l8Var2.f5432s0 = 0.0f;
-                    l8Var2.f5434t0 = 1.0f;
-                    l8Var2.f5430r0 = 0L;
-                    l8Var2.f5436u0 = 1.0f;
+                    l8Var2.f5431s0 = 0.0f;
+                    l8Var2.f5433t0 = 1.0f;
+                    l8Var2.f5429r0 = 0L;
+                    l8Var2.f5435u0 = 1.0f;
                     lcVar.t();
-                    if (lcVar.X0 != null && (nbVar = lcVar.f5526v1) != null) {
-                        qg.b2 l02 = nbVar.l0(lcVar.K1.f5426p0, true);
+                    if (lcVar.X0 != null && (nbVar = lcVar.f5525v1) != null) {
+                        qg.c2 l02 = nbVar.l0(lcVar.K1.f5425p0, true);
                         bcVar.setHasRoundVideo(true);
                         lcVar.X0.s(lcVar.K1, l02, true);
                         AndroidUtilities.cancelRunOnUIThread(pVar.h);
-                        pVar.f5679a.destroy(true, null);
+                        pVar.f5678a.destroy(true, null);
                         l02.setDraw(false);
                         pVar.post(new ca(24, pVar, l02));
                         return;
@@ -142,8 +141,8 @@ public final class q0 implements Utilities.Callback3 {
                 }
                 return;
             case 2:
-                ei.r rVar = (ei.r) this.f1604b;
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f1605c;
+                ei.r rVar = (ei.r) this.f1602b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f1603c;
                 Boolean bool3 = (Boolean) obj;
                 androidx.biometric.s sVar = (androidx.biometric.s) obj2;
                 androidx.biometric.t tVar = (androidx.biometric.t) obj3;
@@ -155,8 +154,8 @@ public final class q0 implements Utilities.Callback3 {
                             tVar = rVar.i(true);
                         }
                         if (tVar != null) {
-                            str3 = !TextUtils.isEmpty(rVar.f9320g) ? new String(tVar.f2321b.doFinal(Utilities.hexToBytes(rVar.f9320g)), StandardCharsets.UTF_8) : rVar.f9320g;
-                        } else if (!TextUtils.isEmpty(rVar.f9320g)) {
+                            str3 = !TextUtils.isEmpty(rVar.f9318g) ? new String(tVar.f2319b.doFinal(Utilities.hexToBytes(rVar.f9318g)), StandardCharsets.UTF_8) : rVar.f9318g;
+                        } else if (!TextUtils.isEmpty(rVar.f9318g)) {
                             throw new RuntimeException("No cryptoObject found");
                         }
                     } catch (Exception e7) {
@@ -167,8 +166,8 @@ public final class q0 implements Utilities.Callback3 {
                 callback2.run(bool3, str3);
                 return;
             case 3:
-                org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f1604b;
-                org.telegram.ui.Wallet.j7 j7Var = (org.telegram.ui.Wallet.j7) this.f1605c;
+                org.telegram.ui.Wallet.l0 l0Var = (org.telegram.ui.Wallet.l0) this.f1602b;
+                org.telegram.ui.Wallet.j7 j7Var = (org.telegram.ui.Wallet.j7) this.f1603c;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
@@ -190,8 +189,8 @@ public final class q0 implements Utilities.Callback3 {
                 j7Var.run(null);
                 return;
             case 4:
-                final org.telegram.ui.Wallet.l0 l0Var2 = (org.telegram.ui.Wallet.l0) this.f1604b;
-                Utilities.Callback2 callback22 = (Utilities.Callback2) this.f1605c;
+                final org.telegram.ui.Wallet.l0 l0Var2 = (org.telegram.ui.Wallet.l0) this.f1602b;
+                Utilities.Callback2 callback22 = (Utilities.Callback2) this.f1603c;
                 TL_wallet.secretPhraseParts secretphraseparts = (TL_wallet.secretPhraseParts) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP2 = (TLRPC.InputCheckPasswordSRP) obj3;
@@ -224,7 +223,7 @@ public final class q0 implements Utilities.Callback3 {
                     TL_wallet.fetchEncryptedSecretPhrasePart fetchencryptedsecretphrasepart = new TL_wallet.fetchEncryptedSecretPhrasePart();
                     fetchencryptedsecretphrasepart.token = secretphraseparts.token;
                     fetchencryptedsecretphrasepart.public_key = key_to_public_key;
-                    ConnectionsManager.getInstance(l0Var2.f35219a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
+                    ConnectionsManager.getInstance(l0Var2.f34994a).sendRequestTyped(fetchencryptedsecretphrasepart, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj4, Object obj5) {
                             l0 l0Var3 = l0.this;
@@ -250,42 +249,42 @@ public final class q0 implements Utilities.Callback3 {
                                 return;
                             }
                             l0.E("getSecretPhrase: received all parts");
-                            k kVar = new k((Object) l0Var3, (Object) a2Var2, (Object) dVar2, 6);
+                            j jVar = new j((Object) l0Var3, (Object) a2Var2, (Object) dVar2, 6);
                             for (int i17 = 0; i17 < encryptedsecretphrasepartArr2.length; i17++) {
                                 TL_wallet.encryptedSecretPhrasePart encryptedsecretphrasepart = encryptedsecretphrasepartArr2[i17];
                                 if (encryptedsecretphrasepart == null) {
                                     TLRPC.TL_error tL_error3 = tL_errorArr2[i17];
-                                    StringBuilder j11 = hg.c.j(i17, "getSecretPhrase: part ", ": ");
+                                    StringBuilder l10 = hg.c.l(i17, "getSecretPhrase: part ", ": ");
                                     String str8 = tL_error3.text;
                                     String str9 = "NULL_ERROR";
                                     if (str8 == null) {
                                         str8 = "NULL_ERROR";
                                     }
-                                    j11.append(str8);
-                                    l0.i(j11.toString());
+                                    l10.append(str8);
+                                    l0.i(l10.toString());
                                     String str10 = tL_error3.text;
                                     if (str10 != null) {
                                         str9 = str10;
                                     }
-                                    kVar.run(null, str9);
+                                    jVar.run(null, str9);
                                     return;
                                 } else if (encryptedsecretphrasepart.data.length < 33) {
-                                    StringBuilder j12 = hg.c.j(i17, "getSecretPhrase: part ", " length < 33 (len=");
-                                    j12.append(encryptedsecretphrasepartArr2[i17].data.length);
-                                    j12.append(")");
-                                    l0.i(j12.toString());
-                                    kVar.run(null, "WALLET_PART_" + i17 + "_INVALID");
+                                    StringBuilder l11 = hg.c.l(i17, "getSecretPhrase: part ", " length < 33 (len=");
+                                    l11.append(encryptedsecretphrasepartArr2[i17].data.length);
+                                    l11.append(")");
+                                    l0.i(l11.toString());
+                                    jVar.run(null, "WALLET_PART_" + i17 + "_INVALID");
                                     return;
                                 }
                             }
-                            Utilities.stageQueue.postRunnable(new p31(l0Var3, encryptedsecretphrasepartArr2, j10, kVar, 6));
+                            Utilities.stageQueue.postRunnable(new ai.r8(l0Var3, encryptedsecretphrasepartArr2, j10, jVar, 16));
                         }
                     }, intValue, 0);
                 }
                 return;
             default:
-                org.telegram.ui.Wallet.l0 l0Var3 = (org.telegram.ui.Wallet.l0) this.f1604b;
-                org.telegram.ui.Wallet.b7 b7Var = (org.telegram.ui.Wallet.b7) this.f1605c;
+                org.telegram.ui.Wallet.l0 l0Var3 = (org.telegram.ui.Wallet.l0) this.f1602b;
+                org.telegram.ui.Wallet.b7 b7Var = (org.telegram.ui.Wallet.b7) this.f1603c;
                 TL_wallet.WalletState walletState2 = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP3 = (TLRPC.InputCheckPasswordSRP) obj3;

@@ -1,31 +1,25 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_payments;
-public final class nu implements org.telegram.ui.ActionBar.z1 {
-    public final int f29275a;
-    public final int f29276b;
-    public final Object f29277c;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class nu implements Utilities.Callback {
+    public final uu f28965a;
+    public final int f28966b;
+    public final int f28967c;
 
-    public nu(int i10, int i11, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f29275a = i10;
-        this.f29276b = i11;
-        this.f29277c = m2Var;
+    public nu(uu uuVar, int i10, int i11) {
+        this.f28965a = uuVar;
+        this.f28966b = i10;
+        this.f28967c = i11;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        of.e g10 = a2Var.g(-1, true, true);
-        g10.d();
-        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
-        tL_resolveStarGiftOffer.offer_msg_id = this.f29275a;
-        int i11 = this.f29276b;
-        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new ei.h1(i11, (org.telegram.ui.ActionBar.m2) this.f29277c, g10, a2Var));
-    }
-
-    public nu(su suVar, int i10, int i11) {
-        this.f29277c = suVar;
-        this.f29275a = i10;
-        this.f29276b = i11;
+    public final void run(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        uu uuVar = this.f28965a;
+        Editable text = uuVar.getText();
+        int i10 = this.f28966b;
+        text.replace(i10, this.f28967c, charSequence);
+        uuVar.setSelection(i10, charSequence.length() + i10);
     }
 }

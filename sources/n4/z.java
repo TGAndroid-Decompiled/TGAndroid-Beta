@@ -1,37 +1,24 @@
 package n4;
 
-import android.os.Build;
-import android.text.TextUtils;
+import android.content.ContentResolver;
+import android.content.Context;
 public final class z {
-    public b0 f16699a;
+    public static final boolean f16364c = d0.f16295b;
+    public Context f16365a;
+    public ContentResolver f16366b;
 
-    public z(String str, int i10, int i11) {
-        if (str != null) {
-            if (!TextUtils.isEmpty(str)) {
-                if (Build.VERSION.SDK_INT >= 28) {
-                    this.f16699a = new b0(str, i10, i11);
-                    return;
-                } else {
-                    this.f16699a = new b0(str, i10, i11);
-                    return;
-                }
+    public final boolean a(c0 c0Var, String str) {
+        Context context = this.f16365a;
+        int i10 = c0Var.f16293b;
+        if (i10 < 0) {
+            if (context.getPackageManager().checkPermission(str, c0Var.f16292a) == 0) {
+                return true;
             }
-            throw new IllegalArgumentException("packageName should be nonempty");
-        }
-        throw new NullPointerException("package shouldn't be null");
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
+            return false;
+        } else if (context.checkPermission(str, i10, c0Var.f16294c) == 0) {
             return true;
-        }
-        if (!(obj instanceof z)) {
+        } else {
             return false;
         }
-        return this.f16699a.equals(((z) obj).f16699a);
-    }
-
-    public final int hashCode() {
-        return this.f16699a.hashCode();
     }
 }

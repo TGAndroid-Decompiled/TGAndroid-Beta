@@ -1,24 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class ev implements Runnable {
-    public final int f26214a;
-    public final View f26215b;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class ev extends CharacterStyle {
+    public final int f25787a;
+    public int f25788b;
 
-    public ev(int i10, View view) {
-        this.f26214a = i10;
-        this.f26215b = view;
+    public ev(int i10, int i11) {
+        this.f25787a = i11;
+        this.f25788b = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26214a) {
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f25787a) {
             case 0:
-                this.f26215b.callOnClick();
+                textPaint.setAlpha((int) ((this.f25788b / 255.0f) * textPaint.getAlpha()));
                 return;
             default:
-                this.f26215b.invalidate();
+                textPaint.setColor(org.telegram.ui.ActionBar.h6.m1(textPaint.getAlpha() / 255.0f, this.f25788b));
                 return;
         }
+    }
+
+    public ev(boolean z10) {
+        this.f25787a = 0;
+    }
+
+    public ev() {
+        this.f25787a = 0;
+        this.f25788b = 0;
     }
 }

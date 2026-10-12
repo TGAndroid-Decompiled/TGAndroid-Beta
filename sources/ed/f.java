@@ -1,21 +1,21 @@
 package ed;
 public final class f extends k {
-    public final StringBuilder f8870c;
+    public final StringBuilder f8868c;
     public final StringBuilder d;
-    public final StringBuilder f8871e;
+    public final StringBuilder f8869e;
 
     public f() {
         super(1, 0);
-        this.f8870c = new StringBuilder();
+        this.f8868c = new StringBuilder();
         this.d = new StringBuilder();
-        this.f8871e = new StringBuilder();
+        this.f8869e = new StringBuilder();
     }
 
     @Override
     public final k b() {
-        k.c(this.f8870c);
+        k.c(this.f8868c);
         k.c(this.d);
-        k.c(this.f8871e);
+        k.c(this.f8869e);
         return this;
     }
 }

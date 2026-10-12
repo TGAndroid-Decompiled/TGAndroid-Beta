@@ -1,76 +1,60 @@
 package bb;
 
-import ae.d0;
-import com.google.firebase.messaging.s;
-import java.util.ArrayList;
-import java.util.List;
-import k1.t;
-import sd.p;
-import za.m;
-import za.z;
-public final class i extends ld.j implements p {
-    public final int f3828a;
-    public int f3829b;
-    public Object f3830c;
-    public final Object d;
+import android.content.Context;
+import android.os.Bundle;
+import w7.o;
+import za.c0;
+import za.s;
+public final class i {
+    public static final g f3824c = new Object();
+    public static final m1.c d = o.a(s.f54508b);
+    public final a f3825a;
+    public final e f3826b;
 
-    public i(Object obj, Object obj2, jd.c cVar, int i10) {
-        super(2, cVar);
-        this.f3828a = i10;
-        this.f3830c = obj;
-        this.d = obj2;
+    public i(k9.h hVar, jd.h hVar2, jd.h hVar3, qa.d dVar) {
+        hVar.a();
+        Context context = hVar.f14743a;
+        kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
+        c0 c0Var = c0.f54425a;
+        za.b a2 = c0.a(hVar);
+        a aVar = new a(context);
+        aa.a aVar2 = new aa.a(a2, hVar2);
+        f3824c.getClass();
+        e eVar = new e(hVar3, dVar, a2, aVar2, d.a(context, g.f3820a[0]));
+        this.f3825a = aVar;
+        this.f3826b = eVar;
     }
 
-    @Override
-    public final jd.c create(Object obj, jd.c cVar) {
-        switch (this.f3828a) {
-            case 0:
-                return new i((l) this.d, cVar, 0);
-            case 1:
-                i iVar = new i((List) this.d, cVar, 1);
-                iVar.f3830c = obj;
-                return iVar;
-            case 2:
-                return new i((s) this.d, cVar, 2);
-            case 3:
-                return new i((p) this.f3830c, this.d, cVar, 3);
-            case 4:
-                return new i((m) this.f3830c, (jd.h) this.d, cVar, 4);
-            case 5:
-                return new i((z) this.f3830c, (String) this.d, cVar, 5);
-            default:
-                return new i((pi.f) this.f3830c, (ArrayList) this.d, cVar, 6);
+    public final double a() {
+        Double d10;
+        Bundle bundle = this.f3825a.f3802a;
+        if (bundle.containsKey("firebase_sessions_sampling_rate")) {
+            d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
+        } else {
+            d10 = null;
         }
-    }
-
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        switch (this.f3828a) {
-            case 0:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
-            case 1:
-                return ((i) create((t) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
-            case 2:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
-            case 3:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
-            case 4:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
-            case 5:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
-            default:
-                return ((i) create((d0) obj, (jd.c) obj2)).invokeSuspend(hd.i.f11091a);
+        if (d10 != null) {
+            double doubleValue = d10.doubleValue();
+            if (0.0d <= doubleValue && doubleValue <= 1.0d) {
+                return doubleValue;
+            }
         }
+        f fVar = this.f3826b.f3815c.f3841b;
+        if (fVar != null) {
+            Double d11 = fVar.f3817b;
+            if (d11 != null) {
+                double doubleValue2 = d11.doubleValue();
+                if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {
+                    return doubleValue2;
+                }
+            }
+            return 1.0d;
+        }
+        kotlin.jvm.internal.i.h("sessionConfigs");
+        throw null;
     }
 
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r22) {
-        throw new UnsupportedOperationException("Method not decompiled: bb.i.invokeSuspend(java.lang.Object):java.lang.Object");
-    }
-
-    public i(Object obj, jd.c cVar, int i10) {
-        super(2, cVar);
-        this.f3828a = i10;
-        this.d = obj;
+    public final java.lang.Object b(ld.c r7) {
+        throw new UnsupportedOperationException("Method not decompiled: bb.i.b(ld.c):java.lang.Object");
     }
 }

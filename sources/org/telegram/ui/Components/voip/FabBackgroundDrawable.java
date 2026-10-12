@@ -8,29 +8,29 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public class FabBackgroundDrawable extends Drawable {
-    public final Paint f31942a = new Paint(1);
-    public final Paint f31943b;
-    public Bitmap f31944c;
+    public final Paint f31579a = new Paint(1);
+    public final Paint f31580b;
+    public Bitmap f31581c;
 
     public FabBackgroundDrawable() {
         Paint paint = new Paint();
-        this.f31943b = paint;
+        this.f31580b = paint;
         paint.setColor(1275068416);
     }
 
     @Override
     public final void draw(Canvas canvas) {
         int i10;
-        if (this.f31944c == null) {
+        if (this.f31581c == null) {
             onBoundsChange(getBounds());
         }
         int min = Math.min(getBounds().width(), getBounds().height());
-        Bitmap bitmap = this.f31944c;
+        Bitmap bitmap = this.f31581c;
         if (bitmap != null) {
-            canvas.drawBitmap(bitmap, getBounds().centerX() - (this.f31944c.getWidth() / 2), getBounds().centerY() - (this.f31944c.getHeight() / 2), this.f31943b);
+            canvas.drawBitmap(bitmap, getBounds().centerX() - (this.f31581c.getWidth() / 2), getBounds().centerY() - (this.f31581c.getHeight() / 2), this.f31580b);
         }
         float f7 = min / 2;
-        canvas.drawCircle(f7, f7, i10 - AndroidUtilities.dp(4.0f), this.f31942a);
+        canvas.drawCircle(f7, f7, i10 - AndroidUtilities.dp(4.0f), this.f31579a);
     }
 
     @Override
@@ -50,16 +50,16 @@ public class FabBackgroundDrawable extends Drawable {
         int i10;
         int min = Math.min(rect.width(), rect.height());
         if (min <= 0) {
-            this.f31944c = null;
+            this.f31581c = null;
             return;
         }
-        this.f31944c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
+        this.f31581c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
         float f7 = min / 2;
-        new Canvas(this.f31944c).drawCircle(f7, f7, i10 - AndroidUtilities.dp(4.0f), new Paint(1));
+        new Canvas(this.f31581c).drawCircle(f7, f7, i10 - AndroidUtilities.dp(4.0f), new Paint(1));
     }
 
     public void setColor(int i10) {
-        this.f31942a.setColor(i10);
+        this.f31579a.setColor(i10);
         invalidateSelf();
     }
 

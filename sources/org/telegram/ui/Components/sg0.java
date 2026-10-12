@@ -1,78 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.webkit.JavascriptInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class sg0 {
-    public final org.telegram.ui.iu0 f30862a;
+import android.view.View;
+import org.telegram.ui.PhotoViewer;
+public final class sg0 implements Runnable {
+    public final int f30565a;
+    public final ug0 f30566b;
 
-    public sg0(org.telegram.ui.iu0 iu0Var) {
-        this.f30862a = iu0Var;
+    public sg0(ug0 ug0Var, int i10) {
+        this.f30565a = i10;
+        this.f30566b = ug0Var;
     }
 
-    @JavascriptInterface
-    public void onPlayerError(String str) {
-        AndroidUtilities.runOnUIThread(new nd(this, Integer.parseInt(str), 6));
-    }
-
-    @JavascriptInterface
-    public void onPlayerLoaded() {
-        AndroidUtilities.runOnUIThread(new qg0(this, 0));
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyBufferedPosition(float f7) {
-        this.f30862a.J = f7;
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyCurrentPosition(int i10) {
-        this.f30862a.I = i10 * 1000;
-    }
-
-    @JavascriptInterface
-    public void onPlayerNotifyDuration(int i10) {
-        org.telegram.ui.iu0 iu0Var = this.f30862a;
-        iu0Var.H = i10 * 1000;
-        String str = iu0Var.f31246s;
-        if (str != null) {
-            tg0.a(iu0Var, str);
-            iu0Var.f31246s = null;
-        }
-    }
-
-    @JavascriptInterface
-    public void onPlayerStateChange(String str) {
-        boolean z10;
-        int parseInt = Integer.parseInt(str);
-        org.telegram.ui.iu0 iu0Var = this.f30862a;
-        boolean z11 = iu0Var.G;
-        boolean z12 = false;
-        int i10 = 1;
-        if (parseInt != 1 && parseInt != 3) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        iu0Var.G = z10;
-        iu0Var.b(z11);
-        if (parseInt != 0) {
-            if (parseInt != 1) {
-                if (parseInt != 2) {
-                    if (parseInt == 3) {
-                        z12 = true;
-                        i10 = 2;
-                    }
+    @Override
+    public final void run() {
+        switch (this.f30565a) {
+            case 0:
+                org.telegram.ui.lu0 lu0Var = this.f30566b.f31165a;
+                RadialProgressView radialProgressView = lu0Var.f31508n;
+                View view = lu0Var.f31509r;
+                radialProgressView.setVisibility(4);
+                if (lu0Var.F) {
+                    lu0Var.F = false;
+                    lu0Var.setPlaybackSpeed(lu0Var.E);
                 }
-            } else {
-                z12 = true;
-            }
-            i10 = 3;
-        } else {
-            i10 = 4;
+                view.setEnabled(true);
+                view.setAlpha(1.0f);
+                PhotoViewer photoViewer = lu0Var.f31504b;
+                if (photoViewer != null) {
+                    photoViewer.z0();
+                    return;
+                }
+                return;
+            default:
+                this.f30566b.f31165a.h.setVisibility(4);
+                return;
         }
-        if (i10 == 3 && iu0Var.h.getVisibility() != 4) {
-            AndroidUtilities.runOnUIThread(new qg0(this, 1), 300L);
-        }
-        AndroidUtilities.runOnUIThread(new i2.g0(this, z12, i10, 1));
     }
 }

@@ -12,23 +12,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.vh;
+import org.telegram.ui.Components.xh;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ad;
-import org.telegram.ui.e41;
+import org.telegram.ui.fd;
+import org.telegram.ui.h41;
 public final class i implements Utilities.Callback {
-    public final int f1118a;
+    public final int f1116a;
 
     public i(int i10) {
-        this.f1118a = i10;
+        this.f1116a = i10;
     }
 
     @Override
     public final void run(Object obj) {
         MessageObject messageObject;
         MessageObject messageObject2;
-        switch (this.f1118a) {
+        switch (this.f1116a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -44,7 +44,7 @@ public final class i implements Utilities.Callback {
             case 3:
                 View view2 = (View) obj;
                 if (view2 instanceof hg.y1) {
-                    ((hg.y1) view2).f11453c.invalidate();
+                    ((hg.y1) view2).f11452c.invalidate();
                     return;
                 }
                 return;
@@ -64,14 +64,14 @@ public final class i implements Utilities.Callback {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = org.telegram.ui.ActionBar.k3.f21353r;
+                int i10 = org.telegram.ui.ActionBar.k3.f21091r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = org.telegram.ui.Cells.ua.f23550f;
+                int i11 = org.telegram.ui.Cells.ua.f23294f;
                 return;
             case 9:
-                ad.Y0((View) obj);
+                fd.Y0((View) obj);
                 return;
             case 10:
                 View view4 = (View) obj;
@@ -101,11 +101,11 @@ public final class i implements Utilities.Callback {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.h5) {
                     org.telegram.ui.Cells.h5 h5Var = (org.telegram.ui.Cells.h5) view7;
-                    h5Var.f22227b.invalidate();
-                    h5Var.f22228c.invalidate();
+                    h5Var.f21965b.invalidate();
+                    h5Var.f21966c.invalidate();
                     return;
                 } else if (view7 instanceof hg.y1) {
-                    ((hg.y1) view7).f11453c.invalidate();
+                    ((hg.y1) view7).f11452c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -141,7 +141,7 @@ public final class i implements Utilities.Callback {
                     }
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new vh(27));
+                AndroidUtilities.runOnUIThread(new xh(27));
                 return;
             case 19:
                 Boolean bool3 = (Boolean) obj;
@@ -149,7 +149,7 @@ public final class i implements Utilities.Callback {
             case 20:
                 HashSet hashSet = (HashSet) obj;
                 String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
-                hashSet.addAll(e41.Y());
+                hashSet.addAll(h41.Y());
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                 if (hashSet.size() == 1 && TextUtils.equals((CharSequence) hashSet.iterator().next(), str)) {
                     edit.remove("translate_button_restricted_languages");
@@ -157,7 +157,7 @@ public final class i implements Utilities.Callback {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                e41.f37233s = false;
+                h41.f38239s = false;
                 for (int i12 = 0; i12 < 4; i12++) {
                     try {
                         MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();
@@ -190,7 +190,7 @@ public final class i implements Utilities.Callback {
         }
     }
 
-    public i(ad adVar) {
-        this.f1118a = 9;
+    public i(fd fdVar) {
+        this.f1116a = 9;
     }
 }

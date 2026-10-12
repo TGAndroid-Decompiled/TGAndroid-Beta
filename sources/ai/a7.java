@@ -2,25 +2,25 @@ package ai;
 
 import org.telegram.tgnet.tl.TL_stories;
 public final class a7 {
-    public final int f643a;
-    public final TL_stories.StoryView f644b;
-    public final TL_stories.StoryReaction f645c;
+    public final int f645a;
+    public final TL_stories.StoryView f646b;
+    public final TL_stories.StoryReaction f647c;
 
     public a7(int i10) {
-        this.f643a = i10;
-        this.f644b = null;
-        this.f645c = null;
+        this.f645a = i10;
+        this.f646b = null;
+        this.f647c = null;
     }
 
     public a7(TL_stories.StoryView storyView) {
-        this.f643a = 1;
-        this.f644b = storyView;
-        this.f645c = null;
+        this.f645a = 1;
+        this.f646b = storyView;
+        this.f647c = null;
     }
 
     public a7(TL_stories.StoryReaction storyReaction) {
-        this.f643a = 1;
-        this.f644b = null;
-        this.f645c = storyReaction;
+        this.f645a = 1;
+        this.f646b = null;
+        this.f647c = storyReaction;
     }
 }

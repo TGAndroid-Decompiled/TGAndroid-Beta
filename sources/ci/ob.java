@@ -5,18 +5,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class ob extends c1 {
-    public final lc f5701b0;
+    public final lc f5700b0;
 
     public ob(lc lcVar, Context context, boolean z10) {
         super(context, z10);
-        this.f5701b0 = lcVar;
+        this.f5700b0 = lcVar;
     }
 
     @Override
     public final void receivedAmplitude(double d) {
-        j7 j7Var = this.f5701b0.O0;
+        j7 j7Var = this.f5700b0.O0;
         if (j7Var != null) {
-            j7Var.f5260g0 = Utilities.clamp((float) (d / 1800.0d), 1.0f, 0.0f);
+            j7Var.f5259g0 = Utilities.clamp((float) (d / 1800.0d), 1.0f, 0.0f);
         }
     }
 
@@ -24,7 +24,7 @@ public final class ob extends c1 {
     public final void toggleDual() {
         int i10;
         super.toggleDual();
-        lc lcVar = this.f5701b0;
+        lc lcVar = this.f5700b0;
         lcVar.F0.setValue(isDual());
         yc ycVar = lcVar.F0;
         if (isDual()) {
@@ -38,8 +38,8 @@ public final class ob extends c1 {
 
     @Override
     public final void u(boolean z10) {
-        lc lcVar = this.f5701b0;
-        lcVar.f5503o1.b(lcVar.f5466c1.getText());
-        lcVar.f5503o1.a(false, z10, lcVar.f5491k0);
+        lc lcVar = this.f5700b0;
+        lcVar.f5502o1.b(lcVar.f5465c1.getText());
+        lcVar.f5502o1.a(false, z10, lcVar.f5490k0);
     }
 }

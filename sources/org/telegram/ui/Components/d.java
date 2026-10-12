@@ -23,23 +23,23 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class d implements Utilities.Callback2 {
-    public final int f25556a;
-    public final Object f25557b;
+    public final int f25063a;
+    public final Object f25064b;
 
     public d(Object obj, int i10) {
-        this.f25556a = i10;
-        this.f25557b = obj;
+        this.f25063a = i10;
+        this.f25064b = obj;
     }
 
     private final void a(Object obj, Object obj2) {
         String str;
-        b00 b00Var = (b00) this.f25557b;
+        d00 d00Var = (d00) this.f25064b;
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        jz jzVar = b00Var.R1;
-        if (jzVar != null && (jzVar.getDrawable() instanceof CompoundEmoji.CompoundEmojiDrawable)) {
-            ((CompoundEmoji.CompoundEmojiDrawable) b00Var.R1.getDrawable()).update(num.intValue(), num2.intValue());
-            String str2 = (String) b00Var.R1.getTag();
+        lz lzVar = d00Var.R1;
+        if (lzVar != null && (lzVar.getDrawable() instanceof CompoundEmoji.CompoundEmojiDrawable)) {
+            ((CompoundEmoji.CompoundEmojiDrawable) d00Var.R1.getDrawable()).update(num.intValue(), num2.intValue());
+            String str2 = (String) d00Var.R1.getTag();
             if (num.intValue() == -1 && num2.intValue() == -1) {
                 Emoji.emojiColor.remove(str2);
             } else {
@@ -63,37 +63,37 @@ public final class d implements Utilities.Callback2 {
     }
 
     private final void b(Object obj, Object obj2) {
-        az azVar = (az) this.f25557b;
+        cz czVar = (cz) this.f25064b;
         ArrayList arrayList = (ArrayList) obj;
-        d71 d71Var = (d71) obj2;
-        ArrayList arrayList2 = azVar.f24709s;
+        h71 h71Var = (h71) obj2;
+        ArrayList arrayList2 = czVar.f25056s;
         int size = arrayList2.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj3 = arrayList2.get(i10);
             i10++;
-            ty tyVar = (ty) obj3;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = tyVar.f31394b;
+            vy vyVar = (vy) obj3;
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = vyVar.f32209b;
             boolean z10 = true;
             if (tL_messages_stickerSet != null) {
-                if (tL_messages_stickerSet.set.f20095id != azVar.d) {
+                if (tL_messages_stickerSet.set.f19829id != czVar.d) {
                     z10 = false;
                 }
-                int i11 = cz.f25553a;
-                q61 J = q61.J(cz.class);
-                long j3 = tL_messages_stickerSet.set.f20095id;
+                int i11 = ez.f25825a;
+                u61 J = u61.J(ez.class);
+                long j3 = tL_messages_stickerSet.set.f19829id;
                 J.d = (int) ((j3 >>> 32) ^ j3);
                 J.B = j3;
                 J.G = tL_messages_stickerSet;
-                J.f30161e = z10;
+                J.f31070e = z10;
                 arrayList.add(J);
             } else {
-                TLRPC.StickerSetCovered stickerSetCovered = tyVar.f31393a;
+                TLRPC.StickerSetCovered stickerSetCovered = vyVar.f32208a;
                 if (stickerSetCovered != null) {
-                    if (stickerSetCovered.set.f20095id != azVar.d) {
+                    if (stickerSetCovered.set.f19829id != czVar.d) {
                         z10 = false;
                     }
-                    arrayList.add(cz.a(stickerSetCovered, tyVar, z10));
+                    arrayList.add(ez.a(stickerSetCovered, vyVar, z10));
                 }
             }
         }
@@ -101,11 +101,11 @@ public final class d implements Utilities.Callback2 {
 
     private final void c(Object obj, Object obj2) {
         boolean z10;
-        wz wzVar = (wz) this.f25557b;
+        yz yzVar = (yz) this.f25064b;
         ArrayList arrayList = (ArrayList) obj;
-        d71 d71Var = (d71) obj2;
+        h71 h71Var = (h71) obj2;
         LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
-        ArrayList arrayList2 = wzVar.E;
+        ArrayList arrayList2 = yzVar.E;
         int size = arrayList2.size();
         int i10 = 0;
         while (true) {
@@ -116,44 +116,44 @@ public final class d implements Utilities.Callback2 {
             Object obj3 = arrayList2.get(i10);
             i10++;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj3;
-            if (longSparseIntArray.indexOfKey(tL_messages_stickerSet.set.f20095id) < 0) {
-                longSparseIntArray.append(tL_messages_stickerSet.set.f20095id, 1);
-                if (tL_messages_stickerSet.set.f20095id != wzVar.d) {
+            if (longSparseIntArray.indexOfKey(tL_messages_stickerSet.set.f19829id) < 0) {
+                longSparseIntArray.append(tL_messages_stickerSet.set.f19829id, 1);
+                if (tL_messages_stickerSet.set.f19829id != yzVar.d) {
                     z11 = false;
                 }
-                int i11 = cz.f25553a;
-                q61 J = q61.J(cz.class);
-                long j3 = tL_messages_stickerSet.set.f20095id;
+                int i11 = ez.f25825a;
+                u61 J = u61.J(ez.class);
+                long j3 = tL_messages_stickerSet.set.f19829id;
                 J.d = (int) ((j3 >>> 32) ^ j3);
                 J.B = j3;
                 J.G = tL_messages_stickerSet;
-                J.f30161e = z11;
+                J.f31070e = z11;
                 arrayList.add(J);
             }
         }
-        ArrayList arrayList3 = wzVar.J;
+        ArrayList arrayList3 = yzVar.J;
         int size2 = arrayList3.size();
         int i12 = 0;
         while (i12 < size2) {
             Object obj4 = arrayList3.get(i12);
             i12++;
-            ty tyVar = (ty) obj4;
-            TLRPC.StickerSet stickerSet = tyVar.f31395c;
-            if (longSparseIntArray.indexOfKey(stickerSet.f20095id) < 0) {
-                longSparseIntArray.append(stickerSet.f20095id, 1);
-                TLRPC.StickerSetCovered stickerSetCovered = tyVar.f31393a;
-                if (stickerSet.f20095id == wzVar.d) {
+            vy vyVar = (vy) obj4;
+            TLRPC.StickerSet stickerSet = vyVar.f32210c;
+            if (longSparseIntArray.indexOfKey(stickerSet.f19829id) < 0) {
+                longSparseIntArray.append(stickerSet.f19829id, 1);
+                TLRPC.StickerSetCovered stickerSetCovered = vyVar.f32208a;
+                if (stickerSet.f19829id == yzVar.d) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                arrayList.add(cz.a(stickerSetCovered, tyVar, z10));
+                arrayList.add(ez.a(stickerSetCovered, vyVar, z10));
             }
         }
     }
 
     private final void d(Object obj, Object obj2) {
-        FragmentContextView fragmentContextView = (FragmentContextView) this.f25557b;
+        FragmentContextView fragmentContextView = (FragmentContextView) this.f25064b;
         float[] fArr = FragmentContextView.Q0;
         fragmentContextView.A0 = !((Boolean) obj2).booleanValue();
         MediaController mediaController = MediaController.getInstance();
@@ -166,82 +166,82 @@ public final class d implements Utilities.Callback2 {
 
     private final void e(Object obj, Object obj2) {
         int i10;
-        v40 v40Var = (v40) this.f25557b;
+        x40 x40Var = (x40) this.f25064b;
         ArrayList arrayList = (ArrayList) obj;
-        d71 d71Var = (d71) obj2;
+        h71 h71Var = (h71) obj2;
         ArrayList arrayList2 = new ArrayList(0);
-        v40Var.f31815c = arrayList2;
-        arrayList2.addAll(HashtagSearchController.getInstance(v40Var.f31813a).history);
-        if (v40Var.f31815c.isEmpty()) {
+        x40Var.f32647c = arrayList2;
+        arrayList2.addAll(HashtagSearchController.getInstance(x40Var.f32645a).history);
+        if (x40Var.f32647c.isEmpty()) {
             return;
         }
-        for (int i11 = 0; i11 < v40Var.f31815c.size(); i11++) {
-            String str = (String) v40Var.f31815c.get(i11);
+        for (int i11 = 0; i11 < x40Var.f32647c.size(); i11++) {
+            String str = (String) x40Var.f32647c.get(i11);
             if (str.startsWith("#") || str.startsWith("$")) {
                 if (str.startsWith("$")) {
                     i10 = R.drawable.menu_cashtag;
                 } else {
                     i10 = R.drawable.menu_hashtag;
                 }
-                arrayList.add(q61.c(i11 + 1, i10, str.substring(1)));
+                arrayList.add(u61.c(i11 + 1, i10, str.substring(1)));
             }
         }
-        arrayList.add(q61.c(0, R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearHistory)));
+        arrayList.add(u61.c(0, R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearHistory)));
     }
 
     private final void f(Object obj, Object obj2) {
         boolean z10;
         ai.w8 w8Var;
-        w40 w40Var = (w40) this.f25557b;
+        y40 y40Var = (y40) this.f25064b;
         ArrayList arrayList = (ArrayList) obj;
-        d71 d71Var = (d71) obj2;
-        ArrayList arrayList2 = w40Var.O;
+        h71 h71Var = (h71) obj2;
+        ArrayList arrayList2 = y40Var.O;
         int i10 = 0;
-        if (w40Var.P && (w8Var = w40Var.Q) != null && w8Var.f899i.size() > 0) {
+        if (y40Var.P && (w8Var = y40Var.Q) != null && w8Var.f897i.size() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            ai.w8 w8Var2 = w40Var.Q;
-            int i11 = gg.l1.f10713a;
-            q61 J = q61.J(gg.l1.class);
+            ai.w8 w8Var2 = y40Var.Q;
+            int i11 = gg.l1.f10712a;
+            u61 J = u61.J(gg.l1.class);
             J.G = w8Var2;
             arrayList.add(J);
         }
-        w40Var.R = z10;
+        y40Var.R = z10;
         while (i10 < arrayList2.size()) {
             int i12 = i10 + 1;
-            q61 q61Var = new q61(33);
-            q61Var.d = i12;
-            q61Var.G = (MessageObject) arrayList2.get(i10);
-            arrayList.add(q61Var);
+            u61 u61Var = new u61(33);
+            u61Var.d = i12;
+            u61Var.G = (MessageObject) arrayList2.get(i10);
+            arrayList.add(u61Var);
             i10 = i12;
         }
-        if (w40Var.S || !w40Var.V) {
-            arrayList.add(q61.o(-2, 1));
-            arrayList.add(q61.o(-3, 1));
-            arrayList.add(q61.o(-4, 1));
+        if (y40Var.S || !y40Var.V) {
+            arrayList.add(u61.o(-2, 1));
+            arrayList.add(u61.o(-3, 1));
+            arrayList.add(u61.o(-4, 1));
         }
-        if (!w40Var.R && z10) {
-            AndroidUtilities.runOnUIThread(new nq(w40Var, 20));
+        if (!y40Var.R && z10) {
+            AndroidUtilities.runOnUIThread(new pq(y40Var, 20));
         }
     }
 
     private final void g(Object obj, Object obj2) {
-        n80 n80Var = (n80) this.f25557b;
+        q80 q80Var = (q80) this.f25064b;
         Bitmap bitmap = (Bitmap) obj;
         Bitmap bitmap2 = (Bitmap) obj2;
-        p80 p80Var = n80Var.f29095x;
-        p80Var.f29756f.setAlpha(1.0f);
-        if (p80Var.f29781u) {
-            n80Var.f29088c = bitmap;
+        s80 s80Var = q80Var.f29774x;
+        s80Var.f30449f.setAlpha(1.0f);
+        if (s80Var.f30474u) {
+            q80Var.f29767c = bitmap;
         }
-        fh.b bVar = p80Var.f29770n;
+        fh.b bVar = s80Var.f30463n;
         if (bVar != null) {
             bVar.a(bitmap2);
-            gh.d.c(p80Var.f29770n, n80Var);
-            ViewGroup viewGroup = p80Var.A;
+            gh.d.c(s80Var.f30463n, q80Var);
+            ViewGroup viewGroup = s80Var.A;
             if (viewGroup != null) {
                 viewGroup.invalidate();
             }
@@ -249,79 +249,79 @@ public final class d implements Utilities.Callback2 {
     }
 
     private final void h(Object obj, Object obj2) {
-        di0 di0Var = (di0) this.f25557b;
+        fi0 fi0Var = (fi0) this.f25064b;
         ArrayList arrayList = (ArrayList) obj;
-        d71 d71Var = (d71) obj2;
-        ArrayList arrayList2 = di0Var.f25782e;
-        ArrayList arrayList3 = di0Var.f25784n;
+        h71 h71Var = (h71) obj2;
+        ArrayList arrayList2 = fi0Var.f26079e;
+        ArrayList arrayList3 = fi0Var.f26081n;
         int i10 = 0;
-        if (di0Var.d == null) {
-            arrayList.add(q61.o(-1, 7));
-            arrayList.add(q61.o(-2, 7));
-            arrayList.add(q61.o(-3, 7));
-            di0Var.Q = false;
+        if (fi0Var.d == null) {
+            arrayList.add(u61.o(-1, 7));
+            arrayList.add(u61.o(-2, 7));
+            arrayList.add(u61.o(-3, 7));
+            fi0Var.Q = false;
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(di0Var.f25787w);
+        boolean isEmpty = TextUtils.isEmpty(fi0Var.f26084w);
         if (isEmpty) {
             if (!arrayList2.isEmpty()) {
-                arrayList.add(q61.q(LocaleController.getString(R.string.SearchPostsHeaderNews)));
+                arrayList.add(u61.q(LocaleController.getString(R.string.SearchPostsHeaderNews)));
             }
             int size = arrayList2.size();
             while (i10 < size) {
                 Object obj3 = arrayList2.get(i10);
                 i10++;
-                q61 q61Var = new q61(33);
-                q61Var.G = (MessageObject) obj3;
-                arrayList.add(q61Var);
+                u61 u61Var = new u61(33);
+                u61Var.G = (MessageObject) obj3;
+                arrayList.add(u61Var);
             }
         } else {
             if (!arrayList3.isEmpty()) {
-                arrayList.add(q61.q(LocaleController.getString(R.string.SearchPostsHeaderFound)));
+                arrayList.add(u61.q(LocaleController.getString(R.string.SearchPostsHeaderFound)));
             }
             int size2 = arrayList3.size();
             while (i10 < size2) {
                 Object obj4 = arrayList3.get(i10);
                 i10++;
-                q61 q61Var2 = new q61(33);
-                q61Var2.G = (MessageObject) obj4;
-                arrayList.add(q61Var2);
+                u61 u61Var2 = new u61(33);
+                u61Var2.G = (MessageObject) obj4;
+                arrayList.add(u61Var2);
             }
         }
-        if (di0Var.v || ((di0Var.M && !di0Var.N) || (!isEmpty && !arrayList3.isEmpty() && !di0Var.f25786s))) {
-            arrayList.add(q61.o(di0Var.L * 3, 7));
-            arrayList.add(q61.o((di0Var.L * 3) + 1, 7));
-            arrayList.add(q61.o((di0Var.L * 3) + 2, 7));
+        if (fi0Var.v || ((fi0Var.M && !fi0Var.N) || (!isEmpty && !arrayList3.isEmpty() && !fi0Var.f26083s))) {
+            arrayList.add(u61.o(fi0Var.L * 3, 7));
+            arrayList.add(u61.o((fi0Var.L * 3) + 1, 7));
+            arrayList.add(u61.o((fi0Var.L * 3) + 2, 7));
         }
-        di0Var.Q = arrayList.isEmpty();
+        fi0Var.Q = arrayList.isEmpty();
     }
 
     private final void i(Object obj, Object obj2) {
-        hn0 hn0Var = (hn0) this.f25557b;
-        hn0Var.f27177c = (Bitmap) obj;
+        mn0 mn0Var = (mn0) this.f25064b;
+        mn0Var.f28606c = (Bitmap) obj;
         Paint paint = new Paint(1);
-        hn0Var.f27178e = paint;
-        Bitmap bitmap = hn0Var.f27177c;
+        mn0Var.f28607e = paint;
+        Bitmap bitmap = mn0Var.f28606c;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        hn0Var.d = bitmapShader;
+        mn0Var.d = bitmapShader;
         paint.setShader(bitmapShader);
-        hn0Var.f27179f = new Matrix();
-        fh.b bVar = hn0Var.h;
+        mn0Var.f28608f = new Matrix();
+        fh.b bVar = mn0Var.h;
         bVar.a((Bitmap) obj2);
-        gh.d.c(bVar, hn0Var.f27182s);
-        ViewGroup viewGroup = hn0Var.f27185y;
+        gh.d.c(bVar, mn0Var.f28611s);
+        ViewGroup viewGroup = mn0Var.f28614y;
         if (viewGroup != null) {
             viewGroup.invalidate();
         }
     }
 
     private final void j(Object obj, Object obj2) {
-        yy0 yy0Var = (yy0) this.f25557b;
+        dz0 dz0Var = (dz0) this.f25064b;
         CharSequence charSequence = (CharSequence) obj;
-        yy0Var.h.setText(charSequence);
+        dz0Var.h.setText(charSequence);
         TLRPC.TL_stickers_renameStickerSet tL_stickers_renameStickerSet = new TLRPC.TL_stickers_renameStickerSet();
-        tL_stickers_renameStickerSet.stickerset = MediaDataController.getInputStickerSet(yy0Var.S.set);
+        tL_stickers_renameStickerSet.stickerset = MediaDataController.getInputStickerSet(dz0Var.S.set);
         tL_stickers_renameStickerSet.title = charSequence.toString();
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_renameStickerSet, new y1((Utilities.Callback) obj2, 14));
     }

@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 public final class g implements Collection, Set {
-    public int[] f13a = b0.a.f3186a;
-    public Object[] f14b = b0.a.f3188c;
+    public int[] f13a = b0.a.f3184a;
+    public Object[] f14b = b0.a.f3186c;
     public int f15c;
 
     public g(int i10) {
@@ -105,8 +105,8 @@ public final class g implements Collection, Set {
     @Override
     public final void clear() {
         if (this.f15c != 0) {
-            this.f13a = b0.a.f3186a;
-            this.f14b = b0.a.f3188c;
+            this.f13a = b0.a.f3184a;
+            this.f14b = b0.a.f3186c;
             this.f15c = 0;
         }
         if (this.f15c == 0) {

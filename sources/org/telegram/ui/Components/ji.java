@@ -1,89 +1,128 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class ji extends AnimatorListenerAdapter {
-    public final int f27746a;
-    public final int f27747b;
-    public final Object f27748c;
-    public final Object d;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+public final class ji implements TextWatcher {
+    public boolean f27527a;
+    public boolean f27528b;
+    public final org.telegram.ui.ActionBar.m2 f27529c;
+    public final aj d;
 
-    public ji(Object obj, int i10, Object obj2, int i11) {
-        this.f27746a = i11;
-        this.d = obj;
-        this.f27747b = i10;
-        this.f27748c = obj2;
+    public ji(aj ajVar, org.telegram.ui.ActionBar.m2 m2Var) {
+        this.d = ajVar;
+        this.f27529c = m2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        boolean z11;
         int i10;
-        int i11;
-        int i12;
-        switch (this.f27746a) {
-            case 0:
-                yi yiVar = (yi) this.d;
-                yiVar.B0.setAlpha(0.0f);
-                yiVar.B0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f27747b);
-                mi miVar = yiVar.f33285e0;
-                qi qiVar = yiVar.B0;
-                Float valueOf = Float.valueOf(1.0f);
-                miVar.getClass();
-                miVar.a(qiVar, valueOf);
-                yiVar.f33272a1.setAlpha(0.0f);
-                o1.k kVar = new o1.k(yiVar.C0, o1.h.f17006n, 0.0f);
-                kVar.f17024u.a(0.75f);
-                kVar.f17024u.b(500.0f);
-                kVar.b(new m7(this, 3));
-                kVar.a(new ei.l4(3, this, (jh) this.f27748c));
-                yiVar.f33343w1 = kVar;
-                kVar.h();
-                return;
-            case 1:
-                a5.a aVar = (a5.a) this.d;
-                ((rm0) aVar.d).scrollBy(0, this.f27747b - ((int[]) this.f27748c)[0]);
-                aVar.f300c = null;
-                return;
-            default:
-                yh.s3 s3Var = (yh.s3) this.d;
-                s3Var.U1();
-                yh.e2 e2Var = s3Var.f53292g0;
-                int i13 = 8;
-                int i14 = this.f27747b;
-                if (i14 == 0) {
-                    i10 = 0;
-                } else {
-                    i10 = 8;
-                }
-                e2Var.setVisibility(i10);
-                yh.e2 e2Var2 = s3Var.f53313s0;
-                if (i14 == 1) {
-                    i11 = 0;
-                } else {
-                    i11 = 8;
-                }
-                e2Var2.setVisibility(i11);
-                yh.e2 e2Var3 = s3Var.f53320z0;
-                if (i14 == 2) {
-                    i12 = 0;
-                } else {
-                    i12 = 8;
-                }
-                e2Var3.setVisibility(i12);
-                yh.e2 e2Var4 = s3Var.B0;
-                if (i14 == 3) {
-                    i13 = 0;
-                }
-                e2Var4.setVisibility(i13);
-                s3Var.u2();
-                s3Var.f53281a1 = null;
-                Runnable runnable = (Runnable) this.f27748c;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
+        boolean z12;
+        aj ajVar = this.d;
+        r6 r6Var = ajVar.f24381s;
+        ii iiVar = ajVar.S0;
+        int i11 = ajVar.M1;
+        r6 r6Var2 = ajVar.v;
+        if (this.f27528b != TextUtils.isEmpty(editable)) {
+            si siVar = ajVar.B0;
+            if (siVar != null) {
+                siVar.E(siVar.getSelectedItemsCount());
+            }
+            this.f27528b = !this.f27528b;
         }
+        boolean z13 = false;
+        if (this.f27527a) {
+            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                editable.removeSpan(imageSpan);
+            }
+            Emoji.replaceEmoji(editable, iiVar.getEditText().getPaint().getFontMetricsInt(), false);
+            this.f27527a = false;
+        }
+        int codePointCount = Character.codePointCount(editable, 0, editable.length());
+        ajVar.L = codePointCount;
+        me.b bVar = ajVar.f24337e;
+        if (codePointCount > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        bVar.a(z10, true);
+        int i12 = ajVar.K;
+        if (i12 > 0 && (i10 = i12 - ajVar.L) <= 100) {
+            if (i10 < -9999) {
+                i10 = -9999;
+            }
+            long j3 = i10;
+            String formatNumber = LocaleController.formatNumber(j3, ',');
+            if (r6Var2.getVisibility() == 0) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            r6Var2.c(formatNumber, z12, true);
+            if (r6Var2.getVisibility() != 0) {
+                r6Var2.setVisibility(0);
+                r6Var2.setAlpha(0.0f);
+                r6Var2.setScaleX(0.5f);
+                r6Var2.setScaleY(0.5f);
+            }
+            r6Var2.animate().setListener(null).cancel();
+            r6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            if (i10 < 0) {
+                r6Var2.setTextColor(ajVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20780p7));
+                z11 = false;
+            } else {
+                r6Var2.setTextColor(ajVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20945y6));
+                z11 = true;
+            }
+            r6Var.c(LocaleController.formatNumber(j3, ','), false, true);
+            r6Var.setAlpha(1.0f);
+        } else {
+            r6Var2.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new t8(this, 5));
+            r6Var.setAlpha(0.0f);
+            z11 = true;
+        }
+        if (ajVar.X0 != z11) {
+            ajVar.X0 = z11;
+            ajVar.L0.invalidate();
+        }
+        if (!ajVar.f24361l2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && ajVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && ajVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            ajVar.f24361l2 = true;
+            ajVar.S1(this.f27529c);
+        }
+        if (ajVar.f24331c0) {
+            if (iiVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(iiVar.getText().toString().trim())) {
+                z13 = true;
+            }
+            ajVar.Q1(z13);
+        }
+        ajVar.f1(true);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        if (i12 - i11 >= 1) {
+            this.f27527a = true;
+        }
+        aj ajVar = this.d;
+        if (ajVar.E2 == null) {
+            aj.S(ajVar);
+        }
+        if (ajVar.E2.getAdapter() != null) {
+            ajVar.E2.setReversed(true);
+            ajVar.E2.getAdapter().U(charSequence, ajVar.S0.getEditText().getSelectionStart(), null, false, false);
+            ajVar.Y1();
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -1,156 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.app.Application;
-import android.os.Bundle;
-import android.os.SystemClock;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.concurrent.CopyOnWriteArrayList;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public abstract class x10 implements Application.ActivityLifecycleCallbacks {
-    private static x10 Instance;
-    private int refs;
-    private boolean wasInBackground = true;
-    private long enterBackgroundTime = 0;
-    private CopyOnWriteArrayList<w10> listeners = new CopyOnWriteArrayList<>();
-    private final ArrayList<WeakReference<Activity>> resumedActivities = new ArrayList<>();
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class x10 extends CharacterStyle implements UpdateAppearance {
+    public int f32612a;
+    public int f32613b;
+    public float f32614c;
+    public final org.telegram.ui.ActionBar.c6 d;
 
-    public x10(Application application) {
-        Instance = this;
-        application.registerActivityLifecycleCallbacks(this);
-    }
-
-    public static x10 getInstance() {
-        return Instance;
-    }
-
-    public final void a(Activity activity) {
-        for (int size = this.resumedActivities.size() - 1; size >= 0; size--) {
-            Activity activity2 = this.resumedActivities.get(size).get();
-            if (activity2 == null || activity2 == activity) {
-                this.resumedActivities.remove(size);
-            }
-        }
-    }
-
-    public void addListener(w10 w10Var) {
-        this.listeners.add(w10Var);
-    }
-
-    public Activity getForegroundActivity() {
-        Activity activity = null;
-        for (int size = this.resumedActivities.size() - 1; size >= 0; size--) {
-            Activity activity2 = this.resumedActivities.get(size).get();
-            if (activity2 != null && !activity2.isFinishing() && !activity2.isDestroyed()) {
-                if (activity2.hasWindowFocus()) {
-                    return activity2;
-                }
-                if (activity == null) {
-                    activity = activity2;
-                }
-            } else {
-                this.resumedActivities.remove(size);
-            }
-        }
-        return activity;
-    }
-
-    public boolean isBackground() {
-        if (this.refs == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isForeground() {
-        if (this.refs > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isWasInBackground(boolean z10) {
-        if (z10 && SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
-            this.wasInBackground = false;
-        }
-        return this.wasInBackground;
+    public x10(int i10) {
+        this(i10, null);
     }
 
     @Override
-    public void onActivityDestroyed(Activity activity) {
-        a(activity);
-    }
-
-    @Override
-    public void onActivityPaused(Activity activity) {
-        a(activity);
-    }
-
-    @Override
-    public void onActivityResumed(Activity activity) {
-        a(activity);
-        this.resumedActivities.add(new WeakReference<>(activity));
-    }
-
-    @Override
-    public void onActivityStarted(Activity activity) {
-        int i10 = this.refs + 1;
-        this.refs = i10;
-        if (i10 == 1) {
-            if (SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
-                this.wasInBackground = false;
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("switch to foreground");
-            }
-            Iterator<w10> it = this.listeners.iterator();
-            while (it.hasNext()) {
-                try {
-                    it.next().onBecameForeground();
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                }
-            }
+    public final void updateDrawState(TextPaint textPaint) {
+        this.f32612a = org.telegram.ui.ActionBar.h6.m1(this.f32614c, org.telegram.ui.ActionBar.h6.w0(this.f32613b, this.d));
+        int color = textPaint.getColor();
+        int i10 = this.f32612a;
+        if (color != i10) {
+            textPaint.setColor(i10);
         }
     }
 
-    @Override
-    public void onActivityStopped(Activity activity) {
-        int i10 = this.refs - 1;
-        this.refs = i10;
-        if (i10 == 0) {
-            this.enterBackgroundTime = SystemClock.elapsedRealtime();
-            this.wasInBackground = true;
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("switch to background");
-            }
-            Iterator<w10> it = this.listeners.iterator();
-            while (it.hasNext()) {
-                try {
-                    it.next().onBecameBackground();
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                }
-            }
-        }
-    }
-
-    public void removeListener(w10 w10Var) {
-        this.listeners.remove(w10Var);
-    }
-
-    public void resetBackgroundVar() {
-        this.wasInBackground = false;
-    }
-
-    @Override
-    public void onActivityCreated(Activity activity, Bundle bundle) {
-    }
-
-    @Override
-    public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+    public x10(int i10, org.telegram.ui.ActionBar.c6 c6Var) {
+        this.f32614c = 1.0f;
+        this.f32613b = i10;
+        this.d = c6Var;
     }
 }

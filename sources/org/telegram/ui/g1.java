@@ -1,64 +1,19 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.tl.TL_iv;
-public final class g1 extends s4.i0 {
-    public final j1 f37868c;
+public final class g1 extends g.o {
+    public final k1 f37887c;
 
-    public g1(j1 j1Var) {
-        this.f37868c = j1Var;
+    public g1(k1 k1Var) {
+        this.f37887c = k1Var;
     }
 
     @Override
-    public final int h() {
-        TL_iv.pageBlockCollage pageblockcollage = this.f37868c.f38854s;
-        if (pageblockcollage == null) {
-            return 0;
-        }
-        return pageblockcollage.items.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        ArrayList<TL_iv.PageBlock> arrayList = this.f37868c.f38854s.items;
-        if (!(arrayList.get((arrayList.size() - i10) - 1) instanceof TL_iv.pageBlockPhoto)) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        j1 j1Var = this.f37868c;
-        i1 i1Var = j1Var.v;
-        ArrayList<TL_iv.PageBlock> arrayList = j1Var.f38854s.items;
-        TL_iv.PageBlock pageBlock = arrayList.get((arrayList.size() - i10) - 1);
-        int i11 = d1Var.f47786f;
-        View view = d1Var.f47782a;
-        if (i11 != 0) {
-            w2 w2Var = (w2) view;
-            w2Var.T = (MessageObject.GroupedMessagePosition) i1Var.f38585b.get(pageBlock);
-            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            w2Var.b(pageblockvideo, (x2) j1Var.f38856x.f42140y.f(pageblockvideo.video_id), false, true);
-            return;
-        }
-        c2 c2Var = (c2) view;
-        c2Var.R = (MessageObject.GroupedMessagePosition) i1Var.f38585b.get(pageBlock);
-        c2Var.a((TL_iv.pageBlockPhoto) pageBlock, j1Var.f38855w.E.cached_page, false, true);
-    }
-
-    @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        View c2Var;
-        j1 j1Var = this.f37868c;
-        if (i10 != 0) {
-            c2Var = new w2(j1Var.getContext(), j1Var.f38856x, j1Var.f38855w, 2);
-        } else {
-            c2Var = new c2(j1Var.getContext(), j1Var.f38856x, j1Var.f38855w, 2);
-        }
-        return new s4.d1(c2Var);
+    public final int i(int i10) {
+        k1 k1Var = this.f37887c;
+        ArrayList<TL_iv.PageBlock> arrayList = k1Var.f39320s.items;
+        return ((MessageObject.GroupedMessagePosition) k1Var.v.f39065b.get(arrayList.get((arrayList.size() - i10) - 1))).spanSize;
     }
 }

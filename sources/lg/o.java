@@ -1,10 +1,10 @@
 package lg;
 public interface o {
-    void D(boolean z10);
+    void T(boolean z10);
 
-    void R(boolean z10);
+    void X();
 
-    void U();
+    void u();
 
-    void t();
+    void z(boolean z10);
 }

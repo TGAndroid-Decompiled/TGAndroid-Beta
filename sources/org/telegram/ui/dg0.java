@@ -1,75 +1,24 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class dg0 extends sg.n {
-    public final int f37042f0;
+import org.telegram.messenger.AndroidUtilities;
+public final class dg0 implements Runnable {
+    public final int f36803a;
+    public final t3 f36804b;
 
-    public dg0(Context context, int i10, int i11, int i12) {
-        super(context, i10, i11);
-        this.f37042f0 = i12;
+    public dg0(t3 t3Var, int i10) {
+        this.f36803a = i10;
+        this.f36804b = t3Var;
     }
 
     @Override
-    public void n() {
-        switch (this.f37042f0) {
-            case 4:
-                return;
-            default:
-                super.n();
-                return;
-        }
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.f37042f0) {
+    public final void run() {
+        switch (this.f36803a) {
             case 0:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 1:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 2:
-                super.onAttachedToWindow();
-                setPaused(false);
-                return;
-            case 3:
-                super.onAttachedToWindow();
-                setPaused(false);
+                this.f36804b.run("CANCELLED");
                 return;
             default:
-                super.onAttachedToWindow();
+                AndroidUtilities.runOnUIThread(new dg0(this.f36804b, 0));
                 return;
         }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.f37042f0) {
-            case 0:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 1:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 2:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            case 3:
-                super.onDetachedFromWindow();
-                setPaused(true);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    private final void p() {
     }
 }

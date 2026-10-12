@@ -1,9 +1,9 @@
 package ae;
 public final class s0 implements c1 {
-    public final boolean f495a;
+    public final boolean f497a;
 
     public s0(boolean z10) {
-        this.f495a = z10;
+        this.f497a = z10;
     }
 
     @Override
@@ -13,13 +13,13 @@ public final class s0 implements c1 {
 
     @Override
     public final boolean isActive() {
-        return this.f495a;
+        return this.f497a;
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("Empty{");
-        if (this.f495a) {
+        if (this.f497a) {
             str = "Active";
         } else {
             str = "New";

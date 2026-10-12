@@ -1,43 +1,68 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class h61 implements wy0 {
-    public final TLRPC.InputStickerSet f26985a;
-    public final m61 f26986b;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class h61 extends h00 {
+    public final q61 Y;
 
-    public h61(m61 m61Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f26986b = m61Var;
-        this.f26985a = inputStickerSet;
+    public h61(q61 q61Var, int i10, g61 g61Var) {
+        super(5, i10, g61Var);
+        this.Y = q61Var;
     }
 
     @Override
-    public final void a() {
-        m61 m61Var = this.f26986b;
-        s4.i0 adapter = m61Var.f28761n.getAdapter();
-        l61 l61Var = m61Var.f28763s;
-        TLRPC.InputStickerSet inputStickerSet = this.f26985a;
-        int i10 = 0;
-        if (adapter == l61Var) {
-            while (i10 < l61Var.f28212e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) l61Var.f28212e.get(i10);
-                if (stickerSetCovered.set.f20095id == inputStickerSet.f20088id) {
-                    l61Var.F(stickerSetCovered, null);
-                    return;
+    public final boolean D1() {
+        q61 q61Var = this.Y;
+        if (q61Var.f29742n.getAdapter() == q61Var.v) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean Y0() {
+        return LocaleController.isRTL;
+    }
+
+    @Override
+    public final int o0(int i10, pf.e eVar, s4.a1 a1Var) {
+        int i11;
+        View m10;
+        q61 q61Var = this.Y;
+        if (q61Var.N) {
+            return super.o0(i10, eVar, a1Var);
+        }
+        int i12 = 0;
+        if (q61Var.L != null) {
+            return 0;
+        }
+        if (q61Var.M) {
+            while (true) {
+                i11 = 1;
+                if (i12 >= r()) {
+                    break;
                 }
-                i10++;
+                g61 g61Var = q61Var.f29742n;
+                View q6 = q(i12);
+                g61Var.getClass();
+                int R = RecyclerView.R(q6);
+                if (R < 1) {
+                    i11 = R;
+                    break;
+                }
+                i12++;
             }
-            return;
-        }
-        gg.f2 f2Var = m61Var.v;
-        ArrayList arrayList = f2Var.E;
-        while (i10 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
-            if (stickerSetCovered2.set.f20095id == inputStickerSet.f20088id) {
-                f2Var.F(stickerSetCovered2, null);
-                return;
+            if (i11 == 0 && (m10 = q61Var.f29743r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
+                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
             }
-            i10++;
         }
+        return super.o0(i10, eVar, a1Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

@@ -1,153 +1,232 @@
 package ii;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
+import android.animation.ValueAnimator;
+import android.view.VelocityTracker;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.n9;
-import org.telegram.ui.Cells.o9;
-import v7.o8;
-public final class s4 extends a0 implements org.telegram.ui.ActionBar.x5, n9 {
-    public final int[] E;
-    public final org.telegram.ui.ActionBar.d6 f12678n;
-    public final Paint f12679r;
-    public final HorizontalScrollView f12680s;
-    public final ImageView v;
-    public Bitmap f12681w;
-    public int f12682x;
-    public b3 f12683y;
+import org.telegram.ui.Components.s80;
+public final class s4 implements View.OnClickListener {
+    public final int f12690a;
+    public final v4 f12691b;
 
-    public s4(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f12679r = new Paint(1);
-        this.f12682x = 0;
-        this.E = new int[4];
-        this.f12678n = d6Var;
-        setWillNotDraw(false);
-        g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f));
-        ImageView imageView = new ImageView(context);
-        this.v = imageView;
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.addView(imageView, new FrameLayout.LayoutParams(-2, -2, 17));
-        HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f12680s = horizontalScrollView;
-        horizontalScrollView.setHorizontalScrollBarEnabled(false);
-        horizontalScrollView.setClipToPadding(false);
-        horizontalScrollView.setPadding(0, 0, 0, 0);
-        horizontalScrollView.setFillViewport(true);
-        horizontalScrollView.addView(frameLayout, new FrameLayout.LayoutParams(-2, -2));
-        addView(horizontalScrollView, w7.x5.e(-1, -2, 16));
-        e();
-    }
-
-    private String getSource() {
-        a aVar = this.f12250a;
-        if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f12233b;
-            if (pageBlock instanceof TL_iv.pageBlockMath) {
-                return ((TL_iv.pageBlockMath) pageBlock).source;
-            }
-            return null;
-        }
-        return null;
+    public s4(v4 v4Var, int i10) {
+        this.f12690a = i10;
+        this.f12691b = v4Var;
     }
 
     @Override
-    public final void e() {
-        int i10 = org.telegram.ui.ActionBar.h6.f21145uf;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f12678n;
-        this.f12679r.setColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        this.f12682x = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var);
-        this.v.setColorFilter(new PorterDuffColorFilter(this.f12682x, PorterDuff.Mode.SRC_IN));
-        invalidate();
-    }
-
-    @Override
-    public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        int[] iArr = this.E;
-        i(iArr);
-        arrayList.add(o8.a(iArr[0], iArr[1], iArr[2], iArr[3]));
-    }
-
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    public a getRow() {
-        return this.f12250a;
-    }
-
-    public final void h(a aVar, b3 b3Var) {
-        s a2;
-        this.f12250a = aVar;
-        this.f12683y = b3Var;
-        c(aVar);
-        this.f12681w = null;
-        this.f12680s.scrollTo(0, 0);
-        String source = getSource();
-        if (!TextUtils.isEmpty(source) && (a2 = s.a(source, AndroidUtilities.dp(SharedConfig.fontSize + 4), false)) != null) {
-            this.f12681w = a2.f12664a;
+    public final void onClick(View view) {
+        int i10;
+        int i11;
+        a aVar;
+        a aVar2;
+        TL_iv.pageBlockSlideshow pageblockslideshow;
+        switch (this.f12690a) {
+            case 0:
+                final v4 v4Var = this.f12691b;
+                ArrayList arrayList = v4Var.E;
+                int indexOf = arrayList.indexOf(view);
+                if (v4Var.N != null && v4Var.f12249a != null) {
+                    List m10 = v4Var.m();
+                    if (indexOf >= 0 && indexOf < m10.size() && indexOf < arrayList.size()) {
+                        final u uVar = (u) m10.get(indexOf);
+                        s80 J = v4Var.N.f12642a.f12807f3.J((View) arrayList.get(indexOf));
+                        boolean z10 = uVar.f12721n;
+                        if (z10) {
+                            i10 = R.drawable.msg_spoiler_off;
+                        } else {
+                            i10 = R.drawable.msg_spoiler;
+                        }
+                        if (z10) {
+                            i11 = R.string.DisablePhotoSpoiler;
+                        } else {
+                            i11 = R.string.EnablePhotoSpoiler;
+                        }
+                        J.c(i10, LocaleController.getString(i11), new Runnable() {
+                            @Override
+                            public final void run() {
+                                a aVar3;
+                                a aVar4;
+                                switch (r3) {
+                                    case 0:
+                                        v4 v4Var2 = v4Var;
+                                        q3 q3Var = v4Var2.N;
+                                        if (q3Var != null && (aVar3 = v4Var2.f12249a) != null) {
+                                            x3 x3Var = q3Var.f12642a;
+                                            x3Var.getClass();
+                                            u uVar2 = uVar;
+                                            if (uVar2 != null) {
+                                                i2 i2Var = x3Var.H3;
+                                                if (i2Var != null) {
+                                                    i2Var.d();
+                                                }
+                                                uVar2.f12721n = !uVar2.f12721n;
+                                                TL_iv.PageBlock O3 = x3.O3(aVar3, uVar2);
+                                                if (O3 instanceof TL_iv.pageBlockPhoto) {
+                                                    ((TL_iv.pageBlockPhoto) O3).spoiler = uVar2.f12721n;
+                                                } else if (O3 instanceof TL_iv.pageBlockVideo) {
+                                                    ((TL_iv.pageBlockVideo) O3).spoiler = uVar2.f12721n;
+                                                }
+                                                x3Var.o4(aVar3);
+                                                i2 i2Var2 = x3Var.H3;
+                                                if (i2Var2 != null) {
+                                                    i2Var2.h();
+                                                }
+                                                x3Var.f12807f3.onContentChanged();
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        v4 v4Var3 = v4Var;
+                                        q3 q3Var2 = v4Var3.N;
+                                        if (q3Var2 != null && (aVar4 = v4Var3.f12249a) != null) {
+                                            x3.O1(aVar4, uVar, q3Var2.f12642a);
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        }, false);
+                        J.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable() {
+                            @Override
+                            public final void run() {
+                                a aVar3;
+                                a aVar4;
+                                switch (r3) {
+                                    case 0:
+                                        v4 v4Var2 = v4Var;
+                                        q3 q3Var = v4Var2.N;
+                                        if (q3Var != null && (aVar3 = v4Var2.f12249a) != null) {
+                                            x3 x3Var = q3Var.f12642a;
+                                            x3Var.getClass();
+                                            u uVar2 = uVar;
+                                            if (uVar2 != null) {
+                                                i2 i2Var = x3Var.H3;
+                                                if (i2Var != null) {
+                                                    i2Var.d();
+                                                }
+                                                uVar2.f12721n = !uVar2.f12721n;
+                                                TL_iv.PageBlock O3 = x3.O3(aVar3, uVar2);
+                                                if (O3 instanceof TL_iv.pageBlockPhoto) {
+                                                    ((TL_iv.pageBlockPhoto) O3).spoiler = uVar2.f12721n;
+                                                } else if (O3 instanceof TL_iv.pageBlockVideo) {
+                                                    ((TL_iv.pageBlockVideo) O3).spoiler = uVar2.f12721n;
+                                                }
+                                                x3Var.o4(aVar3);
+                                                i2 i2Var2 = x3Var.H3;
+                                                if (i2Var2 != null) {
+                                                    i2Var2.h();
+                                                }
+                                                x3Var.f12807f3.onContentChanged();
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        v4 v4Var3 = v4Var;
+                                        q3 q3Var2 = v4Var3.N;
+                                        if (q3Var2 != null && (aVar4 = v4Var3.f12249a) != null) {
+                                            x3.O1(aVar4, uVar, q3Var2.f12642a);
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        }, true);
+                        J.a0(0.0f, -AndroidUtilities.dp(38.0f));
+                        if (v4Var.H) {
+                            J.f30474u = false;
+                            J.v = true;
+                            J.f30472s = 0;
+                        }
+                        J.Z();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                v4 v4Var2 = this.f12691b;
+                q3 q3Var = v4Var2.N;
+                if (q3Var != null && (aVar = v4Var2.f12249a) != null) {
+                    x3 x3Var = q3Var.f12642a;
+                    x3Var.Z3 = aVar;
+                    x3Var.f12807f3.m(0);
+                    return;
+                }
+                return;
+            default:
+                v4 v4Var3 = this.f12691b;
+                q3 q3Var2 = v4Var3.N;
+                if (q3Var2 != null && (aVar2 = v4Var3.f12249a) != null) {
+                    x3 x3Var2 = q3Var2.f12642a;
+                    x3Var2.getClass();
+                    if (x3.C3(aVar2.f12232b)) {
+                        i2 i2Var = x3Var2.H3;
+                        if (i2Var != null) {
+                            i2Var.d();
+                        }
+                        ArrayList<TL_iv.PageBlock> h32 = x3.h3(aVar2.f12232b);
+                        TL_iv.PageBlock pageBlock = aVar2.f12232b;
+                        TL_iv.PageCaption pageCaption = pageBlock.caption;
+                        if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
+                            TL_iv.pageBlockCollage pageblockcollage = new TL_iv.pageBlockCollage();
+                            if (h32 == null) {
+                                h32 = new ArrayList<>();
+                            }
+                            pageblockcollage.items = h32;
+                            pageblockcollage.caption = pageCaption;
+                            pageblockslideshow = pageblockcollage;
+                        } else {
+                            TL_iv.pageBlockSlideshow pageblockslideshow2 = new TL_iv.pageBlockSlideshow();
+                            if (h32 == null) {
+                                h32 = new ArrayList<>();
+                            }
+                            pageblockslideshow2.items = h32;
+                            pageblockslideshow2.caption = pageCaption;
+                            pageblockslideshow = pageblockslideshow2;
+                        }
+                        aVar2.f12232b = pageblockslideshow;
+                        i2 i2Var2 = x3Var2.H3;
+                        if (i2Var2 != null) {
+                            i2Var2.h();
+                        }
+                        View A1 = x3Var2.A1(aVar2);
+                        if (A1 instanceof v4) {
+                            v4 v4Var4 = (v4) A1;
+                            ValueAnimator valueAnimator = v4Var4.f12758i0;
+                            if (valueAnimator != null) {
+                                valueAnimator.cancel();
+                                v4Var4.f12758i0 = null;
+                            }
+                            if (v4Var4.getParent() != null) {
+                                v4Var4.getParent().requestDisallowInterceptTouchEvent(false);
+                            }
+                            VelocityTracker velocityTracker = v4Var4.f12757h0;
+                            if (velocityTracker != null) {
+                                velocityTracker.recycle();
+                                v4Var4.f12757h0 = null;
+                            }
+                            v4Var4.W = 0;
+                            v4Var4.f12750a0 = 0.0f;
+                            v4Var4.o(true);
+                            v4Var4.requestLayout();
+                            v4Var4.invalidate();
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        this.v.setImageBitmap(this.f12681w);
-        invalidate();
-    }
-
-    public final void i(int[] iArr) {
-        int max;
-        int paddingTop = getPaddingTop();
-        int height = getHeight() - getPaddingBottom();
-        if (this.f12681w != null && this.v.getWidth() > this.f12680s.getWidth()) {
-            iArr[0] = getPaddingLeft();
-            iArr[1] = paddingTop;
-            iArr[2] = getWidth() - getPaddingRight();
-            iArr[3] = height;
-            return;
-        }
-        Bitmap bitmap = this.f12681w;
-        if (bitmap != null) {
-            max = bitmap.getWidth();
-        } else {
-            max = Math.max(1, getWidth() / 2);
-        }
-        int width = (getWidth() - max) / 2;
-        iArr[0] = width - AndroidUtilities.dp(4.0f);
-        iArr[1] = paddingTop;
-        iArr[2] = AndroidUtilities.dp(4.0f) + width + max;
-        iArr[3] = height;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        b3 b3Var;
-        o9 textSelectionHelper;
-        if (this.f12682x != org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f12678n)) {
-            e();
-        }
-        if (this.f12681w != null && (b3Var = this.f12683y) != null && (textSelectionHelper = b3Var.f12287a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
-            ((RecyclerView) getParent()).getClass();
-            int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f22637p0 && R <= textSelectionHelper.f22640s0) {
-                int[] iArr = this.E;
-                i(iArr);
-                canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f12679r);
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

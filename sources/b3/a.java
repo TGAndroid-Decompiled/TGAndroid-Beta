@@ -7,7 +7,7 @@ import hg.c;
 import i2.d0;
 import i2.f;
 import java.nio.ByteBuffer;
-import n4.x;
+import n4.y;
 public final class a extends f {
     public final h I;
     public final v J;
@@ -22,14 +22,14 @@ public final class a extends f {
 
     @Override
     public final int A(s sVar) {
-        if ("application/x-camera-motion".equals(sVar.f3643r)) {
+        if ("application/x-camera-motion".equals(sVar.f3641r)) {
             return c.b(4, 0, 0, 0);
         }
         return c.b(0, 0, 0, 0);
     }
 
     @Override
-    public final void c(int i10, Object obj) {
+    public final void d(int i10, Object obj) {
         if (i10 == 8) {
             this.K = (d0) obj;
         }
@@ -54,7 +54,7 @@ public final class a extends f {
     public final void o() {
         d0 d0Var = this.K;
         if (d0Var != null) {
-            d0Var.d();
+            d0Var.b();
         }
     }
 
@@ -63,7 +63,7 @@ public final class a extends f {
         this.L = Long.MIN_VALUE;
         d0 d0Var = this.K;
         if (d0Var != null) {
-            d0Var.d();
+            d0Var.b();
         }
     }
 
@@ -74,20 +74,20 @@ public final class a extends f {
         while (!k() && this.L < 100000 + j3) {
             h hVar = this.I;
             hVar.clear();
-            x xVar = this.f11645c;
-            xVar.e();
-            if (w(xVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
-                long j11 = hVar.f10985e;
+            y yVar = this.f11644c;
+            yVar.f();
+            if (w(yVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
+                long j11 = hVar.f10984e;
                 this.L = j11;
-                if (j11 < this.f11651w) {
+                if (j11 < this.f11650w) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (this.K != null && !z10) {
                     hVar.c();
-                    ByteBuffer byteBuffer = hVar.f10984c;
-                    String str = e2.d0.f8531a;
+                    ByteBuffer byteBuffer = hVar.f10983c;
+                    String str = e2.d0.f8529a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {
@@ -103,7 +103,7 @@ public final class a extends f {
                         fArr = fArr2;
                     }
                     if (fArr != null) {
-                        this.K.b();
+                        this.K.a();
                     }
                 }
             } else {

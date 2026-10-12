@@ -6,15 +6,15 @@ import e9.x0;
 import e9.y0;
 import e9.z;
 public final class l extends n implements Comparable {
-    public final int f50631e;
-    public final boolean f50632f;
+    public final int f50738e;
+    public final boolean f50739f;
     public final boolean h;
-    public final boolean f50633n;
-    public final int f50634r;
-    public final int f50635s;
+    public final boolean f50740n;
+    public final int f50741r;
+    public final int f50742s;
     public final int v;
-    public final int f50636w;
-    public final boolean f50637x;
+    public final int f50743w;
+    public final boolean f50744x;
 
     public l(int i10, l1 l1Var, int i11, i iVar, int i12, String str, String str2) {
         super(i10, l1Var, i11);
@@ -28,9 +28,9 @@ public final class l extends n implements Comparable {
         boolean z13;
         boolean z14;
         int i16 = 0;
-        this.f50632f = hg.c.d(i12, false);
-        int i17 = this.d.f3631e;
-        int i18 = iVar.f3569y;
+        this.f50739f = hg.c.d(i12, false);
+        int i17 = this.d.f3629e;
+        int i18 = iVar.f3567y;
         i0 i0Var2 = iVar.v;
         int i19 = i17 & (~i18);
         if ((i19 & 1) != 0) {
@@ -44,7 +44,7 @@ public final class l extends n implements Comparable {
         } else {
             z11 = false;
         }
-        this.f50633n = z11;
+        this.f50740n = z11;
         if (str2 != null) {
             i0Var = i0.z(str2);
         } else if (i0Var2.isEmpty()) {
@@ -56,7 +56,7 @@ public final class l extends n implements Comparable {
         while (true) {
             i13 = Integer.MAX_VALUE;
             if (i20 < i0Var.size()) {
-                i14 = p.d(this.d, (String) i0Var.get(i20), iVar.f3570z);
+                i14 = p.d(this.d, (String) i0Var.get(i20), iVar.f3568z);
                 if (i14 > 0) {
                     break;
                 }
@@ -67,44 +67,44 @@ public final class l extends n implements Comparable {
                 break;
             }
         }
-        this.f50634r = i20;
-        this.f50635s = i14;
+        this.f50741r = i20;
+        this.f50742s = i14;
         if (str2 != null) {
             i15 = 1088;
         } else {
-            i15 = iVar.f3567w;
+            i15 = iVar.f3565w;
         }
-        int i21 = this.d.f3632f;
-        y0 y0Var = p.f50649l;
+        int i21 = this.d.f3630f;
+        y0 y0Var = p.f50756l;
         i13 = (i21 == 0 || i21 != i15) ? Integer.bitCount(i15 & i21) : i13;
         this.v = i13;
-        if ((1088 & this.d.f3632f) != 0) {
+        if ((1088 & this.d.f3630f) != 0) {
             z12 = true;
         } else {
             z12 = false;
         }
-        this.f50637x = z12;
+        this.f50744x = z12;
         if (p.g(str) == null) {
             z13 = true;
         } else {
             z13 = false;
         }
         int d = p.d(this.d, str, z13);
-        this.f50636w = d;
-        if (i14 <= 0 && ((!i0Var2.isEmpty() || i13 <= 0) && !this.h && (!this.f50633n || d <= 0))) {
+        this.f50743w = d;
+        if (i14 <= 0 && ((!i0Var2.isEmpty() || i13 <= 0) && !this.h && (!this.f50740n || d <= 0))) {
             z14 = false;
         } else {
             z14 = true;
         }
-        if (hg.c.d(i12, iVar.f50623t0) && z14) {
+        if (hg.c.d(i12, iVar.f50730t0) && z14) {
             i16 = 1;
         }
-        this.f50631e = i16;
+        this.f50738e = i16;
     }
 
     @Override
     public final int a() {
-        return this.f50631e;
+        return this.f50738e;
     }
 
     @Override
@@ -115,26 +115,26 @@ public final class l extends n implements Comparable {
 
     @Override
     public final int compareTo(l lVar) {
-        z c10 = z.f8819a.c(this.f50632f, lVar.f50632f);
-        Integer valueOf = Integer.valueOf(this.f50634r);
-        Integer valueOf2 = Integer.valueOf(lVar.f50634r);
-        x0 x0Var = x0.f8816b;
-        x0 x0Var2 = x0.f8817c;
+        z c10 = z.f8817a.c(this.f50739f, lVar.f50739f);
+        Integer valueOf = Integer.valueOf(this.f50741r);
+        Integer valueOf2 = Integer.valueOf(lVar.f50741r);
+        x0 x0Var = x0.f8814b;
+        x0 x0Var2 = x0.f8815c;
         z b10 = c10.b(valueOf, valueOf2, x0Var2);
-        int i10 = lVar.f50635s;
-        int i11 = this.f50635s;
+        int i10 = lVar.f50742s;
+        int i11 = this.f50742s;
         z a2 = b10.a(i11, i10);
         int i12 = lVar.v;
         int i13 = this.v;
         z c11 = a2.a(i13, i12).c(this.h, lVar.h);
-        Boolean valueOf3 = Boolean.valueOf(this.f50633n);
-        Boolean valueOf4 = Boolean.valueOf(lVar.f50633n);
+        Boolean valueOf3 = Boolean.valueOf(this.f50740n);
+        Boolean valueOf4 = Boolean.valueOf(lVar.f50740n);
         if (i11 != 0) {
             x0Var = x0Var2;
         }
-        z a10 = c11.b(valueOf3, valueOf4, x0Var).a(this.f50636w, lVar.f50636w);
+        z a10 = c11.b(valueOf3, valueOf4, x0Var).a(this.f50743w, lVar.f50743w);
         if (i13 == 0) {
-            a10 = a10.d(this.f50637x, lVar.f50637x);
+            a10 = a10.d(this.f50744x, lVar.f50744x);
         }
         return a10.e();
     }

@@ -2,32 +2,32 @@ package e1;
 
 import v0.i;
 public final class c implements Runnable {
-    public final int f8506a;
-    public final d f8507b;
-    public final w0.d f8508c;
+    public final int f8504a;
+    public final d f8505b;
+    public final w0.d f8506c;
 
     public c(d dVar, w0.d dVar2, int i10) {
-        this.f8506a = i10;
-        this.f8507b = dVar;
-        this.f8508c = dVar2;
+        this.f8504a = i10;
+        this.f8505b = dVar;
+        this.f8506c = dVar2;
     }
 
     @Override
     public final void run() {
-        switch (this.f8506a) {
+        switch (this.f8504a) {
             case 0:
-                i iVar = this.f8507b.f8510f;
+                i iVar = this.f8505b.f8508f;
                 if (iVar != null) {
-                    iVar.onError(this.f8508c);
+                    iVar.onError(this.f8506c);
                     return;
                 } else {
                     kotlin.jvm.internal.i.h("callback");
                     throw null;
                 }
             default:
-                i iVar2 = this.f8507b.f8510f;
+                i iVar2 = this.f8505b.f8508f;
                 if (iVar2 != null) {
-                    Object obj = this.f8508c;
+                    Object obj = this.f8506c;
                     if (obj == null) {
                         obj = new w0.c("No provider data returned", 2);
                     }

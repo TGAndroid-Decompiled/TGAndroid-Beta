@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.chromium.support_lib_boundary.WebViewProviderFactoryBoundaryInterface;
 import v7.e0;
 public abstract class n {
-    public static final p f3774a;
+    public static final p f3772a;
 
     static {
         a6.i iVar;
@@ -15,6 +15,6 @@ public abstract class n {
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e7) {
             throw new RuntimeException(e7);
         }
-        f3774a = iVar;
+        f3772a = iVar;
     }
 }

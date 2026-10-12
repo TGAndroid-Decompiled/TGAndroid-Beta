@@ -1,47 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class oh0 implements tb0 {
-    public final yh0 f40580a;
+public final class oh0 implements Runnable {
+    public final int f40717a;
+    public final ai0 f40718b;
+    public final TLRPC.TL_error f40719c;
+    public final TLObject d;
 
-    public oh0(yh0 yh0Var) {
-        this.f40580a = yh0Var;
+    public oh0(ai0 ai0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f40717a = i10;
+        this.f40718b = ai0Var;
+        this.f40719c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-        this.f40580a.e0(tL_chatInviteExported);
-    }
-
-    @Override
-    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
-        if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
-            TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
-            yh0 yh0Var = this.f40580a;
-            yh0Var.c0(tL_chatInviteExported2);
-            for (int i10 = 0; i10 < yh0Var.f44450i0.size(); i10++) {
-                if (((TLRPC.TL_chatInviteExported) yh0Var.f44450i0.get(i10)).link.equals(tL_chatInviteExported.link)) {
-                    if (tL_chatInviteExported2.revoked) {
-                        ph0 f02 = yh0Var.f0();
-                        yh0Var.f44450i0.remove(i10);
-                        yh0Var.f44451j0.add(0, tL_chatInviteExported2);
-                        yh0Var.h0(f02);
-                        return;
-                    }
-                    yh0Var.f44450i0.set(i10, tL_chatInviteExported2);
-                    yh0Var.i0(true);
-                    return;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void c(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.TL_chatInviteExported) {
-            AndroidUtilities.runOnUIThread(new uf0(5, this, tLObject), 200L);
+    public final void run() {
+        switch (this.f40717a) {
+            case 0:
+                ai0 ai0Var = this.f40718b;
+                ai0Var.getNotificationCenter().doOnIdle(new oh0(ai0Var, this.f40719c, this.d, 1));
+                return;
+            default:
+                ai0.V(this.f40718b, this.f40719c, this.d);
+                return;
         }
     }
 }

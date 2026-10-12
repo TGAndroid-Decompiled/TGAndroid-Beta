@@ -10,56 +10,56 @@ import com.google.firebase.messaging.n;
 import i2.f0;
 import java.util.HashMap;
 public final class e {
-    public static int f46272n;
-    public static final Rect f46273o = new Rect();
-    public final n f46274a;
-    public final sf.e f46275b;
-    public final String f46276c;
+    public static int f46097n;
+    public static final Rect f46098o = new Rect();
+    public final n f46099a;
+    public final sf.e f46100b;
+    public final String f46101c;
     public final int d;
-    public final int f46277e;
-    public final boolean f46278f;
-    public final sf.a f46279g;
+    public final int f46102e;
+    public final boolean f46103f;
+    public final sf.a f46104g;
     public final tf.b h;
-    public final pi.f f46280i;
-    public View f46281j;
-    public View f46282k;
-    public f0 f46283l;
-    public boolean f46284m;
+    public final oi.f f46105i;
+    public View f46106j;
+    public View f46107k;
+    public f0 f46108l;
+    public boolean f46109m;
 
     public e(n nVar, d dVar) {
-        int i10 = f46272n;
-        f46272n = i10 + 1;
+        int i10 = f46097n;
+        f46097n = i10 + 1;
         tf.b bVar = new tf.b();
         this.h = bVar;
         f4 f4Var = new f4(this, 1);
         ?? obj = new Object();
         obj.d = new v2(obj, 11);
-        obj.f45972a = f4Var;
-        this.f46280i = obj;
+        obj.f16926a = f4Var;
+        this.f46105i = obj;
         StringBuilder sb2 = new StringBuilder();
-        String str = dVar.f46265c;
+        String str = dVar.f46090c;
         sb2.append(str == null ? "pip-source" : str);
         sb2.append("-");
         sb2.append(i10);
         String sb3 = sb2.toString();
-        this.f46276c = sb3;
-        this.f46279g = dVar.f46264b;
-        this.d = dVar.f46266e;
-        this.f46277e = dVar.d;
-        this.f46278f = dVar.f46267f;
-        this.f46274a = nVar;
-        bVar.c(dVar.h, dVar.f46269i);
-        this.f46283l = dVar.f46268g;
-        this.f46282k = dVar.f46271k;
-        this.f46275b = new sf.e(this);
-        View view = dVar.f46270j;
+        this.f46101c = sb3;
+        this.f46104g = dVar.f46089b;
+        this.d = dVar.f46091e;
+        this.f46102e = dVar.d;
+        this.f46103f = dVar.f46092f;
+        this.f46099a = nVar;
+        bVar.c(dVar.h, dVar.f46094i);
+        this.f46108l = dVar.f46093g;
+        this.f46107k = dVar.f46096k;
+        this.f46100b = new sf.e(this);
+        View view = dVar.f46095j;
         obj.P(view);
-        this.f46281j = view;
+        this.f46106j = view;
         if (view != null) {
             e(view);
         }
         b(false);
-        ((HashMap) nVar.f7953a).put(sb3, this);
+        ((HashMap) nVar.f7950a).put(sb3, this);
         nVar.I();
     }
 
@@ -81,25 +81,25 @@ public final class e {
 
     public final void b(boolean z10) {
         boolean z11;
-        if (this.h.b() && this.f46279g.g()) {
+        if (this.h.b() && this.f46104g.g()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f46284m != z11) {
-            this.f46284m = z11;
+        if (this.f46109m != z11) {
+            this.f46109m = z11;
             if (z10) {
-                n nVar = this.f46274a;
+                n nVar = this.f46099a;
                 nVar.I();
-                ((a) nVar.f7955c).invalidate();
+                ((a) nVar.f7952c).invalidate();
             }
         }
     }
 
     public final void c() {
-        this.f46280i.P(null);
-        n nVar = this.f46274a;
-        if (((HashMap) nVar.f7953a).remove(this.f46276c) != null) {
+        this.f46105i.P(null);
+        n nVar = this.f46099a;
+        if (((HashMap) nVar.f7950a).remove(this.f46101c) != null) {
             nVar.I();
         }
     }
@@ -107,7 +107,7 @@ public final class e {
     public final void d(int i10, int i11) {
         if (this.h.c(i10, i11)) {
             b(true);
-            this.f46274a.n(this);
+            this.f46099a.n(this);
         }
     }
 

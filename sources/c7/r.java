@@ -18,21 +18,21 @@ public enum r implements Parcelable {
     ATTESTATION_NOT_PRIVATE_ERR(36);
     
     public static final Parcelable.Creator<r> CREATOR = new r0(23);
-    public final int f4522a;
+    public final int f4521a;
 
     r(int i10) {
-        this.f4522a = i10;
+        this.f4521a = i10;
     }
 
     public static r a(int i10) {
         r[] values;
         for (r rVar : values()) {
-            if (i10 == rVar.f4522a) {
+            if (i10 == rVar.f4521a) {
                 return rVar;
             }
         }
         Locale locale = Locale.US;
-        throw new Exception(hg.c.i(i10, "Error code ", " is not supported"));
+        throw new Exception(hg.c.j(i10, "Error code ", " is not supported"));
     }
 
     @Override
@@ -42,6 +42,6 @@ public enum r implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeInt(this.f4522a);
+        parcel.writeInt(this.f4521a);
     }
 }

@@ -1,117 +1,139 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
+import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class wz0 implements kq {
-    public final int f43929a;
-    public final TLRPC.ChatParticipant f43930b;
-    public final boolean f43931c;
-    public final boolean[] d;
-    public final ProfileActivity f43932e;
+import org.telegram.tgnet.tl.TL_stars;
+public final class wz0 extends n71 {
+    public final e71[] f43699d2;
+    public final ProfileActivity f43700e2;
 
-    public wz0(ProfileActivity profileActivity, int i10, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
-        this.f43932e = profileActivity;
-        this.f43929a = i10;
-        this.f43930b = chatParticipant;
-        this.f43931c = z10;
-        this.d = zArr;
+    public wz0(ProfileActivity profileActivity, ProfileActivity profileActivity2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.c6 c6Var, int i11, e71[] e71VarArr) {
+        super(profileActivity2, activity, true, num, i10, true, c6Var, i11);
+        this.f43700e2 = profileActivity;
+        this.f43699d2 = e71VarArr;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
+    public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
-        ProfileActivity profileActivity = this.f43932e;
-        UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f34313f1;
-        if (profileActivity.E2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
+        if (tL_starGiftUnique != null) {
+            i10 = ((org.telegram.ui.ActionBar.m2) this.f43700e2).currentAccount;
+            if (yh.n5.y(i10, false).n(tL_starGiftUnique.f20031id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+                return false;
+            }
+            return true;
         }
-        undoView.m(j3, user, i10);
+        return true;
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.ChatFull chatFull;
+    public final long getDialogId() {
+        return this.f43700e2.a();
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible;
+        Long l10;
+        long j3;
         boolean z10;
-        TLRPC.ChatParticipant tL_chatParticipant;
-        int i11 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.f43930b;
-        ProfileActivity profileActivity = this.f43932e;
-        int i12 = this.f43929a;
-        if (i12 == 0) {
-            if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
-                TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
-                if (i10 == 1) {
-                    TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
-                    tL_chatChannelParticipant.channelParticipant = tL_channelParticipantAdmin;
-                    tL_channelParticipantAdmin.flags |= 4;
-                } else {
-                    tL_chatChannelParticipant.channelParticipant = new TLRPC.TL_channelParticipant();
+        int i10;
+        int i11;
+        int i12;
+        ProfileActivity profileActivity = this.f43700e2;
+        org.telegram.ui.Components.q5[] q5VarArr = profileActivity.G;
+        e71[] e71VarArr = this.f43699d2;
+        if (tL_starGiftUnique != null) {
+            i10 = ((org.telegram.ui.ActionBar.m2) profileActivity).currentAccount;
+            TL_stars.SavedStarGift n10 = yh.n5.y(i10, false).n(tL_starGiftUnique.f20031id);
+            if (n10 != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+                MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
+                Context context = getContext();
+                i11 = ((org.telegram.ui.ActionBar.m2) profileActivity).currentAccount;
+                i12 = ((org.telegram.ui.ActionBar.m2) profileActivity).currentAccount;
+                yh.s3 s3Var = new yh.s3(context, i11, UserConfig.getInstance(i12).getClientUserId(), profileActivity.f34223z0, null);
+                s3Var.l2(n10, null);
+                s3Var.o2();
+                s3Var.show();
+                e71 e71Var = e71VarArr[0];
+                if (e71Var != null) {
+                    profileActivity.B5 = null;
+                    e71Var.dismiss();
+                    return;
                 }
-                tL_chatChannelParticipant.channelParticipant.inviter_id = profileActivity.getUserConfig().getClientUserId();
-                tL_chatChannelParticipant.channelParticipant.peer = new TLRPC.TL_peerUser();
-                TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
-                channelParticipant.peer.user_id = chatParticipant.user_id;
-                channelParticipant.date = chatParticipant.date;
-                channelParticipant.banned_rights = tL_chatBannedRights;
-                channelParticipant.admin_rights = tL_chatAdminRights;
-                channelParticipant.rank = str;
-            } else if (chatParticipant != null) {
-                if (i10 == 1) {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipantAdmin();
-                } else {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                }
-                tL_chatParticipant.user_id = chatParticipant.user_id;
-                tL_chatParticipant.date = chatParticipant.date;
-                tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                int indexOf = profileActivity.f34416u2.participants.participants.indexOf(chatParticipant);
-                if (indexOf >= 0) {
-                    profileActivity.f34416u2.participants.participants.set(indexOf, tL_chatParticipant);
-                }
+                return;
             }
-            if (i10 == 1 && !this.f43931c) {
-                this.d[0] = true;
+            TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible2 = new TLRPC.TL_inputEmojiStatusCollectible();
+            tL_inputEmojiStatusCollectible2.collectible_id = tL_starGiftUnique.f20031id;
+            tL_inputEmojiStatusCollectible = tL_inputEmojiStatusCollectible2;
+            if (num != null) {
+                tL_inputEmojiStatusCollectible2.flags |= 1;
+                tL_inputEmojiStatusCollectible2.until = num.intValue();
+                tL_inputEmojiStatusCollectible = tL_inputEmojiStatusCollectible2;
             }
-        } else if (i12 == 1 && i10 == 0 && profileActivity.E2.megagroup && (chatFull = profileActivity.f34416u2) != null && chatFull.participants != null) {
-            int i13 = 0;
-            while (true) {
-                if (i13 < profileActivity.f34416u2.participants.participants.size()) {
-                    if (MessageObject.getPeerId(((TLRPC.TL_chatChannelParticipant) profileActivity.f34416u2.participants.participants.get(i13)).channelParticipant.peer) == chatParticipant.user_id) {
-                        TLRPC.ChatFull chatFull2 = profileActivity.f34416u2;
-                        chatFull2.participants_count--;
-                        chatFull2.participants.participants.remove(i13);
-                        z10 = true;
-                        break;
-                    }
-                    i13++;
+        } else if (l4 == null) {
+            tL_inputEmojiStatusCollectible = new TLRPC.TL_emojiStatusEmpty();
+        } else {
+            TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+            tL_emojiStatus.document_id = l4.longValue();
+            tL_inputEmojiStatusCollectible = tL_emojiStatus;
+            if (num != null) {
+                tL_emojiStatus.flags |= 1;
+                tL_emojiStatus.until = num.intValue();
+                tL_inputEmojiStatusCollectible = tL_emojiStatus;
+            }
+        }
+        if (tL_starGiftUnique != null) {
+            l10 = Long.valueOf(tL_starGiftUnique.f20031id);
+        } else {
+            l10 = null;
+        }
+        profileActivity.F = l10;
+        MessagesController messagesController = profileActivity.getMessagesController();
+        TLRPC.Chat chat = profileActivity.E2;
+        if (chat == null) {
+            j3 = 0;
+        } else {
+            j3 = -chat.f19802id;
+        }
+        messagesController.updateEmojiStatus(j3, tL_inputEmojiStatusCollectible, tL_starGiftUnique);
+        for (int i13 = 0; i13 < 2; i13++) {
+            org.telegram.ui.Components.q5 q5Var = q5VarArr[i13];
+            if (q5Var != null) {
+                if (l4 == null && profileActivity.E2 == null) {
+                    q5Var.g(profileActivity.Y3(i13), true);
+                } else if (l4 != null) {
+                    q5Var.j(l4.longValue(), true);
+                } else {
+                    q5Var.g(null, true);
+                }
+                org.telegram.ui.Components.q5 q5Var2 = q5VarArr[i13];
+                if (tL_starGiftUnique != null) {
+                    z10 = true;
                 } else {
                     z10 = false;
-                    break;
                 }
+                q5Var2.m(z10, true);
             }
-            TLRPC.ChatFull chatFull3 = profileActivity.f34416u2;
-            if (chatFull3 != null && chatFull3.participants != null) {
-                while (true) {
-                    if (i11 >= profileActivity.f34416u2.participants.participants.size()) {
-                        break;
-                    } else if (profileActivity.f34416u2.participants.participants.get(i11).user_id == chatParticipant.user_id) {
-                        profileActivity.f34416u2.participants.participants.remove(i11);
-                        z10 = true;
-                        break;
-                    } else {
-                        i11++;
-                    }
-                }
-            }
-            if (z10) {
-                profileActivity.h5(true);
-                profileActivity.j5();
-                profileActivity.d.l();
-            }
+        }
+        if (l4 != null) {
+            org.telegram.ui.Cells.o oVar = profileActivity.f34071d0;
+            ?? obj = new Object();
+            long longValue = l4.longValue();
+            obj.f54842g = longValue;
+            obj.h = longValue;
+            oVar.a(obj);
+        }
+        profileActivity.X4();
+        profileActivity.Z4();
+        e71 e71Var2 = e71VarArr[0];
+        if (e71Var2 != null) {
+            profileActivity.B5 = null;
+            e71Var2.dismiss();
         }
     }
 }

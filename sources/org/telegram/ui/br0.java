@@ -1,72 +1,210 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-public final class br0 implements org.telegram.ui.Components.sn0 {
-    public final fr0 f36479a;
+import org.telegram.ui.Components.RadialProgressView;
+public final class br0 extends org.telegram.ui.Components.vm0 {
+    public final Context f36245c;
+    public final dr0 d;
 
-    public br0(fr0 fr0Var) {
-        this.f36479a = fr0Var;
+    public br0(dr0 dr0Var, Context context) {
+        this.d = dr0Var;
+        this.f36245c = context;
     }
 
     @Override
-    public final void d(int i10, boolean z10) {
-        boolean z11;
-        fr0 fr0Var = this.f36479a;
-        if (fr0Var.f37785n[0].f37109e == i10) {
+    public final boolean D(s4.d1 d1Var) {
+        dr0 dr0Var = this.d;
+        if (dr0Var.J == null) {
+            if (TextUtils.isEmpty(dr0Var.v)) {
+                if (d1Var.f47893f != 3) {
+                    return false;
+                }
+                return true;
+            } else if (d1Var.b() >= dr0Var.f36875f.size()) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        dr0 dr0Var = this.d;
+        MediaController.AlbumEntry albumEntry = dr0Var.J;
+        if (albumEntry == null) {
+            if (dr0Var.f36875f.isEmpty()) {
+                if (!TextUtils.isEmpty(dr0Var.v) || dr0Var.f36883n.isEmpty()) {
+                    return 0;
+                }
+                return dr0Var.f36883n.size() + 2;
+            }
+            return dr0Var.f36875f.size() + (!dr0Var.f36890s ? 1 : 0);
+        }
+        return albumEntry.photos.size();
+    }
+
+    @Override
+    public final long i(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        dr0 dr0Var = this.d;
+        if (dr0Var.Y) {
+            return 2;
+        }
+        if (dr0Var.J != null) {
+            return 0;
+        }
+        if (dr0Var.f36875f.isEmpty()) {
+            if (i10 == dr0Var.f36883n.size()) {
+                return 4;
+            }
+            return 3;
+        } else if (i10 < dr0Var.f36875f.size()) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    @Override
+    public final void v(s4.d1 d1Var, int i10) {
+        boolean M1;
+        boolean z10;
+        dr0 dr0Var = this.d;
+        MediaController.AlbumEntry albumEntry = dr0Var.J;
+        ArrayList arrayList = dr0Var.f36883n;
+        ArrayList arrayList2 = dr0Var.f36870c;
+        HashMap hashMap = dr0Var.f36868b;
+        int i11 = d1Var.f47893f;
+        View view = d1Var.f47889a;
+        int i12 = -1;
+        int i13 = 0;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 != 2) {
+                    if (i11 == 3) {
+                        org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
+                        if (i10 < arrayList.size()) {
+                            r8Var.m(R.drawable.msg_recent, (CharSequence) arrayList.get(i10), false);
+                            return;
+                        } else {
+                            r8Var.m(R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearRecentHistory), false);
+                            return;
+                        }
+                    }
+                    return;
+                }
+                MediaController.PhotoEntry photoEntry = albumEntry.photos.get(i10);
+                org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) view;
+                j7Var.setPhotoEntry(photoEntry);
+                j7Var.b(hashMap.containsKey(Integer.valueOf(photoEntry.imageId)), false);
+                j7Var.setTag(Integer.valueOf(i10));
+                return;
+            }
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (layoutParams != null) {
+                layoutParams.width = -1;
+                layoutParams.height = dr0Var.R;
+                view.setLayoutParams(layoutParams);
+                return;
+            }
             return;
         }
-        if (i10 == fr0Var.h.getFirstTabId()) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        fr0Var.f37783e = z11;
-        dr0 dr0Var = fr0Var.f37785n[1];
-        dr0Var.f37109e = i10;
-        dr0Var.setVisibility(0);
-        fr0Var.j0(true);
-        fr0Var.v = z10;
-        if (i10 == 0) {
-            fr0Var.f37782c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
-        } else {
-            fr0Var.f37782c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
-        }
-    }
-
-    @Override
-    public final boolean k1(int i10, View view) {
-        return false;
-    }
-
-    @Override
-    public final void u0(float f7) {
-        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        fr0 fr0Var = this.f36479a;
-        if (i10 != 0 || fr0Var.f37785n[1].getVisibility() == 0) {
-            if (fr0Var.v) {
-                dr0 dr0Var = fr0Var.f37785n[0];
-                dr0Var.setTranslationX((-f7) * dr0Var.getMeasuredWidth());
-                dr0[] dr0VarArr = fr0Var.f37785n;
-                dr0VarArr[1].setTranslationX(dr0VarArr[0].getMeasuredWidth() - (f7 * fr0Var.f37785n[0].getMeasuredWidth()));
+        org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+        t5Var.setItemSize(dr0Var.R);
+        org.telegram.ui.Components.y9 imageView = t5Var.getImageView();
+        t5Var.setTag(Integer.valueOf(i10));
+        imageView.q(0, true);
+        if (albumEntry != null) {
+            MediaController.PhotoEntry photoEntry2 = albumEntry.photos.get(i10);
+            if (arrayList2.size() > 1) {
+                z10 = true;
             } else {
-                dr0 dr0Var2 = fr0Var.f37785n[0];
-                dr0Var2.setTranslationX(dr0Var2.getMeasuredWidth() * f7);
-                dr0[] dr0VarArr2 = fr0Var.f37785n;
-                dr0VarArr2[1].setTranslationX((f7 * dr0VarArr2[0].getMeasuredWidth()) - fr0Var.f37785n[0].getMeasuredWidth());
+                z10 = false;
             }
-            if (i10 == 0) {
-                dr0[] dr0VarArr3 = fr0Var.f37785n;
-                dr0 dr0Var3 = dr0VarArr3[0];
-                dr0VarArr3[0] = dr0VarArr3[1];
-                dr0VarArr3[1] = dr0Var3;
-                dr0Var3.setVisibility(8);
+            t5Var.d(photoEntry2, z10, true, false, false);
+            if (dr0Var.f36873e) {
+                i12 = arrayList2.indexOf(Integer.valueOf(photoEntry2.imageId));
             }
+            t5Var.b(i12, hashMap.containsKey(Integer.valueOf(photoEntry2.imageId)), false);
+            M1 = PhotoViewer.M1(photoEntry2.path);
+        } else {
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) dr0Var.f36875f.get(i10);
+            t5Var.e(searchImage);
+            t5Var.getVideoInfoContainer().setVisibility(4);
+            if (dr0Var.f36873e) {
+                i12 = arrayList2.indexOf(searchImage.f16997id);
+            }
+            t5Var.b(i12, hashMap.containsKey(searchImage.f16997id), false);
+            M1 = PhotoViewer.M1(searchImage.getPathToAttach());
         }
+        imageView.getImageReceiver().setVisible(!M1, true);
+        t5Var.getCheckBox().setVisibility((dr0Var.T != 0 || M1) ? 8 : 8);
     }
 
     @Override
-    public final void C() {
+    public final s4.d1 x(ViewGroup viewGroup, int i10) {
+        ViewGroup viewGroup2;
+        ViewGroup viewGroup3;
+        dr0 dr0Var = this.d;
+        boolean z10 = dr0Var.f36889r0;
+        int i11 = 0;
+        Context context = this.f36245c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        org.telegram.ui.Cells.d3 d3Var = new org.telegram.ui.Cells.d3(context, null);
+                        d3Var.setForceDarkTheme(z10);
+                        viewGroup3 = d3Var;
+                    } else {
+                        org.telegram.ui.Cells.r8 r8Var = new org.telegram.ui.Cells.r8(23, context, true);
+                        r8Var.setLayoutParams(new s4.q0(-1, -2));
+                        viewGroup2 = r8Var;
+                        if (z10) {
+                            r8Var.f22480a.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, dr0Var.f36894v0, false));
+                            r8Var.f22483e.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20827rg, false), PorterDuff.Mode.MULTIPLY));
+                            viewGroup2 = r8Var;
+                        }
+                    }
+                } else {
+                    viewGroup3 = new org.telegram.ui.Cells.j7(context, 1, null);
+                }
+            } else {
+                ViewGroup frameLayout = new FrameLayout(context);
+                frameLayout.setLayoutParams(new s4.q0(-1, -2));
+                RadialProgressView radialProgressView = new RadialProgressView(context, null);
+                radialProgressView.setProgressColor(-11371101);
+                frameLayout.addView(radialProgressView, w7.w5.d(-1.0f, -1));
+                viewGroup3 = frameLayout;
+            }
+            return new s4.d1(viewGroup3);
+        }
+        org.telegram.ui.Cells.t5 t5Var = new org.telegram.ui.Cells.t5(context, null);
+        t5Var.setDelegate(new ar0(this));
+        FrameLayout checkFrame = t5Var.getCheckFrame();
+        if (dr0Var.T != 0) {
+            i11 = 8;
+        }
+        checkFrame.setVisibility(i11);
+        viewGroup2 = t5Var;
+        viewGroup3 = viewGroup2;
+        return new s4.d1(viewGroup3);
     }
 }

@@ -1,30 +1,23 @@
 package org.telegram.messenger;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.MediaController;
-public final class x5 implements DialogInterface.OnCancelListener {
-    public final int f19803a;
-    public final Object f19804b;
+import android.location.Location;
+public final class x5 implements q0.a {
+    public final int f19536a;
+    public final LocationController f19537b;
 
-    public x5(Object obj, int i10) {
-        this.f19803a = i10;
-        this.f19804b = obj;
+    public x5(LocationController locationController, int i10) {
+        this.f19536a = i10;
+        this.f19537b = locationController;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f19803a) {
+    public final void accept(Object obj) {
+        switch (this.f19536a) {
             case 0:
-                MediaController.lambda$saveFile$44((boolean[]) this.f19804b, dialogInterface);
-                return;
-            case 1:
-                MediaController.lambda$saveFile$51((boolean[]) this.f19804b, dialogInterface);
-                return;
-            case 2:
-                MessagesController.lambda$openByUserName$460((boolean[]) this.f19804b, dialogInterface);
+                this.f19537b.lambda$onConnected$4((Integer) obj);
                 return;
             default:
-                ((MediaController.MediaLoader) this.f19804b).lambda$new$0(dialogInterface);
+                this.f19537b.setLastKnownLocation((Location) obj);
                 return;
         }
     }

@@ -14,27 +14,27 @@ public final class g0 extends s4.j {
     public final void M() {
         ViewGroup viewGroup;
         h0 h0Var = this.F;
-        viewGroup = ((e3) h0Var.f9976f).containerView;
+        viewGroup = ((e3) h0Var.f9975f).containerView;
         viewGroup.invalidate();
-        h0Var.f9974c.invalidate();
+        h0Var.f9973c.invalidate();
     }
 
     @Override
     public final void O() {
         ViewGroup viewGroup;
         h0 h0Var = this.F;
-        viewGroup = ((e3) h0Var.f9976f).containerView;
+        viewGroup = ((e3) h0Var.f9975f).containerView;
         viewGroup.invalidate();
-        h0Var.f9974c.invalidate();
+        h0Var.f9973c.invalidate();
     }
 
     @Override
     public final void P(d1 d1Var) {
         ViewGroup viewGroup;
         h0 h0Var = this.F;
-        viewGroup = ((e3) h0Var.f9976f).containerView;
+        viewGroup = ((e3) h0Var.f9975f).containerView;
         viewGroup.invalidate();
-        h0Var.f9974c.invalidate();
+        h0Var.f9973c.invalidate();
         h0Var.d.invalidate();
     }
 
@@ -42,9 +42,9 @@ public final class g0 extends s4.j {
     public final void Q() {
         ViewGroup viewGroup;
         h0 h0Var = this.F;
-        viewGroup = ((e3) h0Var.f9976f).containerView;
+        viewGroup = ((e3) h0Var.f9975f).containerView;
         viewGroup.invalidate();
-        h0Var.f9974c.invalidate();
+        h0Var.f9973c.invalidate();
     }
 
     @Override

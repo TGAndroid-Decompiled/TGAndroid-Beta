@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.jx;
-public final class q extends rm0 {
+import org.telegram.ui.Components.wm0;
+import org.telegram.ui.mx;
+public final class q extends wm0 {
     public final int V2;
-    public final jx W2;
+    public final mx W2;
 
-    public q(jx jxVar, Context context, int i10) {
+    public q(mx mxVar, Context context, int i10) {
         super(context, null);
         this.V2 = i10;
-        this.W2 = jxVar;
+        this.W2 = mxVar;
     }
 
     @Override
@@ -26,29 +26,29 @@ public final class q extends rm0 {
         boolean z10;
         switch (this.V2) {
             case 1:
-                jx jxVar = this.W2;
-                ArrayList arrayList = jxVar.P;
+                mx mxVar = this.W2;
+                ArrayList arrayList = mxVar.P;
                 arrayList.clear();
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     a0 a0Var = (a0) getChildAt(i11);
                     int R = RecyclerView.R(a0Var);
-                    a0Var.f622b = R;
+                    a0Var.f624b = R;
                     boolean z11 = true;
-                    a0Var.f620a = true;
+                    a0Var.f622a = true;
                     if (R == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (R != jxVar.f693y.size() - 1) {
+                    if (R != mxVar.f695y.size() - 1) {
                         z11 = false;
                     }
-                    a0Var.f624c = z11;
+                    a0Var.f626c = z11;
                     arrayList.add(a0Var);
                 }
-                Collections.sort(arrayList, jxVar.f690w0);
+                Collections.sort(arrayList, mxVar.f692w0);
                 while (i10 < arrayList.size()) {
                     a0 a0Var2 = (a0) arrayList.get(i10);
                     int save = canvas.save();
@@ -77,8 +77,8 @@ public final class q extends rm0 {
         switch (this.V2) {
             case 0:
                 if (motionEvent.getAction() == 0) {
-                    jx jxVar = this.W2;
-                    if (jxVar.f665c0 > 0.2f || jxVar.getAlpha() == 0.0f) {
+                    mx mxVar = this.W2;
+                    if (mxVar.f667c0 > 0.2f || mxVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }
@@ -130,7 +130,7 @@ public final class q extends rm0 {
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         switch (this.V2) {
             case 0:
-                ArrayList arrayList = this.W2.f663b0;
+                ArrayList arrayList = this.W2.f665b0;
                 super.onLayout(z10, i10, i11, i12, i13);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((Runnable) arrayList.get(i14)).run();

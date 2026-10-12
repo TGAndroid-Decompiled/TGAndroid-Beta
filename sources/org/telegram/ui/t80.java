@@ -1,60 +1,62 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import android.os.StatFs;
-import java.io.File;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-public final class t80 implements Runnable {
-    public final int f42153a;
-    public final LaunchActivity f42154b;
-    public final int f42155c;
+import android.telephony.PhoneNumberUtils;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.TLRPC;
+public final class t80 implements Predicate {
+    public final int f42121a;
+    public final Object f42122b;
 
-    public t80(LaunchActivity launchActivity, int i10, int i11) {
-        this.f42153a = i11;
-        this.f42154b = launchActivity;
-        this.f42155c = i10;
+    public t80(Object obj, int i10) {
+        this.f42121a = i10;
+        this.f42122b = obj;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f42121a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f42121a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            case 2:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f42121a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void run() {
-        File directory;
-        int i10 = this.f42153a;
-        int i11 = this.f42155c;
-        LaunchActivity launchActivity = this.f42154b;
-        switch (i10) {
+    public final boolean test(Object obj) {
+        switch (this.f42121a) {
             case 0:
-                Pattern pattern = LaunchActivity.B1;
-                if (UserConfig.getInstance(launchActivity.O).isClientActivated()) {
-                    try {
-                        SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                        if ((((i11 == 2 || i11 == 1) && Math.abs(launchActivity.f33882w1 - System.currentTimeMillis()) > 240000) || Math.abs(globalMainSettings.getLong("last_space_check", 0L) - System.currentTimeMillis()) >= 259200000) && (directory = FileLoader.getDirectory(4)) != null) {
-                            StatFs statFs = new StatFs(directory.getAbsolutePath());
-                            long availableBlocksLong = statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong();
-                            if (i11 > 0 || availableBlocksLong < 52428800) {
-                                if (i11 > 0) {
-                                    launchActivity.f33882w1 = System.currentTimeMillis();
-                                }
-                                globalMainSettings.edit().putLong("last_space_check", System.currentTimeMillis()).commit();
-                                AndroidUtilities.runOnUIThread(new e90(launchActivity, 6));
-                            } else {
-                                return;
-                            }
-                        }
-                        return;
-                    } catch (Throwable unused) {
-                        return;
-                    }
+                String str = (String) this.f42122b;
+                String str2 = (String) obj;
+                if (str2 != null && str2.equals(str)) {
+                    return true;
                 }
-                return;
+                return false;
+            case 1:
+                return PhoneNumberUtils.compare((String) this.f42122b, (String) obj);
+            case 2:
+                String str3 = (String) this.f42122b;
+                String str4 = (String) obj;
+                if (str4 != null && str4.equals(str3)) {
+                    return true;
+                }
+                return false;
             default:
-                Pattern pattern2 = LaunchActivity.B1;
-                ConnectionsManager.getInstance(launchActivity.O).cancelRequest(i11, true);
-                return;
+                return eo.P0((eo) this.f42122b, (TLRPC.MessageEntity) obj);
         }
     }
 }

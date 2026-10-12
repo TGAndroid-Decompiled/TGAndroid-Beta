@@ -8,24 +8,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.ad;
+import org.telegram.ui.Components.zc;
 import org.telegram.ui.LaunchActivity;
 public final class o0 implements Utilities.Callback2 {
-    public final int f10017a;
-    public final long f10018b;
-    public final Object f10019c;
+    public final int f10016a;
+    public final long f10017b;
+    public final Object f10018c;
 
     public o0(Object obj, long j3, int i10) {
-        this.f10017a = i10;
-        this.f10019c = obj;
-        this.f10018b = j3;
+        this.f10016a = i10;
+        this.f10018c = obj;
+        this.f10017b = j3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f10017a;
-        long j3 = this.f10018b;
-        Object obj3 = this.f10019c;
+        int i10 = this.f10016a;
+        long j3 = this.f10017b;
+        Object obj3 = this.f10018c;
         switch (i10) {
             case 0:
                 m2 m2Var = (m2) obj3;
@@ -36,7 +36,7 @@ public final class o0 implements Utilities.Callback2 {
                         u0.d(m2Var, -j3, 2);
                         return;
                     } else {
-                        ad.a0(m2Var).f0(tL_error, false);
+                        zc.a0(m2Var).f0(tL_error, false);
                         return;
                     }
                 }
@@ -50,7 +50,7 @@ public final class o0 implements Utilities.Callback2 {
                 Long l4 = (Long) obj2;
                 Pattern pattern = LaunchActivity.B1;
                 if ("paid".equals((String) obj) && l4.longValue() != 0) {
-                    AndroidUtilities.runOnUIThread(new a3.h0(launchActivity, l4, this.f10018b, 25));
+                    AndroidUtilities.runOnUIThread(new a3.h0(launchActivity, l4, this.f10017b, 26));
                     return;
                 }
                 return;

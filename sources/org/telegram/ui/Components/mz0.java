@@ -1,77 +1,82 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-public final class mz0 extends qm0 {
-    public final pz0 f28976c;
-    public final pz0 d;
-
-    public mz0(pz0 pz0Var, pz0 pz0Var2) {
-        this.d = pz0Var;
-        this.f28976c = pz0Var2;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class mz0 extends FrameLayout {
+    public float E;
+    public float F;
+    public ValueAnimator G;
+    public ValueAnimator H;
+    public com.google.firebase.messaging.m I;
+    public float J;
+    public boolean K;
+    public org.telegram.ui.Components.voip.h L;
+    public Paint f28689a;
+    public Paint f28690b;
+    public Paint f28691c;
+    public Paint d;
+    public boolean f28692e;
+    public ci.bb f28693f;
+    public TextView h;
+    public TextView f28694n;
+    public TextView f28695r;
+    public TextView f28696s;
+    public TextView v;
+    public View f28697w;
+    public int f28698x;
+    public org.telegram.ui.Cells.ca f28699y;
 
     @Override
-    public final boolean D(s4.d1 d1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.f28976c.f30003w;
-        if (arrayList == null) {
-            return 0;
+    public final void invalidate() {
+        TextView textView = this.f28696s;
+        TextView textView2 = this.f28695r;
+        TextView textView3 = this.f28694n;
+        TextView textView4 = this.h;
+        super.invalidate();
+        this.f28693f.invalidate();
+        int i10 = this.f28698x;
+        int i11 = org.telegram.ui.ActionBar.h6.Vi;
+        if (i10 != org.telegram.ui.ActionBar.h6.x0(null, i11, false)) {
+            this.f28698x = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
+            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f28698x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f28698x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f28698x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f28698x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
         }
-        return arrayList.size();
+        this.f28699y.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        this.f28697w.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20560d7, false));
     }
 
     @Override
-    public final long i(int i10) {
-        ArrayList arrayList = this.f28976c.f30003w;
-        if (arrayList == null) {
-            return 0L;
-        }
-        return ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji.hashCode();
-    }
-
-    @Override
-    public final void v(s4.d1 d1Var, int i10) {
-        String str;
-        oz0 oz0Var = (oz0) d1Var.f47782a;
-        pz0 pz0Var = this.f28976c;
-        ArrayList arrayList = pz0Var.f30003w;
-        if (arrayList == null) {
-            str = null;
-        } else {
-            str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
-        }
-        int direction = pz0Var.getDirection();
-        oz0Var.f29658a = str;
-        if (str != null && str.startsWith("animated_")) {
-            try {
-                long parseLong = Long.parseLong(str.substring(9));
-                Drawable drawable = oz0Var.f29659b;
-                if (!(drawable instanceof s5) || ((s5) drawable).i() != parseLong) {
-                    oz0Var.setImageDrawable(s5.n(UserConfig.selectedAccount, parseLong, null, oz0Var.f29662f.d()));
-                }
-            } catch (Exception unused) {
-                oz0Var.setImageDrawable(null);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        com.google.firebase.messaging.m mVar = this.I;
+        if (mVar != null) {
+            mVar.f7947a = true;
+            AnimatorSet animatorSet = (AnimatorSet) mVar.f7949c;
+            if (!animatorSet.isRunning()) {
+                animatorSet.start();
             }
-        } else {
-            oz0Var.setImageDrawable(Emoji.getEmojiBigDrawable(str));
-        }
-        if (oz0Var.d != direction) {
-            oz0Var.d = direction;
-            oz0Var.requestLayout();
         }
     }
 
     @Override
-    public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        return new s4.d1(new oz0(this.d, this.f28976c.getContext()));
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        com.google.firebase.messaging.m mVar = this.I;
+        if (mVar != null) {
+            mVar.f7947a = false;
+            ((AnimatorSet) mVar.f7949c).cancel();
+        }
     }
 }

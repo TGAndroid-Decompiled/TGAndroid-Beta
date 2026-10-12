@@ -2,5 +2,5 @@ package t7;
 
 import java.util.HashMap;
 public abstract class s {
-    public static final HashMap f48353a = new HashMap();
+    public static final HashMap f48460a = new HashMap();
 }

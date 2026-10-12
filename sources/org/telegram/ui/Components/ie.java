@@ -1,68 +1,128 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SharedPrefsHelper;
 import org.telegram.tgnet.TLRPC;
-public final class ie implements Utilities.Callback {
-    public final int f27428a = 0;
-    public final Object f27429b;
-    public final boolean f27430c;
-    public final int d;
-    public final int f27431e;
-    public final boolean f27432f;
-    public final String f27433g;
-    public final Object h;
-    public final Object f27434i;
-    public final Object f27435j;
+import org.telegram.ui.LaunchActivity;
+public final class ie implements Runnable {
+    public final int f27146a;
+    public final ChatActivityEnterView f27147b;
 
-    public ie(jg jgVar, Object obj, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11, String str, Object obj2) {
-        this.h = jgVar;
-        this.f27429b = obj;
-        this.f27434i = photoEntry;
-        this.f27430c = z10;
-        this.d = i10;
-        this.f27431e = i11;
-        this.f27432f = z11;
-        this.f27433g = str;
-        this.f27435j = obj2;
+    public ie(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f27146a = i10;
+        this.f27147b = chatActivityEnterView;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f27428a;
-        Object obj2 = this.f27434i;
-        Object obj3 = this.h;
+    public final void run() {
+        long S8;
+        ArrayList<TLRPC.RestrictionReason> arrayList;
+        int i10 = this.f27146a;
+        ChatActivityEnterView chatActivityEnterView = this.f27147b;
         switch (i10) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
-                int i11 = ChatActivityEnterView.f23878n5;
-                ud udVar = new ud(chatActivityEnterView, (TLRPC.Document) obj2, this.f27433g, (MessageObject.SendAnimationData) this.f27435j, this.f27430c, this.d, this.f27431e, this.f27429b, (Long) obj, this.f27432f);
-                if (!chatActivityEnterView.p1(udVar)) {
-                    udVar.run();
+                uf ufVar = chatActivityEnterView.E0;
+                if (ufVar != null) {
+                    ufVar.setText("");
+                    return;
+                }
+                return;
+            case 1:
+                uf ufVar2 = chatActivityEnterView.E0;
+                if (ufVar2 != null) {
+                    ufVar2.setText("");
+                }
+                chatActivityEnterView.L(true);
+                return;
+            case 2:
+                int i11 = ChatActivityEnterView.Q5;
+                chatActivityEnterView.Y0();
+                return;
+            case 3:
+                chatActivityEnterView.N3 = false;
+                chatActivityEnterView.K0();
+                return;
+            case 4:
+                sg sgVar = chatActivityEnterView.Z2;
+                if (sgVar != null) {
+                    sgVar.w1();
+                    return;
+                }
+                return;
+            case 5:
+                g5.L(chatActivityEnterView.O2, chatActivityEnterView.P2.a(), new vd(chatActivityEnterView), chatActivityEnterView.f23774z4);
+                return;
+            case 6:
+                int i12 = ChatActivityEnterView.Q5;
+                this.f27147b.W0(0, false, 0, true, 0L);
+                return;
+            case 7:
+                int i13 = ChatActivityEnterView.Q5;
+                AndroidUtilities.hideKeyboard(chatActivityEnterView);
+                int i14 = chatActivityEnterView.Q;
+                long j3 = chatActivityEnterView.Q2;
+                String str = chatActivityEnterView.f23668i0;
+                String str2 = chatActivityEnterView.f23674j0;
+                org.telegram.ui.eo eoVar = chatActivityEnterView.P2;
+                if (eoVar == null) {
+                    S8 = 0;
+                } else {
+                    S8 = eoVar.S8();
+                }
+                ei.e5 b10 = ei.e5.b(i14, j3, j3, str, str2, 2, 0, S8, null, false, null, null, 0, false, false);
+                LaunchActivity launchActivity = LaunchActivity.G1;
+                if (launchActivity != null && launchActivity.P() != null && LaunchActivity.G1.P().k(b10) != null) {
+                    ei.c0 c0Var = chatActivityEnterView.f23685l0;
+                    if (c0Var != null) {
+                        c0Var.setOpened(false);
+                        return;
+                    }
+                    return;
+                } else if (org.telegram.ui.fc0.q(chatActivityEnterView.f23674j0)) {
+                    ?? obj = new Object();
+                    obj.f16870c = new ud(chatActivityEnterView, 5);
+                    of.f.k(chatActivityEnterView.getContext(), chatActivityEnterView.f23674j0, false, false, obj);
+                    return;
+                } else {
+                    TLRPC.User user = MessagesController.getInstance(chatActivityEnterView.Q).getUser(Long.valueOf(chatActivityEnterView.Q2));
+                    MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
+                    if (user == null) {
+                        arrayList = null;
+                    } else {
+                        arrayList = user.restriction_reason;
+                    }
+                    String restrictionReason = messagesController.getRestrictionReason(arrayList);
+                    if (!TextUtils.isEmpty(restrictionReason)) {
+                        MessagesController.getInstance(chatActivityEnterView.Q);
+                        MessagesController.showCantOpenAlert(eoVar, restrictionReason);
+                        return;
+                    }
+                    ei.k3 k3Var = new ei.k3(chatActivityEnterView.getContext(), chatActivityEnterView.f23774z4);
+                    k3Var.x(false);
+                    k3Var.A0 = true;
+                    k3Var.f9164k0 = chatActivityEnterView.O2;
+                    k3Var.t(eoVar, b10);
+                    k3Var.show();
+                    ei.c0 c0Var2 = chatActivityEnterView.f23685l0;
+                    if (c0Var2 != null) {
+                        c0Var2.setOpened(false);
+                        return;
+                    }
+                    return;
+                }
+            case 8:
+                if (chatActivityEnterView.f23685l0 != null && !SharedPrefsHelper.isWebViewConfirmShown(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
+                    chatActivityEnterView.f23685l0.setOpened(false);
                     return;
                 }
                 return;
             default:
-                jg jgVar = (jg) obj3;
-                ud udVar2 = new ud(jgVar, this.f27429b, (MediaController.PhotoEntry) obj2, this.f27430c, this.d, this.f27431e, this.f27432f, (Long) obj, this.f27433g, this.f27435j);
-                if (!jgVar.f27725a.p1(udVar2)) {
-                    udVar2.run();
-                    return;
-                }
+                int i15 = ChatActivityEnterView.Q5;
+                chatActivityEnterView.E();
                 return;
         }
-    }
-
-    public ie(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10, int i11, Object obj, boolean z11) {
-        this.h = chatActivityEnterView;
-        this.f27434i = document;
-        this.f27433g = str;
-        this.f27435j = sendAnimationData;
-        this.f27430c = z10;
-        this.d = i10;
-        this.f27431e = i11;
-        this.f27429b = obj;
-        this.f27432f = z11;
     }
 }

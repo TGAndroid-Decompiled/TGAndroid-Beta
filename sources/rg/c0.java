@@ -24,36 +24,35 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.c6;
 import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Cells.b7;
+import org.telegram.ui.Cells.a7;
 import org.telegram.ui.Cells.g4;
 import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.ao;
-import org.telegram.ui.Components.ea0;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.la0;
-import org.telegram.ui.Components.n61;
-import org.telegram.ui.Components.qm0;
-import org.telegram.ui.s5;
-import w7.x5;
-public final class c0 extends qm0 {
-    public final j0 f47337c;
+import org.telegram.ui.Components.co;
+import org.telegram.ui.Components.gr;
+import org.telegram.ui.Components.ia0;
+import org.telegram.ui.Components.m10;
+import org.telegram.ui.Components.pa0;
+import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.vm0;
+import org.telegram.ui.w5;
+public final class c0 extends vm0 {
+    public final j0 f47427c;
 
     public c0(j0 j0Var) {
-        this.f47337c = j0Var;
+        this.f47427c = j0Var;
     }
 
     @Override
     public final boolean D(s4.d1 d1Var) {
-        j0 j0Var = this.f47337c;
-        int i10 = j0Var.f47405h0;
+        j0 j0Var = this.f47427c;
+        int i10 = j0Var.f47495h0;
         if ((i10 != 11 && i10 != 34) || j0Var.Y) {
-            int i11 = d1Var.f47786f;
+            int i11 = d1Var.f47893f;
             if (i11 == 1 || i11 == 4) {
                 return true;
             }
@@ -64,39 +63,39 @@ public final class c0 extends qm0 {
 
     @Override
     public final int h() {
-        return this.f47337c.f47408k0;
+        return this.f47427c.f47498k0;
     }
 
     @Override
     public final int j(int i10) {
         int i11;
-        j0 j0Var = this.f47337c;
-        if (j0Var.f47409l0 == i10) {
+        j0 j0Var = this.f47427c;
+        if (j0Var.f47499l0 == i10) {
             return 0;
         }
         if (j0Var.m0 == i10) {
             return 2;
         }
-        if (j0Var.f47410n0 == i10) {
+        if (j0Var.f47500n0 == i10) {
             return 3;
         }
-        if (j0Var.f47413q0 == i10) {
+        if (j0Var.f47503q0 == i10) {
             return 5;
         }
-        if (j0Var.f47414r0 == i10) {
+        if (j0Var.f47504r0 == i10) {
             return 6;
         }
         if (j0Var.Z == i10) {
             return 7;
         }
-        if (j0Var.f47415s0 == i10) {
+        if (j0Var.f47505s0 == i10) {
             return 8;
         }
-        ArrayList arrayList = j0Var.f47417u0;
-        if (arrayList != null && i10 >= (i11 = j0Var.f47416t0) && i10 <= arrayList.size() + i11) {
+        ArrayList arrayList = j0Var.f47507u0;
+        if (arrayList != null && i10 >= (i11 = j0Var.f47506t0) && i10 <= arrayList.size() + i11) {
             return 9;
         }
-        int i12 = j0Var.f47405h0;
+        int i12 = j0Var.f47495h0;
         if (i12 != 5 && i12 != 11 && i12 != 34) {
             return 1;
         }
@@ -110,11 +109,11 @@ public final class c0 extends qm0 {
         TL_account.requirementToContactPremium requirementtocontactpremium;
         int i11;
         String formatUserStatus;
-        j0 j0Var = this.f47337c;
-        int i12 = j0Var.f47405h0;
-        HashSet hashSet = j0Var.f47421y0;
-        int i13 = d1Var.f47786f;
-        View view = d1Var.f47782a;
+        j0 j0Var = this.f47427c;
+        int i12 = j0Var.f47495h0;
+        HashSet hashSet = j0Var.f47511y0;
+        int i13 = d1Var.f47893f;
+        View view = d1Var.f47889a;
         boolean z11 = false;
         boolean z12 = true;
         if (i13 != 1) {
@@ -123,19 +122,19 @@ public final class c0 extends qm0 {
                     if (i13 == 4) {
                         g4 g4Var = (g4) view;
                         if (i12 == 5) {
-                            TLRPC.Chat chat = (TLRPC.Chat) j0Var.f47422z0.get(i10 - j0Var.f47411o0);
-                            String str2 = (String) j0Var.A0.get(i10 - j0Var.f47411o0);
+                            TLRPC.Chat chat = (TLRPC.Chat) j0Var.f47512z0.get(i10 - j0Var.f47501o0);
+                            String str2 = (String) j0Var.A0.get(i10 - j0Var.f47501o0);
                             String str3 = chat.title;
-                            if (i10 == j0Var.f47412p0 - 1.0f) {
+                            if (i10 == j0Var.f47502p0 - 1.0f) {
                                 z12 = false;
                             }
                             g4Var.e(chat, str3, str2, z12);
                             g4Var.c(hashSet.contains(chat), false);
                             return;
                         } else if (i12 == 11 || i12 == 34) {
-                            TLRPC.User user = (TLRPC.User) j0Var.B0.get(i10 - j0Var.f47411o0);
+                            TLRPC.User user = (TLRPC.User) j0Var.B0.get(i10 - j0Var.f47501o0);
                             ArrayList arrayList = j0Var.C0;
-                            if (arrayList != null && arrayList.contains(Long.valueOf(user.f20215id))) {
+                            if (arrayList != null && arrayList.contains(Long.valueOf(user.f19949id))) {
                                 z10 = true;
                             } else {
                                 z10 = false;
@@ -155,7 +154,7 @@ public final class c0 extends qm0 {
                                 formatUserStatus = LocaleController.getString(R.string.InvitePremiumBlockedUser);
                             }
                             String formatName = ContactsController.formatName(user.first_name, user.last_name);
-                            if (i10 == j0Var.f47412p0 - 1.0f) {
+                            if (i10 == j0Var.f47502p0 - 1.0f) {
                                 z12 = false;
                             }
                             g4Var.e(user, formatName, formatUserStatus, z12);
@@ -187,41 +186,41 @@ public final class c0 extends qm0 {
                     return;
                 }
             }
-            int i14 = i10 - j0Var.f47416t0;
-            ArrayList arrayList2 = j0Var.f47417u0;
+            int i14 = i10 - j0Var.f47506t0;
+            ArrayList arrayList2 = j0Var.f47507u0;
             if (arrayList2 != null && i14 >= 0 && i14 < arrayList2.size()) {
                 f0 f0Var = (f0) view;
-                e0 e0Var = (e0) j0Var.f47417u0.get(i14);
-                s5 s5Var = f0Var.f47372c;
-                ImageView imageView = f0Var.f47370a;
-                h5 h5Var = f0Var.f47371b;
+                e0 e0Var = (e0) j0Var.f47507u0.get(i14);
+                w5 w5Var = f0Var.f47462c;
+                ImageView imageView = f0Var.f47460a;
+                h5 h5Var = f0Var.f47461b;
                 if (e0Var instanceof d0) {
-                    f0Var.f47374f = (d0) e0Var;
-                    f0Var.f47373e = null;
+                    f0Var.f47464f = (d0) e0Var;
+                    f0Var.f47463e = null;
                     imageView.setVisibility(8);
                     h5Var.setVisibility(8);
-                    s5Var.setVisibility(0);
+                    w5Var.setVisibility(0);
                     h5 h5Var2 = f0Var.d;
-                    d0 d0Var = f0Var.f47374f;
+                    d0 d0Var = f0Var.f47464f;
                     if (d0Var.h) {
                         str = "BoostLevelUnlocks";
                     } else {
                         str = "BoostLevel";
                     }
-                    h5Var2.l(LocaleController.formatPluralString(str, d0Var.f47355g, new Object[0]), false);
+                    h5Var2.l(LocaleController.formatPluralString(str, d0Var.f47445g, new Object[0]), false);
                     return;
                 } else if (e0Var != null) {
-                    f0Var.f47374f = null;
-                    f0Var.f47373e = e0Var;
+                    f0Var.f47464f = null;
+                    f0Var.f47463e = e0Var;
                     imageView.setVisibility(0);
-                    imageView.setImageResource(f0Var.f47373e.f47360a);
+                    imageView.setImageResource(f0Var.f47463e.f47450a);
                     h5Var.setVisibility(0);
-                    e0 e0Var2 = f0Var.f47373e;
+                    e0 e0Var2 = f0Var.f47463e;
                     String str4 = "";
                     if (e0Var2.d != null) {
-                        String string = LocaleController.getString(f0Var.f47373e.d + "_" + LocaleController.getStringParamForNumber(f0Var.f47373e.f47363e));
+                        String string = LocaleController.getString(f0Var.f47463e.d + "_" + LocaleController.getStringParamForNumber(f0Var.f47463e.f47453e));
                         if (string == null || string.startsWith("LOC_ERR")) {
-                            string = LocaleController.getString(f0Var.f47373e.d + "_other");
+                            string = LocaleController.getString(f0Var.f47463e.d + "_other");
                         }
                         if (string == null) {
                             string = "";
@@ -230,23 +229,23 @@ public final class c0 extends qm0 {
                         int indexOf = string.indexOf("%d");
                         if (indexOf >= 0) {
                             spannableStringBuilder = new SpannableStringBuilder(string);
-                            SpannableString spannableString = new SpannableString(a1.g.o(f0Var.f47373e.f47363e, "", new StringBuilder()));
-                            spannableString.setSpan(new n61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                            SpannableString spannableString = new SpannableString(a1.g.o(f0Var.f47463e.f47453e, "", new StringBuilder()));
+                            spannableString.setSpan(new r61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                             spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) spannableString);
                         }
                         h5Var.l(spannableStringBuilder, false);
                     } else {
-                        String string2 = LocaleController.getString(e0Var2.f47361b);
+                        String string2 = LocaleController.getString(e0Var2.f47451b);
                         if (string2 != null) {
                             str4 = string2;
                         }
-                        if (f0Var.f47373e.f47362c != null) {
+                        if (f0Var.f47463e.f47452c != null) {
                             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str4);
                             int indexOf2 = str4.indexOf("%s");
                             if (indexOf2 >= 0) {
                                 spannableStringBuilder2 = new SpannableStringBuilder(str4);
-                                SpannableString spannableString2 = new SpannableString(f0Var.f47373e.f47362c);
-                                spannableString2.setSpan(new n61(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
+                                SpannableString spannableString2 = new SpannableString(f0Var.f47463e.f47452c);
+                                spannableString2.setSpan(new r61(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
                                 spannableStringBuilder2.replace(indexOf2, indexOf2 + 2, (CharSequence) spannableString2);
                             }
                             h5Var.l(spannableStringBuilder2, false);
@@ -254,7 +253,7 @@ public final class c0 extends qm0 {
                             h5Var.l(str4, false);
                         }
                     }
-                    s5Var.setVisibility(8);
+                    w5Var.setVisibility(8);
                     return;
                 } else {
                     return;
@@ -262,7 +261,7 @@ public final class c0 extends qm0 {
             }
             return;
         }
-        TLRPC.Chat chat2 = (TLRPC.Chat) j0Var.f47406i0.get(i10 - j0Var.f47411o0);
+        TLRPC.Chat chat2 = (TLRPC.Chat) j0Var.f47496i0.get(i10 - j0Var.f47501o0);
         org.telegram.ui.Cells.n nVar = (org.telegram.ui.Cells.n) view;
         TLRPC.Chat currentChannel = nVar.getCurrentChannel();
         nVar.a(chat2, false);
@@ -270,43 +269,43 @@ public final class c0 extends qm0 {
         if (currentChannel == chat2) {
             z11 = true;
         }
-        nVar.f22512r.a(contains, z11);
+        nVar.f22247r.a(contains, z11);
     }
 
     @Override
     public final s4.d1 x(ViewGroup viewGroup, int i10) {
-        d6 d6Var;
-        d6 d6Var2;
+        c6 c6Var;
+        c6 c6Var2;
         int i11;
         int i12;
         int i13;
         int i14;
         int i15;
         float f7;
-        d6 d6Var3;
-        d6 d6Var4;
-        d6 d6Var5;
-        d6 d6Var6;
-        d6 d6Var7;
+        c6 c6Var3;
+        c6 c6Var4;
+        c6 c6Var5;
+        c6 c6Var6;
+        c6 c6Var7;
         int i16;
         int i17;
         int i18;
-        d6 d6Var8;
-        d6 d6Var9;
+        c6 c6Var8;
+        c6 c6Var9;
         i0 i0Var;
-        d6 d6Var10;
-        d6 d6Var11;
-        d6 d6Var12;
+        c6 c6Var10;
+        c6 c6Var11;
+        c6 c6Var12;
         Context context = viewGroup.getContext();
-        j0 j0Var = this.f47337c;
+        j0 j0Var = this.f47427c;
         switch (i10) {
             case 1:
                 i0Var = new org.telegram.ui.Cells.n(context, new b0(this), true, 9);
                 break;
             case 2:
-                int i19 = h6.f20766a7;
-                d6Var = ((e3) j0Var).resourcesProvider;
-                i0Var = new b7(context, h6.w0(i19, d6Var), 0);
+                int i19 = h6.f20503a7;
+                c6Var = ((e3) j0Var).resourcesProvider;
+                i0Var = new a7(context, h6.w0(i19, c6Var), 0);
                 break;
             case 3:
                 View m4Var = new m4(context);
@@ -314,28 +313,28 @@ public final class c0 extends qm0 {
                 i0Var = m4Var;
                 break;
             case 4:
-                d6Var2 = ((e3) j0Var).resourcesProvider;
-                View g4Var = new g4(1, 0, context, d6Var2, false, false);
+                c6Var2 = ((e3) j0Var).resourcesProvider;
+                View g4Var = new g4(1, 0, context, c6Var2, false, false);
                 i11 = ((e3) j0Var).backgroundPaddingLeft;
                 i12 = ((e3) j0Var).backgroundPaddingLeft;
                 g4Var.setPadding(i11, 0, i12, 0);
                 i0Var = g4Var;
                 break;
             case 5:
-                k10 k10Var = new k10(context, null);
-                if (j0Var.f47405h0 == 2) {
+                m10 m10Var = new m10(context, null);
+                if (j0Var.f47495h0 == 2) {
                     i13 = 22;
                 } else {
                     i13 = 21;
                 }
-                k10Var.setViewType(i13);
-                k10Var.setIsSingleCell(true);
-                k10Var.setIgnoreHeightCheck(true);
-                k10Var.setItemsCount(10);
-                i0Var = k10Var;
+                m10Var.setViewType(i13);
+                m10Var.setIsSingleCell(true);
+                m10Var.setIgnoreHeightCheck(true);
+                m10Var.setItemsCount(10);
+                i0Var = m10Var;
                 break;
             case 6:
-                i0Var = new ao(j0Var.getContext(), 29);
+                i0Var = new co(j0Var.getContext(), 29);
                 break;
             case 7:
                 FrameLayout frameLayout = new FrameLayout(j0Var.getContext());
@@ -358,46 +357,46 @@ public final class c0 extends qm0 {
                 textView.setTextSize(1, 16.0f);
                 textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
                 textView.setSingleLine(true);
-                frameLayout.addView(textView, x5.a(-2.0f, 11.0f, 0.0f, 11.0f, 0.0f, -1, 0));
+                frameLayout.addView(textView, w7.w5.a(-2.0f, 11.0f, 0.0f, 11.0f, 0.0f, -1, 0));
                 int dp4 = AndroidUtilities.dp(8.0f);
                 int i20 = h6.e7;
-                d6Var3 = ((e3) j0Var).resourcesProvider;
-                int w02 = h6.w0(i20, d6Var3);
-                int i21 = h6.f20913i6;
-                d6Var4 = ((e3) j0Var).resourcesProvider;
-                int k10 = i0.a.k(h6.w0(i21, d6Var4), 76);
+                c6Var3 = ((e3) j0Var).resourcesProvider;
+                int w02 = h6.w0(i20, c6Var3);
+                int i21 = h6.f20650i6;
+                c6Var4 = ((e3) j0Var).resourcesProvider;
+                int k10 = i0.a.k(h6.w0(i21, c6Var4), 76);
                 textView.setBackground(h6.j0(dp4, dp4, dp4, dp4, w02, k10, k10));
                 int i22 = h6.G6;
-                d6Var5 = ((e3) j0Var).resourcesProvider;
-                textView.setTextColor(h6.w0(i22, d6Var5));
+                c6Var5 = ((e3) j0Var).resourcesProvider;
+                textView.setTextColor(h6.w0(i22, c6Var5));
                 textView.setOnClickListener(new View.OnClickListener(this) {
-                    public final c0 f47298b;
+                    public final c0 f47388b;
 
                     {
-                        this.f47298b = this;
+                        this.f47388b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
-                        d6 d6Var13;
+                        c6 c6Var13;
                         switch (r2) {
                             case 0:
-                                j0 j0Var2 = this.f47298b.f47337c;
-                                m2 m2Var = j0Var2.f25736n;
-                                long j3 = j0Var2.f47398a0;
-                                d6Var13 = ((e3) j0Var2).resourcesProvider;
-                                tg.m.o(m2Var, d6Var13, j3, null);
+                                j0 j0Var2 = this.f47388b.f47427c;
+                                m2 m2Var = j0Var2.f25297n;
+                                long j3 = j0Var2.f47488a0;
+                                c6Var13 = ((e3) j0Var2).resourcesProvider;
+                                tg.m.o(m2Var, c6Var13, j3, null);
                                 return;
                             case 1:
-                                j0 j0Var3 = this.f47298b.f47337c;
+                                j0 j0Var3 = this.f47388b.f47427c;
                                 AndroidUtilities.addToClipboard(j0Var3.q1());
                                 j0Var3.dismiss();
                                 return;
                             case 2:
-                                AndroidUtilities.addToClipboard(this.f47298b.f47337c.q1());
+                                AndroidUtilities.addToClipboard(this.f47388b.f47427c.q1());
                                 return;
                             default:
-                                j0 j0Var4 = this.f47298b.f47337c;
+                                j0 j0Var4 = this.f47388b.f47427c;
                                 j0Var4.Q0.run();
                                 j0Var4.dismiss();
                                 return;
@@ -407,43 +406,43 @@ public final class c0 extends qm0 {
                 if (j0Var.Q0 != null) {
                     ImageView imageView = new ImageView(j0Var.getContext());
                     imageView.setImageResource(R.drawable.msg_stats);
-                    int i23 = h6.f20930j5;
-                    d6Var6 = ((e3) j0Var).resourcesProvider;
-                    imageView.setColorFilter(h6.w0(i23, d6Var6));
+                    int i23 = h6.f20667j5;
+                    c6Var6 = ((e3) j0Var).resourcesProvider;
+                    imageView.setColorFilter(h6.w0(i23, c6Var6));
                     imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
                     int dp5 = AndroidUtilities.dp(20.0f);
-                    d6Var7 = ((e3) j0Var).resourcesProvider;
-                    int k11 = i0.a.k(h6.w0(i21, d6Var7), 76);
+                    c6Var7 = ((e3) j0Var).resourcesProvider;
+                    int k11 = i0.a.k(h6.w0(i21, c6Var7), 76);
                     imageView.setBackground(h6.j0(dp5, dp5, dp5, dp5, 0, k11, k11));
-                    frameLayout.addView(imageView, x5.a(40.0f, 15.0f, 0.0f, 15.0f, 0.0f, 40, 21));
+                    frameLayout.addView(imageView, w7.w5.a(40.0f, 15.0f, 0.0f, 15.0f, 0.0f, 40, 21));
                     imageView.setOnClickListener(new View.OnClickListener(this) {
-                        public final c0 f47298b;
+                        public final c0 f47388b;
 
                         {
-                            this.f47298b = this;
+                            this.f47388b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
-                            d6 d6Var13;
+                            c6 c6Var13;
                             switch (r2) {
                                 case 0:
-                                    j0 j0Var2 = this.f47298b.f47337c;
-                                    m2 m2Var = j0Var2.f25736n;
-                                    long j3 = j0Var2.f47398a0;
-                                    d6Var13 = ((e3) j0Var2).resourcesProvider;
-                                    tg.m.o(m2Var, d6Var13, j3, null);
+                                    j0 j0Var2 = this.f47388b.f47427c;
+                                    m2 m2Var = j0Var2.f25297n;
+                                    long j3 = j0Var2.f47488a0;
+                                    c6Var13 = ((e3) j0Var2).resourcesProvider;
+                                    tg.m.o(m2Var, c6Var13, j3, null);
                                     return;
                                 case 1:
-                                    j0 j0Var3 = this.f47298b.f47337c;
+                                    j0 j0Var3 = this.f47388b.f47427c;
                                     AndroidUtilities.addToClipboard(j0Var3.q1());
                                     j0Var3.dismiss();
                                     return;
                                 case 2:
-                                    AndroidUtilities.addToClipboard(this.f47298b.f47337c.q1());
+                                    AndroidUtilities.addToClipboard(this.f47388b.f47427c.q1());
                                     return;
                                 default:
-                                    j0 j0Var4 = this.f47298b.f47337c;
+                                    j0 j0Var4 = this.f47388b.f47427c;
                                     j0Var4.Q0.run();
                                     j0Var4.dismiss();
                                     return;
@@ -462,8 +461,8 @@ public final class c0 extends qm0 {
                 i17 = ((e3) j0Var).backgroundPaddingLeft;
                 linearLayout.setPadding(dp6, 0, AndroidUtilities.dp(6.0f) + i17, 0);
                 linearLayout.setOrientation(1);
-                la0 la0Var = new la0(context);
-                ea0 ea0Var = new ea0(context, null);
+                pa0 pa0Var = new pa0(context);
+                ia0 ia0Var = new ia0(context, null);
                 if (j0Var.y1()) {
                     i18 = R.string.BoostingStoriesByGiftingGroup2;
                 } else {
@@ -476,93 +475,93 @@ public final class c0 extends qm0 {
                 Drawable mutate = j0Var.getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
                 int i24 = h6.gc;
                 mutate.setColorFilter(new PorterDuffColorFilter(i24, PorterDuff.Mode.SRC_IN));
-                er erVar = new er(0, mutate);
-                erVar.setColorKey(i24);
-                erVar.setSize(AndroidUtilities.dp(18.0f));
-                erVar.setWidth(AndroidUtilities.dp(11.0f));
-                erVar.setTranslateX(-AndroidUtilities.dp(5.0f));
-                spannableString.setSpan(erVar, 0, spannableString.length(), 33);
-                ea0Var.setText(TextUtils.concat(replaceTags, " ", AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString)));
-                ea0Var.setTextSize(1, 14.0f);
-                ea0Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
-                d6Var8 = ((e3) j0Var).resourcesProvider;
-                if (d6Var8 instanceof ai.d) {
-                    int i25 = h6.f21207y6;
-                    d6Var11 = ((e3) j0Var).resourcesProvider;
-                    ea0Var.setTextColor(h6.w0(i25, d6Var11));
+                gr grVar = new gr(0, mutate);
+                grVar.setColorKey(i24);
+                grVar.setSize(AndroidUtilities.dp(18.0f));
+                grVar.setWidth(AndroidUtilities.dp(11.0f));
+                grVar.setTranslateX(-AndroidUtilities.dp(5.0f));
+                spannableString.setSpan(grVar, 0, spannableString.length(), 33);
+                ia0Var.setText(TextUtils.concat(replaceTags, " ", AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString)));
+                ia0Var.setTextSize(1, 14.0f);
+                ia0Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
+                c6Var8 = ((e3) j0Var).resourcesProvider;
+                if (c6Var8 instanceof ai.d) {
+                    int i25 = h6.f20945y6;
+                    c6Var11 = ((e3) j0Var).resourcesProvider;
+                    ia0Var.setTextColor(h6.w0(i25, c6Var11));
                 } else {
                     int i26 = h6.G6;
-                    d6Var9 = ((e3) j0Var).resourcesProvider;
-                    ea0Var.setTextColor(h6.w0(i26, d6Var9));
+                    c6Var9 = ((e3) j0Var).resourcesProvider;
+                    ia0Var.setTextColor(h6.w0(i26, c6Var9));
                 }
-                ea0Var.setGravity(1);
-                ea0Var.setOnClickListener(new View.OnClickListener(this) {
-                    public final c0 f47298b;
+                ia0Var.setGravity(1);
+                ia0Var.setOnClickListener(new View.OnClickListener(this) {
+                    public final c0 f47388b;
 
                     {
-                        this.f47298b = this;
+                        this.f47388b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
-                        d6 d6Var13;
+                        c6 c6Var13;
                         switch (r2) {
                             case 0:
-                                j0 j0Var2 = this.f47298b.f47337c;
-                                m2 m2Var = j0Var2.f25736n;
-                                long j3 = j0Var2.f47398a0;
-                                d6Var13 = ((e3) j0Var2).resourcesProvider;
-                                tg.m.o(m2Var, d6Var13, j3, null);
+                                j0 j0Var2 = this.f47388b.f47427c;
+                                m2 m2Var = j0Var2.f25297n;
+                                long j3 = j0Var2.f47488a0;
+                                c6Var13 = ((e3) j0Var2).resourcesProvider;
+                                tg.m.o(m2Var, c6Var13, j3, null);
                                 return;
                             case 1:
-                                j0 j0Var3 = this.f47298b.f47337c;
+                                j0 j0Var3 = this.f47388b.f47427c;
                                 AndroidUtilities.addToClipboard(j0Var3.q1());
                                 j0Var3.dismiss();
                                 return;
                             case 2:
-                                AndroidUtilities.addToClipboard(this.f47298b.f47337c.q1());
+                                AndroidUtilities.addToClipboard(this.f47388b.f47427c.q1());
                                 return;
                             default:
-                                j0 j0Var4 = this.f47298b.f47337c;
+                                j0 j0Var4 = this.f47388b.f47427c;
                                 j0Var4.Q0.run();
                                 j0Var4.dismiss();
                                 return;
                         }
                     }
                 });
-                la0Var.setOnClickListener(new org.telegram.ui.Components.voip.p(ea0Var, 9));
+                pa0Var.setOnClickListener(new org.telegram.ui.Components.voip.o(ia0Var, 9));
                 if (j0Var.z1()) {
-                    d6Var10 = ((e3) j0Var).resourcesProvider;
-                    ci.d dVar = new ci.d(context, d6Var10, true);
+                    c6Var10 = ((e3) j0Var).resourcesProvider;
+                    ci.d dVar = new ci.d(context, c6Var10, true);
                     dVar.g(LocaleController.getString(R.string.Copy), false, true);
                     dVar.setOnClickListener(new View.OnClickListener(this) {
-                        public final c0 f47298b;
+                        public final c0 f47388b;
 
                         {
-                            this.f47298b = this;
+                            this.f47388b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
-                            d6 d6Var13;
+                            c6 c6Var13;
                             switch (r2) {
                                 case 0:
-                                    j0 j0Var2 = this.f47298b.f47337c;
-                                    m2 m2Var = j0Var2.f25736n;
-                                    long j3 = j0Var2.f47398a0;
-                                    d6Var13 = ((e3) j0Var2).resourcesProvider;
-                                    tg.m.o(m2Var, d6Var13, j3, null);
+                                    j0 j0Var2 = this.f47388b.f47427c;
+                                    m2 m2Var = j0Var2.f25297n;
+                                    long j3 = j0Var2.f47488a0;
+                                    c6Var13 = ((e3) j0Var2).resourcesProvider;
+                                    tg.m.o(m2Var, c6Var13, j3, null);
                                     return;
                                 case 1:
-                                    j0 j0Var3 = this.f47298b.f47337c;
+                                    j0 j0Var3 = this.f47388b.f47427c;
                                     AndroidUtilities.addToClipboard(j0Var3.q1());
                                     j0Var3.dismiss();
                                     return;
                                 case 2:
-                                    AndroidUtilities.addToClipboard(this.f47298b.f47337c.q1());
+                                    AndroidUtilities.addToClipboard(this.f47388b.f47427c.q1());
                                     return;
                                 default:
-                                    j0 j0Var4 = this.f47298b.f47337c;
+                                    j0 j0Var4 = this.f47388b.f47427c;
                                     j0Var4.Q0.run();
                                     j0Var4.dismiss();
                                     return;
@@ -570,23 +569,23 @@ public final class c0 extends qm0 {
                         }
                     });
                     LinearLayout linearLayout2 = new LinearLayout(context);
-                    linearLayout2.addView(j0Var.G0, x5.p(-1, 44, 1.0f, 0, 0, 0, 4, 0));
-                    linearLayout2.addView(dVar, x5.p(-1, 44, 1.0f, 0, 4, 0, 0, 0));
-                    linearLayout.addView(linearLayout2, x5.k(12.0f, 12.0f, 12.0f, 8.0f, -1, 44));
+                    linearLayout2.addView(j0Var.G0, w7.w5.p(-1, 44, 1.0f, 0, 0, 0, 4, 0));
+                    linearLayout2.addView(dVar, w7.w5.p(-1, 44, 1.0f, 0, 4, 0, 0, 0));
+                    linearLayout.addView(linearLayout2, w7.w5.k(12.0f, 12.0f, 12.0f, 8.0f, -1, 44));
                 } else {
-                    linearLayout.addView(j0Var.F0, x5.k(12.0f, 12.0f, 12.0f, 8.0f, -1, 48));
+                    linearLayout.addView(j0Var.F0, w7.w5.k(12.0f, 12.0f, 12.0f, 8.0f, -1, 48));
                 }
-                linearLayout.addView(la0Var, x5.k(0.0f, -5.0f, 0.0f, 0.0f, -1, 48));
-                linearLayout.addView(ea0Var, x5.k(12.0f, -6.0f, 12.0f, 17.0f, -1, -2));
+                linearLayout.addView(pa0Var, w7.w5.k(0.0f, -5.0f, 0.0f, 0.0f, -1, 48));
+                linearLayout.addView(ia0Var, w7.w5.k(12.0f, -6.0f, 12.0f, 17.0f, -1, -2));
                 i0Var = linearLayout;
                 break;
             case 9:
-                d6Var12 = ((e3) j0Var).resourcesProvider;
-                i0Var = new f0(j0Var, context, d6Var12);
+                c6Var12 = ((e3) j0Var).resourcesProvider;
+                i0Var = new f0(j0Var, context, c6Var12);
                 break;
             default:
                 i0 i0Var2 = new i0(j0Var, context);
-                j0Var.f47401d0 = i0Var2;
+                j0Var.f47491d0 = i0Var2;
                 i0Var = i0Var2;
                 break;
         }

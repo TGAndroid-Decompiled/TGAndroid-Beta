@@ -3,29 +3,29 @@ package hg;
 import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.g00;
-import org.telegram.ui.Components.ik;
-import org.telegram.ui.Components.pl;
-import org.telegram.ui.Components.qi;
-import org.telegram.ui.Components.rj;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.xl;
-import org.telegram.ui.Components.yn;
-public final class f0 extends g00 {
+import org.telegram.ui.Components.ao;
+import org.telegram.ui.Components.i00;
+import org.telegram.ui.Components.kk;
+import org.telegram.ui.Components.rl;
+import org.telegram.ui.Components.si;
+import org.telegram.ui.Components.tj;
+import org.telegram.ui.Components.wm0;
+import org.telegram.ui.Components.zl;
+public final class f0 extends i00 {
     public final int U;
-    public final qi V;
+    public final si V;
 
-    public f0(qi qiVar, int i10, rm0 rm0Var, int i11) {
-        super(i10, 0, rm0Var);
+    public f0(si siVar, int i10, wm0 wm0Var, int i11) {
+        super(i10, 0, wm0Var);
         this.U = i11;
-        this.V = qiVar;
+        this.V = siVar;
     }
 
     @Override
     public int[] t(View view, Rect rect) {
         switch (this.U) {
             case 4:
-                int C = this.f47898n - C();
+                int C = this.f48005n - C();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int min = Math.min(0, top);
                 int max = Math.max(0, (rect.height() + top) - C);
@@ -43,35 +43,35 @@ public final class f0 extends g00 {
         switch (this.U) {
             case 0:
                 e0 e0Var = new e0(this, recyclerView.getContext());
-                e0Var.f47951a = i10;
+                e0Var.f48058a = i10;
                 w0(e0Var);
                 return;
             case 1:
-                rj rjVar = new rj(this, recyclerView.getContext());
-                rjVar.f47951a = i10;
-                w0(rjVar);
+                tj tjVar = new tj(this, recyclerView.getContext());
+                tjVar.f48058a = i10;
+                w0(tjVar);
                 return;
             case 2:
-                ik ikVar = new ik(this, recyclerView.getContext());
-                ikVar.f47951a = i10;
-                w0(ikVar);
+                kk kkVar = new kk(this, recyclerView.getContext());
+                kkVar.f48058a = i10;
+                w0(kkVar);
                 return;
             case 3:
-                pl plVar = new pl(this, recyclerView.getContext());
-                plVar.f47951a = i10;
-                w0(plVar);
+                rl rlVar = new rl(this, recyclerView.getContext());
+                rlVar.f48058a = i10;
+                w0(rlVar);
                 return;
             default:
-                yn ynVar = new yn(this, recyclerView.getContext());
-                ynVar.f47951a = i10;
-                w0(ynVar);
+                ao aoVar = new ao(this, recyclerView.getContext());
+                aoVar.f48058a = i10;
+                w0(aoVar);
                 return;
         }
     }
 
-    public f0(xl xlVar, ai.w0 w0Var) {
+    public f0(zl zlVar, ai.w0 w0Var) {
         super(0, 0, w0Var);
         this.U = 3;
-        this.V = xlVar;
+        this.V = zlVar;
     }
 }

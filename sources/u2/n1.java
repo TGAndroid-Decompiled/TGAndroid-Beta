@@ -1,20 +1,20 @@
 package u2;
 public final class n1 {
     public static final n1 d = new n1(new b2.l1[0]);
-    public static final String f48771e;
-    public final int f48772a;
-    public final e9.a1 f48773b;
-    public int f48774c;
+    public static final String f48878e;
+    public final int f48879a;
+    public final e9.a1 f48880b;
+    public int f48881c;
 
     static {
-        String str = e2.d0.f8531a;
-        f48771e = Integer.toString(0, 36);
+        String str = e2.d0.f8529a;
+        f48878e = Integer.toString(0, 36);
     }
 
     public n1(b2.l1... l1VarArr) {
         e9.a1 w10 = e9.i0.w(l1VarArr);
-        this.f48773b = w10;
-        this.f48772a = l1VarArr.length;
+        this.f48880b = w10;
+        this.f48879a = l1VarArr.length;
         int i10 = 0;
         while (i10 < w10.d) {
             int i11 = i10 + 1;
@@ -28,11 +28,11 @@ public final class n1 {
     }
 
     public final b2.l1 a(int i10) {
-        return (b2.l1) this.f48773b.get(i10);
+        return (b2.l1) this.f48880b.get(i10);
     }
 
     public final int b(b2.l1 l1Var) {
-        int indexOf = this.f48773b.indexOf(l1Var);
+        int indexOf = this.f48880b.indexOf(l1Var);
         if (indexOf >= 0) {
             return indexOf;
         }
@@ -43,7 +43,7 @@ public final class n1 {
         if (this != obj) {
             if (obj != null && n1.class == obj.getClass()) {
                 n1 n1Var = (n1) obj;
-                if (this.f48772a == n1Var.f48772a && this.f48773b.equals(n1Var.f48773b)) {
+                if (this.f48879a == n1Var.f48879a && this.f48880b.equals(n1Var.f48880b)) {
                     return true;
                 }
                 return false;
@@ -54,13 +54,13 @@ public final class n1 {
     }
 
     public final int hashCode() {
-        if (this.f48774c == 0) {
-            this.f48774c = this.f48773b.hashCode();
+        if (this.f48881c == 0) {
+            this.f48881c = this.f48880b.hashCode();
         }
-        return this.f48774c;
+        return this.f48881c;
     }
 
     public final String toString() {
-        return this.f48773b.toString();
+        return this.f48880b.toString();
     }
 }

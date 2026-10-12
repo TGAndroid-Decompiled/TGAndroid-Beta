@@ -1,26 +1,25 @@
 package org.telegram.messenger;
-public final class ya implements Runnable {
-    public final int f19926a;
-    public final MessagesController f19927b;
-    public final a0.i f19928c;
 
-    public ya(MessagesController messagesController, a0.i iVar, int i10) {
-        this.f19926a = i10;
-        this.f19927b = messagesController;
-        this.f19928c = iVar;
+import org.telegram.tgnet.TLRPC;
+public final class ya implements Runnable {
+    public final int f19658a;
+    public final MessagesController f19659b;
+    public final TLRPC.TL_help_peerColors f19660c;
+
+    public ya(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
+        this.f19658a = i10;
+        this.f19659b = messagesController;
+        this.f19660c = tL_help_peerColors;
     }
 
     @Override
     public final void run() {
-        switch (this.f19926a) {
+        switch (this.f19658a) {
             case 0:
-                this.f19927b.lambda$processUpdateArray$409(this.f19928c);
-                return;
-            case 1:
-                this.f19927b.lambda$processUpdateArray$410(this.f19928c);
+                this.f19659b.lambda$checkPeerColors$493(this.f19660c);
                 return;
             default:
-                this.f19927b.lambda$getChannelDifference$339(this.f19928c);
+                this.f19659b.lambda$checkPeerColors$495(this.f19660c);
                 return;
         }
     }

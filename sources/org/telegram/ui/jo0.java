@@ -2,24 +2,59 @@ package org.telegram.ui;
 
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class jo0 {
-    public final uo0 f39126a;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class jo0 implements vo0 {
+    public final Runnable f39260a;
+    public final xo0 f39261b;
 
-    public jo0(uo0 uo0Var) {
-        this.f39126a = uo0Var;
+    public jo0(xo0 xo0Var, Runnable runnable) {
+        this.f39261b = xo0Var;
+        this.f39260a = runnable;
     }
 
-    public final void a(Exception exc) {
-        uo0 uo0Var = this.f39126a;
-        if (uo0Var.Q0) {
-            return;
+    @Override
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        String str3;
+        xo0 xo0Var = this.f39261b;
+        xo0Var.f44125y0 = tL_paymentSavedCredentialsCard;
+        xo0Var.f44121w0 = str;
+        xo0Var.U0 = z10;
+        xo0Var.f44123x0 = str2;
+        xo0Var.J0 = tL_inputPaymentCredentialsGooglePay;
+        org.telegram.ui.Cells.d9[] d9VarArr = xo0Var.Y;
+        org.telegram.ui.Cells.d9 d9Var = d9VarArr[0];
+        if (d9Var != null) {
+            d9Var.setVisibility(0);
+            org.telegram.ui.Cells.d9 d9Var2 = d9VarArr[0];
+            String str4 = xo0Var.f44123x0;
+            if (str4 != null && str4.length() > 1) {
+                str3 = xo0Var.f44123x0.substring(0, 1).toUpperCase() + xo0Var.f44123x0.substring(1);
+            } else {
+                str3 = xo0Var.f44123x0;
+            }
+            d9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
+            org.telegram.ui.Cells.d9 d9Var3 = d9VarArr[1];
+            if (d9Var3 != null) {
+                d9Var3.setVisibility(0);
+            }
         }
-        uo0Var.H0(true, false);
-        uo0Var.D0(false);
-        if (!(exc instanceof uc.a) && !(exc instanceof uc.b)) {
-            org.telegram.ui.Components.g5.v0(uo0Var, exc.getMessage());
-        } else {
-            org.telegram.ui.Components.g5.v0(uo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
+        Runnable runnable = this.f39260a;
+        if (runnable != null) {
+            runnable.run();
         }
+        return false;
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

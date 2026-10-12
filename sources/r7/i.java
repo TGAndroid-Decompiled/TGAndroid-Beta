@@ -4,18 +4,19 @@ import android.os.Parcel;
 import com.google.android.gms.location.LocationAvailability;
 import com.google.android.gms.location.LocationResult;
 import k2.g0;
+import m.y0;
 public final class i extends b8.b implements g8.n {
-    public static final int f47132c = 0;
-    public final androidx.activity.n f47133b;
+    public static final int f47222c = 0;
+    public final androidx.activity.n f47223b;
 
     public i(androidx.activity.n nVar) {
         super("com.google.android.gms.location.ILocationCallback", 9);
-        this.f47133b = nVar;
+        this.f47223b = nVar;
     }
 
     @Override
     public final boolean J0(Parcel parcel, int i10) {
-        androidx.activity.n nVar = this.f47133b;
+        androidx.activity.n nVar = this.f47223b;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -25,26 +26,26 @@ public final class i extends b8.b implements g8.n {
                 return true;
             }
             d.b(parcel);
-            nVar.e().a(new l2.f((LocationAvailability) d.a(parcel, LocationAvailability.CREATOR), 21));
+            nVar.e().a(new l2.g((LocationAvailability) d.a(parcel, LocationAvailability.CREATOR), 20));
             return true;
         }
         d.b(parcel);
-        nVar.e().a(new m2.t((LocationResult) d.a(parcel, LocationResult.CREATOR), 14));
+        nVar.e().a(new y0((LocationResult) d.a(parcel, LocationResult.CREATOR), 17));
         return true;
     }
 
     public final void K0() {
-        this.f47133b.e().a(new g0(this, 21));
+        this.f47223b.e().a(new g0(this, 21));
     }
 
     public final void L0(com.google.android.gms.common.api.internal.p pVar) {
-        androidx.activity.n nVar = this.f47133b;
+        androidx.activity.n nVar = this.f47223b;
         synchronized (nVar) {
-            com.google.android.gms.common.api.internal.p pVar2 = (com.google.android.gms.common.api.internal.p) nVar.f2148c;
+            com.google.android.gms.common.api.internal.p pVar2 = (com.google.android.gms.common.api.internal.p) nVar.f2146c;
             if (pVar2 != pVar) {
-                pVar2.f6653b = null;
-                pVar2.f6654c = null;
-                nVar.f2148c = pVar;
+                pVar2.f6652b = null;
+                pVar2.f6653c = null;
+                nVar.f2146c = pVar;
             }
         }
     }

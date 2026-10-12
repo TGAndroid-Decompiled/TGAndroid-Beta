@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.m2;
-import org.telegram.ui.zy;
+import org.telegram.ui.cz;
 public abstract class w {
-    public static final m2 f47928b = new m2(1);
-    public static final m2 f47929c = new m2(2);
-    public int f47930a = -1;
+    public static final m2 f48035b = new m2(1);
+    public static final m2 f48036c = new m2(2);
+    public int f48037a = -1;
 
     public static int c(int i10, int i11) {
         int i12;
@@ -35,11 +35,11 @@ public abstract class w {
     }
 
     public void a(RecyclerView recyclerView, d1 d1Var) {
-        View view = d1Var.f47782a;
+        View view = d1Var.f47889a;
         Object tag = view.getTag();
         if (tag instanceof Float) {
             float floatValue = ((Float) tag).floatValue();
-            WeakHashMap weakHashMap = r0.i0.f46890a;
+            WeakHashMap weakHashMap = r0.i0.f46981a;
             r0.a0.h(view, floatValue);
         }
         view.setTag(null);
@@ -85,16 +85,16 @@ public abstract class w {
     }
 
     public final int i(int i10, int i11, long j3) {
-        if (this.f47930a == -1) {
-            this.f47930a = AndroidUtilities.dp(20.0f);
+        if (this.f48037a == -1) {
+            this.f48037a = AndroidUtilities.dp(20.0f);
         }
-        int i12 = this.f47930a;
+        int i12 = this.f48037a;
         float f7 = 1.0f;
-        int interpolation = (int) (f47929c.getInterpolation(Math.min(1.0f, (Math.abs(i11) * 1.0f) / i10)) * ((int) Math.signum(i11)) * i12);
+        int interpolation = (int) (f48036c.getInterpolation(Math.min(1.0f, (Math.abs(i11) * 1.0f) / i10)) * ((int) Math.signum(i11)) * i12);
         if (j3 <= 500) {
             f7 = ((float) j3) / 500.0f;
         }
-        int interpolation2 = (int) (f47928b.getInterpolation(f7) * interpolation);
+        int interpolation2 = (int) (f48035b.getInterpolation(f7) * interpolation);
         if (interpolation2 == 0) {
             if (i11 <= 0) {
                 return -1;
@@ -109,20 +109,20 @@ public abstract class w {
     }
 
     public boolean k() {
-        return !(this instanceof zy);
+        return !(this instanceof cz);
     }
 
     public void m(Canvas canvas, RecyclerView recyclerView, d1 d1Var, float f7, float f10, int i10, boolean z10) {
-        View view = d1Var.f47782a;
+        View view = d1Var.f47889a;
         if (z10 && view.getTag() == null) {
-            WeakHashMap weakHashMap = r0.i0.f46890a;
+            WeakHashMap weakHashMap = r0.i0.f46981a;
             Float valueOf = Float.valueOf(r0.a0.e(view));
             int childCount = recyclerView.getChildCount();
             float f11 = 0.0f;
             for (int i11 = 0; i11 < childCount; i11++) {
                 View childAt = recyclerView.getChildAt(i11);
                 if (childAt != view) {
-                    WeakHashMap weakHashMap2 = r0.i0.f46890a;
+                    WeakHashMap weakHashMap2 = r0.i0.f46981a;
                     float e7 = r0.a0.e(childAt);
                     if (e7 > f11) {
                         f11 = e7;
@@ -139,10 +139,10 @@ public abstract class w {
     public abstract boolean n(RecyclerView recyclerView, d1 d1Var, d1 d1Var2);
 
     public void o(RecyclerView recyclerView, d1 d1Var, d1 d1Var2, int i10, int i11, int i12) {
-        View view = d1Var2.f47782a;
+        View view = d1Var2.f47889a;
         p0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof d0) {
-            ((d0) layoutManager).b1(d1Var.f47782a, view, i11, i12);
+            ((d0) layoutManager).b1(d1Var.f47889a, view, i11, i12);
             return;
         }
         if (layoutManager.d()) {

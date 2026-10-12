@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.widget.ImageView;
 public final class j extends ImageView {
-    public final float f5216a;
-    public final org.telegram.ui.Components.bd f5217b;
+    public final float f5215a;
+    public final org.telegram.ui.Components.ad f5216b;
 
     public j(Context context) {
         super(context);
-        this.f5217b = new org.telegram.ui.Components.bd(this);
-        this.f5216a = 0.2f;
+        this.f5216b = new org.telegram.ui.Components.ad(this);
+        this.f5215a = 0.2f;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
-        float a2 = this.f5217b.a(this.f5216a);
+        float a2 = this.f5216b.a(this.f5215a);
         canvas.scale(a2, a2, getWidth() / 2.0f, getHeight() / 2.0f);
         super.draw(canvas);
         canvas.restore();
@@ -25,6 +25,6 @@ public final class j extends ImageView {
     @Override
     public void setPressed(boolean z10) {
         super.setPressed(z10);
-        this.f5217b.c(z10);
+        this.f5216b.c(z10);
     }
 }

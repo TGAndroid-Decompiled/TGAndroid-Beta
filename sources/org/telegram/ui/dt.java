@@ -1,55 +1,47 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-public final class dt implements View.OnClickListener {
-    public final int f37125a;
-    public final qt f37126b;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class dt implements TextWatcher {
+    public final EditTextBoldCursor f36900a;
 
-    public dt(qt qtVar, int i10) {
-        this.f37125a = i10;
-        this.f37126b = qtVar;
+    public dt(EditTextBoldCursor editTextBoldCursor) {
+        this.f36900a = editTextBoldCursor;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37125a) {
-            case 0:
-                qt qtVar = this.f37126b;
-                qtVar.K = false;
-                qtVar.f41291z.invalidate();
-                qtVar.n();
-                return;
-            case 1:
-                qt qtVar2 = this.f37126b;
-                Activity activity = qtVar2.f41288w;
-                if (activity instanceof LaunchActivity) {
-                    LaunchActivity launchActivity = (LaunchActivity) activity;
-                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
-                        launchActivity.O().getLastFragment().dismissCurrentDialog();
+    public final void afterTextChanged(Editable editable) {
+        try {
+            String obj = editable.toString();
+            if (!obj.isEmpty()) {
+                int intValue = Utilities.parseInt((CharSequence) obj).intValue();
+                EditTextBoldCursor editTextBoldCursor = this.f36900a;
+                if (intValue < 0) {
+                    editTextBoldCursor.setText("0");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else if (intValue > 300) {
+                    editTextBoldCursor.setText("300");
+                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                } else {
+                    if (!obj.equals("" + intValue)) {
+                        editTextBoldCursor.setText("" + intValue);
+                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
                     }
-                    launchActivity.p0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
                 }
-                qtVar2.K = false;
-                qtVar2.f41291z.invalidate();
-                qtVar2.n();
-                return;
-            case 2:
-                qt qtVar3 = this.f37126b;
-                ot otVar = qtVar3.f41278l;
-                if (otVar != null) {
-                    otVar.K();
-                }
-                qtVar3.p();
-                return;
-            default:
-                qt qtVar4 = this.f37126b;
-                ot otVar2 = qtVar4.f41278l;
-                if (otVar2 != null) {
-                    otVar2.s();
-                }
-                qtVar4.p();
-                return;
+            }
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

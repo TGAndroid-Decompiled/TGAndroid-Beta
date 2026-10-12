@@ -1,21 +1,38 @@
 package org.telegram.ui.Components;
 public final class dt implements Runnable {
-    public final int f25871a;
-    public final jt f25872b;
+    public final int f25458a;
+    public final org.telegram.ui.ActionBar.a2[] f25459b;
 
-    public dt(jt jtVar, int i10) {
-        this.f25871a = i10;
-        this.f25872b = jtVar;
+    public dt(org.telegram.ui.ActionBar.a2[] a2VarArr, int i10) {
+        this.f25458a = i10;
+        this.f25459b = a2VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f25871a) {
+        switch (this.f25458a) {
             case 0:
-                this.f25872b.W(false);
+                org.telegram.ui.ActionBar.a2 a2Var = this.f25459b[0];
+                if (a2Var != null) {
+                    a2Var.dismiss();
+                    return;
+                }
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.a2[] a2VarArr = this.f25459b;
+                try {
+                    a2VarArr[0].dismiss();
+                } catch (Throwable unused) {
+                }
+                a2VarArr[0] = null;
                 return;
             default:
-                this.f25872b.N(true);
+                org.telegram.ui.ActionBar.a2[] a2VarArr2 = this.f25459b;
+                try {
+                    a2VarArr2[0].dismiss();
+                } catch (Throwable unused2) {
+                }
+                a2VarArr2[0] = null;
                 return;
         }
     }

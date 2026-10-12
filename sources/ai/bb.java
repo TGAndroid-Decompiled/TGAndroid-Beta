@@ -3,22 +3,22 @@ package ai;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class bb implements Utilities.Callback {
-    public final int f729a;
-    public final eb f730b;
+    public final int f727a;
+    public final eb f728b;
 
     public bb(eb ebVar, int i10) {
-        this.f729a = i10;
-        this.f730b = ebVar;
+        this.f727a = i10;
+        this.f728b = ebVar;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f729a) {
+        switch (this.f727a) {
             case 0:
-                eb.c(this.f730b, (TLRPC.TL_messages_stickerSet) obj);
+                eb.c(this.f728b, (TLRPC.TL_messages_stickerSet) obj);
                 return;
             default:
-                eb.b(this.f730b, (TLRPC.TL_messages_stickerSet) obj);
+                eb.b(this.f728b, (TLRPC.TL_messages_stickerSet) obj);
                 return;
         }
     }

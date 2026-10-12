@@ -13,7 +13,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ez;
+import org.telegram.ui.hz;
 public final class qb extends lb {
     public final zg.n0 I;
     public final pb J;
@@ -23,7 +23,7 @@ public final class qb extends lb {
     public final org.telegram.ui.Components.q6 N;
     public boolean O;
 
-    public qb(Context context, nb nbVar, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, ez ezVar) {
+    public qb(Context context, nb nbVar, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, hz hzVar) {
         super(context, nbVar, tL_mediaAreaSuggestedReaction);
         TLRPC.TL_availableReaction tL_availableReaction;
         ArrayList arrayList;
@@ -41,20 +41,20 @@ public final class qb extends lb {
         }
         pbVar.c(getScaleX());
         e0Var.e(d);
-        ezVar.getClass();
-        String str = d.f54738f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.s5.f(ezVar.f37515b, d.f54739g)) : str;
-        if (str != null && (arrayList = (ArrayList) ezVar.f37517e.get(str)) != null && !arrayList.isEmpty()) {
+        hzVar.getClass();
+        String str = d.f54841f;
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.s5.f(hzVar.f38562b, d.f54842g)) : str;
+        if (str != null && (arrayList = (ArrayList) hzVar.f38564e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
-                ezVar.l((TLRPC.Document) arrayList.get(i10));
+                hzVar.l((TLRPC.Document) arrayList.get(i10));
             }
         }
-        if (this.I.f54738f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f54738f)) != null) {
+        if (this.I.f54841f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f54841f)) != null) {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.q6 q6Var = this.N;
-        q6Var.f30134b = 17;
+        q6Var.f29712b = 17;
         q6Var.x(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.w(AndroidUtilities.dp(18.0f));
         this.N.M = AndroidUtilities.displaySize.x;
@@ -89,7 +89,7 @@ public final class qb extends lb {
         float d = this.M.d(f7, false);
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set((int) centerX, (int) AndroidUtilities.lerp(centerY, f10, d), (int) centerX2, (int) AndroidUtilities.lerp(centerY2, f11, d));
-        if (pbVar.f1591a == 1) {
+        if (pbVar.f1589a == 1) {
             i10 = -1;
         } else {
             i10 = -16777216;
@@ -149,7 +149,7 @@ public final class qb extends lb {
     }
 
     public org.telegram.ui.Components.s5 getAnimatedEmojiDrawable() {
-        return this.K.f54631b;
+        return this.K.f54734b;
     }
 
     @Override

@@ -2,22 +2,39 @@ package org.telegram.ui;
 
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 public final class y40 implements ViewTreeObserver.OnPreDrawListener {
-    public final g60 f44289a;
+    public final ChatObject.VideoParticipant f44290a;
+    public final boolean f44291b;
+    public final i60 f44292c;
 
-    public y40(g60 g60Var) {
-        this.f44289a = g60Var;
+    public y40(i60 i60Var, ChatObject.VideoParticipant videoParticipant, boolean z10) {
+        this.f44292c = i60Var;
+        this.f44290a = videoParticipant;
+        this.f44291b = z10;
     }
 
     @Override
     public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        g60 g60Var = this.f44289a;
-        g60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
-        g60Var.a2.j(null);
-        AndroidUtilities.updateVisibleRows(g60Var.f37952m2);
-        viewGroup = ((org.telegram.ui.ActionBar.e3) g60Var).containerView;
+        i60 i60Var = this.f44292c;
+        o50 o50Var = i60Var.Q;
+        o50Var.getViewTreeObserver().removeOnPreDrawListener(this);
+        i60Var.f38744q2 = null;
+        a40 a40Var = i60Var.a2;
+        ChatObject.VideoParticipant videoParticipant = this.f44290a;
+        a40Var.j(videoParticipant);
+        if (i60Var.f38752s0) {
+            i60Var.f38752s0 = false;
+            i60Var.P0(true);
+            if (this.f44291b && videoParticipant != null) {
+                o50Var.u0(0);
+            }
+            i60Var.f38752s0 = true;
+        } else {
+            i60Var.P0(true);
+        }
+        viewGroup = ((org.telegram.ui.ActionBar.e3) i60Var).containerView;
         viewGroup.requestLayout();
         return false;
     }

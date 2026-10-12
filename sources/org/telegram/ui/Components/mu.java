@@ -1,44 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-public final class mu implements ru, gm0 {
-    public final int f28936a;
-    public final int f28937b;
-    public final KeyEvent.Callback f28938c;
-    public final Object d;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import org.telegram.messenger.AndroidUtilities;
+public final class mu extends ShapeDrawable {
+    public final int f28663a = 0;
+    public final EditTextBoldCursor f28664b;
 
-    public mu(su suVar, int i10, int i11, Runnable runnable) {
-        this.f28938c = suVar;
-        this.f28936a = i10;
-        this.f28937b = i11;
-        this.d = runnable;
+    public mu(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
+        super(rectShape);
+        this.f28664b = editTextBoldCursor;
     }
 
     @Override
-    public boolean Y0(View view) {
-        return false;
+    public final void draw(Canvas canvas) {
+        switch (this.f28663a) {
+            case 0:
+                EditTextBoldCursor editTextBoldCursor = this.f28664b;
+                if (editTextBoldCursor.drawInMaim) {
+                    editTextBoldCursor.cursorDrawn = true;
+                    return;
+                } else {
+                    super.draw(canvas);
+                    return;
+                }
+            default:
+                super.draw(canvas);
+                this.f28664b.cursorDrawn = true;
+                return;
+        }
     }
 
     @Override
-    public void c(float f7, float f10, int i10, View view) {
-        int i11 = this.f28937b;
-        tg.m1.R((tg.m1) this.f28938c, this.f28936a, (org.telegram.ui.ActionBar.d6) this.d, i11, view);
+    public int getIntrinsicHeight() {
+        int i10;
+        switch (this.f28663a) {
+            case 0:
+                i10 = this.f28664b.cursorSize;
+                return AndroidUtilities.dp(i10 + 20);
+            default:
+                return super.getIntrinsicHeight();
+        }
     }
 
     @Override
-    public void run(String str) {
-        su.k((su) this.f28938c, this.f28936a, this.f28937b, (Runnable) this.d, str);
+    public int getIntrinsicWidth() {
+        float f7;
+        switch (this.f28663a) {
+            case 0:
+                f7 = this.f28664b.cursorWidth;
+                return AndroidUtilities.dp(f7);
+            default:
+                return super.getIntrinsicWidth();
+        }
     }
 
-    public mu(tg.m1 m1Var, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
-        this.f28938c = m1Var;
-        this.f28936a = i10;
-        this.d = d6Var;
-        this.f28937b = i11;
-    }
-
-    @Override
-    public void n0(View view, float f7, float f10) {
+    public mu(EditTextBoldCursor editTextBoldCursor) {
+        this.f28664b = editTextBoldCursor;
     }
 }

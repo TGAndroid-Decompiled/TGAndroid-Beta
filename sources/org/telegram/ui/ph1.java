@@ -1,27 +1,44 @@
 package org.telegram.ui;
-public final class ph1 implements Runnable {
-    public final int f40907a;
-    public final qh1 f40908b;
 
-    public ph1(qh1 qh1Var, int i10) {
-        this.f40907a = i10;
-        this.f40908b = qh1Var;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class ph1 implements Utilities.Callback {
+    public final int f40965a;
+    public final UserInfoActivity f40966b;
+
+    public ph1(UserInfoActivity userInfoActivity, int i10) {
+        this.f40965a = i10;
+        this.f40966b = userInfoActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40907a) {
+    public final void run(Object obj) {
+        switch (this.f40965a) {
             case 0:
-                org.telegram.ui.Components.f71 f71Var = this.f40908b.f26675a;
-                if (f71Var != null) {
-                    f71Var.W2.N(true);
-                    return;
+                UserInfoActivity userInfoActivity = this.f40966b;
+                userInfoActivity.J = (TL_account.TL_birthday) obj;
+                org.telegram.ui.Components.j71 j71Var = userInfoActivity.f34427x;
+                if (j71Var != null) {
+                    j71Var.W2.N(true);
                 }
+                userInfoActivity.b0(true);
                 return;
             default:
-                org.telegram.ui.Components.f71 f71Var2 = this.f40908b.f26675a;
-                if (f71Var2 != null) {
-                    f71Var2.W2.N(true);
+                TLRPC.Chat chat = (TLRPC.Chat) obj;
+                UserInfoActivity userInfoActivity2 = this.f40966b;
+                if (userInfoActivity2.K != chat) {
+                    userInfoActivity2.K = chat;
+                    if (chat != null) {
+                        org.telegram.messenger.v0.q(R.string.EditProfileChannelSet, org.telegram.ui.Components.zc.a0(userInfoActivity2), R.raw.contact_check, 36);
+                    }
+                    userInfoActivity2.b0(true);
+                    org.telegram.ui.Components.j71 j71Var2 = userInfoActivity2.f34427x;
+                    if (j71Var2 != null) {
+                        j71Var2.W2.N(true);
+                        return;
+                    }
                     return;
                 }
                 return;

@@ -8,43 +8,43 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ai;
-import org.telegram.ui.Components.is;
+import org.telegram.messenger.am;
+import org.telegram.ui.Components.js;
 public final class ad extends View {
-    public final Paint f4736a;
-    public final org.telegram.ui.Components.q6 f4737b;
-    public boolean f4738c;
+    public final Paint f4735a;
+    public final org.telegram.ui.Components.q6 f4736b;
+    public boolean f4737c;
 
     public ad(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f4736a = paint;
-        this.f4738c = true;
+        this.f4735a = paint;
+        this.f4737c = true;
         paint.setColor(Integer.MIN_VALUE);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(false, true, true);
-        this.f4737b = q6Var;
-        q6Var.n(0.2f, 200L, is.h);
+        this.f4736b = q6Var;
+        q6Var.n(0.2f, 200L, js.h);
         q6Var.w(AndroidUtilities.dp(13.0f));
         q6Var.u(-1);
         q6Var.x(AndroidUtilities.bold());
         q6Var.setCallback(this);
-        q6Var.f30134b = 1;
+        q6Var.f29712b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, q6Var.f30140i)) {
+        if (!TextUtils.equals(sb2, q6Var.f29718i)) {
             q6Var.a();
             q6Var.t(sb2, false, true);
         }
     }
 
     public final void a(boolean z10) {
-        if (!this.f4738c && z10) {
+        if (!this.f4737c && z10) {
             return;
         }
-        this.f4738c = false;
+        this.f4737c = false;
         animate().cancel();
         if (z10) {
-            ai.t(animate().translationY(AndroidUtilities.dp(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), is.h, 220L);
+            am.t(animate().translationY(AndroidUtilities.dp(6.0f)).alpha(0.0f).scaleX(0.8f).scaleY(0.8f), js.h, 220L);
             return;
         }
         setTranslationY(AndroidUtilities.dp(6.0f));
@@ -56,11 +56,11 @@ public final class ad extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        org.telegram.ui.Components.q6 q6Var = this.f4737b;
+        org.telegram.ui.Components.q6 q6Var = this.f4736b;
         float c10 = q6Var.c();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(((getWidth() - c10) / 2.0f) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), ((getWidth() + c10) / 2.0f) + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(23.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.f4736a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.f4735a);
         q6Var.setBounds((int) rectF.left, ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
         q6Var.draw(canvas);
     }
@@ -72,7 +72,7 @@ public final class ad extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f4737b != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f4736b != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

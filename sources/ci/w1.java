@@ -2,20 +2,20 @@ package ci;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.b00;
-import org.telegram.ui.Components.e00;
-import org.telegram.ui.Components.fz;
-import org.telegram.ui.Components.gz;
-import org.telegram.ui.Components.nj;
-import org.telegram.ui.Components.q61;
-import org.telegram.ui.Components.yy0;
-import org.telegram.ui.tp0;
+import org.telegram.ui.Components.d00;
+import org.telegram.ui.Components.dz0;
+import org.telegram.ui.Components.g00;
+import org.telegram.ui.Components.hz;
+import org.telegram.ui.Components.iz;
+import org.telegram.ui.Components.pj;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.wp0;
 public final class w1 extends g.o {
-    public final int f6181c;
+    public final int f6180c;
     public final Object d;
 
     public w1(Object obj, int i10) {
-        this.f6181c = i10;
+        this.f6180c = i10;
         this.d = obj;
     }
 
@@ -25,24 +25,24 @@ public final class w1 extends g.o {
         int i12;
         int i13;
         int i14;
-        switch (this.f6181c) {
+        switch (this.f6180c) {
             case 0:
                 x1 x1Var = (x1) this.d;
-                if (x1Var.Y.f6341c.F(i10) == null) {
+                if (x1Var.Y.f6340c.F(i10) == null) {
                     return x1Var.J;
                 }
                 x1Var.B1();
                 return x1Var.R.get(i10);
             case 1:
                 d2 d2Var = (d2) this.d;
-                if (d2Var.f4895c.j(i10) != 2) {
+                if (d2Var.f4894c.j(i10) != 2) {
                     return d2Var.h;
                 }
                 return 1;
             case 2:
-                nj njVar = (nj) this.d;
-                int i15 = njVar.f29171r;
-                int i16 = njVar.f29173w;
+                pj pjVar = (pj) this.d;
+                int i15 = pjVar.f29505r;
+                int i16 = pjVar.f29507w;
                 if (i10 % i16 != i16 - 1) {
                     i11 = AndroidUtilities.dp(5.0f);
                 } else {
@@ -51,7 +51,7 @@ public final class w1 extends g.o {
                 return i15 + i11;
             case 3:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
-                if (i10 != chatAttachAlertPhotoLayout.G.f33411n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
+                if (i10 != chatAttachAlertPhotoLayout.G.f24441n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
                     if (chatAttachAlertPhotoLayout.O0) {
                         i10--;
                     }
@@ -66,52 +66,52 @@ public final class w1 extends g.o {
                 }
                 return chatAttachAlertPhotoLayout.F.J;
             case 4:
-                gz gzVar = (gz) this.d;
-                b00 b00Var = gzVar.Y;
+                iz izVar = (iz) this.d;
+                d00 d00Var = izVar.Y;
                 if (i10 == 0) {
-                    b00Var.f24764n0.getClass();
+                    d00Var.f25113n0.getClass();
                 }
-                s4.i0 adapter = b00Var.f24747h0.getAdapter();
-                fz fzVar = b00Var.f24753j0;
-                if (adapter == fzVar && fzVar.f26592x.isEmpty()) {
-                    return gzVar.J;
+                s4.i0 adapter = d00Var.f25096h0.getAdapter();
+                hz hzVar = d00Var.f25102j0;
+                if (adapter == hzVar && hzVar.f26995x.isEmpty()) {
+                    return izVar.J;
                 }
-                b00Var.f24764n0.getClass();
-                gzVar.B1();
-                return gzVar.R.get(i10);
+                d00Var.f25113n0.getClass();
+                izVar.B1();
+                return izVar.R.get(i10);
             case 5:
-                yy0 yy0Var = (yy0) this.d;
-                if ((yy0Var.W != null && (yy0Var.d.f31747e.get(i10) instanceof Integer)) || i10 == yy0Var.d.h) {
-                    return yy0Var.d.d;
+                dz0 dz0Var = (dz0) this.d;
+                if ((dz0Var.W != null && (dz0Var.d.f33521e.get(i10) instanceof Integer)) || i10 == dz0Var.d.h) {
+                    return dz0Var.d.d;
                 }
                 return 1;
             case 6:
-                tp0 tp0Var = (tp0) this.d;
-                if (i10 >= tp0Var.f42258b0 && i10 < tp0Var.f42260c0) {
+                wp0 wp0Var = (wp0) this.d;
+                if (i10 >= wp0Var.f43580b0 && i10 < wp0Var.f43582c0) {
                     return 1;
                 }
-                if (i10 >= tp0Var.f42261d0 && i10 < tp0Var.f42263e0) {
+                if (i10 >= wp0Var.f43583d0 && i10 < wp0Var.f43585e0) {
                     return 1;
                 }
                 return 3;
             case 7:
-                q61 G = ((xh.h4) this.d).f51397i0.G(i10 - 1);
-                if (G == null || (i13 = G.f30176u) == -1) {
+                u61 G = ((xh.g4) this.d).f51489i0.G(i10 - 1);
+                if (G == null || (i13 = G.f31085u) == -1) {
                     return 3;
                 }
                 return i13;
             default:
                 yh.r0 r0Var = (yh.r0) this.d;
-                e00 e00Var = r0Var.f53219h0;
-                yh.m0 m0Var = r0Var.f53222k0;
+                g00 g00Var = r0Var.f53322h0;
+                yh.m0 m0Var = r0Var.f53325k0;
                 if (m0Var != null && i10 != 0) {
-                    q61 G2 = m0Var.G(i10 - 1);
-                    if (G2 == null || (i14 = G2.f30176u) == -1) {
-                        return e00Var.J;
+                    u61 G2 = m0Var.G(i10 - 1);
+                    if (G2 == null || (i14 = G2.f31085u) == -1) {
+                        return g00Var.J;
                     }
                     return i14;
                 }
-                return e00Var.J;
+                return g00Var.J;
         }
     }
 }

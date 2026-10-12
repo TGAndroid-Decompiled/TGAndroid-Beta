@@ -1,17 +1,20 @@
 package org.telegram.ui;
-public final class if1 extends s4.z {
-    public final eg1 S;
 
-    public if1(eg1 eg1Var, dg1 dg1Var) {
-        super(dg1Var);
-        this.S = eg1Var;
-    }
+import android.view.MotionEvent;
+import android.view.View;
+import java.util.HashSet;
+public final class if1 implements View.OnTouchListener {
+    public final int f38899a;
 
     @Override
-    public final boolean q() {
-        if (this.S.f37388x > 0) {
-            return true;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.f38899a) {
+            case 0:
+                HashSet hashSet = hg1.f38375n1;
+                return true;
+            default:
+                int[][] iArr = WallpapersListActivity.f35608k0;
+                return true;
         }
-        return false;
     }
 }
